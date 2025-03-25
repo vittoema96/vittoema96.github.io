@@ -241,6 +241,7 @@ body {
     }
      .special-stat-box {
         width: 20%;
+        min-width: 20%;
         margin: 0.5rem;
     }
 }
