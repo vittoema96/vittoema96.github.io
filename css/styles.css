@@ -208,40 +208,13 @@ body {
     font-weight: bold;
     color: #afff03;
 }
-@media (max-width: 1024px) {
-    .pip-boy-container {
-        padding: 1rem;
-        margin: 1rem auto;
-        max-width: 95%;
-        max-height: 90vh;
-    }
-    .header h1 {
-        font-size: 2.5rem;
-    }
-    .section-title {
-        font-size: 1.8rem;
-    }
-    .grid-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    .header p {
-        font-size: 1.2rem;
-    }
-     .tab {
-        font-size: 1rem;
-        padding: 0.5rem 1rem;
-    }
-     #special-container {
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-    .special-stat-box {
-        width: 14%;
-        margin: 0.5rem;
-    }
-}
 @media (max-width: 768px) {
+    .header {
+        text-align: start;
+        margin-bottom: 0.6rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 2px solid #afff03;
+    }
     .pip-boy-container {
         flex-direction: column;
         overflow-y: scroll;
@@ -267,8 +240,8 @@ body {
          border-bottom: none;
     }
      #special-container {
-        flex-direction: column;
         align-items: center;
+         flex-wrap: wrap;
     }
      .special-stat-box {
         width: 40%;
