@@ -1,4 +1,3 @@
-/* styles.css */
 body {
     font-family: 'Roboto Condensed', sans-serif;
     background-color: #0f3003;
@@ -26,6 +25,7 @@ body {
     display: flex;
     justify-content: center;
     margin-bottom: 1.5rem;
+    flex-direction: row;
 }
 .tab {
     padding: 0.75rem 1.5rem;
@@ -41,6 +41,7 @@ body {
     text-align: center;
     flex: 1;
     min-width: 40px;
+    box-sizing: border-box;
 }
 .tab:hover {
     background-color: #338006;
@@ -244,10 +245,22 @@ body {
         flex-direction: column;
         overflow-y: scroll;
     }
+    .tab-container {
+        /*display: flex;  Redundant, already defined globally*/
+        /*justify-content: center;  Redundant, already defined globally*/
+        flex-wrap: nowrap; /* Keep this, important for fitting */
+        overflow-x: auto;  /* Keep this, for small screens if needed */
+        -webkit-overflow-scrolling: touch;
+    }
     .tab {
-        margin-right: 0;
+        margin-right: 0.2rem;
         border-radius: 0;
         border-bottom: 1px solid #afff03;
+        flex: 1; /* Ensure tabs share available space */
+        min-width: 0;  /* Important: Allow tabs to shrink below their content size */
+        font-size: 0.9rem; /* Consider a smaller font size for mobile */
+        padding: 0.5rem;
+        white-space: nowrap;
     }
     .tab:last-child{
          border-bottom: none;
