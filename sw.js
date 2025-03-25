@@ -2,7 +2,7 @@ const CACHE_NAME = 'pipboy-v1';
 const urlsToCache = [
     '/',
     '/index.html',
-    '/script.js',
+    '/app.js',
     '/sw.js',
     '/manifest.webmanifest'
     // Add any other assets (images, fonts, etc.) you want to cache
