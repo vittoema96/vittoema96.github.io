@@ -185,7 +185,6 @@ body {
 .special-stat-box {
     padding: 0.5rem;
     border: 2px solid #afff03;
-    border-radius: 5px;
     text-align: center;
     background-color: rgba(15, 48, 3, 0.3);
     width: 12%;
@@ -211,9 +210,6 @@ body {
 @media (max-width: 768px) {
     .header {
         text-align: start;
-        margin-bottom: 0.6rem;
-        padding-bottom: 0.6rem;
-        border-bottom: 2px solid #afff03;
     }
     .pip-boy-container {
         flex-direction: column;
@@ -244,7 +240,7 @@ body {
          flex-wrap: wrap;
     }
      .special-stat-box {
-        width: 40%;
+        width: 20%;
         margin: 0.5rem;
     }
 }
