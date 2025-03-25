@@ -7,6 +7,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    box-sizing: border-box; /* Add this */
+    overflow-x: hidden;  /* Add this */
 }
 .header {
     text-align: center;
@@ -66,6 +68,7 @@ body {
     flex-direction: column;
     align-items: stretch;
     flex-grow: 1;
+    box-sizing: border-box; /* Add this */
 }
 .section-title {
     font-size: 2rem;
@@ -188,8 +191,8 @@ body {
     border: 2px solid #afff03;
     text-align: center;
     background-color: rgba(15, 48, 3, 0.3);
-    width: 28%; /* Adjusted width */
-    min-width: 100px; /* Added min-width */
+    width: 28%;
+    min-width: 100px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -252,17 +255,17 @@ body {
     .tab-container {
         /*display: flex;  Redundant, already defined globally*/
         /*justify-content: center;  Redundant, already defined globally*/
-        flex-wrap: nowrap; /* Keep this, important for fitting */
-        overflow-x: auto;  /* Keep this, for small screens if needed */
+        flex-wrap: nowrap;
+        overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
     .tab {
         margin-right: 0.2rem;
         border-radius: 0;
         border-bottom: 1px solid #afff03;
-        flex: 1; /* Ensure tabs share available space */
-        min-width: 0;  /* Important: Allow tabs to shrink below their content size */
-        font-size: 0.9rem; /* Consider a smaller font size for mobile */
+        flex: 1;
+        min-width: 0;
+        font-size: 0.9rem;
         padding: 0.5rem;
         white-space: nowrap;
     }
