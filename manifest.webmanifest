@@ -3,7 +3,7 @@
     "short_name": "PB3K",
     "start_url": "/",
     "display": "standalone",
-    "orientation": "landscape",
+    "orientation": "portrait",
     "background_color": "#0f3003",
     "theme_color": "#afff03",
     "icons": [
