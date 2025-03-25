@@ -40,7 +40,7 @@ body {
     font-family: 'Roboto Condensed', sans-serif;
     text-align: center;
     flex: 1;
-    min-width: 80px;
+    min-width: 40px;
 }
 .tab:hover {
     background-color: #338006;
