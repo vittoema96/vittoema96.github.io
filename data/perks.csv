@@ -1,0 +1,7 @@
+ID,TIER,REQUISITES,DESCRIPTION
+perkMedic,1,{"intelligence": 8},perkMedicDescription
+perkHunter,1,{"endurance": 6},perkHunterDescription
+perkGunslinger,2,"{""agility"": 7,""level"": 2}",perkGunslingerDescription
+perkArmorer,4,"{""strength"": 5,""intelligence"": 6}",perkArmorerDescription
+perkBlacksmith,4,"{""intelligence"": 6,""level"": 2}",perkBlacksmithDescription
+perkIronFist,2,"{""strength"": 6,""level"": 1}",perkIronFistDescription

@@ -1,0 +1,1167 @@
+/* ==========================================================================
+      Root Variables
+   ========================================================================== */
+
+:root {
+    --loader-display: flex; /* app.js' HIDE_LOADER=true sets it to 'none'  */
+
+    /* Should not change, regardless of theme */
+    --success-color: #0088ff;
+    --failure-color: #dc143c;
+    --overlay-color: rgba(0, 0, 0, .5);
+    --delete-button-color: #ff4d4d;
+    --special-text-color: #ffdb58;
+
+    /* Control loader durations */
+    --turn-on-delay: .1s;
+    --turn-on-duration: 1s;
+    --typewrite-duration: 1s; /* n% is dedicated to show the '> ' *% */
+}
+
+/*************************
+ *    VANILLA ELEMENTS   *
+ *************************/
+html {
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    height: 100dvh;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-family: 'Share Tech Mono', 'Roboto Mono', 'Courier New', monospace;
+    text-shadow: 0 0 5px var(--animation-glow-color), 0 0 10px var(--animation-glow-color);
+}
+h1, h2, h3 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+h1 { font-size: 2.1rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1rem; }
+header {
+    text-align: center;
+    align-items: center;
+    font-size: 0.9rem;
+    display: flex;
+}
+header > :first-child {
+    flex: 1;
+}
+hr {
+    border: none;
+    border-top: var(--border-primary-thick);
+    width: 100%;
+}
+
+input, textarea, select, button {
+    font-family: inherit;
+    text-shadow: inherit;
+    background-color: var(--button-background);
+    cursor: pointer;
+}
+input:not([type="checkbox"]), textarea, select, button {
+    border: var(--border-primary-thick);
+    color: var(--primary-color);
+    border-radius: 5px;
+}
+
+button {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: bold;
+    transition:
+            color 0.3s ease,
+            background-color 0.3s ease,
+            font-size 0.3s ease,
+            font-weight 0.3s ease;
+}button:disabled {
+    opacity: 0.5;
+}
+
+input[type="checkbox"] {
+    background-color: var(--button-background) !important;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    content: '';
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+input[type="checkbox"]:checked { background-color: var(--primary-color) !important; }
+
+input[type=number] { -moz-appearance: textfield; }
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+    -webkit-appearance: none;
+}
+
+select {
+    padding: 0.5rem;
+    border: var(--border-primary-thick);   /* FIXME use class */
+    color: var(--primary-color);
+    width: 80%;
+    max-width: 300px;
+}
+
+
+/**********************
+ *   Generic classes  *
+ **********************/
+
+.hidden { display: none !important; /* override any other 'display' */ }
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: .5rem 0;
+}
+
+/* FIXME Are these REALLY generic? */
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.form-control {
+    border: var(--border-primary-thin);  /* FIXME use class */
+    color: var(--primary-color);
+    padding: 0.75rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/**********************
+ *     Main Header    *
+ **********************/
+.icon-value-pair {
+    padding: 2px;
+    min-width: 25%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.icon-value-pair:not(:last-child) { border-bottom: var(--border-primary-thick); }
+
+.icon-value-pair .themed-svg { width: 15px; height: 15px; }
+.icon-value-pair :not(.themed-svg) {
+    flex: 1;
+    text-align: center;
+    padding: 0 8px;
+}
+
+/*********************
+ *   Main Container  *
+ *********************/
+#main-container {
+    width: 100%;
+    overflow-y: auto;
+    margin: 0 auto;
+    border: 4px solid var(--primary-color);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+/**************
+ *   Tabs   *
+ **************/
+.tab-button {
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: .2rem .3rem;
+    min-width: 40px;
+
+    margin-right: 0.5rem;
+    flex: 1;
+    box-sizing: border-box;
+}
+.tab-button.active {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+
+#main-tab-container { padding: 0.5rem 1rem 0; }
+.tab-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.mini-tab {
+    min-width: 10px;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subTab-button {
+    /* Override button behaviour */
+    color: var(--primary-color-very-translucent);
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    font-size: 0.7rem;
+    padding: .25rem 0;
+
+    font-weight: normal;
+    box-sizing: border-box;
+}
+.subTab-button.active + .subTab-button,
+.subTab-button:has(+ .subTab-button.active) {
+    color: var(--primary-color-translucent);
+    font-size: .8rem;
+}
+.subTab-button.active {
+    font-size: 1rem;
+    font-weight: bolder;
+    color: var(--primary-color);
+    border-top: var(--border-primary-thick);
+    border-bottom: var(--border-primary-thick);
+}
+
+
+/**************
+ *   Buttons  *
+ **************/
+.confirm-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.cancel-button {
+    background-color: var(--cancel-btn-background); /* TODO use different color? */
+    color: var(--primary-color);
+}
+.popup-close-button {
+    float: right;
+    font-size: 28px;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+}
+.add-item-button {
+    font-size: 2rem;
+    font-weight: bolder;
+    padding: 0 0.5rem;
+}
+.card-attack-button {
+    background-color: var(--primary-color);
+    border: none;
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+#level-label { font-size: 1.5rem; }
+#level-display {
+    font-size: 1rem;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border: var(--border-primary-thin);   /* FIXME use class */
+    border-radius: 4px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: .4rem;
+    width: 50%;
+}
+
+
+/*****************
+ *     POPUPS    *
+ *****************/
+
+dialog {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border: var(--border-primary-thin);
+    z-index: 1000;
+    padding: 1.25rem;
+
+    flex-direction: column;
+    /* FIXME Use gap here instead of margins? */
+}
+dialog::backdrop {
+    background-color: var(--overlay-color);
+    backdrop-filter: blur(3px);
+}
+dialog[open] {
+    animation: crt-turn-on .7s forwards;
+    pointer-events: auto;
+}
+.dialog-closing { animation: crt-turn-off .3s forwards !important; }
+
+/*** D20 Popup ***/
+.setup-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.target-section {
+    text-align: center;
+}
+.costs-section .row {
+    text-align: center;
+    margin: 0;
+    justify-content: center;
+    gap: .5rem;
+}
+.costs-section > .row > :first-child { flex: 3; }
+.costs-section > .row > :last-child {
+    flex: 1;
+    margin: .5rem;
+}
+.costs-section span {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.buttons-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+#d20-popup-luck-cost {
+    font-size: .7rem;
+    font-weight: normal;
+}
+
+.dice-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.dice-wrapper {
+    position: relative;
+    width: 12%;
+    min-width: 40px;
+    aspect-ratio: 1 / 1;
+    margin: 0 10px;
+}
+.dice-wrapper:nth-child(1),
+.dice-wrapper:nth-child(2) {
+    transform: scale(1.2);
+    margin: 0 12px;
+}
+.d20-dice {
+    color: var(--primary-color);
+    background-color: var(--button-background);
+    transition: background-color 0.3s ease;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+.d20-dice.roll-crit { background-color: var(--success-color); }
+.d20-dice.roll-complication { background-color: var(--failure-color); }
+
+.d6-dice.active,
+.d20-dice.active {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/*** D6 Popup ***/
+.dice-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.625rem;
+    margin-bottom: 1.5rem;
+}
+.d6-dice {
+    color: var(--primary-color);
+    background-color: var(--button-background);
+    transition: background-color 0.3s ease;
+
+    background-size: 80%; /* TODO check if its needed */
+    background-position: center;
+    background-repeat: no-repeat;
+
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.d6-face-damage1 { background-image: url('../img/svg/damage1.svg'); }
+.d6-face-damage2 { background-image: url('../img/svg/damage2.svg'); }
+.d6-face-effect { background-image: url('../img/svg/vaultboy.svg'); }
+.d6-face-blank { background-image: none; }
+#d6-popup .tags-container {
+    justify-content: center;
+    padding: 0.5rem 0;
+    flex-wrap: wrap;
+}
+
+/*****************
+ *  STAT SCREEN  *
+ *****************/
+
+#stat-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.stat::before,
+#subStat-luck::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    text-align: center;
+
+    /* Use the SVG as a mask */
+    background-color: var(--primary-color);
+    -webkit-mask-image: url('../img/svg/gear.svg');
+    mask-image: url('../img/svg/gear.svg');
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+.stat {
+    position: relative;
+    padding: 0.5rem;
+    text-align: center;
+
+    width: calc(14.28% - 1.25rem);
+    min-width: 80px;
+    margin: 0.5rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+}
+#subStat-luck {
+    --image-url: url("../img/svg/gear-full.svg");
+    background-color: var(--secondary-color);
+
+    width: 50%;
+    min-width: 30px;
+    aspect-ratio: 1;
+    position: absolute;
+    bottom: -5px;
+    right: -10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.stat h3 {
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+    color: var(--special-text-color);
+}
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+.derived-stat {
+    border: var(--border-primary-thick); /* FIXME use class */
+    border-radius: 5px;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1;
+    text-align: center;
+    font-size: clamp(10px, 3vw, 32px);
+    box-sizing: border-box;
+}
+.derived-stat div { margin: 0.2rem; }
+
+/***************
+ *  Ammo Cards *
+ ***************/
+.ammo-card {
+    position: relative;
+    margin: 5px;
+    border: var(--border-primary-thick);
+    border-radius: 5px;
+}
+.ammo-card span { padding: 10px; }
+.ammo-card-name { flex: 6; }
+.ammo-quantity {
+    flex : 1;
+    border-right: var(--border-primary-thick);
+}
+#ammo-cards, #skills {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    font-size: .8rem;
+}
+/***************
+ *  Skill List *
+ ***************/
+.skill {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: var(--border-primary-thick);   /* FIXME use class */
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+/***************
+ *  INV SCREEN *
+ ***************/
+
+.itemlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.itemlist-header h2 {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: var(--primary-color);
+}
+
+
+/**********************
+ *  CARD DEFINITIONS  *
+ **********************/
+
+.card-carousel {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 15%; /* Ensures snapped items are centered */
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.card-carousel::-webkit-scrollbar { display: none; }
+.card-carousel::before,
+.card-carousel::after {
+    content: '';
+    flex: 0 0 0.5rem; /* This is your 0.5rem margin */
+}
+
+.card-carousel > .card {
+    scroll-snap-align: center;
+    flex: 0 0 85%;
+}
+
+.card {
+    width: 100%;
+    max-width: 400px;
+    border: var(--border-primary-thick);  /* FIXME use class */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: relative;
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 0.9em;
+    align-items: start;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.card-name-container {
+    flex: 1;
+    display: flex;
+    margin: 0 5px;
+    gap: 5px;
+}
+.card-quantity {
+    font-size: .8rem;
+    font-weight: bolder;
+    text-align: center;
+    align-self: center;
+}
+.card-name {
+    flex: 1;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    text-align: center;
+}
+.right-header {
+    display: flex;
+    gap: 10px;
+    justify-self: end;
+}
+.right-header-item div {
+    text-align: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+}
+.card-content {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto auto;
+    font-size: 0.9em;
+}
+.card-controls {
+    grid-column: 1 / 4;
+    margin: 5px;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
+.description-toggle-button {
+    padding: 0.5rem;
+    flex: auto;
+}
+.description-container {
+    grid-column: 1 / 4;
+    grid-row: 3 / 3;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+}
+.description-container.expanded {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in;
+}
+.description {
+    padding: 10px;
+    text-align: justify;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+/*** Card Overlay ***/
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--overlay-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+
+    gap: 1rem;
+}
+.card-overlay button {
+    padding: 1rem;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+}
+.card-overlay button img {
+    width: 40px;
+}
+.ammo-card .card-overlay {
+    justify-content: end;
+}
+.ammo-card .card-overlay button {
+    font-size: 1rem;
+    padding: .2rem 1rem;
+    aspect-ratio: auto;
+    margin: 0 0.5rem;
+}
+.ammo-card .card-overlay button img {
+    width: 1rem;
+}
+
+.delete-button { background-color: var(--delete-button-color); } /* TODO same background as others? maybe use red for the icon */
+
+
+/*** Custom templates - common ***/
+.stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 0.9em;
+    margin: 0;
+}
+.card-stat { margin: 5px 0; }
+.card-stat div {
+    text-align: center;
+    border: 1px solid var(--primary-color);
+    padding: 5px;
+    width: 60px;
+    font-size: 0.6rem;
+    font-weight: bold;
+}
+.card-stat div:first-child {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.card-image {
+    margin: 10px;
+}
+.supply-img {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+
+
+/***********
+ *  OTHER  *
+ ***********/
+
+.tags-container {
+    display: flex;
+    grid-column: 1 / 4;
+    padding: 0.5rem;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    box-sizing: border-box;
+}
+.tag {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: 4px;
+    padding: 0.3rem;
+    font-size: .8rem;
+    margin: 2px;
+}
+
+/****************
+ *  MAP SCREEN  *
+ ****************/
+
+section#map-screen {
+    overflow: hidden;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+section#map-screen:not(.hidden) { display: flex; }
+
+#map-container {
+    height: 100%;
+    width: 100%;
+}
+
+/*********************
+ *  LOADING OVERLAY  *
+ *********************/
+#loader {
+    display: var(--loader-display); /* Used to 'toggle' the loader animation for debugging */
+    position: fixed;
+    inset: 0;
+    background: var(--secondary-color);
+    z-index: 9998; /* One below body::before */
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.75s ease-out;
+
+    animation: fadeOut 0.5s forwards;
+    animation-delay: calc(
+            var(--turn-on-delay) + var(--turn-on-duration) +
+            4 * var(--typewrite-duration)
+    );
+    font-size: calc(min(2.5vw, 2vh))
+}
+#loader pre {
+    font-family: "Fira Code", monospace; /* To make loader render properly on (my) Android */
+    margin: 0; /* No margin, pre presents stuff as is. Use margin on pre children (like spans in loader) */
+    white-space: pre-wrap; /* TODO do we need this (or is there a better alternative)? Test it and check other values) */
+}
+/* Loader entries */
+#loader span {
+    opacity: 0;
+    display: block;
+    overflow: hidden;
+    margin: 1rem;
+}
+/* PIP-BOY 3000 text */
+#loader .turn-on-animation {
+    transform-origin: center;
+    animation: crt-turn-on var(--turn-on-duration) forwards;
+    animation-delay: var(--turn-on-delay);
+    align-self: center;
+    margin: 2rem 0;
+}
+/* Code entries */
+#loader .boot-text {
+    white-space: nowrap;
+    animation: typewriter var(--typewrite-duration) steps(40, end) forwards;
+    animation-delay: calc(
+            var(--turn-on-delay) + var(--turn-on-duration) +
+            var(--line-idx) * var(--typewrite-duration)
+    );
+}
+#loader .boot-text:nth-child(2) { --line-idx: 0; }
+#loader .boot-text:nth-child(3) { --line-idx: 1; }
+#loader .boot-text:nth-child(4) { --line-idx: 2; }
+#loader .boot-text:nth-child(5) { --line-idx: 3; }
+
+/****************
+ *  ANIMATIONS  *
+ ****************/
+
+@keyframes crt-turn-on {
+    0% {
+        transform: scale(1.5, 0.005);
+        filter: brightness(6);
+        opacity: 0;
+    }
+    20% {
+        transform: scale(1, 0.005);
+        filter: brightness(4.2);
+        opacity: 1;
+    }
+    40% {
+        transform: scale(1, 1);
+        filter: brightness(2.8);
+    }
+    60% { filter: brightness(1.8); }
+    80% { filter: brightness(1.2); }
+    100% {
+        transform: scale(1, 1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+}
+@keyframes crt-turn-off {
+    0% {
+        transform: scale(1, 1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+    20% { filter: brightness(1.2); }
+    40% { filter: brightness(1.8); }
+    60% {
+        transform: scale(1, 1);
+        filter: brightness(2.8);
+    }
+    80% {
+        transform: scale(1, 0.005);
+        filter: brightness(4.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5, 0.005);
+        filter: brightness(6);
+        opacity: 0;
+    }
+}
+
+/* Animation to make the scan lines flicker */
+@keyframes flicker {
+    0% { opacity: 0.27861; }
+    5% { opacity: 0.34769; }
+    10% { opacity: 0.23604; }
+    15% { opacity: 0.90626; }
+    20% { opacity: 0.18128; }
+    25% { opacity: 0.83891; }
+    30% { opacity: 0.65583; }
+    35% { opacity: 0.67807; }
+    40% { opacity: 0.26559; }
+    45% { opacity: 0.84693; }
+    50% { opacity: 0.96019; }
+    55% { opacity: 0.08594; }
+    60% { opacity: 0.20313; }
+    65% { opacity: 0.71988; }
+    70% { opacity: 0.53455; }
+    75% { opacity: 0.37288; }
+    80% { opacity: 0.71428; }
+    85% { opacity: 0.70428; }
+    90% { opacity: 0.7003; }
+    95% { opacity: 0.36108; }
+    100% { opacity: 0.24387; }
+}
+
+/* Fade out to opacity:0 and visibility:hidden (which forwards clicks) */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Grows element width so it looks like strings are typed in */
+@keyframes typewriter {
+    0% {
+        width: 1ch;
+        opacity: 1;
+    }
+    50% {
+        width: 1ch;
+        opacity: 1;
+    }
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+/************************
+ *  SPECIFIC TO MOBILE  *
+ ************************/
+/* TODO review this part
+        - what is needed? what is not?
+        - max-width best method? */
+
+@media (max-width: 768px) {
+
+    #stat-container {
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .stat {
+        width: calc(25% - 10px);
+        min-width: 60px;
+        margin: 5px;
+    }
+
+    .stat h3 {
+        font-size: 0.7rem;
+        margin-bottom: 0.1rem;
+    }
+    .stat-value { font-size: 1.2rem; }
+
+    /* TODO currently unused, could be used on skills */
+    .skill-stat { text-overflow: ellipsis; }
+}
+
+
+/***************
+ *    THEMES   *
+ ***************/
+
+/* FALLOUT 3 THEME */
+body.theme-fallout-3 {
+    --primary-color: #afff03;
+    --secondary-color: #0f3003;
+    --button-background: #1a5205;
+
+    --tab-hover: #338006;
+    --button-hover: #7cba02;
+    --cancel-btn-background: #4a5568;
+
+    --animation-glow-color: rgba(45, 255, 113, 0.75);
+}
+/* FALLOUT New Vegas Theme */
+body.theme-fallout-new-vegas {
+    --primary-color: #ffbe0b;
+    --secondary-color: #2a1d00;
+    --button-background: #4d3d1a;
+
+    --tab-hover: #785d21;
+    --button-hover: #ffd466;
+    --cancel-btn-background: #615849;
+    --animation-glow-color: rgba(255, 190, 11, 0.7);
+}
+/* Just body's derived variables, body attributes are set below */
+body {
+    --primary-color-translucent: rgba(from var(--primary-color) r g b / 0.7);
+    --primary-color-very-translucent: rgba(from var(--primary-color) r g b / 0.25);
+    --secondary-color-translucent: rgba(from var(--secondary-color) r g b / 0.25);
+
+    --border-primary-thick: 2px solid var(--primary-color);
+    --border-primary-thin: 1px solid var(--primary-color);
+    --border-secondary-thick: 2px solid var(--secondary-color);
+    --border-secondary-thin: 1px solid var(--secondary-color);
+}
+/* Applies the scan lines on top of the whole body */
+body::before {
+    content: " ";
+    display: block; /* Necessary to make the ::before exist and behave like a block */
+    position: fixed; /* Use fixed to cover the viewport */
+    inset: 0; /* same as top/left/etc: 0; */
+
+    z-index: 9999; /* It's the topmost element */
+    pointer-events: none; /* Allows clicks to go through to elements underneath */
+    animation: flicker 0.15s infinite; /* Makes the scan lines flicker */
+
+    /* Actual scan line effect */
+    background: linear-gradient(
+            rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.25) 50%
+    ), linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 0.06),
+            rgba(0, 255, 0, 0.02),
+            rgba(0, 0, 255, 0.06)
+    );
+    background-size: 100% 3px, 4px 100%;
+}
+/* Class to apply a themed svg */
+.themed-svg {
+    /* TODO define a default image-url */
+    /* Use the SVG as a mask */
+    background-color: var(--primary-color);
+    -webkit-mask-image: var(--image-url);
+    mask-image: var(--image-url);
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+.themed-svg[data-icon="attack"] { --image-url: url('../img/svg/attack.svg'); }
+.themed-svg[data-icon="bigGuns"] { --image-url: url('../img/svg/bigGuns.svg'); }
+.themed-svg[data-icon="caps"] { --image-url: url('../img/svg/caps.svg'); }
+.themed-svg[data-icon="drinks"] { --image-url: url('../img/svg/drinks.svg'); }
+.themed-svg[data-icon="energyWeapons"] { --image-url: url('../img/svg/energyWeapons.svg'); }
+.themed-svg[data-icon="explosives"] { --image-url: url('../img/svg/explosives.svg'); }
+.themed-svg[data-icon="food"] { --image-url: url('../img/svg/food.svg'); }
+.themed-svg[data-icon="gear"] { --image-url: url('../img/svg/gear.svg'); }
+.themed-svg[data-icon="drinks"] { --image-url: url('../img/svg/drinks.svg'); }
+.themed-svg[data-icon="hp"] { --image-url: url('../img/svg/hp.svg'); }
+.themed-svg[data-icon="luck"] { --image-url: url('../img/svg/luck.svg'); }
+.themed-svg[data-icon="meds"] { --image-url: url('../img/svg/meds.svg'); }
+.themed-svg[data-icon="meleeWeapons"] { --image-url: url('../img/svg/meleeWeapons.svg'); }
+.themed-svg[data-icon="smallGuns"] { --image-url: url('../img/svg/smallGuns.svg'); }
+.themed-svg[data-icon="throwing"] { --image-url: url('../img/svg/throwing.svg'); }
+.themed-svg[data-icon="unarmed"] { --image-url: url('../img/svg/unarmed.svg'); }
+.themed-svg[data-icon="vaultboy"] { --image-url: url('../img/svg/vaultboy.svg'); }
+.themed-svg[data-icon="weight"] { --image-url: url('../img/svg/weight.svg'); }
+
+
+/****************************
+ *   TODO Focus and Hover   *
+ ****************************/
+
+@media (hover: hover) {
+    .card-attack-button:hover { opacity: 0.8; }
+    .tab-button:hover { background-color: var(--tab-hover); }
+    .button:hover, .confirm-button:hover { background-color: var(--button-hover); }
+    .popup-close-button:hover { color: var(--primary-color); }
+}
+/* TODO vedere che fare con i focus
+    GENERICO PER (QUASI) TUTTI I BOTTONI */
+/* button:focus { color: var(--primary-color); }*/
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--primary-color-translucent);
+}
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--primary-color-translucent);
+    border-color: var(--primary-color);
+}
+
+
+.tooltip-panel {
+    position: fixed; /* Use fixed positioning to place relative to viewport */
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: var(--border-primary-thin);
+    padding: 0.75rem;
+    border-radius: 3px;
+    z-index: 10000; /* Higher than the scanlines */
+
+    /* Sizing and appearance */
+    max-width: 250px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+
+    /* Visibility & Animation */
+    opacity: 0;
+    pointer-events: none; /* Prevents tooltip from blocking mouse events */
+    transform: scale(0.95);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.tooltip-panel.visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto; /* Allow interaction if needed */
+}
+
+/* The little arrow pointing to the element */
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+/* Position arrow on the bottom */
+.tooltip-panel.pos-top .tooltip-arrow {
+    bottom: -8px; /* Half the arrow height */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px 8px 0 8px; /* Creates an upward-pointing triangle */
+    border-color: var(--primary-color) transparent transparent transparent;
+}
+
+/* Position arrow on the top */
+.tooltip-panel.pos-bottom .tooltip-arrow {
+    top: -8px; /* Half the arrow height */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 8px 8px 8px; /* Creates a downward-pointing triangle */
+    border-color: transparent transparent var(--primary-color) transparent;
+}

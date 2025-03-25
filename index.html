@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><!--, viewport-fit=cover">-->
+
+        <!-- Meta tags for theme and PWA -->
+        <meta name="theme-color" content="#afff03"/>
+        <link rel="canonical" href="https://vittoema96.github.io/" />
+        <link rel="manifest" href="manifest.json">
+        <link rel="icon" href="/img/icons/192x192.png" type="image/png">
+        <link rel="icon" href="/img/icons/512x512.png" type="image/png">
+        <link rel="apple-touch-icon" href="/img/icons/192x192.png" type="image/png">
+        <link rel="apple-touch-icon" href="/img/icons/512x512.png" type="image/png">
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto+Mono&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+        <!-- Font Awesome - Used for the Gear icon on Settings-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+
+
+        <title>Pip-Boy 3000</title>
+    </head>
+
+    <body>
+        <!-- Loading message -->
+        <div id="loader">
+            <pre>
+<span class="turn-on-animation">
+██████╗ ██╗██████╗       ██████╗  █████╗██╗   ██╗
+██╔══██╗██║██╔══██╗      ██╔══██╗██╔══██╬██╗ ██╔╝
+██████╔╝██║██████╔╝█████╗██████╔╝██║  ██║╚████╔╝
+██╔═══╝ ██║██╔═══╝ ╚════╝██╔══██╗██║  ██║ ╚██╔╝
+██║     ██║██║           ██████╔╝╚█████╔╝  ██║
+╚═╝     ╚═╝╚═╝           ╚═════╝  ╚════╝   ╚═╝
+
+      ██████╗  ██████╗  ██████╗  ██████╗
+      ╚════██╗██╔═████╗██╔═████╗██╔═████╗
+       █████╔╝██║██╔██║██║██╔██║██║██╔██║
+       ╚═══██╗████╔╝██║████╔╝██║████╔╝██║
+      ██████╔╝╚██████╔╝╚██████╔╝╚██████╔╝
+      ╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝
+</span>
+<span class="boot-text">> ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</span>
+<span class="boot-text">> COPYRIGHT 2075-2077 ROBCO INDUSTRIES</span>
+<span class="boot-text" id="appVersion">> LOADER {version}</span>
+<span class="boot-text">> WELCOME, OVERSEER</span>
+            </pre>
+        </div>
+
+        <!-- Tooltip HTML (only one is needed for the whole page) -->
+        <div id="tooltip-container" class="tooltip-panel">
+            <!-- Content will be injected by JavaScript -->
+            <div class="tooltip-arrow"></div>
+        </div>
+
+        <!-- D20 popup -->
+        <dialog id="d20-popup">
+
+            <header>
+                <h1 id="d20-popup-skill-title">Skill Name</h1>
+                <button class="popup-close-button">&times;</button>
+            </header>
+
+            <section class="setup-section">
+                <select id="d20-popup-special-selector" aria-label="Special to use?">
+                     <option data-lang-id="strength" value="strength">Strength</option>
+                     <option data-lang-id="perception" value="perception">Perception</option>
+                     <option data-lang-id="endurance" value="endurance">Endurance</option>
+                     <option data-lang-id="charisma" value="charisma">Charisma</option>
+                     <option data-lang-id="intelligence" value="intelligence">Intelligence</option>
+                     <option data-lang-id="agility" value="agility">Agility</option>
+                     <option data-lang-id="luck" value="luck">Luck</option>
+                </select>
+                <input type="checkbox" id="d20-popup-luck-checkbox" class="themed-svg" data-icon="luck" aria-label="Use Luck" alt="Use Luck"/>
+            </section>
+
+            <hr>
+
+            <section class="target-section">
+                <h2 class="target-number" id="d20-popup-target">Target: 13</h2>
+                <p class="target-breakdown" id="d20-popup-target-breakdown">8 (Skill) + 5 (Agility)</p>
+                <p class="crit-breakdown" id="d20-popup-crit-breakdown">Critical Hit: Roll ≤ 5</p>
+            </section>
+
+            <hr>
+
+            <section class="dice-container">
+                <div class="dice-wrapper"><div class="d20-dice active" data-value="1">?</div></div>
+                <div class="dice-wrapper"><div class="d20-dice active" data-value="2">?</div></div>
+                <div class="dice-wrapper"><div class="d20-dice" data-value="3">?</div></div>
+                <div class="dice-wrapper"><div class="d20-dice" data-value="4">?</div></div>
+                <div class="dice-wrapper"><div class="d20-dice" data-value="5">?</div></div>
+            </section>
+
+            <section class="costs-section">
+                <div class="row">
+                    <span data-lang-id="apCost">AP Cost</span>
+                    <span id="d20-popup-ap-cost">2</span>
+                </div>
+                <div class="row">
+                    <span data-lang-id="aim" data-lang-format="%s?">Aim?</span>
+                    <input type="checkbox" id="d20-popup-aim-checkbox" aria-label="Aim"
+                           class="themed-svg" data-icon="attack"/>
+                </div>
+                <div class="row">
+                    <span data-lang-id="luckCost">Luck Cost</span>
+                    <div class="row">
+                        <span id="d20-popup-payed-luck">1</span>
+                        <span id="d20-popup-luck-cost">(-1)+2</span>
+                    </div>
+                </div>
+            </section>
+
+            <hr>
+
+            <!-- RESULT -->
+            <h2 id="d20-popup-successes-display">Successes: ?</h2>
+
+            <!-- ACTIONS -->
+            <section class="buttons-section">
+                <button id="d20-popup-damage-button" data-lang-id="damage" class="confirm-button">Tira Danno</button>
+                <button id="d20-popup-roll-button" class="confirm-button">Roll</button>
+                <button class="cancel-button" data-lang-id="cancel">Cancel</button>
+            </section>
+        </dialog>
+
+        <!-- D6 popup -->
+        <dialog id="d6-popup">
+            <header>
+                <div>
+                    <h1 id="d6-weapon-name">Weapon Name</h1>
+                    <h3 id="d6-damage-type">Tipo Danno</h3>
+                </div>
+                <button class="popup-close-button">&times;</button>
+            </header>
+
+            <div id="d6-tags" class="tags-container">
+                <!-- Tags are added dynamically -->
+            </div>
+            <hr>
+            <h2>Dadi Danno</h2>
+            <div id="d6-damage-dice-container" class="dice-grid">
+                <!-- Dices are added dynamically -->
+            </div>
+            <h2 id="d6-extra-hits-title">Colpi Extra</h2>
+            <div id="d6-extra-hits-container" class="dice-grid">
+                <!-- Dices are added dynamically -->
+            </div>
+            <hr>
+            <section class="costs-section">
+                <div class="row">
+                    <span data-lang-id="luckCost">Luck Cost</span>
+                    <div class="row">
+                        <span id="d6-popup-payed-luck">1</span>
+                        <span id="d6-popup-luck-cost">(-1)+2</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <span data-lang-id="ammoCost">Ammo Cost</span>
+                    <div class="row">
+                        <span id="d6-popup-payed-ammo">1</span>
+                        <span id="d6-popup-ammo-cost">(-1)+2</span>
+                    </div>
+                </div>
+            </section>
+            <hr>
+            <!-- TODO put and resize stuff <h2>Risultato: </h2>--> <!-- TODO translate -->
+            <div class="row">
+                <h2 id="d6-total-damage">Damage: ?</h2>
+                <h2 id="d6-total-effects">Effects: ?</h2>
+            </div>
+            <div class="flex justify-center gap-4 mt-4">
+                <button id="d6-roll-button" class="confirm-button">Roll</button>
+                <button class="cancel-button">Cancel</button>
+            </div>
+        </dialog>
+
+        <dialog id="add-item-popup">
+            <button class="popup-close-button">&times;</button>
+            <h2>Scegli un oggetto:</h2> <!-- TODO language -->
+            <div class="row">
+                <select id="selector" class="form-control" aria-label="Object picker"></select>
+                <input type="number" id="quantitySelector" min="1" value="1" aria-label="Object quantity" style="width: 80px; text-align: center;"> <!-- TODO use css file -->
+            </div>
+            <button class="confirm-button">Conferma</button>
+            <button class="cancel-button">Indietro</button>
+        </dialog>
+
+        <dialog id="trade-item-popup">
+            <header>
+                <h1>Commercio</h1> <!-- TODO language -->
+                <button class="popup-close-button">&times;</button>
+            </header>
+            <h3 id="tradeType">Selling/Buying</h3>
+            <hr>
+            <div class="row">
+                <h2>Quantità:</h2> <!-- TODO language -->
+                <input type="number" id="tradeQuantity" min="1" value="1" aria-label="Trade quantity" style="width: 80px; text-align: center;"> <!-- TODO use css file -->
+            </div>
+            <div class="row">
+                <h2>Prezzo:</h2> <!-- TODO language -->
+                <input type="number" id="tradePrice" min="1" value="1" aria-label="Trade price" style="width: 80px; text-align: center;"> <!-- TODO use css file -->
+            </div>
+            <div class="row">
+                <h2>Totale:</h2> <!-- TODO language -->
+                <div class="row">
+                    <h2 id="tradeTotal">0</h2>
+                    <div class="themed-svg" data-icon="caps" style="margin:0.5rem; width:1rem; height:1rem;"></div>
+                </div>
+            </div>
+            <button class="confirm-button">Conferma</button>
+            <button class="cancel-button">Indietro</button>
+        </dialog>
+
+        <header>
+            <h2>Pip-Boy 3000</h2>
+            <div id="header-stats">
+                <div class="icon-value-pair">
+                    <div class="themed-svg"
+                         data-icon="hp"></div>
+                    <div id="hp-value">? / ?</div>
+                </div>
+                <div class="icon-value-pair">
+                    <div class="themed-svg"
+                         data-icon="caps"></div>
+                    <div id="caps-value">?</div>
+                </div>
+                <div class="icon-value-pair">
+                    <div class="themed-svg"
+                         data-icon="weight"></div>
+                    <div id="weight-value">? / ?</div>
+                </div>
+            </div>
+        </header>
+
+        <hr>
+
+        <nav class="tab-container" id="main-tab-container">
+            <button class="tab-button active" data-screen="stat">STAT</button>
+            <button class="tab-button" data-screen="inv">INV</button>
+            <button class="tab-button" data-screen="data">DATA</button>
+            <button class="tab-button" data-screen="map">MAP</button>
+            <button class="tab-button mini-tab" data-screen="settings">
+                <i class="fas fa-gear"></i>
+            </button>
+        </nav>
+
+        <main id="main-container">
+
+            <section id="stat-screen" class="screen active">
+                <div id="stat-container">
+                    <div class="stat" data-special="strength">
+                        <h3 data-lang-id="strength">Strength</h3>
+                        <div class="stat-value" id="special-strength-value">0</div>
+                    </div>
+                    <div class="stat" data-special="perception">
+                        <h3 data-lang-id="perception">Perception</h3>
+                        <div class="stat-value" id="special-perception-value">0</div>
+                    </div>
+                    <div class="stat" data-special="endurance">
+                        <h3 data-lang-id="endurance">Endurance</h3>
+                        <div class="stat-value" id="special-endurance-value">0</div>
+                    </div>
+                    <div class="stat" data-special="charisma">
+                        <h3 data-lang-id="charisma">Charisma</h3>
+                        <div class="stat-value" id="special-charisma-value">0</div>
+                    </div>
+                    <div class="stat" data-special="intelligence">
+                        <h3 data-lang-id="intelligence">Intelligence</h3>
+                        <div class="stat-value" id="special-intelligence-value">0</div>
+                    </div>
+                    <div class="stat" data-special="agility">
+                        <h3 data-lang-id="agility">Agility</h3>
+                        <div class="stat-value" id="special-agility-value">0</div>
+                    </div>
+                    <div class="stat" data-special="luck">
+                        <h3 data-lang-id="luck">Luck</h3>
+                        <div class="stat-value" id="special-luck-value">0</div>
+                        <div id="subStat-luck" class="themed-svg">
+                            <div class="stat-value" id="luck-current-value">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label id="level-label" for="level-display">Livello:</label>
+                    <input id="level-display" type="number" min="1" step="1"/>
+                </div>
+
+                <div class="flex-container">
+                    <div class="derived-stat">
+                        <div data-lang-id="defense">Defense</div>
+                        <div class="derived-stat-value" id="defense-value">0</div>
+                    </div>
+                    <div class="derived-stat">
+                        <div data-lang-id="initiative">Initiative</div>
+                        <div class="derived-stat-value" id="initiative-value">0</div>
+                    </div>
+                    <div class="derived-stat">
+                        <div data-lang-id="melee-damage">Melee Damage</div>
+                        <div class="derived-stat-value" id="melee-damage-value">0</div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="skills" class="form-label">Skills:</label>
+                    <div id="skills" class="flex-container"></div>
+                </div>
+                <button id="edit-stats-button" class="button">Edit Stats</button>
+            </section>
+
+            <section id="inv-screen" class="screen hidden">
+                <div class="tab-container">
+                    <!-- TODO translate -->
+                    <button class="subTab-button active" data-sub-screen="weapons">WEAPONS</button>
+                    <button class="subTab-button" data-sub-screen="armor">ARMOR</button>
+                    <button class="subTab-button" data-sub-screen="supplies">SUPPLIES</button>
+                    <button class="subTab-button" data-sub-screen="ammo">AMMO</button>
+                </div>
+
+                <div class="subScreen active" id="inv-weapons">
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="smallGuns">Small Guns</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('smallGuns')">+</button>
+                    </div>
+                    <div id="smallGuns-cards" class="card-carousel"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="energyWeapons">Energy Weapons</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('energyWeapons')">+</button>
+                    </div>
+                    <div id="energyWeapons-cards" class="card-carousel"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="bigGuns">Big Guns</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('bigGuns')">+</button>
+                    </div>
+                    <div id="bigGuns-cards" class="card-carousel"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="meleeWeapons">Melee Weapons</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('meleeWeapons')">+</button>
+                    </div>
+                    <div id="meleeWeapons-cards" class="card-carousel"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="explosives">Explosives</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('explosives')">+</button>
+                    </div>
+                    <div id="explosives-cards" class="card-carousel"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="throwing">Throwing</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('throwing')">+</button>
+                    </div>
+                    <div id="throwing-cards" class="card-carousel"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="unarmed">Unarmed</h2>
+                    </div>
+                    <div id="unarmed-cards" class="card-carousel"></div>
+                </div>
+                <div class="subScreen hidden" id="inv-armor">
+                    <h1>WORK IN PROGRESS</h1>
+                    <div id="armor-cards"></div>
+                </div>
+                <div class="subScreen hidden" id="inv-supplies">
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="food">Food</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('food')">+</button>
+                    </div>
+                    <div id="food-cards" class="card-carousel"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="drinks">Drinks</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('drinks')">+</button>
+                    </div>
+                    <div id="drinks-cards" class="card-carousel"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="meds">Meds</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('meds')">+</button>
+                    </div>
+                    <div id="meds-cards" class="card-carousel"></div>
+                </div>
+                <div class="subScreen hidden" id="inv-ammo">
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="ammo">Ammo</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('ammo')">+</button>
+                    </div>
+                    <div id="ammo-cards" class="flex-container"></div>
+                </div>
+
+            </section>
+
+            <section id="data-screen" class="screen hidden">
+                <p>Per ora si può solo scrivere il proprio background qua sotto:</p>
+                 <label for="character-background" class="form-label">Display Background:</label>
+                 <textarea id="character-background" class="form-control" rows="5" placeholder="Scrivi il tuo background qui..."></textarea>
+                <br/><br/><br/><br/>
+                <h1>WORK IN PROGRESS</h1>
+            </section>
+
+            <section id="map-screen" class="screen hidden">
+                <div id="map-container">
+                    <img id="map-image" src="/img/png/map.png" alt="Zoomable Map">
+                </div>
+            </section>
+
+            <section id="settings-screen" class="screen hidden">
+                <h2>Settings</h2>
+                <label for="language-select">Language:</label>
+                <select id="language-select" onchange="loadTranslations(this.value)">
+                    <option value="en">English</option>
+                    <option value="it">Italiano</option>
+                </select>
+                <hr>
+                <label for="theme-select">Theme:</label>
+                <select id="theme-select" onchange="changeTheme(this.value)">
+                    <option value="theme-fallout-3">Fallout 3</option>
+                    <option value="theme-fallout-new-vegas">Fallout New Vegas</option>
+                </select>
+                <hr>
+                <button id="reset-memory-button">RESET MEMORY</button>
+            </section>
+
+        </main>
+
+        <!-- Template for generic card -->
+        <template id="generic-card-template">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-name-container">
+                        <div class="card-quantity"><i>2x</i></div>
+                        <div class="card-name">Item name</div>
+                    </div>
+                    <div class="right-header">
+                        <div class="right-header-item">
+                            <div data-lang-id="cost">Cost</div>
+                            <div class="card-cost-value">123</div>
+                        </div>
+                        <div class="right-header-item">
+                            <div data-lang-id="weight">Weight</div>
+                            <div class="card-weight-value">6.5 kg</div>
+                        </div>
+                        <div class="right-header-item">
+                            <div data-lang-id="rarity"></div>
+                            <div class="card-rarity-value">2</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-controls">
+                        <button class="themed-svg card-attack-button" data-icon="attack"></button>
+                        <button class="description-toggle-button" data-action="toggle-description"
+                                data-lang-id="showDescription">Show Description</button>
+                    </div>
+                    <div class="description-container">
+                        <div class="description"></div>
+                    </div>
+                </div>
+                <div class="card-overlay hidden" data-action="cancel-overlay"> <!-- TODO Redo buttons, they are ugly -->
+                    <button class="cancel-button" data-action="cancel-overlay">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="confirm-button" data-icon="caps" data-action="sell">
+                        <img src="img/svg/caps.svg" alt="Sell"/>
+                    </button>
+                    <button class="delete-button" data-action="delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </template>
+
+        <template id="ammo-card-template">
+            <div class="ammo-card row">
+                <span class="card-quantity ammo-quantity"><i>AMMO QUANTITY</i></span>
+                <span class="ammo-card-name">AMMO NAME</span>
+
+                <div class="card-overlay hidden" data-action="cancel-overlay"> <!-- TODO Redo buttons, they are ugly -->
+                    <button class="confirm-button" data-icon="caps" data-action="sell">
+                        <img src="img/svg/caps.svg" alt="Sell"/>
+                    </button>
+                    <button class="delete-button" data-action="delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </template>
+
+
+        <script src="js/app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+        <script src="js/character.js"></script>
+        <script src="js/display.js"></script>
+
+        <!-- Above map.js or it doesn't work -->
+        <script src="https://unpkg.com/@panzoom/panzoom@4.6.0/dist/panzoom.min.js"></script>
+        <script src="js/map.js"></script>
+
+        <script src="js/popup.js"></script>
+        <script src="js/tabs.js"></script>
+        <script src="js/utils.js"></script>
+        <script src="js/lang/translator.js"></script>
+    </body>
+</html>
+

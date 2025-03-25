@@ -1,0 +1,46 @@
+name: Build and Deploy to GitHub Pages
+
+#Triggers on push to the `main` branch
+on:
+  push:
+    branches:
+      - main
+
+# Allow this job to clone the repo and create a page deployment
+permissions:
+  contents: write # Allows the action to commit changes
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo 🛎️
+        uses: actions/checkout@v4
+
+      - name: Read version from manifest.json 🏷️
+        id: read_version
+        run: echo "version=$(node -p "require('./manifest.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Update Version on Files 📝
+        run: |
+          # Construct the version: "v0.0.1-alpha.1", "v0.0.1-alpha.2", etc.
+          FULL_VERSION="${{ steps.read_version.outputs.version }}+${{ github.run_number }}"
+          
+          # Replace PROJECT_VERSION with the new full version string
+          sed -i "s/const PROJECT_VERSION = .*/const PROJECT_VERSION = '$FULL_VERSION';/" ./js/app.js
+          sed -i "s/const PROJECT_VERSION = .*/const PROJECT_VERSION = '$FULL_VERSION';/" ./js/sw.js
+
+      # 3. Replace HIDE_LOADER with 'false' for production
+      - name: Enable Loader on Startup 📝
+        run: |
+          sed -i "s/const HIDE_LOADER = .*/const HIDE_LOADER = false;/" js/app.js
+
+
+      # 4. Deploy the updated code to GitHub Pages
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
