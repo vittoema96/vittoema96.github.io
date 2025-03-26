@@ -80,6 +80,21 @@
                     </div>
                 </div>
 
+                <div class="grid-container">
+                    <div class="stat-box">
+                        <h3>Defense</h3>
+                        <div class="stat-value" id="defense">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Initiative</h3>
+                        <div class="stat-value" id="initiative">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Melee Damage</h3>
+                        <div class="stat-value" id="melee-damage">0</div>
+                    </div>
+                </div>
+
                 <div>
                     <label for="skills" class="form-label">Skills:</label>
                     <div id="skills" class="grid-container">
@@ -181,37 +196,87 @@
                         </div>
                     </div>
                 </div>
+            </section>
+            
+            <section id="inv-screen" class="screen hidden">
+                <h2>Inventory</h2>
 
-                <div class="grid-container">
-                    <div class="stat-box">
-                        <h3>Defense</h3>
-                        <div class="stat-value" id="defense">0</div>
+                <div class="inventory-overview">
+                    <div class="inventory-item">
+                        <label for="player-caps">Caps:</label>
+                        <div id="player-caps">0</div>
                     </div>
-                    <div class="stat-box">
-                        <h3>Initiative</h3>
-                        <div class="stat-value" id="initiative">0</div>
-                    </div>
-                    <div class="stat-box">
-                        <h3>Melee Damage</h3>
-                        <div class="stat-value" id="melee-damage">0</div>
+                    <div class="inventory-item">
+                        <label for="carry-weight">Carry Weight:</label>
+                        <div id="carry-weight">0 / 0</div>
                     </div>
                 </div>
 
-                <button id="update-character" class="button">Update Character</button>
-            </section>
+                <div class="inventory-list">
+                    <h3>Weapons</h3>
+                    <ul id="weapon-list">
+                        <li>
+                            <div class="weapon-item">
+                                <span class="weapon-name">Nome Arma</span>
+                                <span class="weapon-ability">Abilità: [ABILITÀ]</span>
+                                <span class="weapon-nb">NB: [NB]</span>
+                                <span class="weapon-special">Spec: [SPEC]</span>
+                                <span class="weapon-damage">Danno: [DANNO]</span>
+                                <span class="weapon-effects">Effetti: [EFFETTI]</span>
+                                <span class="weapon-type">Tipo: [TIPO]</span>
+                                <span class="weapon-rate">Cadenza: [CADENZA]</span>
+                                <span class="weapon-range">Gittata: [GITTATA]</span>
+                                <span class="weapon-quality">Qualità: [QUALITÀ]</span>
+                                <span class="weapon-ammo">Munizioni: [MUNIZIONI]</span>
+                                <span class="weapon-weight">Peso: [PESO]</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="weapon-item">
+                                <span class="weapon-name">Fucile al Plasma</span>
+                                <span class="weapon-ability">Abilità: Armi ad Energia</span>
+                                <span class="weapon-nb">NB: 20</span>
+                                <span class="weapon-special">Spec: -</span>
+                                <span class="weapon-damage">Danno: 30</span>
+                                <span class="weapon-effects">Effetti: Bruciatura</span>
+                                <span class="weapon-type">Tipo: Fucile</span>
+                                <span class="weapon-rate">Cadenza: Media</span>
+                                <span class="weapon-range">Gittata: Buona</span>
+                                <span class="weapon-quality">Qualità: Ottima</span>
+                                <span class="weapon-ammo">Munizioni: Celle al Plasma</span>
+                                <span class="weapon-weight">Peso: 5.5</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
-            <section id="inv-screen" class="screen hidden">
-                <label for="inventory" class="form-label">Inventory:</label>
-                <ul id="inventory-items">
-                    <li>Item 1</li>
-                    <li>Item 2</li>
-                    <li>Item 3</li>
-                </ul>
-                <label for="weapons" class="form-label">Weapons:</label>
-                <ul id="weapon-list">
-                    <li>Weapon 1</li>
-                    <li>Weapon 2</li>
-                </ul>
+                <div class="inventory-list">
+                    <h3>Ammo</h3>
+                    <ul id="ammo-list">
+                        <li><span class="ammo-name">9mm</span> <span class="ammo-quantity">x 100</span></li>
+                        <li><span class="ammo-name">Celle al Plasma</span> <span class="ammo-quantity">x 50</span></li>
+                    </ul>
+                </div>
+
+                <div class="inventory-list">
+                    <h3>Objects</h3>
+                    <ul id="object-list">
+                        <li>
+                            <div class="object-item">
+                                <span class="object-name">Stimpack</span>
+                                <span class="object-description">Cura una moderata quantità di danni.</span>
+                                <span class="object-weight">Peso: 0.1</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="object-item">
+                                <span class="object-name">Acqua Purificata</span>
+                                <span class="object-description">Riduce la sete e la leggera radiazioni.</span>
+                                <span class="object-weight">Peso: 0.5</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </section>
 
             <section id="data-screen" class="screen hidden">
