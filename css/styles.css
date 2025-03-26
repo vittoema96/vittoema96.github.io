@@ -187,7 +187,7 @@ body {
 }
 .special-stat-box {
     padding: 0.5rem;
-    border: 2px solid #afff03;
+    border: 2px;
     text-align: center;
     background-color: rgba(15, 48, 3, 0.3);
     width: 28%;
@@ -197,8 +197,11 @@ body {
     flex-direction: column;
     justify-content: center;
     aspect-ratio: 1;
-    border-radius: 50%;
     margin: 0.5rem;
+    background-image: url("../img/gear.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .special-stat-box h3 {
     font-size: 1rem;

@@ -16,3 +16,5 @@ index.html,f/6/f6013a00b362253c64368d6eebc50ea2131754e2
 requirements,e/d/ed2eb3742618bb10d3b2ba0231ab69fecc8d716b
 @
 requirements.txt,1/9/19359a61ae2446b51b549167b014da2fcf265768
+<
+img/gear.svg,b/c/bcc0a4646e67680ff706a5168bc0b9864b12b096
