@@ -238,13 +238,28 @@ body {
     .tab:last-child{
          border-bottom: none;
     }
-     #special-container {
+    #special-container {
+        display: flex;
+        justify-content: space-around; /* Distribuisce lo spazio tra gli elementi */
         align-items: center;
-         flex-wrap: wrap;
+        flex-wrap: wrap; /* Permette agli elementi di andare a capo */
     }
-     .special-stat-box {
-        width: 20%;
-        min-width: 20%;
-        margin: 0.5rem;
+
+    .special-stat-box {
+        width: calc(25% - 10px); /* Forza 4 elementi per riga, tenendo conto dei margini */
+        min-width: 80px; /* Imposta una larghezza minima */
+        margin: 5px; /* Aggiunge un piccolo margine intorno a ogni box */
+        box-sizing: border-box; /* Assicura che padding e border siano inclusi nella larghezza */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        aspect-ratio: 1;
+        border-radius: 50%;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Modifica il minmax per adattarsi a 3 elementi */
+        gap: 1rem; /* Riduci leggermente il gap se necessario */
+        margin-bottom: 1rem; /* Regola il margine inferiore se necessario */
     }
 }
