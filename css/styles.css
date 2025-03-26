@@ -114,10 +114,12 @@ body {
     font-size: 1.2rem;
 }
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    display: flex; /* Change to flexbox */
+    flex-direction: row; /* Ensure horizontal layout */
+    justify-content: space-around; /* Distribute space around the boxes */
+    align-items: center; /* Vertically align items in the center */
     margin-bottom: 1.5rem;
+    width: 100%; /* Ensure it takes full width */
 }
 .stat-box {
     padding: 1rem;
@@ -125,6 +127,15 @@ body {
     border-radius: 5px;
     text-align: center;
     background-color: rgba(15, 48, 3, 0.3);
+    flex: 1; /* Allow boxes to grow and shrink equally */
+    margin: 0 0.5rem; /* Add some horizontal margin between boxes */
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+.grid-container .stat-box:first-child {
+    margin-left: 0;
+}
+.grid-container .stat-box:last-child {
+    margin-right: 0;
 }
 .stat-box h3 {
     font-size: 1.8rem;
@@ -184,18 +195,20 @@ body {
     justify-content: space-around;
     margin-bottom: 1.5rem;
     width: 100%;
+    flex-wrap: wrap; /* Permetti il wrapping anche su schermi più grandi se necessario */
 }
 .special-stat-box {
     padding: 0.5rem;
     border: 2px;
     text-align: center;
     background-color: rgba(15, 48, 3, 0.3);
-    width: 28%;
-    min-width: 100px;
+    width: calc(14.28% - 10px); /* Calcola per 7 elementi con margini */
+    min-width: 80px; /* Imposta una larghezza minima */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra orizzontalmente */
     aspect-ratio: 1;
     margin: 0.5rem;
     background-image: url("../img/gear.svg");
@@ -205,11 +218,13 @@ body {
 }
 .special-stat-box h3 {
     font-size: 1rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.1rem; /* Ridotto il margine inferiore */
     color: #ffdb58;
+    order: -1; /* Sposta il nome in alto */
 }
+
 .special-stat-value {
-    font-size: 1.2rem;
+    font-size: 1.6rem; /* Aumentato la dimensione del numero */
     font-weight: bold;
     color: #afff03;
 }
@@ -222,8 +237,6 @@ body {
         overflow-y: scroll;
     }
     .tab-container {
-        /*display: flex;  Redundant, already defined globally*/
-        /*justify-content: center;  Redundant, already defined globally*/
         flex-wrap: nowrap;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
@@ -243,26 +256,45 @@ body {
     }
     #special-container {
         display: flex;
-        justify-content: space-around; /* Distribuisce lo spazio tra gli elementi */
+        justify-content: space-around; /* Distribute space evenly */
         align-items: center;
-        flex-wrap: wrap; /* Permette agli elementi di andare a capo */
+        flex-wrap: wrap; /* Allow wrapping */
     }
 
     .special-stat-box {
-        width: calc(25% - 10px); /* Forza 4 elementi per riga, tenendo conto dei margini */
-        min-width: 80px; /* Imposta una larghezza minima */
-        margin: 5px; /* Aggiunge un piccolo margine intorno a ogni box */
-        box-sizing: border-box; /* Assicura che padding e border siano inclusi nella larghezza */
+        width: calc(25% - 10px); /* Obiettivo di 4 per riga su mobile */
+        min-width: 60px;
+        margin: 5px;
+        border: 1px; /* Ridotto il bordo su mobile */
+        padding: 0.1rem;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         aspect-ratio: 1;
         border-radius: 50%;
     }
+
+    .special-stat-box h3 {
+        font-size: 0.7rem; /* Adatta la dimensione del testo su mobile */
+        margin-bottom: 0.1rem;
+        color: #ffdb58;
+        text-align: center;
+    }
+    .special-stat-value {
+        font-size: 1.2rem; /* Adatta la dimensione del numero su mobile */
+        font-weight: bold;
+        color: #afff03;
+    }
     .grid-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Modifica il minmax per adattarsi a 3 elementi */
-        gap: 1rem; /* Riduci leggermente il gap se necessario */
-        margin-bottom: 1rem; /* Regola il margine inferiore se necessario */
+        /* Potrebbe essere necessario ridurre il margin-bottom se lo spazio diventa troppo */
+        margin-bottom: 1rem;
+    }
+    .stat-box h3 {
+        font-size: 1.4rem; /* Riduci la dimensione del testo se necessario */
+    }
+    .stat-value {
+        font-size: 1.2rem; /* Riduci la dimensione del valore se necessario */
     }
 }
