@@ -202,10 +202,13 @@ function toggleEditMode() {
     // Toggle event listeners on skills
     const skillBoxes = document.querySelectorAll('.skill-with-specialty'); // Or whatever the parent element is
     skillBoxes.forEach(box => {
+        const checkbox = box.querySelector('input[type="checkbox"]');
         if (isEditing) {
             box.addEventListener('click', incrementSkill);
+            if (checkbox) checkbox.disabled = false;
         } else {
             box.removeEventListener('click', incrementSkill);
+            if (checkbox) checkbox.disabled = true;
         }
     });
 }
@@ -258,57 +261,59 @@ function incrementSkill(event) {
     if (!isEditing) return; // Only increment if editing
 
     const box = event.currentTarget;
-    const skillId = box.querySelector('.skill-value').id;
+    const skillValueElement = box.querySelector('.skill-value');
+    const skillId = skillValueElement.id;
     let skillValue;
+    const checkbox = box.querySelector(`input[type="checkbox"][id="specialty-${skillId.replace("skill-", "")}"]`);
 
     switch (skillId) {
         case 'skill-small-guns':
             skillValue = characterData.skills.smallGuns;
-            characterData.skills.smallGuns = (skillValue < 6) ? skillValue + 1 : 0;
+            characterData.skills.smallGuns = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
             break;
         case 'skill-big-guns':
             skillValue = characterData.skills.bigGuns;
-            characterData.skills.bigGuns = (skillValue < 6) ? skillValue + 1 : 0;
+            characterData.skills.bigGuns = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
             break;
         case 'skill-energy-weapons':
             skillValue = characterData.skills.energyWeapons;
-            characterData.skills.energyWeapons = (skillValue < 6) ? skillValue + 1 : 0;
+            characterData.skills.energyWeapons = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
             break;
         case 'skill-melee-weapons':
             skillValue = characterData.skills.meleeWeapons;
-            characterData.skills.meleeWeapons = (skillValue < 6) ? skillValue + 1 : 0;
+            characterData.skills.meleeWeapons = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
             break;
         case 'skill-unarmed':
             skillValue = characterData.skills.unarmed;
-            characterData.skills.unarmed = (skillValue < 6) ? skillValue + 1 : 0;
+            characterData.skills.unarmed = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
             break;
         case 'skill-sneak':
             skillValue = characterData.skills.sneak;
-            characterData.skills.sneak = (skillValue < 6) ? skillValue + 1 : 0;
+            characterData.skills.sneak = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
             break;
         case 'skill-lockpick':
             skillValue = characterData.skills.lockpick;
-            characterData.skills.lockpick = (skillValue < 6) ? skillValue + 1 : 0;
+            characterData.skills.lockpick = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
             break;
         case 'skill-speech':
             skillValue = characterData.skills.speech;
-            characterData.skills.speech = (skillValue < 6) ? skillValue + 1 : 0;
+            characterData.skills.speech = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
             break;
         case 'skill-barter':
             skillValue = characterData.skills.barter;
-            characterData.skills.barter = (skillValue < 6) ? skillValue + 1 : 0;
+            characterData.skills.barter = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
             break;
         case 'skill-medicine':
             skillValue = characterData.skills.medicine;
-            characterData.skills.medicine = (skillValue < 6) ? skillValue + 1 : 0;
+            characterData.skills.medicine = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
             break;
         case 'skill-repair':
             skillValue = characterData.skills.repair;
-            characterData.skills.repair = (skillValue < 6) ? skillValue + 1 : 0;
+            characterData.skills.repair = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
             break;
         case 'skill-science':
             skillValue = characterData.skills.science;
-            characterData.skills.science = (skillValue < 6) ? skillValue + 1 : 0;
+            characterData.skills.science = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
             break;
         default:
             return;
@@ -359,6 +364,11 @@ editStatsButton.addEventListener('click', () => {
 
         updateDisplay(); // Refresh display with updated data
     }
+});
+
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+checkboxes.forEach(checkbox => {
+    checkbox.disabled = true;
 });
 
 // Initial display update
