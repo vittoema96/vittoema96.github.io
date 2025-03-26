@@ -1,22 +1,6 @@
 // Get references to DOM elements
-const characterNameInput = document.getElementById('character-name');
-const levelInput = document.getElementById('level');
-const experienceInput = document.getElementById('experience');
-const raceSelect = document.getElementById('race');
-const genderSelect = document.getElementById('gender');
-const ageInput = document.getElementById('age');
-const hitPointsDisplay = document.getElementById('hit-points');
-const actionPointsDisplay = document.getElementById('action-points');
-const carryWeightDisplay = document.getElementById('carry-weight');
-const updateButton = document.getElementById('update-character');
-const skillsDisplay = document.getElementById('skills');
-const characterImageInput = document.getElementById('character-image');
-const inventoryList = document.getElementById('inventory-items');
-const weaponList = document.getElementById('weapon-list');
 const tabButtons = document.querySelectorAll('.tab');
 const screens = document.querySelectorAll('.screen');
-const characterBackgroundInput = document.getElementById('character-background');
-//elementi per special
 const specialStrengthDisplay = document.getElementById('special-strength');
 const specialPerceptionDisplay = document.getElementById('special-perception');
 const specialEnduranceDisplay = document.getElementById('special-endurance');
@@ -24,16 +8,32 @@ const specialCharismaDisplay = document.getElementById('special-charisma');
 const specialIntelligenceDisplay = document.getElementById('special-intelligence');
 const specialAgilityDisplay = document.getElementById('special-agility');
 const specialLuckDisplay = document.getElementById('special-luck');
-const specialContainer = document.getElementById('special-container');
+const defenseDisplay = document.getElementById('defense');
+const initiativeDisplay = document.getElementById('initiative');
+const meleeDamageDisplay = document.getElementById('melee-damage');
+const skillSmallGunsDisplay = document.getElementById('skill-small-guns');
+const skillBigGunsDisplay = document.getElementById('skill-big-guns');
+const skillEnergyWeaponsDisplay = document.getElementById('skill-energy-weapons');
+const skillMeleeWeaponsDisplay = document.getElementById('skill-melee-weapons');
+const skillUnarmedDisplay = document.getElementById('skill-unarmed');
+const skillSneakDisplay = document.getElementById('skill-sneak');
+const skillLockpickDisplay = document.getElementById('skill-lockpick');
+const skillSpeechDisplay = document.getElementById('skill-speech');
+const skillBarterDisplay = document.getElementById('skill-barter');
+const skillMedicineDisplay = document.getElementById('skill-medicine');
+const skillRepairDisplay = document.getElementById('skill-repair');
+const skillScienceDisplay = document.getElementById('skill-science');
+const playerCapsDisplay = document.getElementById('player-caps');
+const carryWeightDisplay = document.getElementById('carry-weight');
+const weaponList = document.getElementById('weapon-list');
+const ammoList = document.getElementById('ammo-list');
+const objectList = document.getElementById('object-list');
+const characterBackgroundInput = document.getElementById('character-background');
+const gameMapDisplay = document.getElementById('game-map');
+const radioControlsDisplay = document.getElementById('radio-controls');
 
-// Initial character data (can be expanded)
-let characterData = {
-    name: 'Vault Dweller',
-    level: 1,
-    experience: 0,
-    race: 'human',
-    gender: 'male',
-    age: 20,
+// Character data (load from localStorage or use defaults)
+let characterData = JSON.parse(localStorage.getItem('characterData')) || {
     special: {
         strength: 5,
         perception: 5,
@@ -43,9 +43,9 @@ let characterData = {
         agility: 5,
         luck: 5
     },
-    hitPoints: 100,
-    actionPoints: 50,
-    carryWeight: { current: 0, max: 200 },
+    defense: 0,
+    initiative: 0,
+    meleeDamage: 0,
     skills: {
         smallGuns: 20,
         bigGuns: 20,
@@ -60,29 +60,25 @@ let characterData = {
         repair: 20,
         science: 20
     },
-    inventory: [
-        { name: 'Item 1', weight: 5 },
-        { name: 'Item 2', weight: 10 },
-        { name: 'Item 3', weight: 7 }
-    ],
+    caps: 0,
+    carryWeight: { current: 0, max: 200 },
     weapons: [
-        { name: 'Weapon 1', damage: 10 },
-        { name: 'Weapon 2', damage: 15 },
+        { name: 'Fucile al Plasma', ability: 'Armi ad Energia', nb: 20, special: '-', damage: 30, effects: 'Bruciatura', type: 'Fucile', rate: 'Media', range: 'Buona', quality: 'Ottima', ammo: 'Celle al Plasma', weight: 5.5 }
     ],
-    imageUrl: "",
-    background: ""
+    ammo: [
+        { name: '9mm', quantity: 100 },
+        { name: 'Celle al Plasma', quantity: 50 }
+    ],
+    objects: [
+        { name: 'Stimpack', description: 'Cura una moderata quantità di danni.', weight: 0.1 },
+        { name: 'Acqua Purificata', description: 'Riduce la sete e la leggera radiazioni.', weight: 0.5 }
+    ],
+    background: "[Background Placeholder]",
+    map: "[Map Placeholder]"
 };
 
 // Function to update the display
 function updateDisplay() {
-    characterNameInput.value = characterData.name;
-    levelInput.value = characterData.level;
-    experienceInput.value = characterData.experience;
-    raceSelect.value = characterData.race;
-    genderSelect.value = characterData.gender;
-    ageInput.value = characterData.age;
-
-    //aggiorna i valori special
     specialStrengthDisplay.textContent = characterData.special.strength;
     specialPerceptionDisplay.textContent = characterData.special.perception;
     specialEnduranceDisplay.textContent = characterData.special.endurance;
@@ -90,59 +86,63 @@ function updateDisplay() {
     specialIntelligenceDisplay.textContent = characterData.special.intelligence;
     specialAgilityDisplay.textContent = characterData.special.agility;
     specialLuckDisplay.textContent = characterData.special.luck;
-
-    hitPointsDisplay.textContent = characterData.hitPoints;
-    actionPointsDisplay.textContent = characterData.actionPoints;
+    defenseDisplay.textContent = characterData.defense;
+    initiativeDisplay.textContent = characterData.initiative;
+    meleeDamageDisplay.textContent = characterData.meleeDamage;
+    skillSmallGunsDisplay.textContent = characterData.skills.smallGuns;
+    skillBigGunsDisplay.textContent = characterData.skills.bigGuns;
+    skillEnergyWeaponsDisplay.textContent = characterData.skills.energyWeapons;
+    skillMeleeWeaponsDisplay.textContent = characterData.skills.meleeWeapons;
+    skillUnarmedDisplay.textContent = characterData.skills.unarmed;
+    skillSneakDisplay.textContent = characterData.skills.sneak;
+    skillLockpickDisplay.textContent = characterData.skills.lockpick;
+    skillSpeechDisplay.textContent = characterData.skills.speech;
+    skillBarterDisplay.textContent = characterData.skills.barter;
+    skillMedicineDisplay.textContent = characterData.skills.medicine;
+    skillRepairDisplay.textContent = characterData.skills.repair;
+    skillScienceDisplay.textContent = characterData.skills.science;
+    playerCapsDisplay.textContent = characterData.caps;
     carryWeightDisplay.textContent = `${characterData.carryWeight.current} / ${characterData.carryWeight.max}`;
     characterBackgroundInput.value = characterData.background;
+    gameMapDisplay.textContent = characterData.map;
+    radioControlsDisplay.textContent = characterData.radio;
 
-    // Update skills display
-    document.getElementById('skill-small-guns').textContent = characterData.skills.smallGuns;
-    document.getElementById('skill-big-guns').textContent = characterData.skills.bigGuns;
-    document.getElementById('skill-energy-weapons').textContent = characterData.skills.energyWeapons;
-    document.getElementById('skill-melee-weapons').textContent = characterData.skills.meleeWeapons;
-    document.getElementById('skill-unarmed').textContent = characterData.skills.unarmed;
-    document.getElementById('skill-sneak').textContent = characterData.skills.sneak;
-    document.getElementById('skill-lockpick').textContent = characterData.skills.lockpick;
-    document.getElementById('skill-speech').textContent = characterData.skills.speech;
-    document.getElementById('skill-barter').textContent = characterData.skills.barter;
-    document.getElementById('skill-medicine').textContent = characterData.skills.medicine;
-    document.getElementById('skill-repair').textContent = characterData.skills.repair;
-    document.getElementById('skill-science').textContent = characterData.skills.science;
+    weaponList.innerHTML = characterData.weapons.map(weapon => `
+        <li>
+            <div class="weapon-item">
+                <span class="weapon-name">${weapon.name}</span>
+                <span class="weapon-ability">Abilità: ${weapon.ability}</span>
+                <span class="weapon-nb">NB: ${weapon.nb}</span>
+                <span class="weapon-special">Spec: ${weapon.special}</span>
+                <span class="weapon-damage">Danno: ${weapon.damage}</span>
+                <span class="weapon-effects">Effetti: ${weapon.effects}</span>
+                <span class="weapon-type">Tipo: ${weapon.type}</span>
+                <span class="weapon-rate">Cadenza: ${weapon.rate}</span>
+                <span class="weapon-range">Gittata: ${weapon.range}</span>
+                <span class="weapon-quality">Qualità: ${weapon.quality}</span>
+                <span class="weapon-ammo">Munizioni: ${weapon.ammo}</span>
+                <span class="weapon-weight">Peso: ${weapon.weight}</span>
+            </div>
+        </li>
+    `).join('');
 
-    //update inventory
-    inventoryList.innerHTML = '';
-    characterData.inventory.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.name} (${item.weight} lbs)`;
-        inventoryList.appendChild(li);
-        characterData.carryWeight.current += item.weight;
-    });
-    carryWeightDisplay.textContent = `${characterData.carryWeight.current} / ${characterData.carryWeight.max}`;
+    ammoList.innerHTML = characterData.ammo.map(ammo => `
+        <li><span class="ammo-name">${ammo.name}</span> <span class="ammo-quantity">x ${ammo.quantity}</span></li>
+    `).join('');
 
-    //update weapons
-    weaponList.innerHTML = '';
-    characterData.weapons.forEach(weapon => {
-        const li = document.createElement('li');
-        li.textContent = `${weapon.name} (Damage: ${weapon.damage})`;
-        weaponList.appendChild(li);
-    });
-    characterImageInput.value = characterData.imageUrl;
+    objectList.innerHTML = characterData.objects.map(object => `
+        <li>
+            <div class="object-item">
+                <span class="object-name"><span class="math-inline">\{object\.name\}</span\>
+<span class\="object\-description"\></span>{object.description}</span>
+                <span class="object-weight">Peso: ${object.weight}</span>
+            </div>
+        </li>
+    `).join('');
+
+    // Save to localStorage
+    localStorage.setItem('characterData', JSON.stringify(characterData));
 }
-
-// Event listener for the update button
-updateButton.addEventListener('click', () => {
-    characterData.name = characterNameInput.value;
-    characterData.level = parseInt(levelInput.value);
-    characterData.experience = parseInt(experienceInput.value);
-    characterData.race = raceSelect.value;
-    characterData.gender = genderSelect.value;
-    characterData.age = parseInt(ageInput.value);
-    characterData.imageUrl = characterImageInput.value;
-    characterData.background = characterBackgroundInput.value;
-
-    updateDisplay();
-});
 
 // Event listener for tab clicks
 tabButtons.forEach(tab => {
