@@ -184,7 +184,6 @@ body {
     justify-content: space-around;
     margin-bottom: 1.5rem;
     width: 100%;
-    flex-wrap: wrap; /* Add this */
 }
 .special-stat-box {
     padding: 0.5rem;
@@ -210,39 +209,6 @@ body {
     font-size: 1.2rem;
     font-weight: bold;
     color: #afff03;
-}
-@media (max-width: 1024px) {
-    .pip-boy-container {
-        padding: 1rem;
-        margin: 1rem auto;
-        max-width: 95%;
-        max-height: 90vh;
-    }
-    .header h1 {
-        font-size: 2.5rem;
-    }
-    .section-title {
-        font-size: 1.8rem;
-    }
-    .grid-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    .header p {
-        font-size: 1.2rem;
-    }
-     .tab {
-        font-size: 1rem;
-        padding: 0.5rem 1rem;
-    }
-     #special-container {
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-    .special-stat-box {
-        width: 28%;
-        margin: 0.5rem;
-    }
 }
 @media (max-width: 768px) {
     .header {
@@ -274,12 +240,11 @@ body {
     }
      #special-container {
         align-items: center;
-        flex-wrap: wrap; /* Keep this, and is important! */
-        justify-content: space-around;
+         flex-wrap: wrap;
     }
      .special-stat-box {
-        width: 40%; /* Make them take up almost half the width */
-        min-width: 40%;
+        width: 20%;
+        min-width: 20%;
         margin: 0.5rem;
     }
 }
