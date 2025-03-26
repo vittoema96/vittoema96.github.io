@@ -7,8 +7,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    box-sizing: border-box; /* Add this */
-    overflow-x: hidden;  /* Add this */
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 .header {
     text-align: center;
@@ -114,12 +114,11 @@ body {
     font-size: 1.2rem;
 }
 .grid-container {
-    display: flex; /* Change to flexbox */
-    flex-direction: row; /* Ensure horizontal layout */
-    justify-content: space-around; /* Distribute space around the boxes */
-    align-items: center; /* Vertically align items in the center */
+    display: flex;
+    justify-content: space-between; /* Change to space-between */
+    align-items: stretch; /* Stretch items to fill height */
     margin-bottom: 1.5rem;
-    width: 100%; /* Ensure it takes full width */
+    width: 100%;
 }
 .stat-box {
     padding: 1rem;
@@ -128,8 +127,12 @@ body {
     text-align: center;
     background-color: rgba(15, 48, 3, 0.3);
     flex: 1; /* Allow boxes to grow and shrink equally */
-    margin: 0 0.5rem; /* Add some horizontal margin between boxes */
-    box-sizing: border-box; /* Include padding and border in the width */
+    margin: 0.5rem; /* Add some horizontal margin between boxes */
+    box-sizing: border-box;
+    display: flex; /* Add flex display */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
 }
 .grid-container .stat-box:first-child {
     margin-left: 0;
@@ -192,7 +195,7 @@ body {
 }
 #special-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-bottom: 1.5rem;
     width: 100%;
     flex-wrap: wrap; /* Permetti il wrapping anche su schermi più grandi se necessario */
@@ -227,6 +230,57 @@ body {
     font-size: 1.6rem; /* Aumentato la dimensione del numero */
     font-weight: bold;
     color: #afff03;
+}
+#skills {
+    display: flex;
+    flex-direction: column; /* Stack skills vertically */
+    align-items: stretch; /* Stretch items to fill width */
+}
+.skill-with-specialty {
+    display: flex;
+    /*justify-content: space-between; /* Space labels and checkboxes */
+    align-items: center; /* Align items vertically */
+    padding: 1rem;
+    border: 2px solid #afff03;
+    border-radius: 5px;
+    background-color: rgba(15, 48, 3, 0.3);
+    margin-bottom: 0.5rem; /* Add spacing between skills */
+    box-sizing: border-box;
+}
+.skill-name {
+    width: 150px; /* Adjust as needed */
+    margin-right: 1rem;
+    font-size: 1.1rem;
+}
+.skill-label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align skill name and value to the start */
+}
+.skill-label h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.specialty-label {
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.special-stat-name {
+    font-weight: bold;
+    width: 80px; /* Adjust as needed */
+    margin-right: 1rem;
+    font-size: 1.1rem;
+}
+.skill-value {
+    width: 40px; /* Adjust as needed */
+    margin-right: 1rem;
+    text-align: right;
+    font-size: 1.1rem;
+}
+input[type="checkbox"] {
+    margin-right: 0;
 }
 @media (max-width: 768px) {
     .header {
@@ -292,7 +346,7 @@ body {
         margin-bottom: 1rem;
     }
     .stat-box h3 {
-        font-size: 1.4rem; /* Riduci la dimensione del testo se necessario */
+        font-size: 1rem; /* Riduci la dimensione del testo se necessario */
     }
     .stat-value {
         font-size: 1.2rem; /* Riduci la dimensione del valore se necessario */
