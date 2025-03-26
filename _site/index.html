@@ -79,124 +79,104 @@
                         <div class="special-stat-value" id="special-luck">0</div>
                     </div>
                 </div>
-
-                <div>
-                    <label for="skills" class="form-label">Skills:</label>
-                    <div id="skills" class="grid-container">
-                        <div class="stat-box skill-with-specialty">
-                            <div class="skill-label">
-                                <h3>Small Guns</h3>
-                                <div class="stat-value" id="skill-small-guns">0</div>
-                            </div>
-                            <input type="checkbox" id="specialty-small-guns" name="specialty-small-guns">
-                            <label for="specialty-small-guns" class="specialty-label">Specialty</label>
-                        </div>
-                        <div class="stat-box skill-with-specialty">
-                            <div class="skill-label">
-                                <h3>Big Guns</h3>
-                                <div class="stat-value" id="skill-big-guns">0</div>
-                            </div>
-                            <input type="checkbox" id="specialty-big-guns" name="specialty-big-guns">
-                            <label for="specialty-big-guns" class="specialty-label">Specialty</label>
-                        </div>
-                        <div class="stat-box skill-with-specialty">
-                            <div class="skill-label">
-                                <h3>Energy Weapons</h3>
-                                <div class="stat-value" id="skill-energy-weapons">0</div>
-                            </div>
-                            <input type="checkbox" id="specialty-energy-weapons" name="specialty-energy-weapons">
-                            <label for="specialty-energy-weapons" class="specialty-label">Specialty</label>
-                        </div>
-                        <div class="stat-box skill-with-specialty">
-                            <div class="skill-label">
-                                <h3>Melee Weapons</h3>
-                                <div class="stat-value" id="skill-melee-weapons">0</div>
-                            </div>
-                            <input type="checkbox" id="specialty-melee-weapons" name="specialty-melee-weapons">
-                            <label for="specialty-melee-weapons" class="specialty-label">Specialty</label>
-                        </div>
-                        <div class="stat-box skill-with-specialty">
-                            <div class="skill-label">
-                                <h3>Unarmed</h3>
-                                <div class="stat-value" id="skill-unarmed">0</div>
-                            </div>
-                            <input type="checkbox" id="specialty-unarmed" name="specialty-unarmed">
-                            <label for="specialty-unarmed" class="specialty-label">Specialty</label>
-                        </div>
-                        <div class="stat-box skill-with-specialty">
-                            <div class="skill-label">
-                                <h3>Sneak</h3>
-                                <div class="stat-value" id="skill-sneak">0</div>
-                            </div>
-                            <input type="checkbox" id="specialty-sneak" name="specialty-sneak">
-                            <label for="specialty-sneak" class="specialty-label">Specialty</label>
-                        </div>
-                        <div class="stat-box skill-with-specialty">
-                            <div class="skill-label">
-                                <h3>Lockpick</h3>
-                                <div class="stat-value" id="skill-lockpick">0</div>
-                            </div>
-                            <input type="checkbox" id="specialty-lockpick" name="specialty-lockpick">
-                            <label for="specialty-lockpick" class="specialty-label">Specialty</label>
-                        </div>
-                        <div class="stat-box skill-with-specialty">
-                            <div class="skill-label">
-                                <h3>Speech</h3>
-                                <div class="stat-value" id="skill-speech">0</div>
-                            </div>
-                            <input type="checkbox" id="specialty-speech" name="specialty-speech">
-                            <label for="specialty-speech" class="specialty-label">Specialty</label>
-                        </div>
-                        <div class="stat-box skill-with-specialty">
-                            <div class="skill-label">
-                                <h3>Barter</h3>
-                                <div class="stat-value" id="skill-barter">0</div>
-                            </div>
-                            <input type="checkbox" id="specialty-barter" name="specialty-barter">
-                            <label for="specialty-barter" class="specialty-label">Specialty</label>
-                        </div>
-                        <div class="stat-box skill-with-specialty">
-                            <div class="skill-label">
-                                <h3>Medicine</h3>
-                                <div class="stat-value" id="skill-medicine">0</div>
-                            </div>
-                            <input type="checkbox" id="specialty-medicine" name="specialty-medicine">
-                            <label for="specialty-medicine" class="specialty-label">Specialty</label>
-                        </div>
-                        <div class="stat-box skill-with-specialty">
-                            <div class="skill-label">
-                                <h3>Repair</h3>
-                                <div class="stat-value" id="skill-repair">0</div>
-                            </div>
-                            <input type="checkbox" id="specialty-repair" name="specialty-repair">
-                            <label for="specialty-repair" class="specialty-label">Specialty</label>
-                        </div>
-                        <div class="stat-box skill-with-specialty">
-                            <div class="skill-label">
-                                <h3>Science</h3>
-                                <div class="stat-value" id="skill-science">0</div>
-                            </div>
-                            <input type="checkbox" id="specialty-science" name="specialty-science">
-                            <label for="specialty-science" class="specialty-label">Specialty</label>
-                        </div>
+                <div class="grid-container">
+                    <div class="stat-box">
+                        <h3>Hit Points</h3>
+                        <div class="stat-value" id="hit-points">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Action Points</h3>
+                        <div class="stat-value" id="action-points">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Carry Weight</h3>
+                        <div class="stat-value" id="carry-weight">0 / 0</div>
                     </div>
                 </div>
 
                 <div class="grid-container">
-                    <div class="stat-box">
-                        <h3>Defense</h3>
-                        <div class="stat-value" id="defense">0</div>
+                    <div>
+                        <label for="character-name" class="form-label">Character Name:</label>
+                        <input type="text" id="character-name" class="form-control" placeholder="Vault Dweller">
+
+                        <label for="level" class="form-label">Level:</label>
+                        <input type="number" id="level" class="form-control" value="1" min="1">
+
+                        <label for="experience" class="form-label">Experience:</label>
+                        <input type="number" id="experience" class="form-control" value="0">
+
+                        <label for="race" class="form-label">Race:</label>
+                        <select id="race" class="form-control select-control">
+                            <option value="human">Human</option>
+                            <option value="ghoul">Ghoul</option>
+                            <option value="mutant">Mutant</option>
+                        </select>
+
+                        <label for="gender" class="form-label">Gender:</label>
+                        <select id="gender" class="form-control select-control">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+
+                        <label for="age" class="form-label">Age:</label>
+                        <input type="number" id="age" class="form-control" value="20">
+                        <label for="character-image" class="form-label">Character Image:</label>
+                        <input type="text" id="character-image" class="form-control" placeholder="Enter image URL">
                     </div>
-                    <div class="stat-box">
-                        <h3>Initiative</h3>
-                        <div class="stat-value" id="initiative">0</div>
-                    </div>
-                    <div class="stat-box">
-                        <h3>Melee Damage</h3>
-                        <div class="stat-value" id="melee-damage">0</div>
+                    <div>
+                        <label for="skills" class="form-label">Skills:</label>
+                        <div id="skills" class="grid-container">
+                            <div class="stat-box">
+                                <h3>Small Guns</h3>
+                                <div class="stat-value" id="skill-small-guns">0</div>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Big Guns</h3>
+                                <div class="stat-value" id="skill-big-guns">0</div>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Energy Weapons</h3>
+                                <div class="stat-value" id="skill-energy-weapons">0</div>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Melee Weapons</h3>
+                                <div class="stat-value" id="skill-melee-weapons">0</div>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Unarmed</h3>
+                                <div class="stat-value" id="skill-unarmed">0</div>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Sneak</h3>
+                                <div class="stat-value" id="skill-sneak">0</div>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Lockpick</h3>
+                                <div class="stat-value" id="skill-lockpick">0</div>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Speech</h3>
+                                <div class="stat-value" id="skill-speech">0</div>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Barter</h3>
+                                <div class="stat-value" id="skill-barter">0</div>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Medicine</h3>
+                                <div class="stat-value" id="skill-medicine">0</div>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Repair</h3>
+                                <div class="stat-value" id="skill-repair">0</div>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Science</h3>
+                                <div class="stat-value" id="skill-science">0</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
                 <button id="update-character" class="button">Update Character</button>
             </section>
 
