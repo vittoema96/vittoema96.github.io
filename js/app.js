@@ -12,18 +12,24 @@ const defenseDisplay = document.getElementById('defense-value');
 const initiativeDisplay = document.getElementById('initiative-value');
 const meleeDamageDisplay = document.getElementById('melee-damage-value');
 
-const skillSmallGunsDisplay = document.getElementById('skill-small-guns');
-const skillBigGunsDisplay = document.getElementById('skill-big-guns');
-const skillEnergyWeaponsDisplay = document.getElementById('skill-energy-weapons');
-const skillMeleeWeaponsDisplay = document.getElementById('skill-melee-weapons');
-const skillUnarmedDisplay = document.getElementById('skill-unarmed');
-const skillSneakDisplay = document.getElementById('skill-sneak');
-const skillLockpickDisplay = document.getElementById('skill-lockpick');
-const skillSpeechDisplay = document.getElementById('skill-speech');
-const skillBarterDisplay = document.getElementById('skill-barter');
-const skillMedicineDisplay = document.getElementById('skill-medicine');
-const skillRepairDisplay = document.getElementById('skill-repair');
-const skillScienceDisplay = document.getElementById('skill-science');
+const skillAthleticsValue = document.getElementById('skill-athletics');
+const skillBarterValue = document.getElementById('skill-barter');
+const skillBigGunsValue = document.getElementById('skill-bigGuns');
+const skillEnergyWeaponsValue = document.getElementById('skill-energyWeapons');
+const skillExplosivesValue = document.getElementById('skill-explosives');
+const skillLockpickValue = document.getElementById('skill-lockpick');
+const skillMedicineValue = document.getElementById('skill-medicine');
+const skillMeleeWeaponsValue = document.getElementById('skill-meleeWeapons');
+const skillPilotValue = document.getElementById('skill-pilot');
+const skillRepairValue = document.getElementById('skill-repair');
+const skillScienceValue = document.getElementById('skill-science');
+const skillSmallGunsValue = document.getElementById('skill-smallGuns');
+const skillSneakValue = document.getElementById('skill-sneak');
+const skillSpeechValue = document.getElementById('skill-speech');
+const skillSurvivalValue = document.getElementById('skill-survival');
+const skillThrowingValue = document.getElementById('skill-throwing');
+const skillUnarmedValue = document.getElementById('skill-unarmed');
+
 const playerCapsDisplay = document.getElementById('player-caps');
 const carryWeightDisplay = document.getElementById('carry-weight');
 const weaponList = document.getElementById('weapon-list');
@@ -60,7 +66,7 @@ let characterData = JSON.parse(localStorage.getItem('characterData')) || {
         pilot: 0,
         repair: 0,
         science: 0,
-        smallGuns : 0,
+        smallGuns: 0,
         sneak: 0,
         speech: 0,
         survival: 0,
@@ -95,6 +101,7 @@ function updateDisplay() {
     specialIntelligenceDisplay.textContent = characterData.special.intelligence;
     specialAgilityDisplay.textContent = characterData.special.agility;
     specialLuckDisplay.textContent = characterData.special.luck;
+
     defenseDisplay.textContent = (characterData.special.agility <= 8 ) ? "1" : "2";
     initiativeDisplay.textContent = `${characterData.special.agility + characterData.special.perception}`;
 
@@ -110,18 +117,25 @@ function updateDisplay() {
         meleeDamageDisplay.textContent = "0"; // Default case if strength is not within specified ranges.
     }
 
-    skillSmallGunsDisplay.textContent = characterData.skills.smallGuns;
-    skillBigGunsDisplay.textContent = characterData.skills.bigGuns;
-    skillEnergyWeaponsDisplay.textContent = characterData.skills.energyWeapons;
-    skillMeleeWeaponsDisplay.textContent = characterData.skills.meleeWeapons;
-    skillUnarmedDisplay.textContent = characterData.skills.unarmed;
-    skillSneakDisplay.textContent = characterData.skills.sneak;
-    skillLockpickDisplay.textContent = characterData.skills.lockpick;
-    skillSpeechDisplay.textContent = characterData.skills.speech;
-    skillBarterDisplay.textContent = characterData.skills.barter;
-    skillMedicineDisplay.textContent = characterData.skills.medicine;
-    skillRepairDisplay.textContent = characterData.skills.repair;
-    skillScienceDisplay.textContent = characterData.skills.science;
+
+    skillAthleticsValue.textContent = characterData.skills.athletics;
+    skillBarterValue.textContent = characterData.skills.barter;
+    skillBigGunsValue.textContent = characterData.skills.bigGuns;
+    skillEnergyWeaponsValue.textContent = characterData.skills.energyWeapons;
+    skillExplosivesValue.textContent = characterData.skills.explosives;
+    skillLockpickValue.textContent = characterData.skills.lockpick;
+    skillMedicineValue.textContent = characterData.skills.medicine;
+    skillMeleeWeaponsValue.textContent = characterData.skills.meleeWeapons;
+    skillPilotValue.textContent = characterData.skills.pilot;
+    skillRepairValue.textContent = characterData.skills.repair;
+    skillScienceValue.textContent = characterData.skills.science;
+    skillSmallGunsValue.textContent = characterData.skills.smallGuns;
+    skillSneakValue.textContent = characterData.skills.sneak;
+    skillSpeechValue.textContent = characterData.skills.speech;
+    skillSurvivalValue.textContent = characterData.skills.survival;
+    skillThrowingValue.textContent = characterData.skills.throwing;
+    skillUnarmedValue.textContent = characterData.skills.unarmed;
+
 
     playerCapsDisplay.textContent = characterData.caps;
     carryWeightDisplay.textContent = `${characterData.currentCarryWeight} / ${75 + characterData.special.strength * 5}`;
@@ -180,18 +194,25 @@ function toggleEditMode() {
     defenseDisplay.contentEditable = isEditing;
     initiativeDisplay.contentEditable = isEditing;
     meleeDamageDisplay.contentEditable = isEditing;
-    skillSmallGunsDisplay.contentEditable = isEditing;
-    skillBigGunsDisplay.contentEditable = isEditing;
-    skillEnergyWeaponsDisplay.contentEditable = isEditing;
-    skillMeleeWeaponsDisplay.contentEditable = isEditing;
-    skillUnarmedDisplay.contentEditable = isEditing;
-    skillSneakDisplay.contentEditable = isEditing;
-    skillLockpickDisplay.contentEditable = isEditing;
-    skillSpeechDisplay.contentEditable = isEditing;
-    skillBarterDisplay.contentEditable = isEditing;
-    skillMedicineDisplay.contentEditable = isEditing;
-    skillRepairDisplay.contentEditable = isEditing;
-    skillScienceDisplay.contentEditable = isEditing;
+
+
+    skillAthleticsValue.contentEditable = isEditing;
+    skillBarterValue.contentEditable = isEditing;
+    skillBigGunsValue.contentEditable = isEditing;
+    skillEnergyWeaponsValue.contentEditable = isEditing;
+    skillExplosivesValue.contentEditable = isEditing;
+    skillLockpickValue.contentEditable = isEditing;
+    skillMedicineValue.contentEditable = isEditing;
+    skillMeleeWeaponsValue.contentEditable = isEditing;
+    skillPilotValue.contentEditable = isEditing;
+    skillRepairValue.contentEditable = isEditing;
+    skillScienceValue.contentEditable = isEditing;
+    skillSmallGunsValue.contentEditable = isEditing;
+    skillSneakValue.contentEditable = isEditing;
+    skillSpeechValue.contentEditable = isEditing;
+    skillSurvivalValue.contentEditable = isEditing;
+    skillThrowingValue.contentEditable = isEditing;
+    skillUnarmedValue.contentEditable = isEditing;
 
     // Update button text
     editStatsButton.textContent = isEditing ? 'Save Stats' : 'Edit Stats';
@@ -205,13 +226,15 @@ function toggleEditMode() {
             box.removeEventListener('click', incrementSpecialStat);
         }
     });
+
     // Toggle event listeners on skills
     const skillBoxes = document.querySelectorAll('.skill'); // Or whatever the parent element is
     skillBoxes.forEach(box => {
         const checkbox = box.querySelector('input[type="checkbox"]');
         if (isEditing) {
             box.addEventListener('click', incrementSkill);
-            if (checkbox) checkbox.disabled = false;
+            if (checkbox)
+                checkbox.disabled = false;
         } else {
             box.removeEventListener('click', incrementSkill);
             if (checkbox) checkbox.disabled = true;
@@ -267,65 +290,27 @@ function incrementSkill(event) {
     if (!isEditing) return; // Only increment if editing
 
     const box = event.currentTarget;
-    const skillValueElement = box.querySelector('.skill-value');
-    const skillId = skillValueElement.id;
-    let skillValue;
-    const checkbox = box.querySelector(`input[type="checkbox"][id="specialty-${skillId.replace("skill-", "")}"]`);
+    const skillId = box.querySelector('.skill-value').id;
+    const skillName = skillId.replace('skill-', '');
 
-    switch (skillId) {
-        case 'skill-small-guns':
-            skillValue = characterData.skills.smallGuns;
-            characterData.skills.smallGuns = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
-            break;
-        case 'skill-big-guns':
-            skillValue = characterData.skills.bigGuns;
-            characterData.skills.bigGuns = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
-            break;
-        case 'skill-energy-weapons':
-            skillValue = characterData.skills.energyWeapons;
-            characterData.skills.energyWeapons = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
-            break;
-        case 'skill-melee-weapons':
-            skillValue = characterData.skills.meleeWeapons;
-            characterData.skills.meleeWeapons = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
-            break;
-        case 'skill-unarmed':
-            skillValue = characterData.skills.unarmed;
-            characterData.skills.unarmed = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
-            break;
-        case 'skill-sneak':
-            skillValue = characterData.skills.sneak;
-            characterData.skills.sneak = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
-            break;
-        case 'skill-lockpick':
-            skillValue = characterData.skills.lockpick;
-            characterData.skills.lockpick = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
-            break;
-        case 'skill-speech':
-            skillValue = characterData.skills.speech;
-            characterData.skills.speech = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
-            break;
-        case 'skill-barter':
-            skillValue = characterData.skills.barter;
-            characterData.skills.barter = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
-            break;
-        case 'skill-medicine':
-            skillValue = characterData.skills.medicine;
-            characterData.skills.medicine = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
-            break;
-        case 'skill-repair':
-            skillValue = characterData.skills.repair;
-            characterData.skills.repair = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
-            break;
-        case 'skill-science':
-            skillValue = characterData.skills.science;
-            characterData.skills.science = (skillValue < 6) ? skillValue + 1 : checkbox.checked ? 2 : 0;
-            break;
-        default:
-            return;
+    const checkboxId = `specialty-${skillName}`;
+    const checkbox = box.querySelector(`input[type="checkbox"][id="${checkboxId}"]`);
+
+    // Check if the click originated from the checkbox
+    if (event.target === checkbox) {
+        return; // Do nothing if the checkbox was clicked directly
     }
+    // Directly access and update the skill value in characterData
+    if (characterData.skills.hasOwnProperty(skillName)) {
+        let skillValue = characterData.skills[skillName];
+        characterData.skills[skillName] = (skillValue < 6)
+            ? skillValue + 1
+            : (checkbox && checkbox.checked ? 2 : 0);
 
-    updateDisplay(); // Refresh display with updated data
+        updateDisplay(); // Refresh display with updated data
+    } else {
+        console.warn(`Skill with ID ${skillId} not found in characterData.skills.`);
+    }
 }
 
 // Event listener for tab clicks
@@ -355,6 +340,7 @@ editStatsButton.addEventListener('click', () => {
         characterData.defense = parseInt(defenseDisplay.textContent) || characterData.defense;
         characterData.initiative = parseInt(initiativeDisplay.textContent) || characterData.initiative;
         characterData.meleeDamage = parseInt(meleeDamageDisplay.textContent) || characterData.meleeDamage;
+
         characterData.skills.smallGuns = parseInt(skillSmallGunsDisplay.textContent) || characterData.skills.smallGuns;
         characterData.skills.bigGuns = parseInt(skillBigGunsDisplay.textContent) || characterData.skills.bigGuns;
         characterData.skills.energyWeapons = parseInt(skillEnergyWeaponsDisplay.textContent) || characterData.skills.energyWeapons;
