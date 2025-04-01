@@ -142,6 +142,31 @@ input[type="checkbox"] {
     margin-right: 0;
 }
 
+input[type="checkbox"] {
+  appearance: none;
+  width: 24px; /* Adjust */
+  height: 24px; /* Adjust */
+  cursor: pointer;
+  position: relative;
+}
+
+input[type="checkbox"]::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/vaultboy.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+input[type="checkbox"]:checked::before {
+  filter: url('../img/vaultboy.svg#checked');
+}
+
 @media (max-width: 768px) {
     .header {
         text-align: start;

@@ -11,6 +11,7 @@ const specialLuckDisplay = document.getElementById('special-luck-value');
 const defenseDisplay = document.getElementById('defense-value');
 const initiativeDisplay = document.getElementById('initiative-value');
 const meleeDamageDisplay = document.getElementById('melee-damage-value');
+
 const skillSmallGunsDisplay = document.getElementById('skill-small-guns');
 const skillBigGunsDisplay = document.getElementById('skill-big-guns');
 const skillEnergyWeaponsDisplay = document.getElementById('skill-energy-weapons');
@@ -47,19 +48,24 @@ let characterData = JSON.parse(localStorage.getItem('characterData')) || {
     defense: 0,
     initiative: 0,
     meleeDamage: 0,
-    skills: {
-        smallGuns: 0,
+    skills: {  
+        athletics: 0,
+        barter: 0,
         bigGuns: 0,
         energyWeapons: 0,
-        meleeWeapons: 0,
-        unarmed: 0,
-        sneak: 0,
+        explosives: 0,
         lockpick: 0,
-        speech: 0,
-        barter: 0,
         medicine: 0,
+        meleeWeapons: 0,
+        pilot: 0,
         repair: 0,
-        science: 0
+        science: 0,
+        smallGuns : 0,
+        sneak: 0,
+        speech: 0,
+        survival: 0,
+        throwing: 0,
+        unarmed: 0,
     },
     caps: 0,
     currentCarryWeight: { current: 0 },
