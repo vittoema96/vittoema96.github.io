@@ -35,7 +35,3 @@ function changeLanguage(language) {
 
 // Initial language load
 loadTranslations(currentLanguage);
-
-// Example HTML language switcher (buttons)
-// <button onclick="changeLanguage('en')">English</button>
-// <button onclick="changeLanguage('es')">Español</button>

@@ -6,7 +6,7 @@
 
     <defs>
         <filter id="checked" x="-50%" y="-50%" width="200%" height="200%">
-            <feFlood flood-color="#afff03"/> <!-- Replace "green" with your desired "on" color -->
+            <feFlood flood-color="#afff03"/> <!-- TODO change color with preferred -->
             <feComposite in="flood" in2="SourceAlpha" operator="in"/>
         </filter>
     </defs>

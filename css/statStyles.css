@@ -1,35 +1,12 @@
-.stat-box {
-    padding: 1rem;
-    border: 2px solid #afff03;
     border-radius: 5px;
-    text-align: center;
-    background-color: rgba(15, 48, 3, 0.3);
-    flex: 1; /* Allow boxes to grow and shrink equally */
-    margin: 0.5rem; /* Add some horizontal margin between boxes */
-    box-sizing: border-box;
-    display: flex; /* Add flex display */
-    flex-direction: column; /* Stack content vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-}
-.stat-box h3 {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-}
-.stat-value {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-
-#special-container {
+#stat-container {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.5rem;
     width: 100%;
     flex-wrap: wrap; /* Permetti il wrapping anche su schermi più grandi se necessario */
 }
-.special-stat-box {
+.stat {
     padding: 0.5rem;
     border: 2px;
     text-align: center;
@@ -48,47 +25,72 @@
     background-repeat: no-repeat;
     background-position: center;
 }
-.special-stat-box h3 {
+.stat h3 {
     font-size: 1rem;
     margin-bottom: 0.1rem; /* Ridotto il margine inferiore */
     color: #ffdb58;
-    order: -1; /* Sposta il nome in alto */
 }
-.special-stat-value {
+.stat-value {
     font-size: 1.6rem; /* Aumentato la dimensione del numero */
     font-weight: bold;
-    color: #afff03;
+    color: var(--primary-color);
 }
+
+.derived-stat {
+    padding: 1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgba(15, 48, 3, 0.3);
+    flex: 1; /* Allow boxes to grow and shrink equally */
+    margin: 0.5rem; /* Add some horizontal margin between boxes */
+    box-sizing: border-box;
+    display: flex; /* Add flex display */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+.derived-stat h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
 #skills {
     display: flex;
     flex-direction: column; /* Stack skills vertically */
     align-items: stretch; /* Stretch items to fill width */
 }
-.skill-with-specialty {
+.skill {
     display: flex;
     /*justify-content: space-between; /* Space labels and checkboxes */
     align-items: center; /* Align items vertically */
     padding: 1rem;
-    border: 2px solid #afff03;
+    border: 2px solid var(--primary-color);
     border-radius: 5px;
     background-color: rgba(15, 48, 3, 0.3);
     margin-bottom: 0.5rem; /* Add spacing between skills */
     box-sizing: border-box;
 }
 .skill-name {
-    width: 150px; /* Adjust as needed */
+    font-weight: bold;
+    width: 130px;
     margin-right: 1rem;
     font-size: 1.1rem;
 }
-
-.special-stat-name {
-    font-weight: bold;
-    width: 80px; /* Adjust as needed */
+.skill-stat {
+    font-style: italic;
+    width: 80px;
     margin-right: 1rem;
     font-size: 1.1rem;
+    justify-content: space-around;
 }
 .skill-value {
-    width: 40px; /* Adjust as needed */
+    width: 40px;
     margin-right: 1rem;
     text-align: right;
     font-size: 1.1rem;
@@ -96,14 +98,13 @@
 
 @media (max-width: 768px) {
 
-    #special-container {
+    #stat-container {
         display: flex;
         justify-content: space-around; /* Distribute space evenly */
         align-items: center;
         flex-wrap: wrap; /* Allow wrapping */
     }
-
-    .special-stat-box {
+    .stat {
         width: calc(25% - 10px); /* Obiettivo di 4 per riga su mobile */
         min-width: 60px;
         margin: 5px;
@@ -117,22 +118,18 @@
         aspect-ratio: 1;
         border-radius: 50%;
     }
-
-    .special-stat-box h3 {
+    .stat h3 {
         font-size: 0.7rem; /* Adatta la dimensione del testo su mobile */
         margin-bottom: 0.1rem;
         color: #ffdb58;
         text-align: center;
     }
-    .special-stat-value {
+    .stat-value {
         font-size: 1.2rem; /* Adatta la dimensione del numero su mobile */
         font-weight: bold;
-        color: #afff03;
+        color: var(--primary-color);
     }
-    .stat-box h3 {
+    .derived-stat h3 {
         font-size: 1rem; /* Riduci la dimensione del testo se necessario */
-    }
-    .stat-value {
-        font-size: 1.2rem; /* Riduci la dimensione del valore se necessario */
     }
 }

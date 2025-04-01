@@ -197,7 +197,7 @@ function toggleEditMode() {
     editStatsButton.textContent = isEditing ? 'Save Stats' : 'Edit Stats';
 
     // Toggle event listeners on special stat boxes
-    const specialStatBoxes = document.querySelectorAll('.special-stat-box');
+    const specialStatBoxes = document.querySelectorAll('.stat');
     specialStatBoxes.forEach(box => {
         if (isEditing) {
             box.addEventListener('click', incrementSpecialStat);
@@ -206,7 +206,7 @@ function toggleEditMode() {
         }
     });
     // Toggle event listeners on skills
-    const skillBoxes = document.querySelectorAll('.skill-with-specialty'); // Or whatever the parent element is
+    const skillBoxes = document.querySelectorAll('.skill'); // Or whatever the parent element is
     skillBoxes.forEach(box => {
         const checkbox = box.querySelector('input[type="checkbox"]');
         if (isEditing) {
@@ -224,7 +224,7 @@ function incrementSpecialStat(event) {
     if (!isEditing) return; // Only increment if editing
 
     const box = event.currentTarget;
-    const statId = box.querySelector('.special-stat-value').id;
+    const statId = box.querySelector('.stat-value').id;
     let statValue;
 
     switch (statId) {
