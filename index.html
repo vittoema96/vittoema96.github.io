@@ -6,8 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"><!--, viewport-fit=cover, orientation=landscape">-->
         <title>Pip-Boy 3000</title>
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap">
         <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/statStyles.css">
+        <link rel="stylesheet" href="css/invStyles.css">
 
 
         <link rel="canonical" href="https://vittoema96.github.io/" />
@@ -18,18 +21,6 @@
         <link rel="apple-touch-icon" href="/img/icons/192x192.png" type="image/png">
         <link rel="apple-touch-icon" href="/img/icons/512x512.png" type="image/png">
 
-        <style>
-            html, body {
-                margin: 0;
-                padding: 0;
-                height: 100%; /* Ensure full height */
-                overflow: hidden; /* Prevent scrolling */
-            }
-            .main-container {
-                height: calc(100% - 80px); /* Adjust based on header height, if necessary */
-                overflow: auto; /* Allow internal scrolling if content exceeds the container */
-            }
-        </style>
 
     </head>
     <body class="bg-green-900 text-lime-400 p-4">
@@ -42,54 +33,59 @@
             <div class="tab" data-tab="inv">INV</div>
             <div class="tab" data-tab="data">DATA</div>
             <div class="tab" data-tab="map">MAP</div>
+            <div class="tab" id="mini-tab" data-tab="settings">
+                <i class="fas fa-gear"></i>
+            </div>
             <!--<div class="tab" data-tab="radio">RADIO</div>-->
         </div>
 
         <main class="main-container">
+
+            <!-- Questa è la tab chiamata STAT -->
             <section id="stat-screen" class="screen active">
                 <div id="special-container">
                     <div class="special-stat-box">
-                        <h3>Strength</h3>
-                        <div class="special-stat-value" id="special-strength">0</div>
+                        <h3 data-lang-id="strength">Strength</h3>
+                        <div class="special-stat-value" id="special-strength-value">0</div>
                     </div>
                     <div class="special-stat-box">
-                        <h3>Perception</h3>
-                        <div class="special-stat-value" id="special-perception">0</div>
+                        <h3 data-lang-id="perception">Perception</h3>
+                        <div class="special-stat-value" id="special-perception-value">0</div>
                     </div>
                     <div class="special-stat-box">
-                        <h3>Endurance</h3>
-                        <div class="special-stat-value" id="special-endurance">0</div>
+                        <h3 data-lang-id="endurance">Endurance</h3>
+                        <div class="special-stat-value" id="special-endurance-value">0</div>
                     </div>
                     <div class="special-stat-box">
-                        <h3>Charisma</h3>
-                        <div class="special-stat-value" id="special-charisma">0</div>
+                        <h3 data-lang-id="charisma">Charisma</h3>
+                        <div class="special-stat-value" id="special-charisma-value">0</div>
                     </div>
                     <div class="special-stat-box">
-                        <h3>Intelligence</h3>
-                        <div class="special-stat-value" id="special-intelligence">0</div>
+                        <h3 data-lang-id="intelligence">Intelligence</h3>
+                        <div class="special-stat-value" id="special-intelligence-value">0</div>
                     </div>
                     <div class="special-stat-box">
-                        <h3>Agility</h3>
-                        <div class="special-stat-value" id="special-agility">0</div>
+                        <h3 data-lang-id="agility">Agility</h3>
+                        <div class="special-stat-value" id="special-agility-value">0</div>
                     </div>
                     <div class="special-stat-box">
-                        <h3>Luck</h3>
-                        <div class="special-stat-value" id="special-luck">0</div>
+                        <h3 data-lang-id="luck">Luck</h3>
+                        <div class="special-stat-value" id="special-luck-value">0</div>
                     </div>
                 </div>
 
                 <div class="grid-container">
                     <div class="stat-box">
-                        <h3>Defense</h3>
-                        <div class="stat-value" id="defense">0</div>
+                        <h3 data-lang-id="defense">Defense</h3>
+                        <div class="derived-stat-value" id="defense-value">0</div>
                     </div>
                     <div class="stat-box">
-                        <h3>Initiative</h3>
-                        <div class="stat-value" id="initiative">0</div>
+                        <h3 data-lang-id="initiative">Initiative</h3>
+                        <div class="derived-stat-value" id="initiative-value">0</div>
                     </div>
                     <div class="stat-box">
-                        <h3>Melee Damage</h3>
-                        <div class="stat-value" id="melee-damage">0</div>
+                        <h3 data-lang-id="melee-damage">Melee Damage</h3>
+                        <div class="derived-stat-value" id="melee-damage-value">0</div>
                     </div>
                 </div>
 
@@ -97,76 +93,140 @@
                     <label for="skills" class="form-label">Skills:</label>
                     <div id="skills" class="grid-container">
                         <div class="skill-with-specialty">
-                            <span class="skill-name">Small Guns</span>
-                            <span class="special-stat-name">[Agility]</span>
-                            <span class="skill-value" id="skill-small-guns">0</span>
-                            <input type="checkbox" id="specialty-small-guns" name="specialty-small-guns">
+                            <span class="skill-name" data-lang-id="athletics">Athletics</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="strength"
+                                  data-lang-format="[%s]">[Strength]</span>
+                            <span class="skill-value" id="skill-athletics">0</span>
+                            <input type="checkbox" id="specialty-athletics" name="specialty-athletics">
                         </div>
                         <div class="skill-with-specialty">
-                            <span class="skill-name">Big Guns</span>
-                            <span class="special-stat-name">[Strength]</span>
-                            <span class="skill-value" id="skill-big-guns">0</span>
-                            <input type="checkbox" id="specialty-big-guns" name="specialty-big-guns">
-                        </div>
-                        <div class="skill-with-specialty">
-                            <span class="skill-name">Energy Weapons</span>
-                            <span class="special-stat-name">[Perception]</span>
-                            <span class="skill-value" id="skill-energy-weapons">0</span>
-                            <input type="checkbox" id="specialty-energy-weapons" name="specialty-energy-weapons">
-                        </div>
-                        <div class="skill-with-specialty">
-                            <span class="skill-name">Melee Weapons</span>
-                            <span class="special-stat-name">[Strength]</span>
-                            <span class="skill-value" id="skill-melee-weapons">0</span>
-                            <input type="checkbox" id="specialty-melee-weapons" name="specialty-melee-weapons">
-                        </div>
-                        <div class="skill-with-specialty">
-                            <span class="skill-name">Unarmed</span>
-                            <span class="special-stat-name">[Endurance]</span>
-                            <span class="skill-value" id="skill-unarmed">0</span>
-                            <input type="checkbox" id="specialty-unarmed" name="specialty-unarmed">
-                        </div>
-                        <div class="skill-with-specialty">
-                            <span class="skill-name">Sneak</span>
-                            <span class="special-stat-name">[Agility]</span>
-                            <span class="skill-value" id="skill-sneak">0</span>
-                            <input type="checkbox" id="specialty-sneak" name="specialty-sneak">
-                        </div>
-                        <div class="skill-with-specialty">
-                            <span class="skill-name">Lockpick</span>
-                            <span class="special-stat-name">[Perception]</span>
-                            <span class="skill-value" id="skill-lockpick">0</span>
-                            <input type="checkbox" id="specialty-lockpick" name="specialty-lockpick">
-                        </div>
-                        <div class="skill-with-specialty">
-                            <span class="skill-name">Speech</span>
-                            <span class="special-stat-name">[Charisma]</span>
-                            <span class="skill-value" id="skill-speech">0</span>
-                            <input type="checkbox" id="specialty-speech" name="specialty-speech">
-                        </div>
-                        <div class="skill-with-specialty">
-                            <span class="skill-name">Barter</span>
-                            <span class="special-stat-name">[Charisma]</span>
+                            <span class="skill-name" data-lang-id="barter">Barter</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="charisma"
+                                  data-lang-format="[%s]">[Charisma]</span>
                             <span class="skill-value" id="skill-barter">0</span>
                             <input type="checkbox" id="specialty-barter" name="specialty-barter">
                         </div>
                         <div class="skill-with-specialty">
-                            <span class="skill-name">Medicine</span>
-                            <span class="special-stat-name">[Intelligence]</span>
+                            <span class="skill-name" data-lang-id="big-guns" >Big Guns</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="endurance"
+                                  data-lang-format="[%s]">[Endurance]</span>
+                            <span class="skill-value" id="skill-big-guns">0</span>
+                            <input type="checkbox" id="specialty-big-guns" name="specialty-big-guns">
+                        </div>
+                        <div class="skill-with-specialty">
+                            <span class="skill-name" data-lang-id="energy-weapons">Energy Weapons</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="perception"
+                                  data-lang-format="[%s]">[Perception]</span>
+                            <span class="skill-value" id="skill-energy-weapons">0</span>
+                            <input type="checkbox" id="specialty-energy-weapons" name="specialty-energy-weapons">
+                        </div>
+                        <div class="skill-with-specialty">
+                            <span class="skill-name" data-lang-id="explosives">Explosives</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="perception"
+                                  data-lang-format="[%s]">[Perception]</span>
+                            <span class="skill-value" id="skill-explosives">0</span>
+                            <input type="checkbox" id="specialty-explosives" name="specialty-explosives">
+                        </div>
+                        <div class="skill-with-specialty">
+                            <span class="skill-name" data-lang-id="lockpick">Lockpick</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="perception"
+                                  data-lang-format="[%s]">[Perception]</span>
+                            <span class="skill-value" id="skill-lockpick">0</span>
+                            <input type="checkbox" id="specialty-lockpick" name="specialty-lockpick">
+                        </div>
+                        <div class="skill-with-specialty">
+                            <span class="skill-name" data-lang-id="medicine">Medicine</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="intelligence"
+                                  data-lang-format="[%s]">[Intelligence]</span>
                             <span class="skill-value" id="skill-medicine">0</span>
                             <input type="checkbox" id="specialty-medicine" name="specialty-medicine">
                         </div>
                         <div class="skill-with-specialty">
-                            <span class="skill-name">Repair</span>
-                            <span class="special-stat-name">[Intelligence]</span>
+                            <span class="skill-name" data-lang-id="melee-weapons">Melee Weapons</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="strength"
+                                  data-lang-format="[%s]">[Strength]</span>
+                            <span class="skill-value" id="skill-melee-weapons">0</span>
+                            <input type="checkbox" id="specialty-melee-weapons" name="specialty-melee-weapons">
+                        </div>
+                        <div class="skill-with-specialty">
+                            <span class="skill-name" data-lang-id="pilot">Pilot</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="perception"
+                                  data-lang-format="[%s]">[Perception]</span>
+                            <span class="skill-value" id="skill-pilot">0</span>
+                            <input type="checkbox" id="specialty-pilot" name="specialty-pilot">
+                        </div>
+                        <div class="skill-with-specialty">
+                            <span class="skill-name" data-lang-id="repair">Repair</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="intelligence"
+                                  data-lang-format="[%s]">[Intelligence]</span>
                             <span class="skill-value" id="skill-repair">0</span>
                             <input type="checkbox" id="specialty-repair" name="specialty-repair">
                         </div>
                         <div class="skill-with-specialty">
-                            <span class="skill-name">Science</span>
-                            <span class="special-stat-name">[Intelligence]</span>
+                            <span class="skill-name" data-lang-id="science">Science</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="intelligence"
+                                  data-lang-format="[%s]">[Intelligence]</span>
                             <span class="skill-value" id="skill-science">0</span>
                             <input type="checkbox" id="specialty-science" name="specialty-science">
+                        </div>
+                        <div class="skill-with-specialty">
+                            <span class="skill-name" data-lang-id="small-guns">Small Guns</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="agility"
+                                  data-lang-format="[%s]">[Agility]</span>
+                            <span class="skill-value" id="skill-small-guns">0</span>
+                            <input type="checkbox" id="specialty-small-guns" name="specialty-small-guns">
+                        </div>
+                        <div class="skill-with-specialty">
+                            <span class="skill-name" data-lang-id="sneak">Sneak</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="agility"
+                                  data-lang-format="[%s]">[Agility]</span>
+                            <span class="skill-value" id="skill-sneak">0</span>
+                            <input type="checkbox" id="specialty-sneak" name="specialty-sneak">
+                        </div>
+                        <div class="skill-with-specialty">
+                            <span class="skill-name" data-lang-id="speech">Speech</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="charisma"
+                                  data-lang-format="[%s]">[Charisma]</span>
+                            <span class="skill-value" id="skill-speech">0</span>
+                            <input type="checkbox" id="specialty-speech" name="specialty-speech">
+                        </div>
+                        <div class="skill-with-specialty">
+                            <span class="skill-name" data-lang-id="survival">Survival</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="endurance"
+                                  data-lang-format="[%s]">[Endurance]</span>
+                            <span class="skill-value" id="skill-survival">0</span>
+                            <input type="checkbox" id="specialty-survival" name="specialty-survival">
+                        </div>
+                        <div class="skill-with-specialty">
+                            <span class="skill-name" data-lang-id="throwing">Throwing</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="agility"
+                                  data-lang-format="[%s]">[Agility]</span>
+                            <span class="skill-value" id="skill-throwing">0</span>
+                            <input type="checkbox" id="specialty-throwing" name="specialty-throwing">
+                        </div>
+                        <div class="skill-with-specialty">
+                            <span class="skill-name" data-lang-id="unarmed">Unarmed</span>
+                            <span class="special-stat-name"
+                                  data-lang-id="strength"
+                                  data-lang-format="[%s]">[Strength]</span>
+                            <span class="skill-value" id="skill-unarmed">0</span>
+                            <input type="checkbox" id="specialty-unarmed" name="specialty-unarmed">
                         </div>
                     </div>
                 </div>
@@ -257,7 +317,7 @@
             <section id="data-screen" class="screen hidden">
                 <p>This is the DATA screen.  You can add character background, notes, etc. here.</p>
                  <label for="character-background" class="form-label">Character Background:</label>
-                <textarea id="character-background" class="form-control" rows="5" placeholder="Enter your character's background..."></textarea>
+                 <textarea id="character-background" class="form-control" rows="5" placeholder="Enter your character's background..."></textarea>
             </section>
 
             <section id="map-screen" class="screen hidden">
@@ -267,6 +327,15 @@
                 </div>
             </section>
 
+            <section id="settings-screen" class="screen hidden">
+                <h2>Settings</h2>
+                <label for="language-select">Language:</label>
+                <select id="language-select" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="it">Italiano</option>
+                </select>
+                <button id="clear-local-storage">Clear Local Storage</button>
+            </section>
             <!--<section id="radio-screen" class="screen hidden">
                 <p>This is the RADIO screen.  You could implement in-game radio functionality here.</p>
                 <div id="radio-controls">
@@ -292,6 +361,7 @@
 
 
         <script src="js/app.js"></script>
+        <script src="js/lang/translator.js"></script>
     </body>
 </html>
 

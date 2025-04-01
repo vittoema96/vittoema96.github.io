@@ -1,0 +1,31 @@
+{
+  "strength": "Strength",
+  "perception": "Perception",
+  "endurance": "Endurance",
+  "charisma": "Charisma",
+  "intelligence": "Intelligence",
+  "agility": "Agility",
+  "luck": "Luck",
+
+  "defense": "Defense",
+  "initiative": "Initiative",
+  "melee-damage": "Melee Damage",
+
+  "athletics": "Athletics",
+  "barter": "Barter",
+  "big-guns": "Big Guns",
+  "energy-weapons": "Energy Weapons",
+  "explosives": "Explosives",
+  "lockpick": "Lockpick",
+  "medicine": "Medicine",
+  "melee-weapons": "Melee Weapons",
+  "pilot": "Pilot",
+  "repair": "Repair",
+  "science": "Science",
+  "small-guns" : "Small Guns",
+  "sneak": "Sneak",
+  "speech": "Speech",
+  "survival": "Survival",
+  "throwing": "Throwing",
+  "unarmed": "Unarmed"
+}

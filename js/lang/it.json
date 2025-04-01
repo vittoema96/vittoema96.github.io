@@ -1,0 +1,31 @@
+{
+  "strength": "Forza",
+  "perception": "Percezione",
+  "endurance": "Costituzione",
+  "charisma": "Carisma",
+  "intelligence": "Intelligenza",
+  "agility": "Agilità",
+  "luck": "Fortuna",
+
+  "defense": "Difesa",
+  "initiative": "Iniziativa",
+  "melee-damage": "Danno in Mischia",
+
+  "athletics": "Atletica",
+  "barter": "Commercio",
+  "big-guns": "Armi Pesanti",
+  "energy-weapons": "Armi a Energia",
+  "explosives": "Esplosivi",
+  "lockpick": "Scassinare",
+  "medicine": "Medicina",
+  "melee-weapons": "Armi da Mischia",
+  "pilot": "Pilotare",
+  "repair": "Riparare",
+  "science": "Scienza",
+  "small-guns" : "Armi Leggere",
+  "sneak": "Furtività",
+  "speech": "Oratoria",
+  "survival": "Sopravvivenza",
+  "throwing": "Lanciare",
+  "unarmed": "Senza Armi"
+}

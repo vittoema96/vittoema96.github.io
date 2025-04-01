@@ -1,16 +1,16 @@
 // Get references to DOM elements
 const tabButtons = document.querySelectorAll('.tab');
 const screens = document.querySelectorAll('.screen');
-const specialStrengthDisplay = document.getElementById('special-strength');
-const specialPerceptionDisplay = document.getElementById('special-perception');
-const specialEnduranceDisplay = document.getElementById('special-endurance');
-const specialCharismaDisplay = document.getElementById('special-charisma');
-const specialIntelligenceDisplay = document.getElementById('special-intelligence');
-const specialAgilityDisplay = document.getElementById('special-agility');
-const specialLuckDisplay = document.getElementById('special-luck');
-const defenseDisplay = document.getElementById('defense');
-const initiativeDisplay = document.getElementById('initiative');
-const meleeDamageDisplay = document.getElementById('melee-damage');
+const specialStrengthDisplay = document.getElementById('special-strength-value');
+const specialPerceptionDisplay = document.getElementById('special-perception-value');
+const specialEnduranceDisplay = document.getElementById('special-endurance-value');
+const specialCharismaDisplay = document.getElementById('special-charisma-value');
+const specialIntelligenceDisplay = document.getElementById('special-intelligence-value');
+const specialAgilityDisplay = document.getElementById('special-agility-value');
+const specialLuckDisplay = document.getElementById('special-luck-value');
+const defenseDisplay = document.getElementById('defense-value');
+const initiativeDisplay = document.getElementById('initiative-value');
+const meleeDamageDisplay = document.getElementById('melee-damage-value');
 const skillSmallGunsDisplay = document.getElementById('skill-small-guns');
 const skillBigGunsDisplay = document.getElementById('skill-big-guns');
 const skillEnergyWeaponsDisplay = document.getElementById('skill-energy-weapons');
@@ -222,31 +222,31 @@ function incrementSpecialStat(event) {
     let statValue;
 
     switch (statId) {
-        case 'special-strength':
+        case 'special-strength-value':
             statValue = characterData.special.strength;
             characterData.special.strength = (statValue < 12) ? statValue + 1 : 4;
             break;
-        case 'special-perception':
+        case 'special-perception-value':
             statValue = characterData.special.perception;
             characterData.special.perception = (statValue < 10) ? statValue + 1 : 4;
             break;
-        case 'special-endurance':
+        case 'special-endurance-value':
             statValue = characterData.special.endurance;
             characterData.special.endurance = (statValue < 12) ? statValue + 1 : 4;
             break;
-        case 'special-charisma':
+        case 'special-charisma-value':
             statValue = characterData.special.charisma;
             characterData.special.charisma = (statValue < 10) ? statValue + 1 : 4;
             break;
-        case 'special-intelligence':
+        case 'special-intelligence-value':
             statValue = characterData.special.intelligence;
             characterData.special.intelligence = (statValue < 10) ? statValue + 1 : 4;
             break;
-        case 'special-agility':
+        case 'special-agility-value':
             statValue = characterData.special.agility;
             characterData.special.agility = (statValue < 10) ? statValue + 1 : 4;
             break;
-        case 'special-luck':
+        case 'special-luck-value':
             statValue = characterData.special.luck;
             characterData.special.luck = (statValue < 10) ? statValue + 1 : 4;
             break;

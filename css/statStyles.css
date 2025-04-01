@@ -1,0 +1,138 @@
+.stat-box {
+    padding: 1rem;
+    border: 2px solid #afff03;
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgba(15, 48, 3, 0.3);
+    flex: 1; /* Allow boxes to grow and shrink equally */
+    margin: 0.5rem; /* Add some horizontal margin between boxes */
+    box-sizing: border-box;
+    display: flex; /* Add flex display */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+.stat-box h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+#special-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    flex-wrap: wrap; /* Permetti il wrapping anche su schermi più grandi se necessario */
+}
+.special-stat-box {
+    padding: 0.5rem;
+    border: 2px;
+    text-align: center;
+    background-color: rgba(15, 48, 3, 0.3);
+    width: calc(14.28% - 20px); /* Calcola per 7 elementi con margini */
+    min-width: 80px; /* Imposta una larghezza minima */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra orizzontalmente */
+    aspect-ratio: 1;
+    margin: 0.5rem;
+    background-image: url("../img/gear.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.special-stat-box h3 {
+    font-size: 1rem;
+    margin-bottom: 0.1rem; /* Ridotto il margine inferiore */
+    color: #ffdb58;
+    order: -1; /* Sposta il nome in alto */
+}
+.special-stat-value {
+    font-size: 1.6rem; /* Aumentato la dimensione del numero */
+    font-weight: bold;
+    color: #afff03;
+}
+#skills {
+    display: flex;
+    flex-direction: column; /* Stack skills vertically */
+    align-items: stretch; /* Stretch items to fill width */
+}
+.skill-with-specialty {
+    display: flex;
+    /*justify-content: space-between; /* Space labels and checkboxes */
+    align-items: center; /* Align items vertically */
+    padding: 1rem;
+    border: 2px solid #afff03;
+    border-radius: 5px;
+    background-color: rgba(15, 48, 3, 0.3);
+    margin-bottom: 0.5rem; /* Add spacing between skills */
+    box-sizing: border-box;
+}
+.skill-name {
+    width: 150px; /* Adjust as needed */
+    margin-right: 1rem;
+    font-size: 1.1rem;
+}
+
+.special-stat-name {
+    font-weight: bold;
+    width: 80px; /* Adjust as needed */
+    margin-right: 1rem;
+    font-size: 1.1rem;
+}
+.skill-value {
+    width: 40px; /* Adjust as needed */
+    margin-right: 1rem;
+    text-align: right;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+
+    #special-container {
+        display: flex;
+        justify-content: space-around; /* Distribute space evenly */
+        align-items: center;
+        flex-wrap: wrap; /* Allow wrapping */
+    }
+
+    .special-stat-box {
+        width: calc(25% - 10px); /* Obiettivo di 4 per riga su mobile */
+        min-width: 60px;
+        margin: 5px;
+        border: 1px; /* Ridotto il bordo su mobile */
+        padding: 0.1rem;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 1;
+        border-radius: 50%;
+    }
+
+    .special-stat-box h3 {
+        font-size: 0.7rem; /* Adatta la dimensione del testo su mobile */
+        margin-bottom: 0.1rem;
+        color: #ffdb58;
+        text-align: center;
+    }
+    .special-stat-value {
+        font-size: 1.2rem; /* Adatta la dimensione del numero su mobile */
+        font-weight: bold;
+        color: #afff03;
+    }
+    .stat-box h3 {
+        font-size: 1rem; /* Riduci la dimensione del testo se necessario */
+    }
+    .stat-value {
+        font-size: 1.2rem; /* Riduci la dimensione del valore se necessario */
+    }
+}
