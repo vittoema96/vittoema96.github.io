@@ -30,6 +30,24 @@ const skillSurvivalValue = document.getElementById('skill-survival');
 const skillThrowingValue = document.getElementById('skill-throwing');
 const skillUnarmedValue = document.getElementById('skill-unarmed');
 
+const specialtyAthletics = document.getElementById('specialty-athletics');
+const specialtyBarter = document.getElementById('specialty-barter');
+const specialtyBigGuns = document.getElementById('specialty-bigGuns');
+const specialtyEnergyWeapons = document.getElementById('specialty-energyWeapons');
+const specialtyExplosives = document.getElementById('specialty-explosives');
+const specialtyLockpick = document.getElementById('specialty-lockpick');
+const specialtyMedicine = document.getElementById('specialty-medicine');
+const specialtyMeleeWeapons = document.getElementById('specialty-meleeWeapons');
+const specialtyPilot = document.getElementById('specialty-pilot');
+const specialtyRepair = document.getElementById('specialty-repair');
+const specialtyScience = document.getElementById('specialty-science');
+const specialtySmallGuns = document.getElementById('specialty-smallGuns');
+const specialtySneak = document.getElementById('specialty-sneak');
+const specialtySpeech = document.getElementById('specialty-speech');
+const specialtySurvival = document.getElementById('specialty-survival');
+const specialtyThrowing = document.getElementById('specialty-throwing');
+const specialtyUnarmed = document.getElementById('specialty-unarmed');
+
 const playerCapsDisplay = document.getElementById('player-caps');
 const carryWeightDisplay = document.getElementById('carry-weight');
 const weaponList = document.getElementById('weapon-list');
@@ -73,6 +91,7 @@ let characterData = JSON.parse(localStorage.getItem('characterData')) || {
         throwing: 0,
         unarmed: 0,
     },
+    specialties: ['repair'],
     caps: 0,
     currentCarryWeight: { current: 0 },
     weapons: [
@@ -137,6 +156,25 @@ function updateDisplay() {
     skillUnarmedValue.textContent = characterData.skills.unarmed;
 
 
+    specialtyAthletics.checked = characterData.specialties.includes('athletics');
+    specialtyBarter.checked = characterData.specialties.includes('barter');
+    specialtyBigGuns.checked = characterData.specialties.includes('bigGuns');
+    specialtyEnergyWeapons.checked = characterData.specialties.includes('energyWeapons');
+    specialtyExplosives.checked = characterData.specialties.includes('explosives');
+    specialtyLockpick.checked = characterData.specialties.includes('lockpick');
+    specialtyMedicine.checked = characterData.specialties.includes('medicine');
+    specialtyMeleeWeapons.checked = characterData.specialties.includes('meleeWeapons');
+    specialtyPilot.checked = characterData.specialties.includes('pilot');
+    specialtyRepair.checked = characterData.specialties.includes('repair');
+    specialtyScience.checked = characterData.specialties.includes('science');
+    specialtySmallGuns.checked = characterData.specialties.includes('smallGuns');
+    specialtySneak.checked = characterData.specialties.includes('sneak');
+    specialtySpeech.checked = characterData.specialties.includes('speech');
+    specialtySurvival.checked = characterData.specialties.includes('survival');
+    specialtyThrowing.checked = characterData.specialties.includes('throwing');
+    specialtyUnarmed.checked = characterData.specialties.includes('unarmed');
+
+
     playerCapsDisplay.textContent = characterData.caps;
     carryWeightDisplay.textContent = `${characterData.currentCarryWeight} / ${75 + characterData.special.strength * 5}`;
     characterBackgroundInput.value = characterData.background;
@@ -195,6 +233,16 @@ function toggleEditMode() {
     initiativeDisplay.contentEditable = isEditing;
     meleeDamageDisplay.contentEditable = isEditing;
 
+    // Toggle event listeners on special stat boxes
+    const specialStatBoxes = document.querySelectorAll('.stat');
+    specialStatBoxes.forEach(box => {
+        if (isEditing) {
+            box.addEventListener('click', incrementSpecialStat);
+        } else {
+            box.removeEventListener('click', incrementSpecialStat);
+        }
+    });
+
 
     skillAthleticsValue.contentEditable = isEditing;
     skillBarterValue.contentEditable = isEditing;
@@ -214,19 +262,6 @@ function toggleEditMode() {
     skillThrowingValue.contentEditable = isEditing;
     skillUnarmedValue.contentEditable = isEditing;
 
-    // Update button text
-    editStatsButton.textContent = isEditing ? 'Save Stats' : 'Edit Stats';
-
-    // Toggle event listeners on special stat boxes
-    const specialStatBoxes = document.querySelectorAll('.stat');
-    specialStatBoxes.forEach(box => {
-        if (isEditing) {
-            box.addEventListener('click', incrementSpecialStat);
-        } else {
-            box.removeEventListener('click', incrementSpecialStat);
-        }
-    });
-
     // Toggle event listeners on skills
     const skillBoxes = document.querySelectorAll('.skill'); // Or whatever the parent element is
     skillBoxes.forEach(box => {
@@ -240,6 +275,9 @@ function toggleEditMode() {
             if (checkbox) checkbox.disabled = true;
         }
     });
+
+    // Update button text
+    editStatsButton.textContent = isEditing ? 'Save Stats' : 'Edit Stats';
 }
 
 // Function to increment special stat values
@@ -298,19 +336,26 @@ function incrementSkill(event) {
 
     // Check if the click originated from the checkbox
     if (event.target === checkbox) {
-        return; // Do nothing if the checkbox was clicked directly
-    }
-    // Directly access and update the skill value in characterData
-    if (characterData.skills.hasOwnProperty(skillName)) {
+        if (checkbox.checked && !characterData.specialties.includes(skillName)) {
+            characterData.specialties.push(skillName);
+            if (characterData.skills[skillName] < 2)
+                characterData.skills[skillName] = 2;
+        }
+        else if (!checkbox.checked && characterData.specialties.includes(skillName)) {
+            const indexToRemove = characterData.specialties.indexOf(skillName);
+            if(indexToRemove > -1)
+                characterData.specialties.splice(indexToRemove, 1);
+        }
+    } else if (characterData.skills.hasOwnProperty(skillName)) {
         let skillValue = characterData.skills[skillName];
         characterData.skills[skillName] = (skillValue < 6)
             ? skillValue + 1
             : (checkbox && checkbox.checked ? 2 : 0);
 
-        updateDisplay(); // Refresh display with updated data
     } else {
         console.warn(`Skill with ID ${skillId} not found in characterData.skills.`);
     }
+    updateDisplay(); // Refresh display with updated data
 }
 
 // Event listener for tab clicks
@@ -329,31 +374,6 @@ editStatsButton.addEventListener('click', () => {
     toggleEditMode();
 
     if (!isEditing) {
-        // Save changes when exiting edit mode
-        characterData.special.strength = parseInt(specialStrengthDisplay.textContent) || characterData.special.strength;
-        characterData.special.perception = parseInt(specialPerceptionDisplay.textContent) || characterData.special.perception;
-        characterData.special.endurance = parseInt(specialEnduranceDisplay.textContent) || characterData.special.endurance;
-        characterData.special.charisma = parseInt(specialCharismaDisplay.textContent) || characterData.special.charisma;
-        characterData.special.intelligence = parseInt(specialIntelligenceDisplay.textContent) || characterData.special.intelligence;
-        characterData.special.agility = parseInt(specialAgilityDisplay.textContent) || characterData.special.agility;
-        characterData.special.luck = parseInt(specialLuckDisplay.textContent) || characterData.special.luck;
-        characterData.defense = parseInt(defenseDisplay.textContent) || characterData.defense;
-        characterData.initiative = parseInt(initiativeDisplay.textContent) || characterData.initiative;
-        characterData.meleeDamage = parseInt(meleeDamageDisplay.textContent) || characterData.meleeDamage;
-
-        characterData.skills.smallGuns = parseInt(skillSmallGunsDisplay.textContent) || characterData.skills.smallGuns;
-        characterData.skills.bigGuns = parseInt(skillBigGunsDisplay.textContent) || characterData.skills.bigGuns;
-        characterData.skills.energyWeapons = parseInt(skillEnergyWeaponsDisplay.textContent) || characterData.skills.energyWeapons;
-        characterData.skills.meleeWeapons = parseInt(skillMeleeWeaponsDisplay.textContent) || characterData.skills.meleeWeapons;
-        characterData.skills.unarmed = parseInt(skillUnarmedDisplay.textContent) || characterData.skills.unarmed;
-        characterData.skills.sneak = parseInt(skillSneakDisplay.textContent) || characterData.skills.sneak;
-        characterData.skills.lockpick = parseInt(skillLockpickDisplay.textContent) || characterData.skills.lockpick;
-        characterData.skills.speech = parseInt(skillSpeechDisplay.textContent) || characterData.skills.speech;
-        characterData.skills.barter = parseInt(skillBarterDisplay.textContent) || characterData.skills.barter;
-        characterData.skills.medicine = parseInt(skillMedicineDisplay.textContent) || characterData.skills.medicine;
-        characterData.skills.repair = parseInt(skillRepairDisplay.textContent) || characterData.skills.repair;
-        characterData.skills.science = parseInt(skillScienceDisplay.textContent) || characterData.skills.science;
-
         updateDisplay(); // Refresh display with updated data
     }
 });
@@ -361,6 +381,11 @@ editStatsButton.addEventListener('click', () => {
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 checkboxes.forEach(checkbox => {
     checkbox.disabled = true;
+});
+
+const clearLocalStorageButton = document.getElementById('clear-local-storage');
+clearLocalStorageButton.addEventListener('click', () => {
+    localStorage.clear();
 });
 
 // Initial display update
