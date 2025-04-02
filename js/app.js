@@ -444,12 +444,21 @@ function parseCSV(csvText) {
     return data;
 }
 
+async function loadWeapons() {
+    let weaponData = await loadCSV('data/weapons/smallGuns.csv');
+    weaponData = weaponData.concat(await loadCSV('data/weapons/energyWeapons.csv'));
+    return weaponData
+}
 
 async function populateTable() {
-    const csvFilePath = 'data/weapons/smallGuns.csv'; // Replace with the actual path to your CSV file
-    const weaponData = await loadCSV(csvFilePath);
+    const weaponData = await loadWeapons();
     const tableBody = document.getElementById("armiLeggereTableBody");
-    const toAdd = ["Syringer", "Pistola 44"]
+
+
+    const toAdd = [];
+    weaponData.forEach(e => toAdd.push(e["WEAPON_ID"]));
+
+
     toAdd.forEach(weaponId => {
         const weapon = weaponData.find(row => row["WEAPON_ID"] === weaponId);
         const row = tableBody.insertRow();
@@ -461,9 +470,6 @@ async function populateTable() {
         row.insertCell().textContent = weapon["FIRE_RATE"] || "";
         row.insertCell().textContent = weapon["RANGE"] || "";
         row.insertCell().textContent = weapon["QUALITIES"] || "";
-        row.insertCell().textContent = weapon["WEIGHT"] || "";
-        row.insertCell().textContent = weapon["COST"] || "";
-        row.insertCell().textContent = weapon["RARITY"] || "";
         row.insertCell().textContent = weapon["AMMO_TYPE"] || "";
     });
 }
