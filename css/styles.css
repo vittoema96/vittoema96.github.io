@@ -164,8 +164,9 @@ table {
     border-collapse: collapse;
     margin-top: 1rem;
     color: var(--primary-color);
-    font-size: 0.9rem;
+    font-size: 1vw;
     border: 2px solid var(--primary-color); /* Add a border to the whole table */
+    table-layout: fixed; /* Add this to control column widths */
 }
 
 thead th {
@@ -175,11 +176,13 @@ thead th {
     padding: 0.75rem;
     text-align: left;
     border-bottom: 2px solid var(--primary-color);
+    word-break: break-word; /* Prevent long words from breaking layout */
 }
 
 tbody td {
     padding: 0.75rem;
     border-bottom: 1px solid #338006; /* Lighter border for rows */
+    word-break: break-word; /* Prevent long words from breaking layout */
 }
 
 tbody tr:last-child td {
@@ -210,17 +213,13 @@ tbody tr:hover {
         margin-bottom: 1rem;
     }
     table {
-        font-size: 0.5rem;
+        margin: 0;
+        /*font-size: 0.4rem;*/
     }
     thead th, tbody td {
         padding: 0.2rem;
     }
-    /* If the table becomes too wide, consider these techniques: */
-    /* 1. Horizontal scrolling */
-    .main-container {
-        overflow-x: auto;
-    }
     table {
-        width: auto; /* Allow table to be wider than container */
+        width: 100%; /* Allow table to be wider than container */
     }
 }
