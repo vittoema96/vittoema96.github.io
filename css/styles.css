@@ -157,16 +157,13 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
   filter: url('../img/vaultboy.svg#checked');
 }
-
-
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
     color: var(--primary-color);
-    font-size: 1vw;
+    font-size: 1.6vw;
     border: 2px solid var(--primary-color); /* Add a border to the whole table */
-    table-layout: fixed; /* Add this to control column widths */
 }
 
 thead th {
@@ -174,15 +171,14 @@ thead th {
     color: var(--primary-color);
     font-weight: bold;
     padding: 0.75rem;
-    text-align: left;
+    text-align: center;
     border-bottom: 2px solid var(--primary-color);
-    word-break: break-word; /* Prevent long words from breaking layout */
 }
 
 tbody td {
     padding: 0.75rem;
+    text-align: center;
     border-bottom: 1px solid #338006; /* Lighter border for rows */
-    word-break: break-word; /* Prevent long words from breaking layout */
 }
 
 tbody tr:last-child td {
@@ -211,6 +207,13 @@ tbody tr:hover {
     .grid-container {
         /* Potrebbe essere necessario ridurre il margin-bottom se lo spazio diventa troppo */
         margin-bottom: 1rem;
+    }
+
+    .main-container table {
+        margin-left: calc(-1 * 1.4rem); /* Negative margin to the left, matching the padding */
+        margin-right: calc(-1 * 1.4rem); /* Negative margin to the right, matching the padding */
+        box-sizing: border-box; /* Add this */
+        width: calc(100% + 2.8rem);
     }
     table {
         margin: 0;

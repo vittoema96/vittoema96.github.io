@@ -35,3 +35,13 @@ J
 data/weapons/smallGuns.csv,b/6/b645876096c7f20049644b476daed4e830e5bb5a
 N
 data/weapons/energyWeapons.csv,c/6/c699f4b3a9e3233564d16cb4ec939dc9cfd4349f
+?
+todo_weaponItem,4/3/432803561d798465e7e3b514b57691ba2f419dd1
+E
+img/energyWeapons.svg,5/6/56ccb41e3e19d517dc1d686d520da3013e237c8e
+?
+img/bigGuns.svg,0/f/0f2d62505e9baed3f222f107b7eaffcaf9f23357
+A
+img/smallGuns.svg,4/1/419c04892f91dfe732f20acd0970b38848e83c0c
+H
+data/weapons/bigGuns.csv,8/e/8e8184b11491315bfd780dbfb326c54133fb4ea1
