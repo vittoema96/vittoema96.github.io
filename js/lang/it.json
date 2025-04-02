@@ -27,5 +27,18 @@
   "speech": "Oratoria",
   "survival": "Sopravvivenza",
   "throwing": "Lanciare",
-  "unarmed": "Senza Armi"
+  "unarmed": "Senza Armi",
+
+    "weaponId": "Arma",
+    "skill": "Abilità",
+    "damageRating": "Grado di Danno",
+    "effects": "Effetti di Danno",
+    "damageType": "Tipo di Danno",
+    "fireRate": "Cadenza di Fuoco",
+    "range": "Gittata",
+    "qualities": "Qualità",
+    "weight": "Peso",
+    "cost": "Costo",
+    "rarity": "Rarità",
+    "ammoType": "Tipo di Muniz."
 }

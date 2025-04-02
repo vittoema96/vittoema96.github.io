@@ -158,6 +158,43 @@ input[type="checkbox"]:checked {
   filter: url('../img/vaultboy.svg#checked');
 }
 
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    border: 2px solid var(--primary-color); /* Add a border to the whole table */
+}
+
+thead th {
+    background-color: #1a5205;
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+tbody td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #338006; /* Lighter border for rows */
+}
+
+tbody tr:last-child td {
+    border-bottom: none; /* Remove border from the last row */
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(175, 255, 3, 0.05); /* Slightly darker for even rows */
+}
+
+/* Optional: Hover effect on rows */
+tbody tr:hover {
+    background-color: rgba(175, 255, 3, 0.1);
+    cursor: pointer;
+}
 @media (max-width: 768px) {
     .header {
         text-align: start;
@@ -171,5 +208,19 @@ input[type="checkbox"]:checked {
     .grid-container {
         /* Potrebbe essere necessario ridurre il margin-bottom se lo spazio diventa troppo */
         margin-bottom: 1rem;
+    }
+    table {
+        font-size: 0.5rem;
+    }
+    thead th, tbody td {
+        padding: 0.2rem;
+    }
+    /* If the table becomes too wide, consider these techniques: */
+    /* 1. Horizontal scrolling */
+    .main-container {
+        overflow-x: auto;
+    }
+    table {
+        width: auto; /* Allow table to be wider than container */
     }
 }

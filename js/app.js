@@ -388,5 +388,88 @@ clearLocalStorageButton.addEventListener('click', () => {
     localStorage.clear();
 });
 
+
+
+async function loadCSV(filePath) {
+    try {
+        const response = await fetch(filePath);
+        const csvData = await response.text();
+        return parseCSV(csvData);
+    } catch (error) {
+        console.error("Error loading CSV:", error);
+        return [];
+    }
+}
+
+function parseCSV(csvText) {
+    const lines = csvText.trim().split('\n');
+    if (lines.length < 2) {
+        return [];
+    }
+
+    const headers = lines[0].split(',').map(header => header.trim());
+    const data = [];
+
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i];
+        const values = [];
+        let inQuotes = false;
+        let currentValue = '';
+
+        for (let k = 0; k < line.length; k++) {
+            const char = line[k];
+
+            if (char === '"') {
+                inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+                values.push(currentValue.trim());
+                currentValue = '';
+            } else {
+                currentValue += char;
+            }
+        }
+        values.push(currentValue.trim()); // Push the last value
+
+        if (values.length === headers.length) {
+            const entry = {};
+            for (let j = 0; j < headers.length; j++) {
+                entry[headers[j]] = values[j];
+            }
+            data.push(entry);
+        } else {
+            console.warn(`Skipping row ${i + 1} due to inconsistent number of columns.`);
+        }
+    }
+
+    return data;
+}
+
+
+async function populateTable() {
+    const csvFilePath = 'data/weapons/smallGuns.csv'; // Replace with the actual path to your CSV file
+    const weaponData = await loadCSV(csvFilePath);
+    const tableBody = document.getElementById("armiLeggereTableBody");
+    const toAdd = ["Syringer", "Pistola 44"]
+    toAdd.forEach(weaponId => {
+        const weapon = weaponData.find(row => row["WEAPON_ID"] === weaponId);
+        const row = tableBody.insertRow();
+        row.insertCell().textContent = weapon["WEAPON_ID"] || "";
+        row.insertCell().textContent = weapon["SKILL"] || "";
+        row.insertCell().textContent = weapon["DAMAGE_RATING"] || "";
+        row.insertCell().textContent = weapon["EFFECTS"] || "";
+        row.insertCell().textContent = weapon["DAMAGE_TYPE"] || "";
+        row.insertCell().textContent = weapon["FIRE_RATE"] || "";
+        row.insertCell().textContent = weapon["RANGE"] || "";
+        row.insertCell().textContent = weapon["QUALITIES"] || "";
+        row.insertCell().textContent = weapon["WEIGHT"] || "";
+        row.insertCell().textContent = weapon["COST"] || "";
+        row.insertCell().textContent = weapon["RARITY"] || "";
+        row.insertCell().textContent = weapon["AMMO_TYPE"] || "";
+    });
+}
+
+// Call the function to load and populate the table when the page loads
+populateTable();
+
 // Initial display update
 updateDisplay();

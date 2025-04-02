@@ -27,5 +27,18 @@
   "speech": "Speech",
   "survival": "Survival",
   "throwing": "Throwing",
-  "unarmed": "Unarmed"
+  "unarmed": "Unarmed",
+
+    "weaponId": "Weapon",
+    "skill": "Ability",
+    "damageRating": "Damage Rating",
+    "effects": "Damage Effects",
+    "damageType": "Damage Type",
+    "fireRate": "Fire Rate",
+    "range": "Range",
+    "qualities": "Quality",
+    "weight": "Weight",
+    "cost": "Cost",
+    "rarity": "Rarity",
+    "ammoType": "Ammo Type"
 }

@@ -10,7 +10,8 @@ function loadTranslations(language) {
               const langId = element.dataset.langId; // Access the value of the attribute
               const format = element.dataset.langFormat || "%s"
 
-                element.textContent = format.replace("%s", data[langId])
+                const transl = data[langId] === undefined ? "!Transl.Missing!" : data[langId];
+                element.textContent = format.replace("%s", transl)
             });
 
             document.documentElement.lang = language; // Set the lang attribute
