@@ -31,3 +31,7 @@ E
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+F
+data/weapons/smallGuns,a/8/a83f2458eecdfdf17cd172cac59c387fbaf35f80
+J
+data/weapons/smallGuns.csv,b/6/b645876096c7f20049644b476daed4e830e5bb5a
