@@ -478,86 +478,45 @@ async function populateTable() {
 // Call the function to load and populate the table when the page loads
 populateTable();
 
-
 function createWeaponCard(weaponId, weaponData) {
-    const weapon = weaponData.find(row => row["WEAPON_ID"] === weaponId);
+    const weapon = weaponData.find(row => row.WEAPON_ID === weaponId);
 
     if (!weapon) {
         console.error(`Weapon data not found for ID: ${weaponId}`);
-        return null; // Or return a placeholder element
+        return null;
     }
 
-    const card = document.createElement("div");
-    card.className = "card";
+    const cardHTML = `
+        <div class="card">
+            <div class="header">
+                <div class="weapon-name">${weapon.WEAPON_ID}</div>
+                <div class="right-header">
+                    <div class="cost"><div>Cost</div><div>${weapon.COST}</div></div>
+                    <div class="weight"><div>Weight</div><div>${weapon.WEIGHT} kg</div></div>
+                    <div class="rarity"><div>Rarity</div><div>${weapon.RARITY}</div></div>
+                </div>
+                <div class="details"><b>${weapon.SKILL}</b> - ${weapon.AMMO_TYPE}</div>
+            </div>
+            <div class="card-content">
+                <div class="image">
+                    <img src="img/${weapon.SKILL}.svg" alt="${weapon.WEAPON_ID}">
+                </div>
+                <div class="stats">
+                    <div class="damage"><div>Damage Dice</div><div>${weapon.DAMAGE_RATING}</div><div>${weapon.DAMAGE_TYPE}</div></div>
+                    <div class="rate"><div>Fire Rate</div><div>${weapon.FIRE_RATE}</div></div>
+                    <div class="range"><div>Range</div><div>${weapon.RANGE}</div></div>
+                </div>
+                <div class="description">
+                    ${weapon.DESCRIPTION.split('. ').map(paragraph => `<p>${paragraph}</p>`).join('')}
+                </div>
+            </div>
+        </div>
+    `;
 
-    const header = document.createElement("div");
-    header.className = "header";
+    const card = document.createElement('div');
+    card.innerHTML = cardHTML;
 
-    const leftHeader = document.createElement("div");
-    leftHeader.className = "left-header";
-    const weaponName = document.createElement("div");
-    weaponName.className = "weapon-name";
-    weaponName.textContent = weapon["WEAPON_ID"];
-    const weaponDetails = document.createElement("div");
-    weaponDetails.className = "details";
-    weaponDetails.textContent = weapon["SKILL"] + " " + weapon["AMMO_TYPE"];
-    leftHeader.appendChild(weaponName);
-    leftHeader.appendChild(weaponDetails);
-
-    const rightHeader = document.createElement("div");
-    rightHeader.className = "right-header";
-    const costDiv = document.createElement("div");
-    costDiv.className = "cost";
-    costDiv.innerHTML = `<div>Cost</div><div>${weapon["COST"]}</div>`;
-    const weightDiv = document.createElement("div");
-    weightDiv.className = "weight";
-    weightDiv.innerHTML = `<div>Weight</div><div>${weapon["WEIGHT"].split(' ')[0]}</div><div>${weapon["WEIGHT"].split(' ')[1]}</div>`;
-    const rarityDiv = document.createElement("div");
-    rarityDiv.className = "rarity";
-    rarityDiv.innerHTML = `<div>Rarity</div><div>${weapon["RARITY"]}</div>`;
-    rightHeader.appendChild(costDiv);
-    rightHeader.appendChild(weightDiv);
-    rightHeader.appendChild(rarityDiv);
-
-    header.appendChild(leftHeader);
-    header.appendChild(rightHeader);
-    card.appendChild(header);
-
-    const imageDiv = document.createElement("div");
-    imageDiv.className = "image";
-    const image = document.createElement("img");
-    image.src = "img/" + weapon["SKILL"] + ".svg";
-    image.alt = weapon["WEAPON_ID"];
-    imageDiv.appendChild(image);
-    card.appendChild(imageDiv);
-
-    const statsDiv = document.createElement("div");
-    statsDiv.className = "stats";
-    const damageDiv = document.createElement("div");
-    damageDiv.className = "damage";
-    damageDiv.innerHTML = `<div>Damage Dice</div><div>${weapon["DAMAGE_RATING"]}</div><div>${weapon["DAMAGE_TYPE"]}</div>`;
-    const rateDiv = document.createElement("div");
-    rateDiv.className = "rate";
-    rateDiv.innerHTML = `<div>Fire Rate</div><div>${weapon["FIRE_RATE"]}</div>`;
-    const rangeDiv = document.createElement("div");
-    rangeDiv.className = "range";
-    rangeDiv.innerHTML = `<div>Range</div><div>${weapon["RANGE"]}</div>`;
-    statsDiv.appendChild(damageDiv);
-    statsDiv.appendChild(rateDiv);
-    statsDiv.appendChild(rangeDiv);
-    card.appendChild(statsDiv);
-
-    const descriptionDiv = document.createElement("div");
-    descriptionDiv.className = "description";
-    const descriptionParagraphs = weapon["DESCRIPTION"].split('. ');
-    descriptionParagraphs.forEach(paragraph => {
-        const p = document.createElement("p");
-        p.textContent = paragraph;
-        descriptionDiv.appendChild(p);
-    });
-    card.appendChild(descriptionDiv);
-
-    return card;
+    return card; // Return the actual card element
 }
 document.addEventListener("DOMContentLoaded", async () => {
     const weaponIds = ["Pistola 44", "Fat Man", "Pistola Gamma"]; // Add more weapon IDs as needed

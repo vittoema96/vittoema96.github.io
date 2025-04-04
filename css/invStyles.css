@@ -16,72 +16,88 @@
     box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
     margin-bottom: 20px;
 }
-
 .header {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
     justify-content: space-between;
     padding: 10px;
     font-size: 0.9em;
     align-items: start;
 }
-.header .left-header{
-    display: flex;
-    flex-direction: column;
-
+.weapon-name {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
 }
-.header .weapon-name{
-    font-size: 1.2em;
-}
-
-.header .right-header {
+.right-header {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
-    align-items: flex-start;
+    grid-column: 2 / 3; /* Spans the second column */
+    grid-row: 1 / 2;
+    justify-self: end; /* Align to the end of the grid cell */
+}
+.right-header .cost div,
+.right-header .weight div,
+.right-header .rarity div {
+    text-align: center;
+    font-size: 0.6rem;
+}
+.details {
+    font-size: .8rem;
+    grid-column: 1 / 3; /* Spans both columns */
 }
 
 
+.card-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    padding: 0 10px 10px;
+    font-size: 0.9em;
+}
 .image {
     text-align: center;
     padding: 20px;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
 }
-
 .image img {
     max-width: 100%;
     height: auto;
 }
-
 .stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     font-size: 0.9em;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    margin-right: calc(-1 * 16px);
 }
-
+.stats > div {
+    padding: 5px;
+}
+.damage > div, .rate > div, .range > div {
+    text-align: center;
+    border: 1px solid var(--primary-color);
+    padding: 5px;
+    width: 60px;
+    font-size: 0.6rem;
+}
 .description {
     padding: 10px;
     text-align: justify;
     font-size: 0.8em;
     line-height: 1.5;
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .card {
-        width: 95%;
+        width: 100%;
     }
 
-    .header {
-        flex-direction: column; /* Stack header elements on smaller screens */
-    }
-
-    .header .right-header {
-        grid-template-columns: 1fr;
-    }
-
-    .stats {
-        grid-template-columns: 1fr; /* Stack stats on smaller screens */
-    }
-
-    body {
-        padding: 10px;
-    }
 }
