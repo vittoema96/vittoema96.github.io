@@ -45,3 +45,11 @@ A
 img/smallGuns.svg,4/1/419c04892f91dfe732f20acd0970b38848e83c0c
 H
 data/weapons/bigGuns.csv,8/e/8e8184b11491315bfd780dbfb326c54133fb4ea1
+M
+data/weapons/meleeWeapons.csv,0/9/09d4665947805df768a3933dbe0d2fa51c7d5d52
+?
+img/Unarmed.svg,8/6/86264d8ee46ea6d26553fa90b430c96a0e1b4cd6
+?
+img/unarmed.svg,e/e/eeae50913aefb054bdfef48497923b4c857debb3
+D
+img/meleeWeapons.svg,7/5/754be0c6a4a2933e10c810aed12c89ab028f3bea

@@ -448,6 +448,7 @@ async function loadWeapons() {
     let weaponData = await loadCSV('data/weapons/smallGuns.csv');
     weaponData = weaponData.concat(await loadCSV('data/weapons/energyWeapons.csv'));
     weaponData = weaponData.concat(await loadCSV('data/weapons/bigGuns.csv'));
+    weaponData = weaponData.concat(await loadCSV('data/weapons/meleeWeapons.csv'));
     return weaponData
 }
 
@@ -519,7 +520,10 @@ function createWeaponCard(weaponId, weaponData) {
     return card; // Return the actual card element
 }
 document.addEventListener("DOMContentLoaded", async () => {
-    const weaponIds = ["Pistola 44", "Fat Man", "Pistola Gamma"]; // Add more weapon IDs as needed
+    // const weaponIds = ["Pistola 44", "Fat Man", "Pistola Gamma"]; // Add more weapon IDs as needed
+
+    const weaponData = await loadWeapons();
+    const weaponIds = weaponData.map(w => w.WEAPON_ID)
     const container = document.getElementById("inv-screen"); // Or another element where you want to add the cards
 
     for (const weaponId of weaponIds) {
