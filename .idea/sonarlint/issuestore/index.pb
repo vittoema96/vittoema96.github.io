@@ -61,3 +61,5 @@ B
 img/throwing.svg,7/2/72af0a3237264f0fdc6fd25d3b0ad7d1f9cd3426
 >
 img/attack.svg,4/5/451c21fc51ab13e129034b6f07a6dab89319659b
+@
+js/lang/popup.js,e/7/e74d8e4eda935ce292c0b739107bb00b7b14f50d

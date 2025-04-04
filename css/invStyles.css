@@ -96,21 +96,6 @@
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
-.description-toggle {
-    grid-column: 1 / 4;
-    grid-row: 2 / 3;
-    cursor: pointer;
-    padding: 0.75rem 1.5rem; /* Match your other button padding */
-    border: 2px solid var(--primary-color);
-    background-color: #1a5205; /* Match tab background */
-    color: var(--primary-color);
-    margin-top: 10px;
-    margin-bottom: 0;
-    border-radius: 5px; /* Match tab border-radius */
-    font-weight: bold;
-    font-size: 1.2rem; /* Match tab font-size */
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
 .attack-button {
     background-image: url('../img/attack.svg'); /* Replace with your image path */
     background-size: cover; /* Adjust as needed: contain, auto, etc. */
@@ -130,15 +115,20 @@
     opacity: 0.8;
 }
 
-.description-toggle:hover {
-    background-color: var(--primary-color);
-    color: #0f3003;
-}
-
-.description-toggle:focus {
-    outline: none;
-    box-shadow: 0 0 5px var(--tertiary-color); /* Match form-control focus */
-    border-color: var(--primary-color);
+.description-toggle {
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
+    cursor: pointer;
+    padding: 0.75rem 1.5rem; /* Match your other button padding */
+    border: 2px solid var(--primary-color);
+    background-color: #1a5205; /* Match tab background */
+    color: var(--primary-color);
+    margin-top: 10px;
+    margin-bottom: 0;
+    border-radius: 5px; /* Match tab border-radius */
+    font-weight: bold;
+    font-size: 1.2rem; /* Match tab font-size */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 .description-container {
     grid-column: 1 / 4;

@@ -243,6 +243,16 @@ function updateDisplay() {
     // Save to localStorage
     localStorage.setItem('characterData', JSON.stringify(characterData));
 }
+const skillBoxes = document.querySelectorAll('.skill'); // Or whatever the parent element is
+skillBoxes.forEach(box => {
+    const checkbox = box.querySelector('input[type="checkbox"]');
+    box.addEventListener('click', function (evt) {
+        if(isEditing)
+            incrementSkill(evt);
+        else
+            openMyPopup();
+    });
+});
 
 // Function to toggle edit mode
 function toggleEditMode() {
@@ -294,12 +304,11 @@ function toggleEditMode() {
     skillBoxes.forEach(box => {
         const checkbox = box.querySelector('input[type="checkbox"]');
         if (isEditing) {
-            box.addEventListener('click', incrementSkill);
             if (checkbox)
                 checkbox.disabled = false;
         } else {
-            box.removeEventListener('click', incrementSkill);
-            if (checkbox) checkbox.disabled = true;
+            if (checkbox)
+                checkbox.disabled = true;
         }
     });
 
@@ -539,7 +548,7 @@ function createWeaponCard(weaponId, weaponData) {
                         <div data-lang-id="${weapon.AMMO_TYPE}"></div>
                         <div>${ammoCount}</div>
                     </div>
-                    <button class="attack-button"></button>
+                    <button class="attack-button" onclick="openMyPopup()"></button>
                 </div>
                 <div class="image">
                     <img src="img/${weapon.SKILL}.svg" alt="${weapon.WEAPON_ID}">

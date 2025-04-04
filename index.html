@@ -30,12 +30,17 @@
     </head>
     <body class="bg-green-900 text-lime-400 p-4">
 
-        <svg style="display: none;">
-            <symbol id="custom-checkbox-svg" viewBox="0 0 24 24">
-                <rect class="checkbox-outline" x="2" y="2" width="20" height="20" rx="4" stroke-width="2" />
-                <path class="checkmark" d="M6 11.5 L10 15.5 L18 7.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </symbol>
-        </svg>
+        <div id="myPopup" class="popup">
+            <div class="popup-content">
+                <span class="close-button">&times;</span>
+                <h2>Popup Title</h2>
+                <p>This is the content of the popup.</p>
+                <button id="confirmButton">Confirm</button>
+                <button id="cancelButton">Cancel</button>
+            </div>
+        </div>
+
+        <div id="overlay" class="overlay"></div>
 
 
         <header class="header">
@@ -397,6 +402,7 @@
 
         <script src="js/app.js"></script>
         <script src="js/lang/translator.js"></script>
+        <script src="js/lang/popup.js"></script>
     </body>
 </html>
 

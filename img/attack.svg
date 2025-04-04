@@ -4,7 +4,7 @@
 	 xmlns="http://www.w3.org/2000/svg"
 	 viewBox="-20 -20 420 420" xml:space="preserve">
   <g>
-    <circle cx="200" cy="200" r="190" fill="#AFFF03B3" stroke="#afff03" stroke-width="20"/>
+    <circle cx="200" cy="200" r="190" fill="#1a5205" stroke="#afff03" stroke-width="20"/>
     <circle cx="200" cy="200" r="4" fill="none" stroke="#afff03" stroke-width="20"/>
     <circle cx="200" cy="200" r="100" fill="none" stroke="#afff03" stroke-width="20"/>
     <path d="M100 100 l70 70
