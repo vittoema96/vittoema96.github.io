@@ -506,9 +506,12 @@ function createWeaponCard(weaponId, weaponData) {
                     <div class="damage"><div>Damage Dice</div><div>${weapon.DAMAGE_RATING}</div><div>${weapon.DAMAGE_TYPE}</div></div>
                     <div class="rate"><div>Fire Rate</div><div>${weapon.FIRE_RATE}</div></div>
                     <div class="range"><div>Range</div><div>${weapon.RANGE}</div></div>
-                </div>
-                <div class="description">
-                    ${weapon.DESCRIPTION.split('. ').map(paragraph => `<p>${paragraph}</p>`).join('')}
+                </div>    
+                <button class="description-toggle">Show Description</button>
+                <div class="description-container">
+                    <div class="description">
+                        ${weapon.DESCRIPTION.split('. ').map(paragraph => `<p>${paragraph}</p>`).join('')}
+                    </div>
                 </div>
             </div>
         </div>
@@ -516,6 +519,19 @@ function createWeaponCard(weaponId, weaponData) {
 
     const card = document.createElement('div');
     card.innerHTML = cardHTML;
+
+    // Add event listener to this card's button
+    const descriptionToggle = card.querySelector(".description-toggle");
+    const descriptionContainer = card.querySelector(".description-container");
+
+    descriptionToggle.addEventListener("click", () => {
+        descriptionContainer.classList.toggle("expanded");
+        if (descriptionContainer.classList.contains("expanded")) {
+            descriptionToggle.textContent = "Hide Description";
+        } else {
+            descriptionToggle.textContent = "Show Description";
+        }
+    });
 
     return card; // Return the actual card element
 }
