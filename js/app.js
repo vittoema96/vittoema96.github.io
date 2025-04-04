@@ -449,6 +449,8 @@ async function loadWeapons() {
     weaponData = weaponData.concat(await loadCSV('data/weapons/energyWeapons.csv'));
     weaponData = weaponData.concat(await loadCSV('data/weapons/bigGuns.csv'));
     weaponData = weaponData.concat(await loadCSV('data/weapons/meleeWeapons.csv'));
+    weaponData = weaponData.concat(await loadCSV('data/weapons/throwing.csv'));
+    weaponData = weaponData.concat(await loadCSV('data/weapons/explosives.csv'));
     return weaponData
 }
 

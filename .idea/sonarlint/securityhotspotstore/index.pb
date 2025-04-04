@@ -53,3 +53,13 @@ M
 img/unarmed.svg,e/e/eeae50913aefb054bdfef48497923b4c857debb3
 D
 img/meleeWeapons.svg,7/5/754be0c6a4a2933e10c810aed12c89ab028f3bea
+I
+data/weapons/throwing.csv,8/2/8273a3f5d7496b787a2063a3e17aa58af31209b4
+K
+data/weapons/explosives.csv,1/5/15b85a4dbf92a7ca422992a6541465db1f0d293b
+B
+img/explosives.svg,2/5/25f64aacdde0ffdc64e1377c953de19b870e110c
+D
+img/image2vector.svg,1/6/1621bd95098dfe9cbe90d757f9d71dc6ef313198
+@
+img/throwing.svg,7/2/72af0a3237264f0fdc6fd25d3b0ad7d1f9cd3426
