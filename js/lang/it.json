@@ -40,5 +40,28 @@
     "weight": "Peso",
     "cost": "Costo",
     "rarity": "Rarità",
-    "ammoType": "Tipo di Muniz."
+    "ammoType": "Tipo di Muniz.",
+
+  "anything": "Qualsiasi cosa",
+  "fusion_core": "Nucleo di Fusione",
+  "na": "N/A",
+
+  "ammo_fusion_cell": "Cella di Fusione",
+  "ammo_plasma_cartridge": "Cartucce al Plasma",
+  "ammo_gamma_round": "Munizioni Gamma",
+  "ammo_mini_nuke": "MiniNuke",
+  "ammo_flamer_fuel": "Combustibile",
+  "ammo_missile": "Missile",
+  "ammo_5mm": "5mm",
+  "ammo_308": ".308",
+  "ammo_shotgun_shell": "Cartucce per Fucile a Pompa",
+  "ammo_556mm": "5.56mm",
+  "ammo_45": ".45",
+  "ammo_2mmec": "2mm EC",
+  "ammo_railway_spike": "Spuntone Sparachiodi",
+  "ammo_44_magnum": ".44 Magnum",
+  "ammo_10mm": "10mm",
+  "ammo_38": ".38",
+  "ammo_flare": "Razzo",
+  "ammo_syringer": "Proiettili Syringer"
 }

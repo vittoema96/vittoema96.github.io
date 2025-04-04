@@ -58,6 +58,26 @@ const gameMapDisplay = document.getElementById('game-map');
 const radioControlsDisplay = document.getElementById('radio-controls');
 const editStatsButton = document.getElementById('edit-stats-button'); // New button
 
+
+const skill2stat = {
+        athletics: "strength",
+        barter: "charisma",
+        bigGuns: "endurance",
+        energyWeapons: "perception",
+        explosives: "perception",
+        lockpick: "perception",
+        medicine: "intelligence",
+        meleeWeapons: "strength",
+        pilot: "perception",
+        repair: "intelligence",
+        science: "intelligence",
+        smallGuns: "agility",
+        sneak: "agility",
+        speech: "charisma",
+        survival: "endurance",
+        throwing: "agility",
+        unarmed: "strength",
+};
 // Character data (load from localStorage or use defaults)
 let characterData = JSON.parse(localStorage.getItem('characterData')) || {
     special: {
@@ -97,10 +117,14 @@ let characterData = JSON.parse(localStorage.getItem('characterData')) || {
     weapons: [
         { name: 'Fucile al Plasma', ability: 'Armi ad Energia', nb: 20, special: '-', damage: 30, effects: 'Bruciatura', type: 'Fucile', rate: 'Media', range: 'Buona', quality: 'Ottima', ammo: 'Celle al Plasma', weight: 5.5 }
     ],
-    ammo: [
-        { name: '9mm', quantity: 100 },
-        { name: 'Celle al Plasma', quantity: 50 }
-    ],
+    ammo: {
+          ammo_fusion_cell: 1,
+          ammo_plasma_cartridge: 2,
+          ammo_gamma_round: 4,
+          ammo_mini_nuke: 8,
+          ammo_flamer_fuel: 16,
+          ammo_missile: 32,
+    },
     objects: [
         { name: 'Stimpack', description: 'Cura una moderata quantità di danni.', weight: 0.1 },
         { name: 'Acqua Purificata', description: 'Riduce la sete e la leggera radiazioni.', weight: 0.5 }
@@ -199,8 +223,11 @@ function updateDisplay() {
         </li>
     `).join('');
 
-    ammoList.innerHTML = characterData.ammo.map(ammo => `
-        <li><span class="ammo-name">${ammo.name}</span> <span class="ammo-quantity">x ${ammo.quantity}</span></li>
+    ammoList.innerHTML = Object.entries(characterData.ammo).map(([ammoType, ammoCount]) => `
+        <li>
+            <span class="ammo-name" data-lang-id="${ammoType}"></span>
+            <span class="ammo-quantity"/>x ${ammoCount}</span>
+        </li>
     `).join('');
 
     objectList.innerHTML = characterData.objects.map(object => `
@@ -489,25 +516,38 @@ function createWeaponCard(weaponId, weaponData) {
         return null;
     }
 
+    const ammoCount = weapon.AMMO_TYPE==="na" ? "-" : "x"+(characterData.ammo[weapon.AMMO_TYPE] || 0);
+
     const cardHTML = `
         <div class="card">
             <div class="header">
                 <div class="weapon-name">${weapon.WEAPON_ID}</div>
                 <div class="right-header">
-                    <div class="cost"><div>Cost</div><div>${weapon.COST}</div></div>
-                    <div class="weight"><div>Weight</div><div>${weapon.WEIGHT} kg</div></div>
-                    <div class="rarity"><div>Rarity</div><div>${weapon.RARITY}</div></div>
+                    <div class="right-header-item"><div>Cost</div><div>${weapon.COST}</div></div>
+                    <div class="right-header-item"><div>Weight</div><div>${weapon.WEIGHT} kg</div></div>
+                    <div class="right-header-item"><div>Rarity</div><div>${weapon.RARITY}</div></div>
                 </div>
-                <div class="details"><b>${weapon.SKILL}</b> - ${weapon.AMMO_TYPE}</div>
             </div>
             <div class="card-content">
+                <div class="stats" id="stats-left">
+                    <div class="weapon-stat">
+                        <div data-lang-id="${weapon.SKILL}"></div>
+                        <div>To Hit: ${characterData.skills[`${weapon.SKILL}`]+characterData.special[skill2stat[weapon.SKILL]]}</div>
+                        <div>To Crit: ${Math.max(characterData.skills[`${weapon.SKILL}`], 1)}</div>
+                    </div>
+                    <div class="weapon-stat">
+                        <div data-lang-id="${weapon.AMMO_TYPE}"></div>
+                        <div>${ammoCount}</div>
+                    </div>
+                    <button class="attack-button"></button>
+                </div>
                 <div class="image">
                     <img src="img/${weapon.SKILL}.svg" alt="${weapon.WEAPON_ID}">
                 </div>
-                <div class="stats">
-                    <div class="damage"><div>Damage Dice</div><div>${weapon.DAMAGE_RATING}</div><div>${weapon.DAMAGE_TYPE}</div></div>
-                    <div class="rate"><div>Fire Rate</div><div>${weapon.FIRE_RATE}</div></div>
-                    <div class="range"><div>Range</div><div>${weapon.RANGE}</div></div>
+                <div class="stats" id="stats-right">
+                    <div class="weapon-stat"><div>Damage Dice</div><div>${weapon.DAMAGE_RATING}</div><div>${weapon.DAMAGE_TYPE}</div></div>
+                    <div class="weapon-stat"><div>Fire Rate</div><div>${weapon.FIRE_RATE}</div></div>
+                    <div class="weapon-stat"><div>Range</div><div>${weapon.RANGE}</div></div>
                 </div>    
                 <button class="description-toggle">Show Description</button>
                 <div class="description-container">
@@ -542,7 +582,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const weaponData = await loadWeapons();
     const weaponIds = weaponData.map(w => w.WEAPON_ID)
-    const container = document.getElementById("inv-screen"); // Or another element where you want to add the cards
+    const container = document.getElementById("weapon-cards"); // Or another element where you want to add the cards
 
     for (const weaponId of weaponIds) {
         const weaponCard = createWeaponCard(weaponId, await loadWeapons());
@@ -550,6 +590,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             container.appendChild(weaponCard);
         }
     }
+    loadTranslations(currentLanguage);
 });
 
 // Initial display update

@@ -1,6 +1,7 @@
 :root {
-  --primary-color: #afff03; /* Replace with your primary color's hex code */
-  --secondary-color: #0f3003; /* Replace with your secondary color's hex code */
+    --primary-color: #afff03; /* Replace with your primary color's hex code */
+    --secondary-color: #0f3003; /* Replace with your secondary color's hex code */
+    --tertiary-color: rgba(175, 255, 3, 0.7);
 }
 html {
     margin: 0;
@@ -20,6 +21,10 @@ body {
     box-sizing: border-box;
     font-family: 'Space Mono', monospace;
     /*font-family: 'Roboto Condensed', sans-serif;*/
+}
+.inverse {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 /* Header, the one with PipBoy 3000 */
 .header {

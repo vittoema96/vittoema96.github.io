@@ -24,12 +24,16 @@
     padding: 10px;
     font-size: 0.9em;
     align-items: start;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 .weapon-name {
     font-size: 1.2rem;
-    margin: 0.5rem;
+    width: auto;
     grid-column: 1 / 2;
     grid-row: 1 / 2;
+    font-weight: bolder;
+    text-align: center;
 }
 .right-header {
     display: grid;
@@ -39,11 +43,10 @@
     grid-row: 1 / 2;
     justify-self: end;
 }
-.right-header .cost div,
-.right-header .weight div,
-.right-header .rarity div {
+.right-header-item div {
     text-align: center;
     font-size: 0.6rem;
+    font-weight: bold;
 }
 .details {
     font-size: .8rem;
@@ -61,7 +64,7 @@
 .image {
     text-align: center;
     padding: 20px;
-    grid-column: 1 / 2;
+    grid-column: 2 / 3;
     grid-row: 1 / 2;
 }
 .image img {
@@ -73,24 +76,28 @@
     flex-direction: column;
     align-items: flex-start;
     font-size: 0.9em;
-    grid-column: 2 / 3;
     grid-row: 1 / 2;
     margin-right: calc(-1 * 16px);
+    margin-left: calc(-1 * 16px);
 }
-.stats > div {
+.weapon-stat {
+    margin: 0;
     padding: 5px;
 }
-.damage > div,
-.rate > div,
-.range > div {
+.weapon-stat div {
     text-align: center;
     border: 1px solid var(--primary-color);
     padding: 5px;
     width: 60px;
     font-size: 0.6rem;
+    font-weight: bold;
+}
+.weapon-stat div:first-child {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 .description-toggle {
-    grid-column: 1 / 3;
+    grid-column: 1 / 4;
     grid-row: 2 / 3;
     cursor: pointer;
     padding: 0.75rem 1.5rem; /* Match your other button padding */
@@ -104,6 +111,24 @@
     font-size: 1.2rem; /* Match tab font-size */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+.attack-button {
+    background-image: url('../img/attack.svg'); /* Replace with your image path */
+    background-size: cover; /* Adjust as needed: contain, auto, etc. */
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    padding: 5px; /* Remove default button padding */
+    margin-left: 10px;
+    width: 50px;
+    height: 50px;
+
+}
+
+.attack-button:hover {
+    /* Optional: Add hover effects */
+    opacity: 0.8;
+}
 
 .description-toggle:hover {
     background-color: var(--primary-color);
@@ -112,11 +137,11 @@
 
 .description-toggle:focus {
     outline: none;
-    box-shadow: 0 0 5px rgba(175, 255, 3, 0.7); /* Match form-control focus */
+    box-shadow: 0 0 5px var(--tertiary-color); /* Match form-control focus */
     border-color: var(--primary-color);
 }
 .description-container {
-    grid-column: 1 / 3;
+    grid-column: 1 / 4;
     grid-row: 3 / 3; /* Position the container in the third row */
     overflow: hidden;
     max-height: 0;

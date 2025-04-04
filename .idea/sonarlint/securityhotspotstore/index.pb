@@ -35,8 +35,6 @@ J
 data/weapons/smallGuns.csv,b/6/b645876096c7f20049644b476daed4e830e5bb5a
 N
 data/weapons/energyWeapons.csv,c/6/c699f4b3a9e3233564d16cb4ec939dc9cfd4349f
-?
-todo_weaponItem,4/3/432803561d798465e7e3b514b57691ba2f419dd1
 E
 img/energyWeapons.svg,5/6/56ccb41e3e19d517dc1d686d520da3013e237c8e
 ?
@@ -59,7 +57,7 @@ K
 data/weapons/explosives.csv,1/5/15b85a4dbf92a7ca422992a6541465db1f0d293b
 B
 img/explosives.svg,2/5/25f64aacdde0ffdc64e1377c953de19b870e110c
-D
-img/image2vector.svg,1/6/1621bd95098dfe9cbe90d757f9d71dc6ef313198
 @
 img/throwing.svg,7/2/72af0a3237264f0fdc6fd25d3b0ad7d1f9cd3426
+>
+img/attack.svg,4/5/451c21fc51ab13e129034b6f07a6dab89319659b

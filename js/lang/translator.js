@@ -59,6 +59,3 @@ function orderSkillsAlphabetically() {
     // Append the sorted skill elements back to the container
     skillElements.forEach(skill => skillsContainer.appendChild(skill));
 }
-
-// Initial language load
-loadTranslations(currentLanguage);
