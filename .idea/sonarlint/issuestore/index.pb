@@ -63,3 +63,9 @@ B
 img/attack.svg,4/5/451c21fc51ab13e129034b6f07a6dab89319659b
 @
 js/lang/popup.js,e/7/e74d8e4eda935ce292c0b739107bb00b7b14f50d
+H
+js/defaultCharacter.json,e/0/e0c3c74b145471ab7b0bc68819151646e68e7fd0
+8
+js/sw.js,5/2/52e65ead96c54d766e69953f76bfc1f6a4081d52
+J
+data/defaultCharacter.json,0/d/0d6abc0f1f5b058297bc36b31b56464f4767da02

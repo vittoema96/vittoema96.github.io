@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="theme-color" content="#afff03"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"><!--, viewport-fit=cover, orientation=landscape">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1"><!--, viewport-fit=cover">-->
         <title>Pip-Boy 3000</title>
 
 
@@ -55,12 +55,10 @@
             <div class="tab" id="mini-tab" data-tab="settings">
                 <i class="fas fa-gear"></i>
             </div>
-            <!--<div class="tab" data-tab="radio">RADIO</div>-->
         </div>
 
         <main class="main-container">
 
-            <!-- Questa è la tab chiamata STAT -->
             <section id="stat-screen" class="screen active">
                 <div id="stat-container">
                     <div class="stat">
@@ -255,8 +253,7 @@
             <section id="inv-screen" class="screen hidden">
                 <h2>Inventory</h2>
 
-                <div id="weapon-cards">
-                </div>
+                <div id="weapon-cards"></div>
 
                 <table>
                     <thead>
@@ -288,68 +285,10 @@
                 </div>
 
                 <div class="inventory-list">
-                    <h3>Weapons</h3>
-                    <ul id="weapon-list">
-                        <li>
-                            <div class="weapon-item">
-                                <span class="weapon-name">Nome Arma</span>
-                                <span class="weapon-ability">Abilità: [ABILITÀ]</span>
-                                <span class="weapon-nb">NB: [NB]</span>
-                                <span class="weapon-special">Spec: [SPEC]</span>
-                                <span class="weapon-damage">Danno: [DANNO]</span>
-                                <span class="weapon-effects">Effetti: [EFFETTI]</span>
-                                <span class="weapon-type">Tipo: [TIPO]</span>
-                                <span class="weapon-rate">Cadenza: [CADENZA]</span>
-                                <span class="weapon-range">Gittata: [RANGE]</span>
-                                <span class="weapon-quality">Qualità: [QUALITIES]</span>
-                                <span class="weapon-ammo">Munizioni: [MUNIZIONI]</span>
-                                <span class="weapon-weight">Peso: [WEIGHT]</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="weapon-item">
-                                <span class="weapon-name">Fucile al Plasma</span>
-                                <span class="weapon-ability">Abilità: Armi ad Energia</span>
-                                <span class="weapon-nb">NB: 20</span>
-                                <span class="weapon-special">Spec: -</span>
-                                <span class="weapon-damage">Danno: 30</span>
-                                <span class="weapon-effects">Effetti: Bruciatura</span>
-                                <span class="weapon-type">Tipo: Fucile</span>
-                                <span class="weapon-rate">Cadenza: Media</span>
-                                <span class="weapon-range">Gittata: Buona</span>
-                                <span class="weapon-quality">Qualità: Ottima</span>
-                                <span class="weapon-ammo">Munizioni: Celle al Plasma</span>
-                                <span class="weapon-weight">Peso: 5.5</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="inventory-list">
                     <h3>Ammo</h3>
                     <ul id="ammo-list">
                         <li><span class="ammo-name">9mm</span> <span class="ammo-quantity">x 100</span></li>
                         <li><span class="ammo-name">Celle al Plasma</span> <span class="ammo-quantity">x 50</span></li>
-                    </ul>
-                </div>
-
-                <div class="inventory-list">
-                    <h3>Objects</h3>
-                    <ul id="object-list">
-                        <li>
-                            <div class="object-item">
-                                <span class="object-name">Stimpack</span>
-                                <span class="object-description">Cura una moderata quantità di danni.</span>
-                                <span class="object-weight">Peso: 0.1</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="object-item">
-                                <span class="object-name">Acqua Purificata</span>
-                                <span class="object-description">Riduce la sete e la leggera radiazioni.</span>
-                                <span class="object-weight">Peso: 0.5</span>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </section>
@@ -376,33 +315,13 @@
                 </select>
                 <button id="clear-local-storage">Clear Local Storage</button>
             </section>
-            <!--<section id="radio-screen" class="screen hidden">
-                <p>This is the RADIO screen.  You could implement in-game radio functionality here.</p>
-                <div id="radio-controls">
-                    [RADIO CONTROLS PLACEHOLDER]
-                </div>
-            </section>-->
         </main>
-
-        <script >
-            //PWA
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/sw.js')
-                        .then(registration => {
-                            console.log('Service Worker registered! 😎', registration);
-                        })
-                        .catch(err => {
-                            console.log('Service Worker registration failed! 😥', err);
-                        });
-                });
-            }
-        </script>
 
 
         <script src="js/app.js"></script>
         <script src="js/lang/translator.js"></script>
-        <script src="js/lang/popup.js"></script>
+        <script src="js/popup.js"></script>
+        <script src="js/sw.js"></script>
     </body>
 </html>
 

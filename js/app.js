@@ -1,65 +1,35 @@
 // Get references to DOM elements
 const tabButtons = document.querySelectorAll('.tab');
 const screens = document.querySelectorAll('.screen');
-const specialStrengthDisplay = document.getElementById('special-strength-value');
-const specialPerceptionDisplay = document.getElementById('special-perception-value');
-const specialEnduranceDisplay = document.getElementById('special-endurance-value');
-const specialCharismaDisplay = document.getElementById('special-charisma-value');
-const specialIntelligenceDisplay = document.getElementById('special-intelligence-value');
-const specialAgilityDisplay = document.getElementById('special-agility-value');
-const specialLuckDisplay = document.getElementById('special-luck-value');
+
+
 const defenseDisplay = document.getElementById('defense-value');
 const initiativeDisplay = document.getElementById('initiative-value');
 const meleeDamageDisplay = document.getElementById('melee-damage-value');
 
-const skillAthleticsValue = document.getElementById('skill-athletics');
-const skillBarterValue = document.getElementById('skill-barter');
-const skillBigGunsValue = document.getElementById('skill-bigGuns');
-const skillEnergyWeaponsValue = document.getElementById('skill-energyWeapons');
-const skillExplosivesValue = document.getElementById('skill-explosives');
-const skillLockpickValue = document.getElementById('skill-lockpick');
-const skillMedicineValue = document.getElementById('skill-medicine');
-const skillMeleeWeaponsValue = document.getElementById('skill-meleeWeapons');
-const skillPilotValue = document.getElementById('skill-pilot');
-const skillRepairValue = document.getElementById('skill-repair');
-const skillScienceValue = document.getElementById('skill-science');
-const skillSmallGunsValue = document.getElementById('skill-smallGuns');
-const skillSneakValue = document.getElementById('skill-sneak');
-const skillSpeechValue = document.getElementById('skill-speech');
-const skillSurvivalValue = document.getElementById('skill-survival');
-const skillThrowingValue = document.getElementById('skill-throwing');
-const skillUnarmedValue = document.getElementById('skill-unarmed');
-
-const specialtyAthletics = document.getElementById('specialty-athletics');
-const specialtyBarter = document.getElementById('specialty-barter');
-const specialtyBigGuns = document.getElementById('specialty-bigGuns');
-const specialtyEnergyWeapons = document.getElementById('specialty-energyWeapons');
-const specialtyExplosives = document.getElementById('specialty-explosives');
-const specialtyLockpick = document.getElementById('specialty-lockpick');
-const specialtyMedicine = document.getElementById('specialty-medicine');
-const specialtyMeleeWeapons = document.getElementById('specialty-meleeWeapons');
-const specialtyPilot = document.getElementById('specialty-pilot');
-const specialtyRepair = document.getElementById('specialty-repair');
-const specialtyScience = document.getElementById('specialty-science');
-const specialtySmallGuns = document.getElementById('specialty-smallGuns');
-const specialtySneak = document.getElementById('specialty-sneak');
-const specialtySpeech = document.getElementById('specialty-speech');
-const specialtySurvival = document.getElementById('specialty-survival');
-const specialtyThrowing = document.getElementById('specialty-throwing');
-const specialtyUnarmed = document.getElementById('specialty-unarmed');
 
 const playerCapsDisplay = document.getElementById('player-caps');
 const carryWeightDisplay = document.getElementById('carry-weight');
-const weaponList = document.getElementById('weapon-list');
-const ammoList = document.getElementById('ammo-list');
-const objectList = document.getElementById('object-list');
+
 const characterBackgroundInput = document.getElementById('character-background');
 const gameMapDisplay = document.getElementById('game-map');
-const radioControlsDisplay = document.getElementById('radio-controls');
+
 const editStatsButton = document.getElementById('edit-stats-button'); // New button
 
-
-const skill2stat = {
+const specialList = [
+    "strength",
+    "perception",
+    "endurance",
+    "charisma",
+    "intelligence",
+    "agility",
+    "luck"
+]
+const specialDisplays = specialList.reduce((acc, special) => {
+    acc[special] = document.getElementById("special-" + special + "-value");
+    return acc;
+}, {});
+const skill2special = {
         athletics: "strength",
         barter: "charisma",
         bigGuns: "endurance",
@@ -78,242 +48,107 @@ const skill2stat = {
         throwing: "agility",
         unarmed: "strength",
 };
+const skillDisplays = Object.keys(skill2special).reduce((acc, skill) => {
+    acc[skill] = document.getElementById("skill-" + skill);
+    return acc;
+}, {});
+
+const specialtyDisplays = Object.keys(skill2special).reduce((acc, skill) => {
+    acc[skill] = document.getElementById("specialty-" + skill);
+    return acc;
+}, {});
+
+
+const skillBoxes = document.querySelectorAll('.skill');
+
 // Character data (load from localStorage or use defaults)
-let characterData = JSON.parse(localStorage.getItem('characterData')) || {
-    special: {
-        strength: 5,
-        perception: 5,
-        endurance: 5,
-        charisma: 5,
-        intelligence: 5,
-        agility: 5,
-        luck: 5
-    },
-    defense: 0,
-    initiative: 0,
-    meleeDamage: 0,
-    skills: {  
-        athletics: 0,
-        barter: 0,
-        bigGuns: 0,
-        energyWeapons: 0,
-        explosives: 0,
-        lockpick: 0,
-        medicine: 0,
-        meleeWeapons: 0,
-        pilot: 0,
-        repair: 0,
-        science: 0,
-        smallGuns: 0,
-        sneak: 0,
-        speech: 0,
-        survival: 0,
-        throwing: 0,
-        unarmed: 0,
-    },
-    specialties: ['repair'],
-    caps: 0,
-    currentCarryWeight: { current: 0 },
-    weapons: [
-        { name: 'Fucile al Plasma', ability: 'Armi ad Energia', nb: 20, special: '-', damage: 30, effects: 'Bruciatura', type: 'Fucile', rate: 'Media', range: 'Buona', quality: 'Ottima', ammo: 'Celle al Plasma', weight: 5.5 }
-    ],
-    ammo: {
-          ammo_fusion_cell: 1,
-          ammo_plasma_cartridge: 2,
-          ammo_gamma_round: 4,
-          ammo_mini_nuke: 8,
-          ammo_flamer_fuel: 16,
-          ammo_missile: 32,
-    },
-    objects: [
-        { name: 'Stimpack', description: 'Cura una moderata quantità di danni.', weight: 0.1 },
-        { name: 'Acqua Purificata', description: 'Riduce la sete e la leggera radiazioni.', weight: 0.5 }
-    ],
-    background: "[Background Placeholder]",
-    map: "[Map Placeholder]"
-};
+let defaultCharacter = undefined;
+let characterData = undefined;
 
 let isEditing = false; // Track editing state
+let weaponData = undefined;
 
 // Function to update the display
 function updateDisplay() {
-    specialStrengthDisplay.textContent = characterData.special.strength;
-    specialPerceptionDisplay.textContent = characterData.special.perception;
-    specialEnduranceDisplay.textContent = characterData.special.endurance;
-    specialCharismaDisplay.textContent = characterData.special.charisma;
-    specialIntelligenceDisplay.textContent = characterData.special.intelligence;
-    specialAgilityDisplay.textContent = characterData.special.agility;
-    specialLuckDisplay.textContent = characterData.special.luck;
+    specialList.forEach(special => specialDisplays[special].textContent = characterData.special[special])
 
-    defenseDisplay.textContent = (characterData.special.agility <= 8 ) ? "1" : "2";
+    defenseDisplay.textContent = (characterData.special.agility <= 8) ? "1" : "2";
     initiativeDisplay.textContent = `${characterData.special.agility + characterData.special.perception}`;
 
-    if (characterData.special.strength < 7) {
+    const str = characterData.special.strength;
+    if (str < 7) {
         meleeDamageDisplay.textContent = "+1";
-    } else if (characterData.special.strength >= 7 && characterData.special.strength <= 8) {
+    } else if (str >= 7 && str <= 8) {
         meleeDamageDisplay.textContent = "+2";
-    } else if (characterData.special.strength >= 9 && characterData.special.strength <= 10) {
+    } else if (str >= 9 && str <= 10) {
         meleeDamageDisplay.textContent = "+3";
-    } else if (characterData.special.strength >= 11) {
+    } else if (str >= 11) {
         meleeDamageDisplay.textContent = "+4";
     } else {
         meleeDamageDisplay.textContent = "0"; // Default case if strength is not within specified ranges.
     }
 
-
-    skillAthleticsValue.textContent = characterData.skills.athletics;
-    skillBarterValue.textContent = characterData.skills.barter;
-    skillBigGunsValue.textContent = characterData.skills.bigGuns;
-    skillEnergyWeaponsValue.textContent = characterData.skills.energyWeapons;
-    skillExplosivesValue.textContent = characterData.skills.explosives;
-    skillLockpickValue.textContent = characterData.skills.lockpick;
-    skillMedicineValue.textContent = characterData.skills.medicine;
-    skillMeleeWeaponsValue.textContent = characterData.skills.meleeWeapons;
-    skillPilotValue.textContent = characterData.skills.pilot;
-    skillRepairValue.textContent = characterData.skills.repair;
-    skillScienceValue.textContent = characterData.skills.science;
-    skillSmallGunsValue.textContent = characterData.skills.smallGuns;
-    skillSneakValue.textContent = characterData.skills.sneak;
-    skillSpeechValue.textContent = characterData.skills.speech;
-    skillSurvivalValue.textContent = characterData.skills.survival;
-    skillThrowingValue.textContent = characterData.skills.throwing;
-    skillUnarmedValue.textContent = characterData.skills.unarmed;
-
-
-    specialtyAthletics.checked = characterData.specialties.includes('athletics');
-    specialtyBarter.checked = characterData.specialties.includes('barter');
-    specialtyBigGuns.checked = characterData.specialties.includes('bigGuns');
-    specialtyEnergyWeapons.checked = characterData.specialties.includes('energyWeapons');
-    specialtyExplosives.checked = characterData.specialties.includes('explosives');
-    specialtyLockpick.checked = characterData.specialties.includes('lockpick');
-    specialtyMedicine.checked = characterData.specialties.includes('medicine');
-    specialtyMeleeWeapons.checked = characterData.specialties.includes('meleeWeapons');
-    specialtyPilot.checked = characterData.specialties.includes('pilot');
-    specialtyRepair.checked = characterData.specialties.includes('repair');
-    specialtyScience.checked = characterData.specialties.includes('science');
-    specialtySmallGuns.checked = characterData.specialties.includes('smallGuns');
-    specialtySneak.checked = characterData.specialties.includes('sneak');
-    specialtySpeech.checked = characterData.specialties.includes('speech');
-    specialtySurvival.checked = characterData.specialties.includes('survival');
-    specialtyThrowing.checked = characterData.specialties.includes('throwing');
-    specialtyUnarmed.checked = characterData.specialties.includes('unarmed');
+    Object.keys(skill2special).forEach(skill => {
+        skillDisplays[skill].textContent = characterData.skills[skill];
+        specialtyDisplays[skill].checked = characterData.specialties.includes(skill);
+    });
 
 
     playerCapsDisplay.textContent = characterData.caps;
-    carryWeightDisplay.textContent = `${characterData.currentCarryWeight} / ${75 + characterData.special.strength * 5}`;
+
+    const weapons = characterData.weapons === "*" ? weaponData : characterData.weapons.map(wId => weaponData.find(w => w.WEAPON_ID === wId));
+    const container = document.getElementById("weapon-cards");
+    for (weaponId of characterData.weapons) {
+        const weaponCard = createWeaponCard(weaponId);
+        if (weaponCard) { // Check if createWeaponCard was successful
+            container.appendChild(weaponCard);
+        }
+    }
+
+    const currentWeight = weapons
+        .map(w => w.WEIGTH)
+        .reduce((acc, weight) => acc + weight==="<0.5" ? 0 : weight, 0);
+    const maxWeight = 75 + str * 5
+    carryWeightDisplay.textContent = `${currentWeight} / ${maxWeight}`;
+    carryWeightDisplay.style.color = currentWeight > maxWeight ? 'red' : "#afff03";
+
     characterBackgroundInput.value = characterData.background;
     gameMapDisplay.textContent = characterData.map;
 
-    weaponList.innerHTML = characterData.weapons.map(weapon => `
-        <li>
-            <div class="weapon-item">
-                <span class="weapon-name">${weapon.name}</span>
-                <span class="weapon-ability">Abilità: ${weapon.ability}</span>
-                <span class="weapon-nb">NB: ${weapon.nb}</span>
-                <span class="weapon-special">Spec: ${weapon.special}</span>
-                <span class="weapon-damage">Danno: ${weapon.damage}</span>
-                <span class="weapon-effects">Effetti: ${weapon.effects}</span>
-                <span class="weapon-type">Tipo: ${weapon.type}</span>
-                <span class="weapon-rate">Cadenza: ${weapon.rate}</span>
-                <span class="weapon-range">Gittata: ${weapon.range}</span>
-                <span class="weapon-quality">Qualità: ${weapon.quality}</span>
-                <span class="weapon-ammo">Munizioni: ${weapon.ammo}</span>
-                <span class="weapon-weight">Peso: ${weapon.weight}</span>
-            </div>
-        </li>
-    `).join('');
 
-    ammoList.innerHTML = Object.entries(characterData.ammo).map(([ammoType, ammoCount]) => `
-        <li>
-            <span class="ammo-name" data-lang-id="${ammoType}"></span>
-            <span class="ammo-quantity"/>x ${ammoCount}</span>
-        </li>
-    `).join('');
-
-    objectList.innerHTML = characterData.objects.map(object => `
-        <li>
-            <div class="object-item">
-                <span class="object-name">${object.name}</span>
-                <span class="object-description">${object.description}</span>
-                <span class="object-weight">Peso: ${object.weight}</span>
-            </div>
-        </li>
-    `).join('');
+    // Call the function to load and populate the table when the page loads
+    populateTable();
 
     // Save to localStorage
     localStorage.setItem('characterData', JSON.stringify(characterData));
 }
-const skillBoxes = document.querySelectorAll('.skill'); // Or whatever the parent element is
-skillBoxes.forEach(box => {
-    const checkbox = box.querySelector('input[type="checkbox"]');
-    box.addEventListener('click', function (evt) {
-        if(isEditing)
-            incrementSkill(evt);
-        else
-            openMyPopup();
-    });
-});
 
 // Function to toggle edit mode
 function toggleEditMode() {
     isEditing = !isEditing;
 
-    // Toggle contentEditable on relevant elements
-    specialStrengthDisplay.contentEditable = isEditing;
-    specialPerceptionDisplay.contentEditable = isEditing;
-    specialEnduranceDisplay.contentEditable = isEditing;
-    specialCharismaDisplay.contentEditable = isEditing;
-    specialIntelligenceDisplay.contentEditable = isEditing;
-    specialAgilityDisplay.contentEditable = isEditing;
-    specialLuckDisplay.contentEditable = isEditing;
-    defenseDisplay.contentEditable = isEditing;
-    initiativeDisplay.contentEditable = isEditing;
-    meleeDamageDisplay.contentEditable = isEditing;
+    // TODO should probably not set editing, but still the "effect" when gear is clicked is cool
+    specialList.forEach(special => specialDisplays[special].contentEditable = isEditing)
 
     // Toggle event listeners on special stat boxes
     const specialStatBoxes = document.querySelectorAll('.stat');
     specialStatBoxes.forEach(box => {
-        if (isEditing) {
-            box.addEventListener('click', incrementSpecialStat);
-        } else {
-            box.removeEventListener('click', incrementSpecialStat);
-        }
+        box.addEventListener('click', incrementSpecialStat);
     });
 
 
-    skillAthleticsValue.contentEditable = isEditing;
-    skillBarterValue.contentEditable = isEditing;
-    skillBigGunsValue.contentEditable = isEditing;
-    skillEnergyWeaponsValue.contentEditable = isEditing;
-    skillExplosivesValue.contentEditable = isEditing;
-    skillLockpickValue.contentEditable = isEditing;
-    skillMedicineValue.contentEditable = isEditing;
-    skillMeleeWeaponsValue.contentEditable = isEditing;
-    skillPilotValue.contentEditable = isEditing;
-    skillRepairValue.contentEditable = isEditing;
-    skillScienceValue.contentEditable = isEditing;
-    skillSmallGunsValue.contentEditable = isEditing;
-    skillSneakValue.contentEditable = isEditing;
-    skillSpeechValue.contentEditable = isEditing;
-    skillSurvivalValue.contentEditable = isEditing;
-    skillThrowingValue.contentEditable = isEditing;
-    skillUnarmedValue.contentEditable = isEditing;
+    // TODO as above, but here i did not leave the contentEditable = true (as i don't remember any "effect" here)
 
     // Toggle event listeners on skills
     const skillBoxes = document.querySelectorAll('.skill'); // Or whatever the parent element is
     skillBoxes.forEach(box => {
         const checkbox = box.querySelector('input[type="checkbox"]');
-        if (isEditing) {
-            if (checkbox)
-                checkbox.disabled = false;
-        } else {
-            if (checkbox)
-                checkbox.disabled = true;
-        }
+        if(checkbox)
+            checkbox.disabled = !isEditing;
     });
 
     // Update button text
-    editStatsButton.textContent = isEditing ? 'Save Stats' : 'Edit Stats';
+    editStatsButton.textContent = isEditing ? 'Save Stats' : 'Edit Stats'; // TODO Translation
 }
 
 // Function to increment special stat values
@@ -322,40 +157,10 @@ function incrementSpecialStat(event) {
 
     const box = event.currentTarget;
     const statId = box.querySelector('.stat-value').id;
-    let statValue;
 
-    switch (statId) {
-        case 'special-strength-value':
-            statValue = characterData.special.strength;
-            characterData.special.strength = (statValue < 12) ? statValue + 1 : 4;
-            break;
-        case 'special-perception-value':
-            statValue = characterData.special.perception;
-            characterData.special.perception = (statValue < 10) ? statValue + 1 : 4;
-            break;
-        case 'special-endurance-value':
-            statValue = characterData.special.endurance;
-            characterData.special.endurance = (statValue < 12) ? statValue + 1 : 4;
-            break;
-        case 'special-charisma-value':
-            statValue = characterData.special.charisma;
-            characterData.special.charisma = (statValue < 10) ? statValue + 1 : 4;
-            break;
-        case 'special-intelligence-value':
-            statValue = characterData.special.intelligence;
-            characterData.special.intelligence = (statValue < 10) ? statValue + 1 : 4;
-            break;
-        case 'special-agility-value':
-            statValue = characterData.special.agility;
-            characterData.special.agility = (statValue < 10) ? statValue + 1 : 4;
-            break;
-        case 'special-luck-value':
-            statValue = characterData.special.luck;
-            characterData.special.luck = (statValue < 10) ? statValue + 1 : 4;
-            break;
-        default:
-            return;
-    }
+    const special = statId.replace('special-', '').replace('-value', '');
+    const maxValue = special === "strength" || special === "endurance" ? 12 : 10;
+    characterData.special[special] = (characterData.special[special] < maxValue ? characterData.special[special] + 1 : 4)
 
     updateDisplay(); // Refresh display with updated data
 }
@@ -394,6 +199,16 @@ function incrementSkill(event) {
     updateDisplay(); // Refresh display with updated data
 }
 
+skillBoxes.forEach(box => {
+    const checkbox = box.querySelector('input[type="checkbox"]');
+    box.addEventListener('click', function (evt) {
+        if(isEditing)
+            incrementSkill(evt);
+        else
+            openMyPopup();
+    });
+});
+
 // Event listener for tab clicks
 tabButtons.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -414,14 +229,23 @@ editStatsButton.addEventListener('click', () => {
     }
 });
 
+// TODO just the specialty checkboxes
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 checkboxes.forEach(checkbox => {
     checkbox.disabled = true;
 });
 
 const clearLocalStorageButton = document.getElementById('clear-local-storage');
-clearLocalStorageButton.addEventListener('click', () => {
+clearLocalStorageButton.addEventListener('click', async () => {
     localStorage.clear();
+    let confirmedStorageWipe = confirm("Are you really sure you want to DELETE YOUR CHARACTER and every other saved data?")
+    if (confirmedStorageWipe) {
+        localStorage.clear();
+        alert("Local data was wiped");
+        characterData = defaultCharacter
+        updateDisplay()
+
+    }
 });
 
 
@@ -435,6 +259,15 @@ async function loadCSV(filePath) {
         console.error("Error loading CSV:", error);
         return [];
     }
+}
+
+async function loadJSON(filePath) {
+    const response = await fetch(filePath);
+    if (!response.ok) {
+        console.error("Could not load or parse JSON:", error);
+        return null;
+    }
+    return await response.json();
 }
 
 function parseCSV(csvText) {
@@ -481,17 +314,16 @@ function parseCSV(csvText) {
 }
 
 async function loadWeapons() {
-    let weaponData = await loadCSV('data/weapons/smallGuns.csv');
-    weaponData = weaponData.concat(await loadCSV('data/weapons/energyWeapons.csv'));
-    weaponData = weaponData.concat(await loadCSV('data/weapons/bigGuns.csv'));
-    weaponData = weaponData.concat(await loadCSV('data/weapons/meleeWeapons.csv'));
-    weaponData = weaponData.concat(await loadCSV('data/weapons/throwing.csv'));
-    weaponData = weaponData.concat(await loadCSV('data/weapons/explosives.csv'));
-    return weaponData
+    let data = await loadCSV('data/weapons/smallGuns.csv');
+    data = data.concat(await loadCSV('data/weapons/energyWeapons.csv'));
+    data = data.concat(await loadCSV('data/weapons/bigGuns.csv'));
+    data = data.concat(await loadCSV('data/weapons/meleeWeapons.csv'));
+    data = data.concat(await loadCSV('data/weapons/throwing.csv'));
+    data = data.concat(await loadCSV('data/weapons/explosives.csv'));
+    return data
 }
 
-async function populateTable() {
-    const weaponData = await loadWeapons();
+function populateTable() {
     const tableBody = document.getElementById("armiLeggereTableBody");
 
 
@@ -503,21 +335,19 @@ async function populateTable() {
         const weapon = weaponData.find(row => row["WEAPON_ID"] === weaponId);
         const row = tableBody.insertRow();
         row.insertCell().textContent = weapon["WEAPON_ID"] || "";
-        row.insertCell().textContent = weapon["SKILL"] || "";
+        row.insertCell().dataLangId = weapon["SKILL"] || "na";
         row.insertCell().textContent = weapon["DAMAGE_RATING"] || "";
         row.insertCell().textContent = weapon["EFFECTS"] || "";
         row.insertCell().textContent = weapon["DAMAGE_TYPE"] || "";
         row.insertCell().textContent = weapon["FIRE_RATE"] || "";
         row.insertCell().textContent = weapon["RANGE"] || "";
         row.insertCell().textContent = weapon["QUALITIES"] || "";
-        row.insertCell().textContent = weapon["AMMO_TYPE"] || "";
+        row.insertCell().dataLangId = weapon["AMMO_TYPE"] || "na";
     });
 }
 
-// Call the function to load and populate the table when the page loads
-populateTable();
 
-function createWeaponCard(weaponId, weaponData) {
+function createWeaponCard(weaponId) {
     const weapon = weaponData.find(row => row.WEAPON_ID === weaponId);
 
     if (!weapon) {
@@ -541,7 +371,7 @@ function createWeaponCard(weaponId, weaponData) {
                 <div class="stats" id="stats-left">
                     <div class="weapon-stat">
                         <div data-lang-id="${weapon.SKILL}"></div>
-                        <div>To Hit: ${characterData.skills[`${weapon.SKILL}`]+characterData.special[skill2stat[weapon.SKILL]]}</div>
+                        <div>To Hit: ${characterData.skills[`${weapon.SKILL}`]+characterData.special[skill2special[weapon.SKILL]]}</div>
                         <div>To Crit: ${Math.max(characterData.skills[`${weapon.SKILL}`], 1)}</div>
                     </div>
                     <div class="weapon-stat">
@@ -589,18 +419,11 @@ function createWeaponCard(weaponId, weaponData) {
 document.addEventListener("DOMContentLoaded", async () => {
     // const weaponIds = ["Pistola 44", "Fat Man", "Pistola Gamma"]; // Add more weapon IDs as needed
 
-    const weaponData = await loadWeapons();
+    weaponData = await loadWeapons();
+    defaultCharacter = await loadJSON('../data/defaultCharacter.json');
+    characterData = JSON.parse(localStorage.getItem('characterData')) || defaultCharacter;
     const weaponIds = weaponData.map(w => w.WEAPON_ID)
-    const container = document.getElementById("weapon-cards"); // Or another element where you want to add the cards
 
-    for (const weaponId of weaponIds) {
-        const weaponCard = createWeaponCard(weaponId, await loadWeapons());
-        if (weaponCard) { // Check if createWeaponCard was successful
-            container.appendChild(weaponCard);
-        }
-    }
+    updateDisplay();
     loadTranslations(currentLanguage);
 });
-
-// Initial display update
-updateDisplay();

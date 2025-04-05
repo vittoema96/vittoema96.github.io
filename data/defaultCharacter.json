@@ -1,0 +1,58 @@
+{
+    "special": {
+        "strength": 5,
+        "perception": 5,
+        "endurance": 5,
+        "charisma": 5,
+        "intelligence": 5,
+        "agility": 5,
+        "luck": 5
+    },
+    "skills": {  
+        "athletics": 0,
+        "barter": 0,
+        "bigGuns": 0,
+        "energyWeapons": 0,
+        "explosives": 0,
+        "lockpick": 0,
+        "medicine": 0,
+        "meleeWeapons": 0,
+        "pilot": 0,
+        "repair": 0,
+        "science": 0,
+        "smallGuns": 0,
+        "sneak": 0,
+        "speech": 0,
+        "survival": 0,
+        "throwing": 0,
+        "unarmed": 0
+    },
+    "specialties": ["repair"],
+    "caps": 0,
+    "ammo": {
+          "ammo_fusion_cell": 1,
+          "ammo_plasma_cartridge": 2,
+          "ammo_gamma_round": 4,
+          "ammo_mini_nuke": 8,
+          "ammo_flamer_fuel": 16,
+          "ammo_missile": 32
+    },
+    "background": "[Background Placeholder]",
+    "map": "[Map Placeholder]",
+
+
+
+    "ENTRIES BELOW HAVE TO BE REMOVED": true,
+    "objects": [
+        { "name": "Stimpack", "description": "Cura una moderata quantità di danni.", "weight": 0.1 },
+        { "name": "Acqua Purificata", "description": "Riduce la sete e la leggera radiazioni.", "weight": 0.5 }
+    ],
+    "weapons": [
+        "Fat Man",
+        "Pistola Laser",
+        "Bottiglia Molotov",
+        "Coltelli da Lancio",
+        "Stecca da Biliardo",
+        "Pistola Artigianale"
+    ]
+}
