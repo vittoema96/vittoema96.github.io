@@ -207,7 +207,6 @@ function incrementSkill(event) {
 }
 
 skillBoxes.forEach(box => {
-    const checkbox = box.querySelector('input[type="checkbox"]');
     box.addEventListener('click', function (evt) {
         if(isEditing)
             incrementSkill(evt);
@@ -438,7 +437,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     weaponData = await loadWeapons();
     defaultCharacter = await loadJSON('../data/defaultCharacter.json');
     characterData = JSON.parse(localStorage.getItem('characterData')) || defaultCharacter;
-    const weaponIds = weaponData.map(w => w.WEAPON_ID)
 
     updateDisplay();
     loadTranslations(currentLanguage);

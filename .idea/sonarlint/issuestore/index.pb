@@ -82,3 +82,5 @@ F
 data/supplies/food.csv,a/4/a46554e81f99e21d8ca9c24675aaac51aba1ad2f
 H
 data/supplies/drinks.csv,4/7/47755c89e39bf9893d7de4b2396147e70fe0bf89
+F
+data/supplies/meds.csv,4/e/4ea5b86fbd369b7ad45a9f87da0789e94594adee
