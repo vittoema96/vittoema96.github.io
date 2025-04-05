@@ -45,9 +45,20 @@
 
         <header class="header">
             <h2>Pip-Boy 3000</h2>
+            <div id="header-stats">
+                <div class="icon-value-pair">
+                    <img class="icon" src="img/hp.svg" alt="HP:"/> <div id="hp-value">n / N</div>
+                </div>
+                <div class="icon-value-pair">
+                    <img class="icon" src="img/caps.svg" alt="Caps:"/> <div id="caps-value">n / N</div>
+                </div>
+                <div class="icon-value-pair">
+                    <img class="icon" src="img/weight.svg" alt="Weight:"/> <div id="weight-value">n / N</div>
+                </div>
+            </div>
         </header>
 
-        <div class="tab-container">
+        <div class="tab-container" id="main-tab-container">
             <div class="tab active" data-tab="stat">STAT</div>
             <div class="tab" data-tab="inv">INV</div>
             <div class="tab" data-tab="data">DATA</div>
@@ -248,49 +259,70 @@
                     </div>
                 </div>
                 <button id="edit-stats-button" class="button">Edit Stats</button>
-            </section>
+    </section>
 
             <section id="inv-screen" class="screen hidden">
-                <h2>Inventory</h2>
+                <div class="tab-container">
+                    <div class="subtab active" data-tab="weapons">WEAPONS</div>
+                    <div class="subtab" data-tab="armor">ARMOR</div>
+                    <div class="subtab" data-tab="supplies">SUPPLIES</div>
+                    <div class="subtab" data-tab="ammo">AMMO</div>
+                </div>
 
-                <div id="weapon-cards"></div>
+                <div class="subscreen active" id="inv-weapons">
+                    <div id="weapon-cards"></div>
+                </div>
+                <div class="subscreen hidden" id="inv-armor">
+                    <div id="armor-cards"></div>
+                </div>
+                <div class="subscreen hidden" id="inv-supplies">
+                    <div id="supplies-cards"></div>
+                </div>
+                <div class="subscreen hidden" id="inv-ammo">
+                    <div id="ammo-cards"></div>
+                </div>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th data-lang-id="weaponId">WEAPON_ID</th>
-                            <th data-lang-id="skill">SKILL</th>
-                            <th data-lang-id="damageRating">DAMAGE_RATING</th>
-                            <th data-lang-id="effects">EFFECTS</th>
-                            <th data-lang-id="damageType">DAMAGE_TYPE</th>
-                            <th data-lang-id="fireRate">FIRE_RATE</th>
-                            <th data-lang-id="range">RANGE</th>
-                            <th data-lang-id="qualities">QUALITIES</th>
-                            <th data-lang-id="ammoType">AMMO_TYPE</th>
-                        </tr>
-                    </thead>
-                        <tbody id="armiLeggereTableBody">
-                    </tbody>
-                </table>
+                <div class="subscreen hidden" id="inv-misc">
+                    <div id="misc-cards"></div>
 
-                <div class="inventory-overview">
-                    <div class="inventory-item">
-                        <label for="player-caps">Caps:</label>
-                        <div id="player-caps">0</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-lang-id="weaponId">WEAPON_ID</th>
+                                <th data-lang-id="skill">SKILL</th>
+                                <th data-lang-id="damageRating">DAMAGE_RATING</th>
+                                <th data-lang-id="effects">EFFECTS</th>
+                                <th data-lang-id="damageType">DAMAGE_TYPE</th>
+                                <th data-lang-id="fireRate">FIRE_RATE</th>
+                                <th data-lang-id="range">RANGE</th>
+                                <th data-lang-id="qualities">QUALITIES</th>
+                                <th data-lang-id="ammoType">AMMO_TYPE</th>
+                            </tr>
+                        </thead>
+                            <tbody id="armiLeggereTableBody">
+                        </tbody>
+                    </table>
+
+                    <div class="inventory-overview">
+                        <div class="inventory-item">
+                            <label for="player-caps">Caps:</label>
+                            <div id="player-caps">0</div>
+                        </div>
+                        <div class="inventory-item">
+                            <label for="carry-weight">Carry Weight:</label>
+                            <div id="carry-weight">0 / 0</div>
+                        </div>
                     </div>
-                    <div class="inventory-item">
-                        <label for="carry-weight">Carry Weight:</label>
-                        <div id="carry-weight">0 / 0</div>
+
+                    <div class="inventory-list">
+                        <h3>Ammo</h3>
+                        <ul id="ammo-list">
+                            <li><span class="ammo-name">9mm</span> <span class="ammo-quantity">x 100</span></li>
+                            <li><span class="ammo-name">Celle al Plasma</span> <span class="ammo-quantity">x 50</span></li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="inventory-list">
-                    <h3>Ammo</h3>
-                    <ul id="ammo-list">
-                        <li><span class="ammo-name">9mm</span> <span class="ammo-quantity">x 100</span></li>
-                        <li><span class="ammo-name">Celle al Plasma</span> <span class="ammo-quantity">x 50</span></li>
-                    </ul>
-                </div>
             </section>
 
             <section id="data-screen" class="screen hidden">

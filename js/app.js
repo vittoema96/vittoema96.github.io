@@ -1,6 +1,8 @@
 // Get references to DOM elements
 const tabButtons = document.querySelectorAll('.tab');
+const subtabButtons = document.querySelectorAll('.subtab');
 const screens = document.querySelectorAll('.screen');
+const subscreens = document.querySelectorAll('.subscreen');
 
 
 const defenseDisplay = document.getElementById('defense-value');
@@ -8,8 +10,9 @@ const initiativeDisplay = document.getElementById('initiative-value');
 const meleeDamageDisplay = document.getElementById('melee-damage-value');
 
 
-const playerCapsDisplay = document.getElementById('player-caps');
-const carryWeightDisplay = document.getElementById('carry-weight');
+const capsDisplay = document.getElementById('caps-value');
+const weightDisplay = document.getElementById('weight-value');
+const hpDisplay = document.getElementById('hp-value');
 
 const characterBackgroundInput = document.getElementById('character-background');
 const gameMapDisplay = document.getElementById('game-map');
@@ -93,8 +96,9 @@ function updateDisplay() {
         specialtyDisplays[skill].checked = characterData.specialties.includes(skill);
     });
 
-
-    playerCapsDisplay.textContent = characterData.caps;
+    const maxHp = characterData.special.endurance + characterData.special.luck + characterData.level
+    hpDisplay.textContent = maxHp + "/" + maxHp; // TODO Should be "current / max"
+    capsDisplay.textContent = characterData.caps;
 
     const weapons = characterData.weapons === "*" ? weaponData : characterData.weapons.map(wId => weaponData.find(w => w.WEAPON_ID === wId));
     const container = document.getElementById("weapon-cards");
@@ -106,11 +110,14 @@ function updateDisplay() {
     }
 
     const currentWeight = weapons
-        .map(w => w.WEIGTH)
-        .reduce((acc, weight) => acc + weight==="<0.5" ? 0 : weight, 0);
+        .map(w => w.WEIGHT)
+        .reduce((acc, weight) => {
+            const parsed = Number(weight);
+            return acc + (isNaN(parsed) ? 0 : parsed) // TODO as WEIGHT=<0.5 was changed to just 0, might not need this anymore
+        }, 0);
     const maxWeight = 75 + str * 5
-    carryWeightDisplay.textContent = `${currentWeight} / ${maxWeight}`;
-    carryWeightDisplay.style.color = currentWeight > maxWeight ? 'red' : "#afff03";
+    weightDisplay.textContent = `${currentWeight}/${maxWeight}`;
+    weightDisplay.style.color = currentWeight > maxWeight ? 'red' : "#afff03";
 
     characterBackgroundInput.value = characterData.background;
     gameMapDisplay.textContent = characterData.map;
@@ -217,6 +224,15 @@ tabButtons.forEach(tab => {
         screens.forEach(s => s.classList.add('hidden'));
         tab.classList.add('active');
         document.getElementById(`${targetTab}-screen`).classList.remove('hidden');
+    });
+});
+subtabButtons.forEach(subtab => {
+    subtab.addEventListener('click', () => {
+        const targetSubtab = subtab.getAttribute('data-tab');
+        subtabButtons.forEach(t => t.classList.remove('active'));
+        subscreens.forEach(s => s.classList.add('hidden'));
+        subtab.classList.add('active');
+        document.getElementById(`inv-${targetSubtab}`).classList.remove('hidden');
     });
 });
 
@@ -359,7 +375,7 @@ function createWeaponCard(weaponId) {
 
     const cardHTML = `
         <div class="card">
-            <div class="header">
+            <div class="card-header">
                 <div class="weapon-name">${weapon.WEAPON_ID}</div>
                 <div class="right-header">
                     <div class="right-header-item"><div>Cost</div><div>${weapon.COST}</div></div>

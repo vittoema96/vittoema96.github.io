@@ -1,7 +1,8 @@
 :root {
-    --primary-color: #afff03; /* Replace with your primary color's hex code */
+    --primary-color: #afff03;
+    --primary-color-rgb: 175, 255, 3; /* #afff03 */
     --secondary-color: #0f3003; /* Replace with your secondary color's hex code */
-    --tertiary-color: rgba(175, 255, 3, 0.7);
+    --tertiary-color: rgba(var(--primary-color), 0.7);
 }
 html {
     margin: 0;
@@ -29,22 +30,63 @@ body {
 /* Header, the one with PipBoy 3000 */
 .header {
     text-align: center;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
     border-bottom: 2px solid var(--primary-color);
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    justify-content: space-between;
+    font-size: 0.9em;
+    align-items: start;
+}
+.icon-value-pair {
+    padding: 2px;
+    min-width:25%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+.icon-value-pair:not(:last-child) {
+    border-bottom: 2px solid var(--primary-color);
+}
+.icon-value-pair div {
+    width: 100%;
+    font-size: .8rem;
+    text-align: center;
+}
+.icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
 }
 .header h1 { /* TODO should be smaller */
     font-size: 3rem;
     margin-bottom: 0.5rem;
 }
 
+.main-container {
+    width: 100%;
+    overflow: auto;
+    margin: 0 auto;
+    padding: 1rem;
+    border: 4px solid var(--primary-color);
+    border-radius: 10px;
+    overflow-y: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-grow: 1;
+    box-sizing: border-box; /* Add this */
+}
 .tab-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding: 0 1.5rem 0 1.5rem;
+}
+#main-tab-container {
+    padding: 0 1rem 0 1rem;
 }
 .tab {
     padding: 0.75rem 1.5rem;
@@ -69,6 +111,30 @@ body {
     background-color: var(--primary-color);
     color: #0f3003;
     border-bottom: 2px solid var(--primary-color);
+}
+.subtab {
+    color: rgba(var(--primary-color-rgb), 0.25);
+    cursor: pointer;
+    font-size: .7rem;
+    font-weight: bold;
+    transition: background-color,font-size 0.3s ease;
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+/* Subtabs right before and after the active one */
+.subtab.active + .subtab,
+.subtab:has(+ .subtab.active) {
+    color: rgba(var(--primary-color-rgb), .7);
+    font-size: 1rem;
+}
+.subtab.active {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: var(--primary-color);
+    border-top: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    transition: font-size 0.2s ease;
 }
 #mini-tab {
     min-width: 10px;
@@ -98,20 +164,6 @@ body {
     color: var(--primary-color);
     font-weight: bold;
     font-size: 1.2rem;
-}
-.main-container {
-    width: 100%;
-    overflow: auto;
-    margin: 0 auto;
-    padding: 1.5rem;
-    border: 4px solid var(--primary-color);
-    border-radius: 10px;
-    overflow-y: visible;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    flex-grow: 1;
-    box-sizing: border-box; /* Add this */
 }
 .grid-container {
     display: flex;

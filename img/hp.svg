@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">
+    <path fill="none" stroke="#afff03" stroke-width="150"
+          d="M100 200 v 600 M400 200 v600 M100 500 h300
+             M630 200 v600
+             M680 275 c300 -20, 300 295, 0 275"/>
+</svg>

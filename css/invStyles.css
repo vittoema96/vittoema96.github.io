@@ -1,22 +1,4 @@
-#weapon-list {
-    margin-top: 1rem;
-}
-#weapon-list li {
-    background-color: rgba(175, 255, 3, 0.05);
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    border-radius: 3px;
-    border: 1px solid var(--primary-color);
-}
-
-
-.card {
-    width: 400px;
-    border: 2px solid var(--primary-color);
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
-.header {
+.card-header {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
@@ -26,6 +8,12 @@
     align-items: start;
     background-color: var(--primary-color);
     color: var(--secondary-color);
+}
+.card {
+    width: 400px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
 }
 .weapon-name {
     font-size: 1.2rem;

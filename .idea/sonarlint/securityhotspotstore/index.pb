@@ -69,3 +69,14 @@ H
 js/sw.js,5/2/52e65ead96c54d766e69953f76bfc1f6a4081d52
 J
 data/defaultCharacter.json,0/d/0d6abc0f1f5b058297bc36b31b56464f4767da02
+<
+img/caps.svg,1/b/1b1859906d419a8cf15c95a3033318bcb2b31f91
+J
+img/FO76_Caps_currency.svg,a/1/a1b1ab3e60ea257f3736ba0a6304059a8e47253a
+>
+img/weight.svg,5/5/556480ee02a62a953ff1a13a16988a72eb3225c5
+:
+
+img/hp.svg,7/0/70f78fd3d1ccfa844a4a84de3cd48651385ba25d
+F
+data/supplies/food.csv,a/4/a46554e81f99e21d8ca9c24675aaac51aba1ad2f
