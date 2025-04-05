@@ -60,17 +60,17 @@ Pork'n'Beans,4,,1,0,10,0,"Un intero pasto contenuto in una lattina: fagioli stuf
 "Ramen Istantaneo",6,,0,0,20,2,"Si tratta di una semplice confezione di ramen. È relativamente saziante e dissetante, oltre a essere abbastanza semplice da preparare se si riescono a trovare gli ingredienti."
 "Razioni dell'Istituto",5,,0,0,10,2,"Una piccola scatola di cibo bianca e contrassegnata con il simbolo dell’Istituto. Ciascuna di esse contiene delle barrette per razioni arricchite, piene di nutrienti essenziali. Ogni barretta apporta la razione giornaliera necessaria di quaranta diverse vitamine, minerali e nutrienti, tutti elencati sul retro."
 "Scarafaggio Radioattivo Grigliato",5,,0,0,7,1,"È un pezzo di scarafaggio radioattivo grigliato. Non molto appetitoso, specialmente nel caso se ne conosca la provenienza, ma abbastanza nutriente e saziante quando non si hanno molte altre scelte."
-"Spiedino di Iguana",6,,0,0,33,2,
-"Spiedino di Scoiattolo",7,,0,0,15,2,
-"Stufato di Cervo Radioattivo",12,"+3 alla Resistenza ai Danni da Energia fino alla fine della prossima scena",0,0.5,60,3,
-"Stufato di Scoiattolo",10,,0,0.5,24,2,
-"Sugar Bomb",4,"+1 PA all'inizio della scena successiva",1,0,11,0,
-"Tato",3,,1,0,7,1,
-"Tortine Fancy Lads",3,,0,0,18,0,
-"Tortino di Mirelurk",12,"Permette di respirare sott'acqua fino alla fine della scena successiva",0,0,35,3,
-"Uova Ripiene Yum - Yum",4,,0,0,20,0,
-"Uovo di Deathclaw",7,,1,0,69,3,
-"Uovo di Mirelurk",3,,1,0.5,0,2,
-"Uovo di Scorpione Radioattivo",6,,0,0,48,3,
-"Zucca",3,,1,0.5,6,1,
-"Zuppa di Iguana",10,,0,0.5,21,3,
+"Spiedino di Iguana",6,,0,0,33,2,"Pezzetti di carne di iguana infilati su uno spiedino di legno e cotti. Non è il massimo dei pasti, ma può andare quando si è disperati o si ha bisogno di assicurarsi la lealtà di un compagno a quattro zampe."
+"Spiedino di Scoiattolo",7,,0,0,15,2,"Sono dei pezzi di carne di scoiattolo che vengono infilzati su un bastoncino di legno e poi cotti arrostendoli su una fiamma viva. Non c’è abbastanza carne per un pasto come si deve, ma è un discreto spuntino."
+"Stufato di Cervo Radioattivo",12,"+3 alla Resistenza ai Danni da Energia fino alla fine della prossima scena",0,0.5,60,3,"Si tratta di fette di carne di cervo radioattivo, cotte assieme a delle verdure e dell’alcol fino ad ottenere uno stufato denso e sostanzioso. Saziante e soddisfacente, fortifica anche il corpo, rendendolo più resistente alle alte temperature per un certo periodo di tempo."
+"Stufato di Scoiattolo",10,,0,0.5,24,2,"Si tratta di pezzetti di carne di scoiattolo cotti con carote, tatos e alcune foglie di sangue fino a ottenere uno stufato denso, che è più saziante e gustoso dei singoli ingredienti presi da soli."
+"Sugar Bomb",4,"+1 PA all'inizio della scena successiva",1,0,11,0,"Un tipo di cereali per la colazione dell’anteguerra con “un sapore esplosivo”, la scatola contiene dei cereali a forma di piccole bombe atomiche stilizzate ricoperte da abbondanti quantità di zucchero. Su alcune scatole c’è scritto che contengono un premio."
+"Tato",3,,1,0,7,1,"È un ibrido mutante delle piante di pomodori e patate dell’anteguerra, con il picciolo e la buccia rossa dei primi e la polpa marroncina delle seconde. I tatos sono abbastanza nutrienti, ma sono disgustosi. Sono, tuttavia, abbastanza facili da coltivare, per cui sono un caposaldo dell’agricoltura della Zona Contaminata, oltre che un ingrediente per diverse ricette."
+"Tortine Fancy Lads",3,,0,0,18,0,"Sono delle piccole tortine glassate ricoperte di uno strato così spesso di zucchero e altri dolcificanti da risultare praticamente eterne. Queste tortine, il cui slogan dichiara essere “lo snack preferito d’America”, si possono trovare attraverso la Zona Contaminata in molte varietà, tutte in grado di cariare i denti."
+"Tortino di Mirelurk",12,"Permette di respirare sott'acqua fino alla fine della scena successiva",0,0,35,3,"Sono scaglie e frammenti di carne di mirelurk mischiati con un uovo, anch’esso di mirelurk, e compattati in una tortina che viene poi cotta. Oltre a fornire un modesto valore nutrizionale, mangiare un tortino di mirelurk permette di sopravvivere più a lungo sott’acqua."
+"Uova Ripiene Yum - Yum",4,,0,0,20,0,"Sono delle uova sode farcite con un ripieno piccante, conservate e sigillate per mantenerne la freschezza prima della Grande Guerra."
+"Uovo di Deathclaw",7,,1,0,69,3,"È un grosso uovo deposto da un deathclaw. È pericoloso da ottenere, dato che i deathclaw, oltre a deporli, ne nascono, ma è potenzialmente importante poiché può essere usato in alcune ricette molto nutrienti."
+"Uovo di Mirelurk",3,,1,0.5,0,2,"Sono le uova che si trovano nei nidi di mirelurk, solitamente a gruppi di due o tre. Se nessuno le tocca, si schiudono dando vita a dei mirelurk."
+"Uovo di Scorpione Radioattivo",6,,0,0,48,3,"È l’uovo di uno scorpione radioattivo. Non è facile ottenerlo, dato che di solito si trovano in posti in cui ci sono anche i suddetti scorpioni."
+"Zucca",3,,1,0.5,6,1,"Si tratta di un grosso frutto edibile dalla polpa carnosa e la buccia dura, simile a un melone. L’interno può essere mangiato direttamente col cucchiaio o usato in cucina, mentre la buccia spesso viene incisa a scopo decorativo."
+"Zuppa di Iguana",10,,0,0.5,21,3,"Si tratta di una zuppa fatta con carote e pezzi di iguana: meglio così che mangiare i singoli ingredienti da soli."
