@@ -80,3 +80,5 @@ J
 img/hp.svg,7/0/70f78fd3d1ccfa844a4a84de3cd48651385ba25d
 F
 data/supplies/food.csv,a/4/a46554e81f99e21d8ca9c24675aaac51aba1ad2f
+H
+data/supplies/drinks.csv,4/7/47755c89e39bf9893d7de4b2396147e70fe0bf89
