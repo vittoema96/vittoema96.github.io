@@ -12,8 +12,7 @@ html {
 }
 body {
     margin: 0;
-    height: 100%;
-    min-height: 100vh;
+    height: 100dvh;
 
     color: var(--primary-color);
     background-color: var(--secondary-color);
@@ -26,7 +25,7 @@ body {
     font-family: 'Space Mono', monospace;
     /*font-family: 'Roboto Condensed', sans-serif;*/
 
-    padding: 0 0 env(safe-area-inset-bottom); /* Safe padding on BOTTOM for MOBILE */
+    padding: 0;
 }
 .inverse {
     background-color: var(--primary-color);
@@ -86,7 +85,7 @@ body {
     align-items: stretch;
     flex-grow: 1;
     box-sizing: border-box; /* Add this */
-    padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom));
+    padding: 1rem 1rem 1rem;
 }
 .tab-container {
     display: flex;
@@ -96,7 +95,7 @@ body {
     flex-wrap: nowrap;
 }
 #main-tab-container {
-    padding: 0 1rem 0 1rem;
+    padding: .5rem 1rem 0 1rem;
 }
 .tab {
     padding: 0.75rem 1.5rem;
