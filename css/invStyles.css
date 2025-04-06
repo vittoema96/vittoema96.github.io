@@ -1,3 +1,10 @@
+
+.card {
+    width: 400px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
 .card-header {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -9,13 +16,7 @@
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
-.card {
-    width: 400px;
-    border: 2px solid var(--primary-color);
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
-.weapon-name {
+.card-name {
     font-size: 1.2rem;
     width: auto;
     grid-column: 1 / 2;
@@ -36,11 +37,6 @@
     font-size: 0.6rem;
     font-weight: bold;
 }
-.details {
-    font-size: .8rem;
-    grid-column: 1 / 3;
-    grid-row: 2 / 3;
-}
 
 .card-content {
     display: grid;
@@ -48,16 +44,6 @@
     grid-template-rows: auto auto auto; /* Added a third row */
     padding: 0 10px 10px;
     font-size: 0.9em;
-}
-.image {
-    text-align: center;
-    padding: 20px;
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-}
-.image img {
-    max-width: 100%;
-    height: auto;
 }
 .stats {
     display: flex;
@@ -68,11 +54,11 @@
     margin-right: calc(-1 * 16px);
     margin-left: calc(-1 * 16px);
 }
-.weapon-stat {
+.card-stat {
     margin: 0;
     padding: 5px;
 }
-.weapon-stat div {
+.card-stat div {
     text-align: center;
     border: 1px solid var(--primary-color);
     padding: 5px;
@@ -80,10 +66,11 @@
     font-size: 0.6rem;
     font-weight: bold;
 }
-.weapon-stat div:first-child {
+.card-stat div:first-child {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
+
 .attack-button {
     background-image: url('../img/attack.svg'); /* Replace with your image path */
     background-size: cover; /* Adjust as needed: contain, auto, etc. */
@@ -97,11 +84,23 @@
     height: 50px;
 
 }
-
 .attack-button:hover {
     /* Optional: Add hover effects */
     opacity: 0.8;
 }
+
+
+.image {
+    text-align: center;
+    padding: 20px;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+.image img {
+    max-width: 100%;
+    height: auto;
+}
+
 
 .description-toggle {
     grid-column: 1 / 4;

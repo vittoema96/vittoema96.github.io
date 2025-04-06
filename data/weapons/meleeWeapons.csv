@@ -1,4 +1,4 @@
-WEAPON_ID,SKILL,DAMAGE_RATING,EFFECTS,DAMAGE_TYPE,FIRE_RATE,RANGE,QUALITIES,WEIGHT,COST,RARITY,DESCRIPTION,AMMO_TYPE,AVAILABLE_MODS
+ID,SKILL,DAMAGE_RATING,EFFECTS,DAMAGE_TYPE,FIRE_RATE,RANGE,QUALITIES,WEIGHT,COST,RARITY,DESCRIPTION,AMMO_TYPE,AVAILABLE_MODS
 "Asse",meleeWeapons,4,,Fisico,-,P,A Due Mani,1.5,20,0,"Poco più che delle lunghe tavole di legno con un manico avvolto nel nastro adesivo, le assi sono delle armi pesanti da mischia solitamente predilette dai supermutanti, che possiedono la forza per utilizzarle in maniera efficace.",na,"Un’asse può montare una delle seguenti modifiche, che vengono installate con l’abilità Riparare"
 "Bastone da Passeggio",meleeWeapons,3,,Fisico,-,P,-,1,10,0,"Un semplice bastone di quelli usati come ausilio da chi non cammina bene, il bastone da passeggio è abbastanza robusto da poter essere usato come arma improvvisata se non ci sono altre opzioni.",na,"Un bastone da passeggio può montare una delle seguenti modifiche, che vengono installate con l’abilità Riparare"
 "Calcio dell'Arma (1 mano)",meleeWeapons,2,Stordente,Fisico,-,P,-,-,-,0,"-",na,

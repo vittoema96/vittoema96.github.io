@@ -70,6 +70,9 @@ let characterData = undefined;
 
 let isEditing = false; // Track editing state
 let weaponData = undefined;
+let foodData = undefined;
+let drinksData = undefined;
+let medsData = undefined;
 
 // Function to update the display
 function updateDisplay() {
@@ -100,13 +103,27 @@ function updateDisplay() {
     hpDisplay.textContent = maxHp + "/" + maxHp; // TODO Should be "current / max"
     capsDisplay.textContent = characterData.caps;
 
-    const weapons = characterData.weapons === "*" ? weaponData : characterData.weapons.map(wId => weaponData.find(w => w.WEAPON_ID === wId));
+
+    const weapons = characterData.weapons === "*" ? weaponData : characterData.weapons.map(wId => weaponData.find(w => w.ID === wId));
     const container = document.getElementById("weapon-cards");
-    for (weaponId of characterData.weapons) {
-        const weaponCard = createWeaponCard(weaponId);
-        if (weaponCard) { // Check if createWeaponCard was successful
-            container.appendChild(weaponCard);
-        }
+    for (weapon of weapons) {
+        container.appendChild(createWeaponCard(weapon.ID));
+    }
+    // TODO optimize here, no reason to map id to item and then pass the item's id to the function
+    const food = characterData.supplies.food === "*" ? foodData : characterData.supplies.food.map(id => foodData.find(i => i.ID === id));
+    const drinks = characterData.supplies.drinks === "*" ? drinksData : characterData.supplies.drinks.map(id => drinksData.find(i => i.ID === id));
+    const meds = characterData.supplies.meds === "*" ? medsData : characterData.supplies.meds.map(id => medsData.find(i => i.ID === id));
+    const foodContainer = document.getElementById("food-cards");
+    const drinksContainer = document.getElementById("drinks-cards");
+    const medsContainer = document.getElementById("meds-cards");
+    for (item of food) {
+        foodContainer.appendChild(createObjectCard(item, 'food'));
+    }
+    for (item of drinks) {
+        drinksContainer.appendChild(createObjectCard(item, 'drinks'));
+    }
+    for (item of meds) {
+        medsContainer.appendChild(createObjectCard(item, 'meds'));
     }
 
     const currentWeight = weapons
@@ -343,13 +360,13 @@ function populateTable() {
 
 
     const toAdd = [];
-    weaponData.forEach(e => toAdd.push(e["WEAPON_ID"]));
+    weaponData.forEach(e => toAdd.push(e["ID"]));
 
 
     toAdd.forEach(weaponId => {
-        const weapon = weaponData.find(row => row["WEAPON_ID"] === weaponId);
+        const weapon = weaponData.find(row => row["ID"] === weaponId);
         const row = tableBody.insertRow();
-        row.insertCell().textContent = weapon["WEAPON_ID"] || "";
+        row.insertCell().textContent = weapon["ID"] || "";
         row.insertCell().dataLangId = weapon["SKILL"] || "na";
         row.insertCell().textContent = weapon["DAMAGE_RATING"] || "";
         row.insertCell().textContent = weapon["EFFECTS"] || "";
@@ -361,58 +378,33 @@ function populateTable() {
     });
 }
 
-
-function createWeaponCard(weaponId) {
-    const weapon = weaponData.find(row => row.WEAPON_ID === weaponId);
-
-    if (!weapon) {
-        console.error(`Weapon data not found for ID: ${weaponId}`);
+function createGenericCard(genericItem, customCardContent) {
+    if (!genericItem) {
+        console.error(`Item data provided was null`);
         return null;
     }
-
-    const ammoCount = weapon.AMMO_TYPE==="na" ? "-" : "x"+(characterData.ammo[weapon.AMMO_TYPE] || 0);
 
     const cardHTML = `
         <div class="card">
             <div class="card-header">
-                <div class="weapon-name">${weapon.WEAPON_ID}</div>
+                <div class="card-name">${genericItem.ID}</div>
                 <div class="right-header">
-                    <div class="right-header-item"><div>Cost</div><div>${weapon.COST}</div></div>
-                    <div class="right-header-item"><div>Weight</div><div>${weapon.WEIGHT} kg</div></div>
-                    <div class="right-header-item"><div>Rarity</div><div>${weapon.RARITY}</div></div>
+                    <div class="right-header-item"><div>Cost</div><div>${genericItem.COST}</div></div>
+                    <div class="right-header-item"><div>Weight</div><div>${genericItem.WEIGHT} kg</div></div>
+                    <div class="right-header-item"><div>Rarity</div><div>${genericItem.RARITY}</div></div>
                 </div>
             </div>
             <div class="card-content">
-                <div class="stats" id="stats-left">
-                    <div class="weapon-stat">
-                        <div data-lang-id="${weapon.SKILL}"></div>
-                        <div>To Hit: ${characterData.skills[`${weapon.SKILL}`]+characterData.special[skill2special[weapon.SKILL]]}</div>
-                        <div>To Crit: ${Math.max(characterData.skills[`${weapon.SKILL}`], 1)}</div>
-                    </div>
-                    <div class="weapon-stat">
-                        <div data-lang-id="${weapon.AMMO_TYPE}"></div>
-                        <div>${ammoCount}</div>
-                    </div>
-                    <button class="attack-button" onclick="openMyPopup()"></button>
-                </div>
-                <div class="image">
-                    <img src="img/${weapon.SKILL}.svg" alt="${weapon.WEAPON_ID}">
-                </div>
-                <div class="stats" id="stats-right">
-                    <div class="weapon-stat"><div>Damage Dice</div><div>${weapon.DAMAGE_RATING}</div><div>${weapon.DAMAGE_TYPE}</div></div>
-                    <div class="weapon-stat"><div>Fire Rate</div><div>${weapon.FIRE_RATE}</div></div>
-                    <div class="weapon-stat"><div>Range</div><div>${weapon.RANGE}</div></div>
-                </div>    
+                ${customCardContent}
                 <button class="description-toggle">Show Description</button>
                 <div class="description-container">
                     <div class="description">
-                        ${weapon.DESCRIPTION.split('. ').map(paragraph => `<p>${paragraph}</p>`).join('')}
+                        ${genericItem.DESCRIPTION.split('. ').map(paragraph => `<p>${paragraph}.</p>`).join('')}
                     </div>
                 </div>
             </div>
         </div>
     `;
-
     const card = document.createElement('div');
     card.innerHTML = cardHTML;
 
@@ -431,10 +423,77 @@ function createWeaponCard(weaponId) {
 
     return card; // Return the actual card element
 }
+
+
+function createWeaponCard(weaponId) {
+    const weapon = weaponData.find(row => row.ID === weaponId);
+
+    if (!weapon) {
+        console.error(`Weapon data not found for ID: ${weaponId}`);
+        return null;
+    }
+
+    const ammoCount = weapon.AMMO_TYPE==="na" ? "-" : "x"+(characterData.ammo[weapon.AMMO_TYPE] || 0);
+
+    const weaponHTML = `
+        <div class="stats" id="stats-left">
+            <div class="card-stat">
+                <div data-lang-id="${weapon.SKILL}"></div>
+                <div>To Hit: ${characterData.skills[`${weapon.SKILL}`]+characterData.special[skill2special[weapon.SKILL]]}</div>
+                <div>To Crit: ${Math.max(characterData.skills[`${weapon.SKILL}`], 1)}</div>
+            </div>
+            <div class="card-stat">
+                <div data-lang-id="${weapon.AMMO_TYPE}"></div>
+                <div>${ammoCount}</div>
+            </div>
+            <button class="attack-button" onclick="openMyPopup()"></button>
+        </div>
+        <div class="image">
+            <img src="img/${weapon.SKILL}.svg" alt="${weapon.ID}">
+        </div>
+        <div class="stats" id="stats-right">
+            <div class="card-stat"><div>Damage Dice</div><div>${weapon.DAMAGE_RATING}</div><div>${weapon.DAMAGE_TYPE}</div></div>
+            <div class="card-stat"><div>Fire Rate</div><div>${weapon.FIRE_RATE}</div></div>
+            <div class="card-stat"><div>Range</div><div>${weapon.RANGE}</div></div>
+        </div>
+    `;
+
+    return createGenericCard(weapon, weaponHTML); // Return the actual card element
+}
+function createObjectCard(object, type) {
+
+    const specificEffectHeader = object.RADIOACTIVE !== undefined ? 'Radioactive' : 'Addictive';
+    const objectHTML = `
+        <div class="stats" id="stats-left">
+            <div class="card-stat">
+                <div>HP</div>
+                <div>+${object.HP_GAIN}</div>
+            </div>
+            <button class="attack-button" onclick="openMyPopup()"></button>
+        </div>
+        <div class="stats">
+            <div class="image">
+                <img src="img/${type}.svg" alt="${type}">
+            </div>
+        </div>
+        <div class="stats" id="stats-right">
+            <div class="card-stat">
+                <div>${specificEffectHeader}</div>
+                <div>${object[specificEffectHeader.toUpperCase()]}</div>
+            </div>
+        </div>
+    `;
+
+    return createGenericCard(object, objectHTML)
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     // const weaponIds = ["Pistola 44", "Fat Man", "Pistola Gamma"]; // Add more weapon IDs as needed
 
     weaponData = await loadWeapons();
+    foodData = await loadCSV("../data/supplies/food.csv");
+    drinksData = await loadCSV("../data/supplies/drinks.csv");
+    medsData = await loadCSV("../data/supplies/meds.csv");
     defaultCharacter = await loadJSON('../data/defaultCharacter.json');
     characterData = JSON.parse(localStorage.getItem('characterData')) || defaultCharacter;
 

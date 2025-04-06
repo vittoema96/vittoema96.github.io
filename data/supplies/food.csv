@@ -1,4 +1,4 @@
-OBJECT_ID,HP_GAIN,EFFECTS,RADIOACTIVE,WEIGHT,COST,RARITY,DESCRIPTION
+ID,HP_GAIN,EFFECTS,RADIOACTIVE,WEIGHT,COST,RARITY,DESCRIPTION
 "Arrosto di Mirelurk",8,"+1 PA all'inizio della scena successiva",0,0,40,2,"Una porzione di carne cotta di un mirelurk. Anche se non nella stessa misura della carne a guscio morbido, l’arrosto di mirelurk rinvigorisce il corpo e la mente e rende pronti all’azione."
 "Arrosto di Yao Guai",14,"+2 agli attacchi da mischia fino alla fine della scena successiva",0,0.5,110,4,"Non è che un pezzo di carne di Yao Guai cotto con carote e tatos. Piatto incredibilmente saziante e appetitoso, in molti sostengono che aumenti per un po’ di tempo l’istinto omicida e l’abilità di fare del male dopo che lo si è mangiato."
 "Bacca",3,,1,0,5,3,"Sono piccole bacche di una cultura idroponica molto simile ai mirtilli che esistevano prima della guerra. È un ingrediente utile in diverse ricette, ma è difficile da coltivare ovunque non ci sia una riserva adeguata di acqua abbastanza pulita. Le comunità che riescono a coltivarle spesso devono difendere i loro campi dai predoni."

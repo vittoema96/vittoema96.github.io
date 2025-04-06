@@ -55,5 +55,10 @@
         "Coltelli da Lancio",
         "Stecca da Biliardo",
         "Pistola Artigianale"
-    ]
+    ],
+    "supplies": {
+        "food": "*",
+        "drinks": "*",
+        "meds": "*"
+    }
 }

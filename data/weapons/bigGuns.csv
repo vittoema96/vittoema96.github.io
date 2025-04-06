@@ -1,4 +1,4 @@
-WEAPON_ID,SKILL,DAMAGE_RATING,EFFECTS,DAMAGE_TYPE,FIRE_RATE,RANGE,QUALITIES,WEIGHT,COST,RARITY,DESCRIPTION,AMMO_TYPE,AVAILABLE_MODS
+ID,SKILL,DAMAGE_RATING,EFFECTS,DAMAGE_TYPE,FIRE_RATE,RANGE,QUALITIES,WEIGHT,COST,RARITY,DESCRIPTION,AMMO_TYPE,AVAILABLE_MODS
 "Fat Man",bigGuns,21,"Dirompente, Radioattivo, Violento",Fisico,0,M,"A Due Mani, Esplosivo, Impreciso",15.5,512,4,"La Catapulta Nucleare M42 è un’arma a spalla di supporto alla fanteria che lancia a breve distanza testate nucleari tattiche compatte per infliggere danni pesanti all’interno della posizione bersagliata.",ammo_mini_nuke,"N/A"
 "Inceneritore",bigGuns,5,"Persistente, Propagato, Raffica",Da Energia,3,M,"A Due Mani, Invalidante",10,350,4,"Riversa una miscela incendiata sul bersaglio per bruciarlo, lancia una serie di palle di fuoco che esplodono sul colpo e appiccano il fuoco non appena il combustibile spruzza il bersaglio.",ammo_flamer_fuel,"N/A"
 "Junk Jet",bigGuns,6,,Fisico,1,M,A Due Mani,15,285,3,"Spara qualsiasi cosa caricata nella tramoggia con potenza letale, utile in situazioni con abbondanza di cianfrusaglie inutili.",anything,"Modifiche specifiche, installate con Riparare"
