@@ -106,7 +106,8 @@ function updateDisplay() {
 
     const weapons = characterData.weapons === "*" ? weaponData : characterData.weapons.map(wId => weaponData.find(w => w.ID === wId));
     const container = document.getElementById("weapon-cards");
-    for (weapon of weapons) {
+    container.innerHTML = '';
+    for (let weapon of weapons) {
         container.appendChild(createWeaponCard(weapon.ID));
     }
     // TODO optimize here, no reason to map id to item and then pass the item's id to the function
@@ -116,13 +117,17 @@ function updateDisplay() {
     const foodContainer = document.getElementById("food-cards");
     const drinksContainer = document.getElementById("drinks-cards");
     const medsContainer = document.getElementById("meds-cards");
-    for (item of food) {
+
+    foodContainer.innerHTML = '';
+    for (let item of food) {
         foodContainer.appendChild(createObjectCard(item, 'food'));
     }
-    for (item of drinks) {
+    drinksContainer.innerHTML = '';
+    for (let item of drinks) {
         drinksContainer.appendChild(createObjectCard(item, 'drinks'));
     }
-    for (item of meds) {
+    medsContainer.innerHTML = '';
+    for (let item of meds) {
         medsContainer.appendChild(createObjectCard(item, 'meds'));
     }
 
@@ -378,13 +383,32 @@ function populateTable() {
     });
 }
 
+function removeItem(genericItem) {
+    const id = genericItem.ID;
+    for(let l of [characterData.weapons, characterData.supplies.food, characterData.supplies.drinks, characterData.supplies.meds]){
+        const index = l.indexOf(id);
+        if(index > -1)
+            l.splice(index, 1);
+    }
+    updateDisplay()
+}
+
 function createGenericCard(genericItem, customCardContent) {
     if (!genericItem) {
         console.error(`Item data provided was null`);
         return null;
     }
+    const card = document.createElement('div');
+    function showCardOverlay(show) {
+        const overlay = card.querySelector('.card-overlay');
+        if(show){
+            overlay.classList.remove('hidden')
+        } else {
+            overlay.classList.add("hidden")
+        }
+    }
 
-    const cardHTML = `
+    card.innerHTML = `
         <div class="card">
             <div class="card-header">
                 <div class="card-name">${genericItem.ID}</div>
@@ -396,17 +420,56 @@ function createGenericCard(genericItem, customCardContent) {
             </div>
             <div class="card-content">
                 ${customCardContent}
-                <button class="description-toggle">Show Description</button>
+                <div class="card-controls">
+                    <button class="attack-button" onclick="openMyPopup()"></button>
+                    <button class="description-toggle">Show Description</button>
+                </div>
                 <div class="description-container">
                     <div class="description">
-                        ${genericItem.DESCRIPTION.split('. ').map(paragraph => `<p>${paragraph}.</p>`).join('')}
+                        ${genericItem.DESCRIPTION.split('. ').map(paragraph => `<p>${paragraph}${paragraph.endsWith(".") ? "" : "."}</p>`).join('')}
                     </div>
+                </div>
+            </div>
+            <div class="card-overlay hidden">
+                <div class="overlay-buttons">
+                    <button class="cancel-button">
+                        <div class="fas fa-times"/>
+                    </button>
+                    <button class="delete-button">
+                        <div class="fas fa-trash"/>
+                    </button>
                 </div>
             </div>
         </div>
     `;
-    const card = document.createElement('div');
-    card.innerHTML = cardHTML;
+    const longPressDuration = 500; // Adjust this value (in milliseconds)
+    let pressTimer;
+    let isLongPress = false;
+
+    card.addEventListener('pointerdown', (event) => {
+      isLongPress = false;
+      pressTimer = setTimeout(() => {
+        isLongPress = true;
+        const longPressEvent = new CustomEvent('longpress', {});
+        card.dispatchEvent(longPressEvent);
+      }, longPressDuration);
+    });
+
+    card.addEventListener('pointerup', () => clearTimeout(pressTimer));
+    card.addEventListener('pointermove', () => clearTimeout(pressTimer));
+    card.addEventListener('contextmenu', (event) => event.preventDefault());
+
+    card.addEventListener('longpress', (event) => {
+        showCardOverlay(true);
+    });
+    card.querySelector('.delete-button').addEventListener('click', (event) => {
+        removeItem(genericItem);
+        showCardOverlay(false);
+    })
+    card.querySelector('.cancel-button').addEventListener('click', (event) => {
+        showCardOverlay(false);
+    })
+
 
     // Add event listener to this card's button
     const descriptionToggle = card.querySelector(".description-toggle");
@@ -446,10 +509,9 @@ function createWeaponCard(weaponId) {
                 <div data-lang-id="${weapon.AMMO_TYPE}"></div>
                 <div>${ammoCount}</div>
             </div>
-            <button class="attack-button" onclick="openMyPopup()"></button>
         </div>
         <div class="image">
-            <img src="img/${weapon.SKILL}.svg" alt="${weapon.ID}">
+            <img id="weapon-img" src="img/${weapon.SKILL}.svg" alt="${weapon.ID}">
         </div>
         <div class="stats" id="stats-right">
             <div class="card-stat"><div>Damage Dice</div><div>${weapon.DAMAGE_RATING}</div><div>${weapon.DAMAGE_TYPE}</div></div>
@@ -463,20 +525,25 @@ function createWeaponCard(weaponId) {
 function createObjectCard(object, type) {
 
     const specificEffectHeader = object.RADIOACTIVE !== undefined ? 'Radioactive' : 'Addictive';
-    const objectHTML = `
-        <div class="stats" id="stats-left">
-            <div class="card-stat">
-                <div>HP</div>
-                <div>+${object.HP_GAIN}</div>
-            </div>
-            <button class="attack-button" onclick="openMyPopup()"></button>
+
+    const hpGainHTML = type !== "meds" ? `
+        <div class="card-stat">
+            <div>HP</div>
+            <div>+${object.HP_GAIN}</div>
         </div>
+    ` : "";
+
+    const objectHTML = `
         <div class="stats">
             <div class="image">
-                <img src="img/${type}.svg" alt="${type}">
+                <img src="img/${type}.svg" alt="${type}" id="supply-img">
             </div>
         </div>
+        <div class="stats"">
+            <div style="margin: 10px; grid-column: 2 / 3;">${object.EFFECTS}</div>
+        </div>
         <div class="stats" id="stats-right">
+            ${hpGainHTML}
             <div class="card-stat">
                 <div>${specificEffectHeader}</div>
                 <div>${object[specificEffectHeader.toUpperCase()]}</div>

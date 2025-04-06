@@ -1,9 +1,9 @@
-
 .card {
     width: 400px;
     border: 2px solid var(--primary-color);
     box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
     margin-bottom: 20px;
+    position: relative;
 }
 .card-header {
     display: grid;
@@ -42,21 +42,18 @@
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto auto; /* Added a third row */
-    padding: 0 10px 10px;
     font-size: 0.9em;
 }
 .stats {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-around;
     font-size: 0.9em;
     grid-row: 1 / 2;
-    margin-right: calc(-1 * 16px);
-    margin-left: calc(-1 * 16px);
 }
 .card-stat {
-    margin: 0;
-    padding: 5px;
+    margin: 5px 0;
 }
 .card-stat div {
     text-align: center;
@@ -71,6 +68,34 @@
     color: var(--secondary-color);
 }
 
+
+.image {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+.image img {
+    text-align: center;
+}
+#weapon-img {
+    max-width: 100%;
+}
+#supply-img {
+    width: 40px;
+    height: 40px;
+}
+
+.card-controls {
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
+    margin: 5px;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
 .attack-button {
     background-image: url('../img/attack.svg'); /* Replace with your image path */
     background-size: cover; /* Adjust as needed: contain, auto, etc. */
@@ -78,44 +103,26 @@
     background-color: transparent;
     border: none; /* Remove default button border */
     cursor: pointer; /* Add a pointer cursor on hover */
-    padding: 5px; /* Remove default button padding */
-    margin-left: 10px;
-    width: 50px;
-    height: 50px;
-
+    height: 40px;
+    width: 40px;
+    margin: 5px;
 }
 .attack-button:hover {
     /* Optional: Add hover effects */
     opacity: 0.8;
 }
-
-
-.image {
-    text-align: center;
-    padding: 20px;
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-}
-.image img {
-    max-width: 100%;
-    height: auto;
-}
-
-
 .description-toggle {
-    grid-column: 1 / 4;
-    grid-row: 2 / 3;
     cursor: pointer;
-    padding: 0.75rem 1.5rem; /* Match your other button padding */
+    padding: 0.5rem 2rem; /* Match your other button padding */
     border: 2px solid var(--primary-color);
     background-color: #1a5205; /* Match tab background */
     color: var(--primary-color);
-    margin-top: 10px;
-    margin-bottom: 0;
     border-radius: 5px; /* Match tab border-radius */
     font-weight: bold;
     font-size: 1.2rem; /* Match tab font-size */
     transition: background-color 0.3s ease, color 0.3s ease;
+    flex: auto;
+    margin: 5px;
 }
 .description-container {
     grid-column: 1 / 4;
@@ -133,6 +140,48 @@
 .description-container.expanded {
     max-height: 500px;
     transition: max-height 0.5s ease-in;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-opaque black background */
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center;    /* Center buttons vertically */
+    z-index: 10; /* Ensure it's on top of other card content */
+}
+.card-overlay.hidden {
+    display: none;
+}
+.overlay-buttons {
+    display: flex;
+    gap: 20px; /* Space between the buttons */
+}
+.overlay-buttons button {
+    border: none;
+    padding: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 3rem;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+}
+.overlay-buttons .delete-button {
+    background-color: #ff4d4d; /* Red */
+}
+.overlay-buttons .cancel-button {
+    background-color: #cccccc; /* Grey */
+}
+.overlay-buttons button div {
+    display: block; /* To prevent extra space below the image */
 }
 
 @media (max-width: 768px) {

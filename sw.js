@@ -22,7 +22,7 @@ self.addEventListener('install', (event) => {
                 console.log('Opened cache');
                 return cache.addAll(urlsToCache);
             })
-    );
+   );
 });
 
 // Serve cached assets or fetch from the network
@@ -33,7 +33,7 @@ self.addEventListener('fetch', (event) => {
                 console.log('fetching cache');
                 return fetch(event.request);
             })
-    );
+   );
 });
 
 // Activate the service worker and clean up old caches
@@ -49,7 +49,7 @@ self.addEventListener('activate', (event) => {
                     }
                     return null;
                 })
-            );
+           );
         })
-    );
+   );
 });
