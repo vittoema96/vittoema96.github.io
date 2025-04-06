@@ -1,4 +1,4 @@
-let currentLanguage = localStorage.getItem('language') || 'en'; // Default to English
+let currentLanguage = localStorage.getItem('language') || 'it'; // Default to English
 
 function loadTranslations(language) {
     fetch(`/js/lang/${language}.json`)
@@ -33,8 +33,16 @@ function loadTranslations(language) {
 }
 
 function changeLanguage(language) {
-    currentLanguage = language;
-    loadTranslations(language);
+    let changeLang = true;
+    if (language === 'en')
+        changeLang = confirm("Are you sure you want to change to English language?\nThis language is currently poorly supported.\n\n" +
+                             "Sei sicuro di voler cambiare la lingua a Inglese?\nQuesta lingua è attualmente scarsamente supportata.")
+    if(changeLang) {
+        currentLanguage = language;
+        loadTranslations(language);
+    } else {
+        document.getElementById('language-select').value = currentLanguage;
+    }
 
 }
 

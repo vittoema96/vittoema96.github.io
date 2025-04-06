@@ -28,34 +28,11 @@
         "throwing": 0,
         "unarmed": 0
     },
-    "specialties": ["repair"],
+    "specialties": [],
     "caps": 0,
-    "ammo": {
-          "ammo_fusion_cell": 1,
-          "ammo_plasma_cartridge": 2,
-          "ammo_gamma_round": 4,
-          "ammo_mini_nuke": 8,
-          "ammo_flamer_fuel": 16,
-          "ammo_missile": 32
-    },
-    "background": "[Background Placeholder]",
-    "map": "[Map Placeholder]",
-
-
-
-    "ENTRIES BELOW HAVE TO BE REMOVED": true,
-    "objects": [
-        { "name": "Stimpack", "description": "Cura una moderata quantità di danni.", "weight": 0.1 },
-        { "name": "Acqua Purificata", "description": "Riduce la sete e la leggera radiazioni.", "weight": 0.5 }
-    ],
-    "weapons": [
-        "Fat Man",
-        "Pistola Laser",
-        "Bottiglia Molotov",
-        "Coltelli da Lancio",
-        "Stecca da Biliardo",
-        "Pistola Artigianale"
-    ],
+    "ammo": {},
+    "background": "",
+    "weapons": [],
     "supplies": {
         "food": [],
         "drinks": [],

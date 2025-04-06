@@ -1,3 +1,22 @@
+.itemlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.itemlist-header h2,
+.add-item-button {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: var(--primary-color);
+    background-color: transparent;
+    border: none;
+}
+.add-item-button {
+    border: 2px solid var(--primary-color);
+    margin : 5px;
+    padding: 0 0.5rem;
+}
+
 .card {
     width: 400px;
     border: 2px solid var(--primary-color);

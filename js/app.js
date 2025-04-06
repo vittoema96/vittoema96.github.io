@@ -69,6 +69,9 @@ let defaultCharacter = undefined;
 let characterData = undefined;
 
 let isEditing = false; // Track editing state
+let activeTab = 'stat';
+let activeSubtab = 'weapons';
+
 let weaponData = undefined;
 let foodData = undefined;
 let drinksData = undefined;
@@ -76,63 +79,16 @@ let medsData = undefined;
 
 // Function to update the display
 function updateDisplay() {
-    specialList.forEach(special => specialDisplays[special].textContent = characterData.special[special])
-
-    defenseDisplay.textContent = (characterData.special.agility <= 8) ? "1" : "2";
-    initiativeDisplay.textContent = `${characterData.special.agility + characterData.special.perception}`;
-
-    const str = characterData.special.strength;
-    if (str < 7) {
-        meleeDamageDisplay.textContent = "+1";
-    } else if (str >= 7 && str <= 8) {
-        meleeDamageDisplay.textContent = "+2";
-    } else if (str >= 9 && str <= 10) {
-        meleeDamageDisplay.textContent = "+3";
-    } else if (str >= 11) {
-        meleeDamageDisplay.textContent = "+4";
-    } else {
-        meleeDamageDisplay.textContent = "0"; // Default case if strength is not within specified ranges.
-    }
-
-    Object.keys(skill2special).forEach(skill => {
-        skillDisplays[skill].textContent = characterData.skills[skill];
-        specialtyDisplays[skill].checked = characterData.specialties.includes(skill);
-    });
+    const str = characterData.special.strength
 
     const maxHp = characterData.special.endurance + characterData.special.luck + characterData.level
     hpDisplay.textContent = maxHp + "/" + maxHp; // TODO Should be "current / max"
     capsDisplay.textContent = characterData.caps;
-
-
-    const weapons = characterData.weapons === "*" ? weaponData : characterData.weapons.map(wId => weaponData.find(w => w.ID === wId));
-    const container = document.getElementById("weapon-cards");
-    container.innerHTML = '';
-    for (let weapon of weapons) {
-        container.appendChild(createWeaponCard(weapon.ID));
-    }
-    // TODO optimize here, no reason to map id to item and then pass the item's id to the function
-    const food = characterData.supplies.food === "*" ? foodData : characterData.supplies.food.map(id => foodData.find(i => i.ID === id));
-    const drinks = characterData.supplies.drinks === "*" ? drinksData : characterData.supplies.drinks.map(id => drinksData.find(i => i.ID === id));
-    const meds = characterData.supplies.meds === "*" ? medsData : characterData.supplies.meds.map(id => medsData.find(i => i.ID === id));
-    const foodContainer = document.getElementById("food-cards");
-    const drinksContainer = document.getElementById("drinks-cards");
-    const medsContainer = document.getElementById("meds-cards");
-
-    foodContainer.innerHTML = '';
-    for (let item of food) {
-        foodContainer.appendChild(createObjectCard(item, 'food'));
-    }
-    drinksContainer.innerHTML = '';
-    for (let item of drinks) {
-        drinksContainer.appendChild(createObjectCard(item, 'drinks'));
-    }
-    medsContainer.innerHTML = '';
-    for (let item of meds) {
-        medsContainer.appendChild(createObjectCard(item, 'meds'));
-    }
-
-    const currentWeight = weapons
-        .map(w => w.WEIGHT)
+    const currentWeight = characterData.weapons.map(key => weaponData[key])
+            .concat(characterData.supplies.food.map(key => foodData[key]))
+            .concat(characterData.supplies.drinks.map(key => drinksData[key]))
+            .concat(characterData.supplies.meds.map(key => medsData[key]))
+        .map(i => i.WEIGHT)
         .reduce((acc, weight) => {
             const parsed = Number(weight);
             return acc + (isNaN(parsed) ? 0 : parsed) // TODO as WEIGHT=<0.5 was changed to just 0, might not need this anymore
@@ -141,15 +97,68 @@ function updateDisplay() {
     weightDisplay.textContent = `${currentWeight}/${maxWeight}`;
     weightDisplay.style.color = currentWeight > maxWeight ? 'red' : "#afff03";
 
-    characterBackgroundInput.value = characterData.background;
-    gameMapDisplay.textContent = characterData.map;
+    if (activeTab === 'stat') {
+        specialList.forEach(special => specialDisplays[special].textContent = characterData.special[special])
 
+        defenseDisplay.textContent = (characterData.special.agility <= 8) ? "1" : "2";
+        initiativeDisplay.textContent = `${characterData.special.agility + characterData.special.perception}`;
+        meleeDamageDisplay.textContent = str < 7 ? "+1" : str < 9 ? "+2" : str < 11 ? "+3" : "+4";
 
-    // Call the function to load and populate the table when the page loads
-    populateTable();
+        Object.keys(skill2special).forEach(skill => {
+            skillDisplays[skill].textContent = characterData.skills[skill];
+            specialtyDisplays[skill].checked = characterData.specialties.includes(skill);
+        });
+    } else if (activeTab === 'inv') {
+        if (activeSubtab === 'weapons') {
+            updateWeapons();
+        } else if (activeSubtab === 'supplies') {
+            updateSupplies();
+        }
+    } else if (activeTab === 'data') {
+        characterBackgroundInput.value = characterData.background;
+    } else { // === 'map'
+        // Currently nothing here
+    }
 
     // Save to localStorage
     localStorage.setItem('characterData', JSON.stringify(characterData));
+
+    loadTranslations(currentLanguage);
+}
+
+function updateWeapons() {
+    // TODO optimize here, don't remove everything and re-add everything
+    const weapons = characterData.weapons.map(key => weaponData[key]);
+    const containers = {
+        smallGuns: document.getElementById("smallGuns-cards"),
+        energyWeapons: document.getElementById("energyWeapons-cards"),
+        bigGuns: document.getElementById("bigGuns-cards"),
+        meleeWeapons: document.getElementById("meleeWeapons-cards"),
+        explosives: document.getElementById("explosives-cards"),
+        throwing: document.getElementById("throwing-cards"),
+    };
+    for(let c of Object.values(containers))
+        c.innerHTML = '';
+    for (let weapon of weapons) {
+        containers[weapon.SKILL].appendChild(createWeaponCard(weapon.ID));
+    }
+}
+
+function updateSupplies() {
+    // TODO optimize here, don't remove everything and re-add everything
+    const supplies = {
+        'food': foodData,
+        'drinks': drinksData,
+        'meds': medsData
+    }
+    const characterSupplies = {};
+    for (let key of Object.keys(supplies)){
+        const container = document.getElementById(key+"-cards");
+        container.innerHTML = '';
+        for(let item of characterData.supplies[key].map(item => supplies[key][item])) {
+            container.appendChild(createObjectCard(item, key));
+        }
+    }
 }
 
 // Function to toggle edit mode
@@ -233,7 +242,7 @@ skillBoxes.forEach(box => {
         if(isEditing)
             incrementSkill(evt);
         else
-            openMyPopup();
+            openDicePopup();
     });
 });
 
@@ -245,6 +254,8 @@ tabButtons.forEach(tab => {
         screens.forEach(s => s.classList.add('hidden'));
         tab.classList.add('active');
         document.getElementById(`${targetTab}-screen`).classList.remove('hidden');
+        activeTab = targetTab;
+        updateDisplay();
     });
 });
 subtabButtons.forEach(subtab => {
@@ -254,6 +265,8 @@ subtabButtons.forEach(subtab => {
         subscreens.forEach(s => s.classList.add('hidden'));
         subtab.classList.add('active');
         document.getElementById(`inv-${targetSubtab}`).classList.remove('hidden');
+        activeSubtab = targetSubtab;
+        updateDisplay();
     });
 });
 
@@ -294,7 +307,7 @@ async function loadCSV(filePath) {
         return parseCSV(csvData);
     } catch (error) {
         console.error("Error loading CSV:", error);
-        return [];
+        return {};
     }
 }
 
@@ -310,11 +323,11 @@ async function loadJSON(filePath) {
 function parseCSV(csvText) {
     const lines = csvText.trim().split('\n');
     if (lines.length < 2) {
-        return [];
+        return {};
     }
 
     const headers = lines[0].split(',').map(header => header.trim());
-    const data = [];
+    const data = {};
 
     for (let i = 1; i < lines.length; i++) {
         const line = lines[i];
@@ -341,7 +354,7 @@ function parseCSV(csvText) {
             for (let j = 0; j < headers.length; j++) {
                 entry[headers[j]] = values[j];
             }
-            data.push(entry);
+            data[entry.ID] = entry;
         } else {
             console.warn(`Skipping row ${i + 1} due to inconsistent number of columns.`);
         }
@@ -351,36 +364,14 @@ function parseCSV(csvText) {
 }
 
 async function loadWeapons() {
-    let data = await loadCSV('data/weapons/smallGuns.csv');
-    data = data.concat(await loadCSV('data/weapons/energyWeapons.csv'));
-    data = data.concat(await loadCSV('data/weapons/bigGuns.csv'));
-    data = data.concat(await loadCSV('data/weapons/meleeWeapons.csv'));
-    data = data.concat(await loadCSV('data/weapons/throwing.csv'));
-    data = data.concat(await loadCSV('data/weapons/explosives.csv'));
-    return data
-}
-
-function populateTable() {
-    const tableBody = document.getElementById("armiLeggereTableBody");
-
-
-    const toAdd = [];
-    weaponData.forEach(e => toAdd.push(e["ID"]));
-
-
-    toAdd.forEach(weaponId => {
-        const weapon = weaponData.find(row => row["ID"] === weaponId);
-        const row = tableBody.insertRow();
-        row.insertCell().textContent = weapon["ID"] || "";
-        row.insertCell().dataLangId = weapon["SKILL"] || "na";
-        row.insertCell().textContent = weapon["DAMAGE_RATING"] || "";
-        row.insertCell().textContent = weapon["EFFECTS"] || "";
-        row.insertCell().textContent = weapon["DAMAGE_TYPE"] || "";
-        row.insertCell().textContent = weapon["FIRE_RATE"] || "";
-        row.insertCell().textContent = weapon["RANGE"] || "";
-        row.insertCell().textContent = weapon["QUALITIES"] || "";
-        row.insertCell().dataLangId = weapon["AMMO_TYPE"] || "na";
-    });
+    return {
+        ...await loadCSV('data/weapons/smallGuns.csv'),
+        ...await loadCSV('data/weapons/energyWeapons.csv'),
+        ...await loadCSV('data/weapons/bigGuns.csv'),
+        ...await loadCSV('data/weapons/meleeWeapons.csv'),
+        ...await loadCSV('data/weapons/throwing.csv'),
+        ...await loadCSV('data/weapons/explosives.csv'),
+    }
 }
 
 function removeItem(genericItem) {
@@ -421,7 +412,7 @@ function createGenericCard(genericItem, customCardContent) {
             <div class="card-content">
                 ${customCardContent}
                 <div class="card-controls">
-                    <button class="attack-button" onclick="openMyPopup()"></button>
+                    <button class="attack-button" onclick="openDicePopup()"></button>
                     <button class="description-toggle">Show Description</button>
                 </div>
                 <div class="description-container">
@@ -489,7 +480,7 @@ function createGenericCard(genericItem, customCardContent) {
 
 
 function createWeaponCard(weaponId) {
-    const weapon = weaponData.find(row => row.ID === weaponId);
+    const weapon = weaponData[weaponId];
 
     if (!weapon) {
         console.error(`Weapon data not found for ID: ${weaponId}`);
@@ -562,8 +553,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     drinksData = await loadCSV("../data/supplies/drinks.csv");
     medsData = await loadCSV("../data/supplies/meds.csv");
     defaultCharacter = await loadJSON('../data/defaultCharacter.json');
+
+    characterBackgroundInput.addEventListener('blur', function () {
+        characterData.background = characterBackgroundInput.value;
+    });
+
     characterData = JSON.parse(localStorage.getItem('characterData')) || defaultCharacter;
 
     updateDisplay();
-    loadTranslations(currentLanguage);
 });
+
+
+// You'll need to ensure your popup.js has the basic openDicePopup functionality
+// and potentially adapt it to this more dynamic use case.

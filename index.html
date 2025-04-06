@@ -25,21 +25,29 @@
         <link rel="icon" href="/img/icons/512x512.png" type="image/png">
         <link rel="apple-touch-icon" href="/img/icons/192x192.png" type="image/png">
         <link rel="apple-touch-icon" href="/img/icons/512x512.png" type="image/png">
-
-
     </head>
+
+    <!-- TODO what are these classes? do i need them? -->
     <body class="bg-green-900 text-lime-400 p-4">
 
-        <div id="myPopup" class="popup">
+        <div id="dice-popup" class="popup">
             <div class="popup-content">
                 <span class="close-button">&times;</span>
-                <h2>Popup Title</h2>
-                <p>This is the content of the popup.</p>
-                <button id="confirmButton">Confirm</button>
-                <button id="cancelButton">Cancel</button>
+                <h2>WORK IN PROGRESS</h2>
+                <p>Qua si potranno lanciare i dadi, PER ORA NON FA NULLA.</p>
+                <button class="confirmButton">Conferma</button>
+                <button class="cancelButton">Indietro</button>
             </div>
         </div>
-
+        <div id="add-item-popup" class="popup">
+            <div class="popup-content">
+                <span class="close-button">&times;</span>
+                <h2>Scegli un oggetto:</h2>
+                <select id="selector" class="form-control"></select>
+                <button class="confirmButton">Conferma</button>
+                <button class="cancelButton">Indietro</button>
+            </div>
+        </div>
         <div id="overlay" class="overlay"></div>
 
 
@@ -270,78 +278,75 @@
                 </div>
 
                 <div class="subscreen active" id="inv-weapons">
-                    <div id="weapon-cards"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="smallGuns">Small Guns</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('smallGuns')">+</button>
+                    </div>
+                    <div id="smallGuns-cards"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="energyWeapons">Energy Weapons</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('energyWeapons')">+</button>
+                    </div>
+                    <div id="energyWeapons-cards"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="bigGuns">Big Guns</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('bigGuns')">+</button>
+                    </div>
+                    <div id="bigGuns-cards"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="meleeWeapons">Melee Weapons</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('meleeWeapons')">+</button>
+                    </div>
+                    <div id="meleeWeapons-cards"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="explosives">Explosives</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('explosives')">+</button>
+                    </div>
+                    <div id="explosives-cards"></div>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="throwing">Throwing</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('throwing')">+</button>
+                    </div>
+                    <div id="throwing-cards"></div>
                 </div>
                 <div class="subscreen hidden" id="inv-armor">
+                    <h1>WORK IN PROGRESS</h1>
                     <div id="armor-cards"></div>
                 </div>
                 <div class="subscreen hidden" id="inv-supplies">
-                    <div id="supplies-cards"></div>
-                    <h2>Food</h2>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="food">Food</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('food')">+</button>
+                    </div>
                     <div id="food-cards"></div>
-                    <h2>Drinks</h2>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="drinks">Drinks</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('drinks')">+</button>
+                    </div>
                     <div id="drinks-cards"></div>
-                    <h2>Meds</h2>
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="meds">Meds</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('meds')">+</button>
+                    </div>
                     <div id="meds-cards"></div>
                 </div>
                 <div class="subscreen hidden" id="inv-ammo">
+                    <h1>WORK IN PROGRESS</h1>
                     <div id="ammo-cards"></div>
-                </div>
-
-                <div class="subscreen hidden" id="inv-misc">
-                    <div id="misc-cards"></div>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th data-lang-id="weaponId">ID</th>
-                                <th data-lang-id="skill">SKILL</th>
-                                <th data-lang-id="damageRating">DAMAGE_RATING</th>
-                                <th data-lang-id="effects">EFFECTS</th>
-                                <th data-lang-id="damageType">DAMAGE_TYPE</th>
-                                <th data-lang-id="fireRate">FIRE_RATE</th>
-                                <th data-lang-id="range">RANGE</th>
-                                <th data-lang-id="qualities">QUALITIES</th>
-                                <th data-lang-id="ammoType">AMMO_TYPE</th>
-                            </tr>
-                        </thead>
-                            <tbody id="armiLeggereTableBody">
-                        </tbody>
-                    </table>
-
-                    <div class="inventory-overview">
-                        <div class="inventory-item">
-                            <label for="player-caps">Caps:</label>
-                            <div id="player-caps">0</div>
-                        </div>
-                        <div class="inventory-item">
-                            <label for="carry-weight">Carry Weight:</label>
-                            <div id="carry-weight">0 / 0</div>
-                        </div>
-                    </div>
-
-                    <div class="inventory-list">
-                        <h3>Ammo</h3>
-                        <ul id="ammo-list">
-                            <li><span class="ammo-name">9mm</span> <span class="ammo-quantity">x 100</span></li>
-                            <li><span class="ammo-name">Celle al Plasma</span> <span class="ammo-quantity">x 50</span></li>
-                        </ul>
-                    </div>
                 </div>
 
             </section>
 
             <section id="data-screen" class="screen hidden">
-                <p>This is the DATA screen.  You can add character background, notes, etc. here.</p>
+                <p>Per ora si può solo scrivere il proprio background qua sotto:</p>
                  <label for="character-background" class="form-label">Character Background:</label>
-                 <textarea id="character-background" class="form-control" rows="5" placeholder="Enter your character's background..."></textarea>
+                 <textarea id="character-background" class="form-control" rows="5" placeholder="Scrivi il tuo background qui..."></textarea>
+                <br/><br/><br/><br/>
+                <h1>WORK IN PROGRESS</h1>
             </section>
 
             <section id="map-screen" class="screen hidden">
-                <p>This is the MAP screen.  You could display a game map here.</p>
-                 <div id="game-map">
-                    [MAP IMAGE PLACEHOLDER]
-                </div>
+                <h1>WORK IN PROGRESS</h1>
             </section>
 
             <section id="settings-screen" class="screen hidden">

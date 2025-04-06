@@ -61,18 +61,12 @@ B
 img/throwing.svg,7/2/72af0a3237264f0fdc6fd25d3b0ad7d1f9cd3426
 >
 img/attack.svg,4/5/451c21fc51ab13e129034b6f07a6dab89319659b
-@
-js/lang/popup.js,e/7/e74d8e4eda935ce292c0b739107bb00b7b14f50d
-H
-js/defaultCharacter.json,e/0/e0c3c74b145471ab7b0bc68819151646e68e7fd0
 8
 js/sw.js,5/2/52e65ead96c54d766e69953f76bfc1f6a4081d52
 J
 data/defaultCharacter.json,0/d/0d6abc0f1f5b058297bc36b31b56464f4767da02
 <
 img/caps.svg,1/b/1b1859906d419a8cf15c95a3033318bcb2b31f91
-J
-img/FO76_Caps_currency.svg,a/1/a1b1ab3e60ea257f3736ba0a6304059a8e47253a
 >
 img/weight.svg,5/5/556480ee02a62a953ff1a13a16988a72eb3225c5
 :
@@ -84,8 +78,6 @@ H
 data/supplies/drinks.csv,4/7/47755c89e39bf9893d7de4b2396147e70fe0bf89
 F
 data/supplies/meds.csv,4/e/4ea5b86fbd369b7ad45a9f87da0789e94594adee
-8
-TODO.txt,b/8/b871594f146532f9abccbebffa1170a083349518
 7
 TODO.md,b/5/b5b096f958319b1c7782c800c78c4c358a58d709
 <
@@ -94,3 +86,5 @@ F
 img/drinks.svg,7/5/75627a565d450c069d8155129fa8c40ceca12634
 <
 img/food.svg,e/1/e1baa0349d16b2599c518c436648193fdcb41bcf
+;
+js/popup.js,7/0/704389c639e64e1b800f4cd503ef84c0f6366379
