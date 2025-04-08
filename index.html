@@ -33,10 +33,41 @@
         <div id="dice-popup" class="popup">
             <div class="popup-content">
                 <span class="close-button">&times;</span>
-                <h2>WORK IN PROGRESS</h2>
-                <p>Qua si potranno lanciare i dadi, PER ORA NON FA NULLA.</p>
-                <button class="confirmButton">Conferma</button>
-                <button class="cancelButton">Indietro</button>
+                <h2 class="text-xl mb-4">Lancia Dadi d20</h2>
+                <p class="mb-6">Clicca i dadi per attivarli/disattivarli (Max 5)</p>
+                <div class="dice-container">
+                    <div class="dice-wrapper">
+                        <div class="dice active" data-value="1">?</div>
+                    </div>
+                    <div class="dice-wrapper">
+                        <div class="dice active" data-value="2">?</div>
+                    </div>
+                    <div class="dice-wrapper">
+                        <div class="dice inactive" data-value="3">?</div>
+                    </div>
+                    <div class="dice-wrapper">
+                        <div class="dice inactive" data-value="4">?</div>
+                    </div>
+                    <div class="dice-wrapper">
+                        <div class="dice inactive" data-value="5">?</div>
+                    </div>
+                </div>
+                <div class="ap-cost">AP Cost: +0</div>
+                <div class="select-container">
+                    <select id="selector2">
+                         <option data-lang-id="strength" value="strength">Strength</option>
+                         <option data-lang-id="perception" value="perception">Perception</option>
+                         <option data-lang-id="endurance" value="endurance">Endurance</option>
+                         <option data-lang-id="charisma" value="charisma">Charisma</option>
+                         <option data-lang-id="intelligence" value="intelligence">Intelligence</option>
+                         <option data-lang-id="agility" value="agility">Agility</option>
+                         <option data-lang-id="luck" value="luck">Luck</option>
+                    </select>
+                </div>
+                <div class="flex justify-center gap-4 mt-4">
+                    <button class="confirm-button bg-lime-600 text-green-900 px-6 py-2 rounded-md font-bold hover:bg-lime-500 transition-colors duration-200">Lancia</button>
+                    <button class="cancel-button bg-gray-700 text-lime-400 px-6 py-2 rounded-md font-bold hover:bg-gray-600 transition-colors duration-200">Indietro</button>
+                </div>
             </div>
         </div>
         <div id="add-item-popup" class="popup">
