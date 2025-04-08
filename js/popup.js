@@ -9,23 +9,32 @@ const overlay = document.getElementById('overlay');
 const popupSelector = dicePopup.querySelector('#popup-selector');
 const luckCheckbox = document.querySelector('.luck-checkbox');
 
+const rollDiceButton = dicePopup.querySelector('.confirm-button');
+
 let activePopup = null;
 
 function openDicePopup(skillId) {
     dicePopup.dataSkill = skillId;
+    dicePopup.dataHasRolled = false;
     popupSelector.value = skill2special[skillId];
     dicePopup.querySelector('#skill-throw-on').textContent = "Tiro su " + langData[currentLanguage][skillId]
     popupSelector.disabled = false;
     luckCheckbox.checked = false;
+    luckCheckbox.disabled = false;
+
+    rollDiceButton.textContent = 'Lancia'
+    rollDiceButton.addEventListener('click', rollDice);
 
     for (let i = 0; i < diceElements.length; i++) {
         diceElements[i].textContent = "?";
         diceElements[i].classList.remove('roll-crit');
         diceElements[i].classList.remove('roll-complication');
+        diceElements[i].classList.remove('active');
+        diceElements[i].classList.remove('inactive');
         if(i >= 2) {
-            diceElements[i].classList.remove('active');
-            diceElements[i].classList.remove('inactive');
             diceElements[i].classList.add('inactive');
+        } else {
+            diceElements[i].classList.add('active');
         }
     }
 
@@ -147,6 +156,70 @@ luckCheckbox.addEventListener('click', () => {
     }
 });
 
+function clickDice(dice, index) {
+    if (!dicePopup.dataHasRolled) {
+        if (dice.classList.contains('active')) {
+            for (let i = Math.max(index, 2); i < diceElements.length; i++) {
+                diceElements[i].classList.remove('active');
+                diceElements[i].textContent = "?";
+                diceElements[i].classList.remove('roll-crit');
+                diceElements[i].classList.remove('roll-complication');
+                diceElements[i].classList.add('inactive');
+            }
+        } else {
+            for (let i = 0; i <= index; i++) {
+                diceElements[i].classList.remove('inactive');
+                diceElements[i].classList.add('active');
+            }
+        }
+        updateModifier();
+    } else {
+        if (dice.classList.contains('active')) {
+            dice.classList.remove('active');
+            dice.classList.add('inactive');
+        } else if (dice.classList.contains('inactive') && dice.textContent !== '?') {
+            dice.classList.remove('inactive');
+            dice.classList.add('active');
+        }
+    }
+}
+
+function rollDice() {
+    let hasActive = false;
+    diceElements.forEach(dice => {
+        if (dice.classList.contains('active')) {
+            hasActive = true;
+            const roll = Math.floor(Math.random() * 20) + 1;
+            dice.textContent = roll;
+            let critVal = 1;
+            if(characterData.specialties.indexOf(dicePopup.dataSkill) > -1)
+                critVal = characterData.skills[dicePopup.dataSkill] || 1;
+            if( roll >= 20 ) {
+                dice.classList.remove('roll-crit');
+                dice.classList.add('roll-complication');
+            } else if (roll <= critVal) {
+                dice.classList.remove('roll-complication');
+                dice.classList.add('roll-crit');
+            } else {
+                dice.classList.remove('roll-crit');
+                dice.classList.remove('roll-complication');
+            }
+            dice.classList.remove('active')
+            dice.classList.add('inactive')
+        }
+    });
+    if(!hasActive) {
+        alert("Seleziona dei dadi da rilanciare!")
+    } else {
+        const decreaseLuck = dicePopup.dataHasRolled || luckCheckbox.checked ? 1 : 0;
+        rollDiceButton.textContent = "Rilancia (Fortuna)"
+        dicePopup.dataHasRolled = true;
+        luckCheckbox.disabled = true;
+        popupSelector.disabled = true;
+        // TODO actually decrease luck points
+    }
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     for(let popup of popups) {
         const closeButton = popup.querySelector('.close-button');
@@ -156,27 +229,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         cancelButton.addEventListener('click', closePopup);
     }
 
-    dicePopup.querySelector('.confirm-button').addEventListener('click', () => {
-        diceElements.forEach(dice => {
-            if (dice.classList.contains('active')) {
-                const roll = Math.floor(Math.random() * 20) + 1;
-                dice.textContent = roll;
-                let critVal = 1;
-                if(characterData.specialties.indexOf(dicePopup.dataSkill) > -1)
-                    critVal = characterData.skills[dicePopup.dataSkill] || 1;
-                if( roll >= 20 ) {
-                    dice.classList.remove('roll-crit');
-                    dice.classList.add('roll-complication');
-                } else if (roll <= critVal) {
-                    dice.classList.remove('roll-complication');
-                    dice.classList.add('roll-crit');
-                } else {
-                    dice.classList.remove('roll-crit');
-                    dice.classList.remove('roll-complication');
-                }
-            }
-        });
-    });
     addItemPopup.querySelector('.confirm-button').addEventListener('click', () => {
         const value = addItemPopup.querySelector('#selector').value;
 
@@ -191,23 +243,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
     diceElements.forEach((dice, index) => {
-        dice.addEventListener('click', () => {
-            if (dice.classList.contains('active')) {
-                for (let i = Math.max(index, 2); i < diceElements.length; i++) {
-                    diceElements[i].classList.remove('active');
-                    diceElements[i].textContent = "?";
-                    diceElements[i].classList.remove('roll-crit');
-                    diceElements[i].classList.remove('roll-complication');
-                    diceElements[i].classList.add('inactive');
-                }
-            } else {
-                for (let i = 0; i <= index; i++) {
-                    diceElements[i].classList.remove('inactive');
-                    diceElements[i].classList.add('active');
-                }
-            }
-            updateModifier();
-        });
+        dice.addEventListener('click', () => clickDice(dice, index));
     });
 });
 

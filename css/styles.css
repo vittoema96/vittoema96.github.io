@@ -432,7 +432,9 @@ h2 {
 .dice.active {
     opacity: 1;
 }
-
+.dice.unselected {
+    opacity: 0.3;
+}
 .dice.inactive {
     opacity: 0.3;
 }
