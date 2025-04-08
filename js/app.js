@@ -180,7 +180,7 @@ function toggleEditMode() {
     // Toggle event listeners on skills
     const skillBoxes = document.querySelectorAll('.skill'); // Or whatever the parent element is
     skillBoxes.forEach(box => {
-        const checkbox = box.querySelector('input[type="checkbox"]');
+        const checkbox = box.querySelector('input[type="checkbox"][class="specialty-checkbox"]');
         if(checkbox)
             checkbox.disabled = !isEditing;
     });
@@ -241,8 +241,11 @@ skillBoxes.forEach(box => {
     box.addEventListener('click', function (evt) {
         if(isEditing)
             incrementSkill(evt);
-        else
-            openDicePopup();
+        else {
+            const box = event.currentTarget;
+            const skillId = box.querySelector('.skill-value').id.replace("skill-", "");
+            openDicePopup(skillId);
+        }
     });
 });
 
@@ -280,7 +283,7 @@ editStatsButton.addEventListener('click', () => {
 });
 
 // TODO just the specialty checkboxes
-const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const checkboxes = document.querySelectorAll('input[type="checkbox"][class="specialty-checkbox"]');
 checkboxes.forEach(checkbox => {
     checkbox.disabled = true;
 });
@@ -399,6 +402,8 @@ function createGenericCard(genericItem, customCardContent) {
         }
     }
 
+    const skillId = genericItem.SKILL || "---"
+
     card.innerHTML = `
         <div class="card">
             <div class="card-header">
@@ -412,7 +417,7 @@ function createGenericCard(genericItem, customCardContent) {
             <div class="card-content">
                 ${customCardContent}
                 <div class="card-controls">
-                    <button class="attack-button" onclick="openDicePopup()"></button>
+                    <button class="attack-button" onclick="openDicePopup('${skillId}')"></button>
                     <button class="description-toggle">Show Description</button>
                 </div>
                 <div class="description-container">
@@ -562,7 +567,3 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     updateDisplay();
 });
-
-
-// You'll need to ensure your popup.js has the basic openDicePopup functionality
-// and potentially adapt it to this more dynamic use case.

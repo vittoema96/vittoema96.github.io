@@ -1,73 +1,79 @@
 :root {
     --primary-color: #afff03;
     --primary-color-rgb: 175, 255, 3; /* #afff03 */
-    --secondary-color: #0f3003; /* Replace with your secondary color's hex code */
-    --tertiary-color: rgba(var(--primary-color), 0.7);
+    --secondary-color: #0f3003;
+    --tertiary-color: rgba(var(--primary-color-rgb), 0.7); /* Consistent use of RGB */
+
+    /* Define a consistent border style */
+    --border-primary-thick: 2px solid var(--primary-color);
+    --border-primary-thin: 1px solid var(--primary-color);
+    --border-secondary-lighter: 1px solid #338006; /* Example lighter secondary */
+
+    --success-color: #0088ff;
+    --failure-color: #dc143c;
 }
+
 html {
     margin: 0;
     padding: 0;
     height: 100%; /* Ensure full height */
     overflow: hidden; /* Prevent scrolling */
+    box-sizing: border-box; /* Apply box-sizing to html as well */
 }
+
 body {
     margin: 0;
     height: 100dvh;
-
     color: var(--primary-color);
     background-color: var(--secondary-color);
-
     display: flex;
     flex-direction: column;
-
     box-sizing: border-box;
-
     font-family: 'Space Mono', monospace;
-    /*font-family: 'Roboto Condensed', sans-serif;*/
-
     padding: 0;
 }
+
 .inverse {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
+
 /* Header, the one with PipBoy 3000 */
 .header {
     text-align: center;
-    border-bottom: 2px solid var(--primary-color);
-
+    border-bottom: var(--border-primary-thick); /* Using the defined border variable */
     font-size: 0.9em;
-
-    justify-content: space-between;
-    align-items: start;
-
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
+    justify-content: space-between;
+    align-items: start;
 }
+
 .icon-value-pair {
     padding: 2px;
-
-    min-width:25%;
-
+    min-width: 25%;
     display: flex;
     flex-direction: row;
-
     text-align: center;
 }
+
 .icon-value-pair:not(:last-child) {
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: var(--border-primary-thick); /* Using the defined border variable */
 }
+
 .icon-value-pair div {
     width: 100%;
-    font-size: .8rem;
+    font-size: 0.8rem;
     text-align: center;
 }
+
 .icon {
     width: 15px;
     height: 15px;
     margin-right: 8px;
 }
+
 .header h1 { /* TODO should be smaller */
     font-size: 3rem;
     margin: 0.5rem;
@@ -75,18 +81,18 @@ body {
 
 .main-container {
     width: 100%;
-    overflow: auto;
+    overflow-y: auto; /* Changed to auto for internal scrolling if needed */
     margin: 0 auto;
     border: 4px solid var(--primary-color);
     border-radius: 10px;
-    overflow-y: visible;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     flex-grow: 1;
-    box-sizing: border-box; /* Add this */
-    padding: 1rem 1rem 1rem;
+    box-sizing: border-box;
+    padding: 1rem; /* Shorthand for all sides */
 }
+
 .tab-container {
     display: flex;
     justify-content: space-between;
@@ -94,14 +100,18 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
 }
+
 #main-tab-container {
-    padding: .5rem 1rem 0 1rem;
+    padding: 0.5rem 1rem 0; /* Top, left/right, bottom */
 }
+
 .tab {
     padding: 0.75rem 1.5rem;
     background-color: #1a5205;
     color: var(--primary-color);
-    border: 2px solid var(--primary-color);
+    border-left: var(--border-primary-thick); /* Individual border sides */
+    border-top: var(--border-primary-thick);
+    border-right: var(--border-primary-thick);
     border-bottom: 0;
     border-radius: 5px 5px 0 0;
     margin-right: 0.5rem;
@@ -113,38 +123,44 @@ body {
     min-width: 40px;
     box-sizing: border-box;
 }
+
 .tab:hover {
     background-color: #338006;
 }
+
 .tab.active {
     background-color: var(--primary-color);
-    color: #0f3003;
-    border-bottom: 2px solid var(--primary-color);
+    color: var(--secondary-color);
+    border-bottom: var(--border-primary-thick); /* Consistent border */
 }
+
 .subtab {
     color: rgba(var(--primary-color-rgb), 0.25);
     cursor: pointer;
-    font-size: .7rem;
+    font-size: 0.7rem;
     font-weight: bold;
-    transition: background-color,font-size 0.3s ease;
+    transition: background-color, font-size 0.3s ease;
     text-align: center;
     box-sizing: border-box;
     margin-bottom: 1rem;
 }
+
 /* Subtabs right before and after the active one */
 .subtab.active + .subtab,
 .subtab:has(+ .subtab.active) {
-    color: rgba(var(--primary-color-rgb), .7);
+    color: rgba(var(--primary-color-rgb), 0.7);
     font-size: 1rem;
 }
+
 .subtab.active {
     font-size: 1.2rem;
     font-weight: bolder;
     color: var(--primary-color);
-    border-top: 2px solid var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
+    border-top: var(--border-primary-thick);
+    border-bottom: var(--border-primary-thick);
     transition: font-size 0.2s ease;
 }
+
 #mini-tab {
     min-width: 10px;
     flex: 0 0 auto;
@@ -152,9 +168,10 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .form-control {
-    background-color: rgba(175, 255, 3, 0.1);
-    border: 1px solid var(--primary-color);
+    background-color: rgba(var(--primary-color-rgb), 0.1); /* Consistent use of RGB */
+    border: var(--border-primary-thin); /* Using the defined border variable */
     color: var(--primary-color);
     padding: 0.75rem;
     border-radius: 5px;
@@ -162,11 +179,13 @@ body {
     width: 100%;
     box-sizing: border-box;
 }
+
 .form-control:focus {
     outline: none;
-    box-shadow: 0 0 5px rgba(175, 255, 3, 0.7);
+    box-shadow: 0 0 5px var(--tertiary-color);
     border-color: var(--primary-color);
 }
+
 .form-label {
     display: block;
     margin-bottom: 0.5rem;
@@ -174,6 +193,7 @@ body {
     font-weight: bold;
     font-size: 1.2rem;
 }
+
 .grid-container {
     display: flex;
     justify-content: space-between; /* Change to space-between */
@@ -182,16 +202,19 @@ body {
     margin-bottom: 1.5rem;
     width: 100%;
 }
+
 .grid-container .derived-stat:first-child {
     margin-left: 0;
 }
+
 .grid-container .derived-stat:last-child {
     margin-right: 0;
 }
+
 .button {
     padding: 0.75rem 1.5rem;
     background-color: var(--primary-color);
-    color: #0f3003;
+    color: var(--secondary-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -199,37 +222,48 @@ body {
     transition: background-color 0.3s ease;
     margin-top: 0.5rem;
 }
+
 .button:hover {
     background-color: #7cba02;
 }
+
 .hidden {
     display: none;
 }
+
 input[type="checkbox"] {
     margin-right: 0;
+    appearance: none;
+    width: 24px; /* Adjust */
+    height: 24px; /* Adjust */
+    cursor: pointer;
+    position: relative;
+    content: '';
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
-input[type="checkbox"] {
-  appearance: none;
-  width: 24px; /* Adjust */
-  height: 24px; /* Adjust */
-  cursor: pointer;
-  position: relative;
-  content: '';
-  display: block;
-  background-image: url('../img/vaultboy.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
+
+input[type="checkbox"].specialty-checkbox {
+    background-image: url('../img/vaultboy.svg');
 }
-input[type="checkbox"]:checked {
-  filter: url('../img/vaultboy.svg#checked');
+input[type="checkbox"].specialty-checkbox:checked {
+    filter: url('../img/vaultboy.svg#checked');
 }
+input[type="checkbox"].luck-checkbox {
+    background-image: url('../img/luck.svg');
+}
+input[type="checkbox"].luck-checkbox:checked {
+    filter: url('../img/luck.svg#checked');
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
     color: var(--primary-color);
     font-size: 1.6vw;
-    border: 2px solid var(--primary-color); /* Add a border to the whole table */
+    border: var(--border-primary-thick); /* Using the defined border variable */
 }
 
 thead th {
@@ -238,29 +272,28 @@ thead th {
     font-weight: bold;
     padding: 0.75rem;
     text-align: center;
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: var(--border-primary-thick); /* Using the defined border variable */
 }
 
 tbody td {
     padding: 0.75rem;
     text-align: center;
-    border-bottom: 1px solid #338006; /* Lighter border for rows */
+    border-bottom: var(--border-secondary-lighter); /* Using the defined border variable */
 }
 
 tbody tr:last-child td {
-    border-bottom: none; /* Remove border from the last row */
+    border-bottom: none;
 }
 
 tbody tr:nth-child(even) {
-    background-color: rgba(175, 255, 3, 0.05); /* Slightly darker for even rows */
+    background-color: rgba(var(--primary-color-rgb), 0.05); /* Consistent use of RGB */
 }
 
 /* Optional: Hover effect on rows */
 tbody tr:hover {
-    background-color: rgba(175, 255, 3, 0.1);
+    background-color: rgba(var(--primary-color-rgb), 0.1); /* Consistent use of RGB */
     cursor: pointer;
 }
-
 
 .popup {
     display: none; /* Initially hidden */
@@ -270,9 +303,9 @@ tbody tr:hover {
     top: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--secondary-color);
-    border: 1px solid #888;
+    border: var(--border-primary-thin); /* Using the defined border variable */
     padding: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .popup-content {
@@ -305,10 +338,8 @@ tbody tr:hover {
     z-index: 999; /* Below the popup */
 }
 
-
-.confirm-button {
-    background-color: #afff03;
-    color: #0f3003;
+.confirm-button,
+.cancel-button {
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: bold;
@@ -317,32 +348,29 @@ tbody tr:hover {
     font-family: 'Space Mono', monospace;
     border: none;
 }
+
+.confirm-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
 .confirm-button:hover {
     background-color: #7ccc02;
 }
+
 .cancel-button {
     background-color: #4a5568;
-    color: #afff03;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family: 'Space Mono', monospace;
-    border: none;
+    color: var(--primary-color);
 }
+
 .cancel-button:hover {
     background-color: #718096;
 }
-h2{
+
+h2 {
     font-family: 'Share Tech Mono', monospace;
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    text-align: center;
-}
-p{
-    font-family: 'Share Tech Mono', monospace;
-    margin-bottom: 1.5rem;
     text-align: center;
 }
 
@@ -355,8 +383,9 @@ p{
 
 .dice-wrapper {
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 12%;
+    min-width: 40px;
+    aspect-ratio: 1 / 1;
     margin: 0 10px;
 }
 
@@ -364,9 +393,10 @@ p{
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #afff03;
+    width: 100%; /* Adjust for border thickness */
+    height: 100%; /* Adjust for border thickness */
+    background-color: var(--primary-color);
+    border: 3px solid transparent;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     display: flex;
     justify-content: center;
@@ -374,8 +404,29 @@ p{
     font-size: 1.5rem;
     cursor: pointer;
     transition: opacity 0.2s ease;
-    color: #0f3003;
+    color: var(--secondary-color);
     margin: 5px;
+}
+
+.dice::before {
+    content: "";
+    position: absolute;
+    top: 0; /* Adjust for border thickness */
+    left: 0; /* Adjust for border thickness */
+    width: 100%; /* Adjust for border thickness */
+    height: 100%; /* Adjust for border thickness */
+
+    background-color: var(--primary-color);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    pointer-events: none; /* Prevent the pseudo-element from interfering with clicks */
+    z-index: -1; /* Place it behind the main element */
+}
+
+.roll-crit {
+    background-color: var(--success-color);
+}
+.roll-complication {
+    background-color: var(--failure-color);
 }
 
 .dice.active {
@@ -385,9 +436,11 @@ p{
 .dice.inactive {
     opacity: 0.3;
 }
+
 .dice-wrapper:nth-child(1),
 .dice-wrapper:nth-child(2) {
     transform: scale(1.2);
+    margin: 0 12px;
 }
 
 .modifier {
@@ -399,9 +452,9 @@ p{
 
 .select-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    margin-top: 1rem;
+    margin: 1rem 0;
     gap: 1rem;
     width: 100%;
 }
@@ -409,7 +462,7 @@ p{
 .select-container select {
     padding: 0.5rem;
     border-radius: 5px;
-    border: 2px solid var(--primary-color);
+    border: var(--border-primary-thick); /* Using the defined border variable */
     background-color: var(--secondary-color);
     color: var(--primary-color);
     font-family: 'Space Mono', monospace;
@@ -421,38 +474,39 @@ p{
     outline: none;
     box-shadow: 0 0 5px var(--tertiary-color);
 }
-.roll-1 {
-    background-color: #dc143c;
-    color: #fff;
-}
+
 @media (max-width: 768px) {
     .header {
         text-align: start;
     }
+
     .tab {
         padding: 0.2rem 0.3rem;
         margin-right: 0.2rem;
         font-size: 0.9rem;
         white-space: nowrap;
     }
+
     .grid-container {
-        /* Potrebbe essere necessario ridurre il margin-bottom se lo spazio diventa troppo */
         margin-bottom: 1rem;
     }
 
     .main-container table {
-        margin-left: calc(-1 * 1.4rem); /* Negative margin to the left, matching the padding */
-        margin-right: calc(-1 * 1.4rem); /* Negative margin to the right, matching the padding */
-        box-sizing: border-box; /* Add this */
+        margin-left: -1.4rem; /* Negative margin to the left, matching the padding */
+        margin-right: -1.4rem; /* Negative margin to the right, matching the padding */
+        box-sizing: border-box;
         width: calc(100% + 2.8rem);
     }
+
     table {
         margin: 0;
-        /*font-size: 0.4rem;*/
     }
-    thead th, tbody td {
+
+    thead th,
+    tbody td {
         padding: 0.2rem;
     }
+
     table {
         width: 100%; /* Allow table to be wider than container */
     }

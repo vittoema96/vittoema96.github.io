@@ -1,16 +1,42 @@
 const popups = document.getElementsByClassName('popup');
 const dicePopup = document.getElementById('dice-popup');
 const addItemPopup = document.getElementById('add-item-popup');
+const apCost = dicePopup.querySelector('.ap-cost');
+const diceElements = document.querySelectorAll('.dice');
 
 const overlay = document.getElementById('overlay');
 
+const popupSelector = dicePopup.querySelector('#popup-selector');
+const luckCheckbox = document.querySelector('.luck-checkbox');
+
 let activePopup = null;
 
-function openDicePopup() {
+function openDicePopup(skillId) {
+    dicePopup.dataSkill = skillId;
+    popupSelector.value = skill2special[skillId];
+    dicePopup.querySelector('#skill-throw-on').textContent = "Tiro su " + langData[currentLanguage][skillId]
+    popupSelector.disabled = false;
+    luckCheckbox.checked = false;
+
+    for (let i = 0; i < diceElements.length; i++) {
+        diceElements[i].textContent = "?";
+        diceElements[i].classList.remove('roll-crit');
+        diceElements[i].classList.remove('roll-complication');
+        if(i >= 2) {
+            diceElements[i].classList.remove('active');
+            diceElements[i].classList.remove('inactive');
+            diceElements[i].classList.add('inactive');
+        }
+    }
+
+    updateModifier();
+
+
     dicePopup.style.display = 'block';
     overlay.style.display = 'block';
     activePopup = dicePopup;
 }
+
 function openAddItemPopup() {
     addItemPopup.style.display = 'block';
     overlay.style.display = 'block';
@@ -48,7 +74,7 @@ function openAddItemModal(itemType) {
         const selectElement = document.getElementById('selector');
         selectElement.innerHTML = "";
 
-        const confirmButton = popup.querySelector('.confirmButton');
+        const confirmButton = popup.querySelector('.confirm-button');
         const newConfirmButton = confirmButton.cloneNode(true);
         newConfirmButton.addEventListener('click', () => {
             if (selectElement.value) {
@@ -87,6 +113,19 @@ function closePopup() {
 
 
 
+function updateModifier() {
+    let activeCount = document.querySelectorAll('.dice.active').length;
+    let modifier = 0;
+    if (activeCount === 3) {
+        modifier = 1;
+    } else if (activeCount === 4) {
+        modifier = 3;
+    } else if (activeCount === 5) {
+        modifier = 6;
+    }
+    apCost.textContent = `AP Cost: +${modifier}`;
+}
+
 
 // Close on ESC (on computer)
 document.addEventListener('keydown', function(event) {
@@ -96,22 +135,49 @@ document.addEventListener('keydown', function(event) {
 });
 
 
+luckCheckbox.addEventListener('click', () => {
+    if(luckCheckbox.checked) {
+        luckCheckbox.dataPrevSpecial = popupSelector.value;
+        popupSelector.value = 'luck'
+        popupSelector.disabled = true;
+    } else {
+        popupSelector.value = luckCheckbox.dataPrevSpecial;
+        luckCheckbox.dataPrevSpecial = undefined;
+        popupSelector.disabled = false;
+    }
+});
+
 document.addEventListener("DOMContentLoaded", async () => {
     for(let popup of popups) {
         const closeButton = popup.querySelector('.close-button');
-        const cancelButton = popup.querySelector('.cancelButton');
+        const cancelButton = popup.querySelector('.cancel-button');
         
         closeButton.addEventListener('click', closePopup);
         cancelButton.addEventListener('click', closePopup);
     }
 
-
-
-    dicePopup.querySelector('.confirmButton').addEventListener('click', () => {
-        alert("... ma non succede nulla!");
-        closePopup();
+    dicePopup.querySelector('.confirm-button').addEventListener('click', () => {
+        diceElements.forEach(dice => {
+            if (dice.classList.contains('active')) {
+                const roll = Math.floor(Math.random() * 20) + 1;
+                dice.textContent = roll;
+                let critVal = 1;
+                if(characterData.specialties.indexOf(dicePopup.dataSkill) > -1)
+                    critVal = characterData.skills[dicePopup.dataSkill] || 1;
+                if( roll >= 20 ) {
+                    dice.classList.remove('roll-crit');
+                    dice.classList.add('roll-complication');
+                } else if (roll <= critVal) {
+                    dice.classList.remove('roll-complication');
+                    dice.classList.add('roll-crit');
+                } else {
+                    dice.classList.remove('roll-crit');
+                    dice.classList.remove('roll-complication');
+                }
+            }
+        });
     });
-    addItemPopup.querySelector('.confirmButton').addEventListener('click', () => {
+    addItemPopup.querySelector('.confirm-button').addEventListener('click', () => {
         const value = addItemPopup.querySelector('#selector').value;
 
         if (value) {
@@ -122,4 +188,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     overlay.addEventListener('click', closePopup); // Close when clicking outside
+
+
+    diceElements.forEach((dice, index) => {
+        dice.addEventListener('click', () => {
+            if (dice.classList.contains('active')) {
+                for (let i = Math.max(index, 2); i < diceElements.length; i++) {
+                    diceElements[i].classList.remove('active');
+                    diceElements[i].textContent = "?";
+                    diceElements[i].classList.remove('roll-crit');
+                    diceElements[i].classList.remove('roll-complication');
+                    diceElements[i].classList.add('inactive');
+                }
+            } else {
+                for (let i = 0; i <= index; i++) {
+                    diceElements[i].classList.remove('inactive');
+                    diceElements[i].classList.add('active');
+                }
+            }
+            updateModifier();
+        });
+    });
 });
+
+
+
+
+
+
+

@@ -88,3 +88,5 @@ F
 img/food.svg,e/1/e1baa0349d16b2599c518c436648193fdcb41bcf
 ;
 js/popup.js,7/0/704389c639e64e1b800f4cd503ef84c0f6366379
+<
+img/luck.svg,6/e/6e6553e827c650f41a4d110379ae4ef135c82c64

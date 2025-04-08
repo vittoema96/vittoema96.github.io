@@ -33,8 +33,7 @@
         <div id="dice-popup" class="popup">
             <div class="popup-content">
                 <span class="close-button">&times;</span>
-                <h2 class="text-xl mb-4">Lancia Dadi d20</h2>
-                <p class="mb-6">Clicca i dadi per attivarli/disattivarli (Max 5)</p>
+                <h2 id="skill-throw-on" class="text-xl mb-4">Tiro su SKILL</h2>
                 <div class="dice-container">
                     <div class="dice-wrapper">
                         <div class="dice active" data-value="1">?</div>
@@ -54,7 +53,7 @@
                 </div>
                 <div class="ap-cost">AP Cost: +0</div>
                 <div class="select-container">
-                    <select id="selector2">
+                    <select id="popup-selector">
                          <option data-lang-id="strength" value="strength">Strength</option>
                          <option data-lang-id="perception" value="perception">Perception</option>
                          <option data-lang-id="endurance" value="endurance">Endurance</option>
@@ -63,6 +62,7 @@
                          <option data-lang-id="agility" value="agility">Agility</option>
                          <option data-lang-id="luck" value="luck">Luck</option>
                     </select>
+                    <input type="checkbox" class="luck-checkbox" src="img/luck.svg" alt="Use Luck"/>
                 </div>
                 <div class="flex justify-center gap-4 mt-4">
                     <button class="confirm-button bg-lime-600 text-green-900 px-6 py-2 rounded-md font-bold hover:bg-lime-500 transition-colors duration-200">Lancia</button>
@@ -75,8 +75,8 @@
                 <span class="close-button">&times;</span>
                 <h2>Scegli un oggetto:</h2>
                 <select id="selector" class="form-control"></select>
-                <button class="confirmButton">Conferma</button>
-                <button class="cancelButton">Indietro</button>
+                <button class="confirm-button">Conferma</button>
+                <button class="cancel-button">Indietro</button>
             </div>
         </div>
         <div id="overlay" class="overlay"></div>
@@ -165,7 +165,7 @@
                                   data-lang-id="strength"
                                   data-lang-format="[%s]">[Strength]</span>
                             <span class="skill-value" id="skill-athletics">0</span>
-                            <input type="checkbox" id="specialty-athletics" name="specialty-athletics">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-athletics" name="specialty-athletics">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="barter">Barter</span>
@@ -173,7 +173,7 @@
                                   data-lang-id="charisma"
                                   data-lang-format="[%s]">[Charisma]</span>
                             <span class="skill-value" id="skill-barter">0</span>
-                            <input type="checkbox" id="specialty-barter" name="specialty-barter">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-barter" name="specialty-barter">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="bigGuns" >Big Guns</span>
@@ -181,7 +181,7 @@
                                   data-lang-id="endurance"
                                   data-lang-format="[%s]">[Endurance]</span>
                             <span class="skill-value" id="skill-bigGuns">0</span>
-                            <input type="checkbox" id="specialty-bigGuns" name="specialty-bigGuns">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-bigGuns" name="specialty-bigGuns">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="energyWeapons">Energy Weapons</span>
@@ -189,7 +189,7 @@
                                   data-lang-id="perception"
                                   data-lang-format="[%s]">[Perception]</span>
                             <span class="skill-value" id="skill-energyWeapons">0</span>
-                            <input type="checkbox" id="specialty-energyWeapons" name="specialty-energyWeapons">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-energyWeapons" name="specialty-energyWeapons">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="explosives">Explosives</span>
@@ -197,7 +197,7 @@
                                   data-lang-id="perception"
                                   data-lang-format="[%s]">[Perception]</span>
                             <span class="skill-value" id="skill-explosives">0</span>
-                            <input type="checkbox" id="specialty-explosives" name="specialty-explosives">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-explosives" name="specialty-explosives">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="lockpick">Lockpick</span>
@@ -205,7 +205,7 @@
                                   data-lang-id="perception"
                                   data-lang-format="[%s]">[Perception]</span>
                             <span class="skill-value" id="skill-lockpick">0</span>
-                            <input type="checkbox" id="specialty-lockpick" name="specialty-lockpick">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-lockpick" name="specialty-lockpick">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="medicine">Medicine</span>
@@ -213,7 +213,7 @@
                                   data-lang-id="intelligence"
                                   data-lang-format="[%s]">[Intelligence]</span>
                             <span class="skill-value" id="skill-medicine">0</span>
-                            <input type="checkbox" id="specialty-medicine" name="specialty-medicine">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-medicine" name="specialty-medicine">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="meleeWeapons">Melee Weapons</span>
@@ -221,7 +221,7 @@
                                   data-lang-id="strength"
                                   data-lang-format="[%s]">[Strength]</span>
                             <span class="skill-value" id="skill-meleeWeapons">0</span>
-                            <input type="checkbox" id="specialty-meleeWeapons" name="specialty-meleeWeapons">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-meleeWeapons" name="specialty-meleeWeapons">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="pilot">Pilot</span>
@@ -229,7 +229,7 @@
                                   data-lang-id="perception"
                                   data-lang-format="[%s]">[Perception]</span>
                             <span class="skill-value" id="skill-pilot">0</span>
-                            <input type="checkbox" id="specialty-pilot" name="specialty-pilot">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-pilot" name="specialty-pilot">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="repair">Repair</span>
@@ -237,7 +237,7 @@
                                   data-lang-id="intelligence"
                                   data-lang-format="[%s]">[Intelligence]</span>
                             <span class="skill-value" id="skill-repair">0</span>
-                            <input type="checkbox" id="specialty-repair" name="specialty-repair">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-repair" name="specialty-repair">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="science">Science</span>
@@ -245,7 +245,7 @@
                                   data-lang-id="intelligence"
                                   data-lang-format="[%s]">[Intelligence]</span>
                             <span class="skill-value" id="skill-science">0</span>
-                            <input type="checkbox" id="specialty-science" name="specialty-science">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-science" name="specialty-science">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="smallGuns">Small Guns</span>
@@ -253,7 +253,7 @@
                                   data-lang-id="agility"
                                   data-lang-format="[%s]">[Agility]</span>
                             <span class="skill-value" id="skill-smallGuns">0</span>
-                            <input type="checkbox" id="specialty-smallGuns" name="specialty-smallGuns">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-smallGuns" name="specialty-smallGuns">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="sneak">Sneak</span>
@@ -261,7 +261,7 @@
                                   data-lang-id="agility"
                                   data-lang-format="[%s]">[Agility]</span>
                             <span class="skill-value" id="skill-sneak">0</span>
-                            <input type="checkbox" id="specialty-sneak" name="specialty-sneak">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-sneak" name="specialty-sneak">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="speech">Speech</span>
@@ -269,7 +269,7 @@
                                   data-lang-id="charisma"
                                   data-lang-format="[%s]">[Charisma]</span>
                             <span class="skill-value" id="skill-speech">0</span>
-                            <input type="checkbox" id="specialty-speech" name="specialty-speech">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-speech" name="specialty-speech">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="survival">Survival</span>
@@ -277,15 +277,15 @@
                                   data-lang-id="endurance"
                                   data-lang-format="[%s]">[Endurance]</span>
                             <span class="skill-value" id="skill-survival">0</span>
-                            <input type="checkbox" id="specialty-survival" name="specialty-survival">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-survival" name="specialty-survival">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="throwing">Throwing</span>
                             <span class="skill-stat"
                                   data-lang-id="agility"
                                   data-lang-format="[%s]">[Agility]</span>
-                            <span class="skill-value" id="skill-throwing">0</span>
-                            <input type="checkbox" id="specialty-throwing" name="specialty-throwing">
+                            <span class="skill-value" id="skill-throw-oning">0</span>
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-throwing" name="specialty-throwing">
                         </div>
                         <div class="skill">
                             <span class="skill-name" data-lang-id="unarmed">Unarmed</span>
@@ -293,7 +293,7 @@
                                   data-lang-id="strength"
                                   data-lang-format="[%s]">[Strength]</span>
                             <span class="skill-value" id="skill-unarmed">0</span>
-                            <input type="checkbox" id="specialty-unarmed" name="specialty-unarmed">
+                            <input type="checkbox" class="specialty-checkbox" id="specialty-unarmed" name="specialty-unarmed">
                         </div>
                     </div>
                 </div>

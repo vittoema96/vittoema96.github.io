@@ -1,35 +1,35 @@
 let currentLanguage = localStorage.getItem('language') || 'it'; // Default to English
 
+let langData = {
+    en: undefined,
+    it: undefined
+};
+
 function loadTranslations(language) {
-    fetch(`/js/lang/${language}.json`)
-        .then(response => response.json())
-        .then(data => {
 
-            const elementsWithLangId = document.querySelectorAll('[data-lang-id]');
-            elementsWithLangId.forEach(element => {
-              const langId = element.dataset.langId; // Access the value of the attribute
-              const format = element.dataset.langFormat || "%s"
 
-                const transl = data[langId] === undefined ? "!Transl.Missing!" : data[langId];
-                element.textContent = format.replace("%s", transl)
-            });
 
-            document.documentElement.lang = language; // Set the lang attribute
-            localStorage.setItem('language', language); // Save preference
+        const elementsWithLangId = document.querySelectorAll('[data-lang-id]');
+        elementsWithLangId.forEach(element => {
+          const langId = element.dataset.langId; // Access the value of the attribute
+          const format = element.dataset.langFormat || "%s"
 
-            // Set the select value after translations are loaded (optional, but good practice)
-            const languageSelect = document.getElementById('language-select');
-            if (languageSelect) {
-                languageSelect.value = language;
-            }
-
-            // Reorder the skill elements alphabetically after translations
-            orderSkillsAlphabetically();
-
-        })
-        .catch(error => {
-            console.error('Error loading translations:', error);
+            const transl = langData[language][langId] === undefined ? "!Transl.Missing!" : langData[language][langId];
+            element.textContent = format.replace("%s", transl)
         });
+
+        document.documentElement.lang = language; // Set the lang attribute
+        localStorage.setItem('language', language); // Save preference
+
+        // Set the select value after translations are loaded (optional, but good practice)
+        const languageSelect = document.getElementById('language-select');
+        if (languageSelect) {
+            languageSelect.value = language;
+        }
+
+        // Reorder the skill elements alphabetically after translations
+        orderSkillsAlphabetically();
+
 }
 
 function changeLanguage(language) {
@@ -67,3 +67,9 @@ function orderSkillsAlphabetically() {
     // Append the sorted skill elements back to the container
     skillElements.forEach(skill => skillsContainer.appendChild(skill));
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+    for(let language of Object.keys(langData)) {
+        langData[language] = await (await fetch(`/js/lang/${language}.json`)).json()
+    }
+});
