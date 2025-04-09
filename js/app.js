@@ -14,6 +14,8 @@ const capsDisplay = document.getElementById('caps-value');
 const weightDisplay = document.getElementById('weight-value');
 const hpDisplay = document.getElementById('hp-value');
 
+const levelDisplay = document.getElementById('level-display');
+
 const characterBackgroundInput = document.getElementById('character-background');
 const gameMapDisplay = document.getElementById('game-map');
 
@@ -123,6 +125,8 @@ function updateDisplay() {
         // Currently nothing here
     }
 
+    levelDisplay.value = characterData.level;
+
     // Save to localStorage
     localStorage.setItem('characterData', JSON.stringify(characterData));
 
@@ -203,7 +207,7 @@ function incrementSpecialStat(event) {
     const maxValue = special === "strength" || special === "endurance" ? 12 : 10;
     characterData.special[special] = (characterData.special[special] < maxValue ? characterData.special[special] + 1 : 4)
     if(special === "luck")
-        characterData.luckCurrent = characterData.special.luck;
+        characterData.luckCurrent = characterData.special.luck;inv
 
     updateDisplay(); // Refresh display with updated data
 }
@@ -564,6 +568,11 @@ luckCurrentValDisplay.parentElement.addEventListener('click', () => {
         }
     }
 });
+
+levelDisplay.addEventListener('change', () => {
+    characterData.level = parseInt(levelDisplay.value);
+    updateDisplay();
+})
 
 document.addEventListener("DOMContentLoaded", async () => {
     // const weaponIds = ["Pistola 44", "Fat Man", "Pistola Gamma"]; // Add more weapon IDs as needed
