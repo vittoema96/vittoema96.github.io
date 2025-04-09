@@ -10,6 +10,7 @@ const urlsToCache = [
     '/css/styles.css',
     '/css/invStyles.css',
     '/css/statStyles.css',
+    '/css/popupStyles.css',
     '/manifest.webmanifest'
     // Add any other assets (images, fonts, etc.) you want to cache
 ];

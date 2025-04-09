@@ -90,3 +90,9 @@ F
 js/popup.js,7/0/704389c639e64e1b800f4cd503ef84c0f6366379
 <
 img/luck.svg,6/e/6e6553e827c650f41a4d110379ae4ef135c82c64
+?
+css/popupStyles,4/b/4b33b921b02af62422b6d9a8028904bbd3d53ba1
+C
+css/popupStyles.css,4/4/4476a6de1a133048b7b21a5329795c9a9bafb75c
+A
+img/luck-gear.svg,9/3/93a29bea7d424a45b6b098d70dc8e7a1f34f6671

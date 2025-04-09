@@ -32,6 +32,7 @@ const specialDisplays = specialList.reduce((acc, special) => {
     acc[special] = document.getElementById("special-" + special + "-value");
     return acc;
 }, {});
+const luckCurrentValDisplay = document.getElementById('luck-current-value');
 const skill2special = {
         athletics: "strength",
         barter: "charisma",
@@ -99,6 +100,7 @@ function updateDisplay() {
 
     if (activeTab === 'stat') {
         specialList.forEach(special => specialDisplays[special].textContent = characterData.special[special])
+        luckCurrentValDisplay.textContent = characterData.luckCurrent;
 
         defenseDisplay.textContent = (characterData.special.agility <= 8) ? "1" : "2";
         initiativeDisplay.textContent = `${characterData.special.agility + characterData.special.perception}`;
@@ -108,6 +110,7 @@ function updateDisplay() {
             skillDisplays[skill].textContent = characterData.skills[skill];
             specialtyDisplays[skill].checked = characterData.specialties.includes(skill);
         });
+        luckCurrentValDisplay.textContent = characterData.luckCurrent;
     } else if (activeTab === 'inv') {
         if (activeSubtab === 'weapons') {
             updateWeapons();
@@ -199,6 +202,8 @@ function incrementSpecialStat(event) {
     const special = statId.replace('special-', '').replace('-value', '');
     const maxValue = special === "strength" || special === "endurance" ? 12 : 10;
     characterData.special[special] = (characterData.special[special] < maxValue ? characterData.special[special] + 1 : 4)
+    if(special === "luck")
+        characterData.luckCurrent = characterData.special.luck;
 
     updateDisplay(); // Refresh display with updated data
 }
@@ -242,7 +247,7 @@ skillBoxes.forEach(box => {
         if(isEditing)
             incrementSkill(evt);
         else {
-            const box = event.currentTarget;
+            const box = evt.currentTarget;
             const skillId = box.querySelector('.skill-value').id.replace("skill-", "");
             openDicePopup(skillId);
         }
@@ -394,11 +399,11 @@ function createGenericCard(genericItem, customCardContent) {
     }
     const card = document.createElement('div');
     function showCardOverlay(show) {
-        const overlay = card.querySelector('.card-overlay');
+        const cardOverlay = card.querySelector('.card-overlay');
         if(show){
-            overlay.classList.remove('hidden')
+            cardOverlay.classList.remove('hidden')
         } else {
-            overlay.classList.add("hidden")
+            cardOverlay.classList.add("hidden")
         }
     }
 
@@ -549,6 +554,16 @@ function createObjectCard(object, type) {
 
     return createGenericCard(object, objectHTML)
 }
+
+luckCurrentValDisplay.parentElement.addEventListener('click', () => {
+    if(!isEditing) {
+        let replenishLuck = confirm("Vuoi davvero ripristinare la tua fortuna?")
+        if(replenishLuck) {
+            characterData.luckCurrent = characterData.special.luck;
+            updateDisplay();
+        }
+    }
+});
 
 document.addEventListener("DOMContentLoaded", async () => {
     // const weaponIds = ["Pistola 44", "Fat Man", "Pistola Gamma"]; // Add more weapon IDs as needed

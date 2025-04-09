@@ -13,9 +13,11 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap">
-        <link rel="stylesheet" href="css/styles.css">
+
         <link rel="stylesheet" href="css/statStyles.css">
         <link rel="stylesheet" href="css/invStyles.css">
+        <link rel="stylesheet" href="css/popupStyles.css">
+        <link rel="stylesheet" href="css/styles.css">
 
 
         <link rel="canonical" href="https://vittoema96.github.io/" />
@@ -30,8 +32,8 @@
     <!-- TODO what are these classes? do i need them? -->
     <body class="bg-green-900 text-lime-400 p-4">
 
-        <div id="dice-popup" class="popup">
-            <div class="popup-content">
+        <div class="overlay hidden">
+            <div class="popup hidden" id="dice-popup">
                 <span class="close-button">&times;</span>
                 <h2 id="skill-throw-on" class="text-xl mb-4">Tiro su SKILL</h2>
                 <div class="dice-container">
@@ -69,9 +71,7 @@
                     <button class="cancel-button bg-gray-700 text-lime-400 px-6 py-2 rounded-md font-bold hover:bg-gray-600 transition-colors duration-200">Indietro</button>
                 </div>
             </div>
-        </div>
-        <div id="add-item-popup" class="popup">
-            <div class="popup-content">
+            <div class="popup hidden" id="add-item-popup">
                 <span class="close-button">&times;</span>
                 <h2>Scegli un oggetto:</h2>
                 <select id="selector" class="form-control"></select>
@@ -79,7 +79,6 @@
                 <button class="cancel-button">Indietro</button>
             </div>
         </div>
-        <div id="overlay" class="overlay"></div>
 
 
         <header class="header">
@@ -138,6 +137,9 @@
                     <div class="stat">
                         <h3 data-lang-id="luck">Luck</h3>
                         <div class="stat-value" id="special-luck-value">0</div>
+                        <div class="substat">
+                            <div class="stat-value" id="luck-current-value">0</div>
+                        </div>
                     </div>
                 </div>
 
@@ -284,7 +286,7 @@
                             <span class="skill-stat"
                                   data-lang-id="agility"
                                   data-lang-format="[%s]">[Agility]</span>
-                            <span class="skill-value" id="skill-throw-oning">0</span>
+                            <span class="skill-value" id="skill-throwing">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-throwing" name="specialty-throwing">
                         </div>
                         <div class="skill">

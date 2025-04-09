@@ -59,8 +59,8 @@
 
 .card-content {
     display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto auto; /* Added a third row */
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto auto;
     font-size: 0.9em;
 }
 .stats {
@@ -69,7 +69,7 @@
     align-items: center;
     justify-content: space-around;
     font-size: 0.9em;
-    grid-row: 1 / 2;
+    margin: 0;
 }
 .card-stat {
     margin: 5px 0;
@@ -91,10 +91,8 @@
 .image {
     display: flex;
     text-align: center;
-    justify-content: center;
+    justify-content: space-around;
     padding: 10px;
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
 }
 .image img {
     text-align: center;
@@ -172,9 +170,6 @@
     justify-content: center; /* Center buttons horizontally */
     align-items: center;    /* Center buttons vertically */
     z-index: 10; /* Ensure it's on top of other card content */
-}
-.card-overlay.hidden {
-    display: none;
 }
 .overlay-buttons {
     display: flex;

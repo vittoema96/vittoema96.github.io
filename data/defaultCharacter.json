@@ -9,6 +9,7 @@
         "agility": 5,
         "luck": 5
     },
+    "luckCurrent": 5,
     "skills": {  
         "athletics": 0,
         "barter": 0,

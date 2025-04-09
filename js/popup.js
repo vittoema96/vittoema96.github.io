@@ -1,15 +1,14 @@
+const overlay = document.querySelector(".overlay");
 const popups = document.getElementsByClassName('popup');
+
 const dicePopup = document.getElementById('dice-popup');
-const addItemPopup = document.getElementById('add-item-popup');
-const apCost = dicePopup.querySelector('.ap-cost');
-const diceElements = document.querySelectorAll('.dice');
-
-const overlay = document.getElementById('overlay');
-
+    const apCost = dicePopup.querySelector('.ap-cost');
+    const diceElements = document.querySelectorAll('.dice');
 const popupSelector = dicePopup.querySelector('#popup-selector');
 const luckCheckbox = document.querySelector('.luck-checkbox');
-
 const rollDiceButton = dicePopup.querySelector('.confirm-button');
+
+const addItemPopup = document.getElementById('add-item-popup');
 
 let activePopup = null;
 
@@ -31,6 +30,7 @@ function openDicePopup(skillId) {
         diceElements[i].classList.remove('roll-complication');
         diceElements[i].classList.remove('active');
         diceElements[i].classList.remove('inactive');
+        diceElements[i].classList.remove('rerolled')
         if(i >= 2) {
             diceElements[i].classList.add('inactive');
         } else {
@@ -40,22 +40,20 @@ function openDicePopup(skillId) {
 
     updateModifier();
 
-
-    dicePopup.style.display = 'block';
-    overlay.style.display = 'block';
+    overlay.classList.remove('hidden')
+    dicePopup.classList.remove('hidden')
     activePopup = dicePopup;
 }
 
 function openAddItemPopup() {
-    addItemPopup.style.display = 'block';
-    overlay.style.display = 'block';
+    overlay.classList.remove('hidden')
+    addItemPopup.classList.remove('hidden')
     activePopup = addItemPopup;
 }
 
 
 function openAddItemModal(itemType) {
     const popup = document.getElementById('add-item-popup');
-    const popupContent = popup.querySelector('.popup-content');
 
     let availableItems = [];
     let itemName = '';
@@ -92,7 +90,7 @@ function openAddItemModal(itemType) {
                 closePopup(); // You'll need to implement this
             }
         })
-        popupContent.replaceChild(newConfirmButton, confirmButton);
+        popup.replaceChild(newConfirmButton, confirmButton);
 
         const defaultOption = document.createElement('option');
         defaultOption.value = '';
@@ -116,8 +114,8 @@ function openAddItemModal(itemType) {
 }
 
 function closePopup() {
-    activePopup.style.display = 'none';
-    overlay.style.display = 'none';
+    overlay.classList.add('hidden');
+    activePopup.classList.add('hidden');
 }
 
 
@@ -177,7 +175,7 @@ function clickDice(dice, index) {
         if (dice.classList.contains('active')) {
             dice.classList.remove('active');
             dice.classList.add('inactive');
-        } else if (dice.classList.contains('inactive') && dice.textContent !== '?') {
+        } else if (dice.classList.contains('inactive') && !dice.classList.contains('rerolled') && dice.textContent !== '?') {
             dice.classList.remove('inactive');
             dice.classList.add('active');
         }
@@ -185,10 +183,11 @@ function clickDice(dice, index) {
 }
 
 function rollDice() {
-    let hasActive = false;
+    let hasSelectedDice = false;
+    let rerolledDice = 0;
     diceElements.forEach(dice => {
         if (dice.classList.contains('active')) {
-            hasActive = true;
+            hasSelectedDice = true;
             const roll = Math.floor(Math.random() * 20) + 1;
             dice.textContent = roll;
             let critVal = 1;
@@ -206,17 +205,22 @@ function rollDice() {
             }
             dice.classList.remove('active')
             dice.classList.add('inactive')
+            if(dicePopup.dataHasRolled) {
+                dice.classList.add('rerolled')
+                rerolledDice += 1;
+            }
         }
     });
-    if(!hasActive) {
+    if(!hasSelectedDice) {
         alert("Seleziona dei dadi da rilanciare!")
     } else {
-        const decreaseLuck = dicePopup.dataHasRolled || luckCheckbox.checked ? 1 : 0;
+        const decreaseLuck = dicePopup.dataHasRolled ? rerolledDice : luckCheckbox.checked ? 1 : 0;
         rollDiceButton.textContent = "Rilancia (Fortuna)"
         dicePopup.dataHasRolled = true;
         luckCheckbox.disabled = true;
         popupSelector.disabled = true;
-        // TODO actually decrease luck points
+        characterData.luckCurrent = characterData.luckCurrent - decreaseLuck;
+        updateDisplay();
     }
 }
 
@@ -239,7 +243,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    overlay.addEventListener('click', closePopup); // Close when clicking outside
+    overlay.addEventListener('click', (evt) => {
+        if(evt.target === overlay)
+            closePopup()
+    }); // Close when clicking outside
 
 
     diceElements.forEach((dice, index) => {
