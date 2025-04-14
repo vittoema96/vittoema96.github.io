@@ -15,7 +15,7 @@ let activePopup = null;
 function openDicePopup(skillId) {
     dicePopup.dataSkill = skillId;
     dicePopup.dataHasRolled = false;
-    popupSelector.value = skill2special[skillId];
+    popupSelector.value = Character.getSpecialFromSkill(skillId);
     dicePopup.querySelector('#skill-throw-on').textContent = "Tiro su " + langData[currentLanguage][skillId]
     popupSelector.disabled = false;
     luckCheckbox.checked = false;
@@ -57,59 +57,48 @@ function openAddItemModal(itemType) {
 
     let availableItems = [];
     let itemName = '';
-    let storageArray = '';
 
-    if (Object.keys(skill2special).includes(itemType)) { // Only itemType that is a skill are weapons
+    if (Character.getSkillList().indexOf(itemType) > -1) { // Only itemType that is a skill are weapons
         availableItems = Object.values(weaponData).filter(item => item.SKILL === itemType);
         itemName = 'Weapon';
-        storageArray = characterData.weapons;
     } else if (itemType === 'food') {
         availableItems = Object.values(foodData);
         itemName = 'Food Item';
-        storageArray = characterData.supplies.food;
     } else if (itemType === 'drinks') {
         availableItems = Object.values(drinksData);
         itemName = 'Drink';
-        storageArray = characterData.supplies.drinks;
     } else if (itemType === 'meds') {
         availableItems = Object.values(medsData);
         itemName = 'Medicine';
-        storageArray = characterData.supplies.meds;
     }
 
-    if (availableItems.length > 0) {
-        const selectElement = document.getElementById('selector');
-        selectElement.innerHTML = "";
+    const selectElement = document.getElementById('selector');
+    selectElement.innerHTML = "";
 
-        const confirmButton = popup.querySelector('.confirm-button');
-        const newConfirmButton = confirmButton.cloneNode(true);
-        newConfirmButton.addEventListener('click', () => {
-            if (selectElement.value) {
-                storageArray.push(selectElement.value);
-                updateDisplay();
-                closePopup(); // You'll need to implement this
-            }
-        })
-        popup.replaceChild(newConfirmButton, confirmButton);
+    // Clone Confirm button to erase previous click listeners
+    const confirmButton = popup.querySelector('.confirm-button');
+    const newConfirmButton = confirmButton.cloneNode(true);
+    newConfirmButton.addEventListener('click', () => {
+        if (selectElement.value) {
+            characterData.addItem(selectElement.value);
+            closePopup(); // You'll need to implement this
+        }
+    })
+    popup.replaceChild(newConfirmButton, confirmButton);
 
-        const defaultOption = document.createElement('option');
-        defaultOption.value = '';
-        defaultOption.textContent = `Select a ${itemName} to Add`;
-        defaultOption.disabled = true;
-        defaultOption.selected = true;
-        selectElement.appendChild(defaultOption);
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = `Select a ${itemName} to Add`;
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    selectElement.appendChild(defaultOption);
 
-        availableItems.forEach(item => {
-            const option = document.createElement('option');
-            option.value = item.ID;
-            option.textContent = item.ID; // Display item name (you might want to show more info)
-            selectElement.appendChild(option);
-        });
-    } else {
-        const message = document.createElement('p');
-        message.textContent = `No new ${itemName} items available.`;
-        popupContent.appendChild(message);
-    }
+    availableItems.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.ID;
+        option.textContent = langData.it[item.ID]; // TODO ACTUAL TRANSLATION HERE PLEASE
+        selectElement.appendChild(option);
+    });
     openAddItemPopup();
 }
 
@@ -191,8 +180,8 @@ function rollDice() {
             const roll = Math.floor(Math.random() * 20) + 1;
             dice.textContent = roll;
             let critVal = 1;
-            if(characterData.specialties.indexOf(dicePopup.dataSkill) > -1)
-                critVal = characterData.skills[dicePopup.dataSkill] || 1;
+            if(characterData.hasSpecialty(dicePopup.dataSkill))
+                critVal = characterData.getSkill(dicePopup.dataSkill) || 1;
             if( roll >= 20 ) {
                 dice.classList.remove('roll-crit');
                 dice.classList.add('roll-complication');
@@ -219,7 +208,7 @@ function rollDice() {
         dicePopup.dataHasRolled = true;
         luckCheckbox.disabled = true;
         popupSelector.disabled = true;
-        characterData.luckCurrent = characterData.luckCurrent - decreaseLuck;
+        characterData.currentLuck = characterData.currentLuck - decreaseLuck;
         updateDisplay();
     }
 }
@@ -232,16 +221,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         closeButton.addEventListener('click', closePopup);
         cancelButton.addEventListener('click', closePopup);
     }
-
-    addItemPopup.querySelector('.confirm-button').addEventListener('click', () => {
-        const value = addItemPopup.querySelector('#selector').value;
-
-        if (value) {
-            storageArray.push(value);
-            updateDisplay();
-            closePopup(); // You'll need to implement this
-        }
-    });
 
     overlay.addEventListener('click', (evt) => {
         if(evt.target === overlay)

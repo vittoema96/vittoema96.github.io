@@ -149,7 +149,7 @@ body {
     border-bottom: var(--border-primary-thick); /* Consistent border */
 }
 
-.subtab {
+.subTab {
     color: rgba(var(--primary-color-rgb), 0.25);
     cursor: pointer;
     font-size: 0.7rem;
@@ -161,13 +161,13 @@ body {
 }
 
 /* Subtabs right before and after the active one */
-.subtab.active + .subtab,
-.subtab:has(+ .subtab.active) {
+.subTab.active + .subTab,
+.subTab:has(+ .subTab.active) {
     color: rgba(var(--primary-color-rgb), 0.7);
     font-size: 1rem;
 }
 
-.subtab.active {
+.subTab.active {
     font-size: 1.2rem;
     font-weight: bolder;
     color: var(--primary-color);

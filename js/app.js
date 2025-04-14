@@ -1,79 +1,10 @@
 // Get references to DOM elements
-const tabButtons = document.querySelectorAll('.tab');
-const subtabButtons = document.querySelectorAll('.subtab');
-const screens = document.querySelectorAll('.screen');
-const subscreens = document.querySelectorAll('.subscreen');
-
-
-const defenseDisplay = document.getElementById('defense-value');
-const initiativeDisplay = document.getElementById('initiative-value');
-const meleeDamageDisplay = document.getElementById('melee-damage-value');
-
-
-const capsDisplay = document.getElementById('caps-value');
-const weightDisplay = document.getElementById('weight-value');
-const hpDisplay = document.getElementById('hp-value');
-
-const levelDisplay = document.getElementById('level-display');
-
-const characterBackgroundInput = document.getElementById('character-background');
-const gameMapDisplay = document.getElementById('game-map');
 
 const editStatsButton = document.getElementById('edit-stats-button'); // New button
 
-const specialList = [
-    "strength",
-    "perception",
-    "endurance",
-    "charisma",
-    "intelligence",
-    "agility",
-    "luck"
-]
-const specialDisplays = specialList.reduce((acc, special) => {
-    acc[special] = document.getElementById("special-" + special + "-value");
-    return acc;
-}, {});
-const luckCurrentValDisplay = document.getElementById('luck-current-value');
-const skill2special = {
-        athletics: "strength",
-        barter: "charisma",
-        bigGuns: "endurance",
-        energyWeapons: "perception",
-        explosives: "perception",
-        lockpick: "perception",
-        medicine: "intelligence",
-        meleeWeapons: "strength",
-        pilot: "perception",
-        repair: "intelligence",
-        science: "intelligence",
-        smallGuns: "agility",
-        sneak: "agility",
-        speech: "charisma",
-        survival: "endurance",
-        throwing: "agility",
-        unarmed: "strength",
-};
-const skillDisplays = Object.keys(skill2special).reduce((acc, skill) => {
-    acc[skill] = document.getElementById("skill-" + skill);
-    return acc;
-}, {});
-
-const specialtyDisplays = Object.keys(skill2special).reduce((acc, skill) => {
-    acc[skill] = document.getElementById("specialty-" + skill);
-    return acc;
-}, {});
-
-
 const skillBoxes = document.querySelectorAll('.skill');
 
-// Character data (load from localStorage or use defaults)
-let defaultCharacter = undefined;
-let characterData = undefined;
-
 let isEditing = false; // Track editing state
-let activeTab = 'stat';
-let activeSubtab = 'weapons';
 
 let weaponData = undefined;
 let foodData = undefined;
@@ -82,90 +13,11 @@ let medsData = undefined;
 
 // Function to update the display
 function updateDisplay() {
-    const str = characterData.special.strength
-
-    const maxHp = characterData.special.endurance + characterData.special.luck + characterData.level
-    hpDisplay.textContent = maxHp + "/" + maxHp; // TODO Should be "current / max"
-    capsDisplay.textContent = characterData.caps;
-    const currentWeight = characterData.weapons.map(key => weaponData[key])
-            .concat(characterData.supplies.food.map(key => foodData[key]))
-            .concat(characterData.supplies.drinks.map(key => drinksData[key]))
-            .concat(characterData.supplies.meds.map(key => medsData[key]))
-        .map(i => i.WEIGHT)
-        .reduce((acc, weight) => {
-            const parsed = Number(weight);
-            return acc + (isNaN(parsed) ? 0 : parsed) // TODO as WEIGHT=<0.5 was changed to just 0, might not need this anymore
-        }, 0);
-    const maxWeight = 75 + str * 5
-    weightDisplay.textContent = `${currentWeight}/${maxWeight}`;
-    weightDisplay.style.color = currentWeight > maxWeight ? 'red' : "#afff03";
-
-    if (activeTab === 'stat') {
-        specialList.forEach(special => specialDisplays[special].textContent = characterData.special[special])
-        luckCurrentValDisplay.textContent = characterData.luckCurrent;
-
-        defenseDisplay.textContent = (characterData.special.agility <= 8) ? "1" : "2";
-        initiativeDisplay.textContent = `${characterData.special.agility + characterData.special.perception}`;
-        meleeDamageDisplay.textContent = str < 7 ? "+1" : str < 9 ? "+2" : str < 11 ? "+3" : "+4";
-
-        Object.keys(skill2special).forEach(skill => {
-            skillDisplays[skill].textContent = characterData.skills[skill];
-            specialtyDisplays[skill].checked = characterData.specialties.includes(skill);
-        });
-        luckCurrentValDisplay.textContent = characterData.luckCurrent;
-    } else if (activeTab === 'inv') {
-        if (activeSubtab === 'weapons') {
-            updateWeapons();
-        } else if (activeSubtab === 'supplies') {
-            updateSupplies();
-        }
-    } else if (activeTab === 'data') {
-        characterBackgroundInput.value = characterData.background;
-    } else { // === 'map'
-        // Currently nothing here
-    }
-
-    levelDisplay.value = characterData.level;
 
     // Save to localStorage
-    localStorage.setItem('characterData', JSON.stringify(characterData));
+    localStorage.setItem('characterData', JSON.stringify(characterData.toString()));
 
     loadTranslations(currentLanguage);
-}
-
-function updateWeapons() {
-    // TODO optimize here, don't remove everything and re-add everything
-    const weapons = characterData.weapons.map(key => weaponData[key]);
-    const containers = {
-        smallGuns: document.getElementById("smallGuns-cards"),
-        energyWeapons: document.getElementById("energyWeapons-cards"),
-        bigGuns: document.getElementById("bigGuns-cards"),
-        meleeWeapons: document.getElementById("meleeWeapons-cards"),
-        explosives: document.getElementById("explosives-cards"),
-        throwing: document.getElementById("throwing-cards"),
-    };
-    for(let c of Object.values(containers))
-        c.innerHTML = '';
-    for (let weapon of weapons) {
-        containers[weapon.SKILL].appendChild(createWeaponCard(weapon.ID));
-    }
-}
-
-function updateSupplies() {
-    // TODO optimize here, don't remove everything and re-add everything
-    const supplies = {
-        'food': foodData,
-        'drinks': drinksData,
-        'meds': medsData
-    }
-    const characterSupplies = {};
-    for (let key of Object.keys(supplies)){
-        const container = document.getElementById(key+"-cards");
-        container.innerHTML = '';
-        for(let item of characterData.supplies[key].map(item => supplies[key][item])) {
-            container.appendChild(createObjectCard(item, key));
-        }
-    }
 }
 
 // Function to toggle edit mode
@@ -200,14 +52,15 @@ function toggleEditMode() {
 function incrementSpecialStat(event) {
     if (!isEditing) return; // Only increment if editing
 
-    const box = event.currentTarget;
-    const statId = box.querySelector('.stat-value').id;
+    const clickedSpecial = event.currentTarget;
+    const special = clickedSpecial.dataset.special;
 
-    const special = statId.replace('special-', '').replace('-value', '');
     const maxValue = special === "strength" || special === "endurance" ? 12 : 10;
-    characterData.special[special] = (characterData.special[special] < maxValue ? characterData.special[special] + 1 : 4)
+    const currentValue = characterData.getSpecial(special);
+    const newValue = currentValue < maxValue ? currentValue + 1 : 4;
+    characterData.setSpecial(special, newValue);
     if(special === "luck")
-        characterData.luckCurrent = characterData.special.luck;inv
+        characterData.currentLuck = newValue;
 
     updateDisplay(); // Refresh display with updated data
 }
@@ -216,32 +69,24 @@ function incrementSkill(event) {
     if (!isEditing) return; // Only increment if editing
 
     const box = event.currentTarget;
-    const skillId = box.querySelector('.skill-value').id;
-    const skillName = skillId.replace('skill-', '');
+    const skillName = box.dataset.skill;
 
     const checkboxId = `specialty-${skillName}`;
     const checkbox = box.querySelector(`input[type="checkbox"][id="${checkboxId}"]`);
 
     // Check if the click originated from the checkbox
     if (event.target === checkbox) {
-        if (checkbox.checked && !characterData.specialties.includes(skillName)) {
-            characterData.specialties.push(skillName);
-            if (characterData.skills[skillName] < 2)
-                characterData.skills[skillName] = 2;
-        }
-        else if (!checkbox.checked && characterData.specialties.includes(skillName)) {
-            const indexToRemove = characterData.specialties.indexOf(skillName);
-            if(indexToRemove > -1)
-                characterData.specialties.splice(indexToRemove, 1);
-        }
-    } else if (characterData.skills.hasOwnProperty(skillName)) {
-        let skillValue = characterData.skills[skillName];
-        characterData.skills[skillName] = (skillValue < 6)
-            ? skillValue + 1
-            : (checkbox && checkbox.checked ? 2 : 0);
+        if (checkbox.checked && !characterData.hasSpecialty(skillName))
+            characterData.addSpecialty(skillName);
+        else if (!checkbox.checked && characterData.hasSpecialty(skillName))
+            characterData.removeSpecialty(skillName);
 
     } else {
-        console.warn(`Skill with ID ${skillId} not found in characterData.skills.`);
+        const currentValue = characterData.getSkill(skillName);
+        const newValue = currentValue < 6 ? currentValue + 1
+            : checkbox && checkbox.checked ? 2 : 0;
+        characterData.setSkill(skillName, newValue);
+
     }
     updateDisplay(); // Refresh display with updated data
 }
@@ -258,29 +103,6 @@ skillBoxes.forEach(box => {
     });
 });
 
-// Event listener for tab clicks
-tabButtons.forEach(tab => {
-    tab.addEventListener('click', () => {
-        const targetTab = tab.getAttribute('data-tab');
-        tabButtons.forEach(t => t.classList.remove('active'));
-        screens.forEach(s => s.classList.add('hidden'));
-        tab.classList.add('active');
-        document.getElementById(`${targetTab}-screen`).classList.remove('hidden');
-        activeTab = targetTab;
-        updateDisplay();
-    });
-});
-subtabButtons.forEach(subtab => {
-    subtab.addEventListener('click', () => {
-        const targetSubtab = subtab.getAttribute('data-tab');
-        subtabButtons.forEach(t => t.classList.remove('active'));
-        subscreens.forEach(s => s.classList.add('hidden'));
-        subtab.classList.add('active');
-        document.getElementById(`inv-${targetSubtab}`).classList.remove('hidden');
-        activeSubtab = targetSubtab;
-        updateDisplay();
-    });
-});
 
 // Event listener for edit stats button
 editStatsButton.addEventListener('click', () => {
@@ -299,81 +121,15 @@ checkboxes.forEach(checkbox => {
 
 const clearLocalStorageButton = document.getElementById('clear-local-storage');
 clearLocalStorageButton.addEventListener('click', async () => {
-    localStorage.clear();
     let confirmedStorageWipe = confirm("Are you really sure you want to DELETE YOUR CHARACTER and every other saved data?")
     if (confirmedStorageWipe) {
         localStorage.clear();
         alert("Local data was wiped");
-        characterData = defaultCharacter
-        updateDisplay()
-
+        characterData = new Character();
     }
 });
 
 
-
-async function loadCSV(filePath) {
-    try {
-        const response = await fetch(filePath);
-        const csvData = await response.text();
-        return parseCSV(csvData);
-    } catch (error) {
-        console.error("Error loading CSV:", error);
-        return {};
-    }
-}
-
-async function loadJSON(filePath) {
-    const response = await fetch(filePath);
-    if (!response.ok) {
-        console.error("Could not load or parse JSON:", error);
-        return null;
-    }
-    return await response.json();
-}
-
-function parseCSV(csvText) {
-    const lines = csvText.trim().split('\n');
-    if (lines.length < 2) {
-        return {};
-    }
-
-    const headers = lines[0].split(',').map(header => header.trim());
-    const data = {};
-
-    for (let i = 1; i < lines.length; i++) {
-        const line = lines[i];
-        const values = [];
-        let inQuotes = false;
-        let currentValue = '';
-
-        for (let k = 0; k < line.length; k++) {
-            const char = line[k];
-
-            if (char === '"') {
-                inQuotes = !inQuotes;
-            } else if (char === ',' && !inQuotes) {
-                values.push(currentValue.trim());
-                currentValue = '';
-            } else {
-                currentValue += char;
-            }
-        }
-        values.push(currentValue.trim()); // Push the last value
-
-        if (values.length === headers.length) {
-            const entry = {};
-            for (let j = 0; j < headers.length; j++) {
-                entry[headers[j]] = values[j];
-            }
-            data[entry.ID] = entry;
-        } else {
-            console.warn(`Skipping row ${i + 1} due to inconsistent number of columns.`);
-        }
-    }
-
-    return data;
-}
 
 async function loadWeapons() {
     return {
@@ -384,16 +140,6 @@ async function loadWeapons() {
         ...await loadCSV('data/weapons/throwing.csv'),
         ...await loadCSV('data/weapons/explosives.csv'),
     }
-}
-
-function removeItem(genericItem) {
-    const id = genericItem.ID;
-    for(let l of [characterData.weapons, characterData.supplies.food, characterData.supplies.drinks, characterData.supplies.meds]){
-        const index = l.indexOf(id);
-        if(index > -1)
-            l.splice(index, 1);
-    }
-    updateDisplay()
 }
 
 function createGenericCard(genericItem, customCardContent) {
@@ -451,7 +197,7 @@ function createGenericCard(genericItem, customCardContent) {
     let pressTimer;
     let isLongPress = false;
 
-    card.addEventListener('pointerdown', (event) => {
+    card.addEventListener('pointerdown', () => {
       isLongPress = false;
       pressTimer = setTimeout(() => {
         isLongPress = true;
@@ -464,14 +210,14 @@ function createGenericCard(genericItem, customCardContent) {
     card.addEventListener('pointermove', () => clearTimeout(pressTimer));
     card.addEventListener('contextmenu', (event) => event.preventDefault());
 
-    card.addEventListener('longpress', (event) => {
+    card.addEventListener('longpress', () => {
         showCardOverlay(true);
     });
-    card.querySelector('.delete-button').addEventListener('click', (event) => {
-        removeItem(genericItem);
+    card.querySelector('.delete-button').addEventListener('click', () => {
+        characterData.removeItem(genericItem);
         showCardOverlay(false);
     })
-    card.querySelector('.cancel-button').addEventListener('click', (event) => {
+    card.querySelector('.cancel-button').addEventListener('click', () => {
         showCardOverlay(false);
     })
 
@@ -501,14 +247,15 @@ function createWeaponCard(weaponId) {
         return null;
     }
 
-    const ammoCount = weapon.AMMO_TYPE==="na" ? "-" : "x"+(characterData.ammo[weapon.AMMO_TYPE] || 0);
+    const ammoCount = 0; // TODO reimplement ammo count:
+    //                                    weapon.AMMO_TYPE==="na" ? "-" : "x"+(characterData.ammo[weapon.AMMO_TYPE] || 0);
 
     const weaponHTML = `
         <div class="stats" id="stats-left">
             <div class="card-stat">
                 <div data-lang-id="${weapon.SKILL}"></div>
-                <div>To Hit: ${characterData.skills[`${weapon.SKILL}`]+characterData.special[skill2special[weapon.SKILL]]}</div>
-                <div>To Crit: ${Math.max(characterData.skills[`${weapon.SKILL}`], 1)}</div>
+                <div>To Hit: ${characterData.getSkill(weapon.SKILL)+characterData.getSpecial(Character.getSpecialFromSkill(weapon.SKILL))}</div>
+                <div>To Crit: ${Math.max(characterData.getSkill(weapon.SKILL), 1)}</div>
             </div>
             <div class="card-stat">
                 <div data-lang-id="${weapon.AMMO_TYPE}"></div>
@@ -527,8 +274,8 @@ function createWeaponCard(weaponId) {
 
     return createGenericCard(weapon, weaponHTML); // Return the actual card element
 }
-function createObjectCard(object, type) {
-
+function createObjectCard(id, type) {
+    const object = {...foodData, ...drinksData, ...medsData}[id];
     const specificEffectHeader = object.RADIOACTIVE !== undefined ? 'Radioactive' : 'Addictive';
 
     const hpGainHTML = type !== "meds" ? `
@@ -559,35 +306,20 @@ function createObjectCard(object, type) {
     return createGenericCard(object, objectHTML)
 }
 
-luckCurrentValDisplay.parentElement.addEventListener('click', () => {
-    if(!isEditing) {
-        let replenishLuck = confirm("Vuoi davvero ripristinare la tua fortuna?")
-        if(replenishLuck) {
-            characterData.luckCurrent = characterData.special.luck;
-            updateDisplay();
-        }
-    }
-});
 
-levelDisplay.addEventListener('change', () => {
-    characterData.level = parseInt(levelDisplay.value);
-    updateDisplay();
-})
+
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // const weaponIds = ["Pistola 44", "Fat Man", "Pistola Gamma"]; // Add more weapon IDs as needed
 
     weaponData = await loadWeapons();
     foodData = await loadCSV("../data/supplies/food.csv");
     drinksData = await loadCSV("../data/supplies/drinks.csv");
     medsData = await loadCSV("../data/supplies/meds.csv");
-    defaultCharacter = await loadJSON('../data/defaultCharacter.json');
 
-    characterBackgroundInput.addEventListener('blur', function () {
+    /*characterBackgroundInput.addEventListener('blur', function () {
         characterData.background = characterBackgroundInput.value;
-    });
+    });*/
 
-    characterData = JSON.parse(localStorage.getItem('characterData')) || defaultCharacter;
-
-    updateDisplay();
+    display = new Display();
+    characterData = new Character(localStorage.getItem("characterData"));
 });

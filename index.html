@@ -85,23 +85,23 @@
             <h2>Pip-Boy 3000</h2>
             <div id="header-stats">
                 <div class="icon-value-pair">
-                    <img class="icon" src="img/hp.svg" alt="HP:"/> <div id="hp-value">n / N</div>
+                    <img class="icon" src="img/hp.svg" alt="HP:"/> <div id="hp-value">? / ?</div>
                 </div>
                 <div class="icon-value-pair">
-                    <img class="icon" src="img/caps.svg" alt="Caps:"/> <div id="caps-value">n / N</div>
+                    <img class="icon" src="img/caps.svg" alt="Caps:"/> <div id="caps-value">?</div>
                 </div>
                 <div class="icon-value-pair">
-                    <img class="icon" src="img/weight.svg" alt="Weight:"/> <div id="weight-value">n / N</div>
+                    <img class="icon" src="img/weight.svg" alt="Weight:"/> <div id="weight-value">? / ?</div>
                 </div>
             </div>
         </header>
 
         <div class="tab-container" id="main-tab-container">
-            <div class="tab active" data-tab="stat">STAT</div>
-            <div class="tab" data-tab="inv">INV</div>
-            <div class="tab" data-tab="data">DATA</div>
-            <div class="tab" data-tab="map">MAP</div>
-            <div class="tab" id="mini-tab" data-tab="settings">
+            <div class="tab active" data-screen="stat">STAT</div>
+            <div class="tab" data-screen="inv">INV</div>
+            <div class="tab" data-screen="data">DATA</div>
+            <div class="tab" data-screen="map">MAP</div>
+            <div class="tab" id="mini-tab" data-screen="settings">
                 <i class="fas fa-gear"></i>
             </div>
         </div>
@@ -110,31 +110,31 @@
 
             <section id="stat-screen" class="screen active">
                 <div id="stat-container">
-                    <div class="stat">
+                    <div class="stat" data-special="strength">
                         <h3 data-lang-id="strength">Strength</h3>
                         <div class="stat-value" id="special-strength-value">0</div>
                     </div>
-                    <div class="stat">
+                    <div class="stat" data-special="perception">
                         <h3 data-lang-id="perception">Perception</h3>
                         <div class="stat-value" id="special-perception-value">0</div>
                     </div>
-                    <div class="stat">
+                    <div class="stat" data-special="endurance">
                         <h3 data-lang-id="endurance">Endurance</h3>
                         <div class="stat-value" id="special-endurance-value">0</div>
                     </div>
-                    <div class="stat">
+                    <div class="stat" data-special="charisma">
                         <h3 data-lang-id="charisma">Charisma</h3>
                         <div class="stat-value" id="special-charisma-value">0</div>
                     </div>
-                    <div class="stat">
+                    <div class="stat" data-special="intelligence">
                         <h3 data-lang-id="intelligence">Intelligence</h3>
                         <div class="stat-value" id="special-intelligence-value">0</div>
                     </div>
-                    <div class="stat">
+                    <div class="stat" data-special="agility">
                         <h3 data-lang-id="agility">Agility</h3>
                         <div class="stat-value" id="special-agility-value">0</div>
                     </div>
-                    <div class="stat">
+                    <div class="stat" data-special="luck">
                         <h3 data-lang-id="luck">Luck</h3>
                         <div class="stat-value" id="special-luck-value">0</div>
                         <div class="substat">
@@ -166,7 +166,7 @@
                 <div>
                     <label for="skills" class="form-label">Skills:</label>
                     <div id="skills" class="grid-container">
-                        <div class="skill">
+                        <div class="skill" data-skill="athletics">
                             <span class="skill-name" data-lang-id="athletics">Athletics</span>
                             <span class="skill-stat"
                                   data-lang-id="strength"
@@ -174,7 +174,7 @@
                             <span class="skill-value" id="skill-athletics">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-athletics" name="specialty-athletics">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="barter">
                             <span class="skill-name" data-lang-id="barter">Barter</span>
                             <span class="skill-stat"
                                   data-lang-id="charisma"
@@ -182,7 +182,7 @@
                             <span class="skill-value" id="skill-barter">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-barter" name="specialty-barter">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="bigGuns">
                             <span class="skill-name" data-lang-id="bigGuns" >Big Guns</span>
                             <span class="skill-stat"
                                   data-lang-id="endurance"
@@ -190,7 +190,7 @@
                             <span class="skill-value" id="skill-bigGuns">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-bigGuns" name="specialty-bigGuns">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="energyWeapons">
                             <span class="skill-name" data-lang-id="energyWeapons">Energy Weapons</span>
                             <span class="skill-stat"
                                   data-lang-id="perception"
@@ -198,7 +198,7 @@
                             <span class="skill-value" id="skill-energyWeapons">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-energyWeapons" name="specialty-energyWeapons">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="explosives">
                             <span class="skill-name" data-lang-id="explosives">Explosives</span>
                             <span class="skill-stat"
                                   data-lang-id="perception"
@@ -206,7 +206,7 @@
                             <span class="skill-value" id="skill-explosives">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-explosives" name="specialty-explosives">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="lockpick">
                             <span class="skill-name" data-lang-id="lockpick">Lockpick</span>
                             <span class="skill-stat"
                                   data-lang-id="perception"
@@ -214,7 +214,7 @@
                             <span class="skill-value" id="skill-lockpick">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-lockpick" name="specialty-lockpick">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="medicine">
                             <span class="skill-name" data-lang-id="medicine">Medicine</span>
                             <span class="skill-stat"
                                   data-lang-id="intelligence"
@@ -222,7 +222,7 @@
                             <span class="skill-value" id="skill-medicine">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-medicine" name="specialty-medicine">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="meleeWeapons">
                             <span class="skill-name" data-lang-id="meleeWeapons">Melee Weapons</span>
                             <span class="skill-stat"
                                   data-lang-id="strength"
@@ -230,7 +230,7 @@
                             <span class="skill-value" id="skill-meleeWeapons">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-meleeWeapons" name="specialty-meleeWeapons">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="pilot">
                             <span class="skill-name" data-lang-id="pilot">Pilot</span>
                             <span class="skill-stat"
                                   data-lang-id="perception"
@@ -238,7 +238,7 @@
                             <span class="skill-value" id="skill-pilot">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-pilot" name="specialty-pilot">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="repair">
                             <span class="skill-name" data-lang-id="repair">Repair</span>
                             <span class="skill-stat"
                                   data-lang-id="intelligence"
@@ -246,7 +246,7 @@
                             <span class="skill-value" id="skill-repair">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-repair" name="specialty-repair">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="science">
                             <span class="skill-name" data-lang-id="science">Science</span>
                             <span class="skill-stat"
                                   data-lang-id="intelligence"
@@ -254,7 +254,7 @@
                             <span class="skill-value" id="skill-science">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-science" name="specialty-science">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="smallGuns">
                             <span class="skill-name" data-lang-id="smallGuns">Small Guns</span>
                             <span class="skill-stat"
                                   data-lang-id="agility"
@@ -262,7 +262,7 @@
                             <span class="skill-value" id="skill-smallGuns">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-smallGuns" name="specialty-smallGuns">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="sneak">
                             <span class="skill-name" data-lang-id="sneak">Sneak</span>
                             <span class="skill-stat"
                                   data-lang-id="agility"
@@ -270,7 +270,7 @@
                             <span class="skill-value" id="skill-sneak">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-sneak" name="specialty-sneak">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="speech">
                             <span class="skill-name" data-lang-id="speech">Speech</span>
                             <span class="skill-stat"
                                   data-lang-id="charisma"
@@ -278,7 +278,7 @@
                             <span class="skill-value" id="skill-speech">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-speech" name="specialty-speech">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="survival">
                             <span class="skill-name" data-lang-id="survival">Survival</span>
                             <span class="skill-stat"
                                   data-lang-id="endurance"
@@ -286,7 +286,7 @@
                             <span class="skill-value" id="skill-survival">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-survival" name="specialty-survival">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="throwing">
                             <span class="skill-name" data-lang-id="throwing">Throwing</span>
                             <span class="skill-stat"
                                   data-lang-id="agility"
@@ -294,7 +294,7 @@
                             <span class="skill-value" id="skill-throwing">0</span>
                             <input type="checkbox" class="specialty-checkbox" id="specialty-throwing" name="specialty-throwing">
                         </div>
-                        <div class="skill">
+                        <div class="skill" data-skill="unarmed">
                             <span class="skill-name" data-lang-id="unarmed">Unarmed</span>
                             <span class="skill-stat"
                                   data-lang-id="strength"
@@ -309,13 +309,13 @@
 
             <section id="inv-screen" class="screen hidden">
                 <div class="tab-container">
-                    <div class="subtab active" data-tab="weapons">WEAPONS</div>
-                    <div class="subtab" data-tab="armor">ARMOR</div>
-                    <div class="subtab" data-tab="supplies">SUPPLIES</div>
-                    <div class="subtab" data-tab="ammo">AMMO</div>
+                    <div class="subTab active" data-sub-screen="weapons">WEAPONS</div>
+                    <div class="subTab" data-sub-screen="armor">ARMOR</div>
+                    <div class="subTab" data-sub-screen="supplies">SUPPLIES</div>
+                    <div class="subTab" data-sub-screen="ammo">AMMO</div>
                 </div>
 
-                <div class="subscreen active" id="inv-weapons">
+                <div class="subScreen active" id="inv-weapons">
                     <div class="itemlist-header">
                         <h2 data-lang-id="smallGuns">Small Guns</h2>
                         <button class="add-item-button" onclick="openAddItemModal('smallGuns')">+</button>
@@ -347,11 +347,11 @@
                     </div>
                     <div id="throwing-cards"></div>
                 </div>
-                <div class="subscreen hidden" id="inv-armor">
+                <div class="subScreen hidden" id="inv-armor">
                     <h1>WORK IN PROGRESS</h1>
                     <div id="armor-cards"></div>
                 </div>
-                <div class="subscreen hidden" id="inv-supplies">
+                <div class="subScreen hidden" id="inv-supplies">
                     <div class="itemlist-header">
                         <h2 data-lang-id="food">Food</h2>
                         <button class="add-item-button" onclick="openAddItemModal('food')">+</button>
@@ -368,7 +368,7 @@
                     </div>
                     <div id="meds-cards"></div>
                 </div>
-                <div class="subscreen hidden" id="inv-ammo">
+                <div class="subScreen hidden" id="inv-ammo">
                     <h1>WORK IN PROGRESS</h1>
                     <div id="ammo-cards"></div>
                 </div>
@@ -377,7 +377,7 @@
 
             <section id="data-screen" class="screen hidden">
                 <p>Per ora si può solo scrivere il proprio background qua sotto:</p>
-                 <label for="character-background" class="form-label">Character Background:</label>
+                 <label for="character-background" class="form-label">Display Background:</label>
                  <textarea id="character-background" class="form-control" rows="5" placeholder="Scrivi il tuo background qui..."></textarea>
                 <br/><br/><br/><br/>
                 <h1>WORK IN PROGRESS</h1>
@@ -400,9 +400,13 @@
 
 
         <script src="js/app.js"></script>
-        <script src="js/lang/translator.js"></script>
+        <script src="js/character.js"></script>
+        <script src="js/display.js"></script>
         <script src="js/popup.js"></script>
         <script src="js/sw.js"></script>
+        <script src="js/tabs.js"></script>
+        <script src="js/utils.js"></script>
+        <script src="js/lang/translator.js"></script>
     </body>
 </html>
 
