@@ -11,7 +11,7 @@ const defaultCharacter = {
         "luck": 5
     },
     "luckCurrent": 5,
-    "hpCurrent": 11,
+    "currentHp": 11,
     "skills": {
         "athletics": 0,
         "barter": 0,
@@ -56,46 +56,32 @@ class Character {
     #level;
     #special = [];
     #luckCurrent;
-    #hpCurrent;
+    #currentHp;
     #skills = [];
     #specialties = [];
     #caps;
     #items = [];
     #background;
 
-    constructor(data) {
-        let parsedData;
-        if (typeof data === 'string') {
-            try {
-                parsedData = JSON.parse(data);
-            } catch (error) {
-                console.error("Error parsing character data from localStorage:", error);
-                parsedData = defaultCharacter; // Use default if parsing fails
-            }
-        } else {
-            parsedData = data || defaultCharacter;
-        }
-
-        this.level = parsedData.level || defaultCharacter.level;
+    constructor() {
+        this.level = localStorage.getItem("level") || defaultCharacter.level;
         Character.getSpecialList().forEach(special =>
-            this.setSpecial(special, parsedData.special[special] || defaultCharacter.special[special])
+            this.setSpecial(special, localStorage.getItem(special) || defaultCharacter.special[special])
         );
-        this.currentLuck = parsedData.luckCurrent || this.#special.luck;
-
-        this.hpCurrent = parsedData.hpCurrent || this.calculateMaxHp();
-
+        this.currentLuck = localStorage.getItem("currentLuck") || this.#special.luck;
+        this.currentHp = localStorage.getItem("currentHp") || this.calculateMaxHp();
         Character.getSkillList().forEach(skill =>
-            this.setSkill(skill, parsedData.skills[skill] || defaultCharacter.skills[skill])
+            this.setSkill(skill, localStorage.getItem(skill) || defaultCharacter.skills[skill])
         );
-        (parsedData.specialties || defaultCharacter.specialties).forEach(specialty =>
+        (JSON.parse(localStorage.getItem("specialties")) || defaultCharacter.specialties).forEach(specialty =>
             this.addSpecialty(specialty)
         );
-        this.caps = parsedData.caps || defaultCharacter.caps;
-        (parsedData.items || defaultCharacter.items).forEach(item =>
+        this.caps = localStorage.getItem("caps") || defaultCharacter.caps;
+        (JSON.parse(localStorage.getItem("items")) || defaultCharacter.items).forEach(item =>
             this.addItem(item)
         );
-        this.hpCurrent = parsedData.hpCurrent || this.calculateMaxHp();
-        this.#background = parsedData.background || defaultCharacter.background;
+        
+        this.#background = localStorage.getItem("background") || defaultCharacter.background;
     }
 
     getSpecial(special) {
@@ -103,6 +89,7 @@ class Character {
     }
 
     setSpecial(special, value) {
+        value = Number(value)
         this.#special[special] = value;
 
         switch (special) {
@@ -125,6 +112,7 @@ class Character {
                 break;
         }
         display.updateSpecial(special, this);
+        localStorage.setItem(special, value);
     }
 
     get currentLuck() {
@@ -132,20 +120,24 @@ class Character {
     }
 
     set currentLuck(value) {
+        value = Number(value)
         if (value < 0) {
             throw new Error("luck cannot be negative.");
         }
         this.#luckCurrent = value;
         display.updateCurrentLuck(this);
+        localStorage.setItem("currentLuck", value);
     }
 
-    get hpCurrent(){
-        return this.#hpCurrent;
+    get currentHp(){
+        return this.#currentHp;
     }
 
-    set hpCurrent(value){
-        this.#hpCurrent = value;
+    set currentHp(value){
+        value = Number(value)
+        this.#currentHp = value;
         display.updateHp(this);
+        localStorage.setItem("currentHp", value);
     }
 
     get level() {
@@ -153,9 +145,11 @@ class Character {
     }
 
     set level(value) {
+        value = Number(value)
         this.#level = value;
         display.updateHp(this);
         display.updateLevel(this);
+        localStorage.setItem("level", value);
     }
 
     get caps() {
@@ -163,8 +157,10 @@ class Character {
     }
 
     set caps(value) {
+        value = Number(value)
         this.#caps = value;
         display.updateCaps(this);
+        localStorage.setItem("caps", value);
     }
 
     hasSpecialty(skill) {
@@ -180,6 +176,7 @@ class Character {
         this.setSkill(skill, skillValue < 5 ? skillValue + 2 : 6);
 
         display.updateSpecialty(skill, this);
+        localStorage.setItem("specialties", JSON.stringify(this.#specialties));
     }
 
     removeSpecialty(skill) {
@@ -191,6 +188,7 @@ class Character {
         this.setSkill(skill, skillValue > 1 ? skillValue - 2 : 0);
 
         display.updateSpecialty(skill, this);
+        localStorage.setItem("specialties", JSON.stringify(this.#specialties));
     }
 
     getSkill(skill) {
@@ -198,8 +196,10 @@ class Character {
     }
 
     setSkill(skill, value) {
+        value = Number(value)
         this.#skills[skill] = value;
         display.updateSkill(skill, this);
+        localStorage.setItem(skill, value);
     }
 
     // Derived attributes;
@@ -254,6 +254,7 @@ class Character {
 
         display.updateItems(this);
         display.updateWeight(this);
+        localStorage.setItem("items", JSON.stringify(this.#items));
     }
 
 
@@ -268,14 +269,18 @@ class Character {
     }
 
     addItem(genericItem) {
-        let type = this.getPrefix(genericItem);
+        const itemId = genericItem.id;
+        let type = this.getPrefix(itemId);
         if(type === "weapon")
-            type = weaponData[genericItem].SKILL;
+            type = weaponData[itemId].SKILL;
+        if(type === "drink")
+            type = "drinks";
         // TODO increase quantity instead of inserting a new item
-        this.#items.push(getItemObj(genericItem, 1, type, ""));
+        this.#items.push(getItemObj(itemId, 1, type, ""));
 
         display.updateItems(this);
         display.updateWeight(this);
+        localStorage.setItem("items", JSON.stringify(this.#items));
     }
 
 
@@ -316,28 +321,6 @@ class Character {
 
     static getSpecialFromSkill(skill) {
         return Character.getSkill2SpecialMap()[skill];
-    }
-
-    toString(){
-        let result = {
-            "level": this.level,
-            "special": {},
-            "luckCurrent": this.currentLuck,
-            "hpCurrent": this.hpCurrent,
-            "skills": {},
-            "specialties": this.#specialties,
-            "caps": this.caps,
-            "background": this.#background,
-
-            "items": this.#items,
-        };
-        Character.getSpecialList().forEach((item) => {
-            result.special[item] = this.getSpecial(item);
-        });
-        Character.getSkillList().forEach((item) => {
-            result.skills[item] = this.getSkill(item);
-        });
-        return result;
     }
 
 }

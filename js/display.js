@@ -70,7 +70,7 @@ class Display {
             characterData.level = parseInt(this.#levelDisplay.value);
         })
         this.#currentLuckDisplay.parentElement.addEventListener('click', () => {
-            if(!isEditing) {
+            if(!this.#isEditing) {
                 let replenishLuck = confirm("Vuoi davvero ripristinare la tua fortuna?")
                 if(replenishLuck) {
                     characterData.currentLuck = characterData.getSpecial("luck");
@@ -116,7 +116,7 @@ class Display {
     }
 
     updateHp(character){
-        this.#hpDisplay.textContent = character.hpCurrent + "/" + character.calculateMaxHp();
+        this.#hpDisplay.textContent = character.currentHp + "/" + character.calculateMaxHp();
     }
 
     updateCaps(character){
@@ -124,7 +124,7 @@ class Display {
     }
 
     updateLevel(character){
-        this.#levelDisplay.textContent = character.level;
+        this.#levelDisplay.value = character.level;
     }
 
     updateCurrentLuck(character){
@@ -200,7 +200,7 @@ class Display {
         });
 
         // Update button text
-        this.#editStatsButton.textContent = isEditing ? 'Save Stats' : 'Edit Stats'; // TODO Translation
+        this.#editStatsButton.textContent = isEditing ? 'Stop Editing' : 'Edit Stats'; // TODO Translation
     }
 
     incrementSpecialStat(event) {

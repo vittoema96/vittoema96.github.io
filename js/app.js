@@ -5,21 +5,6 @@ let foodData = undefined;
 let drinksData = undefined;
 let medsData = undefined;
 
-// Function to update the display
-function updateDisplay() {
-
-    // Save to localStorage
-    localStorage.setItem('characterData', JSON.stringify(characterData.toString()));
-
-    loadTranslations(currentLanguage);
-}
-
-
-
-// Function to increment special stat values
-
-
-
 
 // TODO just the specialty checkboxes
 const checkboxes = document.querySelectorAll('input[type="checkbox"][class="specialty-checkbox"]');
@@ -70,7 +55,7 @@ function createGenericCard(genericItem, customCardContent) {
     card.innerHTML = `
         <div class="card">
             <div class="card-header">
-                <div class="card-name">${genericItem.ID}</div>
+                <div class="card-name" data-lang-id="${genericItem.ID}">${langData[currentLanguage][genericItem.ID]}</div>
                 <div class="right-header">
                     <div class="right-header-item"><div>Cost</div><div>${genericItem.COST}</div></div>
                     <div class="right-header-item"><div>Weight</div><div>${genericItem.WEIGHT} kg</div></div>
@@ -229,5 +214,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });*/
 
     display = new Display();
-    characterData = new Character(localStorage.getItem("characterData"));
+    characterData = new Character();
+    loadTranslations(currentLanguage);
 });

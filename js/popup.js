@@ -80,7 +80,7 @@ function openAddItemModal(itemType) {
     const newConfirmButton = confirmButton.cloneNode(true);
     newConfirmButton.addEventListener('click', () => {
         if (selectElement.value) {
-            characterData.addItem(selectElement.value);
+            characterData.addItem({id: selectElement.value, type: itemType}); // TODO do something better here
             closePopup(); // You'll need to implement this
         }
     })
@@ -209,7 +209,6 @@ function rollDice() {
         luckCheckbox.disabled = true;
         popupSelector.disabled = true;
         characterData.currentLuck = characterData.currentLuck - decreaseLuck;
-        updateDisplay();
     }
 }
 

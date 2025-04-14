@@ -1,4 +1,5 @@
-let currentLanguage = localStorage.getItem('language') || 'it'; // Default to English
+localStorage.setItem('language', localStorage.getItem('language') || 'it');
+let currentLanguage = localStorage.getItem('language');
 
 let langData = {
     en: undefined,
