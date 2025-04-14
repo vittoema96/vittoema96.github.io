@@ -1,11 +1,5 @@
 // Get references to DOM elements
 
-const editStatsButton = document.getElementById('edit-stats-button'); // New button
-
-const skillBoxes = document.querySelectorAll('.skill');
-
-let isEditing = false; // Track editing state
-
 let weaponData = undefined;
 let foodData = undefined;
 let drinksData = undefined;
@@ -20,98 +14,12 @@ function updateDisplay() {
     loadTranslations(currentLanguage);
 }
 
-// Function to toggle edit mode
-function toggleEditMode() {
-    isEditing = !isEditing;
 
-    // TODO should probably not set editing, but still the "effect" when gear is clicked is cool
-    specialList.forEach(special => specialDisplays[special].contentEditable = isEditing)
-
-    // Toggle event listeners on special stat boxes
-    const specialStatBoxes = document.querySelectorAll('.stat');
-    specialStatBoxes.forEach(box => {
-        box.addEventListener('click', incrementSpecialStat);
-    });
-
-
-    // TODO as above, but here i did not leave the contentEditable = true (as i don't remember any "effect" here)
-
-    // Toggle event listeners on skills
-    const skillBoxes = document.querySelectorAll('.skill'); // Or whatever the parent element is
-    skillBoxes.forEach(box => {
-        const checkbox = box.querySelector('input[type="checkbox"][class="specialty-checkbox"]');
-        if(checkbox)
-            checkbox.disabled = !isEditing;
-    });
-
-    // Update button text
-    editStatsButton.textContent = isEditing ? 'Save Stats' : 'Edit Stats'; // TODO Translation
-}
 
 // Function to increment special stat values
-function incrementSpecialStat(event) {
-    if (!isEditing) return; // Only increment if editing
-
-    const clickedSpecial = event.currentTarget;
-    const special = clickedSpecial.dataset.special;
-
-    const maxValue = special === "strength" || special === "endurance" ? 12 : 10;
-    const currentValue = characterData.getSpecial(special);
-    const newValue = currentValue < maxValue ? currentValue + 1 : 4;
-    characterData.setSpecial(special, newValue);
-    if(special === "luck")
-        characterData.currentLuck = newValue;
-
-    updateDisplay(); // Refresh display with updated data
-}
-
-function incrementSkill(event) {
-    if (!isEditing) return; // Only increment if editing
-
-    const box = event.currentTarget;
-    const skillName = box.dataset.skill;
-
-    const checkboxId = `specialty-${skillName}`;
-    const checkbox = box.querySelector(`input[type="checkbox"][id="${checkboxId}"]`);
-
-    // Check if the click originated from the checkbox
-    if (event.target === checkbox) {
-        if (checkbox.checked && !characterData.hasSpecialty(skillName))
-            characterData.addSpecialty(skillName);
-        else if (!checkbox.checked && characterData.hasSpecialty(skillName))
-            characterData.removeSpecialty(skillName);
-
-    } else {
-        const currentValue = characterData.getSkill(skillName);
-        const newValue = currentValue < 6 ? currentValue + 1
-            : checkbox && checkbox.checked ? 2 : 0;
-        characterData.setSkill(skillName, newValue);
-
-    }
-    updateDisplay(); // Refresh display with updated data
-}
-
-skillBoxes.forEach(box => {
-    box.addEventListener('click', function (evt) {
-        if(isEditing)
-            incrementSkill(evt);
-        else {
-            const box = evt.currentTarget;
-            const skillId = box.querySelector('.skill-value').id.replace("skill-", "");
-            openDicePopup(skillId);
-        }
-    });
-});
 
 
-// Event listener for edit stats button
-editStatsButton.addEventListener('click', () => {
-    toggleEditMode();
 
-    if (!isEditing) {
-        updateDisplay(); // Refresh display with updated data
-    }
-});
 
 // TODO just the specialty checkboxes
 const checkboxes = document.querySelectorAll('input[type="checkbox"][class="specialty-checkbox"]');

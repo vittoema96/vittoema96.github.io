@@ -94,6 +94,7 @@ class Character {
         (parsedData.items || defaultCharacter.items).forEach(item =>
             this.addItem(item)
         );
+        this.hpCurrent = parsedData.hpCurrent || this.calculateMaxHp();
         this.#background = parsedData.background || defaultCharacter.background;
     }
 
@@ -144,7 +145,7 @@ class Character {
 
     set hpCurrent(value){
         this.#hpCurrent = value;
-        // TODO update display
+        display.updateHp(this);
     }
 
     get level() {
@@ -158,7 +159,7 @@ class Character {
     }
 
     get caps() {
-        return this.#level;
+        return this.#caps;
     }
 
     set caps(value) {
