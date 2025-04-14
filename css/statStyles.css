@@ -6,7 +6,7 @@
     flex-wrap: wrap; /* Permetti il wrapping anche su schermi più grandi se necessario */
 }
 .substat {
-    background-image: url("../img/luck-gear.svg");
+    background-image: url("../img/svg/luck-gear.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -36,7 +36,7 @@
     align-items: center; /* Centra orizzontalmente */
     aspect-ratio: 1;
     margin: 0.5rem;
-    background-image: url("../img/gear.svg");
+    background-image: url("../img/svg/gear.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -108,12 +108,12 @@
 input[type="checkbox"].specialty-checkbox {
     flex: 1;
     text-align: right;
-    background-image: url('../img/vaultboy.svg');
+    background-image: url('../img/svg/vaultboy.svg');
     background-position: right;
     background-repeat: no-repeat;
 }
 input[type="checkbox"].specialty-checkbox:checked {
-    filter: url('../img/vaultboy.svg#checked');
+    filter: url('../img/svg/vaultboy.svg#checked');
 }
 
 @media (max-width: 768px) {

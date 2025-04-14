@@ -114,7 +114,7 @@
     display: flex;
 }
 .attack-button {
-    background-image: url('../img/attack.svg'); /* Replace with your image path */
+    background-image: url('../img/svg/attack.svg'); /* Replace with your image path */
     background-size: cover; /* Adjust as needed: contain, auto, etc. */
     background-repeat: no-repeat;
     background-color: transparent;

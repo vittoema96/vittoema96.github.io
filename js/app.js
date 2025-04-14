@@ -6,7 +6,6 @@ let drinksData = undefined;
 let medsData = undefined;
 
 
-// TODO just the specialty checkboxes
 const checkboxes = document.querySelectorAll('input[type="checkbox"][class="specialty-checkbox"]');
 checkboxes.forEach(checkbox => {
     checkbox.disabled = true;

@@ -259,10 +259,10 @@ input[type="checkbox"] {
     background-repeat: no-repeat;
 }
 input[type="checkbox"].luck-checkbox {
-    background-image: url('../img/luck.svg');
+    background-image: url('../img/svg/luck.svg');
 }
 input[type="checkbox"].luck-checkbox:checked {
-    filter: url('../img/luck.svg#checked');
+    filter: url('../img/svg/luck.svg#checked');
 }
 
 table {

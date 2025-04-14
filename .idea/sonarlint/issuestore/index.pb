@@ -63,8 +63,6 @@ B
 img/attack.svg,4/5/451c21fc51ab13e129034b6f07a6dab89319659b
 8
 js/sw.js,5/2/52e65ead96c54d766e69953f76bfc1f6a4081d52
-J
-data/defaultCharacter.json,0/d/0d6abc0f1f5b058297bc36b31b56464f4767da02
 <
 img/caps.svg,1/b/1b1859906d419a8cf15c95a3033318bcb2b31f91
 >
@@ -96,14 +94,14 @@ A
 img/luck-gear.svg,9/3/93a29bea7d424a45b6b098d70dc8e7a1f34f6671
 ?
 js/character.js,e/2/e23331fed822967c773ae2e6aeb1b69084355c88
-E
-js/lang/character2.js,c/a/caa613891fc7872a65036050f72f8aa6ac899082
 :
 
 js/tabs.js,e/e/eec846255aff835a273534ce203686422aa219c7
 ;
 js/utils.js,c/d/cd10e7936518ad678c2a304ca0de3afa9a3dd664
-@
-js/character2.js,b/3/b325f41ddbb02629cd9a0969869fb13401360aa4
 =
 js/display.js,5/2/52bf9c2533230be99a6f2de6f5fe92d5363d2016
+>
+.gitattributes,2/4/24139dae656713ba861751fb2c2ac38839349a7a
+<
+js/app/sw.js,7/3/73f4dc860dd71d9830399c5849e1133e413c8f96
