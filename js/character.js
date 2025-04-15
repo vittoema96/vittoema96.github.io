@@ -36,19 +36,14 @@ const defaultCharacter = {
     "background": "",
 
     "items": [],
-    "weapons": [],
     "ammo": {},
-    "food": [],
-    "drinks": [],
-    "meds": []
 };
 
-function getItemObj(id, quantity, type, extra){
+function getItemObj(id, quantity, type){
     return {
         id: id,
         quantity: quantity,
         type: type,
-        extra: extra
     }
 }
 
@@ -61,6 +56,7 @@ class Character {
     #specialties = [];
     #caps;
     #items = [];
+    #ammo = {};
     #background;
 
     constructor() {
@@ -77,10 +73,16 @@ class Character {
             this.addSpecialty(specialty)
         );
         this.caps = localStorage.getItem("caps") || defaultCharacter.caps;
+
+        // TODO remove all items, on delete storage the items are still present unless there is a reload
         (JSON.parse(localStorage.getItem("items")) || defaultCharacter.items).forEach(item =>
             this.addItem(item)
         );
-        
+        for(const [ammoType, number] of Object.entries(JSON.parse(localStorage.getItem("ammo")) || defaultCharacter.ammo)) {
+            this.addAmmo(ammoType, number);
+        }
+
+        // TODO fix
         this.#background = localStorage.getItem("background") || defaultCharacter.background;
     }
 
@@ -268,19 +270,36 @@ class Character {
       }
     }
 
-    addItem(genericItem) {
-        const itemId = genericItem.id;
-        let type = this.getPrefix(itemId);
+    addItem(item) {
+        const id = item.id;
+        let type = this.getPrefix(id);
         if(type === "weapon")
-            type = weaponData[itemId].SKILL;
+            type = weaponData[id].SKILL;
         if(type === "drink")
             type = "drinks";
         // TODO increase quantity instead of inserting a new item
-        this.#items.push(getItemObj(itemId, 1, type, ""));
+        const currItemData = this.#items.find(i => {
+            const keys = Object.keys(i);
+            return keys.length === 2 && keys.includes("id") && keys.includes("type") && keys.includes("quantity");
+        })
+        if(currItemData) {
+            currItemData.quantity = Number(currItemData.quantity) + 1;
+        } else {
+            this.#items.push(getItemObj(id, item.quantity || 1, item.type));
+        }
 
         display.updateItems(this);
         display.updateWeight(this);
         localStorage.setItem("items", JSON.stringify(this.#items));
+    }
+
+    addAmmo(ammoType, number) {
+        const currentCount = this.#ammo[ammoType] || 0;
+        this.#ammo[ammoType] = currentCount + number;
+    }
+
+    removeAmmo(ammoType, number) {
+        this.addAmmo(ammoType, -number);
     }
 
 

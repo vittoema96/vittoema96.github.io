@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="css/statStyles.css">
         <link rel="stylesheet" href="css/invStyles.css">
         <link rel="stylesheet" href="css/popupStyles.css">
+        <link rel="stylesheet" href="css/mapStyles.css">
         <link rel="stylesheet" href="css/styles.css">
 
 
@@ -384,7 +385,9 @@
             </section>
 
             <section id="map-screen" class="screen hidden">
-                <h1>WORK IN PROGRESS</h1>
+                <div id="map-container">
+                    <img id="map-image" src="/img/png/map.png" alt="Zoomable Map">
+                </div>
             </section>
 
             <section id="settings-screen" class="screen hidden">
@@ -402,6 +405,11 @@
         <script src="js/app.js"></script>
         <script src="js/character.js"></script>
         <script src="js/display.js"></script>
+
+        <!-- Deve restare sopra map.js o non funziona -->
+        <script src="https://unpkg.com/@panzoom/panzoom@4.6.0/dist/panzoom.min.js"></script>
+        <script src="js/map.js"></script>
+
         <script src="js/popup.js"></script>
         <script src="js/sw.js"></script>
         <script src="js/tabs.js"></script>

@@ -155,7 +155,7 @@ function createWeaponCard(weaponId) {
             </div>
         </div>
         <div class="image">
-            <img id="weapon-img" src="img/${weapon.SKILL}.svg" alt="${weapon.ID}">
+            <img id="weapon-img" src="img/svg/${weapon.SKILL}.svg" alt="${weapon.ID}">
         </div>
         <div class="stats" id="stats-right">
             <div class="card-stat"><div>Damage Dice</div><div>${weapon.DAMAGE_RATING}</div><div>${weapon.DAMAGE_TYPE}</div></div>
@@ -180,7 +180,7 @@ function createObjectCard(id, type) {
     const objectHTML = `
         <div class="stats">
             <div class="image">
-                <img src="img/${type}.svg" alt="${type}" id="supply-img">
+                <img src="img/svg/${type}.svg" alt="${type}" id="supply-img">
             </div>
         </div>
         <div class="stats"">

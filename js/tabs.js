@@ -17,6 +17,11 @@ tabButtons.forEach(tab => {
         tab.classList.add('active');
         document.getElementById(`${targetScreen}-screen`).classList.remove('hidden');
         activeScreen = targetScreen;
+        if(targetScreen === 'map'){
+            loadPanzoom();
+        } else {
+            disposePanzoom();
+        }
     });
 });
 subTabButtons.forEach(subTab => {
