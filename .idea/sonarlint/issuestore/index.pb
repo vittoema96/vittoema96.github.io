@@ -66,3 +66,11 @@ A
 css/mapStyles.css,1/f/1ff4eec91f85a0fe63078cb545aed96df91fbea9
 9
 	js/map.js,4/6/462db79e26e31a081575a6acc75c9efd3738cfaf
+@
+img/svg/luck.svg,5/c/5cc624492437e2c4d4b8b5d81166c910b6040ffc
+B
+img/svg/attack.svg,c/9/c9558eb9f26df2f785a6ba8154c18b3be91aa840
+C
+img/svg/bigGuns.svg,e/4/e429aee3e426e49e291d87a1a0467c96e7626cfb
+@
+img/svg/caps.svg,5/a/5a04b429547148ffab30b39a97b76bd7f499f76f

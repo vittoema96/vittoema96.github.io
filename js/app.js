@@ -51,6 +51,11 @@ function createGenericCard(genericItem, customCardContent) {
 
     const skillId = genericItem.SKILL || "---"
 
+    let usePopup = "";
+    if(weaponData[genericItem.ID] !== undefined) {
+        usePopup = `openDicePopup('${skillId}', '${genericItem.ID}')`;
+    } // TODO implement objects popups
+
     card.innerHTML = `
         <div class="card">
             <div class="card-header">
@@ -64,8 +69,8 @@ function createGenericCard(genericItem, customCardContent) {
             <div class="card-content">
                 ${customCardContent}
                 <div class="card-controls">
-                    <button class="attack-button" onclick="openDicePopup('${skillId}')"></button>
-                    <button class="description-toggle">Show Description</button>
+                    <button class="attack-button" onclick="${usePopup}"></button>
+                    <button class="description-toggle">Mostra Descrizione</button>
                 </div>
                 <div class="description-container">
                     <div class="description">
@@ -78,6 +83,9 @@ function createGenericCard(genericItem, customCardContent) {
                     <button class="cancel-button">
                         <div class="fas fa-times"/>
                     </button>
+                    <button class="sell-button">
+                        <img class="fas" src="img/svg/caps.svg" alt="Sell"/>
+                    </button>
                     <button class="delete-button">
                         <div class="fas fa-trash"/>
                     </button>
@@ -85,6 +93,7 @@ function createGenericCard(genericItem, customCardContent) {
             </div>
         </div>
     `;
+
     const longPressDuration = 500; // Adjust this value (in milliseconds)
     let pressTimer;
     let isLongPress = false;
@@ -121,9 +130,9 @@ function createGenericCard(genericItem, customCardContent) {
     descriptionToggle.addEventListener("click", () => {
         descriptionContainer.classList.toggle("expanded");
         if (descriptionContainer.classList.contains("expanded")) {
-            descriptionToggle.textContent = "Hide Description";
+            descriptionToggle.textContent = "Nascondi Descrizione";
         } else {
-            descriptionToggle.textContent = "Show Description";
+            descriptionToggle.textContent = "Mostra Descrizione";
         }
     });
 
@@ -142,15 +151,15 @@ function createWeaponCard(weaponId) {
     const ammoCount = 0; // TODO reimplement ammo count:
     //                                    weapon.AMMO_TYPE==="na" ? "-" : "x"+(characterData.ammo[weapon.AMMO_TYPE] || 0);
 
-    const weaponHTML = `
+    let weaponHTML = `
         <div class="stats" id="stats-left">
             <div class="card-stat">
-                <div data-lang-id="${weapon.SKILL}"></div>
+                <div data-lang-id="${weapon.SKILL}">${langData[currentLanguage][weapon.SKILL]}</div>
                 <div>To Hit: ${characterData.getSkill(weapon.SKILL)+characterData.getSpecial(Character.getSpecialFromSkill(weapon.SKILL))}</div>
                 <div>To Crit: ${Math.max(characterData.getSkill(weapon.SKILL), 1)}</div>
             </div>
             <div class="card-stat">
-                <div data-lang-id="${weapon.AMMO_TYPE}"></div>
+                <div data-lang-id="${weapon.AMMO_TYPE}">${langData[currentLanguage][weapon.AMMO_TYPE]}</div>
                 <div>${ammoCount}</div>
             </div>
         </div>
@@ -162,7 +171,12 @@ function createWeaponCard(weaponId) {
             <div class="card-stat"><div>Fire Rate</div><div>${weapon.FIRE_RATE}</div></div>
             <div class="card-stat"><div>Range</div><div>${weapon.RANGE}</div></div>
         </div>
+        <div class="card-tags">
     `;
+    for(let effect of weapon.EFFECTS.split(',').map(e => e.trim()))
+        if(effect !== "")
+            weaponHTML += `<span class="tag">${effect}</span>`;
+    weaponHTML += `</div>`;
 
     return createGenericCard(weapon, weaponHTML); // Return the actual card element
 }

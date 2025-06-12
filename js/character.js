@@ -252,7 +252,7 @@ class Character {
     removeItem(genericItem) {
         const id = genericItem.ID;
         // TODO when mods and extras are implemented, be sure to delete the correct one
-        this.#items.find(item => item.id === id).remove();
+        this.#items.splice(this.#items.indexOf(this.#items.find(item => item.id === id)), 1);
 
         display.updateItems(this);
         display.updateWeight(this);

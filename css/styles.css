@@ -12,21 +12,6 @@
     --success-color: #0088ff;
     --failure-color: #dc143c;
 }
-.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-input[type="number"] {
-  font-family: 'Space Mono', monospace; /* Consistent font */
-  font-size: 1rem; /* Adjust as needed */
-  color: var(--primary-color); /* Primary text color */
-  background-color: var(--secondary-color); /* Secondary background color */
-  border: var(--border-primary-thin); /* Thin primary border */
-  border-radius: 4px; /* Moderate rounded corners (you can adjust) */
-  padding: 0.5rem 0.75rem; /* Adjust padding as needed */
-  box-sizing: border-box; /* Ensure padding and border are inside the width */
-}
 
 html {
     margin: 0;
@@ -35,7 +20,6 @@ html {
     overflow: hidden; /* Prevent scrolling */
     box-sizing: border-box; /* Apply box-sizing to html as well */
 }
-
 body {
     margin: 0;
     height: 100dvh;
@@ -47,13 +31,14 @@ body {
     font-family: 'Space Mono', monospace;
     padding: 0;
 }
-
-.inverse {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
+input, textarea, select, button {
+    font-family: inherit; /* Ensures they use the inherited font */
 }
 
-/* Header, the one with PipBoy 3000 */
+.hidden {
+    display: none;
+}
+
 .header {
     text-align: center;
     border-bottom: var(--border-primary-thick); /* Using the defined border variable */
@@ -63,6 +48,44 @@ body {
     grid-template-rows: auto auto;
     justify-content: space-between;
     align-items: start;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 1rem 0;
+    gap: 1rem;
+}
+#level-display {
+    font-size: 1rem; /* Adjust as needed */
+    color: var(--primary-color); /* Primary text color */
+    background-color: var(--secondary-color); /* Secondary background color */
+    border: var(--border-primary-thin); /* Thin primary border */
+    border-radius: 4px; /* Moderate rounded corners (you can adjust) */
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding and border are inside the width */
+    padding: .4rem;
+    width: 50%;
+}
+input[type=number] {
+    -moz-appearance: textfield; /* For Firefox */
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#level-label {
+    font-size: 1.5rem; /* Adjust as needed */
+}
+
+.inverse {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .icon-value-pair {
@@ -242,10 +265,6 @@ body {
     background-color: #7cba02;
 }
 
-.hidden {
-    display: none;
-}
-
 input[type="checkbox"] {
     margin-right: 0;
     appearance: none;
@@ -263,6 +282,13 @@ input[type="checkbox"].luck-checkbox {
 }
 input[type="checkbox"].luck-checkbox:checked {
     filter: url('../img/svg/luck.svg#checked');
+}
+input[type="checkbox"].aim-checkbox {
+    background-image: url('../img/svg/attack.svg');
+    filter: url('../img/svg/attack.svg#unchecked');
+}
+input[type="checkbox"].aim-checkbox:checked {
+    filter: none;
 }
 
 table {
@@ -328,7 +354,6 @@ tbody tr:hover {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-family: 'Space Mono', monospace;
     border: none;
 }
 
@@ -336,25 +361,28 @@ tbody tr:hover {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
-
-.confirm-button:hover {
-    background-color: #7ccc02;
-}
-
 .cancel-button {
     background-color: #4a5568;
     color: var(--primary-color);
 }
 
-.cancel-button:hover {
-    background-color: #718096;
+button:disabled {
+  opacity: 0.5; /* Adjust the value as needed (0-1) */
 }
 
-h2 {
+h1, h2, h3 {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 1.5rem;
     margin-bottom: 1rem;
     text-align: center;
+}
+h1 {
+    font-size: 2.1rem;
+}
+h2 {
+    font-size: 1.5rem;
+}
+h3 {
+    font-size: 1rem;
 }
 
 .dice-container {
@@ -432,27 +460,17 @@ h2 {
     color: var(--primary-color);
 }
 
-.select-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 1rem 0;
-    gap: 1rem;
-    width: 100%;
-}
-
-.select-container select {
+select {
     padding: 0.5rem;
     border-radius: 5px;
     border: var(--border-primary-thick); /* Using the defined border variable */
     background-color: var(--secondary-color);
     color: var(--primary-color);
-    font-family: 'Space Mono', monospace;
     width: 80%;
     max-width: 300px;
 }
 
-.select-container select:focus {
+select:focus {
     outline: none;
     box-shadow: 0 0 5px var(--tertiary-color);
 }

@@ -107,7 +107,7 @@ class Display {
     }
 
     updateMeleeDamage(character) {
-        this.#meleeDamageDisplay.textContent = character.meleeDamage;
+        this.#meleeDamageDisplay.textContent = "+" + character.meleeDamage;
     }
 
     updateWeight(character) {

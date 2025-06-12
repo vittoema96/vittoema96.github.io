@@ -105,9 +105,26 @@
     height: 40px;
 }
 
+.card-tags {
+    display: flex;
+    grid-column: 1 / 4;
+    padding: 0.5rem;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+.tag {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: 4px;
+    padding: 0.3rem;
+    font-size: .8rem;
+}
+
 .card-controls {
     grid-column: 1 / 4;
-    grid-row: 2 / 3;
     margin: 5px;
     justify-content: space-around;
     align-items: center;
@@ -122,7 +139,7 @@
     cursor: pointer; /* Add a pointer cursor on hover */
     height: 40px;
     width: 40px;
-    margin: 5px;
+    margin-right: 10px;
 }
 .attack-button:hover {
     /* Optional: Add hover effects */
@@ -130,7 +147,7 @@
 }
 .description-toggle {
     cursor: pointer;
-    padding: 0.5rem 2rem; /* Match your other button padding */
+    padding: 0.5rem 0.5rem; /* Match your other button padding */
     border: 2px solid var(--primary-color);
     background-color: #1a5205; /* Match tab background */
     color: var(--primary-color);
@@ -139,7 +156,6 @@
     font-size: 1.2rem; /* Match tab font-size */
     transition: background-color 0.3s ease, color 0.3s ease;
     flex: auto;
-    margin: 5px;
 }
 .description-container {
     grid-column: 1 / 4;
@@ -187,15 +203,20 @@
     justify-content: center;
     align-items: center;
     aspect-ratio: 1 / 1;
+    background-color: #aaaaaa; /* Grey */
 }
 .overlay-buttons .delete-button {
     background-color: #ff4d4d; /* Red */
 }
-.overlay-buttons .cancel-button {
-    background-color: #cccccc; /* Grey */
-}
 .overlay-buttons button div {
     display: block; /* To prevent extra space below the image */
+    color: black;
+}
+
+img.fas {
+    width: 3rem;
+    height: 3rem;
+    filter: grayscale(100%) brightness(0%);
 }
 
 @media (max-width: 768px) {
