@@ -85,7 +85,7 @@ class Display {
                 else {
                     const box = evt.currentTarget;
                     const skillId = box.querySelector('.skill-value').id.replace("skill-", "");
-                    openDicePopup(skillId);
+                    openD20Popup(skillId);
                 }
             });
         });

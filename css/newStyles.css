@@ -1,0 +1,863 @@
+/* ==========================================================================
+   1. Root Variables & Global Styles
+   ========================================================================== */
+
+:root {
+    --primary-color: #afff03;
+    --primary-color-rgb: 175, 255, 3;
+    --secondary-color: #0f3003;
+    --tertiary-color: rgba(var(--primary-color-rgb), 0.7);
+
+    --border-primary-thick: 2px solid var(--primary-color);
+    --border-primary-thin: 1px solid var(--primary-color);
+    --border-secondary-lighter: 1px solid #338006;
+
+    --success-color: #0088ff;
+    --failure-color: #dc143c;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100dvh;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-family: 'Space Mono', monospace;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    font-family: 'Share Tech Mono', monospace;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+h1 { font-size: 2.1rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1rem; }
+
+/* ==========================================================================
+   2. Utility & General Layout
+   ========================================================================== */
+
+.hidden {
+    display: none !important;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 1rem 0;
+    gap: 1rem;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.main-container {
+    width: 100%;
+    overflow-y: auto;
+    margin: 0 auto;
+    border: 4px solid var(--primary-color);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+/* ==========================================================================
+   3. Header & Tabs
+   ========================================================================== */
+
+.header {
+    text-align: center;
+    border-bottom: var(--border-primary-thick);
+    font-size: 0.9em;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.header h2 { /* Pip-Boy 3000 Title */
+    font-size: 3rem;
+    margin: 0.5rem;
+}
+
+.icon-value-pair {
+    padding: 2px;
+    min-width: 25%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-value-pair:not(:last-child) {
+    border-bottom: var(--border-primary-thick);
+}
+
+.icon-value-pair div {
+    width: 100%;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
+}
+
+.tab-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#main-tab-container {
+    padding: 0.5rem 1rem 0;
+}
+
+.tab {
+    padding: 0.75rem 1.5rem;
+    background-color: #1a5205;
+    color: var(--primary-color);
+    border: var(--border-primary-thick);
+    border-bottom: 0;
+    border-radius: 5px 5px 0 0;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    flex: 1;
+    min-width: 40px;
+    box-sizing: border-box;
+}
+
+.tab:hover {
+    background-color: #338006;
+}
+
+.tab.active {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+#mini-tab {
+    min-width: 10px;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subTab {
+    color: rgba(var(--primary-color-rgb), 0.25);
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: bold;
+    transition: color 0.3s ease, font-size 0.3s ease;
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+
+.subTab.active + .subTab,
+.subTab:has(+ .subTab.active) {
+    color: rgba(var(--primary-color-rgb), 0.7);
+    font-size: 1rem;
+}
+
+.subTab.active {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: var(--primary-color);
+    border-top: var(--border-primary-thick);
+    border-bottom: var(--border-primary-thick);
+}
+
+/* ==========================================================================
+   4. Forms, Buttons & Inputs
+   ========================================================================== */
+
+input, textarea, select, button {
+    font-family: inherit;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.form-control {
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    border: var(--border-primary-thin);
+    color: var(--primary-color);
+    padding: 0.75rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--tertiary-color);
+    border-color: var(--primary-color);
+}
+
+#level-label {
+    font-size: 1.5rem;
+}
+
+#level-display {
+    font-size: 1rem;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border: var(--border-primary-thin);
+    border-radius: 4px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: .4rem;
+    width: 50%;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    position: relative;
+    content: '';
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+input[type="checkbox"].luck-checkbox {
+    background-image: url('../img/svg/luck.svg');
+}
+
+input[type="checkbox"].luck-checkbox:checked {
+    filter: url('../img/svg/luck.svg#checked');
+}
+
+input[type="checkbox"].aim-checkbox {
+    background-image: url('../img/svg/attack.svg');
+    filter: url('../img/svg/attack.svg#unchecked');
+}
+
+input[type="checkbox"].aim-checkbox:checked {
+    filter: none;
+}
+
+input[type="checkbox"].specialty-checkbox {
+    flex: 1;
+    text-align: right;
+    background-image: url('../img/svg/vaultboy.svg');
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+input[type="checkbox"].specialty-checkbox:checked {
+    filter: url('../img/svg/vaultboy.svg#checked');
+}
+
+select {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: var(--border-primary-thick);
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    width: 80%;
+    max-width: 300px;
+}
+
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--tertiary-color);
+}
+
+.button, .confirm-button, .cancel-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.button:hover, .confirm-button:hover {
+    background-color: #7cba02;
+}
+
+.confirm-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.cancel-button {
+    background-color: #4a5568;
+    color: var(--primary-color);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   5. Popups & Dialogs
+   ========================================================================== */
+
+dialog {
+    position: relative;
+    background-color: var(--secondary-color);
+    border: var(--border-primary-thin);
+    z-index: 1000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    color: var(--primary-color);
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--primary-color);
+}
+
+.dice-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.dice-wrapper {
+    position: relative;
+    width: 12%;
+    min-width: 40px;
+    aspect-ratio: 1 / 1;
+    margin: 0 10px;
+}
+
+.dice {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease, background-color 0.3s ease;
+    color: var(--secondary-color);
+}
+
+.dice.roll-crit { background-color: var(--success-color); }
+.dice.roll-complication { background-color: var(--failure-color); }
+.dice.active { opacity: 1; }
+.dice.inactive { opacity: 0.7; }
+
+.dice-wrapper:nth-child(1),
+.dice-wrapper:nth-child(2) {
+    transform: scale(1.2);
+    margin: 0 12px;
+}
+
+/* ==========================================================================
+   6. STAT Screen
+   ========================================================================== */
+
+#stat-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.stat {
+    position: relative;
+    padding: 0.5rem;
+    text-align: center;
+    background-color: rgba(15, 48, 3, 0.3);
+    width: calc(14.28% - 20px);
+    min-width: 80px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+    margin: 0.5rem;
+    background-image: url("../img/svg/gear.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.stat h3 {
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+    color: #ffdb58;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.substat {
+    background-image: url("../img/svg/luck-gear.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50%;
+    min-width: 30px;
+    aspect-ratio: 1;
+    position: absolute;
+    bottom: -5px;
+    right: -10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.derived-stat {
+    border: var(--border-primary-thick);
+    border-radius: 5px;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1;
+    text-align: center;
+    font-size: clamp(10px, 3vw, 32px);
+    box-sizing: border-box;
+}
+
+.derived-stat div {
+    margin: 0.2rem;
+}
+
+#skills {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.skill {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: var(--border-primary-thick);
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.skill-name {
+    font-weight: bold;
+    flex: 4;
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.skill-stat {
+    font-style: italic;
+    flex: 4;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.skill-value {
+    flex: 1;
+    text-align: right;
+    font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   7. INV Screen (Cards)
+   ========================================================================== */
+
+.itemlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.itemlist-header h2 {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: var(--primary-color);
+}
+
+.add-item-button {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: var(--primary-color);
+    background-color: transparent;
+    border: var(--border-primary-thick);
+    margin : 5px;
+    padding: 0 0.5rem;
+    cursor: pointer;
+}
+
+.card {
+    width: 400px;
+    border: var(--border-primary-thick);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.card-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 0.9em;
+    align-items: start;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.card-name {
+    font-size: 1.2rem;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.right-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    justify-self: end;
+}
+
+.right-header-item div {
+    text-align: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+}
+
+.card-content {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto auto;
+    font-size: 0.9em;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.card-stat {
+    margin: 5px 0;
+}
+
+.card-stat div {
+    text-align: center;
+    border: 1px solid var(--primary-color);
+    padding: 5px;
+    width: 60px;
+    font-size: 0.6rem;
+    font-weight: bold;
+}
+
+.card-stat div:first-child {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#weapon-img { max-width: 100%; }
+#supply-img { width: 40px; height: 40px; }
+
+.card-tags {
+    display: flex;
+    grid-column: 1 / 4;
+    padding: 0.5rem;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.tag {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: 4px;
+    padding: 0.3rem;
+    font-size: .8rem;
+    margin: 2px;
+}
+
+.card-controls {
+    grid-column: 1 / 4;
+    margin: 5px;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
+
+.attack-button {
+    background-image: url('../img/svg/attack.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+}
+
+.attack-button:hover {
+    opacity: 0.8;
+}
+
+.description-toggle {
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 2px solid var(--primary-color);
+    background-color: #1a5205;
+    color: var(--primary-color);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    flex: auto;
+}
+
+.description-container {
+    grid-column: 1 / 4;
+    grid-row: 3 / 3;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+}
+
+.description {
+    padding: 10px;
+    text-align: justify;
+    font-size: 0.8em;
+    line-height: 1.5;
+}
+
+.description-container.expanded {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.overlay-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.overlay-buttons button {
+    border: none;
+    padding: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    background-color: #aaaaaa;
+}
+
+.overlay-buttons .delete-button {
+    background-color: #ff4d4d;
+}
+
+.overlay-buttons button div {
+    display: block;
+    color: black;
+}
+
+img.fas {
+    width: 3rem;
+    height: 3rem;
+    filter: grayscale(100%) brightness(0%);
+}
+
+/* ==========================================================================
+   8. MAP Screen
+   ========================================================================== */
+
+section#map-screen {
+    overflow: hidden;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+section#map-screen:not(.hidden) {
+    display: flex;
+}
+
+#map-container {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    display: flex; /* Added for centering */
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================================================
+   9. Responsive Styles (Media Queries)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .header {
+        text-align: start;
+    }
+
+    .tab {
+        padding: 0.2rem 0.3rem;
+        margin-right: 0.2rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .grid-container {
+        margin-bottom: 1rem;
+    }
+
+    #stat-container {
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .stat {
+        width: calc(25% - 10px);
+        min-width: 60px;
+        margin: 5px;
+        border-width: 1px;
+        padding: 0.1rem;
+        border-radius: 50%;
+    }
+
+    .stat h3 {
+        font-size: 0.7rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .stat-value {
+        font-size: 1.2rem;
+    }
+
+    .skill-name,
+    .skill-stat {
+        font-size: 0.8rem;
+    }
+
+    .skill-stat {
+        text-overflow: ellipsis;
+    }
+
+    .card {
+        width: 100%;
+    }
+}

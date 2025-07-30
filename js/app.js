@@ -53,7 +53,7 @@ function createGenericCard(genericItem, customCardContent) {
 
     let usePopup = "";
     if(weaponData[genericItem.ID] !== undefined) {
-        usePopup = `openDicePopup('${skillId}', '${genericItem.ID}')`;
+        usePopup = `openD20Popup('${skillId}', '${genericItem.ID}')`;
     } // TODO implement objects popups
 
     card.innerHTML = `

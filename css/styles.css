@@ -31,6 +31,16 @@ body {
     font-family: 'Space Mono', monospace;
     padding: 0;
 }
+
+dialog {
+
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+}
+
 input, textarea, select, button {
     font-family: inherit; /* Ensures they use the inherited font */
 }

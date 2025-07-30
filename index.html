@@ -2,140 +2,124 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="theme-color" content="#afff03"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"><!--, viewport-fit=cover">-->
         <title>Pip-Boy 3000</title>
 
+        <!-- Meta tags for theme and PWA -->
+        <meta name="theme-color" content="#afff03"/>
+        <link rel="canonical" href="https://vittoema96.github.io/" />
+        <link rel="manifest" href="/manifest.webmanifest">
+        <link rel="icon" href="/img/icons/192x192.png" type="image/png">
+        <link rel="icon" href="/img/icons/512x512.png" type="image/png">
+        <link rel="apple-touch-icon" href="/img/icons/192x192.png" type="image/png">
+        <link rel="apple-touch-icon" href="/img/icons/512x512.png" type="image/png">
 
+        <!-- Google Fonts  -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Share Tech Mono&display=swap" rel="stylesheet">
+        <!-- TODO check needed fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
 
+        <!-- Font Awesome - TODO is needed? -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap">
 
+        <!-- CSS - TODO only 1 CSS??? -->
+        <link rel="stylesheet" href="css/newStyles.css">
+
+        <!--
         <link rel="stylesheet" href="css/statStyles.css">
         <link rel="stylesheet" href="css/invStyles.css">
         <link rel="stylesheet" href="css/popupStyles.css">
         <link rel="stylesheet" href="css/mapStyles.css">
         <link rel="stylesheet" href="css/styles.css">
+        -->
 
-
-        <link rel="canonical" href="https://vittoema96.github.io/" />
-        <link rel="manifest" href="/manifest.webmanifest">
-
-        <link rel="icon" href="/img/icons/192x192.png" type="image/png">
-        <link rel="icon" href="/img/icons/512x512.png" type="image/png">
-        <link rel="apple-touch-icon" href="/img/icons/192x192.png" type="image/png">
-        <link rel="apple-touch-icon" href="/img/icons/512x512.png" type="image/png">
     </head>
 
     <!-- TODO what are these classes? do i need them? -->
     <body>
-        <div class="overlay hidden">
-            <div class="popup hidden" id="dice-popup">
-                <span class="close-button">&times;</span>
-                <h1 id="skill-throw-on">SKILL</h1>
-                <div class="row">
-                    <h1 id="target-number">12</h1>
-                    <h2 id="target-number-details">[4+8]</h2>
-                </div>
-                <div class="dice-container">
-                    <div class="dice-wrapper">
-                        <div class="dice active" data-value="1">?</div>
-                    </div>
-                    <div class="dice-wrapper">
-                        <div class="dice active" data-value="2">?</div>
-                    </div>
-                    <div class="dice-wrapper">
-                        <div class="dice inactive" data-value="3">?</div>
-                    </div>
-                    <div class="dice-wrapper">
-                        <div class="dice inactive" data-value="4">?</div>
-                    </div>
-                    <div class="dice-wrapper">
-                        <div class="dice inactive" data-value="5">?</div>
-                    </div>
-                </div>
-                <h2 id="ap-cost">Costo AP: +0</h2>
-                <div class="row">
-                    <select id="popup-selector">
-                         <option data-lang-id="strength" value="strength">Strength</option>
-                         <option data-lang-id="perception" value="perception">Perception</option>
-                         <option data-lang-id="endurance" value="endurance">Endurance</option>
-                         <option data-lang-id="charisma" value="charisma">Charisma</option>
-                         <option data-lang-id="intelligence" value="intelligence">Intelligence</option>
-                         <option data-lang-id="agility" value="agility">Agility</option>
-                         <option data-lang-id="luck" value="luck">Luck</option>
-                    </select>
-                    <input type="checkbox" class="luck-checkbox" src="img/svg/luck.svg" alt="Use Luck"/>
-                </div>
-                <div class="row">
-                    <h2>Mirare?</h2>
-                    <input type="checkbox" class="aim-checkbox" alt="Aim"/>
-                </div>
-                <h2 id="luck-cost">Costo Fortuna: 0</h2>
-                <h1 id="successes">Successi: ?</h1>
-                <div class="flex justify-center gap-4 mt-4">
-                    <button id="throw-damage-button" class="confirm-button">Tira Danno</button>
-                    <button id="roll-dice-button" class="confirm-button">Lancia</button>
-                    <button class="cancel-button">Indietro</button>
-                </div>
+        <dialog id="d20-popup" class="popup">
+            <span class="close-button">&times;</span>
+            <h1 id="skill-throw-on">SKILL</h1>
+            <div class="row">
+                <select id="popup-selector">
+                     <option data-lang-id="strength" value="strength">Strength</option>
+                     <option data-lang-id="perception" value="perception">Perception</option>
+                     <option data-lang-id="endurance" value="endurance">Endurance</option>
+                     <option data-lang-id="charisma" value="charisma">Charisma</option>
+                     <option data-lang-id="intelligence" value="intelligence">Intelligence</option>
+                     <option data-lang-id="agility" value="agility">Agility</option>
+                     <option data-lang-id="luck" value="luck">Luck</option>
+                </select>
+                <input type="checkbox" class="luck-checkbox" src="img/svg/luck.svg" alt="Use Luck"/>
             </div>
-
-            <div class="popup hidden" id="damage-popup">
-                <span class="close-button">&times;</span>
-                <h1 id="weapon-damage-with">WEAPON</h1>
-                <div class="row">
-                    <div class="row">
-                        <h2 id="target-number">Dadi Danno</h2>
-                        <h2>[min-MAX]</h2>
-                    </div>
-                    <input type="number" id="target-number-details"></input>
-                </div>
-                <div class="dice-container">
-                    <div class="dice-wrapper">
-                        <div class="dice active" data-value="1">?</div>
-                    </div>
-                    <div class="dice-wrapper">
-                        <div class="dice active" data-value="2">?</div>
-                    </div>
-                    <div class="dice-wrapper">
-                        <div class="dice inactive" data-value="3">?</div>
-                    </div>
-                    <div class="dice-wrapper">
-                        <div class="dice inactive" data-value="4">?</div>
-                    </div>
-                    <div class="dice-wrapper">
-                        <div class="dice inactive" data-value="5">?</div>
-                    </div>
-                </div>
-                <div class="ap-cost">Costo AP: 0</div>
-                <div class="select-container">
-                    <select id="popup-selector">
-                         <option data-lang-id="strength" value="strength">Strength</option>
-                         <option data-lang-id="perception" value="perception">Perception</option>
-                         <option data-lang-id="endurance" value="endurance">Endurance</option>
-                         <option data-lang-id="charisma" value="charisma">Charisma</option>
-                         <option data-lang-id="intelligence" value="intelligence">Intelligence</option>
-                         <option data-lang-id="agility" value="agility">Agility</option>
-                         <option data-lang-id="luck" value="luck">Luck</option>
-                    </select>
-                    <input type="checkbox" class="luck-checkbox" src="img/luck.svg" alt="Use Luck"/>
-                </div>
-                <div class="flex justify-center gap-4 mt-4">
-                    <button class="confirm-button bg-lime-600 text-green-900 px-6 py-2 rounded-md font-bold hover:bg-lime-500 transition-colors duration-200">Lancia</button>
-                    <button class="cancel-button bg-gray-700 text-lime-400 px-6 py-2 rounded-md font-bold hover:bg-gray-600 transition-colors duration-200">Indietro</button>
-                </div>
+            <div class="row">
+                <h1 id="target-number">12</h1>
+                <h3 id="target-number-details">[8+4]</h3>
             </div>
-            <div class="popup hidden" id="add-item-popup">
-                <span class="close-button">&times;</span>
-                <h2>Scegli un oggetto:</h2>
-                <select id="selector" class="form-control"></select>
-                <button class="confirm-button">Conferma</button>
+            <div class="dice-container">
+                <div class="dice-wrapper"><div class="dice active" data-value="1">?</div></div>
+                <div class="dice-wrapper"><div class="dice active" data-value="2">?</div></div>
+                <div class="dice-wrapper"><div class="dice inactive" data-value="3">?</div></div>
+                <div class="dice-wrapper"><div class="dice inactive" data-value="4">?</div></div>
+                <div class="dice-wrapper"><div class="dice inactive" data-value="5">?</div></div>
+            </div>
+            <h2 id="ap-cost">Costo AP: +0</h2>
+            <div class="row">
+                <h2>Mirare?</h2>
+                <input type="checkbox" class="aim-checkbox" alt="Aim"/>
+            </div>
+            <h2 id="luck-cost">Costo Fortuna: 0</h2>
+            <h1 id="successes">Successi: ?</h1>
+            <div class="flex justify-center gap-4 mt-4">
+                <button id="throw-damage-button" class="confirm-button">Tira Danno</button>
+                <button id="roll-dice-button" class="confirm-button">Lancia</button>
                 <button class="cancel-button">Indietro</button>
             </div>
-        </div>
+        </dialog>
+
+        <dialog id="d6-popup" class="popup">
+            <span class="close-button">&times;</span>
+            <h1 id="weapon-damage-with">WEAPON</h1>
+            <div class="row">
+                <div class="row">
+                    <h2 id="target-number">Dadi Danno</h2>
+                    <h2>[min-MAX]</h2>
+                </div>
+                <input type="number" id="target-number-details"></input>
+            </div>
+            <div class="dice-container">
+                <div class="dice-wrapper"><div class="dice active" data-value="1">?</div></div>
+                <div class="dice-wrapper"><div class="dice active" data-value="2">?</div></div>
+                <div class="dice-wrapper"><div class="dice inactive" data-value="3">?</div></div>
+                <div class="dice-wrapper"><div class="dice inactive" data-value="4">?</div></div>
+                <div class="dice-wrapper"><div class="dice inactive" data-value="5">?</div></div>
+            </div>
+            <div class="ap-cost">Costo AP: 0</div>
+            <div class="select-container">
+                <select id="popup-selector">
+                     <option data-lang-id="strength" value="strength">Strength</option>
+                     <option data-lang-id="perception" value="perception">Perception</option>
+                     <option data-lang-id="endurance" value="endurance">Endurance</option>
+                     <option data-lang-id="charisma" value="charisma">Charisma</option>
+                     <option data-lang-id="intelligence" value="intelligence">Intelligence</option>
+                     <option data-lang-id="agility" value="agility">Agility</option>
+                     <option data-lang-id="luck" value="luck">Luck</option>
+                </select>
+                <input type="checkbox" class="luck-checkbox" src="img/luck.svg" alt="Use Luck"/>
+            </div>
+            <div class="flex justify-center gap-4 mt-4">
+                <button class="confirm-button bg-lime-600 text-green-900 px-6 py-2 rounded-md font-bold hover:bg-lime-500 transition-colors duration-200">Lancia</button>
+                <button class="cancel-button bg-gray-700 text-lime-400 px-6 py-2 rounded-md font-bold hover:bg-gray-600 transition-colors duration-200">Indietro</button>
+            </div>
+        </dialog>
+        <dialog id="add-item-popup" class="popup">
+            <span class="close-button">&times;</span>
+            <h2>Scegli un oggetto:</h2>
+            <select id="selector" class="form-control"></select>
+            <button class="confirm-button">Conferma</button>
+            <button class="cancel-button">Indietro</button>
+        </dialog>
 
 
         <header class="header">
@@ -377,32 +361,32 @@
                         <h2 data-lang-id="smallGuns">Small Guns</h2>
                         <button class="add-item-button" onclick="openAddItemModal('smallGuns')">+</button>
                     </div>
-                    <div id="smallGuns-cards"></div>
+                    <div id="smallGuns-cards" class="card-carousel"></div>
                     <div class="itemlist-header">
                         <h2 data-lang-id="energyWeapons">Energy Weapons</h2>
                         <button class="add-item-button" onclick="openAddItemModal('energyWeapons')">+</button>
                     </div>
-                    <div id="energyWeapons-cards"></div>
+                    <div id="energyWeapons-cards" class="card-carousel"></div>
                     <div class="itemlist-header">
                         <h2 data-lang-id="bigGuns">Big Guns</h2>
                         <button class="add-item-button" onclick="openAddItemModal('bigGuns')">+</button>
                     </div>
-                    <div id="bigGuns-cards"></div>
+                    <div id="bigGuns-cards" class="card-carousel"></div>
                     <div class="itemlist-header">
                         <h2 data-lang-id="meleeWeapons">Melee Weapons</h2>
                         <button class="add-item-button" onclick="openAddItemModal('meleeWeapons')">+</button>
                     </div>
-                    <div id="meleeWeapons-cards"></div>
+                    <div id="meleeWeapons-cards" class="card-carousel"></div>
                     <div class="itemlist-header">
                         <h2 data-lang-id="explosives">Explosives</h2>
                         <button class="add-item-button" onclick="openAddItemModal('explosives')">+</button>
                     </div>
-                    <div id="explosives-cards"></div>
+                    <div id="explosives-cards" class="card-carousel"></div>
                     <div class="itemlist-header">
                         <h2 data-lang-id="throwing">Throwing</h2>
                         <button class="add-item-button" onclick="openAddItemModal('throwing')">+</button>
                     </div>
-                    <div id="throwing-cards"></div>
+                    <div id="throwing-cards" class="card-carousel"></div>
                 </div>
                 <div class="subScreen hidden" id="inv-armor">
                     <h1>WORK IN PROGRESS</h1>
@@ -413,17 +397,17 @@
                         <h2 data-lang-id="food">Food</h2>
                         <button class="add-item-button" onclick="openAddItemModal('food')">+</button>
                     </div>
-                    <div id="food-cards"></div>
+                    <div id="food-cards" class="card-carousel"></div>
                     <div class="itemlist-header">
                         <h2 data-lang-id="drinks">Drinks</h2>
                         <button class="add-item-button" onclick="openAddItemModal('drinks')">+</button>
                     </div>
-                    <div id="drinks-cards"></div>
+                    <div id="drinks-cards" class="card-carousel"></div>
                     <div class="itemlist-header">
                         <h2 data-lang-id="meds">Meds</h2>
                         <button class="add-item-button" onclick="openAddItemModal('meds')">+</button>
                     </div>
-                    <div id="meds-cards"></div>
+                    <div id="meds-cards" class="card-carousel"></div>
                 </div>
                 <div class="subScreen hidden" id="inv-ammo">
                     <h1>WORK IN PROGRESS</h1>
