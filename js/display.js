@@ -1,178 +1,177 @@
 let display = undefined;
 
 class Display {
-
-        #capsDisplay;
-        #weightDisplay;
-        #hpDisplay;
-
-        #defenseDisplay;
-        #initiativeDisplay;
-        #meleeDamageDisplay;
-
-        #levelDisplay;
-
-        #specialDisplays;
-        #currentLuckDisplay;
-        #skillDisplays;
-        #specialtyDisplays;
-
-
-        #characterBackgroundInput;
-        #gameMapDisplay;
-
-        #itemsDisplays;
-
-        #elementMaps;
-
-        #isEditing;
-
-        #editStatsButton;
-        #skillBoxes;
-
+    #isEditing = false;
+    #longPressTimer = null;
+    #longPressTarget = null;
 
     constructor() {
-        this.#defenseDisplay = document.getElementById('defense-value');
-        this.#initiativeDisplay = document.getElementById('initiative-value');
-        this.#meleeDamageDisplay = document.getElementById('melee-damage-value');
+        // Cache all DOM elements once
+        this.dom = {
+            defense: document.getElementById('defense-value'),
+            initiative: document.getElementById('initiative-value'),
+            meleeDamage: document.getElementById('melee-damage-value'),
 
-        this.#capsDisplay = document.getElementById('caps-value');
-        this.#weightDisplay = document.getElementById('weight-value');
-        this.#hpDisplay = document.getElementById('hp-value');
+            caps: document.getElementById('caps-value'),
+            weight: document.getElementById('weight-value'),
+            hp: document.getElementById('hp-value'),
 
-        this.#levelDisplay = document.getElementById('level-display');
+            level: document.getElementById('level-display'),
 
-        this.#specialDisplays = this.getDisplayMap(Character.getSpecialList(), "special-%s-value");
-        this.#currentLuckDisplay = document.getElementById('luck-current-value');
+            currentLuck: document.getElementById('luck-current-value'),
+            specials: this.getDisplayMap(Character.getSpecialList(), "special-%s-value"),
 
-        this.#skillDisplays = this.getDisplayMap(Character.getSkillList(), "skill-%s");
-        this.#skillBoxes = document.querySelectorAll('.skill');
+            skills: this.getDisplayMap(Character.getSkillList(), "skill-%s"),
+            specialties: this.getDisplayMap(Character.getSkillList(), "specialty-%s"),
+            itemContainers: this.getDisplayMap(["smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "food", "drinks", "meds"], "%s-cards"),
 
-        this.#specialtyDisplays = this.getDisplayMap(Character.getSkillList(), "specialty-%s");
+            editStatsButton: document.getElementById('edit-stats-button'),
+            statContainer: document.getElementById('stat-container'),
+            skillsContainer: document.getElementById('skills'),
+            invScreen: document.getElementById('inv-screen'),
+        };
+        this.elementMaps = {};
+        Object.keys(this.dom.itemContainers).forEach(key => { this.elementMaps[key] = new Map() });
+        this.addEventListeners();
+    }
 
-        this.#characterBackgroundInput = document.getElementById('character-background');
-        this.#gameMapDisplay = document.getElementById('game-map');
+    // Called once after characterData is loaded
+    initialize(character) {
+        this.fullUpdate(character);
+    }
 
-        this.#itemsDisplays = this.getDisplayMap(
-            [
-                "smallGuns", "energyWeapons", "bigGuns", "meleeWeapons",
-                "explosives", "throwing", "food", "drinks", "meds"
-            ],
-            "%s-cards"
-        );
-        this.#editStatsButton = document.getElementById('edit-stats-button');
+    fullUpdate(character) {
+        this.updateDefense(character);
+        this.updateInitiative(character);
+        this.updateMeleeDamage(character);
+        this.updateWeight(character);
+        this.updateHp(character);
+        this.updateCaps(character);
+        this.updateLevel(character);
+        this.updateCurrentLuck(character);
+        Character.getSpecialList().forEach(s => this.updateSpecial(s, character));
+        Character.getSkillList().forEach(s => {
+            this.updateSkill(s, character);
+            this.updateSpecialty(s, character);
+        });
+        this.updateItems(character);
+    }
 
-
-        this.#elementMaps = {};
-        Object.keys(this.#itemsDisplays).forEach(key => {this.#elementMaps[key] = new Map()});
-
-        this.#levelDisplay.addEventListener('change', () => {
-            characterData.level = parseInt(this.#levelDisplay.value);
-        })
-        this.#currentLuckDisplay.parentElement.addEventListener('click', () => {
-            if(!this.#isEditing) {
-                let replenishLuck = confirm("Vuoi davvero ripristinare la tua fortuna?")
-                if(replenishLuck) {
-                    characterData.currentLuck = characterData.getSpecial("luck");
-                }
+    addEventListeners() {
+        this.dom.level.addEventListener('change', () => {
+            characterData.level = parseInt(this.dom.level.value);
+        });
+        this.dom.currentLuck.parentElement.addEventListener('click', () => {
+            if (!this.#isEditing && confirm("Vuoi davvero ripristinare la tua fortuna?")) {
+                characterData.currentLuck = characterData.getSpecial("luck");
             }
         });
-        this.#editStatsButton.addEventListener('click', () => this.toggleEditMode());
-        this.#skillBoxes.forEach(box => {
-            box.addEventListener('click',  (evt) => {
-                if(this.#isEditing)
-                    this.incrementSkill(evt);
-                else {
-                    const box = evt.currentTarget;
-                    const skillId = box.querySelector('.skill-value').id.replace("skill-", "");
-                    openD20Popup(skillId);
-                }
-            });
-        });
-        const specialStatBoxes = document.querySelectorAll('.stat');
-        specialStatBoxes.forEach(box => {
-            box.addEventListener('click', (evt) => this.incrementSpecialStat(evt));
-        });
+        this.dom.editStatsButton.addEventListener('click', () => this.toggleEditMode());
+        this.dom.statContainer.addEventListener('click', (e) => this.handleStatClick(e));
+        this.dom.skillsContainer.addEventListener('click', (e) => this.handleSkillClick(e));
 
-
-        this.#isEditing = false;
+        // --- Event Delegation for Inventory Cards ---
+        this.dom.invScreen.addEventListener('click', (e) => this.handleCardClick(e));
+        this.dom.invScreen.addEventListener('pointerdown', (e) => this.handleCardPointerDown(e));
+        this.dom.invScreen.addEventListener('pointerup', (e) => this.clearLongPressTimer());
+        this.dom.invScreen.addEventListener('pointerleave', (e) => this.clearLongPressTimer());
     }
 
-    updateDefense(character) {
-        this.#defenseDisplay.textContent = character.defense;
+    handleCardClick(e) {
+        const action = e.target.dataset.action;
+        if (!action) return;
+
+        const cardDiv = e.target.closest('.card');
+        if (!cardDiv) return;
+
+        const { itemId, itemType } = cardDiv.dataset;
+
+        switch (action) {
+            case 'toggle-description': {
+                const container = cardDiv.querySelector(".description-container");
+                const button = cardDiv.querySelector(".description-toggle");
+                container.classList.toggle("expanded");
+                button.textContent = container.classList.contains("expanded") ? "Nascondi" : "Descrizione";
+                break;
+            }
+            case 'attack': {
+                const { skill, objectId } = e.target.dataset;
+                openD20Popup(skill, objectId);
+                break;
+            }
+            case 'delete':
+                characterData.removeItem({ ID: itemId, type: itemType });
+                break;
+            case 'cancel-overlay':
+            case 'sell': // TODO: Implement sell logic
+                cardDiv.querySelector('.card-overlay').classList.add('hidden');
+                break;
+        }
     }
 
-    updateInitiative(character) {
-        this.#initiativeDisplay.textContent = character.initiative;
+    handleCardPointerDown(e) {
+        this.clearLongPressTimer();
+        const cardDiv = e.target.closest('.card');
+        if (cardDiv) {
+            this.#longPressTarget = cardDiv;
+            this.#longPressTimer = setTimeout(() => {
+                const overlay = this.#longPressTarget.querySelector('.card-overlay');
+                if (overlay) overlay.classList.remove('hidden');
+            }, 500);
+        }
     }
 
-    updateMeleeDamage(character) {
-        this.#meleeDamageDisplay.textContent = "+" + character.meleeDamage;
+    clearLongPressTimer() {
+        clearTimeout(this.#longPressTimer);
+        this.#longPressTimer = null;
+        this.#longPressTarget = null;
     }
 
-    updateWeight(character) {
-        this.#weightDisplay.textContent = character.currentWeight + "/" + character.maxWeight;
-        this.#weightDisplay.style.color = character.currentWeight > character.maxWeight ? 'red' : "#afff03"; // TODO change color here if themes are implemented
+    updateDefense(c) { this.dom.defense.textContent = c.defense; }
+    updateInitiative(c) { this.dom.initiative.textContent = c.initiative; }
+    updateMeleeDamage(c) { this.dom.meleeDamage.textContent = `+${c.meleeDamage}`; }
+    updateWeight(c) {
+        this.dom.weight.textContent = `${c.currentWeight.toFixed(1)}/${c.maxWeight}`;
+        this.dom.weight.style.color = c.currentWeight > c.maxWeight ? 'red' : 'var(--primary-color)';
     }
-
-    updateHp(character){
-        this.#hpDisplay.textContent = character.currentHp + "/" + character.calculateMaxHp();
-    }
-
-    updateCaps(character){
-        this.#capsDisplay.textContent = character.caps;
-    }
-
-    updateLevel(character){
-        this.#levelDisplay.value = character.level;
-    }
-
-    updateCurrentLuck(character){
-        this.#currentLuckDisplay.textContent = character.currentLuck;
-    }
-
-    updateSpecial(special, character) {
-        this.#specialDisplays[special].textContent = character.getSpecial(special);
-    }
-
-    updateSkill(skill, character) {
-        this.#skillDisplays[skill].textContent = character.getSkill(skill);
-    }
-
-    updateSpecialty(skill, character) {
-        this.#specialtyDisplays[skill].checked = character.hasSpecialty(skill);
-    }
+    updateHp(c){ this.dom.hp.textContent = `${c.currentHp}/${c.calculateMaxHp()}`; }
+    updateCaps(c){ this.dom.caps.textContent = c.caps; }
+    updateLevel(c){ this.dom.level.value = c.level; }
+    updateCurrentLuck(c){ this.dom.currentLuck.textContent = c.currentLuck; }
+    updateSpecial(s, c) { this.dom.specials[s].textContent = c.getSpecial(s); }
+    updateSkill(s, c) { this.dom.skills[s].textContent = c.getSkill(s); }
+    updateSpecialty(s, c) { this.dom.specialties[s].checked = c.hasSpecialty(s); }
 
     updateItems(character) {
-
         requestAnimationFrame(() => {
-            for (const type  of Object.keys(this.#elementMaps)) {
-                const newIds = character.getItemsByType(type).map(item => item.id);
-                const map = this.#elementMaps[type];
-                const idsToRemove = new Set(map.keys()); // Track elements to remove.
-                const containerElement = this.#itemsDisplays[type]
+            for (const type of Object.keys(this.elementMaps)) {
+                const itemsOfType = character.getItemsByType(type);
+                const container = this.dom.itemContainers[type];
+                const currentMap = this.elementMaps[type];
+                const newIdSet = new Set(itemsOfType.map(item => item.id));
 
-                newIds.forEach((id) => {
-                    if (map.has(id)) {
-                        // Element already exists.
-                        idsToRemove.delete(id); // Keep it.
-                    } else {
-                        // Create and add the new element.
-                        let newCard;
-                        if(id.startsWith("weapon"))
-                            newCard = createWeaponCard(id);
-                        else
-                            newCard = createObjectCard(id, type);
-                        containerElement.appendChild(newCard);
-                        map.set(id, newCard);
+                // Remove cards that are no longer in the character's inventory
+                for (const id of currentMap.keys()) {
+                    if (!newIdSet.has(id)) {
+                        const elementToRemove = currentMap.get(id);
+                        container.removeChild(elementToRemove);
+                        currentMap.delete(id);
                     }
-                });
+                }
 
-                // Remove elements that are no longer in the list.
-                idsToRemove.forEach((id) => {
-                    const elementToRemove = map.get(id);
-                    containerElement.removeChild(elementToRemove);
-                    map.delete(id);
+                // Add or update cards
+                itemsOfType.forEach(item => {
+                    if (!currentMap.has(item.id)) {
+                        let newCard;
+                        if (item.id.startsWith("weapon")) newCard = createWeaponCard(item.id);
+                        else newCard = createObjectCard(item.id, item.type);
+
+                        if (newCard) {
+                            container.appendChild(newCard);
+                            currentMap.set(item.id, newCard);
+                        }
+                    }
+                    // TODO: Update quantity if it changes, though current logic adds new items
                 });
             }
         });
@@ -180,72 +179,47 @@ class Display {
 
     toggleEditMode() {
         this.#isEditing = !this.#isEditing;
-        let isEditing = this.#isEditing;
-
-        // TODO should probably not set editing, but still the "effect" when gear is clicked is cool
-        Character.getSpecialList().forEach(special =>
-            this.#specialDisplays[special].contentEditable = isEditing
-        )
-
-
-
-        // TODO as above, but here i did not leave the contentEditable = true (as i don't remember any "effect" here)
-
-        // Toggle event listeners on skills
-        const skillBoxes = document.querySelectorAll('.skill'); // Or whatever the parent element is
-        skillBoxes.forEach(box => {
-            const checkbox = box.querySelector('input[type="checkbox"][class="specialty-checkbox"]');
-            if(checkbox)
-                checkbox.disabled = !isEditing;
-        });
-
-        // Update button text
-        this.#editStatsButton.textContent = isEditing ? 'Stop Editing' : 'Edit Stats'; // TODO Translation
+        Object.values(this.dom.specials).forEach(el => el.contentEditable = this.#isEditing);
+        Object.values(this.dom.specialties).forEach(cb => cb.disabled = !this.#isEditing);
+        this.dom.editStatsButton.textContent = this.#isEditing ? 'Stop Editing' : 'Edit Stats';
     }
 
-    incrementSpecialStat(event) {
-        if (!this.#isEditing) return; // Only increment if editing
-
-        const clickedSpecial = event.currentTarget;
-        const special = clickedSpecial.dataset.special;
-
-        const maxValue = special === "strength" || special === "endurance" ? 12 : 10;
-        const currentValue = characterData.getSpecial(special);
-        const newValue = currentValue < maxValue ? currentValue + 1 : 4;
-        characterData.setSpecial(special, newValue);
-        if(special === "luck")
-            characterData.currentLuck = newValue;
+    handleStatClick(event) {
+        if (!this.#isEditing) return;
+        const statDiv = event.target.closest('.stat');
+        if (!statDiv) return;
+        const special = statDiv.dataset.special;
+        const max = (special === "strength" || special === "endurance") ? 12 : 10;
+        const current = characterData.getSpecial(special);
+        const next = current < max ? current + 1 : 4;
+        characterData.setSpecial(special, next);
+        if (special === "luck") characterData.currentLuck = next;
     }
 
-    incrementSkill(event) {
-        if (!this.#isEditing) return; // Only increment if editing
+    handleSkillClick(event) {
+        const skillDiv = event.target.closest('.skill');
+        if (!skillDiv) return;
+        const skillName = skillDiv.dataset.skill;
 
-        const box = event.currentTarget;
-        const skillName = box.dataset.skill;
-
-        const checkboxId = `specialty-${skillName}`;
-        const checkbox = box.querySelector(`input[type="checkbox"][id="${checkboxId}"]`);
-
-        // Check if the click originated from the checkbox
-        if (event.target === checkbox) {
-            if (checkbox.checked && !characterData.hasSpecialty(skillName))
-                characterData.addSpecialty(skillName);
-            else if (!checkbox.checked && characterData.hasSpecialty(skillName))
-                characterData.removeSpecialty(skillName);
-
+        if (this.#isEditing) {
+            const checkbox = skillDiv.querySelector('.specialty-checkbox');
+            if (event.target === checkbox) {
+                if (checkbox.checked) characterData.addSpecialty(skillName);
+                else characterData.removeSpecialty(skillName);
+            } else {
+                const current = characterData.getSkill(skillName);
+                const next = current < 6 ? current + 1 : (checkbox && checkbox.checked ? 2 : 0);
+                characterData.setSkill(skillName, next);
+            }
         } else {
-            const currentValue = characterData.getSkill(skillName);
-            const newValue = currentValue < 6 ? currentValue + 1
-                : checkbox && checkbox.checked ? 2 : 0;
-            characterData.setSkill(skillName, newValue);
-
+            openD20Popup(skillName);
         }
     }
 
-    getDisplayMap(list, format){
-        return list.reduce((accumulator, listElement) => {
-            accumulator[listElement] = document.getElementById(format.replace("%s", listElement));
-            return accumulator
-        }, {})
+    getDisplayMap(list, format) {
+        return list.reduce((acc, el) => {
+            acc[el] = document.getElementById(format.replace("%s", el));
+            return acc;
+        }, {});
     }
 }

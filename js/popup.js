@@ -118,14 +118,23 @@ document.addEventListener("DOMContentLoaded", () => {
         if (diceRollState.isUsingLuck) costs.push(1);
 
         const rerollingCount = popups.d20.querySelectorAll('.dice.active').length;
+        const rerolledCount = popups.d20.querySelectorAll('.dice.rerolled').length;
 
-        if (diceRollState.hasRolled && rerollingCount > 0) {
-            let aimDiscount = diceRollState.isAiming ? 1 : 0;
-            const rerollCost = Math.max(0, rerollingCount - aimDiscount);
-            if(rerollCost > 0) costs.push(rerollCost);
+        if (diceRollState.hasRolled) {
+            if (rerolledCount > 0) {
+                costs.push(rerolledCount);
+            }
+            if (rerollingCount > 0) {
+                costs.push(rerollingCount);
+            }
+        }
+        if(diceRollState.isAiming){
+            costs.push(-1);
         }
 
-        const totalCost = costs.length > 0 ? costs.join('+') : '0';
+        const totalCost = costs.length > 0 ?
+            costs.join('+').replaceAll("+-", "-")
+                           .replaceAll("-1", "(-1)") : '0';
         d20PopupElements.luckCost.textContent = `Costo Fortuna: ${totalCost}`;
     }
 
@@ -161,8 +170,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!diceRollState.hasRolled && diceRollState.isUsingLuck) {
             luckCost = 1;
         } else if (diceRollState.hasRolled) {
-            const aimDiscount = diceRollState.isAiming ? 1 : 0;
-            luckCost = Math.max(0, activeDice.length - aimDiscount);
+            const rerolledCount = popups.d20.querySelectorAll('.dice.rerolled').length;
+            const aimDiscount = diceRollState.isAiming && rerolledCount === 0 ? 1 : 0;
+            luckCost = activeDice.length - aimDiscount;
         }
 
         if (characterData.currentLuck < luckCost) {
