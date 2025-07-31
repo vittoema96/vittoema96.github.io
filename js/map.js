@@ -1,33 +1,68 @@
+// A variable to hold the Panzoom instance.
 let instance = undefined;
-const mapImage  = document.getElementById('map-image');
+
+// Get references to the map image and its container from the DOM.
+const mapImage = document.getElementById('map-image');
+const mapContainer = document.getElementById('map-container');
 
 
-function loadPanzoom() {
-    if (!instance) {
-        instance = Panzoom(mapImage, {
-            contain: 'outside',
-            maxScale: 4,
-            noBind: true
-        });
+/**
+ * Sets up the Panzoom instance with the correct options.
+ * This function is now called from tabs.js AFTER the map is visible.
+ */
+function initializePanzoom() {
+    // If a previous instance exists, ensure it's fully disposed of.
+    if (instance) {
+        disposePanzoom();
     }
-    init();
-}
 
-function init() {
-    instance.bind();
-    instance.zoom(.1);
-    setTimeout(() => {
-        const rect = mapImage.parentElement.getBoundingClientRect();
-        const imgRect = mapImage.getBoundingClientRect();
-        const x = -(imgRect.width - rect.width)/2
-        const y = -(imgRect.height - rect.height)/2
-        instance.pan(0, 0);
-        instance.pan(x, y, {relative: true});
+
+    instance = Panzoom(mapImage, {
+        maxScale: 5,
+        startScale: .1, // really low zoom, panzoom will use the min zoom allowed
+        contain: 'outside'
     });
-    mapImage.parentElement.addEventListener('wheel', instance.zoomWithWheel);
+
+    // 4. Add the wheel event listener.
+    mapContainer.addEventListener('wheel', instance.zoomWithWheel);
+    setTimeout(() => {
+        centerImage();
+    }); // A short delay is usually sufficient.
 }
 
+/**
+ * Calculates the required pan to center the image and applies it.
+ */
+function centerImage() {
+    if (!instance) return;
+
+    const containerRect = mapContainer.getBoundingClientRect();
+    const imageRect = mapImage.getBoundingClientRect();
+    const scale = instance.getScale();
+
+    // Calculate the visual difference between the container's center and the image's center.
+    const deltaX_visual = (containerRect.width / 2) - (imageRect.left - containerRect.left + imageRect.width / 2);
+    const deltaY_visual = (containerRect.height / 2) - (imageRect.top - containerRect.top + imageRect.height / 2);
+
+    // To get the correct pan values, divide the desired visual movement by the current scale.
+    const panX = deltaX_visual / scale;
+    const panY = deltaY_visual / scale;
+
+    // Pan by a relative amount to move from the current position to the center.
+    instance.pan(panX, panY, {
+        animate: false,
+        relative: true
+    });
+}
+
+/**
+ * This function is called when the user navigates away from the map tab.
+ * It cleans up the Panzoom instance to free up resources.
+ */
 function disposePanzoom() {
-    if(instance)
+    if (instance) {
+        mapImage.style.transform = '';
         instance.destroy();
+        instance = undefined;
+    }
 }

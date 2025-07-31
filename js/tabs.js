@@ -4,33 +4,43 @@ const subTabButtons = document.querySelectorAll('.subTab');
 const screens = document.querySelectorAll('.screen');
 const subScreens = document.querySelectorAll('.subScreen');
 
-let activeScreen = 'stat';
-let activeSubScreen = 'weapons';
-
-
-// Event listener for tab clicks
+// Event listener for main tab clicks
 tabButtons.forEach(tab => {
     tab.addEventListener('click', () => {
-        const targetScreen = tab.dataset.screen;
-        tabButtons.forEach(t => t.classList.remove('active'));
+        const targetScreenId = tab.dataset.screen;
+
+        // Hide all screens and deactivate all tabs
         screens.forEach(s => s.classList.add('hidden'));
+        tabButtons.forEach(t => t.classList.remove('active'));
+
+        // Show the target screen and activate its tab
+        const targetScreenElement = document.getElementById(`${targetScreenId}-screen`);
+        targetScreenElement.classList.remove('hidden');
         tab.classList.add('active');
-        document.getElementById(`${targetScreen}-screen`).classList.remove('hidden');
-        activeScreen = targetScreen;
-        if(targetScreen === 'map'){
-            loadPanzoom();
+
+        if (targetScreenId === 'map') {
+            if (mapImage.complete) {
+                initializePanzoom();
+            } else {
+                mapImage.onload = initializePanzoom;
+            }
         } else {
             disposePanzoom();
         }
     });
 });
+
+// Event listener for inventory sub-tab clicks
 subTabButtons.forEach(subTab => {
     subTab.addEventListener('click', () => {
         const targetSubScreen = subTab.dataset.subScreen;
-        subTabButtons.forEach(t => t.classList.remove('active'));
+
+        // Hide all sub-screens and deactivate all sub-tabs
         subScreens.forEach(s => s.classList.add('hidden'));
-        subTab.classList.add('active');
+        subTabButtons.forEach(t => t.classList.remove('active'));
+
+        // Show the target sub-screen and activate its tab
         document.getElementById(`inv-${targetSubScreen}`).classList.remove('hidden');
-        activeSubScreen = targetSubScreen;
+        subTab.classList.add('active');
     });
 });
