@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v0.0.1-alpha+0";
+const CACHE_VERSION = "v0.0.1-alpha+1";
 const PROJECT_NAME = "PB3K";
 
 
