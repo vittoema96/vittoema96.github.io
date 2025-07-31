@@ -14,12 +14,10 @@
         <link rel="apple-touch-icon" href="/img/icons/192x192.png" type="image/png">
         <link rel="apple-touch-icon" href="/img/icons/512x512.png" type="image/png">
 
-        <!-- Google Fonts  -->
+        <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <!-- TODO check needed fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Share+Tech+Mono&display=swap" rel="stylesheet">
         <!-- Font Awesome - TODO is needed? -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -29,16 +27,16 @@
 
     <!-- TODO what are these classes? do i need them? -->
     <body>
+        <!-- Loading message -->
         <div id="loader">
-            <div class="terminal">
-                <pre>
-<span class="entry turn-on-animation">
-██████╗ ██╗██████╗       ██████╗  █████╗ ██╗   ██╗
-██╔══██╗██║██╔══██╗      ██╔══██╗██╔══██╗╚██╗ ██╔╝
-██████╔╝██║██████╔╝█████╗██████╔╝██║  ██║ ╚████╔╝
-██╔═══╝ ██║██╔═══╝ ╚════╝██╔══██╗██║  ██║  ╚██╔╝
-██║     ██║██║           ██████╔╝╚█████╔╝   ██║
-╚═╝     ╚═╝╚═╝           ╚═════╝  ╚════╝    ╚═╝
+            <pre>
+<span class="turn-on-animation">
+██████╗ ██╗██████╗       ██████╗  █████╗██╗   ██╗
+██╔══██╗██║██╔══██╗      ██╔══██╗██╔══██╬██╗ ██╔╝
+██████╔╝██║██████╔╝█████╗██████╔╝██║  ██║╚████╔╝
+██╔═══╝ ██║██╔═══╝ ╚════╝██╔══██╗██║  ██║ ╚██╔╝
+██║     ██║██║           ██████╔╝╚█████╔╝  ██║
+╚═╝     ╚═╝╚═╝           ╚═════╝  ╚════╝   ╚═╝
 
       ██████╗  ██████╗  ██████╗  ██████╗
       ╚════██╗██╔═████╗██╔═████╗██╔═████╗
@@ -47,13 +45,13 @@
       ██████╔╝╚██████╔╝╚██████╔╝╚██████╔╝
       ╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝
 </span>
-<span class="entry boot-text">> ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</span>
-<span class="entry boot-text">> COPYRIGHT 2075-2077 ROBCO INDUSTRIES</span>
-<span class="entry boot-text">> LOADER V 1.1</span>
-<span class="entry boot-text">> WELCOME, OVERSEER</span>
-                </pre>
-            </div>
+<span class="boot-text">> ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</span>
+<span class="boot-text">> COPYRIGHT 2075-2077 ROBCO INDUSTRIES</span>
+<span class="boot-text">> LOADER V 1.1</span>
+<span class="boot-text">> WELCOME, OVERSEER</span>
+            </pre>
         </div>
+
         <!-- D20 popup -->
         <dialog id="d20-popup" class="popup">
             <span class="close-button">&times;</span>
@@ -467,7 +465,6 @@
         <script src="js/map.js"></script>
 
         <script src="js/popup.js"></script>
-        <script src="js/sw.js"></script>
         <script src="js/tabs.js"></script>
         <script src="js/utils.js"></script>
         <script src="js/lang/translator.js"></script>

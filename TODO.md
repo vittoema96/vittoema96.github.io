@@ -30,4 +30,5 @@
 
 ### Other
 - Remove navigation bar from viewport (mobile, non-PWA mode)
+- Uniform all icons (https://maskable.app/)
 - ...

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. Root Variables & Global Styles
+      Root Variables & Global Styles
    ========================================================================== */
 
 :root {
@@ -17,10 +17,9 @@
     --success-color: #0088ff;
     --failure-color: #dc143c;
 
-    --turn-on-delay: .2s;
-    --turn-on-duration: 1.5s;
-    --typewrite-delay: .4s;
-    --typewrite-duration: .3s;
+    --turn-on-delay: .1s;
+    --turn-on-duration: 1s;
+    --typewrite-duration: 1s; /* n% is dedicated to show the '> ' *% */
 }
 
 html {
@@ -39,32 +38,39 @@ body {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Share Tech Mono', 'Roboto Mono', 'Courier New', monospace;
     text-shadow: 0 0 5px var(--animation-glow-color), 0 0 10px var(--animation-glow-color);
     padding: 0;
 }
+
+/* Applies the scan lines on top of the whole body */
 body::before {
     content: " ";
-    display: block;
+    display: block; /* Necessary to make the ::before exist and behave like a block */
     position: fixed; /* Use fixed to cover the viewport */
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    z-index: 9999; /* Make sure it's on top of other content */
-    background-size: 100% 3px, 4px 100%;
+    inset: 0; /* same as top/left/etc: 0; */
+
+    z-index: 9999; /* It's the topmost element */
     pointer-events: none; /* Allows clicks to go through to elements underneath */
-    animation: flicker 0.15s infinite;
+    animation: flicker 0.15s infinite; /* Makes the scan lines flicker */
+
+    /* Actual scan line effect */
+    background: linear-gradient(
+            rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.25) 50%
+    ), linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 0.06),
+            rgba(0, 255, 0, 0.02),
+            rgba(0, 0, 255, 0.06)
+    );
+    background-size: 100% 3px, 4px 100%;
 }
 
 h1, h2, h3 {
-    font-family: 'Share Tech Mono', monospace;
     margin-bottom: 1rem;
     text-align: center;
 }
-
 h1 { font-size: 2.1rem; }
 h2 { font-size: 1.5rem; }
 h3 { font-size: 1rem; }
@@ -73,21 +79,14 @@ h3 { font-size: 1rem; }
    2. Utility & General Layout
    ========================================================================== */
 
-.hidden {
-    display: none !important;
-    pointer-events: none;
-}
+.hidden { display: none !important; /* override any other 'display' */ }
 
 /* Loading Overlay */
-/* TODO fix this */
 #loader {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
     background: var(--secondary-color);
-    z-index: 9998;
+    z-index: 9998; /* One below body::before */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,125 +95,40 @@ h3 { font-size: 1rem; }
     animation: fadeOut 0.5s forwards;
     animation-delay: calc(
             var(--turn-on-delay) + var(--turn-on-duration) +
-            6 * var(--typewrite-delay) + 5 * var(--typewrite-duration)
+            4 * var(--typewrite-duration)
     );
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; visibility: hidden; }
-}
-
-/* Terminal Container */
-.terminal {
-    display: flex;
-    justify-content: center;
     font-size: calc(min(2.5vw, 2vh))
 }
+#loader pre { white-space: pre-wrap; margin: 0; }
 
-.terminal pre {
-    white-space: pre-wrap;
-    margin: 0;
-}
-
-/* Animation for text lines */
-.terminal .entry {
+/* Loader entries */
+#loader span {
     opacity: 0;
     display: block;
     overflow: hidden;
     margin: 1rem;
 }
-
-.terminal .entry.turn-on-animation {
+/* PIP-BOY 3000 text */
+#loader .turn-on-animation {
     transform-origin: center;
     animation: crt-turn-on var(--turn-on-duration) ease-out forwards;
     animation-delay: var(--turn-on-delay);
     align-self: center;
     margin: 2rem 0;
 }
-
-.terminal .entry.boot-text {
+/* Code entries */
+#loader .boot-text {
     white-space: nowrap;
     animation: typewriter var(--typewrite-duration) steps(40, end) forwards;
     animation-delay: calc(
             var(--turn-on-delay) + var(--turn-on-duration) +
-            (1 + var(--line-idx)) * var(--typewrite-delay) +
             var(--line-idx) * var(--typewrite-duration)
     );
 }
-
-.terminal .entry.boot-text:nth-child(2) { --line-idx: 0; }
-.terminal .entry.boot-text:nth-child(3) { --line-idx: 1; }
-.terminal .entry.boot-text:nth-child(4) { --line-idx: 2; }
-.terminal .entry.boot-text:nth-child(5) { --line-idx: 3; }
-
-/* Keyframe Animations */
-@keyframes typewriter {
-    from {
-        width: 0;
-        opacity: 1;
-    }
-    to {
-        width: 100%;
-        opacity: 1;
-    }
-}
-
-@keyframes crt-turn-on {
-    /* Start as a bright, central, horizontal line */
-    0% {
-        transform: scale(1.5, 0.005);
-        filter: brightness(3);
-        opacity: 1;
-    }
-
-    /* The line shrinks to normal width */
-    5% {
-        transform: scale(1, 0.005);
-    }
-
-    /* The line expands vertically to fill the screen */
-    15% {
-        transform: scale(1, 1);
-    }
-
-    /* A quick flicker and brightness settle */
-    70% {
-        filter: brightness(1.5);
-        opacity: 1;
-    }
-
-    /* Final stable state */
-    100% {
-        transform: scale(1, 1);
-        filter: brightness(1);
-        opacity: 1;
-    }
-}
-
-@keyframes flicker {
-    0% { opacity: 0.27861; }
-    5% { opacity: 0.34769; }
-    10% { opacity: 0.23604; }
-    15% { opacity: 0.90626; }
-    20% { opacity: 0.18128; }
-    25% { opacity: 0.83891; }
-    30% { opacity: 0.65583; }
-    35% { opacity: 0.67807; }
-    40% { opacity: 0.26559; }
-    45% { opacity: 0.84693; }
-    50% { opacity: 0.96019; }
-    55% { opacity: 0.08594; }
-    60% { opacity: 0.20313; }
-    65% { opacity: 0.71988; }
-    70% { opacity: 0.53455; }
-    75% { opacity: 0.37288; }
-    80% { opacity: 0.71428; }
-    85% { opacity: 0.70428; }
-    90% { opacity: 0.7003; }
-    95% { opacity: 0.36108; }
-    100% { opacity: 0.24387; }
-}
+#loader .boot-text:nth-child(2) { --line-idx: 0; }
+#loader .boot-text:nth-child(3) { --line-idx: 1; }
+#loader .boot-text:nth-child(4) { --line-idx: 2; }
+#loader .boot-text:nth-child(5) { --line-idx: 3; }
 
 .row {
     display: flex;
@@ -252,9 +166,10 @@ h3 { font-size: 1rem; }
    3. Header & Tabs
    ========================================================================== */
 
+/* TODO weird border just on bottom */
 .header {
     text-align: center;
-    border-bottom: var(--border-primary-thick);
+    border-bottom: var(--border-primary-thick);  /* TODO BORDER only on bottom */
     font-size: 0.9em;
     display: grid;
     grid-template-columns: 1fr auto;
@@ -272,9 +187,7 @@ h3 { font-size: 1rem; }
     justify-content: center;
 }
 
-.icon-value-pair:not(:last-child) {
-    border-bottom: var(--border-primary-thick);
-}
+.icon-value-pair:not(:last-child) { border-bottom: var(--border-primary-thick); }  /* TODO BORDER only on bottom */
 
 .icon-value-pair div {
     width: 100%;
@@ -296,15 +209,13 @@ h3 { font-size: 1rem; }
     flex-wrap: nowrap;
 }
 
-#main-tab-container {
-    padding: 0.5rem 1rem 0;
-}
+#main-tab-container { padding: 0.5rem 1rem 0; }
 
 .tab {
     padding: 0.75rem 1.5rem;
     background-color: #1a5205;
     color: var(--primary-color);
-    border: var(--border-primary-thick);
+    border: var(--border-primary-thick); /* TODO BORDER not on bottom */
     border-bottom: 0;
     border-radius: 5px 5px 0 0;
     margin-right: 0.5rem;
@@ -317,9 +228,7 @@ h3 { font-size: 1rem; }
     box-sizing: border-box;
 }
 
-.tab:hover {
-    background-color: #338006;
-}
+.tab:hover { background-color: #338006; }
 
 .tab.active {
     background-color: var(--primary-color);
@@ -355,6 +264,7 @@ h3 { font-size: 1rem; }
     font-size: 1.2rem;
     font-weight: bolder;
     color: var(--primary-color);
+     /* TODO BORDER only top and bottom */
     border-top: var(--border-primary-thick);
     border-bottom: var(--border-primary-thick);
 }
@@ -363,9 +273,7 @@ h3 { font-size: 1rem; }
    4. Forms, Buttons & Inputs
    ========================================================================== */
 
-input, textarea, select, button {
-    font-family: inherit;
-}
+input, textarea, select, button { font-family: inherit; }
 
 .form-label {
     display: block;
@@ -377,7 +285,7 @@ input, textarea, select, button {
 
 .form-control {
     background-color: rgba(var(--primary-color-rgb), 0.1);
-    border: var(--border-primary-thin);
+    border: var(--border-primary-thin);  /* FIXME use class */
     color: var(--primary-color);
     padding: 0.75rem;
     border-radius: 5px;
@@ -392,15 +300,13 @@ input, textarea, select, button {
     border-color: var(--primary-color);
 }
 
-#level-label {
-    font-size: 1.5rem;
-}
+#level-label { font-size: 1.5rem; }
 
 #level-display {
     font-size: 1rem;
     color: var(--primary-color);
     background-color: var(--secondary-color);
-    border: var(--border-primary-thin);
+    border: var(--border-primary-thin);   /* FIXME use class */
     border-radius: 4px;
     text-align: center;
     box-sizing: border-box;
@@ -408,9 +314,7 @@ input, textarea, select, button {
     width: 50%;
 }
 
-input[type=number] {
-    -moz-appearance: textfield;
-}
+input[type=number] { -moz-appearance: textfield; }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -431,22 +335,16 @@ input[type="checkbox"] {
     background-repeat: no-repeat;
 }
 
-input[type="checkbox"].luck-checkbox {
-    background-image: url('../img/svg/luck.svg');
-}
+input[type="checkbox"].luck-checkbox { background-image: url('../img/svg/luck.svg'); }
 
-input[type="checkbox"].luck-checkbox:checked {
-    filter: url('../img/svg/luck.svg#checked');
-}
+input[type="checkbox"].luck-checkbox:checked { filter: url('../img/svg/luck.svg#checked'); }
 
 input[type="checkbox"].aim-checkbox {
     background-image: url('../img/svg/attack.svg');
     filter: url('../img/svg/attack.svg#unchecked');
 }
 
-input[type="checkbox"].aim-checkbox:checked {
-    filter: none;
-}
+input[type="checkbox"].aim-checkbox:checked { filter: none; }
 
 input[type="checkbox"].specialty-checkbox {
     flex: 1;
@@ -456,14 +354,12 @@ input[type="checkbox"].specialty-checkbox {
     background-repeat: no-repeat;
 }
 
-input[type="checkbox"].specialty-checkbox:checked {
-    filter: url('../img/svg/vaultboy.svg#checked');
-}
+input[type="checkbox"].specialty-checkbox:checked { filter: url('../img/svg/vaultboy.svg#checked'); }
 
 select {
     padding: 0.5rem;
     border-radius: 5px;
-    border: var(--border-primary-thick);
+    border: var(--border-primary-thick);   /* FIXME use class */
     background-color: var(--secondary-color);
     color: var(--primary-color);
     width: 80%;
@@ -485,9 +381,7 @@ select:focus {
     border: none;
 }
 
-.button:hover, .confirm-button:hover {
-    background-color: #7cba02;
-}
+.button:hover, .confirm-button:hover { background-color: #7cba02; }
 
 .confirm-button {
     background-color: var(--primary-color);
@@ -500,8 +394,8 @@ select:focus {
 }
 
 button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* ==========================================================================
@@ -511,7 +405,7 @@ button:disabled {
 dialog {
     position: relative;
     background-color: var(--secondary-color);
-    border: var(--border-primary-thin);
+    border: var(--border-primary-thin);   /* FIXME use class */
     z-index: 1000;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -519,8 +413,8 @@ dialog {
 }
 
 dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
 }
 
 .close-button {
@@ -536,9 +430,7 @@ dialog::backdrop {
 }
 
 .close-button:hover,
-.close-button:focus {
-    color: var(--primary-color);
-}
+.close-button:focus { color: var(--primary-color); }
 
 .dice-container {
     display: flex;
@@ -574,7 +466,9 @@ dialog::backdrop {
 }
 
 .dice.roll-crit { background-color: var(--success-color); }
+
 .dice.roll-complication { background-color: var(--failure-color); }
+
 .dice.active { opacity: 1; }
 
 .dice-wrapper:nth-child(1),
@@ -584,6 +478,7 @@ dialog::backdrop {
 }
 
 /* Stili per d6-popup */
+
 .dice-grid {
     display: flex;
     flex-wrap: wrap;
@@ -591,6 +486,7 @@ dialog::backdrop {
     gap: 10px;
     margin-bottom: 1.5rem;
 }
+
 .d6-dice {
     width: 40px;
     height: 40px;
@@ -609,11 +505,19 @@ dialog::backdrop {
     color: var(--secondary-color);
     font-weight: bold;
 }
+
 .d6-dice.active { opacity: 1; }
+
 .d6-face-damage1 { background-image: url('../img/svg/damage1.svg'); }
+
 .d6-face-damage2 { background-image: url('../img/svg/damage2.svg'); }
-.d6-face-effect  { background-image: url('../img/svg/vaultboy.svg'); }
-.d6-face-blank   { background-image: none; } /* Faccia vuota */
+
+.d6-face-effect { background-image: url('../img/svg/vaultboy.svg'); }
+
+.d6-face-blank { background-image: none; }
+
+/* Faccia vuota */
+
 .d6-dice.effect-glow {
     box-shadow: 0 0 10px var(--success-color);
     border-color: var(--success-color);
@@ -624,14 +528,14 @@ dialog::backdrop {
     padding: 0.5rem 0;
     flex-wrap: wrap;
 }
+
 #d6-popup hr {
     border: none;
-    border-top: var(--border-primary-thick);
+    border-top: var(--border-primary-thick);   /* TODO BORDER only on top */
     margin: 1rem 0;
 }
-.d6-dice.effect {
-    background-color: var(--success-color);
-}
+
+.d6-dice.effect { background-color: var(--success-color); }
 
 /* ==========================================================================
    6. STAT Screen
@@ -694,7 +598,7 @@ dialog::backdrop {
 }
 
 .derived-stat {
-    border: var(--border-primary-thick);
+    border: var(--border-primary-thick); /* FIXME use class */
     border-radius: 5px;
     margin: 0.5rem;
     padding: 0.5rem;
@@ -708,9 +612,7 @@ dialog::backdrop {
     box-sizing: border-box;
 }
 
-.derived-stat div {
-    margin: 0.2rem;
-}
+.derived-stat div { margin: 0.2rem; }
 
 #skills {
     display: flex;
@@ -722,7 +624,7 @@ dialog::backdrop {
     display: flex;
     align-items: center;
     padding: 1rem;
-    border: var(--border-primary-thick);
+    border: var(--border-primary-thick);   /* FIXME use class */
     border-radius: 5px;
     margin-bottom: 0.5rem;
     box-sizing: border-box;
@@ -770,8 +672,8 @@ dialog::backdrop {
     font-weight: bolder;
     color: var(--primary-color);
     background-color: transparent;
-    border: var(--border-primary-thick);
-    margin : 5px;
+    border: var(--border-primary-thick);   /* FIXME use class */
+    margin: 5px;
     padding: 0 0.5rem;
     cursor: pointer;
 }
@@ -789,9 +691,7 @@ dialog::backdrop {
     scrollbar-width: none;
 }
 
-.card-carousel::-webkit-scrollbar {
-    display: none;
-}
+.card-carousel::-webkit-scrollbar { display: none; }
 
 .card-carousel::before,
 .card-carousel::after {
@@ -807,8 +707,8 @@ dialog::backdrop {
 .card {
     width: 100%;
     max-width: 400px;
-    border: var(--border-primary-thick);
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+    border: var(--border-primary-thick);  /* FIXME use class */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     position: relative;
 }
@@ -864,9 +764,7 @@ dialog::backdrop {
     margin: 0;
 }
 
-.card-stat {
-    margin: 5px 0;
-}
+.card-stat { margin: 5px 0; }
 
 .card-stat div {
     text-align: center;
@@ -890,7 +788,11 @@ dialog::backdrop {
 }
 
 #weapon-img { max-width: 100%; }
-#supply-img { width: 40px; height: 40px; }
+
+#supply-img {
+    width: 40px;
+    height: 40px;
+}
 
 .card-tags {
     display: flex;
@@ -931,9 +833,7 @@ dialog::backdrop {
     margin-right: 10px;
 }
 
-.attack-button:hover {
-    opacity: 0.8;
-}
+.attack-button:hover { opacity: 0.8; }
 
 .description-toggle {
     cursor: pointer;
@@ -999,9 +899,7 @@ dialog::backdrop {
     background-color: #aaaaaa;
 }
 
-.overlay-buttons .delete-button {
-    background-color: #ff4d4d;
-}
+.overlay-buttons .delete-button { background-color: #ff4d4d; }
 
 .overlay-buttons button div {
     display: block;
@@ -1028,9 +926,7 @@ section#map-screen {
     box-sizing: border-box;
 }
 
-section#map-screen:not(.hidden) {
-    display: flex;
-}
+section#map-screen:not(.hidden) { display: flex; }
 
 #map-container {
     height: 100%;
@@ -1041,10 +937,7 @@ section#map-screen:not(.hidden) {
    9. Responsive Styles (Media Queries)
    ========================================================================== */
 
-@media (max-width: 768px) {
-    .header {
-        text-align: start;
-    }
+@media (max-width: 768px) { .header { text-align: start; }
 
     .tab {
         padding: 0.2rem 0.3rem;
@@ -1053,9 +946,7 @@ section#map-screen:not(.hidden) {
         white-space: nowrap;
     }
 
-    .grid-container {
-        margin-bottom: 1rem;
-    }
+    .grid-container { margin-bottom: 1rem; }
 
     #stat-container {
         justify-content: space-around;
@@ -1076,16 +967,86 @@ section#map-screen:not(.hidden) {
         margin-bottom: 0.1rem;
     }
 
-    .stat-value {
-        font-size: 1.2rem;
-    }
+    .stat-value { font-size: 1.2rem; }
 
     .skill-name,
-    .skill-stat {
-        font-size: 0.8rem;
-    }
+    .skill-stat { font-size: 0.8rem; }
 
-    .skill-stat {
-        text-overflow: ellipsis;
+    .skill-stat { text-overflow: ellipsis; } }
+
+/* ==========================================================================
+         Animations
+   ========================================================================== */
+
+/* Fade out to opacity:0 and visibility:hidden (which forwards clicks) */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
     }
+}
+
+/* Grows element width so it looks like strings are typed in */
+@keyframes typewriter {
+    0% {
+        width: 1ch;
+        opacity: 1;
+    }
+    50% {
+        width: 1ch;
+        opacity: 1;
+    }
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes crt-turn-on {
+    /* Start as a bright, central, horizontal line */
+    0% {
+        transform: scale(1.5, 0.005);
+        filter: brightness(4);
+        opacity: 1;
+    }
+    15% {
+        transform: scale(1, 0.005);
+        filter: brightness(3.5);
+    }
+    45% {
+        transform: scale(1, 1);
+        filter: brightness(3);
+    }
+    80% { filter: brightness(2); }
+    /* Final stable state */
+    100% {
+        transform: scale(1, 1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+}
+
+/* Animation to make the scan lines flicker */
+@keyframes flicker {
+    0% { opacity: 0.27861; }
+    5% { opacity: 0.34769; }
+    10% { opacity: 0.23604; }
+    15% { opacity: 0.90626; }
+    20% { opacity: 0.18128; }
+    25% { opacity: 0.83891; }
+    30% { opacity: 0.65583; }
+    35% { opacity: 0.67807; }
+    40% { opacity: 0.26559; }
+    45% { opacity: 0.84693; }
+    50% { opacity: 0.96019; }
+    55% { opacity: 0.08594; }
+    60% { opacity: 0.20313; }
+    65% { opacity: 0.71988; }
+    70% { opacity: 0.53455; }
+    75% { opacity: 0.37288; }
+    80% { opacity: 0.71428; }
+    85% { opacity: 0.70428; }
+    90% { opacity: 0.7003; }
+    95% { opacity: 0.36108; }
+    100% { opacity: 0.24387; }
 }

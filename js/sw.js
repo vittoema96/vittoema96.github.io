@@ -1,25 +1,35 @@
-const CACHE_NAME = 'PB3K-v0.1';
+const CACHE_VERSION = "v0.0.1-alpha+0";
+const PROJECT_NAME = "PB3K";
+
+
+
+const CACHE_NAME = `${PROJECT_NAME}-${CACHE_VERSION}`;
+
+/* TODO automate stuff with Node.js or Webpack */
 const urlsToCache = [
-    '/',
+    '/', // Main entrypoint
     '/index.html',
     '/manifest.webmanifest',
 
+    /* JAVASCRIPT files */
     '/js/app.js',
     '/js/character.js',
     '/js/display.js',
+    '/js/map.js',
     '/js/popup.js',
+    /* DON'T ADD sw.js */
     '/js/tabs.js',
     '/js/utils.js',
 
+    /* Translation stuff */
     '/js/lang/translator.js',
     '/js/lang/en.json',
     '/js/lang/it.json',
 
+    /* CSS */
     '/css/styles.css',
-    '/css/invStyles.css',
-    '/css/statStyles.css',
-    '/css/popupStyles.css',
 
+    /* DATA (CSVs) */
     '/data/supplies/drinks.csv',
     '/data/supplies/food.csv',
     '/data/supplies/meds.csv',
@@ -31,9 +41,19 @@ const urlsToCache = [
     '/data/weapons/smallGuns.csv',
     '/data/weapons/throwing.csv',
 
+    '/data/ammo.csv',
+
+    /* IMAGES */
+    '/img/icons/192x192.png',
+    '/img/icons/512x512.png',
+
+    '/img/png/map.png',
+
     '/img/svg/attack.svg',
     '/img/svg/bigGuns.svg',
     '/img/svg/caps.svg',
+    '/img/svg/damage1.svg',
+    '/img/svg/damage2.svg',
     '/img/svg/drinks.svg',
     '/img/svg/energyWeapons.svg',
     '/img/svg/explosives.svg',
@@ -49,43 +69,57 @@ const urlsToCache = [
     '/img/svg/unarmed.svg',
     '/img/svg/vaultboy.svg',
     '/img/svg/weight.svg',
-
-    '/img/icons/192x192.png',
-    '/img/icons/512x512.png',
 ];
 
-// Install the service worker and cache assets
-// Happens the first time and when a new version of this file is updated with a new version
+// Install: triggered when the service worker is first registered or updated.
 self.addEventListener('install', (event) => {
+    console.log(`SW Event: install - Caching assets for version ${CACHE_NAME} 💾`);
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
-                console.log('Opened cache');
                 return cache.addAll(urlsToCache);
             })
-   );
-});
-
-// Serve cached assets or fetch from the network
-self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request)
             .then(() => {
-                console.log('Fetching cache');
-                return fetch(event.request);
+                console.log('All assets cached successfully! ✅');
+            })
+            .catch(error => {
+                console.error('Caching failed: ❌', error);
             })
    );
 });
 
-// Activate the service worker and clean up old caches
+// Fetch: triggered for every network request made by the page.
+self.addEventListener('fetch', (event) => {
+    // We only want to handle GET requests
+    if (event.request.method !== 'GET') {
+        return;
+    }
+
+    event.respondWith(
+        caches.match(event.request).then((cachedResponse) => {
+            // If the asset is in the cache, serve it from there.
+            if (cachedResponse) {
+                console.log(`CACHE HIT: ${event.request.url} ⚡`);
+                return cachedResponse;
+            }
+
+            // If the asset is not in the cache, fetch it from the network.
+            console.log(`NETWORK FETCH: ${event.request.url} 🌐`);
+            return fetch(event.request);
+        })
+   );
+});
+
+// Activate: triggered after a new service worker has been installed and the old one is gone.
 self.addEventListener('activate', (event) => {
-    const cacheWhitelist = [CACHE_NAME];
+    console.log('SW Event: activate - Activating new service worker... ✨');
     event.waitUntil(
         caches.keys().then((cacheNames) => {
             return Promise.all(
                 cacheNames.map((cacheName) => {
-                    console.log('Activating cache');
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
+                    // Delete any caches that are not our current one
+                    if (cacheName.startsWith(PROJECT_NAME) && cacheName !== CACHE_NAME) {
+                        console.log(`Deleting old cache: ${cacheName} 🗑️`);
                         return caches.delete(cacheName);
                     }
                     return null;
@@ -94,16 +128,3 @@ self.addEventListener('activate', (event) => {
         })
    );
 });
-
-//PWA registration
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/js/sw.js')
-            .then(registration => {
-                console.log('Service Worker registered! 😎', registration);
-            })
-            .catch(err => {
-                console.log('Service Worker registration failed! 😥', err);
-            });
-    });
-}

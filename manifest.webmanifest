@@ -1,21 +1,43 @@
 {
     "name": "Pip-Boy 3000",
     "short_name": "PB3K",
+    "description": "A Pip-Boy 3000 companion app for managing your character stats and inventory.",
     "start_url": "/",
+    "scope": "/",
     "display": "standalone",
     "orientation": "portrait",
     "background_color": "#0f3003",
-    "theme_color": "var(--primary-color)",
+    "theme_color": "#afff03",
     "icons": [
         {
             "src": "img/icons/192x192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
             "src": "img/icons/512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "img/screenshots/boot.png",
+            "sizes": "1080x1920",
+            "type": "image/png",
+            "label": "Boot Screen"
+        },{
+            "src": "img/screenshots/stat_tab.png",
+            "sizes": "1080x1920",
+            "type": "image/png",
+            "label": "Character Stats Screen"
+        },{
+            "src": "img/screenshots/inv_tab.png",
+            "sizes": "1080x1920",
+            "type": "image/png",
+            "label": "Inventory Management"
         }
     ]
 }

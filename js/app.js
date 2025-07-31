@@ -1,5 +1,21 @@
-// Get references to DOM elements
 
+// FIRST THING: ServiceWorker Registration
+//    Allows cache to be loaded the next times
+//    the app/tab is opened
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/js/sw.js')
+            .then(registration => {
+                console.log('Service Worker registered! 😎', registration);
+            })
+            .catch(err => {
+                console.log('Service Worker registration failed! 😥', err);
+            });
+    });
+}
+
+
+// Get references to DOM elements
 let weaponData = undefined;
 let foodData = undefined;
 let drinksData = undefined;
