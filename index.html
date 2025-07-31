@@ -23,21 +23,37 @@
         <!-- Font Awesome - TODO is needed? -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        <!-- CSS - TODO only 1 CSS??? -->
         <link rel="stylesheet" href="css/styles.css">
-
-        <!--
-        <link rel="stylesheet" href="css/statStyles.css">
-        <link rel="stylesheet" href="css/invStyles.css">
-        <link rel="stylesheet" href="css/popupStyles.css">
-        <link rel="stylesheet" href="css/mapStyles.css">
-        <link rel="stylesheet" href="css/styles.css">
-        -->
 
     </head>
 
     <!-- TODO what are these classes? do i need them? -->
     <body>
+        <div id="loader">
+            <div class="terminal">
+                <pre>
+<span class="entry turn-on-animation">
+██████╗ ██╗██████╗       ██████╗  █████╗ ██╗   ██╗
+██╔══██╗██║██╔══██╗      ██╔══██╗██╔══██╗╚██╗ ██╔╝
+██████╔╝██║██████╔╝█████╗██████╔╝██║  ██║ ╚████╔╝
+██╔═══╝ ██║██╔═══╝ ╚════╝██╔══██╗██║  ██║  ╚██╔╝
+██║     ██║██║           ██████╔╝╚█████╔╝   ██║
+╚═╝     ╚═╝╚═╝           ╚═════╝  ╚════╝    ╚═╝
+
+      ██████╗  ██████╗  ██████╗  ██████╗
+      ╚════██╗██╔═████╗██╔═████╗██╔═████╗
+       █████╔╝██║██╔██║██║██╔██║██║██╔██║
+       ╚═══██╗████╔╝██║████╔╝██║████╔╝██║
+      ██████╔╝╚██████╔╝╚██████╔╝╚██████╔╝
+      ╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝
+</span>
+<span class="entry boot-text">> ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</span>
+<span class="entry boot-text">> COPYRIGHT 2075-2077 ROBCO INDUSTRIES</span>
+<span class="entry boot-text">> LOADER V 1.1</span>
+<span class="entry boot-text">> WELCOME, OVERSEER</span>
+                </pre>
+            </div>
+        </div>
         <!-- D20 popup -->
         <dialog id="d20-popup" class="popup">
             <span class="close-button">&times;</span>
@@ -108,7 +124,10 @@
         <dialog id="add-item-popup" class="popup">
             <span class="close-button">&times;</span>
             <h2>Scegli un oggetto:</h2>
-            <select id="selector" class="form-control"></select>
+            <div class="row">
+                <select id="selector" class="form-control"></select>
+                <input type="number" id="quantitySelector" min="1" value="1" style="width: 80px; text-align: center;"> <!-- TODO use css file -->
+            </div>
             <button class="confirm-button">Conferma</button>
             <button class="cancel-button">Indietro</button>
         </dialog>
@@ -403,7 +422,12 @@
                 </div>
                 <div class="subScreen hidden" id="inv-ammo">
                     <h1>WORK IN PROGRESS</h1>
-                    <div id="ammo-cards"></div>
+
+                    <div class="itemlist-header">
+                        <h2 data-lang-id="ammo">Ammo</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('ammo')">+</button>
+                    </div>
+                    <div id="ammo-cards" class="card-carousel"></div>
                 </div>
 
             </section>

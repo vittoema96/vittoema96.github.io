@@ -151,6 +151,7 @@ class Character {
     }
 
     addItem(item) {
+        // TODO implement discerning modded items from normal ones
         const existingItem = this.#items.find(i => i.id === item.id);
         if (existingItem) {
             existingItem.quantity += (item.quantity || 1);

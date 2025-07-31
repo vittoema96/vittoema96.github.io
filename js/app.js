@@ -4,6 +4,7 @@ let weaponData = undefined;
 let foodData = undefined;
 let drinksData = undefined;
 let medsData = undefined;
+let ammoData = undefined;
 
 const checkboxes = document.querySelectorAll('input[type="checkbox"][class="specialty-checkbox"]');
 checkboxes.forEach(checkbox => {
@@ -170,6 +171,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     foodData = await loadCSV("data/supplies/food.csv");
     drinksData = await loadCSV("data/supplies/drinks.csv");
     medsData = await loadCSV("data/supplies/meds.csv");
+    ammoData = await loadCSV("data/ammo.csv");
 
     display = new Display();
     characterData = new Character();

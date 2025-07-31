@@ -49,6 +49,10 @@
   "food": "Cibo",
   "drinks": "Bevande",
   "meds": "Medicine",
+  "weapons": "Armi",
+  "ammo": "Munizioni",
+
+  "default_add_item_option": "Scegli %s da Aggiungere",
 
   "ammo_fusion_cell": "Cella di Fusione",
   "ammo_plasma_cartridge": "Cartucce al Plasma",

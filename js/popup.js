@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Elements specific to the Add Item Popup
     const addItemPopupElements = {
         select: popups.addItem.querySelector('#selector'),
+        quantity: popups.addItem.querySelector('#quantitySelector'),
         confirmButton: popups.addItem.querySelector('.confirm-button')
     };
 
@@ -399,15 +400,17 @@ document.addEventListener("DOMContentLoaded", () => {
     window.openAddItemModal = (itemType) => {
         // This mapping makes the function much cleaner and easier to extend.
         const itemConfig = {
-            smallGuns: { data: weaponData, name: 'Weapon', skill: 'smallGuns' },
-            energyWeapons: { data: weaponData, name: 'Weapon', skill: 'energyWeapons' },
-            bigGuns: { data: weaponData, name: 'Weapon', skill: 'bigGuns' },
-            meleeWeapons: { data: weaponData, name: 'Weapon', skill: 'meleeWeapons' },
-            explosives: { data: weaponData, name: 'Weapon', skill: 'explosives' },
-            throwing: { data: weaponData, name: 'Weapon', skill: 'throwing' },
-            food: { data: foodData, name: 'Food Item' },
-            drinks: { data: drinksData, name: 'Drink' },
-            meds: { data: medsData, name: 'Medicine' }
+            // TODO use langData
+            smallGuns: { data: weaponData, isWeapon: true },
+            energyWeapons: { data: weaponData, isWeapon: true },
+            bigGuns: { data: weaponData, isWeapon: true },
+            meleeWeapons: { data: weaponData, isWeapon: true },
+            explosives: { data: weaponData, isWeapon: true },
+            throwing: { data: weaponData, isWeapon: true },
+            food: { data: foodData },
+            drinks: { data: drinksData },
+            meds: { data: medsData },
+            ammo: { data: ammoData }
         };
 
         const config = itemConfig[itemType];
@@ -415,12 +418,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Filter items
         const availableItems = Object.values(config.data).filter(item =>
-            !config.skill || item.SKILL === config.skill
+            !config.isWeapon || item.SKILL === itemType
         );
 
         // Populate select element
         addItemPopupElements.select.innerHTML = "";
-        const defaultOption = new Option(`Select a ${config.name} to Add`, '', true, true);
+        const formattedItemType = langData[currentLanguage][config.isWeapon ? "weapons" : itemType]
+        const defaultOptionText = langData[currentLanguage]["default_add_item_option"].replace("%s", formattedItemType)
+        const defaultOption = new Option(defaultOptionText, '', true, true);
         defaultOption.disabled = true;
         addItemPopupElements.select.appendChild(defaultOption);
         addItemPopupElements.select.dataItemType = itemType
@@ -489,8 +494,14 @@ document.addEventListener("DOMContentLoaded", () => {
     addItemPopupElements.confirmButton.addEventListener('click', () => {
         const selectedId = addItemPopupElements.select.value;
         const itemType = addItemPopupElements.select.dataItemType;
+        const quantity = addItemPopupElements.quantity.value;
         if (selectedId) {
-            characterData.addItem({id: selectedId, type: itemType});
+            // TODO implement adding quantity
+            characterData.addItem({
+                id: selectedId,
+                type: itemType,
+                quantity: quantity
+            });
             console.log(`Adding item: ${selectedId}`);
             closeActivePopup();
         }

@@ -12,8 +12,15 @@
     --border-primary-thin: 1px solid var(--primary-color);
     --border-secondary-lighter: 1px solid #338006;
 
+    --animation-glow-color: rgba(45, 255, 113, 0.75);
+
     --success-color: #0088ff;
     --failure-color: #dc143c;
+
+    --turn-on-delay: .2s;
+    --turn-on-duration: 1.5s;
+    --typewrite-delay: .4s;
+    --typewrite-duration: .3s;
 }
 
 html {
@@ -33,7 +40,23 @@ body {
     flex-direction: column;
     box-sizing: border-box;
     font-family: 'Space Mono', monospace;
+    text-shadow: 0 0 5px var(--animation-glow-color), 0 0 10px var(--animation-glow-color);
     padding: 0;
+}
+body::before {
+    content: " ";
+    display: block;
+    position: fixed; /* Use fixed to cover the viewport */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 9999; /* Make sure it's on top of other content */
+    background-size: 100% 3px, 4px 100%;
+    pointer-events: none; /* Allows clicks to go through to elements underneath */
+    animation: flicker 0.15s infinite;
 }
 
 h1, h2, h3 {
@@ -52,6 +75,145 @@ h3 { font-size: 1rem; }
 
 .hidden {
     display: none !important;
+    pointer-events: none;
+}
+
+/* Loading Overlay */
+/* TODO fix this */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--secondary-color);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.75s ease-out;
+
+    animation: fadeOut 0.5s forwards;
+    animation-delay: calc(
+            var(--turn-on-delay) + var(--turn-on-duration) +
+            6 * var(--typewrite-delay) + 5 * var(--typewrite-duration)
+    );
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* Terminal Container */
+.terminal {
+    display: flex;
+    justify-content: center;
+    font-size: calc(min(2.5vw, 2vh))
+}
+
+.terminal pre {
+    white-space: pre-wrap;
+    margin: 0;
+}
+
+/* Animation for text lines */
+.terminal .entry {
+    opacity: 0;
+    display: block;
+    overflow: hidden;
+    margin: 1rem;
+}
+
+.terminal .entry.turn-on-animation {
+    transform-origin: center;
+    animation: crt-turn-on var(--turn-on-duration) ease-out forwards;
+    animation-delay: var(--turn-on-delay);
+    align-self: center;
+    margin: 2rem 0;
+}
+
+.terminal .entry.boot-text {
+    white-space: nowrap;
+    animation: typewriter var(--typewrite-duration) steps(40, end) forwards;
+    animation-delay: calc(
+            var(--turn-on-delay) + var(--turn-on-duration) +
+            (1 + var(--line-idx)) * var(--typewrite-delay) +
+            var(--line-idx) * var(--typewrite-duration)
+    );
+}
+
+.terminal .entry.boot-text:nth-child(2) { --line-idx: 0; }
+.terminal .entry.boot-text:nth-child(3) { --line-idx: 1; }
+.terminal .entry.boot-text:nth-child(4) { --line-idx: 2; }
+.terminal .entry.boot-text:nth-child(5) { --line-idx: 3; }
+
+/* Keyframe Animations */
+@keyframes typewriter {
+    from {
+        width: 0;
+        opacity: 1;
+    }
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes crt-turn-on {
+    /* Start as a bright, central, horizontal line */
+    0% {
+        transform: scale(1.5, 0.005);
+        filter: brightness(3);
+        opacity: 1;
+    }
+
+    /* The line shrinks to normal width */
+    5% {
+        transform: scale(1, 0.005);
+    }
+
+    /* The line expands vertically to fill the screen */
+    15% {
+        transform: scale(1, 1);
+    }
+
+    /* A quick flicker and brightness settle */
+    70% {
+        filter: brightness(1.5);
+        opacity: 1;
+    }
+
+    /* Final stable state */
+    100% {
+        transform: scale(1, 1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+}
+
+@keyframes flicker {
+    0% { opacity: 0.27861; }
+    5% { opacity: 0.34769; }
+    10% { opacity: 0.23604; }
+    15% { opacity: 0.90626; }
+    20% { opacity: 0.18128; }
+    25% { opacity: 0.83891; }
+    30% { opacity: 0.65583; }
+    35% { opacity: 0.67807; }
+    40% { opacity: 0.26559; }
+    45% { opacity: 0.84693; }
+    50% { opacity: 0.96019; }
+    55% { opacity: 0.08594; }
+    60% { opacity: 0.20313; }
+    65% { opacity: 0.71988; }
+    70% { opacity: 0.53455; }
+    75% { opacity: 0.37288; }
+    80% { opacity: 0.71428; }
+    85% { opacity: 0.70428; }
+    90% { opacity: 0.7003; }
+    95% { opacity: 0.36108; }
+    100% { opacity: 0.24387; }
 }
 
 .row {

@@ -23,7 +23,7 @@ class Display {
 
             skills: this.getDisplayMap(Character.getSkillList(), "skill-%s"),
             specialties: this.getDisplayMap(Character.getSkillList(), "specialty-%s"),
-            itemContainers: this.getDisplayMap(["smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "food", "drinks", "meds"], "%s-cards"),
+            itemContainers: this.getDisplayMap(["smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "food", "drinks", "meds", "ammo"], "%s-cards"),
 
             editStatsButton: document.getElementById('edit-stats-button'),
             statContainer: document.getElementById('stat-container'),

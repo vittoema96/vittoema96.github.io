@@ -46,9 +46,14 @@
   "fusion_core": "Fusion Core",
   "na": "N/A",
 
-  "food": "Cibo",
-  "drinks": "Bevande",
+  "food": "Food",
+  "drinks": "Drinks",
   "meds": "Medicine",
+  "weapons": "Weapons",
+  "ammo": "Ammo",
+
+  "default_add_item_option": "Select %s to Add",
+
 
   "ammo_fusion_cell": "Fusion Cell",
   "ammo_plasma_cartridge": "Plasma Cartridge",
