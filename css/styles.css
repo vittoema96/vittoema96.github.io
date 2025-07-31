@@ -115,7 +115,7 @@ h3 { font-size: 1rem; }
     animation-delay: var(--turn-on-delay);
     align-self: center;
     margin: 2rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'New Courier', monospace !important;
 }
 /* Code entries */
 #loader .boot-text {

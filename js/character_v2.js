@@ -118,6 +118,7 @@ class Character {
         const hpDiff = newMax - this.hp.max;
         this.hp.max = newMax;
         this.hp.current += hpDiff;
+        /* TODO check this, its fishy */
         if (this.hp.current > this.hp.max || hpDiff > 0) {
             // Heal to new max if max HP increased, otherwise just adjust
             this.hp.current = Math.min(this.hp.current, this.hp.max);
