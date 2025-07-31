@@ -34,8 +34,6 @@ function initializePanzoom() {
  * Calculates the required pan to center the image and applies it.
  */
 function centerImage() {
-    if (!instance) return;
-
     const containerRect = mapContainer.getBoundingClientRect();
     const imageRect = mapImage.getBoundingClientRect();
     const scale = instance.getScale();
