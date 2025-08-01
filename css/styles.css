@@ -68,7 +68,7 @@ body::before {
 }
 
 pre {
-    font-family: 'Roboto Mono', 'Courier New', monospace;
+    font-family: "Fira Code", monospace;
 }
 
 h1, h2, h3 {
