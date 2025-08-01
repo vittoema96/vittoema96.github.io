@@ -67,6 +67,10 @@ body::before {
     background-size: 100% 3px, 4px 100%;
 }
 
+pre {
+    font-family: 'Roboto Mono', 'Courier New', monospace;
+}
+
 h1, h2, h3 {
     margin-bottom: 1rem;
     text-align: center;
@@ -115,7 +119,6 @@ h3 { font-size: 1rem; }
     animation-delay: var(--turn-on-delay);
     align-self: center;
     margin: 2rem 0;
-    font-family: 'New Courier', monospace !important;
 }
 /* Code entries */
 #loader .boot-text {
@@ -214,7 +217,7 @@ h3 { font-size: 1rem; }
 
 .tab {
     padding: 0.75rem 1.5rem;
-    background-color: #1a5205;
+    background-color: #1a5205; /* TODO use variable color - TERTIARY?? */
     color: var(--primary-color);
     border: var(--border-primary-thick); /* TODO BORDER not on bottom */
     border-bottom: 0;
@@ -229,7 +232,7 @@ h3 { font-size: 1rem; }
     box-sizing: border-box;
 }
 
-.tab:hover { background-color: #338006; }
+.tab:hover { background-color: #338006; } /* TODO use variable color */
 
 .tab.active {
     background-color: var(--primary-color);
@@ -382,7 +385,7 @@ select:focus {
     border: none;
 }
 
-.button:hover, .confirm-button:hover { background-color: #7cba02; }
+.button:hover, .confirm-button:hover { background-color: #7cba02; } /* TODO use variable color */
 
 .confirm-button {
     background-color: var(--primary-color);
@@ -390,7 +393,7 @@ select:focus {
 }
 
 .cancel-button {
-    background-color: #4a5568;
+    background-color: #4a5568; /* TODO use variable color */
     color: var(--primary-color);
 }
 
@@ -419,7 +422,7 @@ dialog::backdrop {
 }
 
 .close-button {
-    color: #aaa;
+    color: #aaa; /* TODO use variable color */
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -573,7 +576,7 @@ dialog::backdrop {
 .stat h3 {
     font-size: 1rem;
     margin-bottom: 0.1rem;
-    color: #ffdb58;
+    color: #ffdb58; /* TODO use variable color */
 }
 
 .stat-value {
@@ -840,7 +843,7 @@ dialog::backdrop {
     cursor: pointer;
     padding: 0.5rem;
     border: 2px solid var(--primary-color);
-    background-color: #1a5205;
+    background-color: #1a5205; /* TODO use variable color */
     color: var(--primary-color);
     border-radius: 5px;
     font-weight: bold;
@@ -897,10 +900,10 @@ dialog::backdrop {
     justify-content: center;
     align-items: center;
     aspect-ratio: 1 / 1;
-    background-color: #aaaaaa;
+    background-color: #aaaaaa; /* TODO use variable color */
 }
 
-.overlay-buttons .delete-button { background-color: #ff4d4d; }
+.overlay-buttons .delete-button { background-color: #ff4d4d; } /* TODO use variable color */
 
 .overlay-buttons button div {
     display: block;
