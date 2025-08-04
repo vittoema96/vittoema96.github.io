@@ -3,14 +3,24 @@
    ========================================================================== */
 
 :root {
+
+    --loader-display: flex; /* TODO Use 'flex' for a loader, 'none' to go straight to the app */
+
     --primary-color: #afff03;
     --primary-color-rgb: 175, 255, 3;
     --secondary-color: #0f3003;
     --tertiary-color: rgba(var(--primary-color-rgb), 0.7);
 
+    --special-text-color: #ffdb58;
+
     --border-primary-thick: 2px solid var(--primary-color);
     --border-primary-thin: 1px solid var(--primary-color);
-    --border-secondary-lighter: 1px solid #338006;
+
+    --delete-button-color: #ff4d4d;
+    --button-background: #1a5205;
+    --tab-hover: #338006;
+    --button-hover: #7cba02;
+    --cancel-btn-background: #4a5568;
 
     --animation-glow-color: rgba(45, 255, 113, 0.75);
 
@@ -67,10 +77,6 @@ body::before {
     background-size: 100% 3px, 4px 100%;
 }
 
-pre {
-    font-family: "Fira Code", monospace;
-}
-
 h1, h2, h3 {
     margin-bottom: 1rem;
     text-align: center;
@@ -78,6 +84,40 @@ h1, h2, h3 {
 h1 { font-size: 2.1rem; }
 h2 { font-size: 1.5rem; }
 h3 { font-size: 1rem; }
+
+hr {
+    border: none;
+    border-top: var(--border-primary-thick);
+}
+pre {
+    font-family: "Fira Code", monospace; /* To make loader render properly on (my) Android */
+    margin: 0; /* No margin, pre presents stuff as is. Use margin on pre children (like spans in loader) */
+    white-space: pre-wrap; /* TODO do we need this (or is there a better alternative)? Test it and check other values) */
+}
+
+/* Dialogs AKA Popups */
+dialog {
+    position: relative;
+    background-color: var(--secondary-color);
+    border: var(--border-primary-thin);   /* FIXME use class */
+    z-index: 1000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* TODO check rgba colors too (variables and standardization) */
+    padding: 20px;
+    color: var(--primary-color);
+}
+/* Everything else behind the dialog/popup */
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5); /* TODO check rgba colors too (variables and standardization) */
+    backdrop-filter: blur(3px);
+}
+
+dialog[open] {
+    animation: crt-turn-on .7s forwards;
+    pointer-events: auto;
+}
+.dialog-closing {
+    animation: crt-turn-off .3s forwards !important; /* Somehow using 2s == 1s. Using lower values breaks stuff... */
+}
 
 /* ==========================================================================
    2. Utility & General Layout
@@ -87,11 +127,11 @@ h3 { font-size: 1rem; }
 
 /* Loading Overlay */
 #loader {
+    display: var(--loader-display); /* Used to 'toggle' the loader animation for debugging */
     position: fixed;
     inset: 0;
     background: var(--secondary-color);
     z-index: 9998; /* One below body::before */
-    display: flex;
     align-items: center;
     justify-content: center;
     transition: opacity 0.75s ease-out;
@@ -103,7 +143,6 @@ h3 { font-size: 1rem; }
     );
     font-size: calc(min(2.5vw, 2vh))
 }
-#loader pre { white-space: pre-wrap; margin: 0; }
 
 /* Loader entries */
 #loader span {
@@ -115,7 +154,7 @@ h3 { font-size: 1rem; }
 /* PIP-BOY 3000 text */
 #loader .turn-on-animation {
     transform-origin: center;
-    animation: crt-turn-on var(--turn-on-duration) ease-out forwards;
+    animation: crt-turn-on var(--turn-on-duration) forwards;
     animation-delay: var(--turn-on-delay);
     align-self: center;
     margin: 2rem 0;
@@ -191,7 +230,11 @@ h3 { font-size: 1rem; }
     justify-content: center;
 }
 
-.icon-value-pair:not(:last-child) { border-bottom: var(--border-primary-thick); }  /* TODO BORDER only on bottom */
+/* TODO
+        HP/Caps/Weight icon-value
+        BORDER only on bottom
+        Maybe use the border onm a grid instead as a bottom element? */
+.icon-value-pair:not(:last-child) { border-bottom: var(--border-primary-thick); }
 
 .icon-value-pair div {
     width: 100%;
@@ -217,7 +260,7 @@ h3 { font-size: 1rem; }
 
 .tab {
     padding: 0.75rem 1.5rem;
-    background-color: #1a5205; /* TODO use variable color - TERTIARY?? */
+    background-color: var(--button-background);
     color: var(--primary-color);
     border: var(--border-primary-thick); /* TODO BORDER not on bottom */
     border-bottom: 0;
@@ -232,7 +275,7 @@ h3 { font-size: 1rem; }
     box-sizing: border-box;
 }
 
-.tab:hover { background-color: #338006; } /* TODO use variable color */
+.tab:hover { background-color: var(--tab-hover); }
 
 .tab.active {
     background-color: var(--primary-color);
@@ -339,9 +382,9 @@ input[type="checkbox"] {
     background-repeat: no-repeat;
 }
 
-input[type="checkbox"].luck-checkbox { background-image: url('../img/svg/luck.svg'); }
+input[type="checkbox"].d20-popup-luck-checkbox { background-image: url('../img/svg/luck.svg'); }
 
-input[type="checkbox"].luck-checkbox:checked { filter: url('../img/svg/luck.svg#checked'); }
+input[type="checkbox"].d20-popup-luck-checkbox:checked { filter: url('../img/svg/luck.svg#checked'); }
 
 input[type="checkbox"].aim-checkbox {
     background-image: url('../img/svg/attack.svg');
@@ -385,7 +428,7 @@ select:focus {
     border: none;
 }
 
-.button:hover, .confirm-button:hover { background-color: #7cba02; } /* TODO use variable color */
+.button:hover, .confirm-button:hover { background-color: var(--button-hover); }
 
 .confirm-button {
     background-color: var(--primary-color);
@@ -393,7 +436,7 @@ select:focus {
 }
 
 .cancel-button {
-    background-color: #4a5568; /* TODO use variable color */
+    background-color: var(--cancel-btn-background); /* TODO use different color? */
     color: var(--primary-color);
 }
 
@@ -406,23 +449,10 @@ button:disabled {
    5. Popups & Dialogs
    ========================================================================== */
 
-dialog {
-    position: relative;
-    background-color: var(--secondary-color);
-    border: var(--border-primary-thin);   /* FIXME use class */
-    z-index: 1000;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 20px;
+
+
+.popup-close-button {
     color: var(--primary-color);
-}
-
-dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(3px);
-}
-
-.close-button {
-    color: #aaa; /* TODO use variable color */
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -433,8 +463,8 @@ dialog::backdrop {
     line-height: 1;
 }
 
-.close-button:hover,
-.close-button:focus { color: var(--primary-color); }
+.popup-close-button:hover,
+.popup-close-button:focus { color: var(--primary-color); }
 
 .dice-container {
     display: flex;
@@ -533,12 +563,6 @@ dialog::backdrop {
     flex-wrap: wrap;
 }
 
-#d6-popup hr {
-    border: none;
-    border-top: var(--border-primary-thick);   /* TODO BORDER only on top */
-    margin: 1rem 0;
-}
-
 .d6-dice.effect { background-color: var(--success-color); }
 
 /* ==========================================================================
@@ -576,7 +600,7 @@ dialog::backdrop {
 .stat h3 {
     font-size: 1rem;
     margin-bottom: 0.1rem;
-    color: #ffdb58; /* TODO use variable color */
+    color: var(--special-text-color);
 }
 
 .stat-value {
@@ -843,7 +867,7 @@ dialog::backdrop {
     cursor: pointer;
     padding: 0.5rem;
     border: 2px solid var(--primary-color);
-    background-color: #1a5205; /* TODO use variable color */
+    background-color: var(--button-background);
     color: var(--primary-color);
     border-radius: 5px;
     font-weight: bold;
@@ -900,10 +924,10 @@ dialog::backdrop {
     justify-content: center;
     align-items: center;
     aspect-ratio: 1 / 1;
-    background-color: #aaaaaa; /* TODO use variable color */
+    background-color: var(--button-background);
 }
 
-.overlay-buttons .delete-button { background-color: #ff4d4d; } /* TODO use variable color */
+.overlay-buttons .delete-button { background-color: var(--delete-button-color); } /* TODO same background as others? maybe use red for the icon */
 
 .overlay-buttons button div {
     display: block;
@@ -1008,25 +1032,67 @@ section#map-screen:not(.hidden) { display: flex; }
 
 @keyframes crt-turn-on {
     /* Start as a bright, central, horizontal line */
+
+    /* Older implementation
+    0% { filter: brightness(4); opacity: 1; }
+    15% { transform: scale(1, 0.005); filter: brightness(3.5); }
+    45% { transform: scale(1, 1); filter: brightness(3); }
+    80% { filter: brightness(2); }
+    100% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
+    */
+
     0% {
         transform: scale(1.5, 0.005);
-        filter: brightness(4);
+        filter: brightness(6);
+        opacity: 0;
+    }
+    20% {
+        transform: scale(1, 0.005);
+        filter: brightness(4.2);
         opacity: 1;
     }
-    15% {
-        transform: scale(1, 0.005);
-        filter: brightness(3.5);
-    }
-    45% {
+    40% {
         transform: scale(1, 1);
-        filter: brightness(3);
+        filter: brightness(2.8);
     }
-    80% { filter: brightness(2); }
-    /* Final stable state */
+    60% {
+        filter: brightness(1.8);
+    }
+    80% {
+        filter: brightness(1.2);
+    }
     100% {
         transform: scale(1, 1);
         filter: brightness(1);
         opacity: 1;
+    }
+}
+
+@keyframes crt-turn-off {
+    0% {
+        transform: scale(1, 1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+    20% {
+        filter: brightness(1.2);
+    }
+    40% {
+        filter: brightness(1.8);
+    }
+    60% {
+        transform: scale(1, 1);
+        filter: brightness(2.8);
+    }
+    80% {
+        transform: scale(1, 0.005);
+        filter: brightness(4.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5, 0.005);
+        filter: brightness(6);
+        opacity: 0;
     }
 }
 

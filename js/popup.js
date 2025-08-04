@@ -10,18 +10,18 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const d20PopupElements = {
-        skillTitle: popups.d20.querySelector('#skill-throw-on'),
+        skillTitle: popups.d20.querySelector('#d20-popup-skill'),
         apCost: popups.d20.querySelector('#ap-cost'),
         luckCost: popups.d20.querySelector('#luck-cost'),
         dice: popups.d20.querySelectorAll('.dice'),
-        selector: popups.d20.querySelector('#popup-selector'),
-        luckCheckbox: popups.d20.querySelector('.luck-checkbox'),
+        selector: popups.d20.querySelector('#d20-popup-special-selector'),
+        luckCheckbox: popups.d20.querySelector('.d20-popup-luck-checkbox'),
         aimCheckbox: popups.d20.querySelector('.aim-checkbox'),
         rollButton: popups.d20.querySelector('#roll-dice-button'),
         damageButton: popups.d20.querySelector('#throw-damage-button'),
         successesDisplay: popups.d20.querySelector('#successes'),
-        targetNumberDisplay: popups.d20.querySelector('#target-number'),
-        targetNumberDetails: popups.d20.querySelector('#target-number-details')
+        targetNumberDisplay: popups.d20.querySelector('#d20-popup-target'),
+        targetNumberDetails: popups.d20.querySelector('#d20-popup-target-details')
     };
 
     const d6PopupElements = {
@@ -441,12 +441,16 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeActivePopup() {
         const activeDialog = document.querySelector('dialog[open]');
         if (activeDialog) {
-            activeDialog.close();
+            activeDialog.addEventListener('animationend', () => {
+                activeDialog.close();
+                activeDialog.classList.remove('dialog-closing');
+            }, { once: true });
+            activeDialog.classList.add('dialog-closing');
         }
     }
 
     // Close buttons for all popups
-    document.querySelectorAll('.popup .close-button, .popup .cancel-button').forEach(btn => {
+    document.querySelectorAll('.popup-close-button, .popup .cancel-button').forEach(btn => {
         btn.addEventListener('click', closeActivePopup);
     });
 

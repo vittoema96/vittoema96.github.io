@@ -100,7 +100,7 @@ function createGenericCard(genericItem, customCardContent, itemType) {
                 </div>
             </div>
         </div>
-        <div class="card-overlay hidden">
+        <div class="card-overlay hidden"> <!-- TODO Redo buttons, they are ugly -->
             <div class="overlay-buttons">
                 <button class="cancel-button" data-action="cancel-overlay">
                     <div class="fas fa-times"></div>
