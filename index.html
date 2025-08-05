@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"><!--, viewport-fit=cover">-->
-        <title>Pip-Boy 3000</title>
 
         <!-- Meta tags for theme and PWA -->
         <meta name="theme-color" content="#afff03"/>
@@ -21,8 +20,10 @@
 
         <!-- Font Awesome - Used for the Gear icon on Settings-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
         <link rel="stylesheet" href="css/styles.css">
+
+
+        <title>Pip-Boy 3000</title>
     </head>
 
     <body>
@@ -67,8 +68,9 @@
                 </select>
                 <input type="checkbox" class="themed-svg d20-popup-luck-checkbox" data-icon="luck" aria-label="Use Luck" alt="Use Luck"/>
             </div>
+            <hr>
             <div class="row">
-                <h1 id="d20-popup-target">12</h1>
+                <h1 id="d20-popup-target">Target: 12</h1>
                 <h3 id="d20-popup-target-details">[8+4]</h3>
             </div>
             <div class="dice-container">
@@ -392,7 +394,7 @@
         <script src="js/character.js"></script>
         <script src="js/display.js"></script>
 
-        <!-- Deve restare sopra map.js o non funziona -->
+        <!-- Above map.js or it doesn't work -->
         <script src="https://unpkg.com/@panzoom/panzoom@4.6.0/dist/panzoom.min.js"></script>
         <script src="js/map.js"></script>
 

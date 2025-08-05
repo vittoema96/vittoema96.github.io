@@ -8,8 +8,6 @@ let langData = {
 
 function loadTranslations(language) {
 
-
-
         const elementsWithLangId = document.querySelectorAll('[data-lang-id]');
         elementsWithLangId.forEach(element => {
           const langId = element.dataset.langId; // Access the value of the attribute
@@ -27,7 +25,6 @@ function loadTranslations(language) {
         if (languageSelect) {
             languageSelect.value = language;
         }
-
 }
 
 function changeLanguage(language) {

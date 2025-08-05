@@ -91,7 +91,7 @@ class Display {
                 const container = cardDiv.querySelector(".description-container");
                 const button = cardDiv.querySelector(".description-toggle");
                 container.classList.toggle("expanded");
-                button.textContent = container.classList.contains("expanded") ? "Nascondi" : "Descrizione";
+                button.textContent = langData[currentLanguage][container.classList.contains("expanded") ? "close" : "showDescription"];
                 break;
             }
             case 'attack': {
@@ -102,8 +102,8 @@ class Display {
             case 'delete':
                 characterData.removeItem({ ID: itemId, type: itemType });
                 break;
-            case 'cancel-overlay':
             case 'sell': // TODO: Implement sell logic
+            case 'cancel-overlay':
                 cardDiv.querySelector('.card-overlay').classList.add('hidden');
                 break;
         }

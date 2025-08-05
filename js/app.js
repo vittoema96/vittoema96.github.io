@@ -217,6 +217,11 @@ function changeTheme(value){
     document.getElementById("theme-select").value = value;
     document.body.className = value;
     localStorage.setItem("theme", value);
+
+    // Update the meta tag so the PWA updates the app colors
+    const computedStyle = getComputedStyle(document.body);
+    const primaryColor = computedStyle.getPropertyValue('--primary-color');
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', primaryColor);
 }
 changeTheme(localStorage.getItem("theme"))
 

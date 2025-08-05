@@ -41,6 +41,7 @@
   "ammoType": "Ammo Type",
 
   "showDescription": "Show Description",
+  "close": "Close",
   "damageDice": "Damage Dice",
   "fireRate": "Fire Rate",
   "range": "Range",
