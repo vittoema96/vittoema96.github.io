@@ -150,16 +150,16 @@ class Character {
         }
     }
 
-    addItem(item) {
+    addItem(itemId, itemType, quantity) {
         // TODO implement discerning modded items from normal ones
-        const existingItem = this.#items.find(i => i.id === item.id);
+        const existingItem = this.#items.find(i => i.id === itemId);
         if (existingItem) {
-            existingItem.quantity += (item.quantity || 1);
+            existingItem.quantity += (quantity || 1);
         } else {
             this.#items.push({
-                id: item.id,
-                type: item.type,
-                quantity: item.quantity || 1,
+                id: itemId,
+                type: itemType,
+                quantity: quantity || 1,
             });
         }
         localStorage.setItem("items", JSON.stringify(this.#items));

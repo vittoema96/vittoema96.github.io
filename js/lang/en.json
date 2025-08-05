@@ -34,13 +34,16 @@
   "damageRating": "Damage Rating",
   "effects": "Damage Effects",
   "damageType": "Damage Type",
-  "fireRate": "Fire Rate",
-  "range": "Range",
   "qualities": "Quality",
   "weight": "Weight",
   "cost": "Cost",
   "rarity": "Rarity",
   "ammoType": "Ammo Type",
+
+  "showDescription": "Show Description",
+  "damageDice": "Damage Dice",
+  "fireRate": "Fire Rate",
+  "range": "Range",
 
   "anything": "Anything",
   "fusion_core": "Fusion Core",

@@ -8,11 +8,11 @@
         <!-- Meta tags for theme and PWA -->
         <meta name="theme-color" content="#afff03"/>
         <link rel="canonical" href="https://vittoema96.github.io/" />
-        <link rel="manifest" href="/manifest.webmanifest">
-        <link rel="icon" href="/img/icons/192x192.png" type="image/png">
+        <link rel="manifest" href="manifest.json">
+        <!--<link rel="icon" href="/img/icons/192x192.png" type="image/png">
         <link rel="icon" href="/img/icons/512x512.png" type="image/png">
         <link rel="apple-touch-icon" href="/img/icons/192x192.png" type="image/png">
-        <link rel="apple-touch-icon" href="/img/icons/512x512.png" type="image/png">
+        <link rel="apple-touch-icon" href="/img/icons/512x512.png" type="image/png">-->
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,23 +65,23 @@
                      <option data-lang-id="agility" value="agility">Agility</option>
                      <option data-lang-id="luck" value="luck">Luck</option>
                 </select>
-                <input type="checkbox" class="themed-svg d20-popup-luck-checkbox" style="--image-url: url('../img/svg/luck.svg')" aria-label="Use Luck" alt="Use Luck"/>
+                <input type="checkbox" class="themed-svg d20-popup-luck-checkbox" data-icon="luck" aria-label="Use Luck" alt="Use Luck"/>
             </div>
             <div class="row">
                 <h1 id="d20-popup-target">12</h1>
                 <h3 id="d20-popup-target-details">[8+4]</h3>
             </div>
             <div class="dice-container">
-                <div class="dice-wrapper"><div class="dice active" data-value="1">?</div></div>
-                <div class="dice-wrapper"><div class="dice active" data-value="2">?</div></div>
-                <div class="dice-wrapper"><div class="dice" data-value="3">?</div></div>
-                <div class="dice-wrapper"><div class="dice" data-value="4">?</div></div>
-                <div class="dice-wrapper"><div class="dice" data-value="5">?</div></div>
+                <div class="dice-wrapper"><div class="d20-dice active" data-value="1">?</div></div>
+                <div class="dice-wrapper"><div class="d20-dice active" data-value="2">?</div></div>
+                <div class="dice-wrapper"><div class="d20-dice" data-value="3">?</div></div>
+                <div class="dice-wrapper"><div class="d20-dice" data-value="4">?</div></div>
+                <div class="dice-wrapper"><div class="d20-dice" data-value="5">?</div></div>
             </div>
             <h2 id="ap-cost">Costo AP: +0</h2>
             <div class="row">
                 <h2>Mirare?</h2>
-                <input type="checkbox" id="aim-checkbox" class="themed-svg" aria-label="Aim" alt="Aim"/>
+                <input type="checkbox" id="aim-checkbox" class="themed-svg" data-icon="attack" aria-label="Aim" alt="Aim"/>
             </div>
             <h2 id="luck-cost">Costo Fortuna: 0</h2>
             <h1 id="successes">Successi: ?</h1>
@@ -97,7 +97,7 @@
             <span class="popup-close-button">&times;</span>
             <h1 id="d6-weapon-name">NOME ARMA</h1>
             <h3 id="d6-damage-type">Tipo Danno</h3>
-            <div id="d6-tags" class="card-tags">
+            <div id="d6-tags" class="tags-container">
                 <!-- I tag degli effetti verranno inseriti qui dinamicamente -->
             </div>
             <hr>
@@ -136,17 +136,17 @@
             <div id="header-stats">
                 <div class="icon-value-pair">
                     <div class="themed-svg icon"
-                         style="--image-url: url('../img/svg/hp.svg')"></div>
+                         data-icon="hp"></div>
                     <div id="hp-value">? / ?</div>
                 </div>
                 <div class="icon-value-pair">
                     <div class="themed-svg icon"
-                         style="--image-url: url('../img/svg/caps.svg')"></div>
+                         data-icon="caps"></div>
                     <div id="caps-value">?</div>
                 </div>
                 <div class="icon-value-pair">
                     <div class="themed-svg icon"
-                         style="--image-url: url('../img/svg/weight.svg')"></div>
+                         data-icon="weight"></div>
                     <div id="weight-value">? / ?</div>
                 </div>
             </div>
@@ -206,7 +206,7 @@
                     <input id="level-display" type="number" min="1" step="1"/>
                 </div>
 
-                <div class="grid-container">
+                <div class="flex-container">
                     <div class="derived-stat">
                         <div data-lang-id="defense">Defense</div>
                         <div class="derived-stat-value" id="defense-value">0</div>
@@ -223,7 +223,7 @@
 
                 <div>
                     <label for="skills" class="form-label">Skills:</label>
-                    <div id="skills" class="grid-container"></div>
+                    <div id="skills" class="flex-container"></div>
                 </div>
                 <button id="edit-stats-button" class="button">Edit Stats</button>
     </section>
@@ -290,13 +290,11 @@
                     <div id="meds-cards" class="card-carousel"></div>
                 </div>
                 <div class="subScreen hidden" id="inv-ammo">
-                    <h1>WORK IN PROGRESS</h1>
-
                     <div class="itemlist-header">
                         <h2 data-lang-id="ammo">Ammo</h2>
                         <button class="add-item-button" onclick="openAddItemModal('ammo')">+</button>
                     </div>
-                    <div id="ammo-cards" class="card-carousel"></div>
+                    <div id="ammo-cards" class="flex-container"></div>
                 </div>
 
             </section>
@@ -332,6 +330,62 @@
                 <button id="clear-local-storage">Clear Local Storage</button>
             </section>
         </main>
+
+        <!-- Template for generic card -->
+        <template id="generic-card-template">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-name-container">
+                        <div class="card-quantity"><i>2x</i></div>
+                        <div class="card-name">Item name</div>
+                    </div>
+                    <div class="right-header">
+                        <div class="right-header-item">
+                            <div data-lang-id="cost">Cost</div>
+                            <div class="card-cost-value">123</div>
+                        </div>
+                        <div class="right-header-item">
+                            <div data-lang-id="weight">Weight</div>
+                            <div class="card-weight-value">6.5 kg</div>
+                        </div>
+                        <div class="right-header-item">
+                            <div data-lang-id="rarity"></div>
+                            <div class="card-rarity-value">2</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-controls">
+                        <button class="themed-svg attack-button" data-icon="attack"></button>
+                        <button class="description-toggle" data-action="toggle-description"
+                                data-lang-id="showDescription">Show Description</button>
+                    </div>
+                    <div class="description-container">
+                        <div class="description"></div>
+                    </div>
+                </div>
+                <div class="card-overlay hidden"> <!-- TODO Redo buttons, they are ugly -->
+                    <div class="overlay-buttons">
+                        <button class="cancel-button" data-action="cancel-overlay">
+                            <div class="fas fa-times"></div>
+                        </button>
+                        <button class="sell-button" data-action="sell">
+                            <img class="fas" src="img/svg/caps.svg" alt="Sell"/> <!-- todo fix this -->
+                        </button>
+                        <button class="delete-button" data-action="delete">
+                            <div class="fas fa-trash"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="ammo-card-template">
+            <div class="ammo-card row">
+                <span class="card-quantity ammo-quantity"><i>AMMO QUANTITY</i></span>
+                <span class="ammo-card-name">AMMO NAME</span>
+            </div>
+        </template>
 
 
         <script src="js/app.js"></script>

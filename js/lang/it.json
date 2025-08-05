@@ -34,13 +34,16 @@
   "damageRating": "Grado di Danno",
   "effects": "Effetti di Danno",
   "damageType": "Tipo di Danno",
-  "fireRate": "Cadenza di Fuoco",
-  "range": "Gittata",
   "qualities": "Qualità",
   "weight": "Peso",
   "cost": "Costo",
   "rarity": "Rarità",
   "ammoType": "Tipo di Muniz.",
+
+  "showDescription": "Mostra Descrizione",
+  "damageDice": "Dadi Danno",
+  "fireRate": "Cadenza di Fuoco",
+  "range": "Gittata",
 
   "anything": "Qualsiasi cosa",
   "fusion_core": "Nucleo di Fusione",

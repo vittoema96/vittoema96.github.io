@@ -24,20 +24,30 @@
     ],
     "screenshots": [
         {
-            "src": "img/screenshots/boot.png",
+            "src": "docs/boot_screen.jpg",
             "sizes": "1080x1920",
-            "type": "image/png",
+            "type": "image/jpeg",
             "label": "Boot Screen"
         },{
-            "src": "img/screenshots/stat_tab.png",
+            "src": "docs/inv_tab_supplies.jpg",
             "sizes": "1080x1920",
-            "type": "image/png",
-            "label": "Character Stats Screen"
+            "type": "image/jpeg",
+            "label": "Inventory Tab - Supplies"
         },{
-            "src": "img/screenshots/inv_tab.png",
+            "src": "docs/inv_tab_weapons.jpg",
             "sizes": "1080x1920",
-            "type": "image/png",
-            "label": "Inventory Management"
+            "type": "image/jpeg",
+            "label": "Inventory Tab - Weapons"
+        },{
+            "src": "docs/stat_tab.jpg",
+            "sizes": "1080x1920",
+            "type": "image/jpeg",
+            "label": "Stats Tab"
+        },{
+            "src": "docs/new_vegas_theme.jpg",
+            "sizes": "1080x1920",
+            "type": "image/jpeg",
+            "label": "New Vegas Theme"
         }
     ]
 }

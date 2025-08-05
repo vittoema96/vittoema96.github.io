@@ -163,17 +163,25 @@ class Display {
                 itemsOfType.forEach(item => {
                     if (!currentMap.has(item.id)) {
                         let newCard;
-                        if (item.id.startsWith("weapon")) newCard = createWeaponCard(item.id);
-                        else newCard = createObjectCard(item.id, item.type);
+                        if (Character.getSkillList().includes(item.type))
+                            newCard = createWeaponCard(item.id, item.quantity);
+                        else if (item.type === "ammo")
+                            newCard = createAmmoEntry(item.id, item.quantity);
+                        else
+                            newCard = createObjectCard(item.id, item.type, item.quantity);
 
                         if (newCard) {
                             container.appendChild(newCard);
                             currentMap.set(item.id, newCard);
                         }
+                    } else {
+                        currentMap.get(item.id).querySelector(".card-quantity").textContent = `${item.quantity}x`;
                     }
-                    // TODO: Update quantity if it changes, though current logic adds new items
+                    // TODO: Handle multiple items with different mods
                 });
+
             }
+            loadTranslations(currentLanguage); // TODO maybe don't update ALL translation, just the cards
         });
     }
 

@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
         skillTitle: document.getElementById('d20-popup-skill'),
         apCost: document.getElementById('ap-cost'),
         luckCost: document.getElementById('luck-cost'),
-        dice: popups.d20.querySelectorAll('.dice'),
+        dice: popups.d20.querySelectorAll('.d20-dice'),
         selector: document.getElementById('d20-popup-special-selector'),
         luckCheckbox: popups.d20.querySelector('.d20-popup-luck-checkbox'),
-        aimCheckbox: popups.d20.querySelector('#aim-checkbox'), // TODO
+        aimCheckbox: document.getElementById('aim-checkbox'),
         rollButton: document.getElementById('roll-dice-button'),
         damageButton: document.getElementById('throw-damage-button'),
         successesDisplay: document.getElementById('successes'),
@@ -220,8 +220,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let costs = [];
         if (d20RollState.isUsingLuck) costs.push(1);
 
-        const rerollingCount = popups.d20.querySelectorAll('.dice.active').length;
-        const rerolledCount = popups.d20.querySelectorAll('.dice.rerolled').length;
+        const rerollingCount = popups.d20.querySelectorAll('.d20-dice.active').length;
+        const rerolledCount = popups.d20.querySelectorAll('.d20-dice.rerolled').length;
 
         if (d20RollState.hasRolled) {
             if (rerolledCount > 0) {
@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function handleD20Roll() {
-        const activeDice = popups.d20.querySelectorAll('.dice.active');
+        const activeDice = popups.d20.querySelectorAll('.d20-dice.active');
         if (activeDice.length === 0) {
             return showNotification("Seleziona dei dadi da (ri)lanciare!");
         }
@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!d20RollState.hasRolled && d20RollState.isUsingLuck) {
             luckCost = 1;
         } else if (d20RollState.hasRolled) {
-            const rerolledCount = popups.d20.querySelectorAll('.dice.rerolled').length;
+            const rerolledCount = popups.d20.querySelectorAll('.d20-dice.rerolled').length;
             const aimDiscount = d20RollState.isAiming && rerolledCount === 0 ? 1 : 0;
             luckCost = activeDice.length - aimDiscount;
         }
@@ -428,7 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const defaultOption = new Option(defaultOptionText, '', true, true);
         defaultOption.disabled = true;
         addItemPopupElements.select.appendChild(defaultOption);
-        addItemPopupElements.select.dataItemType = itemType
+        addItemPopupElements.select.dataItemType = itemType;
 
         availableItems.forEach(item => {
             const optionText = langData.it[item.ID] || item.ID; // Fallback to ID
@@ -498,15 +498,11 @@ document.addEventListener("DOMContentLoaded", () => {
     addItemPopupElements.confirmButton.addEventListener('click', () => {
         const selectedId = addItemPopupElements.select.value;
         const itemType = addItemPopupElements.select.dataItemType;
-        const quantity = addItemPopupElements.quantity.value;
+        const quantity = parseInt(addItemPopupElements.quantity.value);
         if (selectedId) {
-            // TODO implement adding quantity
-            characterData.addItem({
-                id: selectedId,
-                type: itemType,
-                quantity: quantity
-            });
-            console.log(`Adding item: ${selectedId}`);
+            characterData.addItem(selectedId, itemType, quantity);
+            addItemPopupElements.quantity.value = 1;
+            console.log(`Adding item: ${selectedId} x${quantity}`);
             closeActivePopup();
         }
     });

@@ -73,7 +73,7 @@ function createSkillEntries(){
                   style="flex: 1">0</span>
             <input id="specialty-${skill}" type="checkbox"
                    disabled="disabled"
-                   class="themed-svg" style="--image-url: url('../img/svg/vaultboy.svg')">
+                   class="themed-svg" data-icon="vaultboy">
         `;
         skillsContainer.appendChild(entryDiv);
     }
@@ -86,69 +86,57 @@ function createSkillEntries(){
  * @param {object} genericItem The item data.
  * @param {string} customCardContent The specific HTML for the item type.
  * @param {string} itemType The category of the item (e.g., 'smallGuns', 'food').
+ * @param {number} quantity The quantity of the object.
  * @returns {HTMLDivElement} The card's outer div element.
  */
-function createGenericCard(genericItem, customCardContent, itemType) {
+function createGenericCard(genericItem, customCardContent, itemType, quantity) {
     if (!genericItem) {
         console.error(`Item data provided was null`);
         return null;
     }
 
-    const cardDiv = document.createElement('div');
-    // Add data attributes to the wrapper for event delegation
-    cardDiv.className = 'card'; // A wrapper to help with event targeting
+    const template = document.getElementById('generic-card-template');
+    const cardDiv = template.content.cloneNode(true).firstElementChild;
+
     cardDiv.dataset.itemId = genericItem.ID;
     cardDiv.dataset.itemType = itemType;
 
-    const skillId = genericItem.SKILL || "---";
+    cardDiv.querySelector('.card-quantity').textContent = `${quantity}x`;
+    cardDiv.querySelector('.card-name').dataset.langId = genericItem.ID;
+    cardDiv.querySelector('.card-cost-value').textContent = genericItem.COST;
+    cardDiv.querySelector('.card-weight-value').textContent = genericItem.WEIGHT;
+    cardDiv.querySelector('.card-rarity-value').textContent = genericItem.RARITY;
+
     const isWeapon = !!weaponData[genericItem.ID];
+    const attackButton = cardDiv.querySelector('.attack-button');
+    if(isWeapon){
+        attackButton.dataset.action = "attack";
+        attackButton.dataset.skill = genericItem.SKILL || "---";
+        attackButton.dataset.objectId = genericItem.ID;
+    } else {
+        // TODO implement consuming supplies
+        attackButton.disabled = true;
+    }
 
-    // The attack button will have a data-action attribute instead of an inline onclick
-    const attackButtonHTML = isWeapon
-        ? `<button class="themed-svg attack-button" data-action="attack" data-skill="${skillId}" data-object-id="${genericItem.ID}"></button>`
-        : `<button class="themed-svg attack-button" disabled></button>`; // Disabled for non-weapons
+    cardDiv.querySelector('.description').innerHTML =
+        genericItem.DESCRIPTION.split('. ').map(
+            paragraph => `<p>${paragraph}${paragraph.endsWith(".") ? "" : "."}</p>`
+        ).join(''); // TODO is this the correct place to format this?
 
-    cardDiv.innerHTML = `
-        <div class="card-header">
-            <div class="card-name" data-lang-id="${genericItem.ID}">${langData[currentLanguage][genericItem.ID]}</div>
-            <div class="right-header">
-                <div class="right-header-item"><div>Cost</div><div>${genericItem.COST}</div></div>
-                <div class="right-header-item"><div>Weight</div><div>${genericItem.WEIGHT} kg</div></div>
-                <div class="right-header-item"><div>Rarity</div><div>${genericItem.RARITY}</div></div>
-            </div>
-        </div>
-        <div class="card-content">
-            ${customCardContent}
-            <div class="card-controls">
-                ${attackButtonHTML}
-                <button class="description-toggle" data-action="toggle-description">Mostra Descrizione</button>
-            </div>
-            <div class="description-container">
-                <div class="description">
-                    ${genericItem.DESCRIPTION.split('. ').map(paragraph => `<p>${paragraph}${paragraph.endsWith(".") ? "" : "."}</p>`).join('')}
-                </div>
-            </div>
-        </div>
-        <div class="card-overlay hidden"> <!-- TODO Redo buttons, they are ugly -->
-            <div class="overlay-buttons">
-                <button class="cancel-button" data-action="cancel-overlay">
-                    <div class="fas fa-times"></div>
-                </button>
-                <button class="sell-button" data-action="sell">
-                    <img class="fas" src="img/svg/caps.svg" alt="Sell"/>
-                </button>
-                <button class="delete-button" data-action="delete">
-                    <div class="fas fa-trash"></div>
-                </button>
-            </div>
-        </div>
-    `;
+    cardDiv.querySelector('.card-controls').insertAdjacentHTML('beforebegin', customCardContent);
 
     return cardDiv;
 }
 
+function createAmmoEntry(ammoId, quantity){
+     const template = document.getElementById('ammo-card-template');
+     const ammoDiv = template.content.cloneNode(true).firstElementChild;
+     ammoDiv.querySelector(".card-quantity").textContent = `${quantity}x`;
+     ammoDiv.querySelector(".ammo-card-name").dataset.langId = ammoId;
+     return ammoDiv;
+}
 
-function createWeaponCard(weaponId) {
+function createWeaponCard(weaponId, quantity) {
     const weapon = weaponData[weaponId];
     if (!weapon) {
         console.error(`Weapon data not found for ID: ${weaponId}`);
@@ -157,44 +145,54 @@ function createWeaponCard(weaponId) {
 
     const ammoCount = 0; // Placeholder
 
+    // TODO implement as template
     // language=HTML
     let weaponHTML = `
         <div class="stats" id="stats-left">
             <div class="card-stat">
-                <div data-lang-id="${weapon.SKILL}">${langData[currentLanguage][weapon.SKILL]}</div>
+                <div data-lang-id="${weapon.SKILL}"></div>
                 <div>To Hit: ${characterData.getSkill(weapon.SKILL) + characterData.getSpecial(Character.getSpecialFromSkill(weapon.SKILL))}</div>
                 <div>To Crit: ${Math.max(characterData.getSkill(weapon.SKILL), 1)}</div>
             </div>
             <div class="card-stat">
-                <div data-lang-id="${weapon.AMMO_TYPE}">${langData[currentLanguage][weapon.AMMO_TYPE]}</div>
+                <div data-lang-id="${weapon.AMMO_TYPE}"></div>
                 <div>${ammoCount}</div>
             </div>
         </div>
-        <div class="image themed-svg" style="--image-url: url('../img/svg/${weapon.SKILL}.svg')">
-       
-        </div>
+        <div class="image themed-svg" data-icon="${weapon.SKILL}"></div>
         <div class="stats" id="stats-right">
-            <div class="card-stat"><div>Damage Dice</div><div>${weapon.DAMAGE_RATING}</div><div>${weapon.DAMAGE_TYPE}</div></div>
-            <div class="card-stat"><div>Fire Rate</div><div>${weapon.FIRE_RATE}</div></div>
-            <div class="card-stat"><div>Range</div><div>${weapon.RANGE}</div></div>
+            <div class="card-stat">
+                <div data-lang-id="damageDice">Damage Dice</div>
+                <div>${weapon.DAMAGE_RATING}</div>
+                <div>${weapon.DAMAGE_TYPE}</div>
+            </div>
+            <div class="card-stat">
+                <div data-lang-id="fireRate">Fire Rate</div>
+                <div>${weapon.FIRE_RATE}</div>
+            </div>
+            <div class="card-stat">
+                <div data-lang-id="range">Range</div>
+                <div>${weapon.RANGE}</div>
+            </div>
         </div>
-        <div class="card-tags">
+        <div class="tags-container">
             ${weapon.EFFECTS.split(',').map(e => e.trim()).filter(e => e !== "").map(effect => `<span class="tag">${effect}</span>`).join('')}
         </div>`;
 
-    return createGenericCard(weapon, weaponHTML, weapon.SKILL);
+    return createGenericCard(weapon, weaponHTML, weapon.SKILL, quantity);
 }
 
-function createObjectCard(id, type) {
+function createObjectCard(id, type, quantity) {
     const object = {...foodData, ...drinksData, ...medsData}[id];
     const specificEffectHeader = object.RADIOACTIVE !== undefined ? 'Radioactive' : 'Addictive';
 
     const hpGainHTML = type !== "meds" ? `<div class="card-stat"><div>HP</div><div>+${object.HP_GAIN}</div></div>` : "";
 
+    // TODO implement as template
     // language=HTML
     const objectHTML = `
         <div class="stats">
-            <div class="supply-img themed-svg" style="--image-url: url('../img/svg/${type}.svg')">
+            <div class="supply-img themed-svg" data-icon="${type}">
             </div>
         </div>
         <div class="stats"">
@@ -209,7 +207,7 @@ function createObjectCard(id, type) {
         </div>
     `;
 
-    return createGenericCard(object, objectHTML, type);
+    return createGenericCard(object, objectHTML, type, quantity);
 }
 
 function changeTheme(value){

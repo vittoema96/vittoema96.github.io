@@ -9,7 +9,7 @@ const CACHE_NAME = `${PROJECT_NAME}-${CACHE_VERSION}`;
 const urlsToCache = [
     '/', // Main entrypoint
     '/index.html',
-    '/manifest.webmanifest',
+    '/manifest.json',
 
     /* JAVASCRIPT files */
     '/js/app.js',

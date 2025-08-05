@@ -3,7 +3,7 @@
    ========================================================================== */
 
 :root {
-    --loader-display: flex; /* TODO Use 'flex' for a loader, 'none' to go straight to the app */
+    --loader-display: none; /* TODO Use 'flex' for a loader, 'none' to go straight to the app */
 
     /* Should not change, regardless of theme */
     --success-color: #0088ff;
@@ -60,6 +60,8 @@ body {
 
     --border-primary-thick: 2px solid var(--primary-color);
     --border-primary-thin: 1px solid var(--primary-color);
+    --border-secondary-thick: 2px solid var(--secondary-color);
+    --border-secondary-thin: 1px solid var(--secondary-color);
 
     margin: 0;
     height: 100dvh;
@@ -136,29 +138,6 @@ pre {
     white-space: pre-wrap; /* TODO do we need this (or is there a better alternative)? Test it and check other values) */
 }
 
-/* Dialogs AKA Popups */
-dialog {
-    position: relative;
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    border: var(--border-primary-thin);
-    z-index: 1000;
-    padding: 20px;
-}
-/* Everything else behind the dialog/popup */
-dialog::backdrop {
-    background-color: var(--overlay-color);
-    backdrop-filter: blur(3px);
-}
-
-dialog[open] {
-    animation: crt-turn-on .7s forwards;
-    pointer-events: auto;
-}
-.dialog-closing {
-    animation: crt-turn-off .3s forwards !important;
-}
-
 .hidden { display: none !important; /* override any other 'display' */ }
 
 .row {
@@ -168,15 +147,6 @@ dialog[open] {
     justify-content: space-around;
     margin: 1rem 0;
     gap: 1rem;
-}
-
-.grid-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    width: 100%;
 }
 
 .main-container {
@@ -409,18 +379,55 @@ button:disabled {
     line-height: 1;
 }
 
-#aim-checkbox, .attack-button {
-    --image-url: url('../img/svg/attack.svg');
+.themed-svg[data-icon="attack"] { --image-url: url('../img/svg/attack.svg'); }
+.themed-svg[data-icon="bigGuns"] { --image-url: url('../img/svg/bigGuns.svg'); }
+.themed-svg[data-icon="caps"] { --image-url: url('../img/svg/caps.svg'); }
+.themed-svg[data-icon="drinks"] { --image-url: url('../img/svg/drinks.svg'); }
+.themed-svg[data-icon="energyWeapons"] { --image-url: url('../img/svg/energyWeapons.svg'); }
+.themed-svg[data-icon="explosives"] { --image-url: url('../img/svg/explosives.svg'); }
+.themed-svg[data-icon="food"] { --image-url: url('../img/svg/food.svg'); }
+.themed-svg[data-icon="gear"] { --image-url: url('../img/svg/gear.svg'); }
+.themed-svg[data-icon="drinks"] { --image-url: url('../img/svg/drinks.svg'); }
+.themed-svg[data-icon="hp"] { --image-url: url('../img/svg/hp.svg'); }
+.themed-svg[data-icon="luck"] { --image-url: url('../img/svg/luck.svg'); }
+.themed-svg[data-icon="meds"] { --image-url: url('../img/svg/meds.svg'); }
+.themed-svg[data-icon="meleeWeapons"] { --image-url: url('../img/svg/meleeWeapons.svg'); }
+.themed-svg[data-icon="smallGuns"] { --image-url: url('../img/svg/smallGuns.svg'); }
+.themed-svg[data-icon="throwing"] { --image-url: url('../img/svg/throwing.svg'); }
+.themed-svg[data-icon="unarmed"] { --image-url: url('../img/svg/unarmed.svg'); }
+.themed-svg[data-icon="vaultboy"] { --image-url: url('../img/svg/vaultboy.svg'); }
+.themed-svg[data-icon="weight"] { --image-url: url('../img/svg/weight.svg'); }
+
+
+/*****************
+ *     POPUPS    *
+ *****************/
+
+dialog {
+    position: relative;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border: var(--border-primary-thin);
+    z-index: 1000;
+    padding: 20px;
 }
+dialog::backdrop {
+    background-color: var(--overlay-color);
+    backdrop-filter: blur(3px);
+}
+dialog[open] {
+    animation: crt-turn-on .7s forwards;
+    pointer-events: auto;
+}
+.dialog-closing { animation: crt-turn-off .3s forwards !important; }
 
-
+/*** D20 Popup ***/
 .dice-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 1.5rem;
 }
-
 .dice-wrapper {
     position: relative;
     width: 12%;
@@ -428,8 +435,12 @@ button:disabled {
     aspect-ratio: 1 / 1;
     margin: 0 10px;
 }
-
-.dice {
+.dice-wrapper:nth-child(1),
+.dice-wrapper:nth-child(2) {
+    transform: scale(1.2);
+    margin: 0 12px;
+}
+.d20-dice {
     position: absolute;
     opacity: 0.7;
     top: 0;
@@ -446,21 +457,11 @@ button:disabled {
     transition: opacity 0.2s ease, background-color 0.3s ease;
     color: var(--secondary-color);
 }
+.d20-dice.roll-crit { background-color: var(--success-color); }
+.d20-dice.roll-complication { background-color: var(--failure-color); }
+.d20-dice.active { opacity: 1; }
 
-.dice.roll-crit { background-color: var(--success-color); }
-
-.dice.roll-complication { background-color: var(--failure-color); }
-
-.dice.active { opacity: 1; }
-
-.dice-wrapper:nth-child(1),
-.dice-wrapper:nth-child(2) {
-    transform: scale(1.2);
-    margin: 0 12px;
-}
-
-/* Stili per d6-popup */
-
+/*** D6 Popup ***/
 .dice-grid {
     display: flex;
     flex-wrap: wrap;
@@ -468,7 +469,6 @@ button:disabled {
     gap: 10px;
     margin-bottom: 1.5rem;
 }
-
 .d6-dice {
     width: 40px;
     height: 40px;
@@ -487,22 +487,20 @@ button:disabled {
     color: var(--secondary-color);
     font-weight: bold;
 }
-
 .d6-dice.active { opacity: 1; }
 .d6-face-damage1 { background-image: url('../img/svg/damage1.svg'); }
 .d6-face-damage2 { background-image: url('../img/svg/damage2.svg'); }
 .d6-face-effect { background-image: url('../img/svg/vaultboy.svg'); }
 .d6-face-blank { background-image: none; }
-
-#d6-popup .card-tags {
+#d6-popup .tags-container {
     justify-content: center;
     padding: 0.5rem 0;
     flex-wrap: wrap;
 }
 
-/* ==========================================================================
-   6. STAT Screen
-   ========================================================================== */
+/*****************
+ *  STAT SCREEN  *
+ *****************/
 
 #stat-container {
     display: flex;
@@ -524,10 +522,9 @@ button:disabled {
     text-align: center;
 
     /* Use the SVG as a mask */
-    --image-url: url('../img/svg/gear.svg');
     background-color: var(--primary-color);
-    -webkit-mask-image: var(--image-url);
-    mask-image: var(--image-url);
+    -webkit-mask-image: url('../img/svg/gear.svg');
+    mask-image: url('../img/svg/gear.svg');
     -webkit-mask-size: contain;
     mask-size: contain;
     -webkit-mask-repeat: no-repeat;
@@ -562,20 +559,16 @@ button:disabled {
     justify-content: center;
     display: flex;
 }
-
 .stat h3 {
     font-size: 1rem;
     margin-bottom: 0.1rem;
     color: var(--special-text-color);
 }
-
 .stat-value {
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--primary-color);
 }
-
-
 .derived-stat {
     border: var(--border-primary-thick); /* FIXME use class */
     border-radius: 5px;
@@ -590,16 +583,28 @@ button:disabled {
     font-size: clamp(10px, 3vw, 32px);
     box-sizing: border-box;
 }
-
 .derived-stat div { margin: 0.2rem; }
 
-#skills {
+/***************
+ *  SKILL LIST *
+ ***************/
+.ammo-card {
+    margin: 5px;
+    border: var(--border-primary-thick);
+    border-radius: 5px;
+}
+.ammo-card span { padding: 10px; }
+.ammo-card-name { flex: 6; }
+.ammo-quantity {
+    flex : 1;
+    border-right: var(--border-primary-thick);
+}
+#ammo-cards, #skills {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     font-size: .8rem;
 }
-
 .skill {
     display: flex;
     align-items: center;
@@ -610,10 +615,19 @@ button:disabled {
     box-sizing: border-box;
     justify-content: space-between;
 }
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
 
-/* ==========================================================================
-   7. INV Screen (Cards & Carousel)
-   ========================================================================== */
+
+/***************
+ *  INV SCREEN *
+ ***************/
 
 .itemlist-header {
     display: flex;
@@ -638,6 +652,11 @@ button:disabled {
     cursor: pointer;
 }
 
+
+/**********************
+ *  CARD DEFINITIONS  *
+ **********************/
+
 .card-carousel {
     display: flex;
     align-items: flex-start;
@@ -650,9 +669,7 @@ button:disabled {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
-
 .card-carousel::-webkit-scrollbar { display: none; }
-
 .card-carousel::before,
 .card-carousel::after {
     content: '';
@@ -672,11 +689,8 @@ button:disabled {
     margin-bottom: 20px;
     position: relative;
 }
-
 .card-header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
+    display: flex;
     justify-content: space-between;
     padding: 10px;
     font-size: 0.9em;
@@ -684,37 +698,116 @@ button:disabled {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
-
+.card-name-container {
+    flex: 1;
+    display: flex;
+    margin: 0 5px;
+    gap: 5px;
+}
+.card-quantity {
+    font-size: .8rem;
+    font-weight: bolder;
+    text-align: center;
+    align-self: center;
+}
 .card-name {
+    flex: 1;
     font-size: 1.2rem;
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
     font-weight: bolder;
     text-align: center;
 }
-
 .right-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
     gap: 10px;
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
     justify-self: end;
 }
-
 .right-header-item div {
     text-align: center;
     font-size: 0.6rem;
     font-weight: bold;
 }
-
 .card-content {
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto auto auto;
     font-size: 0.9em;
 }
+.card-controls {
+    grid-column: 1 / 4;
+    margin: 5px;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
+.description-toggle {
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    flex: auto;
+}
+.description-container {
+    grid-column: 1 / 4;
+    grid-row: 3 / 3;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+}
+.description-container.expanded {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in;
+}
+.description {
+    padding: 10px;
+    text-align: justify;
+    font-size: 0.8em;
+    line-height: 1.5;
+}
+/*** Card Overlay ***/
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--overlay-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+.overlay-buttons {
+    display: flex;
+    gap: 20px;
+}
+.overlay-buttons button {
+    border: none;
+    padding: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    background-color: var(--button-background);
+}
+.overlay-buttons .delete-button { background-color: var(--delete-button-color); } /* TODO same background as others? maybe use red for the icon */
+.overlay-buttons button div {
+    display: block;
+    color: black;
+}
+img.fas {
+    width: 3rem;
+    height: 3rem;
+    filter: grayscale(100%) brightness(0%);
+}
 
+/*** Custom templates - common ***/
 .stats {
     display: flex;
     flex-direction: column;
@@ -723,9 +816,7 @@ button:disabled {
     font-size: 0.9em;
     margin: 0;
 }
-
 .card-stat { margin: 5px 0; }
-
 .card-stat div {
     text-align: center;
     border: 1px solid var(--primary-color);
@@ -734,11 +825,18 @@ button:disabled {
     font-size: 0.6rem;
     font-weight: bold;
 }
-
 .card-stat div:first-child {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
+
+/*** Ammo card specific ***/
+
+
+
+/***********
+ *  OTHER  *
+ ***********/
 
 .themed-svg {
     /* TODO define a default image-url */
@@ -753,7 +851,6 @@ button:disabled {
     mask-repeat: no-repeat;
 }
 
-
 .image {
     display: flex;
     justify-content: center;
@@ -767,7 +864,7 @@ button:disabled {
     margin: 5px;
 }
 
-.card-tags {
+.tags-container {
     display: flex;
     grid-column: 1 / 4;
     padding: 0.5rem;
@@ -776,7 +873,6 @@ button:disabled {
     align-items: center;
     box-sizing: border-box;
 }
-
 .tag {
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -784,14 +880,6 @@ button:disabled {
     padding: 0.3rem;
     font-size: .8rem;
     margin: 2px;
-}
-
-.card-controls {
-    grid-column: 1 / 4;
-    margin: 5px;
-    justify-content: space-around;
-    align-items: center;
-    display: flex;
 }
 
 .attack-button {
@@ -803,85 +891,9 @@ button:disabled {
     margin-right: 10px;
 }
 
-.description-toggle {
-    cursor: pointer;
-    padding: 0.5rem;
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    flex: auto;
-}
-
-.description-container {
-    grid-column: 1 / 4;
-    grid-row: 3 / 3;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease-out;
-}
-
-.description {
-    padding: 10px;
-    text-align: justify;
-    font-size: 0.8em;
-    line-height: 1.5;
-}
-
-.description-container.expanded {
-    max-height: 500px;
-    transition: max-height 0.5s ease-in;
-}
-
-.card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--overlay-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-}
-
-.overlay-buttons {
-    display: flex;
-    gap: 20px;
-}
-
-.overlay-buttons button {
-    border: none;
-    padding: 30px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    aspect-ratio: 1 / 1;
-    background-color: var(--button-background);
-}
-
-.overlay-buttons .delete-button { background-color: var(--delete-button-color); } /* TODO same background as others? maybe use red for the icon */
-
-.overlay-buttons button div {
-    display: block;
-    color: black;
-}
-
-img.fas {
-    width: 3rem;
-    height: 3rem;
-    filter: grayscale(100%) brightness(0%);
-}
-
-/* ==========================================================================
-   8. MAP Screen
-   ========================================================================== */
+/****************
+ *  MAP SCREEN  *
+ ****************/
 
 section#map-screen {
     overflow: hidden;
@@ -900,7 +912,9 @@ section#map-screen:not(.hidden) { display: flex; }
     width: 100%;
 }
 
-/* Loading Overlay */
+/*********************
+ *  LOADING OVERLAY  *
+ *********************/
 #loader {
     display: var(--loader-display); /* Used to 'toggle' the loader animation for debugging */
     position: fixed;
@@ -946,6 +960,11 @@ section#map-screen:not(.hidden) { display: flex; }
 #loader .boot-text:nth-child(3) { --line-idx: 1; }
 #loader .boot-text:nth-child(4) { --line-idx: 2; }
 #loader .boot-text:nth-child(5) { --line-idx: 3; }
+
+/****************
+ *  ANIMATIONS  *
+ ****************/
+
 @keyframes crt-turn-on {
     0% {
         transform: scale(1.5, 0.005);
@@ -1042,6 +1061,13 @@ section#map-screen:not(.hidden) { display: flex; }
     }
 }
 
+/************************
+ *  SPECIFIC TO MOBILE  *
+ ************************/
+/* TODO review this part
+        - what is needed? what is not?
+        - max-width best method? */
+
 @media (max-width: 768px) { .header { text-align: start; }
 
     .tab {
@@ -1050,8 +1076,6 @@ section#map-screen:not(.hidden) { display: flex; }
         font-size: 0.9rem;
         white-space: nowrap;
     }
-
-    .grid-container { margin-bottom: 1rem; }
 
     #stat-container {
         justify-content: space-around;
