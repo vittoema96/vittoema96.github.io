@@ -16,6 +16,7 @@
 - Implement mods on armor
 ## Weapons
 - Implement mods on weapons
+- Add Unarmed "Weapon" by default
 
 ## Map
 - Add map markers

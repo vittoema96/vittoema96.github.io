@@ -3,7 +3,7 @@
    ========================================================================== */
 
 :root {
-    --loader-display: none; /* TODO Use 'flex' for a loader, 'none' to go straight to the app */
+    --loader-display: flex; /* TODO Use 'flex' for a loader, 'none' to go straight to the app */
 
     /* Should not change, regardless of theme */
     --success-color: #0088ff;
