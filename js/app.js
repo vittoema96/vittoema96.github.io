@@ -22,13 +22,9 @@ let drinksData = undefined;
 let medsData = undefined;
 let ammoData = undefined;
 
-const checkboxes = document.querySelectorAll('input[type="checkbox"][class="specialty-checkbox"]');
-checkboxes.forEach(checkbox => {
-    checkbox.disabled = true;
-});
-
 const clearLocalStorageButton = document.getElementById('clear-local-storage');
 clearLocalStorageButton.addEventListener('click', async () => {
+    // TODO update setting selectors (also check defaults and how they work)
     let confirmedStorageWipe = confirm("Are you really sure you want to DELETE YOUR CHARACTER and every other saved data?")
     if (confirmedStorageWipe) {
         localStorage.clear();
@@ -47,6 +43,39 @@ async function loadWeapons() {
         ...await loadCSV('data/weapons/meleeWeapons.csv'),
         ...await loadCSV('data/weapons/throwing.csv'),
         ...await loadCSV('data/weapons/explosives.csv'),
+    }
+}
+
+/**
+ * Fills the #skills container with all the skills.
+ */
+function createSkillEntries(){
+    const skillsContainer = document.querySelector("#skills")
+    const translated = {};
+    Character.getSkillList().forEach(key => translated[langData[currentLanguage][key]] = key);
+
+
+    for(const [skillTranslated, skill] of Object.entries(translated).sort()){
+        const special = Character.getSpecialFromSkill(skill);
+        const specialTranslated = langData[currentLanguage][special];
+
+        const entryDiv = document.createElement('div');
+        entryDiv.className = 'skill';
+        entryDiv.dataset.skill = skill;
+        entryDiv.innerHTML = `
+            <span style="flex: 4">
+                <b>${skillTranslated}</b>
+            </span>
+            <span style="flex: 4">
+                <i>[${specialTranslated}]</i>
+            </span>
+            <span id="skill-${skill}" 
+                  style="flex: 1">0</span>
+            <input id="specialty-${skill}" type="checkbox"
+                   disabled="disabled"
+                   class="themed-svg" style="--image-url: url('../img/svg/vaultboy.svg')">
+        `;
+        skillsContainer.appendChild(entryDiv);
     }
 }
 
@@ -76,8 +105,8 @@ function createGenericCard(genericItem, customCardContent, itemType) {
 
     // The attack button will have a data-action attribute instead of an inline onclick
     const attackButtonHTML = isWeapon
-        ? `<button class="attack-button" data-action="attack" data-skill="${skillId}" data-object-id="${genericItem.ID}"></button>`
-        : `<button class="attack-button" disabled></button>`; // Disabled for non-weapons
+        ? `<button class="themed-svg attack-button" data-action="attack" data-skill="${skillId}" data-object-id="${genericItem.ID}"></button>`
+        : `<button class="themed-svg attack-button" disabled></button>`; // Disabled for non-weapons
 
     cardDiv.innerHTML = `
         <div class="card-header">
@@ -128,6 +157,7 @@ function createWeaponCard(weaponId) {
 
     const ammoCount = 0; // Placeholder
 
+    // language=HTML
     let weaponHTML = `
         <div class="stats" id="stats-left">
             <div class="card-stat">
@@ -140,8 +170,8 @@ function createWeaponCard(weaponId) {
                 <div>${ammoCount}</div>
             </div>
         </div>
-        <div class="image">
-            <img id="weapon-img" src="img/svg/${weapon.SKILL}.svg" alt="${weapon.ID}">
+        <div class="image themed-svg" style="--image-url: url('../img/svg/${weapon.SKILL}.svg')">
+       
         </div>
         <div class="stats" id="stats-right">
             <div class="card-stat"><div>Damage Dice</div><div>${weapon.DAMAGE_RATING}</div><div>${weapon.DAMAGE_TYPE}</div></div>
@@ -161,10 +191,10 @@ function createObjectCard(id, type) {
 
     const hpGainHTML = type !== "meds" ? `<div class="card-stat"><div>HP</div><div>+${object.HP_GAIN}</div></div>` : "";
 
+    // language=HTML
     const objectHTML = `
         <div class="stats">
-            <div class="image">
-                <img src="img/svg/${type}.svg" alt="${type}" id="supply-img">
+            <div class="supply-img themed-svg" style="--image-url: url('../img/svg/${type}.svg')">
             </div>
         </div>
         <div class="stats"">
@@ -182,12 +212,24 @@ function createObjectCard(id, type) {
     return createGenericCard(object, objectHTML, type);
 }
 
+function changeTheme(value){
+    if(!["theme-fallout-3", "theme-fallout-new-vegas"].includes(value)){
+        value = "theme-fallout-3";
+    }
+    document.getElementById("theme-select").value = value;
+    document.body.className = value;
+    localStorage.setItem("theme", value);
+}
+changeTheme(localStorage.getItem("theme"))
+
 document.addEventListener("DOMContentLoaded", async () => {
     weaponData = await loadWeapons();
     foodData = await loadCSV("data/supplies/food.csv");
     drinksData = await loadCSV("data/supplies/drinks.csv");
     medsData = await loadCSV("data/supplies/meds.csv");
     ammoData = await loadCSV("data/ammo.csv");
+
+    createSkillEntries();
 
     display = new Display();
     characterData = new Character();

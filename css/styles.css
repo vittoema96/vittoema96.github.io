@@ -3,30 +3,16 @@
    ========================================================================== */
 
 :root {
-
     --loader-display: flex; /* TODO Use 'flex' for a loader, 'none' to go straight to the app */
 
-    --primary-color: #afff03;
-    --primary-color-rgb: 175, 255, 3;
-    --secondary-color: #0f3003;
-    --tertiary-color: rgba(var(--primary-color-rgb), 0.7);
-
-    --special-text-color: #ffdb58;
-
-    --border-primary-thick: 2px solid var(--primary-color);
-    --border-primary-thin: 1px solid var(--primary-color);
-
-    --delete-button-color: #ff4d4d;
-    --button-background: #1a5205;
-    --tab-hover: #338006;
-    --button-hover: #7cba02;
-    --cancel-btn-background: #4a5568;
-
-    --animation-glow-color: rgba(45, 255, 113, 0.75);
-
+    /* Should not change, regardless of theme */
     --success-color: #0088ff;
     --failure-color: #dc143c;
+    --overlay-color: rgba(0, 0, 0, .5);
+    --delete-button-color: #ff4d4d;
+    --special-text-color: #ffdb58;
 
+    /* Control loader durations */
     --turn-on-delay: .1s;
     --turn-on-duration: 1s;
     --typewrite-duration: 1s; /* n% is dedicated to show the '> ' *% */
@@ -40,7 +26,41 @@ html {
     box-sizing: border-box;
 }
 
+body.theme-fallout-3 {
+    /* FALLOUT 3 THEME */
+    --primary-color: #afff03;
+    --secondary-color: #0f3003;
+    --button-background: #1a5205;
+
+    --tab-hover: #338006;
+    --button-hover: #7cba02;
+    --cancel-btn-background: #4a5568;
+
+    --animation-glow-color: rgba(45, 255, 113, 0.75);
+}
+body.theme-fallout-new-vegas {
+    /* FALLOUT New Vegas Theme */
+    --primary-color: #ffbe0b;
+    --secondary-color: #2a1d00;
+    --button-background: #4d3d1a;
+
+    --tab-hover: #785d21;
+    --button-hover: #ffd466;
+    --cancel-btn-background: #615849;
+    --animation-glow-color: rgba(255, 190, 11, 0.7);
+}
+
 body {
+    /**************************
+     *    DERIVED VARIABLES   *
+     **************************/
+    --primary-color-translucent: rgba(from var(--primary-color) r g b / 0.7);
+    --primary-color-very-translucent: rgba(from var(--primary-color) r g b / 0.25);
+    --secondary-color-translucent: rgba(from var(--secondary-color) r g b / 0.25);
+
+    --border-primary-thick: 2px solid var(--primary-color);
+    --border-primary-thin: 1px solid var(--primary-color);
+
     margin: 0;
     height: 100dvh;
     color: var(--primary-color);
@@ -77,6 +97,26 @@ body::before {
     background-size: 100% 3px, 4px 100%;
 }
 
+/* TODO vedere che fare con gli hover */
+@media (hover: hover) {
+    .attack-button:hover { opacity: 0.8; }
+    .tab:hover { background-color: var(--tab-hover); }
+    .button:hover, .confirm-button:hover { background-color: var(--button-hover); }
+    .popup-close-button:hover { color: var(--primary-color); }
+}
+
+/* TODO vedere che fare con i focus */
+.popup-close-button:focus { color: var(--primary-color); }
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--primary-color-translucent);
+}
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--primary-color-translucent);
+    border-color: var(--primary-color);
+}
+
 h1, h2, h3 {
     margin-bottom: 1rem;
     text-align: center;
@@ -88,6 +128,7 @@ h3 { font-size: 1rem; }
 hr {
     border: none;
     border-top: var(--border-primary-thick);
+    width: 100%;
 }
 pre {
     font-family: "Fira Code", monospace; /* To make loader render properly on (my) Android */
@@ -98,16 +139,15 @@ pre {
 /* Dialogs AKA Popups */
 dialog {
     position: relative;
-    background-color: var(--secondary-color);
-    border: var(--border-primary-thin);   /* FIXME use class */
-    z-index: 1000;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* TODO check rgba colors too (variables and standardization) */
-    padding: 20px;
     color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border: var(--border-primary-thin);
+    z-index: 1000;
+    padding: 20px;
 }
 /* Everything else behind the dialog/popup */
 dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.5); /* TODO check rgba colors too (variables and standardization) */
+    background-color: var(--overlay-color);
     backdrop-filter: blur(3px);
 }
 
@@ -116,62 +156,10 @@ dialog[open] {
     pointer-events: auto;
 }
 .dialog-closing {
-    animation: crt-turn-off .3s forwards !important; /* Somehow using 2s == 1s. Using lower values breaks stuff... */
+    animation: crt-turn-off .3s forwards !important;
 }
-
-/* ==========================================================================
-   2. Utility & General Layout
-   ========================================================================== */
 
 .hidden { display: none !important; /* override any other 'display' */ }
-
-/* Loading Overlay */
-#loader {
-    display: var(--loader-display); /* Used to 'toggle' the loader animation for debugging */
-    position: fixed;
-    inset: 0;
-    background: var(--secondary-color);
-    z-index: 9998; /* One below body::before */
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.75s ease-out;
-
-    animation: fadeOut 0.5s forwards;
-    animation-delay: calc(
-            var(--turn-on-delay) + var(--turn-on-duration) +
-            4 * var(--typewrite-duration)
-    );
-    font-size: calc(min(2.5vw, 2vh))
-}
-
-/* Loader entries */
-#loader span {
-    opacity: 0;
-    display: block;
-    overflow: hidden;
-    margin: 1rem;
-}
-/* PIP-BOY 3000 text */
-#loader .turn-on-animation {
-    transform-origin: center;
-    animation: crt-turn-on var(--turn-on-duration) forwards;
-    animation-delay: var(--turn-on-delay);
-    align-self: center;
-    margin: 2rem 0;
-}
-/* Code entries */
-#loader .boot-text {
-    white-space: nowrap;
-    animation: typewriter var(--typewrite-duration) steps(40, end) forwards;
-    animation-delay: calc(
-            var(--turn-on-delay) + var(--turn-on-duration) +
-            var(--line-idx) * var(--typewrite-duration)
-    );
-}
-#loader .boot-text:nth-child(2) { --line-idx: 0; }
-#loader .boot-text:nth-child(3) { --line-idx: 1; }
-#loader .boot-text:nth-child(4) { --line-idx: 2; }
-#loader .boot-text:nth-child(5) { --line-idx: 3; }
 
 .row {
     display: flex;
@@ -209,10 +197,8 @@ dialog[open] {
    3. Header & Tabs
    ========================================================================== */
 
-/* TODO weird border just on bottom */
 .header {
     text-align: center;
-    border-bottom: var(--border-primary-thick);  /* TODO BORDER only on bottom */
     font-size: 0.9em;
     display: grid;
     grid-template-columns: 1fr auto;
@@ -229,18 +215,16 @@ dialog[open] {
     align-items: center;
     justify-content: center;
 }
+.icon-value-pair div:last-child {
+    flex: 1;
+    text-align: center;
+}
 
 /* TODO
         HP/Caps/Weight icon-value
         BORDER only on bottom
-        Maybe use the border onm a grid instead as a bottom element? */
+        Maybe use the border on a grid instead as a bottom element? */
 .icon-value-pair:not(:last-child) { border-bottom: var(--border-primary-thick); }
-
-.icon-value-pair div {
-    width: 100%;
-    font-size: 0.8rem;
-    text-align: center;
-}
 
 .icon {
     width: 15px;
@@ -262,7 +246,7 @@ dialog[open] {
     padding: 0.75rem 1.5rem;
     background-color: var(--button-background);
     color: var(--primary-color);
-    border: var(--border-primary-thick); /* TODO BORDER not on bottom */
+    border: var(--border-primary-thick);
     border-bottom: 0;
     border-radius: 5px 5px 0 0;
     margin-right: 0.5rem;
@@ -274,15 +258,12 @@ dialog[open] {
     min-width: 40px;
     box-sizing: border-box;
 }
-
-.tab:hover { background-color: var(--tab-hover); }
-
 .tab.active {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
 
-#mini-tab {
+.mini-tab {
     min-width: 10px;
     flex: 0 0 auto;
     display: flex;
@@ -291,7 +272,7 @@ dialog[open] {
 }
 
 .subTab {
-    color: rgba(var(--primary-color-rgb), 0.25);
+    color: var(--primary-color-very-translucent);
     cursor: pointer;
     font-size: 0.7rem;
     font-weight: bold;
@@ -300,18 +281,15 @@ dialog[open] {
     box-sizing: border-box;
     margin-bottom: 1rem;
 }
-
 .subTab.active + .subTab,
 .subTab:has(+ .subTab.active) {
-    color: rgba(var(--primary-color-rgb), 0.7);
+    color: var(--primary-color-translucent);
     font-size: 1rem;
 }
-
 .subTab.active {
     font-size: 1.2rem;
     font-weight: bolder;
     color: var(--primary-color);
-     /* TODO BORDER only top and bottom */
     border-top: var(--border-primary-thick);
     border-bottom: var(--border-primary-thick);
 }
@@ -320,7 +298,25 @@ dialog[open] {
    4. Forms, Buttons & Inputs
    ========================================================================== */
 
-input, textarea, select, button { font-family: inherit; }
+input, textarea, select, button, input[type="checkbox"] {
+    font-family: inherit;
+    background-color: var(--button-background);
+}
+input[type="checkbox"] {
+    background-color: var(--button-background) !important;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    position: relative;
+    content: '';
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+input[type="checkbox"]:checked {
+    background-color: var(--primary-color) !important;
+}
 
 .form-label {
     display: block;
@@ -331,7 +327,6 @@ input, textarea, select, button { font-family: inherit; }
 }
 
 .form-control {
-    background-color: rgba(var(--primary-color-rgb), 0.1);
     border: var(--border-primary-thin);  /* FIXME use class */
     color: var(--primary-color);
     padding: 0.75rem;
@@ -341,14 +336,7 @@ input, textarea, select, button { font-family: inherit; }
     box-sizing: border-box;
 }
 
-.form-control:focus {
-    outline: none;
-    box-shadow: 0 0 5px var(--tertiary-color);
-    border-color: var(--primary-color);
-}
-
 #level-label { font-size: 1.5rem; }
-
 #level-display {
     font-size: 1rem;
     color: var(--primary-color);
@@ -362,7 +350,6 @@ input, textarea, select, button { font-family: inherit; }
 }
 
 input[type=number] { -moz-appearance: textfield; }
-
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     opacity: 1;
@@ -370,52 +357,13 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-input[type="checkbox"] {
-    appearance: none;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    position: relative;
-    content: '';
-    display: block;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-input[type="checkbox"].d20-popup-luck-checkbox { background-image: url('../img/svg/luck.svg'); }
-
-input[type="checkbox"].d20-popup-luck-checkbox:checked { filter: url('../img/svg/luck.svg#checked'); }
-
-input[type="checkbox"].aim-checkbox {
-    background-image: url('../img/svg/attack.svg');
-    filter: url('../img/svg/attack.svg#unchecked');
-}
-
-input[type="checkbox"].aim-checkbox:checked { filter: none; }
-
-input[type="checkbox"].specialty-checkbox {
-    flex: 1;
-    text-align: right;
-    background-image: url('../img/svg/vaultboy.svg');
-    background-position: right;
-    background-repeat: no-repeat;
-}
-
-input[type="checkbox"].specialty-checkbox:checked { filter: url('../img/svg/vaultboy.svg#checked'); }
-
 select {
     padding: 0.5rem;
     border-radius: 5px;
     border: var(--border-primary-thick);   /* FIXME use class */
-    background-color: var(--secondary-color);
     color: var(--primary-color);
     width: 80%;
     max-width: 300px;
-}
-
-select:focus {
-    outline: none;
-    box-shadow: 0 0 5px var(--tertiary-color);
 }
 
 .button, .confirm-button, .cancel-button {
@@ -427,8 +375,6 @@ select:focus {
     transition: background-color 0.3s ease;
     border: none;
 }
-
-.button:hover, .confirm-button:hover { background-color: var(--button-hover); }
 
 .confirm-button {
     background-color: var(--primary-color);
@@ -463,8 +409,10 @@ button:disabled {
     line-height: 1;
 }
 
-.popup-close-button:hover,
-.popup-close-button:focus { color: var(--primary-color); }
+#aim-checkbox, .attack-button {
+    --image-url: url('../img/svg/attack.svg');
+}
+
 
 .dice-container {
     display: flex;
@@ -541,29 +489,16 @@ button:disabled {
 }
 
 .d6-dice.active { opacity: 1; }
-
 .d6-face-damage1 { background-image: url('../img/svg/damage1.svg'); }
-
 .d6-face-damage2 { background-image: url('../img/svg/damage2.svg'); }
-
 .d6-face-effect { background-image: url('../img/svg/vaultboy.svg'); }
-
 .d6-face-blank { background-image: none; }
-
-/* Faccia vuota */
-
-.d6-dice.effect-glow {
-    box-shadow: 0 0 10px var(--success-color);
-    border-color: var(--success-color);
-}
 
 #d6-popup .card-tags {
     justify-content: center;
     padding: 0.5rem 0;
     flex-wrap: wrap;
 }
-
-.d6-dice.effect { background-color: var(--success-color); }
 
 /* ==========================================================================
    6. STAT Screen
@@ -577,11 +512,32 @@ button:disabled {
     flex-wrap: wrap;
 }
 
+.stat::before,
+#subStat-luck::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    text-align: center;
+
+    /* Use the SVG as a mask */
+    --image-url: url('../img/svg/gear.svg');
+    background-color: var(--primary-color);
+    -webkit-mask-image: var(--image-url);
+    mask-image: var(--image-url);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
 .stat {
     position: relative;
     padding: 0.5rem;
     text-align: center;
-    background-color: rgba(15, 48, 3, 0.3);
+
     width: calc(14.28% - 20px);
     min-width: 80px;
     box-sizing: border-box;
@@ -591,10 +547,20 @@ button:disabled {
     align-items: center;
     aspect-ratio: 1;
     margin: 0.5rem;
-    background-image: url("../img/svg/gear.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+}
+#subStat-luck {
+    --image-url: url("../img/svg/gear-full.svg");
+    background-color: var(--secondary-color);
+
+    width: 50%;
+    min-width: 30px;
+    aspect-ratio: 1;
+    position: absolute;
+    bottom: -5px;
+    right: -10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 .stat h3 {
@@ -609,21 +575,6 @@ button:disabled {
     color: var(--primary-color);
 }
 
-.substat {
-    background-image: url("../img/svg/luck-gear.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 50%;
-    min-width: 30px;
-    aspect-ratio: 1;
-    position: absolute;
-    bottom: -5px;
-    right: -10px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
 
 .derived-stat {
     border: var(--border-primary-thick); /* FIXME use class */
@@ -646,6 +597,7 @@ button:disabled {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    font-size: .8rem;
 }
 
 .skill {
@@ -657,26 +609,6 @@ button:disabled {
     margin-bottom: 0.5rem;
     box-sizing: border-box;
     justify-content: space-between;
-}
-
-.skill-name {
-    font-weight: bold;
-    flex: 4;
-    font-size: 1.1rem;
-    text-align: left;
-}
-
-.skill-stat {
-    font-style: italic;
-    flex: 4;
-    font-size: 1.1rem;
-    text-align: center;
-}
-
-.skill-value {
-    flex: 1;
-    text-align: right;
-    font-size: 1.1rem;
 }
 
 /* ==========================================================================
@@ -808,18 +740,31 @@ button:disabled {
     color: var(--secondary-color);
 }
 
+.themed-svg {
+    /* TODO define a default image-url */
+    /* Use the SVG as a mask */
+    background-color: var(--primary-color);
+    -webkit-mask-image: var(--image-url);
+    mask-image: var(--image-url);
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+
 .image {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
+    background-color: var(--primary-color);
 }
-
-#weapon-img { max-width: 100%; }
-
-#supply-img {
+.supply-img {
     width: 40px;
     height: 40px;
+    margin: 5px;
 }
 
 .card-tags {
@@ -850,10 +795,7 @@ button:disabled {
 }
 
 .attack-button {
-    background-image: url('../img/svg/attack.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: transparent;
+    background-color: var(--primary-color);
     border: none;
     cursor: pointer;
     height: 40px;
@@ -861,13 +803,10 @@ button:disabled {
     margin-right: 10px;
 }
 
-.attack-button:hover { opacity: 0.8; }
-
 .description-toggle {
     cursor: pointer;
     padding: 0.5rem;
     border: 2px solid var(--primary-color);
-    background-color: var(--button-background);
     color: var(--primary-color);
     border-radius: 5px;
     font-weight: bold;
@@ -902,7 +841,7 @@ button:disabled {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--overlay-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -961,86 +900,53 @@ section#map-screen:not(.hidden) { display: flex; }
     width: 100%;
 }
 
-/* ==========================================================================
-   9. Responsive Styles (Media Queries)
-   ========================================================================== */
+/* Loading Overlay */
+#loader {
+    display: var(--loader-display); /* Used to 'toggle' the loader animation for debugging */
+    position: fixed;
+    inset: 0;
+    background: var(--secondary-color);
+    z-index: 9998; /* One below body::before */
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.75s ease-out;
 
-@media (max-width: 768px) { .header { text-align: start; }
-
-    .tab {
-        padding: 0.2rem 0.3rem;
-        margin-right: 0.2rem;
-        font-size: 0.9rem;
-        white-space: nowrap;
-    }
-
-    .grid-container { margin-bottom: 1rem; }
-
-    #stat-container {
-        justify-content: space-around;
-        align-items: center;
-    }
-
-    .stat {
-        width: calc(25% - 10px);
-        min-width: 60px;
-        margin: 5px;
-        border-width: 1px;
-        padding: 0.1rem;
-        border-radius: 50%;
-    }
-
-    .stat h3 {
-        font-size: 0.7rem;
-        margin-bottom: 0.1rem;
-    }
-
-    .stat-value { font-size: 1.2rem; }
-
-    .skill-name,
-    .skill-stat { font-size: 0.8rem; }
-
-    .skill-stat { text-overflow: ellipsis; } }
-
-/* ==========================================================================
-         Animations
-   ========================================================================== */
-
-/* Fade out to opacity:0 and visibility:hidden (which forwards clicks) */
-@keyframes fadeOut {
-    to {
-        opacity: 0;
-        visibility: hidden;
-    }
+    animation: fadeOut 0.5s forwards;
+    animation-delay: calc(
+            var(--turn-on-delay) + var(--turn-on-duration) +
+            4 * var(--typewrite-duration)
+    );
+    font-size: calc(min(2.5vw, 2vh))
 }
-
-/* Grows element width so it looks like strings are typed in */
-@keyframes typewriter {
-    0% {
-        width: 1ch;
-        opacity: 1;
-    }
-    50% {
-        width: 1ch;
-        opacity: 1;
-    }
-    100% {
-        width: 100%;
-        opacity: 1;
-    }
+/* Loader entries */
+#loader span {
+    opacity: 0;
+    display: block;
+    overflow: hidden;
+    margin: 1rem;
 }
-
+/* PIP-BOY 3000 text */
+#loader .turn-on-animation {
+    transform-origin: center;
+    animation: crt-turn-on var(--turn-on-duration) forwards;
+    animation-delay: var(--turn-on-delay);
+    align-self: center;
+    margin: 2rem 0;
+}
+/* Code entries */
+#loader .boot-text {
+    white-space: nowrap;
+    animation: typewriter var(--typewrite-duration) steps(40, end) forwards;
+    animation-delay: calc(
+            var(--turn-on-delay) + var(--turn-on-duration) +
+            var(--line-idx) * var(--typewrite-duration)
+    );
+}
+#loader .boot-text:nth-child(2) { --line-idx: 0; }
+#loader .boot-text:nth-child(3) { --line-idx: 1; }
+#loader .boot-text:nth-child(4) { --line-idx: 2; }
+#loader .boot-text:nth-child(5) { --line-idx: 3; }
 @keyframes crt-turn-on {
-    /* Start as a bright, central, horizontal line */
-
-    /* Older implementation
-    0% { filter: brightness(4); opacity: 1; }
-    15% { transform: scale(1, 0.005); filter: brightness(3.5); }
-    45% { transform: scale(1, 1); filter: brightness(3); }
-    80% { filter: brightness(2); }
-    100% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
-    */
-
     0% {
         transform: scale(1.5, 0.005);
         filter: brightness(6);
@@ -1055,31 +961,22 @@ section#map-screen:not(.hidden) { display: flex; }
         transform: scale(1, 1);
         filter: brightness(2.8);
     }
-    60% {
-        filter: brightness(1.8);
-    }
-    80% {
-        filter: brightness(1.2);
-    }
+    60% { filter: brightness(1.8); }
+    80% { filter: brightness(1.2); }
     100% {
         transform: scale(1, 1);
         filter: brightness(1);
         opacity: 1;
     }
 }
-
 @keyframes crt-turn-off {
     0% {
         transform: scale(1, 1);
         filter: brightness(1);
         opacity: 1;
     }
-    20% {
-        filter: brightness(1.2);
-    }
-    40% {
-        filter: brightness(1.8);
-    }
+    20% { filter: brightness(1.2); }
+    40% { filter: brightness(1.8); }
     60% {
         transform: scale(1, 1);
         filter: brightness(2.8);
@@ -1119,4 +1016,64 @@ section#map-screen:not(.hidden) { display: flex; }
     90% { opacity: 0.7003; }
     95% { opacity: 0.36108; }
     100% { opacity: 0.24387; }
+}
+
+/* Fade out to opacity:0 and visibility:hidden (which forwards clicks) */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Grows element width so it looks like strings are typed in */
+@keyframes typewriter {
+    0% {
+        width: 1ch;
+        opacity: 1;
+    }
+    50% {
+        width: 1ch;
+        opacity: 1;
+    }
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) { .header { text-align: start; }
+
+    .tab {
+        padding: 0.2rem 0.3rem;
+        margin-right: 0.2rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .grid-container { margin-bottom: 1rem; }
+
+    #stat-container {
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .stat {
+        width: calc(25% - 10px);
+        min-width: 60px;
+        margin: 5px;
+        border-width: 1px;
+        padding: 0.1rem;
+        border-radius: 50%;
+    }
+
+    .stat h3 {
+        font-size: 0.7rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .stat-value { font-size: 1.2rem; }
+
+    /* TODO currently unused, could be used on skills */
+    .skill-stat { text-overflow: ellipsis; }
 }

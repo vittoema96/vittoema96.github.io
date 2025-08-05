@@ -28,9 +28,6 @@ function loadTranslations(language) {
             languageSelect.value = language;
         }
 
-        // Reorder the skill elements alphabetically after translations
-        orderSkillsAlphabetically();
-
 }
 
 function changeLanguage(language) {
@@ -45,28 +42,6 @@ function changeLanguage(language) {
         document.getElementById('language-select').value = currentLanguage;
     }
 
-}
-
-function orderSkillsAlphabetically() {
-    const skillsContainer = document.getElementById('skills');
-    if (!skillsContainer) {
-        console.error("Skills container not found.");
-        return;
-    }
-
-    const skillElements = Array.from(skillsContainer.querySelectorAll('.skill'));
-
-    skillElements.sort((a, b) => {
-        const skillNameA = a.querySelector('.skill-name').textContent.trim().toLowerCase();
-        const skillNameB = b.querySelector('.skill-name').textContent.trim().toLowerCase();
-        return skillNameA.localeCompare(skillNameB);
-    });
-
-    // Remove existing skill elements from the container
-    skillElements.forEach(skill => skillsContainer.removeChild(skill));
-
-    // Append the sorted skill elements back to the container
-    skillElements.forEach(skill => skillsContainer.appendChild(skill));
 }
 
 document.addEventListener("DOMContentLoaded", async () => {

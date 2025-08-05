@@ -1,7 +1,9 @@
 # TODO
 
 # Main
+- Finish fixing svgs for themes (gear, gear-luck and attack)
 - Implement multiple items of the same type
+- Consumable items (maybe change icon?)
 ## D6Popup
 - Implement ammo (in inventory) 
 - Add Ammo/AP/Luck displays and checks for D6Popup

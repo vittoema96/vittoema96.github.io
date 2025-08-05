@@ -4,17 +4,7 @@
      viewBox="0 0 211.000000 215.000000"
      preserveAspectRatio="xMidYMid meet">
 
-    <defs>
-        <filter id="checked" x="-50%" y="-50%" width="200%" height="200%">
-            <feFlood flood-color="#afff03"/> <!-- TODO change color with preferred -->
-            <feComposite in="flood" in2="SourceAlpha" operator="in"/>
-        </filter>
-    </defs>
-
-    <g class="custom-checkbox-indicator"
-       transform="translate(0.000000,215.000000) scale(0.100000,-0.100000)"
-       fill="#1f3f20"
-       stroke="none">
+    <g transform="translate(0.000000,215.000000) scale(0.100000,-0.100000)">
         <path d="M1291 2105 c-42 -44 -43 -45 -94 -40 -51 6 -53 5 -100 -40 -54 -50
         -72 -54 -111 -24 -37 29 -49 16 -44 -47 5 -64 20 -84 62 -84 25 0 42 10 76 46
         62 63 71 66 112 45 34 -19 34 -19 74 5 55 34 77 31 118 -17 33 -39 37 -41 73

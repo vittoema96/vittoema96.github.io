@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v0.0.1-alpha+5";
+const CACHE_VERSION = "v0.0.1-alpha+6";
 const PROJECT_NAME = "PB3K";
 
 
@@ -61,7 +61,7 @@ const urlsToCache = [
     '/img/svg/gear.svg',
     '/img/svg/hp.svg',
     '/img/svg/luck.svg',
-    '/img/svg/luck-gear.svg',
+    '/img/svg/gear-full.svg',
     '/img/svg/meds.svg',
     '/img/svg/meleeWeapons.svg',
     '/img/svg/smallGuns.svg',

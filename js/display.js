@@ -202,7 +202,7 @@ class Display {
         const skillName = skillDiv.dataset.skill;
 
         if (this.#isEditing) {
-            const checkbox = skillDiv.querySelector('.specialty-checkbox');
+            const checkbox = skillDiv.querySelector('input');
             if (event.target === checkbox) {
                 if (checkbox.checked) characterData.addSpecialty(skillName);
                 else characterData.removeSpecialty(skillName);

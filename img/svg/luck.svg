@@ -2,15 +2,7 @@
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="1184.000000pt" height="1280.000000pt" viewBox="0 0 1184.000000 1280.000000"
  preserveAspectRatio="xMidYMid meet">
-    <defs>
-        <filter id="checked" x="-50%" y="-50%" width="200%" height="200%">
-            <feFlood flood-color="#afff03"/> <!-- TODO change color with preferred -->
-            <feComposite in="flood" in2="SourceAlpha" operator="in"/>
-        </filter>
-    </defs>
-    <g class="custom-checkbox-indicator"
-       transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
-        fill="#1f3f20" stroke="none">
+    <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)">
         <path d="M7950 12790 c-210 -27 -330 -64 -545 -170 -343 -169 -682 -430 -905
                 -698 -122 -145 -332 -458 -404 -600 -50 -99 -75 -248 -115 -692 -21 -227 -30
                 -346 -76 -985 -44 -606 -74 -907 -94 -942 -16 -29 -51 225 -151 1087 -143

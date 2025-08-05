@@ -2,7 +2,7 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100" height="100"
      viewBox="-30 -30 160 160">
   <defs>
-    <path id="bullet-hole" fill-rule="evenodd" fill="#333" d="
+    <path id="bullet-hole" fill-rule="evenodd" d="
       M 50,5
       L 60,25
       L 80,20
@@ -26,11 +26,7 @@
       Z
       "/>
   </defs>
-
-  <!-- Foro 1: Traslato di 10px a destra e 10px in basso -->
   <use href="#bullet-hole" transform="translate(-30, -20)"/>
-
-  <!-- Foro 2: Traslato di 100px a destra e 50px in basso -->
   <use href="#bullet-hole" transform="translate(30, 20)"/>
 
 </svg>

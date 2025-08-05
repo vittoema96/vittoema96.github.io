@@ -10,31 +10,31 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const d20PopupElements = {
-        skillTitle: popups.d20.querySelector('#d20-popup-skill'),
-        apCost: popups.d20.querySelector('#ap-cost'),
-        luckCost: popups.d20.querySelector('#luck-cost'),
+        skillTitle: document.getElementById('d20-popup-skill'),
+        apCost: document.getElementById('ap-cost'),
+        luckCost: document.getElementById('luck-cost'),
         dice: popups.d20.querySelectorAll('.dice'),
-        selector: popups.d20.querySelector('#d20-popup-special-selector'),
+        selector: document.getElementById('d20-popup-special-selector'),
         luckCheckbox: popups.d20.querySelector('.d20-popup-luck-checkbox'),
-        aimCheckbox: popups.d20.querySelector('.aim-checkbox'),
-        rollButton: popups.d20.querySelector('#roll-dice-button'),
-        damageButton: popups.d20.querySelector('#throw-damage-button'),
-        successesDisplay: popups.d20.querySelector('#successes'),
-        targetNumberDisplay: popups.d20.querySelector('#d20-popup-target'),
-        targetNumberDetails: popups.d20.querySelector('#d20-popup-target-details')
+        aimCheckbox: popups.d20.querySelector('#aim-checkbox'), // TODO
+        rollButton: document.getElementById('roll-dice-button'),
+        damageButton: document.getElementById('throw-damage-button'),
+        successesDisplay: document.getElementById('successes'),
+        targetNumberDisplay: document.getElementById('d20-popup-target'),
+        targetNumberDetails: document.getElementById('d20-popup-target-details')
     };
 
     const d6PopupElements = {
         popup: popups.d6,
-        weaponName: popups.d6.querySelector('#d6-weapon-name'),
-        damageType: popups.d6.querySelector('#d6-damage-type'),
-        tagsContainer: popups.d6.querySelector('#d6-tags'),
-        damageDiceContainer: popups.d6.querySelector('#d6-damage-dice-container'),
-        extraHitsTitle: popups.d6.querySelector('#d6-extra-hits-title'),
-        extraHitsContainer: popups.d6.querySelector('#d6-extra-hits-container'),
-        totalDamage: popups.d6.querySelector('#d6-total-damage'),
-        totalEffects: popups.d6.querySelector('#d6-total-effects'),
-        rollButton: popups.d6.querySelector('#d6-roll-button')
+        weaponName: document.getElementById('d6-weapon-name'),
+        damageType: document.getElementById('d6-damage-type'),
+        tagsContainer: document.getElementById('d6-tags'),
+        damageDiceContainer: document.getElementById('d6-damage-dice-container'),
+        extraHitsTitle: document.getElementById('d6-extra-hits-title'),
+        extraHitsContainer: document.getElementById('d6-extra-hits-container'),
+        totalDamage: document.getElementById('d6-total-damage'),
+        totalEffects: document.getElementById('d6-total-effects'),
+        rollButton: document.getElementById('d6-roll-button')
     };
 
     let d20RollState = {};
