@@ -851,14 +851,12 @@ dialog[open] {
     mask-size: contain;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
 }
 
 .image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    background-color: var(--primary-color);
+    margin: 10px;
 }
 .supply-img {
     width: 40px;
@@ -871,7 +869,7 @@ dialog[open] {
     grid-column: 1 / 4;
     padding: 0.5rem;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     box-sizing: border-box;
 }
