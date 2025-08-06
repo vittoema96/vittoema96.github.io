@@ -1,5 +1,5 @@
-const tabButtons = document.querySelectorAll('.tab');
-const subTabButtons = document.querySelectorAll('.subTab');
+const tabButtons = document.querySelectorAll('.tab-button');
+const subTabButtons = document.querySelectorAll('.subTab-button');
 
 const screens = document.querySelectorAll('.screen');
 const subScreens = document.querySelectorAll('.subScreen');

@@ -22,8 +22,8 @@ let drinksData = undefined;
 let medsData = undefined;
 let ammoData = undefined;
 
-const clearLocalStorageButton = document.getElementById('clear-local-storage');
-clearLocalStorageButton.addEventListener('click', async () => {
+const resetMemoryButton = document.getElementById('reset-memory-button');
+resetMemoryButton.addEventListener('click', async () => {
     // TODO update setting selectors (also check defaults and how they work)
     let confirmedStorageWipe = confirm("Are you really sure you want to DELETE YOUR CHARACTER and every other saved data?")
     if (confirmedStorageWipe) {
@@ -237,5 +237,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     display = new Display();
     characterData = new Character();
     display.initialize(characterData); // Pass character data to display
-    loadTranslations(currentLanguage);
+    loadTranslations();
 });

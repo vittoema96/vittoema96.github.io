@@ -3,7 +3,7 @@
    ========================================================================== */
 
 :root {
-    --loader-display: flex; /* TODO Use 'flex' for a loader, 'none' to go straight to the app */
+    --loader-display: none; /* TODO Use 'flex' for a loader, 'none' to go straight to the app */
 
     /* Should not change, regardless of theme */
     --success-color: #0088ff;
@@ -102,13 +102,14 @@ body::before {
 /* TODO vedere che fare con gli hover */
 @media (hover: hover) {
     .attack-button:hover { opacity: 0.8; }
-    .tab:hover { background-color: var(--tab-hover); }
+    .tab-button:hover { background-color: var(--tab-hover); }
     .button:hover, .confirm-button:hover { background-color: var(--button-hover); }
     .popup-close-button:hover { color: var(--primary-color); }
 }
 
-/* TODO vedere che fare con i focus */
-.popup-close-button:focus { color: var(--primary-color); }
+/* TODO vedere che fare con i focus
+    GENERICO PER (QUASI) TUTTI I BOTTONI */
+/* button:focus { color: var(--primary-color); }*/
 select:focus {
     outline: none;
     box-shadow: 0 0 5px var(--primary-color-translucent);
@@ -118,6 +119,10 @@ select:focus {
     box-shadow: 0 0 5px var(--primary-color-translucent);
     border-color: var(--primary-color);
 }
+
+/****************************
+ *     STANDARD ELEMENTS    *
+ ****************************/
 
 h1, h2, h3 {
     margin-bottom: 1rem;
@@ -137,6 +142,128 @@ pre {
     margin: 0; /* No margin, pre presents stuff as is. Use margin on pre children (like spans in loader) */
     white-space: pre-wrap; /* TODO do we need this (or is there a better alternative)? Test it and check other values) */
 }
+
+
+input, textarea, select, button {
+    font-family: inherit;
+    text-shadow: inherit;
+    background-color: var(--button-background);
+    cursor: pointer;
+}
+input:not([type="checkbox"]), textarea, select, button {
+    border: var(--border-primary-thick);
+    color: var(--primary-color);
+    border-radius: 5px;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: bold;
+    transition:
+            color 0.3s ease,
+            background-color 0.3s ease,
+            font-size 0.3s ease,
+            font-weight 0.3s ease;
+}
+
+.tab-button {
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: .2rem .3rem;
+    min-width: 40px;
+
+    margin-right: 0.5rem;
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.confirm-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.cancel-button {
+    background-color: var(--cancel-btn-background); /* TODO use different color? */
+    color: var(--primary-color);
+}
+.popup-close-button {
+    float: right;
+    font-size: 28px;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+}
+.add-item-button {
+    font-size: 2rem;
+    font-weight: bolder;
+    padding: 0 0.5rem;
+}
+
+
+
+.attack-button {
+    background-color: var(--primary-color);
+    border: none;
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+button:disabled {
+    opacity: 0.5;
+}
+
+input[type="checkbox"] {
+    background-color: var(--button-background) !important;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    content: '';
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+input[type="checkbox"]:checked { background-color: var(--primary-color) !important; }
+
+input[type=number] { -moz-appearance: textfield; }
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+select {
+    padding: 0.5rem;
+    border: var(--border-primary-thick);   /* FIXME use class */
+    color: var(--primary-color);
+    width: 80%;
+    max-width: 300px;
+}
+
+
+
+
+
 
 .hidden { display: none !important; /* override any other 'display' */ }
 
@@ -212,23 +339,7 @@ pre {
 
 #main-tab-container { padding: 0.5rem 1rem 0; }
 
-.tab {
-    padding: 0.75rem 1.5rem;
-    background-color: var(--button-background);
-    color: var(--primary-color);
-    border: var(--border-primary-thick);
-    border-bottom: 0;
-    border-radius: 5px 5px 0 0;
-    margin-right: 0.5rem;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease;
-    text-align: center;
-    flex: 1;
-    min-width: 40px;
-    box-sizing: border-box;
-}
-.tab.active {
+.tab-button.active {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
@@ -241,51 +352,29 @@ pre {
     align-items: center;
 }
 
-.subTab {
+.subTab-button {
+    /* Override button behaviour */
     color: var(--primary-color-very-translucent);
-    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
     font-size: 0.7rem;
-    font-weight: bold;
-    transition: color 0.3s ease, font-size 0.3s ease;
-    text-align: center;
+    padding: .25rem 0;
+
+    font-weight: normal;
     box-sizing: border-box;
-    margin-bottom: 1rem;
 }
-.subTab.active + .subTab,
-.subTab:has(+ .subTab.active) {
+.subTab-button.active + .subTab-button,
+.subTab-button:has(+ .subTab-button.active) {
     color: var(--primary-color-translucent);
-    font-size: 1rem;
+    font-size: .8rem;
 }
-.subTab.active {
-    font-size: 1.2rem;
+.subTab-button.active {
+    font-size: 1rem;
     font-weight: bolder;
     color: var(--primary-color);
     border-top: var(--border-primary-thick);
     border-bottom: var(--border-primary-thick);
-}
-
-/* ==========================================================================
-   4. Forms, Buttons & Inputs
-   ========================================================================== */
-
-input, textarea, select, button, input[type="checkbox"] {
-    font-family: inherit;
-    background-color: var(--button-background);
-}
-input[type="checkbox"] {
-    background-color: var(--button-background) !important;
-    appearance: none;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    position: relative;
-    content: '';
-    display: block;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-input[type="checkbox"]:checked {
-    background-color: var(--primary-color) !important;
 }
 
 .form-label {
@@ -319,65 +408,9 @@ input[type="checkbox"]:checked {
     width: 50%;
 }
 
-input[type=number] { -moz-appearance: textfield; }
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    opacity: 1;
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-select {
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: var(--border-primary-thick);   /* FIXME use class */
-    color: var(--primary-color);
-    width: 80%;
-    max-width: 300px;
-}
-
-.button, .confirm-button, .cancel-button {
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    border: none;
-}
-
-.confirm-button {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-.cancel-button {
-    background-color: var(--cancel-btn-background); /* TODO use different color? */
-    color: var(--primary-color);
-}
-
-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-/* ==========================================================================
-   5. Popups & Dialogs
-   ========================================================================== */
-
-
-
-.popup-close-button {
-    color: var(--primary-color);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-    line-height: 1;
-}
+/****************************
+ *    DATA ICONS for SVGs   *
+ ****************************/
 
 .themed-svg[data-icon="attack"] { --image-url: url('../img/svg/attack.svg'); }
 .themed-svg[data-icon="bigGuns"] { --image-url: url('../img/svg/bigGuns.svg'); }
@@ -404,7 +437,6 @@ button:disabled {
  *****************/
 
 dialog {
-    position: relative;
     color: var(--primary-color);
     background-color: var(--secondary-color);
     border: var(--border-primary-thin);
@@ -453,7 +485,6 @@ dialog[open] {
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    cursor: pointer;
     transition: opacity 0.2s ease, background-color 0.3s ease;
     color: var(--secondary-color);
 }
@@ -537,13 +568,13 @@ dialog[open] {
 
     width: calc(14.28% - 20px);
     min-width: 80px;
+    margin: 0.5rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     aspect-ratio: 1;
-    margin: 0.5rem;
 }
 #subStat-luck {
     --image-url: url("../img/svg/gear-full.svg");
@@ -641,17 +672,6 @@ dialog[open] {
     color: var(--primary-color);
 }
 
-.add-item-button {
-    font-size: 2rem;
-    font-weight: bolder;
-    color: var(--primary-color);
-    background-color: transparent;
-    border: var(--border-primary-thick);   /* FIXME use class */
-    margin: 5px;
-    padding: 0 0.5rem;
-    cursor: pointer;
-}
-
 
 /**********************
  *  CARD DEFINITIONS  *
@@ -739,15 +759,8 @@ dialog[open] {
     align-items: center;
     display: flex;
 }
-.description-toggle {
-    cursor: pointer;
+.description-toggle-button {
     padding: 0.5rem;
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
     flex: auto;
 }
 .description-container {
@@ -779,33 +792,22 @@ dialog[open] {
     justify-content: center;
     align-items: center;
     z-index: 10;
-}
-.overlay-buttons {
-    display: flex;
+
     gap: 20px;
 }
-.overlay-buttons button {
-    border: none;
-    padding: 30px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 3rem;
-    display: flex;
+.card-overlay button {
+    padding: 20px;
+    font-size: 2rem;
     justify-content: center;
     align-items: center;
     aspect-ratio: 1 / 1;
-    background-color: var(--button-background);
 }
-.overlay-buttons .delete-button { background-color: var(--delete-button-color); } /* TODO same background as others? maybe use red for the icon */
-.overlay-buttons button div {
-    display: block;
-    color: black;
+.card-overlay button img {
+    width: 40px;
 }
-img.fas {
-    width: 3rem;
-    height: 3rem;
-    filter: grayscale(100%) brightness(0%);
-}
+
+.delete-button { background-color: var(--delete-button-color); } /* TODO same background as others? maybe use red for the icon */
+
 
 /*** Custom templates - common ***/
 .stats {
@@ -885,7 +887,6 @@ img.fas {
 .attack-button {
     background-color: var(--primary-color);
     border: none;
-    cursor: pointer;
     height: 40px;
     width: 40px;
     margin-right: 10px;
@@ -1068,14 +1069,7 @@ section#map-screen:not(.hidden) { display: flex; }
         - what is needed? what is not?
         - max-width best method? */
 
-@media (max-width: 768px) { .header { text-align: start; }
-
-    .tab {
-        padding: 0.2rem 0.3rem;
-        margin-right: 0.2rem;
-        font-size: 0.9rem;
-        white-space: nowrap;
-    }
+@media (max-width: 768px) {
 
     #stat-container {
         justify-content: space-around;
@@ -1086,16 +1080,12 @@ section#map-screen:not(.hidden) { display: flex; }
         width: calc(25% - 10px);
         min-width: 60px;
         margin: 5px;
-        border-width: 1px;
-        padding: 0.1rem;
-        border-radius: 50%;
     }
 
     .stat h3 {
         font-size: 0.7rem;
         margin-bottom: 0.1rem;
     }
-
     .stat-value { font-size: 1.2rem; }
 
     /* TODO currently unused, could be used on skills */

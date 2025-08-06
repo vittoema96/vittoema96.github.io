@@ -117,10 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Update button states
-        d20PopupElements.rollButton.textContent = hasRolled ? "Rilancia" : "Lancia";
+        d20PopupElements.rollButton.textContent = hasRolled ? "Rilancia" : "Lancia"; // TODO language
         d20PopupElements.damageButton.style.display = objectId ? 'block' : 'none';
         d20PopupElements.damageButton.disabled = !hasRolled;
-        d20PopupElements.successesDisplay.textContent = "Successi: ?";
+        d20PopupElements.successesDisplay.textContent = "Successi: ?"; // TODO language
 
         // Disable controls after the first roll
         d20PopupElements.selector.disabled = hasRolled || isUsingLuck;
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 tag.className = 'tag';
                 tag.textContent = effect;
                 d6PopupElements.tagsContainer.appendChild(tag);
-            });
+            }); // TODO Handle language
 
             // Crea i dadi per il danno
             let createD6Div = (index, isExtra) => {
@@ -183,14 +183,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     d6PopupElements.extraHitsContainer.appendChild(diceDiv);
                 }
             } else if (fireRate > 0) {
-                d6PopupElements.extraHitsTitle.textContent = "Colpi Extra";
+                d6PopupElements.extraHitsTitle.textContent = "Colpi Extra";  // TODO language
                 d6PopupElements.extraHitsContainer.style.display = 'flex';
                 for (let i = 0; i < fireRate; i++) {
                     const diceDiv = createD6Div(i, true);
                     d6PopupElements.extraHitsContainer.appendChild(diceDiv);
                 }
             } else {
-                 d6PopupElements.extraHitsTitle.textContent = "No Colpi Extra";
+                 d6PopupElements.extraHitsTitle.textContent = "No Colpi Extra"; // TODO language
                  d6PopupElements.extraHitsContainer.style.display = 'none';
             }
             // Resetta i risultati
@@ -318,10 +318,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 else if (roll <= targetVal) successes++;
             }
         });
-        d20PopupElements.successesDisplay.textContent = `Successi: ${successes}`;
+        d20PopupElements.successesDisplay.textContent = `Successi: ${successes}`; // TODO language
 
         // Update UI for the "post-roll" state
-        d20PopupElements.rollButton.textContent = "Rilancia";
+        d20PopupElements.rollButton.textContent = "Rilancia"; // TODO language
         d20PopupElements.damageButton.disabled = false;
         d20PopupElements.luckCheckbox.disabled = true;
         d20PopupElements.aimCheckbox.disabled = true;

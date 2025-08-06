@@ -6,39 +6,49 @@ let langData = {
     it: undefined
 };
 
-function loadTranslations(language) {
+function translate(langId, langFormat){
+    const format = langFormat || "%s"
 
-        const elementsWithLangId = document.querySelectorAll('[data-lang-id]');
-        elementsWithLangId.forEach(element => {
-          const langId = element.dataset.langId; // Access the value of the attribute
-          const format = element.dataset.langFormat || "%s"
+    let transl = langData[currentLanguage][langId];
+    if(transl === undefined)
+        transl = "!Transl.Missing!";
 
-            const transl = langData[language][langId] === undefined ? "!Transl.Missing!" : langData[language][langId];
-            element.textContent = format.replace("%s", transl)
-        });
-
-        document.documentElement.lang = language; // Set the lang attribute
-        localStorage.setItem('language', language); // Save preference
-
-        // Set the select value after translations are loaded (optional, but good practice)
-        const languageSelect = document.getElementById('language-select');
-        if (languageSelect) {
-            languageSelect.value = language;
-        }
+    return format.replace("%s", transl);
 }
 
-function changeLanguage(language) {
+function underDevelopedWarningCheck(language){
     let changeLang = true;
     if (language === 'en')
         changeLang = confirm("Are you sure you want to change to English language?\nThis language is currently poorly supported.\n\n" +
-                             "Sei sicuro di voler cambiare la lingua a Inglese?\nQuesta lingua è attualmente scarsamente supportata.")
-    if(changeLang) {
-        currentLanguage = language;
-        loadTranslations(language);
-    } else {
-        document.getElementById('language-select').value = currentLanguage;
+                             "Sei sicuro di voler cambiare la lingua a Inglese?\nQuesta lingua è attualmente scarsamente supportata.");
+    return changeLang;
+}
+
+function loadTranslations(language) {
+
+    if(language === undefined){
+        language = currentLanguage;
+        }
+
+    if(currentLanguage !== language && !underDevelopedWarningCheck(language)) {
+        return;
     }
 
+    currentLanguage = language;
+
+    const elementsWithLangId = document.querySelectorAll(`[data-lang-id]:not([data-current-lang="${language}"])`);
+    elementsWithLangId.forEach(element => {
+        element.textContent = translate(element.dataset.langId, element.dataset.langFormat);
+        element.dataset.currentLang = language;
+    });
+
+    document.documentElement.lang = language;
+    localStorage.setItem('language', language);
+
+    const languageSelect = document.getElementById('language-select');
+    if (languageSelect) {
+        languageSelect.value = language;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {

@@ -8,10 +8,10 @@
         <meta name="theme-color" content="#afff03"/>
         <link rel="canonical" href="https://vittoema96.github.io/" />
         <link rel="manifest" href="manifest.json">
-        <!--<link rel="icon" href="/img/icons/192x192.png" type="image/png">
+        <link rel="icon" href="/img/icons/192x192.png" type="image/png">
         <link rel="icon" href="/img/icons/512x512.png" type="image/png">
         <link rel="apple-touch-icon" href="/img/icons/192x192.png" type="image/png">
-        <link rel="apple-touch-icon" href="/img/icons/512x512.png" type="image/png">-->
+        <link rel="apple-touch-icon" href="/img/icons/512x512.png" type="image/png">
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,7 +54,7 @@
 
         <!-- D20 popup -->
         <dialog id="d20-popup" class="popup">
-            <span class="popup-close-button">&times;</span>
+            <button class="popup-close-button">&times;</button>
             <h1 id="d20-popup-skill">SKILL</h1>
             <div class="row">
                 <select id="d20-popup-special-selector" aria-label="Special to use?">
@@ -96,7 +96,7 @@
 
         <!-- D6 popup -->
         <dialog id="d6-popup" class="popup">
-            <span class="popup-close-button">&times;</span>
+            <button class="popup-close-button">&times;</button>
             <h1 id="d6-weapon-name">NOME ARMA</h1>
             <h3 id="d6-damage-type">Tipo Danno</h3>
             <div id="d6-tags" class="tags-container">
@@ -112,6 +112,7 @@
                 <!-- I dadi per i colpi extra verranno inseriti qui dinamicamente -->
             </div>
             <hr>
+            <!-- TODO put and resize stuff <h2>Risultato: </h2>--> <!-- TODO translate -->
             <div class="row">
                 <h2 id="d6-total-damage">Danni: ?</h2>
                 <h2 id="d6-total-effects">Effetti: ?</h2>
@@ -122,7 +123,7 @@
             </div>
         </dialog>
         <dialog id="add-item-popup" class="popup">
-            <span class="popup-close-button">&times;</span>
+            <button class="popup-close-button">&times;</button>
             <h2>Scegli un oggetto:</h2>
             <div class="row">
                 <select id="selector" class="form-control" aria-label="Object picker"></select>
@@ -157,13 +158,13 @@
         <hr>
 
         <div class="tab-container" id="main-tab-container">
-            <div class="tab active" data-screen="stat">STAT</div>
-            <div class="tab" data-screen="inv">INV</div>
-            <div class="tab" data-screen="data">DATA</div>
-            <div class="tab" data-screen="map">MAP</div>
-            <div class="tab mini-tab" data-screen="settings">
+            <button class="tab-button active" data-screen="stat">STAT</button>
+            <button class="tab-button" data-screen="inv">INV</button>
+            <button class="tab-button" data-screen="data">DATA</button>
+            <button class="tab-button" data-screen="map">MAP</button>
+            <button class="tab-button mini-tab" data-screen="settings">
                 <i class="fas fa-gear"></i>
-            </div>
+            </button>
         </div>
 
         <main class="main-container">
@@ -232,10 +233,11 @@
 
             <section id="inv-screen" class="screen hidden">
                 <div class="tab-container">
-                    <div class="subTab active" data-sub-screen="weapons">WEAPONS</div>
-                    <div class="subTab" data-sub-screen="armor">ARMOR</div>
-                    <div class="subTab" data-sub-screen="supplies">SUPPLIES</div>
-                    <div class="subTab" data-sub-screen="ammo">AMMO</div>
+                    <!-- TODO translate -->
+                    <button class="subTab-button active" data-sub-screen="weapons">WEAPONS</button>
+                    <button class="subTab-button" data-sub-screen="armor">ARMOR</button>
+                    <button class="subTab-button" data-sub-screen="supplies">SUPPLIES</button>
+                    <button class="subTab-button" data-sub-screen="ammo">AMMO</button>
                 </div>
 
                 <div class="subScreen active" id="inv-weapons">
@@ -318,7 +320,7 @@
             <section id="settings-screen" class="screen hidden">
                 <h2>Settings</h2>
                 <label for="language-select">Language:</label>
-                <select id="language-select" onchange="changeLanguage(this.value)">
+                <select id="language-select" onchange="loadTranslations(this.value)">
                     <option value="en">English</option>
                     <option value="it">Italiano</option>
                 </select>
@@ -329,7 +331,7 @@
                     <option value="theme-fallout-new-vegas">Fallout New Vegas</option>
                 </select>
                 <hr>
-                <button id="clear-local-storage">Clear Local Storage</button>
+                <button id="reset-memory-button">RESET MEMORY</button>
             </section>
         </main>
 
@@ -359,7 +361,7 @@
                 <div class="card-content">
                     <div class="card-controls">
                         <button class="themed-svg attack-button" data-icon="attack"></button>
-                        <button class="description-toggle" data-action="toggle-description"
+                        <button class="description-toggle-button" data-action="toggle-description"
                                 data-lang-id="showDescription">Show Description</button>
                     </div>
                     <div class="description-container">
@@ -367,17 +369,15 @@
                     </div>
                 </div>
                 <div class="card-overlay hidden"> <!-- TODO Redo buttons, they are ugly -->
-                    <div class="overlay-buttons">
-                        <button class="cancel-button" data-action="cancel-overlay">
-                            <div class="fas fa-times"></div>
-                        </button>
-                        <button class="sell-button" data-action="sell">
-                            <img class="fas" src="img/svg/caps.svg" alt="Sell"/> <!-- todo fix this -->
-                        </button>
-                        <button class="delete-button" data-action="delete">
-                            <div class="fas fa-trash"></div>
-                        </button>
-                    </div>
+                    <button class="cancel-button" data-action="cancel-overlay">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="confirm-button" data-icon="caps" data-action="sell">
+                        <img src="img/svg/caps.svg" alt="Sell"/>
+                    </button>
+                    <button class="delete-button" data-action="delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
                 </div>
             </div>
         </template>

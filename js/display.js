@@ -55,6 +55,7 @@ class Display {
             this.updateSpecialty(s, character);
         });
         this.updateItems(character);
+        this.updateLanguage(character);
     }
 
     addEventListeners() {
@@ -89,9 +90,11 @@ class Display {
         switch (action) {
             case 'toggle-description': {
                 const container = cardDiv.querySelector(".description-container");
-                const button = cardDiv.querySelector(".description-toggle");
+                const button = cardDiv.querySelector(".description-toggle-button");
                 container.classList.toggle("expanded");
-                button.textContent = langData[currentLanguage][container.classList.contains("expanded") ? "close" : "showDescription"];
+                const langId = container.classList.contains("expanded") ? "close" : "showDescription";
+                button.dataset.langId = langId;
+                button.textContent = langData[currentLanguage][langId];
                 break;
             }
             case 'attack': {
@@ -181,8 +184,12 @@ class Display {
                 });
 
             }
-            loadTranslations(currentLanguage); // TODO maybe don't update ALL translation, just the cards
+            loadTranslations();
         });
+    }
+
+    updateLanguage(character){
+
     }
 
     toggleEditMode() {

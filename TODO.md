@@ -1,6 +1,8 @@
 # TODO
 
 # Main
+- Fix card layout
+- Finish templating cards
 - Consumable items (maybe change icon?)
 - There is something wrong in how cards scroll, check it out
 ## D6Popup
@@ -29,6 +31,9 @@
 - Remove english phrases in favor of dataLang
 - Remove italian phrases in favor of dataLang
 - Add english translations
+- ### IN PARTICULAR
+  1. DAMAGE_TYPE translation
+  2. EFFECTS translation
 
 ### Other
 - Implement popup with weapon tags description 
