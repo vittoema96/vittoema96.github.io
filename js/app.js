@@ -52,12 +52,12 @@ async function loadWeapons() {
 function createSkillEntries(){
     const skillsContainer = document.querySelector("#skills")
     const translated = {};
-    Character.getSkillList().forEach(key => translated[langData[currentLanguage][key]] = key);
+    Character.getSkillList().forEach(key => translated[translate(key)] = key);
 
 
     for(const [skillTranslated, skill] of Object.entries(translated).sort()){
         const special = Character.getSpecialFromSkill(skill);
-        const specialTranslated = langData[currentLanguage][special];
+        const specialTranslated = translate(special);
 
         const entryDiv = document.createElement('div');
         entryDiv.className = 'skill';
@@ -108,7 +108,7 @@ function createGenericCard(genericItem, customCardContent, itemType, quantity) {
     cardDiv.querySelector('.card-rarity-value').textContent = genericItem.RARITY;
 
     const isWeapon = !!weaponData[genericItem.ID];
-    const attackButton = cardDiv.querySelector('.attack-button');
+    const attackButton = cardDiv.querySelector('.card-attack-button');
     if(isWeapon){
         attackButton.dataset.action = "attack";
         attackButton.dataset.skill = genericItem.SKILL || "---";
@@ -159,7 +159,7 @@ function createWeaponCard(weaponId, quantity) {
                 <div>${ammoCount}</div>
             </div>
         </div>
-        <div class="image themed-svg" data-icon="${weapon.SKILL}"></div>
+        <div class="card-image themed-svg" data-icon="${weapon.SKILL}"></div>
         <div class="stats" id="stats-right">
             <div class="card-stat">
                 <div data-lang-id="damageDice">Damage Dice</div>

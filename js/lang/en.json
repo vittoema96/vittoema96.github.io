@@ -42,10 +42,18 @@
 
   "showDescription": "Show Description",
   "close": "Close",
+  "cancel": "Cancel",
+  "damage": "Damage",
   "damageDice": "Damage Dice",
   "fireRate": "Fire Rate",
   "range": "Range",
 
+  "aim": "Aim",
+  "roll": "Roll",
+  "reroll": "Reroll",
+  "apCost": "AP Cost",
+  "luckCost": "Luck Cost",
+  "successes": "Successes",
   "anything": "Anything",
   "fusion_core": "Fusion Core",
   "na": "N/A",

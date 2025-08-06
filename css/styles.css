@@ -1,9 +1,9 @@
 /* ==========================================================================
-      Root Variables & Global Styles
+      Root Variables
    ========================================================================== */
 
 :root {
-    --loader-display: flex; /* TODO Use 'flex' for a loader, 'none' to go straight to the app */
+    --loader-display: none; /* TODO Use 'flex' for a loader, 'none' to go straight to the app */
 
     /* Should not change, regardless of theme */
     --success-color: #0088ff;
@@ -18,51 +18,15 @@
     --typewrite-duration: 1s; /* n% is dedicated to show the '> ' *% */
 }
 
+/*************************
+ *    VANILLA ELEMENTS   *
+ *************************/
 html {
-    margin: 0;
-    padding: 0;
     height: 100%;
     overflow: hidden;
     box-sizing: border-box;
 }
-
-body.theme-fallout-3 {
-    /* FALLOUT 3 THEME */
-    --primary-color: #afff03;
-    --secondary-color: #0f3003;
-    --button-background: #1a5205;
-
-    --tab-hover: #338006;
-    --button-hover: #7cba02;
-    --cancel-btn-background: #4a5568;
-
-    --animation-glow-color: rgba(45, 255, 113, 0.75);
-}
-body.theme-fallout-new-vegas {
-    /* FALLOUT New Vegas Theme */
-    --primary-color: #ffbe0b;
-    --secondary-color: #2a1d00;
-    --button-background: #4d3d1a;
-
-    --tab-hover: #785d21;
-    --button-hover: #ffd466;
-    --cancel-btn-background: #615849;
-    --animation-glow-color: rgba(255, 190, 11, 0.7);
-}
-
 body {
-    /**************************
-     *    DERIVED VARIABLES   *
-     **************************/
-    --primary-color-translucent: rgba(from var(--primary-color) r g b / 0.7);
-    --primary-color-very-translucent: rgba(from var(--primary-color) r g b / 0.25);
-    --secondary-color-translucent: rgba(from var(--secondary-color) r g b / 0.25);
-
-    --border-primary-thick: 2px solid var(--primary-color);
-    --border-primary-thin: 1px solid var(--primary-color);
-    --border-secondary-thick: 2px solid var(--secondary-color);
-    --border-secondary-thin: 1px solid var(--secondary-color);
-
     margin: 0;
     height: 100dvh;
     color: var(--primary-color);
@@ -72,58 +36,7 @@ body {
     box-sizing: border-box;
     font-family: 'Share Tech Mono', 'Roboto Mono', 'Courier New', monospace;
     text-shadow: 0 0 5px var(--animation-glow-color), 0 0 10px var(--animation-glow-color);
-    padding: 0;
 }
-
-/* Applies the scan lines on top of the whole body */
-body::before {
-    content: " ";
-    display: block; /* Necessary to make the ::before exist and behave like a block */
-    position: fixed; /* Use fixed to cover the viewport */
-    inset: 0; /* same as top/left/etc: 0; */
-
-    z-index: 9999; /* It's the topmost element */
-    pointer-events: none; /* Allows clicks to go through to elements underneath */
-    animation: flicker 0.15s infinite; /* Makes the scan lines flicker */
-
-    /* Actual scan line effect */
-    background: linear-gradient(
-            rgba(18, 16, 16, 0) 50%,
-            rgba(0, 0, 0, 0.25) 50%
-    ), linear-gradient(
-            90deg,
-            rgba(255, 0, 0, 0.06),
-            rgba(0, 255, 0, 0.02),
-            rgba(0, 0, 255, 0.06)
-    );
-    background-size: 100% 3px, 4px 100%;
-}
-
-/* TODO vedere che fare con gli hover */
-@media (hover: hover) {
-    .attack-button:hover { opacity: 0.8; }
-    .tab-button:hover { background-color: var(--tab-hover); }
-    .button:hover, .confirm-button:hover { background-color: var(--button-hover); }
-    .popup-close-button:hover { color: var(--primary-color); }
-}
-
-/* TODO vedere che fare con i focus
-    GENERICO PER (QUASI) TUTTI I BOTTONI */
-/* button:focus { color: var(--primary-color); }*/
-select:focus {
-    outline: none;
-    box-shadow: 0 0 5px var(--primary-color-translucent);
-}
-.form-control:focus {
-    outline: none;
-    box-shadow: 0 0 5px var(--primary-color-translucent);
-    border-color: var(--primary-color);
-}
-
-/****************************
- *     STANDARD ELEMENTS    *
- ****************************/
-
 h1, h2, h3 {
     margin-bottom: 1rem;
     text-align: center;
@@ -131,18 +44,20 @@ h1, h2, h3 {
 h1 { font-size: 2.1rem; }
 h2 { font-size: 1.5rem; }
 h3 { font-size: 1rem; }
-
+header {
+    text-align: center;
+    align-items: center;
+    font-size: 0.9rem;
+    display: flex;
+}
+header > :first-child {
+    flex: 1;
+}
 hr {
     border: none;
     border-top: var(--border-primary-thick);
     width: 100%;
 }
-pre {
-    font-family: "Fira Code", monospace; /* To make loader render properly on (my) Android */
-    margin: 0; /* No margin, pre presents stuff as is. Use margin on pre children (like spans in loader) */
-    white-space: pre-wrap; /* TODO do we need this (or is there a better alternative)? Test it and check other values) */
-}
-
 
 input, textarea, select, button {
     font-family: inherit;
@@ -157,7 +72,8 @@ input:not([type="checkbox"]), textarea, select, button {
 }
 
 button {
-    padding: 0.75rem 1.5rem;
+    white-space: pre;
+    padding: 0.75rem 1rem;
     font-size: 1rem;
     text-align: center;
     font-weight: bold;
@@ -166,68 +82,7 @@ button {
             background-color 0.3s ease,
             font-size 0.3s ease,
             font-weight 0.3s ease;
-}
-
-.tab-button {
-    border-bottom: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    padding: .2rem .3rem;
-    min-width: 40px;
-
-    margin-right: 0.5rem;
-    flex: 1;
-    box-sizing: border-box;
-}
-
-.confirm-button {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-.cancel-button {
-    background-color: var(--cancel-btn-background); /* TODO use different color? */
-    color: var(--primary-color);
-}
-.popup-close-button {
-    float: right;
-    font-size: 28px;
-    background: none;
-    border: none;
-    padding: 0;
-    line-height: 1;
-}
-.add-item-button {
-    font-size: 2rem;
-    font-weight: bolder;
-    padding: 0 0.5rem;
-}
-
-
-
-.attack-button {
-    background-color: var(--primary-color);
-    border: none;
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-button:disabled {
+}button:disabled {
     opacity: 0.5;
 }
 
@@ -249,7 +104,6 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     opacity: 1;
     -webkit-appearance: none;
-    margin: 0;
 }
 
 select {
@@ -261,9 +115,9 @@ select {
 }
 
 
-
-
-
+/**********************
+ *   Generic classes  *
+ **********************/
 
 .hidden { display: none !important; /* override any other 'display' */ }
 
@@ -272,11 +126,52 @@ select {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    margin: 1rem 0;
-    gap: 1rem;
+    margin: .5rem 0;
 }
 
-.main-container {
+/* TODO Are these REALLY generic? */
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.form-control {
+    border: var(--border-primary-thin);  /* FIXME use class */
+    color: var(--primary-color);
+    padding: 0.75rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/**********************
+ *     Main Header    *
+ **********************/
+.icon-value-pair {
+    padding: 2px;
+    min-width: 25%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.icon-value-pair:not(:last-child) { border-bottom: var(--border-primary-thick); }
+
+.icon-value-pair .themed-svg { width: 15px; height: 15px; }
+.icon-value-pair :not(.themed-svg) {
+    flex: 1;
+    text-align: center;
+    padding: 0 8px;
+}
+
+/*********************
+ *   Main Container  *
+ *********************/
+#main-container {
     width: 100%;
     overflow-y: auto;
     margin: 0 auto;
@@ -290,45 +185,27 @@ select {
     padding: 1rem;
 }
 
-/* ==========================================================================
-   3. Header & Tabs
-   ========================================================================== */
+/**************
+ *   Tabs   *
+ **************/
+.tab-button {
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: .2rem .3rem;
+    min-width: 40px;
 
-.header {
-    text-align: center;
-    font-size: 0.9em;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    justify-content: space-between;
-    align-items: start;
-}
-
-.icon-value-pair {
-    padding: 2px;
-    min-width: 25%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-.icon-value-pair div:last-child {
+    margin-right: 0.5rem;
     flex: 1;
-    text-align: center;
+    box-sizing: border-box;
+}
+.tab-button.active {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
-/* TODO
-        HP/Caps/Weight icon-value
-        BORDER only on bottom
-        Maybe use the border on a grid instead as a bottom element? */
-.icon-value-pair:not(:last-child) { border-bottom: var(--border-primary-thick); }
 
-.icon {
-    width: 15px;
-    height: 15px;
-    margin-right: 8px;
-}
-
+#main-tab-container { padding: 0.5rem 1rem 0; }
 .tab-container {
     display: flex;
     justify-content: space-between;
@@ -337,12 +214,7 @@ select {
     flex-wrap: nowrap;
 }
 
-#main-tab-container { padding: 0.5rem 1rem 0; }
 
-.tab-button.active {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
 
 .mini-tab {
     min-width: 10px;
@@ -377,23 +249,43 @@ select {
     border-bottom: var(--border-primary-thick);
 }
 
-.form-label {
-    display: block;
-    margin-bottom: 0.5rem;
+
+/**************
+ *   Buttons  *
+ **************/
+.confirm-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.cancel-button {
+    background-color: var(--cancel-btn-background); /* TODO use different color? */
     color: var(--primary-color);
-    font-weight: bold;
-    font-size: 1.2rem;
+}
+.popup-close-button {
+    float: right;
+    font-size: 28px;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+}
+.add-item-button {
+    font-size: 2rem;
+    font-weight: bolder;
+    padding: 0 0.5rem;
+}
+.card-attack-button {
+    background-color: var(--primary-color);
+    border: none;
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-right: 10px;
 }
 
-.form-control {
-    border: var(--border-primary-thin);  /* FIXME use class */
-    color: var(--primary-color);
-    padding: 0.75rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    width: 100%;
-    box-sizing: border-box;
-}
+
+
+
+
 
 #level-label { font-size: 1.5rem; }
 #level-display {
@@ -408,29 +300,6 @@ select {
     width: 50%;
 }
 
-/****************************
- *    DATA ICONS for SVGs   *
- ****************************/
-
-.themed-svg[data-icon="attack"] { --image-url: url('../img/svg/attack.svg'); }
-.themed-svg[data-icon="bigGuns"] { --image-url: url('../img/svg/bigGuns.svg'); }
-.themed-svg[data-icon="caps"] { --image-url: url('../img/svg/caps.svg'); }
-.themed-svg[data-icon="drinks"] { --image-url: url('../img/svg/drinks.svg'); }
-.themed-svg[data-icon="energyWeapons"] { --image-url: url('../img/svg/energyWeapons.svg'); }
-.themed-svg[data-icon="explosives"] { --image-url: url('../img/svg/explosives.svg'); }
-.themed-svg[data-icon="food"] { --image-url: url('../img/svg/food.svg'); }
-.themed-svg[data-icon="gear"] { --image-url: url('../img/svg/gear.svg'); }
-.themed-svg[data-icon="drinks"] { --image-url: url('../img/svg/drinks.svg'); }
-.themed-svg[data-icon="hp"] { --image-url: url('../img/svg/hp.svg'); }
-.themed-svg[data-icon="luck"] { --image-url: url('../img/svg/luck.svg'); }
-.themed-svg[data-icon="meds"] { --image-url: url('../img/svg/meds.svg'); }
-.themed-svg[data-icon="meleeWeapons"] { --image-url: url('../img/svg/meleeWeapons.svg'); }
-.themed-svg[data-icon="smallGuns"] { --image-url: url('../img/svg/smallGuns.svg'); }
-.themed-svg[data-icon="throwing"] { --image-url: url('../img/svg/throwing.svg'); }
-.themed-svg[data-icon="unarmed"] { --image-url: url('../img/svg/unarmed.svg'); }
-.themed-svg[data-icon="vaultboy"] { --image-url: url('../img/svg/vaultboy.svg'); }
-.themed-svg[data-icon="weight"] { --image-url: url('../img/svg/weight.svg'); }
-
 
 /*****************
  *     POPUPS    *
@@ -441,7 +310,10 @@ dialog {
     background-color: var(--secondary-color);
     border: var(--border-primary-thin);
     z-index: 1000;
-    padding: 20px;
+    padding: 1.25rem;
+
+    flex-direction: column;
+    /* TODO add gap: 1.25? */
 }
 dialog::backdrop {
     background-color: var(--overlay-color);
@@ -454,6 +326,41 @@ dialog[open] {
 .dialog-closing { animation: crt-turn-off .3s forwards !important; }
 
 /*** D20 Popup ***/
+.setup-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.target-section {
+    text-align: center;
+}
+.costs-section .row {
+    text-align: center;
+    margin: 0;
+    justify-content: center;
+    gap: .5rem;
+}
+.costs-section > .row > :first-child { flex: 3; }
+.costs-section > .row > :last-child {
+    flex: 1;
+    margin: .5rem;
+}
+.costs-section span {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.buttons-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+#d20-popup-luck-cost {
+    font-size: .7rem;
+    font-weight: normal;
+}
+
 .dice-container {
     display: flex;
     justify-content: center;
@@ -497,7 +404,7 @@ dialog[open] {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 0.625rem;
     margin-bottom: 1.5rem;
 }
 .d6-dice {
@@ -566,7 +473,7 @@ dialog[open] {
     padding: 0.5rem;
     text-align: center;
 
-    width: calc(14.28% - 20px);
+    width: calc(14.28% - 1.25rem);
     min-width: 80px;
     margin: 0.5rem;
     box-sizing: border-box;
@@ -617,7 +524,7 @@ dialog[open] {
 .derived-stat div { margin: 0.2rem; }
 
 /***************
- *  SKILL LIST *
+ *  Ammo Cards *
  ***************/
 .ammo-card {
     margin: 5px;
@@ -636,6 +543,9 @@ dialog[open] {
     align-items: stretch;
     font-size: .8rem;
 }
+/***************
+ *  Skill List *
+ ***************/
 .skill {
     display: flex;
     align-items: center;
@@ -654,7 +564,6 @@ dialog[open] {
     margin-bottom: 1rem;
     width: 100%;
 }
-
 
 /***************
  *  INV SCREEN *
@@ -777,7 +686,7 @@ dialog[open] {
 .description {
     padding: 10px;
     text-align: justify;
-    font-size: 0.8em;
+    font-size: 0.8rem;
     line-height: 1.5;
 }
 /*** Card Overlay ***/
@@ -832,30 +741,7 @@ dialog[open] {
     color: var(--secondary-color);
 }
 
-/*** Ammo card specific ***/
-
-
-
-/***********
- *  OTHER  *
- ***********/
-
-.themed-svg {
-    /* TODO define a default image-url */
-    /* Use the SVG as a mask */
-    background-color: var(--primary-color);
-    -webkit-mask-image: var(--image-url);
-    mask-image: var(--image-url);
-
-    -webkit-mask-size: contain;
-    mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-position: center;
-}
-
-.image {
+.card-image {
     margin: 10px;
 }
 .supply-img {
@@ -863,6 +749,11 @@ dialog[open] {
     height: 40px;
     margin: 5px;
 }
+
+
+/***********
+ *  OTHER  *
+ ***********/
 
 .tags-container {
     display: flex;
@@ -880,14 +771,6 @@ dialog[open] {
     padding: 0.3rem;
     font-size: .8rem;
     margin: 2px;
-}
-
-.attack-button {
-    background-color: var(--primary-color);
-    border: none;
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
 }
 
 /****************
@@ -930,6 +813,11 @@ section#map-screen:not(.hidden) { display: flex; }
             4 * var(--typewrite-duration)
     );
     font-size: calc(min(2.5vw, 2vh))
+}
+#loader pre {
+    font-family: "Fira Code", monospace; /* To make loader render properly on (my) Android */
+    margin: 0; /* No margin, pre presents stuff as is. Use margin on pre children (like spans in loader) */
+    white-space: pre-wrap; /* TODO do we need this (or is there a better alternative)? Test it and check other values) */
 }
 /* Loader entries */
 #loader span {
@@ -1089,3 +977,124 @@ section#map-screen:not(.hidden) { display: flex; }
     /* TODO currently unused, could be used on skills */
     .skill-stat { text-overflow: ellipsis; }
 }
+
+
+/***************
+ *    THEMES   *
+ ***************/
+
+/* FALLOUT 3 THEME */
+body.theme-fallout-3 {
+    --primary-color: #afff03;
+    --secondary-color: #0f3003;
+    --button-background: #1a5205;
+
+    --tab-hover: #338006;
+    --button-hover: #7cba02;
+    --cancel-btn-background: #4a5568;
+
+    --animation-glow-color: rgba(45, 255, 113, 0.75);
+}
+/* FALLOUT New Vegas Theme */
+body.theme-fallout-new-vegas {
+    --primary-color: #ffbe0b;
+    --secondary-color: #2a1d00;
+    --button-background: #4d3d1a;
+
+    --tab-hover: #785d21;
+    --button-hover: #ffd466;
+    --cancel-btn-background: #615849;
+    --animation-glow-color: rgba(255, 190, 11, 0.7);
+}
+/* Just body's derived variables, body attributes are set below */
+body {
+    --primary-color-translucent: rgba(from var(--primary-color) r g b / 0.7);
+    --primary-color-very-translucent: rgba(from var(--primary-color) r g b / 0.25);
+    --secondary-color-translucent: rgba(from var(--secondary-color) r g b / 0.25);
+
+    --border-primary-thick: 2px solid var(--primary-color);
+    --border-primary-thin: 1px solid var(--primary-color);
+    --border-secondary-thick: 2px solid var(--secondary-color);
+    --border-secondary-thin: 1px solid var(--secondary-color);
+}
+/* Applies the scan lines on top of the whole body */
+body::before {
+    content: " ";
+    display: block; /* Necessary to make the ::before exist and behave like a block */
+    position: fixed; /* Use fixed to cover the viewport */
+    inset: 0; /* same as top/left/etc: 0; */
+
+    z-index: 9999; /* It's the topmost element */
+    pointer-events: none; /* Allows clicks to go through to elements underneath */
+    animation: flicker 0.15s infinite; /* Makes the scan lines flicker */
+
+    /* Actual scan line effect */
+    background: linear-gradient(
+            rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.25) 50%
+    ), linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 0.06),
+            rgba(0, 255, 0, 0.02),
+            rgba(0, 0, 255, 0.06)
+    );
+    background-size: 100% 3px, 4px 100%;
+}
+/* Class to apply a themed svg */
+.themed-svg {
+    /* TODO define a default image-url */
+    /* Use the SVG as a mask */
+    background-color: var(--primary-color);
+    -webkit-mask-image: var(--image-url);
+    mask-image: var(--image-url);
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+.themed-svg[data-icon="attack"] { --image-url: url('../img/svg/attack.svg'); }
+.themed-svg[data-icon="bigGuns"] { --image-url: url('../img/svg/bigGuns.svg'); }
+.themed-svg[data-icon="caps"] { --image-url: url('../img/svg/caps.svg'); }
+.themed-svg[data-icon="drinks"] { --image-url: url('../img/svg/drinks.svg'); }
+.themed-svg[data-icon="energyWeapons"] { --image-url: url('../img/svg/energyWeapons.svg'); }
+.themed-svg[data-icon="explosives"] { --image-url: url('../img/svg/explosives.svg'); }
+.themed-svg[data-icon="food"] { --image-url: url('../img/svg/food.svg'); }
+.themed-svg[data-icon="gear"] { --image-url: url('../img/svg/gear.svg'); }
+.themed-svg[data-icon="drinks"] { --image-url: url('../img/svg/drinks.svg'); }
+.themed-svg[data-icon="hp"] { --image-url: url('../img/svg/hp.svg'); }
+.themed-svg[data-icon="luck"] { --image-url: url('../img/svg/luck.svg'); }
+.themed-svg[data-icon="meds"] { --image-url: url('../img/svg/meds.svg'); }
+.themed-svg[data-icon="meleeWeapons"] { --image-url: url('../img/svg/meleeWeapons.svg'); }
+.themed-svg[data-icon="smallGuns"] { --image-url: url('../img/svg/smallGuns.svg'); }
+.themed-svg[data-icon="throwing"] { --image-url: url('../img/svg/throwing.svg'); }
+.themed-svg[data-icon="unarmed"] { --image-url: url('../img/svg/unarmed.svg'); }
+.themed-svg[data-icon="vaultboy"] { --image-url: url('../img/svg/vaultboy.svg'); }
+.themed-svg[data-icon="weight"] { --image-url: url('../img/svg/weight.svg'); }
+
+
+/****************************
+ *   TODO Focus and Hover   *
+ ****************************/
+
+@media (hover: hover) {
+    .card-attack-button:hover { opacity: 0.8; }
+    .tab-button:hover { background-color: var(--tab-hover); }
+    .button:hover, .confirm-button:hover { background-color: var(--button-hover); }
+    .popup-close-button:hover { color: var(--primary-color); }
+}
+/* TODO vedere che fare con i focus
+    GENERICO PER (QUASI) TUTTI I BOTTONI */
+/* button:focus { color: var(--primary-color); }*/
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--primary-color-translucent);
+}
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--primary-color-translucent);
+    border-color: var(--primary-color);
+}
+

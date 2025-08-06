@@ -94,7 +94,7 @@ class Display {
                 container.classList.toggle("expanded");
                 const langId = container.classList.contains("expanded") ? "close" : "showDescription";
                 button.dataset.langId = langId;
-                button.textContent = langData[currentLanguage][langId];
+                button.textContent = translate(langId);
                 break;
             }
             case 'attack': {
@@ -189,7 +189,7 @@ class Display {
     }
 
     updateLanguage(character){
-
+        // TODO implement
     }
 
     toggleEditMode() {

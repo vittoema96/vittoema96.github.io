@@ -42,10 +42,18 @@
 
   "showDescription": "Mostra Descrizione",
   "close": "Chiudi",
+  "cancel": "Annulla",
+  "damage": "Danni",
   "damageDice": "Dadi Danno",
   "fireRate": "Cadenza di Fuoco",
   "range": "Gittata",
 
+  "aim": "Mirare",
+  "roll": "Lancia",
+  "reroll": "Rilancia",
+  "apCost": "Costo PA",
+  "luckCost": "Costo Fortuna",
+  "successes": "Successi",
   "anything": "Qualsiasi cosa",
   "fusion_core": "Nucleo di Fusione",
   "na": "N/A",

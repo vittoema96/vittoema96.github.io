@@ -53,10 +53,14 @@
         </div>
 
         <!-- D20 popup -->
-        <dialog id="d20-popup" class="popup">
-            <button class="popup-close-button">&times;</button>
-            <h1 id="d20-popup-skill">SKILL</h1>
-            <div class="row">
+        <dialog id="d20-popup">
+
+            <header>
+                <h1 id="d20-popup-skill-title">Skill Name</h1>
+                <button class="popup-close-button">&times;</button>
+            </header>
+
+            <section class="setup-section">
                 <select id="d20-popup-special-selector" aria-label="Special to use?">
                      <option data-lang-id="strength" value="strength">Strength</option>
                      <option data-lang-id="perception" value="perception">Perception</option>
@@ -66,32 +70,57 @@
                      <option data-lang-id="agility" value="agility">Agility</option>
                      <option data-lang-id="luck" value="luck">Luck</option>
                 </select>
-                <input type="checkbox" class="themed-svg d20-popup-luck-checkbox" data-icon="luck" aria-label="Use Luck" alt="Use Luck"/>
-            </div>
+                <input type="checkbox" id="d20-popup-luck-checkbox" class="themed-svg" data-icon="luck" aria-label="Use Luck" alt="Use Luck"/>
+            </section>
+
             <hr>
-            <div class="row">
-                <h1 id="d20-popup-target">Target: 12</h1>
-                <h3 id="d20-popup-target-details">[8+4]</h3>
-            </div>
-            <div class="dice-container">
+
+            <section class="target-section">
+                <h2 class="target-number" id="d20-popup-target">Target: 13</h2>
+                <p class="target-breakdown" id="d20-popup-target-breakdown">8 (Skill) + 5 (Agility)</p>
+                <p class="crit-breakdown" id="d20-popup-crit-breakdown">Critical Hit: Roll ≤ 5</p>
+            </section>
+
+            <hr>
+
+            <section class="dice-container">
                 <div class="dice-wrapper"><div class="d20-dice active" data-value="1">?</div></div>
                 <div class="dice-wrapper"><div class="d20-dice active" data-value="2">?</div></div>
                 <div class="dice-wrapper"><div class="d20-dice" data-value="3">?</div></div>
                 <div class="dice-wrapper"><div class="d20-dice" data-value="4">?</div></div>
                 <div class="dice-wrapper"><div class="d20-dice" data-value="5">?</div></div>
-            </div>
-            <h2 id="ap-cost">Costo AP: +0</h2>
-            <div class="row">
-                <h2>Mirare?</h2>
-                <input type="checkbox" id="aim-checkbox" class="themed-svg" data-icon="attack" aria-label="Aim" alt="Aim"/>
-            </div>
-            <h2 id="luck-cost">Costo Fortuna: 0</h2>
-            <h1 id="successes">Successi: ?</h1>
-            <div class="flex justify-center gap-4 mt-4">
-                <button id="throw-damage-button" class="confirm-button">Tira Danno</button>
-                <button id="roll-dice-button" class="confirm-button">Lancia</button>
-                <button class="cancel-button">Indietro</button>
-            </div>
+            </section>
+
+            <section class="costs-section">
+                <div class="row">
+                    <span data-lang-id="apCost">AP Cost</span>
+                    <span id="d20-popup-ap-cost">2</span>
+                </div>
+                <div class="row">
+                    <span data-lang-id="aim" data-lang-format="%s?">Aim?</span>
+                    <input type="checkbox" id="d20-popup-aim-checkbox" aria-label="Aim"
+                           class="themed-svg" data-icon="attack"/>
+                </div>
+                <div class="row">
+                    <span data-lang-id="luckCost">Luck Cost</span>
+                    <div class="row">
+                        <span id="d20-popup-payed-luck">1</span>
+                        <span id="d20-popup-luck-cost">(-1)+2</span>
+                    </div>
+                </div>
+            </section>
+
+            <hr>
+
+            <!-- RESULT -->
+            <h2 id="d20-popup-successes-display">Successes: ?</h2>
+
+            <!-- ACTIONS -->
+            <section class="buttons-section">
+                <button id="d20-popup-damage-button" data-lang-id="damage" class="confirm-button">Tira Danno</button>
+                <button id="d20-popup-roll-button" class="confirm-button">Roll</button>
+                <button class="cancel-button" data-lang-id="cancel">Cancel</button>
+            </section>
         </dialog>
 
         <!-- D6 popup -->
@@ -134,21 +163,21 @@
         </dialog>
 
 
-        <header class="header">
+        <header>
             <h2>Pip-Boy 3000</h2>
             <div id="header-stats">
                 <div class="icon-value-pair">
-                    <div class="themed-svg icon"
+                    <div class="themed-svg"
                          data-icon="hp"></div>
                     <div id="hp-value">? / ?</div>
                 </div>
                 <div class="icon-value-pair">
-                    <div class="themed-svg icon"
+                    <div class="themed-svg"
                          data-icon="caps"></div>
                     <div id="caps-value">?</div>
                 </div>
                 <div class="icon-value-pair">
-                    <div class="themed-svg icon"
+                    <div class="themed-svg"
                          data-icon="weight"></div>
                     <div id="weight-value">? / ?</div>
                 </div>
@@ -167,7 +196,7 @@
             </button>
         </div>
 
-        <main class="main-container">
+        <main id="main-container">
 
             <section id="stat-screen" class="screen active">
                 <div id="stat-container">
@@ -360,7 +389,7 @@
                 </div>
                 <div class="card-content">
                     <div class="card-controls">
-                        <button class="themed-svg attack-button" data-icon="attack"></button>
+                        <button class="themed-svg card-attack-button" data-icon="attack"></button>
                         <button class="description-toggle-button" data-action="toggle-description"
                                 data-lang-id="showDescription">Show Description</button>
                     </div>
