@@ -129,7 +129,7 @@ select {
     margin: .5rem 0;
 }
 
-/* TODO Are these REALLY generic? */
+/* FIXME Are these REALLY generic? */
 .form-label {
     display: block;
     margin-bottom: 0.5rem;
@@ -213,8 +213,6 @@ select {
     flex-direction: row;
     flex-wrap: nowrap;
 }
-
-
 
 .mini-tab {
     min-width: 10px;
@@ -313,7 +311,7 @@ dialog {
     padding: 1.25rem;
 
     flex-direction: column;
-    /* TODO add gap: 1.25? */
+    /* FIXME Use gap here instead of margins? */
 }
 dialog::backdrop {
     background-color: var(--overlay-color);

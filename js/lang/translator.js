@@ -11,9 +11,27 @@ function translate(langId, langFormat){
 
     let transl = langData[currentLanguage][langId];
     if(transl === undefined)
-        transl = "!Transl.Missing!";
+        transl = "!NO.TRANSL!";
 
     return format.replace("%s", transl);
+}
+
+function spacedTranslate(langId, ...langIds) {
+    const transl = translate(langId);
+    let max = transl.length;
+    for(let lId in langIds){
+        const lSize = translate(lId).length
+        if(lSize > max){
+            max = lSize;
+        }
+    }
+    const lSize = transl.length;
+    if(lSize >= max){
+        return transl;
+    } else {
+        const diff = max - lSize;
+        return ' '.repeat(Math.floor(diff/2)) + transl + ' '.repeat(Math.ceil(diff/2));
+    }
 }
 
 function underDevelopedWarningCheck(language){

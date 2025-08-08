@@ -136,6 +136,8 @@ class Character {
     }
     get maxWeight() { return 75 + this.getSpecial('strength') * 5; }
 
+    getItem(itemId) { return this.#items.filter(item => item.id === itemId)}
+    getItemQuantity(itemId) { return this.#items.find(item => item.id === itemId)?.quantity ?? 0 }
     getItemsByType(type) { return this.#items.filter(item => item.type === type); }
 
     removeItem(itemToRemove) {

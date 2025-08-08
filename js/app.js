@@ -143,7 +143,7 @@ function createWeaponCard(weaponId, quantity) {
         return null;
     }
 
-    const ammoCount = 0; // Placeholder
+    const ammoCount = characterData.getItemQuantity(weapon.AMMO_TYPE);
 
     // TODO implement as template
     // language=HTML

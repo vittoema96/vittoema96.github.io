@@ -1,25 +1,17 @@
-// Wait for the DOM to be fully loaded before running any script
-document.addEventListener("DOMContentLoaded", () => {
+class D20Popup {
 
-    const popups = {
-        d20: document.getElementById('d20-popup'),
-        d6: document.getElementById('d6-popup'),
-        addItem: document.getElementById('add-item-popup'),
-        // It's good practice to add a dedicated notification popup instead of using alert() TODO
-        notification: document.getElementById('notification-popup') 
-    };
-
-    const d20PopupElements = {
+    static #htmlElement = document.getElementById('d20-popup');
+    static #dom = {
         skillTitle: document.getElementById('d20-popup-skill-title'),
 
-        selector: document.getElementById('d20-popup-special-selector'),
+        specialSelector: document.getElementById('d20-popup-special-selector'),
         luckCheckbox: document.getElementById('d20-popup-luck-checkbox'),
 
         targetNumber: document.getElementById('d20-popup-target'),
         targetNumberBreakdown: document.getElementById('d20-popup-target-breakdown'),
         critBreakdown: document.getElementById('d20-popup-crit-breakdown'),
 
-        dice: popups.d20.querySelectorAll('.d20-dice'),
+        dice: this.#htmlElement.querySelectorAll('.d20-dice'),
 
         apCost: document.getElementById('d20-popup-ap-cost'),
         aimCheckbox: document.getElementById('d20-popup-aim-checkbox'),
@@ -32,35 +24,226 @@ document.addEventListener("DOMContentLoaded", () => {
         damageButton: document.getElementById('d20-popup-damage-button'),
     };
 
-    const d6PopupElements = {
-        popup: popups.d6,
-        weaponName: document.getElementById('d6-weapon-name'),
-        damageType: document.getElementById('d6-damage-type'),
-        tagsContainer: document.getElementById('d6-tags'),
-        damageDiceContainer: document.getElementById('d6-damage-dice-container'),
-        extraHitsTitle: document.getElementById('d6-extra-hits-title'),
-        extraHitsContainer: document.getElementById('d6-extra-hits-container'),
-        totalDamage: document.getElementById('d6-total-damage'),
-        totalEffects: document.getElementById('d6-total-effects'),
-        rollButton: document.getElementById('d6-roll-button')
-    };
+    constructor() {
+        D20Popup.#dom.specialSelector.addEventListener('change', (event) => {
+            this.#specialId = event.target.value;
+            this.#render();
+        });
+        D20Popup.#dom.luckCheckbox.addEventListener('change', (event) => {
+            this.#isUsingLuck = event.target.checked;
+            this.#render();
+        });
+        D20Popup.#dom.dice.forEach((dice, index) => {
+            dice.addEventListener('click', () => {
+                this.#onDiceClick(index);
+                this.#render();
+            });
+        });
+        D20Popup.#dom.aimCheckbox.addEventListener('change', (event) => {
+            this.#isAiming = event.target.checked;
+            this.#render();
+        });
+        D20Popup.#dom.damageButton.addEventListener('click', () => {
+            closeActivePopup(); // FIXME
+            openD6Popup(this.#objectId);
+        });
+        D20Popup.#dom.rollButton.addEventListener('click', () => {
+            this.#handleRoll();
+            this.#render();
+        });
+    }
 
-    let d20RollState = {};
-    let d6RollState = {};
+    #character;
 
-    // Elements specific to the Add Item Popup
-    const addItemPopupElements = {
-        select: popups.addItem.querySelector('#selector'),
-        quantity: popups.addItem.querySelector('#quantitySelector'),
-        confirmButton: popups.addItem.querySelector('.confirm-button')
-    };
+    #objectId;
+    #hasRolled;
+    #skillId;
+    #specialId;
+    #isUsingLuck ;
+    #isAiming ;
 
+    #diceContent;
+    #diceActive;
+    #diceRerolled;
+
+    open(skillId, objectId){
+        this.#initialize(skillId, objectId);
+        this.#render();
+        D20Popup.#htmlElement.showModal();
+    }
+
+    #initialize(skillId, objectId){
+        this.#character = characterData;
+
+        this.#objectId = objectId;
+        this.#hasRolled = false;
+        this.#skillId = skillId;
+        this.#specialId = Character.getSpecialFromSkill(skillId);
+        this.#isUsingLuck = false;
+        this.#isAiming = false;
+
+        this.#diceContent = Array(5).fill('?');
+        this.#diceActive = [true, true, false, false, false];
+        this.#diceRerolled = Array(5).fill(false);
+    }
+
+    #render() {
+        D20Popup.#dom.skillTitle.textContent = translate(this.#skillId);
+
+        const activeSpecialId = this.#isUsingLuck ? 'luck' : this.#specialId;
+        D20Popup.#dom.specialSelector.value = activeSpecialId;
+        // TODO add specialSelector.textContent = translate ???
+        D20Popup.#dom.specialSelector.disabled = this.#hasRolled || this.#isUsingLuck;
+
+        D20Popup.#dom.luckCheckbox.checked = this.#isUsingLuck;
+        D20Popup.#dom.luckCheckbox.disabled = this.#hasRolled;
+
+        const skillVal = this.#character.getSkill(this.#skillId);
+        const specialVal = this.#character.getSpecial(activeSpecialId);
+        const targetVal = skillVal + specialVal;
+        const isSpecialty = this.#character.hasSpecialty(this.#skillId);
+        const critVal = isSpecialty ? skillVal : 1;
+        // TODO language (Target, Skill, Critical Hit, etc...)
+        D20Popup.#dom.targetNumber.textContent = `Target: ${targetVal}`;
+        D20Popup.#dom.targetNumberBreakdown.textContent = `${skillVal} (Skill) + ${specialVal} (SPECIAL)`;
+        D20Popup.#dom.critBreakdown.textContent = `Critical Hit: Roll ${critVal > 1 ? `≤` : `=`}${critVal}`;
+
+        D20Popup.#dom.dice.forEach((dice, index) => {
+            dice.textContent = this.#hasRolled ? this.#diceContent[index] : "?";
+            dice.classList.toggle('active', this.#diceActive[index]);
+            dice.classList.toggle('rerolled', this.#diceRerolled[index]);
+            // '?' <= x and '?' >= x are always false.
+            dice.classList.toggle('roll-crit', this.#diceContent[index] <= critVal);
+            dice.classList.toggle('roll-complication', this.#diceContent[index] >= 20); // TODO complications < 20
+        });
+
+        // Don't update after rolling!
+        if(!this.#hasRolled) {
+            D20Popup.#dom.apCost.textContent = this.#getApCost().toString();
+        }
+        D20Popup.#dom.aimCheckbox.checked = this.#isAiming;
+        D20Popup.#dom.aimCheckbox.disabled = this.#hasRolled;
+
+        D20Popup.#dom.payedLuck.textContent = this.#getPayedLuck().toString();
+        D20Popup.#dom.luckCost.textContent = `(${this.#getLuckCost()})`;
+        
+        let successes = '?';
+        if(this.#hasRolled){
+            successes = 0;
+            this.#diceContent.forEach(roll => {
+                const rollValue = Number(roll);
+                if (!isNaN(rollValue)) {
+                    if (rollValue <= critVal) successes += 2;
+                    else if (rollValue <= targetVal) successes++;
+                }
+            });
+        }
+        D20Popup.#dom.successesDisplay.textContent = `${translate("successes")}: ${successes}`;
+
+        if(this.#objectId){
+            D20Popup.#dom.damageButton.style.display = 'block';
+            D20Popup.#dom.damageButton.disabled = this.#hasRolled;
+        } else {
+            D20Popup.#dom.damageButton.style.display = 'none';
+        }
+        if(!this.#hasRolled){
+            D20Popup.#dom.rollButton.textContent = spacedTranslate("roll", "reroll");
+        } else {
+            D20Popup.#dom.rollButton.textContent = spacedTranslate("reroll", "roll");
+        }
+    }
+
+    #onDiceClick(index){
+        if (!this.#hasRolled) {
+            const activeDice = Math.max(2, index + 1)
+            this.#diceActive = [false, false, false, false, false];
+            this.#diceActive.fill(true, 0, activeDice);
+        } else if(this.#diceContent[index] !== '?' && !this.#diceRerolled[index]){
+            this.#diceActive[index] = !this.#diceActive[index];
+        }
+    }
+
+    #handleRoll(){
+
+        if (this.#getActiveDiceCount() === 0) {
+            return showNotification("Seleziona dei dadi da (ri)lanciare!"); // TODO Language
+        }
+
+        let luckCost = this.#getLuckCost();
+        luckCost = luckCost > 0 ? luckCost : 0;
+        if (this.#character.currentLuck < luckCost) {
+            return showNotification("Non hai abbastanza Fortuna per farlo!"); // TODO Language
+        }
+
+        this.#character.currentLuck -= luckCost;
+
+        this.#getActiveDice().forEach((dice, index) => {
+            this.#diceContent[index] = Math.floor(Math.random() * 20) + 1
+            this.#diceActive = Array(5).fill(false);
+            if(this.#hasRolled){
+                this.#diceRerolled[index] = true;
+            }
+        });
+        // !IMPORTANT, DON'T MOVE!
+        // This is used above, keep it here
+        this.#hasRolled = true;
+    }
+
+    #getActiveDice(){
+        return this.#diceActive.filter(Boolean);
+    }
+
+    #getActiveDiceCount(){
+        return this.#getActiveDice().length;
+    }
+
+    #getRerolledDiceCount(){
+        return this.#diceRerolled.filter(Boolean).length;
+    }
+
+    #getApCost(){
+        switch (this.#getActiveDiceCount()) {
+            case 5: return 6;
+            case 4: return 3;
+            case 3: return 1;
+            default: return 0;
+        }
+    }
+
+    #getLuckCost(){
+        let luckCost;
+        if(!this.#hasRolled){
+            luckCost = this.#isUsingLuck-this.#isAiming;
+        } else {
+            const rerollingCount = this.#getActiveDiceCount();
+            const rerolledCount = this.#getRerolledDiceCount();
+            const alreadyPayed = this.#isUsingLuck - this.#isAiming + rerolledCount;
+            luckCost = rerollingCount + (alreadyPayed < 0 ? -1 : 0); // Was aiming already used?
+        }
+        return luckCost;
+    }
+
+    #getPayedLuck(){
+        let payedLuck = 0;
+        if(this.#hasRolled){
+            const rerolledCount = this.#getRerolledDiceCount();
+            payedLuck = this.#isUsingLuck - this.#isAiming + rerolledCount;
+        }
+        return payedLuck > 0 ? payedLuck : 0;
+    }
+}
+
+
+
+
+// Wait for the DOM to be fully loaded before running any script
+document.addEventListener("DOMContentLoaded", () => {
 
     /**
      * Shows a custom notification message. Replaces alert().
      * @param {string} message The message to display.
      */
-    function showNotification(message) {
+    window.showNotification = (message) => {
         // TODO This is a placeholder for custom notification logic.
         console.warn("Notification:", message); // For now, we log to the console.
         // Example:
@@ -69,8 +252,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // popups.notification.showModal();
         alert(message); // Reverted to alert for now so you can see it working.
     }
-
-    function closeActivePopup() {
+    // TODO might have a better way, might conflict with multiple dialogs + tooltips etc
+    window.closeActivePopup = () => {
         const activeDialog = document.querySelector('dialog[open]');
         if (activeDialog) {
             activeDialog.addEventListener('animationend', () => {
@@ -86,204 +269,44 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener('click', closeActivePopup);
     });
 
-
-
+    const d20Popup = new D20Popup();
     window.openD20Popup = (skillId, objectId) => {
-        resetD20Popup(skillId, objectId);
-        popups.d20.showModal();
+        d20Popup.open(skillId, objectId);
     };
 
-    d20PopupElements.selector.addEventListener('change', updateTargetsD20Popup);
-    d20PopupElements.luckCheckbox.addEventListener('change', onLuckCheckboxChange);
-    d20PopupElements.dice.forEach((dice, index) => {
-        dice.addEventListener('click', () => handleD20Click(dice, index));
-    });
-    d20PopupElements.aimCheckbox.addEventListener('change', updateLuckCostUI);
-    d20PopupElements.damageButton.addEventListener('click', () => {
-        closeActivePopup();
-        openD6Popup(d20RollState.objectId);
-    });
-    d20PopupElements.rollButton.addEventListener('click', handleD20Roll);
+    // TODO To refactor
+    const popups = {
+        d6: document.getElementById('d6-popup'),
+        addItem: document.getElementById('add-item-popup'),
+        // It's good practice to add a dedicated notification popup instead of using alert() TODO
+        notification: document.getElementById('notification-popup')
+    };
 
+    const d6PopupElements = {
+        popup: popups.d6,
+        weaponName: document.getElementById('d6-weapon-name'),
+        damageType: document.getElementById('d6-damage-type'),
+        tagsContainer: document.getElementById('d6-tags'),
+        damageDiceContainer: document.getElementById('d6-damage-dice-container'),
+        extraHitsTitle: document.getElementById('d6-extra-hits-title'),
+        extraHitsContainer: document.getElementById('d6-extra-hits-container'),
+        totalDamage: document.getElementById('d6-total-damage'),
+        totalEffects: document.getElementById('d6-total-effects'),
+        rollButton: document.getElementById('d6-roll-button')
+    };
 
-    function resetD20Popup(skillId, objectId) {
-        d20RollState = {
-            skillId: skillId,
-            objectId: objectId,
-            hasRolled: false,
-            previousSpecial: null
+    let d6RollState = {};
+
+    window.openD6Popup = (weaponId) => {
+        if (!weaponData[weaponId]) {
+            return showNotification(`Arma non trovata: ${weaponId}`);
         }
+        resetD6RollState(weaponId);
+        updateD6PopupUI();
+        popups.d6.showModal();
+    };
 
-        d20PopupElements.skillTitle.textContent = translate(skillId);
-
-        d20PopupElements.selector.value = Character.getSpecialFromSkill(skillId);
-        d20PopupElements.selector.disabled = false;
-        d20PopupElements.luckCheckbox.checked = false;
-
-        d20PopupElements.aimCheckbox.checked = false;
-
-        updateTargetsD20Popup(skillId);
-
-        d20PopupElements.dice.forEach((dice, index) => {
-            dice.textContent = "?";
-            dice.classList.remove('roll-crit', 'roll-complication', 'rerolled');
-            dice.classList.toggle('active', index < 2);
-        });
-
-        updateAPCostUI();
-        updateLuckCostUI();
-
-        d20PopupElements.successesDisplay.textContent = `${translate("successes")}: ?`;
-
-        // Update button states
-        d20PopupElements.damageButton.style.display = objectId ? 'block' : 'none';
-        d20PopupElements.damageButton.disabled = true;
-
-
-        d20PopupElements.rollButton.textContent = getSpacedTranslation("roll", "reroll");
-    }
-
-    function getSpacedTranslation(langId, langId2) {
-        const transl1 = translate(langId);
-        const transl2 = translate(langId2);
-        const l1 = transl1.length;
-        const l2 = transl2.length;
-        if(l1 >= l2){
-            return transl1;
-        } else {
-            const diff = l2 - l1;
-            return ' '.repeat(Math.floor(diff/2)) + transl1 + ' '.repeat(Math.ceil(diff/2));
-        }
-    }
-
-    function updateTargetsD20Popup(){
-        // Update target numbers
-        const skillVal = characterData.getSkill(d20RollState.skillId);
-        const specialVal = characterData.getSpecial(d20PopupElements.selector.value);
-        const isSpecialty = characterData.hasSpecialty(d20RollState.skillId);
-        d20PopupElements.targetNumber.textContent = `Target: ${specialVal + skillVal}`;
-        d20PopupElements.targetNumberBreakdown.textContent = `${skillVal} (Skill) + ${specialVal} (Special)`;
-        d20PopupElements.critBreakdown.textContent = `Critical Hit: Roll ${isSpecialty ? `≤ ${skillVal}` : `= 1`}`;
-    }
-
-    /** Updates the AP cost display. */
-    function updateAPCostUI() {
-        const costMap = { 3: 1, 4: 3, 5: 6 };
-        const activeDice = popups.d20.querySelectorAll('.d20-dice.active').length;
-        d20PopupElements.apCost.textContent = costMap[activeDice] || 0;
-    }
-
-    /** Updates the Luck cost display. */
-    function updateLuckCostUI() {
-
-        const aimingBonus = d20PopupElements.aimCheckbox.checked ? -1 : 0
-        const useLuckCost = d20PopupElements.luckCheckbox.checked ? 1 : 0
-
-        let alreadyPayed = 0;
-        let toPay;
-        if(!d20RollState.hasRolled){
-            toPay = useLuckCost+aimingBonus;
-        } else {
-            const rerollingCount = popups.d20.querySelectorAll('.d20-dice.active').length;
-            const rerolledCount = popups.d20.querySelectorAll('.d20-dice.rerolled').length;
-            alreadyPayed = useLuckCost + aimingBonus + rerolledCount;
-            toPay = rerollingCount + (alreadyPayed < 0 ? -1 : 0);
-        }
-        toPay = `(${toPay})`;
-        alreadyPayed = alreadyPayed > 0 ? alreadyPayed : 0;
-
-        d20PopupElements.payedLuck.textContent = alreadyPayed;
-        d20PopupElements.luckCost.textContent = toPay;
-    }
-
-    function onLuckCheckboxChange() {
-        const isUsingLuck = d20PopupElements.luckCheckbox.checked;
-        if (isUsingLuck) {
-            if (characterData.currentLuck > 0) {
-                d20RollState.previousSpecial = d20PopupElements.selector.value;
-                d20PopupElements.selector.value = 'luck';
-                d20PopupElements.selector.disabled = true;
-            } else {
-                showNotification("Non hai abbastanza Fortuna per farlo.");
-                d20PopupElements.luckCheckbox.checked = false;
-            }
-        } else {
-            d20PopupElements.selector.disabled = false;
-            d20PopupElements.selector.value = d20RollState.previousSpecial;
-        }
-        updateLuckCostUI();
-    }
-
-    function handleD20Click(dice, index) {
-        if (!d20RollState.hasRolled) {
-            // Before the first roll, clicking a dice sets the number of dice to roll.
-            const activeDice = Math.max(2, index + 1)
-            d20PopupElements.dice.forEach((d, i) => {
-                d.classList.toggle('active', i < activeDice);
-            });
-            updateAPCostUI();
-        } else {
-            // After the first roll, clicking toggles dice for a re-roll.
-            if (dice.textContent !== '?' && !dice.classList.contains('rerolled')) {
-                dice.classList.toggle('active');
-            }
-        }
-        updateLuckCostUI();
-    }
-
-    function handleD20Roll() {
-        const skillId = d20RollState.skillId;
-        const activeDice = popups.d20.querySelectorAll('.d20-dice.active');
-        if (activeDice.length === 0) {
-            return showNotification("Seleziona dei dadi da (ri)lanciare!");
-        }
-
-        let luckCost = eval(d20PopupElements.luckCost.textContent);
-        luckCost = luckCost > 0 ? luckCost : 0;
-        if (characterData.currentLuck < luckCost) {
-            return showNotification("Non hai abbastanza Fortuna per farlo!");
-        }
-
-        characterData.currentLuck -= luckCost;
-
-        d20PopupElements.selector.disabled = true;
-        d20PopupElements.luckCheckbox.disabled = true;
-        d20PopupElements.aimCheckbox.disabled = true;
-
-        const critVal = characterData.hasSpecialty(skillId) ?
-            characterData.getSkill(skillId) || 1 : 1;
-        activeDice.forEach(dice => {
-            const roll = Math.floor(Math.random() * 20) + 1;
-            dice.textContent = roll;
-
-            dice.classList.toggle('roll-complication', roll >= 20);
-            dice.classList.toggle('roll-crit', roll <= critVal);
-
-            dice.classList.remove('active');
-            if (d20RollState.hasRolled) {
-                dice.classList.add('rerolled');
-            }
-        });
-
-        // Keep below dice rolls so they don't get "rerolled" on first roll
-        d20RollState.hasRolled = true;
-
-        // Recalculate successes from all dice shown
-        let successes = 0;
-        d20PopupElements.dice.forEach(dice => {
-            const roll = Number(dice.textContent);
-            if (!isNaN(roll)) {
-                const targetVal = characterData.getSkill(skillId) + characterData.getSpecial(d20PopupElements.selector.value);
-                if (roll <= critVal) successes += 2;
-                else if (roll <= targetVal) successes++;
-            }
-        });
-        d20PopupElements.successesDisplay.textContent = `${translate("successes")}: ${successes}`;
-
-        // Update UI for the "post-roll" state
-        d20PopupElements.damageButton.disabled = false;
-        d20PopupElements.rollButton.textContent = getSpacedTranslation("reroll", "roll");
-    }
+    d6PopupElements.rollButton.addEventListener('click', handleD6Roll);
 
     /**
      * Resets the dice roll state to its default values.
@@ -435,6 +458,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+    // Elements specific to the Add Item Popup
+    const addItemPopupElements = {
+        select: popups.addItem.querySelector('#selector'),
+        quantity: popups.addItem.querySelector('#quantitySelector'),
+        confirmButton: popups.addItem.querySelector('.confirm-button')
+    };
+
     window.openAddItemModal = (itemType) => {
         // This mapping makes the function much cleaner and easier to extend.
         const itemConfig = {
@@ -475,19 +505,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         popups.addItem.showModal();
     };
-
-
-
-    window.openD6Popup = (weaponId) => {
-        if (!weaponData[weaponId]) {
-            return showNotification(`Arma non trovata: ${weaponId}`);
-        }
-        resetD6RollState(weaponId);
-        updateD6PopupUI();
-        popups.d6.showModal();
-    };
-
-    d6PopupElements.rollButton.addEventListener('click', handleD6Roll);
 
     // Add item popup listener
     addItemPopupElements.confirmButton.addEventListener('click', () => {
