@@ -36,7 +36,6 @@ class D20Popup {
         D20Popup.#dom.dice.forEach((dice, index) => {
             dice.addEventListener('click', () => {
                 this.#onDiceClick(index);
-                this.#render();
             });
         });
         D20Popup.#dom.aimCheckbox.addEventListener('change', (event) => {
@@ -47,10 +46,7 @@ class D20Popup {
             closeActivePopup(); // FIXME
             openD6Popup(this.#objectId);
         });
-        D20Popup.#dom.rollButton.addEventListener('click', () => {
-            this.#handleRoll();
-            this.#render();
-        });
+        D20Popup.#dom.rollButton.addEventListener('click', () => this.#onRoll());
     }
 
     #character;
@@ -68,7 +64,6 @@ class D20Popup {
 
     open(skillId, objectId){
         this.#initialize(skillId, objectId);
-        this.#render();
         D20Popup.#htmlElement.showModal();
     }
 
@@ -85,6 +80,8 @@ class D20Popup {
         this.#diceContent = Array(5).fill('?');
         this.#diceActive = [true, true, false, false, false];
         this.#diceRerolled = Array(5).fill(false);
+
+        this.#render();
     }
 
     #render() {
@@ -142,7 +139,7 @@ class D20Popup {
 
         if(this.#objectId){
             D20Popup.#dom.damageButton.style.display = 'block';
-            D20Popup.#dom.damageButton.disabled = this.#hasRolled;
+            D20Popup.#dom.damageButton.disabled = !this.#hasRolled;
         } else {
             D20Popup.#dom.damageButton.style.display = 'none';
         }
@@ -161,9 +158,10 @@ class D20Popup {
         } else if(this.#diceContent[index] !== '?' && !this.#diceRerolled[index]){
             this.#diceActive[index] = !this.#diceActive[index];
         }
+        this.#render();
     }
 
-    #handleRoll(){
+    #onRoll(){
 
         if (this.#getActiveDiceCount() === 0) {
             return showNotification("Seleziona dei dadi da (ri)lanciare!"); // TODO Language
@@ -177,16 +175,20 @@ class D20Popup {
 
         this.#character.currentLuck -= luckCost;
 
-        this.#getActiveDice().forEach((dice, index) => {
-            this.#diceContent[index] = Math.floor(Math.random() * 20) + 1
-            this.#diceActive = Array(5).fill(false);
-            if(this.#hasRolled){
-                this.#diceRerolled[index] = true;
+        this.#diceActive.forEach((isActive, index) => {
+            if(isActive){
+                this.#diceContent[index] = Math.floor(Math.random() * 20) + 1
+                if(this.#hasRolled){
+                    this.#diceRerolled[index] = true;
+                }
             }
         });
+        this.#diceActive = Array(5).fill(false);
         // !IMPORTANT, DON'T MOVE!
         // This is used above, keep it here
         this.#hasRolled = true;
+
+        this.#render();
     }
 
     #getActiveDice(){
@@ -233,6 +235,261 @@ class D20Popup {
     }
 }
 
+class D6Popup {
+    static #htmlElement =document.getElementById('d6-popup');
+    static #dom = {
+        weaponName: document.getElementById('d6-weapon-name'),
+        damageType: document.getElementById('d6-damage-type'),
+        tagsContainer: document.getElementById('d6-tags'),
+        damageDiceContainer: document.getElementById('d6-damage-dice-container'),
+        extraHitsTitle: document.getElementById('d6-extra-hits-title'),
+        extraHitsContainer: document.getElementById('d6-extra-hits-container'),
+        totalDamage: document.getElementById('d6-total-damage'),
+        totalEffects: document.getElementById('d6-total-effects'),
+        rollButton: document.getElementById('d6-roll-button')
+    }
+
+    constructor(){
+        D6Popup.#dom.rollButton.addEventListener('click', () => this.#onRoll());
+    }
+
+    #character;
+
+    #object;
+    #effects;
+    #hasRolled;
+
+    #diceActive;
+    #diceRerolled;
+    #diceClasses;
+
+    #extraDiceActive;
+    #extraDiceRerolled;
+    #extraDiceClasses;
+
+    #extraHitsTitle;
+
+    open(objectId){
+        this.#initialize(objectId);
+        D6Popup.#htmlElement.showModal();
+    }
+
+    #initialize(objectId){
+
+        const weapon = weaponData[objectId];
+        if (!weapon) {
+            alert("Trying to attack with a non-weapon object.")
+            return;
+        }
+        this.#object = weapon;
+        this.#character = characterData;
+        this.#hasRolled = false;
+
+        this.#effects = weapon.EFFECTS.split(',').map(e => e.trim());
+        D6Popup.#dom.damageDiceContainer.innerHTML = '';
+        D6Popup.#dom.extraHitsContainer.innerHTML = '';
+
+        const damageRating = parseInt(weapon.DAMAGE_RATING);
+
+
+        for (let i = 0; i < damageRating; i++) {
+            const diceDiv = this.#createD6Div(i, false);
+            D6Popup.#dom.damageDiceContainer.appendChild(diceDiv);
+        }
+        const fireRate = weapon.FIRE_RATE;
+        let extraDice = 0;
+        if (fireRate === '-') {
+            extraDice = 3;
+            this.#extraHitsTitle = "Colpi Extra (AP)";  // TODO language
+        } else if (fireRate > 0) {
+            extraDice = parseInt(fireRate);
+            this.#extraHitsTitle = "Colpi Extra";  // TODO language
+        } else {
+             this.#extraHitsTitle = "No Colpi Extra"; // TODO language
+        }
+        for (let i = 0; i < extraDice; i++) {
+            const diceDiv = this.#createD6Div(i, true);
+            D6Popup.#dom.extraHitsContainer.appendChild(diceDiv);
+        }
+
+        this.#diceActive = Array(damageRating).fill(true)
+        this.#diceRerolled = Array(damageRating).fill(false)
+        this.#diceClasses = Array(damageRating).fill(null)
+        this.#extraDiceActive = Array(extraDice).fill(false)
+        this.#extraDiceRerolled = Array(extraDice).fill(false)
+        this.#extraDiceClasses = Array(extraDice).fill(null)
+
+        this.#render();
+    }
+
+    #render(){
+        D6Popup.#dom.weaponName.textContent = translate(this.#object.ID);
+        D6Popup.#dom.damageType.textContent = this.#object.DAMAGE_TYPE; // TODO Handle language
+
+        // TODO might move to initialize
+        D6Popup.#dom.tagsContainer.innerHTML = '';
+        this.#effects.forEach(effect => {
+            const tag = document.createElement('span');
+            tag.className = 'tag';
+            tag.textContent = effect; // TODO Handle language
+            D6Popup.#dom.tagsContainer.appendChild(tag);
+        });
+
+        const dice = D6Popup.#dom.damageDiceContainer.querySelectorAll('.d6-dice');
+        for(const [index, diceClass] of this.#diceClasses.entries()){
+            this.#setDiceClass(dice[index], diceClass);
+            dice[index].classList.toggle('active', this.#diceActive[index]);
+            dice[index].classList.toggle('rerolled', this.#diceRerolled[index]);
+        }
+        const extraDice = D6Popup.#dom.extraHitsContainer.querySelectorAll('.d6-dice');
+        for(const [index, diceClass] of this.#extraDiceClasses.entries()){
+            this.#setDiceClass(extraDice[index], diceClass);
+            extraDice[index].classList.toggle('active', this.#extraDiceActive[index]);
+            extraDice[index].classList.toggle('rerolled', this.#extraDiceRerolled[index]);
+        }
+
+        D6Popup.#dom.extraHitsTitle.textContent = this.#extraHitsTitle;  // TODO language
+        // D6Popup.#dom.extraHitsContainer.style.display = this.#object.FIRE_RATE < 0 ? 'none' : 'flex';
+
+        const totEffects = this.#getEffectCount();
+        const totDamage = totEffects + this.#getDamage1Count() + this.#getDamage2Count() * 2
+        // TODO language
+        D6Popup.#dom.totalDamage.textContent = `Danni: ${this.#hasRolled ? totDamage : '?'}`;
+        D6Popup.#dom.totalEffects.textContent = `Effetti: ${this.#hasRolled ? totEffects : '?'}`;
+        D6Popup.#dom.rollButton.textContent = this.#hasRolled ? spacedTranslate("reroll", "roll") : spacedTranslate("roll", "reroll");
+    }
+
+    #setDiceClass(dice, diceClass){
+        dice.textContent = diceClass ? '' : '?';
+        ["d6-face-damage1", "d6-face-damage2", "d6-face-effect", "d6-face-blank"].forEach(c => {
+            dice.classList.toggle(c, diceClass === c)
+        });
+    }
+
+    #getEffectCount(){
+        return D6Popup.#htmlElement.querySelectorAll('.d6-dice.d6-face-effect').length;
+    }
+
+    #getDamage1Count(){
+        return  D6Popup.#htmlElement.querySelectorAll('.d6-dice.d6-face-damage1').length;
+    }
+
+    #getDamage2Count() {
+        return D6Popup.#htmlElement.querySelectorAll('.d6-dice.d6-face-damage2').length;
+    }
+
+    #createD6Div(index, isExtra) {
+        const diceDiv = document.createElement('div');
+        diceDiv.className = 'd6-dice';
+        diceDiv.addEventListener('click', () => this.#onDiceClick(index, isExtra))
+        return diceDiv
+    }
+
+    #onDiceClick(index, isExtra){
+        if(!isExtra) {
+            if (this.#hasRolled && !this.#diceRerolled[index]) {
+                this.#diceActive[index] = !this.#diceActive[index];
+            }
+        } else {
+            if(!this.#hasRolled || this.#extraDiceClasses[index]) {
+                const hasAmmo = true; // TODO Check AP / Luck / Ammo
+                if (!this.#extraDiceRerolled[index] && hasAmmo) {
+                    this.#extraDiceActive[index] = !this.#extraDiceActive[index];
+                }
+            }
+        }
+        this.#render();
+    }
+
+    #getActiveCount(){
+        return this.#getActiveDiceCount() + this.#getActiveExtraDiceCount();
+    }
+
+    #getActiveDiceCount(){
+        return this.#diceActive.filter(Boolean).length
+    }
+
+    #getActiveExtraDiceCount(){
+        return this.#extraDiceActive.filter(Boolean).length
+    }
+
+    #getRerolledCount(){
+        return this.#getRerolledDiceCount() + this.#getRerolledExtraDiceCount();
+    }
+
+    #getRerolledDiceCount(){
+        return this.#diceRerolled.filter(Boolean).length
+    }
+
+    #getRerolledExtraDiceCount(){
+        return this.#extraDiceRerolled.filter(Boolean).length
+    }
+
+    #getLuckCost(){
+        let luckCost = 0;
+        if(this.#hasRolled){
+            // Rerolling damage dice costs 1 luck every 3 rerolled dice
+            const rerolledCount = this.#getRerolledCount();
+            const payedLeftover = rerolledCount % 3;// 1 luck x 3 rerolls. Luck for leftover was paid previous roll.
+            let freeRerolls = payedLeftover > 0 ? 3 - payedLeftover : 0;
+            luckCost = Math.floor((this.#getActiveCount() - freeRerolls) / 3);
+        }
+        return luckCost;
+    }
+
+    #onRoll(){
+        if (this.#getActiveCount() === 0) {
+            return showNotification("Seleziona dei dadi da (ri)lanciare!"); // TODO language
+        }
+
+        let luckCost = this.#getLuckCost();
+        luckCost = luckCost > 0 ? luckCost : 0;
+        if (this.#character.currentLuck < luckCost) {
+            return showNotification("Non hai abbastanza Fortuna per farlo!"); // TODO Language
+        }
+        this.#character.currentLuck -= luckCost;
+
+        this.#diceActive.forEach((isActive, index) => {
+            if(isActive){
+                const roll = Math.floor(Math.random() * 6) + 1;
+
+                let diceClass;
+                if(roll >= 5) diceClass = "d6-face-blank";
+                else if(roll >= 3) diceClass = "d6-face-effect";
+                else if(roll >=2) diceClass = "d6-face-damage2";
+                else diceClass = "d6-face-damage1";
+
+                this.#diceClasses[index] = diceClass;
+                if(this.#hasRolled){
+                    this.#diceRerolled[index] = true;
+                }
+            }
+        });
+        this.#diceActive = Array(5).fill(false);
+
+        this.#extraDiceActive.forEach((isActive, index) => {
+            if(isActive){
+                const roll = Math.floor(Math.random() * 6) + 1;
+
+                let diceClass;
+                if(roll >= 5) diceClass = "d6-face-blank";
+                else if(roll >= 3) diceClass = "d6-face-effect";
+                else if(roll >=2) diceClass = "d6-face-damage2";
+                else diceClass = "d6-face-damage1";
+
+                this.#extraDiceClasses[index] = diceClass;
+                if(this.#hasRolled){
+                    this.#extraDiceRerolled[index] = true;
+                }
+            }
+        });
+        this.#extraDiceActive = Array(5).fill(false);
+
+        this.#hasRolled = true;
+        this.#render();
+    }
+}
+
 
 
 
@@ -274,188 +531,17 @@ document.addEventListener("DOMContentLoaded", () => {
         d20Popup.open(skillId, objectId);
     };
 
+    const d6Popup = new D6Popup();
+    window.openD6Popup = (objectId) => {
+        d6Popup.open(objectId);
+    };
+
     // TODO To refactor
     const popups = {
-        d6: document.getElementById('d6-popup'),
         addItem: document.getElementById('add-item-popup'),
         // It's good practice to add a dedicated notification popup instead of using alert() TODO
         notification: document.getElementById('notification-popup')
     };
-
-    const d6PopupElements = {
-        popup: popups.d6,
-        weaponName: document.getElementById('d6-weapon-name'),
-        damageType: document.getElementById('d6-damage-type'),
-        tagsContainer: document.getElementById('d6-tags'),
-        damageDiceContainer: document.getElementById('d6-damage-dice-container'),
-        extraHitsTitle: document.getElementById('d6-extra-hits-title'),
-        extraHitsContainer: document.getElementById('d6-extra-hits-container'),
-        totalDamage: document.getElementById('d6-total-damage'),
-        totalEffects: document.getElementById('d6-total-effects'),
-        rollButton: document.getElementById('d6-roll-button')
-    };
-
-    let d6RollState = {};
-
-    window.openD6Popup = (weaponId) => {
-        if (!weaponData[weaponId]) {
-            return showNotification(`Arma non trovata: ${weaponId}`);
-        }
-        resetD6RollState(weaponId);
-        updateD6PopupUI();
-        popups.d6.showModal();
-    };
-
-    d6PopupElements.rollButton.addEventListener('click', handleD6Roll);
-
-    /**
-     * Resets the dice roll state to its default values.
-     * @param {string} weaponId Id of the weapon used
-     */
-    function resetD6RollState(weaponId) {
-        d6RollState = {
-            weaponId: weaponId,
-            hasRolled: false,
-        };
-    }
-
-
-    /**
-     * Updates all displays in the d6 popup based on the current d6RollState.
-     */
-    function updateD6PopupUI() {
-        const weapon = weaponData[d6RollState.weaponId];
-        if (!weapon) {
-            alert("Trying to attack with a non-weapon object.")
-            return;
-        }
-
-        // Stuff that don't change after Dice are rolled (and d6 need to be kept for the classes)
-        if(!d6RollState.hasRolled) {
-            d6PopupElements.damageDiceContainer.innerHTML = '';
-            d6PopupElements.extraHitsContainer.innerHTML = '';
-            d6PopupElements.tagsContainer.innerHTML = '';
-
-            // Imposta testi e tag
-            d6PopupElements.weaponName.textContent = translate(weapon.ID);
-            d6PopupElements.damageType.textContent = weapon.DAMAGE_TYPE; // TODO Handle language
-
-            weapon.EFFECTS.split(',').map(e => e.trim()).filter(e => e).forEach(effect => {
-                const tag = document.createElement('span');
-                tag.className = 'tag';
-                tag.textContent = effect;
-                d6PopupElements.tagsContainer.appendChild(tag);
-            }); // TODO Handle language
-
-            // Crea i dadi per il danno
-            let createD6Div = (index, isExtra) => {
-                const diceDiv = document.createElement('div');
-                diceDiv.className = 'd6-dice';
-                diceDiv.textContent = '?';
-                diceDiv.classList.toggle('active', !isExtra)
-                diceDiv.addEventListener('click', () => handleD6Click(diceDiv, index))
-                return diceDiv
-            }
-
-            for (let i = 0; i < weapon.DAMAGE_RATING; i++) {
-                const diceDiv = createD6Div(i, false);
-                d6PopupElements.damageDiceContainer.appendChild(diceDiv);
-            }
-
-            // Gestisce i colpi extra
-            const fireRate = weapon.FIRE_RATE;
-            if (fireRate === '-') {
-                d6PopupElements.extraHitsTitle.textContent = "Colpi Extra (AP)";
-                d6PopupElements.extraHitsContainer.style.display = 'flex';
-                for (let i = 0; i < 3; i++) { // 3 dadi fissi se il fire rate è '-'
-                    const diceDiv = createD6Div(i, true);
-                    d6PopupElements.extraHitsContainer.appendChild(diceDiv);
-                }
-            } else if (fireRate > 0) {
-                d6PopupElements.extraHitsTitle.textContent = "Colpi Extra";  // TODO language
-                d6PopupElements.extraHitsContainer.style.display = 'flex';
-                for (let i = 0; i < fireRate; i++) {
-                    const diceDiv = createD6Div(i, true);
-                    d6PopupElements.extraHitsContainer.appendChild(diceDiv);
-                }
-            } else {
-                 d6PopupElements.extraHitsTitle.textContent = "No Colpi Extra"; // TODO language
-                 d6PopupElements.extraHitsContainer.style.display = 'none';
-            }
-            // Resetta i risultati
-            d6PopupElements.totalDamage.textContent = 'Danni: ?';
-            d6PopupElements.totalEffects.textContent = 'Effetti: ?';
-            d6PopupElements.rollButton.textContent = 'Lancia';
-        } else {
-            const totEffects = d6PopupElements.popup.querySelectorAll('.d6-dice.d6-face-effect').length;
-            const totDamage1 = d6PopupElements.popup.querySelectorAll('.d6-dice.d6-face-damage1').length;
-            const totDamage2 = d6PopupElements.popup.querySelectorAll('.d6-dice.d6-face-damage2').length;
-
-            d6PopupElements.totalDamage.textContent = `Danni: ${totEffects + totDamage1 + (totDamage2 * 2)}`;
-            d6PopupElements.totalEffects.textContent = `Effetti: ${totEffects}`;
-            d6PopupElements.rollButton.textContent = 'Rilancia';
-        }
-    }
-
-
-
-    function handleD6Click(dice, index) {
-        if (d6RollState.hasRolled && !dice.classList.contains('rerolled') &&  dice.textContent !== '?') {
-            dice.classList.toggle("active");
-
-            // TODO check for luck / ammo / ap
-        }
-    }
-
-    /**
-     * Gestisce il click sul pulsante per lanciare i dadi del danno.
-     */
-    function handleD6Roll() {
-        const activeDice = popups.d6.querySelectorAll('.d6-dice.active');
-        if (activeDice.length === 0) {
-            return showNotification("Seleziona dei dadi da (ri)lanciare!");
-        }
-
-        // Calculate luck cost
-        let luckCost = 0;
-        if (d6RollState.hasRolled) {
-            const rerolledCount = popups.d6.querySelectorAll('.d6-dice.rerolled').length;
-            const payedLeftover = rerolledCount % 3; // 1 luck x 3 rerolls. Luck for leftover was paid previous roll.
-            let freeRerolls = 0;
-            if(payedLeftover > 0) {
-                freeRerolls = 3 - payedLeftover;
-            }
-            luckCost = Math.floor((activeDice.length - freeRerolls) / 3);
-        }
-
-        if (characterData.currentLuck < luckCost) {
-            return showNotification("Non hai abbastanza Fortuna per farlo!");
-        }
-
-        // Perform the roll
-        characterData.currentLuck -= luckCost;
-
-        const diceElements = d6PopupElements.popup.querySelectorAll('.d6-dice.active');
-
-        diceElements.forEach(dice => {
-            const roll = Math.floor(Math.random() * 6) + 1;
-            dice.textContent = roll; // TODO mettere le immagini
-            dice.classList.remove('active');
-            if (d6RollState.hasRolled) {
-                dice.classList.add('rerolled')
-            }
-
-            dice.classList.toggle("d6-face-damage1", roll === 1)
-            dice.classList.toggle("d6-face-damage2", roll === 2)
-            dice.classList.toggle("d6-face-effect", roll > 2 && roll < 5)
-            dice.classList.toggle("d6-face-blank", roll >= 5)
-            dice.textContent = ''
-        });
-
-        d6RollState.hasRolled = true;
-        updateD6PopupUI();
-    }
-
 
 
     // Elements specific to the Add Item Popup

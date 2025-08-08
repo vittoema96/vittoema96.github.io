@@ -1,13 +1,21 @@
 # TODO
 
 # Main
+- Fix d6popup layout (add costs + bodyPart)
+- Consume ammo on shooting
+- Implement weapon property popups
+- Fix card overlay
+- Refactor Display + Character (use #render())
+- Implement notification popup
+
+## Secondary
 - Fix card layout
 - Finish templating cards
 - Consumable items (maybe change icon?)
 - There is something wrong in how cards scroll, check it out
-## D6Popup
-- Add Ammo/AP/Luck displays and checks for D6Popup
-- ...
+
+# Other TODOs 
+
 ## Weapons
 - Implement mods on weapons
 - Add Unarmed "Weapon" by default
@@ -17,6 +25,7 @@
 - Implement VaultBoy image with body parts
 - Implement armor inventory + equipping armor 
 - Implement mods on armor
+
 ## Map
 - Add map markers
 - Add unlockable markers
@@ -36,7 +45,6 @@
   2. EFFECTS translation
 
 ### Other
-- Implement popup with weapon tags description 
 - Remove navigation bar from viewport (mobile, non-PWA mode (what did i mean?????) )
 - Uniform all icons (https://maskable.app/)
 - In webmanifest add "form_factor: narrow/wide" to allow screenshots only for mobile or desktop (also implement desktop screenshots and improve screenshots in general)
