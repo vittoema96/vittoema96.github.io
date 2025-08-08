@@ -23,7 +23,7 @@ class Display {
 
             skills: this.getDisplayMap(Character.getSkillList(), "skill-%s"),
             specialties: this.getDisplayMap(Character.getSkillList(), "specialty-%s"),
-            itemContainers: this.getDisplayMap(["smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "food", "drinks", "meds", "ammo"], "%s-cards"),
+            itemContainers: this.getDisplayMap(["smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "unarmed", "food", "drinks", "meds", "ammo"], "%s-cards"),
 
             editStatsButton: document.getElementById('edit-stats-button'),
             statContainer: document.getElementById('stat-container'),
@@ -148,7 +148,12 @@ class Display {
     updateItems(character) {
         requestAnimationFrame(() => {
             for (const type of Object.keys(this.elementMaps)) {
-                const itemsOfType = character.getItemsByType(type);
+                let itemsOfType;
+                if(type === "unarmed"){
+                    itemsOfType = [{id: "weaponUnarmedStrike", type: type, quantity: 1}]
+                } else {
+                    itemsOfType = character.getItemsByType(type);
+                }
                 const container = this.dom.itemContainers[type];
                 const currentMap = this.elementMaps[type];
                 const newIdSet = new Set(itemsOfType.map(item => item.id));

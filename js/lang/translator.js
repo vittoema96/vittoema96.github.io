@@ -6,12 +6,16 @@ let langData = {
     it: undefined
 };
 
-function translate(langId, langFormat){
-    const format = langFormat || "%s"
+function translate (langId, langFormat) {
+    const format = langFormat || "%s";
+    let tier;
+    [langId, tier] = langId.split(' ');
 
     let transl = langData[currentLanguage][langId];
     if(transl === undefined)
         transl = "!NO.TRANSL!";
+    tier = tier ? ` ${tier}` : '';
+    transl = `${transl}${tier}`
 
     return format.replace("%s", transl);
 }

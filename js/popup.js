@@ -1,3 +1,6 @@
+
+let activeTag = null;
+
 class D20Popup {
 
     static #htmlElement = document.getElementById('d20-popup');
@@ -285,12 +288,24 @@ class D6Popup {
         this.#character = characterData;
         this.#hasRolled = false;
 
-        this.#effects = weapon.EFFECTS.split(',').map(e => e.trim());
+        D6Popup.#dom.tagsContainer.innerHTML = '';
+        this.#effects = getListFromString(weapon.EFFECTS);
+        this.#effects.forEach(effect => {
+            const tag = document.createElement('span');
+            tag.className = 'tag';
+            tag.textContent = translate(effect);
+            tag.dataset.tooltipId = `${effect.split(' ')[0]}Description`;
+            D6Popup.#dom.tagsContainer.appendChild(tag);
+        });
+
+
         D6Popup.#dom.damageDiceContainer.innerHTML = '';
         D6Popup.#dom.extraHitsContainer.innerHTML = '';
 
-        const damageRating = parseInt(weapon.DAMAGE_RATING);
-
+        let damageRating = parseInt(weapon.DAMAGE_RATING);
+        if(weapon.SKILL === "unarmed" || weapon.SKILL === "meleeWeapons"){
+            damageRating += this.#character.meleeDamage;
+        }
 
         for (let i = 0; i < damageRating; i++) {
             const diceDiv = this.#createD6Div(i, false);
@@ -325,15 +340,6 @@ class D6Popup {
     #render(){
         D6Popup.#dom.weaponName.textContent = translate(this.#object.ID);
         D6Popup.#dom.damageType.textContent = this.#object.DAMAGE_TYPE; // TODO Handle language
-
-        // TODO might move to initialize
-        D6Popup.#dom.tagsContainer.innerHTML = '';
-        this.#effects.forEach(effect => {
-            const tag = document.createElement('span');
-            tag.className = 'tag';
-            tag.textContent = effect; // TODO Handle language
-            D6Popup.#dom.tagsContainer.appendChild(tag);
-        });
 
         const dice = D6Popup.#dom.damageDiceContainer.querySelectorAll('.d6-dice');
         for(const [index, diceClass] of this.#diceClasses.entries()){
@@ -535,6 +541,127 @@ document.addEventListener("DOMContentLoaded", () => {
     window.openD6Popup = (objectId) => {
         d6Popup.open(objectId);
     };
+
+    const tooltipContainer = document.getElementById('tooltip-container');
+
+    document.body.addEventListener('mouseenter', (event) => {
+        if(event.target.matches('.tag')){
+            openTooltip(event.target);
+        }
+    });
+    document.body.addEventListener('mouseleave', (event) => {
+        if(event.target.matches('.tag')){
+            hideTooltip();
+        }
+    });
+    // Hide tooltip if clicking outside an active tag
+    document.addEventListener('click', (e) => {
+        if (activeTag && !activeTag.contains(e.target) && !tooltipContainer.contains(e.target)) {
+            hideTooltip();
+        }
+    });
+
+    // Touch events for mobile (toggle behavior)
+    document.addEventListener('touchstart', (e) => {
+        const touchedTag = e.target.closest('.tag');
+
+        if (touchedTag) {
+            e.preventDefault();
+            // If tapping the same tag that's already active, hide it.
+            if (activeTag === touchedTag) {
+                hideTooltip();
+            } else {
+                // If another tooltip is open, hide it first.
+                if (activeTag) {
+                    hideTooltip();
+                }
+                // Then show the new one.
+                openTooltip(touchedTag);
+            }
+        } else if (activeTag && !tooltipContainer.contains(e.target)) {
+            // If tapping outside an active tag and the tooltip, hide it.
+            hideTooltip();
+        }
+    }, { passive: false });
+
+    window.openTooltip = (tagEl) => {
+        if (!tagEl) return;
+
+        // Get the tooltip text from the data attribute
+        const tooltipText = translate(tagEl.dataset.tooltipId);
+        if (!tooltipText) return;
+
+        const parentDialog = tagEl.closest('dialog[open]');
+        if (parentDialog) {
+            parentDialog.appendChild(tooltipContainer);
+        }
+
+        activeTag = tagEl;
+
+        // Set the text and make it visible
+        tooltipContainer.textContent = tooltipText;
+        tooltipContainer.appendChild(document.createElement('div')).className = 'tooltip-arrow'; // Re-add arrow
+        tooltipContainer.classList.add('visible');
+
+        // Position the tooltip
+        positionTooltip(tagEl);
+    };
+
+    // Function to position the tooltip relative to the target element
+    const positionTooltip = (tagEl) => {
+        // TODO Somethings wrong, check why and fix it
+
+        const tagRect = tagEl.getBoundingClientRect();
+        const tooltipRect = tooltipContainer.getBoundingClientRect();
+
+        const spacing = 12; // Space between the tag and the tooltip
+        let top, left;
+
+        // Default position is above the tag
+        tooltipContainer.className = 'tooltip-panel visible pos-top';
+
+        const dialogRect = tagEl.closest('dialog[open]')?.getBoundingClientRect();
+        const dialogTop = dialogRect?.top || 0;
+        const dialogLeft = dialogRect?.left || 0;
+        top = tagRect.top - tooltipRect.height - spacing - dialogTop;
+        left = tagRect.left + (tagRect.width / 2) - (tooltipRect.width / 2) - dialogLeft;
+
+        // If it goes off the top of the screen, place it below instead
+        if (top < 0) {
+            tooltipContainer.className = 'tooltip-panel visible pos-bottom';
+            top = tagRect.bottom + spacing - dialogTop;
+        }
+
+        // Prevent it from going off the left/right edges
+        if (left < 0) {
+            left = spacing - dialogLeft;
+        } else if (left + tooltipRect.width > window.innerWidth) {
+            left = window.innerWidth - tooltipRect.width - spacing - dialogLeft;
+        }
+
+        tooltipContainer.style.top = `${top}px`;
+        tooltipContainer.style.left = `${left}px`;
+    };
+
+    // Function to hide the tooltip
+    window.hideTooltip = () => {
+        activeTag = null;
+        // KEY CHANGE: Move tooltip back to the body to reset it for non-dialog tags.
+        if (tooltipContainer.parentElement !== document.body) {
+            document.body.appendChild(tooltipContainer);
+        }
+
+        tooltipContainer.classList.remove('visible');
+    };
+
+    // Hide tooltip if clicking outside an active tag
+    document.addEventListener('click', (e) => {
+        if (activeTag && !activeTag.contains(e.target)) {
+            hideTooltip();
+        }
+    });
+
+
 
     // TODO To refactor
     const popups = {

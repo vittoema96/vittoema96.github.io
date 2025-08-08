@@ -1,6 +1,7 @@
 # TODO
 
 # Main
+- Fix close popup button position
 - Fix d6popup layout (add costs + bodyPart)
 - Consume ammo on shooting
 - Implement weapon property popups

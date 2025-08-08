@@ -176,7 +176,8 @@ function createWeaponCard(weaponId, quantity) {
             </div>
         </div>
         <div class="tags-container">
-            ${weapon.EFFECTS.split(',').map(e => e.trim()).filter(e => e !== "").map(effect => `<span class="tag">${effect}</span>`).join('')}
+            ${getListFromString(weapon.EFFECTS)
+                    .map(effect => `<span class="tag" data-tooltip-id="${effect.split(' ')[0]}Description">${translate(effect)}</span>`).join('')}
         </div>`;
 
     return createGenericCard(weapon, weaponHTML, weapon.SKILL, quantity);
@@ -239,3 +240,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     display.initialize(characterData); // Pass character data to display
     loadTranslations();
 });
+
+window.getListFromString = (string) => {
+    let result = string;
+    result = result.split(','); // Divide elements
+    result = result.map(e => e.trim()); // Remove whitespaces
+    result = result.filter(e => e); // Filter out '', null, undefined, etc
+    return result;
+}

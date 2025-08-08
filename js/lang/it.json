@@ -289,6 +289,24 @@
   "medsDilutedStimpak": "Stimpak (diluito)",
   "medsSuperStimpak": "Super Stimpak",
   "medsUltraJet": "Ultra Jet",
-  "medsXCell": "X - Cell"
+  "medsXCell": "X - Cell",
 
+
+  "effectBurst":  "Raffica",
+  "effectBreaking": "Dirompente",
+  "effectPersistent": "Persistente",
+  "effectPiercing": "Penetrante",
+  "effectRadioactive": "Radioattivo",
+  "effectSpread": "Propagato",
+  "effectStunned": "Stordente",
+  "effectVicious": "Violento",
+
+  "effectBurstDescription": "L’attacco colpisce un bersaglio aggiuntivo che si trova a distanza Ravvicinata dal primo bersaglio per ogni Effetto ottenuto. Tutti i bersagli aggiuntivi richiedono l’utilizzo di un’unità di munizioni aggiuntiva dell’arma.",
+  "effectBreakingDescription": "Per ogni Effetto ottenuto, riduce permanentemente di 1 il numero di DC forniti al bersaglio da una copertura. Se il bersaglio non ha copertura, allora riduce di 1 la RD del punto colpito in base al tipo di danno dell’arma; ad esempio il danno fisico riduce soltanto la RD fisica.",
+  "effectPersistentDescription": "Se si ottengono uno o più Effetti, il bersaglio subisce nuovamente il danno dell’arma alla fine dei turni successivi, per un numero di round pari al numero di Effetti ottenuti. Il bersaglio può utilizzare un’azione maggiore per effettuare una prova in modo da interrompere anticipatamente il danno Persistente, la difficoltà è pari al numero di Effetti ottenuti e l’attributo + abilità vengono scelti dal GM. Alcune armi Persistenti possono infliggere un tipo differente di danno all’arma, in questi casi viene indicato fra parentesi, ad esempio: Persistente (Veleno).",
+  "effectPiercingDescription": "Ignora X punti della RD del bersaglio per ogni Effetto ottenuto, dove X corrisponde al valore dell’effetto del danno.",
+  "effectRadioactiveDescription": "Per ogni Effetto ottenuto, il bersaglio subisce anche 1 danno da Radiazioni. Il danno da Radiazioni viene sommato e applicato separatamente, dopo che il personaggio ha subito il danno normale dell’attacco.",
+  "effectSpreadDescription": "Per ogni Effetto ottenuto, l’attacco infligge uno o più colpi aggiuntivi al bersaglio. Ogni colpo aggiuntivo infligge la metà del danno tirato (arrotondato per difetto) e colpisce un punto casuale, anche se era stato bersagliato un punto specifico per l’attacco iniziale.",
+  "effectStunnedDescription": "Se si ottengono uno o più Effetti, il bersaglio non può effettuare azioni normali nel suo prossimo turno. Un individuo o creatura storditi possono comunque spendere PA per ottenere azioni aggiuntive.",
+  "effectViciousDescription": "Per ogni Effetto ottenuto, l’attacco infligge +1 danno."
 }

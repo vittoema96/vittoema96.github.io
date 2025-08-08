@@ -84,5 +84,15 @@
   "ammo_10mm": "10mm",
   "ammo_38": ".38",
   "ammo_flare": "Flare",
-  "ammo_syringer": "Syringer Ammo"
+  "ammo_syringer": "Syringer Ammo",
+
+
+  "effectBurst":  "Burst",
+  "effectBreaking": "Breaking",
+  "effectPersistent": "Persistent",
+  "effectPiercing": "Piercing",
+  "effectRadioactive": "Radioactive",
+  "effectSpread": "Spread",
+  "effectStunned": "Stunned",
+  "effectVicious": "Vicious"
 }
