@@ -1,3 +1,5 @@
+const CACHE_VERSION = "v0.0.1-alpha+13";
+const PROJECT_NAME = "PB3K";
 
 // FIRST THING: ServiceWorker Registration
 //    Allows cache to be loaded the next times
@@ -229,6 +231,10 @@ function changeTheme(value){
 changeTheme(localStorage.getItem("theme"))
 
 document.addEventListener("DOMContentLoaded", async () => {
+    const versionBootLine = document.getElementById("appVersion");
+    versionBootLine.textContent = versionBootLine.textContent.replace("{version}", CACHE_VERSION.toUpperCase())
+    console.log(`Replaced! ${versionBootLine.textContent}`);
+
     weaponData = await loadWeapons();
     foodData = await loadCSV("data/supplies/food.csv");
     drinksData = await loadCSV("data/supplies/drinks.csv");

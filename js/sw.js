@@ -1,8 +1,3 @@
-const CACHE_VERSION = "v0.0.1-alpha+12";
-const PROJECT_NAME = "PB3K";
-
-
-
 const CACHE_NAME = `${PROJECT_NAME}-${CACHE_VERSION}`;
 
 /* TODO automate stuff with Node.js or Webpack */
