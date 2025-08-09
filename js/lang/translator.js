@@ -23,18 +23,18 @@ function translate (langId, langFormat) {
 function spacedTranslate(langId, ...langIds) {
     const transl = translate(langId);
     let max = transl.length;
-    for(let lId in langIds){
+    langIds.forEach(lId => {
         const lSize = translate(lId).length
         if(lSize > max){
             max = lSize;
         }
-    }
+    });
     const lSize = transl.length;
     if(lSize >= max){
         return transl;
     } else {
         const diff = max - lSize;
-        return ' '.repeat(Math.floor(diff/2)) + transl + ' '.repeat(Math.ceil(diff/2));
+        return `&nbsp;`.repeat(Math.floor(diff/2)) + transl + `&nbsp;`.repeat(Math.ceil(diff/2));
     }
 }
 

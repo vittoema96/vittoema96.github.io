@@ -72,7 +72,6 @@ input:not([type="checkbox"]), textarea, select, button {
 }
 
 button {
-    white-space: pre;
     padding: 0.75rem 1rem;
     font-size: 1rem;
     text-align: center;
@@ -525,6 +524,7 @@ dialog[open] {
  *  Ammo Cards *
  ***************/
 .ammo-card {
+    position: relative;
     margin: 5px;
     border: var(--border-primary-thick);
     border-radius: 5px;
@@ -700,10 +700,10 @@ dialog[open] {
     align-items: center;
     z-index: 10;
 
-    gap: 20px;
+    gap: 1rem;
 }
 .card-overlay button {
-    padding: 20px;
+    padding: 1rem;
     font-size: 2rem;
     justify-content: center;
     align-items: center;
@@ -711,6 +711,18 @@ dialog[open] {
 }
 .card-overlay button img {
     width: 40px;
+}
+.ammo-card .card-overlay {
+    justify-content: end;
+}
+.ammo-card .card-overlay button {
+    font-size: 1rem;
+    padding: .2rem 1rem;
+    aspect-ratio: auto;
+    margin: 0 0.5rem;
+}
+.ammo-card .card-overlay button img {
+    width: 1rem;
 }
 
 .delete-button { background-color: var(--delete-button-color); } /* TODO same background as others? maybe use red for the icon */

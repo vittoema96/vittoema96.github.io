@@ -140,10 +140,16 @@ class Character {
     getItemQuantity(itemId) { return this.#items.find(item => item.id === itemId)?.quantity ?? 0 }
     getItemsByType(type) { return this.#items.filter(item => item.type === type); }
 
-    removeItem(itemToRemove) {
-        const index = this.#items.findIndex(item => item.id === itemToRemove.ID);
+    removeItem(itemId, quantity) {
+        const index = this.#items.findIndex(item => item.id === itemId);
         if (index > -1) {
-            this.#items.splice(index, 1);
+            const item = this.#items[index];
+            quantity = (quantity > (item.quantity || 0) ? -1 : quantity) || -1;
+            if(quantity < 0) {
+                this.#items.splice(index, 1);
+            } else {
+                item.quantity = item.quantity - quantity;
+            }
             localStorage.setItem("items", JSON.stringify(this.#items));
             if(display) {
                 display.updateItems(this);

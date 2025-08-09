@@ -1,5 +1,190 @@
 
-let activeTag = null;
+class TradeItemPopup {
+    
+    static #htmlElement = document.getElementById('trade-item-popup');
+    
+    static #dom = {
+        type: document.getElementById('tradeType'),
+        quantity: document.getElementById('tradeQuantity'),
+        price: document.getElementById('tradePrice'),
+        total: document.getElementById('tradeTotal'),
+        confirm: TradeItemPopup.#htmlElement.querySelector(".confirm-button")
+    }
+    
+    constructor(){
+        TradeItemPopup.#htmlElement.addEventListener('click', (e) => {
+            if(e.target.closest('.confirm-button')){
+                if(characterData.getItemQuantity(this.#itemId))
+                characterData.caps = characterData.caps + parseInt(TradeItemPopup.#dom.total.textContent);
+                characterData.removeItem(this.#itemId, TradeItemPopup.#dom.quantity.value);
+                // TODO check for selling too many items
+                closeActivePopup();
+            }
+        });
+        TradeItemPopup.#dom.quantity.addEventListener('change', (e) => {
+            this.#tradeQuantity = e.target.value;
+            this.#render();
+        });
+        TradeItemPopup.#dom.price.addEventListener('change', (e) => {
+            this.#tradePrice = e.target.value;
+            this.#render();
+        });
+    }
+
+    #isBuy;
+    #itemId;
+    #tradeQuantity;
+    #tradePrice;
+    #tradeValueRate = 4 / 5;
+    
+    openPopup(itemId, isBuy){
+        this.#initialize(itemId, isBuy);
+        this.#render();
+        TradeItemPopup.#htmlElement.showModal();
+    }
+
+    #initialize(itemId, isBuy){
+        this.#isBuy = !!isBuy;
+        this.#itemId = itemId;
+        if(this.#isBuy){
+            this.#tradeQuantity = 1;
+        } else {
+            this.#tradeQuantity = characterData.getItemQuantity(this.#itemId) || 1;
+        }
+        this.#tradePrice = (getItem(this.#itemId).COST || 1) * this.#tradeValueRate;
+    }
+    
+    #render(){
+        TradeItemPopup.#dom.type.textContent = translate(this.#isBuy ? "buying" : "selling");
+        TradeItemPopup.#dom.quantity.value = this.#tradeQuantity;
+        TradeItemPopup.#dom.quantity.max = this.#tradeQuantity;
+        TradeItemPopup.#dom.price.value = this.#tradePrice;
+        TradeItemPopup.#dom.total.textContent = (Math.floor(this.#tradeQuantity * this.#tradePrice)).toString();
+    }
+    
+}
+
+class TagTooltip {
+
+    static container = document.getElementById('tooltip-container');
+
+    #activeTag;
+
+    constructor(){
+        document.body.addEventListener('mouseover', (event) => {
+            if(event.target.matches('.tag')){
+                this.openTooltip(event.target);
+            }
+        });
+        document.body.addEventListener('mouseout', (event) => {
+            if(event.target.matches('.tag')){
+                this.hideTooltip();
+            }
+        });
+        // Hide tooltip if clicking outside an active tag
+        document.addEventListener('click', (e) => {
+            if (this.#activeTag &&
+                !this.#activeTag.contains(e.target) &&
+                !TagTooltip.container.contains(e.target)) {
+                this.hideTooltip();
+            }
+        });
+
+        // Touch events for mobile (toggle behavior)
+        document.addEventListener('touchstart', (e) => {
+            const touchedTag = e.target.closest('.tag');
+
+            if (touchedTag) {
+                e.preventDefault();
+                // If tapping the same tag that's already active, hide it.
+                if (this.#activeTag === touchedTag) {
+                    this.hideTooltip();
+                } else { // If another tooltip is open, hide it first.
+                    if (this.#activeTag) {
+                       this.hideTooltip();
+                    }
+                    this.openTooltip(touchedTag);
+                }
+            } else if (this.#activeTag && !TagTooltip.container.contains(e.target)) {
+                // If tapping outside an active tag and the tooltip, hide it.
+                this.hideTooltip();
+            }
+        }, { passive: false });
+
+        // Hide tooltip if clicking outside an active tag
+        document.addEventListener('click', (e) => {
+            if (this.#activeTag && !this.#activeTag.contains(e.target)) {
+                this.hideTooltip();
+            }
+        });
+    }
+
+    openTooltip(tagEl){
+        if (!tagEl) return;
+
+        // Get the tooltip text from the data attribute
+        const tooltipText = translate(tagEl.dataset.tooltipId);
+        if (!tooltipText) return;
+
+        const parentDialog = tagEl.closest('dialog[open]');
+        if (parentDialog) {
+            parentDialog.appendChild(TagTooltip.container);
+        }
+
+        this.#activeTag = tagEl;
+
+        // Set the text and make it visible
+        TagTooltip.container.textContent = tooltipText;
+        TagTooltip.container.appendChild(document.createElement('div')).className = 'tooltip-arrow'; // Re-add arrow
+        TagTooltip.container.classList.add('visible');
+
+        // Position the tooltip
+        this.#positionTooltip(tagEl);
+    }
+
+    #positionTooltip (tagEl) {
+        const tagRect = tagEl.getBoundingClientRect();
+        const tooltipRect = TagTooltip.container.getBoundingClientRect();
+
+        const spacing = 12; // Space between the tag and the tooltip
+        let top, left;
+
+        // Default position is above the tag
+        TagTooltip.container.className = 'tooltip-panel visible pos-top';
+
+        const dialogRect = tagEl.closest('dialog[open]')?.getBoundingClientRect();
+        const dialogTop = dialogRect?.top || 0;
+        const dialogLeft = dialogRect?.left || 0;
+        top = tagRect.top - tooltipRect.height - spacing - dialogTop;
+        left = tagRect.left + (tagRect.width / 2) - (tooltipRect.width / 2) - dialogLeft;
+
+        // If it goes off the top of the screen, place it below instead
+        if (top < 0) {
+            TagTooltip.container.className = 'tooltip-panel visible pos-bottom';
+            top = tagRect.bottom + spacing - dialogTop;
+        }
+
+        // Prevent it from going off the left/right edges
+        if (left < 0) {
+            left = spacing - dialogLeft;
+        } else if (left + tooltipRect.width > window.innerWidth) {
+            left = window.innerWidth - tooltipRect.width - spacing - dialogLeft;
+        }
+
+        TagTooltip.container.style.top = `${top}px`;
+        TagTooltip.container.style.left = `${left}px`;
+    };
+
+    hideTooltip() {
+        this.#activeTag = null;
+        // KEY CHANGE: Move tooltip back to the body to reset it for non-dialog tags.
+        if (TagTooltip.container.parentElement !== document.body) {
+            document.body.appendChild(TagTooltip.container);
+        }
+
+        TagTooltip.container.classList.remove('visible');
+    };
+}
 
 class D20Popup {
 
@@ -147,9 +332,9 @@ class D20Popup {
             D20Popup.#dom.damageButton.style.display = 'none';
         }
         if(!this.#hasRolled){
-            D20Popup.#dom.rollButton.textContent = spacedTranslate("roll", "reroll");
+            D20Popup.#dom.rollButton.innerHTML = spacedTranslate("roll", "reroll");
         } else {
-            D20Popup.#dom.rollButton.textContent = spacedTranslate("reroll", "roll");
+            D20Popup.#dom.rollButton.innerHTML = spacedTranslate("reroll", "roll");
         }
     }
 
@@ -362,7 +547,7 @@ class D6Popup {
         // TODO language
         D6Popup.#dom.totalDamage.textContent = `Danni: ${this.#hasRolled ? totDamage : '?'}`;
         D6Popup.#dom.totalEffects.textContent = `Effetti: ${this.#hasRolled ? totEffects : '?'}`;
-        D6Popup.#dom.rollButton.textContent = this.#hasRolled ? spacedTranslate("reroll", "roll") : spacedTranslate("roll", "reroll");
+        D6Popup.#dom.rollButton.innerHTML = this.#hasRolled ? spacedTranslate("reroll", "roll") : spacedTranslate("roll", "reroll");
     }
 
     #setDiceClass(dice, diceClass){
@@ -542,134 +727,29 @@ document.addEventListener("DOMContentLoaded", () => {
         d6Popup.open(objectId);
     };
 
-    const tooltipContainer = document.getElementById('tooltip-container');
 
-    document.body.addEventListener('mouseenter', (event) => {
-        if(event.target.matches('.tag')){
-            openTooltip(event.target);
-        }
-    });
-    document.body.addEventListener('mouseleave', (event) => {
-        if(event.target.matches('.tag')){
-            hideTooltip();
-        }
-    });
-    // Hide tooltip if clicking outside an active tag
-    document.addEventListener('click', (e) => {
-        if (activeTag && !activeTag.contains(e.target) && !tooltipContainer.contains(e.target)) {
-            hideTooltip();
-        }
-    });
-
-    // Touch events for mobile (toggle behavior)
-    document.addEventListener('touchstart', (e) => {
-        const touchedTag = e.target.closest('.tag');
-
-        if (touchedTag) {
-            e.preventDefault();
-            // If tapping the same tag that's already active, hide it.
-            if (activeTag === touchedTag) {
-                hideTooltip();
-            } else {
-                // If another tooltip is open, hide it first.
-                if (activeTag) {
-                    hideTooltip();
-                }
-                // Then show the new one.
-                openTooltip(touchedTag);
-            }
-        } else if (activeTag && !tooltipContainer.contains(e.target)) {
-            // If tapping outside an active tag and the tooltip, hide it.
-            hideTooltip();
-        }
-    }, { passive: false });
-
+    const tagTooltip = new TagTooltip();
     window.openTooltip = (tagEl) => {
-        if (!tagEl) return;
-
-        // Get the tooltip text from the data attribute
-        const tooltipText = translate(tagEl.dataset.tooltipId);
-        if (!tooltipText) return;
-
-        const parentDialog = tagEl.closest('dialog[open]');
-        if (parentDialog) {
-            parentDialog.appendChild(tooltipContainer);
-        }
-
-        activeTag = tagEl;
-
-        // Set the text and make it visible
-        tooltipContainer.textContent = tooltipText;
-        tooltipContainer.appendChild(document.createElement('div')).className = 'tooltip-arrow'; // Re-add arrow
-        tooltipContainer.classList.add('visible');
-
-        // Position the tooltip
-        positionTooltip(tagEl);
+        tagTooltip.openTooltip(tagEl);
     };
 
-    // Function to position the tooltip relative to the target element
-    const positionTooltip = (tagEl) => {
-        // TODO Somethings wrong, check why and fix it
 
-        const tagRect = tagEl.getBoundingClientRect();
-        const tooltipRect = tooltipContainer.getBoundingClientRect();
-
-        const spacing = 12; // Space between the tag and the tooltip
-        let top, left;
-
-        // Default position is above the tag
-        tooltipContainer.className = 'tooltip-panel visible pos-top';
-
-        const dialogRect = tagEl.closest('dialog[open]')?.getBoundingClientRect();
-        const dialogTop = dialogRect?.top || 0;
-        const dialogLeft = dialogRect?.left || 0;
-        top = tagRect.top - tooltipRect.height - spacing - dialogTop;
-        left = tagRect.left + (tagRect.width / 2) - (tooltipRect.width / 2) - dialogLeft;
-
-        // If it goes off the top of the screen, place it below instead
-        if (top < 0) {
-            tooltipContainer.className = 'tooltip-panel visible pos-bottom';
-            top = tagRect.bottom + spacing - dialogTop;
-        }
-
-        // Prevent it from going off the left/right edges
-        if (left < 0) {
-            left = spacing - dialogLeft;
-        } else if (left + tooltipRect.width > window.innerWidth) {
-            left = window.innerWidth - tooltipRect.width - spacing - dialogLeft;
-        }
-
-        tooltipContainer.style.top = `${top}px`;
-        tooltipContainer.style.left = `${left}px`;
-    };
-
-    // Function to hide the tooltip
-    window.hideTooltip = () => {
-        activeTag = null;
-        // KEY CHANGE: Move tooltip back to the body to reset it for non-dialog tags.
-        if (tooltipContainer.parentElement !== document.body) {
-            document.body.appendChild(tooltipContainer);
-        }
-
-        tooltipContainer.classList.remove('visible');
-    };
-
-    // Hide tooltip if clicking outside an active tag
-    document.addEventListener('click', (e) => {
-        if (activeTag && !activeTag.contains(e.target)) {
-            hideTooltip();
-        }
-    });
 
 
 
     // TODO To refactor
     const popups = {
         addItem: document.getElementById('add-item-popup'),
+        sellItem: document.getElementById('trade-item-popup'),
         // It's good practice to add a dedicated notification popup instead of using alert() TODO
         notification: document.getElementById('notification-popup')
     };
 
+
+    const tradeItemPopup = new TradeItemPopup();
+    window.openSellItemPopup = (itemId) => {
+        tradeItemPopup.openPopup(itemId);
+    }
 
     // Elements specific to the Add Item Popup
     const addItemPopupElements = {

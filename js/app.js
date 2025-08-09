@@ -131,6 +131,8 @@ function createGenericCard(genericItem, customCardContent, itemType, quantity) {
 function createAmmoEntry(ammoId, quantity){
      const template = document.getElementById('ammo-card-template');
      const ammoDiv = template.content.cloneNode(true).firstElementChild;
+     ammoDiv.dataset.itemId = ammoId;
+     ammoDiv.dataset.itemType = "ammo";
      ammoDiv.querySelector(".card-quantity").textContent = `${quantity}x`;
      ammoDiv.querySelector(".ammo-card-name").dataset.langId = ammoId;
      return ammoDiv;
@@ -240,6 +242,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     display.initialize(characterData); // Pass character data to display
     loadTranslations();
 });
+
+window.getItem = (itemId) => {
+    for(let data of [weaponData, foodData, drinksData, medsData, ammoData]){
+        const item = data[itemId];
+        if(item) {
+            return item;
+        }
+    }
+    return null;
+}
 
 window.getListFromString = (string) => {
     let result = string;

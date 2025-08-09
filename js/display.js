@@ -79,10 +79,10 @@ class Display {
     }
 
     handleCardClick(e) {
-        const action = e.target.dataset.action;
+        const action = e.target.closest('[data-action]')?.dataset?.action;
         if (!action) return;
 
-        const cardDiv = e.target.closest('.card');
+        const cardDiv = e.target.closest('.card,.ammo-card');
         if (!cardDiv) return;
 
         const { itemId, itemType } = cardDiv.dataset;
@@ -103,9 +103,10 @@ class Display {
                 break;
             }
             case 'delete':
-                characterData.removeItem({ ID: itemId, type: itemType });
+                characterData.removeItem(itemId);
                 break;
             case 'sell': // TODO: Implement sell logic
+                openSellItemPopup(itemId);
             case 'cancel-overlay':
                 cardDiv.querySelector('.card-overlay').classList.add('hidden');
                 break;
@@ -114,7 +115,7 @@ class Display {
 
     handleCardPointerDown(e) {
         this.clearLongPressTimer();
-        const cardDiv = e.target.closest('.card');
+        const cardDiv = e.target.closest('.card,.ammo-card')
         if (cardDiv) {
             this.#longPressTarget = cardDiv;
             this.#longPressTimer = setTimeout(() => {
