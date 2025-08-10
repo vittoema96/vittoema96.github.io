@@ -106,8 +106,8 @@ class Character extends EventTarget { // TODO check this out
         value = Number(value);
         if(!value) return;
 
-        this.#data.level = value;
         const diff = value - this.level;
+        this.#data.level = value;
         this.#data.currentHp = this.currentHp + diff
         this.save();
         if(display) {
@@ -161,9 +161,9 @@ class Character extends EventTarget { // TODO check this out
     }
     get currentWeight() {
         return this.#data.items.reduce((total, item) => {
-            const itemData = this.getItem(item.id);
+            const itemData = getItem(item.id);
             let weight = Number(itemData?.WEIGHT) || 0;
-            return total + (weight * item.quantity || 1);
+            return total + (weight * (item.quantity || 1));
         }, 0);
     }
     get maxWeight() { return 75 + this.getSpecial(SPECIAL.STRENGTH) * 5; }

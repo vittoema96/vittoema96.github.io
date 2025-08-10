@@ -36,7 +36,7 @@ class TradeItemPopup {
     #itemId;
     #tradeQuantity;
     #tradePrice;
-    #tradeValueRate = 4 / 5;
+    get #tradeValueRate () { return this.#isBuy ? 6/5 : 4/5 }
     
     openPopup(itemId, isBuy){
         this.#initialize(itemId, isBuy);
@@ -51,14 +51,17 @@ class TradeItemPopup {
             this.#tradeQuantity = 1;
         } else {
             this.#tradeQuantity = characterData.getItemQuantity(this.#itemId) || 1;
+            TradeItemPopup.#dom.quantity.max = this.#tradeQuantity;
         }
-        this.#tradePrice = (getItem(this.#itemId).COST || 1) * this.#tradeValueRate;
+        let price = getItem(this.#itemId).COST || 1; // Get normal item price
+        price = price * this.#tradeValueRate; // Apply trade rate
+        price  = Math.round(price*100)/100; // Round decimals
+        this.#tradePrice = price;
     }
     
     #render(){
         TradeItemPopup.#dom.type.textContent = translate(this.#isBuy ? "buying" : "selling");
         TradeItemPopup.#dom.quantity.value = this.#tradeQuantity;
-        TradeItemPopup.#dom.quantity.max = this.#tradeQuantity;
         TradeItemPopup.#dom.price.value = this.#tradePrice;
         TradeItemPopup.#dom.total.textContent = (Math.floor(this.#tradeQuantity * this.#tradePrice)).toString();
     }
