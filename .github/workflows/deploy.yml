@@ -16,13 +16,16 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1. Checkout repo on virtual machine
       - name: Checkout Repo 🛎️
         uses: actions/checkout@v4
 
+      # 2. Read the current version from manifest
       - name: Read version from manifest.json 🏷️
         id: read_version
         run: echo "version=$(node -p "require('./manifest.json').version")" >> $GITHUB_OUTPUT
 
+      # 3. Update the PROJECT_VERSION on app.js and sw.js
       - name: Update Version on Files 📝
         run: |
           # Construct the version: "v0.0.1-alpha.1", "v0.0.1-alpha.2", etc.
@@ -32,13 +35,20 @@ jobs:
           sed -i "s/const PROJECT_VERSION = .*/const PROJECT_VERSION = '$FULL_VERSION';/" ./js/app.js
           sed -i "s/const PROJECT_VERSION = .*/const PROJECT_VERSION = '$FULL_VERSION';/" ./js/sw.js
 
-      # 3. Replace HIDE_LOADER with 'false' for production
+      # 4. Update HIDE_LOADER with 'false' for production
       - name: Enable Loader on Startup 📝
         run: |
           sed -i "s/const HIDE_LOADER = .*/const HIDE_LOADER = false;/" js/app.js
 
+      # 5. Commit (locally on the virtual machine) the changes
+      - name: Commit modified files 💾
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add ./js/app.js ./js/sw.js
+          git commit -m "Automated version bump: ${{ steps.read_version.outputs.version }}+${{ github.run_number }}" || echo "No changes to commit"
 
-      # 4. Deploy the updated code to GitHub Pages
+      # 6. Deploy the updated code to GitHub Pages
       - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v4
         with:
