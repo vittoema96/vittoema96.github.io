@@ -198,6 +198,7 @@ function createWeaponCard(weaponId, quantity) {
         </div>
         <div class="tags-container">
             ${weapon.EFFECTS.map(effect => `<span class="tag" data-tooltip-id="${effect.split(' ')[0]}Description">${translator.translate(effect)}</span>`).join('')}
+            ${weapon.QUALITIES.map(quality => `<span class="tag tag-empty" data-tooltip-id="${quality.split(' ')[0]}Description">${translator.translate(quality)}</span>`).join('')}
         </div>`;
 
     return createGenericCard(weapon, weaponHTML, weapon.SKILL, quantity);
@@ -298,7 +299,7 @@ class DataManager {
                 skipEmptyLines: true,
                 complete: (results) => {
                     const result = results.data.reduce((map, entry) => {
-                        for(let column of ["REQUISITES", "EFFECTS"]){
+                        for(let column of ["REQUISITES", "QUALITIES", "EFFECTS"]){
                             if(entry[column] && typeof entry[column] === "string"){
                                 try {
                                     entry[column] = JSON.parse(entry[column]);

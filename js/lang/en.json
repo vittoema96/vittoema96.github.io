@@ -97,5 +97,22 @@
   "effectRadioactive": "Radioactive",
   "effectSpread": "Spread",
   "effectStunned": "Stunned",
-  "effectVicious": "Vicious"
+  "effectVicious": "Vicious",
+
+  "qualityAccurate": "Accurate",
+  "qualityBlast": "Blast",
+  "qualityCloseQuarters": "Close Quarters",
+  "qualityConcealed": "Concealed",
+  "qualityDebilitating": "Debilitating",
+  "qualityGatling": "Gatling",
+  "qualityInaccurate": "Inaccurate",
+  "qualityMine": "Mine",
+  "qualityNightVision": "Night Vision",
+  "qualityParry": "Parry",
+  "qualityRecon": "Recon",
+  "qualityReliable": "Reliable",
+  "qualitySuppressed": "Suppressed",
+  "qualityThrown": "Thrown",
+  "qualityTwoHanded": "Two-Handed",
+  "qualityUnreliable": "Unreliable"
 }

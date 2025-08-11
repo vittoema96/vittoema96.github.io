@@ -1,14 +1,20 @@
 # TODO
 
 # Main
-- Fix close popup button position
-- Fix d6popup layout (add bodyPart)
-- Implement weapon property popups
-- Refactor Display + Character (use #render())
+- ACCURATE,UNRELIABLE DESCRIPTION SBAGLIATE IN ITALIANO 
+- Implement gatling effect
+- Implement Di Precisione effect
+- Implement Inaffidabile effect
+- Implement weapon properties:
+  1. Properties effects
+  2. (corpo a corpo adds weapons, define "unbuyable" weapons)
 - Implement notification popup
 - Fix Unarmed "Weapon" by default
+- Refactor Display + Character (use #render())
 
 ## Secondary
+- Fix close popup button position
+- Fix d6popup layout (add bodyPart)
 - Add current luck/ammo to d20/d6 popups
 - d6 icons to have secondary color
 - Fix card layout

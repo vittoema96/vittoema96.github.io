@@ -213,7 +213,38 @@
                     <div class="themed-svg" data-icon="caps" style="margin:0.5rem; width:1rem; height:1rem;"></div>
                 </div>
             </div>
-            <button class="confirm-button">Conferma</button>
+            <button class="confirm-button">Conferma</button><!-- TODO language -->
+            <button class="cancel-button">Indietro</button>
+        </dialog>
+
+        <dialog id="stat-adjustment-popup">
+            <header>
+                <h1>Modifica</h1> <!-- TODO language -->
+                <button class="popup-close-button">&times;</button>
+            </header>
+            <hr>
+            <h2>HP</h2> <!-- TODO language -->
+            <div class="row">
+                <input type="number" id="adjustHpNew" min="1" value="1" aria-label="Trade quantity" style="width: 80px; text-align: center;"> <!-- TODO use css file -->
+                <span id="adjustHpOld"></span>
+            </div>
+            <hr>
+            <h2>Caps</h2> <!-- TODO language -->
+            <div class="row">
+                <input type="number" id="adjustCapsNew" min="1" value="1" aria-label="Trade price" style="width: 80px; text-align: center;"> <!-- TODO use css file -->
+                <div class="row">
+                    <span id="adjustCapsOld"></span>
+                    <div class="themed-svg" data-icon="caps" style="margin:0.5rem; width:1rem; height:1rem;"></div>
+                </div>
+            </div>
+            <hr>
+            <h2>Luck</h2> <!-- TODO language -->
+            <div class="row">
+                <input type="number" id="adjustLuckNew" min="1" value="1" aria-label="Trade price" style="width: 80px; text-align: center;"> <!-- TODO use css file -->
+                <span id="adjustLuckOld"></span>
+            </div>
+            <hr>
+            <button class="confirm-button">Conferma</button><!-- TODO language -->
             <button class="cancel-button">Indietro</button>
         </dialog>
 

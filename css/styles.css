@@ -785,6 +785,11 @@ dialog[open] {
     font-size: .8rem;
     margin: 2px;
 }
+.tag-empty {
+    background-color: var(--button-background) !important;
+    color: var(--primary-color) !important;
+    border: var(--border-primary-thin) !important;
+}
 
 /****************
  *  MAP SCREEN  *

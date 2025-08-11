@@ -1,4 +1,86 @@
 
+class StatAdjustementPopup {
+
+    static #htmlElement = document.getElementById('stat-adjustment-popup');
+    static #trigger = document.getElementById('header-stats');
+
+    static #dom ={
+        hpOld: document.getElementById("adjustHpOld"),
+        hpNew: document.getElementById("adjustHpNew"),
+
+        capsOld: document.getElementById("adjustCapsOld"),
+        capsNew: document.getElementById("adjustCapsNew"),
+
+        luckOld: document.getElementById("adjustLuckOld"),
+        luckNew: document.getElementById("adjustLuckNew"),
+    }
+
+    #currentHp;
+    #caps;
+    #currentLuck;
+
+    constructor() {
+        StatAdjustementPopup.#trigger.addEventListener('click', () => this.openPopup())
+        StatAdjustementPopup.#dom.hpNew.addEventListener('change', (e) => {
+            this.#currentHp = e.target.value;
+        });
+        StatAdjustementPopup.#dom.capsNew.addEventListener('change', (e) => {
+            this.#caps = e.target.value;
+        });
+        StatAdjustementPopup.#dom.luckNew.addEventListener('change', (e) => {
+            this.#currentLuck = e.target.value;
+        });
+        StatAdjustementPopup.#htmlElement.addEventListener('click', (e) => {
+            if(e.target.closest('.confirm-button')){
+                let errorString = "";
+                const errorHeader = "Qualcosa è andato storto:\n";
+                if(this.#currentHp < 0 || this.#currentHp > characterData.calculateMaxHp())
+                    errorString += "\n- HP non validi";
+                if(this.#caps < 0)
+                    errorString += "\n- Tappi non validi";
+                if(this.#currentLuck < 0 || this.#currentLuck > characterData.getSpecial(SPECIAL.LUCK))
+                    errorString += "\n- Fortuna non valida";
+
+                if(errorString !== "")
+                    showNotification(`${errorHeader}${errorString}`);
+                else {
+                    characterData.currentHp = this.#currentHp;
+                    characterData.caps = this.#caps;
+                    characterData.currentLuck = this.#currentLuck;
+                    closeActivePopup();
+                }
+            }
+        });
+    }
+
+    openPopup(){
+        this.#initialize();
+        StatAdjustementPopup.#htmlElement.showModal();
+    }
+
+    #initialize(){
+        const currentHp = characterData.currentHp;
+        this.#currentHp = currentHp;
+        StatAdjustementPopup.#dom.hpOld.textContent = `${currentHp}/${characterData.calculateMaxHp()}`;
+
+        const caps = characterData.caps;
+        this.#caps = caps;
+        StatAdjustementPopup.#dom.capsOld.textContent = caps;
+
+        const currentLuck = characterData.currentLuck;
+        this.#currentLuck = currentLuck;
+        StatAdjustementPopup.#dom.luckOld.textContent = `${currentLuck}/${characterData.getSpecial(SPECIAL.LUCK)}`;
+
+        this.#render();
+    }
+
+    #render(){
+        StatAdjustementPopup.#dom.hpNew.value = this.#currentHp;
+        StatAdjustementPopup.#dom.capsNew.value = this.#caps;
+        StatAdjustementPopup.#dom.luckNew.value = this.#currentLuck;
+    }
+}
+
 class TradeItemPopup {
     
     static #htmlElement = document.getElementById('trade-item-popup');
@@ -244,6 +326,8 @@ class D20Popup {
     #character;
 
     #objectId;
+    #isObjectInaccurate;
+    #isObjectUnreliable;
     #hasRolled;
     #skillId;
     #specialId;
@@ -263,6 +347,16 @@ class D20Popup {
         this.#character = characterData;
 
         this.#objectId = objectId;
+
+        const object = dataManager.getItem(objectId);
+        this.#isObjectInaccurate = (object?.QUALITIES || []).includes("qualityInaccurate");
+        this.#isObjectUnreliable = (object?.QUALITIES || []).includes("qualityUnreliable");
+
+        // If inaccurate strikethrough "Aim?"
+        const aimText = D20Popup.#htmlElement.querySelector('[data-lang-id="aim"]');
+        if(this.#isObjectInaccurate){ aimText.style.textDecoration = "line-through"; }
+        else { aimText.style.textDecoration = "initial"; }
+
         this.#hasRolled = false;
         this.#skillId = skillId;
         this.#specialId = SKILL_TO_SPECIAL_MAP[skillId];
@@ -281,7 +375,6 @@ class D20Popup {
 
         const activeSpecialId = this.#isUsingLuck ? SPECIAL.LUCK : this.#specialId;
         D20Popup.#dom.specialSelector.value = activeSpecialId;
-        // TODO add specialSelector.textContent = translate ???
         D20Popup.#dom.specialSelector.disabled = this.#hasRolled || this.#isUsingLuck;
 
         D20Popup.#dom.luckCheckbox.checked = this.#isUsingLuck;
@@ -303,7 +396,8 @@ class D20Popup {
             dice.classList.toggle('rerolled', this.#diceRerolled[index]);
             // '?' <= x and '?' >= x are always false.
             dice.classList.toggle('roll-crit', this.#diceContent[index] <= critVal);
-            dice.classList.toggle('roll-complication', this.#diceContent[index] >= 20); // TODO complications < 20
+            const complicationMin = this.#isObjectUnreliable ? 19 : 20;
+            dice.classList.toggle('roll-complication', this.#diceContent[index] >= complicationMin);
         });
 
         // Don't update after rolling!
@@ -311,7 +405,7 @@ class D20Popup {
             D20Popup.#dom.apCost.textContent = this.#getApCost().toString();
         }
         D20Popup.#dom.aimCheckbox.checked = this.#isAiming;
-        D20Popup.#dom.aimCheckbox.disabled = this.#hasRolled;
+        D20Popup.#dom.aimCheckbox.disabled = this.#isObjectInaccurate || this.#hasRolled;
 
         D20Popup.#dom.payedLuck.textContent = this.#getPayedLuck().toString();
         D20Popup.#dom.luckCost.textContent = `(${this.#getLuckCost()})`;
@@ -791,6 +885,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.openTooltip = (tagEl) => {
         tagTooltip.openTooltip(tagEl);
     };
+
+    const statAdjustmentPopup = new StatAdjustementPopup();
 
 
 

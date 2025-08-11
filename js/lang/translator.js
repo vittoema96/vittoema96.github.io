@@ -21,14 +21,14 @@ class Translator {
 
     translate (langId, langFormat) {
         const format = langFormat || "%s";
-        let tier;
-        [langId, tier] = langId.split(' ');
+        let extra;
+        [langId, extra] = langId.split(' ');
 
         let transl = this.#langData[currentLanguage][langId];
         if(transl === undefined)
             transl = `ID:${langId}`;
-        tier = tier ? ` ${tier}` : '';
-        transl = `${transl}${tier}`
+        extra = extra ? ` ${extra}` : '';
+        transl = `${transl}${extra}`
 
         return format.replace("%s", transl);
     }
