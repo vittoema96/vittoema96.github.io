@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 // <editor-fold desc="ServiceWorker Registration">
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/js/sw.js')
+        navigator.serviceWorker.register('/js/sw.js', { updateViaCache: 'none' }) // Always update service worker if online
             .then(registration => {
                 console.log('Service Worker registered! 😎', registration);
                 return navigator.serviceWorker.ready;
