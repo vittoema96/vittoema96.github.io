@@ -1,18 +1,77 @@
 let characterData = undefined;
+
+// <editor-fold desc="Utils: (SPECIAL, SKILLS, SKILL_TO_SPECIAL_MAP, isMelee(skill), defaultCharacter">
+const SPECIAL  = Object.freeze({
+    STRENGTH: "strength",
+    PERCEPTION: "perception",
+    ENDURANCE: "endurance",
+    CHARISMA: "charisma",
+    INTELLIGENCE: "intelligence",
+    AGILITY: "agility",
+    LUCK: "luck"
+});
+const SKILLS = Object.freeze({
+    ATHLETICS:      'athletics',
+    BARTER:         'barter',
+    BIG_GUNS:       'bigGuns',
+    ENERGY_WEAPONS: 'energyWeapons',
+    EXPLOSIVES:     'explosives',
+    LOCKPICK:       'lockpick',
+    MEDICINE:       'medicine',
+    MELEE_WEAPONS:  'meleeWeapons',
+    PILOT:          'pilot',
+    REPAIR:         'repair',
+    SCIENCE:        'science',
+    SMALL_GUNS:     'smallGuns',
+    SNEAK:          'sneak',
+    SPEECH:         'speech',
+    SURVIVAL:       'survival',
+    THROWING:       'throwing',
+    UNARMED:        'unarmed'
+});
+const SKILL_TO_SPECIAL_MAP = Object.freeze({
+    [SKILLS.ATHLETICS]:      SPECIAL.STRENGTH,
+    [SKILLS.BARTER]:         SPECIAL.CHARISMA,
+    [SKILLS.BIG_GUNS]:       SPECIAL.ENDURANCE,
+    [SKILLS.ENERGY_WEAPONS]: SPECIAL.PERCEPTION,
+    [SKILLS.EXPLOSIVES]:     SPECIAL.PERCEPTION,
+    [SKILLS.LOCKPICK]:       SPECIAL.PERCEPTION,
+    [SKILLS.MEDICINE]:       SPECIAL.INTELLIGENCE,
+    [SKILLS.MELEE_WEAPONS]:  SPECIAL.STRENGTH,
+    [SKILLS.PILOT]:          SPECIAL.PERCEPTION,
+    [SKILLS.REPAIR]:         SPECIAL.INTELLIGENCE,
+    [SKILLS.SCIENCE]:        SPECIAL.INTELLIGENCE,
+    [SKILLS.SMALL_GUNS]:     SPECIAL.AGILITY,
+    [SKILLS.SNEAK]:          SPECIAL.AGILITY,
+    [SKILLS.SPEECH]:         SPECIAL.CHARISMA,
+    [SKILLS.SURVIVAL]:       SPECIAL.ENDURANCE,
+    [SKILLS.THROWING]:       SPECIAL.AGILITY,
+    [SKILLS.UNARMED]:        SPECIAL.STRENGTH
+});
+function isMelee(skill){
+    return [SPECIAL.UNARMED, SPECIAL.MELEE_WEAPONS].includes(skill);
+}
+
 const defaultCharacter = {
     "level": 1,
-    "special": { "strength": 5, "perception": 5, "endurance": 5, "charisma": 5, "intelligence": 5, "agility": 5, "luck": 5 },
+    "special": Object.values(SPECIAL).reduce((acc, key) => {
+        acc[key] = 5;
+        return acc;
+    }, {}),
     "currentLuck": 5,
     "currentHp": 11,
-    "skills": { "athletics": 0, "barter": 0, "bigGuns": 0, "energyWeapons": 0, "explosives": 0, "lockpick": 0, "medicine": 0, "meleeWeapons": 0, "pilot": 0, "repair": 0, "science": 0, "smallGuns": 0, "sneak": 0, "speech": 0, "survival": 0, "throwing": 0, "unarmed": 0 },
+    "skills": Object.values(SKILLS).reduce((acc, key) => {
+        acc[key] = 0;
+        return acc;
+    }, {}),
     "specialties": [],
     "caps": 0,
     "background": "",
     "items": [],
     "ammo": {},
 };
-
 const CHARACTER_STORAGE_PREFIX = 'character-data-';
+// </editor-fold>
 
 class Character extends EventTarget { // TODO check this out
     // All character state is now in a single private object for easy saving.
@@ -50,8 +109,8 @@ class Character extends EventTarget { // TODO check this out
 
         // Ensure vital stats are correctly initialized if creating a new character.
         if (!savedDataJSON) { // TODO better handling of these 2 initialization (here and on default)
-            initialData.luckCurrent = initialData.special.luck;
-            initialData.currentHp = initialData.special.endurance + initialData.special.luck + initialData.level;
+            initialData.luckCurrent = initialData.special[SPECIAL.LUCK];
+            initialData.currentHp = initialData.special[SPECIAL.ENDURANCE] + initialData.special[SPECIAL.LUCK] + initialData.level;
         }
 
         return new Character(characterId, initialData);
@@ -161,15 +220,19 @@ class Character extends EventTarget { // TODO check this out
     }
     get currentWeight() {
         return this.#data.items.reduce((total, item) => {
-            const itemData = getItem(item.id);
+            const itemData = dataManager.getItem(item.id);
             let weight = Number(itemData?.WEIGHT) || 0;
+
+            // TODO handle items with no quantity (should not happen, check it)
             return total + (weight * (item.quantity || 1));
         }, 0);
     }
     get maxWeight() { return 75 + this.getSpecial(SPECIAL.STRENGTH) * 5; }
 
     getItem(itemId) { return this.#data.items.find(item => item.id === itemId)}
-    getItemQuantity(itemId) { return this.getItem(itemId)?.quantity ?? 1 }
+
+    // TODO handle items with no quantity (should not happen, check it)
+    getItemQuantity(itemId) { return this.getItem(itemId)?.quantity ?? 0 }
     getItemsByType(type) { return this.#data.items.filter(item => item.type === type); }
 
     removeItem(itemId, quantity = -Number.MAX_SAFE_INTEGER) {
@@ -211,58 +274,4 @@ class Character extends EventTarget { // TODO check this out
     calculateMaxHp(){ return this.getSpecial(SPECIAL.ENDURANCE) + this.getSpecial(SPECIAL.LUCK) + this.level; }
     static getSpecialList(){ return Object.keys(defaultCharacter.special); }
     static getSkillList(){ return Object.keys(defaultCharacter.skills); }
-}
-
-const SPECIAL  = Object.freeze({
-    STRENGTH: "strength",
-    PERCEPTION: "perception",
-    ENDURANCE: "endurance",
-    CHARISMA: "charisma",
-    INTELLIGENCE: "intelligence",
-    AGILITY: "agility",
-    LUCK: "luck"
-});
-
-const SKILLS = Object.freeze({
-    ATHLETICS:      'athletics',
-    BARTER:         'barter',
-    BIG_GUNS:       'bigGuns',
-    ENERGY_WEAPONS: 'energyWeapons',
-    EXPLOSIVES:     'explosives',
-    LOCKPICK:       'lockpick',
-    MEDICINE:       'medicine',
-    MELEE_WEAPONS:  'meleeWeapons',
-    PILOT:          'pilot',
-    REPAIR:         'repair',
-    SCIENCE:        'science',
-    SMALL_GUNS:     'smallGuns',
-    SNEAK:          'sneak',
-    SPEECH:         'speech',
-    SURVIVAL:       'survival',
-    THROWING:       'throwing',
-    UNARMED:        'unarmed'
-});
-
-const SKILL_TO_SPECIAL_MAP = Object.freeze({
-    [SKILLS.ATHLETICS]:      SPECIAL.STRENGTH,
-    [SKILLS.BARTER]:         SPECIAL.CHARISMA,
-    [SKILLS.BIG_GUNS]:       SPECIAL.ENDURANCE,
-    [SKILLS.ENERGY_WEAPONS]: SPECIAL.PERCEPTION,
-    [SKILLS.EXPLOSIVES]:     SPECIAL.PERCEPTION,
-    [SKILLS.LOCKPICK]:       SPECIAL.PERCEPTION,
-    [SKILLS.MEDICINE]:       SPECIAL.INTELLIGENCE,
-    [SKILLS.MELEE_WEAPONS]:  SPECIAL.STRENGTH,
-    [SKILLS.PILOT]:          SPECIAL.PERCEPTION,
-    [SKILLS.REPAIR]:         SPECIAL.INTELLIGENCE,
-    [SKILLS.SCIENCE]:        SPECIAL.INTELLIGENCE,
-    [SKILLS.SMALL_GUNS]:     SPECIAL.AGILITY,
-    [SKILLS.SNEAK]:          SPECIAL.AGILITY,
-    [SKILLS.SPEECH]:         SPECIAL.CHARISMA,
-    [SKILLS.SURVIVAL]:       SPECIAL.ENDURANCE,
-    [SKILLS.THROWING]:       SPECIAL.AGILITY,
-    [SKILLS.UNARMED]:        SPECIAL.STRENGTH
-});
-
-function isMelee(skill){
-    return [SPECIAL.UNARMED, SPECIAL.MELEE_WEAPONS].includes(skill);
 }

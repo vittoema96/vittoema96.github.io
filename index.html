@@ -356,6 +356,7 @@
                     <div id="throwing-cards" class="card-carousel"></div>
                     <div class="itemlist-header">
                         <h2 data-lang-id="unarmed">Unarmed</h2>
+                        <button class="add-item-button" onclick="openAddItemModal('unarmed')">+</button>
                     </div>
                     <div id="unarmed-cards" class="card-carousel"></div>
                 </div>
@@ -407,7 +408,7 @@
             <section id="settings-screen" class="screen hidden">
                 <h2>Settings</h2>
                 <label for="language-select">Language:</label>
-                <select id="language-select" onchange="loadTranslations(this.value)">
+                <select id="language-select" onchange="translator.loadTranslations(this.value)">
                     <option value="en">English</option>
                     <option value="it">Italiano</option>
                 </select>

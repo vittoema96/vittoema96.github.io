@@ -53,14 +53,14 @@ class TradeItemPopup {
             this.#tradeQuantity = characterData.getItemQuantity(this.#itemId) || 1;
             TradeItemPopup.#dom.quantity.max = this.#tradeQuantity;
         }
-        let price = getItem(this.#itemId).COST || 1; // Get normal item price
+        let price = dataManager.getItem(this.#itemId).COST || 1; // Get normal item price
         price = price * this.#tradeValueRate; // Apply trade rate
         price  = Math.round(price*100)/100; // Round decimals
         this.#tradePrice = price;
     }
     
     #render(){
-        TradeItemPopup.#dom.type.textContent = translate(this.#isBuy ? "buying" : "selling");
+        TradeItemPopup.#dom.type.textContent = translator.translate(this.#isBuy ? "buying" : "selling");
         TradeItemPopup.#dom.quantity.value = this.#tradeQuantity;
         TradeItemPopup.#dom.price.value = this.#tradePrice;
         TradeItemPopup.#dom.total.textContent = (Math.floor(this.#tradeQuantity * this.#tradePrice)).toString();
@@ -127,7 +127,7 @@ class TagTooltip {
         if (!tagEl) return;
 
         // Get the tooltip text from the data attribute
-        const tooltipText = translate(tagEl.dataset.tooltipId);
+        const tooltipText = translator.translate(tagEl.dataset.tooltipId);
         if (!tooltipText) return;
 
         const parentDialog = tagEl.closest('dialog[open]');
@@ -277,7 +277,7 @@ class D20Popup {
     }
 
     #render() {
-        D20Popup.#dom.skillTitle.textContent = translate(this.#skillId);
+        D20Popup.#dom.skillTitle.textContent = translator.translate(this.#skillId);
 
         const activeSpecialId = this.#isUsingLuck ? SPECIAL.LUCK : this.#specialId;
         D20Popup.#dom.specialSelector.value = activeSpecialId;
@@ -327,7 +327,7 @@ class D20Popup {
                 }
             });
         }
-        D20Popup.#dom.successesDisplay.textContent = `${translate("successes")}: ${successes}`;
+        D20Popup.#dom.successesDisplay.textContent = `${translator.translate("successes")}: ${successes}`;
 
         if(this.#objectId){
             D20Popup.#dom.damageButton.style.display = 'block';
@@ -336,9 +336,9 @@ class D20Popup {
             D20Popup.#dom.damageButton.style.display = 'none';
         }
         if(!this.#hasRolled){
-            D20Popup.#dom.rollButton.innerHTML = spacedTranslate("roll", "reroll");
+            D20Popup.#dom.rollButton.innerHTML = translator.spacedTranslate("roll", "reroll");
         } else {
-            D20Popup.#dom.rollButton.innerHTML = spacedTranslate("reroll", "roll");
+            D20Popup.#dom.rollButton.innerHTML = translator.spacedTranslate("reroll", "roll");
         }
     }
 
@@ -477,7 +477,7 @@ class D6Popup {
 
     #initialize(objectId){
 
-        const weapon = weaponData[objectId];
+        const weapon = dataManager.weapons[objectId];
         if (!weapon) {
             alert("Trying to attack with a non-weapon object.")
             return;
@@ -490,7 +490,7 @@ class D6Popup {
         this.#ammoPayed = 0;
         let payedAmmoDisplay = 'flex';
         if(this.#isMelee()){
-            this.#ammoCost = translate("na")
+            this.#ammoCost = translator.translate("na")
             payedAmmoDisplay = 'none';
         }
         D6Popup.#dom.ammoPayed.style.display = payedAmmoDisplay;
@@ -503,7 +503,7 @@ class D6Popup {
         this.#effects.forEach(effect => {
             const tag = document.createElement('span');
             tag.className = 'tag';
-            tag.textContent = translate(effect);
+            tag.textContent = translator.translate(effect);
             tag.dataset.tooltipId = `${effect.split(' ')[0]}Description`;
             D6Popup.#dom.tagsContainer.appendChild(tag);
         });
@@ -552,7 +552,7 @@ class D6Popup {
     }
 
     #render(){
-        D6Popup.#dom.weaponName.textContent = translate(this.#object.ID);
+        D6Popup.#dom.weaponName.textContent = translator.translate(this.#object.ID);
         D6Popup.#dom.damageType.textContent = this.#object.DAMAGE_TYPE; // TODO Handle language
 
         const dice = D6Popup.#dom.damageDiceContainer.querySelectorAll('.d6-dice');
@@ -583,7 +583,7 @@ class D6Popup {
         // TODO language
         D6Popup.#dom.totalDamage.textContent = `Danni: ${this.#hasRolled ? totDamage : '?'}`;
         D6Popup.#dom.totalEffects.textContent = `Effetti: ${this.#hasRolled ? totEffects : '?'}`;
-        D6Popup.#dom.rollButton.innerHTML = this.#hasRolled ? spacedTranslate("reroll", "roll") : spacedTranslate("roll", "reroll");
+        D6Popup.#dom.rollButton.innerHTML = this.#hasRolled ? translator.spacedTranslate("reroll", "roll") : translator.spacedTranslate("roll", "reroll");
     }
 
     #setDiceClass(dice, diceClass){
@@ -729,7 +729,7 @@ class D6Popup {
             this.#ammoPayed = this.#ammoCost;
             this.#ammoCost = 0;
             if(this.#object.EFFECTS.includes("effectBurst")){
-                this.#ammoCost = `+${translate("effectBurst")}`;
+                this.#ammoCost = `+${translator.translate("effectBurst")}`;
             }
         }
         this.#luckPayed += this.#luckCost;
@@ -821,16 +821,16 @@ document.addEventListener("DOMContentLoaded", () => {
         // This mapping makes the function much cleaner and easier to extend.
         const itemConfig = {
             // TODO use langData
-            smallGuns: { data: weaponData, isWeapon: true },
-            energyWeapons: { data: weaponData, isWeapon: true },
-            bigGuns: { data: weaponData, isWeapon: true },
-            meleeWeapons: { data: weaponData, isWeapon: true },
-            explosives: { data: weaponData, isWeapon: true },
-            throwing: { data: weaponData, isWeapon: true },
-            food: { data: foodData },
-            drinks: { data: drinksData },
-            meds: { data: medsData },
-            ammo: { data: ammoData }
+            smallGuns: { data: dataManager.weapons, isWeapon: true },
+            energyWeapons: { data: dataManager.weapons, isWeapon: true },
+            bigGuns: { data: dataManager.weapons, isWeapon: true },
+            meleeWeapons: { data: dataManager.weapons, isWeapon: true },
+            explosives: { data: dataManager.weapons, isWeapon: true },
+            throwing: { data: dataManager.weapons, isWeapon: true },
+            food: { data: dataManager.food },
+            drinks: { data: dataManager.drinks },
+            meds: { data: dataManager.meds },
+            ammo: { data: dataManager.ammo }
         };
 
         const config = itemConfig[itemType];
@@ -843,15 +843,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Populate select element
         addItemPopupElements.select.innerHTML = "";
-        const formattedItemType = translate(config.isWeapon ? "weapons" : itemType)
-        const defaultOptionText = translate("default_add_item_option").replace("%s", formattedItemType)
+        const formattedItemType = translator.translate(config.isWeapon ? "weapons" : itemType)
+        const defaultOptionText = translator.translate("default_add_item_option").replace("%s", formattedItemType)
         const defaultOption = new Option(defaultOptionText, '', true, true);
         defaultOption.disabled = true;
         addItemPopupElements.select.appendChild(defaultOption);
         addItemPopupElements.select.dataItemType = itemType;
 
         availableItems.forEach(item => {
-            const optionText = langData.it[item.ID] || item.ID; // Fallback to ID
+            const optionText = translator.translate(item.ID); // Fallback to ID
             addItemPopupElements.select.appendChild(new Option(optionText, item.ID));
         });
 

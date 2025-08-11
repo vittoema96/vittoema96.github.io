@@ -1,8 +1,17 @@
-const PROJECT_VERSION = "PLACEHOLDER"; // Set by deploy stage
-const HIDE_LOADER = true; // Set to FALSE by deploy stage
+// <editor-fold desc="Set by deployment">
+const PROJECT_VERSION = "PLACEHOLDER";
+const HIDE_LOADER = true;
 
-// FIRST THING: ServiceWorker Registration
-//    Allows cache to be loaded the next times the app/tab is opened
+document.addEventListener("DOMContentLoaded", async () => {
+    const versionBootLine = document.getElementById("appVersion");
+    versionBootLine.textContent = versionBootLine.textContent.replace("{version}", PROJECT_VERSION.toUpperCase())
+    if (HIDE_LOADER) {
+        document.body.style.setProperty("--loader-display", "none");
+    }
+});
+// </editor-fold>
+
+// <editor-fold desc="ServiceWorker Registration">
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/js/sw.js')
@@ -14,19 +23,34 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
-
-if(HIDE_LOADER){
-    document.body.style.setProperty("--loader-display", "none");
-}
+// </editor-fold>
 
 
-// Get references to DOM elements
-let weaponData = undefined;
-let foodData = undefined;
-let drinksData = undefined;
-let medsData = undefined;
-let ammoData = undefined;
-let perksData = undefined;
+let dataManager = undefined;
+let translator = undefined;
+
+// IMPORTANT: Keep this outside of DOMContentLoaded, or it flashes uglily before loading
+changeTheme(localStorage.getItem("theme"))
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const versionBootLine = document.getElementById("appVersion");
+    versionBootLine.textContent = versionBootLine.textContent.replace("{version}", PROJECT_VERSION.toUpperCase())
+
+    dataManager = new DataManager();
+    await dataManager.loadAllData();
+
+    translator = new Translator();
+    await translator.init();
+
+    createSkillEntries();
+
+    display = new Display();
+
+    characterData = Character.load();
+    display.initialize(characterData); // Pass character data to display
+    translator.loadTranslations();
+});
+
 
 const resetMemoryButton = document.getElementById('reset-memory-button');
 resetMemoryButton.addEventListener('click', async () => {
@@ -41,29 +65,18 @@ resetMemoryButton.addEventListener('click', async () => {
     }
 });
 
-async function loadWeapons() {
-    return {
-        ...await paParseCSV('data/weapons/smallGuns.csv'),
-        ...await paParseCSV('data/weapons/energyWeapons.csv'),
-        ...await paParseCSV('data/weapons/bigGuns.csv'),
-        ...await paParseCSV('data/weapons/meleeWeapons.csv'),
-        ...await paParseCSV('data/weapons/throwing.csv'),
-        ...await paParseCSV('data/weapons/explosives.csv'),
-    }
-}
-
 /**
  * Fills the #skills container with all the skills.
  */
 function createSkillEntries(){
     const skillsContainer = document.querySelector("#skills")
     const translated = {};
-    Character.getSkillList().forEach(key => translated[translate(key)] = key);
+    Character.getSkillList().forEach(key => translated[translator.translate(key)] = key);
 
 
     for(const [skillTranslated, skillId] of Object.entries(translated).sort()){
         const special = SKILL_TO_SPECIAL_MAP[skillId];
-        const specialTranslated = translate(special);
+        const specialTranslated = translator.translate(special);
 
         const entryDiv = document.createElement('div');
         entryDiv.className = 'skill';
@@ -113,7 +126,7 @@ function createGenericCard(genericItem, customCardContent, itemType, quantity) {
     cardDiv.querySelector('.card-weight-value').textContent = genericItem.WEIGHT;
     cardDiv.querySelector('.card-rarity-value').textContent = genericItem.RARITY;
 
-    const isWeapon = !!weaponData[genericItem.ID];
+    const isWeapon = !!dataManager.weapons[genericItem.ID];
     const attackButton = cardDiv.querySelector('.card-attack-button');
     if(isWeapon){
         attackButton.dataset.action = "attack";
@@ -145,7 +158,7 @@ function createAmmoEntry(ammoId, quantity){
 }
 
 function createWeaponCard(weaponId, quantity) {
-    const weapon = weaponData[weaponId];
+    const weapon = dataManager.weapons[weaponId];
     if (!weapon) {
         console.error(`Weapon data not found for ID: ${weaponId}`);
         return null;
@@ -184,14 +197,14 @@ function createWeaponCard(weaponId, quantity) {
             </div>
         </div>
         <div class="tags-container">
-            ${weapon.EFFECTS.map(effect => `<span class="tag" data-tooltip-id="${effect.split(' ')[0]}Description">${translate(effect)}</span>`).join('')}
+            ${weapon.EFFECTS.map(effect => `<span class="tag" data-tooltip-id="${effect.split(' ')[0]}Description">${translator.translate(effect)}</span>`).join('')}
         </div>`;
 
     return createGenericCard(weapon, weaponHTML, weapon.SKILL, quantity);
 }
 
 function createObjectCard(id, type, quantity) {
-    const object = {...foodData, ...drinksData, ...medsData}[id];
+    const object = {...dataManager.food, ...dataManager.drinks, ...dataManager.meds}[id];
     const specificEffectHeader = object.RADIOACTIVE !== undefined ? 'Radioactive' : 'Addictive';
 
     const hpGainHTML = type !== "meds" ? `<div class="card-stat"><div>HP</div><div>+${object.HP_GAIN}</div></div>` : "";
@@ -231,81 +244,99 @@ function changeTheme(value){
     const primaryColor = computedStyle.getPropertyValue('--primary-color');
     document.querySelector('meta[name="theme-color"]').setAttribute('content', primaryColor);
 }
-changeTheme(localStorage.getItem("theme"))
 
-document.addEventListener("DOMContentLoaded", async () => {
-    const versionBootLine = document.getElementById("appVersion");
-    versionBootLine.textContent = versionBootLine.textContent.replace("{version}", PROJECT_VERSION.toUpperCase())
+class DataManager {
+    constructor(){
+        this.weapons = {};
+        this.food = {};
+        this.drinks = {};
+        this.meds = {};
+        this.ammo = {};
+        this.perks = {};
+        this.allItemData = {};
+    }
 
-    weaponData = await loadWeapons();
-    foodData = await paParseCSV("data/supplies/food.csv");
-    drinksData = await paParseCSV("data/supplies/drinks.csv");
-    medsData = await paParseCSV("data/supplies/meds.csv");
-    ammoData = await paParseCSV("data/ammo.csv");
-    perksData = await paParseCSV("data/perks.csv");
+    async loadAllData() {
+        const [
+            smallGuns, energyWeapons, bigGuns, meleeWeapons, throwing, explosives,
+            food, drinks, meds, ammo, perks
+        ] = await Promise.all([
+            this.#paParseCSV('data/weapons/smallGuns.csv'),
+            this.#paParseCSV('data/weapons/energyWeapons.csv'),
+            this.#paParseCSV('data/weapons/bigGuns.csv'),
+            this.#paParseCSV('data/weapons/meleeWeapons.csv'),
+            this.#paParseCSV('data/weapons/throwing.csv'),
+            this.#paParseCSV('data/weapons/explosives.csv'),
+            this.#paParseCSV("data/supplies/food.csv"),
+            this.#paParseCSV("data/supplies/drinks.csv"),
+            this.#paParseCSV("data/supplies/meds.csv"),
+            this.#paParseCSV("data/ammo.csv"),
+            this.#paParseCSV("data/perks.csv")
+        ]);
 
-    createSkillEntries();
+        this.weapons = { ...smallGuns, ...energyWeapons, ...bigGuns, ...meleeWeapons, ...throwing, ...explosives };
+        this.food = food;
+        this.drinks = drinks;
+        this.meds = meds;
+        this.ammo = ammo;
+        this.perks = perks;
 
-    display = new Display();
-    characterData = Character.load();
-    display.initialize(characterData); // Pass character data to display
-    loadTranslations();
-});
+        // Combine all item data into a single map for easy lookup
+        this.allItemData = { ...this.weapons, ...this.food, ...this.drinks, ...this.meds, ...this.ammo };
+    }
 
-window.paParseCSV = (fileUrl) => {
-    return new Promise((resolve, reject) => {
-        Papa.parse(fileUrl, {
-            download: true,
-            header: true,
-            dynamicTyping: true,
-            skipEmptyLines: true,
-            complete: function(results) {
-                const result = results.data.reduce((map, entry) => {
-                    if (entry.ID) {
-                        if (entry.REQUISITES && typeof entry.REQUISITES === 'string') {
-                            try {
-                                entry.REQUISITES = JSON.parse(entry.REQUISITES);
-                            } catch (e) {
-                                console.error(`Could not parse REQUISITES for ID ${entry.ID}:`, entry.REQUISITES);
-                                entry.REQUISITES = {}; // Default to an empty object on failure
-                            }
-                        }
-                        if (entry.EFFECTS && typeof entry.EFFECTS === 'string') {
-                            try {
-                                entry.EFFECTS = JSON.parse(entry.EFFECTS);
-                            } catch (e) {
-                                console.error(`Could not parse EFFECTS for ID ${entry.ID}:`, entry.EFFECTS);
-                                entry.EFFECTS = {}; // Default to an empty object on failure
+    getItem(itemId) {
+        return this.allItemData[itemId] || null;
+    }
+
+    #paParseCSV(fileUrl){
+        return new Promise((resolve, reject) => {
+            Papa.parse(fileUrl, {
+                download: true,
+                header: true,
+                dynamicTyping: true,
+                skipEmptyLines: true,
+                complete: (results) => {
+                    const result = results.data.reduce((map, entry) => {
+                        for(let column of ["REQUISITES", "EFFECTS"]){
+                            if(entry[column] && typeof entry[column] === "string"){
+                                try {
+                                    entry[column] = JSON.parse(entry[column]);
+                                } catch (e) {
+                                    console.error(`Could not parse ${column} for ID ${entry.ID}:`, entry[column]);
+                                    entry[column] = {}; // Default to an empty object on failure
+                                }
                             }
                         }
                         map[entry.ID] = entry;
-                    }
-                    return map;
-                }, {});
-
-                resolve(result);
-            },
-            error: function(error) {
-                reject(error);
-            }
-        });
-    })
-}
-
-window.getItem = (itemId) => {
-    for(let data of [weaponData, foodData, drinksData, medsData, ammoData]){
-        const item = data[itemId];
-        if(item) {
-            return item;
-        }
+                        return map;
+                    }, {});
+                    resolve(result);
+                },
+                error: reject
+            });
+        })
     }
-    return null;
+
+    // TODO might not need
+    getDataSourceForType(itemType) {
+        const itemConfig = {
+            smallGuns: { data: this.weapons, isWeapon: true },
+            energyWeapons: { data: this.weapons, isWeapon: true },
+            bigGuns: { data: this.weapons, isWeapon: true },
+            meleeWeapons: { data: this.weapons, isWeapon: true },
+            explosives: { data: this.weapons, isWeapon: true },
+            throwing: { data: this.weapons, isWeapon: true },
+            unarmed: { data: this.weapons, isWeapon: true },
+            food: { data: this.food },
+            drinks: { data: this.drinks },
+            meds: { data: this.meds },
+            ammo: { data: this.ammo }
+        };
+        return itemConfig[itemType] || null;
+    }
 }
 
-window.getListFromString = (string) => {
-    let result = string;
-    result = result.split(','); // Divide elements
-    result = result.map(e => e.trim()); // Remove whitespaces
-    result = result.filter(e => e); // Filter out '', null, undefined, etc
-    return result;
+class CardFactory {
+    // TODO
 }

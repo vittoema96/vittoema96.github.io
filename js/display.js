@@ -94,12 +94,12 @@ class Display {
                 container.classList.toggle("expanded");
                 const langId = container.classList.contains("expanded") ? "close" : "showDescription";
                 button.dataset.langId = langId;
-                button.textContent = translate(langId);
+                button.textContent = translator.translate(langId);
                 break;
             }
             case 'attack': {
                 const { skill, objectId } = e.target.dataset;
-                const ammo = getItem(objectId).AMMO_TYPE;
+                const ammo = dataManager.getItem(objectId).AMMO_TYPE;
                 if(!isMelee(skill) && characterData.getItemQuantity(ammo) <= 0){
                     showNotification("Non hai abbastanza muniz. per farlo!") // TODO language
                 } else {
@@ -193,14 +193,14 @@ class Display {
                         itemCard.querySelector(".card-quantity").textContent = `${item.quantity}x`;
                         const ammoCount = itemCard.querySelector("#weaponAmmoCount");
                         if(ammoCount) {
-                            ammoCount.textContent = characterData.getItemQuantity(getItem(item.id).AMMO_TYPE).toString();
+                            ammoCount.textContent = characterData.getItemQuantity(dataManager.getItem(item.id).AMMO_TYPE).toString();
                         }
                     }
                     // TODO: Handle multiple items with different mods
                 });
 
             }
-            loadTranslations();
+            translator.loadTranslations();
         });
     }
 
