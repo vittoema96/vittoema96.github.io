@@ -1,20 +1,20 @@
 const tabButtons = document.querySelectorAll('.tab-button');
 const subTabButtons = document.querySelectorAll('.subTab-button');
 
-const screens = document.querySelectorAll('.screen');
+const screens = document.querySelectorAll('.tabContent');
 const subScreens = document.querySelectorAll('.subScreen');
 
 // Event listener for main tab clicks
 tabButtons.forEach(tab => {
     tab.addEventListener('click', () => {
-        const targetScreenId = tab.dataset.screen;
+        const targetScreenId = tab.dataset.tabId;
 
         // Hide all screens and deactivate all tabs
         screens.forEach(s => s.classList.add('hidden'));
         tabButtons.forEach(t => t.classList.remove('active'));
 
         // Show the target screen and activate its tab
-        const targetScreenElement = document.getElementById(`${targetScreenId}-screen`);
+        const targetScreenElement = document.getElementById(`${targetScreenId}-tabContent`);
         targetScreenElement.classList.remove('hidden');
         tab.classList.add('active');
 

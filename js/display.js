@@ -12,23 +12,23 @@ class Display {
             initiative: document.getElementById('initiative-value'),
             meleeDamage: document.getElementById('melee-damage-value'),
 
-            caps: document.getElementById('caps-value'),
-            weight: document.getElementById('weight-value'),
-            hp: document.getElementById('hp-value'),
+            caps: document.getElementById('c-headerStats__caps'),
+            weight: document.getElementById('c-headerStats__weight'),
+            hp: document.getElementById('c-headerStats__hp'),
 
-            level: document.getElementById('level-display'),
+            level: document.getElementById('level'),
 
             currentLuck: document.getElementById('luck-current-value'),
-            specials: this.getDisplayMap(Character.getSpecialList(), "special-%s-value"),
+            specials: this.getDisplayMap(Character.getSpecialList(), "special__value-%s"),
 
             skills: this.getDisplayMap(Character.getSkillList(), "skill-%s"),
             specialties: this.getDisplayMap(Character.getSkillList(), "specialty-%s"),
             itemContainers: this.getDisplayMap(["smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "unarmed", "food", "drinks", "meds", "ammo"], "%s-cards"),
 
             editStatsButton: document.getElementById('edit-stats-button'),
-            statContainer: document.getElementById('stat-container'),
+            statContainer: document.getElementById('c-special'),
             skillsContainer: document.getElementById('skills'),
-            invScreen: document.getElementById('inv-screen'),
+            invScreen: document.getElementById('inv-tabContent'),
         };
         this.elementMaps = {};
         Object.keys(this.dom.itemContainers).forEach(key => { this.elementMaps[key] = new Map() });
@@ -217,7 +217,7 @@ class Display {
 
     handleStatClick(event) {
         if (!this.#isEditing) return;
-        const statDiv = event.target.closest('.stat');
+        const statDiv = event.target.closest('.special');
         if (!statDiv) return;
         const special = statDiv.dataset.special;
         const max = (special === SPECIAL.STRENGTH || special === SPECIAL.ENDURANCE) ? 12 : 10;

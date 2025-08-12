@@ -1,8 +1,8 @@
 
 class StatAdjustementPopup {
 
-    static #htmlElement = document.getElementById('stat-adjustment-popup');
-    static #trigger = document.getElementById('header-stats');
+    static #htmlElement = document.getElementById('popup-editHeaderStats');
+    static #trigger = document.getElementById('c-headerStats');
 
     static #dom ={
         hpOld: document.getElementById("adjustHpOld"),
@@ -83,7 +83,7 @@ class StatAdjustementPopup {
 
 class TradeItemPopup {
     
-    static #htmlElement = document.getElementById('trade-item-popup');
+    static #htmlElement = document.getElementById('popup-tradeItem');
     
     static #dom = {
         type: document.getElementById('tradeType'),
@@ -153,6 +153,7 @@ class TradeItemPopup {
 class TagTooltip {
 
     static container = document.getElementById('tooltip-container');
+    #arrow = document.getElementById("arrow");
 
     #activeTag;
 
@@ -221,7 +222,10 @@ class TagTooltip {
 
         // Set the text and make it visible
         TagTooltip.container.textContent = tooltipText;
-        TagTooltip.container.appendChild(document.createElement('div')).className = 'tooltip-arrow'; // Re-add arrow
+
+        this.#arrow = document.createElement('div');
+        this.#arrow.className = 'tooltip-arrow';
+        TagTooltip.container.appendChild(this.#arrow); // Re-add arrow
         TagTooltip.container.classList.add('visible');
 
         // Position the tooltip
@@ -241,24 +245,36 @@ class TagTooltip {
         const dialogRect = tagEl.closest('dialog[open]')?.getBoundingClientRect();
         const dialogTop = dialogRect?.top || 0;
         const dialogLeft = dialogRect?.left || 0;
-        top = tagRect.top - tooltipRect.height - spacing - dialogTop;
-        left = tagRect.left + (tagRect.width / 2) - (tooltipRect.width / 2) - dialogLeft;
+        top = tagRect.top - tooltipRect.height - spacing;
+        left = tagRect.left + (tagRect.width / 2) - (tooltipRect.width / 2);
 
         // If it goes off the top of the screen, place it below instead
         if (top < 0) {
             TagTooltip.container.className = 'tooltip-panel visible pos-bottom';
-            top = tagRect.bottom + spacing - dialogTop;
+            top = tagRect.bottom + spacing;
         }
 
         // Prevent it from going off the left/right edges
+        let diff = 0;
         if (left < 0) {
-            left = spacing - dialogLeft;
+            diff = left;
+            left = spacing;
+            diff = diff - left;
         } else if (left + tooltipRect.width > window.innerWidth) {
-            left = window.innerWidth - tooltipRect.width - spacing - dialogLeft;
+            diff = left;
+            left = window.innerWidth - tooltipRect.width - spacing;
+            diff = diff - left;
         }
 
-        TagTooltip.container.style.top = `${top}px`;
-        TagTooltip.container.style.left = `${left}px`;
+        if(diff){
+            diff = diff > 0 ? diff = `+ ${diff}px` : `- ${-diff}px`;
+            this.#arrow.style.transform = `translateX(calc(-50% ${diff}))`;
+        } else {
+            this.#arrow.style.transform = `translateX(-50%)`;
+        }
+
+        TagTooltip.container.style.top = `${top - dialogTop}px`;
+        TagTooltip.container.style.left = `${left - dialogLeft}px`;
     };
 
     hideTooltip() {
@@ -274,28 +290,28 @@ class TagTooltip {
 
 class D20Popup {
 
-    static #htmlElement = document.getElementById('d20-popup');
+    static #htmlElement = document.getElementById('popup-d20');
     static #dom = {
-        skillTitle: document.getElementById('d20-popup-skill-title'),
+        skillTitle: document.getElementById('popup-d20__skillTitle'),
 
-        specialSelector: document.getElementById('d20-popup-special-selector'),
-        luckCheckbox: document.getElementById('d20-popup-luck-checkbox'),
+        specialSelector: document.getElementById('popup-d20__selector-special'),
+        luckCheckbox: document.getElementById('popup-d20__checkbox-luck'),
 
-        targetNumber: document.getElementById('d20-popup-target'),
-        targetNumberBreakdown: document.getElementById('d20-popup-target-breakdown'),
-        critBreakdown: document.getElementById('d20-popup-crit-breakdown'),
+        targetNumber: document.getElementById('popup-d20-target'),
+        targetNumberBreakdown: document.getElementById('popup-d20-target-breakdown'),
+        critBreakdown: document.getElementById('popup-d20-crit-breakdown'),
 
         dice: this.#htmlElement.querySelectorAll('.d20-dice'),
 
-        apCost: document.getElementById('d20-popup-ap-cost'),
-        aimCheckbox: document.getElementById('d20-popup-aim-checkbox'),
-        payedLuck: document.getElementById('d20-popup-payed-luck'),
-        luckCost: document.getElementById('d20-popup-luck-cost'),
+        apCost: document.getElementById('popup-d20-ap-cost'),
+        aimCheckbox: document.getElementById('popup-d20-aim-checkbox'),
+        payedLuck: document.getElementById('popup-d20-payed-luck'),
+        luckCost: document.getElementById('popup-d20-luck-cost'),
 
-        successesDisplay: document.getElementById('d20-popup-successes-display'),
+        successesDisplay: document.getElementById('popup-d20-successes-display'),
 
-        rollButton: document.getElementById('d20-popup-roll-button'),
-        damageButton: document.getElementById('d20-popup-damage-button'),
+        rollButton: document.getElementById('popup-d20-roll-button'),
+        damageButton: document.getElementById('popup-d20-damage-button'),
     };
 
     constructor() {
@@ -371,7 +387,9 @@ class D20Popup {
     }
 
     #render() {
-        D20Popup.#dom.skillTitle.textContent = translator.translate(this.#skillId);
+        const skillName = translator.translate(this.#skillId);
+        D20Popup.#dom.skillTitle.textContent = skillName;
+        D20Popup.#dom.skillTitle.style.fontSize = getVariableFontSize(skillName);
 
         const activeSpecialId = this.#isUsingLuck ? SPECIAL.LUCK : this.#specialId;
         D20Popup.#dom.specialSelector.value = activeSpecialId;
@@ -522,7 +540,7 @@ class D20Popup {
 }
 
 class D6Popup {
-    static #htmlElement =document.getElementById('d6-popup');
+    static #htmlElement =document.getElementById('popup-d6');
     static #dom = {
         weaponName: document.getElementById('d6-weapon-name'),
         damageType: document.getElementById('d6-damage-type'),
@@ -530,10 +548,10 @@ class D6Popup {
         damageDiceContainer: document.getElementById('d6-damage-dice-container'),
         extraHitsTitle: document.getElementById('d6-extra-hits-title'),
         extraHitsContainer: document.getElementById('d6-extra-hits-container'),
-        ammoCost: document.getElementById('d6-popup-ammo-cost'),
-        ammoPayed: document.getElementById('d6-popup-payed-ammo'),
-        luckCost: document.getElementById('d6-popup-luck-cost'),
-        luckPayed: document.getElementById('d6-popup-payed-luck'),
+        ammoCost: document.getElementById('popup-d6-ammo-cost'),
+        ammoPayed: document.getElementById('popup-d6-payed-ammo'),
+        luckCost: document.getElementById('popup-d6-luck-cost'),
+        luckPayed: document.getElementById('popup-d6-payed-luck'),
         totalDamage: document.getElementById('d6-total-damage'),
         totalEffects: document.getElementById('d6-total-effects'),
         rollButton: document.getElementById('d6-roll-button')
@@ -547,6 +565,7 @@ class D6Popup {
 
     #object;
     #effects;
+    #qualities;
     #hasRolled;
 
     #diceActive;
@@ -601,6 +620,14 @@ class D6Popup {
             tag.dataset.tooltipId = `${effect.split(' ')[0]}Description`;
             D6Popup.#dom.tagsContainer.appendChild(tag);
         });
+        this.#qualities = weapon.QUALITIES;
+        this.#qualities.forEach(quality => {
+            const tag = document.createElement('span');
+            tag.className = 'tag tag-empty';
+            tag.textContent = translator.translate(quality);
+            tag.dataset.tooltipId = `${quality.split(' ')[0]}Description`;
+            D6Popup.#dom.tagsContainer.appendChild(tag);
+        });
 
 
         D6Popup.#dom.damageDiceContainer.innerHTML = '';
@@ -646,7 +673,9 @@ class D6Popup {
     }
 
     #render(){
-        D6Popup.#dom.weaponName.textContent = translator.translate(this.#object.ID);
+        const weaponName = translator.translate(this.#object.ID);
+        D6Popup.#dom.weaponName.textContent = weaponName;
+        D6Popup.#dom.weaponName.style.fontSize = getVariableFontSize(weaponName);
         D6Popup.#dom.damageType.textContent = this.#object.DAMAGE_TYPE; // TODO Handle language
 
         const dice = D6Popup.#dom.damageDiceContainer.querySelectorAll('.d6-dice');
@@ -675,8 +704,8 @@ class D6Popup {
         const totEffects = this.#getEffectCount();
         const totDamage = totEffects + this.#getDamage1Count() + this.#getDamage2Count() * 2
         // TODO language
-        D6Popup.#dom.totalDamage.textContent = `Danni: ${this.#hasRolled ? totDamage : '?'}`;
-        D6Popup.#dom.totalEffects.textContent = `Effetti: ${this.#hasRolled ? totEffects : '?'}`;
+        D6Popup.#dom.totalDamage.textContent = this.#hasRolled ? totDamage : '?';
+        D6Popup.#dom.totalEffects.textContent = this.#hasRolled ? totEffects : '?';
         D6Popup.#dom.rollButton.innerHTML = this.#hasRolled ? translator.spacedTranslate("reroll", "roll") : translator.spacedTranslate("roll", "reroll");
     }
 
@@ -701,7 +730,7 @@ class D6Popup {
 
     #createD6Div(index, isExtra) {
         const diceDiv = document.createElement('div');
-        diceDiv.className = 'd6-dice';
+        diceDiv.className = 'd6-dice dice';
         diceDiv.addEventListener('click', () => this.#onDiceClick(index, isExtra))
         return diceDiv
     }
@@ -822,7 +851,7 @@ class D6Popup {
             this.#character.removeItem(this.#object.AMMO_TYPE, this.#ammoCost);
             this.#ammoPayed = this.#ammoCost;
             this.#ammoCost = 0;
-            if(this.#object.EFFECTS.includes("effectBurst")){
+            if(this.#effects.includes("effectBurst")){
                 this.#ammoCost = `+${translator.translate("effectBurst")}`;
             }
         }
@@ -866,7 +895,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Close buttons for all popups
-    document.querySelectorAll('.popup-close-button, dialog .cancel-button').forEach(btn => {
+    document.querySelectorAll('.popup__button-close, dialog .button-close').forEach(btn => {
         btn.addEventListener('click', closeActivePopup);
     });
 
@@ -894,8 +923,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // TODO To refactor
     const popups = {
-        addItem: document.getElementById('add-item-popup'),
-        sellItem: document.getElementById('trade-item-popup'),
+        addItem: document.getElementById('popup-addItem'),
+        sellItem: document.getElementById('popup-tradeItem'),
         // It's good practice to add a dedicated notification popup instead of using alert() TODO
         notification: document.getElementById('notification-popup')
     };
@@ -908,8 +937,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Elements specific to the Add Item Popup
     const addItemPopupElements = {
-        select: popups.addItem.querySelector('#selector'),
-        quantity: popups.addItem.querySelector('#quantitySelector'),
+        select: popups.addItem.querySelector('#popup-addItem__selector'),
+        quantity: popups.addItem.querySelector('#popup-addItem__quantity'),
         confirmButton: popups.addItem.querySelector('.confirm-button')
     };
 

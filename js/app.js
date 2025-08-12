@@ -82,14 +82,13 @@ function createSkillEntries(){
         entryDiv.className = 'skill';
         entryDiv.dataset.skill = skillId.toString();
         entryDiv.innerHTML = `
-            <span style="flex: 4">
+            <span>
                 <b>${skillTranslated}</b>
             </span>
-            <span style="flex: 4">
+            <span>
                 <i>[${specialTranslated}]</i>
             </span>
-            <span id="skill-${skillId}" 
-                  style="flex: 1">0</span>
+            <span id="skill-${skillId}">0</span>
             <input id="specialty-${skillId}" type="checkbox"
                    disabled="disabled"
                    class="themed-svg" data-icon="vaultboy">
@@ -340,4 +339,12 @@ class DataManager {
 
 class CardFactory {
     // TODO
+}
+
+function getVariableFontSize(text, maxFontSize=2, step=.25, lineSize = 13){
+    const rows = Math.ceil(text.length / lineSize);
+    if(rows > 1){
+        return `${maxFontSize - rows * step}rem`;
+    }
+    return maxFontSize
 }
