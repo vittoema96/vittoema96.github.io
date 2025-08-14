@@ -2,7 +2,7 @@ const tabButtons = document.querySelectorAll('.tab-button');
 const subTabButtons = document.querySelectorAll('.subTab-button');
 
 const screens = document.querySelectorAll('.tabContent');
-const subScreens = document.querySelectorAll('.subScreen');
+const subScreens = document.querySelectorAll('.js-subScreen');
 
 // Event listener for main tab clicks
 tabButtons.forEach(tab => {

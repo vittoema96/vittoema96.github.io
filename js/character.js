@@ -49,7 +49,7 @@ const SKILL_TO_SPECIAL_MAP = Object.freeze({
     [SKILLS.UNARMED]:        SPECIAL.STRENGTH
 });
 function isMelee(skill){
-    return [SPECIAL.UNARMED, SPECIAL.MELEE_WEAPONS].includes(skill);
+    return [SKILLS.UNARMED, SKILLS.MELEE_WEAPONS].includes(skill);
 }
 
 const defaultCharacter = {
@@ -235,7 +235,7 @@ class Character extends EventTarget { // TODO check this out
     getItemQuantity(itemId) { return this.getItem(itemId)?.quantity ?? 0 }
     getItemsByType(type) { return this.#data.items.filter(item => item.type === type); }
 
-    removeItem(itemId, quantity = -Number.MAX_SAFE_INTEGER) {
+    removeItem(itemId, quantity = Number.MAX_SAFE_INTEGER) {
         const itemIndex = this.#data.items.findIndex(i => i.id === itemId);
         if (itemIndex === -1) return;
 

@@ -20,7 +20,7 @@ class Translator {
     }
 
     translate (langId, langFormat) {
-        const format = langFormat || "%s";
+        let format = langFormat || "%s";
         let extra;
         [langId, extra] = langId.split(' ');
 
@@ -30,7 +30,18 @@ class Translator {
         extra = extra ? ` ${extra}` : '';
         transl = `${transl}${extra}`
 
-        return format.replace("%s", transl);
+        // TODO do better if something else is needed
+        let toUpper = false;
+        if(format.startsWith('U')){
+            format = format.replace('U', '');
+            toUpper = true;
+        }
+        let result = format.replace("%s", transl);
+        if(toUpper){
+            result = result.toUpperCase().replace('.', '');
+        }
+
+        return result;
     }
 
 

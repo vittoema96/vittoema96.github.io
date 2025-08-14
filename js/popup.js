@@ -31,7 +31,7 @@ class StatAdjustementPopup {
             this.#currentLuck = e.target.value;
         });
         StatAdjustementPopup.#htmlElement.addEventListener('click', (e) => {
-            if(e.target.closest('.confirm-button')){
+            if(e.target.closest('.popup__button-confirm')){
                 let errorString = "";
                 const errorHeader = "Qualcosa è andato storto:\n";
                 if(this.#currentHp < 0 || this.#currentHp > characterData.calculateMaxHp())
@@ -90,15 +90,15 @@ class TradeItemPopup {
         quantity: document.getElementById('tradeQuantity'),
         price: document.getElementById('tradePrice'),
         total: document.getElementById('tradeTotal'),
-        confirm: TradeItemPopup.#htmlElement.querySelector(".confirm-button")
+        confirm: TradeItemPopup.#htmlElement.querySelector(".popup__button-confirm")
     }
     
     constructor(){
         TradeItemPopup.#htmlElement.addEventListener('click', (e) => {
-            if(e.target.closest('.confirm-button')){
+            if(e.target.closest('.popup__button-confirm')){
                 // TODO somethings wrong here
                 if(characterData.getItemQuantity(this.#itemId))
-                characterData.caps += TradeItemPopup.#dom.total.textContent;
+                characterData.caps += Number(TradeItemPopup.#dom.total.textContent);
                 characterData.removeItem(this.#itemId, TradeItemPopup.#dom.quantity.value);
                 // TODO check for selling too many items
                 closeActivePopup();
@@ -145,7 +145,9 @@ class TradeItemPopup {
         TradeItemPopup.#dom.type.textContent = translator.translate(this.#isBuy ? "buying" : "selling");
         TradeItemPopup.#dom.quantity.value = this.#tradeQuantity;
         TradeItemPopup.#dom.price.value = this.#tradePrice;
-        TradeItemPopup.#dom.total.textContent = (Math.floor(this.#tradeQuantity * this.#tradePrice)).toString();
+        const sign = this.#isBuy ? "-" : "+";
+        const total = Math.floor(this.#tradeQuantity * this.#tradePrice);
+        TradeItemPopup.#dom.total.textContent = `${sign}${total}`
     }
     
 }
@@ -895,7 +897,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Close buttons for all popups
-    document.querySelectorAll('.popup__button-close, dialog .button-close').forEach(btn => {
+    document.querySelectorAll('.popup__button-x, dialog .popup__button-close').forEach(btn => {
         btn.addEventListener('click', closeActivePopup);
     });
 
@@ -939,7 +941,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const addItemPopupElements = {
         select: popups.addItem.querySelector('#popup-addItem__selector'),
         quantity: popups.addItem.querySelector('#popup-addItem__quantity'),
-        confirmButton: popups.addItem.querySelector('.confirm-button')
+        confirmButton: popups.addItem.querySelector('.popup__button-confirm')
     };
 
     window.openAddItemModal = (itemType) => {

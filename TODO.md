@@ -1,5 +1,8 @@
 # TODO
 
+# After refactoring
+- Use luck + aim should not cancel out
+
 # Main
 - ACCURATE,UNRELIABLE DESCRIPTION SBAGLIATE IN ITALIANO 
 - Implement gatling effect
@@ -49,6 +52,7 @@
 - Add english translations
 
 ### Other
+- Serve images as webp instead of jpg
 - Remove navigation bar from viewport (mobile, non-PWA mode (what did i mean?????) )
 - Uniform all icons (https://maskable.app/)
 - In webmanifest add "form_factor: narrow/wide" to allow screenshots only for mobile or desktop (also implement desktop screenshots and improve screenshots in general)

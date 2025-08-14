@@ -1,17 +1,11 @@
-// <editor-fold desc="Set by deployment">
-const PROJECT_VERSION = "PLACEHOLDER";
-const HIDE_LOADER = true;
-
-document.addEventListener("DOMContentLoaded", async () => {
-    const versionBootLine = document.getElementById("appVersion");
-    versionBootLine.textContent = versionBootLine.textContent.replace("{version}", PROJECT_VERSION.toUpperCase())
-    if (HIDE_LOADER) {
-        document.body.style.setProperty("--loader-display", "none");
-    }
-});
+// <editor-fold desc="Set Loader version">
+// As long as app.js is included after the <body>, this works fine without DOMContentLoaded
+const versionBootLine = document.getElementById("appVersion");
+versionBootLine.textContent = versionBootLine.textContent.replace("{version}", PROJECT_VERSION.toUpperCase())
 // </editor-fold>
 
 // <editor-fold desc="ServiceWorker Registration">
+// KEEP THIS HERE
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/js/sw.js', { updateViaCache: 'none' }) // Always update service worker if online
@@ -33,9 +27,6 @@ let translator = undefined;
 changeTheme(localStorage.getItem("theme"))
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const versionBootLine = document.getElementById("appVersion");
-    versionBootLine.textContent = versionBootLine.textContent.replace("{version}", PROJECT_VERSION.toUpperCase())
-
     dataManager = new DataManager();
     await dataManager.loadAllData();
 
@@ -97,23 +88,13 @@ function createSkillEntries(){
     }
 }
 
-/**
- * Creates the HTML for a generic item card.
- * This function NO LONGER adds event listeners to prevent memory leaks.
- * All events are handled by delegation in the Display class.
- * @param {object} genericItem The item data.
- * @param {string} customCardContent The specific HTML for the item type.
- * @param {string} itemType The category of the item (e.g., 'smallGuns', 'food').
- * @param {number} quantity The quantity of the object.
- * @returns {HTMLDivElement} The card's outer div element.
- */
 function createGenericCard(genericItem, customCardContent, itemType, quantity) {
     if (!genericItem) {
         console.error(`Item data provided was null`);
         return null;
     }
 
-    const template = document.getElementById('generic-card-template');
+    const template = document.getElementById('t-card');
     const cardDiv = template.content.cloneNode(true).firstElementChild;
 
     cardDiv.dataset.itemId = genericItem.ID;
@@ -121,12 +102,12 @@ function createGenericCard(genericItem, customCardContent, itemType, quantity) {
 
     cardDiv.querySelector('.card-quantity').textContent = `${quantity}x`;
     cardDiv.querySelector('.card-name').dataset.langId = genericItem.ID;
-    cardDiv.querySelector('.card-cost-value').textContent = genericItem.COST;
-    cardDiv.querySelector('.card-weight-value').textContent = genericItem.WEIGHT;
-    cardDiv.querySelector('.card-rarity-value').textContent = genericItem.RARITY;
+    cardDiv.querySelector('.js-card-cost').textContent = genericItem.COST;
+    cardDiv.querySelector('.js-card-weight').textContent = genericItem.WEIGHT;
+    cardDiv.querySelector('.js-card-rarity').textContent = genericItem.RARITY;
 
     const isWeapon = !!dataManager.weapons[genericItem.ID];
-    const attackButton = cardDiv.querySelector('.card-attack-button');
+    const attackButton = cardDiv.querySelector('.button-attack');
     if(isWeapon){
         attackButton.dataset.action = "attack";
         attackButton.dataset.skill = genericItem.SKILL || "---";
@@ -141,13 +122,13 @@ function createGenericCard(genericItem, customCardContent, itemType, quantity) {
             paragraph => `<p>${paragraph}${paragraph.endsWith(".") ? "" : "."}</p>`
         ).join(''); // TODO is this the correct place to format this?
 
-    cardDiv.querySelector('.card-controls').insertAdjacentHTML('beforebegin', customCardContent);
-
+    //cardDiv.querySelector('.js-card-content').insertAdjacentElement('beforebegin', customCardContent);
+    cardDiv.querySelector('.js-card-content').appendChild(customCardContent);
     return cardDiv;
 }
 
 function createAmmoEntry(ammoId, quantity){
-     const template = document.getElementById('ammo-card-template');
+     const template = document.getElementById('t-cardAmmo');
      const ammoDiv = template.content.cloneNode(true).firstElementChild;
      ammoDiv.dataset.itemId = ammoId;
      ammoDiv.dataset.itemType = "ammo";
@@ -163,72 +144,51 @@ function createWeaponCard(weaponId, quantity) {
         return null;
     }
 
-    const ammoCount = characterData.getItemQuantity(weapon.AMMO_TYPE);
+    const template = document.getElementById('t-card__content-weapon');
+    const wcDiv = template.content.cloneNode(true).firstElementChild;
+    wcDiv.querySelector('.js-cardWeapon-skill').dataset.langId = weapon.SKILL;
+    
+    wcDiv.querySelector('.js-cardWeapon-target').textContent = characterData.getSkill(weapon.SKILL) + characterData.getSpecial(SKILL_TO_SPECIAL_MAP[weapon.SKILL]);
+    wcDiv.querySelector('.js-cardWeapon-crit').textContent = Math.max(characterData.getSkill(weapon.SKILL), 1).toString();
+    wcDiv.querySelector('.js-cardWeapon-ammoType').dataset.langId = weapon.AMMO_TYPE;
+    wcDiv.querySelector('.js-cardWeapon-ammoCount').textContent = isMelee(weapon.SKILL) ? '-' : characterData.getItemQuantity(weapon.AMMO_TYPE);
+    
+    wcDiv.querySelector('.js-cardWeapon-image').dataset.icon = weapon.SKILL;
+    
+    wcDiv.querySelector('.js-cardWeapon-damageRating').textContent = weapon.DAMAGE_RATING;
+    wcDiv.querySelector('.js-cardWeapon-damageType').textContent = weapon.DAMAGE_TYPE; // TODO language
+    wcDiv.querySelector('.js-cardWeapon-fireRate').textContent = weapon.FIRE_RATE;
+    wcDiv.querySelector('.js-cardWeapon-range').textContent = weapon.RANGE; // TODO language
+    
+    const tagsContainer = wcDiv.querySelector('.tags-container');
+    const createTagSpan = (text, className) => {
+        const span = document.createElement('span');
+        span.className = className;
+        span.dataset.tooltipId = `${text.split(' ')[0]}Description`;
+        span.dataset.langId = text;
+        return span;
+    };
+    const effectSpans = weapon.EFFECTS.map(effect => createTagSpan(effect, 'tag'));
+    const qualitySpans = weapon.QUALITIES.map(quality => createTagSpan(quality, 'tag tag-empty'));
+    tagsContainer.append(...effectSpans, ...qualitySpans);
 
-    // TODO implement as template
-    // language=HTML
-    let weaponHTML = `
-        <div class="stats" id="stats-left">
-            <div class="card-stat">
-                <div data-lang-id="${weapon.SKILL}"></div>
-                <div>To Hit: ${characterData.getSkill(weapon.SKILL) + characterData.getSpecial(SKILL_TO_SPECIAL_MAP[weapon.SKILL])}</div>
-                <div>To Crit: ${Math.max(characterData.getSkill(weapon.SKILL), 1)}</div>
-            </div>
-            <div class="card-stat">
-                <div data-lang-id="${weapon.AMMO_TYPE}"></div>
-                <div id="weaponAmmoCount">${ammoCount}</div>
-            </div>
-        </div>
-        <div class="card-image themed-svg" data-icon="${weapon.SKILL}"></div>
-        <div class="stats" id="stats-right">
-            <div class="card-stat">
-                <div data-lang-id="damageDice">Damage Dice</div>
-                <div>${weapon.DAMAGE_RATING}</div>
-                <div>${weapon.DAMAGE_TYPE}</div>
-            </div>
-            <div class="card-stat">
-                <div data-lang-id="fireRate">Fire Rate</div>
-                <div>${weapon.FIRE_RATE}</div>
-            </div>
-            <div class="card-stat">
-                <div data-lang-id="range">Range</div>
-                <div>${weapon.RANGE}</div>
-            </div>
-        </div>
-        <div class="tags-container">
-            ${weapon.EFFECTS.map(effect => `<span class="tag" data-tooltip-id="${effect.split(' ')[0]}Description">${translator.translate(effect)}</span>`).join('')}
-            ${weapon.QUALITIES.map(quality => `<span class="tag tag-empty" data-tooltip-id="${quality.split(' ')[0]}Description">${translator.translate(quality)}</span>`).join('')}
-        </div>`;
-
-    return createGenericCard(weapon, weaponHTML, weapon.SKILL, quantity);
+    return createGenericCard(weapon, wcDiv, weapon.SKILL, quantity);
 }
 
 function createObjectCard(id, type, quantity) {
     const object = {...dataManager.food, ...dataManager.drinks, ...dataManager.meds}[id];
-    const specificEffectHeader = object.RADIOACTIVE !== undefined ? 'Radioactive' : 'Addictive';
+    const specificEffectStat = object.RADIOACTIVE !== undefined ? 'Radioactive' : 'Addictive';
 
-    const hpGainHTML = type !== "meds" ? `<div class="card-stat"><div>HP</div><div>+${object.HP_GAIN}</div></div>` : "";
+    const template = document.getElementById('t-card__content-aid');
+    const acDiv = template.content.cloneNode(true).firstElementChild;
+    acDiv.querySelector('.js-cardAid-image').dataset.icon = type;
+    acDiv.querySelector('.js-cardAid-effect').textContent = object.EFFECT; // TODO language
+    acDiv.querySelector('.js-cardAid-hpStat').dataset.icon = type;
+    acDiv.querySelector('.js-cardAid-hpGain').style.display = type === 'meds' ? 'none' : 'block';
+    acDiv.querySelector('.js-cardAid-specificEffect').textContent = specificEffectStat; // TODO language
+    acDiv.querySelector('.js-cardAid-specificEffectVal').textContent = object[specificEffectStat.toUpperCase()];
 
-    // TODO implement as template
-    // language=HTML
-    const objectHTML = `
-        <div class="stats">
-            <div class="supply-img themed-svg" data-icon="${type}">
-            </div>
-        </div>
-        <div class="stats"">
-            <div style="margin: 10px; grid-column: 2 / 3;">${object.EFFECT}</div>
-        </div>
-        <div class="stats" id="stats-right">
-            ${hpGainHTML}
-            <div class="card-stat">
-                <div>${specificEffectHeader}</div>
-                <div>${object[specificEffectHeader.toUpperCase()]}</div>
-            </div>
-        </div>
-    `;
-
-    return createGenericCard(object, objectHTML, type, quantity);
+    return createGenericCard(object, acDiv, type, quantity);
 }
 
 function changeTheme(value){

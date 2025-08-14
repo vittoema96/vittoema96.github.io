@@ -74,8 +74,8 @@ class Display {
         // --- Event Delegation for Inventory Cards ---
         this.dom.invScreen.addEventListener('click', (e) => this.handleCardClick(e));
         this.dom.invScreen.addEventListener('pointerdown', (e) => this.handleCardPointerDown(e));
-        this.dom.invScreen.addEventListener('pointerup', (e) => this.clearLongPressTimer());
-        this.dom.invScreen.addEventListener('pointerleave', (e) => this.clearLongPressTimer());
+        this.dom.invScreen.addEventListener('pointerup', () => this.clearLongPressTimer());
+        this.dom.invScreen.addEventListener('pointerleave', () => this.clearLongPressTimer());
     }
 
     handleCardClick(e) {

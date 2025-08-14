@@ -18,7 +18,6 @@ const urlsToCache = [
     '/js/popup.js',
     /* DON'T ADD sw.js */
     '/js/tabs.js',
-    '/js/utils.js',
 
     /* Translation stuff */
     '/js/lang/translator.js',
@@ -129,7 +128,10 @@ self.addEventListener('fetch', (event) => {
             caches.open(FONT_CACHE_NAME).then((cache) => {
                 return cache.match(event.request).then((cachedResponse) => {
                     const networkFetch = fetch(event.request).then((networkResponse) => {
-                        cache.put(event.request, networkResponse.clone());
+                        cache.put(event.request, networkResponse.clone())
+                            .catch(err => {
+                                console.warn(`SW: Failed to cache font request: ${event.request.url}`, err);
+                            }) ;
                         return networkResponse;
                     });
                     // Return cached response immediately, then update cache in background

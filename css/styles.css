@@ -61,6 +61,7 @@ section {
 .h1,.h2,.h3,.h4,.h5 {
     text-align: center;
 }
+/* TODO is this useful in some way? not currently used */
 .h--variable {
     font-size: clamp(1.5rem, 1.9rem, 2.1rem);
 }
@@ -69,7 +70,7 @@ section {
 .h2 { font-size: 1.5rem; }
 .h3 { font-size: 1.3rem; }
 .h4 { font-size: 1rem; }
-.h5 { font-size: 0.8rem; }
+.h5 { font-size: 0.7rem; }
 
 input, textarea, select, button {
     font-family: inherit;
@@ -130,26 +131,25 @@ select {
  **********************/
 
 .hidden { display: none !important; /* override any other 'display' */ }
-
-
-/* FIXME We need to remove these */
-.oldRow {
+.row {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-    margin: .5rem 0;
+    flex-flow: row;
+    gap: .5rem;
 }
-
-.form-control {
-    border: var(--border-primary-thin);  /* FIXME use class */
-    color: var(--primary-color);
-    padding: 0.75rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    width: 100%;
-    box-sizing: border-box;
+.row--spaced {
+    justify-content: space-evenly;
 }
+.row--wrap {
+    flex-wrap: wrap;
+}
+/* All items take the same space */
+.l-distributed > * { flex: 1; }
+/* Squished the items to the center */
+.l-centered { justify-content: center; }
+.l-spaceBetween { justify-content: space-between; }
+/* Can be used either alone or in conjunction with l-distributed */
+.l-lastSmall > :not(:last-child) { flex: 2 }
 
 /**********************
  *     Main Header    *
@@ -187,9 +187,9 @@ select {
 /**************
  *   Tabs   *
  **************/
-#main-navigator { padding: 0.5rem 1rem 0; }
 .navigator {
     display: flex;
+    padding: 0.5rem 1rem 0;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
@@ -205,7 +205,7 @@ select {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     padding: .2rem .3rem;
-    min-width: 40px;
+    min-width: 2.5rem;
 
     flex: 1;
     box-sizing: border-box;
@@ -248,91 +248,90 @@ select {
 }
 
 
-/**************
- *   Buttons  *
- **************/
-.confirm-button {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-.button-close {
-    background-color: var(--cancel-btn-background); /* TODO use different color? */
-    color: var(--primary-color);
-}
-.add-item-button {
-    font-size: 2rem;
-    font-weight: bolder;
-    padding: 0 0.5rem;
-}
-.card-attack-button {
-    background-color: var(--primary-color);
-    border: none;
-    height: 2.5rem;
-    width: 2.5rem;
-    margin-right: 10px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-#popup-d20-luck-cost {
-    font-size: .7rem;
-    font-weight: normal;
-}
-
-.d20-dice:not(:nth-child(-n + 2)) { /* All except first 2 */
-    transform: scale(.8);
-}
-
-.dice {
-    color: var(--primary-color);
-    background-color: var(--button-background);
-    transition: background-color 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    aspect-ratio: 1 / 1;
-
-}
-.d20-dice {
-    min-width: 3rem;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-}
-.d6-dice {
-    background-size: 80%; /* TODO check if its needed */
-    background-position: center;
-    background-repeat: no-repeat;
-
-    width: 40px;
-    height: 40px;
-}
-.d20-dice.roll-crit { background-color: var(--success-color); }
-.d20-dice.roll-complication { background-color: var(--failure-color); }
-
-.d6-dice.active,
-.d20-dice.active {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-.d6-face-damage1 { background-image: url('../img/svg/damage1.svg'); }
-.d6-face-damage2 { background-image: url('../img/svg/damage2.svg'); }
-.d6-face-effect { background-image: url('../img/svg/vaultboy.svg'); }
-.d6-face-blank { background-image: none; }
-
 /*****************
  *  STAT SCREEN  *
  *****************/
 
+
+#c-special {
+    container-type: inline-size;
+    container-name: container-special;
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-around;
+    /*justify-content: space-between;
+    place-items: center;*/
+    gap: .5rem;
+}
+/************************
+ *  SPECIFIC TO MOBILE  *
+ ************************/
+@media (min-width: 768px) {
+  #c-special {
+    flex-wrap: nowrap;
+  }
+  .special {
+    flex-basis: 0;
+  }
+  .special__name {
+      font-size: calc(100cqw / (18 * .5)) !important; /* 100% width - 12 letters of size .5em */
+  }
+}
+
+.special::before,
+.sub-special::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    /* Use the SVG as a mask */
+    background-color: var(--primary-color);
+    -webkit-mask-image: url('../img/svg/gear.svg');
+    mask-image: url('../img/svg/gear.svg');
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.special, .sub-special {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+}
+.special {
+    position: relative;
+    flex-basis: calc(25% - .5rem);
+    container-type: inline-size;
+
+    min-width: 60px;
+}
+.special__name {
+    margin-top: 12cqw;
+    font-size: calc(100cqw / (14 * .5)); /* 100% width - 14 letters of size .5em */
+    color: var(--special-text-color);
+}
+.special__value {
+    font-size: 24cqw;
+}
+#c-special .sub-special {
+    --image-url: url("../img/svg/gear-full.svg");
+    background-color: var(--secondary-color);
+
+    width: 50%;
+    min-width: 30px;
+
+    position: absolute;
+    bottom: -5px;
+    right: -10px;
+}
 
 .derived-stat {
     border: var(--border-primary-thick); /* FIXME use class */
@@ -354,31 +353,6 @@ select {
     border-bottom: var(--border-primary-thin);
 }
 
-/***************
- *  Ammo Cards *
- ***************/
-.ammo-card {
-    position: relative;
-    margin: 5px;
-    border: var(--border-primary-thick);
-    border-radius: 5px;
-}
-.ammo-card span { padding: 10px; }
-.ammo-card-name { flex: 6; }
-.ammo-quantity {
-    flex : 1;
-    border-right: var(--border-primary-thick);
-}
-#ammo-cards {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    font-size: .8rem;
-}
-
-/***************
- *  Skill List *
- ***************/
 .skill {
     display: flex;
     align-items: center;
@@ -396,14 +370,7 @@ select {
 .skill > :nth-child(3) {
     flex: 1;
 }
-.flex-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    width: 100%;
-}
+
 
 /***************
  *  INV SCREEN *
@@ -416,7 +383,17 @@ select {
     justify-content: space-between;
     align-items: center;
 }
-
+.button-addItem {
+    font-size: 2rem;
+    font-weight: bolder;
+    padding: 0 0.5rem;
+}
+.button-attack {
+    background-color: var(--primary-color);
+    border: none;
+    height: 2.5rem;
+    width: 2.5rem;
+}
 
 /**********************
  *  CARD DEFINITIONS  *
@@ -428,9 +405,7 @@ select {
     gap: 1rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scroll-padding: 0 15%; /* Ensures snapped items are centered */
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
+    scroll-padding: 0 15%; /* TODO somethings wrong!! - Ensures snapped items are centered */
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -438,67 +413,37 @@ select {
 .card-carousel::before,
 .card-carousel::after {
     content: '';
-    flex: 0 0 0.5rem; /* This is your 0.5rem margin */
+    flex: 0 0 0.5rem;
 }
-
 .card-carousel > .card {
     scroll-snap-align: center;
     flex: 0 0 85%;
 }
-
 .card {
     width: 100%;
-    max-width: 400px;
-    border: var(--border-primary-thick);  /* FIXME use class */
+    max-width: 300px;
+    border: var(--border-primary-thick);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
     position: relative;
 }
 .card-header {
-    display: flex;
-    justify-content: space-between;
     padding: 10px;
-    font-size: 0.9em;
     align-items: start;
     background-color: var(--primary-color);
     color: var(--secondary-color);
+    text-align: center;
 }
-.card-name-container {
-    flex: 1;
-    display: flex;
-    margin: 0 5px;
-    gap: 5px;
-}
+
+
 .card-quantity {
     font-size: .8rem;
-    font-weight: bolder;
-    text-align: center;
-    align-self: center;
 }
-.card-name {
-    flex: 1;
-    font-size: 1.2rem;
-    font-weight: bolder;
-    text-align: center;
-}
-.right-header {
+.right-header-item {
     display: flex;
-    gap: 10px;
-    justify-self: end;
-}
-.right-header-item div {
-    text-align: center;
+    flex-direction: column;
     font-size: 0.6rem;
-    font-weight: bold;
-}
-.card-content {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto auto auto;
-    font-size: 0.9em;
 }
 .card-controls {
-    grid-column: 1 / 4;
     margin: 5px;
     justify-content: space-around;
     align-items: center;
@@ -509,8 +454,6 @@ select {
     flex: auto;
 }
 .description-container {
-    grid-column: 1 / 4;
-    grid-row: 3 / 3;
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.3s ease-out;
@@ -548,8 +491,29 @@ select {
     aspect-ratio: 1 / 1;
 }
 .card-overlay button img {
-    width: 40px;
+    width: 2.5rem;
 }
+
+.delete-button { background-color: var(--delete-button-color); } /* TODO same background as others? maybe use red for the icon */
+
+
+
+/***************
+ *  Ammo Cards *
+ ***************/
+#ammo-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    font-size: .8rem;
+}
+.ammo-card {
+    position: relative;
+    margin: 5px;
+    border: var(--border-primary-thick);
+    border-radius: 5px;
+}
+.ammo-card span { padding: 10px; }
 .ammo-card .card-overlay {
     justify-content: end;
 }
@@ -563,7 +527,75 @@ select {
     width: 1rem;
 }
 
-.delete-button { background-color: var(--delete-button-color); } /* TODO same background as others? maybe use red for the icon */
+.ammo-card-name { flex: 6; }
+.ammo-quantity {
+    flex : 1;
+    border-right: var(--border-primary-thick);
+}
+
+
+
+/**************
+ *   Buttons  *
+ **************/
+.popup__button-confirm {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.popup__button-close {
+    background-color: var(--cancel-btn-background); /* TODO use different color? */
+    color: var(--primary-color);
+}
+
+
+
+
+
+/*************
+ *    Dice   *
+ *************/
+
+.dice {
+    color: var(--primary-color);
+    background-color: var(--button-background);
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    aspect-ratio: 1 / 1;
+}
+.d6-dice.active,
+.d20-dice.active {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.d20-dice {
+    min-width: 3rem;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.d20-dice:not(:nth-child(-n + 2)) { transform: scale(.8); } /* All except first 2 */
+.d20-dice.roll-crit { background-color: var(--success-color); }
+.d20-dice.roll-complication { background-color: var(--failure-color); }
+
+.d6-dice {
+    background-size: 80%; /* TODO check if its needed */
+    background-position: center;
+    background-repeat: no-repeat;
+
+    width: 2.5rem;
+    height: 2.5rem;
+}
+.d6-face-damage1 { background-image: url('../img/svg/damage1.svg'); }
+.d6-face-damage2 { background-image: url('../img/svg/damage2.svg'); }
+.d6-face-effect { background-image: url('../img/svg/vaultboy.svg'); }
+.d6-face-blank { background-image: none; }
+
+
+
+
+
+
 
 
 /*** Custom templates - common ***/
@@ -575,7 +607,6 @@ select {
     font-size: 0.9em;
     margin: 0;
 }
-.card-stat { margin: 5px 0; }
 .card-stat div {
     text-align: center;
     border: 1px solid var(--primary-color);
@@ -589,12 +620,14 @@ select {
     color: var(--secondary-color);
 }
 
-.card-image {
+.js-cardWeapon-image {
     margin: 10px;
+    align-self: stretch;
+    flex-grow: 1;
 }
-.supply-img {
-    width: 40px;
-    height: 40px;
+.js-cardAid-image {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
     margin: 5px;
 }
 
@@ -605,7 +638,6 @@ select {
 
 .tags-container {
     display: flex;
-    grid-column: 1 / 4;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
@@ -800,92 +832,7 @@ section#map-tabContent:not(.hidden) { display: flex; }
     }
 }
 
-/************************
- *  SPECIFIC TO MOBILE  *
- ************************/
 
-#c-special {
-    container-type: inline-size;
-    container-name: container-special;
-    display: flex;
-    flex-wrap: wrap;
-
-    justify-content: space-around;
-    /*justify-content: space-between;
-    place-items: center;*/
-    gap: .5rem;
-}
-
-
-/************************
- *  SPECIFIC TO MOBILE  *
- ************************/
-@media (min-width: 768px) {
-  #c-special {
-    flex-wrap: nowrap;
-  }
-  .special {
-    flex-basis: 0;
-  }
-  .special__name {
-      font-size: calc(100cqw / (18 * .5)) !important; /* 100% width - 12 letters of size .5em */
-  }
-}
-
-
-.special::before,
-.sub-special::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-
-    /* Use the SVG as a mask */
-    background-color: var(--primary-color);
-    -webkit-mask-image: url('../img/svg/gear.svg');
-    mask-image: url('../img/svg/gear.svg');
-    -webkit-mask-size: contain;
-    mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-}
-
-.special, .sub-special {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    aspect-ratio: 1;
-}
-.special {
-    position: relative;
-    flex-basis: calc(25% - .5rem);
-    container-type: inline-size;
-
-    min-width: 60px;
-}
-.special__name {
-    margin-top: 12cqw;
-    font-size: calc(100cqw / (14 * .5)); /* 100% width - 14 letters of size .5em */
-    color: var(--special-text-color);
-}
-.special__value {
-    font-size: 24cqw;
-}
-#c-special .sub-special {
-    --image-url: url("../img/svg/gear-full.svg");
-    background-color: var(--secondary-color);
-
-    width: 50%;
-    min-width: 30px;
-
-    position: absolute;
-    bottom: -5px;
-    right: -10px;
-}
 
 
 
@@ -1000,10 +947,10 @@ body::before {
  ****************************/
 
 @media (hover: hover) {
-    .card-attack-button:hover { opacity: 0.8; }
+    .button-attack:hover { opacity: 0.8; }
     .tab-button:hover { background-color: var(--tab-hover); }
-    .button:hover, .confirm-button:hover { background-color: var(--button-hover); }
-    .popup__button-close:hover { color: var(--primary-color); }
+    .button:hover, .popup__button-confirm:hover { background-color: var(--button-hover); }
+    .popup__button-x:hover { color: var(--primary-color); }
 }
 /* TODO vedere che fare con i focus
     GENERICO PER (QUASI) TUTTI I BOTTONI */
@@ -1019,6 +966,10 @@ select:focus {
 }
 
 
+
+/*********************
+ *   Tooltip Panel   *
+ *********************/
 .tooltip-panel {
     position: fixed; /* Use fixed positioning to place relative to viewport */
     background-color: var(--secondary-color);
@@ -1040,13 +991,11 @@ select:focus {
     transform: scale(0.95);
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
-
 .tooltip-panel.visible {
     opacity: 1;
     transform: scale(1);
     pointer-events: auto; /* Allow interaction if needed */
 }
-
 /* The little arrow pointing to the element */
 .tooltip-arrow {
     position: absolute;
@@ -1056,63 +1005,17 @@ select:focus {
     transform: translateX(-50%); /* center arrow */
     left: 50%; /* In the middle of the container */
 }
-
 /* Position arrow on the bottom */
 .tooltip-panel.pos-top .tooltip-arrow {
     bottom: -8px; /* Half the arrow height */
     border-width: 8px 8px 0 8px; /* Creates an upward-pointing triangle */
     border-color: var(--primary-color) transparent transparent transparent;
 }
-
 /* Position arrow on the top */
 .tooltip-panel.pos-bottom .tooltip-arrow {
     top: -8px; /* Half the arrow height */
     border-width: 0 8px 8px 8px; /* Creates a downward-pointing triangle */
     border-color: transparent transparent var(--primary-color) transparent;
-}
-
-
-
-
-
-
-
-/*************************
- *     NNNNEEEEEWWWWW    *
- *************************/
-
-
-
-
-
-#level {
-    background-color: var(--secondary-color);
-    width: 50%;
-}
-
-
-
-
-.row {
-    display: flex;
-    align-items: center;
-    flex-flow: row;
-    gap: .5rem;
-}
-.row--spaced {
-    justify-content: space-evenly;
-}
-.row--wrap {
-    flex-wrap: wrap;
-}
-.row--distributed > * {
-    flex: 1;
-}
-.row--centered {
-    justify-content: center;
-}
-.l-lastSmall > :not(:last-child) {
-    flex: 1
 }
 
 /*****************
@@ -1142,7 +1045,7 @@ dialog::backdrop {
     background-color: var(--overlay-color);
     backdrop-filter: blur(3px);
 }
-.popup__button-close {
+.popup__button-x {
 
     /* overwrite button */
     font-size: 2rem;
@@ -1162,22 +1065,6 @@ dialog::backdrop {
 
 
 
-
-.costs-section .oldRow {
-    text-align: center;
-    margin: 0;
-    justify-content: center;
-    gap: .5rem;
-}
-.costs-section > .oldRow > :first-child { flex: 3; }
-.costs-section > .oldRow > :last-child {
-    flex: 1;
-    margin: .5rem;
-}
-.costs-section span {
-    font-size: 1rem;
-    font-weight: bold;
-}
 .buttons-section {
     display: flex;
     flex-wrap: wrap;
