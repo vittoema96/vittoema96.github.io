@@ -32,7 +32,7 @@
   "weaponId": "Arma",
   "skill": "Abilità",
   "damageRating": "Grado di Danno",
-  "effects": "Effetti di Danno",
+  "effects": "Effetti",
   "damageType": "Tipo di Danno",
   "qualities": "Qualità",
   "weight": "Peso",
@@ -41,6 +41,7 @@
   "ammoType": "Tipo di Muniz.",
 
   "showDescription": "Mostra Descrizione",
+  "confirm": "Conferma",
   "close": "Chiudi",
   "cancel": "Annulla",
   "damage": "Danni",
@@ -60,11 +61,13 @@
   "anything": "Qualsiasi cosa",
   "na": "N/A",
 
-  "food": "Cibo",
-  "drinks": "Bevande",
-  "meds": "Medicine",
   "weapons": "Armi",
-  "ammo": "Munizioni",
+  "apparel": "Vestiti",
+  "aid": "Aiuto",
+    "food": "Cibo",
+    "drinks": "Bevande",
+    "meds": "Medicine",
+  "ammo": "Muniz.",
 
   "default_add_item_option": "Scegli %s da Aggiungere",
 
@@ -357,5 +360,14 @@
   "perkBlacksmith": "Fanatico delle Armi",
   "perkBlacksmithDescription": "È possibile modificare le armi leggere e le armi pesanti con le modifiche per armi. Ogni grado in questo talento sblocca un livello aggiuntivo di modifiche: il grado 1 sblocca le modifiche di livello 1, il grado 2 quelle di livello 2, e così via. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4.",
   "perkIronFist": "Pugno di Ferro",
-  "perkIronFistDescription": "Al grado 1, gli attacchi senza armi infliggono +1 DC . Al grado 2, gli attacchi senza armi ottengono anche l’effetto di danno Violento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+  "perkIronFistDescription": "Al grado 1, gli attacchi senza armi infliggono +1 DC . Al grado 2, gli attacchi senza armi ottengono anche l’effetto di danno Violento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5.",
+
+  "chooseItem": "Scegli un oggetto",
+  "quantity": "Quantità",
+  "price": "Prezzo",
+  "total": "Totale",
+  "edit": "Modifica",
+  "caps": "Tappi",
+  "target": "Target",
+  "crit": "Crit"
 }

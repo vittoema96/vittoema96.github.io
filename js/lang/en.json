@@ -32,7 +32,7 @@
   "weaponId": "Weapon",
   "skill": "Ability",
   "damageRating": "Damage Rating",
-  "effects": "Damage Effects",
+  "effects": "Effects",
   "damageType": "Damage Type",
   "qualities": "Quality",
   "weight": "Weight",
@@ -41,6 +41,7 @@
   "ammoType": "Ammo Type",
 
   "showDescription": "Show Description",
+  "confirm": "Confirm",
   "close": "Close",
   "cancel": "Cancel",
   "damage": "Damage",
@@ -60,10 +61,12 @@
   "anything": "Anything",
   "na": "N/A",
 
-  "food": "Food",
-  "drinks": "Drinks",
-  "meds": "Medicine",
   "weapons": "Weapons",
+  "apparel": "Apparel",
+  "aid": "Aid",
+    "food": "Food",
+    "drinks": "Drinks",
+    "meds": "Medicine",
   "ammo": "Ammo",
 
   "default_add_item_option": "Select %s to Add",
@@ -114,5 +117,14 @@
   "qualitySuppressed": "Suppressed",
   "qualityThrown": "Thrown",
   "qualityTwoHanded": "Two-Handed",
-  "qualityUnreliable": "Unreliable"
+  "qualityUnreliable": "Unreliable",
+
+  "chooseItem": "Choose an Item",
+  "quantity": "Quantity",
+  "price": "Price",
+  "total": "Total",
+  "edit": "Edit",
+  "caps": "Caps",
+  "target": "Target",
+  "crit": "Crit"
 }

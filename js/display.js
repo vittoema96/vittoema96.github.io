@@ -12,23 +12,25 @@ class Display {
             initiative: document.getElementById('initiative-value'),
             meleeDamage: document.getElementById('melee-damage-value'),
 
-            caps: document.getElementById('caps-value'),
-            weight: document.getElementById('weight-value'),
-            hp: document.getElementById('hp-value'),
+            caps: document.getElementById('c-headerStats__caps'),
+            weight: document.getElementById('c-headerStats__weight'),
+            hp: document.getElementById('c-headerStats__hp'),
 
-            level: document.getElementById('level-display'),
+            level: document.getElementById('level'),
 
             currentLuck: document.getElementById('luck-current-value'),
-            specials: this.getDisplayMap(Character.getSpecialList(), "special-%s-value"),
+            specials: this.getDisplayMap(Character.getSpecialList(), "special__value-%s"),
 
             skills: this.getDisplayMap(Character.getSkillList(), "skill-%s"),
             specialties: this.getDisplayMap(Character.getSkillList(), "specialty-%s"),
             itemContainers: this.getDisplayMap(["smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "unarmed", "food", "drinks", "meds", "ammo"], "%s-cards"),
 
             editStatsButton: document.getElementById('edit-stats-button'),
-            statContainer: document.getElementById('stat-container'),
+            statContainer: document.getElementById('c-special'),
             skillsContainer: document.getElementById('skills'),
-            invScreen: document.getElementById('inv-screen'),
+            invScreen: document.getElementById('inv-tabContent'),
+
+            tabButtons: document.querySelectorAll(".tab-button")
         };
         this.elementMaps = {};
         Object.keys(this.dom.itemContainers).forEach(key => { this.elementMaps[key] = new Map() });
@@ -74,8 +76,8 @@ class Display {
         // --- Event Delegation for Inventory Cards ---
         this.dom.invScreen.addEventListener('click', (e) => this.handleCardClick(e));
         this.dom.invScreen.addEventListener('pointerdown', (e) => this.handleCardPointerDown(e));
-        this.dom.invScreen.addEventListener('pointerup', (e) => this.clearLongPressTimer());
-        this.dom.invScreen.addEventListener('pointerleave', (e) => this.clearLongPressTimer());
+        this.dom.invScreen.addEventListener('pointerup', () => this.clearLongPressTimer());
+        this.dom.invScreen.addEventListener('pointerleave', () => this.clearLongPressTimer());
     }
 
     handleCardClick(e) {
@@ -121,7 +123,7 @@ class Display {
     handleCardPointerDown(e) {
         this.clearLongPressTimer();
         const cardDiv = e.target.closest('.card,.ammo-card')
-        if (cardDiv) {
+        if (cardDiv && !dataManager.isUnacquirable(cardDiv.dataset.itemId)) {
             this.#longPressTarget = cardDiv;
             this.#longPressTimer = setTimeout(() => {
                 const overlay = this.#longPressTarget.querySelector('.card-overlay');
@@ -154,11 +156,13 @@ class Display {
     updateItems(character) {
         requestAnimationFrame(() => {
             for (const type of Object.keys(this.elementMaps)) {
-                let itemsOfType;
-                if(type === SPECIAL.UNARMED){ // TODO divide unarmed and melee and make unarmedStrike fixed
-                    itemsOfType = [{id: "weaponUnarmedStrike", type: type, quantity: 1}]
-                } else {
-                    itemsOfType = character.getItemsByType(type);
+                const itemsOfType = character.getItemsByType(type);
+                if(type === SKILLS.UNARMED){ // TODO divide unarmed and melee and make unarmedStrike fixed
+                    itemsOfType.push({id: "weaponUnarmedStrike", type: type, quantity: 1});
+                } else if(type === SKILLS.MELEE_WEAPONS){
+                    character.getGunBashItems().forEach(gunBashItem =>
+                        itemsOfType.push(gunBashItem)
+                    )
                 }
                 const container = this.dom.itemContainers[type];
                 const currentMap = this.elementMaps[type];
@@ -210,6 +214,7 @@ class Display {
 
     toggleEditMode() {
         this.#isEditing = !this.#isEditing;
+        Object.values(this.dom.tabButtons).forEach(el => el.disabled = this.#isEditing);
         Object.values(this.dom.specials).forEach(el => el.contentEditable = this.#isEditing);
         Object.values(this.dom.specialties).forEach(cb => cb.disabled = !this.#isEditing);
         this.dom.editStatsButton.textContent = this.#isEditing ? 'Stop Editing' : 'Edit Stats';
@@ -217,7 +222,7 @@ class Display {
 
     handleStatClick(event) {
         if (!this.#isEditing) return;
-        const statDiv = event.target.closest('.stat');
+        const statDiv = event.target.closest('.special');
         if (!statDiv) return;
         const special = statDiv.dataset.special;
         const max = (special === SPECIAL.STRENGTH || special === SPECIAL.ENDURANCE) ? 12 : 10;

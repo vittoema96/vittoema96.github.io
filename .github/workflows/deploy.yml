@@ -31,23 +31,19 @@ jobs:
         id: read_version
         run: echo "version=$(node -p "require('./manifest.json').version")" >> $GITHUB_OUTPUT
 
-      # 3. Update the PROJECT_VERSION on app.js and sw.js
+      # 3. Update the PROJECT_VERSION on index.html and sw.js
       - name: Update Version on Files 📝
         run: |
           FULL_VERSION="${{ steps.read_version.outputs.version }}+${{ github.run_number }}"
           echo "Setting version to: $FULL_VERSION"
-          sed -i "s/const PROJECT_VERSION = .*/const PROJECT_VERSION = '$FULL_VERSION';/" ./js/app.js
+          sed -i "s/const PROJECT_VERSION = .*/const PROJECT_VERSION = '$FULL_VERSION';/" ./index.html
           sed -i "s/const PROJECT_VERSION = .*/const PROJECT_VERSION = '$FULL_VERSION';/" ./js/sw.js
 
-      # 4. Update HIDE_LOADER with 'false' for production
-      - name: Enable Loader on Startup 📝
-        run: sed -i "s/const HIDE_LOADER = .*/const HIDE_LOADER = false;/" ./js/app.js
-
-      # 5. ???
+      # 4. ???
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # 6. ???
+      # 5. ???
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

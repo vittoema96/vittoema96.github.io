@@ -56,11 +56,11 @@ The interface is heavily inspired by the iconic Pip-Boy 3000 from the Fallout se
 
 ## 📸 Screenshots
 
-| STAT Screen | INV - Weapons |
-| :---: | :---: |
-| ![Stats Tab](https://vittoema96.github.io/docs/stat_tab.jpg) | ![Inventory Tab - Weapons](https://vittoema96.github.io/docs/inv_tab_weapons.jpg) |
-| **INV - Supplies** | **New Vegas Theme** |
-| ![Inventory Tab - Supplies](https://vittoema96.github.io/docs/inv_tab_supplies.jpg) | ![New Vegas Theme](https://vittoema96.github.io/docs/new_vegas_theme.jpg) |
+|                                   **STAT Screen**                                   |                                 **INV - Weapons**                                 |
+|:-----------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|
+|            ![Stats Tab](https://vittoema96.github.io/docs/stat_tab.jpg)             | ![Inventory Tab - Weapons](https://vittoema96.github.io/docs/inv_tab_weapons.jpg) |
+|                                 **INV - Supplies**                                  |                                **New Vegas Theme**                                |
+| ![Inventory Tab - Supplies](https://vittoema96.github.io/docs/inv_tab_supplies.jpg) |     ![New Vegas Theme](https://vittoema96.github.io/docs/new_vegas_theme.jpg)     |
 
 ---
 
