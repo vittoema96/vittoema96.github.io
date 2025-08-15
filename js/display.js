@@ -195,7 +195,7 @@ class Display {
                     } else {
                         const itemCard = currentMap.get(item.id);
                         itemCard.querySelector(".card-quantity").textContent = `${item.quantity}x`;
-                        const ammoCount = itemCard.querySelector("#weaponAmmoCount");
+                        const ammoCount = itemCard.querySelector(".js-cardWeapon-ammoCount");
                         if(ammoCount) {
                             ammoCount.textContent = characterData.getItemQuantity(dataManager.getItem(item.id).AMMO_TYPE).toString();
                         }

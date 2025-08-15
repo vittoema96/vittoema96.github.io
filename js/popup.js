@@ -903,9 +903,18 @@ class AddItemPopup extends Popup {
 
     _initialize(itemType) {
         const isWeapon = Object.values(SKILLS).includes(itemType)
-        let availableItems = Object.values(dataManager.weapons).filter(item =>
-            !isWeapon || (item.SKILL === itemType && !dataManager.isUnacquirable(item.ID))
-        );
+        let data ;
+        let availableItems;
+        if(isWeapon) {
+            data = dataManager.weapons;
+            availableItems = Object.values(data).filter(item =>
+                item.SKILL === itemType && !dataManager.isUnacquirable(item.ID)
+            );
+        }
+        else {
+            data = dataManager[itemType];
+            availableItems = Object.values(data);
+        }
 
         // Populate select element
         this.#dom.select.innerHTML = "";
@@ -920,6 +929,7 @@ class AddItemPopup extends Popup {
             const optionText = translator.translate(item.ID);
             this.#dom.select.appendChild(new Option(optionText, item.ID));
         });
+        this.#dom.quantity.value = 1;
     }
 
     _handleConfirm() {
@@ -928,7 +938,6 @@ class AddItemPopup extends Popup {
         const quantity = Number(this.#dom.quantity.value);
         if (selectedId) {
             characterData.addItem(selectedId, itemType, quantity);
-            this.#dom.quantity.value = 1;
             console.log(`Adding item: ${selectedId} x${quantity}`);
             closeActivePopup();
         }
