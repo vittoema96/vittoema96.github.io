@@ -242,7 +242,7 @@ class Character extends EventTarget { // TODO check this out
             if(Object.values(SKILLS).includes(item.type)){
                 const itemObj = dataManager.getItem(item.id);
                 if(itemObj.QUALITIES.includes("qualityTwoHanded")){
-                    stock2h = {id: "weaponWeaponStockOneHanded", type: "meleeWeapons", quantity: 1};
+                    stock2h = {id: "weaponWeaponStock", type: "meleeWeapons", quantity: 1};
                 } else {
                     stock = {id: "weaponWeaponStockOneHanded", type: "meleeWeapons", quantity: 1};
                 }
