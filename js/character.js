@@ -246,10 +246,10 @@ class Character extends EventTarget { // TODO check this out
                 } else {
                     stock = {id: "weaponWeaponStockOneHanded", type: "meleeWeapons", quantity: 1};
                 }
-                if(stock && stock2h)
-                    return [stock, stock2h];
             }
         });
+        if(stock && stock2h)
+            return [stock, stock2h];
         if(stock) return [stock]
         if(stock2h) return [stock2h]
         return []
