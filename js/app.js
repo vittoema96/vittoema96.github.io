@@ -249,6 +249,18 @@ class DataManager {
         return this.allItemData[itemId] || null;
     }
 
+    getUnacquirableIds(){
+        return ["weaponUnarmedStrike", "weaponWeaponStock", "weaponWeaponStockOneHanded"];
+    }
+
+    isUnacquirable(id){
+        if(id){
+            if(id.ID) id = id.ID;
+            return this.getUnacquirableIds().includes(id);
+        }
+        return false;
+    }
+
     #paParseCSV(fileUrl){
         return new Promise((resolve, reject) => {
             Papa.parse(fileUrl, {
@@ -276,24 +288,6 @@ class DataManager {
                 error: reject
             });
         })
-    }
-
-    // TODO might not need
-    getDataSourceForType(itemType) {
-        const itemConfig = {
-            smallGuns: { data: this.weapons, isWeapon: true },
-            energyWeapons: { data: this.weapons, isWeapon: true },
-            bigGuns: { data: this.weapons, isWeapon: true },
-            meleeWeapons: { data: this.weapons, isWeapon: true },
-            explosives: { data: this.weapons, isWeapon: true },
-            throwing: { data: this.weapons, isWeapon: true },
-            unarmed: { data: this.weapons, isWeapon: true },
-            food: { data: this.food },
-            drinks: { data: this.drinks },
-            meds: { data: this.meds },
-            ammo: { data: this.ammo }
-        };
-        return itemConfig[itemType] || null;
     }
 }
 

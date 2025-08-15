@@ -1,116 +1,169 @@
+class Popup {
+    _rootElement = null;
 
-class StatAdjustementPopup {
+    constructor(rootElementId, triggers = []) {
+        if (this.constructor === Popup) {
+            throw new TypeError('Abstract class "Popup" cannot be instantiated directly.');
+        }
 
-    static #htmlElement = document.getElementById('popup-editHeaderStats');
-    static #trigger = document.getElementById('c-headerStats');
+        this._rootElement = document.getElementById(rootElementId);
+        if (!this._rootElement) {
+            throw new Error(`Popup element with ID "${rootElementId}" not found.`);
+        }
 
-    static #dom ={
-        hpOld: document.getElementById("adjustHpOld"),
-        hpNew: document.getElementById("adjustHpNew"),
+        for(const trigger of triggers){
+            trigger.addEventListener('click', () => this.open())
+        }
 
-        capsOld: document.getElementById("adjustCapsOld"),
-        capsNew: document.getElementById("adjustCapsNew"),
-
-        luckOld: document.getElementById("adjustLuckOld"),
-        luckNew: document.getElementById("adjustLuckNew"),
+        this._rootElement.addEventListener('click', (e) => {
+            if(e.target.closest('.popup__button-confirm')){
+                this._handleConfirm();
+                // No closing here, the _handleConfirm() method can
+                // prevent closing on specific conditions
+            }
+        });
+        this._rootElement.addEventListener('click', (e) => {
+            if (e.target.closest('.popup__button-x, .popup__button-close')) {
+                this._close();
+            }
+        });
     }
+
+    /**
+     * Opens the popup dialog.
+     * Calls the subclass's specific initialize method.
+     * @param {...any} args - Arguments to pass to the initialize method.
+     */
+    open(...args) {
+        this._initialize(...args);
+        this._render();
+        this._open();
+    }
+
+    /**
+     * By default, calls _rootElement.showModal().
+     * If custom logic is needed (like TooltipPopup), this can be overridden.
+     */
+    _open(){
+        this._rootElement.showModal();
+    }
+
+    /**
+     * Placeholder for subclass-specific setup logic.
+     * This method is intended to be overridden by subclasses.
+     * @protected
+     */
+    _initialize() {
+        // Subclasses will override this to set up their specific state.
+    }
+
+    /**
+     * Placeholder for subclass-specific confirm button logic.
+     * This method is intended to be overridden by subclasses.
+     * @protected
+     */
+    _handleConfirm() {
+        // Subclasses will override this to set up their specific state.
+    }
+
+    /**
+     * Placeholder for subclass-specific rendering logic.
+     * @protected
+     */
+    _render() {
+        // Subclasses will override this to update the DOM.
+    }
+
+    /** Closes the popup dialog using the global helper. */
+    _close() {
+        closeActivePopup();
+    }
+}
+
+class StatAdjustementPopup extends Popup {
+    #dom;
 
     #currentHp;
     #caps;
     #currentLuck;
 
     constructor() {
-        StatAdjustementPopup.#trigger.addEventListener('click', () => this.openPopup())
-        StatAdjustementPopup.#dom.hpNew.addEventListener('change', (e) => {
-            this.#currentHp = e.target.value;
-        });
-        StatAdjustementPopup.#dom.capsNew.addEventListener('change', (e) => {
-            this.#caps = e.target.value;
-        });
-        StatAdjustementPopup.#dom.luckNew.addEventListener('change', (e) => {
-            this.#currentLuck = e.target.value;
-        });
-        StatAdjustementPopup.#htmlElement.addEventListener('click', (e) => {
-            if(e.target.closest('.popup__button-confirm')){
-                let errorString = "";
-                const errorHeader = "Qualcosa è andato storto:\n";
-                if(this.#currentHp < 0 || this.#currentHp > characterData.calculateMaxHp())
-                    errorString += "\n- HP non validi";
-                if(this.#caps < 0)
-                    errorString += "\n- Tappi non validi";
-                if(this.#currentLuck < 0 || this.#currentLuck > characterData.getSpecial(SPECIAL.LUCK))
-                    errorString += "\n- Fortuna non valida";
+        super('popup-editHeaderStats',
+            [document.getElementById('c-headerStats')]);
+        this.#dom = {
+            hpOld: document.getElementById("adjustHpOld"),
+            hpNew: document.getElementById("adjustHpNew"),
 
-                if(errorString !== "")
-                    showNotification(`${errorHeader}${errorString}`);
-                else {
-                    characterData.currentHp = this.#currentHp;
-                    characterData.caps = this.#caps;
-                    characterData.currentLuck = this.#currentLuck;
-                    closeActivePopup();
-                }
-            }
-        });
+            capsOld: document.getElementById("adjustCapsOld"),
+            capsNew: document.getElementById("adjustCapsNew"),
+
+            luckOld: document.getElementById("adjustLuckOld"),
+            luckNew: document.getElementById("adjustLuckNew"),
+        }
+        
+        this.#dom.hpNew.addEventListener('change', (e) => this.#currentHp = e.target.value);
+        this.#dom.capsNew.addEventListener('change', (e) => this.#caps = e.target.value);
+        this.#dom.luckNew.addEventListener('change', (e) => this.#currentLuck = e.target.value);
+
+    }
+    _initialize() {
+        this.#currentHp = characterData.currentHp;
+        this.#caps = characterData.caps;
+        this.#currentLuck = characterData.currentLuck;
+
+        this.#dom.hpOld.textContent = `${this.#currentHp}/${characterData.calculateMaxHp()}`;
+        this.#dom.capsOld.textContent = this.#caps;
+        this.#dom.luckOld.textContent = `${this.#currentLuck}/${characterData.getSpecial(SPECIAL.LUCK)}`;
+
+        this._render();
     }
 
-    openPopup(){
-        this.#initialize();
-        StatAdjustementPopup.#htmlElement.showModal();
+    _render() {
+        this.#dom.hpNew.value = this.#currentHp;
+        this.#dom.capsNew.value = this.#caps;
+        this.#dom.luckNew.value = this.#currentLuck;
     }
 
-    #initialize(){
-        const currentHp = characterData.currentHp;
-        this.#currentHp = currentHp;
-        StatAdjustementPopup.#dom.hpOld.textContent = `${currentHp}/${characterData.calculateMaxHp()}`;
+    _handleConfirm() {
+        let errorString = "";
+        const errorHeader = "Qualcosa è andato storto:\n";
+        if(this.#currentHp < 0 || this.#currentHp > characterData.calculateMaxHp())
+            errorString += "\n- HP non validi";
+        if(this.#caps < 0)
+            errorString += "\n- Tappi non validi";
+        if(this.#currentLuck < 0 || this.#currentLuck > characterData.getSpecial(SPECIAL.LUCK))
+            errorString += "\n- Fortuna non valida";
 
-        const caps = characterData.caps;
-        this.#caps = caps;
-        StatAdjustementPopup.#dom.capsOld.textContent = caps;
-
-        const currentLuck = characterData.currentLuck;
-        this.#currentLuck = currentLuck;
-        StatAdjustementPopup.#dom.luckOld.textContent = `${currentLuck}/${characterData.getSpecial(SPECIAL.LUCK)}`;
-
-        this.#render();
-    }
-
-    #render(){
-        StatAdjustementPopup.#dom.hpNew.value = this.#currentHp;
-        StatAdjustementPopup.#dom.capsNew.value = this.#caps;
-        StatAdjustementPopup.#dom.luckNew.value = this.#currentLuck;
+        if(errorString !== "")
+            showNotification(`${errorHeader}${errorString}`);
+        else {
+            characterData.currentHp = this.#currentHp;
+            characterData.caps = this.#caps;
+            characterData.currentLuck = this.#currentLuck;
+            this._close();
+        }
     }
 }
 
-class TradeItemPopup {
-    
-    static #htmlElement = document.getElementById('popup-tradeItem');
-    
-    static #dom = {
-        type: document.getElementById('tradeType'),
-        quantity: document.getElementById('tradeQuantity'),
-        price: document.getElementById('tradePrice'),
-        total: document.getElementById('tradeTotal'),
-        confirm: TradeItemPopup.#htmlElement.querySelector(".popup__button-confirm")
-    }
+class TradeItemPopup extends Popup {
+    #dom;
     
     constructor(){
-        TradeItemPopup.#htmlElement.addEventListener('click', (e) => {
-            if(e.target.closest('.popup__button-confirm')){
-                // TODO somethings wrong here
-                if(characterData.getItemQuantity(this.#itemId))
-                characterData.caps += Number(TradeItemPopup.#dom.total.textContent);
-                characterData.removeItem(this.#itemId, TradeItemPopup.#dom.quantity.value);
-                // TODO check for selling too many items
-                closeActivePopup();
-            }
-        });
-        TradeItemPopup.#dom.quantity.addEventListener('change', (e) => {
+        super('popup-tradeItem');
+        this.#dom = {
+            type: document.getElementById('tradeType'),
+            quantity: document.getElementById('tradeQuantity'),
+            price: document.getElementById('tradePrice'),
+            total: document.getElementById('tradeTotal'),
+            confirm: this._rootElement.querySelector(".popup__button-confirm")
+        }
+        this.#dom.quantity.addEventListener('change', (e) => {
             this.#tradeQuantity = e.target.value;
-            this.#render();
+            this._render();
         });
-        TradeItemPopup.#dom.price.addEventListener('change', (e) => {
+        this.#dom.price.addEventListener('change', (e) => {
             this.#tradePrice = e.target.value;
-            this.#render();
+            this._render();
         });
     }
 
@@ -119,21 +172,16 @@ class TradeItemPopup {
     #tradeQuantity;
     #tradePrice;
     get #tradeValueRate () { return this.#isBuy ? 6/5 : 4/5 }
-    
-    openPopup(itemId, isBuy){
-        this.#initialize(itemId, isBuy);
-        this.#render();
-        TradeItemPopup.#htmlElement.showModal();
-    }
 
-    #initialize(itemId, isBuy){
+
+    _initialize(itemId, isBuy){
         this.#isBuy = !!isBuy;
         this.#itemId = itemId;
         if(this.#isBuy){
             this.#tradeQuantity = 1;
         } else {
             this.#tradeQuantity = characterData.getItemQuantity(this.#itemId) || 1;
-            TradeItemPopup.#dom.quantity.max = this.#tradeQuantity;
+            this.#dom.quantity.max = this.#tradeQuantity;
         }
         let price = dataManager.getItem(this.#itemId).COST || 1; // Get normal item price
         price = price * this.#tradeValueRate; // Apply trade rate
@@ -141,28 +189,34 @@ class TradeItemPopup {
         this.#tradePrice = price;
     }
     
-    #render(){
-        TradeItemPopup.#dom.type.textContent = translator.translate(this.#isBuy ? "buying" : "selling");
-        TradeItemPopup.#dom.quantity.value = this.#tradeQuantity;
-        TradeItemPopup.#dom.price.value = this.#tradePrice;
+    _render(){
+        this.#dom.type.textContent = translator.translate(this.#isBuy ? "buying" : "selling");
+        this.#dom.quantity.value = this.#tradeQuantity;
+        this.#dom.price.value = this.#tradePrice;
         const sign = this.#isBuy ? "-" : "+";
         const total = Math.floor(this.#tradeQuantity * this.#tradePrice);
-        TradeItemPopup.#dom.total.textContent = `${sign}${total}`
+        this.#dom.total.textContent = `${sign}${total}`
+    }
+
+    _handleConfirm(){
+        if(characterData.getItemQuantity(this.#itemId))
+            characterData.caps += Number(this.#dom.total.textContent);
+        characterData.removeItem(this.#itemId, this.#dom.quantity.value);
+        this._close();
     }
     
 }
 
-class TagTooltip {
+class TagTooltip extends Popup {
 
-    static container = document.getElementById('tooltip-container');
     #arrow = document.getElementById("arrow");
-
     #activeTag;
 
     constructor(){
+        super('tooltip-container')
         document.body.addEventListener('mouseover', (event) => {
             if(event.target.matches('.tag')){
-                this.openTooltip(event.target);
+                this.open(event.target);
             }
         });
         document.body.addEventListener('mouseout', (event) => {
@@ -170,89 +224,74 @@ class TagTooltip {
                 this.hideTooltip();
             }
         });
-        // Hide tooltip if clicking outside an active tag
-        document.addEventListener('click', (e) => {
-            if (this.#activeTag &&
-                !this.#activeTag.contains(e.target) &&
-                !TagTooltip.container.contains(e.target)) {
-                this.hideTooltip();
-            }
-        });
 
         // Touch events for mobile (toggle behavior)
         document.addEventListener('touchstart', (e) => {
-            const touchedTag = e.target.closest('.tag');
-
-            if (touchedTag) {
-                e.preventDefault();
-                // If tapping the same tag that's already active, hide it.
-                if (this.#activeTag === touchedTag) {
-                    this.hideTooltip();
-                } else { // If another tooltip is open, hide it first.
-                    if (this.#activeTag) {
-                       this.hideTooltip();
-                    }
-                    this.openTooltip(touchedTag);
-                }
-            } else if (this.#activeTag && !TagTooltip.container.contains(e.target)) {
-                // If tapping outside an active tag and the tooltip, hide it.
-                this.hideTooltip();
-            }
+            this.#handleTouchEvent(e);
         }, { passive: false });
 
         // Hide tooltip if clicking outside an active tag
         document.addEventListener('click', (e) => {
-            if (this.#activeTag && !this.#activeTag.contains(e.target)) {
-                this.hideTooltip();
-            }
+            this.#handleTouchEvent(e);
         });
     }
 
-    openTooltip(tagEl){
-        if (!tagEl) return;
+    _open() {
+        this._rootElement.classList.add('visible');
+    }
 
-        // Get the tooltip text from the data attribute
-        const tooltipText = translator.translate(tagEl.dataset.tooltipId);
-        if (!tooltipText) return;
-
-        const parentDialog = tagEl.closest('dialog[open]');
-        if (parentDialog) {
-            parentDialog.appendChild(TagTooltip.container);
+    #handleTouchEvent(event){
+        const touchedTag = event.target.closest('.tag');
+        if (touchedTag) {
+            event.preventDefault();
+            // If tapping the same tag that's already active, hide it.
+            if (this.#activeTag === touchedTag) {
+                this.hideTooltip();
+            } else { // If another tooltip is open, hide it first.
+                if (this.#activeTag) {
+                   this.hideTooltip();
+                }
+                this.open(touchedTag);
+            }
+        } else if (this.#activeTag && !this._rootElement.contains(event.target)) {
+            // If tapping outside an active tag and the tooltip, hide it.
+            this.hideTooltip();
         }
+    }
 
-        this.#activeTag = tagEl;
+    _initialize(tagTarget){
+        this.#activeTag = tagTarget;
 
-        // Set the text and make it visible
-        TagTooltip.container.textContent = tooltipText;
+        this._rootElement.textContent = translator.translate(this.#activeTag.dataset.tooltipId);
 
         this.#arrow = document.createElement('div');
         this.#arrow.className = 'tooltip-arrow';
-        TagTooltip.container.appendChild(this.#arrow); // Re-add arrow
-        TagTooltip.container.classList.add('visible');
+        this._rootElement.appendChild(this.#arrow); // Re-add arrow
 
-        // Position the tooltip
-        this.#positionTooltip(tagEl);
+        const parentDialog = tagTarget.closest('dialog[open]');
+        if (parentDialog) {
+            parentDialog.appendChild(this._rootElement);
+            this._rootElement
+        }
     }
 
-    #positionTooltip (tagEl) {
-        const tagRect = tagEl.getBoundingClientRect();
-        const tooltipRect = TagTooltip.container.getBoundingClientRect();
+    _render(){
+        const tagRect = this.#activeTag.getBoundingClientRect();
+        const tooltipRect = this._rootElement.getBoundingClientRect();
 
         const spacing = 12; // Space between the tag and the tooltip
-        let top, left;
 
-        // Default position is above the tag
-        TagTooltip.container.className = 'tooltip-panel visible pos-top';
+        this._rootElement.className = 'tooltip-panel visible pos-top';
 
-        const dialogRect = tagEl.closest('dialog[open]')?.getBoundingClientRect();
+        const dialogRect = this.#activeTag.closest('dialog[open]')?.getBoundingClientRect();
         const dialogTop = dialogRect?.top || 0;
         const dialogLeft = dialogRect?.left || 0;
-        top = tagRect.top - tooltipRect.height - spacing;
-        left = tagRect.left + (tagRect.width / 2) - (tooltipRect.width / 2);
+        let top = tagRect.top - tooltipRect.height - spacing;
+        let left = tagRect.left + (tagRect.width / 2) - (tooltipRect.width / 2);
 
         // If it goes off the top of the screen, place it below instead
         if (top < 0) {
-            TagTooltip.container.className = 'tooltip-panel visible pos-bottom';
+            this._rootElement.className = 'tooltip-panel visible pos-bottom';
             top = tagRect.bottom + spacing;
         }
 
@@ -275,70 +314,73 @@ class TagTooltip {
             this.#arrow.style.transform = `translateX(-50%)`;
         }
 
-        TagTooltip.container.style.top = `${top - dialogTop}px`;
-        TagTooltip.container.style.left = `${left - dialogLeft}px`;
-    };
+        this._rootElement.style.top = `${top - dialogTop}px`;
+        this._rootElement.style.left = `${left - dialogLeft}px`;
+    }
 
     hideTooltip() {
         this.#activeTag = null;
         // KEY CHANGE: Move tooltip back to the body to reset it for non-dialog tags.
-        if (TagTooltip.container.parentElement !== document.body) {
-            document.body.appendChild(TagTooltip.container);
+        if (this._rootElement.parentElement !== document.body) {
+            document.body.appendChild(this._rootElement);
         }
 
-        TagTooltip.container.classList.remove('visible');
+        this._rootElement.classList.remove('visible');
     };
 }
 
-class D20Popup {
+class D20Popup extends Popup {
 
-    static #htmlElement = document.getElementById('popup-d20');
-    static #dom = {
-        skillTitle: document.getElementById('popup-d20__skillTitle'),
-
-        specialSelector: document.getElementById('popup-d20__selector-special'),
-        luckCheckbox: document.getElementById('popup-d20__checkbox-luck'),
-
-        targetNumber: document.getElementById('popup-d20-target'),
-        targetNumberBreakdown: document.getElementById('popup-d20-target-breakdown'),
-        critBreakdown: document.getElementById('popup-d20-crit-breakdown'),
-
-        dice: this.#htmlElement.querySelectorAll('.d20-dice'),
-
-        apCost: document.getElementById('popup-d20-ap-cost'),
-        aimCheckbox: document.getElementById('popup-d20-aim-checkbox'),
-        payedLuck: document.getElementById('popup-d20-payed-luck'),
-        luckCost: document.getElementById('popup-d20-luck-cost'),
-
-        successesDisplay: document.getElementById('popup-d20-successes-display'),
-
-        rollButton: document.getElementById('popup-d20-roll-button'),
-        damageButton: document.getElementById('popup-d20-damage-button'),
-    };
+    #dom;
 
     constructor() {
-        D20Popup.#dom.specialSelector.addEventListener('change', (event) => {
+        super('popup-d20');
+
+        this.#dom = {
+            skillTitle: document.getElementById('popup-d20__skillTitle'),
+
+            specialSelector: document.getElementById('popup-d20__selector-special'),
+            luckCheckbox: document.getElementById('popup-d20__checkbox-luck'),
+
+            targetNumber: document.getElementById('popup-d20-target'),
+            targetNumberBreakdown: document.getElementById('popup-d20-target-breakdown'),
+            critBreakdown: document.getElementById('popup-d20-crit-breakdown'),
+
+            dice: this._rootElement.querySelectorAll('.d20-dice'),
+
+            apCost: document.getElementById('popup-d20-ap-cost'),
+            aimCheckbox: document.getElementById('popup-d20-aim-checkbox'),
+            payedLuck: document.getElementById('popup-d20-payed-luck'),
+            luckCost: document.getElementById('popup-d20-luck-cost'),
+
+            successesDisplay: document.getElementById('popup-d20-successes-display'),
+
+            rollButton: document.getElementById('popup-d20-roll-button'),
+            damageButton: document.getElementById('popup-d20-damage-button'),
+        };
+
+        this.#dom.specialSelector.addEventListener('change', (event) => {
             this.#specialId = event.target.value;
-            this.#render();
+            this._render();
         });
-        D20Popup.#dom.luckCheckbox.addEventListener('change', (event) => {
+        this.#dom.luckCheckbox.addEventListener('change', (event) => {
             this.#isUsingLuck = event.target.checked;
-            this.#render();
+            this._render();
         });
-        D20Popup.#dom.dice.forEach((dice, index) => {
+        this.#dom.dice.forEach((dice, index) => {
             dice.addEventListener('click', () => {
                 this.#onDiceClick(index);
             });
         });
-        D20Popup.#dom.aimCheckbox.addEventListener('change', (event) => {
+        this.#dom.aimCheckbox.addEventListener('change', (event) => {
             this.#isAiming = event.target.checked;
-            this.#render();
+            this._render();
         });
-        D20Popup.#dom.damageButton.addEventListener('click', () => {
-            closeActivePopup(); // FIXME
+        this.#dom.damageButton.addEventListener('click', () => {
+            this._close();
             openD6Popup(this.#objectId);
         });
-        D20Popup.#dom.rollButton.addEventListener('click', () => this.#onRoll());
+        this.#dom.rollButton.addEventListener('click', () => this.#onRoll());
     }
 
     #character;
@@ -356,12 +398,7 @@ class D20Popup {
     #diceActive;
     #diceRerolled;
 
-    open(skillId, objectId){
-        this.#initialize(skillId, objectId);
-        D20Popup.#htmlElement.showModal();
-    }
-
-    #initialize(skillId, objectId){
+    _initialize(skillId, objectId){
         this.#character = characterData;
 
         this.#objectId = objectId;
@@ -371,7 +408,7 @@ class D20Popup {
         this.#isObjectUnreliable = (object?.QUALITIES || []).includes("qualityUnreliable");
 
         // If inaccurate strikethrough "Aim?"
-        const aimText = D20Popup.#htmlElement.querySelector('[data-lang-id="aim"]');
+        const aimText = this._rootElement.querySelector('[data-lang-id="aim"]');
         if(this.#isObjectInaccurate){ aimText.style.textDecoration = "line-through"; }
         else { aimText.style.textDecoration = "initial"; }
 
@@ -384,21 +421,19 @@ class D20Popup {
         this.#diceContent = Array(5).fill('?');
         this.#diceActive = [true, true, false, false, false];
         this.#diceRerolled = Array(5).fill(false);
-
-        this.#render();
     }
 
-    #render() {
+    _render() {
         const skillName = translator.translate(this.#skillId);
-        D20Popup.#dom.skillTitle.textContent = skillName;
-        D20Popup.#dom.skillTitle.style.fontSize = getVariableFontSize(skillName);
+        this.#dom.skillTitle.textContent = skillName;
+        this.#dom.skillTitle.style.fontSize = getVariableFontSize(skillName);
 
         const activeSpecialId = this.#isUsingLuck ? SPECIAL.LUCK : this.#specialId;
-        D20Popup.#dom.specialSelector.value = activeSpecialId;
-        D20Popup.#dom.specialSelector.disabled = this.#hasRolled || this.#isUsingLuck;
+        this.#dom.specialSelector.value = activeSpecialId;
+        this.#dom.specialSelector.disabled = this.#hasRolled || this.#isUsingLuck;
 
-        D20Popup.#dom.luckCheckbox.checked = this.#isUsingLuck;
-        D20Popup.#dom.luckCheckbox.disabled = this.#hasRolled;
+        this.#dom.luckCheckbox.checked = this.#isUsingLuck;
+        this.#dom.luckCheckbox.disabled = this.#hasRolled;
 
         const skillVal = this.#character.getSkill(this.#skillId);
         const specialVal = this.#character.getSpecial(activeSpecialId);
@@ -406,11 +441,11 @@ class D20Popup {
         const isSpecialty = this.#character.hasSpecialty(this.#skillId);
         const critVal = isSpecialty ? skillVal : 1;
         // TODO language (Target, Skill, Critical Hit, etc...)
-        D20Popup.#dom.targetNumber.textContent = `Target: ${targetVal}`;
-        D20Popup.#dom.targetNumberBreakdown.textContent = `${skillVal} (Skill) + ${specialVal} (SPECIAL)`;
-        D20Popup.#dom.critBreakdown.textContent = `Critical Hit: Roll ${critVal > 1 ? `≤` : `=`}${critVal}`;
+        this.#dom.targetNumber.textContent = `Target: ${targetVal}`;
+        this.#dom.targetNumberBreakdown.textContent = `${skillVal} (Skill) + ${specialVal} (SPECIAL)`;
+        this.#dom.critBreakdown.textContent = `Critical Hit: Roll ${critVal > 1 ? `≤` : `=`}${critVal}`;
 
-        D20Popup.#dom.dice.forEach((dice, index) => {
+        this.#dom.dice.forEach((dice, index) => {
             dice.textContent = this.#hasRolled ? this.#diceContent[index] : "?";
             dice.classList.toggle('active', this.#diceActive[index]);
             dice.classList.toggle('rerolled', this.#diceRerolled[index]);
@@ -422,13 +457,13 @@ class D20Popup {
 
         // Don't update after rolling!
         if(!this.#hasRolled) {
-            D20Popup.#dom.apCost.textContent = this.#getApCost().toString();
+            this.#dom.apCost.textContent = this.#getApCost().toString();
         }
-        D20Popup.#dom.aimCheckbox.checked = this.#isAiming;
-        D20Popup.#dom.aimCheckbox.disabled = this.#isObjectInaccurate || this.#hasRolled;
+        this.#dom.aimCheckbox.checked = this.#isAiming;
+        this.#dom.aimCheckbox.disabled = this.#isObjectInaccurate || this.#hasRolled;
 
-        D20Popup.#dom.payedLuck.textContent = this.#getPayedLuck().toString();
-        D20Popup.#dom.luckCost.textContent = `(${this.#getLuckCost()})`;
+        this.#dom.payedLuck.textContent = this.#getPayedLuck().toString();
+        this.#dom.luckCost.textContent = `(${this.#getLuckCost()})`;
         
         let successes = '?';
         if(this.#hasRolled){
@@ -441,18 +476,18 @@ class D20Popup {
                 }
             });
         }
-        D20Popup.#dom.successesDisplay.textContent = `${translator.translate("successes")}: ${successes}`;
+        this.#dom.successesDisplay.textContent = `${translator.translate("successes")}: ${successes}`;
 
         if(this.#objectId){
-            D20Popup.#dom.damageButton.style.display = 'block';
-            D20Popup.#dom.damageButton.disabled = !this.#hasRolled;
+            this.#dom.damageButton.style.display = 'block';
+            this.#dom.damageButton.disabled = !this.#hasRolled;
         } else {
-            D20Popup.#dom.damageButton.style.display = 'none';
+            this.#dom.damageButton.style.display = 'none';
         }
         if(!this.#hasRolled){
-            D20Popup.#dom.rollButton.innerHTML = translator.spacedTranslate("roll", "reroll");
+            this.#dom.rollButton.innerHTML = translator.spacedTranslate("roll", "reroll");
         } else {
-            D20Popup.#dom.rollButton.innerHTML = translator.spacedTranslate("reroll", "roll");
+            this.#dom.rollButton.innerHTML = translator.spacedTranslate("reroll", "roll");
         }
     }
 
@@ -464,7 +499,7 @@ class D20Popup {
         } else if(this.#diceContent[index] !== '?' && !this.#diceRerolled[index]){
             this.#diceActive[index] = !this.#diceActive[index];
         }
-        this.#render();
+        this._render();
     }
 
     #onRoll(){
@@ -474,7 +509,6 @@ class D20Popup {
         }
 
         let luckCost = this.#getLuckCost();
-        luckCost = luckCost > 0 ? luckCost : 0;
         if (this.#character.currentLuck < luckCost) {
             return showNotification("Non hai abbastanza Fortuna per farlo!"); // TODO Language
         }
@@ -494,7 +528,7 @@ class D20Popup {
         // This is used above, keep it here
         this.#hasRolled = true;
 
-        this.#render();
+        this._render();
     }
 
     #getActiveDice(){
@@ -521,14 +555,14 @@ class D20Popup {
     #getLuckCost(){
         let luckCost;
         if(!this.#hasRolled){
-            luckCost = this.#isUsingLuck-this.#isAiming;
+            luckCost = this.#isUsingLuck ? 1 : 0;
         } else {
             const rerollingCount = this.#getActiveDiceCount();
             const rerolledCount = this.#getRerolledDiceCount();
             const alreadyPayed = this.#isUsingLuck - this.#isAiming + rerolledCount;
             luckCost = rerollingCount + (alreadyPayed < 0 ? -1 : 0); // Was aiming already used?
         }
-        return luckCost;
+        return luckCost > 0 ? luckCost : 0;
     }
 
     #getPayedLuck(){
@@ -541,26 +575,27 @@ class D20Popup {
     }
 }
 
-class D6Popup {
-    static #htmlElement =document.getElementById('popup-d6');
-    static #dom = {
-        weaponName: document.getElementById('d6-weapon-name'),
-        damageType: document.getElementById('d6-damage-type'),
-        tagsContainer: document.getElementById('d6-tags'),
-        damageDiceContainer: document.getElementById('d6-damage-dice-container'),
-        extraHitsTitle: document.getElementById('d6-extra-hits-title'),
-        extraHitsContainer: document.getElementById('d6-extra-hits-container'),
-        ammoCost: document.getElementById('popup-d6-ammo-cost'),
-        ammoPayed: document.getElementById('popup-d6-payed-ammo'),
-        luckCost: document.getElementById('popup-d6-luck-cost'),
-        luckPayed: document.getElementById('popup-d6-payed-luck'),
-        totalDamage: document.getElementById('d6-total-damage'),
-        totalEffects: document.getElementById('d6-total-effects'),
-        rollButton: document.getElementById('d6-roll-button')
-    }
+class D6Popup extends Popup {
+    #dom;
 
     constructor(){
-        D6Popup.#dom.rollButton.addEventListener('click', () => this.#onRoll());
+        super('popup-d6');
+        this.#dom = {
+            weaponName: document.getElementById('d6-weapon-name'),
+            damageType: document.getElementById('d6-damage-type'),
+            tagsContainer: document.getElementById('d6-tags'),
+            damageDiceContainer: document.getElementById('d6-damage-dice-container'),
+            extraHitsTitle: document.getElementById('d6-extra-hits-title'),
+            extraHitsContainer: document.getElementById('d6-extra-hits-container'),
+            ammoCost: document.getElementById('popup-d6-ammo-cost'),
+            ammoPayed: document.getElementById('popup-d6-payed-ammo'),
+            luckCost: document.getElementById('popup-d6-luck-cost'),
+            luckPayed: document.getElementById('popup-d6-payed-luck'),
+            totalDamage: document.getElementById('d6-total-damage'),
+            totalEffects: document.getElementById('d6-total-effects'),
+            rollButton: document.getElementById('d6-roll-button')
+        }
+        this.#dom.rollButton.addEventListener('click', () => this.#onRoll());
     }
 
     #character;
@@ -585,12 +620,7 @@ class D6Popup {
     #luckPayed;
     #luckCost;
 
-    open(objectId){
-        this.#initialize(objectId);
-        D6Popup.#htmlElement.showModal();
-    }
-
-    #initialize(objectId){
+    _initialize(objectId){
 
         const weapon = dataManager.weapons[objectId];
         if (!weapon) {
@@ -604,23 +634,23 @@ class D6Popup {
         this.#ammoCost = 1;
         this.#ammoPayed = 0;
         let payedAmmoDisplay = 'flex';
-        if(this.#isMelee()){
+        if(isMelee(this.#object.SKILL)){
             this.#ammoCost = translator.translate("na")
             payedAmmoDisplay = 'none';
         }
-        D6Popup.#dom.ammoPayed.style.display = payedAmmoDisplay;
+        this.#dom.ammoPayed.style.display = payedAmmoDisplay;
 
         this.#luckCost = 0;
         this.#luckPayed = 0;
 
-        D6Popup.#dom.tagsContainer.innerHTML = '';
+        this.#dom.tagsContainer.innerHTML = '';
         this.#effects = weapon.EFFECTS;
         this.#effects.forEach(effect => {
             const tag = document.createElement('span');
             tag.className = 'tag';
             tag.textContent = translator.translate(effect);
             tag.dataset.tooltipId = `${effect.split(' ')[0]}Description`;
-            D6Popup.#dom.tagsContainer.appendChild(tag);
+            this.#dom.tagsContainer.appendChild(tag);
         });
         this.#qualities = weapon.QUALITIES;
         this.#qualities.forEach(quality => {
@@ -628,25 +658,25 @@ class D6Popup {
             tag.className = 'tag tag-empty';
             tag.textContent = translator.translate(quality);
             tag.dataset.tooltipId = `${quality.split(' ')[0]}Description`;
-            D6Popup.#dom.tagsContainer.appendChild(tag);
+            this.#dom.tagsContainer.appendChild(tag);
         });
 
 
-        D6Popup.#dom.damageDiceContainer.innerHTML = '';
-        D6Popup.#dom.extraHitsContainer.innerHTML = '';
+        this.#dom.damageDiceContainer.innerHTML = '';
+        this.#dom.extraHitsContainer.innerHTML = '';
 
         let damageRating = Number(weapon.DAMAGE_RATING);
-        if(this.#isMelee()){
+        if(isMelee(this.#object.SKILL)){
             damageRating += this.#character.meleeDamage;
         }
 
         for (let i = 0; i < damageRating; i++) {
             const diceDiv = this.#createD6Div(i, false);
-            D6Popup.#dom.damageDiceContainer.appendChild(diceDiv);
+            this.#dom.damageDiceContainer.appendChild(diceDiv);
         }
         const fireRate = weapon.FIRE_RATE;
         let extraDice = 0;
-        if (this.#isMelee()) {
+        if (isMelee(this.#object.SKILL)) {
             extraDice = 3;
             this.#extraHitsTitle = "Colpi Extra (AP)";  // TODO language
         } else if (fireRate > 0) {
@@ -657,7 +687,7 @@ class D6Popup {
         }
         for (let i = 0; i < extraDice; i++) {
             const diceDiv = this.#createD6Div(i, true);
-            D6Popup.#dom.extraHitsContainer.appendChild(diceDiv);
+            this.#dom.extraHitsContainer.appendChild(diceDiv);
         }
 
         this.#diceActive = Array(damageRating).fill(true)
@@ -666,49 +696,43 @@ class D6Popup {
         this.#extraDiceActive = Array(extraDice).fill(false)
         this.#extraDiceRerolled = Array(extraDice).fill(false)
         this.#extraDiceClasses = Array(extraDice).fill(null)
-
-        this.#render();
     }
 
-    #isMelee(){
-        return ["meleeWeapons", "unarmed"].includes(this.#object.SKILL);
-    }
-
-    #render(){
+    _render(){
         const weaponName = translator.translate(this.#object.ID);
-        D6Popup.#dom.weaponName.textContent = weaponName;
-        D6Popup.#dom.weaponName.style.fontSize = getVariableFontSize(weaponName);
-        D6Popup.#dom.damageType.textContent = this.#object.DAMAGE_TYPE; // TODO Handle language
+        this.#dom.weaponName.textContent = weaponName;
+        this.#dom.weaponName.style.fontSize = getVariableFontSize(weaponName);
+        this.#dom.damageType.textContent = this.#object.DAMAGE_TYPE; // TODO Handle language
 
-        const dice = D6Popup.#dom.damageDiceContainer.querySelectorAll('.d6-dice');
+        const dice = this.#dom.damageDiceContainer.querySelectorAll('.d6-dice');
         for(const [index, diceClass] of this.#diceClasses.entries()){
             this.#setDiceClass(dice[index], diceClass);
             dice[index].classList.toggle('active', this.#diceActive[index]);
             dice[index].classList.toggle('rerolled', this.#diceRerolled[index]);
         }
 
-        D6Popup.#dom.extraHitsTitle.textContent = this.#extraHitsTitle;  // TODO language
-        D6Popup.#dom.extraHitsContainer.style.display = this.#object.FIRE_RATE <= 0 ? 'none' : 'flex';
-        const extraDice = D6Popup.#dom.extraHitsContainer.querySelectorAll('.d6-dice');
+        this.#dom.extraHitsTitle.textContent = this.#extraHitsTitle;  // TODO language
+        this.#dom.extraHitsContainer.style.display = this.#object.FIRE_RATE <= 0 ? 'none' : 'flex';
+        const extraDice = this.#dom.extraHitsContainer.querySelectorAll('.d6-dice');
         for(const [index, diceClass] of this.#extraDiceClasses.entries()){
             this.#setDiceClass(extraDice[index], diceClass);
             extraDice[index].classList.toggle('active', this.#extraDiceActive[index]);
             extraDice[index].classList.toggle('rerolled', this.#extraDiceRerolled[index]);
         }
 
-        if(!this.#isMelee()) {
-            D6Popup.#dom.ammoPayed.textContent = this.#ammoPayed.toString();
-            D6Popup.#dom.ammoCost.textContent = `(${this.#ammoCost})`;
+        if(!isMelee(this.#object.SKILL)) {
+            this.#dom.ammoPayed.textContent = this.#ammoPayed.toString();
         }
-        D6Popup.#dom.luckPayed.textContent = this.#luckPayed.toString();
-        D6Popup.#dom.luckCost.textContent = `(${this.#getLuckCost()})`;
+        this.#dom.ammoCost.textContent = `(${this.#ammoCost})`;
+        this.#dom.luckPayed.textContent = this.#luckPayed.toString();
+        this.#dom.luckCost.textContent = `(${this.#getLuckCost()})`;
 
         const totEffects = this.#getEffectCount();
         const totDamage = totEffects + this.#getDamage1Count() + this.#getDamage2Count() * 2
         // TODO language
-        D6Popup.#dom.totalDamage.textContent = this.#hasRolled ? totDamage : '?';
-        D6Popup.#dom.totalEffects.textContent = this.#hasRolled ? totEffects : '?';
-        D6Popup.#dom.rollButton.innerHTML = this.#hasRolled ? translator.spacedTranslate("reroll", "roll") : translator.spacedTranslate("roll", "reroll");
+        this.#dom.totalDamage.textContent = this.#hasRolled ? totDamage : '?';
+        this.#dom.totalEffects.textContent = this.#hasRolled ? totEffects : '?';
+        this.#dom.rollButton.innerHTML = this.#hasRolled ? translator.spacedTranslate("reroll", "roll") : translator.spacedTranslate("roll", "reroll");
     }
 
     #setDiceClass(dice, diceClass){
@@ -719,15 +743,15 @@ class D6Popup {
     }
 
     #getEffectCount(){
-        return D6Popup.#htmlElement.querySelectorAll('.d6-dice.d6-face-effect').length;
+        return this._rootElement.querySelectorAll('.d6-dice.d6-face-effect').length;
     }
 
     #getDamage1Count(){
-        return  D6Popup.#htmlElement.querySelectorAll('.d6-dice.d6-face-damage1').length;
+        return this._rootElement.querySelectorAll('.d6-dice.d6-face-damage1').length;
     }
 
     #getDamage2Count() {
-        return D6Popup.#htmlElement.querySelectorAll('.d6-dice.d6-face-damage2').length;
+        return this._rootElement.querySelectorAll('.d6-dice.d6-face-damage2').length;
     }
 
     #createD6Div(index, isExtra) {
@@ -755,13 +779,14 @@ class D6Popup {
                     showNotification("Non hai abbastanza munizioni per farlo!")
                 } else {
                     this.#extraDiceActive[index] = !this.#extraDiceActive[index];
-                    this.#ammoCost += isActivating ? 1 : -1;
+                    if(ammoId)
+                        this.#ammoCost += isActivating ? 1 : -1;
                 }
             } else if (this.#extraDiceClasses[index] && !this.#extraDiceRerolled[index]){
                 this.#extraDiceActive[index] = !this.#extraDiceActive[index];
             }
         }
-        this.#render();
+        this._render();
     }
 
     #getActiveCount(){
@@ -797,7 +822,7 @@ class D6Popup {
             let freeRerolls = payedLeftover > 0 ? 3 - payedLeftover : 0;
             luckCost = Math.ceil((this.#getActiveCount() - freeRerolls) / 3);
         }
-        return luckCost > 0 ? luckCost : 0;
+        return luckCost;
     }
 
     #onRoll(){
@@ -805,7 +830,6 @@ class D6Popup {
             return showNotification("Seleziona dei dadi da (ri)lanciare!"); // TODO language
         }
 
-        // TODO luck check should be done in onDiceClick
         let luckCost = this.#getLuckCost();
         luckCost = luckCost > 0 ? luckCost : 0;
         if (this.#character.currentLuck < luckCost) {
@@ -861,12 +885,69 @@ class D6Popup {
         this.#luckCost = 0;
 
         this.#hasRolled = true;
-        this.#render();
+        this._render();
+    }
+}
+
+class AddItemPopup extends Popup {
+
+    #dom;
+
+    constructor(){
+        super('popup-addItem');
+        this.#dom = {
+            select: document.getElementById('popup-addItem__selector'),
+            quantity: document.getElementById('popup-addItem__quantity'),
+        }
+    }
+
+    _initialize(itemType) {
+        const isWeapon = Object.values(SKILLS).includes(itemType)
+        let availableItems = Object.values(dataManager.weapons).filter(item =>
+            !isWeapon || (item.SKILL === itemType && !dataManager.isUnacquirable(item.ID))
+        );
+
+        // Populate select element
+        this.#dom.select.innerHTML = "";
+        const formattedItemType = translator.translate(isWeapon ? "weapons" : itemType)
+        const defaultOptionText = translator.translate("default_add_item_option").replace("%s", formattedItemType)
+        const defaultOption = new Option(defaultOptionText, '', true, true);
+        defaultOption.disabled = true;
+        this.#dom.select.appendChild(defaultOption);
+        this.#dom.select.dataItemType = itemType;
+
+        availableItems.forEach(item => {
+            const optionText = translator.translate(item.ID);
+            this.#dom.select.appendChild(new Option(optionText, item.ID));
+        });
+    }
+
+    _handleConfirm() {
+        const selectedId = this.#dom.select.value;
+        const itemType = this.#dom.select.dataItemType;
+        const quantity = Number(this.#dom.quantity.value);
+        if (selectedId) {
+            characterData.addItem(selectedId, itemType, quantity);
+            this.#dom.quantity.value = 1;
+            console.log(`Adding item: ${selectedId} x${quantity}`);
+            closeActivePopup();
+        }
     }
 }
 
 
 
+// TODO might have a better way, might conflict with multiple dialogs + tooltips etc
+function closeActivePopup() {
+    const activeDialog = document.querySelector('dialog[open]');
+    if (activeDialog) {
+        activeDialog.addEventListener('animationend', () => {
+            activeDialog.close();
+            activeDialog.classList.remove('dialog-closing');
+        }, { once: true });
+        activeDialog.classList.add('dialog-closing');
+    }
+}
 
 // Wait for the DOM to be fully loaded before running any script
 document.addEventListener("DOMContentLoaded", () => {
@@ -884,22 +965,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // popups.notification.showModal();
         alert(message); // Reverted to alert for now so you can see it working.
     }
-    // TODO might have a better way, might conflict with multiple dialogs + tooltips etc
-    window.closeActivePopup = () => {
-        const activeDialog = document.querySelector('dialog[open]');
-        if (activeDialog) {
-            activeDialog.addEventListener('animationend', () => {
-                activeDialog.close();
-                activeDialog.classList.remove('dialog-closing');
-            }, { once: true });
-            activeDialog.classList.add('dialog-closing');
-        }
-    }
-
-    // Close buttons for all popups
-    document.querySelectorAll('.popup__button-x, dialog .popup__button-close').forEach(btn => {
-        btn.addEventListener('click', closeActivePopup);
-    });
 
     const d20Popup = new D20Popup();
     window.openD20Popup = (skillId, objectId) => {
@@ -912,89 +977,24 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-    const tagTooltip = new TagTooltip();
-    window.openTooltip = (tagEl) => {
-        tagTooltip.openTooltip(tagEl);
-    };
 
+    const tradeItemPopup = new TradeItemPopup();
+    window.openSellItemPopup = (itemId) => {
+        tradeItemPopup.open(itemId);
+    }
+
+    // They are unused because they auto-handle opening logic
     const statAdjustmentPopup = new StatAdjustementPopup();
+    const tagTooltip = new TagTooltip();
 
-
-
+    const addItemPopup = new AddItemPopup();
+    window.openAddItemModal = (itemType) => {
+        addItemPopup.open(itemType);
+    }
 
 
     // TODO To refactor
     const popups = {
-        addItem: document.getElementById('popup-addItem'),
-        sellItem: document.getElementById('popup-tradeItem'),
-        // It's good practice to add a dedicated notification popup instead of using alert() TODO
         notification: document.getElementById('notification-popup')
     };
-
-
-    const tradeItemPopup = new TradeItemPopup();
-    window.openSellItemPopup = (itemId) => {
-        tradeItemPopup.openPopup(itemId);
-    }
-
-    // Elements specific to the Add Item Popup
-    const addItemPopupElements = {
-        select: popups.addItem.querySelector('#popup-addItem__selector'),
-        quantity: popups.addItem.querySelector('#popup-addItem__quantity'),
-        confirmButton: popups.addItem.querySelector('.popup__button-confirm')
-    };
-
-    window.openAddItemModal = (itemType) => {
-        // This mapping makes the function much cleaner and easier to extend.
-        const itemConfig = {
-            // TODO use langData
-            smallGuns: { data: dataManager.weapons, isWeapon: true },
-            energyWeapons: { data: dataManager.weapons, isWeapon: true },
-            bigGuns: { data: dataManager.weapons, isWeapon: true },
-            meleeWeapons: { data: dataManager.weapons, isWeapon: true },
-            explosives: { data: dataManager.weapons, isWeapon: true },
-            throwing: { data: dataManager.weapons, isWeapon: true },
-            food: { data: dataManager.food },
-            drinks: { data: dataManager.drinks },
-            meds: { data: dataManager.meds },
-            ammo: { data: dataManager.ammo }
-        };
-
-        const config = itemConfig[itemType];
-        if (!config) return;
-
-        // Filter items
-        const availableItems = Object.values(config.data).filter(item =>
-            !config.isWeapon || item.SKILL === itemType
-        );
-
-        // Populate select element
-        addItemPopupElements.select.innerHTML = "";
-        const formattedItemType = translator.translate(config.isWeapon ? "weapons" : itemType)
-        const defaultOptionText = translator.translate("default_add_item_option").replace("%s", formattedItemType)
-        const defaultOption = new Option(defaultOptionText, '', true, true);
-        defaultOption.disabled = true;
-        addItemPopupElements.select.appendChild(defaultOption);
-        addItemPopupElements.select.dataItemType = itemType;
-
-        availableItems.forEach(item => {
-            const optionText = translator.translate(item.ID); // Fallback to ID
-            addItemPopupElements.select.appendChild(new Option(optionText, item.ID));
-        });
-
-        popups.addItem.showModal();
-    };
-
-    // Add item popup listener
-    addItemPopupElements.confirmButton.addEventListener('click', () => {
-        const selectedId = addItemPopupElements.select.value;
-        const itemType = addItemPopupElements.select.dataItemType;
-        const quantity = Number(addItemPopupElements.quantity.value);
-        if (selectedId) {
-            characterData.addItem(selectedId, itemType, quantity);
-            addItemPopupElements.quantity.value = 1;
-            console.log(`Adding item: ${selectedId} x${quantity}`);
-            closeActivePopup();
-        }
-    });
 });

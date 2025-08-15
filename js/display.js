@@ -29,6 +29,8 @@ class Display {
             statContainer: document.getElementById('c-special'),
             skillsContainer: document.getElementById('skills'),
             invScreen: document.getElementById('inv-tabContent'),
+
+            tabButtons: document.querySelectorAll(".tab-button")
         };
         this.elementMaps = {};
         Object.keys(this.dom.itemContainers).forEach(key => { this.elementMaps[key] = new Map() });
@@ -121,7 +123,7 @@ class Display {
     handleCardPointerDown(e) {
         this.clearLongPressTimer();
         const cardDiv = e.target.closest('.card,.ammo-card')
-        if (cardDiv) {
+        if (cardDiv && !dataManager.isUnacquirable(cardDiv.dataset.itemId)) {
             this.#longPressTarget = cardDiv;
             this.#longPressTimer = setTimeout(() => {
                 const overlay = this.#longPressTarget.querySelector('.card-overlay');
@@ -154,11 +156,13 @@ class Display {
     updateItems(character) {
         requestAnimationFrame(() => {
             for (const type of Object.keys(this.elementMaps)) {
-                let itemsOfType;
-                if(type === SPECIAL.UNARMED){ // TODO divide unarmed and melee and make unarmedStrike fixed
-                    itemsOfType = [{id: "weaponUnarmedStrike", type: type, quantity: 1}]
-                } else {
-                    itemsOfType = character.getItemsByType(type);
+                const itemsOfType = character.getItemsByType(type);
+                if(type === SKILLS.UNARMED){ // TODO divide unarmed and melee and make unarmedStrike fixed
+                    itemsOfType.push({id: "weaponUnarmedStrike", type: type, quantity: 1});
+                } else if(type === SKILLS.MELEE_WEAPONS){
+                    character.getGunBashItems().forEach(gunBashItem =>
+                        itemsOfType.push(gunBashItem)
+                    )
                 }
                 const container = this.dom.itemContainers[type];
                 const currentMap = this.elementMaps[type];
@@ -210,6 +214,7 @@ class Display {
 
     toggleEditMode() {
         this.#isEditing = !this.#isEditing;
+        Object.values(this.dom.tabButtons).forEach(el => el.disabled = this.#isEditing);
         Object.values(this.dom.specials).forEach(el => el.contentEditable = this.#isEditing);
         Object.values(this.dom.specialties).forEach(cb => cb.disabled = !this.#isEditing);
         this.dom.editStatsButton.textContent = this.#isEditing ? 'Stop Editing' : 'Edit Stats';

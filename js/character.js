@@ -235,6 +235,26 @@ class Character extends EventTarget { // TODO check this out
     getItemQuantity(itemId) { return this.getItem(itemId)?.quantity ?? 0 }
     getItemsByType(type) { return this.#data.items.filter(item => item.type === type); }
 
+    getGunBashItems() {
+        let stock = null;
+        let stock2h = null;
+        this.#data.items.forEach(item => {
+            if(Object.values(SKILLS).includes(item.type)){
+                const itemObj = dataManager.getItem(item.id);
+                if(itemObj.QUALITIES.includes("qualityTwoHanded")){
+                    stock2h = {id: "weaponWeaponStockOneHanded", type: "meleeWeapons", quantity: 1};
+                } else {
+                    stock = {id: "weaponWeaponStockOneHanded", type: "meleeWeapons", quantity: 1};
+                }
+                if(stock && stock2h)
+                    return [stock, stock2h];
+            }
+        });
+        if(stock) return [stock]
+        if(stock2h) return [stock2h]
+        return []
+    }
+
     removeItem(itemId, quantity = Number.MAX_SAFE_INTEGER) {
         const itemIndex = this.#data.items.findIndex(i => i.id === itemId);
         if (itemIndex === -1) return;

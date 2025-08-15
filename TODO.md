@@ -1,29 +1,27 @@
 # TODO
 
-# After refactoring
-- Use luck + aim should not cancel out
-
 # Main
 - ACCURATE,UNRELIABLE DESCRIPTION SBAGLIATE IN ITALIANO 
+  1. Implement ACCURATE effect
+  2. Implement UNRELIABLE effect
 - Implement gatling effect
-- Implement Di Precisione effect
-- Implement Inaffidabile effect
 - Implement weapon properties:
   1. Properties effects
   2. (corpo a corpo adds weapons, define "unbuyable" weapons)
+- Implement choice for qualityThrown weapons
 - Implement notification popup
-- Fix Unarmed "Weapon" by default
-- Refactor Display + Character (use #render())
+- Refactor Display + Character (use custom event)
 
 ## Secondary
 - Fix close popup button position
-- Fix d6popup layout (add bodyPart)
+- Add body part to d6popup layout
 - Add current luck/ammo to d20/d6 popups
 - d6 icons to have secondary color
-- Fix card layout
-- Finish templating cards
 - Consumable items (maybe change icon?)
-- There is something wrong in how cards scroll, check it out
+- Remove unrolled dice
+ 1. Make the change smoooth...
+- Add Free rerolls display (to both d2 and d20)
+- 
 
 # Other TODOs 
 
