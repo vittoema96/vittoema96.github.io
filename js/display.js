@@ -11,6 +11,12 @@ class DisplayInterface {
     _dom;
     _rootElement;
 
+    _eventController = new AbortController();
+
+    dispose() {
+        this._eventController.abort();
+    }
+
     constructor(rootElementId) {
         this._rootElement = document.getElementById(rootElementId);
     }
@@ -22,7 +28,7 @@ class DisplayInterface {
         for(const type of changeType) {
             characterData.addEventListener(`change:${type}`, (e) => {
                 callback(e);
-            })
+            }, { signal: this._eventController.signal })
         }
     }
 
@@ -54,6 +60,11 @@ class MainDisplay extends DisplayInterface {
     #mapDisplay;
     #settingsDisplay;
 
+    dispose() {
+        this.#getScreens().forEach(s => s.dispose());
+        super.dispose();
+    }
+
     constructor() {
         super("js-main-display");
         this._dom = {
@@ -79,7 +90,7 @@ class MainDisplay extends DisplayInterface {
         this._dom.tabButtons.forEach(tab => {
             tab.addEventListener('click', (e) => {
                 this.#openTab(e.target.closest(".tab-button"));
-            });
+            }, { signal: this._eventController.signal });
         })
     }
 
@@ -146,7 +157,7 @@ class StatDisplay extends DisplayInterface {
                     characterData.currentLuck = characterData.getSpecial(SPECIAL.LUCK);
                 })
             }
-        });
+        }, { signal: this._eventController.signal });
 
         this._onChangeSetText(SPECIAL.AGILITY, this._dom.defense, () => characterData.defense);
         this._onChangeSetText([SPECIAL.AGILITY,SPECIAL.PERCEPTION], this._dom.initiative, () => characterData.initiative);
@@ -156,9 +167,9 @@ class StatDisplay extends DisplayInterface {
             this._onChangeSetText(skill, this._dom.skills[skill]);
         });
 
-        this._dom.editStatsButton.addEventListener('click', () => this.#toggleEditMode());
-        Object.values(SPECIAL).forEach(special => this._dom.specials[special].closest('.special')?.addEventListener('click', (e) => this.#handleSpecialClick(e)));
-        Object.values(SKILLS).forEach(skill => this._dom.skills[skill].closest('.skill')?.addEventListener('click', (e) => this.#handleSkillClick(e)));
+        this._dom.editStatsButton.addEventListener('click', () => this.#toggleEditMode(), { signal: this._eventController.signal });
+        Object.values(SPECIAL).forEach(special => this._dom.specials[special].closest('.special')?.addEventListener('click', (e) => this.#handleSpecialClick(e), { signal: this._eventController.signal }));
+        Object.values(SKILLS).forEach(skill => this._dom.skills[skill].closest('.skill')?.addEventListener('click', (e) => this.#handleSkillClick(e), { signal: this._eventController.signal }));
     }
 
     /**
@@ -255,10 +266,10 @@ class InvDisplay extends DisplayInterface {
             this._dom.itemCategoryContainers[category].innerHTML = '';
         });
 
-        this._rootElement.addEventListener('click', (e) => this.#handleCardClick(e));
-        this._rootElement.addEventListener('pointerdown', (e) => this.#handleCardPointerDown(e));
-        this._rootElement.addEventListener('pointerup', () => this.#clearLongPressTimer());
-        this._rootElement.addEventListener('pointerleave', () => this.#clearLongPressTimer());
+        this._rootElement.addEventListener('click', (e) => this.#handleCardClick(e), { signal: this._eventController.signal });
+        this._rootElement.addEventListener('pointerdown', (e) => this.#handleCardPointerDown(e), { signal: this._eventController.signal });
+        this._rootElement.addEventListener('pointerup', () => this.#clearLongPressTimer(), { signal: this._eventController.signal });
+        this._rootElement.addEventListener('pointerleave', () => this.#clearLongPressTimer(), { signal: this._eventController.signal });
 
         this._onChange("items", () => this.#updateItems());
 
@@ -266,7 +277,7 @@ class InvDisplay extends DisplayInterface {
         this._dom.subTabButtons.forEach(subTab => {
             subTab.addEventListener('click', (e) => {
                 this.#openSubtab(e.target.closest('.subTab-button'));
-            });
+            }, { signal: this._eventController.signal });
         });
     }
 
@@ -274,7 +285,7 @@ class InvDisplay extends DisplayInterface {
         const subScreenId = subTab.dataset.subScreen;
         const targetScreen = `${subScreenId}-subScreen`;
 
-        this._dom.subScreens.forEach(s => s.classList.toggle('hidden', s.id === targetScreen));
+        this._dom.subScreens.forEach(s => s.classList.toggle('hidden', s.id !== targetScreen));
         this._dom.subTabButtons.forEach(t => t.classList.toggle('active', t === subTab));
     }
 
@@ -410,7 +421,7 @@ class DataDisplay extends DisplayInterface {
             e = Number(e.target.value);
             if(!e) return;
             characterData.level = e;
-        });
+        }, { signal: this._eventController.signal });
     }
 
 }
@@ -443,7 +454,7 @@ class MapDisplay extends DisplayInterface {// A variable to hold the Panzoom ins
         });
 
         // 4. Add the wheel event listener.
-        this._dom.mapContainer.addEventListener('wheel', this.#panzoomInstance.zoomWithWheel);
+        this._dom.mapContainer.addEventListener('wheel', this.#panzoomInstance.zoomWithWheel, { signal: this._eventController.signal });
         setTimeout(() => {
             this._centerImage();
         }); // A short delay is usually sufficient.
@@ -499,18 +510,20 @@ class SettingsDisplay extends DisplayInterface {
             const newLang = e.target.value;
             localStorage.setItem('language', newLang);
             changeLanguage();
-        });
+        }, { signal: this._eventController.signal });
         this._dom.selectorTheme.addEventListener('change', (e) => {
             const newTheme = e.target.value;
             localStorage.setItem('theme', newTheme);
             changeTheme();
-        });
+        }, { signal: this._eventController.signal });
 
 
         this._dom.buttonReset.addEventListener('click', async () => {
             confirmPopup(
                 "deleteCharacterAlert",
                 () => {
+                    mainDisplay.dispose();
+
                     localStorage.clear();
                     alertPopup("dataWipeAlert");
                     // Re-initialize the character to reflect the cleared state
@@ -522,7 +535,7 @@ class SettingsDisplay extends DisplayInterface {
                     characterData.dispatchAll();
                 }
             )
-        });
+        }, { signal: this._eventController.signal });
     }
 }
 
