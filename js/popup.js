@@ -80,7 +80,7 @@ class Popup {
     }
 }
 
-class StatAdjustementPopup extends Popup {
+class StatAdjustmentPopup extends Popup {
     #dom;
 
     #currentHp;
@@ -111,7 +111,7 @@ class StatAdjustementPopup extends Popup {
         this.#caps = characterData.caps;
         this.#currentLuck = characterData.currentLuck;
 
-        this.#dom.hpOld.textContent = `${this.#currentHp}/${characterData.calculateMaxHp()}`;
+        this.#dom.hpOld.textContent = `${this.#currentHp}/${characterData.maxHp}`;
         this.#dom.capsOld.textContent = this.#caps;
         this.#dom.luckOld.textContent = `${this.#currentLuck}/${characterData.getSpecial(SPECIAL.LUCK)}`;
 
@@ -125,17 +125,12 @@ class StatAdjustementPopup extends Popup {
     }
 
     _handleConfirm() {
-        let errorString = "";
-        const errorHeader = "Qualcosa è andato storto:\n";
-        if(this.#currentHp < 0 || this.#currentHp > characterData.calculateMaxHp())
-            errorString += "\n- HP non validi";
-        if(this.#caps < 0)
-            errorString += "\n- Tappi non validi";
-        if(this.#currentLuck < 0 || this.#currentLuck > characterData.getSpecial(SPECIAL.LUCK))
-            errorString += "\n- Fortuna non valida";
-
-        if(errorString !== "")
-            showNotification(`${errorHeader}${errorString}`);
+        if(this.#currentHp < 0 || this.#currentHp > characterData.maxHp)
+            alertPopup("invalidHpAlert");
+        else if(this.#caps < 0)
+            alertPopup("invalidCapsAlert");
+        else if(this.#currentLuck < 0 || this.#currentLuck > characterData.getSpecial(SPECIAL.LUCK))
+            alertPopup("invalidLuckAlert");
         else {
             characterData.currentHp = this.#currentHp;
             characterData.caps = this.#caps;
@@ -180,7 +175,7 @@ class TradeItemPopup extends Popup {
         if(this.#isBuy){
             this.#tradeQuantity = 1;
         } else {
-            this.#tradeQuantity = characterData.getItemQuantity(this.#itemId) || 1;
+            this.#tradeQuantity = characterData.getItemQuantity(this.#itemId);
             this.#dom.quantity.max = this.#tradeQuantity;
         }
         let price = dataManager.getItem(this.#itemId).COST || 1; // Get normal item price
@@ -271,7 +266,6 @@ class TagTooltip extends Popup {
         const parentDialog = tagTarget.closest('dialog[open]');
         if (parentDialog) {
             parentDialog.appendChild(this._rootElement);
-            this._rootElement
         }
     }
 
@@ -505,12 +499,12 @@ class D20Popup extends Popup {
     #onRoll(){
 
         if (this.#getActiveDiceCount() === 0) {
-            return showNotification("Seleziona dei dadi da (ri)lanciare!"); // TODO Language
+            return alertPopup("selectDiceAlert");
         }
 
         let luckCost = this.#getLuckCost();
         if (this.#character.currentLuck < luckCost) {
-            return showNotification("Non hai abbastanza Fortuna per farlo!"); // TODO Language
+            return alertPopup("notEnoughLuckAlert");
         }
 
         this.#character.currentLuck -= luckCost;
@@ -623,10 +617,7 @@ class D6Popup extends Popup {
     _initialize(objectId){
 
         const weapon = dataManager.weapons[objectId];
-        if (!weapon) {
-            alert("Trying to attack with a non-weapon object.")
-            return;
-        }
+
         this.#object = weapon;
         this.#character = characterData;
         this.#hasRolled = false;
@@ -776,7 +767,7 @@ class D6Popup extends Popup {
                 }
                 let isActivating = !this.#extraDiceActive[index];
                 if(isActivating && ammoId && this.#character.getItemQuantity(ammoId) < this.#ammoCost+1){
-                    showNotification("Non hai abbastanza munizioni per farlo!")
+                    alertPopup("notEnoughAmmoAlert");
                 } else {
                     this.#extraDiceActive[index] = !this.#extraDiceActive[index];
                     if(ammoId)
@@ -827,13 +818,13 @@ class D6Popup extends Popup {
 
     #onRoll(){
         if (this.#getActiveCount() === 0) {
-            return showNotification("Seleziona dei dadi da (ri)lanciare!"); // TODO language
+            return alertPopup("selectDiceAlert");
         }
 
         let luckCost = this.#getLuckCost();
         luckCost = luckCost > 0 ? luckCost : 0;
         if (this.#character.currentLuck < luckCost) {
-            return showNotification("Non hai abbastanza Fortuna per farlo!"); // TODO Language
+            return alertPopup("notEnoughLuckAlert");
         }
         this.#character.currentLuck -= luckCost;
 
@@ -944,36 +935,64 @@ class AddItemPopup extends Popup {
     }
 }
 
+class AlertPopup extends Popup {
+    #dom;
+
+    constructor() {
+        super("popup-alert");
+        this.#dom = {
+            title: document.getElementById("popup-alert__title"),
+            content: document.getElementById("popup-alert__content"),
+            buttonConfirm: this._rootElement.querySelector(".popup__button-confirm")
+        }
+    }
+
+    #title;
+    #content;
+    #confirmCallback;
+
+    _initialize(content, confirmCallback = null) {
+        this.#title = translator.translate(confirmCallback ? "confirm" : "warning");
+        this.#content = content.indexOf(' ') > -1 ? content : translator.translate(content); // TODO language
+        this.#confirmCallback = confirmCallback;
+        this.#dom.buttonConfirm.style.display = confirmCallback ? "block" : "none";
+    }
+
+    _render(){
+        this.#dom.title.textContent = this.#title;
+        this.#dom.content.textContent = this.#content;
+    }
+
+    _handleConfirm() {
+        this._rootElement.close();
+        this.#confirmCallback();
+    }
+
+    _close() {
+        this._rootElement.close();
+    }
+
+}
+
 
 
 // TODO might have a better way, might conflict with multiple dialogs + tooltips etc
 function closeActivePopup() {
-    const activeDialog = document.querySelector('dialog[open]');
-    if (activeDialog) {
-        activeDialog.addEventListener('animationend', () => {
-            activeDialog.close();
-            activeDialog.classList.remove('dialog-closing');
+    closePopup(document.querySelector('dialog[open]'));
+}
+
+function closePopup(popupToClose) {
+    if (popupToClose) {
+        popupToClose.addEventListener('animationend', () => {
+            popupToClose.close();
+            popupToClose.classList.remove('dialog-closing');
         }, { once: true });
-        activeDialog.classList.add('dialog-closing');
+        popupToClose.classList.add('dialog-closing');
     }
 }
 
 // Wait for the DOM to be fully loaded before running any script
 document.addEventListener("DOMContentLoaded", () => {
-
-    /**
-     * Shows a custom notification message. Replaces alert().
-     * @param {string} message The message to display.
-     */
-    window.showNotification = (message) => {
-        // TODO This is a placeholder for custom notification logic.
-        console.warn("Notification:", message); // For now, we log to the console.
-        // Example:
-        // const notificationText = popups.notification.querySelector('.message');
-        // notificationText.textContent = message;
-        // popups.notification.showModal();
-        alert(message); // Reverted to alert for now so you can see it working.
-    }
 
     const d20Popup = new D20Popup();
     window.openD20Popup = (skillId, objectId) => {
@@ -993,8 +1012,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // They are unused because they auto-handle opening logic
-    const statAdjustmentPopup = new StatAdjustementPopup();
+    const statAdjustmentPopup = new StatAdjustmentPopup();
     const tagTooltip = new TagTooltip();
+
+    const alertPopup = new AlertPopup();
+    window.alertPopup = (message) => {
+        alertPopup.open(message);
+    }
+    window.confirmPopup = (message, confirmCallback) => {
+        alertPopup.open(message, confirmCallback);
+    }
 
     const addItemPopup = new AddItemPopup();
     window.openAddItemModal = (itemType) => {

@@ -14,10 +14,8 @@ const urlsToCache = [
     '/js/app.js',
     '/js/character.js',
     '/js/display.js',
-    '/js/map.js',
     '/js/popup.js',
     /* DON'T ADD sw.js */
-    '/js/tabs.js',
 
     /* Translation stuff */
     '/js/lang/translator.js',

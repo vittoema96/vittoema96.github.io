@@ -22,187 +22,58 @@ if ('serviceWorker' in navigator) {
 
 let dataManager = undefined;
 let translator = undefined;
+let cardFactory = undefined;
 
 // IMPORTANT: Keep this outside of DOMContentLoaded, or it flashes uglily before loading
-changeTheme(localStorage.getItem("theme"))
+changeTheme()
 
 document.addEventListener("DOMContentLoaded", async () => {
     dataManager = new DataManager();
     await dataManager.loadAllData();
 
+    cardFactory = new CardFactory();
+
     translator = new Translator();
     await translator.init();
 
-    createSkillEntries();
-
-    display = new Display();
-
     characterData = Character.load();
-    display.initialize(characterData); // Pass character data to display
+
+    mainDisplay = new MainDisplay();
+
+    characterData.dispatchAll();
+
     translator.loadTranslations();
 });
 
-
-const resetMemoryButton = document.getElementById('reset-memory-button');
-resetMemoryButton.addEventListener('click', async () => {
-    // TODO update setting selectors (also check defaults and how they work)
-    let confirmedStorageWipe = confirm("Are you really sure you want to DELETE YOUR CHARACTER and every other saved data?")
-    if (confirmedStorageWipe) {
-        localStorage.clear();
-        alert("Local data was wiped");
-        // Re-initialize the character and display to reflect the cleared state
-        characterData = Character.load();
-        display.initialize(characterData);
-    }
-});
-
-/**
- * Fills the #skills container with all the skills.
- */
-function createSkillEntries(){
-    const skillsContainer = document.querySelector("#skills")
-    const translated = {};
-    Character.getSkillList().forEach(key => translated[translator.translate(key)] = key);
-
-
-    for(const [skillTranslated, skillId] of Object.entries(translated).sort()){
-        const special = SKILL_TO_SPECIAL_MAP[skillId];
-        const specialTranslated = translator.translate(special);
-
-        const entryDiv = document.createElement('div');
-        entryDiv.className = 'skill';
-        entryDiv.dataset.skill = skillId.toString();
-        entryDiv.innerHTML = `
-            <span>
-                <b>${skillTranslated}</b>
-            </span>
-            <span>
-                <i>[${specialTranslated}]</i>
-            </span>
-            <span id="skill-${skillId}">0</span>
-            <input id="specialty-${skillId}" type="checkbox"
-                   disabled="disabled"
-                   class="themed-svg" data-icon="vaultboy">
-        `;
-        skillsContainer.appendChild(entryDiv);
-    }
-}
-
-function createGenericCard(genericItem, customCardContent, itemType, quantity) {
-    if (!genericItem) {
-        console.error(`Item data provided was null`);
-        return null;
-    }
-
-    const template = document.getElementById('t-card');
-    const cardDiv = template.content.cloneNode(true).firstElementChild;
-
-    cardDiv.dataset.itemId = genericItem.ID;
-    cardDiv.dataset.itemType = itemType;
-
-    cardDiv.querySelector('.card-quantity').textContent = `${quantity}x`;
-    cardDiv.querySelector('.card-name').dataset.langId = genericItem.ID;
-    cardDiv.querySelector('.js-card-cost').textContent = genericItem.COST;
-    cardDiv.querySelector('.js-card-weight').textContent = genericItem.WEIGHT;
-    cardDiv.querySelector('.js-card-rarity').textContent = genericItem.RARITY;
-
-    const isWeapon = !!dataManager.weapons[genericItem.ID];
-    const attackButton = cardDiv.querySelector('.button-attack');
-    if(isWeapon){
-        attackButton.dataset.action = "attack";
-        attackButton.dataset.skill = genericItem.SKILL || "---";
-        attackButton.dataset.objectId = genericItem.ID;
-    } else {
-        // TODO implement consuming supplies
-        attackButton.disabled = true;
-    }
-
-    cardDiv.querySelector('.description').innerHTML =
-        genericItem.DESCRIPTION.split('. ').map(
-            paragraph => `<p>${paragraph}${paragraph.endsWith(".") ? "" : "."}</p>`
-        ).join(''); // TODO is this the correct place to format this?
-
-    //cardDiv.querySelector('.js-card-content').insertAdjacentElement('beforebegin', customCardContent);
-    cardDiv.querySelector('.js-card-content').appendChild(customCardContent);
-    return cardDiv;
-}
-
-function createAmmoEntry(ammoId, quantity){
-     const template = document.getElementById('t-cardAmmo');
-     const ammoDiv = template.content.cloneNode(true).firstElementChild;
-     ammoDiv.dataset.itemId = ammoId;
-     ammoDiv.dataset.itemType = "ammo";
-     ammoDiv.querySelector(".card-quantity").textContent = `${quantity}x`;
-     ammoDiv.querySelector(".ammo-card-name").dataset.langId = ammoId;
-     return ammoDiv;
-}
-
-function createWeaponCard(weaponId, quantity) {
-    const weapon = dataManager.weapons[weaponId];
-    if (!weapon) {
-        console.error(`Weapon data not found for ID: ${weaponId}`);
-        return null;
-    }
-
-    const template = document.getElementById('t-card__content-weapon');
-    const wcDiv = template.content.cloneNode(true).firstElementChild;
-    wcDiv.querySelector('.js-cardWeapon-skill').dataset.langId = weapon.SKILL;
-    
-    wcDiv.querySelector('.js-cardWeapon-target').textContent = characterData.getSkill(weapon.SKILL) + characterData.getSpecial(SKILL_TO_SPECIAL_MAP[weapon.SKILL]);
-    wcDiv.querySelector('.js-cardWeapon-crit').textContent = Math.max(characterData.getSkill(weapon.SKILL), 1).toString();
-    wcDiv.querySelector('.js-cardWeapon-ammoType').dataset.langId = weapon.AMMO_TYPE;
-    wcDiv.querySelector('.js-cardWeapon-ammoCount').textContent = isMelee(weapon.SKILL) ? '-' : characterData.getItemQuantity(weapon.AMMO_TYPE);
-    
-    wcDiv.querySelector('.js-cardWeapon-image').dataset.icon = weapon.SKILL;
-    
-    wcDiv.querySelector('.js-cardWeapon-damageRating').textContent = weapon.DAMAGE_RATING;
-    wcDiv.querySelector('.js-cardWeapon-damageType').textContent = weapon.DAMAGE_TYPE; // TODO language
-    wcDiv.querySelector('.js-cardWeapon-fireRate').textContent = weapon.FIRE_RATE;
-    wcDiv.querySelector('.js-cardWeapon-range').textContent = weapon.RANGE; // TODO language
-    
-    const tagsContainer = wcDiv.querySelector('.tags-container');
-    const createTagSpan = (text, className) => {
-        const span = document.createElement('span');
-        span.className = className;
-        span.dataset.tooltipId = `${text.split(' ')[0]}Description`;
-        span.dataset.langId = text;
-        return span;
-    };
-    const effectSpans = weapon.EFFECTS.map(effect => createTagSpan(effect, 'tag'));
-    const qualitySpans = weapon.QUALITIES.map(quality => createTagSpan(quality, 'tag tag-empty'));
-    tagsContainer.append(...effectSpans, ...qualitySpans);
-
-    return createGenericCard(weapon, wcDiv, weapon.SKILL, quantity);
-}
-
-function createObjectCard(id, type, quantity) {
-    const object = {...dataManager.food, ...dataManager.drinks, ...dataManager.meds}[id];
-    const specificEffectStat = object.RADIOACTIVE !== undefined ? 'Radioactive' : 'Addictive';
-
-    const template = document.getElementById('t-card__content-aid');
-    const acDiv = template.content.cloneNode(true).firstElementChild;
-    acDiv.querySelector('.js-cardAid-image').dataset.icon = type;
-    acDiv.querySelector('.js-cardAid-effect').textContent = object.EFFECT; // TODO language
-    acDiv.querySelector('.js-cardAid-hpStat').dataset.icon = type;
-    acDiv.querySelector('.js-cardAid-hpGain').style.display = type === 'meds' ? 'none' : 'block';
-    acDiv.querySelector('.js-cardAid-specificEffect').textContent = specificEffectStat; // TODO language
-    acDiv.querySelector('.js-cardAid-specificEffectVal').textContent = object[specificEffectStat.toUpperCase()];
-
-    return createGenericCard(object, acDiv, type, quantity);
-}
-
-function changeTheme(value){
+function changeTheme(){
+    let value = localStorage.getItem("theme");
     if(!["theme-fallout-3", "theme-fallout-new-vegas"].includes(value)){
         value = "theme-fallout-3";
     }
-    document.getElementById("theme-select").value = value;
-    document.body.className = value;
-    localStorage.setItem("theme", value);
 
+    document.getElementById("theme-select").value = value;
+
+    document.body.className = value;
     // Update the meta tag so the PWA updates the app colors
     const computedStyle = getComputedStyle(document.body);
     const primaryColor = computedStyle.getPropertyValue('--primary-color');
     document.querySelector('meta[name="theme-color"]').setAttribute('content', primaryColor);
+
+    localStorage.setItem("theme", value);
+}
+
+function changeLanguage(){
+    let value = localStorage.getItem('language');
+    if(!["it", "en"].includes(value)){
+        value = "it";
+    }
+
+    document.getElementById("language-select").value = value;
+
+    currentLanguage = value;
+    translator.loadTranslations();
+
+    localStorage.setItem("language", value);
 }
 
 class DataManager {
@@ -292,7 +163,117 @@ class DataManager {
 }
 
 class CardFactory {
-    // TODO
+
+    #templates = {
+        card: document.getElementById('t-card'),
+        contentWeapon: document.getElementById('t-card__content-weapon'),
+        contentAid: document.getElementById('t-card__content-aid'),
+        cardAmmo: document.getElementById('t-cardAmmo')
+    }
+
+    constructor() {}
+
+    #createGenericCard(item, customCardContent, itemType, quantity) {
+        if (!item) {
+            console.error(`Item data provided was null`);
+            return null;
+        }
+
+        const template = this.#templates.card;
+        const cardDiv = template.content.cloneNode(true).firstElementChild;
+
+        cardDiv.dataset.itemId = item.ID;
+        cardDiv.dataset.itemType = itemType;
+
+        cardDiv.querySelector('.card-quantity').textContent = `${quantity}x`;
+        cardDiv.querySelector('.card-name').dataset.langId = item.ID;
+        cardDiv.querySelector('.js-card-cost').textContent = item.COST;
+        cardDiv.querySelector('.js-card-weight').textContent = item.WEIGHT;
+        cardDiv.querySelector('.js-card-rarity').textContent = item.RARITY;
+
+        const isWeapon = !!dataManager.weapons[item.ID];
+        const attackButton = cardDiv.querySelector('.button-attack');
+        if(isWeapon){
+            attackButton.dataset.action = "attack";
+            attackButton.dataset.skill = item.SKILL || "---";
+            attackButton.dataset.objectId = item.ID;
+        } else {
+            // TODO implement consuming supplies
+            attackButton.disabled = true;
+        }
+
+        cardDiv.querySelector('.description').innerHTML =
+            item.DESCRIPTION.split('. ').map(
+                paragraph => `<p>${paragraph}${paragraph.endsWith(".") ? "" : "."}</p>`
+            ).join(''); // TODO is this the correct place to format this?
+
+        cardDiv.querySelector('.js-card-content').appendChild(customCardContent);
+        return cardDiv;
+    }
+
+    createAmmoEntry(ammoId, quantity){
+         const template = this.#templates.cardAmmo;
+         const ammoDiv = template.content.cloneNode(true).firstElementChild;
+         ammoDiv.dataset.itemId = ammoId;
+         ammoDiv.dataset.itemType = "ammo";
+         ammoDiv.querySelector(".card-quantity").textContent = `${quantity}x`;
+         ammoDiv.querySelector(".ammo-card-name").dataset.langId = ammoId;
+         return ammoDiv;
+    }
+
+    createWeaponCard(weaponId, quantity) {
+        const weapon = dataManager.weapons[weaponId];
+        if (!weapon) {
+            console.error(`Weapon data not found for ID: ${weaponId}`);
+            return null;
+        }
+
+        const template = this.#templates.contentWeapon;
+        const wcDiv = template.content.cloneNode(true).firstElementChild;
+        wcDiv.querySelector('.js-cardWeapon-skill').dataset.langId = weapon.SKILL;
+
+        wcDiv.querySelector('.js-cardWeapon-target').textContent = characterData.getSkill(weapon.SKILL) + characterData.getSpecial(SKILL_TO_SPECIAL_MAP[weapon.SKILL]);
+        wcDiv.querySelector('.js-cardWeapon-crit').textContent = Math.max(characterData.getSkill(weapon.SKILL), 1).toString();
+        wcDiv.querySelector('.js-cardWeapon-ammoType').dataset.langId = weapon.AMMO_TYPE;
+        wcDiv.querySelector('.js-cardWeapon-ammoCount').textContent = isMelee(weapon.SKILL) ? '-' : characterData.getItemQuantity(weapon.AMMO_TYPE);
+
+        wcDiv.querySelector('.js-cardWeapon-image').dataset.icon = weapon.SKILL;
+
+        wcDiv.querySelector('.js-cardWeapon-damageRating').textContent = weapon.DAMAGE_RATING;
+        wcDiv.querySelector('.js-cardWeapon-damageType').textContent = weapon.DAMAGE_TYPE; // TODO language
+        wcDiv.querySelector('.js-cardWeapon-fireRate').textContent = weapon.FIRE_RATE;
+        wcDiv.querySelector('.js-cardWeapon-range').textContent = weapon.RANGE; // TODO language
+
+        const tagsContainer = wcDiv.querySelector('.tags-container');
+        const createTagSpan = (text, className) => {
+            const span = document.createElement('span');
+            span.className = className;
+            span.dataset.tooltipId = `${text.split(' ')[0]}Description`;
+            span.dataset.langId = text;
+            return span;
+        };
+        const effectSpans = weapon.EFFECTS.map(effect => createTagSpan(effect, 'tag'));
+        const qualitySpans = weapon.QUALITIES.map(quality => createTagSpan(quality, 'tag tag-empty'));
+        tagsContainer.append(...effectSpans, ...qualitySpans);
+
+        return this.#createGenericCard(weapon, wcDiv, weapon.SKILL, quantity);
+    }
+
+    createObjectCard(id, type, quantity) {
+        const object = {...dataManager.food, ...dataManager.drinks, ...dataManager.meds}[id];
+        const specificEffectStat = object.RADIOACTIVE !== undefined ? 'Radioactive' : 'Addictive';
+
+        const template = this.#templates.contentAid;
+        const acDiv = template.content.cloneNode(true).firstElementChild;
+        acDiv.querySelector('.js-cardAid-image').dataset.icon = type;
+        acDiv.querySelector('.js-cardAid-effect').textContent = object.EFFECT; // TODO language
+        acDiv.querySelector('.js-cardAid-hpStat').dataset.icon = type;
+        acDiv.querySelector('.js-cardAid-hpGain').style.display = type === 'meds' ? 'none' : 'block';
+        acDiv.querySelector('.js-cardAid-specificEffect').textContent = specificEffectStat; // TODO language
+        acDiv.querySelector('.js-cardAid-specificEffectVal').textContent = object[specificEffectStat.toUpperCase()];
+
+        return this.#createGenericCard(object, acDiv, type, quantity);
+    }
 }
 
 function getVariableFontSize(text, maxFontSize=2, step=.25, lineSize = 13){

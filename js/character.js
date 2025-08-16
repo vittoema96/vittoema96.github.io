@@ -67,156 +67,65 @@ const defaultCharacter = {
     "specialties": [],
     "caps": 0,
     "background": "",
-    "items": [],
-    "ammo": {},
+    "items": []
 };
 const CHARACTER_STORAGE_PREFIX = 'character-data-';
 // </editor-fold>
 
-class Character extends EventTarget { // TODO check this out
-    // All character state is now in a single private object for easy saving.
+class Character extends EventTarget {
     #data;
-    // Stores the ID for the current character slot.
-    #characterId;
+    characterId;
 
-    /**
-     * The constructor is now simple. It just sets up the state.
-     * Use the static Character.load() method to create an instance with saved data.
-     * @param {string} characterId - The identifier for the character slot.
-     * @param {object} initialData - The character's initial state.
-     */
-    constructor(characterId, initialData = {}) {
+    constructor(id, data){
         super();
-        this.#characterId = characterId;
+        this.characterId = id;
         // Deep merge defaults with initial data to prevent missing properties on load.
         this.#data = {
             ...JSON.parse(JSON.stringify(defaultCharacter)),
-            ...initialData,
-            special: { ...defaultCharacter.special, ...initialData.special },
-            skills: { ...defaultCharacter.skills, ...initialData.skills },
+            ...data,
+            special: { ...defaultCharacter.special, ...data.special },
+            skills: { ...defaultCharacter.skills, ...data.skills },
         };
     }
 
-    /**
-     * Loads character data from localStorage or creates a new one for a given slot.
-     * @param {string} characterId - The identifier for the character slot to load.ì
-     * @returns {Character} A new Character instance.
-     */
-    static load(characterId = 'default') {
-        const storageKey = `${CHARACTER_STORAGE_PREFIX}${characterId}`;
-        const savedDataJSON = localStorage.getItem(storageKey);
-        const initialData = savedDataJSON ? JSON.parse(savedDataJSON) : defaultCharacter;
+    dispatchAll(){
+        Object.values(SPECIAL).forEach(special => this.#dispatchChange(special, this.getSpecial(special)));
+        Object.values(SKILLS).forEach(skill => this.#dispatchChange(skill, this.getSkill(skill)));
+        this.#dispatchChange("level", this.level);
+        this.#dispatchChange("caps", this.caps);
 
-        // Ensure vital stats are correctly initialized if creating a new character.
-        if (!savedDataJSON) { // TODO better handling of these 2 initialization (here and on default)
-            initialData.luckCurrent = initialData.special[SPECIAL.LUCK];
-            initialData.currentHp = initialData.special[SPECIAL.ENDURANCE] + initialData.special[SPECIAL.LUCK] + initialData.level;
-        }
+        this.#dispatchChange("currentHp", this.currentHp);
+        this.#dispatchChange("currentLuck", this.currentLuck);
 
-        return new Character(characterId, initialData);
+        this.#dispatchChange("items");
+        Object.values(SKILLS).forEach(skill => this.#dispatchChange(`specialty-${skill}`, this.hasSpecialty(skill)));
+        this.#dispatchChange("background", this.background);
     }
 
-    /**
-     * Saves the character's current state to its slot in localStorage.
-     */
-    save() {
-        const storageKey = `${CHARACTER_STORAGE_PREFIX}${this.#characterId}`;
-        localStorage.setItem(storageKey, JSON.stringify(this.#data));
-        console.log(`Character data for '${this.#characterId}' saved.`);
-    }
-
-
-    /** TODO check this out
-     * Private helper to dispatch events when data changes.
-     * The UI layer will listen for these events instead of being called directly.
-     * @param {string} type - The type of change (e.g., 'hp', 'inventory').
-     * @param {object} detail - Extra data to send with the event.
-     */
-    #dispatchChange(type, detail) {
-        // Dispatch a specific event (e.g., 'change:hp')
+    #dispatchChange(type, detail = null) {
         this.dispatchEvent(new CustomEvent(`change:${type}`, { detail }));
-        // Dispatch a general 'change' event for broader listeners
-        // this.dispatchEvent(new CustomEvent('change', { detail: { type, ...detail } })); TODO this was the original suggested
-    }
-
-    getSpecial(special) { return this.#data.special[special]; }
-    setSpecial(special, value) {
-        this.#data.special[special] = Number(value);
-        this.save();
-        if(display) display.fullUpdate(this);
-    }
-
-    get currentLuck() { return this.#data.currentLuck; }
-    set currentLuck(value) {
-        this.#data.currentLuck = Number(value);
-        this.save();
-        if(display) display.updateCurrentLuck(this);
     }
 
     get currentHp(){ return this.#data.currentHp; }
     set currentHp(value){
-        this.#data.currentHp = Number(value);
-        this.save();
-        if(display) display.updateHp(this);
-    }
-
-    get level() { return this.#data.level; }
-    set level(value) {
         value = Number(value);
-        if(!value) return;
+        if(!value && value !== 0) return;
 
-        const diff = value - this.level;
-        this.#data.level = value;
-        this.#data.currentHp = this.currentHp + diff
+        this.#data.currentHp = value;
         this.save();
-        if(display) {
-            display.updateHp(this);
-            display.updateLevel(this);
-        }
-    }
 
+        this.#dispatchChange("currentHp", value);
+    }
+    get maxHp() { return this.getSpecial(SPECIAL.ENDURANCE) + this.getSpecial(SPECIAL.LUCK) + this.level; }
     get caps() { return this.#data.caps; }
     set caps(value) {
         value = Number(value);
-        if(!value) return;
+        if(!value && value !== 0) return;
+
         this.#data.caps = value;
         this.save();
-        if(display) display.updateCaps(this);
-    }
 
-    hasSpecialty(skill) { return this.#data.specialties.includes(skill); }
-    addSpecialty(skill) {
-        if(this.hasSpecialty(skill)) return;
-        this.#data.specialties.push(skill);
-        const skillValue = this.getSkill(skill);
-        this.setSkill(skill, skillValue < 5 ? skillValue + 2 : 6);
-        this.save();
-        if(display) display.updateSpecialty(skill, this);
-    }
-    removeSpecialty(skill) {
-        if(!this.hasSpecialty(skill)) return;
-        this.#data.specialties = this.#data.specialties.filter(s => s !== skill);
-        const skillValue = this.getSkill(skill);
-        this.setSkill(skill, skillValue > 1 ? skillValue - 2 : 0);
-        this.save();
-        if(display) display.updateSpecialty(skill, this);
-    }
-
-    getSkill(skill) { return this.#data.skills[skill]; }
-    setSkill(skill, value) {
-        this.#data.skills[skill] = Number(value);
-        this.save();
-        if(display) display.updateSkill(skill, this);
-    }
-
-    get defense() { return this.getSpecial(SPECIAL.AGILITY) < 9 ? 1 : 2; }
-    get initiative() { return this.getSpecial(SPECIAL.AGILITY) + this.getSpecial(SPECIAL.PERCEPTION); }
-    get meleeDamage() {
-        const str = this.getSpecial(SPECIAL.STRENGTH);
-        if (str < 7) return 0;
-        if (str < 9) return 1;
-        if (str < 11) return 2;
-        return 3;
+        this.#dispatchChange("caps", value);
     }
     get currentWeight() {
         return this.#data.items.reduce((total, item) => {
@@ -229,8 +138,101 @@ class Character extends EventTarget { // TODO check this out
     }
     get maxWeight() { return 75 + this.getSpecial(SPECIAL.STRENGTH) * 5; }
 
-    getItem(itemId) { return this.#data.items.find(item => item.id === itemId)}
 
+    getSpecial(special) { return this.#data.special[special]; }
+    setSpecial(special, value) {
+        value = Number(value);
+        if(!value) return;
+
+        this.#data.special[special] = value;
+        this.save();
+
+        this.#dispatchChange(special, value);
+    }
+    get currentLuck() { return this.#data.currentLuck; }
+    set currentLuck(value) {
+        value = Number(value);
+        if(!value && value !== 0) return;
+
+        this.#data.currentLuck = value;
+        this.save();
+
+        this.#dispatchChange("currentLuck", value);
+    }
+
+    getSkill(skill) { return this.#data.skills[skill]; }
+    setSkill(skill, value) {
+        value = Number(value);
+        if(!value && value !== 0) return;
+
+        this.#data.skills[skill] = value;
+        this.save();
+
+        this.#dispatchChange(skill, value);
+    }
+
+    hasSpecialty(skill) { return this.#data.specialties.includes(skill); }
+    toggleSpecialty(skill) {
+        if(!Object.values(SKILLS).includes(skill)) return;
+
+        let isAdding = true;
+        if(this.hasSpecialty(skill)) {
+            this.#data.specialties = this.#data.specialties.filter(s => s !== skill);
+            isAdding = false;
+        } else
+            this.#data.specialties.push(skill);
+
+        const skillValue = this.getSkill(skill) + (isAdding ? 2 : -2);
+
+        this.setSkill(skill, skillValue < 0 ? 0 : skillValue > 6 ? 6 : skillValue);
+        this.save();
+
+        this.#dispatchChange(`specialty-${skill}`);
+    }
+
+
+    get defense() { return this.getSpecial(SPECIAL.AGILITY) < 9 ? 1 : 2; }
+    get initiative() { return this.getSpecial(SPECIAL.AGILITY) + this.getSpecial(SPECIAL.PERCEPTION); }
+    get meleeDamage() {
+        const str = this.getSpecial(SPECIAL.STRENGTH);
+        if (str < 7) return 0;
+        if (str < 9) return 1;
+        if (str < 11) return 2;
+        return 3;
+    }
+
+
+
+    addItem(itemId, itemType, quantity = 1) {
+        // TODO implement discerning modded items from normal ones
+        const existingItem = this.getItem(itemId);
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            this.#data.items.push({
+                id: itemId,
+                type: itemType,
+                quantity: quantity,
+            });
+        }
+        this.save();
+
+        this.#dispatchChange("items", null);
+    }
+    removeItem(itemId, quantity = Number.MAX_SAFE_INTEGER) {
+        const itemIndex = this.#data.items.findIndex(i => i.id === itemId);
+        if (itemIndex === -1) return;
+
+        const item = this.#data.items[itemIndex];
+        item.quantity -= quantity;
+        if (item.quantity <= 0) {
+            this.#data.items.splice(itemIndex, 1); // Remove item if quantity is zero or less
+        }
+
+        this.save();
+        this.#dispatchChange("items", null);
+    }
+    getItem(itemId) { return this.#data.items.find(item => item.id === itemId)}
     // TODO handle items with no quantity (should not happen, check it)
     getItemQuantity(itemId) { return this.getItem(itemId)?.quantity ?? 0 }
     getItemsByType(type) { return this.#data.items.filter(item => item.type === type); }
@@ -255,43 +257,45 @@ class Character extends EventTarget { // TODO check this out
         return []
     }
 
-    removeItem(itemId, quantity = Number.MAX_SAFE_INTEGER) {
-        const itemIndex = this.#data.items.findIndex(i => i.id === itemId);
-        if (itemIndex === -1) return;
 
-        const item = this.#data.items[itemIndex];
-        item.quantity -= quantity;
-        if (item.quantity <= 0) {
-            this.#data.items.splice(itemIndex, 1); // Remove item if quantity is zero or less
-        }
+    get level() { return this.#data.level; }
+    set level(value) {
+        value = Number(value);
+        if(!value) return;
 
+        const diff = value - this.level;
+        this.#data.level = value;
+        this.currentHp = this.currentHp + diff
         this.save();
-        if(display) {
-            display.updateItems(this);
-            display.updateWeight(this);
-        }
+
+        this.#dispatchChange("level", value);
+    }
+    get background() { return this.#data.background; }
+    set background(content) {
+        this.#data.background = content;
+        this.save();
+
+        this.#dispatchChange("background", content);
     }
 
-    addItem(itemId, itemType, quantity = 1) {
-        // TODO implement discerning modded items from normal ones
-        const existingItem = this.getItem(itemId);
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            this.#data.items.push({
-                id: itemId,
-                type: itemType,
-                quantity: quantity,
-            });
-        }
-        this.save();
-        if(display) {
-            display.updateItems(this);
-            display.updateWeight(this);
-        }
+
+    save() {
+        const storageKey = `${CHARACTER_STORAGE_PREFIX}${this.characterId}`;
+        localStorage.setItem(storageKey, this.toString());
+        console.log(`Character data for '${this.characterId}' saved.`);
     }
 
-    calculateMaxHp(){ return this.getSpecial(SPECIAL.ENDURANCE) + this.getSpecial(SPECIAL.LUCK) + this.level; }
-    static getSpecialList(){ return Object.keys(defaultCharacter.special); }
-    static getSkillList(){ return Object.keys(defaultCharacter.skills); }
+     static load(characterId = 'default') {
+        const storageKey = `${CHARACTER_STORAGE_PREFIX}${characterId}`;
+        const savedDataJSON = localStorage.getItem(storageKey);
+        const initialData = savedDataJSON ? JSON.parse(savedDataJSON) : defaultCharacter;
+
+        characterData?.save();
+        return new Character(characterId, initialData);
+    }
+
+
+    toString(){
+        return JSON.stringify(this.#data);
+    }
 }

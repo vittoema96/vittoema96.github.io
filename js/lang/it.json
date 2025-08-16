@@ -42,6 +42,7 @@
 
   "showDescription": "Mostra Descrizione",
   "confirm": "Conferma",
+  "warning": "Attenzione",
   "close": "Chiudi",
   "cancel": "Annulla",
   "damage": "Danni",
@@ -369,5 +370,16 @@
   "edit": "Modifica",
   "caps": "Tappi",
   "target": "Target",
-  "crit": "Crit"
+  "crit": "Crit",
+
+  "deleteCharacterAlert": "Sei davvero sicuro di CANCELLARE IL TUO PERSONAGGIO e OGNI ALTRO DATO SALVATO?",
+  "dataWipeAlert": "Dati locali eliminati",
+  "replenishLuckAlert": "Vuoi davvero ripristinare la tua fortuna?",
+  "notEnoughAmmoAlert": "Non hai abbastanza MUNIZIONI per farlo!",
+  "notEnoughLuckAlert": "Non hai abbastanza FORTUNA per farlo!",
+  "selectDiceAlert": "Seleziona dei dadi da (ri)lanciare!",
+
+  "invalidHpAlert": "HP non validi!",
+  "invalidCapsAlert": "TAPPI non validi!",
+  "invalidLuckAlert": "FORTUNA non valida!"
 }

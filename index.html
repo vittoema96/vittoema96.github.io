@@ -37,7 +37,7 @@
         </script>
     </head>
 
-    <body>
+    <body class="js-main-display">
         <!-- Loading message -->
         <div id="loader">
             <pre>
@@ -305,6 +305,23 @@
             </footer>
         </dialog>
 
+        <dialog id="popup-alert">
+            <header class="l-lastSmall">
+                <span class="h1"
+                      id="popup-alert__title">Alert/Confirm</span>
+                <button class="popup__button-x">&times;</button>
+            </header>
+            <hr>
+            <p id="popup-alert__content">Alert/Confirm content goes here... It can go pretty long...</p>
+            <hr>
+            <footer>
+                <button class="popup__button-confirm"
+                        data-lang-id="confirm">Confirm</button>
+                <button class="popup__button-close"
+                        data-lang-id="close">Close</button>
+            </footer>
+        </dialog>
+
         <header class="l-lastSmall">
             <span class="h1">Pip-Boy 3000</span>
             <div id="c-headerStats">
@@ -404,15 +421,15 @@
                             data-sub-screen="weapons">WEAPONS</button>
                     <button class="subTab-button"
                             data-lang-id="apparel" data-lang-format="U%s"
-                            data-sub-screen="armor">APPAREL</button>
+                            data-sub-screen="apparel">APPAREL</button>
                     <button class="subTab-button"
                             data-lang-id="aid" data-lang-format="U%s"
-                            data-sub-screen="supplies">AID</button>
+                            data-sub-screen="aid">AID</button>
                     <button class="subTab-button"
                             data-lang-id="ammo" data-lang-format="U%s"
                             data-sub-screen="ammo">AMMO</button>
                 </div>
-                <section class="js-subScreen active" id="inv-weapons">
+                <section class="js-subScreen" id="weapons-subScreen">
                     <div class="itemlist-header">
                         <span class="h2" data-lang-id="smallGuns">Small Guns</span>
                         <button class="button-addItem" onclick="openAddItemModal('smallGuns')">+</button>
@@ -449,11 +466,11 @@
                     </div>
                     <div id="unarmed-cards" class="card-carousel"></div>
                 </section>
-                <section class="js-subScreen hidden" id="inv-armor">
+                <section class="js-subScreen hidden" id="apparel-subScreen">
                     <span class="h1">WORK IN PROGRESS</span>
                     <div id="armor-cards"></div>
                 </section>
-                <section class="js-subScreen hidden" id="inv-supplies">
+                <section class="js-subScreen hidden" id="aid-subScreen">
                     <div class="itemlist-header">
                         <span class="h2" data-lang-id="food">Food</span>
                         <button class="button-addItem" onclick="openAddItemModal('food')">+</button>
@@ -470,7 +487,7 @@
                     </div>
                     <div id="meds-cards" class="card-carousel"></div>
                 </section>
-                <section class="js-subScreen hidden" id="inv-ammo">
+                <section class="js-subScreen hidden" id="ammo-subScreen">
                     <div class="itemlist-header">
                         <span class="h2" data-lang-id="ammo">Ammo</span>
                         <button class="button-addItem" onclick="openAddItemModal('ammo')">+</button>
@@ -506,7 +523,7 @@
                 </select>
                 <hr>
                 <label for="theme-select">Theme:</label>
-                <select id="theme-select" onchange="changeTheme(this.value)">
+                <select id="theme-select">
                     <option value="theme-fallout-3">Fallout 3</option>
                     <option value="theme-fallout-new-vegas">Fallout New Vegas</option>
                 </select>
@@ -647,14 +664,11 @@
         <!-- First to run after paparse -->
         <script src="js/app.js"></script>
         <script src="js/character.js"></script>
+        <!-- Above display.js or it doesn't work -->
+        <script src="https://unpkg.com/@panzoom/panzoom@4.6.0/dist/panzoom.min.js"></script>
         <script src="js/display.js"></script>
 
-        <!-- Above map.js or it doesn't work -->
-        <script src="https://unpkg.com/@panzoom/panzoom@4.6.0/dist/panzoom.min.js"></script>
-        <script src="js/map.js"></script>
-
         <script src="js/popup.js"></script>
-        <script src="js/tabs.js"></script>
         <script src="js/lang/translator.js"></script>
     </body>
 </html>
