@@ -79,6 +79,8 @@ function changeLanguage(){
 class DataManager {
     constructor(){
         this.weapons = {};
+        this.clothing = {};
+        this.armor = {};
         this.food = {};
         this.drinks = {};
         this.meds = {};
@@ -97,20 +99,20 @@ class DataManager {
             this.#paParseCSV('data/weapons/bigGuns.csv'),
             this.#paParseCSV('data/weapons/meleeWeapons.csv'),
             this.#paParseCSV('data/weapons/throwing.csv'),
-            this.#paParseCSV('data/weapons/explosives.csv'),
-            this.#paParseCSV("data/supplies/food.csv"),
-            this.#paParseCSV("data/supplies/drinks.csv"),
-            this.#paParseCSV("data/supplies/meds.csv"),
-            this.#paParseCSV("data/ammo.csv"),
-            this.#paParseCSV("data/perks.csv")
+            this.#paParseCSV('data/weapons/explosives.csv')
         ]);
 
         this.weapons = { ...smallGuns, ...energyWeapons, ...bigGuns, ...meleeWeapons, ...throwing, ...explosives };
-        this.food = food;
-        this.drinks = drinks;
-        this.meds = meds;
-        this.ammo = ammo;
-        this.perks = perks;
+
+        this.armor = this.#paParseCSV("data/apparel/armor.csv");
+        this.clothing = this.#paParseCSV("data/apparel/clothing.csv");
+
+        this.food = this.#paParseCSV("data/aid/food.csv");
+        this.drinks = this.#paParseCSV("data/aid/drinks.csv");
+        this.meds = this.#paParseCSV("data/aid/meds.csv");
+
+        this.ammo = this.#paParseCSV("data/ammo.csv");
+        this.perks = this.#paParseCSV("data/perks.csv");
 
         // Combine all item data into a single map for easy lookup
         this.allItemData = { ...this.weapons, ...this.food, ...this.drinks, ...this.meds, ...this.ammo };
@@ -140,21 +142,29 @@ class DataManager {
                 dynamicTyping: true,
                 skipEmptyLines: true,
                 complete: (results) => {
-                    const result = results.data.reduce((map, entry) => {
-                        for(let column of ["REQUISITES", "QUALITIES", "EFFECTS"]){
-                            if(entry[column] && typeof entry[column] === "string"){
-                                try {
-                                    entry[column] = JSON.parse(entry[column]);
-                                } catch (e) {
-                                    console.error(`Could not parse ${column} for ID ${entry.ID}:`, entry[column]);
-                                    entry[column] = {}; // Default to an empty object on failure
+
+
+                    const dataMap = results.data.reduce((map, row) => {
+                        for (const columnName in row) {
+                            const value = row[columnName];
+
+                            if (typeof value === 'string') {
+                                const trimmedValue = value.trim();
+                                if ((trimmedValue.startsWith('[') && trimmedValue.endsWith(']')) ||
+                                    (trimmedValue.startsWith('{') && trimmedValue.endsWith('}'))) {
+                                    try {
+                                        row[columnName] = JSON.parse(trimmedValue);
+                                    } catch (e) {
+                                        console.error(`Something went wrong parsing trimmed value: ${trimmedValue}.\nError: ${e}`)
+                                    }
                                 }
                             }
                         }
-                        map[entry.ID] = entry;
+
+                        map[row.ID] = row;
                         return map;
                     }, {});
-                    resolve(result);
+                    resolve(dataMap);
                 },
                 error: reject
             });
@@ -198,7 +208,7 @@ class CardFactory {
             attackButton.dataset.skill = item.SKILL || "---";
             attackButton.dataset.objectId = item.ID;
         } else {
-            // TODO implement consuming supplies
+            // TODO implement consuming aid
             attackButton.disabled = true;
         }
 
@@ -284,4 +294,13 @@ function getVariableFontSize(text, maxFontSize=2, step=.25, lineSize = 13){
         return `${maxFontSize - rows * step}rem`;
     }
     return maxFontSize
+}
+
+const BODY_PARTS = {
+    HEAD: "head",
+    LEFT_ARM: "leftArm",
+    RIGHT_ARM: "rightArm",
+    TORSO: "torso",
+    LEFT_LEG: "leftLeg",
+    RIGHT_LEG: "rightLeg",
 }

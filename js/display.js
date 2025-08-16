@@ -249,6 +249,22 @@ class InvDisplay extends DisplayInterface {
 
     #category2itemsMap = {};
 
+    #rdTypes = {
+        physical: "physical",
+        energy: "energy",
+        radiation: "radiation"
+    }
+
+    #getDamageReductionValues(){
+        return Object.values(BODY_PARTS).reduce((acc, bodyPart) => {
+            acc[bodyPart] = Object.values(this.#rdTypes).reduce((acc2, rdType) => {
+                acc2[rdType] = document.getElementById(`apparel__${bodyPart}-${rdType}`);
+                return acc2;
+            }, {});
+            return acc;
+        }, {});
+    }
+
     constructor() {
         super("inv-tabContent");
         this._dom = {
@@ -258,7 +274,8 @@ class InvDisplay extends DisplayInterface {
                     "ammo"
                 ], "%s-cards"),
             subTabButtons: this._rootElement.querySelectorAll('.subTab-button'),
-            subScreens: this._rootElement.querySelectorAll('.js-subScreen')
+            subScreens: this._rootElement.querySelectorAll('.js-subScreen'),
+            damageReductionValues: this.#getDamageReductionValues()
         }
 
         Object.keys(this._dom.itemCategoryContainers).forEach(category => {
@@ -279,6 +296,7 @@ class InvDisplay extends DisplayInterface {
                 this.#openSubtab(e.target.closest('.subTab-button'));
             }, { signal: this._eventController.signal });
         });
+
     }
 
     #openSubtab(subTab){

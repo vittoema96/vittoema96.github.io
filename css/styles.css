@@ -145,6 +145,7 @@ select {
 }
 /* All items take the same space */
 .l-distributed > * { flex: 1; }
+.l-spaceAround { justify-content: space-around; }
 /* Squished the items to the center */
 .l-centered { justify-content: center; }
 .l-spaceBetween { justify-content: space-between; }
@@ -393,6 +394,73 @@ select {
     border: none;
     height: 2.5rem;
     width: 2.5rem;
+}
+
+.activeApparel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 350px;
+    min-height: 350px;
+    margin-top: 3rem;
+}
+
+
+.apparel-stat {
+    position: absolute;
+    z-index: 1;
+}
+.apparel-stat.head, .apparel-stat.torso {
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.apparel-stat.leftArm, .apparel-stat.rightArm {
+    top: 5rem;
+}
+.apparel-stat.leftLeg, .apparel-stat.rightLeg {
+    top: 17rem;
+}
+.apparel-stat.leftArm {
+    transform: translateY(-50%);
+}
+.apparel-stat.rightArm {
+    left: 100%;
+    transform: translate(-100%, -50%);
+}
+.apparel-stat.torso {
+    top:12rem;
+}
+.apparel-stat.leftLeg {
+    transform: translateY(-50%);
+    left: 5%;
+}
+.apparel-stat.rightLeg {
+    left: 95%;
+    transform: translate(-100%, -50%);
+}
+.apparel-stat div {
+    text-align: center;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    padding: 5px;
+    width: 70px;
+    font-size: 0.6rem;
+    font-weight: bold;
+}
+.apparel-stat div:first-child {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    font-size: 0.8rem;
+}
+
+.apparel-vaultboy {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
 }
 
 /**********************
@@ -939,6 +1007,7 @@ body::before {
 .themed-svg[data-icon="throwing"] { --image-url: url('../img/svg/throwing.svg'); }
 .themed-svg[data-icon="unarmed"] { --image-url: url('../img/svg/unarmed.svg'); }
 .themed-svg[data-icon="vaultboy"] { --image-url: url('../img/svg/vaultboy.svg'); }
+.themed-svg[data-icon="vaultboy-open-arms"] { --image-url: url('../img/svg/vaultboy-open-arms.svg'); }
 .themed-svg[data-icon="weight"] { --image-url: url('../img/svg/weight.svg'); }
 
 

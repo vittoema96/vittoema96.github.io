@@ -27,9 +27,12 @@ const urlsToCache = [
 
     /* DATA (CSVs) */
         // Supplies
-    '/data/supplies/drinks.csv',
-    '/data/supplies/food.csv',
-    '/data/supplies/meds.csv',
+    '/data/aid/drinks.csv',
+    '/data/aid/food.csv',
+    '/data/aid/meds.csv',
+        //Apparel
+    'data/apparel/armor.csv',
+    'data/apparel/clothing.csv',
         // Weapons
     '/data/weapons/bigGuns.csv',
     '/data/weapons/energyWeapons.csv',
@@ -68,6 +71,7 @@ const urlsToCache = [
     '/img/svg/throwing.svg',
     '/img/svg/unarmed.svg',
     '/img/svg/vaultboy.svg',
+    '/img/svg/vaultboy-open-arms.svg',
     '/img/svg/weight.svg',
 
     /* External Files (Libraries) */
