@@ -106,8 +106,6 @@ class Character extends EventTarget {
         this.dispatchEvent(new CustomEvent(`change:${type}`, { detail }));
     }
 
-
-
     get currentHp(){ return this.#data.currentHp; }
     set currentHp(value){
         value = Number(value);
@@ -149,7 +147,6 @@ class Character extends EventTarget {
         this.#data.special[special] = value;
         this.save();
 
-        if(display) display.fullUpdate(this);
         this.#dispatchChange(special, value);
     }
     get currentLuck() { return this.#data.currentLuck; }
@@ -220,9 +217,6 @@ class Character extends EventTarget {
         }
         this.save();
 
-        if(display) {
-            display.updateItems(this);
-        }
         this.#dispatchChange("items", null);
     }
     removeItem(itemId, quantity = Number.MAX_SAFE_INTEGER) {
@@ -236,9 +230,6 @@ class Character extends EventTarget {
         }
 
         this.save();
-        if(display) {
-            display.updateItems(this);
-        }
         this.#dispatchChange("items", null);
     }
     getItem(itemId) { return this.#data.items.find(item => item.id === itemId)}

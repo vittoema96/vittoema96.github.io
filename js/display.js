@@ -1,159 +1,4 @@
-let display = undefined;
 let mainDisplay = undefined;
-
-class Display {
-    #longPressTimer = null;
-    #longPressTarget = null;
-
-    constructor() {
-        // Cache all DOM elements once
-        this.dom = {
-            itemContainers: this.getDisplayMap(["smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "unarmed", "food", "drinks", "meds", "ammo"], "%s-cards"),
-
-            invScreen: document.getElementById('inv-tabContent')
-        };
-        this.elementMaps = {};
-        Object.keys(this.dom.itemContainers).forEach(key => { this.elementMaps[key] = new Map() });
-        this.addEventListeners();
-    }
-
-    // Called once after characterData is loaded
-    initialize(character) {
-        this.fullUpdate(character);
-    }
-
-    fullUpdate(character) {
-        this.updateItems(character);
-    }
-
-    addEventListeners() {
-        // --- Event Delegation for Inventory Cards ---
-        this.dom.invScreen.addEventListener('click', (e) => this.handleCardClick(e));
-        this.dom.invScreen.addEventListener('pointerdown', (e) => this.handleCardPointerDown(e));
-        this.dom.invScreen.addEventListener('pointerup', () => this.clearLongPressTimer());
-        this.dom.invScreen.addEventListener('pointerleave', () => this.clearLongPressTimer());
-    }
-
-    handleCardClick(e) {
-        const action = e.target.closest('[data-action]')?.dataset?.action;
-        if (!action) return;
-
-        const cardDiv = e.target.closest('.card,.ammo-card');
-        if (!cardDiv) return;
-
-        const { itemId, itemType } = cardDiv.dataset;
-
-        switch (action) {
-            case 'toggle-description': {
-                const container = cardDiv.querySelector(".description-container");
-                const button = cardDiv.querySelector(".description-toggle-button");
-                container.classList.toggle("expanded");
-                const langId = container.classList.contains("expanded") ? "close" : "showDescription";
-                button.dataset.langId = langId;
-                button.textContent = translator.translate(langId);
-                break;
-            }
-            case 'attack': {
-                const { skill, objectId } = e.target.dataset;
-                const ammo = dataManager.getItem(objectId).AMMO_TYPE;
-                if(!isMelee(skill) && characterData.getItemQuantity(ammo) <= 0){
-                    alertPopup("notEnoughAmmoAlert");
-                } else {
-                    openD20Popup(skill, objectId);
-                }
-                break;
-            }
-            case 'delete':
-                characterData.removeItem(itemId);
-                break;
-            case 'sell': // TODO: Implement sell logic
-                openSellItemPopup(itemId);
-            case 'cancel-overlay':
-                cardDiv.querySelector('.card-overlay').classList.add('hidden');
-                break;
-        }
-    }
-
-    handleCardPointerDown(e) {
-        this.clearLongPressTimer();
-        const cardDiv = e.target.closest('.card,.ammo-card')
-        if (cardDiv && !dataManager.isUnacquirable(cardDiv.dataset.itemId)) {
-            this.#longPressTarget = cardDiv;
-            this.#longPressTimer = setTimeout(() => {
-                const overlay = this.#longPressTarget.querySelector('.card-overlay');
-                if (overlay) overlay.classList.remove('hidden');
-            }, 500);
-        }
-    }
-
-    clearLongPressTimer() {
-        clearTimeout(this.#longPressTimer);
-        this.#longPressTimer = null;
-        this.#longPressTarget = null;
-    }
-
-    updateItems(character) {
-        requestAnimationFrame(() => {
-            for (const type of Object.keys(this.elementMaps)) {
-                const itemsOfType = character.getItemsByType(type);
-                if(type === SKILLS.UNARMED){ // TODO divide unarmed and melee and make unarmedStrike fixed
-                    itemsOfType.push({id: "weaponUnarmedStrike", type: type, quantity: 1});
-                } else if(type === SKILLS.MELEE_WEAPONS){
-                    character.getGunBashItems().forEach(gunBashItem =>
-                        itemsOfType.push(gunBashItem)
-                    )
-                }
-                const container = this.dom.itemContainers[type];
-                const currentMap = this.elementMaps[type];
-                const newIdSet = new Set(itemsOfType.map(item => item.id));
-
-                // Remove cards that are no longer in the character's inventory
-                for (const id of currentMap.keys()) {
-                    if (!newIdSet.has(id)) {
-                        const elementToRemove = currentMap.get(id);
-                        container.removeChild(elementToRemove);
-                        currentMap.delete(id);
-                    }
-                }
-
-                // Add or update cards
-                itemsOfType.forEach(item => {
-                    if (!currentMap.has(item.id)) {
-                        let newCard;
-                        if (Object.values(SKILLS).includes(item.type))
-                            newCard = createWeaponCard(item.id, item.quantity);
-                        else if (item.type === "ammo")
-                            newCard = createAmmoEntry(item.id, item.quantity);
-                        else
-                            newCard = createObjectCard(item.id, item.type, item.quantity);
-
-                        if (newCard) {
-                            container.appendChild(newCard);
-                            currentMap.set(item.id, newCard);
-                        }
-                    } else {
-                        const itemCard = currentMap.get(item.id);
-                        itemCard.querySelector(".card-quantity").textContent = `${item.quantity}x`;
-                        const ammoCount = itemCard.querySelector(".js-cardWeapon-ammoCount");
-                        if(ammoCount) {
-                            ammoCount.textContent = characterData.getItemQuantity(dataManager.getItem(item.id).AMMO_TYPE).toString();
-                        }
-                    }
-                    // TODO: Handle multiple items with different mods
-                });
-
-            }
-            translator.loadTranslations();
-        });
-    }
-
-    getDisplayMap(list, format) {
-        return list.reduce((acc, el) => {
-            acc[el] = document.getElementById(format.replace("%s", el));
-            return acc;
-        }, {});
-    }
-}
 
 function getDisplayMap(list, format) {
     return list.reduce((acc, el) => {
@@ -164,29 +9,40 @@ function getDisplayMap(list, format) {
 
 class DisplayInterface {
     _dom;
+    _rootElement;
 
-    #onChange(changeType, element, value, callback){
+    constructor(rootElementId) {
+        this._rootElement = document.getElementById(rootElementId);
+    }
+
+    _onChange(changeType, callback){
         if(typeof changeType === "string"){
             changeType = [changeType];
         }
         for(const type of changeType) {
             characterData.addEventListener(`change:${type}`, (e) => {
-                element[value] = callback ? callback(e) : e.detail;
+                callback(e);
             })
         }
     }
 
-
-    onChangeSetText(changeType, element, valueCallback = null){
-        this.#onChange(changeType, element, "textContent", valueCallback);
+    _onChangeSet(changeType, element, value, callback){
+        this._onChange(changeType, (e) => {
+            element[value] = callback ? callback(e) : e.detail;
+        });
     }
 
-    onChangeSetValue(changeType, element, valueCallback = null){
-        this.#onChange(changeType, element, "value", valueCallback);
+
+    _onChangeSetText(changeType, element, valueCallback = null){
+        this._onChangeSet(changeType, element, "textContent", valueCallback);
     }
 
-    onChangeSetChecked(changeType, element, valueCallback = null){
-        this.#onChange(changeType, element, "checked", valueCallback);
+    _onChangeSetValue(changeType, element, valueCallback = null){
+        this._onChangeSet(changeType, element, "value", valueCallback);
+    }
+
+    _onChangeSetChecked(changeType, element, valueCallback = null){
+        this._onChangeSet(changeType, element, "checked", valueCallback);
     }
 }
 
@@ -196,9 +52,10 @@ class MainDisplay extends DisplayInterface {
     #invDisplay;
     #dataDisplay;
     #mapDisplay;
+    #settingsDisplay;
 
     constructor() {
-        super();
+        super("js-main-display");
         this._dom = {
             hp: document.getElementById('c-headerStats__hp'),
             caps: document.getElementById('c-headerStats__caps'),
@@ -211,12 +68,43 @@ class MainDisplay extends DisplayInterface {
         this.#invDisplay = new InvDisplay();
         this.#dataDisplay = new DataDisplay();
         this.#mapDisplay = new MapDisplay();
+        this.#settingsDisplay = new SettingsDisplay();
 
-        this.onChangeSetText(["currentHp", "level", SPECIAL.ENDURANCE, SPECIAL.LUCK], this._dom.hp, () => {
+        this._onChangeSetText(["currentHp", "level", SPECIAL.ENDURANCE, SPECIAL.LUCK], this._dom.hp, () => {
             return `${characterData.currentHp}/${characterData.maxHp}`
         });
-        this.onChangeSetText("caps", this._dom.caps);
-        this.onChangeSetText(["items", "strength"], this._dom.weight, () => this.#updateWeight());
+        this._onChangeSetText("caps", this._dom.caps);
+        this._onChangeSetText(["items", "strength"], this._dom.weight, () => this.#updateWeight());
+
+        this._dom.tabButtons.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                this.#openTab(e.target.closest(".tab-button"));
+            });
+        })
+    }
+
+    #openTab(tab){
+        const tabId = tab.dataset.tabId;
+        const targetScreen = `${tabId}-tabContent`;
+
+        // Hide all screens and deactivate all tabs
+        this.#getScreens().forEach(s => s._rootElement.classList.toggle('hidden', s._rootElement.id !== targetScreen));
+        this._dom.tabButtons.forEach(t => t.classList.toggle('active', t === tab));
+
+        // TODO move this to MapDisplay
+        if (tabId === 'map') {
+            if (this.#mapDisplay._dom.mapImage.complete) {
+                this.#mapDisplay._initializePanzoom();
+            } else {
+                this.#mapDisplay._dom.mapImage.onload = this.#mapDisplay._initializePanzoom;
+            }
+        } else {
+            this.#mapDisplay._disposePanzoom();
+        }
+    }
+
+    #getScreens(){
+        return [this.#statDisplay, this.#invDisplay, this.#dataDisplay, this.#mapDisplay, this.#settingsDisplay];
     }
 
     #updateWeight(){
@@ -232,7 +120,7 @@ class StatDisplay extends DisplayInterface {
     #isEditing = false;
 
     constructor() {
-        super();
+        super("stat-tabContent");
         this._dom = {
             specials: getDisplayMap(Object.values(SPECIAL), "special__value-%s"),
             currentLuck: document.getElementById('luck-current-value'),
@@ -247,8 +135,8 @@ class StatDisplay extends DisplayInterface {
             editStatsButton: document.getElementById('edit-stats-button'),
         }
 
-        Object.values(SPECIAL).forEach(special => this.onChangeSetText(special, this._dom.specials[special]));
-        this.onChangeSetText("currentLuck", this._dom.currentLuck);
+        Object.values(SPECIAL).forEach(special => this._onChangeSetText(special, this._dom.specials[special]));
+        this._onChangeSetText("currentLuck", this._dom.currentLuck);
         this._dom.currentLuck.parentElement.addEventListener('click', () => {
             if(!this.#isEditing){
                 confirmPopup("replenishLuckAlert", () => {
@@ -257,12 +145,12 @@ class StatDisplay extends DisplayInterface {
             }
         });
 
-        this.onChangeSetText(SPECIAL.AGILITY, this._dom.defense, () => characterData.defense);
-        this.onChangeSetText([SPECIAL.AGILITY,SPECIAL.PERCEPTION], this._dom.initiative, () => characterData.initiative);
-        this.onChangeSetText(SPECIAL.STRENGTH, this._dom.meleeDamage, () => `+${characterData.meleeDamage}`);
+        this._onChangeSetText(SPECIAL.AGILITY, this._dom.defense, () => characterData.defense);
+        this._onChangeSetText([SPECIAL.AGILITY,SPECIAL.PERCEPTION], this._dom.initiative, () => characterData.initiative);
+        this._onChangeSetText(SPECIAL.STRENGTH, this._dom.meleeDamage, () => `+${characterData.meleeDamage}`);
 
         Object.values(SKILLS).forEach(skill => {
-            this.onChangeSetText(skill, this._dom.skills[skill]);
+            this._onChangeSetText(skill, this._dom.skills[skill]);
         });
 
         this._dom.editStatsButton.addEventListener('click', () => this.#toggleEditMode());
@@ -309,12 +197,162 @@ class StatDisplay extends DisplayInterface {
 
 }
 
-class InvDisplay {
+class InvDisplay extends DisplayInterface {
+
+    #longPressTimer = null;
+    #longPressTarget = null;
+
+    #category2itemsMap = {};
 
     constructor() {
+        super("inv-tabContent");
         this._dom = {
-            itemContainers: getDisplayMap(["smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "unarmed", "food", "drinks", "meds", "ammo"], "%s-cards"),
+            itemCategoryContainers: getDisplayMap([
+                    "smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "unarmed",
+                    "food", "drinks", "meds",
+                    "ammo"
+                ], "%s-cards"),
+            subTabButtons: this._rootElement.querySelectorAll('.subTab-button'),
+            subScreens: this._rootElement.querySelectorAll('.js-subScreen')
         }
+
+        Object.keys(this._dom.itemCategoryContainers).forEach(category => { this.#category2itemsMap[category] = new Map() });
+
+        this._rootElement.addEventListener('click', (e) => this.#handleCardClick(e));
+        this._rootElement.addEventListener('pointerdown', (e) => this.#handleCardPointerDown(e));
+        this._rootElement.addEventListener('pointerup', () => this.#clearLongPressTimer());
+        this._rootElement.addEventListener('pointerleave', () => this.#clearLongPressTimer());
+
+        this._onChange("items", () => this.#updateItems());
+
+        // Event listener for inventory sub-tab clicks
+        this._dom.subTabButtons.forEach(subTab => {
+            subTab.addEventListener('click', (e) => {
+                this.#openSubtab(e.target.closest('.subTab-button'));
+            });
+        });
+    }
+
+    #openSubtab(subTab){
+        const subScreenId = subTab.dataset.subScreen;
+        const targetScreen = `${subScreenId}-subScreen`;
+
+        this._dom.subScreens.forEach(s => s.classList.toggle('hidden', s.id === targetScreen));
+        this._dom.subTabButtons.forEach(t => t.classList.toggle('active', t === subTab));
+    }
+
+    #updateItems() {
+        requestAnimationFrame(() => {
+            // For every item category
+            for (const category of Object.keys(this.#category2itemsMap)) {
+                const itemsForCategory = characterData.getItemsByType(category);
+                if(category === SKILLS.UNARMED){
+                    itemsForCategory.push({id: "weaponUnarmedStrike", type: category, quantity: 1});
+                } else if(category === SKILLS.MELEE_WEAPONS){
+                    characterData.getGunBashItems().forEach(gunBashItem =>
+                        itemsForCategory.push(gunBashItem)
+                    )
+                }
+                const container = this._dom.itemCategoryContainers[category];
+                const itemsMap = this.#category2itemsMap[category];
+                const newIdSet = new Set(itemsForCategory.map(item => item.id));
+
+                // Remove cards that are no longer in the character's inventory
+                for (const id of itemsMap.keys()) {
+                    if (!newIdSet.has(id)) {
+                        const elementToRemove = itemsMap.get(id);
+                        container.removeChild(elementToRemove);
+                        itemsMap.delete(id);
+                    }
+                }
+
+                // Add or update cards
+                itemsForCategory.forEach(item => {
+                    if (!itemsMap.has(item.id)) {
+                        let newCard;
+                        if (Object.values(SKILLS).includes(item.type))
+                            newCard = createWeaponCard(item.id, item.quantity);
+                        else if (item.type === "ammo")
+                            newCard = createAmmoEntry(item.id, item.quantity);
+                        else
+                            newCard = createObjectCard(item.id, item.type, item.quantity);
+
+                        container.appendChild(newCard);
+                        itemsMap.set(item.id, newCard);
+
+                    } else {
+                        const itemCard = itemsMap.get(item.id);
+                        itemCard.querySelector(".card-quantity").textContent = `${item.quantity}x`;
+                        const ammoCount = itemCard.querySelector(".js-cardWeapon-ammoCount");
+                        if(ammoCount) {
+                            ammoCount.textContent = characterData.getItemQuantity(dataManager.getItem(item.id).AMMO_TYPE).toString();
+                        }
+                    }
+                    // TODO: Handle multiple items with different mods
+                });
+
+            }
+            translator.loadTranslations();
+        });
+    }
+
+    #handleCardClick(e) {
+        // If card element pressed does not have a "data-action" set, abort
+        const action = e.target.closest('[data-action]')?.dataset?.action;
+        if (!action) return;
+
+        const cardDiv = e.target.closest('.card,.ammo-card');
+        if (!cardDiv) return;
+
+        const { itemId, itemType } = cardDiv.dataset;
+
+        switch (action) {
+            case 'toggle-description': {
+                const container = cardDiv.querySelector(".description-container");
+                const button = cardDiv.querySelector(".description-toggle-button");
+                container.classList.toggle("expanded");
+                const langId = container.classList.contains("expanded") ? "close" : "showDescription";
+                button.dataset.langId = langId;
+                button.textContent = translator.translate(langId);
+                break;
+            }
+            case 'attack': {
+                const { skill, objectId } = e.target.dataset;
+                const ammo = dataManager.getItem(objectId).AMMO_TYPE;
+                if(!isMelee(skill) && characterData.getItemQuantity(ammo) <= 0){
+                    alertPopup("notEnoughAmmoAlert");
+                } else {
+                    openD20Popup(skill, objectId);
+                }
+                break;
+            }
+            case 'delete':
+                characterData.removeItem(itemId);
+                break;
+            case 'sell': // TODO: Implement sell logic
+                openSellItemPopup(itemId);
+            case 'cancel-overlay':
+                cardDiv.querySelector('.card-overlay').classList.add('hidden');
+                break;
+        }
+    }
+
+    #handleCardPointerDown(e) {
+        this.#clearLongPressTimer();
+        const cardDiv = e.target.closest('.card,.ammo-card')
+        if (cardDiv && !dataManager.isUnacquirable(cardDiv.dataset.itemId)) {
+            this.#longPressTarget = cardDiv;
+            this.#longPressTimer = setTimeout(() => {
+                const overlay = this.#longPressTarget.querySelector('.card-overlay');
+                if (overlay) overlay.classList.remove('hidden');
+            }, 500);
+        }
+    }
+
+    #clearLongPressTimer() {
+        clearTimeout(this.#longPressTimer);
+        this.#longPressTimer = null;
+        this.#longPressTarget = null;
     }
 
 }
@@ -322,12 +360,14 @@ class InvDisplay {
 class DataDisplay extends DisplayInterface {
 
     constructor() {
-        super();
+        super("data-tabContent");
         this._dom = {
             level: document.getElementById('level'),
+            background: document.getElementById('character-background')
         }
 
-        this.onChangeSetText("level", this._dom.level);
+        this._onChangeSetValue("level", this._dom.level);
+        this._onChangeSetText("background", this._dom.background);
 
         this._dom.level.addEventListener('change', (e) => {
             e = Number(e.target.value);
@@ -338,12 +378,85 @@ class DataDisplay extends DisplayInterface {
 
 }
 
-class MapDisplay {
+class MapDisplay extends DisplayInterface {// A variable to hold the Panzoom instance.
+    #panzoomInstance = undefined;
 
     constructor() {
+        super("map-tabContent");
+        this._dom = {
+            mapContainer: document.getElementById('map-container'),
+            mapImage: document.getElementById('map-image'),
+        }
+    }
+
+    /**
+     * Sets up the Panzoom instance with the correct options.
+     * This function is now called AFTER the map is visible.
+     */
+    _initializePanzoom() {
+        // If a previous instance exists, ensure it's fully disposed of.
+        if (this.#panzoomInstance) {
+            this._disposePanzoom();
+        }
+
+        this.#panzoomInstance = Panzoom(this._dom.mapImage, {
+            maxScale: 5,
+            startScale: .1, // really low zoom, panzoom will use the min zoom allowed
+            contain: 'outside'
+        });
+
+        // 4. Add the wheel event listener.
+        this._dom.mapContainer.addEventListener('wheel', this.#panzoomInstance.zoomWithWheel);
+        setTimeout(() => {
+            this._centerImage();
+        }); // A short delay is usually sufficient.
+    }
+
+    /**
+     * Calculates the required pan to center the image and applies it.
+     */
+    _centerImage() {
+        const containerRect = this._dom.mapContainer.getBoundingClientRect();
+        const imageRect = this._dom.mapImage.getBoundingClientRect();
+        const scale = this.#panzoomInstance.getScale();
+
+        // Calculate the visual difference between the container's center and the image's center.
+        const deltaX_visual = (containerRect.width / 2) - (imageRect.left - containerRect.left + imageRect.width / 2);
+        const deltaY_visual = (containerRect.height / 2) - (imageRect.top - containerRect.top + imageRect.height / 2);
+
+        // To get the correct pan values, divide the desired visual movement by the current scale.
+        const panX = deltaX_visual / scale;
+        const panY = deltaY_visual / scale;
+
+        // Pan by a relative amount to move from the current position to the center.
+        this.#panzoomInstance.pan(panX, panY, {
+            animate: false,
+            relative: true
+        });
+    }
+
+
+    /**
+     * This function is called when the user navigates away from the map tab.
+     * It cleans up the Panzoom instance to free up resources.
+     */
+    _disposePanzoom() {
+        if (this.#panzoomInstance) {
+            this._dom.mapImage.style.transform = '';
+            this.#panzoomInstance.destroy();
+            this.#panzoomInstance = undefined;
+        }
+    }
+}
+
+class SettingsDisplay extends DisplayInterface {
+
+    constructor() {
+        super("settings-tabContent");
         this._dom = {
 
         }
     }
 
 }
+

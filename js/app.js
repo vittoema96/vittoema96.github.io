@@ -37,12 +37,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     characterData = Character.load();
 
-    display = new Display();
     mainDisplay = new MainDisplay();
 
     characterData.dispatchAll();
 
-    display.initialize(characterData); // Pass character data to display
     translator.loadTranslations();
 });
 
@@ -55,9 +53,8 @@ resetMemoryButton.addEventListener('click', async () => {
         () => {
             localStorage.clear();
             alertPopup("dataWipeAlert");
-            // Re-initialize the character and display to reflect the cleared state
+            // Re-initialize the character to reflect the cleared state
             characterData = Character.load();
-            display.initialize(characterData);
         }
     )
 });
