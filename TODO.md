@@ -1,61 +1,92 @@
-# TODO
+# TODO & Project Status
 
-# Main
-- ACCURATE,UNRELIABLE DESCRIPTION SBAGLIATE IN ITALIANO 
-  1. Implement ACCURATE effect
-  2. Implement UNRELIABLE effect
-- Implement gatling effect
-- Implement weapon properties:
-  1. Properties effects
-  2. (corpo a corpo adds weapons, define "unbuyable" weapons)
-- Implement choice for qualityThrown weapons
-- Implement notification popup
-- Refactor Display + Character (use custom event)
+## ✅ Done (Alpha 3)
+- ✅ ES6 Modules conversion
+- ✅ Modern build system (Vite)
+- ✅ Code quality tools (ESLint, Prettier)
+- ✅ i18next internationalization
+- ✅ PWA with auto-generated manifest/service worker
+- ✅ Clean project structure
+- ✅ Version management system
+- ✅ Character system (SPECIAL, skills, inventory)
+- ✅ Dice rolling (D20/D6) with proper game mechanics
+- ✅ Combat system (attack rolls, damage, armor)
+- ✅ ES6+ modernization (arrow functions, modern iteration, async/await)
+- ✅ Modern ES6+ patterns (reverted to working global variables for simplicity)
+- ✅ i18next standard compliance (replaced all dataset.langId/langFormat with data-i18n)
+- ✅ Self-hosted Font Awesome (eliminated CDN dependency and timeout errors)
+- ✅ Self-hosted Google Fonts (eliminated Google Fonts CDN dependency)
+- ✅ Fixed translation issues (skills and js-titles now use proper data-i18n attributes)
+- ✅ Locale files refactoring (organized structure, same order, filled English values, preserved Italian translations)
+- ✅ Complete locale files refactoring (organized structure, all missing keys added, same order in both files)
+- ✅ Comprehensive code modernization (all function declarations → arrow functions)
 
-## Secondary
-- Fix close popup button position
-- Add body part to d6popup layout
-- Add current luck/ammo to d20/d6 popups
-- d6 icons to have secondary color
-- Consumable items (maybe change icon?)
-- Remove unrolled dice
- 1. Make the change smoooth...
-- Add Free rerolls display (to both d2 and d20)
-- 
+## 🔥 High Priority
 
-# Other TODOs 
+### Game Features (Alpha 4)
+- [ ] **qualityAccurate effect** - Implement accurate weapon quality
+- [ ] **qualityThrown choice** - Add choice mechanism for thrown weapons
+- [ ] **Weapon mods** - Add weapon modification system
+- [ ] **Consumable items** - Proper aid item consumption mechanics
+- [ ] **Body part targeting** - Add to d6 popup layout
 
-## Weapons
-- Implement mods on weapons
+### UI/UX Fixes
+- [ ] **Fix close popup button position** - Currently misaligned
+- [ ] **Add current luck/ammo to popups** - Show in d20/d6 popups
+- [ ] **D6 icons secondary color** - Visual improvement
+- [ ] **Remove unrolled dice** - Make the change smooth
+- [ ] **Free rerolls display** - Show in both d20 and d6 popups
 
-## Armor
-- Implement armor dataset
-- Implement VaultBoy image with body parts
-- Implement armor inventory + equipping armor 
-- Implement mods on armor
+## 🎯 Medium Priority
 
-## Map
-- Add map markers
-- Add unlockable markers
-- Add multiple map types
-- General improvements...
+### Armor System
+- [ ] **Armor dataset** - Complete armor data implementation
+- [ ] **VaultBoy body parts** - Visual representation of equipped armor
+- [ ] **Armor inventory** - Full armor equipping system
+- [ ] **Armor mods** - Modification system for armor
 
-## Data
-- Add anything other than background textdata
-  1. Allow loading of image.
+### Map System
+- [ ] **Map markers** - Add interactive markers
+- [ ] **Unlockable markers** - Progression-based reveals
+- [ ] **Multiple map types** - Different map variants
+- [ ] **General map improvements** - Polish and features
 
-## Language
-- Remove english phrases in favor of dataLang
-- Remove italian phrases in favor of dataLang
-- Add english translations
+### Technical Improvements
+- [ ] **Error handling** - Better try-catch blocks and user feedback
+- [ ] **Performance** - Lazy loading for data files
+- [ ] **Testing** - Add unit tests for core functionality
 
-### Other
-- Serve images as webp instead of jpg
-- Remove navigation bar from viewport (mobile, non-PWA mode (what did i mean?????) )
-- Uniform all icons (https://maskable.app/)
-- In webmanifest add "form_factor: narrow/wide" to allow screenshots only for mobile or desktop (also implement desktop screenshots and improve screenshots in general)
-- Adopt ES6 Modules
-  1.  `_export async function functionName() {...}`
-  2. `<script src="js/javascript_file.js" type="module">`
-  3. `_import { functionName } from './javascript_file.js';`
-- ...
+## 🔮 Low Priority / Future
+
+### Polish & Enhancement
+- [ ] **Image optimization** - Serve images as WebP instead of JPG
+- [ ] **Icon uniformity** - Make all icons uniform (https://maskable.app/)
+- [ ] **Desktop screenshots** - Add desktop PWA screenshots
+- [ ] **Form factor** - Add "form_factor: narrow/wide" to manifest for mobile/desktop screenshots
+- [ ] **Navigation bar** - Remove from viewport in mobile non-PWA mode (?)
+
+### Language & Accessibility
+- [ ] **Complete English translations** - Finish incomplete translations
+- [ ] **Remove hardcoded text** - Any remaining Italian/English phrases
+- [ ] **ARIA labels** - Accessibility improvements
+- [ ] **Keyboard navigation** - Full keyboard support
+- [ ] **Screen reader support** - Better accessibility
+
+### Advanced Features
+- [ ] **Character progression** - Leveling system, perk selection
+- [ ] **Multiple characters** - Save slots, character switching
+- [ ] **Campaign management** - Multiple campaigns/sessions
+- [ ] **Statistics tracking** - Roll history, character stats
+- [ ] **Data import/export** - Character sharing, backup/restore
+
+### Technical Debt
+- [ ] **TypeScript migration** - Gradual conversion for better type safety
+- [ ] **Component system** - Reusable UI components
+- [ ] **Bundle analysis** - Optimize bundle size and loading
+- [ ] **Security audit** - CSP, input validation, XSS protection
+- [ ] **Performance monitoring** - Add metrics and monitoring
+
+---
+
+**Current focus**: Game features (qualityAccurate, weapon mods, consumables)
+**Next up**: UI polish and armor system
