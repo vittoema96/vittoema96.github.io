@@ -62,6 +62,19 @@
   "anything": "Anything",
   "na": "N/A",
 
+
+  "rangeR": "R",
+  "rangeC": "C",
+  "rangeM": "M",
+  "rangeL": "L",
+  "rangeE": "E",
+
+  "rangeRFull": "Reach",
+  "rangeCFull": "Close",
+  "rangeMFull": "Medium",
+  "rangeLFull": "Long",
+  "rangeEFull": "Extreme",
+
   "weapons": "Weapons",
   "apparel": "Apparel",
   "aid": "Aid",
@@ -69,6 +82,9 @@
     "drinks": "Drinks",
     "meds": "Medicine",
   "ammo": "Ammo",
+  "ap": "AP",
+  "extraHits": "Extra Hits",
+  "none": "None",
 
   "default_add_item_option": "Select %s to Add",
 
@@ -116,7 +132,8 @@
   "qualityRecon": "Recon",
   "qualityReliable": "Reliable",
   "qualitySuppressed": "Suppressed",
-  "qualityThrown": "Thrown",
+  "qualityThrownC": "Thrown (C)",
+  "qualityThrownM": "Thrown (M)",
   "qualityTwoHanded": "Two-Handed",
   "qualityUnreliable": "Unreliable",
 

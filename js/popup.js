@@ -580,6 +580,7 @@ class D6Popup extends Popup {
             tagsContainer: document.getElementById('d6-tags'),
             damageDiceContainer: document.getElementById('d6-damage-dice-container'),
             extraHitsTitle: document.getElementById('d6-extra-hits-title'),
+            extraHitsType: document.getElementById('d6-extra-hits-type'),
             extraHitsContainer: document.getElementById('d6-extra-hits-container'),
             ammoCost: document.getElementById('popup-d6-ammo-cost'),
             ammoPayed: document.getElementById('popup-d6-payed-ammo'),
@@ -595,6 +596,12 @@ class D6Popup extends Popup {
     #character;
 
     #object;
+    #hasAimed;
+    #hasAccurate;
+    #isUsingAccurate;
+    #isGatling;
+    #ammoStep;
+
     #effects;
     #qualities;
     #hasRolled;
@@ -608,21 +615,29 @@ class D6Popup extends Popup {
     #extraDiceClasses;
 
     #extraHitsTitle;
+    #extraHitsType;
+
 
     #ammoPayed;
     #ammoCost;
     #luckPayed;
     #luckCost;
 
-    _initialize(objectId){
+    _initialize(objectId, hasAimed = false){
 
         const weapon = dataManager.weapons[objectId];
 
         this.#object = weapon;
+        this.#hasAimed = hasAimed;
+        this.#hasAccurate = (weapon.QUALITIES || []).includes("qualityAccurate");
+        this.#isUsingAccurate = false;
+        this.#isGatling = (weapon.QUALITIES || []).includes("qualityGatling");
+        this.#ammoStep = this.#isGatling ? 10 : 1;
+
         this.#character = characterData;
         this.#hasRolled = false;
 
-        this.#ammoCost = 1;
+        this.#ammoCost = this.#ammoStep;
         this.#ammoPayed = 0;
         let payedAmmoDisplay = 'flex';
         if(isMelee(this.#object.SKILL)){
@@ -654,7 +669,6 @@ class D6Popup extends Popup {
 
 
         this.#dom.damageDiceContainer.innerHTML = '';
-        this.#dom.extraHitsContainer.innerHTML = '';
 
         let damageRating = Number(weapon.DAMAGE_RATING);
         if(isMelee(this.#object.SKILL)){
@@ -665,28 +679,44 @@ class D6Popup extends Popup {
             const diceDiv = this.#createD6Div(i, false);
             this.#dom.damageDiceContainer.appendChild(diceDiv);
         }
-        const fireRate = weapon.FIRE_RATE;
-        let extraDice = 0;
-        if (isMelee(this.#object.SKILL)) {
-            extraDice = 3;
-            this.#extraHitsTitle = "Colpi Extra (AP)";  // TODO language
-        } else if (fireRate > 0) {
-            extraDice = Number(fireRate);
-            this.#extraHitsTitle = "Colpi Extra";  // TODO language
-        } else {
-             this.#extraHitsTitle = "No Colpi Extra"; // TODO language
-        }
-        for (let i = 0; i < extraDice; i++) {
-            const diceDiv = this.#createD6Div(i, true);
-            this.#dom.extraHitsContainer.appendChild(diceDiv);
-        }
-
         this.#diceActive = Array(damageRating).fill(true)
         this.#diceRerolled = Array(damageRating).fill(false)
         this.#diceClasses = Array(damageRating).fill(null)
-        this.#extraDiceActive = Array(extraDice).fill(false)
-        this.#extraDiceRerolled = Array(extraDice).fill(false)
-        this.#extraDiceClasses = Array(extraDice).fill(null)
+
+        this.#dom.extraHitsType.style.border = undefined;
+        const fireRate = weapon.FIRE_RATE;
+        let extraDice = 0;
+        this.#extraHitsTitle = translator.translate("extraHits");
+        if (isMelee(this.#object.SKILL)) {
+            extraDice = 3;
+            this.#extraHitsType = "ap";
+        } else if (fireRate > 0) {
+            extraDice = Number(fireRate * (this.#isGatling ? 2 : 1));
+            this.#extraHitsType = "ammo";
+        } else {
+            this.#extraHitsType = null;
+        }
+        if(this.#hasAimed && this.#hasAccurate){
+            if(this.#extraHitsType === "ammo"){
+                // TODO when implementing weapon mods check this out
+                //  (and finish implementing, for example add click listener to extraHitsType to change AP/Ammo)
+                this.#dom.extraHitsType.style.border = "var(--border-primary-thin)";
+            }
+            if(this.#extraHitsType == null)
+                this.#extraHitsType = "ap";
+        }
+        this.#initExtraDice(extraDice);
+    }
+
+    #initExtraDice(diceNumber){
+        this.#extraDiceActive = Array(diceNumber).fill(false)
+        this.#extraDiceRerolled = Array(diceNumber).fill(false)
+        this.#extraDiceClasses = Array(diceNumber).fill(null)
+        this.#dom.extraHitsContainer.innerHTML = '';
+        for (let i = 0; i < diceNumber; i++) {
+            const diceDiv = this.#createD6Div(i, true);
+            this.#dom.extraHitsContainer.appendChild(diceDiv);
+        }
     }
 
     _render(){
@@ -702,7 +732,8 @@ class D6Popup extends Popup {
             dice[index].classList.toggle('rerolled', this.#diceRerolled[index]);
         }
 
-        this.#dom.extraHitsTitle.textContent = this.#extraHitsTitle;  // TODO language
+        this.#dom.extraHitsTitle.textContent = this.#extraHitsTitle;
+        this.#dom.extraHitsType.textContent = `[${translator.translate(this.#extraHitsType)}]`;
         this.#dom.extraHitsContainer.style.display = this.#object.FIRE_RATE <= 0 ? 'none' : 'flex';
         const extraDice = this.#dom.extraHitsContainer.querySelectorAll('.d6-dice');
         for(const [index, diceClass] of this.#extraDiceClasses.entries()){
@@ -766,12 +797,16 @@ class D6Popup extends Popup {
                     ammoId = null;
                 }
                 let isActivating = !this.#extraDiceActive[index];
-                if(isActivating && ammoId && this.#character.getItemQuantity(ammoId) < this.#ammoCost+1){
+                if(isActivating && ammoId && this.#character.getItemQuantity(ammoId) < this.#ammoCost+this.#ammoStep){
                     alertPopup("notEnoughAmmoAlert");
                 } else {
                     this.#extraDiceActive[index] = !this.#extraDiceActive[index];
+                    if(this.#isGatling) {
+                        const indexOffset = index % 2 === 0 ? +1 : -1;
+                        this.#extraDiceActive[index + indexOffset] = !this.#extraDiceActive[index + indexOffset];
+                    }
                     if(ammoId)
-                        this.#ammoCost += isActivating ? 1 : -1;
+                        this.#ammoCost += (isActivating ? 1 : -1) * this.#ammoStep;
                 }
             } else if (this.#extraDiceClasses[index] && !this.#extraDiceRerolled[index]){
                 this.#extraDiceActive[index] = !this.#extraDiceActive[index];
@@ -844,7 +879,7 @@ class D6Popup extends Popup {
                 }
             }
         });
-        this.#diceActive = Array(5).fill(false);
+        this.#diceActive = Array(this.#diceActive.length).fill(false);
 
         this.#extraDiceActive.forEach((isActive, index) => {
             if(isActive){
@@ -862,7 +897,7 @@ class D6Popup extends Popup {
                 }
             }
         });
-        this.#extraDiceActive = Array(5).fill(false);
+        this.#extraDiceActive = Array(this.#extraDiceActive.length).fill(false);
 
         if(!this.#hasRolled) {
             this.#character.removeItem(this.#object.AMMO_TYPE, this.#ammoCost);

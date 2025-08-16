@@ -366,8 +366,9 @@ class InvDisplay extends DisplayInterface {
             }
             case 'attack': {
                 const { skill, objectId } = e.target.dataset;
-                const ammo = dataManager.getItem(objectId).AMMO_TYPE;
-                if(!isMelee(skill) && characterData.getItemQuantity(ammo) <= 0){
+                const attackingItem = dataManager.getItem(objectId);
+                const isGatling = (attackingItem.QUALITIES || []).includes("qualityGatling");
+                if(!isMelee(skill) && characterData.getItemQuantity(attackingItem.AMMO_TYPE) < (isGatling ? 10 : 1)){
                     alertPopup("notEnoughAmmoAlert");
                 } else {
                     openD20Popup(skill, objectId);

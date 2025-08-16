@@ -234,15 +234,17 @@ class CardFactory {
 
         wcDiv.querySelector('.js-cardWeapon-target').textContent = characterData.getSkill(weapon.SKILL) + characterData.getSpecial(SKILL_TO_SPECIAL_MAP[weapon.SKILL]);
         wcDiv.querySelector('.js-cardWeapon-crit').textContent = Math.max(characterData.getSkill(weapon.SKILL), 1).toString();
-        wcDiv.querySelector('.js-cardWeapon-ammoType').dataset.langId = weapon.AMMO_TYPE;
-        wcDiv.querySelector('.js-cardWeapon-ammoCount').textContent = isMelee(weapon.SKILL) ? '-' : characterData.getItemQuantity(weapon.AMMO_TYPE);
+        wcDiv.querySelector('.js-cardWeapon-ammoType').dataset.langId = weapon.AMMO_TYPE === 'self' ? 'quantity' : weapon.AMMO_TYPE;
+        wcDiv.querySelector('.js-cardWeapon-ammoCount').textContent =
+            weapon.AMMO_TYPE === 'na' ? '-'
+                : characterData.getItemQuantity(weapon.AMMO_TYPE === 'self' ? weaponId : weapon.AMMO_TYPE);
 
         wcDiv.querySelector('.js-cardWeapon-image').dataset.icon = weapon.SKILL;
 
         wcDiv.querySelector('.js-cardWeapon-damageRating').textContent = weapon.DAMAGE_RATING;
         wcDiv.querySelector('.js-cardWeapon-damageType').textContent = weapon.DAMAGE_TYPE; // TODO language
         wcDiv.querySelector('.js-cardWeapon-fireRate').textContent = weapon.FIRE_RATE;
-        wcDiv.querySelector('.js-cardWeapon-range').textContent = weapon.RANGE; // TODO language
+        wcDiv.querySelector('.js-cardWeapon-range').textContent = translator.translate(`${weapon.RANGE}Full`); // TODO language
 
         const tagsContainer = wcDiv.querySelector('.tags-container');
         const createTagSpan = (text, className) => {

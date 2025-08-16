@@ -1,16 +1,8 @@
 # TODO
 
 # Main
-- ACCURATE,UNRELIABLE DESCRIPTION SBAGLIATE IN ITALIANO 
-  1. Implement ACCURATE effect
-  2. Implement UNRELIABLE effect
-- Implement gatling effect
-- Implement weapon properties:
-  1. Properties effects
-  2. (corpo a corpo adds weapons, define "unbuyable" weapons)
+- Implement qualityAccurate effect
 - Implement choice for qualityThrown weapons
-- Implement notification popup
-- Refactor Display + Character (use custom event)
 
 ## Secondary
 - Fix close popup button position
