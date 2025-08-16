@@ -104,15 +104,15 @@ class DataManager {
 
         this.weapons = { ...smallGuns, ...energyWeapons, ...bigGuns, ...meleeWeapons, ...throwing, ...explosives };
 
-        this.armor = this.#paParseCSV("data/apparel/armor.csv");
-        this.clothing = this.#paParseCSV("data/apparel/clothing.csv");
+        this.armor = await this.#paParseCSV("data/apparel/armor.csv");
+        this.clothing = await this.#paParseCSV("data/apparel/clothing.csv");
 
-        this.food = this.#paParseCSV("data/aid/food.csv");
-        this.drinks = this.#paParseCSV("data/aid/drinks.csv");
-        this.meds = this.#paParseCSV("data/aid/meds.csv");
+        this.food = await this.#paParseCSV("data/aid/food.csv");
+        this.drinks = await this.#paParseCSV("data/aid/drinks.csv");
+        this.meds = await this.#paParseCSV("data/aid/meds.csv");
 
-        this.ammo = this.#paParseCSV("data/ammo.csv");
-        this.perks = this.#paParseCSV("data/perks.csv");
+        this.ammo = await this.#paParseCSV("data/ammo.csv");
+        this.perks = await this.#paParseCSV("data/perks.csv");
 
         // Combine all item data into a single map for easy lookup
         this.allItemData = { ...this.weapons, ...this.food, ...this.drinks, ...this.meds, ...this.ammo };
