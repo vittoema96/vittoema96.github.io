@@ -121,6 +121,9 @@ class StatDisplay extends DisplayInterface {
 
     constructor() {
         super("stat-tabContent");
+
+        this.#createSkillEntries();
+
         this._dom = {
             specials: getDisplayMap(Object.values(SPECIAL), "special__value-%s"),
             currentLuck: document.getElementById('luck-current-value'),
@@ -156,7 +159,38 @@ class StatDisplay extends DisplayInterface {
         this._dom.editStatsButton.addEventListener('click', () => this.#toggleEditMode());
         Object.values(SPECIAL).forEach(special => this._dom.specials[special].closest('.special')?.addEventListener('click', (e) => this.#handleSpecialClick(e)));
         Object.values(SKILLS).forEach(skill => this._dom.skills[skill].closest('.skill')?.addEventListener('click', (e) => this.#handleSkillClick(e)));
+    }
 
+    /**
+     * Fills the #skills container with all the skills.
+     */
+    #createSkillEntries(){
+        const skillsContainer = document.querySelector("#skills");
+        skillsContainer.innerHTML = '';
+        const translated = {};
+        Object.values(SKILLS).forEach(key => translated[translator.translate(key)] = key);
+
+        for(const [skillTranslated, skillId] of Object.entries(translated).sort()){
+            const special = SKILL_TO_SPECIAL_MAP[skillId];
+            const specialTranslated = translator.translate(special);
+
+            const entryDiv = document.createElement('div');
+            entryDiv.className = 'skill';
+            entryDiv.dataset.skill = skillId.toString();
+            entryDiv.innerHTML = `
+                <span>
+                    <b>${skillTranslated}</b>
+                </span>
+                <span>
+                    <i>[${specialTranslated}]</i>
+                </span>
+                <span id="skill-${skillId}">0</span>
+                <input id="specialty-${skillId}" type="checkbox"
+                       disabled="disabled"
+                       class="themed-svg" data-icon="vaultboy">
+            `;
+            skillsContainer.appendChild(entryDiv);
+        }
     }
 
     #toggleEditMode() {
@@ -216,7 +250,10 @@ class InvDisplay extends DisplayInterface {
             subScreens: this._rootElement.querySelectorAll('.js-subScreen')
         }
 
-        Object.keys(this._dom.itemCategoryContainers).forEach(category => { this.#category2itemsMap[category] = new Map() });
+        Object.keys(this._dom.itemCategoryContainers).forEach(category => {
+            this.#category2itemsMap[category] = new Map();
+            this._dom.itemCategoryContainers[category].innerHTML = '';
+        });
 
         this._rootElement.addEventListener('click', (e) => this.#handleCardClick(e));
         this._rootElement.addEventListener('pointerdown', (e) => this.#handleCardPointerDown(e));
@@ -271,11 +308,11 @@ class InvDisplay extends DisplayInterface {
                     if (!itemsMap.has(item.id)) {
                         let newCard;
                         if (Object.values(SKILLS).includes(item.type))
-                            newCard = createWeaponCard(item.id, item.quantity);
+                            newCard = cardFactory.createWeaponCard(item.id, item.quantity);
                         else if (item.type === "ammo")
-                            newCard = createAmmoEntry(item.id, item.quantity);
+                            newCard = cardFactory.createAmmoEntry(item.id, item.quantity);
                         else
-                            newCard = createObjectCard(item.id, item.type, item.quantity);
+                            newCard = cardFactory.createObjectCard(item.id, item.type, item.quantity);
 
                         container.appendChild(newCard);
                         itemsMap.set(item.id, newCard);
@@ -454,9 +491,38 @@ class SettingsDisplay extends DisplayInterface {
     constructor() {
         super("settings-tabContent");
         this._dom = {
-
+            selectorLanguage: document.getElementById('language-select'),
+            selectorTheme: document.getElementById('theme-select'),
+            buttonReset: document.getElementById('reset-memory-button'),
         }
-    }
+        this._dom.selectorLanguage.addEventListener('change', (e) => {
+            const newLang = e.target.value;
+            localStorage.setItem('language', newLang);
+            changeLanguage();
+        });
+        this._dom.selectorTheme.addEventListener('change', (e) => {
+            const newTheme = e.target.value;
+            localStorage.setItem('theme', newTheme);
+            changeTheme();
+        });
 
+
+        this._dom.buttonReset.addEventListener('click', async () => {
+            confirmPopup(
+                "deleteCharacterAlert",
+                () => {
+                    localStorage.clear();
+                    alertPopup("dataWipeAlert");
+                    // Re-initialize the character to reflect the cleared state
+                    changeTheme();
+                    changeLanguage();
+
+                    characterData = Character.load();
+                    mainDisplay = new MainDisplay();
+                    characterData.dispatchAll();
+                }
+            )
+        });
+    }
 }
 

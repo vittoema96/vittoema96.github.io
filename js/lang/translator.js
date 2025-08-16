@@ -1,7 +1,4 @@
-localStorage.setItem('language', localStorage.getItem('language') || 'it');
-let currentLanguage = localStorage.getItem('language');
-
-
+let currentLanguage = undefined;
 
 class Translator {
     #langData
@@ -17,6 +14,7 @@ class Translator {
         for(let language of Object.keys(this.#langData)) {
             this.#langData[language] = await (await fetch(`/js/lang/${language}.json`)).json()
         }
+        changeLanguage();
     }
 
     translate (langId, langFormat) {
