@@ -35,9 +35,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     createSkillEntries();
 
-    display = new Display();
-
     characterData = Character.load();
+
+    display = new Display();
+    mainDisplay = new MainDisplay();
+
+    characterData.dispatchAll();
+
     display.initialize(characterData); // Pass character data to display
     translator.loadTranslations();
 });
@@ -46,14 +50,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 const resetMemoryButton = document.getElementById('reset-memory-button');
 resetMemoryButton.addEventListener('click', async () => {
     // TODO update setting selectors (also check defaults and how they work)
-    let confirmedStorageWipe = confirm("Are you really sure you want to DELETE YOUR CHARACTER and every other saved data?")
-    if (confirmedStorageWipe) {
-        localStorage.clear();
-        alert("Local data was wiped");
-        // Re-initialize the character and display to reflect the cleared state
-        characterData = Character.load();
-        display.initialize(characterData);
-    }
+    confirmPopup(
+        "deleteCharacterAlert",
+        () => {
+            localStorage.clear();
+            alertPopup("dataWipeAlert");
+            // Re-initialize the character and display to reflect the cleared state
+            characterData = Character.load();
+            display.initialize(characterData);
+        }
+    )
 });
 
 /**
@@ -62,7 +68,7 @@ resetMemoryButton.addEventListener('click', async () => {
 function createSkillEntries(){
     const skillsContainer = document.querySelector("#skills")
     const translated = {};
-    Character.getSkillList().forEach(key => translated[translator.translate(key)] = key);
+    Object.values(SKILLS).forEach(key => translated[translator.translate(key)] = key);
 
 
     for(const [skillTranslated, skillId] of Object.entries(translated).sort()){

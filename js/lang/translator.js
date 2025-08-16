@@ -95,6 +95,7 @@ class Translator {
     #underDevelopedWarningCheck(language){
         let changeLang = true;
         if (language === 'en')
+            // TODO use an actual warning
             changeLang = confirm("Are you sure you want to change to English language?\nThis language is currently poorly supported.\n\n" +
                                  "Sei sicuro di voler cambiare la lingua a Inglese?\nQuesta lingua è attualmente scarsamente supportata.");
         return changeLang;

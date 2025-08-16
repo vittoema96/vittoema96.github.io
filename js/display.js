@@ -1,36 +1,16 @@
 let display = undefined;
+let mainDisplay = undefined;
 
 class Display {
-    #isEditing = false;
     #longPressTimer = null;
     #longPressTarget = null;
 
     constructor() {
         // Cache all DOM elements once
         this.dom = {
-            defense: document.getElementById('defense-value'),
-            initiative: document.getElementById('initiative-value'),
-            meleeDamage: document.getElementById('melee-damage-value'),
-
-            caps: document.getElementById('c-headerStats__caps'),
-            weight: document.getElementById('c-headerStats__weight'),
-            hp: document.getElementById('c-headerStats__hp'),
-
-            level: document.getElementById('level'),
-
-            currentLuck: document.getElementById('luck-current-value'),
-            specials: this.getDisplayMap(Character.getSpecialList(), "special__value-%s"),
-
-            skills: this.getDisplayMap(Character.getSkillList(), "skill-%s"),
-            specialties: this.getDisplayMap(Character.getSkillList(), "specialty-%s"),
             itemContainers: this.getDisplayMap(["smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "unarmed", "food", "drinks", "meds", "ammo"], "%s-cards"),
 
-            editStatsButton: document.getElementById('edit-stats-button'),
-            statContainer: document.getElementById('c-special'),
-            skillsContainer: document.getElementById('skills'),
-            invScreen: document.getElementById('inv-tabContent'),
-
-            tabButtons: document.querySelectorAll(".tab-button")
+            invScreen: document.getElementById('inv-tabContent')
         };
         this.elementMaps = {};
         Object.keys(this.dom.itemContainers).forEach(key => { this.elementMaps[key] = new Map() });
@@ -43,36 +23,10 @@ class Display {
     }
 
     fullUpdate(character) {
-        this.updateDefense(character);
-        this.updateInitiative(character);
-        this.updateMeleeDamage(character);
-        this.updateWeight(character);
-        this.updateHp(character);
-        this.updateCaps(character);
-        this.updateLevel(character);
-        this.updateCurrentLuck(character);
-        Character.getSpecialList().forEach(s => this.updateSpecial(s, character));
-        Character.getSkillList().forEach(s => {
-            this.updateSkill(s, character);
-            this.updateSpecialty(s, character);
-        });
         this.updateItems(character);
-        this.updateLanguage(character);
     }
 
     addEventListeners() {
-        this.dom.level.addEventListener('change', () => {
-            characterData.level = this.dom.level.value;
-        });
-        this.dom.currentLuck.parentElement.addEventListener('click', () => {
-            if (!this.#isEditing && confirm("Vuoi davvero ripristinare la tua fortuna?")) {
-                characterData.currentLuck = characterData.getSpecial(SPECIAL.LUCK);
-            }
-        });
-        this.dom.editStatsButton.addEventListener('click', () => this.toggleEditMode());
-        this.dom.statContainer.addEventListener('click', (e) => this.handleStatClick(e));
-        this.dom.skillsContainer.addEventListener('click', (e) => this.handleSkillClick(e));
-
         // --- Event Delegation for Inventory Cards ---
         this.dom.invScreen.addEventListener('click', (e) => this.handleCardClick(e));
         this.dom.invScreen.addEventListener('pointerdown', (e) => this.handleCardPointerDown(e));
@@ -103,7 +57,7 @@ class Display {
                 const { skill, objectId } = e.target.dataset;
                 const ammo = dataManager.getItem(objectId).AMMO_TYPE;
                 if(!isMelee(skill) && characterData.getItemQuantity(ammo) <= 0){
-                    showNotification("Non hai abbastanza muniz. per farlo!") // TODO language
+                    alertPopup("notEnoughAmmoAlert");
                 } else {
                     openD20Popup(skill, objectId);
                 }
@@ -138,21 +92,6 @@ class Display {
         this.#longPressTarget = null;
     }
 
-    updateDefense(c) { this.dom.defense.textContent = c.defense; }
-    updateInitiative(c) { this.dom.initiative.textContent = c.initiative; }
-    updateMeleeDamage(c) { this.dom.meleeDamage.textContent = `+${c.meleeDamage}`; }
-    updateWeight(c) {
-        this.dom.weight.textContent = `${c.currentWeight.toFixed(1)}/${c.maxWeight}`;
-        this.dom.weight.style.color = c.currentWeight > c.maxWeight ? 'red' : 'var(--primary-color)';
-    }
-    updateHp(c){ this.dom.hp.textContent = `${c.currentHp}/${c.calculateMaxHp()}`; }
-    updateCaps(c){ this.dom.caps.textContent = c.caps; }
-    updateLevel(c){ this.dom.level.value = c.level; }
-    updateCurrentLuck(c){ this.dom.currentLuck.textContent = c.currentLuck; }
-    updateSpecial(s, c) { this.dom.specials[s].textContent = c.getSpecial(s); }
-    updateSkill(s, c) { this.dom.skills[s].textContent = c.getSkill(s); }
-    updateSpecialty(s, c) { this.dom.specialties[s].checked = c.hasSpecialty(s); }
-
     updateItems(character) {
         requestAnimationFrame(() => {
             for (const type of Object.keys(this.elementMaps)) {
@@ -181,7 +120,7 @@ class Display {
                 itemsOfType.forEach(item => {
                     if (!currentMap.has(item.id)) {
                         let newCard;
-                        if (Character.getSkillList().includes(item.type))
+                        if (Object.values(SKILLS).includes(item.type))
                             newCard = createWeaponCard(item.id, item.quantity);
                         else if (item.type === "ammo")
                             newCard = createAmmoEntry(item.id, item.quantity);
@@ -208,23 +147,141 @@ class Display {
         });
     }
 
-    updateLanguage(character){
-        // TODO implement
+    getDisplayMap(list, format) {
+        return list.reduce((acc, el) => {
+            acc[el] = document.getElementById(format.replace("%s", el));
+            return acc;
+        }, {});
+    }
+}
+
+function getDisplayMap(list, format) {
+    return list.reduce((acc, el) => {
+        acc[el] = document.getElementById(format.replace("%s", el));
+        return acc;
+    }, {});
+}
+
+class DisplayInterface {
+    _dom;
+
+    #onChange(changeType, element, value, callback){
+        if(typeof changeType === "string"){
+            changeType = [changeType];
+        }
+        for(const type of changeType) {
+            characterData.addEventListener(`change:${type}`, (e) => {
+                element[value] = callback ? callback(e) : e.detail;
+            })
+        }
     }
 
-    toggleEditMode() {
+
+    onChangeSetText(changeType, element, valueCallback = null){
+        this.#onChange(changeType, element, "textContent", valueCallback);
+    }
+
+    onChangeSetValue(changeType, element, valueCallback = null){
+        this.#onChange(changeType, element, "value", valueCallback);
+    }
+
+    onChangeSetChecked(changeType, element, valueCallback = null){
+        this.#onChange(changeType, element, "checked", valueCallback);
+    }
+}
+
+class MainDisplay extends DisplayInterface {
+
+    #statDisplay;
+    #invDisplay;
+    #dataDisplay;
+    #mapDisplay;
+
+    constructor() {
+        super();
+        this._dom = {
+            hp: document.getElementById('c-headerStats__hp'),
+            caps: document.getElementById('c-headerStats__caps'),
+            weight: document.getElementById('c-headerStats__weight'),
+
+            tabButtons: document.querySelectorAll(".tab-button")
+        }
+
+        this.#statDisplay = new StatDisplay();
+        this.#invDisplay = new InvDisplay();
+        this.#dataDisplay = new DataDisplay();
+        this.#mapDisplay = new MapDisplay();
+
+        this.onChangeSetText(["currentHp", "level", SPECIAL.ENDURANCE, SPECIAL.LUCK], this._dom.hp, () => {
+            return `${characterData.currentHp}/${characterData.maxHp}`
+        });
+        this.onChangeSetText("caps", this._dom.caps);
+        this.onChangeSetText(["items", "strength"], this._dom.weight, () => this.#updateWeight());
+    }
+
+    #updateWeight(){
+        this._dom.weight.style.color = characterData.currentWeight > characterData.maxWeight ? 'red' : 'var(--primary-color)';
+        return `${characterData.currentWeight.toFixed(1)}/${characterData.maxWeight}`;
+    }
+
+
+}
+
+class StatDisplay extends DisplayInterface {
+
+    #isEditing = false;
+
+    constructor() {
+        super();
+        this._dom = {
+            specials: getDisplayMap(Object.values(SPECIAL), "special__value-%s"),
+            currentLuck: document.getElementById('luck-current-value'),
+
+            defense: document.getElementById('defense-value'),
+            initiative: document.getElementById('initiative-value'),
+            meleeDamage: document.getElementById('melee-damage-value'),
+
+            skills: getDisplayMap(Object.values(SKILLS), "skill-%s"),
+            specialties: getDisplayMap(Object.values(SKILLS), "specialty-%s"),
+
+            editStatsButton: document.getElementById('edit-stats-button'),
+        }
+
+        Object.values(SPECIAL).forEach(special => this.onChangeSetText(special, this._dom.specials[special]));
+        this.onChangeSetText("currentLuck", this._dom.currentLuck);
+        this._dom.currentLuck.parentElement.addEventListener('click', () => {
+            if(!this.#isEditing){
+                confirmPopup("replenishLuckAlert", () => {
+                    characterData.currentLuck = characterData.getSpecial(SPECIAL.LUCK);
+                })
+            }
+        });
+
+        this.onChangeSetText(SPECIAL.AGILITY, this._dom.defense, () => characterData.defense);
+        this.onChangeSetText([SPECIAL.AGILITY,SPECIAL.PERCEPTION], this._dom.initiative, () => characterData.initiative);
+        this.onChangeSetText(SPECIAL.STRENGTH, this._dom.meleeDamage, () => `+${characterData.meleeDamage}`);
+
+        Object.values(SKILLS).forEach(skill => {
+            this.onChangeSetText(skill, this._dom.skills[skill]);
+        });
+
+        this._dom.editStatsButton.addEventListener('click', () => this.#toggleEditMode());
+        Object.values(SPECIAL).forEach(special => this._dom.specials[special].closest('.special')?.addEventListener('click', (e) => this.#handleSpecialClick(e)));
+        Object.values(SKILLS).forEach(skill => this._dom.skills[skill].closest('.skill')?.addEventListener('click', (e) => this.#handleSkillClick(e)));
+
+    }
+
+    #toggleEditMode() {
         this.#isEditing = !this.#isEditing;
-        Object.values(this.dom.tabButtons).forEach(el => el.disabled = this.#isEditing);
-        Object.values(this.dom.specials).forEach(el => el.contentEditable = this.#isEditing);
-        Object.values(this.dom.specialties).forEach(cb => cb.disabled = !this.#isEditing);
-        this.dom.editStatsButton.textContent = this.#isEditing ? 'Stop Editing' : 'Edit Stats';
+        Object.values(mainDisplay._dom.tabButtons).forEach(el => el.disabled = this.#isEditing);
+        Object.values(this._dom.specialties).forEach(cb => cb.disabled = !this.#isEditing);
+        this._dom.editStatsButton.textContent = this.#isEditing ? 'Stop Editing' : 'Edit Stats'; // TODO language
     }
 
-    handleStatClick(event) {
+    #handleSpecialClick(event) {
         if (!this.#isEditing) return;
-        const statDiv = event.target.closest('.special');
-        if (!statDiv) return;
-        const special = statDiv.dataset.special;
+        const specialDiv = event.target.closest('.special');
+        const special = specialDiv.dataset.special;
         const max = (special === SPECIAL.STRENGTH || special === SPECIAL.ENDURANCE) ? 12 : 10;
         const current = characterData.getSpecial(special);
         const next = current < max ? current + 1 : 4;
@@ -232,16 +289,14 @@ class Display {
         if (special === SPECIAL.LUCK) characterData.currentLuck = next; // Better handling, maybe apply the difference
     }
 
-    handleSkillClick(event) {
+    #handleSkillClick(event) {
         const skillDiv = event.target.closest('.skill');
-        if (!skillDiv) return;
         const skillName = skillDiv.dataset.skill;
 
         if (this.#isEditing) {
             const checkbox = skillDiv.querySelector('input');
             if (event.target === checkbox) {
-                if (checkbox.checked) characterData.addSpecialty(skillName);
-                else characterData.removeSpecialty(skillName);
+                characterData.toggleSpecialty(skillName);
             } else {
                 const current = characterData.getSkill(skillName);
                 const next = current < 6 ? current + 1 : (checkbox && checkbox.checked ? 2 : 0);
@@ -252,10 +307,43 @@ class Display {
         }
     }
 
-    getDisplayMap(list, format) {
-        return list.reduce((acc, el) => {
-            acc[el] = document.getElementById(format.replace("%s", el));
-            return acc;
-        }, {});
+}
+
+class InvDisplay {
+
+    constructor() {
+        this._dom = {
+            itemContainers: getDisplayMap(["smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "unarmed", "food", "drinks", "meds", "ammo"], "%s-cards"),
+        }
     }
+
+}
+
+class DataDisplay extends DisplayInterface {
+
+    constructor() {
+        super();
+        this._dom = {
+            level: document.getElementById('level'),
+        }
+
+        this.onChangeSetText("level", this._dom.level);
+
+        this._dom.level.addEventListener('change', (e) => {
+            e = Number(e.target.value);
+            if(!e) return;
+            characterData.level = e;
+        });
+    }
+
+}
+
+class MapDisplay {
+
+    constructor() {
+        this._dom = {
+
+        }
+    }
+
 }

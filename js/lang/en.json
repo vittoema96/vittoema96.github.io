@@ -42,6 +42,7 @@
 
   "showDescription": "Show Description",
   "confirm": "Confirm",
+  "warning": "Warning",
   "close": "Close",
   "cancel": "Cancel",
   "damage": "Damage",
@@ -126,5 +127,16 @@
   "edit": "Edit",
   "caps": "Caps",
   "target": "Target",
-  "crit": "Crit"
+  "crit": "Crit",
+
+  "deleteCharacterAlert": "Are you really sure you want to DELETE YOUR CHARACTER and EVERY OTHER SAVED DATA?",
+  "dataWipeAlert": "Local data was wiped",
+  "replenishLuckAlert": "Do you really want to replenish luck?",
+  "notEnoughAmmoAlert": "You don't have enough AMMO to do it!",
+  "notEnoughLuckAlert": "You don't have enough LUCK to do it!",
+  "selectDiceAlert": "Select some dice to (re)roll!",
+
+  "invalidHpAlert": "HP value is invalid!",
+  "invalidCapsAlert": "CAPS value is invalid!",
+  "invalidLuckAlert": "LUCK value is invalid!"
 }
