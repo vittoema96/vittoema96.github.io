@@ -528,6 +528,9 @@ class SettingsDisplay extends DisplayInterface {
             selectorLanguage: document.getElementById('language-select'),
             selectorTheme: document.getElementById('theme-select'),
             buttonReset: document.getElementById('reset-memory-button'),
+            buttonDownload: document.getElementById('button-downloadPG'),
+            buttonImport: document.getElementById('button-importPG'),
+            inputImport: document.getElementById('input-importPG')
         }
         this._dom.selectorLanguage.addEventListener('change', (e) => {
             const newLang = e.target.value;
@@ -559,6 +562,54 @@ class SettingsDisplay extends DisplayInterface {
                 }
             )
         }, { signal: this._eventController.signal });
+
+        this._dom.buttonDownload.addEventListener('click', () => this.#downloadCharacter(),{ signal: this._eventController.signal });
+
+        this._dom.buttonImport.addEventListener('click', () => this._dom.inputImport.click(),{ signal: this._eventController.signal });
+        this._dom.inputImport.addEventListener('change', (e) => this.#importCharacter(e),{ signal: this._eventController.signal });
+    }
+
+    #downloadCharacter(){
+        const dataStr = characterData.toPrettyString();
+        const blob = new Blob([dataStr], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `${characterData.characterId}_falloutCharacter_backup.json`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
+
+    #importCharacter(event) {
+        const file = event.target.files[0];
+        if (!file) {
+            return; // No file selected
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const characterObject = JSON.parse(e.target.result);
+                if (characterObject) {
+                    characterData = new Character("default", characterObject);
+                    mainDisplay = new MainDisplay();
+                    characterData.dispatchAll();
+                } else {
+                    alertPopup("Error: Invalid character file format."); // TODO language
+                }
+            } catch (error) {
+                console.error("Error parsing JSON file:", error);
+                alertPopup("Error: The selected file is not a valid JSON file."); // TODO language
+            }
+        };
+
+        reader.onerror = function() {
+            alertPopup("Error reading the file."); // TODO language
+        };
+
+        reader.readAsText(file);
     }
 }
 

@@ -86,6 +86,7 @@ class Character extends EventTarget {
             special: { ...defaultCharacter.special, ...data.special },
             skills: { ...defaultCharacter.skills, ...data.skills },
         };
+        this.save();
     }
 
     dispatchAll(){
@@ -297,5 +298,9 @@ class Character extends EventTarget {
 
     toString(){
         return JSON.stringify(this.#data);
+    }
+
+    toPrettyString(){
+        return JSON.stringify(this.#data, null, 2);
     }
 }
