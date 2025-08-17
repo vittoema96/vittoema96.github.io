@@ -271,7 +271,9 @@ class InvDisplay extends DisplayInterface {
             itemCategoryContainers: getDisplayMap([
                     "smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "unarmed",
                     "food", "drinks", "meds",
-                    "ammo"
+                    "ammo",
+                    "clothing", "outfit", "headgear",
+                    "raiderArmor", "leatherArmor", "metalArmor", "combatArmor"
                 ], "%s-cards"),
             subTabButtons: this._rootElement.querySelectorAll('.subTab-button'),
             subScreens: this._rootElement.querySelectorAll('.js-subScreen'),
@@ -340,8 +342,10 @@ class InvDisplay extends DisplayInterface {
                             newCard = cardFactory.createWeaponCard(item.id, item.quantity);
                         else if (item.type === "ammo")
                             newCard = cardFactory.createAmmoEntry(item.id, item.quantity);
-                        else
-                            newCard = cardFactory.createObjectCard(item.id, item.type, item.quantity);
+                        else if (["clothing", "headgear", "outfit"].includes(item.type) || item.type.endsWith("Armor")){
+                            newCard = cardFactory.createApparelCard(item.id, item.type, item.quantity)
+                        } else
+                            newCard = cardFactory.createAidCard(item.id, item.type, item.quantity);
 
                         container.appendChild(newCard);
                         itemsMap.set(item.id, newCard);

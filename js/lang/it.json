@@ -29,6 +29,28 @@
   "throwing": "Lanciare",
   "unarmed": "Senza Armi",
 
+  "clothing": "Vestiti",
+  "outfit": "Completi",
+  "headgear": "Copricapo",
+  "raiderArmor": "Armature da Predone",
+  "leatherArmor": "Armature di Pelle",
+  "metalArmor": "Armature di Metallo",
+  "combatArmor": "Armature da Combattimento",
+
+  "physical": "Fisici",
+  "energy": "Energia",
+  "radiation": "Rads",
+  "protects": "Protegge",
+
+  "head": "Testa",
+  "arms": "Braccia",
+  "arm": "Braccio",
+  "torso": "Torso",
+  "legs": "Gambe",
+  "leg": "Gamba",
+  "right": "Dx",
+  "left": "Sx",
+
   "weaponId": "Arma",
   "skill": "Abilità",
   "damageRating": "Grado di Danno",

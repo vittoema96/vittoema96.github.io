@@ -936,8 +936,18 @@ class AddItemPopup extends Popup {
             availableItems = Object.values(data).filter(item =>
                 item.SKILL === itemType && !dataManager.isUnacquirable(item.ID)
             );
-        }
-        else {
+        } else if(["clothing", "outfit", "headgear"].includes(itemType)){
+            data = dataManager.clothing;
+            availableItems = Object.values(data).filter(item =>
+                item.TYPE === itemType
+            );
+        } else if(itemType.endsWith("Armor")){
+            const subtype = itemType.replace("Armor", "");
+            data = dataManager.armor;
+            availableItems = Object.values(data).filter(item =>
+                item.SUBTYPE === subtype
+            );
+        } else {
             data = dataManager[itemType];
             availableItems = Object.values(data);
         }
@@ -952,8 +962,19 @@ class AddItemPopup extends Popup {
         this.#dom.select.dataItemType = itemType;
 
         availableItems.forEach(item => {
-            const optionText = translator.translate(item.ID);
-            this.#dom.select.appendChild(new Option(optionText, item.ID));
+            let suffixes = [''];
+            if(item.ID.endsWith("Arm") || item.ID.endsWith("Leg")){
+                suffixes = ["left", "right"];
+            }
+            for(let suffix of suffixes) {
+                let textSuffix = '';
+                if(suffix) {
+                    textSuffix = ` (${translator.translate(suffix)})`;
+                    suffix = `_${suffix}`;
+                }
+                const optionText = `${translator.translate(item.ID)}${textSuffix}`;
+                this.#dom.select.appendChild(new Option(optionText, `${item.ID}${suffix}`));
+            }
         });
         this.#dom.quantity.value = 1;
     }

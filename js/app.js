@@ -115,7 +115,7 @@ class DataManager {
         this.perks = await this.#paParseCSV("data/perks.csv");
 
         // Combine all item data into a single map for easy lookup
-        this.allItemData = { ...this.weapons, ...this.food, ...this.drinks, ...this.meds, ...this.ammo };
+        this.allItemData = { ...this.weapons, ...this.food, ...this.drinks, ...this.meds, ...this.ammo, ...this.armor, ...this.clothing };
     }
 
     getItem(itemId) {
@@ -178,12 +178,13 @@ class CardFactory {
         card: document.getElementById('t-card'),
         contentWeapon: document.getElementById('t-card__content-weapon'),
         contentAid: document.getElementById('t-card__content-aid'),
+        contentApparel: document.getElementById('t-card__content-apparel'),
         cardAmmo: document.getElementById('t-cardAmmo')
     }
 
     constructor() {}
 
-    #createGenericCard(item, customCardContent, itemType, quantity) {
+    #createGenericCard(item, customCardContent, itemType, quantity, nameSuffix = '') {
         if (!item) {
             console.error(`Item data provided was null`);
             return null;
@@ -197,6 +198,9 @@ class CardFactory {
 
         cardDiv.querySelector('.card-quantity').textContent = `${quantity}x`;
         cardDiv.querySelector('.card-name').dataset.langId = item.ID;
+        if(nameSuffix)
+            cardDiv.querySelector('.card-name').dataset.langFormat = `%s${nameSuffix}`
+
         cardDiv.querySelector('.js-card-cost').textContent = item.COST;
         cardDiv.querySelector('.js-card-weight').textContent = item.WEIGHT;
         cardDiv.querySelector('.js-card-rarity').textContent = item.RARITY;
@@ -271,7 +275,34 @@ class CardFactory {
         return this.#createGenericCard(weapon, wcDiv, weapon.SKILL, quantity);
     }
 
-    createObjectCard(id, type, quantity) {
+    createApparelCard(id, type, quantity){
+        let side;
+        [id, side] = id.split("_");
+        let sideSuffix = '';
+        if(side)
+            sideSuffix = ` (${translator.translate(side)})`
+        const object = dataManager.getItem(id);
+
+        const template = this.#templates.contentApparel;
+        const acDiv = template.content.cloneNode(true).firstElementChild;
+        acDiv.querySelector('.js-cardApparel-physical').textContent = object.PHYSICAL_RES;
+        acDiv.querySelector('.js-cardApparel-energy').textContent = object.ENERGY_RES;
+        acDiv.querySelector('.js-cardApparel-radiation').textContent = object.RADIATION_RES;
+
+        const protectsContainer = acDiv.querySelector('.js-cardApparel-protects');
+
+        for(const location  of object.LOCATIONS_COVERED){
+            const locationDiv = document.createElement('div');
+            locationDiv.dataset.langId = location;
+            if(location === "arm" || location === "leg")
+                locationDiv.dataset.langFormat = `%s${sideSuffix}`
+            protectsContainer.appendChild(locationDiv);
+        }
+
+        return this.#createGenericCard(object, acDiv, type, quantity, sideSuffix);
+    }
+
+    createAidCard(id, type, quantity) {
         const object = {...dataManager.food, ...dataManager.drinks, ...dataManager.meds}[id];
         const specificEffectStat = object.RADIOACTIVE !== undefined ? 'Radioactive' : 'Addictive';
 

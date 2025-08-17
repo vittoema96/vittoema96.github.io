@@ -29,6 +29,28 @@
   "throwing": "Throwing",
   "unarmed": "Unarmed",
 
+  "clothing": "Clothing",
+  "outfit": "Outfit",
+  "headgear": "Headgear",
+  "raiderArmor": "Raider Armor",
+  "leatherArmor": "Leather Armor",
+  "metalArmor": "Metal Armor",
+  "combatArmor": "Combat Armor",
+
+  "physical": "Physical",
+  "energy": "Energy",
+  "radiation": "Rads",
+  "protects": "Protects",
+
+  "head": "Head",
+  "arms": "Arms",
+  "arm": "Arm",
+  "torso": "Torso",
+  "legs": "Legs",
+  "leg": "Leg",
+  "right": "Right",
+  "left": "Left",
+
   "weaponId": "Weapon",
   "skill": "Ability",
   "damageRating": "Damage Rating",
