@@ -422,7 +422,7 @@
                 <div class="navigator">
                     <button class="subTab-button active"
                             data-lang-id="weapons" data-lang-format="U%s"
-                            data-sub-screen="weapons">WEAPONS</button>
+                            data-sub-screen="weapon">WEAPONS</button>
                     <button class="subTab-button"
                             data-lang-id="apparel" data-lang-format="U%s"
                             data-sub-screen="apparel">APPAREL</button>
@@ -430,217 +430,113 @@
                             data-lang-id="aid" data-lang-format="U%s"
                             data-sub-screen="aid">AID</button>
                     <button class="subTab-button"
-                            data-lang-id="ammo" data-lang-format="U%s"
-                            data-sub-screen="ammo">AMMO</button>
+                            data-lang-id="other" data-lang-format="U%s"
+                            data-sub-screen="other">OTHER</button>
                 </div>
-                <section class="js-subScreen" id="weapons-subScreen">
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="smallGuns">Small Guns</span>
-                        <button class="button-addItem" onclick="openAddItemModal('smallGuns')">+</button>
-                    </div>
-                    <div id="smallGuns-cards" class="card-carousel"></div>
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="energyWeapons">Energy Weapons</span>
-                        <button class="button-addItem" onclick="openAddItemModal('energyWeapons')">+</button>
-                    </div>
-                    <div id="energyWeapons-cards" class="card-carousel"></div>
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="bigGuns">Big Guns</span>
-                        <button class="button-addItem" onclick="openAddItemModal('bigGuns')">+</button>
-                    </div>
-                    <div id="bigGuns-cards" class="card-carousel"></div>
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="meleeWeapons">Melee Weapons</span>
-                        <button class="button-addItem" onclick="openAddItemModal('meleeWeapons')">+</button>
-                    </div>
-                    <div id="meleeWeapons-cards" class="card-carousel"></div>
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="explosives">Explosives</span>
-                        <button class="button-addItem" onclick="openAddItemModal('explosives')">+</button>
-                    </div>
-                    <div id="explosives-cards" class="card-carousel"></div>
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="throwing">Throwing</span>
-                        <button class="button-addItem" onclick="openAddItemModal('throwing')">+</button>
-                    </div>
-                    <div id="throwing-cards" class="card-carousel"></div>
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="unarmed">Unarmed</span>
-                        <button class="button-addItem" onclick="openAddItemModal('unarmed')">+</button>
-                    </div>
-                    <div id="unarmed-cards" class="card-carousel"></div>
-                </section>
-                <section class="js-subScreen hidden" id="apparel-subScreen">
+                <section class="js-subScreen" id="weapon-subScreen"></section>
+                <section class="js-subScreen hidden keep-first" id="apparel-subScreen">
+                    <div>
+                        <span class="h1" data-lang-id="damageReduction"></span>
+                        <div class="row l-spaceAround">
+                            <div class="activeApparel l-spaceAround">
+                                <div class="apparel-stat head">
+                                    <div>Testa</div> <!-- TODO language -->
+                                    <div class="row l-centered">
+                                        <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                        <span id="apparel__head-physical">?</span>
+                                    </div>
+                                    <div class="row l-centered">
+                                        <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                        <span id="apparel__head-energy">?</span>
+                                    </div>
+                                    <div class="row l-centered">
+                                        <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                        <span id="apparel__head-radiation">?</span>
+                                    </div>
+                                </div>
+                                <div class="apparel-stat leftArm">
+                                    <div>Braccio Sx</div> <!-- TODO language -->
+                                    <div class="row l-centered">
+                                        <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                        <span id="apparel__leftArm-physical">?</span>
+                                    </div>
+                                    <div class="row l-centered">
+                                        <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                        <span id="apparel__leftArm-energy">?</span>
+                                    </div>
+                                    <div class="row l-centered">
+                                        <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                        <span id="apparel__leftArm-radiation">?</span>
+                                    </div>
+                                </div>
+                                <div class="apparel-stat rightArm">
+                                    <div>Braccio Dx</div> <!-- TODO language -->
+                                    <div class="row l-centered">
+                                        <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                        <span>?</span>
+                                    </div>
+                                    <div class="row l-centered">
+                                        <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                        <span>?</span>
+                                    </div>
+                                    <div class="row l-centered">
+                                        <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                        <span>?</span>
+                                    </div>
+                                </div>
+                                <div class="apparel-stat torso">
+                                    <div>Torso</div> <!-- TODO language -->
+                                    <div class="row l-centered">
+                                        <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                        <span id="apparel__torso-physical">?</span>
+                                    </div>
+                                    <div class="row l-centered">
+                                        <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                        <span id="apparel__torso-energy">?</span>
+                                    </div>
+                                    <div class="row l-centered">
+                                        <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                        <span id="apparel__torso-radiation">?</span>
+                                    </div>
+                                </div>
+                                <div class="apparel-stat leftLeg">
+                                    <div>Gamba Sx</div> <!-- TODO language -->
+                                    <div class="row l-centered">
+                                        <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                        <span id="apparel__leftLeg-physical">?</span>
+                                    </div>
+                                    <div class="row l-centered">
+                                        <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                        <span id="apparel__leftLeg-energy">?</span>
+                                    </div>
+                                    <div class="row l-centered">
+                                        <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                        <span id="apparel__leftLeg-radiation">?</span>
+                                    </div>
+                                </div>
+                                <div class="apparel-stat rightLeg">
+                                    <div>Gamba Dx</div> <!-- TODO language -->
+                                    <div class="row l-centered">
+                                        <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                        <span id="apparel__rightLeg-physical">?</span>
+                                    </div>
+                                    <div class="row l-centered">
+                                        <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                        <span id="apparel__rightLeg-energy">?</span>
+                                    </div>
+                                    <div class="row l-centered">
+                                        <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                        <span id="apparel__rightLeg-radiation">?</span>
+                                    </div>
+                                </div>
 
-                    <span class="h1" data-lang-id="damageReduction"></span>
-                    <div class="row l-spaceAround">
-                        <div class="activeApparel l-spaceAround">
-                            <div class="apparel-stat head">
-                                <div>Testa</div> <!-- TODO language -->
-                                <div class="row l-centered">
-                                    <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
-                                    <span id="apparel__head-physical">?</span>
-                                </div>
-                                <div class="row l-centered">
-                                    <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
-                                    <span id="apparel__head-energy">?</span>
-                                </div>
-                                <div class="row l-centered">
-                                    <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
-                                    <span id="apparel__head-radiation">?</span>
-                                </div>
+                                <div class="apparel-vaultboy themed-svg" data-icon="vaultboy-open-arms"></div>
                             </div>
-                            <div class="apparel-stat leftArm">
-                                <div>Braccio Sx</div> <!-- TODO language -->
-                                <div class="row l-centered">
-                                    <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
-                                    <span id="apparel__leftArm-physical">?</span>
-                                </div>
-                                <div class="row l-centered">
-                                    <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
-                                    <span id="apparel__leftArm-energy">?</span>
-                                </div>
-                                <div class="row l-centered">
-                                    <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
-                                    <span id="apparel__leftArm-radiation">?</span>
-                                </div>
-                            </div>
-                            <div class="apparel-stat rightArm">
-                                <div>Braccio Dx</div> <!-- TODO language -->
-                                <div class="row l-centered">
-                                    <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
-                                    <span>?</span>
-                                </div>
-                                <div class="row l-centered">
-                                    <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
-                                    <span>?</span>
-                                </div>
-                                <div class="row l-centered">
-                                    <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
-                                    <span>?</span>
-                                </div>
-                            </div>
-                            <div class="apparel-stat torso">
-                                <div>Torso</div> <!-- TODO language -->
-                                <div class="row l-centered">
-                                    <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
-                                    <span id="apparel__torso-physical">?</span>
-                                </div>
-                                <div class="row l-centered">
-                                    <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
-                                    <span id="apparel__torso-energy">?</span>
-                                </div>
-                                <div class="row l-centered">
-                                    <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
-                                    <span id="apparel__torso-radiation">?</span>
-                                </div>
-                            </div>
-                            <div class="apparel-stat leftLeg">
-                                <div>Gamba Sx</div> <!-- TODO language -->
-                                <div class="row l-centered">
-                                    <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
-                                    <span id="apparel__leftLeg-physical">?</span>
-                                </div>
-                                <div class="row l-centered">
-                                    <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
-                                    <span id="apparel__leftLeg-energy">?</span>
-                                </div>
-                                <div class="row l-centered">
-                                    <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
-                                    <span id="apparel__leftLeg-radiation">?</span>
-                                </div>
-                            </div>
-                            <div class="apparel-stat rightLeg">
-                                <div>Gamba Dx</div> <!-- TODO language -->
-                                <div class="row l-centered">
-                                    <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
-                                    <span id="apparel__rightLeg-physical">?</span>
-                                </div>
-                                <div class="row l-centered">
-                                    <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
-                                    <span id="apparel__rightLeg-energy">?</span>
-                                </div>
-                                <div class="row l-centered">
-                                    <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
-                                    <span id="apparel__rightLeg-radiation">?</span>
-                                </div>
-                            </div>
-
-                            <div class="apparel-vaultboy themed-svg" data-icon="vaultboy-open-arms"></div>
                         </div>
                     </div>
-
-
-
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="clothing">Clothing</span>
-                        <button class="button-addItem" onclick="openAddItemModal('clothing')">+</button>
-                    </div>
-                    <div id="clothing-cards" class="card-carousel"></div>
-
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="outfit">Outfit</span>
-                        <button class="button-addItem" onclick="openAddItemModal('outfit')">+</button>
-                    </div>
-                    <div id="outfit-cards" class="card-carousel"></div>
-
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="headgear">Headgear</span>
-                        <button class="button-addItem" onclick="openAddItemModal('headgear')">+</button>
-                    </div>
-                    <div id="headgear-cards" class="card-carousel"></div>
-
-
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="raiderArmor">Raider Armor</span>
-                        <button class="button-addItem" onclick="openAddItemModal('raiderArmor')">+</button>
-                    </div>
-                    <div id="raiderArmor-cards" class="card-carousel"></div>
-
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="leatherArmor">Leather Armor</span>
-                        <button class="button-addItem" onclick="openAddItemModal('leatherArmor')">+</button>
-                    </div>
-                    <div id="leatherArmor-cards" class="card-carousel"></div>
-
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="metalArmor">Metal Armor</span>
-                        <button class="button-addItem" onclick="openAddItemModal('metalArmor')">+</button>
-                    </div>
-                    <div id="metalArmor-cards" class="card-carousel"></div>
-
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="combatArmor">Combat Armor</span>
-                        <button class="button-addItem" onclick="openAddItemModal('combatArmor')">+</button>
-                    </div>
-                    <div id="combatArmor-cards" class="card-carousel"></div>
-
-
                 </section>
-                <section class="js-subScreen hidden" id="aid-subScreen">
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="food">Food</span>
-                        <button class="button-addItem" onclick="openAddItemModal('food')">+</button>
-                    </div>
-                    <div id="food-cards" class="card-carousel"></div>
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="drinks">Drinks</span>
-                        <button class="button-addItem" onclick="openAddItemModal('drinks')">+</button>
-                    </div>
-                    <div id="drinks-cards" class="card-carousel"></div>
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="meds">Meds</span>
-                        <button class="button-addItem" onclick="openAddItemModal('meds')">+</button>
-                    </div>
-                    <div id="meds-cards" class="card-carousel"></div>
-                </section>
-                <section class="js-subScreen hidden" id="ammo-subScreen">
-                    <div class="itemlist-header">
-                        <span class="h2" data-lang-id="ammo">Ammo</span>
-                        <button class="button-addItem" onclick="openAddItemModal('ammo')">+</button>
-                    </div>
-                    <section id="ammo-cards" class="itemlist"></section>
-                </section>
+                <section class="js-subScreen hidden" id="aid-subScreen"></section>
+                <section class="js-subScreen hidden" id="other-subScreen"></section>
 
             </section>
 
@@ -785,12 +681,12 @@
                     <span class="h5 js-cardAid-effect">${object.EFFECT}</span>
                     <section>
                         <div class="js-cardAid-hpStat card-stat">
-                            <div>HP</div>
-                            <div class="js-cardAid-hpGain">+3</div>
+                            <div class="js-cardAid-specificEffect">HP</div>
+                            <div class="js-cardAid-specificEffectVal">+3</div>
                         </div>
                         <div class="card-stat">
-                            <div class="js-cardAid-specificEffect">SpecificEffectStat</div>
-                            <div class="js-cardAid-specificEffectVal">${object[specificEffectHeader.toUpperCase()]}</div>
+                            <div class="js-cardAid-specificEffect2">SpecificEffectStat</div>
+                            <div class="js-cardAid-specificEffectVal2">${object[specificEffectHeader.toUpperCase()]}</div>
                         </div>
                     </section>
                 </div>
@@ -844,6 +740,16 @@
                     </button>
                 </div>
             </div>
+        </template>
+
+        <template id="t-item-carousel-entry">
+            <section>
+                <div class="itemlist-header">
+                    <span class="h2 js-title">DYNAMIC</span>
+                    <button class="js-button-addItem">+</button>
+                </div>
+                <div class="card-carousel"></div>
+            </section>
         </template>
 
         <!-- Needed at startup -->

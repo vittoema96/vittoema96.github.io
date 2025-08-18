@@ -34,14 +34,14 @@ const urlsToCache = [
     'data/apparel/armor.csv',
     'data/apparel/clothing.csv',
         // Weapons
-    '/data/weapons/bigGuns.csv',
-    '/data/weapons/energyWeapons.csv',
-    '/data/weapons/explosives.csv',
-    '/data/weapons/meleeWeapons.csv',
-    '/data/weapons/smallGuns.csv',
-    '/data/weapons/throwing.csv',
+    '/data/weapon/bigGuns.csv',
+    '/data/weapon/energyWeapons.csv',
+    '/data/weapon/explosives.csv',
+    '/data/weapon/meleeWeapons.csv',
+    '/data/weapon/smallGuns.csv',
+    '/data/weapon/throwing.csv',
         // Other
-    '/data/ammo.csv',
+    '/data/other/ammo.csv',
     '/data/perks.csv',
 
     /* IMAGES */

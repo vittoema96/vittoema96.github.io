@@ -625,7 +625,7 @@ class D6Popup extends Popup {
 
     _initialize(objectId, hasAimed = false){
 
-        const weapon = dataManager.weapons[objectId];
+        const weapon = dataManager.weapon[objectId];
 
         this.#object = weapon;
         this.#hasAimed = hasAimed;
@@ -640,7 +640,7 @@ class D6Popup extends Popup {
         this.#ammoCost = this.#ammoStep;
         this.#ammoPayed = 0;
         let payedAmmoDisplay = 'flex';
-        if(isMelee(this.#object.SKILL)){
+        if(isMelee(this.#object.TYPE)){
             this.#ammoCost = translator.translate("na")
             payedAmmoDisplay = 'none';
         }
@@ -671,7 +671,7 @@ class D6Popup extends Popup {
         this.#dom.damageDiceContainer.innerHTML = '';
 
         let damageRating = Number(weapon.DAMAGE_RATING);
-        if(isMelee(this.#object.SKILL)){
+        if(isMelee(this.#object.TYPE)){
             damageRating += this.#character.meleeDamage;
         }
 
@@ -687,7 +687,7 @@ class D6Popup extends Popup {
         const fireRate = weapon.FIRE_RATE;
         let extraDice = 0;
         this.#extraHitsTitle = translator.translate("extraHits");
-        if (isMelee(this.#object.SKILL)) {
+        if (isMelee(this.#object.TYPE)) {
             extraDice = 3;
             this.#extraHitsType = "ap";
         } else if (fireRate > 0) {
@@ -742,7 +742,7 @@ class D6Popup extends Popup {
             extraDice[index].classList.toggle('rerolled', this.#extraDiceRerolled[index]);
         }
 
-        if(!isMelee(this.#object.SKILL)) {
+        if(!isMelee(this.#object.TYPE)) {
             this.#dom.ammoPayed.textContent = this.#ammoPayed.toString();
         }
         this.#dom.ammoCost.textContent = `(${this.#ammoCost})`;
@@ -928,29 +928,20 @@ class AddItemPopup extends Popup {
     }
 
     _initialize(itemType) {
-        const isWeapon = Object.values(SKILLS).includes(itemType)
+        const isWeapon = dataManager.isType(itemType, 'weapon');
+        const isApparel = dataManager.isType(itemType, 'apparel');
+        const isAid = dataManager.isType(itemType, 'aid');
+        
         let data ;
         let availableItems;
-        if(isWeapon) {
-            data = dataManager.weapons;
-            availableItems = Object.values(data).filter(item =>
-                item.SKILL === itemType && !dataManager.isUnacquirable(item.ID)
-            );
-        } else if(["clothing", "outfit", "headgear"].includes(itemType)){
-            data = dataManager.clothing;
-            availableItems = Object.values(data).filter(item =>
-                item.TYPE === itemType
-            );
-        } else if(itemType.endsWith("Armor")){
-            const subtype = itemType.replace("Armor", "");
-            data = dataManager.armor;
-            availableItems = Object.values(data).filter(item =>
-                item.SUBTYPE === subtype
-            );
-        } else {
-            data = dataManager[itemType];
-            availableItems = Object.values(data);
-        }
+        if(isWeapon) data = dataManager.weapon;
+        else if(isApparel) data = dataManager.apparel;
+        else if(isAid) data = dataManager.aid;
+        else data = dataManager.other;
+        
+        availableItems = Object.values(data).filter(item =>
+            item.TYPE === itemType && !dataManager.isUnacquirable(item.ID)
+        );
 
         // Populate select element
         this.#dom.select.innerHTML = "";

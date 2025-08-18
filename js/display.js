@@ -165,6 +165,7 @@ class StatDisplay extends DisplayInterface {
 
         Object.values(SKILLS).forEach(skill => {
             this._onChangeSetText(skill, this._dom.skills[skill]);
+            this._onChangeSetChecked(`specialty-${skill}`, this._dom.specialties[skill])
         });
 
         this._dom.editStatsButton.addEventListener('click', () => this.#toggleEditMode(), { signal: this._eventController.signal });
@@ -267,23 +268,18 @@ class InvDisplay extends DisplayInterface {
 
     constructor() {
         super("inv-tabContent");
+
+        this.#createCardHolders();
+
         this._dom = {
-            itemCategoryContainers: getDisplayMap([
-                    "smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "unarmed",
-                    "food", "drinks", "meds",
-                    "ammo",
-                    "clothing", "outfit", "headgear",
-                    "raiderArmor", "leatherArmor", "metalArmor", "combatArmor"
-                ], "%s-cards"),
+            itemCategoryContainers: getDisplayMap(
+                Object.values(dataManager.getItemTypeMap()).flat(),
+                "%s-cards"
+            ),
             subTabButtons: this._rootElement.querySelectorAll('.subTab-button'),
             subScreens: this._rootElement.querySelectorAll('.js-subScreen'),
             damageReductionValues: this.#getDamageReductionValues()
         }
-
-        Object.keys(this._dom.itemCategoryContainers).forEach(category => {
-            this.#category2itemsMap[category] = new Map();
-            this._dom.itemCategoryContainers[category].innerHTML = '';
-        });
 
         this._rootElement.addEventListener('click', (e) => this.#handleCardClick(e), { signal: this._eventController.signal });
         this._rootElement.addEventListener('pointerdown', (e) => this.#handleCardPointerDown(e), { signal: this._eventController.signal });
@@ -299,6 +295,33 @@ class InvDisplay extends DisplayInterface {
             }, { signal: this._eventController.signal });
         });
 
+
+    }
+
+    #createCardHolders(){
+        const tsMap = dataManager.getItemTypeMap();
+        const template = document.getElementById('t-item-carousel-entry');
+        for(const type of Object.keys(tsMap)){
+            const typeSection = document.getElementById(`${type}-subScreen`);
+
+            const toKeep = [];
+            if(typeSection.classList.contains("keep-first"))
+                toKeep.push(typeSection.firstElementChild);
+
+            typeSection.innerHTML = '';
+            toKeep.forEach(el => typeSection.appendChild(el))
+            for(const subtype of tsMap[type]){
+                const entryDiv = template.content.cloneNode(true).firstElementChild;
+                entryDiv.querySelector('.js-title').dataset.langId = subtype;
+                entryDiv.querySelector('.js-button-addItem').addEventListener('click',
+                    () => openAddItemModal(subtype),
+                    { signal: this._eventController.signal }
+                )
+                entryDiv.querySelector('.card-carousel').id = `${subtype}-cards`
+                typeSection.appendChild(entryDiv);
+                this.#category2itemsMap[subtype] = new Map();
+            }
+        }
     }
 
     #openSubtab(subTab){
@@ -355,7 +378,7 @@ class InvDisplay extends DisplayInterface {
                         itemCard.querySelector(".card-quantity").textContent = `${item.quantity}x`;
                         const ammoCount = itemCard.querySelector(".js-cardWeapon-ammoCount");
                         if(ammoCount) {
-                            ammoCount.textContent = characterData.getItemQuantity(dataManager.getItem(item.id).AMMO_TYPE).toString();
+                            ammoCount.textContent = characterData.getItemQuantity(dataManager.weapon[item.id].AMMO_TYPE).toString();
                         }
                     }
                     // TODO: Handle multiple items with different mods
@@ -388,7 +411,7 @@ class InvDisplay extends DisplayInterface {
             }
             case 'attack': {
                 const { skill, objectId } = e.target.dataset;
-                const attackingItem = dataManager.getItem(objectId);
+                const attackingItem = dataManager.getItem(objectId); // TODO change this
                 const isGatling = (attackingItem.QUALITIES || []).includes("qualityGatling");
                 if(!isMelee(skill) && characterData.getItemQuantity(attackingItem.AMMO_TYPE) < (isGatling ? 10 : 1)){
                     alertPopup("notEnoughAmmoAlert");

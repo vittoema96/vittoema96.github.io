@@ -78,44 +78,72 @@ function changeLanguage(){
 
 class DataManager {
     constructor(){
-        this.weapons = {};
-        this.clothing = {};
-        this.armor = {};
-        this.food = {};
-        this.drinks = {};
-        this.meds = {};
-        this.ammo = {};
+        this.weapon = {};
+        this.apparel = {};
+        this.aid = {};
+        this.other = {};
+
         this.perks = {};
         this.allItemData = {};
     }
 
     async loadAllData() {
         const [
-            smallGuns, energyWeapons, bigGuns, meleeWeapons, throwing, explosives,
-            food, drinks, meds, ammo, perks
+            smallGuns, energyWeapons, bigGuns, meleeWeapons, throwing, explosives
         ] = await Promise.all([
-            this.#paParseCSV('data/weapons/smallGuns.csv'),
-            this.#paParseCSV('data/weapons/energyWeapons.csv'),
-            this.#paParseCSV('data/weapons/bigGuns.csv'),
-            this.#paParseCSV('data/weapons/meleeWeapons.csv'),
-            this.#paParseCSV('data/weapons/throwing.csv'),
-            this.#paParseCSV('data/weapons/explosives.csv')
+            this.#paParseCSV('data/weapon/smallGuns.csv'),
+            this.#paParseCSV('data/weapon/energyWeapons.csv'),
+            this.#paParseCSV('data/weapon/bigGuns.csv'),
+            this.#paParseCSV('data/weapon/meleeWeapons.csv'),
+            this.#paParseCSV('data/weapon/throwing.csv'),
+            this.#paParseCSV('data/weapon/explosives.csv')
         ]);
+        this.weapon = { ...smallGuns, ...energyWeapons, ...bigGuns, ...meleeWeapons, ...throwing, ...explosives };
 
-        this.weapons = { ...smallGuns, ...energyWeapons, ...bigGuns, ...meleeWeapons, ...throwing, ...explosives };
+        const [armor, clothing] = await Promise.all([
+            this.#paParseCSV('data/apparel/armor.csv'),
+            this.#paParseCSV('data/apparel/clothing.csv')
+        ])
+        this.apparel = {...armor, ...clothing };
 
-        this.armor = await this.#paParseCSV("data/apparel/armor.csv");
-        this.clothing = await this.#paParseCSV("data/apparel/clothing.csv");
+        const [food, drinks, meds] = await Promise.all([
+            this.#paParseCSV("data/aid/food.csv"),
+            this.#paParseCSV("data/aid/drinks.csv"),
+            this.#paParseCSV("data/aid/meds.csv")
+        ])
+        this.aid = {...food, ...drinks, ...meds };
 
-        this.food = await this.#paParseCSV("data/aid/food.csv");
-        this.drinks = await this.#paParseCSV("data/aid/drinks.csv");
-        this.meds = await this.#paParseCSV("data/aid/meds.csv");
+        const [ammo] = await Promise.all([
+            this.#paParseCSV("data/other/ammo.csv")
+        ])
+        this.other = {...ammo}
 
-        this.ammo = await this.#paParseCSV("data/ammo.csv");
         this.perks = await this.#paParseCSV("data/perks.csv");
 
         // Combine all item data into a single map for easy lookup
-        this.allItemData = { ...this.weapons, ...this.food, ...this.drinks, ...this.meds, ...this.ammo, ...this.armor, ...this.clothing };
+        this.allItemData = { ...this.weapon, ...this.aid, ...this.apparel, ...this.aid, ...this.other };
+    }
+
+    getItemTypeMap(){
+        return {
+            'weapon': ["smallGuns", "energyWeapons", "bigGuns", "meleeWeapons", "explosives", "throwing", "unarmed"],
+            'apparel': ["clothing", "outfit", "headgear", "raiderArmor", "leatherArmor", "metalArmor", "combatArmor"],
+            'aid': ["food", "drinks", "meds"],
+            'other': ['ammo']
+        }
+    }
+    
+    isType(subtypeToCheck, type){
+        return this.getItemTypeMap()[type].includes(subtypeToCheck);
+    }
+
+    getItems(type=null, subtype=null){
+        let itemMap;
+        if(type){
+            itemMap;
+        } else {
+
+        }
     }
 
     getItem(itemId) {
@@ -205,11 +233,11 @@ class CardFactory {
         cardDiv.querySelector('.js-card-weight').textContent = item.WEIGHT;
         cardDiv.querySelector('.js-card-rarity').textContent = item.RARITY;
 
-        const isWeapon = !!dataManager.weapons[item.ID];
+        const isWeapon = !!dataManager.weapon[item.ID];
         const attackButton = cardDiv.querySelector('.button-attack');
         if(isWeapon){
             attackButton.dataset.action = "attack";
-            attackButton.dataset.skill = item.SKILL || "---";
+            attackButton.dataset.skill = item.TYPE || "---";
             attackButton.dataset.objectId = item.ID;
         } else {
             // TODO implement consuming aid
@@ -236,29 +264,29 @@ class CardFactory {
     }
 
     createWeaponCard(weaponId, quantity) {
-        const weapon = dataManager.weapons[weaponId];
-        if (!weapon) {
+        const weaponObj = dataManager.weapon[weaponId];
+        if (!weaponObj) {
             console.error(`Weapon data not found for ID: ${weaponId}`);
             return null;
         }
 
         const template = this.#templates.contentWeapon;
         const wcDiv = template.content.cloneNode(true).firstElementChild;
-        wcDiv.querySelector('.js-cardWeapon-skill').dataset.langId = weapon.SKILL;
+        wcDiv.querySelector('.js-cardWeapon-skill').dataset.langId = weaponObj.TYPE;
 
-        wcDiv.querySelector('.js-cardWeapon-target').textContent = characterData.getSkill(weapon.SKILL) + characterData.getSpecial(SKILL_TO_SPECIAL_MAP[weapon.SKILL]);
-        wcDiv.querySelector('.js-cardWeapon-crit').textContent = Math.max(characterData.getSkill(weapon.SKILL), 1).toString();
-        wcDiv.querySelector('.js-cardWeapon-ammoType').dataset.langId = weapon.AMMO_TYPE === 'self' ? 'quantity' : weapon.AMMO_TYPE;
+        wcDiv.querySelector('.js-cardWeapon-target').textContent = characterData.getSkill(weaponObj.TYPE) + characterData.getSpecial(SKILL_TO_SPECIAL_MAP[weaponObj.TYPE]);
+        wcDiv.querySelector('.js-cardWeapon-crit').textContent = Math.max(characterData.getSkill(weaponObj.TYPE), 1).toString();
+        wcDiv.querySelector('.js-cardWeapon-ammoType').dataset.langId = weaponObj.AMMO_TYPE === 'self' ? 'quantity' : weaponObj.AMMO_TYPE;
         wcDiv.querySelector('.js-cardWeapon-ammoCount').textContent =
-            weapon.AMMO_TYPE === 'na' ? '-'
-                : characterData.getItemQuantity(weapon.AMMO_TYPE === 'self' ? weaponId : weapon.AMMO_TYPE);
+            weaponObj.AMMO_TYPE === 'na' ? '-'
+                : characterData.getItemQuantity(weaponObj.AMMO_TYPE === 'self' ? weaponId : weaponObj.AMMO_TYPE);
 
-        wcDiv.querySelector('.js-cardWeapon-image').dataset.icon = weapon.SKILL;
+        wcDiv.querySelector('.js-cardWeapon-image').dataset.icon = weaponObj.TYPE;
 
-        wcDiv.querySelector('.js-cardWeapon-damageRating').textContent = weapon.DAMAGE_RATING;
-        wcDiv.querySelector('.js-cardWeapon-damageType').textContent = weapon.DAMAGE_TYPE; // TODO language
-        wcDiv.querySelector('.js-cardWeapon-fireRate').textContent = weapon.FIRE_RATE;
-        wcDiv.querySelector('.js-cardWeapon-range').textContent = translator.translate(`${weapon.RANGE}Full`); // TODO language
+        wcDiv.querySelector('.js-cardWeapon-damageRating').textContent = weaponObj.DAMAGE_RATING;
+        wcDiv.querySelector('.js-cardWeapon-damageType').textContent = weaponObj.DAMAGE_TYPE; // TODO language
+        wcDiv.querySelector('.js-cardWeapon-fireRate').textContent = weaponObj.FIRE_RATE;
+        wcDiv.querySelector('.js-cardWeapon-range').textContent = translator.translate(`${weaponObj.RANGE}Full`); // TODO language
 
         const tagsContainer = wcDiv.querySelector('.tags-container');
         const createTagSpan = (text, className) => {
@@ -268,30 +296,36 @@ class CardFactory {
             span.dataset.langId = text;
             return span;
         };
-        const effectSpans = weapon.EFFECTS.map(effect => createTagSpan(effect, 'tag'));
-        const qualitySpans = weapon.QUALITIES.map(quality => createTagSpan(quality, 'tag tag-empty'));
+        const effectSpans = weaponObj.EFFECTS.map(effect => createTagSpan(effect, 'tag'));
+        const qualitySpans = weaponObj.QUALITIES.map(quality => createTagSpan(quality, 'tag tag-empty'));
         tagsContainer.append(...effectSpans, ...qualitySpans);
 
-        return this.#createGenericCard(weapon, wcDiv, weapon.SKILL, quantity);
+        return this.#createGenericCard(weaponObj, wcDiv, weaponObj.TYPE, quantity);
     }
 
-    createApparelCard(id, type, quantity){
+    createApparelCard(apparelId, type, quantity){
         let side;
-        [id, side] = id.split("_");
+        [apparelId, side] = apparelId.split("_");
+
+        const apparelObj = dataManager.apparel[apparelId];
+        if (!apparelObj) {
+            console.error(`Apparel data not found for ID: ${apparelId}`);
+            return null;
+        }
+
         let sideSuffix = '';
         if(side)
             sideSuffix = ` (${translator.translate(side)})`
-        const object = dataManager.getItem(id);
 
         const template = this.#templates.contentApparel;
         const acDiv = template.content.cloneNode(true).firstElementChild;
-        acDiv.querySelector('.js-cardApparel-physical').textContent = object.PHYSICAL_RES;
-        acDiv.querySelector('.js-cardApparel-energy').textContent = object.ENERGY_RES;
-        acDiv.querySelector('.js-cardApparel-radiation').textContent = object.RADIATION_RES;
+        acDiv.querySelector('.js-cardApparel-physical').textContent = apparelObj.PHYSICAL_RES;
+        acDiv.querySelector('.js-cardApparel-energy').textContent = apparelObj.ENERGY_RES;
+        acDiv.querySelector('.js-cardApparel-radiation').textContent = apparelObj.RADIATION_RES;
 
         const protectsContainer = acDiv.querySelector('.js-cardApparel-protects');
 
-        for(const location  of object.LOCATIONS_COVERED){
+        for(const location  of apparelObj.LOCATIONS_COVERED){
             const locationDiv = document.createElement('div');
             locationDiv.dataset.langId = location;
             if(location === "arm" || location === "leg")
@@ -299,23 +333,27 @@ class CardFactory {
             protectsContainer.appendChild(locationDiv);
         }
 
-        return this.#createGenericCard(object, acDiv, type, quantity, sideSuffix);
+        return this.#createGenericCard(apparelObj, acDiv, type, quantity, sideSuffix);
     }
 
-    createAidCard(id, type, quantity) {
-        const object = {...dataManager.food, ...dataManager.drinks, ...dataManager.meds}[id];
-        const specificEffectStat = object.RADIOACTIVE !== undefined ? 'Radioactive' : 'Addictive';
+    createAidCard(aidId, type, quantity) {
+        const aidObj = dataManager.aid[aidId];
 
         const template = this.#templates.contentAid;
         const acDiv = template.content.cloneNode(true).firstElementChild;
         acDiv.querySelector('.js-cardAid-image').dataset.icon = type;
-        acDiv.querySelector('.js-cardAid-effect').textContent = object.EFFECT; // TODO language
-        acDiv.querySelector('.js-cardAid-hpStat').dataset.icon = type;
-        acDiv.querySelector('.js-cardAid-hpGain').style.display = type === 'meds' ? 'none' : 'block';
-        acDiv.querySelector('.js-cardAid-specificEffect').textContent = specificEffectStat; // TODO language
-        acDiv.querySelector('.js-cardAid-specificEffectVal').textContent = object[specificEffectStat.toUpperCase()];
+        acDiv.querySelector('.js-cardAid-effect').textContent = aidObj.EFFECT; // TODO language
 
-        return this.#createGenericCard(object, acDiv, type, quantity);
+        const specificEffectStat = aidObj.HP_GAIN !== undefined ? 'HP_GAIN' : 'Duration'; // TODO language
+        const prefix = specificEffectStat === "HP_GAIN" ? '+' : '';
+        acDiv.querySelector('.js-cardAid-specificEffect').textContent = specificEffectStat.replace("_GAIN", "");
+        acDiv.querySelector('.js-cardAid-specificEffectVal').textContent = `${prefix}${aidObj[specificEffectStat.toUpperCase()]}`;
+
+        const specificEffectStat2 = aidObj.RADIOACTIVE !== undefined ? 'Radioactive' : 'Addictive'; // TODO language
+        acDiv.querySelector('.js-cardAid-specificEffect2').textContent = specificEffectStat2;
+        acDiv.querySelector('.js-cardAid-specificEffectVal2').textContent = aidObj[specificEffectStat2.toUpperCase()];
+
+        return this.#createGenericCard(aidObj, acDiv, type, quantity);
     }
 }
 

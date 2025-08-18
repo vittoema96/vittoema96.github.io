@@ -384,7 +384,7 @@ select {
     justify-content: space-between;
     align-items: center;
 }
-.button-addItem {
+.js-button-addItem {
     font-size: 2rem;
     font-weight: bolder;
     padding: 0 0.5rem;
