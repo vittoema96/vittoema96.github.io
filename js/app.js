@@ -137,15 +137,6 @@ class DataManager {
         return this.getItemTypeMap()[type].includes(subtypeToCheck);
     }
 
-    getItems(type=null, subtype=null){
-        let itemMap;
-        if(type){
-            itemMap;
-        } else {
-
-        }
-    }
-
     getItem(itemId) {
         return this.allItemData[itemId] || null;
     }
@@ -212,36 +203,45 @@ class CardFactory {
 
     constructor() {}
 
-    #createGenericCard(item, customCardContent, itemType, quantity, nameSuffix = '') {
-        if (!item) {
-            console.error(`Item data provided was null`);
-            return null;
-        }
+    #createGenericCard(characterItem, customCardContent) {
+        let itemId;
+        let side;
+        [itemId, side] = characterItem.id.split("_");
+        const item = dataManager.getItem(itemId)
+        const itemType = characterItem.type;
+        const quantity = characterItem.quantity;
 
         const template = this.#templates.card;
         const cardDiv = template.content.cloneNode(true).firstElementChild;
 
         cardDiv.dataset.itemId = item.ID;
-        cardDiv.dataset.itemType = itemType;
 
         cardDiv.querySelector('.card-quantity').textContent = `${quantity}x`;
         cardDiv.querySelector('.card-name').dataset.langId = item.ID;
-        if(nameSuffix)
-            cardDiv.querySelector('.card-name').dataset.langFormat = `%s${nameSuffix}`
+        if(side)
+            cardDiv.querySelector('.card-name').dataset.langFormat = `%s (${translator.translate(side)})`
 
         cardDiv.querySelector('.js-card-cost').textContent = item.COST;
         cardDiv.querySelector('.js-card-weight').textContent = item.WEIGHT;
         cardDiv.querySelector('.js-card-rarity').textContent = item.RARITY;
 
         const isWeapon = !!dataManager.weapon[item.ID];
-        const attackButton = cardDiv.querySelector('.button-attack');
+        const cardButton = cardDiv.querySelector('.button-card');
         if(isWeapon){
-            attackButton.dataset.action = "attack";
-            attackButton.dataset.skill = item.TYPE || "---";
-            attackButton.dataset.objectId = item.ID;
+            cardButton.dataset.icon = "attack";
+            cardButton.dataset.action = "attack";
+            cardButton.checked = true; // Prevents default (so keeps it checked) on event handler
+            cardButton.dataset.skill = item.TYPE;
+            cardButton.dataset.objectId = item.ID;
+        } else if(!!dataManager.apparel[item.ID]){
+            cardButton.dataset.icon = "armor";
+            cardButton.dataset.action = "equip";
+            cardButton.checked = characterItem.equipped === true;
+            cardButton.dataset.type = item.TYPE;
+            cardButton.dataset.objectId = characterItem.id;
         } else {
             // TODO implement consuming aid
-            attackButton.disabled = true;
+            cardButton.disabled = true;
         }
 
         cardDiv.querySelector('.description').innerHTML =
@@ -253,17 +253,19 @@ class CardFactory {
         return cardDiv;
     }
 
-    createAmmoEntry(ammoId, quantity){
-         const template = this.#templates.cardAmmo;
-         const ammoDiv = template.content.cloneNode(true).firstElementChild;
-         ammoDiv.dataset.itemId = ammoId;
-         ammoDiv.dataset.itemType = "ammo";
-         ammoDiv.querySelector(".card-quantity").textContent = `${quantity}x`;
-         ammoDiv.querySelector(".ammo-card-name").dataset.langId = ammoId;
-         return ammoDiv;
+    createAmmoEntry(characterItem){
+        const ammoId = characterItem.id;
+        const quantity = characterItem.quantity;
+        const template = this.#templates.cardAmmo;
+        const ammoDiv = template.content.cloneNode(true).firstElementChild;
+        ammoDiv.dataset.itemId = ammoId;
+        ammoDiv.querySelector(".card-quantity").textContent = `${quantity}x`;
+        ammoDiv.querySelector(".ammo-card-name").dataset.langId = ammoId;
+        return ammoDiv;
     }
 
-    createWeaponCard(weaponId, quantity) {
+    createWeaponCard(characterItem) {
+        const weaponId = characterItem.id;
         const weaponObj = dataManager.weapon[weaponId];
         if (!weaponObj) {
             console.error(`Weapon data not found for ID: ${weaponId}`);
@@ -300,10 +302,11 @@ class CardFactory {
         const qualitySpans = weaponObj.QUALITIES.map(quality => createTagSpan(quality, 'tag tag-empty'));
         tagsContainer.append(...effectSpans, ...qualitySpans);
 
-        return this.#createGenericCard(weaponObj, wcDiv, weaponObj.TYPE, quantity);
+        return this.#createGenericCard(characterItem, wcDiv);
     }
 
-    createApparelCard(apparelId, type, quantity){
+    createApparelCard(characterItem){
+        let apparelId = characterItem.id;
         let side;
         [apparelId, side] = apparelId.split("_");
 
@@ -333,10 +336,12 @@ class CardFactory {
             protectsContainer.appendChild(locationDiv);
         }
 
-        return this.#createGenericCard(apparelObj, acDiv, type, quantity, sideSuffix);
+        return this.#createGenericCard(characterItem, acDiv);
     }
 
-    createAidCard(aidId, type, quantity) {
+    createAidCard(characterItem) {
+        const aidId = characterItem.id;
+        const type = characterItem.type;
         const aidObj = dataManager.aid[aidId];
 
         const template = this.#templates.contentAid;
@@ -353,7 +358,7 @@ class CardFactory {
         acDiv.querySelector('.js-cardAid-specificEffect2').textContent = specificEffectStat2;
         acDiv.querySelector('.js-cardAid-specificEffectVal2').textContent = aidObj[specificEffectStat2.toUpperCase()];
 
-        return this.#createGenericCard(aidObj, acDiv, type, quantity);
+        return this.#createGenericCard(characterItem, acDiv);
     }
 }
 

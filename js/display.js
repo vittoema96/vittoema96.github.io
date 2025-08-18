@@ -276,6 +276,7 @@ class InvDisplay extends DisplayInterface {
                 Object.values(dataManager.getItemTypeMap()).flat(),
                 "%s-cards"
             ),
+            dr: this.#getDrDisplays(),
             subTabButtons: this._rootElement.querySelectorAll('.subTab-button'),
             subScreens: this._rootElement.querySelectorAll('.js-subScreen'),
             damageReductionValues: this.#getDamageReductionValues()
@@ -296,6 +297,15 @@ class InvDisplay extends DisplayInterface {
         });
 
 
+    }
+
+    #getDrDisplays(){
+        return Object.values(BODY_PARTS).reduce((acc, bp) => {
+            acc[bp] = {};
+            for(const type of ["physical", "energy", "radiation"])
+                acc[bp][type] = document.getElementById(`apparel__${bp}-${type}`)
+            return acc;
+        }, {});
     }
 
     #createCardHolders(){
@@ -335,6 +345,13 @@ class InvDisplay extends DisplayInterface {
     #updateItems() {
         requestAnimationFrame(() => {
             // For every item category
+            const locationsDr = characterData.getLocationsDR();
+            for(const location of Object.keys(locationsDr)){
+                for(const type of Object.keys(locationsDr[location])){
+                    this._dom.dr[location][type].textContent = locationsDr[location][type];
+                }
+            }
+
             for (const category of Object.keys(this.#category2itemsMap)) {
                 const itemsForCategory = characterData.getItemsByType(category);
                 if(category === SKILLS.UNARMED){
@@ -359,16 +376,17 @@ class InvDisplay extends DisplayInterface {
 
                 // Add or update cards
                 itemsForCategory.forEach(item => {
+                    const isApparel = ["clothing", "headgear", "outfit"].includes(item.type) || item.type.endsWith("Armor");
                     if (!itemsMap.has(item.id)) {
                         let newCard;
                         if (Object.values(SKILLS).includes(item.type))
-                            newCard = cardFactory.createWeaponCard(item.id, item.quantity);
+                            newCard = cardFactory.createWeaponCard(item);
                         else if (item.type === "ammo")
-                            newCard = cardFactory.createAmmoEntry(item.id, item.quantity);
-                        else if (["clothing", "headgear", "outfit"].includes(item.type) || item.type.endsWith("Armor")){
-                            newCard = cardFactory.createApparelCard(item.id, item.type, item.quantity)
+                            newCard = cardFactory.createAmmoEntry(item);
+                        else if (isApparel){
+                            newCard = cardFactory.createApparelCard(item)
                         } else
-                            newCard = cardFactory.createAidCard(item.id, item.type, item.quantity);
+                            newCard = cardFactory.createAidCard(item);
 
                         container.appendChild(newCard);
                         itemsMap.set(item.id, newCard);
@@ -379,6 +397,9 @@ class InvDisplay extends DisplayInterface {
                         const ammoCount = itemCard.querySelector(".js-cardWeapon-ammoCount");
                         if(ammoCount) {
                             ammoCount.textContent = characterData.getItemQuantity(dataManager.weapon[item.id].AMMO_TYPE).toString();
+                        }
+                        if(isApparel){
+                            itemCard.querySelector(".button-card").checked = item.equipped === true;
                         }
                     }
                     // TODO: Handle multiple items with different mods
@@ -410,6 +431,7 @@ class InvDisplay extends DisplayInterface {
                 break;
             }
             case 'attack': {
+                e.preventDefault();
                 const { skill, objectId } = e.target.dataset;
                 const attackingItem = dataManager.getItem(objectId); // TODO change this
                 const isGatling = (attackingItem.QUALITIES || []).includes("qualityGatling");
@@ -420,6 +442,11 @@ class InvDisplay extends DisplayInterface {
                 }
                 break;
             }
+            case 'equip':
+                const { type, objectId } = e.target.dataset;
+                const newChecked = e.target.checked;
+                characterData.equip(type, objectId, newChecked);
+                break;
             case 'delete':
                 characterData.removeItem(itemId);
                 break;

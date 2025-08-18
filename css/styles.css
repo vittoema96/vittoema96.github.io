@@ -389,11 +389,11 @@ select {
     font-weight: bolder;
     padding: 0 0.5rem;
 }
-.button-attack {
+.button-card {
     background-color: var(--primary-color);
     border: none;
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 2.5rem !important;
+    width: 2.5rem !important;
 }
 
 .activeApparel {
@@ -1009,6 +1009,7 @@ body::before {
 .themed-svg[data-icon="vaultboy"] { --image-url: url('../img/svg/vaultboy.svg'); }
 .themed-svg[data-icon="vaultboy-open-arms"] { --image-url: url('../img/svg/vaultboy-open-arms.svg'); }
 .themed-svg[data-icon="weight"] { --image-url: url('../img/svg/weight.svg'); }
+.themed-svg[data-icon="armor"] { --image-url: url('../img/svg/armor.svg'); }
 
 
 /****************************
@@ -1016,7 +1017,7 @@ body::before {
  ****************************/
 
 @media (hover: hover) {
-    .button-attack:hover { opacity: 0.8; }
+    .button-card:hover { opacity: 0.8; }
     .tab-button:hover { background-color: var(--tab-hover); }
     .button:hover, .popup__button-confirm:hover { background-color: var(--button-hover); }
     .popup__button-x:hover { color: var(--primary-color); }

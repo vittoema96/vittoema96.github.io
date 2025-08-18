@@ -52,6 +52,7 @@ const urlsToCache = [
     '/img/png/map.png',
 
     /* SVG Images */
+    '/img/svg/armor.svg',
     '/img/svg/attack.svg',
     '/img/svg/bigGuns.svg',
     '/img/svg/caps.svg',

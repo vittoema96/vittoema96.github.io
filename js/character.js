@@ -238,6 +238,87 @@ class Character extends EventTarget {
     getItemQuantity(itemId) { return this.getItem(itemId)?.quantity ?? 0 }
     getItemsByType(type) { return this.#data.items.filter(item => item.type === type); }
 
+    equip(type, itemId, isEquipping){
+        if(!isEquipping){
+            this.getItem(itemId).equipped = false;
+        } else {
+            const locations = this.#getCoversLocations(itemId);
+            const layers = this.#getCoversLayers(type);
+            for(const equippedItem of this.#getEquippedItems()){
+                const commonLayers = layers.filter(l => this.#getCoversLayers(equippedItem.type).includes(l))
+                if(commonLayers){
+                    const commonLocations = locations.filter(l => this.#getCoversLocations(equippedItem.id).includes(l))
+                    if(commonLocations.length > 0)
+                        equippedItem.equipped = false;
+                }
+            }
+            this.getItem(itemId).equipped = true;
+        }
+        this.#dispatchChange("items", null);
+    }
+
+    #getEquippedItems(){
+        return this.#data.items.filter(i => i.equipped === true);
+    }
+
+    getLocationsDR(){
+        const result = Object.values(BODY_PARTS).reduce((acc, bp) => {
+            acc[bp] = {
+                physical: 0,
+                energy: 0,
+                radiation: 0
+            };
+            return acc;
+        }, {});
+        this.#getEquippedItems().forEach(item => {
+            const object = dataManager.apparel[item.id.split("_")[0]];
+            const physical = object.PHYSICAL_RES;
+            const energy = object.ENERGY_RES;
+            const radiation = object.RADIATION_RES;
+            const locations = this.#getCoversLocations(item.id);
+            for(const location of locations){
+                result[location]["physical"] = Math.max(result[location]["physical"], physical);
+                result[location]["energy"] = Math.max(result[location]["energy"], energy);
+                result[location]["radiation"] = Math.max(result[location]["radiation"], radiation);
+            }
+        })
+        return result;
+    }
+
+    #getCoversLocations(itemId){
+        let objectId;
+        let side;
+        [objectId, side] = itemId.split("_");
+        const object = dataManager.apparel[objectId];
+        const locations = [];
+        for (let location of object.LOCATIONS_COVERED) {
+            if (location === 'arms') {
+                locations.push("leftArm");
+                locations.push("rightArm");
+            } else if (location === 'legs') {
+                locations.push("leftLeg");
+                locations.push("rightLeg");
+            } else if (location === "arm") {
+                locations.push(`${side}Arm`);
+            } else if (location === "leg") {
+                locations.push(`${side}Leg`);
+            } else {
+                locations.push(location);
+            }
+        }
+        return locations;
+    }
+    #getCoversLayers(itemType){
+        const result = []
+        const isBoth = ["outfit", "headgear"].includes(itemType);
+        if(itemType.endsWith("Armor") || isBoth)
+            result.push('over');
+        if(itemType === "clothing")
+            result.push('under');
+        return result;
+    }
+
+
     getGunBashItems() {
         let stock = null;
         let stock2h = null;
