@@ -188,7 +188,7 @@ class Character extends EventTarget {
         this.setSkill(skill, skillValue < 0 ? 0 : skillValue > 6 ? 6 : skillValue);
         this.save();
 
-        this.#dispatchChange(`specialty-${skill}`);
+        this.#dispatchChange(`specialty-${skill}`, this.hasSpecialty(skill));
     }
 
 
