@@ -117,7 +117,7 @@ class Character extends EventTarget {
 
         this.#dispatchChange("currentHp", value);
     }
-    get maxHp() { return this.getSpecial(SPECIAL.ENDURANCE) + this.getSpecial(SPECIAL.LUCK) + this.level; }
+    get maxHp() { return this.getSpecial(SPECIAL.ENDURANCE) + this.getSpecial(SPECIAL.LUCK) + this.level - 1; }
     get caps() { return this.#data.caps; }
     set caps(value) {
         value = Number(value);
