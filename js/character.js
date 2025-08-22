@@ -246,7 +246,7 @@ class Character extends EventTarget {
             const layers = this.#getCoversLayers(type);
             for(const equippedItem of this.#getEquippedItems()){
                 const commonLayers = layers.filter(l => this.#getCoversLayers(equippedItem.type).includes(l))
-                if(commonLayers){
+                if(commonLayers.length > 0){
                     const commonLocations = locations.filter(l => this.#getCoversLocations(equippedItem.id).includes(l))
                     if(commonLocations.length > 0)
                         equippedItem.equipped = false;
