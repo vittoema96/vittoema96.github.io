@@ -53,20 +53,22 @@ function isMelee(skill){
 }
 
 const defaultCharacter = {
+    "name": null,
+    "origin": null,
     "level": 1,
     "special": Object.values(SPECIAL).reduce((acc, key) => {
         acc[key] = 5;
         return acc;
     }, {}),
     "currentLuck": 5,
-    "currentHp": 11,
+    "currentHp": 10,
     "skills": Object.values(SKILLS).reduce((acc, key) => {
         acc[key] = 0;
         return acc;
     }, {}),
     "specialties": [],
     "caps": 0,
-    "background": "",
+    "background": null,
     "items": []
 };
 const CHARACTER_STORAGE_PREFIX = 'character-data-';
@@ -98,6 +100,8 @@ class Character extends EventTarget {
         this.#dispatchChange("currentHp", this.currentHp);
         this.#dispatchChange("currentLuck", this.currentLuck);
 
+        this.#dispatchChange("name", this.name);
+        this.#dispatchChange("origin", this.origin);
         this.#dispatchChange("items");
         Object.values(SKILLS).forEach(skill => this.#dispatchChange(`specialty-${skill}`, this.hasSpecialty(skill)));
         this.#dispatchChange("background", this.background);
@@ -105,6 +109,22 @@ class Character extends EventTarget {
 
     #dispatchChange(type, detail = null) {
         this.dispatchEvent(new CustomEvent(`change:${type}`, { detail }));
+    }
+
+    get name() { return this.#data.name; }
+    set name(value) {
+        this.#data.name = value;
+        this.save();
+
+        this.#dispatchChange("name", value);
+    }
+
+    get origin() { return this.#data.origin; }
+    set origin(value) {
+        this.#data.origin = value;
+        this.save();
+
+        this.#dispatchChange("origin", value);
     }
 
     get currentHp(){ return this.#data.currentHp; }

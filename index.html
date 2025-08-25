@@ -440,7 +440,7 @@
                         <div class="row l-spaceAround">
                             <div class="activeApparel l-spaceAround">
                                 <div class="apparel-stat head">
-                                    <div>Testa</div> <!-- TODO language -->
+                                    <div data-lang-id="head">Head</div>
                                     <div class="row l-centered">
                                         <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
                                         <span id="apparel__head-physical">?</span>
@@ -455,7 +455,7 @@
                                     </div>
                                 </div>
                                 <div class="apparel-stat leftArm">
-                                    <div>Braccio Sx</div> <!-- TODO language -->
+                                    <div data-lang-id="leftArm">Left Arm</div>
                                     <div class="row l-centered">
                                         <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
                                         <span id="apparel__leftArm-physical">?</span>
@@ -470,7 +470,7 @@
                                     </div>
                                 </div>
                                 <div class="apparel-stat rightArm">
-                                    <div>Braccio Dx</div> <!-- TODO language -->
+                                    <div data-lang-id="rightArm">Right Arm</div>
                                     <div class="row l-centered">
                                         <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
                                         <span id="apparel__rightArm-physical">?</span>
@@ -485,7 +485,7 @@
                                     </div>
                                 </div>
                                 <div class="apparel-stat torso">
-                                    <div>Torso</div> <!-- TODO language -->
+                                    <div data-lang-id="torso">Torso</div>
                                     <div class="row l-centered">
                                         <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
                                         <span id="apparel__torso-physical">?</span>
@@ -500,7 +500,7 @@
                                     </div>
                                 </div>
                                 <div class="apparel-stat leftLeg">
-                                    <div>Gamba Sx</div> <!-- TODO language -->
+                                    <div data-lang-id="leftLeg">Left Leg</div>
                                     <div class="row l-centered">
                                         <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
                                         <span id="apparel__leftLeg-physical">?</span>
@@ -515,7 +515,7 @@
                                     </div>
                                 </div>
                                 <div class="apparel-stat rightLeg">
-                                    <div>Gamba Dx</div> <!-- TODO language -->
+                                    <div data-lang-id="rightLeg">Right Leg</div>
                                     <div class="row l-centered">
                                         <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
                                         <span id="apparel__rightLeg-physical">?</span>
@@ -541,12 +541,32 @@
             </section>
 
             <section id="data-tabContent" class="tabContent hidden">
-                <div class="row row--spaced">
-                    <label class="h1" for="level">Livello:</label>
+                <div class="row l-distributed l-firstSmall">
+                    <label class="h2" for="pg_name" data-lang-id="name">Name:</label>
+                    <input id="pg_name" type="text" placeholder="Nome del personaggio..."/>
+                </div>
+                <div class="row l-distributed l-firstSmall">
+                    <label class="h4" for="level" data-lang-id="level">Level:</label>
                     <input id="level" type="number" min="1" step="1"/>
                 </div>
-                <label for="character-background">Background:</label>
-                <textarea id="character-background" class="form-control" rows="5" placeholder="Scrivi il tuo background qui..."></textarea>
+                <div class="row l-distributed l-firstSmall">
+                    <label class="h4" for="origin" data-lang-id="origin">Origin:</label>
+                    <select id="origin">
+                        <option value="none" selected disabled hidden></option>
+                        <option value="vaultDweller" data-lang-id="vaultDweller"></option>
+                        <option value="ghoul" data-lang-id="ghoul"></option>
+                        <option value="survivor" data-lang-id="survivor"></option>
+                        <option value="mrHandy" data-lang-id="mrHandy"></option>
+                        <option value="brotherhoodInitiate" data-lang-id="brotherhoodInitiate"></option>
+                        <option value="superMutant" data-lang-id="superMutant"></option>
+                    </select>
+                </div>
+                <div class="row l-distributed l-firstSmall">
+                    <label for="character-background">Background:</label>
+                    <textarea id="character-background" rows="7"
+                              placeholder="Scrivi il tuo background qui..."></textarea>
+                </div>
+
                 <br/><br/><br/><br/>
                 <span class="h1">WORK IN PROGRESS</span>
             </section>
@@ -559,13 +579,13 @@
 
             <section id="settings-tabContent" class="tabContent hidden">
                 <span class="h3">Settings</span>
-                <label for="language-select">Language:</label>
+                <label data-lang-id="language" data-lang-format="%s:" for="language-select">Language:</label>
                 <select id="language-select" onchange="translator.loadTranslations(this.value)">
                     <option value="en">English</option>
                     <option value="it">Italiano</option>
                 </select>
                 <hr>
-                <label for="theme-select">Theme:</label>
+                <label data-lang-id="theme" data-lang-format="%s:" for="theme-select">Theme:</label>
                 <select id="theme-select">
                     <option value="theme-fallout-3">Fallout 3</option>
                     <option value="theme-fallout-new-vegas">Fallout New Vegas</option>

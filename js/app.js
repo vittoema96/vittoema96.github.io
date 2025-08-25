@@ -288,7 +288,7 @@ class CardFactory {
         wcDiv.querySelector('.js-cardWeapon-damageRating').textContent = weaponObj.DAMAGE_RATING;
         wcDiv.querySelector('.js-cardWeapon-damageType').textContent = weaponObj.DAMAGE_TYPE; // TODO language
         wcDiv.querySelector('.js-cardWeapon-fireRate').textContent = weaponObj.FIRE_RATE;
-        wcDiv.querySelector('.js-cardWeapon-range').textContent = translator.translate(`${weaponObj.RANGE}Full`); // TODO language
+        wcDiv.querySelector('.js-cardWeapon-range').textContent = translator.translate(`${weaponObj.RANGE}Full`);
 
         const tagsContainer = wcDiv.querySelector('.tags-container');
         const createTagSpan = (text, className) => {

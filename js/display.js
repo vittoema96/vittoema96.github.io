@@ -483,17 +483,34 @@ class DataDisplay extends DisplayInterface {
     constructor() {
         super("data-tabContent");
         this._dom = {
+            name: document.getElementById('pg_name'),
+            origin: document.getElementById('origin'),
             level: document.getElementById('level'),
             background: document.getElementById('character-background')
         }
 
+        this._onChangeSetValue("name", this._dom.name);
+        this._onChangeSetValue("origin", this._dom.origin);
         this._onChangeSetValue("level", this._dom.level);
         this._onChangeSetText("background", this._dom.background);
+
+
+        this._dom.name.addEventListener('change', (e) => {
+            characterData.name = e.target.value;
+        }, { signal: this._eventController.signal });
+
+        this._dom.origin.addEventListener('change', (e) => {
+            characterData.origin = e.target.value;
+        }, { signal: this._eventController.signal });
 
         this._dom.level.addEventListener('change', (e) => {
             e = Number(e.target.value);
             if(!e) return;
             characterData.level = e;
+        }, { signal: this._eventController.signal });
+
+        this._dom.background.addEventListener('change', (e) => {
+            characterData.background = e.target.value;
         }, { signal: this._eventController.signal });
     }
 

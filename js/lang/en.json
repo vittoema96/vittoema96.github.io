@@ -252,5 +252,17 @@
 
   "invalidHpAlert": "HP value is invalid!",
   "invalidCapsAlert": "CAPS value is invalid!",
-  "invalidLuckAlert": "LUCK value is invalid!"
+  "invalidLuckAlert": "LUCK value is invalid!",
+
+  "language": "Language",
+  "theme": "Theme",
+  "name": "Name",
+  "level": "Level",
+  "origin": "Origin",
+  "vaultDweller": "Vault Dweller",
+  "ghoul": "Ghoul",
+  "survivor": "Survivor",
+  "mrHandy": "Mr. Handy",
+  "brotherhoodInitiate": "Brotherhood Initiate",
+  "superMutant": "Super Mutant"
 }

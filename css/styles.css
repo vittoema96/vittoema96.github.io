@@ -81,6 +81,9 @@ input, textarea, select, button {
     border: var(--border-primary-thin);
     border-radius: 5px;
 }
+textarea::placeholder, input[type=text]::placeholder {
+    color: var(--primary-color-very-translucent);
+}
 input[type=number] {
     -moz-appearance: textfield;
     font-size: 1rem;
@@ -119,7 +122,7 @@ button {
     opacity: 0.5;
 }
 
-select {
+select, input[type=text] {
     padding: 0.5rem;
     width: 80%;
     max-width: 300px;
@@ -151,6 +154,7 @@ select {
 .l-spaceBetween { justify-content: space-between; }
 /* Can be used either alone or in conjunction with l-distributed */
 .l-lastSmall > :not(:last-child) { flex: 2 }
+.l-firstSmall > :not(:first-child) { flex: 2 }
 
 /**********************
  *     Main Header    *

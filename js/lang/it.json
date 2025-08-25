@@ -496,5 +496,17 @@
 
   "invalidHpAlert": "HP non validi!",
   "invalidCapsAlert": "TAPPI non validi!",
-  "invalidLuckAlert": "FORTUNA non valida!"
+  "invalidLuckAlert": "FORTUNA non valida!",
+
+  "language": "Lingua",
+  "theme": "Tema",
+  "name": "Nome",
+  "level": "Livello",
+  "origin": "Origine",
+  "vaultDweller": "Abitante del Vault",
+  "ghoul": "Ghoul",
+  "survivor": "Sopravvissuto",
+  "mrHandy": "Mr. Handy",
+  "brotherhoodInitiate": "Iniziato della CdA",
+  "superMutant": "Supermutante"
 }
