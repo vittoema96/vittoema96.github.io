@@ -119,3 +119,16 @@ workbox-*.js.map
 
 # Local development
 .local
+
+# IDE specific files (keep config files for team consistency)
+# .vscode/ - Keep for shared settings
+# .idea/ - Keep for shared settings
+
+# ESLint cache
+.eslintcache
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Keep scripts directory
+# scripts/ - Keep for version management

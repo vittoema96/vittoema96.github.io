@@ -1,18 +1,12 @@
 /**
- * Modern i18n system using i18next properly
- * Uses standard i18next patterns and practices
+ * Internationalization system using i18next
  */
-
 import i18next from 'i18next';
-
-/**
- * Initialize the i18n system
- */
 export async function initI18n() {
     // Load translation files
     const [enTranslations, itTranslations] = await Promise.all([
         fetch('/locales/en.json').then(res => res.json()),
-        fetch('/locales/it.json').then(res => res.json())
+        fetch('/locales/it.json').then(res => res.json()),
     ]);
 
     // Get saved language or default to Italian
@@ -26,12 +20,12 @@ export async function initI18n() {
 
         resources: {
             en: { translation: enTranslations },
-            it: { translation: itTranslations }
+            it: { translation: itTranslations },
         },
 
         interpolation: {
-            escapeValue: false
-        }
+            escapeValue: false,
+        },
     });
 
     // Set up automatic DOM updates when language changes
@@ -58,10 +52,12 @@ export async function changeLanguage(language) {
     // Show warning for English (like your original code)
     if (language === 'en') {
         const confirmed = confirm(
-            "Are you sure you want to change to English language?\nThis language is currently poorly supported.\n\n" +
-            "Sei sicuro di voler cambiare la lingua a Inglese?\nQuesta lingua è attualmente scarsamente supportata."
+            'Are you sure you want to change to English language?\nThis language is currently poorly supported.\n\n' +
+                'Sei sicuro di voler cambiare la lingua a Inglese?\nQuesta lingua è attualmente scarsamente supportata.'
         );
-        if (!confirmed) return;
+        if (!confirmed) {
+            return;
+        }
     }
 
     await i18next.changeLanguage(language);
@@ -87,15 +83,12 @@ export async function changeLanguage(language) {
  * @param {Object} options - i18next options (interpolation, etc.)
  * @returns {string} Translated text
  */
-export function t(key, options = {}) {
-    return i18next.t(key, options);
-}
+export const t = (key, options = {}) => i18next.t(key, options);
 
 /**
- * Update DOM elements with proper i18next data attributes
- * Uses data-i18n instead of custom data-lang-id
+ * Update DOM elements with i18next data attributes
  */
-function updateDOM() {
+export const updateDOM = () => {
     // Handle elements with data-i18n attribute
     const elementsWithI18n = document.querySelectorAll('[data-i18n]');
 
@@ -107,7 +100,7 @@ function updateDOM() {
         if (element.dataset.i18nOptions) {
             try {
                 Object.assign(options, JSON.parse(element.dataset.i18nOptions));
-            } catch (e) {
+            } catch {
                 console.warn('Invalid i18n options:', element.dataset.i18nOptions);
             }
         }
@@ -124,28 +117,22 @@ function updateDOM() {
             element.textContent = t(key, options);
         }
     });
-
-    // No more legacy support needed - all elements should use data-i18n
-}
+};
 
 /**
  * Get current language
  * @returns {string} Current language code
  */
-export function getCurrentLanguage() {
-    return i18next.language;
-}
+export const getCurrentLanguage = () => i18next.language;
 
 /**
  * Get all available languages
  * @returns {string[]} Array of language codes
  */
-export function getAvailableLanguages() {
-    return ['it', 'en'];
-}
+export const getAvailableLanguages = () => ['it', 'en'];
 
 // spacedTranslate function for consistent button spacing
-export function spacedTranslate(...keys) {
+export const spacedTranslate = (...keys) => {
     const currentLanguage = i18next.language;
 
     // Get all translations in the current language
@@ -156,4 +143,4 @@ export function spacedTranslate(...keys) {
 
     // Return the first translation padded to the max length
     return translations[0].padEnd(maxLength, ' ');
-}
+};

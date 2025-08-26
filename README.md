@@ -1,7 +1,7 @@
 # General warnings:
 
 > # ⚠️ Fan Project ⚠️
-> I'm an inexperienced Programmer / Game master and a forever Fallout fan.  
+> I'm an inexperienced Programmer / Game master and a forever Fallout fan.
 > This is a fan project made:
 > - Mainly for my group
 > - By a non-native english speaker
@@ -13,11 +13,6 @@
 > This project is currently under active development. Many features are incomplete, and you may encounter bugs.
 >
 > It has not been tested on all devices or screen sizes. It is primarily designed for mobile devices and tested on a screen size of approximately **412x915px** (though generally any "normal" mobile device should be ok and desktop "should" work, but it still has some funky layouts).
-
- 
-> ## ⚠️ AI generated README ⚠️
-> As stated above, this is a WIP, I didn't care to write a REAL readme lol.
-> When done developing I may write one (or not, don't expect anything from me hahaha)
 
 
 
@@ -80,3 +75,69 @@ This application is an installable PWA.
 
 * **On Desktop (Chrome/Edge):** An "Install" icon will appear in the address bar. Click it to add the app to your desktop.
 * **On Mobile (Android/iOS):** Use your browser's menu and select "Add to Home Screen" or "Install App" to get a native-like app experience.
+
+---
+
+## 🛠️ Development
+
+If you want to mess with the code (good luck lol):
+
+```bash
+npm install
+npm run dev      # Start dev server
+npm run build    # Build for production
+npm run quality  # Check code quality (lint + format + types)
+```
+
+**Version management** (because I got fancy with semantic versioning):
+```bash
+npm run version:show        # Show current version
+npm run version:next-alpha  # Bump to next alpha milestone
+```
+
+## 🏗️ How it's built
+
+**Tech stack**: Vanilla JS (ES6 modules), Vite, i18next, PapaParse
+**Structure**:
+```
+src/js/          # Main code (character.js, display.js, popup.js, etc.)
+public/data/     # Game data in CSV files
+public/img/      # Images and icons
+```
+
+**Key files**:
+- `character.js` - Character data model with reactive updates
+- `display.js` - UI management and inventory display
+- `popup.js` - Dice rolling popups and modals
+- `gameRules.js` - Fallout 2d20 game mechanics
+- `i18n.js` - Internationalization with i18next
+
+## 🎲 Game mechanics
+
+Implements proper Fallout 2d20 rules:
+- **D20 rolls**: Skill + SPECIAL vs difficulty, count successes
+- **D6 damage**: Multiple dice, reroll 1s and 2s, count effects/damage
+- **Combat**: Attack rolls consume ammo, armor reduces damage
+- **Character origins**: Different stat caps (Super Mutants, etc.)
+
+## 📊 Data format
+
+Game data is in CSV files for easy editing:
+- `public/data/weapon/` - Weapons with damage, range, ammo type
+- `public/data/apparel/` - Armor with DR values and protection areas
+- `public/data/aid/` - Consumables with effects
+
+## 📈 Versioning
+
+Uses semantic versioning: `0.0.3-alpha.0`
+- `0.0.x` = Alpha milestone (patch = milestone number)
+- `0.1.0` = Beta phase
+- `1.0.0` = Stable release
+
+GitHub Actions automatically increments build numbers on deploy.
+
+## 🤝 Contributing
+
+Just follow the existing code style. Run `npm run quality` to check everything is good.
+
+See [TODO.md](TODO.md) for what needs to be done.

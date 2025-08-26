@@ -24,7 +24,7 @@ export class Character extends EventTarget {
                 // you might dispatch additional events here.
 
                 return true;
-            }
+            },
         });
     }
 
@@ -39,44 +39,72 @@ export class Character extends EventTarget {
     }
 
     // Basic property getters and setters
-    get name() { return this.#data.name; }
-    set name(value) { this.data.name = value; } // Uses proxy
+    get name() {
+        return this.#data.name;
+    }
+    set name(value) {
+        this.data.name = value;
+    } // Uses proxy
 
-    get origin() { return this.#data.origin; }
-    set origin(value) { this.data.origin = value; } // Uses proxy
+    get origin() {
+        return this.#data.origin;
+    }
+    set origin(value) {
+        this.data.origin = value;
+    } // Uses proxy
 
-    get level() { return this.#data.level; }
+    get level() {
+        return this.#data.level;
+    }
     set level(value) {
         const numValue = Number(value);
-        if (!numValue || numValue < 1) return;
+        if (!numValue || numValue < 1) {
+            return;
+        }
         const diff = numValue - this.level;
         this.data.level = numValue; // Uses proxy
         this.currentHp = this.currentHp + diff; // Level up HP bonus
     }
 
-    get caps() { return this.#data.caps; }
+    get caps() {
+        return this.#data.caps;
+    }
     set caps(value) {
         const numValue = Number(value);
-        if (numValue < 0) return;
+        if (numValue < 0) {
+            return;
+        }
         this.data.caps = numValue; // Uses proxy
     }
 
-    get currentHp() { return this.#data.currentHp; }
+    get currentHp() {
+        return this.#data.currentHp;
+    }
     set currentHp(value) {
         const numValue = Number(value);
-        if (numValue < 0) return;
+        if (numValue < 0) {
+            return;
+        }
         this.data.currentHp = numValue; // Uses proxy
     }
 
-    get currentLuck() { return this.#data.currentLuck; }
+    get currentLuck() {
+        return this.#data.currentLuck;
+    }
     set currentLuck(value) {
         const numValue = Number(value);
-        if (numValue < 0) return;
+        if (numValue < 0) {
+            return;
+        }
         this.data.currentLuck = numValue; // Uses proxy
     }
 
-    get background() { return this.#data.background; }
-    set background(value) { this.data.background = value; } // Uses proxy
+    get background() {
+        return this.#data.background;
+    }
+    set background(value) {
+        this.data.background = value;
+    } // Uses proxy
 
     // Derived stats using GameRules
     get maxHp() {
@@ -121,13 +149,13 @@ export class Character extends EventTarget {
                 // This is a ranged weapon that can be used for gun bashing
                 // Create weapon stock items for melee use
                 const qualities = itemData.QUALITIES || [];
-                const isTwoHanded = qualities.includes("qualityTwoHanded");
+                const isTwoHanded = qualities.includes('qualityTwoHanded');
 
                 gunBashItems.push({
-                    id: isTwoHanded ? "weaponWeaponStock" : "weaponWeaponStockOneHanded",
+                    id: isTwoHanded ? 'weaponWeaponStock' : 'weaponWeaponStockOneHanded',
                     type: SKILLS.MELEE_WEAPONS,
                     quantity: item.quantity,
-                    originalWeapon: item.id
+                    originalWeapon: item.id,
                 });
             }
         });
@@ -151,7 +179,9 @@ export class Character extends EventTarget {
 
     removeItem(itemId, quantity = Number.MAX_SAFE_INTEGER) {
         const itemIndex = this.data.items.findIndex(i => i.id === itemId);
-        if (itemIndex === -1) return;
+        if (itemIndex === -1) {
+            return;
+        }
 
         const item = this.data.items[itemIndex];
         item.quantity -= quantity;
@@ -183,7 +213,9 @@ export class Character extends EventTarget {
     setSpecial(special, value) {
         const numValue = Number(value);
         const maxValue = this.getSpecialMax(special);
-        if (!numValue || numValue < 1 || numValue > maxValue) return;
+        if (!numValue || numValue < 1 || numValue > maxValue) {
+            return;
+        }
         this.#data.special[special] = numValue;
         saveCharacter(this.characterId, this.#data);
         this.dispatchEvent(new CustomEvent(`change:${special}`, { detail: numValue }));
@@ -197,7 +229,9 @@ export class Character extends EventTarget {
     setSkill(skill, value) {
         const numValue = Number(value);
         const maxValue = this.getSkillMax();
-        if (numValue < 0 || numValue > maxValue) return;
+        if (numValue < 0 || numValue > maxValue) {
+            return;
+        }
         this.#data.skills[skill] = numValue;
         saveCharacter(this.characterId, this.#data);
         this.dispatchEvent(new CustomEvent(`change:${skill}`, { detail: numValue }));
@@ -209,7 +243,9 @@ export class Character extends EventTarget {
     }
 
     toggleSpecialty(skill) {
-        if (!Object.values(SKILLS).includes(skill)) return;
+        if (!Object.values(SKILLS).includes(skill)) {
+            return;
+        }
 
         let isAdding = true;
         if (this.hasSpecialty(skill)) {
@@ -226,7 +262,9 @@ export class Character extends EventTarget {
 
         // Then save and dispatch specialty change event with current state
         saveCharacter(this.characterId, this.#data);
-        this.dispatchEvent(new CustomEvent(`change:specialty-${skill}`, { detail: this.hasSpecialty(skill) }));
+        this.dispatchEvent(
+            new CustomEvent(`change:specialty-${skill}`, { detail: this.hasSpecialty(skill) })
+        );
     }
 
     // Origin-based maximum values
@@ -255,23 +293,29 @@ export class Character extends EventTarget {
     // Event system
     dispatchAll() {
         Object.values(SPECIAL).forEach(special =>
-            this.dispatchEvent(new CustomEvent(`change:${special}`, { detail: this.getSpecial(special) }))
+            this.dispatchEvent(
+                new CustomEvent(`change:${special}`, { detail: this.getSpecial(special) })
+            )
         );
         Object.values(SKILLS).forEach(skill =>
             this.dispatchEvent(new CustomEvent(`change:${skill}`, { detail: this.getSkill(skill) }))
         );
 
-        this.dispatchEvent(new CustomEvent("change:level", { detail: this.data.level }));
-        this.dispatchEvent(new CustomEvent("change:caps", { detail: this.data.caps }));
-        this.dispatchEvent(new CustomEvent("change:currentHp", { detail: this.data.currentHp }));
-        this.dispatchEvent(new CustomEvent("change:currentLuck", { detail: this.data.currentLuck }));
-        this.dispatchEvent(new CustomEvent("change:name", { detail: this.data.name }));
-        this.dispatchEvent(new CustomEvent("change:origin", { detail: this.data.origin }));
-        this.dispatchEvent(new CustomEvent("change:background", { detail: this.data.background }));
-        this.dispatchEvent(new CustomEvent("change:items"));
+        this.dispatchEvent(new CustomEvent('change:level', { detail: this.data.level }));
+        this.dispatchEvent(new CustomEvent('change:caps', { detail: this.data.caps }));
+        this.dispatchEvent(new CustomEvent('change:currentHp', { detail: this.data.currentHp }));
+        this.dispatchEvent(
+            new CustomEvent('change:currentLuck', { detail: this.data.currentLuck })
+        );
+        this.dispatchEvent(new CustomEvent('change:name', { detail: this.data.name }));
+        this.dispatchEvent(new CustomEvent('change:origin', { detail: this.data.origin }));
+        this.dispatchEvent(new CustomEvent('change:background', { detail: this.data.background }));
+        this.dispatchEvent(new CustomEvent('change:items'));
 
         Object.values(SKILLS).forEach(skill =>
-            this.dispatchEvent(new CustomEvent(`change:specialty-${skill}`, { detail: this.hasSpecialty(skill) }))
+            this.dispatchEvent(
+                new CustomEvent(`change:specialty-${skill}`, { detail: this.hasSpecialty(skill) })
+            )
         );
     }
 
@@ -288,6 +332,6 @@ export class Character extends EventTarget {
 export let characterData = undefined;
 
 // Helper function to update the global character data
-export function setCharacterData(newCharacterData) {
+export const setCharacterData = newCharacterData => {
     characterData = newCharacterData;
-}
+};

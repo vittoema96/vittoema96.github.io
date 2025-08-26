@@ -1,10 +1,9 @@
-// Import dependencies
 import { characterData } from './character.js';
 import { SPECIAL, SKILL_TO_SPECIAL_MAP } from './constants.js';
 import { t, spacedTranslate } from './i18n.js';
 import { isMelee } from './gameRules.js';
 
-// TODO: Refactor to properly inject dependencies instead of using globals
+// TODO: Replace with dependency injection
 const getDataManager = () => window.dataManager;
 
 export class Popup {
@@ -20,18 +19,18 @@ export class Popup {
             throw new Error(`Popup element with ID "${rootElementId}" not found.`);
         }
 
-        for(const trigger of triggers){
-            trigger.addEventListener('click', () => this.open())
+        for (const trigger of triggers) {
+            trigger.addEventListener('click', () => this.open());
         }
 
-        this._rootElement.addEventListener('click', (e) => {
-            if(e.target.closest('.popup__button-confirm')){
+        this._rootElement.addEventListener('click', e => {
+            if (e.target.closest('.popup__button-confirm')) {
                 this._handleConfirm();
                 // No closing here, the _handleConfirm() method can
                 // prevent closing on specific conditions
             }
         });
-        this._rootElement.addEventListener('click', (e) => {
+        this._rootElement.addEventListener('click', e => {
             if (e.target.closest('.popup__button-x, .popup__button-close')) {
                 this._close();
             }
@@ -53,7 +52,7 @@ export class Popup {
      * By default, calls _rootElement.showModal().
      * If custom logic is needed (like TooltipPopup), this can be overridden.
      */
-    _open(){
+    _open() {
         this._rootElement.showModal();
     }
 
@@ -97,23 +96,21 @@ export class StatAdjustmentPopup extends Popup {
     #currentLuck;
 
     constructor() {
-        super('popup-editHeaderStats',
-            [document.getElementById('c-headerStats')]);
+        super('popup-editHeaderStats', [document.getElementById('c-headerStats')]);
         this.#dom = {
-            hpOld: document.getElementById("adjustHpOld"),
-            hpNew: document.getElementById("adjustHpNew"),
+            hpOld: document.getElementById('adjustHpOld'),
+            hpNew: document.getElementById('adjustHpNew'),
 
-            capsOld: document.getElementById("adjustCapsOld"),
-            capsNew: document.getElementById("adjustCapsNew"),
+            capsOld: document.getElementById('adjustCapsOld'),
+            capsNew: document.getElementById('adjustCapsNew'),
 
-            luckOld: document.getElementById("adjustLuckOld"),
-            luckNew: document.getElementById("adjustLuckNew"),
-        }
-        
-        this.#dom.hpNew.addEventListener('change', (e) => this.#currentHp = e.target.value);
-        this.#dom.capsNew.addEventListener('change', (e) => this.#caps = e.target.value);
-        this.#dom.luckNew.addEventListener('change', (e) => this.#currentLuck = e.target.value);
+            luckOld: document.getElementById('adjustLuckOld'),
+            luckNew: document.getElementById('adjustLuckNew'),
+        };
 
+        this.#dom.hpNew.addEventListener('change', e => (this.#currentHp = e.target.value));
+        this.#dom.capsNew.addEventListener('change', e => (this.#caps = e.target.value));
+        this.#dom.luckNew.addEventListener('change', e => (this.#currentLuck = e.target.value));
     }
     _initialize() {
         this.#currentHp = characterData.currentHp;
@@ -134,13 +131,16 @@ export class StatAdjustmentPopup extends Popup {
     }
 
     _handleConfirm() {
-        if(this.#currentHp < 0 || this.#currentHp > characterData.maxHp)
-            alertPopup("invalidHpAlert");
-        else if(this.#caps < 0)
-            alertPopup("invalidCapsAlert");
-        else if(this.#currentLuck < 0 || this.#currentLuck > characterData.getSpecial(SPECIAL.LUCK))
-            alertPopup("invalidLuckAlert");
-        else {
+        if (this.#currentHp < 0 || this.#currentHp > characterData.maxHp) {
+            alertPopup('invalidHpAlert');
+        } else if (this.#caps < 0) {
+            alertPopup('invalidCapsAlert');
+        } else if (
+            this.#currentLuck < 0 ||
+            this.#currentLuck > characterData.getSpecial(SPECIAL.LUCK)
+        ) {
+            alertPopup('invalidLuckAlert');
+        } else {
             characterData.currentHp = this.#currentHp;
             characterData.caps = this.#caps;
             characterData.currentLuck = this.#currentLuck;
@@ -151,21 +151,21 @@ export class StatAdjustmentPopup extends Popup {
 
 export class TradeItemPopup extends Popup {
     #dom;
-    
-    constructor(){
+
+    constructor() {
         super('popup-tradeItem');
         this.#dom = {
             type: document.getElementById('tradeType'),
             quantity: document.getElementById('tradeQuantity'),
             price: document.getElementById('tradePrice'),
             total: document.getElementById('tradeTotal'),
-            confirm: this._rootElement.querySelector(".popup__button-confirm")
-        }
-        this.#dom.quantity.addEventListener('change', (e) => {
+            confirm: this._rootElement.querySelector('.popup__button-confirm'),
+        };
+        this.#dom.quantity.addEventListener('change', e => {
             this.#tradeQuantity = e.target.value;
             this._render();
         });
-        this.#dom.price.addEventListener('change', (e) => {
+        this.#dom.price.addEventListener('change', e => {
             this.#tradePrice = e.target.value;
             this._render();
         });
@@ -175,13 +175,14 @@ export class TradeItemPopup extends Popup {
     #itemId;
     #tradeQuantity;
     #tradePrice;
-    get #tradeValueRate () { return this.#isBuy ? 6/5 : 4/5 }
+    get #tradeValueRate() {
+        return this.#isBuy ? 6 / 5 : 4 / 5;
+    }
 
-
-    _initialize(itemId, isBuy){
+    _initialize(itemId, isBuy) {
         this.#isBuy = !!isBuy;
         this.#itemId = itemId;
-        if(this.#isBuy){
+        if (this.#isBuy) {
             this.#tradeQuantity = 1;
         } else {
             this.#tradeQuantity = characterData.getItemQuantity(this.#itemId);
@@ -189,53 +190,56 @@ export class TradeItemPopup extends Popup {
         }
         let price = getDataManager().getItem(this.#itemId).COST || 1; // Get normal item price
         price = price * this.#tradeValueRate; // Apply trade rate
-        price  = Math.round(price*100)/100; // Round decimals
+        price = Math.round(price * 100) / 100; // Round decimals
         this.#tradePrice = price;
     }
-    
-    _render(){
-        this.#dom.type.textContent = t(this.#isBuy ? "buying" : "selling");
+
+    _render() {
+        this.#dom.type.textContent = t(this.#isBuy ? 'buying' : 'selling');
         this.#dom.quantity.value = this.#tradeQuantity;
         this.#dom.price.value = this.#tradePrice;
-        const sign = this.#isBuy ? "-" : "+";
+        const sign = this.#isBuy ? '-' : '+';
         const total = Math.floor(this.#tradeQuantity * this.#tradePrice);
-        this.#dom.total.textContent = `${sign}${total}`
+        this.#dom.total.textContent = `${sign}${total}`;
     }
 
-    _handleConfirm(){
-        if(characterData.getItemQuantity(this.#itemId))
+    _handleConfirm() {
+        if (characterData.getItemQuantity(this.#itemId)) {
             characterData.caps += Number(this.#dom.total.textContent);
+        }
         characterData.removeItem(this.#itemId, this.#dom.quantity.value);
         this._close();
     }
-    
 }
 
 export class TagTooltip extends Popup {
-
-    #arrow = document.getElementById("arrow");
+    #arrow = document.getElementById('arrow');
     #activeTag;
 
-    constructor(){
-        super('tooltip-container')
-        document.body.addEventListener('mouseover', (event) => {
-            if(event.target.matches('.tag')){
+    constructor() {
+        super('tooltip-container');
+        document.body.addEventListener('mouseover', event => {
+            if (event.target.matches('.tag')) {
                 this.open(event.target);
             }
         });
-        document.body.addEventListener('mouseout', (event) => {
-            if(event.target.matches('.tag')){
+        document.body.addEventListener('mouseout', event => {
+            if (event.target.matches('.tag')) {
                 this.hideTooltip();
             }
         });
 
         // Touch events for mobile (toggle behavior)
-        document.addEventListener('touchstart', (e) => {
-            this.#handleTouchEvent(e);
-        }, { passive: false });
+        document.addEventListener(
+            'touchstart',
+            e => {
+                this.#handleTouchEvent(e);
+            },
+            { passive: false }
+        );
 
         // Hide tooltip if clicking outside an active tag
-        document.addEventListener('click', (e) => {
+        document.addEventListener('click', e => {
             this.#handleTouchEvent(e);
         });
     }
@@ -244,16 +248,17 @@ export class TagTooltip extends Popup {
         this._rootElement.classList.add('visible');
     }
 
-    #handleTouchEvent(event){
+    #handleTouchEvent(event) {
         const touchedTag = event.target.closest('.tag');
         if (touchedTag) {
             event.preventDefault();
             // If tapping the same tag that's already active, hide it.
             if (this.#activeTag === touchedTag) {
                 this.hideTooltip();
-            } else { // If another tooltip is open, hide it first.
+            } else {
+                // If another tooltip is open, hide it first.
                 if (this.#activeTag) {
-                   this.hideTooltip();
+                    this.hideTooltip();
                 }
                 this.open(touchedTag);
             }
@@ -263,7 +268,7 @@ export class TagTooltip extends Popup {
         }
     }
 
-    _initialize(tagTarget){
+    _initialize(tagTarget) {
         this.#activeTag = tagTarget;
 
         this._rootElement.textContent = t(this.#activeTag.dataset.tooltipId);
@@ -278,7 +283,7 @@ export class TagTooltip extends Popup {
         }
     }
 
-    _render(){
+    _render() {
         const tagRect = this.#activeTag.getBoundingClientRect();
         const tooltipRect = this._rootElement.getBoundingClientRect();
 
@@ -290,7 +295,7 @@ export class TagTooltip extends Popup {
         const dialogTop = dialogRect?.top || 0;
         const dialogLeft = dialogRect?.left || 0;
         let top = tagRect.top - tooltipRect.height - spacing;
-        let left = tagRect.left + (tagRect.width / 2) - (tooltipRect.width / 2);
+        let left = tagRect.left + tagRect.width / 2 - tooltipRect.width / 2;
 
         // If it goes off the top of the screen, place it below instead
         if (top < 0) {
@@ -310,8 +315,8 @@ export class TagTooltip extends Popup {
             diff = diff - left;
         }
 
-        if(diff){
-            diff = diff > 0 ? diff = `+ ${diff}px` : `- ${-diff}px`;
+        if (diff) {
+            diff = diff > 0 ? (diff = `+ ${diff}px`) : `- ${-diff}px`;
             this.#arrow.style.transform = `translateX(calc(-50% ${diff}))`;
         } else {
             this.#arrow.style.transform = `translateX(-50%)`;
@@ -329,11 +334,10 @@ export class TagTooltip extends Popup {
         }
 
         this._rootElement.classList.remove('visible');
-    };
+    }
 }
 
 export class D20Popup extends Popup {
-
     #dom;
 
     constructor() {
@@ -362,11 +366,11 @@ export class D20Popup extends Popup {
             damageButton: document.getElementById('popup-d20-damage-button'),
         };
 
-        this.#dom.specialSelector.addEventListener('change', (event) => {
+        this.#dom.specialSelector.addEventListener('change', event => {
             this.#specialId = event.target.value;
             this._render();
         });
-        this.#dom.luckCheckbox.addEventListener('change', (event) => {
+        this.#dom.luckCheckbox.addEventListener('change', event => {
             this.#isUsingLuck = event.target.checked;
             this._render();
         });
@@ -375,7 +379,7 @@ export class D20Popup extends Popup {
                 this.#onDiceClick(index);
             });
         });
-        this.#dom.aimCheckbox.addEventListener('change', (event) => {
+        this.#dom.aimCheckbox.addEventListener('change', event => {
             this.#isAiming = event.target.checked;
             this._render();
         });
@@ -394,26 +398,29 @@ export class D20Popup extends Popup {
     #hasRolled;
     #skillId;
     #specialId;
-    #isUsingLuck ;
-    #isAiming ;
+    #isUsingLuck;
+    #isAiming;
 
     #diceContent;
     #diceActive;
     #diceRerolled;
 
-    _initialize(skillId, objectId){
+    _initialize(skillId, objectId) {
         this.#character = characterData;
 
         this.#objectId = objectId;
 
         const object = getDataManager().getItem(objectId);
-        this.#isObjectInaccurate = (object?.QUALITIES || []).includes("qualityInaccurate");
-        this.#isObjectUnreliable = (object?.QUALITIES || []).includes("qualityUnreliable");
+        this.#isObjectInaccurate = (object?.QUALITIES || []).includes('qualityInaccurate');
+        this.#isObjectUnreliable = (object?.QUALITIES || []).includes('qualityUnreliable');
 
         // If inaccurate strikethrough "Aim?"
         const aimText = this._rootElement.querySelector('[data-i18n="aimQuestion"]');
-        if(this.#isObjectInaccurate){ aimText.style.textDecoration = "line-through"; }
-        else { aimText.style.textDecoration = "initial"; }
+        if (this.#isObjectInaccurate) {
+            aimText.style.textDecoration = 'line-through';
+        } else {
+            aimText.style.textDecoration = 'initial';
+        }
 
         this.#hasRolled = false;
         this.#skillId = skillId;
@@ -446,10 +453,10 @@ export class D20Popup extends Popup {
         // TODO language (Target, Skill, Critical Hit, etc...)
         this.#dom.targetNumber.textContent = `Target: ${targetVal}`;
         this.#dom.targetNumberBreakdown.textContent = `${skillVal} (Skill) + ${specialVal} (SPECIAL)`;
-        this.#dom.critBreakdown.textContent = `Critical Hit: Roll ${critVal > 1 ? `≤` : `=`}${critVal}`;
+        this.#dom.critBreakdown.textContent = `Critical Hit: Roll ${critVal > 1 ? `≤` : `=`} ${critVal}`;
 
         this.#dom.dice.forEach((dice, index) => {
-            dice.textContent = this.#hasRolled ? this.#diceContent[index] : "?";
+            dice.textContent = this.#hasRolled ? this.#diceContent[index] : '?';
             dice.classList.toggle('active', this.#diceActive[index]);
             dice.classList.toggle('rerolled', this.#diceRerolled[index]);
             // '?' <= x and '?' >= x are always false.
@@ -459,7 +466,7 @@ export class D20Popup extends Popup {
         });
 
         // Don't update after rolling!
-        if(!this.#hasRolled) {
+        if (!this.#hasRolled) {
             this.#dom.apCost.textContent = this.#getApCost().toString();
         }
         this.#dom.aimCheckbox.checked = this.#isAiming;
@@ -467,61 +474,63 @@ export class D20Popup extends Popup {
 
         this.#dom.payedLuck.textContent = this.#getPayedLuck().toString();
         this.#dom.luckCost.textContent = `(${this.#getLuckCost()})`;
-        
+
         let successes = '?';
-        if(this.#hasRolled){
+        if (this.#hasRolled) {
             successes = 0;
             this.#diceContent.forEach(roll => {
                 const rollValue = Number(roll);
                 if (!isNaN(rollValue)) {
-                    if (rollValue <= critVal) successes += 2;
-                    else if (rollValue <= targetVal) successes++;
+                    if (rollValue <= critVal) {
+                        successes += 2;
+                    } else if (rollValue <= targetVal) {
+                        successes++;
+                    }
                 }
             });
         }
-        this.#dom.successesDisplay.textContent = `${t("successes")}: ${successes}`;
+        this.#dom.successesDisplay.textContent = `${t('successes')}: ${successes}`;
 
-        if(this.#objectId){
+        if (this.#objectId) {
             this.#dom.damageButton.style.display = 'block';
             this.#dom.damageButton.disabled = !this.#hasRolled;
         } else {
             this.#dom.damageButton.style.display = 'none';
         }
-        if(!this.#hasRolled){
-            this.#dom.rollButton.innerHTML = spacedTranslate("roll", "reroll");
+        if (!this.#hasRolled) {
+            this.#dom.rollButton.innerHTML = spacedTranslate('roll', 'reroll');
         } else {
-            this.#dom.rollButton.innerHTML = spacedTranslate("reroll", "roll");
+            this.#dom.rollButton.innerHTML = spacedTranslate('reroll', 'roll');
         }
     }
 
-    #onDiceClick(index){
+    #onDiceClick(index) {
         if (!this.#hasRolled) {
-            const activeDice = Math.max(2, index + 1)
+            const activeDice = Math.max(2, index + 1);
             this.#diceActive = [false, false, false, false, false];
             this.#diceActive.fill(true, 0, activeDice);
-        } else if(this.#diceContent[index] !== '?' && !this.#diceRerolled[index]){
+        } else if (this.#diceContent[index] !== '?' && !this.#diceRerolled[index]) {
             this.#diceActive[index] = !this.#diceActive[index];
         }
         this._render();
     }
 
-    #onRoll(){
-
+    #onRoll() {
         if (this.#getActiveDiceCount() === 0) {
-            return alertPopup("selectDiceAlert");
+            return alertPopup('selectDiceAlert');
         }
 
-        let luckCost = this.#getLuckCost();
+        const luckCost = this.#getLuckCost();
         if (this.#character.currentLuck < luckCost) {
-            return alertPopup("notEnoughLuckAlert");
+            return alertPopup('notEnoughLuckAlert');
         }
 
         this.#character.currentLuck -= luckCost;
 
         this.#diceActive.forEach((isActive, index) => {
-            if(isActive){
-                this.#diceContent[index] = Math.floor(Math.random() * 20) + 1
-                if(this.#hasRolled){
+            if (isActive) {
+                this.#diceContent[index] = Math.floor(Math.random() * 20) + 1;
+                if (this.#hasRolled) {
                     this.#diceRerolled[index] = true;
                 }
             }
@@ -534,30 +543,34 @@ export class D20Popup extends Popup {
         this._render();
     }
 
-    #getActiveDice(){
+    #getActiveDice() {
         return this.#diceActive.filter(Boolean);
     }
 
-    #getActiveDiceCount(){
+    #getActiveDiceCount() {
         return this.#getActiveDice().length;
     }
 
-    #getRerolledDiceCount(){
+    #getRerolledDiceCount() {
         return this.#diceRerolled.filter(Boolean).length;
     }
 
-    #getApCost(){
+    #getApCost() {
         switch (this.#getActiveDiceCount()) {
-            case 5: return 6;
-            case 4: return 3;
-            case 3: return 1;
-            default: return 0;
+            case 5:
+                return 6;
+            case 4:
+                return 3;
+            case 3:
+                return 1;
+            default:
+                return 0;
         }
     }
 
-    #getLuckCost(){
+    #getLuckCost() {
         let luckCost;
-        if(!this.#hasRolled){
+        if (!this.#hasRolled) {
             luckCost = this.#isUsingLuck ? 1 : 0;
         } else {
             const rerollingCount = this.#getActiveDiceCount();
@@ -574,13 +587,15 @@ export class D20Popup extends Popup {
         return Math.max(0, luckCost);
     }
 
-    #getPayedLuck(){
+    #getPayedLuck() {
         let payedLuck = 0;
-        if(this.#hasRolled){
+        if (this.#hasRolled) {
             const rerolledCount = this.#getRerolledDiceCount();
 
             // Start with luck from checkbox
-            if (this.#isUsingLuck) payedLuck += 1;
+            if (this.#isUsingLuck) {
+                payedLuck += 1;
+            }
 
             // Add luck paid for rerolls
             payedLuck += rerolledCount;
@@ -597,7 +612,7 @@ export class D20Popup extends Popup {
 export class D6Popup extends Popup {
     #dom;
 
-    constructor(){
+    constructor() {
         super('popup-d6');
         this.#dom = {
             weaponName: document.getElementById('d6-weapon-name'),
@@ -613,8 +628,8 @@ export class D6Popup extends Popup {
             luckPayed: document.getElementById('popup-d6-payed-luck'),
             totalDamage: document.getElementById('d6-total-damage'),
             totalEffects: document.getElementById('d6-total-effects'),
-            rollButton: document.getElementById('d6-roll-button')
-        }
+            rollButton: document.getElementById('d6-roll-button'),
+        };
         this.#dom.rollButton.addEventListener('click', () => this.#onRoll());
     }
 
@@ -623,7 +638,6 @@ export class D6Popup extends Popup {
     #object;
     #hasAimed;
     #hasAccurate;
-    #isUsingAccurate;
     #isGatling;
     #ammoStep;
 
@@ -642,21 +656,18 @@ export class D6Popup extends Popup {
     #extraHitsTitle;
     #extraHitsType;
 
-
     #ammoPayed;
     #ammoCost;
     #luckPayed;
     #luckCost;
 
-    _initialize(objectId, hasAimed = false){
-
+    _initialize(objectId, hasAimed = false) {
         const weapon = getDataManager().weapon[objectId];
 
         this.#object = weapon;
         this.#hasAimed = hasAimed;
-        this.#hasAccurate = (weapon.QUALITIES || []).includes("qualityAccurate");
-        this.#isUsingAccurate = false;
-        this.#isGatling = (weapon.QUALITIES || []).includes("qualityGatling");
+        this.#hasAccurate = (weapon.QUALITIES || []).includes('qualityAccurate');
+        this.#isGatling = (weapon.QUALITIES || []).includes('qualityGatling');
         this.#ammoStep = this.#isGatling ? 10 : 1;
 
         this.#character = characterData;
@@ -665,8 +676,8 @@ export class D6Popup extends Popup {
         this.#ammoCost = this.#ammoStep;
         this.#ammoPayed = 0;
         let payedAmmoDisplay = 'flex';
-        if(isMelee(this.#object.TYPE)){
-            this.#ammoCost = t("na")
+        if (isMelee(this.#object.TYPE)) {
+            this.#ammoCost = t('na');
             payedAmmoDisplay = 'none';
         }
         this.#dom.ammoPayed.style.display = payedAmmoDisplay;
@@ -692,66 +703,66 @@ export class D6Popup extends Popup {
             this.#dom.tagsContainer.appendChild(tag);
         });
 
-
         this.#dom.damageDiceContainer.innerHTML = '';
 
         let damageRating = Number(weapon.DAMAGE_RATING);
-        if(isMelee(this.#object.TYPE)){
+        if (isMelee(this.#object.TYPE)) {
             damageRating += this.#character.meleeDamage;
         }
 
-        for (let i = 0; i < damageRating; i++) {
+        Array.from({ length: damageRating }, (_, i) => {
             const diceDiv = this.#createD6Div(i, false);
             this.#dom.damageDiceContainer.appendChild(diceDiv);
-        }
-        this.#diceActive = Array(damageRating).fill(true)
-        this.#diceRerolled = Array(damageRating).fill(false)
-        this.#diceClasses = Array(damageRating).fill(null)
+        });
+        this.#diceActive = Array(damageRating).fill(true);
+        this.#diceRerolled = Array(damageRating).fill(false);
+        this.#diceClasses = Array(damageRating).fill(null);
 
         this.#dom.extraHitsType.style.border = undefined;
         const fireRate = weapon.FIRE_RATE;
         let extraDice = 0;
-        this.#extraHitsTitle = t("extraHits");
+        this.#extraHitsTitle = t('extraHits');
         if (isMelee(this.#object.TYPE)) {
             extraDice = 3;
-            this.#extraHitsType = "ap";
+            this.#extraHitsType = 'ap';
         } else if (fireRate > 0) {
             extraDice = Number(fireRate * (this.#isGatling ? 2 : 1));
-            this.#extraHitsType = "ammo";
+            this.#extraHitsType = 'ammo';
         } else {
             this.#extraHitsType = null;
         }
-        if(this.#hasAimed && this.#hasAccurate){
-            if(this.#extraHitsType === "ammo"){
+        if (this.#hasAimed && this.#hasAccurate) {
+            if (this.#extraHitsType === 'ammo') {
                 // TODO when implementing weapon mods check this out
                 //  (and finish implementing, for example add click listener to extraHitsType to change AP/Ammo)
-                this.#dom.extraHitsType.style.border = "var(--border-primary-thin)";
+                this.#dom.extraHitsType.style.border = 'var(--border-primary-thin)';
             }
-            if(this.#extraHitsType == null)
-                this.#extraHitsType = "ap";
+            if (this.#extraHitsType === null) {
+                this.#extraHitsType = 'ap';
+            }
         }
         this.#initExtraDice(extraDice);
     }
 
-    #initExtraDice(diceNumber){
-        this.#extraDiceActive = Array(diceNumber).fill(false)
-        this.#extraDiceRerolled = Array(diceNumber).fill(false)
-        this.#extraDiceClasses = Array(diceNumber).fill(null)
+    #initExtraDice(diceNumber) {
+        this.#extraDiceActive = Array(diceNumber).fill(false);
+        this.#extraDiceRerolled = Array(diceNumber).fill(false);
+        this.#extraDiceClasses = Array(diceNumber).fill(null);
         this.#dom.extraHitsContainer.innerHTML = '';
-        for (let i = 0; i < diceNumber; i++) {
+        Array.from({ length: diceNumber }, (_, i) => {
             const diceDiv = this.#createD6Div(i, true);
             this.#dom.extraHitsContainer.appendChild(diceDiv);
-        }
+        });
     }
 
-    _render(){
+    _render() {
         const weaponName = t(this.#object.ID);
         this.#dom.weaponName.textContent = weaponName;
         this.#dom.weaponName.style.fontSize = getVariableFontSize(weaponName);
         this.#dom.damageType.textContent = t(this.#object.DAMAGE_TYPE);
 
         const dice = this.#dom.damageDiceContainer.querySelectorAll('.d6-dice');
-        for(const [index, diceClass] of this.#diceClasses.entries()){
+        for (const [index, diceClass] of this.#diceClasses.entries()) {
             this.#setDiceClass(dice[index], diceClass);
             dice[index].classList.toggle('active', this.#diceActive[index]);
             dice[index].classList.toggle('rerolled', this.#diceRerolled[index]);
@@ -761,13 +772,13 @@ export class D6Popup extends Popup {
         this.#dom.extraHitsType.textContent = `[${t(this.#extraHitsType)}]`;
         this.#dom.extraHitsContainer.style.display = this.#object.FIRE_RATE <= 0 ? 'none' : 'flex';
         const extraDice = this.#dom.extraHitsContainer.querySelectorAll('.d6-dice');
-        for(const [index, diceClass] of this.#extraDiceClasses.entries()){
+        for (const [index, diceClass] of this.#extraDiceClasses.entries()) {
             this.#setDiceClass(extraDice[index], diceClass);
             extraDice[index].classList.toggle('active', this.#extraDiceActive[index]);
             extraDice[index].classList.toggle('rerolled', this.#extraDiceRerolled[index]);
         }
 
-        if(!isMelee(this.#object.TYPE)) {
+        if (!isMelee(this.#object.TYPE)) {
             this.#dom.ammoPayed.textContent = this.#ammoPayed.toString();
         }
         this.#dom.ammoCost.textContent = `(${this.#ammoCost})`;
@@ -775,25 +786,27 @@ export class D6Popup extends Popup {
         this.#dom.luckCost.textContent = `(${this.#getLuckCost()})`;
 
         const totEffects = this.#getEffectCount();
-        const totDamage = totEffects + this.#getDamage1Count() + this.#getDamage2Count() * 2
-        // Damage and effects display
+        const totDamage = totEffects + this.#getDamage1Count() + this.#getDamage2Count() * 2;
+        // Update damage and effects display
         this.#dom.totalDamage.textContent = this.#hasRolled ? totDamage : '?';
         this.#dom.totalEffects.textContent = this.#hasRolled ? totEffects : '?';
-        this.#dom.rollButton.innerHTML = this.#hasRolled ? spacedTranslate("reroll", "roll") : spacedTranslate("roll", "reroll");
+        this.#dom.rollButton.innerHTML = this.#hasRolled
+            ? spacedTranslate('reroll', 'roll')
+            : spacedTranslate('roll', 'reroll');
     }
 
-    #setDiceClass(dice, diceClass){
+    #setDiceClass(dice, diceClass) {
         dice.textContent = diceClass ? '' : '?';
-        ["d6-face-damage1", "d6-face-damage2", "d6-face-effect", "d6-face-blank"].forEach(c => {
-            dice.classList.toggle(c, diceClass === c)
+        ['d6-face-damage1', 'd6-face-damage2', 'd6-face-effect', 'd6-face-blank'].forEach(c => {
+            dice.classList.toggle(c, diceClass === c);
         });
     }
 
-    #getEffectCount(){
+    #getEffectCount() {
         return this._rootElement.querySelectorAll('.d6-dice.d6-face-effect').length;
     }
 
-    #getDamage1Count(){
+    #getDamage1Count() {
         return this._rootElement.querySelectorAll('.d6-dice.d6-face-damage1').length;
     }
 
@@ -804,102 +817,113 @@ export class D6Popup extends Popup {
     #createD6Div(index, isExtra) {
         const diceDiv = document.createElement('div');
         diceDiv.className = 'd6-dice dice';
-        diceDiv.addEventListener('click', () => this.#onDiceClick(index, isExtra))
-        return diceDiv
+        diceDiv.addEventListener('click', () => this.#onDiceClick(index, isExtra));
+        return diceDiv;
     }
 
-    #onDiceClick(index, isExtra){
-        if(!isExtra) {
+    #onDiceClick(index, isExtra) {
+        if (!isExtra) {
             if (this.#hasRolled && !this.#diceRerolled[index]) {
                 this.#diceActive[index] = !this.#diceActive[index];
             }
         } else {
-            if(!this.#hasRolled){
+            if (!this.#hasRolled) {
                 let ammoId = this.#object.AMMO_TYPE;
-                if(ammoId === "self"){
+                if (ammoId === 'self') {
                     ammoId = this.#object.ID;
-                } else if(ammoId === "na"){
+                } else if (ammoId === 'na') {
                     ammoId = null;
                 }
-                let isActivating = !this.#extraDiceActive[index];
-                if(isActivating && ammoId && this.#character.getItemQuantity(ammoId) < this.#ammoCost+this.#ammoStep){
-                    alertPopup("notEnoughAmmoAlert");
+                const isActivating = !this.#extraDiceActive[index];
+                if (
+                    isActivating &&
+                    ammoId &&
+                    this.#character.getItemQuantity(ammoId) < this.#ammoCost + this.#ammoStep
+                ) {
+                    alertPopup('notEnoughAmmoAlert');
                 } else {
                     this.#extraDiceActive[index] = !this.#extraDiceActive[index];
-                    if(this.#isGatling) {
+                    if (this.#isGatling) {
                         const indexOffset = index % 2 === 0 ? +1 : -1;
-                        this.#extraDiceActive[index + indexOffset] = !this.#extraDiceActive[index + indexOffset];
+                        this.#extraDiceActive[index + indexOffset] =
+                            !this.#extraDiceActive[index + indexOffset];
                     }
-                    if(ammoId)
+                    if (ammoId) {
                         this.#ammoCost += (isActivating ? 1 : -1) * this.#ammoStep;
+                    }
                 }
-            } else if (this.#extraDiceClasses[index] && !this.#extraDiceRerolled[index]){
+            } else if (this.#extraDiceClasses[index] && !this.#extraDiceRerolled[index]) {
                 this.#extraDiceActive[index] = !this.#extraDiceActive[index];
             }
         }
         this._render();
     }
 
-    #getActiveCount(){
+    #getActiveCount() {
         return this.#getActiveDiceCount() + this.#getActiveExtraDiceCount();
     }
 
-    #getActiveDiceCount(){
-        return this.#diceActive.filter(Boolean).length
+    #getActiveDiceCount() {
+        return this.#diceActive.filter(Boolean).length;
     }
 
-    #getActiveExtraDiceCount(){
-        return this.#extraDiceActive.filter(Boolean).length
+    #getActiveExtraDiceCount() {
+        return this.#extraDiceActive.filter(Boolean).length;
     }
 
-    #getRerolledCount(){
+    #getRerolledCount() {
         return this.#getRerolledDiceCount() + this.#getRerolledExtraDiceCount();
     }
 
-    #getRerolledDiceCount(){
-        return this.#diceRerolled.filter(Boolean).length
+    #getRerolledDiceCount() {
+        return this.#diceRerolled.filter(Boolean).length;
     }
 
-    #getRerolledExtraDiceCount(){
-        return this.#extraDiceRerolled.filter(Boolean).length
+    #getRerolledExtraDiceCount() {
+        return this.#extraDiceRerolled.filter(Boolean).length;
     }
 
-    #getLuckCost(){
+    #getLuckCost() {
         let luckCost = 0;
-        if(this.#hasRolled){
+        if (this.#hasRolled) {
             // Rerolling damage dice costs 1 luck every 3 rerolled dice
             const rerolledCount = this.#getRerolledCount();
-            const payedLeftover = rerolledCount % 3;// 1 luck x 3 rerolls. Luck for leftover was paid previous roll.
-            let freeRerolls = payedLeftover > 0 ? 3 - payedLeftover : 0;
+            const payedLeftover = rerolledCount % 3; // 1 luck x 3 rerolls. Luck for leftover was paid previous roll.
+            const freeRerolls = payedLeftover > 0 ? 3 - payedLeftover : 0;
             luckCost = Math.ceil((this.#getActiveCount() - freeRerolls) / 3);
         }
         return luckCost;
     }
 
-    #onRoll(){
+    #onRoll() {
         if (this.#getActiveCount() === 0) {
-            return alertPopup("selectDiceAlert");
+            return alertPopup('selectDiceAlert');
         }
 
         let luckCost = this.#getLuckCost();
         luckCost = luckCost > 0 ? luckCost : 0;
         if (this.#character.currentLuck < luckCost) {
-            return alertPopup("notEnoughLuckAlert");
+            return alertPopup('notEnoughLuckAlert');
         }
         this.#character.currentLuck -= luckCost;
 
         this.#diceActive.forEach((isActive, index) => {
-            if(isActive){
+            if (isActive) {
                 const roll = Math.floor(Math.random() * 6) + 1;
 
                 let diceClass;
-                if(roll >= 5) diceClass = "d6-face-blank";
-                else if(roll >= 3) diceClass = "d6-face-effect";
-                else if(roll >=2) diceClass = "d6-face-damage2";
-                else diceClass = "d6-face-damage1";
+                if (roll >= 5) {
+                    diceClass = 'd6-face-blank';
+                } else if (roll >= 3) {
+                    diceClass = 'd6-face-effect';
+                } else if (roll >= 2) {
+                    diceClass = 'd6-face-damage2';
+                } else {
+                    diceClass = 'd6-face-damage1';
+                }
 
                 this.#diceClasses[index] = diceClass;
-                if(this.#hasRolled){
+                if (this.#hasRolled) {
                     this.#diceRerolled[index] = true;
                 }
             }
@@ -907,29 +931,34 @@ export class D6Popup extends Popup {
         this.#diceActive = Array(this.#diceActive.length).fill(false);
 
         this.#extraDiceActive.forEach((isActive, index) => {
-            if(isActive){
+            if (isActive) {
                 const roll = Math.floor(Math.random() * 6) + 1;
 
                 let diceClass;
-                if(roll >= 5) diceClass = "d6-face-blank";
-                else if(roll >= 3) diceClass = "d6-face-effect";
-                else if(roll >=2) diceClass = "d6-face-damage2";
-                else diceClass = "d6-face-damage1";
+                if (roll >= 5) {
+                    diceClass = 'd6-face-blank';
+                } else if (roll >= 3) {
+                    diceClass = 'd6-face-effect';
+                } else if (roll >= 2) {
+                    diceClass = 'd6-face-damage2';
+                } else {
+                    diceClass = 'd6-face-damage1';
+                }
 
                 this.#extraDiceClasses[index] = diceClass;
-                if(this.#hasRolled){
+                if (this.#hasRolled) {
                     this.#extraDiceRerolled[index] = true;
                 }
             }
         });
         this.#extraDiceActive = Array(this.#extraDiceActive.length).fill(false);
 
-        if(!this.#hasRolled) {
+        if (!this.#hasRolled) {
             this.#character.removeItem(this.#object.AMMO_TYPE, this.#ammoCost);
             this.#ammoPayed = this.#ammoCost;
             this.#ammoCost = 0;
-            if(this.#effects.includes("effectBurst")){
-                this.#ammoCost = `+${t("effectBurst")}`;
+            if (this.#effects.includes('effectBurst')) {
+                this.#ammoCost = `+${t('effectBurst')}`;
             }
         }
         this.#luckPayed += this.#luckCost;
@@ -941,15 +970,14 @@ export class D6Popup extends Popup {
 }
 
 export class AddItemPopup extends Popup {
-
     #dom;
 
-    constructor(){
+    constructor() {
         super('popup-addItem');
         this.#dom = {
             select: document.getElementById('popup-addItem__selector'),
             quantity: document.getElementById('popup-addItem__quantity'),
-        }
+        };
     }
 
     _initialize(itemType) {
@@ -957,21 +985,25 @@ export class AddItemPopup extends Popup {
         const isApparel = getDataManager().isType(itemType, 'apparel');
         const isAid = getDataManager().isType(itemType, 'aid');
 
-        let data ;
-        let availableItems;
-        if(isWeapon) data = getDataManager().weapon;
-        else if(isApparel) data = getDataManager().apparel;
-        else if(isAid) data = getDataManager().aid;
-        else data = getDataManager().other;
+        let data;
+        if (isWeapon) {
+            data = getDataManager().weapon;
+        } else if (isApparel) {
+            data = getDataManager().apparel;
+        } else if (isAid) {
+            data = getDataManager().aid;
+        } else {
+            data = getDataManager().other;
+        }
 
-        availableItems = Object.values(data).filter(item =>
-            item.TYPE === itemType && !getDataManager().isUnacquirable(item.ID)
+        const availableItems = Object.values(data).filter(
+            item => item.TYPE === itemType && !getDataManager().isUnacquirable(item.ID)
         );
 
         // Populate select element
-        this.#dom.select.innerHTML = "";
-        const formattedItemType = t(isWeapon ? "weapons" : itemType)
-        const defaultOptionText = t("default_add_item_option").replace("%s", formattedItemType)
+        this.#dom.select.innerHTML = '';
+        const formattedItemType = t(isWeapon ? 'weapons' : itemType);
+        const defaultOptionText = t('default_add_item_option').replace('%s', formattedItemType);
         const defaultOption = new Option(defaultOptionText, '', true, true);
         defaultOption.disabled = true;
         this.#dom.select.appendChild(defaultOption);
@@ -979,12 +1011,12 @@ export class AddItemPopup extends Popup {
 
         availableItems.forEach(item => {
             let suffixes = [''];
-            if(item.ID.endsWith("Arm") || item.ID.endsWith("Leg")){
-                suffixes = ["left", "right"];
+            if (item.ID.endsWith('Arm') || item.ID.endsWith('Leg')) {
+                suffixes = ['left', 'right'];
             }
-            for(let suffix of suffixes) {
+            for (let suffix of suffixes) {
                 let textSuffix = '';
-                if(suffix) {
+                if (suffix) {
                     textSuffix = ` (${t(suffix)})`;
                     suffix = `_${suffix}`;
                 }
@@ -1011,12 +1043,12 @@ export class AlertPopup extends Popup {
     #dom;
 
     constructor() {
-        super("popup-alert");
+        super('popup-alert');
         this.#dom = {
-            title: document.getElementById("popup-alert__title"),
-            content: document.getElementById("popup-alert__content"),
-            buttonConfirm: this._rootElement.querySelector(".popup__button-confirm")
-        }
+            title: document.getElementById('popup-alert__title'),
+            content: document.getElementById('popup-alert__content'),
+            buttonConfirm: this._rootElement.querySelector('.popup__button-confirm'),
+        };
     }
 
     #title;
@@ -1024,13 +1056,13 @@ export class AlertPopup extends Popup {
     #confirmCallback;
 
     _initialize(content, confirmCallback = null) {
-        this.#title = t(confirmCallback ? "confirm" : "warning");
+        this.#title = t(confirmCallback ? 'confirm' : 'warning');
         this.#content = content.indexOf(' ') > -1 ? content : t(content);
         this.#confirmCallback = confirmCallback;
-        this.#dom.buttonConfirm.style.display = confirmCallback ? "block" : "none";
+        this.#dom.buttonConfirm.style.display = confirmCallback ? 'block' : 'none';
     }
 
-    _render(){
+    _render() {
         this.#dom.title.textContent = this.#title;
         this.#dom.content.textContent = this.#content;
     }
@@ -1043,63 +1075,64 @@ export class AlertPopup extends Popup {
     _close() {
         this._rootElement.close();
     }
-
 }
-
-
 
 // TODO might have a better way, might conflict with multiple dialogs + tooltips etc
-export function closeActivePopup() {
+export const closeActivePopup = () => {
     closePopup(document.querySelector('dialog[open]'));
-}
+};
 
-export function closePopup(popupToClose) {
+export const closePopup = popupToClose => {
     if (popupToClose) {
-        popupToClose.addEventListener('animationend', () => {
-            popupToClose.close();
-            popupToClose.classList.remove('dialog-closing');
-        }, { once: true });
+        popupToClose.addEventListener(
+            'animationend',
+            () => {
+                popupToClose.close();
+                popupToClose.classList.remove('dialog-closing');
+            },
+            { once: true }
+        );
         popupToClose.classList.add('dialog-closing');
     }
-}
+};
 
 // Initialize all popups and make them globally available
-export function initializePopups() {
+export const initializePopups = () => {
     const d20Popup = new D20Popup();
     window.openD20Popup = (skillId, objectId) => {
         d20Popup.open(skillId, objectId);
     };
 
     const d6Popup = new D6Popup();
-    window.openD6Popup = (objectId) => {
+    window.openD6Popup = objectId => {
         d6Popup.open(objectId);
     };
 
     const tradeItemPopup = new TradeItemPopup();
-    window.openSellItemPopup = (itemId) => {
+    window.openSellItemPopup = itemId => {
         tradeItemPopup.open(itemId);
-    }
+    };
 
     // They are unused because they auto-handle opening logic
     const statAdjustmentPopup = new StatAdjustmentPopup();
     const tagTooltip = new TagTooltip();
 
     const alertPopup = new AlertPopup();
-    window.alertPopup = (message) => {
+    window.alertPopup = message => {
         alertPopup.open(message);
-    }
+    };
     window.confirmPopup = (message, confirmCallback) => {
         alertPopup.open(message, confirmCallback);
-    }
+    };
 
     const addItemPopup = new AddItemPopup();
-    window.openAddItemModal = (itemType) => {
+    window.openAddItemModal = itemType => {
         addItemPopup.open(itemType);
-    }
+    };
 
-    // Legacy notification popup - to be refactored
+    // Simple notification popup
     const popups = {
-        notification: document.getElementById('notification-popup')
+        notification: document.getElementById('notification-popup'),
     };
 
     return {
@@ -1110,6 +1143,6 @@ export function initializePopups() {
         tagTooltip,
         alertPopup,
         addItemPopup,
-        popups
+        popups,
     };
-}
+};

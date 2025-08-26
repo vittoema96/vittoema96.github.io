@@ -1,44 +1,45 @@
 // GameRules.js
-import { SPECIAL, SKILLS, BODY_PARTS } from './constants.js';
+import { SPECIAL, SKILLS } from './constants.js';
 
-export function getMaxHp(characterData) {
-    return characterData.special[SPECIAL.ENDURANCE] + characterData.special[SPECIAL.LUCK] + characterData.level - 1;
-}
+export const getMaxHp = characterData =>
+    characterData.special[SPECIAL.ENDURANCE] +
+    characterData.special[SPECIAL.LUCK] +
+    characterData.level -
+    1;
 
-export function getMeleeDamage(characterData) {
+export const getMeleeDamage = characterData => {
     const str = characterData.special[SPECIAL.STRENGTH];
-    if (str < 7) return 0;
-    if (str < 9) return 1;
-    if (str < 11) return 2;
+    if (str < 7) {
+        return 0;
+    }
+    if (str < 9) {
+        return 1;
+    }
+    if (str < 11) {
+        return 2;
+    }
     return 3;
-}
+};
 
-export function getMaxWeight(characterData) {
-    return 75 + characterData.special[SPECIAL.STRENGTH] * 5;
-}
+export const getMaxWeight = characterData => 75 + characterData.special[SPECIAL.STRENGTH] * 5;
 
 export function getCurrentWeight(characterData, dataManager) {
     return characterData.items.reduce((total, item) => {
         const itemData = dataManager.getItem(item.id);
         const weight = Number(itemData?.WEIGHT) || 0;
-        return total + (weight * (item.quantity || 1));
+        return total + weight * (item.quantity || 1);
     }, 0);
 }
 
 // Calculate character's defense value based on agility
-export function getDefense(characterData) {
-    return characterData.special[SPECIAL.AGILITY] < 9 ? 1 : 2;
-}
+export const getDefense = characterData => (characterData.special[SPECIAL.AGILITY] < 9 ? 1 : 2);
 
 // Calculate character's initiative based on agility and perception
-export function getInitiative(characterData) {
-    return characterData.special[SPECIAL.AGILITY] + characterData.special[SPECIAL.PERCEPTION];
-}
+export const getInitiative = characterData =>
+    characterData.special[SPECIAL.AGILITY] + characterData.special[SPECIAL.PERCEPTION];
 
 // Check if a skill is a melee combat skill
-export function isMelee(skill) {
-    return [SKILLS.UNARMED, SKILLS.MELEE_WEAPONS].includes(skill);
-}
+export const isMelee = skill => [SKILLS.UNARMED, SKILLS.MELEE_WEAPONS].includes(skill);
 
 // Get the governing SPECIAL attribute for a skill
 export function getGoverningSpecial(skill) {
@@ -59,27 +60,27 @@ export function getGoverningSpecial(skill) {
         [SKILLS.SPEECH]: SPECIAL.CHARISMA,
         [SKILLS.SURVIVAL]: SPECIAL.ENDURANCE,
         [SKILLS.THROWING]: SPECIAL.AGILITY,
-        [SKILLS.UNARMED]: SPECIAL.STRENGTH
+        [SKILLS.UNARMED]: SPECIAL.STRENGTH,
     };
     return skillToSpecialMap[skill];
 }
 
 // Determine which armor layers an item type covers
-export function getItemCoveredLayers(itemType) {
+export const getItemCoveredLayers = itemType => {
     const result = [];
-    const isBoth = ["outfit", "headgear"].includes(itemType);
+    const isBoth = ['outfit', 'headgear'].includes(itemType);
 
-    if (itemType.endsWith("Armor") || isBoth) {
+    if (itemType.endsWith('Armor') || isBoth) {
         result.push('over');
     }
-    if (itemType === "clothing" || isBoth) {
+    if (itemType === 'clothing' || isBoth) {
         result.push('under');
     }
     return result;
-}
+};
 
 // Calculate damage reduction for all body locations
-export function getLocationsDR(characterData, dataManager) {
+export const getLocationsDR = (characterData, dataManager) => {
     const damageTypes = ['physical', 'energy', 'radiation'];
     const bodyParts = ['head', 'leftArm', 'rightArm', 'torso', 'leftLeg', 'rightLeg'];
 
@@ -96,11 +97,13 @@ export function getLocationsDR(characterData, dataManager) {
     // Calculate DR from equipped items
     characterData.items.forEach(item => {
         const itemData = dataManager.getItem(item.id);
-        if (!itemData || !itemData.LOCATIONS_COVERED) return;
+        if (!itemData || !itemData.LOCATIONS_COVERED) {
+            return;
+        }
 
         // Get locations this item covers
         const locations = [];
-        for (let location of itemData.LOCATIONS_COVERED) {
+        for (const location of itemData.LOCATIONS_COVERED) {
             if (location === 'arms') {
                 locations.push('leftArm', 'rightArm');
             } else if (location === 'legs') {
@@ -121,4 +124,4 @@ export function getLocationsDR(characterData, dataManager) {
     });
 
     return result;
-}
+};

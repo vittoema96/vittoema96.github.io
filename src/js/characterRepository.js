@@ -1,12 +1,12 @@
-import { SKILLS, SPECIAL, DEFAULT_CHARACTER, STORAGE_CONFIG } from "./constants.js";
+import { DEFAULT_CHARACTER, STORAGE_CONFIG } from './constants.js';
 
-export function saveCharacter(characterId, data) {
+export const saveCharacter = (characterId, data) => {
     const storageKey = `${STORAGE_CONFIG.CHARACTER_PREFIX}${characterId}`;
     localStorage.setItem(storageKey, JSON.stringify(data));
     console.log(`Character data for '${characterId}' saved.`);
-}
+};
 
-export function loadCharacterData(characterId = STORAGE_CONFIG.DEFAULT_CHARACTER_ID) {
+export const loadCharacterData = (characterId = STORAGE_CONFIG.DEFAULT_CHARACTER_ID) => {
     const storageKey = `${STORAGE_CONFIG.CHARACTER_PREFIX}${characterId}`;
     const savedDataJSON = localStorage.getItem(storageKey);
 
@@ -26,15 +26,13 @@ export function loadCharacterData(characterId = STORAGE_CONFIG.DEFAULT_CHARACTER
         }
     }
     return JSON.parse(JSON.stringify(DEFAULT_CHARACTER));
-}
+};
 
 // Export character data as JSON string for download
-export function exportCharacterToJSON(characterData) {
-    return JSON.stringify(characterData, null, 2);
-}
+export const exportCharacterToJSON = characterData => JSON.stringify(characterData, null, 2);
 
 // Import character data from JSON string
-export function importCharacterFromJSON(jsonString) {
+export const importCharacterFromJSON = jsonString => {
     try {
         const importedData = JSON.parse(jsonString);
 
@@ -56,15 +54,13 @@ export function importCharacterFromJSON(jsonString) {
         }
         throw error;
     }
-}
+};
 
 // Clear all character data from localStorage
-export function clearAllCharacterData() {
+export const clearAllCharacterData = () => {
     const keys = Object.keys(localStorage);
-    const characterKeys = keys.filter(key =>
-        key.startsWith(STORAGE_CONFIG.CHARACTER_PREFIX)
-    );
+    const characterKeys = keys.filter(key => key.startsWith(STORAGE_CONFIG.CHARACTER_PREFIX));
 
     characterKeys.forEach(key => localStorage.removeItem(key));
     console.log(`Cleared ${characterKeys.length} character data entries.`);
-}
+};

@@ -1,5 +1,10 @@
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import { readFileSync } from 'fs'
+
+// Read version from package.json (single source of truth)
+const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'))
+const version = packageJson.version
 
 export default defineConfig({
   // Source files are in src/ directory
@@ -39,7 +44,7 @@ export default defineConfig({
       manifest: {
         name: 'Pip-Boy 3000',
         short_name: 'PB3K',
-        version: 'v0.0.2-alpha',
+        version: `v${version}`,
         description: 'A Pip-Boy 3000 companion app for managing your character stats and inventory.',
         start_url: '/',
         scope: '/',
