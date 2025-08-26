@@ -21,7 +21,7 @@
 
         <!-- Font Awesome - Used for the Gear icon on Settings-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="styles/styles.css">
 
 
         <title>Pip-Boy 3000</title>
@@ -83,13 +83,13 @@
                 <select id="popup-d20__selector-special"
                         aria-label="Special to use?">
                     <!-- TODO move to js -->
-                     <option data-lang-id="strength" value="strength">Strength</option>
-                     <option data-lang-id="perception" value="perception">Perception</option>
-                     <option data-lang-id="endurance" value="endurance">Endurance</option>
-                     <option data-lang-id="charisma" value="charisma">Charisma</option>
-                     <option data-lang-id="intelligence" value="intelligence">Intelligence</option>
-                     <option data-lang-id="agility" value="agility">Agility</option>
-                     <option data-lang-id="luck" value="luck">Luck</option>
+                     <option data-i18n="strength" value="strength">Strength</option>
+                     <option data-i18n="perception" value="perception">Perception</option>
+                     <option data-i18n="endurance" value="endurance">Endurance</option>
+                     <option data-i18n="charisma" value="charisma">Charisma</option>
+                     <option data-i18n="intelligence" value="intelligence">Intelligence</option>
+                     <option data-i18n="agility" value="agility">Agility</option>
+                     <option data-i18n="luck" value="luck">Luck</option>
                 </select>
                 <input type="checkbox"
                        class="themed-svg" data-icon="luck"
@@ -109,18 +109,18 @@
                 <div class="d20-dice dice" data-value="5">?</div>
             </div>
             <div class="row l-distributed l-lastSmall">
-                <span data-lang-id="apCost">AP Cost</span>
+                <span data-i18n="apCost">AP Cost</span>
                 <span id="popup-d20-ap-cost">2</span>
             </div>
             <div class="row l-distributed l-lastSmall">
-                <span data-lang-id="aim" data-lang-format="%s?">Aim?</span>
+                <span data-i18n="aimQuestion">Aim?</span>
                 <input type="checkbox"
                        class="themed-svg" data-icon="attack"
                        id="popup-d20-aim-checkbox"
                        aria-label="Aim"/>
             </div>
             <div class="row l-distributed l-lastSmall">
-                <span data-lang-id="luckCost">Luck Cost</span>
+                <span data-i18n="luckCost">Luck Cost</span>
                 <div class="row l-centered">
                     <span id="popup-d20-payed-luck">1</span>
                     <span class="h5" id="popup-d20-luck-cost">(-1)+2</span>
@@ -132,11 +132,11 @@
             <footer>
                 <button class="popup__button-confirm"
                         id="popup-d20-damage-button"
-                        data-lang-id="damage">Damage</button>
+                        data-i18n="damage">Damage</button>
                 <button class="popup__button-confirm"
                         id="popup-d20-roll-button">Roll/Reroll</button>
                 <button class="popup__button-close"
-                        data-lang-id="close">Close</button>
+                        data-i18n="close">Close</button>
             </footer>
         </dialog>
 
@@ -156,14 +156,14 @@
                 <!-- Tags are added dynamically -->
             </div>
             <hr>
-            <span class="h3">Dadi Danno</span>
+            <span class="h3" data-i18n="damageDice">Damage Dice</span>
             <div class="row row--wrap l-centered"
                  id="d6-damage-dice-container">
                 <!-- Dices are added dynamically -->
             </div>
             <div class="row l-centered">
                 <span class="h3"
-                      id="d6-extra-hits-title">Colpi Extra</span>
+                      id="d6-extra-hits-title" data-i18n="extraHits">Extra Hits</span>
                 <span class="h3"
                       id="d6-extra-hits-type">AP/Ammo</span>
             </div>
@@ -173,14 +173,14 @@
             </div>
             <hr>
             <div class="row l-distributed l-lastSmall">
-                <span data-lang-id="luckCost">Luck Cost</span>
+                <span data-i18n="luckCost">Luck Cost</span>
                 <div class="row l-centered">
                     <span id="popup-d6-payed-luck">1</span>
                     <span id="popup-d6-luck-cost">(-1)+2</span>
                 </div>
             </div>
             <div class="row l-distributed l-lastSmall">
-                <span data-lang-id="ammoCost">Ammo Cost</span>
+                <span data-i18n="ammoCost">Ammo Cost</span>
                 <div class="row l-centered">
                     <span id="popup-d6-payed-ammo">1</span>
                     <span id="popup-d6-ammo-cost">(-1)+2</span>
@@ -190,13 +190,13 @@
             <div class="row l-distributed">
                 <div class="row l-centered">
                     <span class="h3"
-                          data-lang-id="damage" data-lang-format="%s:">Damage:</span>
+                          data-i18n="damageLabel">Damage:</span>
                     <span class="h3"
                           id="d6-total-damage">?</span>
                 </div>
                 <div class="row l-centered">
                     <span class="h3"
-                          data-lang-id="effects" data-lang-format="%s:">Effects:</span>
+                          data-i18n="effectsLabel">Effects:</span>
                     <span class="h3"
                           id="d6-total-effects">?</span>
                 </div>
@@ -206,14 +206,14 @@
                 <button class="popup__button-confirm"
                         id="d6-roll-button" >Roll/Reroll</button>
                 <button class="popup__button-close"
-                        data-lang-id="close">Close</button>
+                        data-i18n="close">Close</button>
             </footer>
         </dialog>
 
         <dialog id="popup-addItem">
             <header class="l-lastSmall">
-                <span class="h2 h1--margin-top" 
-                      data-lang-id="chooseItem" data-format="%s:">Choose an item:</span>
+                <span class="h2 h1--margin-top"
+                      data-i18n="chooseItemLabel">Choose an item:</span>
                 <button class="popup__button-x">&times;</button>
             </header>
             <hr>
@@ -227,32 +227,32 @@
             <hr>
             <footer>
                 <button class="popup__button-confirm"
-                data-lang-id="confirm">Confirm</button>
+                data-i18n="confirm">Confirm</button>
                 <button class="popup__button-close"
-                        data-lang-id="close">Close</button>
+                        data-i18n="close">Close</button>
             </footer>
         </dialog>
 
         <dialog id="popup-tradeItem">
             <header class="l-lastSmall">
-                <span class="h1" data-lang-id="barter">Barter</span>
+                <span class="h1" data-i18n="barter">Barter</span>
                 <button class="popup__button-x">&times;</button>
             </header>
             <span class="h5" id="tradeType">Selling/Buying</span>
             <hr>
             <div class="row l-distributed">
-                <span class="h3" 
-                      data-lang-id="quantity" data-lang-format="%s:">Quantity:</span>
+                <span class="h3"
+                      data-i18n="quantityLabel">Quantity:</span>
                 <input type="number" id="tradeQuantity" min="1" value="1" aria-label="Trade quantity" style="width: 80px; text-align: center;">
             </div>
             <div class="row l-distributed">
-                <span class="h3" 
-                      data-lang-id="price" data-lang-format="%s:">Price:</span>
+                <span class="h3"
+                      data-i18n="priceLabel">Price:</span>
                 <input type="number" id="tradePrice" min="1" value="1" aria-label="Trade price" style="width: 80px; text-align: center;">
             </div>
             <div class="row l-distributed">
                 <span class="h3"
-                      data-lang-id="total" data-lang-format="%s:">Total:</span>
+                      data-i18n="totalLabel">Total:</span>
                 <div class="row l-centered">
                     <span class="h3" id="tradeTotal">0</span>
                     <div class="themed-svg" data-icon="caps" style="margin:0.5rem; width:1rem; height:1rem;"></div>
@@ -260,15 +260,15 @@
             </div>
             <footer>
                 <button class="popup__button-confirm"
-                data-lang-id="confirm">Confirm</button>
+                data-i18n="confirm">Confirm</button>
                 <button class="popup__button-close"
-                        data-lang-id="close">Close</button>
+                        data-i18n="close">Close</button>
             </footer>
         </dialog>
 
         <dialog id="popup-editHeaderStats">
             <header class="l-lastSmall">
-                <span class="h1" data-lang-id="edit">Edit</span>
+                <span class="h1" data-i18n="edit">Edit</span>
                 <button class="popup__button-x">&times;</button>
             </header>
             <hr>
@@ -279,7 +279,7 @@
                 <span id="adjustHpOld"></span>
             </div>
             <hr>
-            <span class="h2" data-lang-id="caps">Caps</span>
+            <span class="h2" data-i18n="caps">Caps</span>
             <div class="row l-distributed l-lastSmall">
                 <input type="number" min="1" value="1"
                        id="adjustCapsNew"
@@ -292,7 +292,7 @@
                 </div>
             </div>
             <hr>
-            <span class="h2" data-lang-id="luck">Luck</span>
+            <span class="h2" data-i18n="luck">Luck</span>
             <div class="row l-distributed l-lastSmall">
                 <input type="number" min="1" value="1"
                        id="adjustLuckNew"
@@ -303,9 +303,9 @@
             <hr>
             <footer>
                 <button class="popup__button-confirm"
-                        data-lang-id="confirm">Confirm</button>
+                        data-i18n="confirm">Confirm</button>
                 <button class="popup__button-close"
-                        data-lang-id="close">Close</button>
+                        data-i18n="close">Close</button>
             </footer>
         </dialog>
 
@@ -320,9 +320,9 @@
             <hr>
             <footer>
                 <button class="popup__button-confirm"
-                        data-lang-id="confirm">Confirm</button>
+                        data-i18n="confirm">Confirm</button>
                 <button class="popup__button-close"
-                        data-lang-id="close">Close</button>
+                        data-i18n="close">Close</button>
             </footer>
         </dialog>
 
@@ -364,31 +364,31 @@
             <section id="stat-tabContent" class="tabContent">
                 <div id="c-special">
                     <div class="special" data-special="strength">
-                        <span class="special__name" data-lang-id="strength">Strength</span>
+                        <span class="special__name" data-i18n="strength">Strength</span>
                         <span class="special__value" id="special__value-strength">0</span>
                     </div>
                     <div class="special" data-special="perception">
-                        <span class="special__name" data-lang-id="perception">Perception</span>
+                        <span class="special__name" data-i18n="perception">Perception</span>
                         <span class="special__value" id="special__value-perception">0</span>
                     </div>
                     <div class="special" data-special="endurance">
-                        <span class="special__name" data-lang-id="endurance">Endurance</span>
+                        <span class="special__name" data-i18n="endurance">Endurance</span>
                         <span class="special__value" id="special__value-endurance">0</span>
                     </div>
                     <div class="special" data-special="charisma">
-                        <span class="special__name" data-lang-id="charisma">Charisma</span>
+                        <span class="special__name" data-i18n="charisma">Charisma</span>
                         <span class="special__value" id="special__value-charisma">0</span>
                     </div>
                     <div class="special" data-special="intelligence">
-                        <span class="special__name" data-lang-id="intelligence">Intelligence</span>
+                        <span class="special__name" data-i18n="intelligence">Intelligence</span>
                         <span class="special__value" id="special__value-intelligence">0</span>
                     </div>
                     <div class="special" data-special="agility">
-                        <span class="special__name" data-lang-id="agility">Agility</span>
+                        <span class="special__name" data-i18n="agility">Agility</span>
                         <span class="special__value" id="special__value-agility">0</span>
                     </div>
                     <div class="special" data-special="luck">
-                        <span class="special__name" data-lang-id="luck">Luck</span>
+                        <span class="special__name" data-i18n="luck">Luck</span>
                         <span class="special__value" id="special__value-luck">0</span>
                         <div id="sub-special" class="themed-svg sub-special ">
                             <span class="special__value" id="luck-current-value">0</span>
@@ -398,15 +398,15 @@
 
                 <div class="row row--spaced">
                     <div class="derived-stat">
-                        <span data-lang-id="defense">Defense</span>
+                        <span data-i18n="defense">Defense</span>
                         <span id="defense-value">0</span>
                     </div>
                     <div class="derived-stat">
-                        <span data-lang-id="initiative">Initiative</span>
+                        <span data-i18n="initiative">Initiative</span>
                         <span id="initiative-value">0</span>
                     </div>
                     <div class="derived-stat">
-                        <span data-lang-id="melee-damage">Melee Damage</span>
+                        <span data-i18n="melee-damage">Melee Damage</span>
                         <span id="melee-damage-value">0</span>
                     </div>
                 </div>
@@ -421,111 +421,111 @@
             <section id="inv-tabContent" class="tabContent hidden">
                 <div class="navigator">
                     <button class="subTab-button active"
-                            data-lang-id="weapons" data-lang-format="U%s"
+                            data-i18n="weaponsUpper"
                             data-sub-screen="weapon">WEAPONS</button>
                     <button class="subTab-button"
-                            data-lang-id="apparel" data-lang-format="U%s"
+                            data-i18n="apparelUpper"
                             data-sub-screen="apparel">APPAREL</button>
                     <button class="subTab-button"
-                            data-lang-id="aid" data-lang-format="U%s"
+                            data-i18n="aidUpper"
                             data-sub-screen="aid">AID</button>
                     <button class="subTab-button"
-                            data-lang-id="other" data-lang-format="U%s"
+                            data-i18n="otherUpper"
                             data-sub-screen="other">OTHER</button>
                 </div>
                 <section class="js-subScreen" id="weapon-subScreen"></section>
                 <section class="js-subScreen hidden keep-first" id="apparel-subScreen">
                     <div>
-                        <span class="h1" data-lang-id="damageReduction"></span>
+                        <span class="h1" data-i18n="damageReduction"></span>
                         <div class="row l-spaceAround">
                             <div class="activeApparel l-spaceAround">
                                 <div class="apparel-stat head">
-                                    <div data-lang-id="head">Head</div>
+                                    <div data-i18n="head">Head</div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                        <span data-i18n="physicalLabel">Physical:</span>
                                         <span id="apparel__head-physical">?</span>
                                     </div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                        <span data-i18n="energyLabel">Energy:</span>
                                         <span id="apparel__head-energy">?</span>
                                     </div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                        <span data-i18n="radiationLabel">Rads:</span>
                                         <span id="apparel__head-radiation">?</span>
                                     </div>
                                 </div>
                                 <div class="apparel-stat leftArm">
-                                    <div data-lang-id="leftArm">Left Arm</div>
+                                    <div data-i18n="leftArm">Left Arm</div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                        <span data-i18n="physicalLabel">Physical:</span>
                                         <span id="apparel__leftArm-physical">?</span>
                                     </div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                        <span data-i18n="energyLabel">Energy:</span>
                                         <span id="apparel__leftArm-energy">?</span>
                                     </div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                        <span data-i18n="radiationLabel">Rads:</span>
                                         <span id="apparel__leftArm-radiation">?</span>
                                     </div>
                                 </div>
                                 <div class="apparel-stat rightArm">
-                                    <div data-lang-id="rightArm">Right Arm</div>
+                                    <div data-i18n="rightArm">Right Arm</div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                        <span data-i18n="physicalLabel">Physical:</span>
                                         <span id="apparel__rightArm-physical">?</span>
                                     </div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                        <span data-i18n="energyLabel">Energy:</span>
                                         <span id="apparel__rightArm-energy">?</span>
                                     </div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                        <span data-i18n="radiationLabel">Rads:</span>
                                         <span id="apparel__rightArm-radiation">?</span>
                                     </div>
                                 </div>
                                 <div class="apparel-stat torso">
-                                    <div data-lang-id="torso">Torso</div>
+                                    <div data-i18n="torso">Torso</div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                        <span data-i18n="physicalLabel">Physical:</span>
                                         <span id="apparel__torso-physical">?</span>
                                     </div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                        <span data-i18n="energyLabel">Energy:</span>
                                         <span id="apparel__torso-energy">?</span>
                                     </div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                        <span data-i18n="radiationLabel">Rads:</span>
                                         <span id="apparel__torso-radiation">?</span>
                                     </div>
                                 </div>
                                 <div class="apparel-stat leftLeg">
-                                    <div data-lang-id="leftLeg">Left Leg</div>
+                                    <div data-i18n="leftLeg">Left Leg</div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                        <span data-i18n="physicalLabel">Physical:</span>
                                         <span id="apparel__leftLeg-physical">?</span>
                                     </div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                        <span data-i18n="energyLabel">Energy:</span>
                                         <span id="apparel__leftLeg-energy">?</span>
                                     </div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                        <span data-i18n="radiationLabel">Rads:</span>
                                         <span id="apparel__leftLeg-radiation">?</span>
                                     </div>
                                 </div>
                                 <div class="apparel-stat rightLeg">
-                                    <div data-lang-id="rightLeg">Right Leg</div>
+                                    <div data-i18n="rightLeg">Right Leg</div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                        <span data-i18n="physicalLabel">Physical:</span>
                                         <span id="apparel__rightLeg-physical">?</span>
                                     </div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                        <span data-i18n="energyLabel">Energy:</span>
                                         <span id="apparel__rightLeg-energy">?</span>
                                     </div>
                                     <div class="row l-centered">
-                                        <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                        <span data-i18n="radiationLabel">Rads:</span>
                                         <span id="apparel__rightLeg-radiation">?</span>
                                     </div>
                                 </div>
@@ -542,29 +542,30 @@
 
             <section id="data-tabContent" class="tabContent hidden">
                 <div class="row l-distributed l-firstSmall">
-                    <label class="h2" for="pg_name" data-lang-id="name">Name:</label>
+                    <label class="h2" for="pg_name" data-i18n="nameLabel">Name:</label>
                     <input id="pg_name" type="text" placeholder="Nome del personaggio..."/>
                 </div>
                 <div class="row l-distributed l-firstSmall">
-                    <label class="h4" for="level" data-lang-id="level">Level:</label>
+                    <label class="h4" for="level" data-i18n="levelLabel">Level:</label>
                     <input id="level" type="number" min="1" step="1"/>
                 </div>
                 <div class="row l-distributed l-firstSmall">
-                    <label class="h4" for="origin" data-lang-id="origin">Origin:</label>
+                    <label class="h4" for="origin" data-i18n="originLabel">Origin:</label>
                     <select id="origin">
                         <option value="none" selected disabled hidden></option>
-                        <option value="vaultDweller" data-lang-id="vaultDweller"></option>
-                        <option value="ghoul" data-lang-id="ghoul"></option>
-                        <option value="survivor" data-lang-id="survivor"></option>
-                        <option value="mrHandy" data-lang-id="mrHandy"></option>
-                        <option value="brotherhoodInitiate" data-lang-id="brotherhoodInitiate"></option>
-                        <option value="superMutant" data-lang-id="superMutant"></option>
+                        <option value="vaultDweller" data-i18n="vaultDweller"></option>
+                        <option value="ghoul" data-i18n="ghoul"></option>
+                        <option value="survivor" data-i18n="survivor"></option>
+                        <option value="mrHandy" data-i18n="mrHandy"></option>
+                        <option value="brotherhoodInitiate" data-i18n="brotherhoodInitiate"></option>
+                        <option value="superMutant" data-i18n="superMutant"></option>
                     </select>
                 </div>
                 <div class="row l-distributed l-firstSmall">
                     <label for="character-background">Background:</label>
                     <textarea id="character-background" rows="7"
-                              placeholder="Scrivi il tuo background qui..."></textarea>
+                              data-i18n="[placeholder]backgroundPlaceholder"
+                              placeholder="Write your background here..."></textarea>
                 </div>
 
                 <br/><br/><br/><br/>
@@ -579,13 +580,13 @@
 
             <section id="settings-tabContent" class="tabContent hidden">
                 <span class="h3">Settings</span>
-                <label data-lang-id="language" data-lang-format="%s:" for="language-select">Language:</label>
-                <select id="language-select" onchange="translator.loadTranslations(this.value)">
+                <label data-i18n="language" for="language-select">Language:</label>
+                <select id="language-select" onchange="window.changeLanguage(this.value)">
                     <option value="en">English</option>
                     <option value="it">Italiano</option>
                 </select>
                 <hr>
-                <label data-lang-id="theme" data-lang-format="%s:" for="theme-select">Theme:</label>
+                <label data-i18n="theme" for="theme-select">Theme:</label>
                 <select id="theme-select">
                     <option value="theme-fallout-3">Fallout 3</option>
                     <option value="theme-fallout-new-vegas">Fallout New Vegas</option>
@@ -612,15 +613,15 @@
                     </div>
                     <div class="row">
                         <div class="card__header-stats">
-                            <span data-lang-id="cost">Cost</span>
+                            <span data-i18n="cost">Cost</span>
                             <span class="js-card-cost">123</span>
                         </div>
                         <div class="card__header-stats">
-                            <span data-lang-id="weight">Weight</span>
+                            <span data-i18n="weight">Weight</span>
                             <span class="js-card-weight">6.5 kg</span>
                         </div>
                         <div class="card__header-stats">
-                            <span data-lang-id="rarity"></span>
+                            <span data-i18n="rarity"></span>
                             <span class="js-card-rarity">2</span>
                         </div>
                     </div>
@@ -631,7 +632,7 @@
                 <div class="row card-controls">
                     <input type="checkbox" class="themed-svg button-card"/>
                     <button class="description-toggle-button" data-action="toggle-description"
-                            data-lang-id="showDescription">Show Description</button>
+                            data-i18n="showDescription">Show Description</button>
                 </div>
                 <div class="description-container">
                     <div class="description"></div>
@@ -658,11 +659,11 @@
                         <div class="card-stat">
                             <div class="js-cardWeapon-skill"></div>
                             <div class="row l-centered">
-                                <span data-lang-id="target" data-lang-format="%s:">Target:</span>
+                                <span data-i18n="targetLabel">Target:</span>
                                 <span class="js-cardWeapon-target">7</span>
                             </div>
                             <div class="row l-centered">
-                                <span data-lang-id="crit" data-lang-format="%s:">Crit:</span>
+                                <span data-i18n="critLabel">Crit:</span>
                                 <span class="js-cardWeapon-crit">1</span>
                             </div>
                         </div>
@@ -675,16 +676,16 @@
                     <div class="themed-svg js-cardWeapon-image"></div>
                     <section>
                         <div class="card-stat">
-                            <div data-lang-id="damageDice">Damage Dice</div>
+                            <div data-i18n="damageDice">Damage Dice</div>
                             <div class="js-cardWeapon-damageRating">4</div>
                             <div class="js-cardWeapon-damageType">Physical</div>
                         </div>
                         <div class="card-stat">
-                            <div data-lang-id="fireRate">Fire Rate</div>
+                            <div data-i18n="fireRate">Fire Rate</div>
                             <div class="js-cardWeapon-fireRate">2</div>
                         </div>
                         <div class="card-stat">
-                            <div data-lang-id="range">Range</div>
+                            <div data-i18n="range">Range</div>
                             <div class="js-cardWeapon-range">M</div>
                         </div>
                     </section>
@@ -718,17 +719,17 @@
                 <div class="row l-spaceBetween">
                     <section>
                         <div class="card-stat">
-                            <div data-lang-id="damageReduction"></div>
+                            <div data-i18n="damageReduction"></div>
                             <div class="row l-centered">
-                                <span data-lang-id="physical" data-lang-format="%s:">Physical:</span>
+                                <span data-i18n="physicalLabel">Physical:</span>
                                 <span class="js-cardApparel-physical">7</span>
                             </div>
                             <div class="row l-centered">
-                                <span data-lang-id="energy" data-lang-format="%s:">Energy:</span>
+                                <span data-i18n="energyLabel">Energy:</span>
                                 <span class="js-cardApparel-energy">1</span>
                             </div>
                             <div class="row l-centered">
-                                <span data-lang-id="radiation" data-lang-format="%s:">Rads:</span>
+                                <span data-i18n="radiationLabel">Rads:</span>
                                 <span class="js-cardApparel-radiation">1</span>
                             </div>
                         </div>
@@ -736,7 +737,7 @@
                     <div class="themed-svg js-cardApparel-image" style="text-align: center; padding: 2rem .5rem; color: var(--secondary-color)">Work In Progress</div>
                     <section>
                         <div class="card-stat js-cardApparel-protects">
-                            <div data-lang-id="protects">Protects</div>
+                            <div data-i18n="protects">Protects</div>
                             <!-- Body parts added dynamically -->
                         </div>
                     </section>
@@ -772,17 +773,8 @@
             </section>
         </template>
 
-        <!-- Needed at startup -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-        <!-- First to run after paparse -->
-        <script src="js/app.js"></script>
-        <script src="js/character.js"></script>
-        <!-- Above display.js or it doesn't work -->
-        <script src="https://unpkg.com/@panzoom/panzoom@4.6.0/dist/panzoom.min.js"></script>
-        <script src="js/display.js"></script>
-
-        <script src="js/popup.js"></script>
-        <script src="js/lang/translator.js"></script>
+        <!-- Vite will bundle everything through this entry point -->
+        <script type="module" src="/main.js"></script>
     </body>
 </html>
 

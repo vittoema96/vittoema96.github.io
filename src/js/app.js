@@ -1,3 +1,10 @@
+// Import what we need from the new modular structure
+import { Character, characterData, setCharacterData } from './character.js';
+import { initI18n, changeLanguage as setLanguage, getCurrentLanguage, t } from './i18n.js';
+import { MainDisplay, setMainDisplay } from './display.js';
+import { SKILL_TO_SPECIAL_MAP, BODY_PARTS } from './constants.js';
+import { initializePopups } from './popup.js';
+
 // <editor-fold desc="Set Loader version">
 // As long as app.js is included after the <body>, this works fine without DOMContentLoaded
 const versionBootLine = document.getElementById("appVersion");
@@ -6,22 +13,23 @@ versionBootLine.textContent = versionBootLine.textContent.replace("{version}", P
 
 // <editor-fold desc="ServiceWorker Registration">
 // KEEP THIS HERE
-if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/js/sw.js', { updateViaCache: 'none' }) // Always update service worker if online
             .then(registration => {
                 console.log('Service Worker registered! 😎', registration);
                 return navigator.serviceWorker.ready;
             }).catch(err => {
-                console.log('Service Worker registration or setup failed! 😥', err);
+                console.log('Service Worker registration failed:', err);
             });
     });
+} else if (location.protocol !== 'https:') {
+    console.log('Service Worker requires HTTPS (skipping in development)');
 }
 // </editor-fold>
 
 
 let dataManager = undefined;
-let translator = undefined;
 let cardFactory = undefined;
 
 // IMPORTANT: Keep this outside of DOMContentLoaded, or it flashes uglily before loading
@@ -33,16 +41,24 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     cardFactory = new CardFactory();
 
-    translator = new Translator();
-    await translator.init();
+    // Make global variables available for display.js (temporary solution)
+    window.dataManager = dataManager;
+    window.cardFactory = cardFactory;
 
-    characterData = Character.load();
+    // Initialize i18n system
+    await initI18n();
 
-    mainDisplay = new MainDisplay();
+    setCharacterData(Character.load());
+
+    const mainDisplayInstance = new MainDisplay();
+    setMainDisplay(mainDisplayInstance);
+
+    // Initialize popups
+    initializePopups();
 
     characterData.dispatchAll();
 
-    translator.loadTranslations();
+    // i18n automatically handles DOM updates
 });
 
 function changeTheme(){
@@ -62,19 +78,23 @@ function changeTheme(){
     localStorage.setItem("theme", value);
 }
 
-function changeLanguage(){
-    let value = localStorage.getItem('language');
-    if(!["it", "en"].includes(value)){
-        value = "it";
+function changeLanguage(value){
+    if (!value) {
+        value = localStorage.getItem('language');
+        if(!["it", "en"].includes(value)){
+            value = "it";
+        }
     }
 
     document.getElementById("language-select").value = value;
 
-    currentLanguage = value;
-    translator.loadTranslations();
-
-    localStorage.setItem("language", value);
+    // The i18n system handles language change automatically
+    setLanguage(value);
 }
+
+// Make functions globally available for HTML onclick and other modules
+window.changeLanguage = changeLanguage;
+window.changeTheme = changeTheme;
 
 class DataManager {
     constructor(){
@@ -121,7 +141,7 @@ class DataManager {
         this.perks = await this.#paParseCSV("data/perks.csv");
 
         // Combine all item data into a single map for easy lookup
-        this.allItemData = { ...this.weapon, ...this.aid, ...this.apparel, ...this.aid, ...this.other };
+        this.allItemData = { ...this.weapon, ...this.apparel, ...this.aid, ...this.other };
     }
 
     getItemTypeMap(){
@@ -217,9 +237,11 @@ class CardFactory {
         cardDiv.dataset.itemId = item.ID;
 
         cardDiv.querySelector('.card-quantity').textContent = `${quantity}x`;
-        cardDiv.querySelector('.card-name').dataset.langId = item.ID;
-        if(side)
-            cardDiv.querySelector('.card-name').dataset.langFormat = `%s (${translator.translate(side)})`
+        cardDiv.querySelector('.card-name').dataset.i18n = item.ID;
+        if(side) {
+            // Handle side variations with i18next options
+            cardDiv.querySelector('.card-name').dataset.i18nOptions = JSON.stringify({side: side});
+        }
 
         cardDiv.querySelector('.js-card-cost').textContent = item.COST;
         cardDiv.querySelector('.js-card-weight').textContent = item.WEIGHT;
@@ -286,16 +308,16 @@ class CardFactory {
         wcDiv.querySelector('.js-cardWeapon-image').dataset.icon = weaponObj.TYPE;
 
         wcDiv.querySelector('.js-cardWeapon-damageRating').textContent = weaponObj.DAMAGE_RATING;
-        wcDiv.querySelector('.js-cardWeapon-damageType').textContent = weaponObj.DAMAGE_TYPE; // TODO language
+        wcDiv.querySelector('.js-cardWeapon-damageType').textContent = t(weaponObj.DAMAGE_TYPE);
         wcDiv.querySelector('.js-cardWeapon-fireRate').textContent = weaponObj.FIRE_RATE;
-        wcDiv.querySelector('.js-cardWeapon-range').textContent = translator.translate(`${weaponObj.RANGE}Full`);
+        wcDiv.querySelector('.js-cardWeapon-range').textContent = t(`${weaponObj.RANGE}Full`);
 
         const tagsContainer = wcDiv.querySelector('.tags-container');
         const createTagSpan = (text, className) => {
             const span = document.createElement('span');
             span.className = className;
             span.dataset.tooltipId = `${text.split(' ')[0]}Description`;
-            span.dataset.langId = text;
+            span.dataset.i18n = text;
             return span;
         };
         const effectSpans = weaponObj.EFFECTS.map(effect => createTagSpan(effect, 'tag'));
@@ -318,7 +340,7 @@ class CardFactory {
 
         let sideSuffix = '';
         if(side)
-            sideSuffix = ` (${translator.translate(side)})`
+            sideSuffix = ` (${t(side)})`
 
         const template = this.#templates.contentApparel;
         const acDiv = template.content.cloneNode(true).firstElementChild;
@@ -362,6 +384,7 @@ class CardFactory {
     }
 }
 
+// TODO find a better way, i dont like this. Also use it elsewhere where is needed
 function getVariableFontSize(text, maxFontSize=2, step=.25, lineSize = 13){
     const rows = Math.ceil(text.length / lineSize);
     if(rows > 1){
@@ -370,11 +393,7 @@ function getVariableFontSize(text, maxFontSize=2, step=.25, lineSize = 13){
     return maxFontSize
 }
 
-const BODY_PARTS = {
-    HEAD: "head",
-    LEFT_ARM: "leftArm",
-    RIGHT_ARM: "rightArm",
-    TORSO: "torso",
-    LEFT_LEG: "leftLeg",
-    RIGHT_LEG: "rightLeg",
-}
+// Make getVariableFontSize globally available for popups
+window.getVariableFontSize = getVariableFontSize;
+
+// BODY_PARTS is now imported from constants.js

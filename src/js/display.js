@@ -1,5 +1,18 @@
-let mainDisplay = undefined;
+// Import dependencies
+import { characterData, Character, setCharacterData } from './character.js';
+import { SPECIAL, SKILLS, SKILL_TO_SPECIAL_MAP, BODY_PARTS } from './constants.js';
+import { t } from './i18n.js';
+import { isMelee } from './gameRules.js';
 
+// TODO: Refactor to properly inject dependencies instead of using globals
+// These are accessed from window object for now
+const getDataManager = () => window.dataManager;
+const getCardFactory = () => window.cardFactory;
+
+// Global variable for main display instance
+export let mainDisplay = undefined;
+
+// Helper function to create DOM element maps
 function getDisplayMap(list, format) {
     return list.reduce((acc, el) => {
         acc[el] = document.getElementById(format.replace("%s", el));
@@ -7,7 +20,12 @@ function getDisplayMap(list, format) {
     }, {});
 }
 
-class DisplayInterface {
+// Helper function to set main display instance
+export function setMainDisplay(display) {
+    mainDisplay = display;
+}
+
+export class DisplayInterface {
     _dom;
     _rootElement;
 
@@ -52,7 +70,7 @@ class DisplayInterface {
     }
 }
 
-class MainDisplay extends DisplayInterface {
+export class MainDisplay extends DisplayInterface {
 
     #statDisplay;
     #invDisplay;
@@ -102,7 +120,7 @@ class MainDisplay extends DisplayInterface {
         this.#getScreens().forEach(s => s._rootElement.classList.toggle('hidden', s._rootElement.id !== targetScreen));
         this._dom.tabButtons.forEach(t => t.classList.toggle('active', t === tab));
 
-        // TODO move this to MapDisplay
+        // Map initialization logic
         if (tabId === 'map') {
             if (this.#mapDisplay._dom.mapImage.complete) {
                 this.#mapDisplay._initializePanzoom();
@@ -126,7 +144,7 @@ class MainDisplay extends DisplayInterface {
 
 }
 
-class StatDisplay extends DisplayInterface {
+export class StatDisplay extends DisplayInterface {
 
     #isEditing = false;
 
@@ -180,11 +198,11 @@ class StatDisplay extends DisplayInterface {
         const skillsContainer = document.querySelector("#skills");
         skillsContainer.innerHTML = '';
         const translated = {};
-        Object.values(SKILLS).forEach(key => translated[translator.translate(key)] = key);
+        Object.values(SKILLS).forEach(key => translated[t(key)] = key);
 
         for(const [skillTranslated, skillId] of Object.entries(translated).sort()){
             const special = SKILL_TO_SPECIAL_MAP[skillId];
-            const specialTranslated = translator.translate(special);
+            const specialTranslated = t(special);
 
             const entryDiv = document.createElement('div');
             entryDiv.className = 'skill';
@@ -207,20 +225,55 @@ class StatDisplay extends DisplayInterface {
 
     #toggleEditMode() {
         this.#isEditing = !this.#isEditing;
-        Object.values(mainDisplay._dom.tabButtons).forEach(el => el.disabled = this.#isEditing);
+        // Disable/enable tab buttons
+        if (mainDisplay && mainDisplay._dom && mainDisplay._dom.tabButtons) {
+            mainDisplay._dom.tabButtons.forEach(el => el.disabled = this.#isEditing);
+        }
+        // Enable/disable specialty checkboxes
         Object.values(this._dom.specialties).forEach(cb => cb.disabled = !this.#isEditing);
-        this._dom.editStatsButton.textContent = this.#isEditing ? 'Stop Editing' : 'Edit Stats'; // TODO language
+        this._dom.editStatsButton.textContent = this.#isEditing ? t('stopEditing') : t('editStats');
+
+        console.log(`Edit mode ${this.#isEditing ? 'enabled' : 'disabled'}`);
+        console.log('Specialty checkboxes:', Object.values(this._dom.specialties).map(cb => cb.disabled));
     }
 
     #handleSpecialClick(event) {
         if (!this.#isEditing) return;
         const specialDiv = event.target.closest('.special');
         const special = specialDiv.dataset.special;
-        const max = (special === SPECIAL.STRENGTH || special === SPECIAL.ENDURANCE) ? 12 : 10;
+
+        // Get origin-based maximum for this SPECIAL
+        const max = this.#getSpecialMax(special);
         const current = characterData.getSpecial(special);
         const next = current < max ? current + 1 : 4;
+
+        console.log(`Clicking ${special}: ${current} → ${next} (max: ${max}, origin: ${characterData.origin})`);
         characterData.setSpecial(special, next);
-        if (special === SPECIAL.LUCK) characterData.currentLuck = next; // Better handling, maybe apply the difference
+
+        // Update current luck MAX if luck special changes (but don't change current luck value)
+        if (special === SPECIAL.LUCK) {
+            // If current luck is higher than new max, cap it
+            if (characterData.currentLuck > next) {
+                characterData.currentLuck = next;
+            }
+        }
+    }
+
+    #getSpecialMax(special) {
+        const origin = characterData.origin;
+
+        if (origin === 'superMutant') {
+            if (special === SPECIAL.STRENGTH || special === SPECIAL.ENDURANCE) {
+                return 12;
+            } else if (special === SPECIAL.INTELLIGENCE || special === SPECIAL.CHARISMA) {
+                return 6;
+            } else {
+                return 10; // Perception, Agility, Luck
+            }
+        } else {
+            // All other origins: max 10 for all SPECIAL
+            return 10;
+        }
     }
 
     #handleSkillClick(event) {
@@ -230,10 +283,16 @@ class StatDisplay extends DisplayInterface {
         if (this.#isEditing) {
             const checkbox = skillDiv.querySelector('input');
             if (event.target === checkbox) {
+                console.log(`Toggling specialty for ${skillName}`);
                 characterData.toggleSpecialty(skillName);
             } else {
                 const current = characterData.getSkill(skillName);
-                const next = current < 6 ? current + 1 : (checkbox && checkbox.checked ? 2 : 0);
+                const hasSpecialty = characterData.hasSpecialty(skillName);
+                const maxSkill = this.#getSkillMax();
+                const minValue = hasSpecialty ? 2 : 0;
+                const next = current < maxSkill ? current + 1 : minValue;
+
+                console.log(`Clicking skill ${skillName}: ${current} → ${next} (max: ${maxSkill}, specialty: ${hasSpecialty}, origin: ${characterData.origin})`);
                 characterData.setSkill(skillName, next);
             }
         } else {
@@ -241,9 +300,14 @@ class StatDisplay extends DisplayInterface {
         }
     }
 
+    #getSkillMax() {
+        const origin = characterData.origin;
+        return origin === 'superMutant' ? 4 : 6;
+    }
+
 }
 
-class InvDisplay extends DisplayInterface {
+export class InvDisplay extends DisplayInterface {
 
     #longPressTimer = null;
     #longPressTarget = null;
@@ -273,7 +337,7 @@ class InvDisplay extends DisplayInterface {
 
         this._dom = {
             itemCategoryContainers: getDisplayMap(
-                Object.values(dataManager.getItemTypeMap()).flat(),
+                Object.values(getDataManager().getItemTypeMap()).flat(),
                 "%s-cards"
             ),
             dr: this.#getDrDisplays(),
@@ -309,7 +373,7 @@ class InvDisplay extends DisplayInterface {
     }
 
     #createCardHolders(){
-        const tsMap = dataManager.getItemTypeMap();
+        const tsMap = getDataManager().getItemTypeMap();
         const template = document.getElementById('t-item-carousel-entry');
         for(const type of Object.keys(tsMap)){
             const typeSection = document.getElementById(`${type}-subScreen`);
@@ -396,7 +460,7 @@ class InvDisplay extends DisplayInterface {
                         itemCard.querySelector(".card-quantity").textContent = `${item.quantity}x`;
                         const ammoCount = itemCard.querySelector(".js-cardWeapon-ammoCount");
                         if(ammoCount) {
-                            ammoCount.textContent = characterData.getItemQuantity(dataManager.weapon[item.id].AMMO_TYPE).toString();
+                            ammoCount.textContent = characterData.getItemQuantity(getDataManager().weapon[item.id].AMMO_TYPE).toString();
                         }
                         if(isApparel){
                             itemCard.querySelector(".button-card").checked = item.equipped === true;
@@ -406,7 +470,7 @@ class InvDisplay extends DisplayInterface {
                 });
 
             }
-            translator.loadTranslations();
+            // Translation updates are handled automatically by i18next
         });
     }
 
@@ -427,13 +491,13 @@ class InvDisplay extends DisplayInterface {
                 container.classList.toggle("expanded");
                 const langId = container.classList.contains("expanded") ? "close" : "showDescription";
                 button.dataset.langId = langId;
-                button.textContent = translator.translate(langId);
+                button.textContent = translate(langId);
                 break;
             }
             case 'attack': {
                 e.preventDefault();
                 const { skill, objectId } = e.target.dataset;
-                const attackingItem = dataManager.getItem(objectId); // TODO change this
+                const attackingItem = getDataManager().getItem(objectId); // TODO change this
                 const isGatling = (attackingItem.QUALITIES || []).includes("qualityGatling");
                 if(!isMelee(skill) && characterData.getItemQuantity(attackingItem.AMMO_TYPE) < (isGatling ? 10 : 1)){
                     alertPopup("notEnoughAmmoAlert");
@@ -461,7 +525,7 @@ class InvDisplay extends DisplayInterface {
     #handleCardPointerDown(e) {
         this.#clearLongPressTimer();
         const cardDiv = e.target.closest('.card,.ammo-card')
-        if (cardDiv && !dataManager.isUnacquirable(cardDiv.dataset.itemId)) {
+        if (cardDiv && !getDataManager().isUnacquirable(cardDiv.dataset.itemId)) {
             this.#longPressTarget = cardDiv;
             this.#longPressTimer = setTimeout(() => {
                 const overlay = this.#longPressTarget.querySelector('.card-overlay');
@@ -478,7 +542,7 @@ class InvDisplay extends DisplayInterface {
 
 }
 
-class DataDisplay extends DisplayInterface {
+export class DataDisplay extends DisplayInterface {
 
     constructor() {
         super("data-tabContent");
@@ -516,7 +580,7 @@ class DataDisplay extends DisplayInterface {
 
 }
 
-class MapDisplay extends DisplayInterface {// A variable to hold the Panzoom instance.
+export class MapDisplay extends DisplayInterface {// A variable to hold the Panzoom instance.
     #panzoomInstance = undefined;
 
     constructor() {
@@ -587,7 +651,7 @@ class MapDisplay extends DisplayInterface {// A variable to hold the Panzoom ins
     }
 }
 
-class SettingsDisplay extends DisplayInterface {
+export class SettingsDisplay extends DisplayInterface {
 
     constructor() {
         super("settings-tabContent");
@@ -623,8 +687,9 @@ class SettingsDisplay extends DisplayInterface {
                     changeTheme();
                     changeLanguage();
 
-                    characterData = Character.load();
-                    mainDisplay = new MainDisplay();
+                    setCharacterData(Character.load());
+                    const newMainDisplay = new MainDisplay();
+                    setMainDisplay(newMainDisplay);
                     characterData.dispatchAll();
                 }
             )
@@ -660,20 +725,21 @@ class SettingsDisplay extends DisplayInterface {
             try {
                 const characterObject = JSON.parse(e.target.result);
                 if (characterObject) {
-                    characterData = new Character("default", characterObject);
-                    mainDisplay = new MainDisplay();
+                    setCharacterData(new Character("default", characterObject));
+                    const newMainDisplay = new MainDisplay();
+                    setMainDisplay(newMainDisplay);
                     characterData.dispatchAll();
                 } else {
-                    alertPopup("Error: Invalid character file format."); // TODO language
+                    alertPopup(t("invalidCharacterFileError"));
                 }
             } catch (error) {
                 console.error("Error parsing JSON file:", error);
-                alertPopup("Error: The selected file is not a valid JSON file."); // TODO language
+                alertPopup(t("invalidJsonFileError"));
             }
         };
 
         reader.onerror = function() {
-            alertPopup("Error reading the file."); // TODO language
+            alertPopup(t("fileReadError"));
         };
 
         reader.readAsText(file);

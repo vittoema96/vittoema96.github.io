@@ -1,4 +1,13 @@
-class Popup {
+// Import dependencies
+import { characterData } from './character.js';
+import { SPECIAL, SKILL_TO_SPECIAL_MAP } from './constants.js';
+import { t, spacedTranslate } from './i18n.js';
+import { isMelee } from './gameRules.js';
+
+// TODO: Refactor to properly inject dependencies instead of using globals
+const getDataManager = () => window.dataManager;
+
+export class Popup {
     _rootElement = null;
 
     constructor(rootElementId, triggers = []) {
@@ -80,7 +89,7 @@ class Popup {
     }
 }
 
-class StatAdjustmentPopup extends Popup {
+export class StatAdjustmentPopup extends Popup {
     #dom;
 
     #currentHp;
@@ -140,7 +149,7 @@ class StatAdjustmentPopup extends Popup {
     }
 }
 
-class TradeItemPopup extends Popup {
+export class TradeItemPopup extends Popup {
     #dom;
     
     constructor(){
@@ -178,14 +187,14 @@ class TradeItemPopup extends Popup {
             this.#tradeQuantity = characterData.getItemQuantity(this.#itemId);
             this.#dom.quantity.max = this.#tradeQuantity;
         }
-        let price = dataManager.getItem(this.#itemId).COST || 1; // Get normal item price
+        let price = getDataManager().getItem(this.#itemId).COST || 1; // Get normal item price
         price = price * this.#tradeValueRate; // Apply trade rate
         price  = Math.round(price*100)/100; // Round decimals
         this.#tradePrice = price;
     }
     
     _render(){
-        this.#dom.type.textContent = translator.translate(this.#isBuy ? "buying" : "selling");
+        this.#dom.type.textContent = t(this.#isBuy ? "buying" : "selling");
         this.#dom.quantity.value = this.#tradeQuantity;
         this.#dom.price.value = this.#tradePrice;
         const sign = this.#isBuy ? "-" : "+";
@@ -202,7 +211,7 @@ class TradeItemPopup extends Popup {
     
 }
 
-class TagTooltip extends Popup {
+export class TagTooltip extends Popup {
 
     #arrow = document.getElementById("arrow");
     #activeTag;
@@ -257,7 +266,7 @@ class TagTooltip extends Popup {
     _initialize(tagTarget){
         this.#activeTag = tagTarget;
 
-        this._rootElement.textContent = translator.translate(this.#activeTag.dataset.tooltipId);
+        this._rootElement.textContent = t(this.#activeTag.dataset.tooltipId);
 
         this.#arrow = document.createElement('div');
         this.#arrow.className = 'tooltip-arrow';
@@ -323,7 +332,7 @@ class TagTooltip extends Popup {
     };
 }
 
-class D20Popup extends Popup {
+export class D20Popup extends Popup {
 
     #dom;
 
@@ -397,12 +406,12 @@ class D20Popup extends Popup {
 
         this.#objectId = objectId;
 
-        const object = dataManager.getItem(objectId);
+        const object = getDataManager().getItem(objectId);
         this.#isObjectInaccurate = (object?.QUALITIES || []).includes("qualityInaccurate");
         this.#isObjectUnreliable = (object?.QUALITIES || []).includes("qualityUnreliable");
 
         // If inaccurate strikethrough "Aim?"
-        const aimText = this._rootElement.querySelector('[data-lang-id="aim"]');
+        const aimText = this._rootElement.querySelector('[data-i18n="aimQuestion"]');
         if(this.#isObjectInaccurate){ aimText.style.textDecoration = "line-through"; }
         else { aimText.style.textDecoration = "initial"; }
 
@@ -418,7 +427,7 @@ class D20Popup extends Popup {
     }
 
     _render() {
-        const skillName = translator.translate(this.#skillId);
+        const skillName = t(this.#skillId);
         this.#dom.skillTitle.textContent = skillName;
         this.#dom.skillTitle.style.fontSize = getVariableFontSize(skillName);
 
@@ -470,7 +479,7 @@ class D20Popup extends Popup {
                 }
             });
         }
-        this.#dom.successesDisplay.textContent = `${translator.translate("successes")}: ${successes}`;
+        this.#dom.successesDisplay.textContent = `${t("successes")}: ${successes}`;
 
         if(this.#objectId){
             this.#dom.damageButton.style.display = 'block';
@@ -479,9 +488,9 @@ class D20Popup extends Popup {
             this.#dom.damageButton.style.display = 'none';
         }
         if(!this.#hasRolled){
-            this.#dom.rollButton.innerHTML = translator.spacedTranslate("roll", "reroll");
+            this.#dom.rollButton.innerHTML = spacedTranslate("roll", "reroll");
         } else {
-            this.#dom.rollButton.innerHTML = translator.spacedTranslate("reroll", "roll");
+            this.#dom.rollButton.innerHTML = spacedTranslate("reroll", "roll");
         }
     }
 
@@ -553,23 +562,39 @@ class D20Popup extends Popup {
         } else {
             const rerollingCount = this.#getActiveDiceCount();
             const rerolledCount = this.#getRerolledDiceCount();
-            const alreadyPayed = this.#isUsingLuck - this.#isAiming + rerolledCount;
-            luckCost = rerollingCount + (alreadyPayed < 0 ? -1 : 0); // Was aiming already used?
+
+            // Start with the cost of rerolling the selected dice
+            luckCost = rerollingCount;
+
+            // Subtract free reroll from aiming (only for the first reroll)
+            if (this.#isAiming && rerolledCount === 0) {
+                luckCost -= 1; // First reroll is free with aiming
+            }
         }
-        return luckCost > 0 ? luckCost : 0;
+        return Math.max(0, luckCost);
     }
 
     #getPayedLuck(){
         let payedLuck = 0;
         if(this.#hasRolled){
             const rerolledCount = this.#getRerolledDiceCount();
-            payedLuck = this.#isUsingLuck - this.#isAiming + rerolledCount;
+
+            // Start with luck from checkbox
+            if (this.#isUsingLuck) payedLuck += 1;
+
+            // Add luck paid for rerolls
+            payedLuck += rerolledCount;
+
+            // Subtract free reroll from aiming (only the first reroll)
+            if (this.#isAiming && rerolledCount > 0) {
+                payedLuck -= 1; // First reroll was free
+            }
         }
-        return payedLuck > 0 ? payedLuck : 0;
+        return Math.max(0, payedLuck);
     }
 }
 
-class D6Popup extends Popup {
+export class D6Popup extends Popup {
     #dom;
 
     constructor(){
@@ -625,7 +650,7 @@ class D6Popup extends Popup {
 
     _initialize(objectId, hasAimed = false){
 
-        const weapon = dataManager.weapon[objectId];
+        const weapon = getDataManager().weapon[objectId];
 
         this.#object = weapon;
         this.#hasAimed = hasAimed;
@@ -641,7 +666,7 @@ class D6Popup extends Popup {
         this.#ammoPayed = 0;
         let payedAmmoDisplay = 'flex';
         if(isMelee(this.#object.TYPE)){
-            this.#ammoCost = translator.translate("na")
+            this.#ammoCost = t("na")
             payedAmmoDisplay = 'none';
         }
         this.#dom.ammoPayed.style.display = payedAmmoDisplay;
@@ -654,7 +679,7 @@ class D6Popup extends Popup {
         this.#effects.forEach(effect => {
             const tag = document.createElement('span');
             tag.className = 'tag';
-            tag.textContent = translator.translate(effect);
+            tag.textContent = t(effect);
             tag.dataset.tooltipId = `${effect.split(' ')[0]}Description`;
             this.#dom.tagsContainer.appendChild(tag);
         });
@@ -662,7 +687,7 @@ class D6Popup extends Popup {
         this.#qualities.forEach(quality => {
             const tag = document.createElement('span');
             tag.className = 'tag tag-empty';
-            tag.textContent = translator.translate(quality);
+            tag.textContent = t(quality);
             tag.dataset.tooltipId = `${quality.split(' ')[0]}Description`;
             this.#dom.tagsContainer.appendChild(tag);
         });
@@ -686,7 +711,7 @@ class D6Popup extends Popup {
         this.#dom.extraHitsType.style.border = undefined;
         const fireRate = weapon.FIRE_RATE;
         let extraDice = 0;
-        this.#extraHitsTitle = translator.translate("extraHits");
+        this.#extraHitsTitle = t("extraHits");
         if (isMelee(this.#object.TYPE)) {
             extraDice = 3;
             this.#extraHitsType = "ap";
@@ -720,10 +745,10 @@ class D6Popup extends Popup {
     }
 
     _render(){
-        const weaponName = translator.translate(this.#object.ID);
+        const weaponName = t(this.#object.ID);
         this.#dom.weaponName.textContent = weaponName;
         this.#dom.weaponName.style.fontSize = getVariableFontSize(weaponName);
-        this.#dom.damageType.textContent = this.#object.DAMAGE_TYPE; // TODO Handle language
+        this.#dom.damageType.textContent = t(this.#object.DAMAGE_TYPE);
 
         const dice = this.#dom.damageDiceContainer.querySelectorAll('.d6-dice');
         for(const [index, diceClass] of this.#diceClasses.entries()){
@@ -733,7 +758,7 @@ class D6Popup extends Popup {
         }
 
         this.#dom.extraHitsTitle.textContent = this.#extraHitsTitle;
-        this.#dom.extraHitsType.textContent = `[${translator.translate(this.#extraHitsType)}]`;
+        this.#dom.extraHitsType.textContent = `[${t(this.#extraHitsType)}]`;
         this.#dom.extraHitsContainer.style.display = this.#object.FIRE_RATE <= 0 ? 'none' : 'flex';
         const extraDice = this.#dom.extraHitsContainer.querySelectorAll('.d6-dice');
         for(const [index, diceClass] of this.#extraDiceClasses.entries()){
@@ -751,10 +776,10 @@ class D6Popup extends Popup {
 
         const totEffects = this.#getEffectCount();
         const totDamage = totEffects + this.#getDamage1Count() + this.#getDamage2Count() * 2
-        // TODO language
+        // Damage and effects display
         this.#dom.totalDamage.textContent = this.#hasRolled ? totDamage : '?';
         this.#dom.totalEffects.textContent = this.#hasRolled ? totEffects : '?';
-        this.#dom.rollButton.innerHTML = this.#hasRolled ? translator.spacedTranslate("reroll", "roll") : translator.spacedTranslate("roll", "reroll");
+        this.#dom.rollButton.innerHTML = this.#hasRolled ? spacedTranslate("reroll", "roll") : spacedTranslate("roll", "reroll");
     }
 
     #setDiceClass(dice, diceClass){
@@ -904,7 +929,7 @@ class D6Popup extends Popup {
             this.#ammoPayed = this.#ammoCost;
             this.#ammoCost = 0;
             if(this.#effects.includes("effectBurst")){
-                this.#ammoCost = `+${translator.translate("effectBurst")}`;
+                this.#ammoCost = `+${t("effectBurst")}`;
             }
         }
         this.#luckPayed += this.#luckCost;
@@ -915,7 +940,7 @@ class D6Popup extends Popup {
     }
 }
 
-class AddItemPopup extends Popup {
+export class AddItemPopup extends Popup {
 
     #dom;
 
@@ -928,25 +953,25 @@ class AddItemPopup extends Popup {
     }
 
     _initialize(itemType) {
-        const isWeapon = dataManager.isType(itemType, 'weapon');
-        const isApparel = dataManager.isType(itemType, 'apparel');
-        const isAid = dataManager.isType(itemType, 'aid');
-        
+        const isWeapon = getDataManager().isType(itemType, 'weapon');
+        const isApparel = getDataManager().isType(itemType, 'apparel');
+        const isAid = getDataManager().isType(itemType, 'aid');
+
         let data ;
         let availableItems;
-        if(isWeapon) data = dataManager.weapon;
-        else if(isApparel) data = dataManager.apparel;
-        else if(isAid) data = dataManager.aid;
-        else data = dataManager.other;
-        
+        if(isWeapon) data = getDataManager().weapon;
+        else if(isApparel) data = getDataManager().apparel;
+        else if(isAid) data = getDataManager().aid;
+        else data = getDataManager().other;
+
         availableItems = Object.values(data).filter(item =>
-            item.TYPE === itemType && !dataManager.isUnacquirable(item.ID)
+            item.TYPE === itemType && !getDataManager().isUnacquirable(item.ID)
         );
 
         // Populate select element
         this.#dom.select.innerHTML = "";
-        const formattedItemType = translator.translate(isWeapon ? "weapons" : itemType)
-        const defaultOptionText = translator.translate("default_add_item_option").replace("%s", formattedItemType)
+        const formattedItemType = t(isWeapon ? "weapons" : itemType)
+        const defaultOptionText = t("default_add_item_option").replace("%s", formattedItemType)
         const defaultOption = new Option(defaultOptionText, '', true, true);
         defaultOption.disabled = true;
         this.#dom.select.appendChild(defaultOption);
@@ -960,10 +985,10 @@ class AddItemPopup extends Popup {
             for(let suffix of suffixes) {
                 let textSuffix = '';
                 if(suffix) {
-                    textSuffix = ` (${translator.translate(suffix)})`;
+                    textSuffix = ` (${t(suffix)})`;
                     suffix = `_${suffix}`;
                 }
-                const optionText = `${translator.translate(item.ID)}${textSuffix}`;
+                const optionText = `${t(item.ID)}${textSuffix}`;
                 this.#dom.select.appendChild(new Option(optionText, `${item.ID}${suffix}`));
             }
         });
@@ -982,7 +1007,7 @@ class AddItemPopup extends Popup {
     }
 }
 
-class AlertPopup extends Popup {
+export class AlertPopup extends Popup {
     #dom;
 
     constructor() {
@@ -999,8 +1024,8 @@ class AlertPopup extends Popup {
     #confirmCallback;
 
     _initialize(content, confirmCallback = null) {
-        this.#title = translator.translate(confirmCallback ? "confirm" : "warning");
-        this.#content = content.indexOf(' ') > -1 ? content : translator.translate(content); // TODO language
+        this.#title = t(confirmCallback ? "confirm" : "warning");
+        this.#content = content.indexOf(' ') > -1 ? content : t(content);
         this.#confirmCallback = confirmCallback;
         this.#dom.buttonConfirm.style.display = confirmCallback ? "block" : "none";
     }
@@ -1024,11 +1049,11 @@ class AlertPopup extends Popup {
 
 
 // TODO might have a better way, might conflict with multiple dialogs + tooltips etc
-function closeActivePopup() {
+export function closeActivePopup() {
     closePopup(document.querySelector('dialog[open]'));
 }
 
-function closePopup(popupToClose) {
+export function closePopup(popupToClose) {
     if (popupToClose) {
         popupToClose.addEventListener('animationend', () => {
             popupToClose.close();
@@ -1038,9 +1063,8 @@ function closePopup(popupToClose) {
     }
 }
 
-// Wait for the DOM to be fully loaded before running any script
-document.addEventListener("DOMContentLoaded", () => {
-
+// Initialize all popups and make them globally available
+export function initializePopups() {
     const d20Popup = new D20Popup();
     window.openD20Popup = (skillId, objectId) => {
         d20Popup.open(skillId, objectId);
@@ -1050,8 +1074,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.openD6Popup = (objectId) => {
         d6Popup.open(objectId);
     };
-
-
 
     const tradeItemPopup = new TradeItemPopup();
     window.openSellItemPopup = (itemId) => {
@@ -1075,9 +1097,19 @@ document.addEventListener("DOMContentLoaded", () => {
         addItemPopup.open(itemType);
     }
 
-
-    // TODO To refactor
+    // Legacy notification popup - to be refactored
     const popups = {
         notification: document.getElementById('notification-popup')
     };
-});
+
+    return {
+        d20Popup,
+        d6Popup,
+        tradeItemPopup,
+        statAdjustmentPopup,
+        tagTooltip,
+        alertPopup,
+        addItemPopup,
+        popups
+    };
+}

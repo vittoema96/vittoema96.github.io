@@ -1,0 +1,21 @@
+{
+  "name": "pip-boy-3000-pwa",
+  "version": "0.0.2-alpha",
+  "description": "A Pip-Boy 3000 companion app for managing your character stats and inventory in Fallout-themed tabletop RPG",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "python -m http.server 8000"
+  },
+  "dependencies": {
+    "papaparse": "^5.4.1",
+    "@panzoom/panzoom": "^4.6.0",
+    "i18next": "^23.7.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "vite-plugin-pwa": "^0.20.0"
+  }
+}

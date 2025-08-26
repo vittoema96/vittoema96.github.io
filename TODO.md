@@ -46,7 +46,11 @@
 - Remove navigation bar from viewport (mobile, non-PWA mode (what did i mean?????) )
 - Uniform all icons (https://maskable.app/)
 - In webmanifest add "form_factor: narrow/wide" to allow screenshots only for mobile or desktop (also implement desktop screenshots and improve screenshots in general)
-
+- Adopt ES6 Modules
+  1.  `_export async function functionName() {...}`
+  2. `<script src="js/javascript_file.js" type="module">`
+  3. `_import { functionName } from './javascript_file.js';`
+- ...
 
 # AI TODOs
 
