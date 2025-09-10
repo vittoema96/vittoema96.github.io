@@ -96,7 +96,7 @@ export class Character extends EventTarget {
         if (numValue < 0) {
             return;
         }
-        this.data.currentLuck = numValue; // Uses proxy
+        this.data.currentLuck = numValue;
     }
 
     get background() {
@@ -104,7 +104,7 @@ export class Character extends EventTarget {
     }
     set background(value) {
         this.data.background = value;
-    } // Uses proxy
+    }
 
     // Derived stats using GameRules
     get maxHp() {

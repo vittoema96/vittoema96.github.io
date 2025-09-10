@@ -1,4 +1,3 @@
-// GameRules.js
 import { SPECIAL, SKILLS } from './constants.js';
 
 export const getMaxHp = characterData =>
@@ -9,16 +8,7 @@ export const getMaxHp = characterData =>
 
 export const getMeleeDamage = characterData => {
     const str = characterData.special[SPECIAL.STRENGTH];
-    if (str < 7) {
-        return 0;
-    }
-    if (str < 9) {
-        return 1;
-    }
-    if (str < 11) {
-        return 2;
-    }
-    return 3;
+    return str < 7 ? 0 : str < 9 ? 1 : str < 11 ? 2 : 3;
 };
 
 export const getMaxWeight = characterData => 75 + characterData.special[SPECIAL.STRENGTH] * 5;
@@ -40,30 +30,6 @@ export const getInitiative = characterData =>
 
 // Check if a skill is a melee combat skill
 export const isMelee = skill => [SKILLS.UNARMED, SKILLS.MELEE_WEAPONS].includes(skill);
-
-// Get the governing SPECIAL attribute for a skill
-export function getGoverningSpecial(skill) {
-    const skillToSpecialMap = {
-        [SKILLS.ATHLETICS]: SPECIAL.STRENGTH,
-        [SKILLS.BARTER]: SPECIAL.CHARISMA,
-        [SKILLS.BIG_GUNS]: SPECIAL.ENDURANCE,
-        [SKILLS.ENERGY_WEAPONS]: SPECIAL.PERCEPTION,
-        [SKILLS.EXPLOSIVES]: SPECIAL.PERCEPTION,
-        [SKILLS.LOCKPICK]: SPECIAL.PERCEPTION,
-        [SKILLS.MEDICINE]: SPECIAL.INTELLIGENCE,
-        [SKILLS.MELEE_WEAPONS]: SPECIAL.STRENGTH,
-        [SKILLS.PILOT]: SPECIAL.PERCEPTION,
-        [SKILLS.REPAIR]: SPECIAL.INTELLIGENCE,
-        [SKILLS.SCIENCE]: SPECIAL.INTELLIGENCE,
-        [SKILLS.SMALL_GUNS]: SPECIAL.AGILITY,
-        [SKILLS.SNEAK]: SPECIAL.AGILITY,
-        [SKILLS.SPEECH]: SPECIAL.CHARISMA,
-        [SKILLS.SURVIVAL]: SPECIAL.ENDURANCE,
-        [SKILLS.THROWING]: SPECIAL.AGILITY,
-        [SKILLS.UNARMED]: SPECIAL.STRENGTH,
-    };
-    return skillToSpecialMap[skill];
-}
 
 // Determine which armor layers an item type covers
 export const getItemCoveredLayers = itemType => {

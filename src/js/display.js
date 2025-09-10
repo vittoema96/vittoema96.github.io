@@ -2,6 +2,7 @@ import { characterData, Character, setCharacterData } from './character.js';
 import { SPECIAL, SKILLS, SKILL_TO_SPECIAL_MAP, BODY_PARTS } from './constants.js';
 import { t, updateDOM } from './i18n.js';
 import { isMelee } from './gameRules.js';
+import Panzoom from '@panzoom/panzoom';
 
 // TODO: Replace with dependency injection
 const getDataManager = () => window.dataManager;

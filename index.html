@@ -20,7 +20,7 @@
 
         <!-- Font Awesome - Used for the Gear icon on Settings-->
 
-        <link rel="stylesheet" href="styles/styles.css" />
+        <link rel="stylesheet" href="/src/styles/styles.css" />
 
         <title>Pip-Boy 3000</title>
 
@@ -573,7 +573,7 @@
             <section id="data-tabContent" class="tabContent hidden">
                 <div class="row l-distributed l-firstSmall">
                     <label class="h2" for="pg_name" data-i18n="nameLabel">Name:</label>
-                    <input id="pg_name" type="text" placeholder="Nome del personaggio..." />
+                    <input id="pg_name" type="text" data-i18n="namePlaceholder" data-i18n-target="placeholder" placeholder="Character Name" />
                 </div>
                 <div class="row l-distributed l-firstSmall">
                     <label class="h4" for="level" data-i18n="levelLabel">Level:</label>
@@ -595,11 +595,12 @@
                     </select>
                 </div>
                 <div class="row l-distributed l-firstSmall">
-                    <label for="character-background">Background:</label>
+                    <label class="h4" for="character-background">Background:</label>
                     <textarea
                         id="character-background"
                         rows="7"
-                        data-i18n="[placeholder]backgroundPlaceholder"
+                        data-i18n="backgroundPlaceholder"
+                        data-i18n-target="placeholder"
                         placeholder="Write your background here..."
                     ></textarea>
                 </div>
@@ -821,7 +822,7 @@
         <template id="t-item-carousel-entry">
             <section>
                 <div class="itemlist-header">
-                    <span class="h2 js-title">DYNAMIC</span>
+                    <span class="h3 js-title">DYNAMIC</span>
                     <button class="js-button-addItem">+</button>
                 </div>
                 <div class="card-carousel"></div>
@@ -829,6 +830,6 @@
         </template>
 
         <!-- Vite will bundle everything through this entry point -->
-        <script type="module" src="/main.js"></script>
+        <script type="module" src="/src/main.js"></script>
     </body>
 </html>

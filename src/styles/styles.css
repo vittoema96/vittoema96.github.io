@@ -151,7 +151,6 @@ select,
 input[type='text'] {
     padding: 0.5rem;
     width: 80%;
-    max-width: 300px;
 }
 
 /**********************
@@ -447,7 +446,6 @@ input[type='text'] {
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
-    max-width: 350px;
     min-height: 350px;
     margin-top: 3rem;
 }

@@ -1,6 +1,6 @@
 {
   "name": "pip-boy-3000-pwa",
-  "version": "0.0.3-alpha.0",
+  "version": "0.0.3-alpha.BUILD_VERSION",
   "description": "A Pip-Boy 3000 companion app for managing your character stats and inventory in Fallout-themed tabletop RPG",
   "type": "module",
   "scripts": {
@@ -13,11 +13,7 @@
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
     "type-check": "tsc --noEmit",
-    "quality": "npm run lint && npm run format:check && npm run type-check",
-    "version:show": "node scripts/version.js",
-    "version:next-alpha": "node scripts/version.js --next-alpha",
-    "version:beta": "node scripts/version.js --beta",
-    "version:release": "node scripts/version.js --release"
+    "quality": "npm run lint && npm run format:check && npm run type-check"
   },
   "dependencies": {
     "@fontsource/fira-code": "^5.2.6",

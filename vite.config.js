@@ -7,10 +7,7 @@ const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'))
 const version = packageJson.version
 
 export default defineConfig({
-  // Source files are in src/ directory
-  root: 'src',
-
-  // Base URL for your app (GitHub Pages uses your repo name)
+  root: '.',
   base: '/',
 
   // Development server configuration
@@ -22,13 +19,13 @@ export default defineConfig({
 
   // Build configuration
   build: {
-    outDir: '../dist',  // Build output goes to dist/ directory (relative to src/)
+    outDir: 'dist',  // Build output goes to dist/ directory
     emptyOutDir: true,
     sourcemap: true // Helpful for debugging
   },
 
-  // Copy static assets (CSV files, images, etc.) - relative to src/
-  publicDir: '../public',
+  // Copy static assets (CSV files, images, etc.)
+  publicDir: 'public',
 
   // Ensure all assets are copied
   assetsInclude: ['**/*.csv'],

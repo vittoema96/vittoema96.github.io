@@ -3,32 +3,7 @@ import { initI18n, changeLanguage as setLanguage, t } from './i18n.js';
 import { MainDisplay, setMainDisplay } from './display.js';
 import { SKILL_TO_SPECIAL_MAP } from './constants.js';
 import { initializePopups } from './popup.js';
-
-// Set version in boot screen
-const versionBootLine = document.getElementById('appVersion');
-versionBootLine.textContent = versionBootLine.textContent.replace(
-    '{version}',
-    PROJECT_VERSION.toUpperCase()
-);
-
-// <editor-fold desc="ServiceWorker Registration">
-// KEEP THIS HERE
-if ('serviceWorker' in navigator && location.protocol === 'https:') {
-    window.addEventListener('load', async () => {
-        try {
-            const registration = await navigator.serviceWorker.register('/js/sw.js', {
-                updateViaCache: 'none',
-            });
-            console.log('Service Worker registered! 😎', registration);
-            await navigator.serviceWorker.ready;
-        } catch (err) {
-            console.log('Service Worker registration failed:', err);
-        }
-    });
-} else if (location.protocol !== 'https:') {
-    console.log('Service Worker requires HTTPS (skipping in development)');
-}
-// </editor-fold>
+import Papa from 'papaparse';
 
 let dataManager = undefined;
 let cardFactory = undefined;
