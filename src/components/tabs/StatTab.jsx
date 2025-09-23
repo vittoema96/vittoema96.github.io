@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { SPECIAL, SKILLS, SKILL_TO_SPECIAL_MAP } from '../../js/constants.js'
 import { getDefense, getInitiative, getMeleeDamage } from '../../js/gameRules.js'
+import { useI18n } from '../../hooks/useI18n.js'
 import Skill from './Skill.jsx'
 
 function StatTab({ character, updateCharacter }) {
     const [isEditing, setIsEditing] = useState(false)
+    const t = useI18n()
 
     // Calculate derived stats
     const defense = getDefense(character)
@@ -102,42 +104,14 @@ function StatTab({ character, updateCharacter }) {
         }))
         .sort((a, b) => a.translatedName.localeCompare(b.translatedName))
 
-    // Get display name for skill (simplified translation)
+    // Get display name for skill (using i18n)
     function getSkillDisplayName(skillId) {
-        const names = {
-            athletics: 'Athletics',
-            barter: 'Barter',
-            bigGuns: 'Big Guns',
-            energyWeapons: 'Energy Weapons',
-            explosives: 'Explosives',
-            lockpick: 'Lockpick',
-            medicine: 'Medicine',
-            meleeWeapons: 'Melee Weapons',
-            pilot: 'Pilot',
-            repair: 'Repair',
-            science: 'Science',
-            smallGuns: 'Small Guns',
-            sneak: 'Sneak',
-            speech: 'Speech',
-            survival: 'Survival',
-            throwing: 'Throwing',
-            unarmed: 'Unarmed'
-        }
-        return names[skillId] || skillId
+        return t(skillId)
     }
 
-    // Get display name for SPECIAL (simplified translation)
+    // Get display name for SPECIAL (using i18n)
     function getSpecialDisplayName(specialId) {
-        const names = {
-            strength: 'Strength',
-            perception: 'Perception',
-            endurance: 'Endurance',
-            charisma: 'Charisma',
-            intelligence: 'Intelligence',
-            agility: 'Agility',
-            luck: 'Luck'
-        }
-        return names[specialId] || specialId
+        return t(specialId)
     }
 
     return (
@@ -182,15 +156,15 @@ function StatTab({ character, updateCharacter }) {
             {/* Derived Stats */}
             <div className="row row--spaced">
                 <div className="derived-stat">
-                    <span data-i18n="defense">Defense</span>
+                    <span data-i18n="defense">{t('defense')}</span>
                     <span id="defense-value">{defense}</span>
                 </div>
                 <div className="derived-stat">
-                    <span data-i18n="initiative">Initiative</span>
+                    <span data-i18n="initiative">{t('initiative')}</span>
                     <span id="initiative-value">{initiative}</span>
                 </div>
                 <div className="derived-stat">
-                    <span data-i18n="melee-damage">Melee Damage</span>
+                    <span data-i18n="melee-damage">{t('melee-damage')}</span>
                     <span id="melee-damage-value">+{meleeDamage}</span>
                 </div>
             </div>
@@ -237,7 +211,7 @@ function StatTab({ character, updateCharacter }) {
                 className="button"
                 onClick={toggleEditMode}
             >
-                {isEditing ? 'Stop Editing' : 'Edit Stats'}
+                {isEditing ? t('stopEditing') : t('editStats')}
             </button>
         </section>
     )

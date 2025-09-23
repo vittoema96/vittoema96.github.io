@@ -2,12 +2,11 @@
  * Internationalization system using i18next
  */
 import i18next from 'i18next';
+import enTranslations from '../locales/en.json';
+import itTranslations from '../locales/it.json';
+
 export async function initI18n() {
-    // Load translation files
-    const [enTranslations, itTranslations] = await Promise.all([
-        fetch('/locales/en.json').then(res => res.json()),
-        fetch('/locales/it.json').then(res => res.json()),
-    ]);
+    // Translation files are imported as modules
 
     // Get saved language or default to Italian
     const savedLanguage = localStorage.getItem('language');

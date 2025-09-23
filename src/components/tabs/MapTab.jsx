@@ -1,70 +1,51 @@
 import React, { useRef, useEffect } from 'react'
 import Panzoom from '@panzoom/panzoom'
 
+// TODO Map is working weird: Appearing only after zoom and not centered. why? indagare
+
 function MapTab({ isActive }) {
     const mapContainerRef = useRef(null)
     const mapImageRef = useRef(null)
     const panzoomInstanceRef = useRef(null)
 
-    // Initialize Panzoom when tab becomes active
     useEffect(() => {
-        if (isActive && mapImageRef.current && mapContainerRef.current) {
-            const initializePanzoom = () => {
-                // Clean up any existing instance
-                if (panzoomInstanceRef.current) {
-                    disposePanzoom()
-                }
-
-                // Create new Panzoom instance
-                panzoomInstanceRef.current = Panzoom(mapImageRef.current, {
-                    maxScale: 5,
-                    startScale: 0.1, // really low zoom, panzoom will use the min zoom allowed
-                    contain: 'outside',
-                })
-
-                // Add wheel event listener for zooming
-                const handleWheel = panzoomInstanceRef.current.zoomWithWheel
-                mapContainerRef.current.addEventListener('wheel', handleWheel)
-
-                // Center the image after a short delay
-                setTimeout(() => {
-                    centerImage()
-                })
-
-                // Store the wheel handler for cleanup
-                panzoomInstanceRef.current._wheelHandler = handleWheel
-            }
-
-            // Check if image is already loaded
-            if (mapImageRef.current.complete) {
+        if (isActive) {
+            // Initialize when tab becomes active
+            if (mapImageRef.current?.complete) {
                 initializePanzoom()
-            } else {
-                // Wait for image to load
-                const handleImageLoad = () => {
-                    initializePanzoom()
-                    mapImageRef.current.onload = null // Clean up
-                }
-                mapImageRef.current.onload = handleImageLoad
-
-                // Handle image load error
-                mapImageRef.current.onerror = () => {
-                    console.error('Failed to load map image')
-                    mapImageRef.current.onload = null
-                    mapImageRef.current.onerror = null
-                }
+            } else if (mapImageRef.current) {
+                mapImageRef.current.onload = initializePanzoom
             }
-        } else if (!isActive) {
-            // Dispose Panzoom when tab becomes inactive
+        } else {
+            // Clean up when tab becomes inactive
             disposePanzoom()
         }
 
-        // Cleanup on unmount
-        return () => {
-            disposePanzoom()
-        }
+        return () => disposePanzoom()
     }, [isActive])
 
-    // Center the image in the container
+    const initializePanzoom = () => {
+        if (!mapImageRef.current || !mapContainerRef.current) return
+
+        // Clean up existing instance
+        if (panzoomInstanceRef.current) {
+            disposePanzoom()
+        }
+
+        // Create Panzoom instance
+        panzoomInstanceRef.current = Panzoom(mapImageRef.current, {
+            maxScale: 5,
+            startScale: 0.1,
+            contain: 'outside',
+        })
+
+        // Add wheel listener
+        mapContainerRef.current.addEventListener('wheel', panzoomInstanceRef.current.zoomWithWheel)
+
+        // Center after delay
+        setTimeout(centerImage)
+    }
+
     const centerImage = () => {
         if (!panzoomInstanceRef.current || !mapContainerRef.current || !mapImageRef.current) {
             return
@@ -74,37 +55,28 @@ function MapTab({ isActive }) {
         const imageRect = mapImageRef.current.getBoundingClientRect()
         const scale = panzoomInstanceRef.current.getScale()
 
-        // Calculate the visual difference between the container's center and the image's center
         const deltaX_visual =
             containerRect.width / 2 - (imageRect.left - containerRect.left + imageRect.width / 2)
         const deltaY_visual =
             containerRect.height / 2 - (imageRect.top - containerRect.top + imageRect.height / 2)
 
-        // To get the correct pan values, divide the desired visual movement by the current scale
         const panX = deltaX_visual / scale
         const panY = deltaY_visual / scale
 
-        // Pan by a relative amount to move from the current position to the center
         panzoomInstanceRef.current.pan(panX, panY, {
             animate: false,
             relative: true,
         })
     }
 
-    // Clean up Panzoom instance
     const disposePanzoom = () => {
         if (panzoomInstanceRef.current) {
-            // Reset image transform
+            // Safe cleanup
             if (mapImageRef.current) {
                 mapImageRef.current.style.transform = ''
+                mapImageRef.current.onload = null
             }
 
-            // Remove wheel event listener
-            if (mapContainerRef.current && panzoomInstanceRef.current._wheelHandler) {
-                mapContainerRef.current.removeEventListener('wheel', panzoomInstanceRef.current._wheelHandler)
-            }
-
-            // Destroy Panzoom instance
             panzoomInstanceRef.current.destroy()
             panzoomInstanceRef.current = null
         }

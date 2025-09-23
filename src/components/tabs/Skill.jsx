@@ -1,16 +1,18 @@
 import React from 'react'
+import { useI18n } from '../../hooks/useI18n.js'
 
-function Skill({ 
-    skillId, 
-    skillValue, 
-    specialName, 
-    hasSpecialty, 
-    isEditing, 
-    onSkillClick, 
+function Skill({
+    skillId,
+    skillValue,
+    specialName,
+    hasSpecialty,
+    isEditing,
+    onSkillClick,
     onSpecialtyChange,
     getSkillDisplayName,
-    getSpecialDisplayName 
+    getSpecialDisplayName
 }) {
+    const t = useI18n()
     return (
         <div 
             className="skill" 
