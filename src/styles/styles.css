@@ -337,8 +337,8 @@ input[type='text'] {
 
     /* Use the SVG as a mask */
     background-color: var(--primary-color);
-    -webkit-mask-image: url('../img/svg/gear.svg');
-    mask-image: url('../img/svg/gear.svg');
+    -webkit-mask-image: url('/img/svg/gear.svg');
+    mask-image: url('/img/svg/gear.svg');
     -webkit-mask-size: contain;
     mask-size: contain;
     -webkit-mask-repeat: no-repeat;
@@ -369,7 +369,7 @@ input[type='text'] {
     font-size: 24cqw;
 }
 #c-special .sub-special {
-    --image-url: url('../img/svg/gear-full.svg');
+    --image-url: url('/img/svg/gear-full.svg');
     background-color: var(--secondary-color);
 
     width: 50%;
@@ -707,13 +707,13 @@ input[type='text'] {
     height: 2.5rem;
 }
 .d6-face-damage1 {
-    background-image: url('../img/svg/damage1.svg');
+    background-image: url('/img/svg/damage1.svg');
 }
 .d6-face-damage2 {
-    background-image: url('../img/svg/damage2.svg');
+    background-image: url('/img/svg/damage2.svg');
 }
 .d6-face-effect {
-    background-image: url('../img/svg/vaultboy.svg');
+    background-image: url('/img/svg/vaultboy.svg');
 }
 .d6-face-blank {
     background-image: none;
@@ -1090,64 +1090,64 @@ body::before {
     mask-position: center;
 }
 .themed-svg[data-icon='attack'] {
-    --image-url: url('../img/svg/attack.svg');
+    --image-url: url('/img/svg/attack.svg');
 }
 .themed-svg[data-icon='bigGuns'] {
-    --image-url: url('../img/svg/bigGuns.svg');
+    --image-url: url('/img/svg/bigGuns.svg');
 }
 .themed-svg[data-icon='caps'] {
-    --image-url: url('../img/svg/caps.svg');
+    --image-url: url('/img/svg/caps.svg');
 }
 .themed-svg[data-icon='drinks'] {
-    --image-url: url('../img/svg/drinks.svg');
+    --image-url: url('/img/svg/drinks.svg');
 }
 .themed-svg[data-icon='energyWeapons'] {
-    --image-url: url('../img/svg/energyWeapons.svg');
+    --image-url: url('/img/svg/energyWeapons.svg');
 }
 .themed-svg[data-icon='explosives'] {
-    --image-url: url('../img/svg/explosives.svg');
+    --image-url: url('/img/svg/explosives.svg');
 }
 .themed-svg[data-icon='food'] {
-    --image-url: url('../img/svg/food.svg');
+    --image-url: url('/img/svg/food.svg');
 }
 .themed-svg[data-icon='gear'] {
-    --image-url: url('../img/svg/gear.svg');
+    --image-url: url('/img/svg/gear.svg');
 }
 .themed-svg[data-icon='drinks'] {
-    --image-url: url('../img/svg/drinks.svg');
+    --image-url: url('/img/svg/drinks.svg');
 }
 .themed-svg[data-icon='hp'] {
-    --image-url: url('../img/svg/hp.svg');
+    --image-url: url('/img/svg/hp.svg');
 }
 .themed-svg[data-icon='luck'] {
-    --image-url: url('../img/svg/luck.svg');
+    --image-url: url('/img/svg/luck.svg');
 }
 .themed-svg[data-icon='meds'] {
-    --image-url: url('../img/svg/meds.svg');
+    --image-url: url('/img/svg/meds.svg');
 }
 .themed-svg[data-icon='meleeWeapons'] {
-    --image-url: url('../img/svg/meleeWeapons.svg');
+    --image-url: url('/img/svg/meleeWeapons.svg');
 }
 .themed-svg[data-icon='smallGuns'] {
-    --image-url: url('../img/svg/smallGuns.svg');
+    --image-url: url('/img/svg/smallGuns.svg');
 }
 .themed-svg[data-icon='throwing'] {
-    --image-url: url('../img/svg/throwing.svg');
+    --image-url: url('/img/svg/throwing.svg');
 }
 .themed-svg[data-icon='unarmed'] {
-    --image-url: url('../img/svg/unarmed.svg');
+    --image-url: url('/img/svg/unarmed.svg');
 }
 .themed-svg[data-icon='vaultboy'] {
-    --image-url: url('../img/svg/vaultboy.svg');
+    --image-url: url('/img/svg/vaultboy.svg');
 }
 .themed-svg[data-icon='vaultboy-open-arms'] {
-    --image-url: url('../img/svg/vaultboy-open-arms.svg');
+    --image-url: url('/img/svg/vaultboy-open-arms.svg');
 }
 .themed-svg[data-icon='weight'] {
-    --image-url: url('../img/svg/weight.svg');
+    --image-url: url('/img/svg/weight.svg');
 }
 .themed-svg[data-icon='armor'] {
-    --image-url: url('../img/svg/armor.svg');
+    --image-url: url('/img/svg/armor.svg');
 }
 
 /****************************

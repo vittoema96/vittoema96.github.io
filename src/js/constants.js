@@ -58,9 +58,11 @@ export const BODY_PARTS = Object.freeze({
 
 // Default character template
 export const DEFAULT_CHARACTER = Object.freeze({
-    name: null,
-    origin: null,
+    name: undefined,
+    origin: undefined,
+    background: undefined,
     level: 1,
+    caps: 0,
     special: Object.values(SPECIAL).reduce((acc, key) => {
         acc[key] = 5;
         return acc;
@@ -72,8 +74,6 @@ export const DEFAULT_CHARACTER = Object.freeze({
         return acc;
     }, {}),
     specialties: [],
-    caps: 0,
-    background: null,
     items: [],
 });
 

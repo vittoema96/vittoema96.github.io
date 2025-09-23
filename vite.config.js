@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import react from '@vitejs/plugin-react'
 import { readFileSync } from 'fs'
 
-// Read version from package.json (single source of truth)
+// Read version from package.json
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'))
 const version = packageJson.version
 
@@ -26,12 +27,12 @@ export default defineConfig({
 
   // Copy static assets (CSV files, images, etc.)
   publicDir: 'public',
-
   // Ensure all assets are copied
-  assetsInclude: ['**/*.csv'],
+  assetsInclude: ['**/*.csv'], // TODO why only csv here?
   
   // Plugins
   plugins: [
+    react(),
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {

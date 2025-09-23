@@ -4,4 +4,12 @@
     <option name="sdkName" value="Python 3.9 (vittoema96.github.io)" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (vittoema96.github.io)" project-jdk-type="Python SDK" />
+  <component name="ViteConfiguration">
+    <option name="mode" value="MANUAL" />
+    <option name="path" value="$PROJECT_DIR$/vite.config.js" />
+  </component>
+  <component name="WebPackConfiguration">
+    <option name="mode" value="MANUAL" />
+    <option name="path" value="$PROJECT_DIR$/vite.config.js" />
+  </component>
 </project>
