@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import BootScreen from './components/BootScreen.jsx'
-import StatDisplay from './components/StatDisplay.jsx'
+import MainApp from './components/MainApp.jsx'
 import { useCharacterData } from './hooks/useCharacterData.js'
 
 function App() {
     const [showBootScreen, setShowBootScreen] = useState(true)
-    const [version] = useState('DEV') // We'll make this dynamic later
+    const [version] = useState('DEV')
+
+    // Use the character persistence hook
     const {
         character,
         updateCharacter,
@@ -15,58 +17,45 @@ function App() {
         isLoading
     } = useCharacterData()
 
-    // Hide boot screen after 6 seconds
+    // Boot screen timing - adjust based on your CSS animation duration
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowBootScreen(false)
-        }, 6000)
-        return () => clearTimeout(timer) // Cleanup
+        }, 6000) // Adjust this to match your boot animation timing
+
+        return () => clearTimeout(timer)
     }, [])
 
+    // Don't render until character data is loaded
     if (isLoading) {
-        return <div>Loading character data...</div>
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh',
+                color: '#afff03',
+                fontFamily: 'monospace'
+            }}>
+                Loading character data...
+            </div>
+        )
     }
+
     return (
         <div>
+            {/* Boot Screen - shows first */}
             <BootScreen version={version} isVisible={showBootScreen} />
 
+            {/* Main App - shows after boot screen finishes */}
             {!showBootScreen && (
-                <div className="main-app">
-                    <header>
-                        <h1>Pip-Boy 3000</h1>
-
-                        {/* Character backup functionality */}
-                        <div className="backup-controls">
-                            <button onClick={downloadCharacter}>
-                                Download Character
-                            </button>
-
-                            <input
-                                type="file"
-                                accept=".json"
-                                onChange={(e) => {
-                                    if (e.target.files[0]) {
-                                        uploadCharacter(e.target.files[0])
-                                            .then(() => alert('Character uploaded successfully!'))
-                                            .catch(err => alert(`Upload failed: ${err.message}`))
-                                    }
-                                }}
-                            />
-
-                            <button onClick={resetCharacter}>
-                                Reset Character
-                            </button>
-                        </div>
-                    </header>
-
-                    <main>
-                        {/* Pass character data and update function as props */}
-                        <StatDisplay
-                            character={character}
-                            updateCharacter={updateCharacter}
-                        />
-                    </main>
-                </div>
+                <MainApp
+                    character={character}
+                    updateCharacter={updateCharacter}
+                    resetCharacter={resetCharacter}
+                    downloadCharacter={downloadCharacter}
+                    uploadCharacter={uploadCharacter}
+                />
             )}
         </div>
     )
