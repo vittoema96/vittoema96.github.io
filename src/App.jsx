@@ -120,8 +120,6 @@ function AppContent() {
                     uploadCharacter={uploadCharacter}
                 />
             )}
-
-            {/* All popups are now React components - no vanilla HTML needed */}
         </div>
     )
 }

@@ -2,7 +2,9 @@ import React, { createContext, useContext, useState } from 'react'
 import AlertPopup from '../components/popups/AlertPopup.jsx'
 import D20Popup from '../components/popups/D20Popup.jsx'
 import D6Popup from '../components/popups/D6Popup.jsx'
+import AddItemPopup from '../components/popups/AddItemPopup.jsx'
 import { useI18n } from '../hooks/useI18n.js'
+import { useDataManager } from '../hooks/useDataManager.js'
 
 const PopupContext = createContext()
 
@@ -16,6 +18,7 @@ export const usePopup = () => {
 
 export function PopupProvider({ children }) {
     const t = useI18n()
+    const dataManager = useDataManager()
 
     const [alertState, setAlertState] = useState({
         isOpen: false,
@@ -34,6 +37,11 @@ export function PopupProvider({ children }) {
         isOpen: false,
         weaponName: '',
         damageRating: 2
+    })
+
+    const [addItemState, setAddItemState] = useState({
+        isOpen: false,
+        itemType: null
     })
 
     const showAlert = (content, title = null) => {
@@ -100,6 +108,21 @@ export function PopupProvider({ children }) {
         }))
     }
 
+    // AddItem Popup functions
+    const showAddItemPopup = (itemType) => {
+        setAddItemState({
+            isOpen: true,
+            itemType: itemType
+        })
+    }
+
+    const closeAddItemPopup = () => {
+        setAddItemState(prev => ({
+            ...prev,
+            isOpen: false
+        }))
+    }
+
     const contextValue = {
         showAlert,
         showConfirm,
@@ -107,7 +130,9 @@ export function PopupProvider({ children }) {
         showD20Popup,
         closeD20Popup,
         showD6Popup,
-        closeD6Popup
+        closeD6Popup,
+        showAddItemPopup,
+        closeAddItemPopup
     }
 
     return (
@@ -138,6 +163,14 @@ export function PopupProvider({ children }) {
                 weaponName={d6State.weaponName}
                 damageRating={d6State.damageRating}
             />
+
+            {/* Add Item Popup */}
+            <AddItemPopup
+                isOpen={addItemState.isOpen}
+                onClose={closeAddItemPopup}
+                itemType={addItemState.itemType}
+                dataManager={dataManager}
+            />
         </PopupContext.Provider>
     )
 }
@@ -161,5 +194,10 @@ export const setupGlobalPopupFunctions = (popupContext) => {
     // Add React D6 popup function
     window.openD6Popup = (weaponName, damageRating) => {
         popupContext.showD6Popup(weaponName, damageRating)
+    }
+
+    // Add React AddItem popup function
+    window.openAddItemModal = (itemType) => {
+        popupContext.showAddItemPopup(itemType)
     }
 }

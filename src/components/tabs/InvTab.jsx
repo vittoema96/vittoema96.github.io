@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { BODY_PARTS } from '../../js/constants.js'
+import { BODY_PARTS, SKILLS } from '../../js/constants.js'
 import { useI18n } from '../../hooks/useI18n.js'
+import { useDataManager } from '../../hooks/useDataManager.js'
+import WeaponCard from '../inventory/WeaponCard.jsx'
+import ApparelCard from '../inventory/ApparelCard.jsx'
+import AidCard from '../inventory/AidCard.jsx'
+import AmmoCard from '../inventory/AmmoCard.jsx'
 
 function InvTab({ character, updateCharacter }) {
     const [activeSubTab, setActiveSubTab] = useState('weapon')
     const [damageReduction, setDamageReduction] = useState({})
     const t = useI18n()
+    const dataManager = useDataManager()
 
     // Update damage reduction when character changes
     useEffect(() => {
         updateDamageReduction()
     }, [character])
+
+
 
     const updateDamageReduction = () => {
         if (!character.getLocationsDR) {
@@ -54,6 +62,74 @@ function InvTab({ character, updateCharacter }) {
         return items
     }
 
+    // Get items by category (weapon, apparel, aid, other)
+    const getItemsByCategory = (category) => {
+        if (!character.items || !dataManager.getItemTypeMap) return []
+
+        const typeMap = dataManager.getItemTypeMap()
+        const typesInCategory = typeMap[category] || []
+
+        return character.items.filter(item =>
+            typesInCategory.includes(item.type)
+        )
+    }
+
+    // Render individual item card based on type
+    const renderItemCard = (characterItem) => {
+        if (!dataManager.getItem) return null
+
+        const [itemId] = characterItem.id.split('_')
+        const itemData = dataManager.getItem(itemId)
+
+
+
+        if (!itemData) {
+            console.warn(`Item data not found for: ${itemId}`)
+            return null
+        }
+
+        // Determine item category
+        const isWeapon = Object.values(SKILLS).includes(characterItem.type)
+        const isApparel = ['clothing', 'headgear', 'outfit'].includes(characterItem.type) ||
+                         characterItem.type.endsWith('Armor')
+        const isAmmo = characterItem.type === 'ammo'
+
+        if (isWeapon) {
+            return (
+                <WeaponCard
+                    key={characterItem.id}
+                    characterItem={characterItem}
+                    itemData={itemData}
+                    dataManager={dataManager}
+                />
+            )
+        } else if (isApparel) {
+            return (
+                <ApparelCard
+                    key={characterItem.id}
+                    characterItem={characterItem}
+                    itemData={itemData}
+                />
+            )
+        } else if (isAmmo) {
+            return (
+                <AmmoCard
+                    key={characterItem.id}
+                    characterItem={characterItem}
+                />
+            )
+        } else {
+            // Aid items (food, drinks, meds)
+            return (
+                <AidCard
+                    key={characterItem.id}
+                    characterItem={characterItem}
+                    itemData={itemData}
+                />
+            )
+        }
+    }
+
     const renderItemSection = (itemType) => {
         const items = getItemsByType(itemType)
 
@@ -65,26 +141,9 @@ function InvTab({ character, updateCharacter }) {
                 </div>
                 <div className="card-carousel" id={`${itemType}-cards`}>
                     {items.length === 0 ? (
-                        <div className="no-items">No items</div>
+                        <div className="no-items">{t('noItems')}</div>
                     ) : (
-                        items.map(item => (
-                            <div key={item.id} className="simple-item-card" style={{
-                                border: '1px solid var(--primary-color)',
-                                padding: '8px',
-                                margin: '4px',
-                                borderRadius: '4px',
-                                backgroundColor: 'var(--secondary-color)',
-                                minWidth: '120px',
-                                textAlign: 'center'
-                            }}>
-                                <div className="item-name" style={{ fontSize: '12px', fontWeight: 'bold' }}>
-                                    {item.id}
-                                </div>
-                                <div className="item-quantity" style={{ fontSize: '10px', color: 'var(--accent-color)' }}>
-                                    {item.quantity}x
-                                </div>
-                            </div>
-                        ))
+                        items.map(item => renderItemCard(item))
                     )}
                 </div>
             </section>
@@ -123,6 +182,43 @@ function InvTab({ character, updateCharacter }) {
         apparel: ['clothing', 'outfit', 'headgear', 'raiderArmor', 'leatherArmor', 'metalArmor', 'combatArmor'],
         aid: ['food', 'drinks', 'meds'],
         other: ['ammo']
+    }
+
+    // Show loading state while data is loading
+    if (dataManager.isLoading) {
+        return (
+            <section id="inv-tabContent" className="tabContent">
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '200px',
+                    color: 'var(--primary-color)',
+                    fontSize: '1.2rem'
+                }}>
+                    {t('loadingItems') || 'Loading items...'}
+                </div>
+            </section>
+        )
+    }
+
+    // Show error state if data failed to load
+    if (dataManager.error) {
+        return (
+            <section id="inv-tabContent" className="tabContent">
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '200px',
+                    color: 'var(--error-color, #ff6b6b)',
+                    fontSize: '1.2rem',
+                    textAlign: 'center'
+                }}>
+                    {t('errorLoadingItems') || 'Error loading items'}: {dataManager.error}
+                </div>
+            </section>
+        )
     }
 
     return (
