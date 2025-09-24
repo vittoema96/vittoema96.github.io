@@ -82,11 +82,14 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
             // Clear all localStorage (like original)
             localStorage.clear()
 
-            if (window.alertPopup) {
-                window.alertPopup('dataWipeAlert')
-            } else {
-                alert(t('localDataWiped'))
-            }
+            // Add a small delay to ensure the confirm dialog has fully closed
+            setTimeout(() => {
+                if (window.alertPopup) {
+                    window.alertPopup(t('localDataWiped'))
+                } else {
+                    alert(t('localDataWiped'))
+                }
+            }, 500)
 
             // Re-apply theme and language after reset
             if (window.changeTheme) window.changeTheme()
@@ -124,8 +127,7 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
             <select
                 id="theme-select"
                 ref={themeSelectRef}
-                onChange={handleThemeChange}
-            >
+                onChange={handleThemeChange}>
                 <option value="theme-fallout-3">Fallout 3</option>
                 <option value="theme-fallout-new-vegas">Fallout New Vegas</option>
             </select>
@@ -156,6 +158,8 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
             <button id="reset-memory-button" onClick={handleResetMemory}>
                 {t('resetMemory')}
             </button>
+
+
         </section>
     )
 }

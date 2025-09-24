@@ -3,11 +3,14 @@ import BootScreen from './components/BootScreen.jsx'
 import MainApp from './components/MainApp.jsx'
 import { useCharacterData } from './hooks/useCharacterData.js'
 import { initI18n, changeLanguage } from './js/i18n.js'
+import { PopupProvider, usePopup, setupGlobalPopupFunctions } from './contexts/PopupContext.jsx'
 
-function App() {
+// Inner App component that has access to popup context
+function AppContent() {
     const [version] = useState('DEV')
     const [showBootScreen, setShowBootScreen] = useState(version !== 'DEV')
     const [i18nReady, setI18nReady] = useState(false)
+    const popupContext = usePopup()
 
     // Use the character persistence hook
     const {
@@ -50,15 +53,7 @@ function App() {
                 window.changeLanguage = changeLanguage
                 window.changeTheme = changeTheme
 
-                // Initialize popup system if needed
-                try {
-                    const { initializePopups, alertPopup, confirmPopup } = await import('./js/popup.js')
-                    await initializePopups()
-                    window.alertPopup = alertPopup
-                    window.confirmPopup = confirmPopup
-                } catch (popupError) {
-                    console.warn('Popup system not available:', popupError)
-                }
+                // All popups are now React components - no vanilla JS needed
 
                 setI18nReady(true)
                 console.log('Systems initialized successfully')
@@ -71,6 +66,14 @@ function App() {
 
         initializeSystems()
     }, [])
+
+    // Setup global popup functions after popup context is ready
+    useEffect(() => {
+        setupGlobalPopupFunctions(popupContext)
+        console.log('React popup functions override vanilla ones')
+    }, [popupContext])
+
+    // No more vanilla JS initialization - everything is React now!
 
     // Boot screen timing - adjust based on your CSS animation duration
     useEffect(() => {
@@ -117,7 +120,18 @@ function App() {
                     uploadCharacter={uploadCharacter}
                 />
             )}
+
+            {/* All popups are now React components - no vanilla HTML needed */}
         </div>
+    )
+}
+
+// Main App component with popup provider
+function App() {
+    return (
+        <PopupProvider>
+            <AppContent />
+        </PopupProvider>
     )
 }
 

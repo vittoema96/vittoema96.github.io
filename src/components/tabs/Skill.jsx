@@ -14,12 +14,23 @@ function Skill({
 }) {
     const t = useI18n()
     return (
-        <div 
-            className="skill" 
+        <div
+            className="skill"
             data-skill={skillId}
-            onClick={() => onSkillClick(skillId)}
-            style={{ 
-                cursor: isEditing ? 'pointer' : 'default',
+            onClick={() => {
+                if (isEditing) {
+                    onSkillClick(skillId)
+                } else {
+                    // In non-editing mode, open React D20 popup for skill checks
+                    if (window.openD20Popup) {
+                        window.openD20Popup(skillId)
+                    } else {
+                        console.warn('openD20Popup not available')
+                    }
+                }
+            }}
+            style={{
+                cursor: 'pointer', // Always show pointer since both modes are clickable
                 userSelect: 'none' // Prevent text selection on click
             }}
         >
