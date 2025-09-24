@@ -60,7 +60,7 @@ function InvTab({ character, updateCharacter }) {
         return (
             <section key={itemType}>
                 <div className="itemlist-header">
-                    <span className="h3 js-title" data-i18n={itemType}>{t(itemType)}</span>
+                    <span className="h3 js-title">{t(itemType)}</span>
                     <button className="js-button-addItem" onClick={() => handleAddItem(itemType)}>+</button>
                 </div>
                 <div className="card-carousel" id={`${itemType}-cards`}>
@@ -94,21 +94,21 @@ function InvTab({ character, updateCharacter }) {
     const renderDamageReductionStats = () => {
         return Object.values(BODY_PARTS).map(bodyPart => (
             <div key={bodyPart} className={`apparel-stat ${bodyPart}`}>
-                <div data-i18n={bodyPart}>{t(bodyPart)}</div>
+                <div>{t(bodyPart)}</div>
                 <div className="row l-centered">
-                    <span data-i18n="physical">{t('physical')}:</span>
+                    <span>{t('physical')}:</span>
                     <span id={`apparel__${bodyPart}-physical`}>
                         {damageReduction[bodyPart]?.physical || '?'}
                     </span>
                 </div>
                 <div className="row l-centered">
-                    <span data-i18n="energy">{t('energy')}:</span>
+                    <span>{t('energy')}:</span>
                     <span id={`apparel__${bodyPart}-energy`}>
                         {damageReduction[bodyPart]?.energy || '?'}
                     </span>
                 </div>
                 <div className="row l-centered">
-                    <span data-i18n="radiation">{t('radiation')}:</span>
+                    <span>{t('radiation')}:</span>
                     <span id={`apparel__${bodyPart}-radiation`}>
                         {damageReduction[bodyPart]?.radiation || '?'}
                     </span>
@@ -131,35 +131,31 @@ function InvTab({ character, updateCharacter }) {
             <div className="navigator">
                 <button
                     className={`subTab-button ${activeSubTab === 'weapon' ? 'active' : ''}`}
-                    data-i18n="weaponsUpper"
                     data-sub-screen="weapon"
                     onClick={() => handleSubTabClick('weapon')}
                 >
-                    {t('weaponsUpper') || 'WEAPONS'}
+                    {t('weaponsUpper')}
                 </button>
                 <button
                     className={`subTab-button ${activeSubTab === 'apparel' ? 'active' : ''}`}
-                    data-i18n="apparelUpper"
                     data-sub-screen="apparel"
                     onClick={() => handleSubTabClick('apparel')}
                 >
-                    {t('apparelUpper') || 'APPAREL'}
+                    {t('apparelUpper')}
                 </button>
                 <button
                     className={`subTab-button ${activeSubTab === 'aid' ? 'active' : ''}`}
-                    data-i18n="aidUpper"
                     data-sub-screen="aid"
                     onClick={() => handleSubTabClick('aid')}
                 >
-                    {t('aidUpper') || 'AID'}
+                    {t('aidUpper')}
                 </button>
                 <button
                     className={`subTab-button ${activeSubTab === 'other' ? 'active' : ''}`}
-                    data-i18n="otherUpper"
                     data-sub-screen="other"
                     onClick={() => handleSubTabClick('other')}
                 >
-                    {t('otherUpper') || 'OTHER'}
+                    {t('otherUpper')}
                 </button>
             </div>
 
@@ -171,7 +167,7 @@ function InvTab({ character, updateCharacter }) {
             {/* Apparel Sub-screen - EXACT copy of original structure */}
             <section className={`js-subScreen ${activeSubTab !== 'apparel' ? 'hidden' : ''} keep-first`} id="apparel-subScreen">
                 <div>
-                    <span className="h1" data-i18n="damageReduction">{t('damageReduction')}</span>
+                    <span className="h1">{t('damageReduction')}</span>
                     <div className="row l-spaceAround">
                         <div className="activeApparel l-spaceAround">
                             {renderDamageReductionStats()}

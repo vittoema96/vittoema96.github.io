@@ -523,5 +523,16 @@
     "backgroundPlaceholder": "Scrivi il tuo background qui...",
     "invalidCharacterFileError": "Errore: Formato file personaggio non valido.",
     "invalidJsonFileError": "Errore: Il file selezionato non è un file JSON valido.",
-    "fileReadError": "Errore nella lettura del file."
+    "fileReadError": "Errore nella lettura del file.",
+    "settings": "Impostazioni",
+
+    "bootWelcome": "BENVENUTO, SOVRINTENDENTE",
+    "replenishLuckConfirm": "Ripristinare la fortuna al massimo?",
+    "downloadPG": "Scarica PG",
+    "importPG": "Importa PG",
+    "resetMemory": "RESET MEMORIA",
+    "characterImportSuccess": "Personaggio importato con successo!",
+    "importFailed": "Importazione fallita",
+    "localDataWiped": "I dati locali sono stati cancellati",
+    "confirmDeleteCharacter": "Sei davvero sicuro di voler ELIMINARE IL TUO PERSONAGGIO e TUTTI GLI ALTRI DATI SALVATI?"
 }

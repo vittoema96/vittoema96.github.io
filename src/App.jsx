@@ -5,8 +5,8 @@ import { useCharacterData } from './hooks/useCharacterData.js'
 import { initI18n, changeLanguage } from './js/i18n.js'
 
 function App() {
-    const [showBootScreen, setShowBootScreen] = useState(true)
     const [version] = useState('DEV')
+    const [showBootScreen, setShowBootScreen] = useState(version !== 'DEV')
     const [i18nReady, setI18nReady] = useState(false)
 
     // Use the character persistence hook
@@ -74,12 +74,17 @@ function App() {
 
     // Boot screen timing - adjust based on your CSS animation duration
     useEffect(() => {
+        // Skip boot screen timer in DEV mode
+        if (version === 'DEV') {
+            return
+        }
+
         const timer = setTimeout(() => {
             setShowBootScreen(false)
         }, 6000) // Adjust this to match your boot animation timing
 
         return () => clearTimeout(timer)
-    }, [])
+    }, [version])
 
     // Don't render until character data and i18n are loaded
     if (isLoading || !i18nReady) {

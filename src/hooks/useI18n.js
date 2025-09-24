@@ -7,16 +7,16 @@ import i18next from 'i18next'
  * Automatically re-renders components when language changes
  */
 export function useI18n() {
-    const [isReady, setIsReady] = useState(i18next.isInitialized)
+    const [updateCounter, setUpdateCounter] = useState(0)
 
     useEffect(() => {
         const handleLanguageChange = () => {
-            // Force component re-render when language changes
-            setIsReady(true)
+            // Force component re-render when language changes by incrementing counter
+            setUpdateCounter(prev => prev + 1)
         }
 
         const handleInitialized = () => {
-            setIsReady(true)
+            setUpdateCounter(prev => prev + 1)
         }
 
         // Listen for i18next events
@@ -25,7 +25,7 @@ export function useI18n() {
 
         // Check if already initialized
         if (i18next.isInitialized) {
-            setIsReady(true)
+            setUpdateCounter(prev => prev + 1)
         }
 
         return () => {
@@ -36,7 +36,7 @@ export function useI18n() {
 
     // Return a safe translation function
     return (key, options = {}) => {
-        if (!isReady || !i18next.isInitialized) {
+        if (!i18next.isInitialized) {
             // Return a fallback while i18n is loading
             return key
         }

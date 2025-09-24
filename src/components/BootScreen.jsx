@@ -1,6 +1,9 @@
 import React from 'react'
+import { useI18n } from '../hooks/useI18n.js'
 
 function BootScreen({ version, isVisible }) {
+    const t = useI18n()
+
     if (!isVisible) return null
 
     return (
@@ -24,7 +27,7 @@ function BootScreen({ version, isVisible }) {
                 <span className="boot-text">&gt; ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</span>
                 <span className="boot-text">&gt; COPYRIGHT 2075-2077 ROBCO INDUSTRIES</span>
                 <span className="boot-text">&gt; LOADER {version.toUpperCase()}</span>
-                <span className="boot-text">&gt; WELCOME, OVERSEER</span>
+                <span className="boot-text">&gt; {t('bootWelcome')}</span>
             </pre>
         </div>
     )

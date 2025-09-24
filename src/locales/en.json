@@ -507,5 +507,16 @@
     "warning": "Warning",
     "weaponId": "Weapon",
     "weaponsUpper": "WEAPONS",
-    "weight": "Weight"
+    "weight": "Weight",
+    "settings": "Settings",
+
+    "bootWelcome": "WELCOME, OVERSEER",
+    "replenishLuckConfirm": "Replenish luck to maximum?",
+    "downloadPG": "Download PG",
+    "importPG": "Import PG",
+    "resetMemory": "RESET MEMORY",
+    "characterImportSuccess": "Character imported successfully!",
+    "importFailed": "Import failed",
+    "localDataWiped": "Local data was wiped",
+    "confirmDeleteCharacter": "Are you really sure you want to DELETE YOUR CHARACTER and EVERY OTHER SAVED DATA?"
 }

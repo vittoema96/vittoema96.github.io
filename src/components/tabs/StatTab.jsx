@@ -65,7 +65,7 @@ function StatTab({ character, updateCharacter }) {
     // Handle current luck replenish
     const handleLuckReplenish = () => {
         if (!isEditing) {
-            if (confirm('Replenish luck to maximum?')) {
+            if (confirm(t('replenishLuckConfirm'))) {
                 updateCharacter({ currentLuck: character.special[SPECIAL.LUCK] })
             }
         }
@@ -156,15 +156,15 @@ function StatTab({ character, updateCharacter }) {
             {/* Derived Stats */}
             <div className="row row--spaced">
                 <div className="derived-stat">
-                    <span data-i18n="defense">{t('defense')}</span>
+                    <span>{t('defense')}</span>
                     <span id="defense-value">{defense}</span>
                 </div>
                 <div className="derived-stat">
-                    <span data-i18n="initiative">{t('initiative')}</span>
+                    <span>{t('initiative')}</span>
                     <span id="initiative-value">{initiative}</span>
                 </div>
                 <div className="derived-stat">
-                    <span data-i18n="melee-damage">{t('melee-damage')}</span>
+                    <span>{t('melee-damage')}</span>
                     <span id="melee-damage-value">+{meleeDamage}</span>
                 </div>
             </div>

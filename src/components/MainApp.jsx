@@ -4,6 +4,7 @@ import InvTab from './tabs/InvTab.jsx'
 import DataTab from './tabs/DataTab.jsx'
 import MapTab from './tabs/MapTab.jsx'
 import SettingsTab from './tabs/SettingsTab.jsx'
+import { getMaxHp, getMaxWeight } from '../js/gameRules.js'
 
 function MainApp({ character, updateCharacter, downloadCharacter, uploadCharacter, resetCharacter }) {
     const [activeTab, setActiveTab] = useState('stat')
@@ -22,6 +23,11 @@ function MainApp({ character, updateCharacter, downloadCharacter, uploadCharacte
 
     const ActiveTabComponent = tabs.find(tab => tab.id === activeTab)?.component
 
+    // Calculate derived stats for header
+    const maxHp = getMaxHp(character)
+    const maxWeight = getMaxWeight(character)
+    const currentWeight = 0 // TODO: Calculate from items when dataManager is available
+
     return (
         <div
             id="main"
@@ -32,23 +38,22 @@ function MainApp({ character, updateCharacter, downloadCharacter, uploadCharacte
                 overflow: 'hidden' // Prevent body scroll, let main-container handle it
             }}
         >
-            {/* Header with character stats */}
-            <header id="c-headerStats">
-                <div className="row l-distributed">
-                    <span className="h3" id="c-headerStats__name">
-                        {character.name || 'Vault Dweller'}
-                    </span>
-                    <span className="h3" id="c-headerStats__level">
-                        LVL {character.level}
-                    </span>
-                </div>
-                <div className="row l-distributed">
-                    <span className="h5" id="c-headerStats__hp">
-                        HP: {character.currentHp}
-                    </span>
-                    <span className="h5" id="c-headerStats__weight">
-                        Weight: 0/100 {/* Calculate actual weight */}
-                    </span>
+            {/* Header - EXACT copy of original structure */}
+            <header className="l-lastSmall">
+                <span className="h1">Pip-Boy 3000</span>
+                <div id="c-headerStats">
+                    <div className="icon-text-pair">
+                        <div className="themed-svg" data-icon="hp"></div>
+                        <div id="c-headerStats__hp">{character.currentHp} / {maxHp}</div>
+                    </div>
+                    <div className="icon-text-pair">
+                        <div className="themed-svg" data-icon="caps"></div>
+                        <div id="c-headerStats__caps">{character.caps || 0}</div>
+                    </div>
+                    <div className="icon-text-pair">
+                        <div className="themed-svg" data-icon="weight"></div>
+                        <div id="c-headerStats__weight">{currentWeight} / {maxWeight}</div>
+                    </div>
                 </div>
             </header>
 

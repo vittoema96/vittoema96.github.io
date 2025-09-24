@@ -57,13 +57,13 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
                 .then(() => {
                     // Use global alertPopup if available, otherwise use alert
                     if (window.alertPopup) {
-                        window.alertPopup('Character imported successfully!')
+                        window.alertPopup(t('characterImportSuccess'))
                     } else {
-                        alert('Character imported successfully!')
+                        alert(t('characterImportSuccess'))
                     }
                 })
                 .catch(err => {
-                    const errorMsg = `Import failed: ${err.message}`
+                    const errorMsg = `${t('importFailed')}: ${err.message}`
                     if (window.alertPopup) {
                         window.alertPopup(errorMsg)
                     } else {
@@ -85,7 +85,7 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
             if (window.alertPopup) {
                 window.alertPopup('dataWipeAlert')
             } else {
-                alert('Local data was wiped')
+                alert(t('localDataWiped'))
             }
 
             // Re-apply theme and language after reset
@@ -96,7 +96,7 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
         if (window.confirmPopup) {
             window.confirmPopup('deleteCharacterAlert', confirmAction)
         } else {
-            if (confirm('Are you really sure you want to DELETE YOUR CHARACTER and EVERY OTHER SAVED DATA?')) {
+            if (confirm(t('confirmDeleteCharacter'))) {
                 confirmAction()
             }
         }
@@ -104,10 +104,10 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
 
     return (
         <section id="settings-tabContent" className="tabContent">
-            <span className="h3">{t('settings') || 'Settings'}</span>
+            <span className="h3">{t('settings')}</span>
 
             {/* Language Selection */}
-            <label data-i18n="language" htmlFor="language-select">{t('language')}:</label>
+            <label htmlFor="language-select">{t('language')}:</label>
             <select
                 id="language-select"
                 ref={languageSelectRef}
@@ -120,7 +120,7 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
             <hr />
 
             {/* Theme Selection */}
-            <label data-i18n="theme" htmlFor="theme-select">{t('theme')}:</label>
+            <label htmlFor="theme-select">{t('theme')}:</label>
             <select
                 id="theme-select"
                 ref={themeSelectRef}
@@ -135,10 +135,10 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
             {/* Character Import/Export */}
             <div className="row l-spaceAround">
                 <button id="button-downloadPG" onClick={downloadCharacter}>
-                    Download PG
+                    {t('downloadPG')}
                 </button>
                 <button id="button-importPG" onClick={handleImportClick}>
-                    Import PG
+                    {t('importPG')}
                 </button>
                 <input
                     ref={fileInputRef}
@@ -154,7 +154,7 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
 
             {/* Reset Memory */}
             <button id="reset-memory-button" onClick={handleResetMemory}>
-                RESET MEMORY
+                {t('resetMemory')}
             </button>
         </section>
     )

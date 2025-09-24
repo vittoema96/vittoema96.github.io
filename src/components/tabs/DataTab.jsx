@@ -19,14 +19,12 @@ function DataTab({ character, updateCharacter }) {
         <section id="data-tabContent" className="tabContent">
             {/* Character Name */}
             <div className="row l-distributed l-firstSmall">
-                <label className="h2" htmlFor="pg_name" data-i18n="name">
+                <label className="h2" htmlFor="pg_name">
                     {t('name')}:
                 </label>
                 <input
                     id="pg_name"
                     type="text"
-                    data-i18n="namePlaceholder"
-                    data-i18n-target="placeholder"
                     placeholder={t('namePlaceholder')}
                     value={character.name || ''}
                     onChange={(e) => handleFieldChange('name', e.target.value)}
@@ -35,7 +33,7 @@ function DataTab({ character, updateCharacter }) {
 
             {/* Character Level */}
             <div className="row l-distributed l-firstSmall">
-                <label className="h4" htmlFor="level" data-i18n="level">
+                <label className="h4" htmlFor="level">
                     {t('level')}:
                 </label>
                 <input
@@ -50,7 +48,7 @@ function DataTab({ character, updateCharacter }) {
 
             {/* Character Origin */}
             <div className="row l-distributed l-firstSmall">
-                <label className="h4" htmlFor="origin" data-i18n="origin">
+                <label className="h4" htmlFor="origin">
                     {t('origin')}:
                 </label>
                 <select
@@ -59,26 +57,24 @@ function DataTab({ character, updateCharacter }) {
                     onChange={(e) => handleFieldChange('origin', e.target.value === 'none' ? undefined : e.target.value)}
                 >
                     <option value="none" disabled hidden></option>
-                    <option value="vaultDweller" data-i18n="vaultDweller">{t('vaultDweller')}</option>
-                    <option value="ghoul" data-i18n="ghoul">{t('ghoul')}</option>
-                    <option value="survivor" data-i18n="survivor">{t('survivor')}</option>
-                    <option value="mrHandy" data-i18n="mrHandy">{t('mrHandy')}</option>
-                    <option value="brotherhoodInitiate" data-i18n="brotherhoodInitiate">{t('brotherhoodInitiate')}</option>
-                    <option value="superMutant" data-i18n="superMutant">{t('superMutant')}</option>
+                    <option value="vaultDweller">{t('vaultDweller')}</option>
+                    <option value="ghoul">{t('ghoul')}</option>
+                    <option value="survivor">{t('survivor')}</option>
+                    <option value="mrHandy">{t('mrHandy')}</option>
+                    <option value="brotherhoodInitiate">{t('brotherhoodInitiate')}</option>
+                    <option value="superMutant">{t('superMutant')}</option>
                 </select>
             </div>
 
             {/* Character Background */}
             <div className="row l-distributed l-firstSmall">
                 <label className="h4" htmlFor="character-background">
-                    {t('backgroundLabel') || 'Background'}:
+                    Background:
                 </label>
                 <textarea
                     id="character-background"
                     rows="7"
-                    data-i18n="backgroundPlaceholder"
-                    data-i18n-target="placeholder"
-                    placeholder={t('backgroundPlaceholder') || 'Write your background here...'}
+                    placeholder={t('backgroundPlaceholder')}
                     value={character.background || ''}
                     onChange={(e) => handleFieldChange('background', e.target.value)}
                 />
