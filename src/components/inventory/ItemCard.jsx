@@ -1,5 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { useI18n } from '../../hooks/useI18n'
+import { useOverlay } from '../../hooks/useOverlay.js'
+import { useInventoryActions } from '../../hooks/useInventoryActions.js'
 
 /**
  * Generic item card component - base for all item types
@@ -13,12 +15,12 @@ function ItemCard({
     actionType = 'use',
     isEquipped = false,
     disabled = false,
-    hideControls = false
+    hideControls = false,
+    customControls = null
 }) {
     const t = useI18n()
-    const [showOverlay, setShowOverlay] = useState(false)
     const [showDescription, setShowDescription] = useState(false)
-    const longPressTimer = useRef(null)
+    const { sellItem, deleteItem, equipItem, useItem } = useInventoryActions()
     
     if (!itemData) {
         console.error(`Item data not found for ID: ${characterItem.id}`)
@@ -29,49 +31,36 @@ function ItemCard({
     const quantity = characterItem.quantity
 
     const handleAction = () => {
-        if (!disabled && onAction) {
+        if (disabled) return
+
+        if (onAction) {
             onAction(characterItem, itemData)
+        } else {
+            // Default action based on actionType
+            switch (actionType) {
+                case 'equip':
+                    equipItem(characterItem, itemData)
+                    break
+                case 'use':
+                    useItem(characterItem, itemData)
+                    break
+                default:
+                    console.log('Action:', actionType, characterItem.id)
+            }
         }
     }
 
-    const handleSell = () => {
-        // TODO: Implement sell functionality
-        console.log('Sell item:', characterItem.id)
-    }
-
-    const handleDelete = () => {
-        // TODO: Implement delete functionality
-        console.log('Delete item:', characterItem.id)
-        setShowOverlay(false)
-    }
-
-    // Long press handlers
-    const handlePointerDown = (e) => {
-        // Only trigger on left mouse button or touch
-        if (e.button !== 0) return
-
-        longPressTimer.current = setTimeout(() => {
-            setShowOverlay(true)
-        }, 500) // 500ms long press
-    }
-
-    const handlePointerUp = () => {
-        if (longPressTimer.current) {
-            clearTimeout(longPressTimer.current)
-            longPressTimer.current = null
-        }
-    }
-
-    const handlePointerLeave = () => {
-        if (longPressTimer.current) {
-            clearTimeout(longPressTimer.current)
-            longPressTimer.current = null
-        }
-    }
-
-    const handleCancelOverlay = () => {
-        setShowOverlay(false)
-    }
+    // Use overlay hook for sell/delete functionality
+    const {
+        showOverlay,
+        handleHideOverlay,
+        handleSell,
+        handleDelete,
+        longPressHandlers
+    } = useOverlay(
+        () => sellItem(characterItem, itemData),
+        () => deleteItem(characterItem, itemData)
+    )
 
     const toggleDescription = () => {
         setShowDescription(!showDescription)
@@ -89,9 +78,7 @@ function ItemCard({
         <section
             className="card"
             data-item-id={itemData.ID}
-            onPointerDown={handlePointerDown}
-            onPointerUp={handlePointerUp}
-            onPointerLeave={handlePointerLeave}
+            {...longPressHandlers}
         >
             {/* Card Header */}
             <div className="row card-header l-lastSmall">
@@ -125,7 +112,9 @@ function ItemCard({
             </div>
 
             {/* Card Controls */}
-            {!hideControls && (
+            {customControls ? (
+                customControls
+            ) : !hideControls ? (
                 <div className="row card-controls">
                     <input
                         type="checkbox"
@@ -142,7 +131,7 @@ function ItemCard({
                         {t('showDescription')}
                     </button>
                 </div>
-            )}
+            ) : null}
 
             {/* Description Container */}
             <div className={`description-container ${showDescription ? 'expanded' : ''}`}>
@@ -152,7 +141,7 @@ function ItemCard({
             </div>
 
             {/* Card Overlay - shown on long press */}
-            <div className={`card-overlay ${showOverlay ? '' : 'hidden'}`} onClick={handleCancelOverlay}>
+            <div className={`card-overlay ${showOverlay ? '' : 'hidden'}`} onClick={handleHideOverlay}>
                 <button
                     className="popup__button-confirm"
                     data-icon="caps"

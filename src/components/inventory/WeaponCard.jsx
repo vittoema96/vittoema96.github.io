@@ -2,16 +2,18 @@ import React, { useState } from 'react'
 import ItemCard from './ItemCard.jsx'
 import { useCharacterData } from '../../hooks/useCharacterData.js'
 import { useI18n } from '../../hooks/useI18n.js'
+import { usePopup } from '../../contexts/PopupContext.jsx'
 import { SKILL_TO_SPECIAL_MAP } from '../../js/constants.js'
 
 /**
  * Weapon card component with weapon-specific stats and actions
+ * Uses ItemCard as base with custom weapon content and controls
  */
 function WeaponCard({ characterItem, itemData, dataManager, onAttack }) {
     const { character } = useCharacterData()
     const t = useI18n()
+    const { showD20Popup } = usePopup()
     const [showTooltip, setShowTooltip] = useState(null)
-    const [showDescription, setShowDescription] = useState(false)
 
     if (!itemData) {
         console.error(`Weapon data not found for ID: ${characterItem.id}`)
@@ -41,9 +43,7 @@ function WeaponCard({ characterItem, itemData, dataManager, onAttack }) {
             onAttack(characterItem, weaponObj)
         } else {
             // Open D20 popup for weapon attack
-            if (window.openD20Popup) {
-                window.openD20Popup(weaponObj.TYPE, weaponObj.ID)
-            }
+            showD20Popup(weaponObj.TYPE, weaponObj.ID)
         }
     }
 
@@ -51,53 +51,21 @@ function WeaponCard({ characterItem, itemData, dataManager, onAttack }) {
         setShowTooltip(showTooltip === tagId ? null : tagId)
     }
 
-    const weaponContent = (
-        <section>
-            <div className="row l-spaceBetween">
-                <section>
-                    <div className="card-stat">
-                        <div className="js-cardWeapon-skill">{t(weaponObj.TYPE)}</div>
-                        <div className="row l-centered">
-                            <span>{t('targetLabel')}</span>
-                            <span className="js-cardWeapon-target">{targetNumber}</span>
-                        </div>
-                        <div className="row l-centered">
-                            <span>{t('critLabel')}</span>
-                            <span className="js-cardWeapon-crit">{critThreshold}</span>
-                        </div>
-                    </div>
-                    <div className="card-stat">
-                        <div className="js-cardWeapon-ammoType">
-                            {t(weaponObj.AMMO_TYPE === 'self' ? 'quantity' : weaponObj.AMMO_TYPE)}
-                        </div>
-                        <div className="js-cardWeapon-ammoCount">{getAmmoCount()}</div>
-                    </div>
-                </section>
-                
-                <div className="js-cardWeapon-image themed-svg" data-icon={weaponObj.TYPE}></div>
-                
-                <section>
-                    <div className="card-stat">
-                        <div>{t('damageLabel')}</div>
-                        <div className="js-cardWeapon-damageRating">{weaponObj.DAMAGE_RATING}</div>
-                    </div>
-                    <div className="card-stat">
-                        <div>{t('damageTypeLabel')}</div>
-                        <div className="js-cardWeapon-damageType">{t(weaponObj.DAMAGE_TYPE)}</div>
-                    </div>
-                    <div className="card-stat">
-                        <div>{t('fireRateLabel')}</div>
-                        <div className="js-cardWeapon-fireRate">{weaponObj.FIRE_RATE}</div>
-                    </div>
-                    <div className="card-stat">
-                        <div>{t('rangeLabel')}</div>
-                        <div className="js-cardWeapon-range">{t(`${weaponObj.RANGE}Full`)}</div>
-                    </div>
-                </section>
-            </div>
+    // Custom controls for weapon - ATTACK BUTTON A SINISTRA, TAGS A DESTRA
+    const customControls = (
+        <div className="row l-spaceBetween" style={{ alignItems: 'flex-end' }}>
+            {/* Attack Button - A SINISTRA */}
+            <input
+                type="checkbox"
+                className="themed-svg button-card"
+                data-icon="attack"
+                checked={false}
+                onChange={handleAttack}
+                style={{ marginBottom: '1rem' }}
+            />
 
-            {/* Tags for effects and qualities */}
-            <div className="tags-container" style={{ position: 'relative' }}>
+            {/* Tags Container - A DESTRA */}
+            <div className="tags-container" style={{ position: 'relative', marginBottom: '1rem' }}>
                 {weaponObj.EFFECTS?.map((effect, index) => {
                     const effectId = `effect-${index}`
                     return (
@@ -154,42 +122,65 @@ function WeaponCard({ characterItem, itemData, dataManager, onAttack }) {
                     </div>
                 )}
             </div>
+        </div>
+    )
 
-            {/* Weapon Controls - Attack Button + Show Description */}
-            <div className="row card-controls">
-                <input
-                    type="checkbox"
-                    className="themed-svg button-card"
-                    data-icon="attack"
-                    checked={true}
-                    onChange={handleAttack}
-                />
-                <button
-                    className="description-toggle-button"
-                    onClick={() => setShowDescription(prev => !prev)}
-                >
-                    {t('showDescription')}
-                </button>
-            </div>
+    const weaponContent = (
+        <>
+            <div className="row l-spaceBetween">
+                <section>
+                    <div className="card-stat">
+                        <div className="js-cardWeapon-skill">{t(weaponObj.TYPE)}</div>
+                        <div className="row l-centered">
+                            <span>{t('targetLabel')}</span>
+                            <span className="js-cardWeapon-target">{targetNumber}</span>
+                        </div>
+                        <div className="row l-centered">
+                            <span>{t('critLabel')}</span>
+                            <span className="js-cardWeapon-crit">{critThreshold}</span>
+                        </div>
+                    </div>
+                    <div className="card-stat">
+                        <div className="js-cardWeapon-ammoType">
+                            {t(weaponObj.AMMO_TYPE === 'self' ? 'quantity' : weaponObj.AMMO_TYPE)}
+                        </div>
+                        <div className="js-cardWeapon-ammoCount">{getAmmoCount()}</div>
+                    </div>
+                </section>
 
-            {/* Description Container */}
-            <div className={`description-container ${showDescription ? 'expanded' : ''}`}>
-                <div className="description">
-                    <p>{itemData.DESCRIPTION?.split('. ').map(sentence => `${sentence}${sentence.endsWith('.') ? '' : '.'}`).join(' ')}</p>
-                </div>
+                <div className="js-cardWeapon-image themed-svg" data-icon={weaponObj.TYPE}></div>
+
+                <section>
+                    <div className="card-stat">
+                        <div>{t('damageLabel')}</div>
+                        <div className="js-cardWeapon-damageRating">{weaponObj.DAMAGE_RATING}</div>
+                    </div>
+                    <div className="card-stat">
+                        <div>{t('damageTypeLabel')}</div>
+                        <div className="js-cardWeapon-damageType">{t(weaponObj.DAMAGE_TYPE)}</div>
+                    </div>
+                    <div className="card-stat">
+                        <div>{t('fireRateLabel')}</div>
+                        <div className="js-cardWeapon-fireRate">{weaponObj.FIRE_RATE}</div>
+                    </div>
+                    <div className="card-stat">
+                        <div>{t('rangeLabel')}</div>
+                        <div className="js-cardWeapon-range">{t(`${weaponObj.RANGE}Full`)}</div>
+                    </div>
+                </section>
             </div>
-        </section>
+        </>
     )
 
     return (
         <ItemCard
             characterItem={characterItem}
             itemData={itemData}
-            onAction={null}
+            onAction={handleAttack}
             actionIcon="attack"
             actionType="attack"
             isEquipped={false}
-            hideControls={true} // Hide default controls, we handle them in weaponContent
+            customControls={customControls}
         >
             {weaponContent}
         </ItemCard>

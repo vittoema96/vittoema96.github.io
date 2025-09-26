@@ -45,7 +45,7 @@ export function PopupProvider({ children }) {
     })
 
     const showAlert = (content, title = null) => {
-        // Handle translation keys vs direct text (same logic as original popup.js)
+        // TODO may not need this here
         const translatedContent = content && content.indexOf(' ') > -1 ? content : t(content || '')
 
         setAlertState({
@@ -58,7 +58,7 @@ export function PopupProvider({ children }) {
     }
 
     const showConfirm = (content, onConfirm, title = null) => {
-        // Handle translation keys vs direct text (same logic as original popup.js)
+        // TODO may not need this here
         const translatedContent = content && content.indexOf(' ') > -1 ? content : t(content || '')
 
         setAlertState({
@@ -138,8 +138,7 @@ export function PopupProvider({ children }) {
     return (
         <PopupContext.Provider value={contextValue}>
             {children}
-            
-            {/* Alert/Confirm Popup */}
+
             <AlertPopup
                 isOpen={alertState.isOpen}
                 onClose={closeAlert}
@@ -149,14 +148,12 @@ export function PopupProvider({ children }) {
                 showConfirm={alertState.showConfirm}
             />
 
-            {/* D20 Skill Check Popup */}
             <D20Popup
                 isOpen={d20State.isOpen}
                 onClose={closeD20Popup}
                 skillId={d20State.skillId}
             />
 
-            {/* D6 Damage Roll Popup */}
             <D6Popup
                 isOpen={d6State.isOpen}
                 onClose={closeD6Popup}
@@ -164,7 +161,6 @@ export function PopupProvider({ children }) {
                 damageRating={d6State.damageRating}
             />
 
-            {/* Add Item Popup */}
             <AddItemPopup
                 isOpen={addItemState.isOpen}
                 onClose={closeAddItemPopup}
@@ -173,31 +169,4 @@ export function PopupProvider({ children }) {
             />
         </PopupContext.Provider>
     )
-}
-
-// Global functions for backward compatibility
-export const setupGlobalPopupFunctions = (popupContext) => {
-    // Override vanilla JS alert/confirm with React versions
-    window.alertPopup = (message) => {
-        popupContext.showAlert(message)
-    }
-
-    window.confirmPopup = (message, confirmCallback) => {
-        popupContext.showConfirm(message, confirmCallback)
-    }
-
-    // Add React D20 popup function
-    window.openD20Popup = (skillId) => {
-        popupContext.showD20Popup(skillId)
-    }
-
-    // Add React D6 popup function
-    window.openD6Popup = (weaponName, damageRating) => {
-        popupContext.showD6Popup(weaponName, damageRating)
-    }
-
-    // Add React AddItem popup function
-    window.openAddItemModal = (itemType) => {
-        popupContext.showAddItemPopup(itemType)
-    }
 }

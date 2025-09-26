@@ -1,5 +1,6 @@
 import React from 'react'
 import { useI18n } from '../../hooks/useI18n.js'
+import { usePopup } from '../../contexts/PopupContext.jsx'
 
 function Skill({
     skillId,
@@ -13,6 +14,7 @@ function Skill({
     getSpecialDisplayName
 }) {
     const t = useI18n()
+    const { showD20Popup } = usePopup()
     return (
         <div
             className="skill"
@@ -22,11 +24,7 @@ function Skill({
                     onSkillClick(skillId)
                 } else {
                     // In non-editing mode, open React D20 popup for skill checks
-                    if (window.openD20Popup) {
-                        window.openD20Popup(skillId)
-                    } else {
-                        console.warn('openD20Popup not available')
-                    }
+                    showD20Popup(skillId)
                 }
             }}
             style={{

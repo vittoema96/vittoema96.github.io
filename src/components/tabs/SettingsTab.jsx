@@ -1,49 +1,39 @@
 import React, { useRef, useEffect } from 'react'
-import { changeLanguage } from '../../js/i18n.js'
 import { useI18n } from '../../hooks/useI18n.js'
+import { useTheme } from '../../hooks/useTheme.js'
+import { useLanguage } from '../../hooks/useLanguage.js'
+import { usePopup } from '../../contexts/PopupContext.jsx'
 
 function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
     const fileInputRef = useRef(null)
     const languageSelectRef = useRef(null)
     const themeSelectRef = useRef(null)
     const t = useI18n()
+    const { currentTheme, changeTheme, availableThemes } = useTheme()
+    const { currentLanguage, changeLanguage, availableLanguages } = useLanguage()
+    const { showAlert, showConfirm } = usePopup()
 
     // Initialize selectors with saved values on mount
     useEffect(() => {
-        // Set language selector to saved value
-        const savedLanguage = localStorage.getItem('language') || 'it'
+        // Set language selector to current language
         if (languageSelectRef.current) {
-            languageSelectRef.current.value = savedLanguage
+            languageSelectRef.current.value = currentLanguage
         }
 
-        // Set theme selector to saved value
-        const savedTheme = localStorage.getItem('theme') || 'theme-fallout-3'
+        // Set theme selector to current theme
         if (themeSelectRef.current) {
-            themeSelectRef.current.value = savedTheme
+            themeSelectRef.current.value = currentTheme
         }
     }, [])
 
     const handleLanguageChange = async (e) => {
         const newLang = e.target.value
-        localStorage.setItem('language', newLang)
-
-        // Use the same logic as original - call changeLanguage without parameter to use saved value
-        if (window.changeLanguage) {
-            window.changeLanguage(newLang)
-        } else {
-            // Fallback to direct i18n function
-            await changeLanguage(newLang)
-        }
+        await changeLanguage(newLang)
     }
 
     const handleThemeChange = (e) => {
         const newTheme = e.target.value
-        localStorage.setItem('theme', newTheme)
-
-        // Call global changeTheme function
-        if (window.changeTheme) {
-            window.changeTheme()
-        }
+        changeTheme(newTheme)
     }
 
     const handleImportClick = () => {
@@ -56,19 +46,11 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
             uploadCharacter(file)
                 .then(() => {
                     // Use global alertPopup if available, otherwise use alert
-                    if (window.alertPopup) {
-                        window.alertPopup(t('characterImportSuccess'))
-                    } else {
-                        alert(t('characterImportSuccess'))
-                    }
+                    showAlert(t('characterImportSuccess'))
                 })
                 .catch(err => {
                     const errorMsg = `${t('importFailed')}: ${err.message}`
-                    if (window.alertPopup) {
-                        window.alertPopup(errorMsg)
-                    } else {
-                        alert(errorMsg)
-                    }
+                    showAlert(errorMsg)
                 })
         }
         // Reset file input
@@ -84,25 +66,15 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
 
             // Add a small delay to ensure the confirm dialog has fully closed
             setTimeout(() => {
-                if (window.alertPopup) {
-                    window.alertPopup(t('localDataWiped'))
-                } else {
-                    alert(t('localDataWiped'))
-                }
+                showAlert(t('localDataWiped'))
             }, 500)
 
             // Re-apply theme and language after reset
-            if (window.changeTheme) window.changeTheme()
-            if (window.changeLanguage) window.changeLanguage()
+            changeTheme()
+            changeLanguage()
         }
 
-        if (window.confirmPopup) {
-            window.confirmPopup('deleteCharacterAlert', confirmAction)
-        } else {
-            if (confirm(t('confirmDeleteCharacter'))) {
-                confirmAction()
-            }
-        }
+        showConfirm(t('confirmDeleteCharacter'), confirmAction)
     }
 
     return (

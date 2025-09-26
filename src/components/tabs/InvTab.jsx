@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { BODY_PARTS, SKILLS } from '../../js/constants.js'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
+import { usePopup } from '../../contexts/PopupContext.jsx'
 import WeaponCard from '../inventory/WeaponCard.jsx'
 import ApparelCard from '../inventory/ApparelCard.jsx'
 import AidCard from '../inventory/AidCard.jsx'
@@ -12,6 +13,7 @@ function InvTab({ character, updateCharacter }) {
     const [damageReduction, setDamageReduction] = useState({})
     const t = useI18n()
     const dataManager = useDataManager()
+    const { showAddItemPopup } = usePopup()
 
     // Update damage reduction when character changes
     useEffect(() => {
@@ -22,11 +24,29 @@ function InvTab({ character, updateCharacter }) {
 
     const updateDamageReduction = () => {
         if (!character.getLocationsDR) {
-            // Fallback: calculate basic damage reduction
+            // Calculate damage reduction from equipped apparel
             const dr = {}
             Object.values(BODY_PARTS).forEach(bodyPart => {
                 dr[bodyPart] = { physical: 0, energy: 0, radiation: 0 }
             })
+
+            // Find equipped apparel items and calculate DR
+            const equippedItems = character.items?.filter(item => item.equipped) || []
+            equippedItems.forEach(item => {
+                const [itemId] = item.id.split('_')
+                const itemData = dataManager.getItem ? dataManager.getItem(itemId) : null
+
+                if (itemData && itemData.LOCATIONS_COVERED) {
+                    itemData.LOCATIONS_COVERED.forEach(location => {
+                        if (dr[location]) {
+                            dr[location].physical += itemData.PHYSICAL_DR || 0
+                            dr[location].energy += itemData.ENERGY_DR || 0
+                            dr[location].radiation += itemData.RADIATION_DR || 0
+                        }
+                    })
+                }
+            })
+
             setDamageReduction(dr)
             return
         }
@@ -40,9 +60,7 @@ function InvTab({ character, updateCharacter }) {
     }
 
     const handleAddItem = (itemType) => {
-        if (window.openAddItemModal) {
-            window.openAddItemModal(itemType)
-        }
+        showAddItemPopup(itemType)
     }
 
     const getItemsByType = (itemType) => {

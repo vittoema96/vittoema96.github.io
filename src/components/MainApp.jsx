@@ -5,9 +5,11 @@ import DataTab from './tabs/DataTab.jsx'
 import MapTab from './tabs/MapTab.jsx'
 import SettingsTab from './tabs/SettingsTab.jsx'
 import { getMaxHp, getMaxWeight } from '../js/gameRules.js'
+import { useDataManager } from '../hooks/useDataManager.js'
 
 function MainApp({ character, updateCharacter, downloadCharacter, uploadCharacter, resetCharacter }) {
     const [activeTab, setActiveTab] = useState('stat')
+    const dataManager = useDataManager()
 
     const tabs = [
         { id: 'stat', label: 'STAT', component: StatTab },
@@ -26,7 +28,14 @@ function MainApp({ character, updateCharacter, downloadCharacter, uploadCharacte
     // Calculate derived stats for header
     const maxHp = getMaxHp(character)
     const maxWeight = getMaxWeight(character)
-    const currentWeight = 0 // TODO: Calculate from items when dataManager is available
+
+    // Calculate current weight from inventory
+    const currentWeight = character.items?.reduce((total, item) => {
+        const [itemId] = item.id.split('_')
+        const itemData = dataManager.getItem ? dataManager.getItem(itemId) : null
+        const weight = itemData?.WEIGHT || 0
+        return total + (weight * item.quantity)
+    }, 0) || 0
 
     return (
         <div
