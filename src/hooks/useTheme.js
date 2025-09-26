@@ -1,5 +1,38 @@
 import { useState, useEffect } from 'react'
-import { getCurrentTheme, changeTheme as changeThemeUtil, getAvailableThemes } from '../utils/theme.js'
+
+const VALID_THEMES = ['theme-fallout-3', 'theme-fallout-new-vegas']
+const DEFAULT_THEME = VALID_THEMES[0]
+
+/**
+ * Get the current theme from localStorage or default
+ */
+const getCurrentTheme = () => {
+    const saved = localStorage.getItem('theme')
+    return VALID_THEMES.includes(saved) ? saved : DEFAULT_THEME
+}
+
+/**
+ * Apply theme to document body, update PWA meta tag, and save to localStorage
+ */
+export const applyTheme = (themeName = null) => {
+    const theme = themeName || getCurrentTheme()
+
+    // Apply theme class to body
+    document.body.className = theme
+
+    // Update PWA meta tag color
+    const computedStyle = getComputedStyle(document.body)
+    const primaryColor = computedStyle.getPropertyValue('--primary-color')
+    const metaTag = document.querySelector('meta[name="theme-color"]')
+    if (metaTag) {
+        metaTag.setAttribute('content', primaryColor)
+    }
+
+    // Save to localStorage
+    localStorage.setItem('theme', theme)
+
+    return theme
+}
 
 /**
  * React hook for theme management
@@ -9,7 +42,7 @@ export const useTheme = () => {
     const [currentTheme, setCurrentTheme] = useState(getCurrentTheme())
 
     const changeTheme = (newTheme = null) => {
-        const appliedTheme = changeThemeUtil(newTheme)
+        const appliedTheme = applyTheme(newTheme)
         setCurrentTheme(appliedTheme)
         return appliedTheme
     }
@@ -29,6 +62,6 @@ export const useTheme = () => {
     return {
         currentTheme,
         changeTheme,
-        availableThemes: getAvailableThemes()
+        availableThemes: [...VALID_THEMES]
     }
 }
