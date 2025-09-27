@@ -6,10 +6,12 @@ import MapTab from './tabs/MapTab.jsx'
 import SettingsTab from './tabs/SettingsTab.jsx'
 import { getMaxHp, getMaxWeight } from '../js/gameRules.js'
 import { useDataManager } from '../hooks/useDataManager.js'
+import { useCharacter } from '../contexts/CharacterContext.jsx'
 
-function MainApp({ character, updateCharacter, downloadCharacter, uploadCharacter, resetCharacter }) {
+function MainApp() {
     const [activeTab, setActiveTab] = useState('stat')
     const dataManager = useDataManager()
+    const { character } = useCharacter()
 
     const tabs = [
         { id: 'stat', label: 'STAT', component: StatTab },
@@ -90,11 +92,6 @@ function MainApp({ character, updateCharacter, downloadCharacter, uploadCharacte
             <main id="main-container">
                 {ActiveTabComponent && (
                     <ActiveTabComponent
-                        character={character}
-                        updateCharacter={updateCharacter}
-                        downloadCharacter={activeTab === 'settings' ? downloadCharacter : undefined}
-                        uploadCharacter={activeTab === 'settings' ? uploadCharacter : undefined}
-                        resetCharacter={activeTab === 'settings' ? resetCharacter : undefined}
                         isActive={true}
                     />
                 )}

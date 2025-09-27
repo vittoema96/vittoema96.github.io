@@ -1,9 +1,19 @@
-import { useState, useEffect, useCallback } from 'react'
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react'
 import { DEFAULT_CHARACTER } from '../js/constants.js'
 
-const STORAGE_KEY = 'character_default'
+const CharacterContext = createContext()
 
-export const useCharacterData = () => {
+export const useCharacter = () => {
+    const context = useContext(CharacterContext)
+    if (!context) {
+        throw new Error('useCharacter must be used within a CharacterProvider')
+    }
+    return context
+}
+
+export function CharacterProvider({ children }) {
+    const STORAGE_KEY = 'character_default'
+
     const [character, setCharacterState] = useState(DEFAULT_CHARACTER)
     const [isLoading, setIsLoading] = useState(true)
 
@@ -89,7 +99,7 @@ export const useCharacterData = () => {
         })
     }, [])
 
-    return {
+    const contextValue = {
         character,
         updateCharacter,
         resetCharacter,
@@ -97,4 +107,10 @@ export const useCharacterData = () => {
         uploadCharacter,
         isLoading
     }
+
+    return (
+        <CharacterContext.Provider value={contextValue}>
+            {children}
+        </CharacterContext.Provider>
+    )
 }

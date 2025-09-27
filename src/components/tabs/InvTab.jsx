@@ -3,17 +3,19 @@ import { BODY_PARTS, SKILLS } from '../../js/constants.js'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
+import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import WeaponCard from '../inventory/WeaponCard.jsx'
 import ApparelCard from '../inventory/ApparelCard.jsx'
 import AidCard from '../inventory/AidCard.jsx'
 import AmmoCard from '../inventory/AmmoCard.jsx'
 
-function InvTab({ character, updateCharacter }) {
+function InvTab() {
     const [activeSubTab, setActiveSubTab] = useState('weapon')
     const [damageReduction, setDamageReduction] = useState({})
     const t = useI18n()
     const dataManager = useDataManager()
     const { showAddItemPopup } = usePopup()
+    const { character, updateCharacter } = useCharacter()
 
     // Update damage reduction when character changes
     useEffect(() => {

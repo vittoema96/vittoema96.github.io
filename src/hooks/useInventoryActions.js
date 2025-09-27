@@ -1,4 +1,4 @@
-import { useCharacterData } from './useCharacterData.js'
+import { useCharacter } from '../contexts/CharacterContext.jsx'
 import { usePopup } from '../contexts/PopupContext.jsx'
 
 /**
@@ -6,7 +6,7 @@ import { usePopup } from '../contexts/PopupContext.jsx'
  * @returns {Object} Inventory action functions
  */
 export const useInventoryActions = () => {
-    const { character, updateCharacter } = useCharacterData()
+    const { character, updateCharacter } = useCharacter()
     const { showConfirm, showAlert } = usePopup()
 
     const sellItem = (characterItem, itemData) => {

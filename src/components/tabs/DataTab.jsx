@@ -1,8 +1,10 @@
 import React from 'react'
 import { useI18n } from '../../hooks/useI18n.js'
+import { useCharacter } from '../../contexts/CharacterContext.jsx'
 
-function DataTab({ character, updateCharacter }) {
+function DataTab() {
     const t = useI18n()
+    const { character, updateCharacter } = useCharacter()
     const handleFieldChange = (field, value) => {
         updateCharacter({ [field]: value })
     }

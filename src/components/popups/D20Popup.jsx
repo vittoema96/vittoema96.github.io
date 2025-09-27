@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useCharacterData } from '../../hooks/useCharacterData'
+import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useI18n } from '../../hooks/useI18n'
 
 const SPECIAL_OPTIONS = [
@@ -35,7 +35,7 @@ const SKILL_TO_SPECIAL_MAP = {
 function D20Popup({ isOpen, onClose, skillId }) {
     const dialogRef = useRef(null)
     const t = useI18n()
-    const { character, updateCharacter } = useCharacterData()
+    const { character, updateCharacter } = useCharacter()
 
     // State
     const [isUsingLuck, setIsUsingLuck] = useState(false)

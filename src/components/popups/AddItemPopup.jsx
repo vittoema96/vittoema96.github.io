@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useI18n } from '../../hooks/useI18n'
-import { useCharacterData } from '../../hooks/useCharacterData'
+import { useCharacter } from '../../contexts/CharacterContext.jsx'
 
 /**
  * Add Item popup component for adding items to inventory
@@ -11,7 +11,7 @@ function AddItemPopup({ isOpen, onClose, itemType, dataManager }) {
     const [availableItems, setAvailableItems] = useState([])
     
     const t = useI18n()
-    const { character, updateCharacter } = useCharacterData()
+    const { character, updateCharacter } = useCharacter()
     const dialogRef = useRef(null)
 
     // Update available items when itemType or dataManager changes

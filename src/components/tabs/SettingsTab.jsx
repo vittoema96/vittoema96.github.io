@@ -3,8 +3,9 @@ import { useI18n } from '../../hooks/useI18n.js'
 import { useTheme } from '../../hooks/useTheme.js'
 import { useLanguage } from '../../hooks/useLanguage.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
+import { useCharacter } from '../../contexts/CharacterContext.jsx'
 
-function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
+function SettingsTab() {
     const fileInputRef = useRef(null)
     const languageSelectRef = useRef(null)
     const themeSelectRef = useRef(null)
@@ -12,6 +13,7 @@ function SettingsTab({ downloadCharacter, uploadCharacter, resetCharacter }) {
     const { currentTheme, changeTheme, availableThemes } = useTheme()
     const { currentLanguage, changeLanguage, availableLanguages } = useLanguage()
     const { showAlert, showConfirm } = usePopup()
+    const { downloadCharacter, uploadCharacter, resetCharacter } = useCharacter()
 
     // Initialize selectors with saved values on mount
     useEffect(() => {

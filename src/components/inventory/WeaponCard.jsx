@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ItemCard from './ItemCard.jsx'
-import { useCharacterData } from '../../hooks/useCharacterData.js'
+import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useI18n } from '../../hooks/useI18n.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
 import { SKILL_TO_SPECIAL_MAP } from '../../js/constants.js'
@@ -10,7 +10,7 @@ import { SKILL_TO_SPECIAL_MAP } from '../../js/constants.js'
  * Uses ItemCard as base with custom weapon content and controls
  */
 function WeaponCard({ characterItem, itemData, dataManager, onAttack }) {
-    const { character } = useCharacterData()
+    const { character } = useCharacter()
     const t = useI18n()
     const { showD20Popup } = usePopup()
     const [showTooltip, setShowTooltip] = useState(null)

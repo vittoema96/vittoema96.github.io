@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useCharacterData } from '../../hooks/useCharacterData'
+import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useI18n } from '../../hooks/useI18n'
 
 function D6Popup({ isOpen, onClose, weaponName, damageRating = 2 }) {
     const dialogRef = useRef(null)
     const t = useI18n()
-    const { character, updateCharacter } = useCharacterData()
+    const { character, updateCharacter } = useCharacter()
 
     // State
     const [hasRolled, setHasRolled] = useState(false)

@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { SPECIAL, SKILLS, SKILL_TO_SPECIAL_MAP } from '../../js/constants.js'
 import { getDefense, getInitiative, getMeleeDamage } from '../../js/gameRules.js'
 import { useI18n } from '../../hooks/useI18n.js'
+import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import Skill from './Skill.jsx'
 
-function StatTab({ character, updateCharacter }) {
+function StatTab() {
     const [isEditing, setIsEditing] = useState(false)
     const t = useI18n()
+    const { character, updateCharacter } = useCharacter()
 
     // Calculate derived stats
     const defense = getDefense(character)

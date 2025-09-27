@@ -1,26 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import BootScreen from './components/BootScreen.jsx'
 import MainApp from './components/MainApp.jsx'
-import { useCharacterData } from './hooks/useCharacterData.js'
 import { initI18n } from './js/i18n.js'
 import { PopupProvider, usePopup } from './contexts/PopupContext.jsx'
+import { CharacterProvider } from './contexts/CharacterContext.jsx'
 
-// Inner App component that has access to popup context
+// Inner App component that has access to popup and character contexts
 function AppContent() {
     const [version] = useState(window.PROJECT_VERSION || 'DEV')
     const [showBootScreen, setShowBootScreen] = useState(version !== 'DEV')
     const [i18nReady, setI18nReady] = useState(false)
-    const popupContext = usePopup()
 
-    // Use the character persistence hook
-    const {
-        character,
-        updateCharacter,
-        resetCharacter,
-        downloadCharacter,
-        uploadCharacter,
-        isLoading
-    } = useCharacterData()
+    // Character data now managed by CharacterProvider
 
     // Initialize i18n and global systems
     useEffect(() => {
@@ -40,9 +31,7 @@ function AppContent() {
         initializeSystems()
     }, [])
 
-    // No more global popup functions needed - everything uses React hooks!
-
-    // Boot screen timing - adjust based on your CSS animation duration
+    // Boot screen
     useEffect(() => {
         if (version === 'DEV') {
             return
@@ -55,8 +44,8 @@ function AppContent() {
         return () => clearTimeout(timer)
     }, [version])
 
-    // Don't render until character data and i18n are loaded
-    if (isLoading || !i18nReady) {
+    // Don't render until i18n is loaded (character loading handled by CharacterProvider)
+    if (!i18nReady) {
         return (
             <div style={{
                 display: 'flex',
@@ -77,25 +66,19 @@ function AppContent() {
             <BootScreen version={version} isVisible={showBootScreen} />
 
             {/* Main App - shows after boot screen finishes */}
-            {!showBootScreen && (
-                <MainApp
-                    character={character}
-                    updateCharacter={updateCharacter}
-                    resetCharacter={resetCharacter}
-                    downloadCharacter={downloadCharacter}
-                    uploadCharacter={uploadCharacter}
-                />
-            )}
+            {!showBootScreen && <MainApp />}
         </div>
     )
 }
 
-// Main App component with popup provider
+// Main App component with providers
 function App() {
     return (
-        <PopupProvider>
-            <AppContent />
-        </PopupProvider>
+        <CharacterProvider>
+            <PopupProvider>
+                <AppContent />
+            </PopupProvider>
+        </CharacterProvider>
     )
 }
 
