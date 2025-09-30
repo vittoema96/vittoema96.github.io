@@ -11,6 +11,11 @@ export default defineConfig({
   root: '.',
   base: '/',
 
+  // Define global constants (injected at build time)
+  define: {
+    'window.PROJECT_VERSION': JSON.stringify(`v${version}`)
+  },
+
   // Development server configuration
   server: {
     port: 3000,

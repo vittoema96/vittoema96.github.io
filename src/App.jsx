@@ -10,7 +10,8 @@ import { TooltipProvider } from './contexts/TooltipContext.jsx'
 // Inner App component that has access to popup and character contexts
 function AppContent() {
     const [version] = useState(window.PROJECT_VERSION || 'DEV')
-    const [showBootScreen, setShowBootScreen] = useState(version !== 'DEV')
+    // Show boot screen only in production (when version doesn't contain BUILD_VERSION)
+    const [showBootScreen, setShowBootScreen] = useState(!version.includes('BUILD_VERSION'))
     const [i18nReady, setI18nReady] = useState(false)
 
     // Character data now managed by CharacterProvider
