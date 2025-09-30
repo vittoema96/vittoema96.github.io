@@ -132,7 +132,24 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
     }, [isOpen])
 
     const handleClose = () => {
-        onClose()
+        const dialog = dialogRef.current
+        if (dialog && dialog.open) {
+            // Add closing animation class
+            dialog.classList.add('dialog-closing')
+            dialog.addEventListener(
+                'animationend',
+                () => {
+                    dialog.classList.remove('dialog-closing')
+                    if (dialog.open) {
+                        dialog.close()
+                    }
+                    onClose()
+                },
+                { once: true }
+            )
+        } else {
+            onClose()
+        }
     }
 
     const handleConfirm = () => {

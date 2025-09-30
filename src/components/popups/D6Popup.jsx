@@ -290,36 +290,55 @@ function D6Popup({ isOpen, onClose, weaponId, hasAimed = false }) {
         setHasRolled(true)
     }
 
-    // Handle close
+    // Handle close with animation
     const handleClose = () => {
-        // Consume burst ammo if any were selected
-        if (burstEffectsUsed > 0 && weaponData && !isMelee(weaponData.TYPE)) {
-            let ammoId = weaponData.AMMO_TYPE
-            if (ammoId === 'self') ammoId = weaponData.ID
-            if (ammoId && ammoId !== 'na') {
-                updateCharacter({
-                    items: character.items.map(item =>
-                        item.id === ammoId
-                            ? { ...item, quantity: item.quantity - burstEffectsUsed }
-                            : item
-                    ).filter(item => item.quantity > 0)
-                })
-            }
-        }
+        const dialog = dialogRef.current
+        if (dialog && dialog.open) {
+            // Add closing animation class
+            dialog.classList.add('dialog-closing')
+            dialog.addEventListener(
+                'animationend',
+                () => {
+                    dialog.classList.remove('dialog-closing')
 
-        // Reset state
-        setHasRolled(false)
-        setDiceClasses(Array(damageRating).fill(null))
-        setDiceActive(Array(damageRating).fill(true))
-        setDiceRerolled(Array(damageRating).fill(false))
-        setExtraDiceClasses(Array(extraDiceCount).fill(null))
-        setExtraDiceActive(Array(extraDiceCount).fill(false))
-        setExtraDiceRerolled(Array(extraDiceCount).fill(false))
-        setAmmoCost(ammoStep)
-        setAmmoPayed(0)
-        setLuckPayed(0)
-        setBurstEffectsUsed(0)
-        onClose()
+                    // Consume burst ammo if any were selected
+                    if (burstEffectsUsed > 0 && weaponData && !isMelee(weaponData.TYPE)) {
+                        let ammoId = weaponData.AMMO_TYPE
+                        if (ammoId === 'self') ammoId = weaponData.ID
+                        if (ammoId && ammoId !== 'na') {
+                            updateCharacter({
+                                items: character.items.map(item =>
+                                    item.id === ammoId
+                                        ? { ...item, quantity: item.quantity - burstEffectsUsed }
+                                        : item
+                                ).filter(item => item.quantity > 0)
+                            })
+                        }
+                    }
+
+                    // Reset state
+                    setHasRolled(false)
+                    setDiceClasses(Array(damageRating).fill(null))
+                    setDiceActive(Array(damageRating).fill(true))
+                    setDiceRerolled(Array(damageRating).fill(false))
+                    setExtraDiceClasses(Array(extraDiceCount).fill(null))
+                    setExtraDiceActive(Array(extraDiceCount).fill(false))
+                    setExtraDiceRerolled(Array(extraDiceCount).fill(false))
+                    setAmmoCost(ammoStep)
+                    setAmmoPayed(0)
+                    setLuckPayed(0)
+                    setBurstEffectsUsed(0)
+
+                    if (dialog.open) {
+                        dialog.close()
+                    }
+                    onClose()
+                },
+                { once: true }
+            )
+        } else {
+            onClose()
+        }
     }
 
     // Dialog management

@@ -215,18 +215,37 @@ function D20Popup({ isOpen, onClose, skillId, weaponId = null }) {
         }
     }
 
-    // Handle close
+    // Handle close with animation
     const handleClose = () => {
-        // Reset state
-        setIsUsingLuck(false)
-        setSelectedSpecial(SKILL_TO_SPECIAL_MAP[skillId] || 'strength')
-        setIsAiming(false)
-        setHasRolled(false)
-        setDiceValues(['?', '?', '?', '?', '?'])
-        setDiceActive([true, true, false, false, false])
-        setDiceRerolled([false, false, false, false, false])
-        setInitialApCost(0)
-        onClose()
+        const dialog = dialogRef.current
+        if (dialog && dialog.open) {
+            // Add closing animation class
+            dialog.classList.add('dialog-closing')
+            dialog.addEventListener(
+                'animationend',
+                () => {
+                    dialog.classList.remove('dialog-closing')
+
+                    // Reset state
+                    setIsUsingLuck(false)
+                    setSelectedSpecial(SKILL_TO_SPECIAL_MAP[skillId] || 'strength')
+                    setIsAiming(false)
+                    setHasRolled(false)
+                    setDiceValues(['?', '?', '?', '?', '?'])
+                    setDiceActive([true, true, false, false, false])
+                    setDiceRerolled([false, false, false, false, false])
+                    setInitialApCost(0)
+
+                    if (dialog.open) {
+                        dialog.close()
+                    }
+                    onClose()
+                },
+                { once: true }
+            )
+        } else {
+            onClose()
+        }
     }
 
     // Dialog management

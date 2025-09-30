@@ -42,26 +42,45 @@ function InvTab() {
                 quantity: 1,
             })
 
-            // Add gun bash items (weapon stock) for each ranged weapon
+            // Add gun bash items (weapon stock) for ranged weapons
+            // Aggregate quantities by type (1-handed vs 2-handed)
+            let oneHandedGunBashQty = 0
+            let twoHandedGunBashQty = 0
+
             character.items.forEach(item => {
                 const itemData = dataManager.getItem(item.id)
                 if (itemData && dataManager.isType(item.type, 'weapon')) {
                     // Check if it's a ranged weapon (not melee, unarmed, throwing, or explosives)
                     const meleeTypes = ['meleeWeapons', 'unarmed', 'throwing', 'explosives']
                     if (!meleeTypes.includes(item.type)) {
-                        // This is a ranged weapon - add weapon stock
+                        // This is a ranged weapon - count for gun bash
                         const qualities = itemData.QUALITIES || []
                         const isTwoHanded = qualities.includes('qualityTwoHanded')
 
-                        items.push({
-                            id: isTwoHanded ? 'weaponWeaponStock' : 'weaponWeaponStockOneHanded',
-                            type: 'meleeWeapons',
-                            quantity: item.quantity,
-                            originalWeapon: item.id
-                        })
+                        if (isTwoHanded) {
+                            twoHandedGunBashQty += item.quantity
+                        } else {
+                            oneHandedGunBashQty += item.quantity
+                        }
                     }
                 }
             })
+
+            // Add aggregated gun bash items
+            if (oneHandedGunBashQty > 0) {
+                items.push({
+                    id: 'weaponWeaponStockOneHanded',
+                    type: 'meleeWeapons',
+                    quantity: oneHandedGunBashQty
+                })
+            }
+            if (twoHandedGunBashQty > 0) {
+                items.push({
+                    id: 'weaponWeaponStock',
+                    type: 'meleeWeapons',
+                    quantity: twoHandedGunBashQty
+                })
+            }
         }
 
         return items

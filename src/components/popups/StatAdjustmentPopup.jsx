@@ -47,9 +47,26 @@ function StatAdjustmentPopup({ isOpen, onClose }) {
         }
     }
 
-    // Handle close
+    // Handle close with animation
     const handleClose = () => {
-        onClose()
+        const dialog = dialogRef.current
+        if (dialog && dialog.open) {
+            // Add closing animation class
+            dialog.classList.add('dialog-closing')
+            dialog.addEventListener(
+                'animationend',
+                () => {
+                    dialog.classList.remove('dialog-closing')
+                    if (dialog.open) {
+                        dialog.close()
+                    }
+                    onClose()
+                },
+                { once: true }
+            )
+        } else {
+            onClose()
+        }
     }
 
     // Handle confirm - validation is done by input handlers, just need to check for empty values
