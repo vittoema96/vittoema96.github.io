@@ -1,146 +1,92 @@
-# TODO
+# TODO & Project Status
 
-# Main
-- Implement qualityAccurate effect
-- Implement choice for qualityThrown weapons
+## ✅ Done (Alpha 3)
+- ✅ ES6 Modules conversion
+- ✅ Modern build system (Vite)
+- ✅ Code quality tools (ESLint, Prettier)
+- ✅ i18next internationalization
+- ✅ PWA with auto-generated manifest/service worker
+- ✅ Clean project structure
+- ✅ Version management system
+- ✅ Character system (SPECIAL, skills, inventory)
+- ✅ Dice rolling (D20/D6) with proper game mechanics
+- ✅ Combat system (attack rolls, damage, armor)
+- ✅ ES6+ modernization (arrow functions, modern iteration, async/await)
+- ✅ Modern ES6+ patterns (reverted to working global variables for simplicity)
+- ✅ i18next standard compliance (replaced all dataset.langId/langFormat with data-i18n)
+- ✅ Self-hosted Font Awesome (eliminated CDN dependency and timeout errors)
+- ✅ Self-hosted Google Fonts (eliminated Google Fonts CDN dependency)
+- ✅ Fixed translation issues (skills and js-titles now use proper data-i18n attributes)
+- ✅ Locale files refactoring (organized structure, same order, filled English values, preserved Italian translations)
+- ✅ Complete locale files refactoring (organized structure, all missing keys added, same order in both files)
+- ✅ Comprehensive code modernization (all function declarations → arrow functions)
 
-## Secondary
-- Fix close popup button position
-- Add body part to d6popup layout
-- Add current luck/ammo to d20/d6 popups
-- d6 icons to have secondary color
-- Consumable items (maybe change icon?)
-- Remove unrolled dice
- 1. Make the change smoooth...
-- Add Free rerolls display (to both d2 and d20)
-- 
+## 🔥 High Priority
 
-# Other TODOs 
+### Game Features (Alpha 4)
+- [ ] **qualityAccurate effect** - Implement accurate weapon quality
+- [ ] **qualityThrown choice** - Add choice mechanism for thrown weapons
+- [ ] **Weapon mods** - Add weapon modification system
+- [ ] **Consumable items** - Proper aid item consumption mechanics
+- [ ] **Body part targeting** - Add to d6 popup layout
 
-## Weapons
-- Implement mods on weapons
+### UI/UX Fixes
+- [ ] **Fix close popup button position** - Currently misaligned
+- [ ] **Add current luck/ammo to popups** - Show in d20/d6 popups
+- [ ] **D6 icons secondary color** - Visual improvement
+- [ ] **Remove unrolled dice** - Make the change smooth
+- [ ] **Free rerolls display** - Show in both d20 and d6 popups
 
-## Armor
-- Implement armor dataset
-- Implement VaultBoy image with body parts
-- Implement armor inventory + equipping armor 
-- Implement mods on armor
+## 🎯 Medium Priority
 
-## Map
-- Add map markers
-- Add unlockable markers
-- Add multiple map types
-- General improvements...
+### Armor System
+- [ ] **Armor dataset** - Complete armor data implementation
+- [ ] **VaultBoy body parts** - Visual representation of equipped armor
+- [ ] **Armor inventory** - Full armor equipping system
+- [ ] **Armor mods** - Modification system for armor
 
-## Data
-- Add anything other than background textdata
-  1. Allow loading of image.
+### Map System
+- [ ] **Map markers** - Add interactive markers
+- [ ] **Unlockable markers** - Progression-based reveals
+- [ ] **Multiple map types** - Different map variants
+- [ ] **General map improvements** - Polish and features
 
-## Language
-- Remove english phrases in favor of dataLang
-- Remove italian phrases in favor of dataLang
-- Add english translations
+### Technical Improvements
+- [ ] **Error handling** - Better try-catch blocks and user feedback
+- [ ] **Performance** - Lazy loading for data files
+- [ ] **Testing** - Add unit tests for core functionality
 
-### Other
-- Serve images as webp instead of jpg
-- Remove navigation bar from viewport (mobile, non-PWA mode (what did i mean?????) )
-- Uniform all icons (https://maskable.app/)
-- In webmanifest add "form_factor: narrow/wide" to allow screenshots only for mobile or desktop (also implement desktop screenshots and improve screenshots in general)
+## 🔮 Low Priority / Future
 
+### Polish & Enhancement
+- [ ] **Image optimization** - Serve images as WebP instead of JPG
+- [ ] **Icon uniformity** - Make all icons uniform (https://maskable.app/)
+- [ ] **Desktop screenshots** - Add desktop PWA screenshots
+- [ ] **Form factor** - Add "form_factor: narrow/wide" to manifest for mobile/desktop screenshots
+- [ ] **Navigation bar** - Remove from viewport in mobile non-PWA mode (?)
 
-# AI TODOs
+### Language & Accessibility
+- [ ] **Complete English translations** - Finish incomplete translations
+- [ ] **Remove hardcoded text** - Any remaining Italian/English phrases
+- [ ] **ARIA labels** - Accessibility improvements
+- [ ] **Keyboard navigation** - Full keyboard support
+- [ ] **Screen reader support** - Better accessibility
 
-## Priority-Ordered Improvements
+### Advanced Features
+- [ ] **Character progression** - Leveling system, perk selection
+- [ ] **Multiple characters** - Save slots, character switching
+- [ ] **Campaign management** - Multiple campaigns/sessions
+- [ ] **Statistics tracking** - Roll history, character stats
+- [ ] **Data import/export** - Character sharing, backup/restore
 
-### 🔴 HIGH PRIORITY - Critical Modernization
+### Technical Debt
+- [ ] **TypeScript migration** - Gradual conversion for better type safety
+- [ ] **Component system** - Reusable UI components
+- [ ] **Bundle analysis** - Optimize bundle size and loading
+- [ ] **Security audit** - CSP, input validation, XSS protection
+- [ ] **Performance monitoring** - Add metrics and monitoring
 
-1. **Adopt Modern JavaScript Module System (ES6 Modules)**
-   - Currently using global variables and script tags
-   - Should implement proper `import/export` statements
-   - This will improve code organization, tree-shaking, and dependency management
+---
 
-2. **Implement a Build System**
-   - Add a modern build tool (Vite, Webpack, or Parcel)
-   - Enable code bundling, minification, and optimization
-   - Automate asset optimization and cache busting
-
-3. **Add Package Management**
-   - Create `package.json` for dependency management
-   - Replace CDN dependencies with npm packages for better version control
-   - Currently using: PapaParse, PanZoom, Font Awesome via CDN
-
-4. **Code Quality Tools**
-   - Add ESLint for code linting
-   - Add Prettier for code formatting
-   - Implement TypeScript for better type safety
-
-### 🟡 MEDIUM PRIORITY - Architecture & Performance
-
-5. **Refactor Global State Management**
-   - Replace global variables (`dataManager`, `translator`, `cardFactory`, etc.)
-   - Implement a proper state management pattern (Redux-like or custom)
-   - Better separation of concerns
-
-6. **Improve Error Handling**
-   - Add comprehensive try-catch blocks
-   - Implement user-friendly error messages
-   - Add fallback mechanisms for failed data loads
-
-7. **Performance Optimizations**
-   - Implement lazy loading for data files
-   - Add image optimization (WebP format as noted in TODO)
-   - Optimize CSS with PostCSS and autoprefixer
-
-8. **Responsive Design Improvements**
-   - Better desktop support (currently mobile-focused)
-   - Implement proper breakpoints and container queries
-   - Fix layout issues mentioned in README
-
-### 🟢 MEDIUM-LOW PRIORITY - Features & UX
-
-9. **Complete Internationalization**
-   - Finish English translations (currently incomplete)
-   - Remove hardcoded Italian text
-   - Implement proper i18n system
-
-10. **Accessibility Improvements**
-    - Add proper ARIA labels and roles
-    - Improve keyboard navigation
-    - Ensure color contrast compliance
-    - Add screen reader support
-
-11. **Testing Infrastructure**
-    - Add unit tests (Jest/Vitest)
-    - Add integration tests
-    - Add E2E tests (Playwright/Cypress)
-
-### 🔵 LOW PRIORITY - Polish & Enhancement
-
-12. **Code Organization**
-    - Split large files into smaller, focused modules
-    - Implement proper class inheritance patterns
-    - Add JSDoc documentation
-
-13. **PWA Enhancements**
-    - Improve offline functionality
-    - Add background sync capabilities
-    - Implement push notifications for game sessions
-
-14. **Security Improvements**
-    - Add Content Security Policy (CSP)
-    - Implement proper input validation
-    - Sanitize user inputs
-
-15. **Developer Experience**
-    - Add hot reload for development
-    - Implement source maps
-    - Add development vs production configurations
-
-## Immediate Next Steps
-
-I'd recommend starting with:
-1. **Setting up package.json and basic build tools**
-2. **Converting to ES6 modules**
-3. **Adding ESLint and Prettier**
-
-Would you like me to help implement any of these improvements? I can start with the highest priority items like setting up the modern JavaScript toolchain and build system.
+**Current focus**: Game features (qualityAccurate, weapon mods, consumables)
+**Next up**: UI polish and armor system

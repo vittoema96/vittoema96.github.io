@@ -1,7 +1,7 @@
 # General warnings:
 
 > # ⚠️ Fan Project ⚠️
-> I'm an inexperienced Programmer / Game master and a forever Fallout fan.  
+> I'm an inexperienced Programmer / Game master and a forever Fallout fan.
 > This is a fan project made:
 > - Mainly for my group
 > - By a non-native english speaker
@@ -13,11 +13,6 @@
 > This project is currently under active development. Many features are incomplete, and you may encounter bugs.
 >
 > It has not been tested on all devices or screen sizes. It is primarily designed for mobile devices and tested on a screen size of approximately **412x915px** (though generally any "normal" mobile device should be ok and desktop "should" work, but it still has some funky layouts).
-
- 
-> ## ⚠️ AI generated README ⚠️
-> As stated above, this is a WIP, I didn't care to write a REAL readme lol.
-> When done developing I may write one (or not, don't expect anything from me hahaha)
 
 
 
@@ -33,24 +28,28 @@ The interface is heavily inspired by the iconic Pip-Boy 3000 from the Fallout se
 
 ## ✨ Features
 
+* **Modern React Architecture:** Built with React 18 and hooks for optimal performance and maintainability.
 * **PWA Ready:** Fully installable on desktop and mobile devices for an app-like experience, including offline support.
 * **Character Stat Management:**
-    * Track S.P.E.C.I.A.L. attributes.
+    * Track S.P.E.C.I.A.L. attributes with reactive updates.
     * Automatically calculates derived stats like Defense, Initiative, and Melee Damage.
     * View and manage all character skills (including specialties).
+    * Persistent character data saved to localStorage.
 * **Comprehensive Inventory System:**
     * Organize items into categories: Weapons, Armor, Supplies, and Ammo.
-    * Items are displayed on interactive cards showing stats, effects, cost, and weight.
-    * Add or remove items from your inventory.
+    * Interactive accordion-style inventory with expandable cards.
+    * Long-press to sell/delete items with confirmation dialogs.
+    * Smart equipment system with layer conflict detection.
 * **Integrated Dice Roller:**
-    * **d20 Skill Checks:** A dedicated popup to handle skill checks, calculating target numbers based on skills and S.P.E.C.I.A.L. attributes.
-    * **d6 Damage Rolls:** A popup to roll for weapon damage, including support for extra hits and damage effects.
-* **Interactive Map:** A zoomable and pannable world map for your adventures (ONLY New Vegas Map, no locations yet).
+    * **d20 Skill Checks:** Dedicated popup for skill checks with automatic target number calculation.
+    * **d6 Damage Rolls:** Weapon damage rolls with support for extra hits and damage effects.
+    * Luck point system for rerolls and bonuses.
+* **Interactive Map:** Zoomable and pannable New Vegas world map (locations coming soon).
 * **Customization & Settings:**
-    * **Theming:** Switch between the classic green "Fallout 3" theme and the amber "Fallout: New Vegas" theme.
-    * **Localization:** Support for multiple languages (currently English [badly supported] and Italian [default]).
-    * **Data Management:** Easily clear all character data from local storage to start fresh.
-* **Themed UI:** A retro, CRT-style interface complete with scan lines, a boot-up animation, and thematic sound effects to immerse you in the Fallout universe.
+    * **Theming:** Switch between Fallout 3 (green) and New Vegas (amber) themes.
+    * **Localization:** Full i18n support (Italian and English).
+    * **Data Management:** Export/import character data as JSON, reset to defaults.
+* **Themed UI:** Retro CRT-style interface with scan lines, boot-up animation, and authentic Fallout aesthetics.
 
 ---
 
@@ -80,3 +79,76 @@ This application is an installable PWA.
 
 * **On Desktop (Chrome/Edge):** An "Install" icon will appear in the address bar. Click it to add the app to your desktop.
 * **On Mobile (Android/iOS):** Use your browser's menu and select "Add to Home Screen" or "Install App" to get a native-like app experience.
+
+---
+
+## 🛠️ Development
+
+If you want to mess with the code (good luck lol):
+
+```bash
+npm install
+npm run dev      # Start dev server
+npm run build    # Build for production
+npm run quality  # Check code quality (lint + format + types)
+```
+
+**Version management** (because I got fancy with semantic versioning):
+```bash
+npm run version:show        # Show current version
+npm run version:next-alpha  # Bump to next alpha milestone
+```
+
+## 🏗️ How it's built
+
+**Tech stack**: React 18, Vite, i18next, PapaParse
+**Structure**:
+```
+src/
+├── components/      # React components (tabs, inventory, popups, etc.)
+├── contexts/        # React contexts (Character, Popup, Tooltip)
+├── hooks/           # Custom React hooks (useI18n, useDataManager, etc.)
+├── js/              # Legacy vanilla JS (kept for reference)
+├── locales/         # i18n translation files (en.json, it.json)
+└── styles/          # CSS styles
+
+public/
+├── data/            # Game data in CSV files
+└── img/             # Images and icons
+```
+
+**Key architecture**:
+- **React Components**: Modular UI components with hooks
+- **Context API**: Global state management (character, popups, tooltips)
+- **Custom Hooks**: Reusable logic (data loading, i18n, inventory actions)
+- **CSV Data**: Game content loaded dynamically with PapaParse
+
+## 🎲 Game mechanics
+
+Implements proper Fallout 2d20 rules:
+- **D20 rolls**: Skill + SPECIAL vs difficulty, count successes
+- **D6 damage**: Multiple dice, reroll 1s and 2s, count effects/damage
+- **Combat**: Attack rolls consume ammo, armor reduces damage
+- **Character origins**: Different stat caps (Super Mutants, etc.)
+
+## 📊 Data format
+
+Game data is in CSV files for easy editing:
+- `public/data/weapon/` - Weapons with damage, range, ammo type
+- `public/data/apparel/` - Armor with DR values and protection areas
+- `public/data/aid/` - Consumables with effects
+
+## 📈 Versioning
+
+Uses semantic versioning: `0.0.3-alpha.0`
+- `0.0.x` = Alpha milestone (patch = milestone number)
+- `0.1.0` = Beta phase
+- `1.0.0` = Stable release
+
+GitHub Actions automatically increments build numbers on deploy.
+
+## 🤝 Contributing
+
+Just follow the existing code style. Run `npm run quality` to check everything is good.
+
+See [TODO.md](TODO.md) for what needs to be done.
