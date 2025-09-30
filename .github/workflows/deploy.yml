@@ -50,17 +50,17 @@ jobs:
           echo "Base version: $BASE_VERSION"
           echo "Build version: $BUILD_VERSION"
 
-      # 5. Update version in source files and package.json
+      # 5. Update version in package.json (used by Vite for PWA manifest)
       - name: Update Version in Files 📝
         run: |
           BUILD_VERSION="${{ steps.version.outputs.build_version }}"
           echo "Setting version to: $BUILD_VERSION"
 
-          # Update package.json for PWA manifest
+          # Update package.json - this is read by vite.config.js for PWA manifest
           sed -i "s/\"version\": \".*\"/\"version\": \"$BUILD_VERSION\"/" ./package.json
 
-          # Update PROJECT_VERSION in HTML
-          sed -i "s/const PROJECT_VERSION = .*/const PROJECT_VERSION = \"v$BUILD_VERSION\";/" ./src/index.html
+          # Update PROJECT_VERSION in index.html (root, not src/)
+          sed -i "s/const PROJECT_VERSION = .*/const PROJECT_VERSION = 'v$BUILD_VERSION';/" ./index.html
 
       # 6. Build the project with Vite
       - name: Build Project 🏗️
