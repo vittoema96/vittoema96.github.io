@@ -19,6 +19,7 @@
     "lockpick": "Lockpick",
     "medicine": "Medicine",
     "meleeWeapons": "Melee Weapons",
+    "mrHandyWeapons": "Mr Handy Weapons",
     "pilot": "Pilot",
     "repair": "Repair",
     "science": "Science",
@@ -376,6 +377,7 @@
     "qualityThrownM": "Thrown (M)",
     "qualityTwoHanded": "Two-Handed",
     "qualityUnreliable": "Unreliable",
+    "qualityMrHandyOnly": "Mr Handy Only",
 
     "effectBurstDescription": "",
     "effectBreakingDescription": "",
@@ -403,6 +405,7 @@
     "qualityThrownMDescription": "",
     "qualityTwoHandedDescription": "",
     "qualityUnreliableDescription": "",
+    "qualityMrHandyOnlyDescription": "This weapon is integrated into a Mr Handy robot's body and can only be used by Mr Handy units. It cannot be equipped by other character types.",
 
     "perkArmorer": "Armorer",
     "perkArmorerDescription": "",
@@ -512,6 +515,9 @@
     "right": "Right",
     "rightArm": "Right Arm",
     "rightLeg": "Right Leg",
+    "sensors": "Sensors",
+    "body": "Body",
+    "propulsors": "Propulsors",
     "roll": "Roll",
     "selectDiceAlert": "Select some dice to (re)roll!",
     "selling": "Selling",

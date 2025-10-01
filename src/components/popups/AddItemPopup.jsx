@@ -25,23 +25,42 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
             .join(' ')
     }
 
-    // Get subcategories for the current category
-    const getSubcategoriesForCategory = () => {
+    // Get subcategories for the current category (calculated on render, not memoized)
+    const getSubcategories = () => {
         if (!dataManager.getItemTypeMap) return []
         const typeMap = dataManager.getItemTypeMap()
 
+        let categories = []
+
         // If itemType is specified, return only its subcategories
         if (itemType && typeMap[itemType]) {
-            return typeMap[itemType]
+            categories = [...typeMap[itemType]]
+
+            // Add Mr Handy Weapons category if character is Mr Handy and we're in weapon category
+            if (itemType === 'weapon' && character?.origin === 'mrHandy') {
+                categories.push('mrHandyWeapons')
+            }
+        } else {
+            // Otherwise return all subcategories
+            categories = [
+                ...typeMap.weapon,
+                ...typeMap.apparel,
+                ...typeMap.aid,
+                ...typeMap.other
+            ]
+
+            // Add Mr Handy Weapons category if character is Mr Handy
+            if (character?.origin === 'mrHandy') {
+                categories.push('mrHandyWeapons')
+            }
         }
 
-        // Otherwise return all subcategories
-        return [
-            ...typeMap.weapon,
-            ...typeMap.apparel,
-            ...typeMap.aid,
-            ...typeMap.other
-        ]
+        // Sort alphabetically by translated name
+        return categories.sort((a, b) => {
+            const nameA = formatCategoryName(a)
+            const nameB = formatCategoryName(b)
+            return nameA.localeCompare(nameB)
+        })
     }
 
     // Update available items when itemType, typeFilter, or dataManager changes
@@ -69,6 +88,13 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
                     ...Object.values(dataManager.other || {})
                 ]
             }
+        } else if (typeFilter === 'mrHandyWeapons') {
+            // Special filter for Mr Handy weapons (virtual category)
+            const weaponData = dataManager.weapon || {}
+            allItems = Object.values(weaponData).filter(item => {
+                const qualities = item.QUALITIES || []
+                return qualities.includes('qualityMrHandyOnly')
+            })
         } else {
             // Filter by specific subtype
             const typeMap = dataManager.getItemTypeMap()
@@ -91,6 +117,14 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
         // Exclude unacquirable items
         allItems = allItems.filter(item => !dataManager.isUnacquirable(item.ID))
 
+        // Exclude Mr Handy only weapons from regular categories (unless we're in mrHandyWeapons filter)
+        if (typeFilter !== 'mrHandyWeapons') {
+            allItems = allItems.filter(item => {
+                const qualities = item.QUALITIES || []
+                return !qualities.includes('qualityMrHandyOnly')
+            })
+        }
+
         // Add side variations for items that need them (arms/legs)
         const itemsWithSides = []
         allItems.forEach(item => {
@@ -108,14 +142,32 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
             })
         })
 
-        setAvailableItems(itemsWithSides)
+        // Sort items alphabetically by translated name
+        const sortedItems = itemsWithSides.sort((a, b) => {
+            let nameA = t(a.ID)
+            let nameB = t(b.ID)
+
+            // Add side suffix to name for sorting
+            if (a.SIDE_SUFFIX) {
+                const sideText = a.SIDE_SUFFIX.replace('_', '')
+                nameA += ` (${t(sideText)})`
+            }
+            if (b.SIDE_SUFFIX) {
+                const sideText = b.SIDE_SUFFIX.replace('_', '')
+                nameB += ` (${t(sideText)})`
+            }
+
+            return nameA.localeCompare(nameB)
+        })
+
+        setAvailableItems(sortedItems)
 
         // Set first item as default selection
-        if (itemsWithSides.length > 0) {
-            setSelectedItemId(itemsWithSides[0].DISPLAY_ID)
-            setSelectedItemType(itemsWithSides[0].TYPE)
+        if (sortedItems.length > 0) {
+            setSelectedItemId(sortedItems[0].DISPLAY_ID)
+            setSelectedItemType(sortedItems[0].TYPE)
         }
-    }, [isOpen, itemType, typeFilter, dataManager])
+    }, [isOpen, itemType, typeFilter])
 
     // Handle dialog open/close
     useEffect(() => {
@@ -219,46 +271,11 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
                         aria-label="Type filter"
                     >
                         <option value="all">{t('all')}</option>
-                        {itemType ? (
-                            // Show only subcategories for this category
-                            getSubcategoriesForCategory().map(subtype => (
-                                <option key={subtype} value={subtype}>
-                                    {formatCategoryName(subtype)}
-                                </option>
-                            ))
-                        ) : (
-                            // Show all subcategories grouped by category
-                            <>
-                                <optgroup label={t('weaponsUpper')}>
-                                    {dataManager.getItemTypeMap && dataManager.getItemTypeMap().weapon.map(subtype => (
-                                        <option key={subtype} value={subtype}>
-                                            {formatCategoryName(subtype)}
-                                        </option>
-                                    ))}
-                                </optgroup>
-                                <optgroup label={t('apparelUpper')}>
-                                    {dataManager.getItemTypeMap && dataManager.getItemTypeMap().apparel.map(subtype => (
-                                        <option key={subtype} value={subtype}>
-                                            {formatCategoryName(subtype)}
-                                        </option>
-                                    ))}
-                                </optgroup>
-                                <optgroup label={t('aidUpper')}>
-                                    {dataManager.getItemTypeMap && dataManager.getItemTypeMap().aid.map(subtype => (
-                                        <option key={subtype} value={subtype}>
-                                            {formatCategoryName(subtype)}
-                                        </option>
-                                    ))}
-                                </optgroup>
-                                <optgroup label={t('otherUpper')}>
-                                    {dataManager.getItemTypeMap && dataManager.getItemTypeMap().other.map(subtype => (
-                                        <option key={subtype} value={subtype}>
-                                            {formatCategoryName(subtype)}
-                                        </option>
-                                    ))}
-                                </optgroup>
-                            </>
-                        )}
+                        {getSubcategories().map(subtype => (
+                            <option key={subtype} value={subtype}>
+                                {formatCategoryName(subtype)}
+                            </option>
+                        ))}
                     </select>
                 </div>
 

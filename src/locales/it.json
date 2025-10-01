@@ -19,6 +19,7 @@
     "lockpick": "Scassinare",
     "medicine": "Medicina",
     "meleeWeapons": "Armi da Mischia",
+    "mrHandyWeapons": "Armi Mr Handy",
     "pilot": "Pilotare",
     "repair": "Riparare",
     "science": "Scienza",
@@ -55,6 +56,9 @@
     "rightArm": "Braccio Destro",
     "leftLeg": "Gamba Sinistra",
     "rightLeg": "Gamba Destra",
+    "sensors": "Sensori",
+    "body": "Corpo",
+    "propulsors": "Propulsori",
 
     "weaponId": "Arma",
     "skill": "Abilità",
@@ -464,6 +468,8 @@
     "qualityTwoHandedDescription": "Un’arma A Due Mani deve essere impugnata con entrambe le mani per poter essere usata efficacemente: se si prova ad attaccare con una mano sola, la difficoltà aumenta di 2.",
     "qualityUnreliable": "Inaffidabile",
     "qualityUnreliableDescription": "Quando si attacca con un’arma Inaffidabile, il livello di complicazione dell’attacco aumenta di 1. Un’arma non può essere contemporaneamente Affidabile ed Inaffidabile.",
+    "qualityMrHandyOnly": "Solo Mr Handy",
+    "qualityMrHandyOnlyDescription": "Quest'arma è integrata nel corpo di un robot Mr Handy e può essere utilizzata solo da unità Mr Handy. Non può essere equipaggiata da altri tipi di personaggi.",
 
     "perkMedic": "Medico",
     "perkMedicDescription": "Quando utilizza l’azione Primo Soccorso per cercare di curare una ferita, il personaggio può ripetere il lancio di 1d20.",

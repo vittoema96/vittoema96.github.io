@@ -13,7 +13,26 @@ function DataTab() {
     }, [character.level])
 
     const handleFieldChange = (field, value) => {
-        updateCharacter({ [field]: value })
+        // Special handling for origin change to mrHandy
+        if (field === 'origin' && value === 'mrHandy') {
+            // Unequip all apparel items
+            const updatedItems = character.items?.map(item => {
+                const itemType = item.type
+                const isApparel = ['clothing', 'headgear', 'outfit'].includes(itemType) || itemType.endsWith('Armor')
+
+                if (isApparel && item.equipped) {
+                    return { ...item, equipped: false }
+                }
+                return item
+            }) || []
+
+            updateCharacter({
+                [field]: value,
+                items: updatedItems
+            })
+        } else {
+            updateCharacter({ [field]: value })
+        }
     }
 
     const handleLevelChange = (e) => {

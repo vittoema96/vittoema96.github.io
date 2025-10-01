@@ -145,13 +145,27 @@ function D20Popup({ isOpen, onClose, skillId, weaponId = null }) {
                 // Before roll: cascade selection logic
                 const willBeActive = !prev[index]
 
-                for (let i = 0; i < newActive.length; i++) {
-                    if (i < index) {
-                        newActive[i] = true // Select all previous
-                    } else if (i === index) {
-                        newActive[i] = willBeActive // Toggle clicked
-                    } else {
-                        newActive[i] = false // Deselect all after
+                // Special case: clicking die 0 or die 1 should deselect all dice after index 1
+                if (index <= 1) {
+                    for (let i = 0; i < newActive.length; i++) {
+                        if (i < index) {
+                            newActive[i] = true // Select all previous
+                        } else if (i === index) {
+                            newActive[i] = willBeActive // Toggle clicked
+                        } else {
+                            newActive[i] = false // Deselect all after (including 2, 3, 4)
+                        }
+                    }
+                } else {
+                    // For dice 2, 3, 4: normal cascade logic
+                    for (let i = 0; i < newActive.length; i++) {
+                        if (i < index) {
+                            newActive[i] = true // Select all previous
+                        } else if (i === index) {
+                            newActive[i] = willBeActive // Toggle clicked
+                        } else {
+                            newActive[i] = false // Deselect all after
+                        }
                     }
                 }
 

@@ -56,6 +56,14 @@ export const BODY_PARTS = Object.freeze({
     RIGHT_LEG: 'rightLeg',
 });
 
+// Mr Handy body parts (robot components)
+export const MR_HANDY_PARTS = Object.freeze({
+    SENSORS: 'sensors',      // Maps to head position (top-left)
+    BODY: 'body',            // Maps to torso position (top-right)
+    ARMS: 'arms',            // Maps to left leg position (bottom-left)
+    PROPULSORS: 'propulsors' // Maps to right leg position (bottom-right)
+});
+
 // Default character template
 export const DEFAULT_CHARACTER = Object.freeze({
     name: undefined,

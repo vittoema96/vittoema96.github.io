@@ -30,11 +30,18 @@ function InventoryList({
     const [sortBy, setSortBy] = useState('name') // name, number, rarity
     const [sortDirection, setSortDirection] = useState('asc') // asc or desc
 
-    // Get subcategories based on main category
+    // Get subcategories based on main category (sorted alphabetically by translation)
     const getSubcategories = () => {
         if (!categoryFilter || !dataManager.getItemTypeMap) return []
         const typeMap = dataManager.getItemTypeMap()
-        return typeMap[categoryFilter] || []
+        const subcategories = typeMap[categoryFilter] || []
+
+        // Sort alphabetically by translated name
+        return subcategories.sort((a, b) => {
+            const nameA = formatCategoryName(a)
+            const nameB = formatCategoryName(b)
+            return nameA.localeCompare(nameB)
+        })
     }
 
     // Get appropriate card component for item type
@@ -108,12 +115,28 @@ function InventoryList({
                         const bDamage = parseInt(bData.DAMAGE_RATING) || 0
                         comparison = bDamage - aDamage
                     }
-                    // Apparel - sort by maximum damage reduction value
+                    // Apparel - sort by maximum damage reduction value, then by sum if equal
                     else if ((['clothing', 'headgear', 'outfit'].includes(aType) || aType.endsWith('Armor')) &&
                              (['clothing', 'headgear', 'outfit'].includes(bType) || bType.endsWith('Armor'))) {
-                        const aMaxDR = Math.max(aData.PHYSICAL_RES || 0, aData.ENERGY_RES || 0, aData.RADIATION_RES || 0)
-                        const bMaxDR = Math.max(bData.PHYSICAL_RES || 0, bData.ENERGY_RES || 0, bData.RADIATION_RES || 0)
+                        const aPhysical = aData.PHYSICAL_RES || 0
+                        const aEnergy = aData.ENERGY_RES || 0
+                        const aRadiation = aData.RADIATION_RES || 0
+                        const bPhysical = bData.PHYSICAL_RES || 0
+                        const bEnergy = bData.ENERGY_RES || 0
+                        const bRadiation = bData.RADIATION_RES || 0
+
+                        const aMaxDR = Math.max(aPhysical, aEnergy, aRadiation)
+                        const bMaxDR = Math.max(bPhysical, bEnergy, bRadiation)
+
+                        // First compare by max value
                         comparison = bMaxDR - aMaxDR
+
+                        // If max values are equal, compare by sum
+                        if (comparison === 0) {
+                            const aSumDR = aPhysical + aEnergy + aRadiation
+                            const bSumDR = bPhysical + bEnergy + bRadiation
+                            comparison = bSumDR - aSumDR
+                        }
                     }
                     // Aid - sort by HP restoration
                     else if (['food', 'drinks', 'meds'].includes(aType) && ['food', 'drinks', 'meds'].includes(bType)) {
