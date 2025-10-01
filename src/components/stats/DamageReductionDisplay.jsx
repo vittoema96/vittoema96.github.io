@@ -9,8 +9,22 @@ import { BODY_PARTS } from '../../js/constants.js'
  */
 function DamageReductionDisplay() {
     const t = useI18n()
-    const { derivedStats } = useCharacter()
+    const { character, derivedStats } = useCharacter()
     const damageReduction = derivedStats.locationsDR || {}
+
+    // Use origin-specific SVG icon
+    const getCharacterIcon = () => {
+        if (character?.origin === 'mrHandy') return 'mrHandy'
+        if (character?.origin === 'ghoul') return 'ghoul'
+        return 'vaultboy-open-arms'
+    }
+    const characterIcon = getCharacterIcon()
+
+    // Helper function to format DR value (show "Immune" for Infinity)
+    const formatDR = (value) => {
+        if (value === Infinity) return t('immune')
+        return value || 0
+    }
 
     return (
         <div className="activeApparel l-spaceAround">
@@ -20,24 +34,24 @@ function DamageReductionDisplay() {
                     <div className="row l-centered">
                         <span>{t('physical')}:</span>
                         <span>
-                            {damageReduction[bodyPart]?.physical || 0}
+                            {formatDR(damageReduction[bodyPart]?.physical)}
                         </span>
                     </div>
                     <div className="row l-centered">
                         <span>{t('energy')}:</span>
                         <span>
-                            {damageReduction[bodyPart]?.energy || 0}
+                            {formatDR(damageReduction[bodyPart]?.energy)}
                         </span>
                     </div>
                     <div className="row l-centered">
                         <span>{t('radiation')}:</span>
                         <span>
-                            {damageReduction[bodyPart]?.radiation || 0}
+                            {formatDR(damageReduction[bodyPart]?.radiation)}
                         </span>
                     </div>
                 </div>
             ))}
-            <div className="apparel-vaultboy themed-svg" data-icon="vaultboy-open-arms"></div>
+            <div className="apparel-vaultboy themed-svg" data-icon={characterIcon}></div>
         </div>
     )
 }

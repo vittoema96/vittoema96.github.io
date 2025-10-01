@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react'
-import { DEFAULT_CHARACTER, SPECIAL } from '../js/constants.js'
+import { DEFAULT_CHARACTER, SPECIAL, SKILLS } from '../js/constants.js'
 import { useDataManager } from '../hooks/useDataManager.js'
 
 const CharacterContext = createContext()
@@ -10,6 +10,19 @@ export const useCharacter = () => {
         throw new Error('useCharacter must be used within a CharacterProvider')
     }
     return context
+}
+
+/**
+ * Helper function to get effective skill value (base + specialty bonus)
+ * @param {Object} character - Character object
+ * @param {string} skillId - Skill ID from SKILLS constant
+ * @returns {number} Effective skill value (base + 2 if specialty)
+ */
+export const getEffectiveSkillValue = (character, skillId) => {
+    if (!character || !skillId) return 0
+    const baseValue = character.skills?.[skillId] || 0
+    const hasSpecialty = character.specialties?.includes(skillId) || false
+    return baseValue + (hasSpecialty ? 2 : 0)
 }
 
 export function CharacterProvider({ children }) {
@@ -58,17 +71,26 @@ export function CharacterProvider({ children }) {
                 defense: 0,
                 initiative: 0,
                 meleeDamage: 0,
-                locationsDR: {}
+                locationsDR: {},
+                effectiveSkills: {}
             }
         }
+
+        // Calculate effective skill values (base + specialty bonus)
+        const effectiveSkills = {}
+        Object.values(SKILLS).forEach(skillId => {
+            effectiveSkills[skillId] = getEffectiveSkillValue(character, skillId)
+        })
 
         // Calculate max HP
         const maxHp = character.special[SPECIAL.ENDURANCE] +
                      character.special[SPECIAL.LUCK] +
                      character.level - 1
 
-        // Calculate max weight
-        const maxWeight = 75 + character.special[SPECIAL.STRENGTH] * 5
+        // Calculate max weight (Mr Handy has fixed 75kg carry weight)
+        const maxWeight = character.origin === 'mrHandy'
+            ? 75
+            : 75 + character.special[SPECIAL.STRENGTH] * 5
 
         // Calculate current weight from inventory
         const currentWeight = character.items.reduce((total, item) => {
@@ -101,6 +123,7 @@ export function CharacterProvider({ children }) {
         })
 
         // Calculate DR from equipped items only
+        // Use MAX value between under and over layers for each damage type
         character.items.forEach(item => {
             // Only count equipped items
             if (!item.equipped) {
@@ -117,7 +140,7 @@ export function CharacterProvider({ children }) {
             const locations = []
             for (const location of itemData.LOCATIONS_COVERED) {
                 if (location === 'arm') {
-                    // Handle side-specific arms
+                    // Handle side-specific arms (singular - for individual armor pieces)
                     if (side === 'left') {
                         locations.push('leftArm')
                     } else if (side === 'right') {
@@ -125,8 +148,11 @@ export function CharacterProvider({ children }) {
                     } else {
                         locations.push('leftArm', 'rightArm')
                     }
+                } else if (location === 'arms') {
+                    // Handle both arms (plural - for clothing/outfits)
+                    locations.push('leftArm', 'rightArm')
                 } else if (location === 'leg') {
-                    // Handle side-specific legs
+                    // Handle side-specific legs (singular - for individual armor pieces)
                     if (side === 'left') {
                         locations.push('leftLeg')
                     } else if (side === 'right') {
@@ -134,6 +160,9 @@ export function CharacterProvider({ children }) {
                     } else {
                         locations.push('leftLeg', 'rightLeg')
                     }
+                } else if (location === 'legs') {
+                    // Handle both legs (plural - for clothing/outfits)
+                    locations.push('leftLeg', 'rightLeg')
                 } else if (location === 'torso') {
                     locations.push('torso')
                 } else if (location === 'head') {
@@ -143,15 +172,26 @@ export function CharacterProvider({ children }) {
                 }
             }
 
-            // Add DR for each location and damage type
+            // Use MAX between current DR and item DR for each damage type
             locations.forEach(location => {
                 if (locationsDR[location]) {
-                    locationsDR[location].physical += Number(itemData.PHYSICAL_RES) || 0
-                    locationsDR[location].energy += Number(itemData.ENERGY_RES) || 0
-                    locationsDR[location].radiation += Number(itemData.RADIATION_RES) || 0
+                    const itemPhysical = Number(itemData.PHYSICAL_RES) || 0
+                    const itemEnergy = Number(itemData.ENERGY_RES) || 0
+                    const itemRadiation = Number(itemData.RADIATION_RES) || 0
+
+                    locationsDR[location].physical = Math.max(locationsDR[location].physical, itemPhysical)
+                    locationsDR[location].energy = Math.max(locationsDR[location].energy, itemEnergy)
+                    locationsDR[location].radiation = Math.max(locationsDR[location].radiation, itemRadiation)
                 }
             })
         })
+
+        // Mr Handy and Ghoul have infinite radiation resistance
+        if (character.origin === 'mrHandy' || character.origin === 'ghoul') {
+            bodyParts.forEach(location => {
+                locationsDR[location].radiation = Infinity
+            })
+        }
 
         return {
             maxHp,
@@ -160,7 +200,8 @@ export function CharacterProvider({ children }) {
             defense,
             initiative,
             meleeDamage,
-            locationsDR
+            locationsDR,
+            effectiveSkills
         }
     }, [character, dataManager])
 

@@ -40,6 +40,7 @@
     "physical": "Fisici",
     "energy": "Energia",
     "radiation": "Rads",
+    "immune": "Immune",
     "equipped": "Equipaggiato",
 
     "head": "Testa",
@@ -140,6 +141,11 @@
     "weaponLaserMusket": "Moschetto Laser",
     "weaponPlasmaPistol": "Pistola al Plasma",
     "weaponGammaPistol": "Pistola Gamma",
+    "weaponMrHandyLaserEmitter": "Emettitore Laser",
+    "weaponMrHandyFlamethrower": "Lanciafiamme",
+    "weaponMrHandyAutomaticPistol": "Pistola Automatica 10mm",
+    "weaponMrHandyCircularSaw": "Sega Circolare",
+    "weaponMrHandyPliers": "Tenaglia",
 
     "weaponMolotovCocktail": "Bottiglia Molotov",
     "weaponFragmentationGrenade": "Granata a Frammentazione",

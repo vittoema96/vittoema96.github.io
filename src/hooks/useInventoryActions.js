@@ -1,6 +1,7 @@
 import { useCharacter } from '../contexts/CharacterContext.jsx'
 import { usePopup } from '../contexts/PopupContext.jsx'
 import { useDataManager } from './useDataManager.js'
+import { isMrHandyWeapon, isWeapon, isApparel } from '../js/gameRules.js'
 
 /**
  * Custom hook for inventory actions (sell, delete, equip, use, etc.)
@@ -74,7 +75,7 @@ export const useInventoryActions = () => {
         const locations = []
         for (const location of locationsCovered) {
             if (location === 'arm') {
-                // Handle side-specific arms
+                // Handle side-specific arms (singular - for individual armor pieces)
                 if (side === 'left') {
                     locations.push('leftArm')
                 } else if (side === 'right') {
@@ -82,8 +83,11 @@ export const useInventoryActions = () => {
                 } else {
                     locations.push('leftArm', 'rightArm')
                 }
+            } else if (location === 'arms') {
+                // Handle both arms (plural - for clothing/outfits)
+                locations.push('leftArm', 'rightArm')
             } else if (location === 'leg') {
-                // Handle side-specific legs
+                // Handle side-specific legs (singular - for individual armor pieces)
                 if (side === 'left') {
                     locations.push('leftLeg')
                 } else if (side === 'right') {
@@ -91,6 +95,9 @@ export const useInventoryActions = () => {
                 } else {
                     locations.push('leftLeg', 'rightLeg')
                 }
+            } else if (location === 'legs') {
+                // Handle both legs (plural - for clothing/outfits)
+                locations.push('leftLeg', 'rightLeg')
             } else if (location === 'torso') {
                 locations.push('torso')
             } else if (location === 'head') {
@@ -106,6 +113,31 @@ export const useInventoryActions = () => {
         if (!itemData || !itemData.LOCATIONS_COVERED) {
             showAlert('This item cannot be equipped.')
             return
+        }
+
+        // Mr Handy origin restrictions
+        const isMrHandy = character.origin === 'mrHandy'
+        const itemIsMrHandyWeapon = isMrHandyWeapon(characterItem.id)
+        const itemIsWeapon = isWeapon(characterItem.type)
+        const itemIsApparel = isApparel(characterItem.type)
+
+        if (isMrHandy) {
+            // Mr Handy can only equip Mr Handy exclusive weapons
+            if (itemIsWeapon && !itemIsMrHandyWeapon) {
+                showAlert('Mr Handy cannot equip regular weapons. Only Mr Handy exclusive weapons can be used.')
+                return
+            }
+            // Mr Handy cannot equip any apparel
+            if (itemIsApparel) {
+                showAlert('Mr Handy cannot equip armor or clothing.')
+                return
+            }
+        } else {
+            // Non-Mr Handy characters cannot equip Mr Handy exclusive weapons
+            if (itemIsMrHandyWeapon) {
+                showAlert('Only Mr Handy can use this weapon.')
+                return
+            }
         }
 
         const isCurrentlyEquipped = characterItem.equipped === true

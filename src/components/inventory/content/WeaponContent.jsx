@@ -1,6 +1,6 @@
 import React from 'react'
 import Tag from '../../common/Tag.jsx'
-import { useCharacter } from '../../../contexts/CharacterContext.jsx'
+import { useCharacter, getEffectiveSkillValue } from '../../../contexts/CharacterContext.jsx'
 import { useI18n } from '../../../hooks/useI18n.js'
 import { SKILL_TO_SPECIAL_MAP } from '../../../js/constants.js'
 
@@ -15,7 +15,7 @@ function WeaponContent({ characterItem, itemData }) {
     const weaponObj = itemData
 
     // Calculate weapon stats
-    const skillValue = character.skills[weaponObj.TYPE] || 0
+    const skillValue = getEffectiveSkillValue(character, weaponObj.TYPE)
     const specialValue = character.special[SKILL_TO_SPECIAL_MAP[weaponObj.TYPE]] || 5
     const targetNumber = skillValue + specialValue
     const critThreshold = Math.max(skillValue, 1)

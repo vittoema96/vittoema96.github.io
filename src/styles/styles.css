@@ -1703,6 +1703,12 @@ body::before {
 .themed-svg[data-icon='vaultboy-open-arms'] {
     --image-url: url('/img/svg/vaultboy-open-arms.svg');
 }
+.themed-svg[data-icon='mrHandy'] {
+    --image-url: url('/img/svg/mrHandy.svg');
+}
+.themed-svg[data-icon='ghoul'] {
+    --image-url: url('/img/svg/ghoul.svg');
+}
 .themed-svg[data-icon='weight'] {
     --image-url: url('/img/svg/weight.svg');
 }

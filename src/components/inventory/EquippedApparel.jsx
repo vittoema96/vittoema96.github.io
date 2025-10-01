@@ -26,6 +26,7 @@ function EquippedApparel({ equippedItems }) {
         const locations = []
         for (const location of itemData.LOCATIONS_COVERED) {
             if (location === 'arm') {
+                // Handle side-specific arms (singular - for individual armor pieces)
                 if (side === 'left') {
                     locations.push('leftArm')
                 } else if (side === 'right') {
@@ -33,7 +34,11 @@ function EquippedApparel({ equippedItems }) {
                 } else {
                     locations.push('leftArm', 'rightArm')
                 }
+            } else if (location === 'arms') {
+                // Handle both arms (plural - for clothing/outfits)
+                locations.push('leftArm', 'rightArm')
             } else if (location === 'leg') {
+                // Handle side-specific legs (singular - for individual armor pieces)
                 if (side === 'left') {
                     locations.push('leftLeg')
                 } else if (side === 'right') {
@@ -41,6 +46,9 @@ function EquippedApparel({ equippedItems }) {
                 } else {
                     locations.push('leftLeg', 'rightLeg')
                 }
+            } else if (location === 'legs') {
+                // Handle both legs (plural - for clothing/outfits)
+                locations.push('leftLeg', 'rightLeg')
             } else if (location === 'torso') {
                 locations.push('torso')
             } else if (location === 'head') {

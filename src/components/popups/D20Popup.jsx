@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useCharacter } from '../../contexts/CharacterContext.jsx'
+import { useCharacter, getEffectiveSkillValue } from '../../contexts/CharacterContext.jsx'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
@@ -45,11 +45,11 @@ function D20Popup({ isOpen, onClose, skillId, weaponId = null }) {
     const [initialApCost, setInitialApCost] = useState(0) // Store AP cost from first roll
 
     // Calculations
-    const skillValue = character?.skills?.[skillId] || 0
+    const skillValue = getEffectiveSkillValue(character, skillId)
+    const hasSpecialty = character?.specialties?.includes(skillId) || false
     const activeSpecialId = isUsingLuck ? 'luck' : selectedSpecial
     const specialValue = character?.special?.[activeSpecialId] || 5
     const targetNumber = skillValue + specialValue
-    const hasSpecialty = character?.specialties?.includes(skillId) || false
     const criticalValue = hasSpecialty ? skillValue : 1
     const currentLuck = character?.currentLuck || character?.special?.luck || 5
     const maxLuck = character?.special?.luck || 5

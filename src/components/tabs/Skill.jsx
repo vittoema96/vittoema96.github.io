@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { useI18n } from '../../hooks/useI18n.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
 import { SKILL_TO_SPECIAL_MAP } from "../../js/constants.js"
-import { useCharacter } from "../../contexts/CharacterContext.jsx"
+import { useCharacter, getEffectiveSkillValue } from "../../contexts/CharacterContext.jsx"
 
 function Skill({
     skillId,
@@ -23,9 +23,9 @@ function Skill({
     }, [character.origin])
 
     const effectiveSkillValue = useMemo(() => {
-        const withSpecialty = baseSkillValue + (hasSpecialty ? 2 : 0)
-        return Math.max(0, Math.min(withSpecialty, skillMax))
-    }, [baseSkillValue, hasSpecialty, skillMax])
+        const value = getEffectiveSkillValue(character, skillId)
+        return Math.max(0, Math.min(value, skillMax))
+    }, [character, skillId, skillMax])
 
     // Handle skill changes
     const onSkillClick = () => {
