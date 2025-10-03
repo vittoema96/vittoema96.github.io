@@ -19,7 +19,7 @@ export const useCharacter = () => {
  * @returns {number} Effective skill value (base + 2 if specialty)
  */
 export const getEffectiveSkillValue = (character, skillId) => {
-    if (!character || !skillId) return 0
+    if (!character || !skillId) return 0 // TODO throw (ErrorBoundary managed) error instead 
     const baseValue = character.skills?.[skillId] || 0
     const hasSpecialty = character.specialties?.includes(skillId) || false
     return baseValue + (hasSpecialty ? 2 : 0)
@@ -88,9 +88,9 @@ export function CharacterProvider({ children }) {
                      character.level - 1
 
         // Calculate max weight (Mr Handy has fixed 75kg carry weight)
-        const maxWeight = character.origin === 'mrHandy'
-            ? 75
-            : 75 + character.special[SPECIAL.STRENGTH] * 5
+        const maxWeight = 75 + (character.origin === 'mrHandy'
+            ? 0
+            : character.special[SPECIAL.STRENGTH] * 5)
 
         // Calculate current weight from inventory
         const currentWeight = character.items.reduce((total, item) => {
@@ -138,6 +138,7 @@ export function CharacterProvider({ children }) {
 
             // Get locations this item covers
             const locations = []
+            // TODO current handling of the below for loop can be optimized
             for (const location of itemData.LOCATIONS_COVERED) {
                 if (location === 'arm') {
                     // Handle side-specific arms (singular - for individual armor pieces)

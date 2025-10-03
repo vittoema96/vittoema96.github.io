@@ -178,10 +178,18 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
             dialog.showModal()
             // Reset form when opening
             setQuantity(1)
+            setTypeFilter('all') // Reset filter when popup opens
         } else {
             dialog.close()
         }
     }, [isOpen])
+
+    // Reset filter when itemType changes (e.g., switching from weapon to apparel)
+    useEffect(() => {
+        if (isOpen) {
+            setTypeFilter('all')
+        }
+    }, [itemType, isOpen])
 
     const handleClose = () => {
         const dialog = dialogRef.current
