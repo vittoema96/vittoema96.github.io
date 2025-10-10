@@ -2,6 +2,12 @@ import { useCharacter } from '../contexts/CharacterContext.jsx'
 import { usePopup } from '../contexts/PopupContext.jsx'
 import { useDataManager } from './useDataManager.js'
 import { isMrHandyWeapon, isWeapon, isApparel } from '../js/gameRules.js'
+import {
+    applyModToItem as applyModUtil,
+    removeModFromItem as removeModUtil,
+    getModifiedItemData,
+    isSameConfiguration
+} from '../utils/itemUtils.js'
 
 /**
  * Custom hook for inventory actions (sell, delete, equip, use, etc.)
@@ -13,12 +19,16 @@ export const useInventoryActions = () => {
     const dataManager = useDataManager()
 
     const sellItem = (characterItem, itemData) => {
-        showTradeItemPopup(characterItem, itemData, (quantity, price) => {
+        // Use modified data for price calculation
+        const baseId = characterItem.id.split('_')[0]
+        const modifiedData = getModifiedItemData(dataManager, baseId, characterItem.mods)
+
+        showTradeItemPopup(characterItem, modifiedData, (quantity, price) => {
             const total = Math.floor(quantity * price)
 
             // Remove sold quantity from inventory
             const updatedItems = character.items?.map(item => {
-                if (item.id === characterItem.id) {
+                if (isSameConfiguration(item, characterItem)) {
                     const newQuantity = item.quantity - quantity
                     if (newQuantity <= 0) {
                         return null // Will be filtered out
@@ -208,10 +218,44 @@ export const useInventoryActions = () => {
         showAlert('Use functionality coming soon!')
     }
 
+    const applyMod = (characterItem, modId) => {
+        if (!characterItem || !modId) {
+            showAlert('Invalid item or mod')
+            return
+        }
+
+        // Apply mod using utility function
+        const updatedItems = applyModUtil(character.items, characterItem, modId)
+
+        updateCharacter({ items: updatedItems })
+        showAlert('Mod applied successfully!')
+    }
+
+    const removeMod = (characterItem, modId) => {
+        if (!characterItem || !modId) {
+            showAlert('Invalid item or mod')
+            return
+        }
+
+        // Check if item has this mod
+        if (!characterItem.mods || !characterItem.mods.includes(modId)) {
+            showAlert('Item does not have this mod')
+            return
+        }
+
+        // Remove mod using utility function
+        const updatedItems = removeModUtil(character.items, characterItem, modId)
+
+        updateCharacter({ items: updatedItems })
+        showAlert('Mod removed successfully!')
+    }
+
     return {
         sellItem,
         deleteItem,
         equipItem,
-        useItem
+        useItem,
+        applyMod,
+        removeMod
     }
 }

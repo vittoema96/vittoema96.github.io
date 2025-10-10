@@ -1,8 +1,30 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react'
 import { DEFAULT_CHARACTER, SPECIAL, SKILLS } from '../js/constants.js'
 import { useDataManager } from '../hooks/useDataManager.js'
+import { getModifiedItemData } from '../utils/itemUtils.js'
 
 const CharacterContext = createContext()
+
+// Constants
+const STORAGE_KEY = 'character_default'
+
+// Location mapping for optimized lookup
+const LOCATION_MAP = {
+    arm: (side) => {
+        if (side === 'left') return ['leftArm']
+        if (side === 'right') return ['rightArm']
+        return ['leftArm', 'rightArm']
+    },
+    arms: () => ['leftArm', 'rightArm'],
+    leg: (side) => {
+        if (side === 'left') return ['leftLeg']
+        if (side === 'right') return ['rightLeg']
+        return ['leftLeg', 'rightLeg']
+    },
+    legs: () => ['leftLeg', 'rightLeg'],
+    torso: () => ['torso'],
+    head: () => ['head']
+}
 
 export const useCharacter = () => {
     const context = useContext(CharacterContext)
@@ -26,8 +48,6 @@ export const getEffectiveSkillValue = (character, skillId) => {
 }
 
 export function CharacterProvider({ children }) {
-    const STORAGE_KEY = 'character_default'
-
     const [character, setCharacterState] = useState(DEFAULT_CHARACTER)
     const [isLoading, setIsLoading] = useState(true)
     const dataManager = useDataManager()
@@ -92,9 +112,10 @@ export function CharacterProvider({ children }) {
             ? 0
             : character.special[SPECIAL.STRENGTH] * 5)
 
-        // Calculate current weight from inventory
+        // Calculate current weight from inventory (with mods applied)
         const currentWeight = character.items.reduce((total, item) => {
-            const itemData = dataManager.getItem(item.id)
+            const baseId = item.id.split('_')[0]
+            const itemData = getModifiedItemData(dataManager, baseId, item.mods)
             const weight = Number(itemData?.WEIGHT) || 0
             return total + weight * (item.quantity || 1)
         }, 0)
@@ -122,7 +143,7 @@ export function CharacterProvider({ children }) {
             })
         })
 
-        // Calculate DR from equipped items only
+        // Calculate DR from equipped items only (with mods applied)
         // Use MAX value between under and over layers for each damage type
         character.items.forEach(item => {
             // Only count equipped items
@@ -131,44 +152,19 @@ export function CharacterProvider({ children }) {
             }
 
             const [itemId, side] = item.id.split('_')
-            const itemData = dataManager.getItem(itemId)
+            const itemData = getModifiedItemData(dataManager, itemId, item.mods)
             if (!itemData || !itemData.LOCATIONS_COVERED) {
                 return
             }
 
-            // Get locations this item covers
+            // Get locations this item covers (optimized with lookup map)
             const locations = []
-            // TODO current handling of the below for loop can be optimized
             for (const location of itemData.LOCATIONS_COVERED) {
-                if (location === 'arm') {
-                    // Handle side-specific arms (singular - for individual armor pieces)
-                    if (side === 'left') {
-                        locations.push('leftArm')
-                    } else if (side === 'right') {
-                        locations.push('rightArm')
-                    } else {
-                        locations.push('leftArm', 'rightArm')
-                    }
-                } else if (location === 'arms') {
-                    // Handle both arms (plural - for clothing/outfits)
-                    locations.push('leftArm', 'rightArm')
-                } else if (location === 'leg') {
-                    // Handle side-specific legs (singular - for individual armor pieces)
-                    if (side === 'left') {
-                        locations.push('leftLeg')
-                    } else if (side === 'right') {
-                        locations.push('rightLeg')
-                    } else {
-                        locations.push('leftLeg', 'rightLeg')
-                    }
-                } else if (location === 'legs') {
-                    // Handle both legs (plural - for clothing/outfits)
-                    locations.push('leftLeg', 'rightLeg')
-                } else if (location === 'torso') {
-                    locations.push('torso')
-                } else if (location === 'head') {
-                    locations.push('head')
+                const mapper = LOCATION_MAP[location]
+                if (mapper) {
+                    locations.push(...mapper(side))
                 } else {
+                    // Fallback for unknown locations
                     locations.push(location)
                 }
             }
@@ -243,7 +239,7 @@ export function CharacterProvider({ children }) {
 
     // Reset to default character
     const resetCharacter = useCallback(() => {
-        setCharacterState({ ...DEFAULT_CHARACTER })
+        setCharacterState(DEFAULT_CHARACTER)
     }, [])
 
     // Download character as JSON
@@ -289,15 +285,19 @@ export function CharacterProvider({ children }) {
         })
     }, [])
 
-    const contextValue = {
-        character,
-        derivedStats,
-        updateCharacter,
-        resetCharacter,
-        downloadCharacter,
-        uploadCharacter,
-        isLoading
-    }
+    // Memoize context value to prevent unnecessary re-renders
+    const contextValue = useMemo(
+        () => ({
+            character,
+            derivedStats,
+            updateCharacter,
+            resetCharacter,
+            downloadCharacter,
+            uploadCharacter,
+            isLoading
+        }),
+        [character, derivedStats, updateCharacter, resetCharacter, downloadCharacter, uploadCharacter, isLoading]
+    )
 
     return (
         <CharacterContext.Provider value={contextValue}>

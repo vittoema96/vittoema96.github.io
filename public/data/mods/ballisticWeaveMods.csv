@@ -1,0 +1,6 @@
+ID,SLOT_TYPE,EFFECTS,WEIGHT,COST,SKILL,PERKS,RARITY,CLOTHING_TYPES
+modBallisticWeave,modSlotBallisticWeave,"[""physicalResAdd:2"",""energyResAdd:2""]",0,20,repair,"[]",2,"[""armorCasualClothing"",""armorMilitaryFatigues"",""armorFormalWear"",""armorLabCoat"",""armorHeavyCoat"",""armorFancyHat""]"
+modBallisticWeave2,modSlotBallisticWeave,"[""physicalResAdd:3"",""energyResAdd:3""]",0,30,repair,"[""armorer:1""]",3,"[""armorCasualClothing"",""armorMilitaryFatigues"",""armorFormalWear"",""armorLabCoat"",""armorHeavyCoat"",""armorFancyHat""]"
+modBallisticWeave3,modSlotBallisticWeave,"[""physicalResAdd:4"",""energyResAdd:4""]",0,40,repair,"[""armorer:2""]",3,"[""armorCasualClothing"",""armorMilitaryFatigues"",""armorFormalWear"",""armorLabCoat"",""armorHeavyCoat"",""armorFancyHat""]"
+modBallisticWeave4,modSlotBallisticWeave,"[""physicalResAdd:5"",""energyResAdd:5""]",0,50,repair,"[""armorer:3""]",4,"[""armorCasualClothing"",""armorMilitaryFatigues"",""armorFormalWear"",""armorLabCoat"",""armorHeavyCoat"",""armorFancyHat""]"
+modBallisticWeave5,modSlotBallisticWeave,"[""physicalResAdd:6"",""energyResAdd:6""]",0,60,repair,"[""armorer:4""]",4,"[""armorCasualClothing"",""armorMilitaryFatigues"",""armorFormalWear"",""armorLabCoat"",""armorHeavyCoat"",""armorFancyHat""]"

@@ -318,8 +318,9 @@ class CardFactory {
         const createTagSpan = (text, className) => {
             const span = document.createElement('span');
             span.className = className;
-            span.dataset.tooltipId = `${text.split(' ')[0]}Description`;
-            span.dataset.i18n = text;
+            const [langId, opt] = text.split(':');
+            span.dataset.tooltipId = `${langId}Description`;
+            span.textContent = t(langId) + (opt ? ' ' + opt : '');
             return span;
         };
         const effectSpans = weaponObj.EFFECTS.map(effect => createTagSpan(effect, 'tag'));

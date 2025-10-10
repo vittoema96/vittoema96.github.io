@@ -84,7 +84,7 @@ function WeaponContent({ characterItem, itemData }) {
                 <section>
                     <div className="card-stat">
                         <div>{t('damageLabel')}</div>
-                        <div className="js-cardWeapon-damageRating">{weaponObj.DAMAGE_RATING}</div>
+                        <div className="js-cardWeapon-damageRating">{weaponObj.DAMAGE_RATING}d6</div>
                         <div className="js-cardWeapon-damageType">{t(weaponObj.DAMAGE_TYPE)}</div>
                     </div>
                     <div className="card-stat">
@@ -101,19 +101,19 @@ function WeaponContent({ characterItem, itemData }) {
             {/* Tags container for effects and qualities */}
             <div className="tags-container">
                 {weaponObj.EFFECTS?.map((effect, index) => {
-                    const [langId, effectOpt] = effect.split(' ')
+                    const [langId, effectOpt] = effect.split(':')
                     return (
                         <Tag key={`effect-${index}`} tooltipId={`${langId}Description`}>
-                            {t(langId) + (effectOpt ? ' ' + t(effectOpt) : '')}
+                            {t(langId) + (effectOpt ? ' ' + effectOpt : '')}
                         </Tag>
                     )
                 })}
 
                 {weaponObj.QUALITIES?.map((quality, index) => {
-                    const [langId, qualityOpt] = quality.split(' ')
+                    const [langId, qualityOpt] = quality.split(':')
                     return (
                         <Tag key={`quality-${index}`} tooltipId={`${langId}Description`} isEmpty={true}>
-                            {t(langId) + (qualityOpt ? ' ' + t(qualityOpt) : '')}
+                            {t(langId) + (qualityOpt ? ' ' + qualityOpt : '')}
                         </Tag>
                     )
                 })}

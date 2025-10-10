@@ -1,14 +1,58 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState, useCallback, useMemo } from 'react'
 import AlertPopup from '../components/popups/AlertPopup.jsx'
 import D20Popup from '../components/popups/D20Popup.jsx'
 import D6Popup from '../components/popups/D6Popup.jsx'
 import AddItemPopup from '../components/popups/AddItemPopup.jsx'
 import StatAdjustmentPopup from '../components/popups/StatAdjustmentPopup.jsx'
 import TradeItemPopup from '../components/popups/TradeItemPopup.jsx'
+import ModifyItemPopup from '../components/popups/ModifyItemPopup.jsx'
 import { useI18n } from '../hooks/useI18n.js'
 import { useDataManager } from '../hooks/useDataManager.js'
 
 const PopupContext = createContext()
+
+// Initial state constants to avoid recreating objects
+const INITIAL_ALERT_STATE = {
+    isOpen: false,
+    title: '',
+    content: '',
+    onConfirm: null,
+    showConfirm: false
+}
+
+const INITIAL_D20_STATE = {
+    isOpen: false,
+    skillId: null,
+    weaponId: null
+}
+
+const INITIAL_D6_STATE = {
+    isOpen: false,
+    weaponId: null,
+    hasAimed: false
+}
+
+const INITIAL_ADD_ITEM_STATE = {
+    isOpen: false,
+    itemType: null
+}
+
+const INITIAL_STAT_ADJUSTMENT_STATE = {
+    isOpen: false
+}
+
+const INITIAL_TRADE_ITEM_STATE = {
+    isOpen: false,
+    characterItem: null,
+    itemData: null,
+    onConfirm: null
+}
+
+const INITIAL_MODIFY_ITEM_STATE = {
+    isOpen: false,
+    characterItem: null,
+    itemData: null
+}
 
 export const usePopup = () => {
     const context = useContext(PopupContext)
@@ -22,45 +66,17 @@ export function PopupProvider({ children }) {
     const t = useI18n()
     const dataManager = useDataManager()
 
-    const [alertState, setAlertState] = useState({
-        isOpen: false,
-        title: '',
-        content: '',
-        onConfirm: null,
-        showConfirm: false
-    })
+    const [alertState, setAlertState] = useState(INITIAL_ALERT_STATE)
+    const [d20State, setD20State] = useState(INITIAL_D20_STATE)
+    const [d6State, setD6State] = useState(INITIAL_D6_STATE)
+    const [addItemState, setAddItemState] = useState(INITIAL_ADD_ITEM_STATE)
+    const [statAdjustmentState, setStatAdjustmentState] = useState(INITIAL_STAT_ADJUSTMENT_STATE)
+    const [tradeItemState, setTradeItemState] = useState(INITIAL_TRADE_ITEM_STATE)
+    const [modifyItemState, setModifyItemState] = useState(INITIAL_MODIFY_ITEM_STATE)
 
-    const [d20State, setD20State] = useState({
-        isOpen: false,
-        skillId: null,
-        weaponId: null
-    })
-
-    const [d6State, setD6State] = useState({
-        isOpen: false,
-        weaponId: null,
-        hasAimed: false
-    })
-
-    const [addItemState, setAddItemState] = useState({
-        isOpen: false,
-        itemType: null
-    })
-
-    const [statAdjustmentState, setStatAdjustmentState] = useState({
-        isOpen: false
-    })
-
-    const [tradeItemState, setTradeItemState] = useState({
-        isOpen: false,
-        characterItem: null,
-        itemData: null,
-        onConfirm: null
-    })
-
-    const showAlert = (content, title = null) => {
-        // TODO may not need this here
-        const translatedContent = content && content.indexOf(' ') > -1 ? content : t(content || '')
+    // Alert Popup functions
+    const showAlert = useCallback((content, title = null) => {
+        const translatedContent = t(content || '')
 
         setAlertState({
             isOpen: true,
@@ -69,11 +85,10 @@ export function PopupProvider({ children }) {
             onConfirm: null,
             showConfirm: false
         })
-    }
+    }, [t])
 
-    const showConfirm = (content, onConfirm, title = null) => {
-        // TODO may not need this here
-        const translatedContent = content && content.indexOf(' ') > -1 ? content : t(content || '')
+    const showConfirm = useCallback((content, onConfirm, title = null) => {
+        const translatedContent = t(content || '')
 
         setAlertState({
             isOpen: true,
@@ -82,108 +97,129 @@ export function PopupProvider({ children }) {
             onConfirm: onConfirm,
             showConfirm: true
         })
-    }
+    }, [t])
 
-    const closeAlert = () => {
-        setAlertState(prev => ({
-            ...prev,
-            isOpen: false
-        }))
-    }
+    const closeAlert = useCallback(() => {
+        setAlertState(INITIAL_ALERT_STATE)
+    }, [])
 
     // D20 Popup functions
-    const showD20Popup = (skillId, weaponId = null) => {
+    const showD20Popup = useCallback((skillId, characterItem = null) => {
         setD20State({
             isOpen: true,
             skillId: skillId,
-            weaponId: weaponId
+            characterItem: characterItem,
+            // Keep weaponId for backward compatibility
+            weaponId: characterItem?.id || null
         })
-    }
+    }, [])
 
-    const closeD20Popup = () => {
-        setD20State(prev => ({
-            ...prev,
-            isOpen: false
-        }))
-    }
+    const closeD20Popup = useCallback(() => {
+        setD20State(INITIAL_D20_STATE)
+    }, [])
 
     // D6 Popup functions
-    const showD6Popup = (weaponId, hasAimed = false) => {
+    const showD6Popup = useCallback((characterItem, hasAimed = false) => {
         setD6State({
             isOpen: true,
-            weaponId: weaponId,
+            characterItem: characterItem,
+            // Keep weaponId for backward compatibility
+            weaponId: characterItem?.id || null,
             hasAimed: hasAimed
         })
-    }
+    }, [])
 
-    const closeD6Popup = () => {
-        setD6State(prev => ({
-            ...prev,
-            isOpen: false
-        }))
-    }
+    const closeD6Popup = useCallback(() => {
+        setD6State(INITIAL_D6_STATE)
+    }, [])
 
     // AddItem Popup functions
-    const showAddItemPopup = (itemType) => {
+    const showAddItemPopup = useCallback((itemType) => {
         setAddItemState({
             isOpen: true,
             itemType: itemType
         })
-    }
+    }, [])
 
-    const closeAddItemPopup = () => {
-        setAddItemState(prev => ({
-            ...prev,
-            isOpen: false
-        }))
-    }
+    const closeAddItemPopup = useCallback(() => {
+        setAddItemState(INITIAL_ADD_ITEM_STATE)
+    }, [])
 
     // StatAdjustment Popup functions
-    const showStatAdjustmentPopup = () => {
+    const showStatAdjustmentPopup = useCallback(() => {
         setStatAdjustmentState({
             isOpen: true
         })
-    }
+    }, [])
 
-    const closeStatAdjustmentPopup = () => {
-        setStatAdjustmentState(prev => ({
-            ...prev,
-            isOpen: false
-        }))
-    }
+    const closeStatAdjustmentPopup = useCallback(() => {
+        setStatAdjustmentState(INITIAL_STAT_ADJUSTMENT_STATE)
+    }, [])
 
     // TradeItem Popup functions
-    const showTradeItemPopup = (characterItem, itemData, onConfirm) => {
+    const showTradeItemPopup = useCallback((characterItem, itemData, onConfirm) => {
         setTradeItemState({
             isOpen: true,
             characterItem: characterItem,
             itemData: itemData,
             onConfirm: onConfirm
         })
-    }
+    }, [])
 
-    const closeTradeItemPopup = () => {
-        setTradeItemState(prev => ({
-            ...prev,
-            isOpen: false
-        }))
-    }
+    const closeTradeItemPopup = useCallback(() => {
+        setTradeItemState(INITIAL_TRADE_ITEM_STATE)
+    }, [])
 
-    const contextValue = {
-        showAlert,
-        showConfirm,
-        closeAlert,
-        showD20Popup,
-        closeD20Popup,
-        showD6Popup,
-        closeD6Popup,
-        showAddItemPopup,
-        closeAddItemPopup,
-        showStatAdjustmentPopup,
-        closeStatAdjustmentPopup,
-        showTradeItemPopup,
-        closeTradeItemPopup
-    }
+    // ModifyItem Popup functions
+    const showModifyItemPopup = useCallback((characterItem, itemData) => {
+        setModifyItemState({
+            isOpen: true,
+            characterItem: characterItem,
+            itemData: itemData
+        })
+    }, [])
+
+    const closeModifyItemPopup = useCallback(() => {
+        setModifyItemState(INITIAL_MODIFY_ITEM_STATE)
+    }, [])
+
+    // Memoize context value to prevent unnecessary re-renders
+    const contextValue = useMemo(
+        () => ({
+            showAlert,
+            showConfirm,
+            closeAlert,
+            showD20Popup,
+            closeD20Popup,
+            showD6Popup,
+            closeD6Popup,
+            showAddItemPopup,
+            closeAddItemPopup,
+            showStatAdjustmentPopup,
+            closeStatAdjustmentPopup,
+            showTradeItemPopup,
+            closeTradeItemPopup,
+            showModifyItemPopup,
+            closeModifyItemPopup
+        }),
+        [
+            showAlert,
+            showConfirm,
+            closeAlert,
+            showD20Popup,
+            closeD20Popup,
+            showD6Popup,
+            closeD6Popup,
+            showAddItemPopup,
+            closeAddItemPopup,
+            showStatAdjustmentPopup,
+            closeStatAdjustmentPopup,
+            showTradeItemPopup,
+            closeTradeItemPopup,
+            showModifyItemPopup,
+            closeModifyItemPopup
+        ]
+    )
 
     return (
         <PopupContext.Provider value={contextValue}>
@@ -202,12 +238,14 @@ export function PopupProvider({ children }) {
                 isOpen={d20State.isOpen}
                 onClose={closeD20Popup}
                 skillId={d20State.skillId}
+                characterItem={d20State.characterItem}
                 weaponId={d20State.weaponId}
             />
 
             <D6Popup
                 isOpen={d6State.isOpen}
                 onClose={closeD6Popup}
+                characterItem={d6State.characterItem}
                 weaponId={d6State.weaponId}
                 hasAimed={d6State.hasAimed}
             />
@@ -230,6 +268,13 @@ export function PopupProvider({ children }) {
                 characterItem={tradeItemState.characterItem}
                 itemData={tradeItemState.itemData}
                 onConfirm={tradeItemState.onConfirm}
+            />
+
+            <ModifyItemPopup
+                isOpen={modifyItemState.isOpen}
+                onClose={closeModifyItemPopup}
+                characterItem={modifyItemState.characterItem}
+                itemData={modifyItemState.itemData}
             />
         </PopupContext.Provider>
     )

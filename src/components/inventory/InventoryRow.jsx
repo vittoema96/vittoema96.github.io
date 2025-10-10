@@ -3,6 +3,7 @@ import { useI18n } from '../../hooks/useI18n.js'
 import { useOverlay } from '../../hooks/useOverlay.js'
 import { useInventoryActions } from '../../hooks/useInventoryActions.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
+import { getDisplayName } from '../../utils/itemUtils.js'
 import { SKILLS } from '../../js/constants.js'
 
 /**
@@ -159,7 +160,8 @@ function InventoryRow({
     const badges = showBadges ? getBadges() : []
 
     // Calculate text length for dynamic font sizing
-    const itemName = t(itemData.ID) + (side ? ` (${t(side)})` : '')
+    // Use getDisplayName to show [+N] for modded items
+    const itemName = getDisplayName(characterItem, t) + (side ? ` (${t(side)})` : '')
     const nameLength = itemName.length
     let nameSizeClass = ''
     if (nameLength > 50) {

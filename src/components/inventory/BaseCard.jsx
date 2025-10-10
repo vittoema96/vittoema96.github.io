@@ -101,10 +101,11 @@ function BaseCard({
                         onChange={handleAction}
                     />
                     <button
-                        className="description-toggle-button"
+                        className="description-toggle-button description-toggle-button--icon"
                         onClick={toggleDescription}
+                        title={t('showDescription')}
                     >
-                        {t('showDescription')}
+                        <i className="fas fa-info-circle"></i>
                     </button>
                 </div>
             ) : null}
@@ -123,7 +124,7 @@ function BaseCard({
                             </button>
                         </div>
                         <div className="card-description-overlay__text">
-                            <p>{formatDescription(itemData.DESCRIPTION)}</p>
+                            <p>{formatDescription(t(`${itemData.ID}Description`))}</p>
                         </div>
                     </div>
                 </div>

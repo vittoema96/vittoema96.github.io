@@ -4,16 +4,19 @@ import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
 import { SKILL_TO_SPECIAL_MAP , SPECIAL } from '../../js/constants.js'
+import { getModifiedItemData } from '../../utils/itemUtils.js'
 
-function D20Popup({ isOpen, onClose, skillId, weaponId = null }) {
+function D20Popup({ isOpen, onClose, skillId, characterItem = null, weaponId = null }) {
     const dialogRef = useRef(null)
     const t = useI18n()
     const { character, updateCharacter } = useCharacter()
     const dataManager = useDataManager()
     const { showD6Popup } = usePopup()
 
-    // Get weapon data if weaponId is provided
-    const weaponData = weaponId ? dataManager.getItem(weaponId) : null
+    // Get weapon data with mods applied
+    const weaponData = characterItem
+        ? getModifiedItemData(dataManager, characterItem.id.split('_')[0], characterItem.mods)
+        : (weaponId ? dataManager.getItem(weaponId) : null)
 
     // Check if weapon has enough ammo
     const hasEnoughAmmo = () => {
@@ -406,7 +409,7 @@ function D20Popup({ isOpen, onClose, skillId, weaponId = null }) {
                     <button
                         className="popup__button-confirm"
                         onClick={() => {
-                            showD6Popup(weaponData.ID, isAiming)
+                            showD6Popup(characterItem || { id: weaponData.ID }, isAiming)
                         }}
                         disabled={!hasRolled || !hasEnoughAmmo()}
                     >

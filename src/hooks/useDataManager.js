@@ -12,6 +12,7 @@ export const useDataManager = () => {
         aid: {},
         other: {},
         perks: {},
+        mods: {},
         allItemData: {},
         isLoading: true,
         error: null
@@ -106,8 +107,40 @@ export const useDataManager = () => {
                 // Load perks
                 const perks = await parseCSV('data/perks.csv')
 
-                // Combine all item data
-                const allItemData = { ...weapon, ...apparel, ...aid, ...other }
+                // Load mods
+                const [
+                    smallGunMods,
+                    bigGunMods,
+                    energyWeaponMods,
+                    meleeWeaponMods,
+                    armorMaterialMods,
+                    armorImprovementMods,
+                    ballisticWeaveMods,
+                    vaultSuitMods
+                ] = await Promise.all([
+                    parseCSV('data/mods/smallGunMods.csv'),
+                    parseCSV('data/mods/bigGunMods.csv'),
+                    parseCSV('data/mods/energyWeaponMods.csv'),
+                    parseCSV('data/mods/meleeWeaponMods.csv'),
+                    parseCSV('data/mods/armorMaterialMods.csv'),
+                    parseCSV('data/mods/armorImprovementMods.csv'),
+                    parseCSV('data/mods/ballisticWeaveMods.csv'),
+                    parseCSV('data/mods/vaultSuitMods.csv'),
+                ])
+
+                const mods = {
+                    ...smallGunMods,
+                    ...bigGunMods,
+                    ...energyWeaponMods,
+                    ...meleeWeaponMods,
+                    ...armorMaterialMods,
+                    ...armorImprovementMods,
+                    ...ballisticWeaveMods,
+                    ...vaultSuitMods,
+                }
+
+                // Combine all item data (including mods)
+                const allItemData = { ...weapon, ...apparel, ...aid, ...other, ...mods }
 
                 setData({
                     weapon,
@@ -115,6 +148,7 @@ export const useDataManager = () => {
                     aid,
                     other,
                     perks,
+                    mods,
                     allItemData,
                     isLoading: false,
                     error: null

@@ -3,16 +3,19 @@ import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { useTooltip } from '../../contexts/TooltipContext.jsx'
+import { getModifiedItemData } from '../../utils/itemUtils.js'
 
-function D6Popup({ isOpen, onClose, weaponId, hasAimed = false }) {
+function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAimed = false }) {
     const dialogRef = useRef(null)
     const t = useI18n()
     const { character, updateCharacter } = useCharacter()
     const dataManager = useDataManager()
     const { showTooltip, hideTooltip } = useTooltip()
 
-    // Get weapon data
-    const weaponData = weaponId ? dataManager.getItem(weaponId) : null
+    // Get weapon data with mods applied
+    const weaponData = characterItem
+        ? getModifiedItemData(dataManager, characterItem.id.split('_')[0], characterItem.mods)
+        : (weaponId ? dataManager.getItem(weaponId) : null)
 
     // Helper function to check if weapon is melee
     const isMelee = (type) => {
@@ -413,7 +416,7 @@ function D6Popup({ isOpen, onClose, weaponId, hasAimed = false }) {
                 {/* Effects and Qualities Tags */}
                 <div className="row" style={{ flexWrap: 'wrap', gap: '0.25rem', justifyContent: 'center' }}>
                     {(weaponData.EFFECTS || []).map((effect, index) => {
-                        const [langId, effectOpt] = effect.split(' ')
+                        const [langId, effectOpt] = effect.split(':')
                         const tooltipId = `${langId}Description`
                         return (
                             <span
@@ -425,12 +428,12 @@ function D6Popup({ isOpen, onClose, weaponId, hasAimed = false }) {
                                     showTooltip(tooltipId, e.currentTarget)
                                 }}
                             >
-                                {t(langId) + (effectOpt ? ' ' + t(effectOpt) : '')}
+                                {t(langId) + (effectOpt ? ' ' + effectOpt : '')}
                             </span>
                         )
                     })}
                     {(weaponData.QUALITIES || []).map((quality, index) => {
-                        const [langId, qualityOpt] = quality.split(' ')
+                        const [langId, qualityOpt] = quality.split(':')
                         const tooltipId = `${langId}Description`
                         return (
                             <span
@@ -442,7 +445,7 @@ function D6Popup({ isOpen, onClose, weaponId, hasAimed = false }) {
                                     showTooltip(tooltipId, e.currentTarget)
                                 }}
                             >
-                                {t(langId) + (qualityOpt ? ' ' + t(qualityOpt) : '')}
+                                {t(langId) + (qualityOpt ? ' ' + qualityOpt : '')}
                             </span>
                         )
                     })}
