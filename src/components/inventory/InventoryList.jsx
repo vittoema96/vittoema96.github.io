@@ -8,6 +8,7 @@ import WeaponCard from './WeaponCard.jsx'
 import ApparelCard from './ApparelCard.jsx'
 import AidCard from './AidCard.jsx'
 import AmmoCard from './AmmoCard.jsx'
+import { getModifiedItemData, getItemKey } from '../../utils/itemUtils.js'
 
 /**
  * Accordion-style inventory list
@@ -81,7 +82,7 @@ function InventoryList({
             const query = searchQuery.toLowerCase()
             filtered = filtered.filter(item => {
                 const [itemId] = item.id.split('_')
-                const itemData = dataManager.getItem(itemId)
+                const itemData = getModifiedItemData(dataManager, itemId, item.mods)
                 if (!itemData) return false
 
                 const itemName = t(itemData.ID).toLowerCase()
@@ -93,8 +94,8 @@ function InventoryList({
         filtered.sort((a, b) => {
             const [aId] = a.id.split('_')
             const [bId] = b.id.split('_')
-            const aData = dataManager.getItem(aId)
-            const bData = dataManager.getItem(bId)
+            const aData = getModifiedItemData(dataManager, aId, a.mods)
+            const bData = getModifiedItemData(dataManager, bId, b.mods)
 
             if (!aData || !bData) return 0
 
@@ -246,7 +247,8 @@ function InventoryList({
     const renderItems = (itemsList) => {
         return itemsList.map(characterItem => {
             const [itemId] = characterItem.id.split('_')
-            const itemData = dataManager.getItem(itemId)
+            const itemData = getModifiedItemData(dataManager, itemId, characterItem.mods)
+            const uniqueKey = getItemKey(characterItem)
 
             if (!itemData) return null
 
@@ -254,7 +256,7 @@ function InventoryList({
             if (characterItem.type === 'ammo') {
                 return (
                     <AmmoRow
-                        key={characterItem.id}
+                        key={uniqueKey}
                         characterItem={characterItem}
                         itemData={itemData}
                     />
@@ -264,11 +266,11 @@ function InventoryList({
             // All other items use accordion row
             return (
                 <InventoryRow
-                    key={characterItem.id}
+                    key={uniqueKey}
                     characterItem={characterItem}
                     itemData={itemData}
-                    isExpanded={expandedItemId === characterItem.id}
-                    onToggle={() => handleToggle(characterItem.id)}
+                    isExpanded={expandedItemId === uniqueKey}
+                    onToggle={() => handleToggle(uniqueKey)}
                     cardComponent={getCardComponent(characterItem)}
                 />
             )

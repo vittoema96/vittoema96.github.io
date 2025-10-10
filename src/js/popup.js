@@ -690,16 +690,18 @@ export class D6Popup extends Popup {
         this.#effects.forEach(effect => {
             const tag = document.createElement('span');
             tag.className = 'tag';
-            tag.textContent = t(effect);
-            tag.dataset.tooltipId = `${effect.split(' ')[0]}Description`;
+            const [langId, effectOpt] = effect.split(':');
+            tag.textContent = t(langId) + (effectOpt ? ' ' + effectOpt : '');
+            tag.dataset.tooltipId = `${langId}Description`;
             this.#dom.tagsContainer.appendChild(tag);
         });
         this.#qualities = weapon.QUALITIES;
         this.#qualities.forEach(quality => {
             const tag = document.createElement('span');
             tag.className = 'tag tag-empty';
-            tag.textContent = t(quality);
-            tag.dataset.tooltipId = `${quality.split(' ')[0]}Description`;
+            const [langId, qualityOpt] = quality.split(':');
+            tag.textContent = t(langId) + (qualityOpt ? ' ' + qualityOpt : '');
+            tag.dataset.tooltipId = `${langId}Description`;
             this.#dom.tagsContainer.appendChild(tag);
         });
 
