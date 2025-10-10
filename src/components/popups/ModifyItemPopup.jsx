@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useDataManager } from '../../hooks/useDataManager.js'
+import { useTooltip } from '../../contexts/TooltipContext.jsx'
 import { getModifiedItemData } from '../../utils/itemUtils.js'
 import { MOD_SLOTS } from '../../js/constants.js'
 
@@ -15,6 +16,7 @@ function ModifyItemPopup({ isOpen, onClose, characterItem, itemData }) {
     const t = useI18n()
     const { character, updateCharacter } = useCharacter()
     const dataManager = useDataManager()
+    const { showTooltip } = useTooltip()
 
     // State: selected mod for each slot
     const [selectedMods, setSelectedMods] = useState({})
@@ -192,63 +194,111 @@ function ModifyItemPopup({ isOpen, onClose, characterItem, itemData }) {
         }
     }
 
+    // Format effect string for display in tooltip
+    const formatEffect = (effectStr) => {
+        const [effectType, ...valueParts] = effectStr.split(':')
+        const value = valueParts.join(':')
+
+        const effectMap = {
+            damageAdd: `+${value} ${t('damage')}`,
+            fireRateAdd: `+${value} ${t('fireRate')}`,
+            rangeIncrease: `+${value} ${t('range')}`,
+            rangeDecrease: `-${value} ${t('range')}`,
+            qualityAdd: t(value),
+            qualityRemove: `${t('remove')} ${t(value)}`,
+            effectAdd: t(value),
+            physicalResAdd: `+${value} ${t('physicalRes')}`,
+            energyResAdd: `+${value} ${t('energyRes')}`,
+            radiationResAdd: `+${value} ${t('radiationRes')}`,
+            damageTypeChange: `${t('damageType')}: ${t(value)}`,
+            ammoChange: `${t('ammo')}: ${t(value)}`,
+            meleeDamage: `${value} ${t('meleeDamage')}`
+        }
+
+        return effectMap[effectType] || effectStr
+    }
+
+    // Show mod info tooltip
+    const handleModInfo = (e, modData) => {
+        e.stopPropagation()
+
+        if (!modData || !modData.EFFECTS || modData.EFFECTS.length === 0) {
+            return
+        }
+
+        // Format as: Title + list of effects
+        const modName = t(modData.ID)
+        const effectsList = modData.EFFECTS.map(effect => `• ${formatEffect(effect)}`).join('\n')
+        const content = `${modName}\n\n${effectsList}`
+
+        showTooltip(e.currentTarget, content)
+    }
+
     if (!characterItem || !itemData) return null
 
     const modsBySlot = getModsBySlot()
     const availableSlots = getAvailableSlots()
     const previewData = getPreviewData()
     const totalCost = calculateCost()
+    const useTwoColumns = availableSlots.length > 3
 
     return (
-        <dialog ref={dialogRef} className="popup">
+        <dialog ref={dialogRef} className="popup modify-item-popup">
             <div className="popup__header">
-                <h2>{t('modifyItem') || 'Modify Item'}: {t(itemData.ID)}</h2>
+                <h2>{t(itemData.ID)}</h2>
             </div>
 
             <div className="popup__content">
-                {/* Preview Stats */}
-                {previewData.DAMAGE_RATING && (
-                    <div className="row">
-                        <div className="col">
-                            <label>{t('damage') || 'Damage'}</label>
-                            <div className="value">
-                                {previewData.DAMAGE_RATING}d6
+                {/* Compact Stats Bar */}
+                <div className="mod-stats-bar">
+                    {itemData.DAMAGE_RATING && (
+                        <div className="mod-stat">
+                            <span className="mod-stat-label">{t('damage')}</span>
+                            <span className="mod-stat-value">
+                                {itemData.DAMAGE_RATING}d6
                                 {previewData.DAMAGE_RATING !== itemData.DAMAGE_RATING && (
-                                    <span style={{ color: '#0f0', marginLeft: '0.5rem' }}>
-                                        (+{previewData.DAMAGE_RATING - itemData.DAMAGE_RATING})
+                                    <span className="mod-stat-change">
+                                        {previewData.DAMAGE_RATING > itemData.DAMAGE_RATING ? '+' : ''}
+                                        {previewData.DAMAGE_RATING - itemData.DAMAGE_RATING}
                                     </span>
                                 )}
-                            </div>
+                            </span>
                         </div>
-                        {previewData.FIRE_RATE !== undefined && (
-                            <div className="col">
-                                <label>{t('fireRate') || 'Fire Rate'}</label>
-                                <div className="value">
-                                    {previewData.FIRE_RATE}
-                                    {previewData.FIRE_RATE !== itemData.FIRE_RATE && (
-                                        <span style={{ color: '#0f0', marginLeft: '0.5rem' }}>
-                                            (+{previewData.FIRE_RATE - itemData.FIRE_RATE})
-                                        </span>
-                                    )}
-                                </div>
-                            </div>
-                        )}
-                        <div className="col">
-                            <label>{t('weight') || 'Weight'}</label>
-                            <div className="value">
-                                {previewData.WEIGHT} kg
-                                {previewData.WEIGHT !== itemData.WEIGHT && (
-                                    <span style={{ color: '#0f0', marginLeft: '0.5rem' }}>
-                                        (+{(previewData.WEIGHT - itemData.WEIGHT).toFixed(1)})
+                    )}
+                    {itemData.FIRE_RATE !== undefined && (
+                        <div className="mod-stat">
+                            <span className="mod-stat-label">{t('fireRate')}</span>
+                            <span className="mod-stat-value">
+                                {itemData.FIRE_RATE}
+                                {previewData.FIRE_RATE !== itemData.FIRE_RATE && (
+                                    <span className="mod-stat-change">
+                                        {previewData.FIRE_RATE > itemData.FIRE_RATE ? '+' : ''}
+                                        {previewData.FIRE_RATE - itemData.FIRE_RATE}
                                     </span>
                                 )}
-                            </div>
+                            </span>
                         </div>
+                    )}
+                    <div className="mod-stat">
+                        <span className="mod-stat-label">{t('weight')}</span>
+                        <span className="mod-stat-value">
+                            {itemData.WEIGHT}kg
+                            {previewData.WEIGHT !== itemData.WEIGHT && (
+                                <span className="mod-stat-change">
+                                    {previewData.WEIGHT > itemData.WEIGHT ? '+' : ''}
+                                    {(previewData.WEIGHT - itemData.WEIGHT).toFixed(1)}
+                                </span>
+                            )}
+                        </span>
                     </div>
-                )}
+                    <div className="mod-stat">
+                        <span className="mod-stat-label">{t('cost')}</span>
+                        <span className="mod-stat-value">{itemData.COST || 0}</span>
+                    </div>
+                </div>
 
-                {/* Mod Slots - 2 columns if > 3 slots */}
-                <div className={`mod-slots-container ${availableSlots.length > 3 ? 'mod-slots-two-columns' : ''}`}>
+                {/* Mod Slots */}
+                <div className={`mod-slots-container ${useTwoColumns ? 'mod-slots-two-columns' : ''}`}>
                     {availableSlots.map(slot => {
                         const modsForSlot = modsBySlot[slot] || []
                         if (modsForSlot.length === 0) return null
@@ -258,81 +308,87 @@ function ModifyItemPopup({ isOpen, onClose, characterItem, itemData }) {
                         const currentMods = characterItem?.mods || []
                         const isNewMod = selectedModId && !currentMods.includes(selectedModId)
                         const modCost = selectedModData?.COST || 0
-                        const canBuy = isNewMod && selectedModId
+                        const needsToBuy = isNewMod && selectedModId
+                        const hasEffects = selectedModData?.EFFECTS && selectedModData.EFFECTS.length > 0
 
                         return (
                             <div key={slot} className="mod-slot-row">
-                                <div className="mod-slot-selector">
-                                    <label>{t(slot) || slot}</label>
-                                    <select
-                                        value={selectedModId || ''}
-                                        onChange={(e) => {
-                                            const newModId = e.target.value || null
-                                            setSelectedMods({
-                                                ...selectedMods,
-                                                [slot]: newModId
+                                <div className="mod-slot-header">
+                                    <div className="mod-slot-label-group">
+                                        <label>{t(slot)}</label>
+                                        {selectedModId && hasEffects && (
+                                            <button
+                                                type="button"
+                                                className="mod-info-button"
+                                                onClick={(e) => handleModInfo(e, selectedModData)}
+                                                aria-label="Mod info"
+                                            >
+                                                <span className="mod-info-icon">ⓘ</span>
+                                            </button>
+                                        )}
+                                    </div>
+                                    <div className="mod-slot-cost-area">
+                                        {needsToBuy && (
+                                            <div className="mod-slot-cost-badge">
+                                                <input
+                                                    type="checkbox"
+                                                    className="themed-svg"
+                                                    data-icon="caps"
+                                                    checked={modsToBuy[slot] || false}
+                                                    onChange={(e) => setModsToBuy({
+                                                        ...modsToBuy,
+                                                        [slot]: e.target.checked
+                                                    })}
+                                                />
+                                                <span className="mod-cost-value">{modCost}</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                                <select
+                                    className="mod-slot-select"
+                                    value={selectedModId || ''}
+                                    onChange={(e) => {
+                                        const newModId = e.target.value || null
+                                        setSelectedMods({
+                                            ...selectedMods,
+                                            [slot]: newModId
+                                        })
+                                        // Auto-check buy if it's a new mod
+                                        if (newModId && !currentMods.includes(newModId)) {
+                                            setModsToBuy({
+                                                ...modsToBuy,
+                                                [slot]: true
                                             })
-                                            // Auto-check buy if it's a new mod
-                                            if (newModId && !currentMods.includes(newModId)) {
-                                                setModsToBuy({
-                                                    ...modsToBuy,
-                                                    [slot]: true
-                                                })
-                                            } else {
-                                                setModsToBuy({
-                                                    ...modsToBuy,
-                                                    [slot]: false
-                                                })
-                                            }
-                                        }}
-                                    >
-                                        <option value="">{t('none') || 'None'}</option>
-                                        {modsForSlot.map(mod => (
-                                            <option key={mod.ID} value={mod.ID}>
-                                                {t(mod.ID)}
-                                                {mod.DAMAGE_ADD ? ` (+${mod.DAMAGE_ADD} DMG)` : ''}
-                                                {mod.FIRE_RATE_ADD ? ` (+${mod.FIRE_RATE_ADD} FR)` : ''}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-
-                                {/* Buy checkbox - always visible but disabled if not applicable */}
-                                <div className="mod-slot-buy">
-                                    <input
-                                        type="checkbox"
-                                        className="themed-svg"
-                                        data-icon="caps"
-                                        checked={modsToBuy[slot] || false}
-                                        disabled={!canBuy}
-                                        onChange={(e) => setModsToBuy({
-                                            ...modsToBuy,
-                                            [slot]: e.target.checked
-                                        })}
-                                    />
-                                    {modsToBuy[slot] && canBuy && (
-                                        <span className="mod-cost">
-                                            {modCost}
-                                        </span>
-                                    )}
-                                </div>
+                                        } else {
+                                            setModsToBuy({
+                                                ...modsToBuy,
+                                                [slot]: false
+                                            })
+                                        }
+                                    }}
+                                >
+                                    <option value="">{t('none')}</option>
+                                    {modsForSlot.map(mod => (
+                                        <option key={mod.ID} value={mod.ID}>
+                                            {t(mod.ID)}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                         )
                     })}
                 </div>
 
-                {/* Total Cost - only show if multiple mods are being purchased */}
-                {totalCost > 0 && Object.values(modsToBuy).filter(Boolean).length > 1 && (
-                    <>
-                        <hr className="mod-divider" />
-                        <div className="mod-total">
-                            <span>{t('total') || 'Total'}:</span>
-                            <span className="mod-total-cost">
-                                <span className="themed-svg" data-icon="caps"></span>
-                                {totalCost}
-                            </span>
-                        </div>
-                    </>
+                {/* Total Cost */}
+                {totalCost > 0 && (
+                    <div className="mod-total-section">
+                        <span className="mod-total-label">{t('totalCost') || 'Total Cost'}:</span>
+                        <span className="mod-total-value">
+                            <span className="themed-svg" data-icon="caps"></span>
+                            {totalCost}
+                        </span>
+                    </div>
                 )}
             </div>
 

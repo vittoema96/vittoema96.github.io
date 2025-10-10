@@ -1866,3 +1866,269 @@ dialog::backdrop {
     gap: 0.5rem;
     margin-top: 0.5rem;
 }
+
+/*****************
+ * MODIFY ITEM POPUP - Mobile-First Design
+ *****************/
+
+/* Modify Button in Card Controls */
+.card-controls .modify-button {
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    min-width: 70px;
+    max-width: 80px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Icon-only description button */
+.description-toggle-button--icon {
+    width: auto;
+    padding: 0.5rem 0.75rem;
+    min-width: 40px;
+    max-width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.description-toggle-button--icon i {
+    font-size: 1rem;
+}
+
+/* Modify Item Popup Specific Overrides */
+.modify-item-popup {
+    gap: 0.3rem;
+    padding: 0.6rem;
+    max-height: calc(100vh - 1.5rem);
+}
+
+.modify-item-popup .popup__header {
+    padding: 0;
+    margin-bottom: 0.25rem;
+}
+
+.modify-item-popup .popup__header h2 {
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.modify-item-popup .popup__content {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.modify-item-popup .popup__footer {
+    padding: 0;
+    margin-top: 0.25rem;
+    gap: 0.5rem;
+}
+
+.modify-item-popup .popup__footer button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+}
+
+/* Compact Stats Bar */
+.mod-stats-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.35rem;
+    padding: 0.5rem;
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 3px;
+}
+
+.mod-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    align-items: center;
+    text-align: center;
+}
+
+.mod-stat-label {
+    font-size: 0.65rem;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.mod-stat-value {
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.mod-stat-change {
+    font-size: 0.75rem;
+    color: var(--color-text-primary, #0f0);
+    font-weight: normal;
+}
+
+/* Mod Slots Container */
+.mod-slots-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Two-column layout for many slots */
+.mod-slots-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    column-gap: 0.5rem;
+}
+
+/* Mod Slot Row */
+.mod-slot-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+}
+
+.mod-slot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 24px;
+    min-width: 0;
+}
+
+.mod-slot-label-group {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
+}
+
+.mod-slot-header label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Info Button */
+.mod-info-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+}
+
+.mod-info-button:hover {
+    opacity: 1;
+}
+
+.mod-info-icon {
+    font-size: 0.85rem;
+    color: var(--color-text-primary, #0f0);
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* Cost badge container */
+.mod-slot-cost-area {
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-shrink: 0;
+    height: 24px;
+}
+
+.mod-slot-cost-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.15rem 0.35rem;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 3px;
+    height: 20px;
+    white-space: nowrap;
+}
+
+.mod-slot-cost-badge input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.mod-cost-value {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: var(--color-text-primary, #0f0);
+    min-width: 20px;
+    text-align: right;
+}
+
+.mod-slot-select {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    min-height: 38px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* Total Cost Section */
+.mod-total-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 3px;
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+.mod-total-label {
+    opacity: 0.9;
+    font-size: 0.85rem;
+}
+
+.mod-total-value {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-text-primary, #0f0);
+}
+
+.mod-total-value .themed-svg {
+    width: 1rem;
+    height: 1rem;
+}

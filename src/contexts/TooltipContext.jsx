@@ -87,13 +87,21 @@ function TooltipPortal({ isVisible, content, targetElement, onHide }) {
 
     if (!isVisible || !content) return null
 
+    // Split content by newlines and render as separate lines
+    const lines = content.split('\n')
+
     return createPortal(
         <div
             ref={tooltipRef}
             className="tooltip-panel visible"
             onClick={onHide}
         >
-            {content}
+            {lines.map((line, index) => (
+                <React.Fragment key={index}>
+                    {line}
+                    {index < lines.length - 1 && <br />}
+                </React.Fragment>
+            ))}
             <div ref={arrowRef} className="tooltip-arrow" />
         </div>,
         portalTarget
@@ -174,8 +182,21 @@ export function TooltipProvider({ children }) {
     }, [tooltipState.isVisible, tooltipState.targetElement, t, hideTooltip])
 
     // Memoize show function to avoid recreating it on every render
-    const showTooltip = useCallback((tooltipId, targetElement) => {
-        const content = t(tooltipId)
+    // Can accept either (tooltipId, targetElement) or (targetElement, content)
+    const showTooltip = useCallback((arg1, arg2) => {
+        let content, targetElement
+
+        // If arg2 is a string, it's (targetElement, content)
+        if (typeof arg2 === 'string') {
+            targetElement = arg1
+            content = arg2
+        } else {
+            // Otherwise it's (tooltipId, targetElement)
+            const tooltipId = arg1
+            targetElement = arg2
+            content = t(tooltipId)
+        }
+
         setTooltipState({
             isVisible: true,
             content,

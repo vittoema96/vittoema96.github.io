@@ -8,7 +8,6 @@ import '@fontsource/fira-code'
 import '@fontsource/roboto-mono'
 import '@fontsource/share-tech-mono'
 import './styles/styles.css'
-import './styles/modify-item.css'
 
 // Apply theme before React renders
 applyTheme()
