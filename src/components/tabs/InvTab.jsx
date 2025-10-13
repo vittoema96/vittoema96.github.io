@@ -6,6 +6,7 @@ import { usePopup } from '../../contexts/PopupContext.jsx'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import InventoryList from '../inventory/InventoryList.jsx'
 import EquippedApparel from '../inventory/EquippedApparel.jsx'
+import { getMeleeWeaponForMod } from '../../utils/itemUtils.js'
 
 function InvTab() {
     const [activeSubTab, setActiveSubTab] = useState('weapon')
@@ -81,6 +82,29 @@ function InvTab() {
                     quantity: twoHandedGunBashQty
                 })
             }
+
+            // Add melee weapons from mods (bayonet, shredder, etc.)
+            // Aggregate quantities by melee weapon type
+            const meleeWeaponCounts = {}
+
+            character.items.forEach(item => {
+                const mods = item.mods || []
+                mods.forEach(modId => {
+                    const weaponId = getMeleeWeaponForMod(modId)
+                    if (weaponId) {
+                        meleeWeaponCounts[weaponId] = (meleeWeaponCounts[weaponId] || 0) + item.quantity
+                    }
+                })
+            })
+
+            // Add aggregated melee weapons from mods
+            Object.entries(meleeWeaponCounts).forEach(([weaponId, quantity]) => {
+                items.push({
+                    id: weaponId,
+                    type: 'meleeWeapons',
+                    quantity: quantity
+                })
+            })
         }
 
         return items

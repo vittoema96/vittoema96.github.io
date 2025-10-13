@@ -4,6 +4,25 @@
  */
 
 /**
+ * Mapping of mods to their corresponding melee weapon IDs
+ * These weapons are defined in meleeWeapons.csv as virtual items (like gun bash)
+ */
+const MOD_TO_MELEE_WEAPON = {
+    modBayonet: 'weaponBayonet',
+    modBayonetMissileLauncher: 'weaponMissileLauncherBayonet',
+    modShredder: 'weaponShredder'
+}
+
+/**
+ * Get melee weapon ID for a mod (if it creates one)
+ * @param {string} modId - Mod ID
+ * @returns {string|null} Weapon ID or null
+ */
+export function getMeleeWeaponForMod(modId) {
+    return MOD_TO_MELEE_WEAPON[modId] || null
+}
+
+/**
  * Check if two items have the same configuration (id + mods)
  * @param {Object} item1 - First item
  * @param {Object} item2 - Second item
@@ -125,7 +144,9 @@ function applyEffect(modifiedData, effect) {
 
         // Special cases
         case 'meleeDamage':
-            modifiedData.MELEE_DAMAGE = Number(value)
+            // meleeDamage is handled separately by creating a melee weapon item
+            // See modCreatesMeleeWeapon() and getMeleeWeaponForMod()
+            // This effect is ignored here
             break
         case 'rerollHitLocation':
             modifiedData.REROLL_HIT_LOCATION = value === 'true'

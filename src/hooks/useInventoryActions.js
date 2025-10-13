@@ -55,12 +55,14 @@ export const useInventoryActions = () => {
             `Delete ${characterItem.quantity}x ${itemData?.ID || characterItem.id}? This action cannot be undone.`,
             () => {
                 // Remove item from inventory
-                const updatedItems = character.items?.filter(item => item.id !== characterItem.id) || []
-                
+                const updatedItems = character.items?.filter(item =>
+                    !isSameConfiguration(item, characterItem)
+                ) || []
+
                 updateCharacter({
                     items: updatedItems
                 })
-                
+
                 showAlert('Item deleted.')
             }
         )

@@ -3,6 +3,9 @@ weaponBoard,meleeWeapons,4,[],physical,-,rangeR,"[""qualityTwoHanded""]",1.5,20,
 weaponWalkingStick,meleeWeapons,3,[],physical,-,rangeR,[],1,10,0,na,"[""modSpikedCane"", ""modBarbedCane""]"
 weaponWeaponStockOneHanded,meleeWeapons,2,"[""effectStun""]",physical,-,rangeR,[],-,-,-,na,[]
 weaponWeaponStock,meleeWeapons,3,"[""effectStun""]",physical,-,rangeR,"[""qualityTwoHanded""]",-,-,-,na,[]
+weaponBayonet,meleeWeapons,4,"[""effectPiercing:1""]",physical,-,rangeR,"[""qualityMelee""]",-,-,-,na,[]
+weaponMissileLauncherBayonet,meleeWeapons,4,"[""effectPiercing:1""]",physical,-,rangeR,"[""qualityMelee""]",-,-,-,na,[]
+weaponShredder,meleeWeapons,6,"[""effectPiercing:2""]",physical,-,rangeR,"[""qualityMelee""]",-,-,-,na,[]
 weaponPipeWrench,meleeWeapons,3,[],physical,-,rangeR,[],1,30,1,na,"[""modVeryHeavyWrench"", ""modHeavyWrench"", ""modPuncturedWrench"", ""modHookedWrench""]"
 weaponUnarmedStrike,unarmed,2,[],physical,-,rangeR,[],-,-,-,na,[]
 weaponSwitchblade,meleeWeapons,2,"[""effectPiercing:1""]",physical,-,rangeR,"[""qualityConcealed""]",0.5,20,0,na,"[""modSerratedSwitchblade""]"

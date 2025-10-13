@@ -201,7 +201,14 @@ export const useDataManager = () => {
     }
 
     const getUnacquirableIds = () => {
-        return ['weaponUnarmedStrike', 'weaponWeaponStock', 'weaponWeaponStockOneHanded']
+        return [
+            'weaponUnarmedStrike',
+            'weaponWeaponStock',
+            'weaponWeaponStockOneHanded',
+            'weaponBayonet',
+            'weaponMissileLauncherBayonet',
+            'weaponShredder'
+        ]
     }
 
     const isUnacquirable = (id) => {
