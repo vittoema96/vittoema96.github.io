@@ -52,6 +52,22 @@ function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAi
     const damageRating = getDamageRating()
     const extraDiceCount = getExtraDiceCount()
 
+    // Hit locations
+    const HIT_LOCATIONS = [
+        { id: 'head', label: 'head', difficulty: 1 },
+        { id: 'torso', label: 'torso', difficulty: 1 },
+        { id: 'leftArm', label: 'leftArm', difficulty: 1 },
+        { id: 'rightArm', label: 'rightArm', difficulty: 1 },
+        { id: 'leftLeg', label: 'leftLeg', difficulty: 1 },
+        { id: 'rightLeg', label: 'rightLeg', difficulty: 1 }
+    ]
+
+    // Roll random hit location
+    const rollRandomHitLocation = () => {
+        const randomIndex = Math.floor(Math.random() * HIT_LOCATIONS.length)
+        return HIT_LOCATIONS[randomIndex].id
+    }
+
     // State
     const [hasRolled, setHasRolled] = useState(false)
     const [diceClasses, setDiceClasses] = useState(Array(damageRating).fill(null))
@@ -66,6 +82,7 @@ function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAi
     const [ammoPayed, setAmmoPayed] = useState(0)
     const [luckPayed, setLuckPayed] = useState(0)
     const [burstEffectsUsed, setBurstEffectsUsed] = useState(0) // Number of burst effects activated
+    const [hitLocation, setHitLocation] = useState(rollRandomHitLocation()) // Selected hit location
 
     const currentLuck = character?.currentLuck || character?.special?.luck || 5
     const isGatling = (weaponData?.QUALITIES || []).includes('qualityGatling')
@@ -331,6 +348,7 @@ function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAi
                     setAmmoPayed(0)
                     setLuckPayed(0)
                     setBurstEffectsUsed(0)
+                    setHitLocation(rollRandomHitLocation())
 
                     if (dialog.open) {
                         dialog.close()
@@ -383,6 +401,7 @@ function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAi
             setAmmoPayed(0)
             setLuckPayed(0)
             setBurstEffectsUsed(0)
+            setHitLocation(rollRandomHitLocation())
         }
     }, [isOpen, weaponId])
 
@@ -449,6 +468,34 @@ function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAi
                             </span>
                         )
                     })}
+                </div>
+
+                <hr />
+
+                {/* Hit Location Selector */}
+                <div className="row l-distributed l-lastSmall">
+                    <span>{t('hitLocation')}</span>
+                    <select
+                        value={hitLocation}
+                        onChange={(e) => setHitLocation(e.target.value)}
+                        style={{
+                            padding: '0.25rem 0.5rem',
+                            backgroundColor: 'var(--secondary-color)',
+                            color: 'var(--primary-color)',
+                            border: 'var(--border-primary-thin)',
+                            fontSize: 'inherit',
+                            borderRadius: '0.25rem',
+                            width: 'auto',
+                            minWidth: '150px',
+                            flex: '0 0 auto'
+                        }}
+                    >
+                        {HIT_LOCATIONS.map(location => (
+                            <option key={location.id} value={location.id}>
+                                {t(location.label)}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 <hr />

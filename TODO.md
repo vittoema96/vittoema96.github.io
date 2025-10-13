@@ -1,32 +1,11 @@
 # TODO & Project Status
 
-## ✅ Done (Alpha 3)
-- ✅ ES6 Modules conversion
-- ✅ Modern build system (Vite)
-- ✅ Code quality tools (ESLint, Prettier)
-- ✅ i18next internationalization
-- ✅ PWA with auto-generated manifest/service worker
-- ✅ Clean project structure
-- ✅ Version management system
-- ✅ Character system (SPECIAL, skills, inventory)
-- ✅ Dice rolling (D20/D6) with proper game mechanics
-- ✅ Combat system (attack rolls, damage, armor)
-- ✅ ES6+ modernization (arrow functions, modern iteration, async/await)
-- ✅ Modern ES6+ patterns (reverted to working global variables for simplicity)
-- ✅ i18next standard compliance (replaced all dataset.langId/langFormat with data-i18n)
-- ✅ Self-hosted Font Awesome (eliminated CDN dependency and timeout errors)
-- ✅ Self-hosted Google Fonts (eliminated Google Fonts CDN dependency)
-- ✅ Fixed translation issues (skills and js-titles now use proper data-i18n attributes)
-- ✅ Locale files refactoring (organized structure, same order, filled English values, preserved Italian translations)
-- ✅ Complete locale files refactoring (organized structure, all missing keys added, same order in both files)
-- ✅ Comprehensive code modernization (all function declarations → arrow functions)
-
 ## 🔥 High Priority
 
 ### Game Features (Alpha 4)
 - [ ] **qualityAccurate effect** - Implement accurate weapon quality
 - [ ] **qualityThrown choice** - Add choice mechanism for thrown weapons
-- [ ] **Weapon mods** - Add weapon modification system
+- [ ] **Weapon mods** - Finish implementing mods (some effects currently do nothing) 
 - [ ] **Consumable items** - Proper aid item consumption mechanics
 - [ ] **Body part targeting** - Add to d6 popup layout
 

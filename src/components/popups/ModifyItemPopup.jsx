@@ -199,17 +199,18 @@ function ModifyItemPopup({ isOpen, onClose, characterItem, itemData }) {
         const [effectType, ...valueParts] = effectStr.split(':')
         const value = valueParts.join(':')
 
+        const signedValue = (value) => {if (value>=0) return `+${value}`; else return `-${value}`}
+
         const effectMap = {
-            damageAdd: `+${value} ${t('damage')}`,
-            fireRateAdd: `+${value} ${t('fireRate')}`,
-            rangeIncrease: `+${value} ${t('range')}`,
-            rangeDecrease: `-${value} ${t('range')}`,
+            damageAdd: `${signedValue(value)} ${t('damage')}`,
+            fireRateAdd: `${signedValue(value)} ${t('fireRate')}`,
+            rangeIncrease: `${signedValue(value)} ${t('range')}`,
+            physicalResAdd: `${signedValue(value)} ${t('physicalRes')}`,
+            energyResAdd: `${signedValue(value)} ${t('energyRes')}`,
+            radiationResAdd: `${signedValue(value)} ${t('radiationRes')}`,
             qualityAdd: t(value),
             qualityRemove: `${t('remove')} ${t(value)}`,
             effectAdd: t(value),
-            physicalResAdd: `+${value} ${t('physicalRes')}`,
-            energyResAdd: `+${value} ${t('energyRes')}`,
-            radiationResAdd: `+${value} ${t('radiationRes')}`,
             damageTypeChange: `${t('damageType')}: ${t(value)}`,
             ammoChange: `${t('ammo')}: ${t(value)}`,
             meleeDamage: `${value} ${t('meleeDamage')}`

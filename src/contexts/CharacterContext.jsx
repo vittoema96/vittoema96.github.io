@@ -41,7 +41,7 @@ export const useCharacter = () => {
  * @returns {number} Effective skill value (base + 2 if specialty)
  */
 export const getEffectiveSkillValue = (character, skillId) => {
-    if (!character || !skillId) return 0 // TODO throw (ErrorBoundary managed) error instead 
+    if (!character || !skillId) return 0 // TODO throw (ErrorBoundary managed) error instead
     const baseValue = character.skills?.[skillId] || 0
     const hasSpecialty = character.specialties?.includes(skillId) || false
     return baseValue + (hasSpecialty ? 2 : 0)

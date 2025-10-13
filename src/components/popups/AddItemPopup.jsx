@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
+import { isSameConfiguration } from '../../utils/itemUtils.js'
 
 /**
  * Add Item popup component for adding items to inventory
@@ -220,23 +221,27 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
             id: selectedItemId, // This will be the DISPLAY_ID (with _left/_right if applicable)
             type: selectedItemType, // Use the actual TYPE of the selected item
             quantity: quantity,
-            equipped: false
+            equipped: false,
+            mods: [] // New items have no mods
         }
 
-        // Check if item already exists in inventory
+        // Check if item with same configuration already exists in inventory
+        // This considers both id AND mods, so modified weapons are separate from unmodified ones
         const existingItems = character.items || []
-        const existingItemIndex = existingItems.findIndex(item => item.id === selectedItemId)
+        const existingItemIndex = existingItems.findIndex(item =>
+            isSameConfiguration(item, newItem)
+        )
 
         let updatedItems
         if (existingItemIndex >= 0) {
-            // Item exists, increase quantity
+            // Same configuration exists, increase quantity
             updatedItems = [...existingItems]
             updatedItems[existingItemIndex] = {
                 ...updatedItems[existingItemIndex],
                 quantity: updatedItems[existingItemIndex].quantity + quantity
             }
         } else {
-            // New item, add to inventory
+            // New configuration, add to inventory
             updatedItems = [...existingItems, newItem]
         }
 
