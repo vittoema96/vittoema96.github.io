@@ -1,7 +1,7 @@
 ID,SLOT_TYPE,DESCRIPTOR,EFFECTS,WEIGHT,COST,SKILL,PERKS,RARITY,WEAPON_TYPES
 modBeamFocuser,modSlotMuzzle,Focused,"[""rangeIncrease:1""]",0.5,20,science,"[""science:1""]",2,"[""energyWeapons""]"
 modCompensatingLens,modSlotMuzzle,Aiming,"[""fireRateAdd:1"",""qualityRemove:qualityInaccurate""]",0.5,25,science,"[""science:1""]",2,"[""energyWeapons""]"
-modBeamSplitter,modSlotMuzzle,Fragmented,"[""damageAdd:-1"",""effectAdd:effectSpread"",""fireRateAdd:-1"",""qualityAdd:qualityInaccurate"",""rangeDecrease:1""]",0.5,15,science,"[""science:1""]",2,"[""energyWeapons""]"
+modBeamSplitter,modSlotMuzzle,Fragmented,"[""damageAdd:-1"",""effectAdd:effectSpread"",""fireRateAdd:-1"",""qualityAdd:qualityInaccurate"",""rangeIncrease:-1""]",0.5,15,science,"[""science:1""]",2,"[""energyWeapons""]"
 modFullStockEnergy,modSlotStock,-,"[""qualityAdd:qualityTwoHanded"",""effectAdd:effectPiercing:1"",""qualityRemove:qualityCloseQuarters""]",0.5,15,science,"[]",1,"[""energyWeapons""]"
 modMarksmanStockEnergy,modSlotStock,Marksman,"[""qualityAdd:qualityTwoHanded"",""qualityRemove:qualityInaccurate"",""qualityAdd:qualityAccurate"",""qualityRemove:qualityCloseQuarters""]",1,20,science,"[""gunNut:2""]",2,"[""energyWeapons""]"
 modRecoilCompensatingStockEnergy,modSlotStock,Recoil Compensating,"[""qualityAdd:qualityTwoHanded"",""qualityRemove:qualityInaccurate"",""fireRateAdd:1"",""qualityRemove:qualityCloseQuarters""]",1,3,science,"[""gunNut:3""]",2,"[""energyWeapons""]"
@@ -9,7 +9,7 @@ modStandardStock,modSlotStock,-,"[""qualityAdd:qualityTwoHanded"",""qualityRemov
 modAutomaticBarrel,modSlotBarrel,Automatic,"[""damageAdd:-1"",""qualityRemove:qualityCloseQuarters"",""rangeIncrease:1"",""fireRateAdd:1""]",0.5,24,science,"[""science:1""]",2,"[""energyWeapons""]"
 modShortReinforcedBarrel,modSlotBarrel,-,"[""allowMuzzleMod:true""]",0,6,science,"[]",1,"[""energyWeapons""]"
 modSniperBarrel,modSlotBarrel,Sniper,"[""damageAdd:2"",""qualityRemove:qualityCloseQuarters"",""rangeIncrease:1"",""fireRateAdd:-1""]",1,30,science,"[""science:1""]",2,"[""energyWeapons""]"
-modFlamerBarrel,modSlotBarrel,Flamer,"[""damageAdd:-2"",""fireRateAdd:2"",""effectAdd:effectBurst"",""rangeDecrease:1"",""qualityAdd:qualityInaccurate""]",0.5,35,science,"[""science:2""]",3,"[""energyWeapons""]"
+modFlamerBarrel,modSlotBarrel,Flamer,"[""damageAdd:-2"",""fireRateAdd:2"",""effectAdd:effectBurst"",""rangeIncrease:-1"",""qualityAdd:qualityInaccurate""]",0.5,35,science,"[""science:2""]",3,"[""energyWeapons""]"
 modLongBarrelEnergy,modSlotBarrel,Long,"[""qualityRemove:qualityCloseQuarters"",""rangeIncrease:1""]",1,20,science,"[]",1,"[""energyWeapons""]"
 modLongReinforcedBarrel,modSlotBarrel,-,"[""qualityRemove:qualityCloseQuarters"",""rangeIncrease:1"",""allowMuzzleMod:true""]",1,25,science,"[""science:1""]",2,"[""energyWeapons""]"
 modImprovedBarrel,modSlotBarrel,Improved,"[""damageAdd:1""]",0.5,26,science,"[""science:1""]",2,"[""energyWeapons""]"

@@ -62,38 +62,29 @@ function applyEffect(modifiedData, effect) {
         case 'radiationResAdd':
             modifiedData.RADIATION_RES = (Number(modifiedData.RADIATION_RES) || 0) + Number(value)
             break
-        case 'carryWeightAdd':
+        case 'carryWeightAdd': // TODO This column doesn't exist
             modifiedData.CARRY_WEIGHT_BONUS = (Number(modifiedData.CARRY_WEIGHT_BONUS) || 0) + Number(value)
             break
-        case 'explosiveResAdd':
+        case 'explosiveResAdd': // TODO This column doesn't exist
             modifiedData.EXPLOSIVE_RES = (Number(modifiedData.EXPLOSIVE_RES) || 0) + Number(value)
             break
-        case 'fallDamageResAdd':
+        case 'fallDamageResAdd': // TODO This column doesn't exist
             modifiedData.FALL_DAMAGE_RES = (Number(modifiedData.FALL_DAMAGE_RES) || 0) + Number(value)
             break
-        case 'unarmedDamageAdd':
+        case 'unarmedDamageAdd': // TODO This column doesn't exist
             modifiedData.UNARMED_DAMAGE = (Number(modifiedData.UNARMED_DAMAGE) || 0) + Number(value)
             break
-        case 'meleeResAdd':
+        case 'meleeResAdd': // TODO This column doesn't exist
             modifiedData.MELEE_RES = (Number(modifiedData.MELEE_RES) || 0) + Number(value)
             break
 
         // Range modifications
         case 'rangeIncrease':
-            // Range is stored as string (rangeC, rangeM, rangeL, rangeE)
             const rangeOrder = ['rangeR', 'rangeC', 'rangeM', 'rangeL', 'rangeE']
             const currentIndex = rangeOrder.indexOf(modifiedData.RANGE)
             if (currentIndex !== -1) {
-                const newIndex = Math.min(currentIndex + Number(value), rangeOrder.length - 1)
+                const newIndex = Math.max(0, Math.min(currentIndex + Number(value), rangeOrder.length - 1))
                 modifiedData.RANGE = rangeOrder[newIndex]
-            }
-            break
-        case 'rangeDecrease':
-            const rangeOrder2 = ['rangeR', 'rangeC', 'rangeM', 'rangeL', 'rangeE']
-            const currentIndex2 = rangeOrder2.indexOf(modifiedData.RANGE)
-            if (currentIndex2 !== -1) {
-                const newIndex2 = Math.max(currentIndex2 - Number(value), 0)
-                modifiedData.RANGE = rangeOrder2[newIndex2]
             }
             break
 
