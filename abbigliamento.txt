@@ -1,0 +1,779 @@
+ABBIGLIAMENTO
+Come i pezzi d’armatura, un copricapo aggiunge una
+serie distinta di Resistenze ai Danni per gli attacchi
+contro la testa, ma può anche dare altri benefici.
+L’abbigliamento comprende tutto, dai vestiti ai cap-
+pelli, alle tute, fino alle armature e agli elmi. Ogni
+capo di abbigliamento fornisce una qualche Resistenza
+ai Danni che va applicata alla parte protetta. Si
+possono perfino indossare vestiti sotto un’armatura,
+ma deve essere una cosa sensata, altrimenti il GM
+potrebbe decidere che la combinazione desiderata
+non funziona o imporre una restrizione sul personag-
+Armat√e pµ Supµmutanti e Robot
+gio, che potrebbe trovarsi impacciato o costretto ad
+Normalmente, i supermutanti e i robot non possono indossare
+aumentare la difficoltà delle prove di Forza o Agilità in
+le armature. I supermutanti possono indossare solo l’Arma-
+base a come ha stratificato il proprio abbigliamento.
+tura da Predone, una protezione di fortuna che può essere
+facilmente regolata per adattarsi al loro fisico voluminoso.
+I robot possiedono una propria Resistenza ai Danni, che si
+basa sui materiali del loro guscio. Le armature per robot
+possono essere potenziate, come descritto a pag. 146.
+VESTITI
+I vestiti sono la forma più semplice di abbigliamento.
+Vengono presentati come un insieme che copre tutto il
+corpo (braccia, gambe e torso), spesso in grado di fornire
+qualche piccolo bonus a seconda di come fanno apparire
+chi li indossa o del modo in cui sono progettati. I vestiti
+si possono portare sotto le armature: per ogni punto
+d’impatto , si prende in considerazione la Resistenza ai
+Danni più alta dei vestiti e dell’armatura indossati.
+COMPLETI
+I completi, come i vestiti, vengono considerati come
+un singolo oggetto che, una volta indossato, copre
+braccia, gambe e torso, ma al contrario dei primi non
+possono essere indossati sotto un’armatura perché
+potrebbero essere troppo ingombranti, includono già
+di per sé un’armatura o perché i benefici apportati
+verrebbero vanificati in combinazione con essa.
+PEZZI D’ARMATURA
+Ogni pezzo d’armatura copre una parte del corpo, un
+braccio, una gamba o il torso (la testa è protetta dai
+copricapo descritti di seguito) e aggiunge una serie
+distinta di Resistenze ai Danni per gli attacchi rivolti
+contro quella parte. Le parti per le braccia possono
+essere indossate a destra o a sinistra, a piacimento,
+così come quelle per le gambe, ma si può indossare
+solo un pezzo di armatura per punto d’impatto.
+COPRICAPO
+Elmi, cappelli, maschere e altri oggetti da indossare
+sulla testa, si possono indossare solo uno per volta.
+Vittorio Emanuele Veloccia - 546448122 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+Armat√e pµ Cani
+I personaggi che hanno scelto il talento Dogmeat (pag. 64) sono accompagnati da un fidato compagno a quattro zampe e
+molto probabilmente vorranno proteggere il Miglior Amico dell’Uomo dai pericoli della Zona Contaminata. I personaggi con il
+talento Dogmeat possono reperire i seguenti tipi di armatura per proteggere i propri cani:
+Armatura per Cani
+PEZZO DI ARMATURA PER CANI
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+PARTI PROTETTE PESO COSTO RARITÀ
+Casco per Cani 2 1 0 Testa 0,5 7 2
+Armatura Leggera per Cani 1 1 0 Torso, Zampe 0,5 10 1
+Armatura Media per Cani 2 2 0 Torso, Zampe 1 15 2
+Armatura Pesante per Cani 3 3 0 Torso, Zampe 1 20 3
+ARMATURA ATOMICA
+Un’Armatura Atomica è formata da un’intelaiatura ali-
+mentata a cui vengono applicate diverse parti di Armatura
+Atomica. Senza di essa non si può indossare il resto
+dell’armatura, ma da sola non fornisce alcuna resistenza.
+Il modo in cui usare un’Armatura Atomica è descritto
+in maniera dettagliata più avanti in questa sezione, a
+partire da pag. 137.
+ARMATURA PER ROBOT
+I robot non indossano armature, non nel senso con-
+venzionale del termine. Più che altro, il modo in cui i
+loro corpi sono costruiti fornisce loro una protezione
+dalle azioni ostili e dai pericoli ambientali. Tutti i robot
+iniziano con un valore base di Resistenza ai Danni
+dovuto alla loro costruzione e al materiale di cui sono
+fatti i loro corpi, che però col tempo, con l’impegno e i
+materiali giusti, possono essere migliorati.
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+123
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+VESTITI E COMPLETI
+I vestiti, di per sé, offrono poca protezione, ma in
+combinazione con un’armatura possono apportare dei
+piccoli bonus. Di solito i completi danno una prote-
+zione maggiore o dei bonus migliori, ma non possono
+essere combinati con un’armatura. L’unica mod che
+la maggior parte dei vestiti può montare è la Trama
+Balistica, che aumenta la protezione fornita dal vestito
+senza cambiarne troppo l’aspetto, ma trovare qualcuno
+che sappia farla è difficile... e costa molto caro.
+Tipi di Vestiti, Completi e Copricapo
+OGGETTO
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+PARTI PROTETTE PESO COSTO RARITÀ
+VESTITI
+Bardatura 0 0 0 Braccia, Gambe, Torso 0,5 5 0
+Completo da Strada 1 1 0 Braccia, Gambe, Torso 0,5 5 1
+Tuta del Vault 0 1 2 Braccia, Gambe, Torso 0,5 20 2
+Uniforme della
+Confraternita d’Acciaio 1 1 1 Braccia, Gambe, Torso 1 20 2
+Uniforme Militare 0 1 0 Braccia, Gambe, Torso 1,5 12 1
+Vestiti Informali 0 0 0 Braccia, Gambe, Torso 1 20 1
+Vestiti Resistenti 1 1 0 Braccia, Gambe, Torso 1,5 20 1
+COMPLETI
+Abiti Formali 0 0 0 Braccia, Gambe, Torso 1 30 2
+Armatura Chiodata 2 2 0 Testa, Braccia, Gambe, Torso 8,5 65 2
+Armatura a Gabbia 3 4 0 Testa, Braccia, Gambe, Torso 16,5 110 3
+Armatura da Ingegnere 1 1 0 Braccia, Gambe, Torso 1 15 1
+Armatura da Scriba
+della Confraternita 1 2 2 Braccia, Gambe, Torso 2 20 2
+Camice 0 0 0 Braccia, Gambe, Torso 1 10 1
+Cappotto Pesante 1 1 1 Braccia, Gambe, Torso 1 20 1
+Completo da Reietto 1 2 0 Braccia, Gambe, Torso 5 35 1
+Divisa della Confraternita
+d’Acciaio 2 2 2 Braccia, Gambe, Torso 2 20 3
+Pelli 1 0 0 Braccia, Gambe, Torso 2 13 0
+Tuta da Lavoro 2 0 0 Braccia, Gambe, Torso 1 12 1
+Tuta Hazmat 0 0 Immune Testa, Braccia, Gambe, Torso 2,5 85 3
+COPRICAPO
+Cappello Elegante 0 0 0 Testa <0,5 15 2
+Cappello Informale 0 0 0 Testa <0,5 15 1
+Cappuccio della
+Confraternita 0 1 0 Testa <0,5 12 2
+Cappuccio di Iuta 0 0 2 Testa 0,5 5 0
+Cappuccio o Cappa 1 0 1 Testa 1 5 1
+Casco dell’Esercito 2 0 0 Testa 1,5 20 1
+Vittorio Emanuele Veloccia - 546448124 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+OGGETTO
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+PARTI PROTETTE PESO COSTO RARITÀ
+Casco Protettivo 2 0 0 Testa <0,5 15 1
+Copricapo da Scriba
+della Confraternita 0 2 0 Testa <0,5 8 2
+Maschera Antigas 1 0 3 Testa 1,5 10 2
+Visiera da Saldatore 2 2 0 Testa 2 20 2
+BARDATURA
+Si tratta di un’imbracatura di sicurezza riadattata per
+fare da base su cui montare pezzi di armatura. È molto
+comune fra i predoni, che di solito la indossano senza
+alcuna maglietta sotto.
+COMPLETO DA STRADA
+Giubbotto e pantaloni di pelle e un paio di stivali da
+motociclista, spesso decorati con borchie metalliche:
+questi morbidi indumenti di pelle forniscono una
+moderata protezione da rischi fisici, come una caduta
+dalla moto, ma restano comunque abbastanza comodi
+in qualsiasi fascia climatica fredda o temperata.
+TUTA DEL VAULT
+È l’abbigliamento standard di tutti gli abitanti del Vault,
+fornita dalla Vault-Tec. Si tratta di una tuta aderente con
+una striscia dorata che contorna il collo e corre lungo
+torso e maniche, che non è altro che una lamina metal-
+lica che aiuta a disperdere il calore e coadiuva gli scanner
+biometrici integrati nella tuta. Ogni tuta ha un numero
+sulla schiena, che indica da quale Vault proviene.
+Le tute del Vault possono essere modificate con un ulte-
+riore rivestimento protettivo, prendendo una delle mod
+di seguito riportate. Tutte le mod per Tute del Vault
+vengono installate con l’abilità Riparare.
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+125
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+Mod per Tuta del Vault
+MOD DELLA TUTA EFFETTI PESO COSTO TALENTI
+Rivestimento Isolante +1 Resistenza ai Danni da Energia – +10 –
+Rivestimento Protettivo +2 Resistenza ai Danni da Energia,
++2 Resistenza ai Danni da Radiazioni +0,5 +40 Armaiolo 4, Scienza! 2
+Rivestimento Resistente +2 Resistenza ai Danni da Energia,
++1 Resistenza ai Danni da Radiazioni +0,5 +30 Armaiolo 3
+Rivestimento Schermato +3 Resistenza ai Danni da Energia,
++3 Resistenza ai Danni da Radiazioni +0,5 +50 Armaiolo 4, Scienza! 4
+Rivestimento Trattato +1 Resistenza ai Danni da Energia,
++1 Resistenza ai Danni da Radiazioni +0,5 +20 Armaiolo 2
+UNIFORME DELLA
+CONFRATERNITA D’ACCIAIO
+Originariamente concepita come tuta da indossare sotto
+le armature modello T-45 Rower. La superficie della tuta
+è ricoperta con tutta una serie di porte d’interfaccia e
+connessioni per collegare chi la indossa con la struttura
+dell’Armatura Atomica. La Confraternita d’Acciaio le usa
+come base per le uniformi, per fare in modo che quanto
+più personale possibile sia pronto a indossare un’arma-
+tura completa. Generalmente, quando non c’è la possi-
+bilità di usare un’Armatura Atomica, in battaglia viene
+indossata sotto altri tipi di armature, mentre gli ufficiali
+anziani della Confraternita spesso e volentieri la coprono
+con un giubbotto o una giacca corazzata.
+Speciale: Indossare abii informali permette di ritirare,
+in ogni scena, un d20 su una prova di abilità basata su
+FOR o AGI, poiché sono comodi da indossare.
+I vestiti informali possono essere rinforzati con della
+Trama Balistica (vedere riquadro a pag. 128).
+VESTITI RESISTENTI
+Si tratta di un abbigliamento robusto formato da
+indumenti abbastanza resistenti da sopportare la dura
+vita nella Zona Contaminata. Solitamente si compone
+di un giubbotto, camicia, canottiera, jeans e un paio
+di stivali rinforzati (o rattoppati) col nastro adesivo,
+così da dare sia un po’ di protezione dagli urti e dalle
+contusioni della vita, che un minimo di calore nelle
+fredde notti dell’inverno nucleare.
+UNIFORME MILITARE
+Maglietta, giacchetto, pantaloni e un paio di stivali da
+combattimento, semplici e robusti, pensati per essere
+indossati dai militari prima della Grande Guerra.
+Questi indumenti sono fatti per essere portati in con-
+dizioni difficili e sono dotati di innumerevoli tasche
+in cui riporre oggetti utili, per cui un completo intatto
+è un discreto ritrovamento.
+Speciale: Quando si indossa un’uniforme militare, si
+può ritirare un d20 in una prova basata su FOR o AGI
+per ogni scena, poiché consentono un’ottima mobilità.
+Un’uniforme militare può essere rinforzata con della
+Trama Balistica (vedere riquadro a pag. 128).
+ABITI FORMALI
+Può trattarsi di un bel completo, un vestito carino o
+qualsiasi altro tipo di indumento elegante, fatto su
+misura. Pensati più per essere belli che utili, i vestiti
+formali sono d’aiuto quando bisogna impressionare
+qualcuno e spesso sono visti come un simbolo di
+status poiché può indossarli solo qualcuno che non ha
+paura per la propria sicurezza.
+Speciale: Se si indossano abiti formali si può ritirare
+un d20 per scena in una prova basata su CAR, poiché
+aiutano a fare una buona prima impressione.
+Gli abiti formali possono essere rinforzati con della
+Trama Balistica (vedere riquadro a pag. 128).
+VESTITI INFORMALI
+Prima della Grande Guerra, i vestiti informali erano
+semplici, leggeri e comodi, pensati per il divertimento
+e un’attività leggera.
+Vittorio Emanuele Veloccia - 546448126 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+ARMATURA CHIODATA
+È formata da strati di cuoio con imbottiture, plac-
+che di metallo, spezzoni di catena e tondini cuciti o
+saldati. Molti dei tondini sporgono verso l’esterno,
+dandole l’aspetto spinoso che la aiuta a respingere
+gli attacchi da mischia, mentre gli strati di placche
+di metallo e cuoio proteggono da rischi e attacchi. La
+protezione è aumentata da un cappuccio e un casco.
+ARMATURA A GABBIA
+Si tratta di indumenti di cuoio robusto, rinforzati
+con stracci, placche, catene e tondini metallici. Come
+l’Armatura Chiodata (vedere sopra), la parte in metallo
+crea una rozza gabbia protettiva attorno alla testa e
+al torso, andando a creare una protezione aggiuntiva.
+Solitamente è indossata assieme a cappuccio e casco.
+ARMATURA DA INGEGNERE
+Indossata sia dagli ingegneri della Confraternita che
+da coloro che si vestono come loro, questo completo è
+costituito da una giacca protettiva, pesanti guanti di tela
+o di pelle, un gilet e una cintura portaoggetti piena di
+tasche. Fornisce protezione contro i pericoli derivanti
+dal maneggiare utensili potenti in un laboratorio, ma
+non è propriamente adatta a un campo di battaglia.
+ARMATURA DA SCRIBA
+DELLA CONFRATERNITA
+Talvolta gli Scriba della Confraternita d’Acciaio devono
+avventurarsi sul campo, sia per vedere in prima per-
+sona che per fare attività di ricerca da vicino. Anche
+se la protezione che offre quest’abito è limitata, basta
+comunque per proteggere dal pericolo abbastanza a
+lungo per permettere a chi la indossa di ritirarsi e
+chiedere aiuto a qualcuno meglio equipaggiato.
+CAMICE
+Un camice bianco, anche se molto probabilmente mac-
+chiato o sporco, di quelli che si usano in laboratorio. Di
+solito è munito di molte tasche utili e di un orologio o
+un sensore posto appena sotto il bavero sinistro, dove
+è facile da controllare senza doverlo cercare: l’ideale
+quando si svolge un delicato incarico scientifico.
+Vittorio Emanuele Veloccia - 546448
+Speciale: Sia il design utile, che la semplice sensa-
+zione di essere più intelligenti quando se ne indossa
+uno, fanno sì che il camice permetta di ritirare un d20
+per una prova basata su INT ogni scena.
+Un camice può essere rinforzato con della Trama
+Balistica (vedere riquadroc a pag. 128).
+CAPPOTTO PESANTE
+Un lungo cappotto pesante, come uno spolverino di
+pelle, un impermeabile o qualcosa di simile, perfetto
+per proteggere dalla violenza dagli elementi. Fornisce
+un po’ di protezione da danni Fisici, calore estremo e
+riesce persino a schermare un minimo dalle radiazioni.
+Speciale: Quando si indossa un cappotto pesante si può
+ritirare un d20 su una prova basata su COS per scena,
+dato che aiuta a proteggere dalle condizioni estreme.
+Un cappotto pesante può essere rinforzato con della
+Trama Balistica (vedere riquadro a pag. 128).
+COMPLETO DA REIETTO
+Un impermeabile, dei robusti guanti e stivali tutti
+in pelle, un paio di jeans e una camicia compongono
+questo completo che è resistente, ma al contempo
+comodo da indossare anche a lungo, oltre ad essere
+abbastanza caldo da proteggere coloro che vivono sulla
+strada, girovagando per la Zona Contaminata.
+DIVISA DELLA CONFRATERNITA D’ACCIAIO
+Sono dei semplici e robusti indumenti pensati per il
+personale della Confraternita d’Acciaio, che consi-
+stono di un maglione, pantaloni e guanti militari, sti-
+vali da combattimento e cinghie militari, tutti decorati
+con gli stemmi della Confraternita del rispettivo grado
+e ruolo. Anche il colore è caratteristico per alcune
+mansioni: i medici ne indossano una versione con un
+maglione bianco, mentre quello del personale di volo
+è blu. Sebbene non sia pensata per il combattimento,
+l’uniforme è robusta e abbastanza resistente da fornire
+una qualche protezione contro i danni.
+Capitolo Quattro  EQUIPAGGIAMENTO
+127
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+Trama Balistica
+Il polimero della trama balistica è una mod armatura che aumenta l’abilità difensiva di alcuni indumenti. Si può applicare uno strato di que-
+sto spesso tessuto artificiale a tutta una serie di indumenti, dotandoli di una limitata capacità di resistere a impatti, proiettili e colpi a energia.
+Sono in pochi a conoscerne la progettazione e ancora meno quelli che ne condividono i segreti. Tutte le mod Trama Balistica
+vengono installate con l’abilità Riparare.
+Mod per Armature in Trama Balistica
+MOD BALISTICA EFFETTI PESO COSTO TALENTI
+Trama Balistica +2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia – +20 –
+Trama Balistica Mk2 +3 Resistenza ai Danni Fisici, +3 Resistenza ai Danni da Energia – +30 Armaiolo 1
+Trama Balistica Mk3 +4 Resistenza ai Danni Fisici, +4 Resistenza ai Danni da Energia – +40 Armaiolo 2
+Trama Balistica Mk4 +5 Resistenza ai Danni Fisici, +5 Resistenza ai Danni da Energia – +50 Armaiolo 3
+Trama Balistica Mk5 +6 Resistenza ai Danni Fisici, +6 Resistenza ai Danni da Energia – +60 Armaiolo 4
+PELLI
+Solitamente ricavati dalle ruvide pelli di bramino, di
+cervo o di un qualsiasi altro grosso animale, questi
+semplici vestiti forniscono un po’ di protezione e di
+comodità, ma non possono in alcun modo sostituire
+dei vestiti fatti a modo o un’armatura.
+TUTA DA LAVORO
+Indumento versatile apprezzato da meccanici e sma-
+nettoni vari, la tuta è pensata per fornire protezione
+dal duro e sporco lavoro con le macchine. È dotata
+di guanti pesanti per proteggere le mani, una cintura
+multiuso in cui tenere tutta una serie di utensili e altri
+oggetti utili.
+Speciale: La tuta da lavoro aumenta il peso che il per-
+sonaggio può trasportare di +5.
+TUTA HAZMAT
+È una tuta completamente isolante usata per maneg-
+giare materiali pericolosi. I metalli di cui è fatta non
+resistono bene ai colpi violenti, ma chi la indossa è
+praticamente immune alle radiazioni.
+Vittorio Emanuele Veloccia - 546448128 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+CAPPELLO ELEGANTE
+Un cappello ricercato, di quelli con cui ci si adorna il
+capo durante un incontro di lavoro, un evento formale,
+o magari solo perché piace e scherma il sole dal viso.
+Molti sono un po’ rovinati e malandati poiché sono
+stati trascurati o trattati male, ma funzionano ancora.
+Speciale: Se si indossa un cappello elegante, si può
+ritirare un d20 su una prova basata su CAR ogni scena,
+in quanto aiuta a fare una buona prima impressione.
+Un cappello elegante può essere rinforzato con Trama
+Balistica (vedi riquadro pag. 128).
+CAPPELLO INFORMALE
+Si tratta di un cappello semplice e leggero, solitamente
+con un qualche tipo di tesa per proteggere gli occhi di
+chi lo indossa dal sole.
+Speciale: Quando lo si indossa si ignora ogni aumento
+di difficoltà dovuto alla troppa luce.
+CAPPUCCIO DELLA
+CONFRATERNITA D’ACCIAIO
+Si tratta del copricapo abbinato all’uniforme della
+Confraternita d’Acciaio, un cappuccio attillato svilup-
+pato prima della Grande Guerra per coloro che indossa-
+vano un’Armatura Atomica, progettato per connettersi
+nel casco dell’armatura e poter fornire un’interfaccia
+più accurata dei suoi sistemi, oltre ad avere un aurico-
+lare e un microfono per la radio interna ad essa.
+CAPPUCCIO DI IUTA
+Si tratta di un cappuccio di tessuto robusto ricavato
+da un sacco di iuta o di tela. Fornisce una minima
+protezione dalla polvere, dal fumo e dalle radiazioni,
+coprendo tutta la testa. Per comodità solitamente ven-
+gono tagliati dei fori per gli occhi e ci sono dei modelli
+dotati di un qualche tipo di respiratore artigianale,
+sebbene la loro efficacia sia quantomeno dubbia.
+CAPPUCCIO O CAPPA
+Una copertura di stoffa o pelle per testa e collo. Ripara
+un po’ dagli elementi e la si può facilmente combi-
+nare con una maschera o un fazzoletto che coprano la
+bocca e il naso per tenere fuori polvere e fumo. Se non
+si hanno protezioni migliori, è utile quando si viene
+colti di sorpresa nella Zona Contaminata.
+Vittorio Emanuele Veloccia - 546448
+CASCO DELL’ESERCITO
+È un casco che può essere di metallo, plastica o cera-
+mica leggera, pensato per proteggere la testa dei sol-
+dati da qualsiasi scheggia, foderato con un’imbottitura
+per assicurarsi che calzi a pennello.
+CASCO PROTETTIVO
+È un cappello di plastica o metallo leggero che ha lo
+scopo di proteggere la testa da colpi e collisioni in un
+luogo di lavoro industriale o in un cantiere edile. Non
+è pensato per il combattimento, ma se non si possiede
+un casco militare, è sempre meglio di niente.
+COPRICAPO DELLO
+SCRIBA DELLA CONFRATERNITA
+Si tratta di un leggero cappello di pelle e di un paio
+di occhiali che vengono forniti assieme all’Armatura
+dello Scriba della Confraternita per proteggere la testa
+da qualsiasi condizione pericolosa.
+MASCHERA ANTIGAS
+Si tratta di una maschera in gomma e cuoio dotata di
+una visiera di plastica a tenuta stagna da indossare sul
+volto. Sul davanti è posto un filtro che depura l’aria da
+agenti contaminanti come polvere e gas.
+Speciale: La maschera antigas fornisce +3 alla
+Resistenza ai danni da Veleno contro qualsiasi veleno
+in sospensione nell’aria o in forma gassosa. Chi la
+indossa non subisce alcun effetto derivante da gas o
+polvere. Mentre la si indossa, aggiungere +1 alla diffi-
+coltà di ogni prova di Oratoria, poiché smorza la voce.
+VISIERA DA SALDATORE
+Si tratta di un cappello rinforzato con una visiera in
+metallo, in cui è inserito un pezzo di vetro temperato
+scuro per proteggere gli occhi quando si usano degli
+attrezzi da saldatore e che può essere sollevato e abbas-
+sato alla bisogna. Spesso si vedono indosso agli Scriba
+della Confraternita e agli ingegneri, semplicemente
+perché passano molto tempo a lavorare con il metallo.
+Capitolo Quattro  EQUIPAGGIAMENTO
+129
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+ARMATURE E RELATIVE MOD
+La maggior parte delle armature della Zona
+Contaminata non sono complete, ma singole parti che
+coprono un’unica parte del corpo. La maggioranza di
+chi le indossa tende a mischiare e abbinare diverse
+parti a seconda dei propri bisogni, proteggendo spesso
+solo una parte del corpo o indossando dei pezzi più
+leggeri per evitare di appesantirsi.
+Le armature possono essere indossate sopra i vestiti, ma
+non sopra i completi. Se si indossa un’armatura sopra
+dei vestiti che forniscono Resistenza ai Danni, bisogna
+usare il valore più alto di resistenza.
+Per la maggior parte delle armature esistono anche ver-
+sioni Rinforzate e Pesanti, in grado di fornire una mag-
+giore protezione, ma anche più rare, costose e pesanti.
+Armatura da Predone
+OGGETTO
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+PARTI PROTETTE PESO COSTO RARITÀ
+Torace da Predone 1 1 0 Torso 3,5 18 0
+Gambale da Predone 1 1 0 Gamba 1,5 8 0
+Braccio da Predone 1 1 0 Braccio 1,5 6 0
+Torace da Predone Rinforzato 2 2 0 Torso 6 33 1
+Gambale da Predone Rinforzato 2 2 0 Gamba 3,5 13 1
+Braccio da Predone Rinforzato 2 2 0 Braccio 3,5 8 1
+Torace da Predone Pesante 3 3 0 Torso 8,5 48 2
+Gambale da Predone Pesante 3 3 0 Gamba 5 18 2
+Braccio da Predone Pesante 3 3 0 Braccio 5 15 2
+Armatura di Cuoio
+OGGETTO
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+PARTI PROTETTE PESO COSTO RARITÀ
+Torace di Cuoio 1 2 0 Torso 2,5 25 1
+Gambale di Cuoio 1 2 0 Gamba 1 10 1
+Braccio di Cuoio 1 2 0 Braccio 1 8 1
+Torace di Cuoio Rinforzato 2 3 0 Torso 5 50 2
+Gambale di Cuoio Rinforzato 2 3 0 Gamba 2,5 20 2
+Braccio di Cuoio Rinforzato 2 3 0 Braccio 2,5 18 2
+Torso di Cuoio Pesante 3 4 0 Torso 7,5 75 3
+Gambale di Cuoio Pesante 3 4 0 Gamba 3,5 3,5 3
+Braccio di Cuoio Pesante 3 4 0 Braccio 3,5 28 3
+Vittorio Emanuele Veloccia - 546448130 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+Armatura di Metallo
+OGGETTO
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+PARTI PROTETTE PESO COSTO RARITÀ
+Casco in Metallo 2 1 0 Testa 1,5 15 1
+Torace in Metallo 2 1 0 Torso 3 40 1
+Gambale in Metallo 2 1 0 Gamba 1,5 15 1
+Braccio in Metallo 2 1 0 Braccio 1,5 15 1
+Casco in Metallo Rinforzato 3 2 0 Testa 4 65 2
+Torace in Metallo Rinforzato 3 2 0 Torso 8 115 2
+Gambale in Metallo Rinforzato 3 2 0 Gamba 4 65 2
+Braccio in Metallo Rinforzato 3 2 0 Braccio 4 65 2
+Casco in Metallo Pesante 4 3 0 Testa 6 115 3
+Torace in Metallo Pesante 4 3 0 Torso 11,5 190 3
+Gambale in Metallo Pesante 4 3 0 Gamba 6 115 3
+Braccio in Metallo Pesante 4 3 0 Braccio 6 115 3
+Armatura da Combattimento
+OGGETTO
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+PARTI PROTETTE PESO COSTO RARITÀ
+Casco da Combattimento 2 2 0 Testa 2 25 2
+Torace da Combattimento 2 2 0 Torso 4 60 2
+Gambale da Combattimento 2 2 0 Gamba 1 25 2
+Braccio da Combattimento 2 2 0 Braccio 1 25 2
+Casco da Combattimento Rinforzato 3 3 0 Testa 2,5 105 3
+Torace da Combattimento Rinforzato 3 3 0 Torso 6 140 3
+Gambale da Combattimento Rinforzato 3 3 0 Gamba 2,5 105 3
+Braccio da Combattimento Rinforzato 3 3 0 Braccio 2,5 105 3
+Casco da Combattimento Pesante 4 4 0 Testa 3,5 185 4
+Torace da Combattimento Pesante 4 4 0 Torso 8 220 4
+Gambale da Combattimento Pesante 4 4 0 Gamba 3,5 185 4
+Braccio da Combattimento Pesante 4 4 0 Braccio 3,5 145 4
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+131
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+Armatura da Sintetico
+OGGETTO
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+PARTI PROTETTE PESO COSTO RARITÀ
+Casco Sintetico 2 3 0 Testa 1,5 33 3
+Torace Sintetico 2 3 0 Torso 3,5 75 3
+Gambale Sintetico 2 3 0 Gamba 1,5 30 3
+Braccio Sintetico 2 3 0 Braccio 1,5 30 4
+Casco Sintetico Rinforzato 3 4 0 Testa 3,5 70 4
+Torace Sintetico Rinforzato 3 4 0 Torso 6 125 4
+Gambale Sintetico Rinforzato 3 4 0 Gamba 3,5 80 4
+Braccio Sintetico Rinforzato 3 4 0 Braccio 3,5 70 4
+Casco Sintetico Pesante 4 5 0 Testa 5 110 5
+Torace Sintetico Pesante 4 5 0 Torso 8,5 175 5
+Gambale Sintetico Pesante 4 5 0 Gamba 5 130 5
+Braccio Sintetico Pesante 4 5 0 Braccio 5 110 5
+Armatura di Sicurezza della Vault-tec
+OGGETTO
+Casco di Sicurezza della Vault-Tec Armatura di Sicurezza RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+PARTI PROTETTE PESO COSTO RARITÀ
+2 0 0 Testa 1 20 1
+della Vault-Tec 2 0 2 Braccia,
+Gambe, Torso 4 16 1
+Vittorio Emanuele Veloccia - 546448132 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+ARMATURA DA PREDONE
+Sono le armature usate dai predoni e da altri tagliagole
+nelle desolazioni. Variano molto sia di foggia che di
+qualità, ma di solito sono fatte di rottami rozzamente
+modellati a martellate, rinforzati con tondini, cavi
+metallici e strisce di cuoio. Spesso macabri trofei,
+come crani o altre parti del corpo, contribuiscono ad
+accrescerne l’aspetto barbaro.
+Ogni pezzo di armatura da predone può montare due
+mod, una delle quali è Materiale, mentre l’altra un
+Miglioramento. Per le mod al Torace bisogna rad-
+doppiare il peso e il costo (operazione già fatta per le
+mod specifiche per Torace). I personaggi supermutanti
+possono indossare solo armature da predoni. Tutte
+le mod Materiale per Armature da Predone vengono
+installate con l’abilità Riparare.
+Mod Materiali Specifiche per Armature da Predone
+Armat√a Ombrata
+Molte delle armature elencate in questa sezione possono essere
+modificate per diventare Ombrate. La superficie di un’ar-
+matura ombrata è più scura e riflette di meno, per cui è più
+difficile scorgere chi la indossa nell’oscurità o con poca luce.
+ Quando si indossano uno o più pezzi di armatura ombrata,
+si può ignorare la prima complicazione ottenuta a seguito
+di una prova di Furtività fatta con poca luce o al buio.
+ Quando si indossano tre o più pezzi di armatura
+ombrata, si può ripetere il tiro di un d20 su una prova di
+Furtività fatta con poca luce o al buio ogni scena.
+ Quando si indossano cinque o più pezzi di armatura
+ombrata, si può ripetere il tiro di un d20 su ogni prova
+di Furtività fatta con poca luce o al buio.
+A tal fine, il Torace conta come due pezzi. Se si indossa un’Ar-
+matura Atomica, l’armatura ombrata non fornisce alcun bonus.
+MOD MATERIALE
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+ALTRI EFFETTI PESO COSTO TALENTI
+Indurita +4 +4 – – +1,5 +12 Armaiolo 1
+Rinvenuta +2 +2 – – +0,5 +6 –
+Saldata +1 +1 – – +0,5 +3 –
+Temprata +3 +3 – – +1 +9 Armaiolo 1
+ARMATURA DI CUOIO
+Fatti con pelli di animale trattate e conciate, questi
+pezzi di cuoio indurito offrono una modesta protezione
+dagli impatti fisici e dai colpi di pistola, oltre a isolare
+chi le indossa da fuoco e altre energie pericolose.
+Mod Materiale Specifiche per Armature di Cuoio
+Ogni pezzo d’armatura di cuoio può montare due
+mod, una delle quali è Materiale, mentre l’altra un
+Miglioramento. Per le mod al Torace bisogna raddoppiare
+il peso e il costo (operazione già fatta per le mod specifi-
+che per Torace). Tutte le mod Materiale per Armature in
+Cuoio vengono installate con l’abilità Riparare.
+MOD MATERIALE
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+ALTRI EFFETTI PESO COSTO TALENTI
+Cuoio Bollito +1 +1 – – +0,5 +5 –
+Cuoio Borchiato +4 +4 – – +1 +25 Armaiolo 1
+Cuoio Fasciato +2 +2 – – +0,5 +10 –
+Cuoio Ombrato +3 +3 – Ombrata (vedere riquadro) +0,5 +20 Armaiolo 1
+Cuoio Trattato +3 +3 – – +0,5 +15 Armaiolo 1
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+133
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+ARMATURA DI METALLO
+Si tratta di un rivestimento di metallo modellato
+tenuto insieme bello stretto da cinghie di cuoio o
+in tessuto, in grado di fornire una buona protezione
+dagli impatti fisici come attacchi da mischia e colpi
+di pistola, ma non molta dagli attacchi a energia, dato
+che il metallo conduce il calore.
+Ogni pezzo di armatura di metallo, a parte i caschi,
+può montare due modifiche, una delle quali è
+Materiale, mentre l’altra un Miglioramento. I caschi
+possono montare solo una mod Materiale. Per le mod
+al Torace bisogna raddoppiare il peso e il costo (opera-
+zione già considerata per le mod specifiche al Torace).
+Tutte le mod Materiale per Armature di Metallo ven-
+gono installate con l’abilità Riparare.
+Mod Materiale Specifiche per Armature di Metallo
+MOD MATERIALE
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+ALTRI EFFETTI PESO COSTO TALENTI
+Metallo In Lega +3 +3 – – +1,5 +30 Armaiolo 1
+Metallo Lucidato +4 +4 – – +2 +40 Armaiolo 2
+Metallo Ombrato +2 +2 – Ombrata (vedere riquadro) +1 +25 Armaiolo 1
+Metallo Smaltato +2 +2 – – +1 +20 Armaiolo 1
+Metallo Verniciato +1 +1 – – +0,5 +10 –
+ARMATURA DA COMBATTIMENTO
+Si tratta di pezzi di armatura fatti apposta, progettati prima
+della Guerra e dati in dotazione ai soldati dell’Esercito
+Americano. Furono costruite per proteggere chi le indos-
+sava sia dagli attacchi fisici, che da quelli a energia, pur
+senza essere pesanti o scomode da indossare. Quando non
+c’è disponibilità di Armature Atomiche o esse non sono
+adatte alla missione, per le sue truppe la Confraternita
+d’Acciaio si serve di armature da combattimento.
+Ogni pezzo di armatura da combattimento, a parte i
+caschi, può montare due modifiche, una delle quali è
+Materiale, mentre l’altra un Miglioramento. I caschi
+possono montare solo una mod Materiale. Per le mod al
+Torso bisogna raddoppiare il peso e il costo (operazione
+già considerata per le mod specifiche al Torace). Tutte
+le mod Materiale per le Armature da Combattimento
+vengono installate con l’abilità Riparare.
+Mod Materiale Specifiche per Armature da Combattimento
+MOD MATERIALE
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+ALTRI EFFETTI PESO COSTO TALENTI
+Fibra di Vetro +2 +2 – – +0,5 +30 Armaiolo 1
+Ombrato +1 +1 – Ombrata (vedere riquadro) +0,5 +15 Armaiolo 1
+In Polimeri +3 +3 – – +1 +45 Armaiolo 1
+Rinforzato +1 +1 – – +0,5 +15 –
+Vittorio Emanuele Veloccia - 546448134 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+ARMATURA SINTETICA
+Sviluppata dall’Istituto, l’armatura sintetica è incon-
+fondibile e fornisce un’eccellente protezione, special-
+mente dalle armi a energia, ma si può trovare solo nel
+Commonwealth e nei posti in cui i sintetici dell’Isti-
+tuto viaggiano. La rarità della sua produzione implica
+che è molto difficile da ottenere per chiunque non sia
+in buoni rapporti con l’Istituto, e anche allora è un
+affare molto costoso.
+Ogni pezzo di armatura sintetica, a parte i caschi, può
+montare due mod, una delle quali è Materiale, mentre
+l’altra un Miglioramento. I caschi possono montare
+solo una mod Materiale. Per le mod al Torso bisogna
+raddoppiare il peso e il costo (operazione già consi-
+derata per le mod specifiche al Torace). Tutte le mod
+Materiale per Armature Sintetiche vengono installate
+con l’abilità Riparare.
+Mod Materiale Specifiche per Armature Sintetiche
+MOD MATERIALE
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+ALTRI EFFETTI PESO COSTO TALENTI
+Laminato +1 +1 – – +0,5 +5 –
+Microcarbonio +3 +3 – – +1 +15 Armaiolo 1
+Nanofilamenti +4 +4 – – +1,5 +20 Armaiolo 1
+Resina +2 +2 – – +0,5 +10 Armaiolo 1
+ARMATURA DI SICUREZZA
+DELLA VAULT-TEC
+Formate da un grembiule, delle spalline e un casco
+antiurto, queste armature vengono distribuite in
+piccole quantità a ogni Vault per gli abitanti scelti
+come personale di sicurezza. Fornisce una protezione
+modesta e non è particolarmente ingombrante, ma
+molto probabilmente non sarebbe in grado di soste-
+nere un combattimento pesante per il semplice fatto
+che i Vault avrebbero dovuto essere degli ambienti
+controllati, privi delle armi pesanti che si possono
+trovare all’esterno.
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+135
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+MIGLIORAMENTI ALLE ARMATURE
+I miglioramenti si applicano a tutti i tipi di armatura
+sopra elencati (a eccezione dell’armatura di sicurezza
+Mod Miglioramento alle Armature
+della Vault-Tec) e sono qui raggruppati per evitare
+ripetizioni. Tutte le mod Miglioramento per Armatura
+vengono installate con l’abilità Riparare.
+MOD
+MIGLIORAMENTO
+RESISTENZA AI DANNI
+FISICI DA ENERGIA DA RADIAZIONI
+ALTRI EFFETTI PESO COSTO TALENTI
+TUTTE LE PARTI
+Leggera – – – – -0,5 +1 –
+Capiente – – – +5 al Peso Trasportabile +0,5 +1 Armaiolo 1
+Molto Capiente – – – +10 al Peso Trasportabile +1 +5 Armaiolo 1
+Piombata – – +3 – +1 +5 Armaiolo 4,
+Scienza! 1
+Ultraleggera – – – – -1,5 +7 Armaiolo 3
+MIGLIORAMENTI SOLO PER TORACE
+Alta Densità – – –
++4 alla Resistenza ai Danni da
+Armi Esplosive +2 +7 Armaiolo 3
+BioCommMesh – – –
+Le sostanze durano il doppio
+(vedere pag. 164) +1 +9 Armaiolo 4,
+Scienza! 2
+Imbottito – – –
++ 2 alla Resistenza ai Danni da
+Armi Esplosive +2 +1 –
+Pneumatico – – –
+Affinché i danni stordenti abbiano
+effetto sul personaggio, occorre
+ottenere 2+ Effetti
++1 +9 Armaiolo 4
+Rivestimento
+d’Amianto
+– +3 –
+Ignora i danni da Energia
+dell’Effetto Persistente +2 +3 Armaiolo 1
+MIGLIORAMENTI SOLO PER BRACCIA
+Aerodinamiche – – –
+Si possono spendere fino a 4 PA per
+danni bonus da attacchi da mischia
+– +1 Armaiolo 3
+Bilanciate – – –
+Gli attacchi da Mischia e senza armi
+guadagnano Penetrante 1 +0,5 +3 Armaiolo 4
+Lavorate – – –
++2 alla Resistenza ai Danni da
+Armi da Mischia +0,5 +1 Armaiolo 1
+Picchiatore – – –
+Gli attacchi senza armi infliggono
++1 D C danno +0,5 +1 Armaiolo 1
+Stabilizzate – – –
+Quando il personaggio prende
+la mira ed effettua un Attacco a
+Distanza, il danno dell’attacco
+aumenta di +1 D C
++0,5 +1 Armaiolo 2
+MIGLIORAMENTI SOLO PER GAMBE
+Ammortizzate – – –
++2 alla Resistenza ai Danni Fisici
+contro danni da caduta
+– +1 Armaiolo 1
+Attenuate – – –
+Si può ripetere il tiro di un d20 sulle
+prove di Furtività
+– +2 Armaiolo 2

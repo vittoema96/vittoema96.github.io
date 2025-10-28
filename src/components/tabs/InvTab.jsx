@@ -6,6 +6,7 @@ import { usePopup } from '../../contexts/PopupContext.jsx'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import InventoryList from '../inventory/InventoryList.jsx'
 import EquippedApparel from '../inventory/EquippedApparel.jsx'
+import EquippedArmorEffects from '../inventory/EquippedArmorEffects.jsx'
 import { getMeleeWeaponForMod } from '../../utils/itemUtils.js'
 
 function InvTab() {
@@ -201,6 +202,11 @@ function InvTab() {
             <section className={`js-subScreen ${activeSubTab !== 'apparel' ? 'hidden' : ''} keep-first`}>
                 {/* Equipped Apparel Display */}
                 <EquippedApparel
+                    equippedItems={character.items.filter(item => item.equipped === true)}
+                />
+
+                {/* Active Effects from Equipped Armor */}
+                <EquippedArmorEffects
                     equippedItems={character.items.filter(item => item.equipped === true)}
                 />
 

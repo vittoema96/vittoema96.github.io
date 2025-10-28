@@ -1,0 +1,145 @@
+ARMATURE ROBOTICHE
+I personaggi Mister Handy non possono indossare
+indumenti o armature pensate e costruite per gli
+esseri umani, a eccezione di alcuni cappelli (ogni
+copricapo con la dicitura “Cappello” nel nome) che
+possono posare in cima al proprio telaio sferico prin-
+cipale, sebbene non abbia alcun effetto a parte dargli
+un aspetto elegante.
+Per proteggersi e ottenere effetti utili, i robot di tipo
+Mister Handy dipendono dal modo in cui sono costruiti
+e dai metalli con cui sono placcati. I punti di impatto in
+cui colpire un robot Mister Handy sono diversi da quelli
+di un PG umanoide: Ottiche, Corpo Principale, Braccia
+(1-3) e Propulsori. Oltre a fornire delle Resistenze ai
+Danni, le armature robotiche possono modificare il peso
+trasportabile per il robot a cui si applicano. Tutte eccetto
+la Placcatura vengono installate con l’abilità Riparare.
+Tipi di Armature Robotiche
+TIPO DI ARMATURA
+RESISTENZA AI DANNI
+FISICI DA ENERGIA
+PARTI COPERTE PESO TRASPORTABILE COSTO TALENTI
+Placcatura Standard 2 0 Tutte – – –
+Placcatura di Mister Gutsy 2 2 Tutte -5 – –
+Armatura di Fabbrica +1 +1 Ottiche – 10 –
+Armatura di Fabbrica +1 +1 Corpo Principale – 20 –
+Armatura di Fabbrica +1 +1 Braccia – 10 –
+Armatura di Fabbrica +1 +1 Propulsori – 10 –
+Armatura di Stoccaggio
+di Fabbrica +1 +1 Corpo Principale +10 25 Armaiolo 1
+Placcatura Base +2 – Ottiche -5 10 –
+Placcatura Base +2 – Corpo Principale -10 20 –
+Placcatura Base +2 – Braccia -5 10 –
+Placcatura Base +2 – Propulsori -5 10 –
+Placcatura Zigrinata +2 – Ottiche -5 15 Armaiolo 1
+Placcatura Zigrinata +2 – Corpo Principale -10 30 Armaiolo 1
+Placcatura Zigrinata +2 – Braccia -5 15 Armaiolo 1
+Placcatura Zigrinata +2 – Propulsori -5 15 Armaiolo 1
+Placcatura Velenosa +2 – Ottiche -5 15 Armaiolo 1
+Placcatura Velenosa +2 – Corpo Principale -10 30 Armaiolo 1
+Placcatura Velenosa +2 – Braccia -5 15 Armaiolo 1
+Placcatura Velenosa +2 – Propulsori -5 15 Armaiolo 1
+Placcatura Tossica +2 – Ottiche -5 15 Armaiolo 3
+Placcatura Tossica +2 – Corpo Principale -10 30 Armaiolo 3
+Placcatura Tossica +2 – Braccia -5 15 Armaiolo 3
+Placcatura Tossica +2 – Propulsori -5 15 Armaiolo 3
+Telaio ad Attivazione +1 +1 Ottiche +5 15 –
+Telaio ad Attivazione +1 +1 Corpo Principale +10 30 –
+Telaio ad Attivazione +1 +1 Braccia +5 15 –
+Telaio ad Attivazione +1 +1 Propulsori +5 15 –
+Vittorio Emanuele Veloccia - 546448146 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+TIPO DI ARMATURA
+RESISTENZA AI DANNI
+FISICI DA ENERGIA
+PARTI COPERTE PESO TRASPORTABILE COSTO TALENTI
+Telaio Voltaico +2 +2 Ottiche +5 20 Armaiolo 2
+Telaio Voltaico +2 +2 Corpo Principale +10 40 Armaiolo 2
+Telaio Voltaico +2 +2 Braccia +5 20 Armaiolo 2
+Telaio Voltaico +2 +2 Propulsori +5 20 Armaiolo 2
+Telaio Idraulico +3 +3 Ottiche +2,5 30 Armaiolo 3
+Telaio Idraulico +3 +3 Corpo Principale +5 60 Armaiolo 3
+Telaio Idraulico +3 +3 Braccia +2,5 30 Armaiolo 3
+Telaio Idraulico +3 +3 Propulsori +2,5 30 Armaiolo 3
+PLACCATURA STANDARD
+Si tratta della placcatura standard di fabbrica di cui
+sono dotati tutti i nuovi modelli di Mister Handy.
+Non costa nulla, è la dotazione base con cui il più
+delle volte inizia un personaggio Mister Handy.
+PLACCATURA DI MISTER GUTSY
+La placcatura base Mister Gutsy è proprio come la
+placcatura standard, ma ha migliori capacità di assor-
+bimento termico, che la rende più resistente contro le
+armi a Energia. Tutti i personaggi Mister Handy che
+scelgono il pacchetto iniziale Mister Gutsy iniziano
+con questa placcatura.
+ARMATURA DI FABBRICA
+Si tratta di un’armatura prodotta in serie che forni-
+sce ulteriori vani portaoggetti per aumentare il peso
+trasportabile dai robot.
+PLACCATURA BASE
+Si tratta di un’armatura supplementare artigianale
+che può essere applicata alla struttura di un robot
+per dargli un’ulteriore protezione dai pericoli
+fisici. Il design rozzo e grossolano, però, riduce il
+peso trasportabile dal robot.
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+147
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+PLACCATURA ZIGRINATA
+Si tratta di un rivestimento per l’armatura con i bordi
+dentellati e frastagliati. È come la placcatura base, ma
+molto più pericolosa per chi vuole fare del male al
+robot, dato che le punte acuminate possono ferire.
+Speciale: Quando viene effettuato un attacco da
+mischia contro una parte dotata di placcatura zigrinata
+e l’attaccante subisce una complicazione, soffre anche
+2 D C danni Persistenti (Fisici). Inoltre gli attacchi da
+mischia fatti con braccia dotate di placcatura zigrinata
+ottengono l’effetto danno Persistente (Fisico).
+PLACCATURA TOSSICA
+Si tratta di un’armatura fatta con un rivestimento
+metallico radioattivo, che è pericolosa per qualsiasi
+creatura vivente nelle vicinanze.
+Speciale: Quando viene effettuato un attacco da
+mischia contro una parte dotata di placcatura tossica
+e l’attaccante subisce una complicazione, subisce
+anche 2 D C danni da Radiazioni. Inoltre gli attacchi da
+mischia fatti con braccia dotate di placcatura tossica
+ottengono l’effetto danno Radioattivo.
+PLACCATURA VELENOSA
+Si tratta di un’armatura artigianale rivestita di mate-
+riali tossici pericolosi per chiunque provi a far danno
+al robot o ai suoi compagni.
+Speciale: Quando viene effettuato un attacco da
+mischia contro una parte dotata di placcatura velenosa
+e l’attaccante subisce una complicazione, subisce anche
+2 D C danni Persistenti (Veleno). Inoltre gli attacchi da
+mischia fatti con braccia dotate di placcatura velenosa
+ottengono l’effetto danno Persistente (Veleno).
+TELAIO AD ATTIVAZIONE
+Si tratta di un’armatura dotata di attuatori e sistemi
+motori che facilitano le azioni del robot.
+Speciale: Gli attacchi da mischia portati con brac-
+cia dotate di telaio ad attivazione infliggono +1 D C
+danno. Se il propulsore del robot è dotato di un telaio
+ad attivazione, può compiere sia un’azione minore di
+Movimento che un’azione maggiore di Scatto nello
+stesso turno.
+TELAIO VOLTAICO
+Si tratta di un’armatura dotata di conduttori e conden-
+satori aggiuntivi per potenziare l’efficacia delle armi a
+energia.
+Speciale: Se il robot è dotato di un telaio voltaico,
+tutti i suoi attacchi che arrecano danni da Energia
+infliggono +1 D C . Il bonus aumenta di +1 D C ogni due
+ulteriori parti dotate di Telaio Voltaico (per cui +2 D C
+con 3 pezzi o +3 D C con 5 pezzi o più).
+TELAIO IDRAULICO
+Si tratta di un’apposita armatura che cela un potente
+sistema idraulico, che migliora i movimenti del robot.
+Speciale: Gli attacchi da mischia effettuati con braccia
+dotate di Telaio Idraulico infliggono +1 D C danno e
+ottengono l’effetto del danno Stordente.

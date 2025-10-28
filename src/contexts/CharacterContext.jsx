@@ -108,9 +108,22 @@ export function CharacterProvider({ children }) {
                      character.level - 1
 
         // Calculate max weight (Mr Handy has fixed 75kg carry weight)
-        const maxWeight = 75 + (character.origin === 'mrHandy'
+        let maxWeight = 75 + (character.origin === 'mrHandy'
             ? 0
             : character.special[SPECIAL.STRENGTH] * 5)
+
+        // Add carry weight bonuses from equipped items with mods
+        character.items.forEach(item => {
+            if (!item.equipped) {
+                return
+            }
+
+            const [itemId] = item.id.split('_')
+            const itemData = getModifiedItemData(dataManager, itemId, item.mods)
+            if (itemData && itemData.CARRY_WEIGHT_BONUS) {
+                maxWeight += Number(itemData.CARRY_WEIGHT_BONUS) || 0
+            }
+        })
 
         // Calculate current weight from inventory (with mods applied)
         const currentWeight = character.items.reduce((total, item) => {

@@ -6,6 +6,7 @@ import { useI18n } from '../../hooks/useI18n.js'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import Skill from './Skill.jsx'
 import DamageReductionDisplay from '../stats/DamageReductionDisplay.jsx'
+import EquippedArmorEffects from '../inventory/EquippedArmorEffects.jsx'
 
 function StatTab() {
     const [isEditing, setIsEditing] = useState(false)
@@ -130,6 +131,9 @@ function StatTab() {
 
             {/* Damage Reduction Display */}
             <DamageReductionDisplay />
+
+            {/* Active Effects from Equipped Armor */}
+            <EquippedArmorEffects equippedItems={character.items.filter(item => item.equipped === true)} />
 
             {/* Skills Section */}
             <div>

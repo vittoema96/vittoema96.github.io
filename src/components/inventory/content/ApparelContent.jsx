@@ -64,8 +64,9 @@ function ApparelContent({ characterItem, itemData, side }) {
                 </section>
             </div>
 
-            {/* Tags container for effects and qualities */}
+            {/* Tags container for effects, qualities, and mod effects */}
             <div className="tags-container">
+                {/* Intrinsic EFFECTS (from base item) */}
                 {Array.isArray(apparelObj.EFFECTS) && apparelObj.EFFECTS.map((effect, index) => {
                     const [langId, effectOpt] = effect.split(':')
                     // For special effects, try to translate the value (e.g., "strAgi" -> "FOR o AGI")
@@ -85,11 +86,31 @@ function ApparelContent({ characterItem, itemData, side }) {
                     )
                 })}
 
+                {/* QUALITIES (from base item) */}
                 {Array.isArray(apparelObj.QUALITIES) && apparelObj.QUALITIES.map((quality, index) => {
                     const [langId, qualityOpt] = quality.split(':')
                     return (
                         <Tag key={`quality-${index}`} tooltipId={`${langId}Description`} isEmpty={true}>
                             {t(langId) + (qualityOpt ? ' ' + qualityOpt : '')}
+                        </Tag>
+                    )
+                })}
+
+                {/* MOD_NAMES (names of applied mods) */}
+                {Array.isArray(apparelObj.MOD_NAMES) && apparelObj.MOD_NAMES.map((modId, index) => {
+                    return (
+                        <Tag key={`mod-name-${index}`} tooltipId={`${modId}Description`} isMod={true}>
+                            {t(modId)}
+                        </Tag>
+                    )
+                })}
+
+                {/* MOD_EFFECTS (effects added by mods via effectAdd/qualityAdd) */}
+                {Array.isArray(apparelObj.MOD_EFFECTS) && apparelObj.MOD_EFFECTS.map((effect, index) => {
+                    const [langId, effectOpt] = effect.split(':')
+                    return (
+                        <Tag key={`mod-effect-${index}`} tooltipId={`${langId}Description`} isMod={true}>
+                            {t(langId) + (effectOpt ? ' ' + effectOpt : '')}
                         </Tag>
                     )
                 })}

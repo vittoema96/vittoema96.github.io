@@ -567,6 +567,42 @@ input[type='text'] {
     font-size: 0.7rem;
 }
 
+/* Equipped Armor Effects Display */
+.equipped-armor-effects {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin: 0.75rem 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border-left: 3px solid var(--secondary-color);
+    border-right: 1px solid var(--secondary-color);
+    border-top: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+    position: relative;
+    user-select: none;
+}
+
+.equipped-armor-effects::after {
+    content: '▸ ACTIVE EFFECTS';
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background-color: var(--button-background);
+    padding: 0 0.5rem;
+    color: var(--primary-color);
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+}
+
+.equipped-armor-effects__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
 .apparel-stat {
     position: absolute;
     z-index: 1;
@@ -1340,6 +1376,10 @@ input[type='text'] {
     background-color: var(--button-background) !important;
     color: var(--primary-color) !important;
     border: var(--border-primary-thin) !important;
+}
+.tag-mod {
+    background-color: var(--button-background) !important;
+    color: var(--primary-color) !important;
 }
 
 /****************

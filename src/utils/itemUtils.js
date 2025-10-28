@@ -81,7 +81,7 @@ function applyEffect(modifiedData, effect) {
         case 'radiationResAdd':
             modifiedData.RADIATION_RES = (Number(modifiedData.RADIATION_RES) || 0) + Number(value)
             break
-        case 'carryWeightAdd': // TODO This column doesn't exist
+        case 'carryWeightAdd':
             modifiedData.CARRY_WEIGHT_BONUS = (Number(modifiedData.CARRY_WEIGHT_BONUS) || 0) + Number(value)
             break
         case 'explosiveResAdd': // TODO This column doesn't exist
@@ -184,29 +184,61 @@ export function getModifiedItemData(dataManager, baseId, mods) {
     // Clone base data
     const modifiedData = { ...baseData }
 
+    // Initialize MOD_NAMES array to track which mods are applied
+    // This shows the mod names as tags (e.g., "Shadowed Metal", "Balanced")
+    modifiedData.MOD_NAMES = []
+
+    // Initialize MOD_EFFECTS array to track effects added by mods
+    // This shows effects added via effectAdd/qualityAdd (e.g., "Shadowed", "Piercing 1")
+    modifiedData.MOD_EFFECTS = []
+
+    // Check if this is a torso armor piece
+    const isTorsoArmor = baseData.LOCATIONS_COVERED &&
+                         Array.isArray(baseData.LOCATIONS_COVERED) &&
+                         baseData.LOCATIONS_COVERED.includes('torso')
+
     // Apply each mod
     mods.forEach(modId => {
         const modData = dataManager.getItem(modId)
         if (!modData) return
 
-        // Add weight from mod
+        // Add mod ID to MOD_NAMES for display as tag
+        modifiedData.MOD_NAMES.push(modId)
+
+        // Check if this is a Material mod applied to Torso armor
+        // Material mods on Torso have doubled weight and cost
+        const isMaterialMod = modData.SLOT_TYPE === 'modSlotMaterial'
+        const multiplier = (isMaterialMod && isTorsoArmor) ? 2 : 1
+
+        // Add weight from mod (doubled for Material mods on Torso)
         if (modData.WEIGHT) {
             modifiedData.WEIGHT =
                 (Number(modifiedData.WEIGHT) || 0) +
-                (Number(modData.WEIGHT) || 0)
+                (Number(modData.WEIGHT) || 0) * multiplier
         }
 
-        // Add cost from mod
+        // Add cost from mod (doubled for Material mods on Torso)
         if (modData.COST) {
             modifiedData.COST =
                 (Number(modifiedData.COST) || 0) +
-                (Number(modData.COST) || 0)
+                (Number(modData.COST) || 0) * multiplier
         }
 
         // Apply effects from EFFECTS array
         if (modData.EFFECTS && Array.isArray(modData.EFFECTS)) {
             modData.EFFECTS.forEach(effect => {
                 applyEffect(modifiedData, effect)
+
+                // Track effects added via effectAdd/qualityAdd for display
+                const [effectType, ...valueParts] = effect.split(':')
+                const value = valueParts.join(':')
+
+                if (effectType === 'effectAdd' || effectType === 'qualityAdd') {
+                    // Add to MOD_EFFECTS for display purposes
+                    if (!modifiedData.MOD_EFFECTS.includes(value)) {
+                        modifiedData.MOD_EFFECTS.push(value)
+                    }
+                }
             })
         }
     })

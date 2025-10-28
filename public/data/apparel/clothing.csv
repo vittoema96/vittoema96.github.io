@@ -1,8 +1,8 @@
 ID,TYPE,PHYSICAL_RES,ENERGY_RES,RADIATION_RES,LOCATIONS_COVERED,WEIGHT,COST,RARITY,AVAILABLE_MODS,EFFECTS
 armorBrotherhoodSteelUniform,clothing,1,1,1,"[""arms"", ""legs"", ""torso""]",1,20,2,[],[]
-armorCasualClothing,clothing,0,0,0,"[""arms"", ""legs"", ""torso""]",1,20,1,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:strAgi""]"
+armorCasualClothing,clothing,0,0,0,"[""arms"", ""legs"", ""torso""]",1,20,1,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:strength"", ""effectSpecialReroll:agility""]"
 armorHarness,clothing,0,0,0,"[""arms"", ""legs"", ""torso""]",0.5,5,0,[],[]
-armorMilitaryFatigues,clothing,0,1,0,"[""arms"", ""legs"", ""torso""]",1.5,12,1,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:strAgi""]"
+armorMilitaryFatigues,clothing,0,1,0,"[""arms"", ""legs"", ""torso""]",1.5,12,1,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:strength"", ""effectSpecialReroll:agility""]"
 armorRoadLeathers,clothing,1,1,0,"[""arms"", ""legs"", ""torso""]",0.5,5,1,[],[]
 armorToughClothing,clothing,1,1,0,"[""arms"", ""legs"", ""torso""]",1.5,20,1,[],[]
 armorVaultJumpsuit,clothing,0,1,2,"[""arms"", ""legs"", ""torso""]",0.5,20,2,"[""modInsulatedLining"", ""modTreatedLining"", ""modResistantLining"", ""modProtectiveLining"", ""modShieldedLining""]",[]
