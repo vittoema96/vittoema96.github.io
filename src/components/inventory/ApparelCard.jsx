@@ -3,6 +3,7 @@ import BaseCard from './BaseCard.jsx'
 import ApparelContent from './content/ApparelContent.jsx'
 import { usePopup } from '../../contexts/PopupContext.jsx'
 import { useI18n } from '../../hooks/useI18n.js'
+import { useDataManager } from '../../hooks/useDataManager.js'
 import { canBeModified } from '../../utils/itemUtils.js'
 
 /**
@@ -11,6 +12,7 @@ import { canBeModified } from '../../utils/itemUtils.js'
  */
 function ApparelCard({ characterItem, itemData, onEquip }) {
     const { showModifyItemPopup } = usePopup()
+    const dataManager = useDataManager()
     const t = useI18n()
     const [showDescription, setShowDescription] = useState(false)
 
@@ -22,7 +24,15 @@ function ApparelCard({ characterItem, itemData, onEquip }) {
     // itemData is already modified by InventoryList, use it directly
     const apparelObj = itemData
 
+    const [itemId] = characterItem.id.split('_')
+
+    // Check if this is a robot part (unacquirable)
+    const isRobotPart = dataManager.isUnacquirable(itemId)
+
     const handleEquip = () => {
+        // Robot parts cannot be unequipped
+        if (isRobotPart) return
+
         if (onEquip) {
             onEquip(characterItem, itemData)
         } else {
@@ -56,7 +66,8 @@ function ApparelCard({ characterItem, itemData, onEquip }) {
                     type="checkbox"
                     className="themed-svg button-card"
                     data-icon="armor"
-                    checked={characterItem.equipped === true}
+                    checked={isRobotPart ? true : characterItem.equipped === true}
+                    disabled={isRobotPart}
                     onChange={handleEquip}
                 />
                 {isModifiable && (

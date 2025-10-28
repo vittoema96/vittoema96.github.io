@@ -243,6 +243,10 @@ function ModifyItemPopup({ isOpen, onClose, characterItem, itemData }) {
     const totalCost = calculateCost()
     const useTwoColumns = availableSlots.length > 3
 
+    // Check if this is a robot part (must always have a mod)
+    const [itemId] = characterItem.id.split('_')
+    const isRobotPart = dataManager.isUnacquirable(itemId)
+
     return (
         <dialog ref={dialogRef} className="popup modify-item-popup">
             <div className="popup__header">
@@ -252,50 +256,124 @@ function ModifyItemPopup({ isOpen, onClose, characterItem, itemData }) {
             <div className="popup__content">
                 {/* Compact Stats Bar */}
                 <div className="mod-stats-bar">
+                    {/* Weapons: 2x2 grid (damage, fire rate, weight, cost) */}
                     {itemData.DAMAGE_RATING && (
-                        <div className="mod-stat">
-                            <span className="mod-stat-label">{t('damage')}</span>
-                            <span className="mod-stat-value">
-                                {itemData.DAMAGE_RATING}d6
-                                {previewData.DAMAGE_RATING !== itemData.DAMAGE_RATING && (
-                                    <span className="mod-stat-change">
-                                        {previewData.DAMAGE_RATING > itemData.DAMAGE_RATING ? '+' : ''}
-                                        {previewData.DAMAGE_RATING - itemData.DAMAGE_RATING}
+                        <>
+                            <div className="mod-stat-row">
+                                <div className="mod-stat">
+                                    <span className="mod-stat-label">{t('damage')}</span>
+                                    <span className="mod-stat-value">
+                                        {itemData.DAMAGE_RATING}d6
+                                        {previewData.DAMAGE_RATING !== itemData.DAMAGE_RATING && (
+                                            <span className="mod-stat-change">
+                                                {previewData.DAMAGE_RATING > itemData.DAMAGE_RATING ? '+' : ''}
+                                                {previewData.DAMAGE_RATING - itemData.DAMAGE_RATING}
+                                            </span>
+                                        )}
                                     </span>
+                                </div>
+                                {itemData.FIRE_RATE !== undefined && (
+                                    <div className="mod-stat">
+                                        <span className="mod-stat-label">{t('fireRate')}</span>
+                                        <span className="mod-stat-value">
+                                            {itemData.FIRE_RATE}
+                                            {previewData.FIRE_RATE !== itemData.FIRE_RATE && (
+                                                <span className="mod-stat-change">
+                                                    {previewData.FIRE_RATE > itemData.FIRE_RATE ? '+' : ''}
+                                                    {previewData.FIRE_RATE - itemData.FIRE_RATE}
+                                                </span>
+                                            )}
+                                        </span>
+                                    </div>
                                 )}
-                            </span>
-                        </div>
-                    )}
-                    {itemData.FIRE_RATE !== undefined && (
-                        <div className="mod-stat">
-                            <span className="mod-stat-label">{t('fireRate')}</span>
-                            <span className="mod-stat-value">
-                                {itemData.FIRE_RATE}
-                                {previewData.FIRE_RATE !== itemData.FIRE_RATE && (
-                                    <span className="mod-stat-change">
-                                        {previewData.FIRE_RATE > itemData.FIRE_RATE ? '+' : ''}
-                                        {previewData.FIRE_RATE - itemData.FIRE_RATE}
+                            </div>
+                            <div className="mod-stat-row">
+                                <div className="mod-stat">
+                                    <span className="mod-stat-label">{t('weight')}</span>
+                                    <span className="mod-stat-value">
+                                        {itemData.WEIGHT}kg
+                                        {previewData.WEIGHT !== itemData.WEIGHT && (
+                                            <span className="mod-stat-change">
+                                                {previewData.WEIGHT > itemData.WEIGHT ? '+' : ''}
+                                                {(previewData.WEIGHT - itemData.WEIGHT).toFixed(1)}
+                                            </span>
+                                        )}
                                     </span>
-                                )}
-                            </span>
-                        </div>
+                                </div>
+                                <div className="mod-stat">
+                                    <span className="mod-stat-label">{t('cost')}</span>
+                                    <span className="mod-stat-value">{itemData.COST || 0}</span>
+                                </div>
+                            </div>
+                        </>
                     )}
-                    <div className="mod-stat">
-                        <span className="mod-stat-label">{t('weight')}</span>
-                        <span className="mod-stat-value">
-                            {itemData.WEIGHT}kg
-                            {previewData.WEIGHT !== itemData.WEIGHT && (
-                                <span className="mod-stat-change">
-                                    {previewData.WEIGHT > itemData.WEIGHT ? '+' : ''}
-                                    {(previewData.WEIGHT - itemData.WEIGHT).toFixed(1)}
-                                </span>
-                            )}
-                        </span>
-                    </div>
-                    <div className="mod-stat">
-                        <span className="mod-stat-label">{t('cost')}</span>
-                        <span className="mod-stat-value">{itemData.COST || 0}</span>
-                    </div>
+                    {/* Armor: Resistances row (3 items) + Weight/Cost row (2 items) */}
+                    {!itemData.DAMAGE_RATING && (itemData.PHYSICAL_RES !== undefined || itemData.ENERGY_RES !== undefined || itemData.RADIATION_RES !== undefined) && (
+                        <>
+                            <div className="mod-stat-row">
+                                {itemData.PHYSICAL_RES !== undefined && (
+                                    <div className="mod-stat">
+                                        <span className="mod-stat-label">{t('physical')}</span>
+                                        <span className="mod-stat-value">
+                                            {itemData.PHYSICAL_RES}
+                                            {previewData.PHYSICAL_RES !== itemData.PHYSICAL_RES && (
+                                                <span className="mod-stat-change">
+                                                    {previewData.PHYSICAL_RES > itemData.PHYSICAL_RES ? '+' : ''}
+                                                    {previewData.PHYSICAL_RES - itemData.PHYSICAL_RES}
+                                                </span>
+                                            )}
+                                        </span>
+                                    </div>
+                                )}
+                                {itemData.ENERGY_RES !== undefined && (
+                                    <div className="mod-stat">
+                                        <span className="mod-stat-label">{t('energy')}</span>
+                                        <span className="mod-stat-value">
+                                            {itemData.ENERGY_RES}
+                                            {previewData.ENERGY_RES !== itemData.ENERGY_RES && (
+                                                <span className="mod-stat-change">
+                                                    {previewData.ENERGY_RES > itemData.ENERGY_RES ? '+' : ''}
+                                                    {previewData.ENERGY_RES - itemData.ENERGY_RES}
+                                                </span>
+                                            )}
+                                        </span>
+                                    </div>
+                                )}
+                                {itemData.RADIATION_RES !== undefined && (
+                                    <div className="mod-stat">
+                                        <span className="mod-stat-label">{t('radiation')}</span>
+                                        <span className="mod-stat-value">
+                                            {itemData.RADIATION_RES}
+                                            {previewData.RADIATION_RES !== itemData.RADIATION_RES && (
+                                                <span className="mod-stat-change">
+                                                    {previewData.RADIATION_RES > itemData.RADIATION_RES ? '+' : ''}
+                                                    {previewData.RADIATION_RES - itemData.RADIATION_RES}
+                                                </span>
+                                            )}
+                                        </span>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="mod-stat-row">
+                                <div className="mod-stat">
+                                    <span className="mod-stat-label">{t('weight')}</span>
+                                    <span className="mod-stat-value">
+                                        {itemData.WEIGHT}kg
+                                        {previewData.WEIGHT !== itemData.WEIGHT && (
+                                            <span className="mod-stat-change">
+                                                {previewData.WEIGHT > itemData.WEIGHT ? '+' : ''}
+                                                {(previewData.WEIGHT - itemData.WEIGHT).toFixed(1)}
+                                            </span>
+                                        )}
+                                    </span>
+                                </div>
+                                <div className="mod-stat">
+                                    <span className="mod-stat-label">{t('cost')}</span>
+                                    <span className="mod-stat-value">{itemData.COST || 0}</span>
+                                </div>
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 {/* Mod Slots */}
@@ -369,7 +447,8 @@ function ModifyItemPopup({ isOpen, onClose, characterItem, itemData }) {
                                         }
                                     }}
                                 >
-                                    <option value="">{t('none')}</option>
+                                    {/* Robot parts must always have a mod, so don't show "none" option */}
+                                    {!isRobotPart && <option value="">{t('none')}</option>}
                                     {modsForSlot.map(mod => (
                                         <option key={mod.ID} value={mod.ID}>
                                             {t(mod.ID)}

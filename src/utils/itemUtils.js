@@ -73,12 +73,15 @@ function applyEffect(modifiedData, effect) {
             modifiedData.FIRE_RATE = (Number(modifiedData.FIRE_RATE) || 0) + Number(value)
             break
         case 'physicalResAdd':
+        case 'damageReductionPhysicalAdd':
             modifiedData.PHYSICAL_RES = (Number(modifiedData.PHYSICAL_RES) || 0) + Number(value)
             break
         case 'energyResAdd':
+        case 'damageReductionEnergyAdd':
             modifiedData.ENERGY_RES = (Number(modifiedData.ENERGY_RES) || 0) + Number(value)
             break
         case 'radiationResAdd':
+        case 'damageReductionRadiationAdd':
             modifiedData.RADIATION_RES = (Number(modifiedData.RADIATION_RES) || 0) + Number(value)
             break
         case 'carryWeightAdd':
@@ -370,25 +373,31 @@ export function removeModFromItem(items, itemToModify, modId) {
  * Get display name for item
  * @param {Object} item - Item object
  * @param {Function} t - Translation function
+ * @param {Object} dataManager - Optional data manager to check if item is unacquirable
  * @returns {string} Display name
  */
-export function getDisplayName(item, t) {
+export function getDisplayName(item, t, dataManager = null) {
     if (!item) return ''
-    
+
     // Use custom name if available
     if (item.customName) {
         return item.customName
     }
-    
+
     // Get base name
     const baseId = item.id.split('_')[0]
     const baseName = t(baseId)
-    
+
     // No mods, return base name
     if (!item.mods || item.mods.length === 0) {
         return baseName
     }
-    
+
+    // Robot parts always have exactly one mod, so don't show [+1]
+    if (dataManager && dataManager.isUnacquirable(baseId)) {
+        return baseName
+    }
+
     // Show mod count
     return `${baseName} [+${item.mods.length}]`
 }

@@ -108,9 +108,10 @@ src/
 ├── components/      # React components (tabs, inventory, popups, etc.)
 ├── contexts/        # React contexts (Character, Popup, Tooltip)
 ├── hooks/           # Custom React hooks (useI18n, useDataManager, etc.)
-├── js/              # Legacy vanilla JS (kept for reference)
+├── js/              # Shared utilities (constants, gameRules, i18n)
 ├── locales/         # i18n translation files (en.json, it.json)
-└── styles/          # CSS styles
+├── styles/          # CSS styles
+└── utils/           # Utility functions (itemUtils, etc.)
 
 public/
 ├── data/            # Game data in CSV files

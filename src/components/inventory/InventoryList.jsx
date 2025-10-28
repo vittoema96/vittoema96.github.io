@@ -55,7 +55,7 @@ function InventoryList({
         }
 
         // Apparel
-        if (['clothing', 'headgear', 'outfit'].includes(itemType) || itemType.endsWith('Armor')) {
+        if (['clothing', 'headgear', 'outfit', 'robotParts'].includes(itemType) || itemType.endsWith('Armor')) {
             return ApparelCard
         }
 
@@ -117,8 +117,8 @@ function InventoryList({
                         comparison = bDamage - aDamage
                     }
                     // Apparel - sort by maximum damage reduction value, then by sum if equal
-                    else if ((['clothing', 'headgear', 'outfit'].includes(aType) || aType.endsWith('Armor')) &&
-                             (['clothing', 'headgear', 'outfit'].includes(bType) || bType.endsWith('Armor'))) {
+                    else if ((['clothing', 'headgear', 'outfit', 'robotParts'].includes(aType) || aType.endsWith('Armor')) &&
+                             (['clothing', 'headgear', 'outfit', 'robotParts'].includes(bType) || bType.endsWith('Armor'))) {
                         const aPhysical = aData.PHYSICAL_RES || 0
                         const aEnergy = aData.ENERGY_RES || 0
                         const aRadiation = aData.RADIATION_RES || 0

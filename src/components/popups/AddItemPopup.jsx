@@ -13,6 +13,8 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
     const [quantity, setQuantity] = useState(1)
     const [availableItems, setAvailableItems] = useState([])
     const [typeFilter, setTypeFilter] = useState('all') // all, or specific subtype
+    const [rarityFilter, setRarityFilter] = useState('all') // all, or max rarity level
+    const [shouldBuy, setShouldBuy] = useState(false) // Whether to deduct caps
 
     const t = useI18n()
     const { character, updateCharacter } = useCharacter()
@@ -64,7 +66,7 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
         })
     }
 
-    // Update available items when itemType, typeFilter, or dataManager changes
+    // Update available items when itemType, typeFilter, rarityFilter, or dataManager changes
     useEffect(() => {
         if (!isOpen || !dataManager.getItem) {
             setAvailableItems([])
@@ -126,6 +128,15 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
             })
         }
 
+        // Filter by rarity (show items with rarity <= selected rarity)
+        if (rarityFilter !== 'all') {
+            const maxRarity = parseInt(rarityFilter)
+            allItems = allItems.filter(item => {
+                const itemRarity = parseInt(item.RARITY) || 0
+                return itemRarity <= maxRarity
+            })
+        }
+
         // Add side variations for items that need them (arms/legs)
         const itemsWithSides = []
         allItems.forEach(item => {
@@ -168,7 +179,7 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
             setSelectedItemId(sortedItems[0].DISPLAY_ID)
             setSelectedItemType(sortedItems[0].TYPE)
         }
-    }, [isOpen, itemType, typeFilter])
+    }, [isOpen, itemType, typeFilter, rarityFilter])
 
     // Handle dialog open/close
     useEffect(() => {
@@ -180,6 +191,8 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
             // Reset form when opening
             setQuantity(1)
             setTypeFilter('all') // Reset filter when popup opens
+            setRarityFilter('all') // Reset rarity filter when popup opens
+            setShouldBuy(false) // Reset buy checkbox when popup opens
         } else {
             dialog.close()
         }
@@ -189,6 +202,7 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
     useEffect(() => {
         if (isOpen) {
             setTypeFilter('all')
+            setRarityFilter('all')
         }
     }, [itemType, isOpen])
 
@@ -215,6 +229,24 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
 
     const handleConfirm = () => {
         if (!selectedItemId || !selectedItemType || quantity <= 0) return
+
+        // Get the selected item data to check cost
+        const selectedItem = availableItems.find(item => item.DISPLAY_ID === selectedItemId)
+        if (!selectedItem) return
+
+        // Calculate total cost if buying
+        let totalCost = 0
+        if (shouldBuy) {
+            const itemCost = parseInt(selectedItem.COST) || 0
+            totalCost = itemCost * quantity
+
+            // Check if character has enough caps
+            const currentCaps = character.caps || 0
+            if (currentCaps < totalCost) {
+                // Not enough caps - could show an alert here
+                return
+            }
+        }
 
         // Add item to character inventory
         const newItem = {
@@ -245,7 +277,13 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
             updatedItems = [...existingItems, newItem]
         }
 
-        updateCharacter({ items: updatedItems })
+        // Deduct caps if buying
+        const updates = { items: updatedItems }
+        if (shouldBuy) {
+            updates.caps = (character.caps || 0) - totalCost
+        }
+
+        updateCharacter(updates)
         handleClose()
     }
 
@@ -277,7 +315,7 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
 
                 {/* Type Filter - show subcategories for the current category */}
                 <div className="row" style={{ marginBottom: '1rem' }}>
-                    <label style={{ marginRight: '0.5rem' }}>{t('filterByType')}:</label>
+                    <label style={{ marginRight: '0.5rem' }}>{t('type')}:</label>
                     <select
                         value={typeFilter}
                         onChange={(e) => setTypeFilter(e.target.value)}
@@ -289,6 +327,23 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
                                 {formatCategoryName(subtype)}
                             </option>
                         ))}
+                    </select>
+                </div>
+
+                {/* Rarity Filter */}
+                <div className="row" style={{ marginBottom: '1rem' }}>
+                    <label style={{ marginRight: '0.5rem' }}>{t('rarity')}:</label>
+                    <select
+                        value={rarityFilter}
+                        onChange={(e) => setRarityFilter(e.target.value)}
+                        aria-label="Rarity filter"
+                    >
+                        <option value="all">{t('all')}</option>
+                        <option value="0">{t('rarity0')}</option>
+                        <option value="1">{t('rarity1')}</option>
+                        <option value="2">{t('rarity2')}</option>
+                        <option value="3">{t('rarity3')}</option>
+                        <option value="4">{t('rarity4')}</option>
                     </select>
                 </div>
 
@@ -329,6 +384,38 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
                         style={{ width: '5rem' }}
                     />
                 </div>
+
+                {/* Buy checkbox and price */}
+                <div className="row" style={{ marginTop: '1rem', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        {t('buy')}?
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                        <input
+                            type="checkbox"
+                            className="themed-svg"
+                            data-icon="caps"
+                            checked={shouldBuy}
+                            onChange={(e) => setShouldBuy(e.target.checked)}
+                            style={{
+                                width: '1.2rem',
+                                height: '1.2rem'
+                            }}
+                        />
+                        <span style={{
+                            color: shouldBuy ? 'var(--primary-color)' : 'var(--primary-color-very-translucent)',
+                            fontWeight: 'bold'
+                        }}>
+                            {(() => {
+                                const selectedItem = availableItems.find(item => item.DISPLAY_ID === selectedItemId)
+                                const itemCost = selectedItem ? (parseInt(selectedItem.COST) || 0) : 0
+                                const totalCost = itemCost * quantity
+                                return totalCost
+                            })()}
+                        </span>
+                    </label>
+                </div>
+
                 <hr />
                 
                 <footer>

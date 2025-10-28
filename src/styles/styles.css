@@ -656,6 +656,22 @@ input[type='text'] {
     font-size: 0.8rem;
 }
 
+/* Mr. Handy specific positioning - stats are in 4 corners, container is shorter */
+.activeApparel--mrhandy {
+    min-height: 300px;
+    max-height: 400px;
+}
+
+.activeApparel--mrhandy .apparel-stat.leftArm,
+.activeApparel--mrhandy .apparel-stat.rightArm {
+    top: 5rem; /* 8rem - 3rem */
+}
+
+.activeApparel--mrhandy .apparel-stat.leftLeg,
+.activeApparel--mrhandy .apparel-stat.rightLeg {
+    top: 17rem; /* 20rem - 3rem */
+}
+
 .apparel-vaultboy {
     position: absolute;
     width: 80%;
@@ -664,6 +680,11 @@ input[type='text'] {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 0;
+}
+
+/* Mr. Handy doesn't need the extra top offset since stats are in 4 corners */
+.apparel-vaultboy.apparel-mrhandy {
+    top: 50%;
 }
 
 /**********************
@@ -1978,13 +1999,19 @@ dialog::backdrop {
 
 /* Compact Stats Bar */
 .mod-stats-bar {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 0.35rem;
     padding: 0.5rem;
     background: color-mix(in srgb, var(--primary-color) 5%, transparent);
     border: 1px solid color-mix(in srgb, var(--primary-color) 20%, transparent);
     border-radius: 3px;
+}
+
+.mod-stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.35rem;
 }
 
 .mod-stat {

@@ -19,6 +19,13 @@ export const useInventoryActions = () => {
     const dataManager = useDataManager()
 
     const sellItem = (characterItem, itemData) => {
+        // Prevent selling unacquirable items (robot parts, gun bash, etc.)
+        const [itemId] = characterItem.id.split('_')
+        if (dataManager.isUnacquirable(itemId)) {
+            showAlert('Cannot sell this item!')
+            return
+        }
+
         // Use modified data for price calculation
         const baseId = characterItem.id.split('_')[0]
         const modifiedData = getModifiedItemData(dataManager, baseId, characterItem.mods)
@@ -51,6 +58,13 @@ export const useInventoryActions = () => {
     }
 
     const deleteItem = (characterItem, itemData) => {
+        // Prevent deleting unacquirable items (robot parts, gun bash, etc.)
+        const [itemId] = characterItem.id.split('_')
+        if (dataManager.isUnacquirable(itemId)) {
+            showAlert('Cannot delete this item!')
+            return
+        }
+
         showConfirm(
             `Delete ${characterItem.quantity}x ${itemData?.ID || characterItem.id}? This action cannot be undone.`,
             () => {
@@ -132,6 +146,7 @@ export const useInventoryActions = () => {
         const itemIsMrHandyWeapon = isMrHandyWeapon(characterItem.id)
         const itemIsWeapon = isWeapon(characterItem.type)
         const itemIsApparel = isApparel(characterItem.type)
+        const itemIsRobotPart = characterItem.type === 'robotParts'
 
         if (isMrHandy) {
             // Mr Handy can only equip Mr Handy exclusive weapons
@@ -139,8 +154,8 @@ export const useInventoryActions = () => {
                 showAlert('Mr Handy cannot equip regular weapons. Only Mr Handy exclusive weapons can be used.')
                 return
             }
-            // Mr Handy cannot equip any apparel
-            if (itemIsApparel) {
+            // Mr Handy cannot equip any apparel except robot parts
+            if (itemIsApparel && !itemIsRobotPart) {
                 showAlert('Mr Handy cannot equip armor or clothing.')
                 return
             }
@@ -148,6 +163,11 @@ export const useInventoryActions = () => {
             // Non-Mr Handy characters cannot equip Mr Handy exclusive weapons
             if (itemIsMrHandyWeapon) {
                 showAlert('Only Mr Handy can use this weapon.')
+                return
+            }
+            // Non-Mr Handy characters cannot equip robot parts
+            if (itemIsRobotPart) {
+                showAlert('Only Mr Handy can equip robot parts.')
                 return
             }
         }
@@ -160,6 +180,13 @@ export const useInventoryActions = () => {
         const locations = getSpecificLocations(itemData.LOCATIONS_COVERED, side)
 
         if (isCurrentlyEquipped) {
+            // Prevent unequipping unacquirable items (robot parts)
+            const [itemId] = characterItem.id.split('_')
+            if (dataManager.isUnacquirable(itemId)) {
+                showAlert('Cannot unequip this item!')
+                return
+            }
+
             // Unequip the item
             const updatedItems = character.items.map(item => {
                 if (item.id === characterItem.id) {

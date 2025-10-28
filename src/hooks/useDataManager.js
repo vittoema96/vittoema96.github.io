@@ -86,11 +86,12 @@ export const useDataManager = () => {
                 }
 
                 // Load apparel data
-                const [armor, clothing] = await Promise.all([
+                const [armor, clothing, robotParts] = await Promise.all([
                     parseCSV('data/apparel/armor.csv'),
                     parseCSV('data/apparel/clothing.csv'),
+                    parseCSV('data/apparel/robotParts.csv'),
                 ])
-                const apparel = { ...armor, ...clothing }
+                const apparel = { ...armor, ...clothing, ...robotParts }
 
                 // Load aid data
                 const [food, drinks, meds] = await Promise.all([
@@ -116,7 +117,8 @@ export const useDataManager = () => {
                     armorMaterialMods,
                     armorImprovementMods,
                     ballisticWeaveMods,
-                    vaultSuitMods
+                    vaultSuitMods,
+                    robotArmorMods
                 ] = await Promise.all([
                     parseCSV('data/mods/smallGunMods.csv'),
                     parseCSV('data/mods/bigGunMods.csv'),
@@ -126,6 +128,7 @@ export const useDataManager = () => {
                     parseCSV('data/mods/armorImprovementMods.csv'),
                     parseCSV('data/mods/ballisticWeaveMods.csv'),
                     parseCSV('data/mods/vaultSuitMods.csv'),
+                    parseCSV('data/mods/robotArmorMods.csv'),
                 ])
 
                 const mods = {
@@ -137,6 +140,7 @@ export const useDataManager = () => {
                     ...armorImprovementMods,
                     ...ballisticWeaveMods,
                     ...vaultSuitMods,
+                    ...robotArmorMods,
                 }
 
                 // Combine all item data (including mods)
@@ -187,6 +191,7 @@ export const useDataManager = () => {
             'leatherArmor',
             'metalArmor',
             'combatArmor',
+            'robotParts',
         ],
         aid: ['food', 'drinks', 'meds'],
         other: ['ammo'],
@@ -207,7 +212,11 @@ export const useDataManager = () => {
             'weaponWeaponStockOneHanded',
             'weaponBayonet',
             'weaponMissileLauncherBayonet',
-            'weaponShredder'
+            'weaponShredder',
+            'robotPartOptics',
+            'robotPartBody',
+            'robotPartArms',
+            'robotPartThrusters'
         ]
     }
 

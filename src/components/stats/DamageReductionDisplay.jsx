@@ -48,9 +48,10 @@ function DamageReductionDisplay() {
     }
 
     const bodyParts = getBodyPartsToDisplay()
+    const isMrHandy = character?.origin === 'mrHandy'
 
     return (
-        <div className="activeApparel l-spaceAround">
+        <div className={`activeApparel l-spaceAround ${isMrHandy ? 'activeApparel--mrhandy' : ''}`}>
             {bodyParts.map(({ key, className, drKey }) => (
                 <div key={key} className={`apparel-stat ${className}`}>
                     <div>{t(key)}</div>
@@ -74,7 +75,7 @@ function DamageReductionDisplay() {
                     </div>
                 </div>
             ))}
-            <div className="apparel-vaultboy themed-svg" data-icon={characterIcon}></div>
+            <div className={`apparel-vaultboy themed-svg ${isMrHandy ? 'apparel-mrhandy' : ''}`} data-icon={characterIcon}></div>
         </div>
     )
 }

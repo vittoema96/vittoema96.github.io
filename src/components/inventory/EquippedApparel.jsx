@@ -1,6 +1,7 @@
 import React from 'react'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
+import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { BODY_PARTS } from '../../js/constants.js'
 
 /**
@@ -10,6 +11,7 @@ import { BODY_PARTS } from '../../js/constants.js'
 function EquippedApparel({ equippedItems }) {
     const t = useI18n()
     const dataManager = useDataManager()
+    const { character } = useCharacter()
 
     // Group equipped items by body part
     const itemsByBodyPart = {}
@@ -21,6 +23,9 @@ function EquippedApparel({ equippedItems }) {
         const [itemId, side] = item.id.split('_')
         const itemData = dataManager.getItem(itemId)
         if (!itemData || !itemData.LOCATIONS_COVERED) return
+
+        // Skip robot parts if origin is not Mr. Handy
+        if (item.type === 'robotParts' && character.origin !== 'mrHandy') return
 
         // Get locations this item covers
         const locations = []

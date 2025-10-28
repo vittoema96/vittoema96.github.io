@@ -1,6 +1,7 @@
 import React from 'react'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
+import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { getModifiedItemData } from '../../utils/itemUtils.js'
 import Tag from '../common/Tag.jsx'
 
@@ -12,6 +13,7 @@ import Tag from '../common/Tag.jsx'
 function EquippedArmorEffects({ equippedItems }) {
     const t = useI18n()
     const dataManager = useDataManager()
+    const { character } = useCharacter()
 
     // Whitelist of global effects to show in Active Effects
     const GLOBAL_EFFECTS = [
@@ -30,6 +32,9 @@ function EquippedArmorEffects({ equippedItems }) {
         const bonusStats = {} // Track cumulative bonus stats
 
         equippedItems.forEach(item => {
+            // Skip robot parts if origin is not Mr. Handy
+            if (item.type === 'robotParts' && character.origin !== 'mrHandy') return
+
             const [itemId] = item.id.split('_')
 
             // Get modified item data (with mods applied)
@@ -68,10 +73,8 @@ function EquippedArmorEffects({ equippedItems }) {
                 })
             }
 
-            // Process intrinsic EFFECTS (from base item)
-            processEffectsArray(modifiedItemData.EFFECTS)
-
-            // Process MOD_EFFECTS (effects added by mods via effectAdd/qualityAdd)
+            // Process only MOD_EFFECTS (effects added by mods via effectAdd/qualityAdd)
+            // Don't process base EFFECTS to avoid double counting
             processEffectsArray(modifiedItemData.MOD_EFFECTS)
 
         })

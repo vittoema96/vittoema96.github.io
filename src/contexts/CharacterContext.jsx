@@ -23,7 +23,12 @@ const LOCATION_MAP = {
     },
     legs: () => ['leftLeg', 'rightLeg'],
     torso: () => ['torso'],
-    head: () => ['head']
+    head: () => ['head'],
+    // Robot parts mapping (for Mr. Handy)
+    robotOptics: () => ['head'],
+    robotBody: () => ['torso'],
+    robotArms: () => ['leftArm', 'rightArm'],
+    robotThrusters: () => ['leftLeg', 'rightLeg']
 }
 
 export const useCharacter = () => {
@@ -161,6 +166,11 @@ export function CharacterProvider({ children }) {
         character.items.forEach(item => {
             // Only count equipped items
             if (!item.equipped) {
+                return
+            }
+
+            // Skip robot parts if origin is not Mr. Handy
+            if (item.type === 'robotParts' && character.origin !== 'mrHandy') {
                 return
             }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { SKILLS } from '../../js/constants.js'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
@@ -14,7 +14,46 @@ function InvTab() {
     const t = useI18n()
     const dataManager = useDataManager()
     const { showAddItemPopup } = usePopup()
-    const { character } = useCharacter()
+    const { character, updateCharacter } = useCharacter()
+
+    // Ensure robot parts are in inventory for Mr Handy characters
+    useEffect(() => {
+        if (character.origin === 'mrHandy') {
+            const robotPartIds = [
+                'robotPartOptics',
+                'robotPartBody',
+                'robotPartArms',
+                'robotPartThrusters'
+            ]
+
+            let needsUpdate = false
+            const updatedItems = [...character.items]
+
+            robotPartIds.forEach(partId => {
+                const existingPart = updatedItems.find(item => item.id === partId)
+
+                if (!existingPart) {
+                    // Add robot part with default mod
+                    updatedItems.push({
+                        id: partId,
+                        type: 'robotParts',
+                        quantity: 1,
+                        equipped: true,
+                        mods: ['modRobotPlatingStandard']
+                    })
+                    needsUpdate = true
+                } else if (!existingPart.mods || existingPart.mods.length === 0) {
+                    // Ensure existing part has default mod
+                    existingPart.mods = ['modRobotPlatingStandard']
+                    needsUpdate = true
+                }
+            })
+
+            if (needsUpdate) {
+                updateCharacter({ items: updatedItems })
+            }
+        }
+    }, [character.origin]) // Only run when origin changes
 
     const handleSubTabClick = (subTab) => {
         setActiveSubTab(subTab)
@@ -31,9 +70,15 @@ function InvTab() {
         const typeMap = dataManager.getItemTypeMap()
         const typesInCategory = typeMap[category] || []
 
-        let items = character.items.filter(item =>
-            typesInCategory.includes(item.type)
-        )
+        let items = character.items.filter(item => {
+            // Filter by category type
+            if (!typesInCategory.includes(item.type)) return false
+
+            // Hide robot parts if origin is not Mr. Handy
+            if (item.type === 'robotParts' && character.origin !== 'mrHandy') return false
+
+            return true
+        })
 
         // Add special items for weapon category
         if (category === 'weapon') {
@@ -108,13 +153,15 @@ function InvTab() {
             })
         }
 
+        // Robot parts are already in character.items (added by useEffect)
+
         return items
     }
 
     // Item type mapping - matches your original exactly
     const itemTypeMap = {
         weapon: ['smallGuns', 'energyWeapons', 'bigGuns', 'meleeWeapons', 'explosives', 'throwing', 'unarmed'],
-        apparel: ['clothing', 'outfit', 'headgear', 'raiderArmor', 'leatherArmor', 'metalArmor', 'combatArmor'],
+        apparel: ['clothing', 'outfit', 'headgear', 'raiderArmor', 'leatherArmor', 'metalArmor', 'combatArmor', 'robotParts'],
         aid: ['food', 'drinks', 'meds'],
         other: ['ammo']
     }

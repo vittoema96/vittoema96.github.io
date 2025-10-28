@@ -160,8 +160,8 @@ function InventoryRow({
     const badges = showBadges ? getBadges() : []
 
     // Calculate text length for dynamic font sizing
-    // Use getDisplayName to show [+N] for modded items
-    const itemName = getDisplayName(characterItem, t) + (side ? ` (${t(side)})` : '')
+    // Use getDisplayName to show [+N] for modded items (except robot parts)
+    const itemName = getDisplayName(characterItem, t, dataManager) + (side ? ` (${t(side)})` : '')
     const nameLength = itemName.length
     let nameSizeClass = ''
     if (nameLength > 50) {
