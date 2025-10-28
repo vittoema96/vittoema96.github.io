@@ -19,10 +19,7 @@
 ## 🎯 Medium Priority
 
 ### Armor System
-- [ ] **Armor dataset** - Complete armor data implementation
-- [ ] **VaultBoy body parts** - Visual representation of equipped armor
-- [ ] **Armor inventory** - Full armor equipping system
-- [ ] **Armor mods** - Modification system for armor
+- [ ] **Armor dataset** - Complete armor data implementation (names for synthetic pieces + power armor)
 
 ### Map System
 - [ ] **Map markers** - Add interactive markers
@@ -31,7 +28,6 @@
 - [ ] **General map improvements** - Polish and features
 
 ### Technical Improvements
-- [ ] **Error handling** - Better try-catch blocks and user feedback
 - [ ] **Performance** - Lazy loading for data files
 - [ ] **Testing** - Add unit tests for core functionality
 
