@@ -4,6 +4,8 @@ import InvTab from './tabs/InvTab.jsx'
 import DataTab from './tabs/DataTab.jsx'
 import MapTab from './tabs/MapTab.jsx'
 import SettingsTab from './tabs/SettingsTab.jsx'
+import IconTextPair from './common/IconTextPair.jsx'
+import TabButton from './common/TabButton.jsx'
 
 import { useCharacter } from '../contexts/CharacterContext.jsx'
 import { usePopup } from '../contexts/PopupContext.jsx'
@@ -49,18 +51,9 @@ function MainApp() {
                     style={{ cursor: 'pointer' }}
                     title="Click to edit HP, Caps, and Luck"
                 >
-                    <div className="icon-text-pair">
-                        <div className="themed-svg" data-icon="hp"></div>
-                        <div>{character.currentHp} / {maxHp}</div>
-                    </div>
-                    <div className="icon-text-pair">
-                        <div className="themed-svg" data-icon="caps"></div>
-                        <div>{character.caps || 0}</div>
-                    </div>
-                    <div className="icon-text-pair">
-                        <div className="themed-svg" data-icon="weight"></div>
-                        <div>{currentWeight} / {maxWeight}</div>
-                    </div>
+                    <IconTextPair icon="hp" text={`${character.currentHp} / ${maxHp}`} />
+                    <IconTextPair icon="caps" text={character.caps || 0} />
+                    <IconTextPair icon="weight" text={`${currentWeight} / ${maxWeight}`} />
                 </div>
             </header>
 
@@ -69,17 +62,15 @@ function MainApp() {
             {/* Tab Navigation */}
             <nav className="navigator">
                 {tabs.map(tab => (
-                    <button
+                    <TabButton
                         key={tab.id}
-                        className={`tab-button ${tab.mini ? 'mini-tab-button' : ''} ${activeTab === tab.id ? 'active' : ''}`}
+                        id={tab.id}
+                        label={tab.label}
+                        active={activeTab === tab.id}
+                        mini={tab.mini}
                         onClick={() => setActiveTab(tab.id)}
-                    >
-                        {tab.id === 'settings' ? (
-                            <i className="fas fa-gear"></i>
-                        ) : (
-                            tab.label
-                        )}
-                    </button>
+                        icon={tab.id === 'settings' ? <i className="fas fa-gear"></i> : null}
+                    />
                 ))}
             </nav>
 

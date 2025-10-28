@@ -91,7 +91,7 @@ function EquippedArmorEffects({ equippedItems }) {
     }
 
     return (
-        <div className="equipped-armor-effects">
+        <div className="equipped-armor-effects section-label">
             <div className="equipped-armor-effects__list">
                 {effects.map(({ effectId, effectValue, count }, index) => {
                     // Build the display text

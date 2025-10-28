@@ -79,7 +79,7 @@ function EquippedApparel({ equippedItems }) {
     }
 
     return (
-        <div className="equipped-apparel">
+        <div className="equipped-apparel section-label">
             <div className="equipped-apparel__grid">
                 {Object.values(BODY_PARTS).map(bodyPart => {
                     const items = itemsByBodyPart[bodyPart]

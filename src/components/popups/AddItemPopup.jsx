@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useI18n } from '../../hooks/useI18n.js'
-import { useCharacter } from '../../contexts/CharacterContext.jsx'
-import { isSameConfiguration } from '../../utils/itemUtils.js'
+import React, {useEffect, useRef, useState} from 'react'
+import {useI18n} from '../../hooks/useI18n.js'
+import {useCharacter} from '../../contexts/CharacterContext.jsx'
+import {useDialog} from '../../hooks/useDialog.js'
+import {isSameConfiguration} from '../../utils/itemUtils.js'
 
 /**
  * Add Item popup component for adding items to inventory
@@ -181,20 +182,16 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
         }
     }, [isOpen, itemType, typeFilter, rarityFilter])
 
-    // Handle dialog open/close
-    useEffect(() => {
-        const dialog = dialogRef.current
-        if (!dialog) return
+    // Use dialog hook for dialog management
+    const { handleBackdropClick: handleBackdrop, closeWithAnimation } = useDialog(dialogRef, isOpen, onClose)
 
+    // Reset form when opening
+    useEffect(() => {
         if (isOpen) {
-            dialog.showModal()
-            // Reset form when opening
             setQuantity(1)
-            setTypeFilter('all') // Reset filter when popup opens
-            setRarityFilter('all') // Reset rarity filter when popup opens
-            setShouldBuy(false) // Reset buy checkbox when popup opens
-        } else {
-            dialog.close()
+            setTypeFilter('all')
+            setRarityFilter('all')
+            setShouldBuy(false)
         }
     }, [isOpen])
 
@@ -207,24 +204,7 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
     }, [itemType, isOpen])
 
     const handleClose = () => {
-        const dialog = dialogRef.current
-        if (dialog && dialog.open) {
-            // Add closing animation class
-            dialog.classList.add('dialog-closing')
-            dialog.addEventListener(
-                'animationend',
-                () => {
-                    dialog.classList.remove('dialog-closing')
-                    if (dialog.open) {
-                        dialog.close()
-                    }
-                    onClose()
-                },
-                { once: true }
-            )
-        } else {
-            onClose()
-        }
+        closeWithAnimation()
     }
 
     const handleConfirm = () => {
@@ -292,16 +272,10 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
         setQuantity(val ? Math.max(1, val) : '')
     }
 
-    const handleBackdropClick = (e) => {
-        if (e.target === dialogRef.current) {
-            handleClose()
-        }
-    }
-
     return (
         <dialog
             ref={dialogRef}
-            onClick={handleBackdropClick}
+            onClick={handleBackdrop}
         >
             <div onClick={(e) => e.stopPropagation()}>
                 <header className="l-lastSmall">
@@ -409,8 +383,7 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
                             {(() => {
                                 const selectedItem = availableItems.find(item => item.DISPLAY_ID === selectedItemId)
                                 const itemCost = selectedItem ? (parseInt(selectedItem.COST) || 0) : 0
-                                const totalCost = itemCost * quantity
-                                return totalCost
+                                return itemCost * quantity
                             })()}
                         </span>
                     </label>

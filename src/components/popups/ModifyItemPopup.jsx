@@ -3,6 +3,7 @@ import { useI18n } from '../../hooks/useI18n.js'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { useTooltip } from '../../contexts/TooltipContext.jsx'
+import { useDialog } from '../../hooks/useDialog.js'
 import { getModifiedItemData } from '../../utils/itemUtils.js'
 import { MOD_SLOTS } from '../../js/constants.js'
 
@@ -162,36 +163,11 @@ function ModifyItemPopup({ isOpen, onClose, characterItem, itemData }) {
         handleClose()
     }
 
-    // Dialog management
-    useEffect(() => {
-        const dialog = dialogRef.current
-        if (!dialog) return
-
-        if (isOpen && !dialog.open) {
-            dialog.showModal()
-        } else if (!isOpen && dialog.open) {
-            dialog.close()
-        }
-    }, [isOpen])
+    // Use dialog hook for dialog management
+    const { closeWithAnimation } = useDialog(dialogRef, isOpen, onClose)
 
     const handleClose = () => {
-        const dialog = dialogRef.current
-        if (dialog && dialog.open) {
-            dialog.classList.add('dialog-closing')
-            dialog.addEventListener(
-                'animationend',
-                () => {
-                    dialog.classList.remove('dialog-closing')
-                    if (dialog.open) {
-                        dialog.close()
-                    }
-                    onClose()
-                },
-                { once: true }
-            )
-        } else {
-            onClose()
-        }
+        closeWithAnimation()
     }
 
     // Format effect string for display in tooltip

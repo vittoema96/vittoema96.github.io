@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useCharacter, getEffectiveSkillValue } from '../../contexts/CharacterContext.jsx'
+import { useCharacter, calculateEffectiveSkillValue } from '../../contexts/CharacterContext.jsx'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
+import { useDialog } from '../../hooks/useDialog.js'
 import { SKILL_TO_SPECIAL_MAP , SPECIAL } from '../../js/constants.js'
 import { getModifiedItemData } from '../../utils/itemUtils.js'
 
@@ -48,7 +49,7 @@ function D20Popup({ isOpen, onClose, skillId, characterItem = null, weaponId = n
     const [initialApCost, setInitialApCost] = useState(0) // Store AP cost from first roll
 
     // Calculations
-    const skillValue = getEffectiveSkillValue(character, skillId)
+    const skillValue = calculateEffectiveSkillValue(character, skillId)
     const hasSpecialty = character?.specialties?.includes(skillId) || false
     const activeSpecialId = isUsingLuck ? 'luck' : selectedSpecial
     const specialValue = character?.special?.[activeSpecialId] || 5
@@ -265,25 +266,8 @@ function D20Popup({ isOpen, onClose, skillId, characterItem = null, weaponId = n
         }
     }
 
-    // Dialog management
-    useEffect(() => {
-        const dialog = dialogRef.current
-        if (!dialog) return
-
-        if (isOpen && !dialog.open) {
-            dialog.showModal()
-        } else if (!isOpen && dialog.open) {
-            dialog.close()
-        }
-    }, [isOpen])
-
-    // Handle backdrop click
-    const handleBackdropClick = (e) => {
-        // Only close if clicking directly on the dialog backdrop (not on dialog content)
-        if (e.target === dialogRef.current) {
-            handleClose()
-        }
-    }
+    // Use dialog hook for dialog management
+    const { handleBackdropClick } = useDialog(dialogRef, isOpen, handleClose)
 
     if (!skillId) return null
 

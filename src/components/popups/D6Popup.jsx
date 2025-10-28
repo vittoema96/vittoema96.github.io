@@ -3,7 +3,9 @@ import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { useTooltip } from '../../contexts/TooltipContext.jsx'
+import { useDialog } from '../../hooks/useDialog.js'
 import { getModifiedItemData } from '../../utils/itemUtils.js'
+import { createInitialDiceState, createInitialExtraDiceState, rollRandomHitLocation } from '../../utils/diceUtils.js'
 
 function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAimed = false }) {
     const dialogRef = useRef(null)
@@ -62,21 +64,17 @@ function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAi
         { id: 'rightLeg', label: 'rightLeg', difficulty: 1 }
     ]
 
-    // Roll random hit location
-    const rollRandomHitLocation = () => {
-        const randomIndex = Math.floor(Math.random() * HIT_LOCATIONS.length)
-        return HIT_LOCATIONS[randomIndex].id
-    }
-
     // State
     const [hasRolled, setHasRolled] = useState(false)
-    const [diceClasses, setDiceClasses] = useState(Array(damageRating).fill(null))
-    const [diceActive, setDiceActive] = useState(Array(damageRating).fill(true))
-    const [diceRerolled, setDiceRerolled] = useState(Array(damageRating).fill(false))
+    const initialDiceState = createInitialDiceState(damageRating)
+    const [diceClasses, setDiceClasses] = useState(initialDiceState.classes)
+    const [diceActive, setDiceActive] = useState(initialDiceState.active)
+    const [diceRerolled, setDiceRerolled] = useState(initialDiceState.rerolled)
 
-    const [extraDiceClasses, setExtraDiceClasses] = useState(Array(extraDiceCount).fill(null))
-    const [extraDiceActive, setExtraDiceActive] = useState(Array(extraDiceCount).fill(false))
-    const [extraDiceRerolled, setExtraDiceRerolled] = useState(Array(extraDiceCount).fill(false))
+    const initialExtraDiceState = createInitialExtraDiceState(extraDiceCount)
+    const [extraDiceClasses, setExtraDiceClasses] = useState(initialExtraDiceState.classes)
+    const [extraDiceActive, setExtraDiceActive] = useState(initialExtraDiceState.active)
+    const [extraDiceRerolled, setExtraDiceRerolled] = useState(initialExtraDiceState.rerolled)
 
     const [ammoCost, setAmmoCost] = useState(0)
     const [ammoPayed, setAmmoPayed] = useState(0)
@@ -90,6 +88,26 @@ function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAi
 
     // Check if weapon has burst effect
     const hasBurst = (weaponData?.EFFECTS || []).some(effect => effect.startsWith('effectBurst'))
+
+    // Helper function to reset all state
+    const resetState = () => {
+        setHasRolled(false)
+        const diceState = createInitialDiceState(damageRating)
+        setDiceClasses(diceState.classes)
+        setDiceActive(diceState.active)
+        setDiceRerolled(diceState.rerolled)
+
+        const extraDiceState = createInitialExtraDiceState(extraDiceCount)
+        setExtraDiceClasses(extraDiceState.classes)
+        setExtraDiceActive(extraDiceState.active)
+        setExtraDiceRerolled(extraDiceState.rerolled)
+
+        setAmmoCost(ammoStep)
+        setAmmoPayed(0)
+        setLuckPayed(0)
+        setBurstEffectsUsed(0)
+        setHitLocation(rollRandomHitLocation())
+    }
 
     // Get current ammo count
     const getCurrentAmmo = () => {
@@ -337,18 +355,7 @@ function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAi
                     }
 
                     // Reset state
-                    setHasRolled(false)
-                    setDiceClasses(Array(damageRating).fill(null))
-                    setDiceActive(Array(damageRating).fill(true))
-                    setDiceRerolled(Array(damageRating).fill(false))
-                    setExtraDiceClasses(Array(extraDiceCount).fill(null))
-                    setExtraDiceActive(Array(extraDiceCount).fill(false))
-                    setExtraDiceRerolled(Array(extraDiceCount).fill(false))
-                    setAmmoCost(ammoStep)
-                    setAmmoPayed(0)
-                    setLuckPayed(0)
-                    setBurstEffectsUsed(0)
-                    setHitLocation(rollRandomHitLocation())
+                    resetState()
 
                     if (dialog.open) {
                         dialog.close()
@@ -362,46 +369,17 @@ function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAi
         }
     }
 
-    // Dialog management
-    useEffect(() => {
-        const dialog = dialogRef.current
-        if (!dialog) return
-
-        if (isOpen && !dialog.open) {
-            dialog.showModal()
-        } else if (!isOpen && dialog.open) {
-            dialog.close()
-        }
-    }, [isOpen])
-
-    // Handle backdrop click
-    const handleBackdropClick = (e) => {
-        if (e.target === dialogRef.current) {
-            handleClose()
-        }
-    }
+    // Use dialog hook for dialog management
+    const { handleBackdropClick } = useDialog(dialogRef, isOpen, handleClose)
 
     // Initialize state when popup opens
     useEffect(() => {
         if (isOpen && weaponData) {
-            setHasRolled(false)
-            setDiceClasses(Array(damageRating).fill(null))
-            setDiceActive(Array(damageRating).fill(true))
-            setDiceRerolled(Array(damageRating).fill(false))
-            setExtraDiceClasses(Array(extraDiceCount).fill(null))
-            setExtraDiceActive(Array(extraDiceCount).fill(false))
-            setExtraDiceRerolled(Array(extraDiceCount).fill(false))
-
-            // Set initial ammo cost
+            resetState()
+            // Set initial ammo cost for melee weapons
             if (isMelee(weaponData.TYPE)) {
                 setAmmoCost(t('na'))
-            } else {
-                setAmmoCost(ammoStep)
             }
-            setAmmoPayed(0)
-            setLuckPayed(0)
-            setBurstEffectsUsed(0)
-            setHitLocation(rollRandomHitLocation())
         }
     }, [isOpen, weaponId])
 

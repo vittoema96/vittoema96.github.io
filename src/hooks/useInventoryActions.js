@@ -1,13 +1,24 @@
 import { useCharacter } from '../contexts/CharacterContext.jsx'
 import { usePopup } from '../contexts/PopupContext.jsx'
 import { useDataManager } from './useDataManager.js'
-import { isMrHandyWeapon, isWeapon, isApparel } from '../js/gameRules.js'
 import {
     applyModToItem as applyModUtil,
     removeModFromItem as removeModUtil,
     getModifiedItemData,
     isSameConfiguration
 } from '../utils/itemUtils.js'
+import {
+    canEquipItem,
+    canUnequipItem,
+    canSellItem,
+    canDeleteItem
+} from '../utils/itemValidation.js'
+import {
+    mapItemLocations,
+    getItemLayer,
+    hasLocationOverlap,
+    hasLayerConflict
+} from '../utils/bodyLocations.js'
 
 /**
  * Custom hook for inventory actions (sell, delete, equip, use, etc.)
@@ -19,10 +30,10 @@ export const useInventoryActions = () => {
     const dataManager = useDataManager()
 
     const sellItem = (characterItem, itemData) => {
-        // Prevent selling unacquirable items (robot parts, gun bash, etc.)
-        const [itemId] = characterItem.id.split('_')
-        if (dataManager.isUnacquirable(itemId)) {
-            showAlert('Cannot sell this item!')
+        // Validate if item can be sold
+        const validation = canSellItem(characterItem.id, dataManager)
+        if (!validation.canSell) {
+            showAlert(validation.reason)
             return
         }
 
@@ -58,10 +69,10 @@ export const useInventoryActions = () => {
     }
 
     const deleteItem = (characterItem, itemData) => {
-        // Prevent deleting unacquirable items (robot parts, gun bash, etc.)
-        const [itemId] = characterItem.id.split('_')
-        if (dataManager.isUnacquirable(itemId)) {
-            showAlert('Cannot delete this item!')
+        // Validate if item can be deleted
+        const validation = canDeleteItem(characterItem.id, dataManager)
+        if (!validation.canDelete) {
+            showAlert(validation.reason)
             return
         }
 
@@ -82,94 +93,12 @@ export const useInventoryActions = () => {
         )
     }
 
-    // Helper function to determine item layer
-    const getItemLayer = (itemType) => {
-        if (itemType === 'clothing') {
-            return 'under'
-        }
-        if (itemType === 'outfit') {
-            return 'both'
-        }
-        if (itemType === 'headgear' || itemType.endsWith('Armor')) {
-            return 'over'
-        }
-        return 'both' // Default to both for safety
-    }
-
-    // Helper function to convert location strings to specific body parts (DRY principle)
-    const getSpecificLocations = (locationsCovered, side) => {
-        const locations = []
-        for (const location of locationsCovered) {
-            if (location === 'arm') {
-                // Handle side-specific arms (singular - for individual armor pieces)
-                if (side === 'left') {
-                    locations.push('leftArm')
-                } else if (side === 'right') {
-                    locations.push('rightArm')
-                } else {
-                    locations.push('leftArm', 'rightArm')
-                }
-            } else if (location === 'arms') {
-                // Handle both arms (plural - for clothing/outfits)
-                locations.push('leftArm', 'rightArm')
-            } else if (location === 'leg') {
-                // Handle side-specific legs (singular - for individual armor pieces)
-                if (side === 'left') {
-                    locations.push('leftLeg')
-                } else if (side === 'right') {
-                    locations.push('rightLeg')
-                } else {
-                    locations.push('leftLeg', 'rightLeg')
-                }
-            } else if (location === 'legs') {
-                // Handle both legs (plural - for clothing/outfits)
-                locations.push('leftLeg', 'rightLeg')
-            } else if (location === 'torso') {
-                locations.push('torso')
-            } else if (location === 'head') {
-                locations.push('head')
-            } else {
-                locations.push(location)
-            }
-        }
-        return locations
-    }
-
     const equipItem = (characterItem, itemData) => {
-        if (!itemData || !itemData.LOCATIONS_COVERED) {
-            showAlert('This item cannot be equipped.')
+        // Validate if item can be equipped
+        const validation = canEquipItem(character, characterItem, itemData)
+        if (!validation.canEquip) {
+            showAlert(validation.reason)
             return
-        }
-
-        // Mr Handy origin restrictions
-        const isMrHandy = character.origin === 'mrHandy'
-        const itemIsMrHandyWeapon = isMrHandyWeapon(characterItem.id)
-        const itemIsWeapon = isWeapon(characterItem.type)
-        const itemIsApparel = isApparel(characterItem.type)
-        const itemIsRobotPart = characterItem.type === 'robotParts'
-
-        if (isMrHandy) {
-            // Mr Handy can only equip Mr Handy exclusive weapons
-            if (itemIsWeapon && !itemIsMrHandyWeapon) {
-                showAlert('Mr Handy cannot equip regular weapons. Only Mr Handy exclusive weapons can be used.')
-                return
-            }
-            // Mr Handy cannot equip any apparel except robot parts
-            if (itemIsApparel && !itemIsRobotPart) {
-                showAlert('Mr Handy cannot equip armor or clothing.')
-                return
-            }
-        } else {
-            // Non-Mr Handy characters cannot equip Mr Handy exclusive weapons
-            if (itemIsMrHandyWeapon) {
-                showAlert('Only Mr Handy can use this weapon.')
-                return
-            }
-            // Non-Mr Handy characters cannot equip robot parts
-            if (itemIsRobotPart) {
-                showAlert('Only Mr Handy can equip robot parts.')
-                return
-            }
         }
 
         const isCurrentlyEquipped = characterItem.equipped === true
@@ -177,13 +106,13 @@ export const useInventoryActions = () => {
         const itemLayer = getItemLayer(characterItem.type)
 
         // Get locations this item covers
-        const locations = getSpecificLocations(itemData.LOCATIONS_COVERED, side)
+        const locations = mapItemLocations(itemData.LOCATIONS_COVERED, side)
 
         if (isCurrentlyEquipped) {
-            // Prevent unequipping unacquirable items (robot parts)
-            const [itemId] = characterItem.id.split('_')
-            if (dataManager.isUnacquirable(itemId)) {
-                showAlert('Cannot unequip this item!')
+            // Validate if item can be unequipped
+            const unequipValidation = canUnequipItem(characterItem.id, dataManager)
+            if (!unequipValidation.canUnequip) {
+                showAlert(unequipValidation.reason)
                 return
             }
 
@@ -213,24 +142,15 @@ export const useInventoryActions = () => {
                 const otherItemLayer = getItemLayer(item.type)
 
                 // Get locations covered by this other item
-                const otherLocations = getSpecificLocations(otherItemData.LOCATIONS_COVERED, otherSide)
+                const otherLocations = mapItemLocations(otherItemData.LOCATIONS_COVERED, otherSide)
 
                 // Check for location conflicts
-                const hasLocationConflict = locations.some(loc => otherLocations.includes(loc))
-                if (!hasLocationConflict) {
+                if (!hasLocationOverlap(locations, otherLocations)) {
                     return item // No location conflict, keep as is
                 }
 
                 // There's a location conflict - check layer compatibility
-                // clothing (under) + armor (over) = OK, no conflict
-                // outfit (both) + anything = CONFLICT
-                // armor (over) + armor (over) = CONFLICT
-                const layerConflict =
-                    itemLayer === 'both' || // outfit conflicts with everything
-                    otherItemLayer === 'both' || // outfit conflicts with everything
-                    (itemLayer === 'over' && otherItemLayer === 'over') // two armors conflict
-
-                if (layerConflict) {
+                if (hasLayerConflict(itemLayer, otherItemLayer)) {
                     return { ...item, equipped: false }
                 }
 

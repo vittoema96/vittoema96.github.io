@@ -451,10 +451,6 @@ export function canBeModified(itemData) {
     if (!itemData) return false
 
     // Check if item has AVAILABLE_MODS field and it's not empty
-    if (itemData.AVAILABLE_MODS && Array.isArray(itemData.AVAILABLE_MODS) && itemData.AVAILABLE_MODS.length > 0) {
-        return true
-    }
-
-    return false
+    return !!(itemData.AVAILABLE_MODS && Array.isArray(itemData.AVAILABLE_MODS) && itemData.AVAILABLE_MODS.length > 0);
 }
 

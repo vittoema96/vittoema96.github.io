@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useI18n } from '../../hooks/useI18n.js'
+import { useDialog } from '../../hooks/useDialog.js'
 
 function TradeItemPopup({ isOpen, onClose, characterItem, itemData, onConfirm }) {
     const dialogRef = useRef(null)
@@ -23,36 +24,12 @@ function TradeItemPopup({ isOpen, onClose, characterItem, itemData, onConfirm })
             setPrice(basePrice)
         }
     }, [isOpen, characterItem, itemData])
-    
-    useEffect(() => {
-        const dialog = dialogRef.current
-        if (!dialog) return
 
-        if (isOpen && !dialog.open) {
-            dialog.showModal()
-        } else if (!isOpen && dialog.open) {
-            dialog.close()
-        }
-    }, [isOpen])
+    // Use dialog hook for dialog management
+    const { handleBackdropClick, closeWithAnimation } = useDialog(dialogRef, isOpen, onClose)
 
     const handleClose = () => {
-        const dialog = dialogRef.current
-        if (dialog && dialog.open) {
-            dialog.classList.add('dialog-closing')
-            dialog.addEventListener(
-                'animationend',
-                () => {
-                    dialog.classList.remove('dialog-closing')
-                    if (dialog.open) {
-                        dialog.close()
-                    }
-                    onClose()
-                },
-                { once: true }
-            )
-        } else {
-            onClose()
-        }
+        closeWithAnimation()
     }
 
     const handleConfirm = () => {
@@ -62,12 +39,6 @@ function TradeItemPopup({ isOpen, onClose, characterItem, itemData, onConfirm })
         handleClose()
     }
 
-    const handleBackdropClick = (e) => {
-        if (e.target === dialogRef.current) {
-            handleClose()
-        }
-    }
-    
     const handleQuantityChange = (e) => {
         const value = e.target.value
 

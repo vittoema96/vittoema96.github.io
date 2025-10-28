@@ -468,8 +468,8 @@ input[type='text'] {
     user-select: none;
 }
 
-.equipped-apparel::after {
-    content: '▸ EQUIPPED ARMOR';
+/* Base style for section labels */
+.section-label::after {
     position: absolute;
     top: -0.6rem;
     left: 1rem;
@@ -479,6 +479,10 @@ input[type='text'] {
     font-size: 0.7rem;
     font-weight: bold;
     letter-spacing: 0.15em;
+}
+
+.equipped-apparel::after {
+    content: '▸ EQUIPPED ARMOR';
 }
 
 .equipped-apparel h2 {
@@ -585,15 +589,6 @@ input[type='text'] {
 
 .equipped-armor-effects::after {
     content: '▸ ACTIVE EFFECTS';
-    position: absolute;
-    top: -0.6rem;
-    left: 1rem;
-    background-color: var(--button-background);
-    padding: 0 0.5rem;
-    color: var(--primary-color);
-    font-size: 0.7rem;
-    font-weight: bold;
-    letter-spacing: 0.15em;
 }
 
 .equipped-armor-effects__list {

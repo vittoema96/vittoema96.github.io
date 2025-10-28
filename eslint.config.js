@@ -6,7 +6,6 @@ export default [
   prettier,
   {
     files: ['**/*.js'],
-    ignores: ['**/*.ts'],  // Only lint JS files for now
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { usePopup } from '../../contexts/PopupContext.jsx'
 import { useI18n } from '../../hooks/useI18n.js'
+import { useDialog } from '../../hooks/useDialog.js'
 import { SPECIAL } from '../../js/constants.js'
 
 /**
@@ -28,45 +29,11 @@ function StatAdjustmentPopup({ isOpen, onClose }) {
         }
     }, [isOpen, character])
 
-    // Dialog management
-    useEffect(() => {
-        const dialog = dialogRef.current
-        if (!dialog) return
+    // Use dialog hook for dialog management
+    const { handleBackdropClick, closeWithAnimation } = useDialog(dialogRef, isOpen, onClose)
 
-        if (isOpen && !dialog.open) {
-            dialog.showModal()
-        } else if (!isOpen && dialog.open) {
-            dialog.close()
-        }
-    }, [isOpen])
-
-    // Handle backdrop click to close
-    const handleBackdropClick = (e) => {
-        if (e.target === dialogRef.current) {
-            handleClose()
-        }
-    }
-
-    // Handle close with animation
     const handleClose = () => {
-        const dialog = dialogRef.current
-        if (dialog && dialog.open) {
-            // Add closing animation class
-            dialog.classList.add('dialog-closing')
-            dialog.addEventListener(
-                'animationend',
-                () => {
-                    dialog.classList.remove('dialog-closing')
-                    if (dialog.open) {
-                        dialog.close()
-                    }
-                    onClose()
-                },
-                { once: true }
-            )
-        } else {
-            onClose()
-        }
+        closeWithAnimation()
     }
 
     // Handle confirm - validation is done by input handlers, just need to check for empty values

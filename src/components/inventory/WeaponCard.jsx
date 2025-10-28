@@ -5,6 +5,7 @@ import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { usePopup } from '../../contexts/PopupContext.jsx'
 import { useI18n } from '../../hooks/useI18n.js'
 import { canBeModified } from '../../utils/itemUtils.js'
+import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo as checkHasEnoughAmmo } from '../../utils/weaponUtils.js'
 
 /**
  * Weapon card component with weapon-specific stats and actions
@@ -24,29 +25,10 @@ function WeaponCard({ characterItem, itemData, onAttack }) {
     // itemData is already modified by InventoryList, use it directly
     const weaponObj = itemData
 
-    // Check if weapon is gatling (uses 10 ammo per shot)
-    const isGatling = (weaponObj.QUALITIES || []).includes('qualityGatling')
-    const ammoPerShot = isGatling ? 10 : 1
-
-    // Get ammo count
-    const getAmmoCount = () => {
-        if (weaponObj.AMMO_TYPE === 'na') return '-'
-        if (weaponObj.AMMO_TYPE === 'self') return characterItem.quantity
-
-        // Find ammo in character items
-        const ammoItem = character.items?.find(item => item.id === weaponObj.AMMO_TYPE)
-        return ammoItem ? ammoItem.quantity : 0
-    }
-
-    // Check if weapon has enough ammo to attack
-    const hasEnoughAmmo = () => {
-        if (weaponObj.AMMO_TYPE === 'na') return true // Melee weapons don't need ammo
-
-        const currentAmmo = getAmmoCount()
-        if (typeof currentAmmo === 'string') return false // '-' case
-
-        return currentAmmo >= ammoPerShot
-    }
+    // Use weapon utilities
+    const ammoPerShot = getWeaponAmmoPerShot(weaponObj)
+    const getAmmoCount = () => getWeaponAmmoCount(weaponObj, characterItem, character.items)
+    const hasEnoughAmmo = () => checkHasEnoughAmmo(weaponObj, characterItem, character.items)
 
     const handleAttack = () => {
         if (!hasEnoughAmmo()) {

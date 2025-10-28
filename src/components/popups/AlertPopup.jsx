@@ -1,51 +1,27 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useI18n } from '../../hooks/useI18n.js'
+import { useDialog } from '../../hooks/useDialog.js'
 
 function AlertPopup({ isOpen, onClose, title, content, onConfirm, showConfirm = false }) {
     const dialogRef = useRef(null)
     const t = useI18n()
 
-    useEffect(() => {
-        const dialog = dialogRef.current
-        if (!dialog) return
-
-        if (isOpen && !dialog.open) {
-            dialog.showModal()
-        } else if (!isOpen && dialog.open) {
-            dialog.close()
-        }
-    }, [isOpen])
+    // Use dialog hook for dialog management
+    const { handleBackdropClick, closeWithAnimation } = useDialog(dialogRef, isOpen, onClose)
 
     const handleClose = () => {
-        const dialog = dialogRef.current
-        if (dialog && dialog.open) {
-            // Add closing animation class
-            dialog.classList.add('dialog-closing')
-            dialog.addEventListener(
-                'animationend',
-                () => {
-                    dialog.classList.remove('dialog-closing')
-                    if (dialog.open) {
-                        dialog.close()
-                    }
-                    onClose()
-                },
-                { once: true }
-            )
-        } else {
-            // If dialog is already closed, just call onClose
-            onClose()
-        }
+        closeWithAnimation()
     }
 
     const handleConfirm = () => {
         if (onConfirm) {
-            onConfirm()
+            closeWithAnimation(onConfirm)
+        } else {
+            handleClose()
         }
-        handleClose()
     }
 
-    const handleBackdropClick = (e) => {
+    const handleBackdrop = (e) => {
         // Close if clicking on backdrop (the dialog element itself)
         if (e.target === dialogRef.current) {
             handleClose()
@@ -56,7 +32,7 @@ function AlertPopup({ isOpen, onClose, title, content, onConfirm, showConfirm = 
     return (
         <dialog
             ref={dialogRef}
-            onClick={handleBackdropClick}
+            onClick={handleBackdrop}
             style={{
                 zIndex: 10000,
                 position: 'fixed'
