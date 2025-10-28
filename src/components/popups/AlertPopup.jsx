@@ -7,7 +7,7 @@ function AlertPopup({ isOpen, onClose, title, content, onConfirm, showConfirm = 
     const t = useI18n()
 
     // Use dialog hook for dialog management
-    const { handleBackdropClick, closeWithAnimation } = useDialog(dialogRef, isOpen, onClose)
+    const { closeWithAnimation } = useDialog(dialogRef, isOpen, onClose)
 
     const handleClose = () => {
         closeWithAnimation()

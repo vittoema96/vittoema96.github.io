@@ -117,29 +117,3 @@ export const updateDOM = () => {
         }
     });
 };
-
-/**
- * Get current language
- * @returns {string} Current language code
- */
-export const getCurrentLanguage = () => i18next.language;
-
-/**
- * Get all available languages
- * @returns {string[]} Array of language codes
- */
-export const getAvailableLanguages = () => ['it', 'en'];
-
-// spacedTranslate function for consistent button spacing
-export const spacedTranslate = (...keys) => {
-    const currentLanguage = i18next.language;
-
-    // Get all translations in the current language
-    const translations = keys.map(key => i18next.t(key, { lng: currentLanguage }));
-
-    // Find the longest translation length
-    const maxLength = Math.max(...translations.map(translation => translation.length));
-
-    // Return the first translation padded to the max length
-    return translations[0].padEnd(maxLength, ' ');
-};

@@ -99,7 +99,7 @@ function InventoryList({
 
             if (!aData || !bData) return 0
 
-            let comparison = 0
+            let comparison
 
             switch (sortBy) {
                 case 'name':

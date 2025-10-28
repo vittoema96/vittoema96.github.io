@@ -124,11 +124,5 @@ workbox-*.js.map
 # .vscode/ - Keep for shared settings
 # .idea/ - Keep for shared settings
 
-# ESLint cache
-.eslintcache
-
-# TypeScript cache
-*.tsbuildinfo
-
 # Keep scripts directory
 # scripts/ - Keep for version management

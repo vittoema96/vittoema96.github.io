@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { useCharacter, calculateEffectiveSkillValue } from '../../contexts/CharacterContext.jsx'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
@@ -56,7 +56,6 @@ function D20Popup({ isOpen, onClose, skillId, characterItem = null, weaponId = n
     const targetNumber = skillValue + specialValue
     const criticalValue = hasSpecialty ? skillValue : 1
     const currentLuck = character?.currentLuck || character?.special?.luck || 5
-    const maxLuck = character?.special?.luck || 5
 
     // Get variable font size for skill title
     const getVariableFontSize = (text, maxFontSize = 2, step = 0.25, lineSize = 13) => {

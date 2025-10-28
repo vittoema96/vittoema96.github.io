@@ -46,24 +46,3 @@ export function useI18n() {
         return translation || key
     }
 }
-
-/**
- * React hook for getting current language
- */
-export function useCurrentLanguage() {
-    const [language, setLanguage] = useState(i18next.language || 'it')
-
-    useEffect(() => {
-        const handleLanguageChange = (lng) => {
-            setLanguage(lng)
-        }
-
-        i18next.on('languageChanged', handleLanguageChange)
-
-        return () => {
-            i18next.off('languageChanged', handleLanguageChange)
-        }
-    }, [])
-
-    return language
-}

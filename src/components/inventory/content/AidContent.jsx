@@ -1,12 +1,10 @@
 import React from 'react'
-import { useI18n } from '../../../hooks/useI18n.js'
 
 /**
  * Aid-specific content renderer
  * Displays consumable item effects and stats
  */
 function AidContent({ characterItem, itemData }) {
-    const t = useI18n()
     
     const aidObj = itemData
     const type = characterItem.type

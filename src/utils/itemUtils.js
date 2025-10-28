@@ -4,25 +4,6 @@
  */
 
 /**
- * Mapping of mods to their corresponding melee weapon IDs
- * These weapons are defined in meleeWeapons.csv as virtual items (like gun bash)
- */
-const MOD_TO_MELEE_WEAPON = {
-    modBayonet: 'weaponBayonet',
-    modBayonetMissileLauncher: 'weaponMissileLauncherBayonet',
-    modShredder: 'weaponShredder'
-}
-
-/**
- * Get melee weapon ID for a mod (if it creates one)
- * @param {string} modId - Mod ID
- * @returns {string|null} Weapon ID or null
- */
-export function getMeleeWeaponForMod(modId) {
-    return MOD_TO_MELEE_WEAPON[modId] || null
-}
-
-/**
  * Check if two items have the same configuration (id + mods)
  * @param {Object} item1 - First item
  * @param {Object} item2 - Second item
@@ -400,46 +381,6 @@ export function getDisplayName(item, t, dataManager = null) {
 
     // Show mod count
     return `${baseName} [+${item.mods.length}]`
-}
-
-/**
- * Check if item has mods applied
- * @param {Object} item - Item object
- * @returns {boolean} True if item has mods
- */
-export function hasMods(item) {
-    return item && item.mods && item.mods.length > 0
-}
-
-/**
- * Get available mods for an item
- * @param {Object} itemData - Item data from CSV
- * @returns {string[]} Array of available mod IDs
- */
-export function getAvailableModsForItem(itemData) {
-    if (!itemData || !itemData.AVAILABLE_MODS) return []
-    return itemData.AVAILABLE_MODS
-}
-
-/**
- * Check if mod can be applied to item (slot validation)
- * @param {Object} item - Item object
- * @param {Object} modData - Mod data from CSV
- * @returns {boolean} True if mod can be applied
- */
-export function canApplyMod(item, modData) {
-    if (!item || !modData) return false
-
-    // Check if item already has a mod in the same slot
-    const modSlot = modData.SLOT
-    if (!modSlot) return true // No slot restriction
-
-    const itemMods = item.mods || []
-
-    // TODO: Check if any existing mod uses the same slot
-    // This requires loading all mod data, which we'll implement later
-
-    return true
 }
 
 /**

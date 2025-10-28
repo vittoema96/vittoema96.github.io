@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react'
-import { DEFAULT_CHARACTER, SPECIAL } from '../js/constants.js'
+import { DEFAULT_CHARACTER } from '../js/constants.js'
 import { useDataManager } from '../hooks/useDataManager.js'
 import { calculateDerivedStats, calculateEffectiveSkillValue, calculateMaxHp } from '../utils/statsCalculations.js'
 

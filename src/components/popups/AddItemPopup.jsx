@@ -34,7 +34,7 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
         if (!dataManager.getItemTypeMap) return []
         const typeMap = dataManager.getItemTypeMap()
 
-        let categories = []
+        let categories
 
         // If itemType is specified, return only its subcategories
         if (itemType && typeMap[itemType]) {

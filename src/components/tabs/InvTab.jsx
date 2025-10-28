@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { SKILLS } from '../../js/constants.js'
 import { useI18n } from '../../hooks/useI18n.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
@@ -25,10 +24,6 @@ function InvTab() {
 
     const handleSubTabClick = (subTab) => {
         setActiveSubTab(subTab)
-    }
-
-    const handleAddItem = () => {
-        showAddItemPopup(activeSubTab)
     }
 
     return (

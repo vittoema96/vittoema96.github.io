@@ -26,8 +26,6 @@ function WeaponCard({ characterItem, itemData, onAttack }) {
     const weaponObj = itemData
 
     // Use weapon utilities
-    const ammoPerShot = getWeaponAmmoPerShot(weaponObj)
-    const getAmmoCount = () => getWeaponAmmoCount(weaponObj, characterItem, character.items)
     const hasEnoughAmmo = () => checkHasEnoughAmmo(weaponObj, characterItem, character.items)
 
     const handleAttack = () => {

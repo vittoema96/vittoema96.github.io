@@ -29,7 +29,6 @@ function EquippedArmorEffects({ equippedItems }) {
     // Collect global effects and passive bonuses from equipped items
     const collectEffects = () => {
         const effectsMap = new Map() // Use Map to track effect counts
-        const bonusStats = {} // Track cumulative bonus stats
 
         equippedItems.forEach(item => {
             // Skip robot parts if origin is not Mr. Handy

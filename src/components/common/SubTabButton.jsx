@@ -18,5 +18,3 @@ function SubTabButton({ id, label, active, onClick }) {
     )
 }
 
-export default SubTabButton
-

@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
-import { usePopup } from '../../contexts/PopupContext.jsx'
 import { useI18n } from '../../hooks/useI18n.js'
 import { useDialog } from '../../hooks/useDialog.js'
 import { SPECIAL } from '../../js/constants.js'
@@ -13,7 +12,6 @@ function StatAdjustmentPopup({ isOpen, onClose }) {
     const dialogRef = useRef(null)
     const t = useI18n()
     const { character, derivedStats, updateCharacter } = useCharacter()
-    const { showAlert } = usePopup()
 
     // Local state for form inputs
     const [currentHp, setCurrentHp] = useState(0)

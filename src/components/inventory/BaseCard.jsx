@@ -11,7 +11,6 @@ function BaseCard({
     contentRenderer: ContentRenderer,
     onAction,
     actionIcon = 'attack',
-    actionType = 'use',
     isEquipped = false,
     disabled = false,
     hideControls = false,
@@ -26,7 +25,7 @@ function BaseCard({
         return null
     }
 
-    const [itemId, side] = characterItem.id.split('_')
+    const [, side] = characterItem.id.split('_')
     const quantity = characterItem.quantity
 
     const handleAction = () => {

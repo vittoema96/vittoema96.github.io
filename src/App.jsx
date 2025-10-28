@@ -3,7 +3,7 @@ import BootScreen from './components/BootScreen.jsx'
 import MainApp from './components/MainApp.jsx'
 import ErrorBoundary from './components/ErrorBoundary.jsx'
 import { initI18n } from './js/i18n.js'
-import { PopupProvider, usePopup } from './contexts/PopupContext.jsx'
+import { PopupProvider } from './contexts/PopupContext.jsx'
 import { CharacterProvider } from './contexts/CharacterContext.jsx'
 import { TooltipProvider } from './contexts/TooltipContext.jsx'
 

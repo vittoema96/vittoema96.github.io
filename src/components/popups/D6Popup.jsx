@@ -12,7 +12,7 @@ function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAi
     const t = useI18n()
     const { character, updateCharacter } = useCharacter()
     const dataManager = useDataManager()
-    const { showTooltip, hideTooltip } = useTooltip()
+    const { showTooltip } = useTooltip()
 
     // Get weapon data with mods applied
     const weaponData = characterItem

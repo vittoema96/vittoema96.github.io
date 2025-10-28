@@ -10,8 +10,8 @@ function SettingsTab() {
     const languageSelectRef = useRef(null)
     const themeSelectRef = useRef(null)
     const t = useI18n()
-    const { currentTheme, changeTheme, availableThemes } = useTheme()
-    const { currentLanguage, changeLanguage, availableLanguages } = useLanguage()
+    const { currentTheme, changeTheme } = useTheme()
+    const { currentLanguage, changeLanguage } = useLanguage()
     const { showAlert, showConfirm } = usePopup()
     const { downloadCharacter, uploadCharacter, resetCharacter } = useCharacter()
 

@@ -6,7 +6,7 @@ import Tag from '../../common/Tag.jsx'
  * Apparel-specific content renderer
  * Displays armor stats and protection areas
  */
-function ApparelContent({ characterItem, itemData, side }) {
+function ApparelContent({ itemData, side }) {
     const t = useI18n()
 
     const apparelObj = itemData

@@ -85,12 +85,6 @@ export const DEFAULT_CHARACTER = Object.freeze({
     items: [],
 });
 
-// Storage configuration
-export const STORAGE_CONFIG = Object.freeze({
-    CHARACTER_PREFIX: 'character-data-',
-    DEFAULT_CHARACTER_ID: 'default',
-});
-
 // Mod slots for weapon/armor modifications
 export const MOD_SLOTS = Object.freeze({
     BARREL: 'barrel',

@@ -161,9 +161,9 @@ export const useInventoryActions = () => {
         }
     }
 
-    const useItem = (characterItem, itemData) => {
+    const useItem = (characterItem) => {
         // TODO: Implement use logic for consumables
-        console.log('Use item:', characterItem.id, itemData)
+        console.log('Use item:', characterItem.id)
         showAlert('Use functionality coming soon!')
     }
 

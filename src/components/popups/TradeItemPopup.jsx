@@ -75,7 +75,7 @@ function TradeItemPopup({ isOpen, onClose, characterItem, itemData, onConfirm })
     const isFormValid = isQuantityValid && isPriceValid
 
     const total = isFormValid ? Math.floor(quantity * price) : 0
-    const [itemId, side] = characterItem?.id.split('_') || ['', '']
+    const [, side] = characterItem?.id.split('_') || ['', '']
 
     return (
         <dialog

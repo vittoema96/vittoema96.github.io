@@ -16,7 +16,7 @@ function WeaponContent({ characterItem, itemData }) {
     const weaponObj = itemData
 
     // Calculate weapon stats using utility
-    const { skillValue, specialValue, targetNumber } = calculateWeaponStats(
+    const { skillValue, targetNumber } = calculateWeaponStats(
         character,
         weaponObj,
         calculateEffectiveSkillValue,
