@@ -174,7 +174,26 @@ export const useInventoryActions = () => {
         }
 
         // Apply mod using utility function
-        const updatedItems = applyModUtil(character.items, characterItem, modId)
+        let updatedItems = applyModUtil(character.items, characterItem, modId)
+
+        // Check if this is a robot plating mod being applied to a robot part
+        const modData = dataManager.getItem(modId)
+        const isRobotPart = characterItem.type === 'robotParts'
+        const isPlatingMod = modData && modData.SLOT_TYPE === 'modSlotRobotPlating'
+
+        if (isRobotPart && isPlatingMod) {
+            // Sync plating across all robot parts (preserve armor mods)
+            const robotPartIds = ['robotPartOptics', 'robotPartBody', 'robotPartArms', 'robotPartThrusters']
+            updatedItems = updatedItems.map(item => {
+                if (robotPartIds.includes(item.id) && item.id !== characterItem.id) {
+                    // Update plating (slot 0) on other robot parts, keep armor (slot 1)
+                    const armorMod = item.mods && item.mods[1] ? item.mods[1] : null
+                    const newMods = armorMod ? [modId, armorMod] : [modId]
+                    return { ...item, mods: newMods }
+                }
+                return item
+            })
+        }
 
         updateCharacter({ items: updatedItems })
         showAlert('Mod applied successfully!')
@@ -189,6 +208,16 @@ export const useInventoryActions = () => {
         // Check if item has this mod
         if (!characterItem.mods || !characterItem.mods.includes(modId)) {
             showAlert('Item does not have this mod')
+            return
+        }
+
+        // Check if this is a robot plating mod being removed from a robot part
+        const modData = dataManager.getItem(modId)
+        const isRobotPart = characterItem.type === 'robotParts'
+        const isPlatingMod = modData && modData.SLOT_TYPE === 'modSlotRobotPlating'
+
+        if (isRobotPart && isPlatingMod) {
+            showAlert('Cannot remove plating mod. Replace it with another plating instead.')
             return
         }
 

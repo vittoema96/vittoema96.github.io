@@ -30,12 +30,12 @@ function DamageReductionDisplay() {
     // Get body parts to display based on origin
     const getBodyPartsToDisplay = () => {
         if (character?.origin === 'mrHandy') {
-            // Mr Handy has 4 robot parts mapped to specific positions
+            // Mr Handy has 4 robot parts with unique locations
             return [
-                { key: MR_HANDY_PARTS.SENSORS, className: 'leftArm', drKey: 'head' },      // Top-left position
-                { key: MR_HANDY_PARTS.BODY, className: 'rightArm', drKey: 'torso' },       // Top-right position
-                { key: MR_HANDY_PARTS.ARMS, className: 'leftLeg', drKey: 'leftArm' },      // Bottom-left position
-                { key: MR_HANDY_PARTS.PROPULSORS, className: 'rightLeg', drKey: 'rightArm' } // Bottom-right position
+                { key: MR_HANDY_PARTS.SENSORS, className: 'leftArm', drKey: 'robotOptics' },      // Top-left position
+                { key: MR_HANDY_PARTS.BODY, className: 'rightArm', drKey: 'robotBody' },          // Top-right position
+                { key: MR_HANDY_PARTS.ARMS, className: 'leftLeg', drKey: 'robotArms' },           // Bottom-left position
+                { key: MR_HANDY_PARTS.PROPULSORS, className: 'rightLeg', drKey: 'robotThrusters' } // Bottom-right position
             ]
         }
 

@@ -3,7 +3,6 @@ import { useI18n } from '../../hooks/useI18n.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useDataManager } from '../../hooks/useDataManager.js'
-import { useRobotParts } from '../../hooks/useRobotParts.js'
 import { useInventoryFilter } from '../../hooks/useInventoryFilter.js'
 import InventoryList from '../inventory/InventoryList.jsx'
 import EquippedApparel from '../inventory/EquippedApparel.jsx'
@@ -15,9 +14,6 @@ function InvTab() {
     const { showAddItemPopup } = usePopup()
     const { character } = useCharacter()
     const dataManager = useDataManager()
-
-    // Ensure robot parts are in inventory for Mr Handy characters
-    useRobotParts()
 
     // Get filtered items for active category
     const items = useInventoryFilter(activeSubTab)

@@ -8,6 +8,17 @@ const CharacterContext = createContext()
 // Constants
 const STORAGE_KEY = 'character_default'
 
+// Robot part IDs that Mr. Handy characters must have
+const ROBOT_PART_IDS = [
+    'robotPartOptics',
+    'robotPartBody',
+    'robotPartArms',
+    'robotPartThrusters'
+]
+
+// Default plating mod for robot parts (slot 0)
+const DEFAULT_PLATING_MOD = 'modRobotPlatingStandard'
+
 export const useCharacter = () => {
     const context = useContext(CharacterContext)
     if (!context) {
@@ -38,6 +49,45 @@ export function CharacterProvider({ children }) {
             setIsLoading(false)
         }
     }, [])
+
+    // Manage robot parts when origin changes
+    useEffect(() => {
+        if (isLoading) return
+
+        let needsUpdate = false
+        let updatedItems = [...character.items]
+
+        if (character.origin === 'mrHandy') {
+            // Add robot parts if missing (only when origin changes to mrHandy)
+            const missingParts = ROBOT_PART_IDS.filter(partId =>
+                !updatedItems.some(item => item.id === partId)
+            )
+
+            if (missingParts.length > 0) {
+                missingParts.forEach(partId => {
+                    updatedItems.push({
+                        id: partId,
+                        type: 'robotParts',
+                        quantity: 1,
+                        equipped: true,
+                        mods: [DEFAULT_PLATING_MOD] // Only plating at slot 0, slot 1 is empty
+                    })
+                })
+                needsUpdate = true
+            }
+        } else {
+            // Remove robot parts if origin is not Mr. Handy
+            const hasRobotParts = updatedItems.some(item => ROBOT_PART_IDS.includes(item.id))
+            if (hasRobotParts) {
+                updatedItems = updatedItems.filter(item => !ROBOT_PART_IDS.includes(item.id))
+                needsUpdate = true
+            }
+        }
+
+        if (needsUpdate) {
+            setCharacterState(prev => ({ ...prev, items: updatedItems }))
+        }
+    }, [character.origin, isLoading])
 
     // Auto-save on every change
     useEffect(() => {

@@ -5,9 +5,13 @@
 
 /**
  * Get all body part locations
+ * @param {string} origin - Character origin ('mrHandy', 'ghoul', 'human')
  * @returns {string[]} Array of all body part location names
  */
-export const getBodyLocations = () => {
+export const getBodyLocations = (origin) => {
+    if (origin === 'mrHandy') {
+        return ['robotOptics', 'robotBody', 'robotArms', 'robotThrusters']
+    }
     return ['head', 'leftArm', 'rightArm', 'torso', 'leftLeg', 'rightLeg']
 }
 
@@ -30,11 +34,11 @@ const LOCATION_MAP = {
     legs: () => ['leftLeg', 'rightLeg'],
     torso: () => ['torso'],
     head: () => ['head'],
-    // Robot parts mapping (for Mr. Handy)
-    robotOptics: () => ['head'],
-    robotBody: () => ['torso'],
-    robotArms: () => ['leftArm', 'rightArm'],
-    robotThrusters: () => ['leftLeg', 'rightLeg']
+    // Robot parts mapping (for Mr. Handy) - each part has its own unique location
+    robotOptics: () => ['robotOptics'],
+    robotBody: () => ['robotBody'],
+    robotArms: () => ['robotArms'],
+    robotThrusters: () => ['robotThrusters']
 }
 
 /**

@@ -119,7 +119,7 @@ export const calculateMeleeDamage = (character) => {
  */
 export const calculateLocationsDR = (character, dataManager) => {
     const damageTypes = ['physical', 'energy', 'radiation']
-    const bodyParts = getBodyLocations()
+    const bodyParts = getBodyLocations(character.origin)
     const locationsDR = {}
 
     // Initialize all locations with 0 DR

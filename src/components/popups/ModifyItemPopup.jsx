@@ -127,8 +127,12 @@ function ModifyItemPopup({ isOpen, onClose, characterItem, itemData }) {
 
         if (itemIndex === -1) return
 
-        const updatedItems = [...character.items]
+        let updatedItems = [...character.items]
         const currentItem = updatedItems[itemIndex]
+
+        // Check if this is a robot part
+        const isRobotPart = characterItem.type === 'robotParts'
+        const robotPartIds = ['robotPartOptics', 'robotPartBody', 'robotPartArms', 'robotPartThrusters']
 
         // If quantity > 1, decrease quantity and add new modified item
         if (currentItem.quantity > 1) {
@@ -149,6 +153,26 @@ function ModifyItemPopup({ isOpen, onClose, characterItem, itemData }) {
             updatedItems[itemIndex] = {
                 ...currentItem,
                 mods: newMods
+            }
+        }
+
+        // If this is a robot part and plating was changed, sync across all parts
+        if (isRobotPart) {
+            const platingSlot = 'modSlotRobotPlating'
+            const newPlating = selectedMods[platingSlot]
+            const oldPlating = (characterItem.mods || [])[0]
+
+            if (newPlating && newPlating !== oldPlating) {
+                // Plating changed - sync across all robot parts
+                updatedItems = updatedItems.map(item => {
+                    if (robotPartIds.includes(item.id) && item.id !== characterItem.id) {
+                        // Update plating (slot 0), preserve armor (slot 1)
+                        const armorMod = item.mods && item.mods[1] ? item.mods[1] : null
+                        const newMods = armorMod ? [newPlating, armorMod] : [newPlating]
+                        return { ...item, mods: newMods }
+                    }
+                    return item
+                })
             }
         }
 
@@ -423,8 +447,8 @@ function ModifyItemPopup({ isOpen, onClose, characterItem, itemData }) {
                                         }
                                     }}
                                 >
-                                    {/* Robot parts must always have a mod, so don't show "none" option */}
-                                    {!isRobotPart && <option value="">{t('none')}</option>}
+                                    {/* Robot plating slot cannot be empty, but armor slot can */}
+                                    {(!isRobotPart || slot === 'modSlotRobotArmor') && <option value="">{t('none')}</option>}
                                     {modsForSlot.map(mod => (
                                         <option key={mod.ID} value={mod.ID}>
                                             {t(mod.ID)}

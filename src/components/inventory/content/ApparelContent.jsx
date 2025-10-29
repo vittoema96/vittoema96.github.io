@@ -6,17 +6,18 @@ import Tag from '../../common/Tag.jsx'
  * Apparel-specific content renderer
  * Displays armor stats and protection areas
  */
-function ApparelContent({ itemData, side }) {
+function ApparelContent({ characterItem, itemData, side }) {
     const t = useI18n()
 
     const apparelObj = itemData
+    const isRobotPart = characterItem?.type === 'robotParts'
 
     return (
         <section>
             <div className="row l-spaceBetween">
                 <section>
                     <div className="card-stat">
-                        <div>{t('damageReduction')}</div>
+                        <div>{t('damageReductionFull')}</div>
                         <div className="row l-centered">
                             <span>{t('physical')}:</span>
                             <span className="js-cardApparel-physical">{apparelObj.PHYSICAL_RES}</span>
@@ -27,7 +28,9 @@ function ApparelContent({ itemData, side }) {
                         </div>
                         <div className="row l-centered">
                             <span>{t('radiation')}:</span>
-                            <span className="js-cardApparel-radiation">{apparelObj.RADIATION_RES}</span>
+                            <span className="js-cardApparel-radiation">
+                                {isRobotPart ? t('immune') : apparelObj.RADIATION_RES}
+                            </span>
                         </div>
                     </div>
                 </section>

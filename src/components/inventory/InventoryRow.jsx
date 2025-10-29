@@ -104,20 +104,27 @@ function InventoryRow({
     // Get item subinfo (type, damage, DR, etc.)
     const getItemSubInfo = () => {
         const itemType = characterItem.type
-        
+
         // Weapon - show damage and type
         if (Object.values(SKILLS).includes(itemType)) {
             return `${t(itemType)} • ${itemData.DAMAGE_RATING} ${t(itemData.DAMAGE_TYPE)}`
         }
-        
-        // Apparel - show DR as "Physical - Energy - Radiation"
+
+        // Robot parts - show DR with "Immune" for radiation
+        if (itemType === 'robotParts') {
+            const physical = itemData.PHYSICAL_RES || 0
+            const energy = itemData.ENERGY_RES || 0
+            return `${t('damageReduction')}: ${physical} - ${energy} - ${t('immune')}`
+        }
+
+        // Other apparel - show DR as "RD: Physical - Energy - Radiation"
         if (['clothing', 'headgear', 'outfit'].includes(itemType) || itemType.endsWith('Armor')) {
             const physical = itemData.PHYSICAL_RES || 0
             const energy = itemData.ENERGY_RES || 0
             const radiation = itemData.RADIATION_RES || 0
             return `${t('damageReduction')}: ${physical} - ${energy} - ${radiation}`
         }
-        
+
         // Aid - show effect
         if (['food', 'drinks', 'meds'].includes(itemType)) {
             return itemData.EFFECT || t(itemType)
