@@ -1,5 +1,5 @@
 import React from 'react'
-import { useI18n } from '../../hooks/useI18n.js'
+import { t } from 'i18next'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { getModifiedItemData } from '../../utils/itemUtils.js'
@@ -11,7 +11,6 @@ import Tag from '../common/Tag.jsx'
  * (not local effects that only affect individual armor pieces)
  */
 function EquippedArmorEffects({ equippedItems }) {
-    const t = useI18n()
     const dataManager = useDataManager()
     const { character } = useCharacter()
 

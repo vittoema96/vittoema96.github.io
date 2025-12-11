@@ -1,8 +1,7 @@
 import React from 'react'
-import { useI18n } from '../hooks/useI18n.js'
+import { t } from 'i18next'
 
 function BootScreen({ version, isVisible }) {
-    const t = useI18n()
 
     if (!isVisible) return null
 

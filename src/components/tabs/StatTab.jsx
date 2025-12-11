@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { SPECIAL } from '../../js/constants.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
-import { useI18n } from '../../hooks/useI18n.js'
+import { t } from 'i18next'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useSpecialStats } from '../../hooks/useSpecialStats.js'
 import { useSkills } from '../../hooks/useSkills.js'
@@ -12,7 +12,6 @@ import SpecialStat from '../common/SpecialStat.jsx'
 
 function StatTab() {
     const [isEditing, setIsEditing] = useState(false)
-    const t = useI18n()
     const { showConfirm } = usePopup()
     const { character, derivedStats } = useCharacter()
     const { incrementSpecial, replenishLuck } = useSpecialStats()

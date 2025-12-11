@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { useI18n } from '../../hooks/useI18n.js'
+import { t } from 'i18next'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { useTooltip } from '../../contexts/TooltipContext.jsx'
@@ -14,7 +14,6 @@ import { MOD_SLOTS } from '../../js/constants.js'
 function ModifyItemPopup({ isOpen, onClose, characterItem, itemData }) {
     const dialogRef = useRef(null)
     const prevIsOpenRef = useRef(false)
-    const t = useI18n()
     const { character, updateCharacter } = useCharacter()
     const dataManager = useDataManager()
     const { showTooltip } = useTooltip()

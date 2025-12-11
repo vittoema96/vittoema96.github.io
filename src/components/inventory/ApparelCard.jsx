@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BaseCard from './BaseCard.jsx'
 import ApparelContent from './content/ApparelContent.jsx'
 import { usePopup } from '../../contexts/PopupContext.jsx'
-import { useI18n } from '../../hooks/useI18n.js'
+import { t } from 'i18next'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { canBeModified } from '../../utils/itemUtils.js'
 
@@ -13,7 +13,6 @@ import { canBeModified } from '../../utils/itemUtils.js'
 function ApparelCard({ characterItem, itemData, onEquip }) {
     const { showModifyItemPopup } = usePopup()
     const dataManager = useDataManager()
-    const t = useI18n()
     const [showDescription, setShowDescription] = useState(false)
 
     if (!itemData) {

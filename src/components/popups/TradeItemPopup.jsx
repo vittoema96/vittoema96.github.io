@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useI18n } from '../../hooks/useI18n.js'
+import { t } from 'i18next'
 import { useDialog } from '../../hooks/useDialog.js'
 
 function TradeItemPopup({ isOpen, onClose, characterItem, itemData, onConfirm }) {
     const dialogRef = useRef(null)
-    const t = useI18n()
 
     const [quantity, setQuantity] = useState('')
     const [price, setPrice] = useState('')
