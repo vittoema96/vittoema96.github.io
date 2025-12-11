@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useI18n } from '../../hooks/useI18n.js'
+import { t } from 'i18next'
 import { usePopup } from '../../contexts/PopupContext.jsx'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useDataManager } from '../../hooks/useDataManager.js'
@@ -10,7 +10,6 @@ import EquippedArmorEffects from '../inventory/EquippedArmorEffects.jsx'
 
 function InvTab() {
     const [activeSubTab, setActiveSubTab] = useState('weapon')
-    const t = useI18n()
     const { showAddItemPopup } = usePopup()
     const { character } = useCharacter()
     const dataManager = useDataManager()

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useI18n } from '../../hooks/useI18n.js'
+import { t } from 'i18next'
 import { useOverlay } from '../../hooks/useOverlay.js'
 import { useInventoryActions } from '../../hooks/useInventoryActions.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
@@ -9,7 +9,6 @@ import { useDataManager } from '../../hooks/useDataManager.js'
  * Uses same style as InventoryRow but without expansion
  */
 function AmmoRow({ characterItem, itemData }) {
-    const t = useI18n()
     const { sellItem, deleteItem } = useInventoryActions()
     const dataManager = useDataManager()
 

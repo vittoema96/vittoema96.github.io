@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { useI18n } from '../../hooks/useI18n.js'
+import { t } from 'i18next'
 import { usePopup } from '../../contexts/PopupContext.jsx'
 import { SKILL_TO_SPECIAL_MAP } from "../../js/constants.js"
 import { useCharacter, calculateEffectiveSkillValue } from "../../contexts/CharacterContext.jsx"
@@ -8,7 +8,6 @@ function Skill({
     skillId,
     isEditing
 }) {
-    const t = useI18n()
     const { showD20Popup } = usePopup()
     const { character, updateCharacter } = useCharacter()
 

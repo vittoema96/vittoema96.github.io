@@ -1,10 +1,9 @@
 import React, { useRef } from 'react'
-import { useI18n } from '../../hooks/useI18n.js'
+import { t } from 'i18next'
 import { useDialog } from '../../hooks/useDialog.js'
 
 function AlertPopup({ isOpen, onClose, title, content, onConfirm, showConfirm = false }) {
     const dialogRef = useRef(null)
-    const t = useI18n()
 
     // Use dialog hook for dialog management
     const { closeWithAnimation } = useDialog(dialogRef, isOpen, onClose)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useI18n } from '../../../hooks/useI18n.js'
+import { t } from 'i18next'
 import Tag from '../../common/Tag.jsx'
 
 /**
@@ -7,7 +7,6 @@ import Tag from '../../common/Tag.jsx'
  * Displays armor stats and protection areas
  */
 function ApparelContent({ characterItem, itemData, side }) {
-    const t = useI18n()
 
     const apparelObj = itemData
     const isRobotPart = characterItem?.type === 'robotParts'
