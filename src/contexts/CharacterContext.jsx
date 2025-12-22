@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react'
-import { DEFAULT_CHARACTER } from '../js/constants.js'
-import { useDataManager } from '../hooks/useDataManager.js'
-import { calculateDerivedStats, calculateEffectiveSkillValue, calculateMaxHp } from '../utils/statsCalculations.js'
+import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react'
+import {DEFAULT_CHARACTER, getOriginById, ORIGINS} from '../js/constants.js'
+import {useDataManager} from '../hooks/useDataManager.js'
+import {calculateDerivedStats, calculateEffectiveSkillValue, calculateMaxHp} from '../utils/statsCalculations.js'
 
 const CharacterContext = createContext()
 
@@ -19,6 +19,11 @@ const ROBOT_PART_IDS = [
 // Default plating mod for robot parts (slot 0)
 const DEFAULT_PLATING_MOD = 'modRobotPlatingStandard'
 
+
+/**
+ * Custom hook for accessing character context
+ * @returns {*}
+ */
 export const useCharacter = () => {
     const context = useContext(CharacterContext)
     if (!context) {
@@ -27,88 +32,71 @@ export const useCharacter = () => {
     return context
 }
 
+/**
+ * Save character to localStorage
+ * @param {Object} character - Character object
+ */
+function saveCharacter(character) {
+    const serializedCharacter = serializeCharacter(character)
+    const jsonCharacter = JSON.stringify(serializedCharacter)
+    localStorage.setItem(STORAGE_KEY, jsonCharacter)
+}
+
+/**
+ * Load character from localStorage
+ * @returns {{readonly name: *, readonly origin: *, readonly background: *, readonly level: number, readonly caps: number, readonly special: {}, readonly currentLuck: number, readonly currentHp: number, readonly skills: {}, readonly specialties: [], readonly items: []}|(*&{readonly name: *, origin: T, readonly background: *, readonly level: number, readonly caps: number, readonly special: {}, readonly currentLuck: number, readonly currentHp: number, readonly skills: {}, readonly specialties: [], readonly items: []})}
+ */
+function loadCharacter() {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    const parsed = JSON.parse(saved)
+    return deserializeCharacter(parsed || DEFAULT_CHARACTER)
+}
+
+/**
+ * Serialize character
+ * Serialization steps:
+ * - Origin: originObj -> originId
+ * @param {Object} character - Character object
+ */
+function serializeCharacter(character) {
+    const serializedOrigin = character.origin?.id ?? character.origin ?? undefined
+    return { ...character, origin: serializedOrigin }
+}
+
+/**
+ * Deserialize character
+ * Deserialization steps:
+ * - Origin: originId -> originObj
+ * @returns {Object} Character object
+ */
+function deserializeCharacter(character) {
+    const merged = { ...structuredClone(DEFAULT_CHARACTER), ...character }
+    const deserializedOrigin = typeof merged.origin === 'object' ? merged.origin : getOriginById(merged.origin) ?? undefined;
+    return { ...character, origin: deserializedOrigin }
+}
+
 export function CharacterProvider({ children }) {
-    const [character, setCharacterState] = useState(DEFAULT_CHARACTER)
-    const [isLoading, setIsLoading] = useState(true)
+
+    // Lazy load character
+    const [character, setCharacter] = useState(() => loadCharacter())
+    // Load all csv data
     const dataManager = useDataManager()
-
-    // Load character on startup
-    useEffect(() => {
-        try {
-            const saved = localStorage.getItem(STORAGE_KEY)
-            if (saved) {
-                const parsedCharacter = JSON.parse(saved)
-                // Merge with defaults to handle new properties in updates
-                const mergedCharacter = { ...DEFAULT_CHARACTER, ...parsedCharacter }
-                setCharacterState(mergedCharacter)
-            }
-        } catch (error) {
-            console.error('Failed to load character:', error)
-            // Keep default character on error
-        } finally {
-            setIsLoading(false)
-        }
-    }, [])
-
-    // Manage robot parts when origin changes
-    useEffect(() => {
-        if (isLoading) return
-
-        let needsUpdate = false
-        let updatedItems = [...character.items]
-
-        if (character.origin === 'mrHandy') {
-            // Add robot parts if missing (only when origin changes to mrHandy)
-            const missingParts = ROBOT_PART_IDS.filter(partId =>
-                !updatedItems.some(item => item.id === partId)
-            )
-
-            if (missingParts.length > 0) {
-                missingParts.forEach(partId => {
-                    updatedItems.push({
-                        id: partId,
-                        type: 'robotParts',
-                        quantity: 1,
-                        equipped: true,
-                        mods: [DEFAULT_PLATING_MOD] // Only plating at slot 0, slot 1 is empty
-                    })
-                })
-                needsUpdate = true
-            }
-        } else {
-            // Remove robot parts if origin is not Mr. Handy
-            const hasRobotParts = updatedItems.some(item => ROBOT_PART_IDS.includes(item.id))
-            if (hasRobotParts) {
-                updatedItems = updatedItems.filter(item => !ROBOT_PART_IDS.includes(item.id))
-                needsUpdate = true
-            }
-        }
-
-        if (needsUpdate) {
-            setCharacterState(prev => ({ ...prev, items: updatedItems }))
-        }
-    }, [character.origin, isLoading])
 
     // Auto-save on every change
     useEffect(() => {
-        if (!isLoading) {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(character))
-            } catch (error) {
-                console.error('Failed to save character:', error)
-            }
-        }
-    }, [character, isLoading])
+        saveCharacter(character);
+    }, [character])
 
-    // Derived stats - calculated from character data using utility functions
-    const derivedStats = useMemo(() => {
-        return calculateDerivedStats(character, dataManager)
-    }, [character, dataManager])
-
-    // Update character (replaces your characterData.property = value)
+    /**
+     * Function used to update character state.
+     * Also checks for:
+     * - SPECIAL stat changes: adjust HP accordingly
+     * - LEVEL changes: adjust HP accordingly
+     * - ORIGIN changes: add/remove robot parts
+     */
     const updateCharacter = useCallback((updates) => {
-        setCharacterState(prev => {
-            const newCharacter = { ...prev, ...updates }
+        setCharacter(prev => {
+            const newCharacter = deserializeCharacter({ ...prev, ...updates })
 
             // If SPECIAL stats or level changed, adjust HP accordingly
             const specialChanged = updates.special && Object.keys(updates.special).length > 0
@@ -117,6 +105,9 @@ export function CharacterProvider({ children }) {
             if (specialChanged || levelChanged) {
                 const newMaxHp = calculateMaxHp(newCharacter)
                 const oldMaxHp = calculateMaxHp(prev)
+                const maxHpDelta = newMaxHp - oldMaxHp
+                newCharacter.currentHp += maxHpDelta
+                newCharacter.currentHp = Math.max(0, Math.min(newCharacter.currentHp, newMaxHp))
 
                 // If maxHp increased, increase currentHp by the same amount
                 if (newMaxHp > oldMaxHp) {
@@ -129,18 +120,44 @@ export function CharacterProvider({ children }) {
                 }
             }
 
+            // Add or remove robot parts based on origin
+            const isMrHandy = newCharacter.origin === ORIGINS.MR_HANDY
+            const hasRobotParts = newCharacter.items.some(i => ROBOT_PART_IDS.includes(i.id))
+            if (isMrHandy && !hasRobotParts) {
+                const newParts = ROBOT_PART_IDS.map(id => ({
+                    id,
+                    type: 'robotParts',
+                    quantity: 1,
+                    equipped: true,
+                    mods: [DEFAULT_PLATING_MOD]
+                }))
+                newCharacter.items = [...newCharacter.items, ...newParts]
+            } else if (!isMrHandy && hasRobotParts) {
+                newCharacter.items = newCharacter.items.filter(i => !ROBOT_PART_IDS.includes(i.id))
+            }
+
             return newCharacter
         })
     }, [])
 
+
+    // Derived stats - calculated from character data using utility functions
+    const derivedStats = useMemo(() => {
+        return calculateDerivedStats(character, dataManager)
+    }, [character, dataManager])
+
+
     // Reset to default character
     const resetCharacter = useCallback(() => {
-        setCharacterState(DEFAULT_CHARACTER)
+        setCharacter({ ...DEFAULT_CHARACTER })
     }, [])
 
-    // Download character as JSON
+
+    /**
+     * Utility method to download character as JSON
+     */
     const downloadCharacter = useCallback(() => {
-        const dataStr = JSON.stringify(character, null, 2)
+        const dataStr = JSON.stringify(serializeCharacter(character), null, 2)
         const dataBlob = new Blob([dataStr], { type: 'application/json' })
         const url = URL.createObjectURL(dataBlob)
 
@@ -149,36 +166,24 @@ export function CharacterProvider({ children }) {
         link.download = `character_${character.name || 'unnamed'}_${new Date().toISOString().split('T')[0]}.json`
         document.body.appendChild(link)
         link.click()
-        document.body.removeChild(link)
+        link.remove()
         URL.revokeObjectURL(url)
     }, [character])
 
-    // Upload character from JSON
-    const uploadCharacter = useCallback((file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader()
 
-            reader.onload = (e) => {
-                try {
-                    const uploadedCharacter = JSON.parse(e.target.result)
-
-                    // Basic validation
-                    if (!uploadedCharacter || typeof uploadedCharacter !== 'object') {
-                        throw new Error('Invalid character file format')
-                    }
-
-                    // Merge with defaults to ensure all properties exist
-                    const validatedCharacter = { ...DEFAULT_CHARACTER, ...uploadedCharacter }
-                    setCharacterState(validatedCharacter)
-                    resolve(validatedCharacter)
-                } catch (error) {
-                    reject(new Error(`Failed to parse character file: ${error.message}`))
-                }
-            }
-
-            reader.onerror = () => reject(new Error('Failed to read file'))
-            reader.readAsText(file)
-        })
+    /**
+     * Utility method to upload character from JSON.
+     * @param {File} file - JSON File object containing the character definition
+     */
+    const uploadCharacter = useCallback(async (file) => {
+        try {
+            const text = await file.text()
+            const rawData = JSON.parse(text)
+            const uploadedCharacter = deserializeCharacter(rawData)
+            setCharacter(uploadedCharacter)
+        } catch (error) {
+            throw new Error(`Failed to parse character file: ${error.message}`)
+        }
     }, [])
 
     // Memoize context value to prevent unnecessary re-renders
@@ -189,10 +194,9 @@ export function CharacterProvider({ children }) {
             updateCharacter,
             resetCharacter,
             downloadCharacter,
-            uploadCharacter,
-            isLoading
+            uploadCharacter
         }),
-        [character, derivedStats, updateCharacter, resetCharacter, downloadCharacter, uploadCharacter, isLoading]
+        [character, derivedStats, updateCharacter, resetCharacter, downloadCharacter, uploadCharacter]
     )
 
     return (
@@ -200,6 +204,10 @@ export function CharacterProvider({ children }) {
             {children}
         </CharacterContext.Provider>
     )
+}
+
+CharacterProvider.propTypes = {
+    children: PropTypes.listOf(PropTypes.node)
 }
 
 // Re-export for backward compatibility

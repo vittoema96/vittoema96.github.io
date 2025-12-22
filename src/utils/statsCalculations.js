@@ -1,6 +1,9 @@
-import { SPECIAL, SKILLS } from '../js/constants.js'
+import {SPECIAL, SKILLS, ORIGINS} from '../js/constants.js'
 import { getModifiedItemData } from './itemUtils.js'
 import { getBodyLocations, mapItemLocations } from './bodyLocations.js'
+
+// TODO should not use defensive assignment, but throw errors
+//      problem is: order of operations requires the defensive assignment (for now, refactoring needed)
 
 /**
  * Calculate effective skill value (base + specialty bonus)
@@ -10,6 +13,7 @@ import { getBodyLocations, mapItemLocations } from './bodyLocations.js'
  */
 export const calculateEffectiveSkillValue = (character, skillId) => {
     if (!character || !skillId) return 0
+
     const baseValue = character.skills?.[skillId] || 0
     const hasSpecialty = character.specialties?.includes(skillId) || false
     return baseValue + (hasSpecialty ? 2 : 0)
@@ -46,10 +50,8 @@ export const calculateMaxHp = (character) => {
  * @returns {number} Maximum carry weight in kg
  */
 export const calculateMaxWeight = (character, dataManager) => {
-    // Base weight: 75kg + (STR * 5) for non-Mr.Handy, 75kg fixed for Mr.Handy
-    let maxWeight = 75 + (character.origin === 'mrHandy'
-        ? 0
-        : character.special[SPECIAL.STRENGTH] * 5)
+    // If no ORIGIN is selected, use Survivor to calcMaxCarryWeight (any origin except mrHandy would be ok)
+    let maxWeight = character.origin?.calcMaxCarryWeight(character) || ORIGINS.SURVIVOR.calcMaxCarryWeight(character)
 
     // Add carry weight bonuses from equipped items with mods
     character.items.forEach(item => {
@@ -161,7 +163,7 @@ export const calculateLocationsDR = (character, dataManager) => {
     })
 
     // Mr Handy and Ghoul have infinite radiation resistance
-    if (character.origin === 'mrHandy' || character.origin === 'ghoul') {
+    if (character.origin?.hasRadiationImmunity) {
         bodyParts.forEach(location => {
             locationsDR[location].radiation = Infinity
         })
