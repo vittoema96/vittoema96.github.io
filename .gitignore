@@ -1,3 +1,7 @@
+# Guidebook data for reference in development
+dataFromGuidebook/
+
+
 # Dependencies
 node_modules/
 npm-debug.log*
@@ -20,6 +24,7 @@ build/
 # IDE and Editor files
 .vscode/
 .idea/
+backup.idea/
 *.swp
 *.swo
 *~

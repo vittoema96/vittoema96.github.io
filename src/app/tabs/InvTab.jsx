@@ -4,9 +4,9 @@ import { usePopup } from '../../contexts/PopupContext.jsx'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { useInventoryFilter } from '../../hooks/useInventoryFilter.js'
-import InventoryList from '../inventory/InventoryList.jsx'
-import EquippedApparel from '../inventory/EquippedApparel.jsx'
-import EquippedArmorEffects from '../inventory/EquippedArmorEffects.jsx'
+import InventoryList from '../../components/inventory/InventoryList.jsx'
+import EquippedApparel from '../../components/inventory/EquippedApparel.jsx'
+import EquippedArmorEffects from '../../components/inventory/EquippedArmorEffects.jsx'
 
 function InvTab() {
     const [activeSubTab, setActiveSubTab] = useState('weapon')

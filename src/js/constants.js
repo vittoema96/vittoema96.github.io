@@ -99,3 +99,86 @@ export const MOD_SLOTS = Object.freeze({
     WEAVE: 'weave',
     MISC: 'misc',
 });
+
+
+const DEFAULT_SPECIAL_MAXES = Object.freeze(
+    Object.values(SPECIAL).reduce((acc, stat) => {
+        acc[stat] = 10;
+        return acc;
+    }, {})
+);
+
+
+const createOrigin = (id, {
+                      calcMaxCarryWeight = (character) => 75 + (character.special[SPECIAL.STRENGTH] * 5),
+                      hasRadiationImmunity = false,
+                      hasPoisonImmunity = false,
+                      bodyParts = BODY_PARTS,
+                      specialMaxValues = DEFAULT_SPECIAL_MAXES,
+                      skillMaxValue  = 6,
+                      needsSpecializedArmor = false,
+                      needsSpecializedWeapons = false,
+                      canUseAid = true,
+                      characterSvg = "vaultboy-open-arms"} = {}) => Object.freeze({
+        id: id,
+        calcMaxCarryWeight: calcMaxCarryWeight,
+        hasRadiationImmunity: hasRadiationImmunity,
+        hasPoisonImmunity: hasPoisonImmunity,
+        bodyParts: bodyParts,
+        specialMaxValues: { ...DEFAULT_SPECIAL_MAXES, ...specialMaxValues },
+        skillMaxValue: skillMaxValue,
+        needsSpecializedArmor: needsSpecializedArmor,
+        needsSpecializedWeapons: needsSpecializedWeapons,
+        canUseAid: canUseAid,
+        characterSvg: characterSvg
+});
+
+export const getOriginById = (id) => {
+    return Object.values(ORIGINS).find(o => o.id === id);
+};
+
+export const ORIGINS = Object.freeze({
+
+    // TODO to implement on origin:
+    //  - additional tag skills
+    //      * BrotherhoodInitiate: 1 of energyWeapons, Science or Repair
+    //      * Ghoul: Survival
+    //      * VaultDweller: any 1 skill
+    //  - additional tag apparel
+    //  - Supermutant starts with +2 on Str and End
+    //  - Survivor has to choose Traits
+
+    VAULT_DWELLER:
+        createOrigin("vaultDweller"),
+    GHOUL:
+        createOrigin("ghoul", {
+            hasRadiationImmunity: true,
+            characterSvg: "ghoul"
+        }),
+    SURVIVOR:
+        createOrigin("survivor"),
+    MR_HANDY:
+        createOrigin("mrHandy", {
+            calcMaxCarryWeight: () => 75, // Fixed carry weight for Mr. Handy, can only be upped by armour/mods
+            hasRadiationImmunity: true,
+            hasPoisonImmunity: true,
+            bodyParts: MR_HANDY_PARTS,
+            needsSpecializedArmor: true,
+            needsSpecializedWeapons: true,
+            canUseAid: false,
+            characterSvg: "mrHandy"
+        }),
+    BROTHERHOOD_INITIATE:
+        createOrigin("brotherhoodInitiate"),
+    SUPER_MUTANT:
+        createOrigin("superMutant", {
+            hasRadiationImmunity: true,
+            hasPoisonImmunity: true,
+            specialMaxValues: {
+                [SPECIAL.STRENGTH]: 12,
+                [SPECIAL.ENDURANCE]: 12,
+                [SPECIAL.INTELLIGENCE]: 6,
+                [SPECIAL.CHARISMA]: 6
+            }
+        })
+})
