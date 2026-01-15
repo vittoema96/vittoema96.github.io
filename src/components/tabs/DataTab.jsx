@@ -4,7 +4,7 @@ import { useCharacter } from '../../contexts/CharacterContext.jsx'
 
 function DataTab() {
     const { character, updateCharacter } = useCharacter()
-    const [ levelInput, setLevelInput ] = useState(character.level)
+    const [levelInput, setLevelInput] = useState(character.level)
 
     // Update levelInput when character.level changes (e.g., when loading a character)
     useEffect(() => {

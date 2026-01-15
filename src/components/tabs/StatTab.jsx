@@ -6,9 +6,9 @@ import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { useSpecialStats } from '../../hooks/useSpecialStats.js'
 import { useSkills } from '../../hooks/useSkills.js'
 import Skill from './Skill.jsx'
-import DamageReductionDisplay from '../../components/stats/DamageReductionDisplay.jsx'
-import EquippedArmorEffects from '../../components/inventory/EquippedArmorEffects.jsx'
-import SpecialStat from '../../components/common/SpecialStat.jsx'
+import DamageReductionDisplay from '../stats/DamageReductionDisplay.jsx'
+import EquippedArmorEffects from '../inventory/EquippedArmorEffects.jsx'
+import SpecialStat from '../common/SpecialStat.jsx'
 
 function StatTab() {
     const [isEditing, setIsEditing] = useState(false)

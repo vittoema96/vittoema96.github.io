@@ -1,6 +1,5 @@
 import React from 'react'
 import { t } from 'i18next'
-import PropTypes from 'prop-types'
 
 function BootScreen({ version, isVisible }) {
 
@@ -31,10 +30,6 @@ function BootScreen({ version, isVisible }) {
             </pre>
         </div>
     )
-}
-BootScreen.propTypes = {
-    version: PropTypes.string.isRequired,
-    isVisible: PropTypes.bool.isRequired
 }
 
 export default BootScreen

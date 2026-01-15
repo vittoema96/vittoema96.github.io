@@ -43,7 +43,8 @@ jobs:
         id: version
         run: |
           BASE_VERSION=$(node -p "require('./package.json').version")
-          BUILD_VERSION=$(echo "$BASE_VERSION" | sed "s/BUILD_VERSION/${{ github.run_number }}/")
+          # Replace alpha.0 with alpha.buildNumber
+          BUILD_VERSION=$(echo "$BASE_VERSION" | sed "s/alpha\.BUILD_VERSION/alpha.${{ github.run_number }}/")
           echo "base_version=$BASE_VERSION" >> $GITHUB_OUTPUT
           echo "build_version=$BUILD_VERSION" >> $GITHUB_OUTPUT
           echo "Base version: $BASE_VERSION"

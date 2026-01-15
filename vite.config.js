@@ -13,7 +13,7 @@ export default defineConfig({
 
   // Define global constants (injected at build time)
   define: {
-    'globalThis.PROJECT_VERSION': JSON.stringify(`v${version}`)
+    'window.PROJECT_VERSION': JSON.stringify(`v${version}`)
   },
 
   // Development server configuration
