@@ -7,6 +7,10 @@ import {
     SpecialType
 } from "@/types";
 
+// TODO delete this class:
+//   - Most stuff can be moved to index.ts
+//   - An Origin.ts class or something similar has to be created to contain Origin related stuff (complex handling)
+
 export const SKILL_TO_SPECIAL_MAP: Record<SkillType, SpecialType> = {
     athletics: "strength",
     barter: "charisma",

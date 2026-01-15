@@ -1,10 +1,10 @@
 import {useEffect, useRef, useState} from 'react'
 import { useTranslation } from 'react-i18next'
-import {useCharacter} from '@/contexts/CharacterContext.tsx'
-import {useDialog} from '@/hooks/useDialog.ts'
-import {isSameConfiguration} from '@/utils/itemUtils.ts'
-import {ORIGINS} from "@/utils/characterSheet.ts";
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
+import {useCharacter} from '@/contexts/CharacterContext'
+import {useDialog} from '@/hooks/useDialog'
+import {isSameConfiguration} from '@/utils/itemUtils'
+import {ORIGINS} from "@/utils/characterSheet";
+import {getGameDatabase} from "@/hooks/getGameDatabase"
 import {CharacterItem, GenericItem, GenericPopupProps, ItemCategory, ItemType, Side} from "@/types";
 
 export interface AddItemPopupProps extends GenericPopupProps {

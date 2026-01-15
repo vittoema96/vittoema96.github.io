@@ -1,10 +1,10 @@
 import { useState, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useCharacter } from '@/contexts/CharacterContext.tsx'
-import Skill from './components/Skill.tsx'
-import DamageReductionDisplay from '@/app/tabs/stat/components/DamageReductionDisplay.tsx'
-import EquippedArmorEffects from '@/app/tabs/EquippedArmorEffects.tsx'
-import SpecialStat from '@/app/tabs/stat/components/SpecialStat.tsx'
+import { useCharacter } from '@/contexts/CharacterContext'
+import EquippedArmorEffects from '@/app/tabs/EquippedArmorEffects'
+import Skill from './components/Skill'
+import DamageReductionDisplay from './components/DamageReductionDisplay'
+import SpecialStat from './components/SpecialStat'
 import {SKILLS, SPECIAL} from "@/types";
 
 function StatTab() {

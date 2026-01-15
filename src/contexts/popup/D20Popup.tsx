@@ -1,11 +1,11 @@
 import { useState, useRef } from 'react'
-import { useCharacter } from '@/contexts/CharacterContext.tsx'
+import { useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
-import { usePopup } from '@/contexts/popup/PopupContext.tsx'
-import { useDialog } from '@/hooks/useDialog.ts'
-import { getModifiedItemData, hasEnoughAmmo } from '@/utils/itemUtils.ts';
+import { usePopup } from '@/contexts/popup/PopupContext'
+import { useDialog } from '@/hooks/useDialog'
+import { getModifiedItemData, hasEnoughAmmo } from '@/utils/itemUtils';
 import {CharacterItem, SkillType, SPECIAL} from "@/types";
-import {SKILL_TO_SPECIAL_MAP} from "@/utils/characterSheet.ts";
+import {SKILL_TO_SPECIAL_MAP} from "@/utils/characterSheet";
 
 
 interface D20PopupProps {

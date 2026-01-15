@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import Tag from '@/components/Tag.tsx'
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
+import Tag from '@/components/Tag'
+import {getGameDatabase} from "@/hooks/getGameDatabase";
 
 /**
  * Apparel-specific content renderer

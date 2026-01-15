@@ -1,5 +1,5 @@
 import BaseCard from './BaseCard.tsx'
-import AmmoContent from './content/AmmoContent.tsx'
+import AmmoContent from '../content/AmmoContent.tsx'
 
 /**
  * Ammo card component - now uses BaseCard with AmmoContent renderer

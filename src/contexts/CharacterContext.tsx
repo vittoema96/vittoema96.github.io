@@ -1,12 +1,12 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react'
 import {BODY_PARTS, CharacterContextValue, CharacterItem, MR_HANDY_PARTS, MrHandyPart, RawCharacter} from '@/types'
-import {getOriginById} from "@/utils/characterSheet.ts";
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
-import { CharacterRepository } from "@/services/CharacterRepository.ts";
+import {getOriginById} from "@/utils/characterSheet";
+import {getGameDatabase} from "@/hooks/getGameDatabase";
+import { CharacterRepository } from "@/services/CharacterRepository";
 import useCalculatedCharacter, {
     adjustCurrentHp,
     unequipIrrelevantApparel
-} from "@/hooks/useCalculatedCharacter.ts";
+} from "@/hooks/useCalculatedCharacter";
 
 const CharacterContext = createContext<CharacterContextValue | undefined>(undefined)
 

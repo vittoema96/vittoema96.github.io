@@ -1,8 +1,8 @@
-import Tag from '@/components/Tag.tsx'
-import { useCharacter } from '@/contexts/CharacterContext.tsx'
+import Tag from '@/components/Tag'
+import { useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
-import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo, calculateWeaponStats } from '@/utils/weaponUtils.ts'
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
+import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo, calculateWeaponStats } from '@/app/tabs/inv/utils/weaponUtils.ts'
+import {getGameDatabase} from "@/hooks/getGameDatabase";
 
 /**
  * Weapon-specific content renderer

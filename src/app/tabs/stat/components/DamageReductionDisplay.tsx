@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { useCharacter } from '@/contexts/CharacterContext.tsx'
-import {ORIGINS} from "@/utils/characterSheet.ts";
+import { useCharacter } from '@/contexts/CharacterContext'
+import {ORIGINS} from "@/utils/characterSheet";
 import {GenericBodyPart} from "@/types";
 
 /**

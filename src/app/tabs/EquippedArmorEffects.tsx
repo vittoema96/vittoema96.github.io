@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { getModifiedItemData } from '@/utils/itemUtils.ts'
-import Tag from '@/components/Tag.tsx'
+import { getModifiedItemData } from '@/utils/itemUtils'
+import Tag from '@/components/Tag'
 import {CharacterItem} from "@/types";
 
 /**

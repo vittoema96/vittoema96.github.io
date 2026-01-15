@@ -1,5 +1,5 @@
 import {useMemo} from 'react'
-import {useCharacter} from '@/contexts/CharacterContext'
+import {useCharacter} from '@/contexts/CharacterContext.tsx'
 import {ORIGINS} from "@/utils/characterSheet.ts";
 import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 import {CharacterItem, ItemType} from "@/types";

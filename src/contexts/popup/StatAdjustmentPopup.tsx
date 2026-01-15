@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
-import { useCharacter } from '@/contexts/CharacterContext.tsx'
+import { useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
-import { useDialog } from '@/hooks/useDialog.ts'
+import { useDialog } from '@/hooks/useDialog'
 
 /**
  * StatAdjustmentPopup - React version of the legacy header stats popup

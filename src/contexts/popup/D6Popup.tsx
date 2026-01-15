@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
-import { useCharacter } from '@/contexts/CharacterContext.tsx'
+import { useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
-import { useTooltip } from '@/contexts/TooltipContext.tsx'
-import { useDialog } from '@/hooks/useDialog.ts'
-import { getModifiedItemData } from '@/utils/itemUtils.ts'
-import { createInitialDiceState, rollRandomHitLocation } from '@/utils/diceUtils.ts'
+import { useTooltip } from '@/contexts/TooltipContext'
+import { useDialog } from '@/hooks/useDialog'
+import { getModifiedItemData } from '@/utils/itemUtils'
+import { createInitialDiceState, rollRandomHitLocation } from '@/contexts/popup/utils/diceUtils.ts'
 import {CharacterItem, GenericPopupProps, ItemCategory, WeaponItem} from "@/types";
 
 

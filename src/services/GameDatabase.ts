@@ -1,7 +1,7 @@
 import type {
     Item, WeaponItem, ApparelItem, AidItem, ModItem, GenericItem, ItemType, ItemCategory
 } from '@/types';
-import {GameDataRepository} from "@/services/GameDataRepostory.ts";
+import {GameDataRepository} from "@/services/GameDataRepostory";
 
 // Define the shape of your DB
 interface DatabaseCollections {

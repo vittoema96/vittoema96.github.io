@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDialog } from '@/hooks/useDialog.ts'
+import { useDialog } from '@/hooks/useDialog'
 
 function TradeItemPopup({ onClose, characterItem, itemData, onConfirm }) {
     const { t } = useTranslation()

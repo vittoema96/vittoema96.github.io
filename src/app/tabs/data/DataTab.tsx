@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useCharacter } from '@/contexts/CharacterContext.tsx'
-import {ORIGINS} from "@/utils/characterSheet.ts";
+import { useCharacter } from '@/contexts/CharacterContext'
+import {ORIGINS} from "@/utils/characterSheet";
 import {OriginId} from "@/types";
 
 function DataTab() {

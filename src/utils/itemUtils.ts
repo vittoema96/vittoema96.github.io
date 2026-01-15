@@ -4,7 +4,7 @@
  */
 
 import { Character, CharacterItem, DamageType, Item, ModItem, Range } from '@/types';
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
+import {getGameDatabase} from "@/hooks/getGameDatabase";
 import type { TFunction } from 'i18next';
 
 /**

@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useState, useCallback, useMemo } from 'react'
-import AlertPopup from '@/contexts/popup/AlertPopup.tsx'
-import D20Popup from '@/contexts/popup/D20Popup.tsx'
-import D6Popup from '@/contexts/popup/D6Popup.tsx'
-import AddItemPopup from '@/contexts/popup/AddItemPopup.tsx'
-import StatAdjustmentPopup from '@/contexts/popup/StatAdjustmentPopup.tsx'
-import TradeItemPopup from '@/contexts/popup/TradeItemPopup.tsx'
-import ModifyItemPopup from '@/contexts/popup/ModifyItemPopup.tsx'
+import AlertPopup from '@/contexts/popup/AlertPopup'
+import D20Popup from '@/contexts/popup/D20Popup'
+import D6Popup from '@/contexts/popup/D6Popup'
+import AddItemPopup from '@/contexts/popup/AddItemPopup'
+import StatAdjustmentPopup from '@/contexts/popup/StatAdjustmentPopup'
+import TradeItemPopup from '@/contexts/popup/TradeItemPopup'
+import ModifyItemPopup from '@/contexts/popup/ModifyItemPopup'
 import { useTranslation } from 'react-i18next'
 import {CharacterItem, Item, ItemType, PopupContextValue, SkillType} from "@/types";
 

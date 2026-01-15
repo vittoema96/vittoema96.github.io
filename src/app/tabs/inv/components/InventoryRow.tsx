@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
-import { useInventoryActions } from '@/hooks/useInventoryActions.ts'
+import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts'
 import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 import { getDisplayName } from '@/utils/itemUtils.ts'
 import {CharacterItem, Item} from '@/types'

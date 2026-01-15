@@ -11,15 +11,15 @@ import './styles/styles.css'
 import './i18n'
 import { useTranslation } from 'react-i18next'
 
-import { applyTheme } from '@/utils/themeUtils'
+import { applyTheme } from '@/app/tabs/settings/utils/themeUtils'
 
-import ErrorBoundary from "./ErrorBoundary.tsx";
-import { CharacterProvider } from "@/contexts/CharacterContext.tsx";
-import { TooltipProvider } from "@/contexts/TooltipContext.tsx";
-import { PopupProvider } from "@/contexts/popup/PopupContext.tsx";
-import BootScreen from "@/BootScreen.tsx";
-import App from "@/app/App.tsx";
-import {GameDatabase} from "@/services/GameDatabase.ts";
+import ErrorBoundary from "./ErrorBoundary";
+import { CharacterProvider } from "@/contexts/CharacterContext";
+import { TooltipProvider } from "@/contexts/TooltipContext";
+import { PopupProvider } from "@/contexts/popup/PopupContext";
+import BootScreen from "@/BootScreen";
+import App from "@/app/App";
+import {GameDatabase} from "@/services/GameDatabase";
 
 // DEV ONLY
 const FORCE_BOOT_SCREEN = false;

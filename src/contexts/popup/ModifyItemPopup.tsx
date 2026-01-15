@@ -1,12 +1,11 @@
 import { useRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useCharacter } from '@/contexts/CharacterContext.tsx'
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
-import { useTooltip } from '@/contexts/TooltipContext.tsx'
-import { useDialog } from '@/hooks/useDialog.ts'
-import { getModifiedItemData } from '@/utils/itemUtils.ts'
-import { MOD_SLOTS } from '@/js/constants.ts'
-import type { CharacterItem } from '@/types'
+import { useCharacter } from '@/contexts/CharacterContext'
+import {getGameDatabase} from "@/hooks/getGameDatabase"
+import { useTooltip } from '@/contexts/TooltipContext'
+import { useDialog } from '@/hooks/useDialog'
+import { getModifiedItemData } from '@/utils/itemUtils'
+import  { CharacterItem, MOD_SLOTS } from '@/types'
 
 /**
  * Popup for modifying weapons and armor with mods

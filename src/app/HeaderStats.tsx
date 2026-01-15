@@ -1,6 +1,6 @@
-import {useCharacter} from "@/contexts/CharacterContext.tsx";
-import {usePopup} from "@/contexts/popup/PopupContext.tsx";
-import IconTextPair from "@/components/IconTextPair.tsx";
+import {useCharacter} from "@/contexts/CharacterContext";
+import {usePopup} from "@/contexts/popup/PopupContext";
+import IconTextPair from "@/components/IconTextPair";
 
 export function HeaderStats() {
     const {character} = useCharacter()

@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import {getCurrentTheme, applyTheme, Theme, THEMES} from '@/utils/themeUtils.ts'
-import { usePopup } from '@/contexts/popup/PopupContext.tsx'
-import { useCharacter } from '@/contexts/CharacterContext.tsx'
-import {changeLanguage, getCurrentLanguage, Language, LANGUAGES} from "@/i18n.ts";
+import {getCurrentTheme, applyTheme, Theme, THEMES} from '@/app/tabs/settings/utils/themeUtils'
+import { usePopup } from '@/contexts/popup/PopupContext'
+import { useCharacter } from '@/contexts/CharacterContext'
+import {changeLanguage, getCurrentLanguage, Language, LANGUAGES} from "@/i18n";
 
 function SettingsTab() {
     const { t } = useTranslation()

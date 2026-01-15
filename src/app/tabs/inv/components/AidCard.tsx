@@ -1,5 +1,5 @@
 import BaseCard from './BaseCard.tsx'
-import AidContent from './content/AidContent.tsx'
+import AidContent from '../content/AidContent.tsx'
 
 /**
  * Aid card component for consumable items (food, drinks, meds)

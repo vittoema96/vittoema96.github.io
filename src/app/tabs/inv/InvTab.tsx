@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useCharacter } from '@/contexts/CharacterContext.tsx'
-import { useInventoryFilter } from '@/hooks/useInventoryFilter.ts'
-import InventoryList from '@/app/tabs/inv/InventoryList.tsx'
-import EquippedApparel from '@/app/tabs/inv/EquippedApparel.tsx'
-import EquippedArmorEffects from '@/app/tabs/EquippedArmorEffects.tsx'
+import { useCharacter } from '@/contexts/CharacterContext'
+import { useInventoryFilter } from '@/app/tabs/inv/hooks/useInventoryFilter.ts'
+import InventoryList from '@/app/tabs/inv/components/InventoryList.tsx'
+import EquippedApparel from '@/app/tabs/inv/components/EquippedApparel.tsx'
+import EquippedArmorEffects from '@/app/tabs/EquippedArmorEffects'
 import {BODY_PARTS} from "@/types";
 
 type SubtabType = 'weapon' | 'apparel' | 'aid' | 'other'

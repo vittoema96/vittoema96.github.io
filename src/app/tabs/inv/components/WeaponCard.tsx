@@ -1,43 +1,44 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import BaseCard from './BaseCard.tsx'
-import ApparelContent from './content/ApparelContent.tsx'
+import WeaponContent from '../content/WeaponContent.tsx'
+import { useCharacter } from '@/contexts/CharacterContext.tsx'
 import { usePopup } from '@/contexts/popup/PopupContext.tsx'
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 import { canBeModified } from '@/utils/itemUtils.ts'
+import { hasEnoughAmmo as checkHasEnoughAmmo } from '@/app/tabs/inv/utils/weaponUtils.ts'
 
 /**
- * Apparel card component with armor stats and equip functionality
- * Uses BaseCard with ApparelContent renderer
+ * Weapon card component with weapon-specific stats and actions
+ * Uses BaseCard with WeaponContent renderer
  */
-function ApparelCard({ characterItem, itemData, onEquip }) {
+function WeaponCard({ characterItem, itemData, onAttack }) {
     const { t } = useTranslation()
-    const { showModifyItemPopup } = usePopup()
-    const dataManager = getGameDatabase()
+    const { character } = useCharacter()
+    const { showD20Popup, showModifyItemPopup } = usePopup()
     const [showDescription, setShowDescription] = useState(false)
 
     if (!itemData) {
-        console.error(`Apparel data not found for ID: ${characterItem.id}`)
+        console.error(`Weapon data not found for ID: ${characterItem.id}`)
         return null
     }
 
     // itemData is already modified by InventoryList, use it directly
-    const apparelObj = itemData
+    const weaponObj = itemData
 
-    const [itemId] = characterItem.id.split('_')
+    // Use weapon utilities
+    const hasEnoughAmmo = () => checkHasEnoughAmmo(weaponObj, character)
 
-    // Check if this is a robot part (unacquirable)
-    const isRobotPart = dataManager.isUnacquirable(itemId)
+    const handleAttack = () => {
+        if (!hasEnoughAmmo()) {
+            console.log('Not enough ammo to attack')
+            return
+        }
 
-    const handleEquip = () => {
-        // Robot parts cannot be unequipped
-        if (isRobotPart) {return}
-
-        if (onEquip) {
-            onEquip(characterItem, itemData)
+        if (onAttack) {
+            onAttack(characterItem, weaponObj)
         } else {
-            // TODO: Implement equip functionality
-            console.log('Equip apparel:', characterItem.id)
+            // Open D20 popup for weapon attack, passing characterItem
+            showD20Popup(weaponObj.CATEGORY, characterItem)
         }
     }
 
@@ -65,10 +66,10 @@ function ApparelCard({ characterItem, itemData, onEquip }) {
                 <input
                     type="checkbox"
                     className="themed-svg button-card"
-                    data-icon="armor"
-                    checked={isRobotPart ? true : characterItem.equipped === true}
-                    disabled={isRobotPart}
-                    onChange={handleEquip}
+                    data-icon="attack"
+                    checked={hasEnoughAmmo()}
+                    disabled={!hasEnoughAmmo()}
+                    onChange={handleAttack}
                 />
                 {isModifiable && (
                     <button
@@ -92,7 +93,7 @@ function ApparelCard({ characterItem, itemData, onEquip }) {
                 <div className="card-description-overlay" onClick={toggleDescription}>
                     <div className="card-description-overlay__content" onClick={(e) => e.stopPropagation()}>
                         <div className="card-description-overlay__header">
-                            <h3>{t(apparelObj.ID)}</h3>
+                            <h3>{t(weaponObj.ID)}</h3>
                             <button
                                 className="card-description-overlay__close"
                                 onClick={toggleDescription}
@@ -101,7 +102,7 @@ function ApparelCard({ characterItem, itemData, onEquip }) {
                             </button>
                         </div>
                         <div className="card-description-overlay__text">
-                            <p>{formatDescription(t(`${apparelObj.ID}Description`))}</p>
+                            <p>{formatDescription(t(`${weaponObj.ID}Description`))}</p>
                         </div>
                     </div>
                 </div>
@@ -112,15 +113,16 @@ function ApparelCard({ characterItem, itemData, onEquip }) {
     return (
         <BaseCard
             characterItem={characterItem}
-            contentRenderer={ApparelContent}
-            onAction={handleEquip}
-            actionIcon="armor"
-            actionType="equip"
-            isEquipped={characterItem.equipped === true}
-            className="apparel-card"
+            contentRenderer={WeaponContent}
+            onAction={handleAttack}
+            actionIcon="attack"
+            actionType="attack"
+            isEquipped={hasEnoughAmmo()}
+            disabled={!hasEnoughAmmo()}
+            className="weapon-card"
             customControls={customControls}
         />
     )
 }
 
-export default ApparelCard
+export default WeaponCard

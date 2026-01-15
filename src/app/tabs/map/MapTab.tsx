@@ -1,4 +1,4 @@
-import { usePanzoom } from '@/hooks/usePanzoom.ts'
+import { usePanzoom } from '@/app/tabs/map/hooks/usePanzoom'
 
 function MapTab() {
     // The hook handles everything; we just attach the ref it gives us

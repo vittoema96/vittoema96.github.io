@@ -8,9 +8,9 @@ import {
     SkillType
 } from "@/types";
 import {useMemo} from 'react'
-import {getModifiedItemData} from "@/utils/itemUtils.ts";
-import {mapItemLocations} from "@/utils/bodyLocations.ts";
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
+import {getModifiedItemData} from "@/utils/itemUtils";
+import {mapItemLocations} from "@/utils/bodyLocations";
+import {getGameDatabase} from "@/hooks/getGameDatabase";
 
 
 export const adjustCurrentHp = (prev: RawCharacter | null, current: RawCharacter) => {

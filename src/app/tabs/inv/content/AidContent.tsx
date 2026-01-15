@@ -1,4 +1,4 @@
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
+import {getGameDatabase} from "@/hooks/getGameDatabase";
 
 /**
  * Aid-specific content renderer

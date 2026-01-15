@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import React from 'react'
-import { usePopup } from '@/contexts/popup/PopupContext.tsx'
-import { useCharacter } from "@/contexts/CharacterContext.tsx"
+import { usePopup } from '@/contexts/popup/PopupContext'
+import { useCharacter } from "@/contexts/CharacterContext"
 import {SkillType} from "@/types";
-import {SKILL_TO_SPECIAL_MAP} from "@/utils/characterSheet.ts";
+import {SKILL_TO_SPECIAL_MAP} from "@/utils/characterSheet";
 
 interface SkillProps {
     skillId: SkillType,

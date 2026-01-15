@@ -1,20 +1,20 @@
-import { useCharacter } from '@/contexts/CharacterContext'
+import { useCharacter } from '@/contexts/CharacterContext.tsx'
 import { usePopup } from '@/contexts/popup/PopupContext.tsx'
 import {
     applyModToItem as applyModUtil,
     removeModFromItem as removeModUtil,
     getModifiedItemData,
     isSameConfiguration
-} from '@/utils/itemUtils'
+} from '@/utils/itemUtils.ts'
 import {
     canEquipItem,
     canUnequipItem,
     canSellItem,
     canDeleteItem
-} from '@/utils/itemValidation'
+} from '@/app/tabs/inv/utils/itemValidation.ts'
 import {
     hasApparelConflict
-} from '@/utils/bodyLocations'
+} from '@/utils/bodyLocations.ts'
 import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 import { CharacterItem, Item, MR_HANDY_PARTS } from '@/types';
 

@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import StatTab from './tabs/stat/StatTab.tsx'
-import InvTab from './tabs/inv/InvTab.tsx'
-import DataTab from './tabs/data/DataTab.tsx'
-import MapTab from './tabs/map/MapTab.tsx'
-import SettingsTab from './tabs/settings/SettingsTab.tsx'
-import TabButton, {TabType} from '@/app/tabs/TabButton.tsx'
-import HeaderStats from "./HeaderStats.tsx";
+import StatTab from '@/app/tabs/stat/StatTab'
+import InvTab from '@/app/tabs/inv/InvTab'
+import DataTab from '@/app/tabs/data/DataTab'
+import MapTab from '@/app/tabs/map/MapTab'
+import SettingsTab from '@/app/tabs/settings/SettingsTab'
+import TabButton, {TabType} from '@/app/tabs/TabButton'
+import HeaderStats from "@/app/HeaderStats";
 
 const TABS = {
     stat: StatTab,
