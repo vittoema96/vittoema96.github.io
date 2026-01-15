@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import React from 'react'
 import { usePopup } from '@/contexts/popup/PopupContext.tsx'
 import { useCharacter } from "@/contexts/CharacterContext.tsx"
 import {SkillType} from "@/types";

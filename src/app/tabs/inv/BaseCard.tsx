@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import {useGameDatabase} from "@/hooks/useGameDatabase.ts";
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
 
 /**
  * Base card component - provides common card structure and functionality
@@ -19,7 +19,7 @@ function BaseCard({
 }) {
     const { t } = useTranslation()
     const [showDescription, setShowDescription] = useState(false)
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     const itemData = dataManager.getItem(characterItem.id)
 
     if (!itemData) {

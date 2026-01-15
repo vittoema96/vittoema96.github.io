@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
 import { useInventoryActions } from '@/hooks/useInventoryActions.ts'
-import {useGameDatabase} from "@/hooks/useGameDatabase"
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 
 /**
  * Simple one-line ammo display (no accordion)
@@ -10,7 +10,7 @@ import {useGameDatabase} from "@/hooks/useGameDatabase"
 function AmmoRow({ characterItem, itemData }) {
     const { t } = useTranslation()
     const { sellItem, deleteItem } = useInventoryActions()
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
 
     // Check if item can be sold/deleted (unacquirable items cannot)
     const [itemId] = characterItem.id.split('_')

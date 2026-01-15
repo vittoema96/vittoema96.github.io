@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import {useGameDatabase} from "@/hooks/useGameDatabase"
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 import { useCharacter } from '@/contexts/CharacterContext.tsx'
 import {ApparelItem, CharacterItem, GenericBodyPart} from "@/types";
 import {mapItemLocations} from "@/utils/bodyLocations.ts";
@@ -10,7 +10,7 @@ import {mapItemLocations} from "@/utils/bodyLocations.ts";
  */
 function EquippedApparel() {
     const { t } = useTranslation()
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     const { character } = useCharacter()
     const equippedItems = character.items.filter(item => item.equipped)
 

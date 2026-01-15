@@ -10,7 +10,7 @@ import {
 import {useMemo} from 'react'
 import {getModifiedItemData} from "@/utils/itemUtils.ts";
 import {mapItemLocations} from "@/utils/bodyLocations.ts";
-import {useGameDatabase} from "@/hooks/useGameDatabase.ts";
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
 
 
 export const adjustCurrentHp = (prev: RawCharacter | null, current: RawCharacter) => {
@@ -21,7 +21,7 @@ export const adjustCurrentHp = (prev: RawCharacter | null, current: RawCharacter
     const hpDelta = currentMaxHp - prevMaxHp
     // TODO per ora se maxHp aumenta, currentHp aumenta di pari passo
     //      se maxHp diminuisce currentHp rimane tale (o scende a maxHp se superiore)
-    if(hpDelta > 0) result.currentHp = currentHp + hpDelta
+    if(hpDelta > 0) {result.currentHp = currentHp + hpDelta}
     result.currentHp = Math.min(currentHp, currentMaxHp)
     return result
 }
@@ -55,7 +55,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
     const level = raw?.level ?? 1
     const specialties = raw?.specialties ?? []
 
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
 
 
     const origin = useMemo(

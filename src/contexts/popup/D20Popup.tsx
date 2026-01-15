@@ -3,10 +3,9 @@ import { useCharacter } from '@/contexts/CharacterContext.tsx'
 import { useTranslation } from 'react-i18next'
 import { usePopup } from '@/contexts/popup/PopupContext.tsx'
 import { useDialog } from '@/hooks/useDialog.ts'
-import { getModifiedItemData } from '@/utils/itemUtils.ts'
+import { getModifiedItemData, hasEnoughAmmo } from '@/utils/itemUtils.ts';
 import {CharacterItem, SkillType, SPECIAL} from "@/types";
 import {SKILL_TO_SPECIAL_MAP} from "@/utils/characterSheet.ts";
-import {useGameDatabase} from "@/hooks/useGameDatabase.ts";
 
 
 interface D20PopupProps {
@@ -20,38 +19,18 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
     const dialogRef = useRef<HTMLDialogElement>(null)
     const { character, updateCharacter } = useCharacter()
     const { showD6Popup } = usePopup()
-    const dataManager = useGameDatabase()
 
     // Get weapon data with mods applied
     const itemData = usingItem
         ? getModifiedItemData(usingItem)
         : null
 
-    // Check if weapon has enough ammo
-    const hasEnoughAmmo = () => {
-        if (!dataManager.isType(itemData, "weapon")) {return true}
-        const weaponType = itemData.CATEGORY
-        if (weaponType === 'meleeWeapons' || weaponType === 'unarmed') {return true}
-
-        let ammoId = itemData.AMMO_TYPE
-        if (ammoId === 'self') {ammoId = itemData.ID}
-        if (ammoId === 'na') {return true}
-
-        const ammoItem = character.items.find(item => item.id === ammoId)
-        const currentAmmo = ammoItem ? ammoItem.quantity : 0
-
-        const isGatling = (itemData.QUALITIES || []).includes('qualityGatling')
-        const ammoStep = isGatling ? 10 : 1
-
-        return currentAmmo >= ammoStep
-    }
-
     // State
     const [isUsingLuck, setIsUsingLuck] = useState(false)
     const [selectedSpecial, setSelectedSpecial] = useState(SKILL_TO_SPECIAL_MAP[skillId] || 'strength')
     const [isAiming, setIsAiming] = useState(false)
     const [hasRolled, setHasRolled] = useState(false)
-    const [diceValues, setDiceValues] = useState(['?', '?', '?', '?', '?'])
+    const [diceValues, setDiceValues] = useState<Array<string | number>>(['?', '?', '?', '?', '?'])
     const [diceActive, setDiceActive] = useState([true, true, false, false, false])
     const [diceRerolled, setDiceRerolled] = useState([false, false, false, false, false])
     const [initialApCost, setInitialApCost] = useState(0) // Store AP cost from first roll
@@ -120,7 +99,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
 
         diceValues.forEach((value) => {
             // Count successes only for rolled dice (not '?')
-            if (typeof value === 'number' && value <= targetNumber) {
+            if (Number(value) <= targetNumber) {
                 successes++
             }
         })
@@ -220,33 +199,33 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
     // Handle close with animation
     const handleClose = () => {
         const dialog = dialogRef.current
-        if (dialog && dialog.open) {
+        if (dialog?.open) {
             // Add closing animation class
-            dialog.classList.add('dialog-closing')
+            dialog.classList.add('dialog-closing');
             dialog.addEventListener(
                 'animationend',
                 () => {
-                    dialog.classList.remove('dialog-closing')
+                    dialog.classList.remove('dialog-closing');
 
                     // Reset state
-                    setIsUsingLuck(false)
-                    setSelectedSpecial(SKILL_TO_SPECIAL_MAP[skillId] || 'strength')
-                    setIsAiming(false)
-                    setHasRolled(false)
-                    setDiceValues(['?', '?', '?', '?', '?'])
-                    setDiceActive([true, true, false, false, false])
-                    setDiceRerolled([false, false, false, false, false])
-                    setInitialApCost(0)
+                    setIsUsingLuck(false);
+                    setSelectedSpecial(SKILL_TO_SPECIAL_MAP[skillId] || 'strength');
+                    setIsAiming(false);
+                    setHasRolled(false);
+                    setDiceValues(['?', '?', '?', '?', '?']);
+                    setDiceActive([true, true, false, false, false]);
+                    setDiceRerolled([false, false, false, false, false]);
+                    setInitialApCost(0);
 
                     if (dialog.open) {
-                        dialog.close()
+                        dialog.close();
                     }
-                    onClose()
+                    onClose();
                 },
-                { once: true }
-            )
+                { once: true },
+            );
         } else {
-            onClose()
+            onClose();
         }
     }
 
@@ -378,7 +357,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                             onClick={() => {
                                 showD6Popup(usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }, isAiming)
                             }}
-                            disabled={!hasRolled || !hasEnoughAmmo()}
+                            disabled={!hasRolled || !hasEnoughAmmo(itemData, character)}
                         >
                             {t('damage')}
                         </button>

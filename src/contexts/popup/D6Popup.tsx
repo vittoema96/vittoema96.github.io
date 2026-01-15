@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useTooltip } from '@/contexts/TooltipContext.tsx'
 import { useDialog } from '@/hooks/useDialog.ts'
 import { getModifiedItemData } from '@/utils/itemUtils.ts'
-import { createInitialDiceState, createInitialExtraDiceState, rollRandomHitLocation } from '@/utils/diceUtils.ts'
+import { createInitialDiceState, rollRandomHitLocation } from '@/utils/diceUtils.ts'
 import {CharacterItem, GenericPopupProps, ItemCategory, WeaponItem} from "@/types";
 
 
@@ -50,7 +50,7 @@ function D6Popup({ onClose, usingItem = null, hasAimed = false }: D6PopupProps) 
 
         if (isMelee(weaponData.CATEGORY)) {
             return 3 // Melee always has 3 extra dice
-        } else if (typeof weaponData.FIRE_RATE == 'number' && weaponData.FIRE_RATE > 0) {
+        } else if (Number(weaponData.FIRE_RATE) > 0) {
             return Number(weaponData.FIRE_RATE) * (isGatling ? 2 : 1)
         } else if (hasAimed && hasAccurate) {
             // TODO user should be able to choose between:
@@ -81,7 +81,7 @@ function D6Popup({ onClose, usingItem = null, hasAimed = false }: D6PopupProps) 
     const [diceActive, setDiceActive] = useState(initialDiceState.active)
     const [diceRerolled, setDiceRerolled] = useState(initialDiceState.rerolled)
 
-    const initialExtraDiceState = createInitialExtraDiceState(extraDiceCount)
+    const initialExtraDiceState = createInitialDiceState(extraDiceCount, false)
     const [extraDiceClasses, setExtraDiceClasses] = useState(initialExtraDiceState.classes)
     const [extraDiceActive, setExtraDiceActive] = useState(initialExtraDiceState.active)
     const [extraDiceRerolled, setExtraDiceRerolled] = useState(initialExtraDiceState.rerolled)
@@ -106,7 +106,7 @@ function D6Popup({ onClose, usingItem = null, hasAimed = false }: D6PopupProps) 
         setDiceActive(diceState.active)
         setDiceRerolled(diceState.rerolled)
 
-        const extraDiceState = createInitialExtraDiceState(extraDiceCount)
+        const extraDiceState = createInitialDiceState(extraDiceCount, false)
         setExtraDiceClasses(extraDiceState.classes)
         setExtraDiceActive(extraDiceState.active)
         setExtraDiceRerolled(extraDiceState.rerolled)
@@ -143,7 +143,7 @@ function D6Popup({ onClose, usingItem = null, hasAimed = false }: D6PopupProps) 
         // TODO should probably check for aimed + accurate too
         if (!weaponData) {return null}
         if (isMelee(weaponData.CATEGORY)) {return 'ap'}
-        if (typeof weaponData.FIRE_RATE == 'number' && weaponData.FIRE_RATE > 0) {return 'ammo'}
+        if (Number(weaponData.FIRE_RATE) > 0) {return 'ammo'}
         return null
     }
 

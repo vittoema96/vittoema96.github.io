@@ -13,8 +13,7 @@ function DamageReductionDisplay() {
     const { character } = useCharacter()
     const damageReduction = character.locationsDR
 
-    // TODO gestire con NO_ORIGIN
-    const characterIcon = character.origin?.characterSvg || 'vaultboy-open-arms'
+    const characterIcon = character.origin.characterSvg
 
     // Helper function to format DR value (show "Immune" for Infinity)
     const formatDR = (value: number) => {
@@ -26,7 +25,7 @@ function DamageReductionDisplay() {
     // Get body parts to display based on origin
     const getBodyPartsToDisplay = (): { key: GenericBodyPart; className: string }[] => {
 
-        const isMrHandy = character.origin == ORIGINS.MR_HANDY
+        const isMrHandy = character.origin === ORIGINS.MR_HANDY
         if(isMrHandy){
             // TODO handle other type of robots when introduced
             // Mr Handy has 4 robot parts with unique locations
@@ -37,14 +36,15 @@ function DamageReductionDisplay() {
                 { key: 'robotPartThrusters', className: 'rightLeg' } // Bottom-right position
             ]
         }
-        return Object.values(character.origin.bodyParts).map(part => ({
+
+        return Array.from(character.origin.bodyParts, part => ({
             key: part,
             className: part
         }))
     }
 
     const bodyParts = getBodyPartsToDisplay()
-    const isMrHandy = character?.origin === ORIGINS.MR_HANDY
+    const isMrHandy = character.origin === ORIGINS.MR_HANDY
 
     return (
         <div className={`activeApparel l-spaceAround ${isMrHandy ? 'activeApparel--mrhandy' : ''}`}>

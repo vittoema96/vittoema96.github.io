@@ -1,3 +1,4 @@
+import React from 'react'
 import {SpecialType} from "@/types";
 import { useTranslation } from 'react-i18next'
 import {usePopup} from "@/contexts/popup/PopupContext.tsx";
@@ -52,7 +53,7 @@ function SpecialStat({ specialType, editable = false, children }: Readonly<Speci
             style={style}>
             <span className="special__name">{t(specialType)}</span>
             <span className="special__value">{character.special[specialType]}</span>
-            {specialType == "luck" && (
+            {specialType === "luck" && (
                 <div
                     className="themed-svg sub-special"
                     onClick={(e) => {

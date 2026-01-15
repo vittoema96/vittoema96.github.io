@@ -1,7 +1,7 @@
 import {useMemo} from 'react'
 import {useCharacter} from '@/contexts/CharacterContext'
 import {ORIGINS} from "@/utils/characterSheet.ts";
-import {useGameDatabase} from "@/hooks/useGameDatabase"
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 import {CharacterItem, ItemType} from "@/types";
 
 /**
@@ -9,7 +9,7 @@ import {CharacterItem, ItemType} from "@/types";
  */
 export const useInventoryFilter = (itemType: ItemType) => {
     const { character } = useCharacter()
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
 
     return useMemo(() => {
         if (!character.items || !dataManager.getItemTypeMap) {return []}
@@ -20,7 +20,7 @@ export const useInventoryFilter = (itemType: ItemType) => {
             if (itemData?.TYPE !== itemType) {return false}
 
             // Hide robot parts if origin is not Mr. Handy
-            return itemData?.CATEGORY !== 'robotParts' || character.origin === ORIGINS.MR_HANDY;
+            return itemData?.CATEGORY !== 'robotPart' || character.origin === ORIGINS.MR_HANDY;
         })
 
         items = addSpecialWeaponItems(items, dataManager)
@@ -64,7 +64,7 @@ const addSpecialWeaponItems = (items: CharacterItem[], dataManager) => {
             if(dataManager.isType(itemData, 'weapon')) {
                 const hasGunBash = ['bigGuns', 'smallGuns', 'energyWeapons'].includes(itemData.CATEGORY)
                 const isTwoHanded = itemData.QUALITIES?.includes('qualityTwoHanded')
-                return hasGunBash && (twoHandedCondition == isTwoHanded)
+                return hasGunBash && (twoHandedCondition === isTwoHanded)
             }
             return false
         }

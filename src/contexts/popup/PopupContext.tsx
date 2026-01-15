@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, useMemo } from 'react'
+import React, { createContext, useContext, useState, useCallback, useMemo } from 'react'
 import AlertPopup from '@/contexts/popup/AlertPopup.tsx'
 import D20Popup from '@/contexts/popup/D20Popup.tsx'
 import D6Popup from '@/contexts/popup/D6Popup.tsx'

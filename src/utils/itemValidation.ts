@@ -1,6 +1,6 @@
 import {ORIGINS} from "@/utils/characterSheet.ts";
 import {Character, Item} from "@/types";
-import {useGameDatabase} from "@/hooks/useGameDatabase.ts";
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
 
 /**
  * Item validation and restriction utilities
@@ -11,10 +11,10 @@ import {useGameDatabase} from "@/hooks/useGameDatabase.ts";
  * Check if an item can be equipped by a character
  */
 export const canEquipItem = (character: Character, itemData: Item) => {
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     if(dataManager.isType(itemData, "apparel")) {
         const isMrHandy = character.origin === ORIGINS.MR_HANDY
-        const itemIsRobotPart = itemData.CATEGORY === 'robotParts'
+        const itemIsRobotPart = itemData.CATEGORY === 'robotPart'
 
         if(itemIsRobotPart && !isMrHandy){
             return { canEquip: false, reason: isMrHandy ?
@@ -32,7 +32,7 @@ export const canEquipItem = (character: Character, itemData: Item) => {
  * Check if an item can be unequipped
  */
 export const canUnequipItem = (itemId: string) => {
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     if (dataManager.isUnacquirable(itemId)) {
         return {
             canUnequip: false,
@@ -47,7 +47,7 @@ export const canUnequipItem = (itemId: string) => {
  * Check if an item can be sold
  */
 export const canSellItem = (itemId: string) => {
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     if (dataManager.isUnacquirable(itemId)) {
         return {
             canSell: false,
@@ -62,7 +62,7 @@ export const canSellItem = (itemId: string) => {
  * Check if an item can be deleted
  */
 export const canDeleteItem = (itemId: string) => {
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     if (dataManager.isUnacquirable(itemId)) {
         return {
             canDelete: false,

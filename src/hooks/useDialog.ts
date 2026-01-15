@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 /**
  * Custom hook for managing HTML dialog elements

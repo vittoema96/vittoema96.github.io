@@ -13,12 +13,10 @@ import {
     canDeleteItem
 } from '@/utils/itemValidation'
 import {
-    mapItemLocations,
-    getItemLayer,
-    hasLocationOverlap,
-    hasLayerConflict
+    hasApparelConflict
 } from '@/utils/bodyLocations'
-import {useGameDatabase} from "@/hooks/useGameDatabase"
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
+import { CharacterItem, Item, MR_HANDY_PARTS } from '@/types';
 
 /**
  * Custom hook for inventory actions (sell, delete, equip, use, etc.)
@@ -27,9 +25,9 @@ import {useGameDatabase} from "@/hooks/useGameDatabase"
 export const useInventoryActions = () => {
     const { character, updateCharacter } = useCharacter()
     const { showConfirm, showAlert, showTradeItemPopup } = usePopup()
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
 
-    const sellItem = (characterItem, _itemData) => {
+    const sellItem = (characterItem: CharacterItem) => {
         // Validate if item can be sold
         const validation = canSellItem(characterItem.id)
         if (!validation.canSell) {
@@ -39,7 +37,10 @@ export const useInventoryActions = () => {
 
         // Use modified data for price calculation
         const modifiedData = getModifiedItemData(characterItem)
-
+        if (!modifiedData) {
+            console.error('Item data not found!')
+            return
+        }
         showTradeItemPopup(characterItem, modifiedData, (quantity, price) => {
             const total = Math.floor(quantity * price)
 
@@ -67,16 +68,16 @@ export const useInventoryActions = () => {
         })
     }
 
-    const deleteItem = (characterItem, itemData) => {
+    const deleteItem = (characterItem: CharacterItem) => {
         // Validate if item can be deleted
-        const validation = canDeleteItem(characterItem.id, dataManager)
+        const validation = canDeleteItem(characterItem.id)
         if (!validation.canDelete) {
             showAlert(validation.reason)
             return
         }
 
         showConfirm(
-            `Delete ${characterItem.quantity}x ${itemData?.ID || characterItem.id}? This action cannot be undone.`,
+            `Delete ${characterItem.quantity}x ${characterItem.id}? This action cannot be undone.`,
             () => {
                 // Remove item from inventory
                 const updatedItems = character.items.filter(item =>
@@ -92,7 +93,7 @@ export const useInventoryActions = () => {
         )
     }
 
-    const equipItem = (characterItem, itemData) => {
+    const equipItem = (characterItem: CharacterItem, itemData: Item) => {
         // Validate if item can be equipped
         const validation = canEquipItem(character, itemData)
         if (!validation.canEquip) {
@@ -101,15 +102,10 @@ export const useInventoryActions = () => {
         }
 
         const isCurrentlyEquipped = characterItem.equipped === true
-        const [, side] = characterItem.id.split('_')
-        const itemLayer = getItemLayer(characterItem.type)
-
-        // Get locations this item covers
-        const locations = mapItemLocations(itemData.LOCATIONS_COVERED, side)
 
         if (isCurrentlyEquipped) {
             // Validate if item can be unequipped
-            const unequipValidation = canUnequipItem(characterItem.id, dataManager)
+            const unequipValidation = canUnequipItem(characterItem.id)
             if (!unequipValidation.canUnequip) {
                 showAlert(unequipValidation.reason)
                 return
@@ -131,28 +127,14 @@ export const useInventoryActions = () => {
                     return { ...item, equipped: true }
                 }
 
-                // Check if this item conflicts with any of the locations
-                const [otherItemId, otherSide] = item.id.split('_')
-                const otherItemData = dataManager.getItem(otherItemId)
-                if (!otherItemData || !otherItemData.LOCATIONS_COVERED || !item.equipped) {
+                const otherItemData = dataManager.getItem(item.id)
+                if (!item.equipped || !dataManager.isType(otherItemData, 'apparel')) {
                     return item
                 }
 
-                const otherItemLayer = getItemLayer(item.type)
-
-                // Get locations covered by this other item
-                const otherLocations = mapItemLocations(otherItemData.LOCATIONS_COVERED, otherSide)
-
-                // Check for location conflicts
-                if (!hasLocationOverlap(locations, otherLocations)) {
-                    return item // No location conflict, keep as is
+                if(hasApparelConflict(characterItem, item)){
+                    return {...item, equipped: false}
                 }
-
-                // There's a location conflict - check layer compatibility
-                if (hasLayerConflict(itemLayer, otherItemLayer)) {
-                    return { ...item, equipped: false }
-                }
-
                 return item
             })
 
@@ -160,33 +142,30 @@ export const useInventoryActions = () => {
         }
     }
 
-    const useItem = (characterItem) => {
+    const useItem = (characterItem: CharacterItem) => {
         // TODO: Implement use logic for consumables
         console.log('Use item:', characterItem.id)
         showAlert('Use functionality coming soon!')
     }
 
-    const applyMod = (characterItem, modId) => {
-        if (!characterItem || !modId) {
-            showAlert('Invalid item or mod')
-            return
-        }
+    const applyMod = (characterItem: CharacterItem, modId: string) => {
 
         // Apply mod using utility function
         let updatedItems = applyModUtil(character.items, characterItem, modId)
 
         // Check if this is a robot plating mod being applied to a robot part
         const modData = dataManager.getItem(modId)
-        const isRobotPart = characterItem.type === 'robotParts'
-        const isPlatingMod = modData && modData.SLOT_TYPE === 'modSlotRobotPlating'
+        const itemData = dataManager.getItem(characterItem.id)
+        if(!itemData || !dataManager.isType(modData, "mod")) {return}
+        const isRobotPart = itemData.CATEGORY === 'robotPart'
+        const isPlatingMod = modData.SLOT_TYPE === 'modSlotRobotPlating'
 
         if (isRobotPart && isPlatingMod) {
             // Sync plating across all robot parts (preserve armor mods)
-            const robotPartIds = ['robotPartOptics', 'robotPartBody', 'robotPartArms', 'robotPartThrusters']
             updatedItems = updatedItems.map(item => {
-                if (robotPartIds.includes(item.id) && item.id !== characterItem.id) {
+                if (MR_HANDY_PARTS.has(item.id) && item.id !== characterItem.id) {
                     // Update plating (slot 0) on other robot parts, keep armor (slot 1)
-                    const armorMod = item.mods && item.mods[1] ? item.mods[1] : null
+                    const armorMod = item.mods?.[1] ? item.mods[1] : null;
                     const newMods = armorMod ? [modId, armorMod] : [modId]
                     return { ...item, mods: newMods }
                 }
@@ -212,7 +191,7 @@ export const useInventoryActions = () => {
 
         // Check if this is a robot plating mod being removed from a robot part
         const modData = dataManager.getItem(modId)
-        const isRobotPart = characterItem.type === 'robotParts'
+        const isRobotPart = characterItem.type === 'robotPart'
         const isPlatingMod = modData && modData.SLOT_TYPE === 'modSlotRobotPlating'
 
         if (isRobotPart && isPlatingMod) {

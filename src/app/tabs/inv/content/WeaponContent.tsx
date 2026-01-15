@@ -2,7 +2,7 @@ import Tag from '@/components/Tag.tsx'
 import { useCharacter } from '@/contexts/CharacterContext.tsx'
 import { useTranslation } from 'react-i18next'
 import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo, calculateWeaponStats } from '@/utils/weaponUtils.ts'
-import {useGameDatabase} from "@/hooks/useGameDatabase.ts";
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
 
 /**
  * Weapon-specific content renderer
@@ -12,7 +12,7 @@ function WeaponContent({ characterItem }) {
     const { t } = useTranslation()
     const { character } = useCharacter()
 
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     const weaponObj = dataManager.getItem(characterItem.id)
 
     // Calculate weapon stats using utility

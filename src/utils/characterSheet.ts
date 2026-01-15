@@ -3,10 +3,7 @@ import {
     MR_HANDY_PARTS,
     Origin,
     OriginId,
-    RawCharacter,
-    SKILLS,
     SkillType,
-    SPECIAL,
     SpecialType
 } from "@/types";
 
@@ -29,27 +26,6 @@ export const SKILL_TO_SPECIAL_MAP: Record<SkillType, SpecialType> = {
     throwing: "agility",
     unarmed: "strength",
 } as const;
-
-// Default character template
-export const DEFAULT_CHARACTER: Readonly<RawCharacter> = Object.freeze({
-    name: undefined,
-    origin: undefined,
-    background: undefined,
-    level: 1,
-    caps: 0,
-    special: SPECIAL.reduce((acc, key) => {
-        acc[key] = 5;
-        return acc;
-    }, {} as Record<SpecialType, number>),
-    currentLuck: 5,
-    currentHp: 10,
-    skills: SKILLS.reduce((acc, key) => {
-        acc[key] = 0;
-        return acc;
-    }, {} as Record<SkillType, number>),
-    specialties: [],
-    items: [],
-});
 
 interface CreateOriginOptions {
     calcMaxCarryWeight?: (strengthVal: number) => number;
@@ -116,7 +92,7 @@ export const ORIGINS = Object.freeze({
     //  - additional tag apparel
     //  - Supermutant starts with +2 on Str and End
     //  - Survivor has to choose Traits
-    NO_ORIGIN: createOrigin(undefined),
+    NO_ORIGIN: createOrigin(),
     VAULT_DWELLER: createOrigin("vaultDweller"),
     GHOUL: createOrigin("ghoul", {
         hasRadiationImmunity: true,

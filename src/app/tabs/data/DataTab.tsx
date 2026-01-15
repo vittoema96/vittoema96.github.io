@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext.tsx'
 import {ORIGINS} from "@/utils/characterSheet.ts";
@@ -75,7 +75,7 @@ function DataTab() {
                 </label>
                 <select
                     id="origin"
-                    value={character.origin?.id || 'none'}
+                    value={character.origin.id || 'none'}
                     onChange={(e) => updateCharacter({
                         origin: e.target.value === 'none' ? undefined : e.target.value as OriginId
                     })}

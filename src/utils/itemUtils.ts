@@ -3,8 +3,8 @@
  * Handles item identification, grouping, and modification
  */
 
-import {CharacterItem, Item, ModItem, Range} from "@/types";
-import {useGameDatabase} from "@/hooks/useGameDatabase.ts";
+import { Character, CharacterItem, DamageType, Item, ModItem, Range } from '@/types';
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
 import type { TFunction } from 'i18next';
 
 /**
@@ -12,15 +12,30 @@ import type { TFunction } from 'i18next';
  */
 export function isSameConfiguration(item1: CharacterItem, item2: CharacterItem) {
     if (item1.id !== item2.id) {return false}
+    const mods1 = new Set(item1.mods)
+    const mods2 = new Set(item2.mods)
+    if (mods1.size !== mods2.size) {return false}
+    return mods1.isSubsetOf(mods2);
+}
 
-    if (item1.mods.length !== item2.mods.length) {return false}
+// Check if weapon has enough ammo
+export function hasEnoughAmmo(itemData: Item, character: Character) {
+    const dataManager = getGameDatabase()
+    if (!dataManager.isType(itemData, "weapon")) {return true}
+    const weaponType = itemData.CATEGORY
+    if (weaponType === 'meleeWeapons' || weaponType === 'unarmed') {return true}
 
-    // TODO might improve??
-    // Sort and compare to handle different order
-    const sorted1 = [...item1.mods].toSorted((a, b) => a.localeCompare(b))
-    const sorted2 = [...item2.mods].toSorted((a, b) => a.localeCompare(b))
+    let ammoId = itemData.AMMO_TYPE
+    if (ammoId === 'self') {ammoId = itemData.ID}
+    if (ammoId === 'na') {return true}
 
-    return sorted1.every((mod, i) => mod === sorted2[i])
+    const ammoItem = character.items.find(item => item.id === ammoId)
+    const currentAmmo = ammoItem ? ammoItem.quantity : 0
+
+    const isGatling = (itemData.QUALITIES || []).includes('qualityGatling')
+    const ammoStep = isGatling ? 10 : 1
+
+    return currentAmmo >= ammoStep
 }
 
 /**
@@ -36,7 +51,7 @@ export function getItemKey(item: CharacterItem) {
  * @param {string} effect - Effect string (e.g., "damageAdd:1", "qualityAdd:qualityMelee")
  */
 function applyEffect(modifiedData: Item, effect: string) {
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     const [effectType, ...valueParts] = effect.split(':')
     const value = valueParts.join(':') // Rejoin in case value contains ':'
     if(dataManager.isType(modifiedData, "weapon")){
@@ -51,7 +66,7 @@ function applyEffect(modifiedData: Item, effect: string) {
                 modifiedData.FIRE_RATE = (Number(modifiedData.FIRE_RATE) || 0) + Number(value)
                 break
             case 'damageTypeChange':
-                modifiedData.DAMAGE_TYPE = value
+                modifiedData.DAMAGE_TYPE = value as DamageType
                 break
             case 'ammoChange':
                 modifiedData.AMMO_TYPE = value
@@ -173,11 +188,10 @@ function applyEffect(modifiedData: Item, effect: string) {
 // FIXME this method is all wrong. we should provide an id and get the item data from there (i think)
 //          Conduct an investigation on where and why it is used and decide from there
 export function getModifiedItemData(characterItem: CharacterItem): Item | null {
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     const baseData = dataManager.getItem(characterItem.id)
     // TODO i do not like this
-    if(!baseData)
-        return null
+    if(!baseData) { return null }
 
     // No mods, return base data
     if (characterItem.mods.length === 0) {

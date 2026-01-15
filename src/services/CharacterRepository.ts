@@ -19,7 +19,7 @@ export const CharacterRepository = {
     load(): RawCharacter | null {
 
         const saved = localStorage.getItem(STORAGE_KEY)
-        if (!saved) return null
+        if (!saved) { return null }
 
         try {
             return JSON.parse(saved) as RawCharacter

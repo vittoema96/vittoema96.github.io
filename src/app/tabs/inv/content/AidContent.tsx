@@ -1,4 +1,4 @@
-import {useGameDatabase} from "@/hooks/useGameDatabase.ts";
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
 
 /**
  * Aid-specific content renderer
@@ -6,26 +6,25 @@ import {useGameDatabase} from "@/hooks/useGameDatabase.ts";
  */
 function AidContent({ characterItem }) {
 
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     const itemData = dataManager.getItem(characterItem.id)
     if(!dataManager.isType(itemData, "aid"))
-        return null
-    const aidObj = itemData.CATEGORY
+    { return null }
     const type = itemData.TYPE
 
     // Determine specific effect stats
     const getSpecificEffectStat = () => {
-        if (aidObj.HP_GAIN !== undefined) {
+        if (itemData.HP_GAIN !== undefined) {
             return {
                 label: 'HP',
-                value: `+${aidObj.HP_GAIN}`,
+                value: `+${itemData.HP_GAIN}`,
                 key: 'HP_GAIN'
             }
         }
-        if (aidObj.DURATION !== undefined) {
+        if (itemData.DURATION !== undefined) {
             return {
                 label: 'Duration',
-                value: aidObj.DURATION,
+                value: itemData.DURATION,
                 key: 'DURATION'
             }
         }
@@ -33,17 +32,17 @@ function AidContent({ characterItem }) {
     }
 
     const getSecondaryEffectStat = () => {
-        if (aidObj.RADIOACTIVE !== undefined) {
+        if (itemData.RADIOACTIVE !== undefined) {
             return {
                 label: 'Radioactive',
-                value: aidObj.RADIOACTIVE,
+                value: itemData.RADIOACTIVE,
                 key: 'RADIOACTIVE'
             }
         }
-        if (aidObj.ADDICTIVE !== undefined) {
+        if (itemData.ADDICTIVE !== undefined) {
             return {
                 label: 'Addictive',
-                value: aidObj.ADDICTIVE,
+                value: itemData.ADDICTIVE,
                 key: 'ADDICTIVE'
             }
         }
@@ -58,7 +57,7 @@ function AidContent({ characterItem }) {
             <div className="row l-spaceBetween">
                 <div className="card-aid-image themed-svg" data-icon={type}></div>
 
-                <span className="h5 js-cardAid-effect">{aidObj.EFFECT}</span>
+                <span className="h5 js-cardAid-effect">{itemData.EFFECT}</span>
 
                 <section>
                     {specificEffect && (

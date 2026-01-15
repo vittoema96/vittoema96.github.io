@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import BaseCard from './BaseCard.tsx'
 import ApparelContent from './content/ApparelContent.tsx'
 import { usePopup } from '@/contexts/popup/PopupContext.tsx'
-import {useGameDatabase} from "@/hooks/useGameDatabase"
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 import { canBeModified } from '@/utils/itemUtils.ts'
 
 /**
@@ -13,7 +13,7 @@ import { canBeModified } from '@/utils/itemUtils.ts'
 function ApparelCard({ characterItem, itemData, onEquip }) {
     const { t } = useTranslation()
     const { showModifyItemPopup } = usePopup()
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     const [showDescription, setShowDescription] = useState(false)
 
     if (!itemData) {

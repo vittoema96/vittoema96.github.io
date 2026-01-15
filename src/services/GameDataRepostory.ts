@@ -13,6 +13,10 @@ export const GameDataRepository = {
             const val = processed[key];
             if (typeof val === 'string') {
                 const trimmed = val.trim();
+                if(trimmed === 'Infinity') {
+                    processed[key] = Infinity;
+                    continue;
+                }
                 if ((trimmed.startsWith('[') && trimmed.endsWith(']')) ||
                     (trimmed.startsWith('{') && trimmed.endsWith('}'))) {
                     try {
@@ -38,7 +42,7 @@ export const GameDataRepository = {
                 skipEmptyLines: true,
                 complete: (results: any) => {
                     const map = results.data.reduce((acc: any, row: any) => {
-                        if (row.ID) acc[row.ID] = this.transformRow(row);
+                        if (row.ID) { acc[row.ID] = this.transformRow(row) }
                         return acc;
                     }, {});
                     resolve(map);

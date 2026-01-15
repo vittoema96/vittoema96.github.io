@@ -4,7 +4,7 @@ import {useCharacter} from '@/contexts/CharacterContext.tsx'
 import {useDialog} from '@/hooks/useDialog.ts'
 import {isSameConfiguration} from '@/utils/itemUtils.ts'
 import {ORIGINS} from "@/utils/characterSheet.ts";
-import {useGameDatabase} from "@/hooks/useGameDatabase"
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 import {CharacterItem, GenericItem, GenericPopupProps, ItemCategory, ItemType, Side} from "@/types";
 
 export interface AddItemPopupProps extends GenericPopupProps {
@@ -29,7 +29,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     const [shouldBuy, setShouldBuy] = useState(false) // Whether to deduct caps
 
     const { character, updateCharacter } = useCharacter()
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     const dialogRef = useRef<HTMLDialogElement>(null)
 
 
@@ -37,7 +37,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     const getCategories = () => {
         const typeMap = dataManager.getItemTypeMap()
         const hasToAddMrHandyWeapons = itemType === 'weapon' && character.origin === ORIGINS.MR_HANDY
-        let categories: CategoryFilter[] = [
+        const categories: CategoryFilter[] = [
             ...typeMap[itemType],
             ...(hasToAddMrHandyWeapons ? ['mrHandyWeapons' as const] : [])
         ]

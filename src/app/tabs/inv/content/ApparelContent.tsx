@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import Tag from '@/components/Tag.tsx'
-import {useGameDatabase} from "@/hooks/useGameDatabase.ts";
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
 
 /**
  * Apparel-specific content renderer
@@ -9,9 +9,9 @@ import {useGameDatabase} from "@/hooks/useGameDatabase.ts";
 function ApparelContent({ characterItem, side }) {
     const { t } = useTranslation()
 
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     const itemData = dataManager.getItem(characterItem.id)
-    if(!dataManager.isType(itemData, "apparel")) return null
+    if(!dataManager.isType(itemData, "apparel")) { return null }
 
     const isRobotPart = itemData.CATEGORY === 'robotPart'
 

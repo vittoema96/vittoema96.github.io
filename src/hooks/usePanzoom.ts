@@ -1,4 +1,4 @@
-import {useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import Panzoom, {PanzoomObject} from '@panzoom/panzoom';
 
 export const usePanzoom = (options = {}) => {
@@ -7,7 +7,7 @@ export const usePanzoom = (options = {}) => {
 
     useEffect(() => {
         const el = elementRef.current;
-        if (!el) return;
+        if (!el) { return }
 
         // Parent container for wheel events
         const parent = el.parentElement;

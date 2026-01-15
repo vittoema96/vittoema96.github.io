@@ -9,7 +9,7 @@ import AidCard from './AidCard.tsx'
 import AmmoCard from './AmmoCard.tsx'
 import { getModifiedItemData, getItemKey } from '@/utils/itemUtils.ts'
 import {CharacterItem, ItemCategory, ItemType} from "@/types";
-import {useGameDatabase} from "@/hooks/useGameDatabase"
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 
 
 interface InventoryListProps {
@@ -39,7 +39,15 @@ function InventoryList({
     const [sortBy, setSortBy] = useState<SortBy>('name')
     const [isAscendingDirection, setIsAscendingDirection] = useState(true)
 
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
+
+    // Helper to format category names in Title Case
+    const formatCategoryName = (category: ItemCategory) => {
+        return t(category)
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ')
+    }
 
     // Get subcategories based on main category (sorted alphabetically by translation)
     const getCategories = () => {
@@ -220,14 +228,6 @@ function InventoryList({
         }
         // Close expanded item when sorting
         setExpandedItemId(undefined)
-    }
-
-    // Helper to format category names in Title Case
-    const formatCategoryName = (category: ItemCategory) => {
-        return t(category)
-            .split(' ')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-            .join(' ')
     }
 
     const renderItems = (itemsList: CharacterItem[]) => {

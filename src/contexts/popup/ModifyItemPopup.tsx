@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext.tsx'
-import {useGameDatabase} from "@/hooks/useGameDatabase"
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 import { useTooltip } from '@/contexts/TooltipContext.tsx'
 import { useDialog } from '@/hooks/useDialog.ts'
 import { getModifiedItemData } from '@/utils/itemUtils.ts'
@@ -16,7 +16,7 @@ function ModifyItemPopup({ onClose, characterItem, itemData }) {
     const { t } = useTranslation()
     const dialogRef = useRef<HTMLDialogElement>(null)
     const { character, updateCharacter } = useCharacter()
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
     const { showTooltip } = useTooltip()
 
     // State: selected mod for each slot
@@ -128,8 +128,8 @@ function ModifyItemPopup({ onClose, characterItem, itemData }) {
         const currentItem = updatedItems[itemIndex]
 
         // Check if this is a robot part
-        const isRobotPart = characterItem.type === 'robotParts'
-        const robotPartIds = ['robotPartOptics', 'robotPartBody', 'robotPartArms', 'robotPartThrusters']
+        const isRobotPart = characterItem.type === 'robotPart'
+        const robotPartIds = ['robotPartSensors', 'robotPartBody', 'robotPartArms', 'robotPartThrusters']
 
         // If quantity > 1, decrease quantity and add new modified item
         if (currentItem.quantity > 1) {

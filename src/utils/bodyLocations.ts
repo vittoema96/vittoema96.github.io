@@ -1,4 +1,5 @@
-import type {GenericBodyPart} from '@/types';
+import type { ApparelCategories, CharacterItem, GenericBodyPart } from '@/types';
+import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
 
 /**
  * Body location utilities
@@ -35,31 +36,44 @@ export const mapItemLocations = (locationsCovered: (GenericBodyPart | 'arm' | 'a
 /**
  * Check if two location arrays have any overlap
  */
-export const hasLocationOverlap = (locations1: string[], locations2: string[]): boolean => {
-    return locations1.some(loc => locations2.includes(loc));
-};
 
-/**
- * Get item layer type (under/over/both)
- */
-export const getItemLayer = (itemType: string): 'under' | 'over' | 'both' => {
-    if (itemType === 'clothing') {return 'under';}
-    if (itemType === 'outfit') {return 'both';}
-    if (itemType === 'headgear' || itemType.endsWith('Armor')) {return 'over';}
-    return 'both'; // Default to both for safety
-};
+export function hasApparelConflict(item1: CharacterItem, item2: CharacterItem) {
+    const dataManager = getGameDatabase()
+    const itemData1 = dataManager.getItem(item1.id)
+    const itemData2 = dataManager.getItem(item2.id)
+    if(!dataManager.isType(itemData1, 'apparel') || !dataManager.isType(itemData2, 'apparel')) {
+        return false
+    }
 
-/**
- * Check if two items have a layer conflict
- */
-export const hasLayerConflict = (layer1: string, layer2: string): boolean => {
-    // clothing (under) + armor (over) = OK, no conflict
-    // outfit (both) + anything = CONFLICT
-    // armor (over) + armor (over) = CONFLICT
-    return (
-        layer1 === 'both' || // outfit conflicts with everything
-        layer2 === 'both' || // outfit conflicts with everything
-        (layer1 === 'over' && layer2 === 'over') // two armors conflict
-    );
+    // Has location conflict
+    const locations1 = mapItemLocations(itemData1.LOCATIONS_COVERED, item1.variation);
+    const locations2 = mapItemLocations(itemData2.LOCATIONS_COVERED, item2.variation);
+    const hasLocationOverlap = locations1.some(loc => locations2.includes(loc));
+    if(!hasLocationOverlap) { return false }
+
+    // Has layer conflict
+    const layer1 = getItemLayer(itemData1.CATEGORY);
+    const layer2 = getItemLayer(itemData2.CATEGORY);
+    return layer1 === 'both' || layer2 === 'both' || layer1 === layer2;
+}
+
+
+type ItemLayer = 'under' | 'over' | 'both';
+const getItemLayer = (itemCategory: ApparelCategories): ItemLayer => {
+    switch (itemCategory) {
+        case 'clothing':
+            return 'under';
+        case 'outfit':
+        case 'robotPart':
+        case 'headgear':
+            return 'both';
+        case 'raiderArmor':
+        case 'leatherArmor':
+        case 'metalArmor':
+        case 'combatArmor':
+        case 'syntheticArmor':
+        case 'vaultTecSecurity':
+            return 'over';
+    }
 };
 

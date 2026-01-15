@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
 import { useInventoryActions } from '@/hooks/useInventoryActions.ts'
-import {useGameDatabase} from "@/hooks/useGameDatabase"
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 import { getDisplayName } from '@/utils/itemUtils.ts'
 import {CharacterItem, Item} from '@/types'
 
@@ -28,10 +28,10 @@ function InventoryRow({
     showBadges = true
 }: Readonly<InventoryRowProps>) {
     const { t } = useTranslation()
-    const contentRef = useRef(null)
+    const contentRef = useRef<HTMLDivElement>(null)
     const [contentHeight, setContentHeight] = useState(0)
     const { sellItem, deleteItem, equipItem, useItem } = useInventoryActions()
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
 
     // Check if item can be sold/deleted (unacquirable items cannot)
     const canSellDelete = !dataManager.isUnacquirable(itemData.ID)
@@ -44,8 +44,8 @@ function InventoryRow({
         handleDelete,
         longPressHandlers
     } = useOverlay(
-        canSellDelete ? () => sellItem(characterItem, itemData) : null,
-        canSellDelete ? () => deleteItem(characterItem, itemData) : null
+        canSellDelete ? () => sellItem(characterItem) : null,
+        canSellDelete ? () => deleteItem(characterItem) : null
     )
 
     // Calculate content height for smooth animation
@@ -54,45 +54,33 @@ function InventoryRow({
             // Use ResizeObserver to track content height changes (e.g., when description expands)
             const resizeObserver = new ResizeObserver(() => {
                 if (contentRef.current) {
-                    setContentHeight(contentRef.current.scrollHeight)
+                    setContentHeight(contentRef.current.scrollHeight);
                 }
-            })
+            });
 
-            resizeObserver.observe(contentRef.current)
+            resizeObserver.observe(contentRef.current);
 
             // Initial height calculation
-            setContentHeight(contentRef.current.scrollHeight)
+            setContentHeight(contentRef.current.scrollHeight);
 
             return () => {
-                resizeObserver.disconnect()
-            }
+                resizeObserver.disconnect();
+            };
         }
     }, [isExpanded, characterItem, itemData])
-
-    if (!itemData) {
-        return null
-    }
 
     const quantity = characterItem.quantity
 
     // Determine item type for icon
     const getItemIcon = () => {
-
-        // Weapon types - use specific weapon type icons
-        if (dataManager.isType(itemData, "weapon")) {
-            return itemData.CATEGORY // smallGuns, energyWeapons, bigGuns, meleeWeapons, etc.
+        // Weapon and Aid use their category
+        if (dataManager.isType(itemData, "weapon") || dataManager.isType(itemData, "aid")) {
+            return itemData.CATEGORY
         }
-
-        // Apparel types
+        // Apparel types FOR NOW use all the same icon TODO
         if (dataManager.isType(itemData, "apparel")) {
             return 'armor'
         }
-
-        // Aid types - use specific aid type icons
-        if (dataManager.isType(itemData, "aid")) {
-            return itemData.CATEGORY // food, drinks, meds
-        }
-
         return 'caps' // Default fallback
     }
 
@@ -106,11 +94,9 @@ function InventoryRow({
 
 
         if(dataManager.isType(itemData, "apparel")){
-            // Robot parts - show DR with "Immune" for radiation
-            // TODO probably should set Immunity directly in robot parts
-            const physical = itemData.PHYSICAL_RES || 0
-            const energy = itemData.ENERGY_RES || 0
-            const radiation = itemData.CATEGORY === 'robotPart' ? t('immune') : itemData.RADIATION_RES || 0
+            const physical = itemData.PHYSICAL_RES
+            const energy = itemData.ENERGY_RES
+            const radiation = itemData.RADIATION_RES === Infinity ? t('immune') : itemData.RADIATION_RES
             return `${t('damageReduction')}: ${physical} - ${energy} - ${radiation}`
 
         }

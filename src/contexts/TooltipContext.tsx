@@ -28,7 +28,7 @@ const TooltipContext = createContext<TooltipContextValue | undefined>(undefined)
 
 export const useTooltip = () => {
     const context = useContext(TooltipContext)
-    if (!context) throw new Error('useTooltip must be used within TooltipProvider')
+    if (!context) {throw new Error('useTooltip must be used within TooltipProvider')}
     return context
 }
 
@@ -60,7 +60,7 @@ export function TooltipProvider({ children }: React.PropsWithChildren) {
 
     // SCROLL LISTENER: Closes tooltip on any scroll
     useEffect(() => {
-        if (!tooltipState.isVisible) return
+        if (!tooltipState.isVisible) {return}
         window.addEventListener('scroll', hideTooltip, true)
         return () => window.removeEventListener('scroll', hideTooltip, true)
     }, [tooltipState.isVisible, hideTooltip])
@@ -73,12 +73,12 @@ export function TooltipProvider({ children }: React.PropsWithChildren) {
             const clickedTag = target.closest('.tag') as HTMLElement | null
 
             if (!clickedTag) {
-                if (stateRef.current.isVisible) hideTooltip()
+                if (stateRef.current.isVisible) {hideTooltip()}
                 return
             }
 
             const tooltipId = clickedTag.dataset["tooltipId"]
-            if (!tooltipId) return
+            if (!tooltipId) {return}
 
             event.preventDefault()
             event.stopPropagation()
@@ -123,12 +123,12 @@ function TooltipPortal({ isVisible, content, targetElement, onHide }: TooltipPor
 
     // useLayoutEffect prevents the "flicker" by positioning BEFORE the browser paints.
     useLayoutEffect(() => {
-        if (!isVisible || !targetElement || !tooltipRef.current) return
+        if (!isVisible || !targetElement || !tooltipRef.current) {return}
 
         const positionTooltip = () => {
             const tooltip = tooltipRef.current
             const arrow = arrowRef.current
-            if (!tooltip || !arrow) return
+            if (!tooltip || !arrow) {return}
 
             const tagRect = targetElement.getBoundingClientRect()
             const tooltipRect = tooltip.getBoundingClientRect()

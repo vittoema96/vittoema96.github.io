@@ -1,7 +1,7 @@
-import {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react'
+import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react'
 import {BODY_PARTS, CharacterContextValue, CharacterItem, MR_HANDY_PARTS, MrHandyPart, RawCharacter} from '@/types'
 import {getOriginById} from "@/utils/characterSheet.ts";
-import {useGameDatabase} from "@/hooks/useGameDatabase.ts";
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
 import { CharacterRepository } from "@/services/CharacterRepository.ts";
 import useCalculatedCharacter, {
     adjustCurrentHp,
@@ -37,8 +37,8 @@ export function CharacterProvider({ onReady, children}:
 
     // Auto-save on every change
     useEffect(() => {
-        if(rawCharacter) CharacterRepository.save(rawCharacter);
-        else CharacterRepository.clear()
+        if(rawCharacter) { CharacterRepository.save(rawCharacter) }
+        else { CharacterRepository.clear() }
     }, [rawCharacter])
 
     // Reset to default character
@@ -52,10 +52,10 @@ export function CharacterProvider({ onReady, children}:
     useEffect(() => {
         setIsReady(true)
         onReady()
-    }, [])
+    }, [onReady])
 
     // Load all csv data
-    const dataManager = useGameDatabase()
+    const dataManager = getGameDatabase()
 
     /**
      * Function used to update character state.

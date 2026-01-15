@@ -114,7 +114,7 @@ export interface Character extends Omit<RawCharacter, 'origin'> {
 
     maxHp: number;
     currentHp: number;
-    maxLuck: any;
+    maxLuck: number;
     currentLuck: number;
     maxWeight: number;
     currentWeight: number;
@@ -224,6 +224,7 @@ export interface WeaponItem extends ModdableItem, ItemWithEffects {
     RANGE: Range;
     QUALITIES?: string[];  // JSON array
     AMMO_TYPE: string;
+    CATEGORY: WeaponCategories;
 }
 
 export interface ApparelItem extends ModdableItem, ItemWithEffects {
@@ -231,11 +232,13 @@ export interface ApparelItem extends ModdableItem, ItemWithEffects {
     ENERGY_RES: number;
     RADIATION_RES: number;
     LOCATIONS_COVERED: (GenericBodyPart | 'arm' | 'arms' | 'leg' | 'legs')[];  // JSON array
+    CATEGORY: ApparelCategories;
 }
 
 interface AidItemBase extends GenericItem {
     EFFECT: string;
     DESCRIPTION?: string;
+    CATEGORY: AidCategories;
 }
 
 interface MedItem extends AidItemBase {

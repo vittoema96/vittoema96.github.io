@@ -25,7 +25,7 @@ export const UNACQUIRABLE_IDS = [
     'weaponBayonet',
     'weaponMissileLauncherBayonet',
     'weaponShredder',
-    'robotPartOptics',
+    'robotPartSensors',
     'robotPartBody',
     'robotPartArms',
     'robotPartThrusters'
@@ -63,7 +63,7 @@ export const GameDatabase = {
      * Initializes the database. Call this ONCE at app startup.
      */
     async init(): Promise<void> {
-        if (db) return; // Already initialized
+        if (db) { return } // Already initialized
 
         const rawData = await GameDataRepository.loadAllData();
 
@@ -83,7 +83,7 @@ export const GameDatabase = {
      * Returns the full DB. Throws if accessed before init.
      */
     get data() {
-        if (!db) throw new Error("GameDatabase not initialized! Call GameDatabase.init() first.");
+        if (!db) { throw new Error("GameDatabase not initialized! Call GameDatabase.init() first.") }
         return db;
     },
 
