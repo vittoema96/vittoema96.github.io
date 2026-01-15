@@ -28,20 +28,18 @@ The interface is heavily inspired by the iconic Pip-Boy 3000 from the Fallout se
 
 ## ✨ Features
 
-* **Modern React Architecture:** Built with React 19 and TypeScript for optimal performance, type safety, and maintainability.
+* **Modern React Architecture:** Built with React 18 and hooks for optimal performance and maintainability.
 * **PWA Ready:** Fully installable on desktop and mobile devices for an app-like experience, including offline support.
 * **Character Stat Management:**
     * Track S.P.E.C.I.A.L. attributes with reactive updates.
     * Automatically calculates derived stats like Defense, Initiative, and Melee Damage.
     * View and manage all character skills (including specialties).
     * Persistent character data saved to localStorage.
-    * NO TRAITS AND ABILITIES INTEGRATION YET
 * **Comprehensive Inventory System:**
     * Organize items into categories: Weapons, Armor, Supplies, and Ammo.
     * Interactive accordion-style inventory with expandable cards.
     * Long-press to sell/delete items with confirmation dialogs.
     * Smart equipment system with layer conflict detection.
-    * Weapons and mods are moddable
 * **Integrated Dice Roller:**
     * **d20 Skill Checks:** Dedicated popup for skill checks with automatic target number calculation.
     * **d6 Damage Rolls:** Weapon damage rolls with support for extra hits and damage effects.
@@ -95,10 +93,36 @@ npm run build    # Build for production
 npm run quality  # Check code quality (lint + format + types)
 ```
 
+**Version management** (because I got fancy with semantic versioning):
+```bash
+npm run version:show        # Show current version
+npm run version:next-alpha  # Bump to next alpha milestone
+```
+
 ## 🏗️ How it's built
 
-**Tech stack**: React 19, TypeScript, Vite, i18next, PapaParse
-**CSV Data**: Game content loaded dynamically with PapaParse
+**Tech stack**: React 18, Vite, i18next, PapaParse
+**Structure**:
+```
+src/
+├── components/      # React components (tabs, inventory, popups, etc.)
+├── contexts/        # React contexts (Character, Popup, Tooltip)
+├── hooks/           # Custom React hooks (useI18n, useDataManager, etc.)
+├── js/              # Shared utilities (constants, gameRules, i18n)
+├── locales/         # i18n translation files (en.json, it.json)
+├── styles/          # CSS styles
+└── utils/           # Utility functions (itemUtils, etc.)
+
+public/
+├── data/            # Game data in CSV files
+└── img/             # Images and icons
+```
+
+**Key architecture**:
+- **React Components**: Modular UI components with hooks
+- **Context API**: Global state management (character, popups, tooltips)
+- **Custom Hooks**: Reusable logic (data loading, i18n, inventory actions)
+- **CSV Data**: Game content loaded dynamically with PapaParse
 
 ## 🎲 Game mechanics
 
@@ -117,11 +141,12 @@ Game data is in CSV files for easy editing:
 
 ## 📈 Versioning
 
-Uses semantic versioning: `0.0.3-alpha.BUILD_VERSION`
+Uses semantic versioning: `0.0.3-alpha.0`
 - `0.0.x` = Alpha milestone (patch = milestone number)
-- `0.x.0` = Beta phase
-- `x.0.0` = Stable release
-- `BUILD_VERSION` gets updated on by GitHub Actions based on the deploy count
+- `0.1.0` = Beta phase
+- `1.0.0` = Stable release
+
+GitHub Actions automatically increments build numbers on deploy.
 
 ## 🤝 Contributing
 
