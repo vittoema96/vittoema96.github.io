@@ -55,7 +55,7 @@
 - [ ] **Data import/export** - Character sharing, backup/restore
 
 ### Technical Debt
-- [ ] **TypeScript migration** - Gradual conversion for better type safety
+- [ ] **TypeScript migration** - 
 - [ ] **Component system** - Reusable UI components
 - [ ] **Bundle analysis** - Optimize bundle size and loading
 - [ ] **Security audit** - CSP, input validation, XSS protection

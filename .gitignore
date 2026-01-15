@@ -1,7 +1,6 @@
 # Guidebook data for reference in development
 dataFromGuidebook/
 
-
 # Dependencies
 node_modules/
 npm-debug.log*
@@ -97,21 +96,6 @@ jspm_packages/
 
 # TernJS port file
 .tern-port
-
-# Python (legacy artifacts that might still exist)
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-*.egg-info/
-.installed.cfg
-*.egg
 
 # Temporary files
 *.tmp
