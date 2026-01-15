@@ -1,7 +1,7 @@
 import { useMemo, useCallback } from 'react'
 import { SKILLS } from '../js/constants.js'
 import { useCharacter } from '../contexts/CharacterContext.jsx'
-import { t } from 'i18next'
+import { useI18n } from './useI18n.js'
 
 /**
  * Custom hook for managing character skills
@@ -10,6 +10,7 @@ import { t } from 'i18next'
  */
 export const useSkills = () => {
     const { character, updateCharacter, derivedStats } = useCharacter()
+    const t = useI18n()
 
     /**
      * Get sorted skills list (alphabetically by translated name)

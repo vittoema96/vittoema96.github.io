@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
-import { t } from 'i18next'
+import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { useTooltip } from '../../contexts/TooltipContext.jsx'
 import { useDialog } from '../../hooks/useDialog.js'
@@ -9,6 +9,7 @@ import { createInitialDiceState, createInitialExtraDiceState, rollRandomHitLocat
 
 function D6Popup({ isOpen, onClose, characterItem = null, weaponId = null, hasAimed = false }) {
     const dialogRef = useRef(null)
+    const t = useI18n()
     const { character, updateCharacter } = useCharacter()
     const dataManager = useDataManager()
     const { showTooltip } = useTooltip()

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import { t } from 'i18next'
+import { useI18n } from '../../hooks/useI18n.js'
 import { useTheme } from '../../hooks/useTheme.js'
 import { useLanguage } from '../../hooks/useLanguage.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
@@ -9,6 +9,7 @@ function SettingsTab() {
     const fileInputRef = useRef(null)
     const languageSelectRef = useRef(null)
     const themeSelectRef = useRef(null)
+    const t = useI18n()
     const { currentTheme, changeTheme } = useTheme()
     const { currentLanguage, changeLanguage } = useLanguage()
     const { showAlert, showConfirm } = usePopup()

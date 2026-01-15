@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { t } from 'i18next'
+import { useI18n } from '../../hooks/useI18n.js'
 
 /**
  * Base card component - provides common card structure and functionality
@@ -17,6 +17,7 @@ function BaseCard({
     customControls = null,
     className = ''
 }) {
+    const t = useI18n()
     const [showDescription, setShowDescription] = useState(false)
 
     if (!itemData) {

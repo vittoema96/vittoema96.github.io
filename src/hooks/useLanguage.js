@@ -1,6 +1,5 @@
-import {useState} from 'react'
-import i18next from "i18next";
-
+import { useState, useEffect } from 'react'
+import { changeLanguage as changeLanguageUtil } from '../js/i18n.js'
 
 /**
  * React hook for language management
@@ -14,33 +13,33 @@ export const useLanguage = () => {
 
     const changeLanguage = async (newLanguage = null) => {
         const language = newLanguage || currentLanguage
-
-        if (!['it', 'en'].includes(language)) {
-            console.warn(`Unsupported language: ${language}`);
-            throw new Error(`Unsupported language: ${language}`);
-        }
         
         // Update localStorage
         localStorage.setItem('language', language)
         
         // Use the i18n system to change language
-        await i18next.changeLanguage(language)
-
-        // Update language selector
-        const languageSelect = document.getElementById('language-select');
-        if (languageSelect) {
-            languageSelect.value = language;
-        }
-        // Update document language
-        document.documentElement.lang = language;
+        await changeLanguageUtil(language)
         
         // Update local state
         setCurrentLanguage(language)
-
-        console.log(`Language changed to: ${language}`);
         
         return language
     }
+
+    // Listen for language changes from other sources
+    useEffect(() => {
+        const handleStorageChange = (e) => {
+            if (e.key === 'language') {
+                const newLang = e.newValue
+                if (['it', 'en'].includes(newLang)) {
+                    setCurrentLanguage(newLang)
+                }
+            }
+        }
+
+        window.addEventListener('storage', handleStorageChange)
+        return () => window.removeEventListener('storage', handleStorageChange)
+    }, [])
 
     return {
         currentLanguage,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { t } from 'i18next'
+import { useI18n } from '../../hooks/useI18n.js'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { BODY_PARTS, MR_HANDY_PARTS } from '../../js/constants.js'
 
@@ -9,6 +9,7 @@ import { BODY_PARTS, MR_HANDY_PARTS } from '../../js/constants.js'
  * For Mr Handy, shows robot-specific parts (sensors, body, arms, propulsors)
  */
 function DamageReductionDisplay() {
+    const t = useI18n()
     const { character, derivedStats } = useCharacter()
     const damageReduction = derivedStats.locationsDR || {}
 

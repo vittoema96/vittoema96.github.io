@@ -1,7 +1,7 @@
 import React from 'react'
 import Tag from '../../common/Tag.jsx'
 import { useCharacter, calculateEffectiveSkillValue } from '../../../contexts/CharacterContext.jsx'
-import { t } from 'i18next'
+import { useI18n } from '../../../hooks/useI18n.js'
 import { SKILL_TO_SPECIAL_MAP } from '../../../js/constants.js'
 import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo, calculateWeaponStats } from '../../../utils/weaponUtils.js'
 
@@ -11,6 +11,7 @@ import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo, calculateWeapo
  */
 function WeaponContent({ characterItem, itemData }) {
     const { character } = useCharacter()
+    const t = useI18n()
     
     const weaponObj = itemData
 

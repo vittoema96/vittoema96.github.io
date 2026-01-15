@@ -1,5 +1,5 @@
 import React from 'react'
-import { t } from 'i18next'
+import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { BODY_PARTS } from '../../js/constants.js'
@@ -9,6 +9,7 @@ import { BODY_PARTS } from '../../js/constants.js'
  * Shows which items are currently equipped on each body part
  */
 function EquippedApparel({ equippedItems }) {
+    const t = useI18n()
     const dataManager = useDataManager()
     const { character } = useCharacter()
 

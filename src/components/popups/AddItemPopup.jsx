@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react'
-import { t } from 'i18next'
+import {useI18n} from '../../hooks/useI18n.js'
 import {useCharacter} from '../../contexts/CharacterContext.jsx'
 import {useDialog} from '../../hooks/useDialog.js'
 import {isSameConfiguration} from '../../utils/itemUtils.js'
@@ -17,6 +17,7 @@ function AddItemPopup({ isOpen, onClose, itemType = null, dataManager }) {
     const [rarityFilter, setRarityFilter] = useState('all') // all, or max rarity level
     const [shouldBuy, setShouldBuy] = useState(false) // Whether to deduct caps
 
+    const t = useI18n()
     const { character, updateCharacter } = useCharacter()
     const dialogRef = useRef(null)
 

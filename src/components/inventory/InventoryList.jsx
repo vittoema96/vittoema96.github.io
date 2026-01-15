@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react'
-import { t } from 'i18next'
+import { useI18n } from '../../hooks/useI18n.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
 import { SKILLS } from '../../js/constants.js'
 import InventoryRow from './InventoryRow.jsx'
@@ -22,6 +22,7 @@ function InventoryList({
     groupByType = false,
     categoryFilter = null // 'weapon', 'apparel', 'aid', 'other' - determines which subcategories to show
 }) {
+    const t = useI18n()
     const { showAddItemPopup } = usePopup()
     const [expandedItemId, setExpandedItemId] = useState(null)
     const [searchQuery, setSearchQuery] = useState('')

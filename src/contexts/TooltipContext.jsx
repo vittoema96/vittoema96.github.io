@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
-import { t } from "i18next"
+import { useI18n } from '../hooks/useI18n.js'
 
 const TooltipContext = createContext()
 
@@ -118,6 +118,7 @@ export function useTooltip() {
 
 export function TooltipProvider({ children }) {
     const [tooltipState, setTooltipState] = useState(EMPTY_TOOLTIP_STATE)
+    const t = useI18n()
 
     // Memoize hide function to avoid recreating it on every render
     const hideTooltip = useCallback(() => {
@@ -201,7 +202,7 @@ export function TooltipProvider({ children }) {
             content,
             targetElement
         })
-    }, [])
+    }, [t])
 
     // Memoize context value to prevent unnecessary re-renders
     const contextValue = useMemo(

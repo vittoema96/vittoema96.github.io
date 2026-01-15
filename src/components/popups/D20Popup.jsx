@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useCharacter, calculateEffectiveSkillValue } from '../../contexts/CharacterContext.jsx'
-import { t } from 'i18next'
+import { useI18n } from '../../hooks/useI18n.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
 import { usePopup } from '../../contexts/PopupContext.jsx'
 import { useDialog } from '../../hooks/useDialog.js'
@@ -9,6 +9,7 @@ import { getModifiedItemData } from '../../utils/itemUtils.js'
 
 function D20Popup({ isOpen, onClose, skillId, characterItem = null, weaponId = null }) {
     const dialogRef = useRef(null)
+    const t = useI18n()
     const { character, updateCharacter } = useCharacter()
     const dataManager = useDataManager()
     const { showD6Popup } = usePopup()

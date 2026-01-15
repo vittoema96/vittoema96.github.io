@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { t } from 'i18next'
+import { useI18n } from '../../hooks/useI18n.js'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 
 function DataTab() {
+    const t = useI18n()
     const { character, updateCharacter } = useCharacter()
     const [levelInput, setLevelInput] = useState(character.level)
 

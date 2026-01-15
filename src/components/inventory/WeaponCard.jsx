@@ -3,7 +3,7 @@ import BaseCard from './BaseCard.jsx'
 import WeaponContent from './content/WeaponContent.jsx'
 import { useCharacter } from '../../contexts/CharacterContext.jsx'
 import { usePopup } from '../../contexts/PopupContext.jsx'
-import { t } from 'i18next'
+import { useI18n } from '../../hooks/useI18n.js'
 import { canBeModified } from '../../utils/itemUtils.js'
 import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo as checkHasEnoughAmmo } from '../../utils/weaponUtils.js'
 
@@ -14,6 +14,7 @@ import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo as checkHasEnou
 function WeaponCard({ characterItem, itemData, onAttack }) {
     const { character } = useCharacter()
     const { showD20Popup, showModifyItemPopup } = usePopup()
+    const t = useI18n()
     const [showDescription, setShowDescription] = useState(false)
 
     if (!itemData) {

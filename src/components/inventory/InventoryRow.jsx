@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { t } from 'i18next'
+import { useI18n } from '../../hooks/useI18n.js'
 import { useOverlay } from '../../hooks/useOverlay.js'
 import { useInventoryActions } from '../../hooks/useInventoryActions.js'
 import { useDataManager } from '../../hooks/useDataManager.js'
@@ -18,6 +18,7 @@ function InventoryRow({
     cardComponent: CardComponent,
     showBadges = true
 }) {
+    const t = useI18n()
     const contentRef = useRef(null)
     const [contentHeight, setContentHeight] = useState(0)
     const { sellItem, deleteItem, equipItem, useItem } = useInventoryActions()

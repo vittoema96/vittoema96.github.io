@@ -6,7 +6,7 @@ import AddItemPopup from '../components/popups/AddItemPopup.jsx'
 import StatAdjustmentPopup from '../components/popups/StatAdjustmentPopup.jsx'
 import TradeItemPopup from '../components/popups/TradeItemPopup.jsx'
 import ModifyItemPopup from '../components/popups/ModifyItemPopup.jsx'
-import { t } from 'i18next'
+import { useI18n } from '../hooks/useI18n.js'
 import { useDataManager } from '../hooks/useDataManager.js'
 
 const PopupContext = createContext()
@@ -63,6 +63,7 @@ export const usePopup = () => {
 }
 
 export function PopupProvider({ children }) {
+    const t = useI18n()
     const dataManager = useDataManager()
 
     const [alertState, setAlertState] = useState(INITIAL_ALERT_STATE)
