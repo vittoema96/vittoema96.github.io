@@ -3,9 +3,9 @@ import { useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
 import { useTooltip } from '@/contexts/TooltipContext'
 import { useDialog } from '@/hooks/useDialog'
-import { getModifiedItemData } from '@/utils/itemUtils'
 import { createInitialDiceState, rollRandomHitLocation } from '@/contexts/popup/utils/diceUtils.ts'
 import {CharacterItem, GenericPopupProps, ItemCategory, WeaponItem} from "@/types";
+import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 
 
 interface D6PopupProps extends GenericPopupProps {

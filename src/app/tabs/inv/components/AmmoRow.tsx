@@ -2,19 +2,25 @@ import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
 import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts'
 import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
+import { CharacterItem } from '@/types';
 
 /**
  * Simple one-line ammo display (no accordion)
  * Uses same style as InventoryRow but without expansion
  */
-function AmmoRow({ characterItem, itemData }) {
+interface AmmoRowProps {
+    characterItem: CharacterItem
+}
+function AmmoRow({ characterItem }: Readonly<AmmoRowProps>) {
     const { t } = useTranslation()
     const { sellItem, deleteItem } = useInventoryActions()
     const dataManager = getGameDatabase()
+    const itemData = dataManager.getItem(characterItem.id)
+    if(!dataManager.isType(itemData, 'other') || itemData.CATEGORY !== 'ammo') {
+        return null
+    }
 
-    // Check if item can be sold/deleted (unacquirable items cannot)
-    const [itemId] = characterItem.id.split('_')
-    const canSellDelete = !dataManager.isUnacquirable(itemId)
+    const canSellDelete = !dataManager.isUnacquirable(itemData.ID)
 
     const {
         showOverlay,
@@ -23,8 +29,8 @@ function AmmoRow({ characterItem, itemData }) {
         handleDelete,
         longPressHandlers
     } = useOverlay(
-        canSellDelete ? () => sellItem(characterItem, itemData) : null,
-        canSellDelete ? () => deleteItem(characterItem, itemData) : null
+        canSellDelete ? () => sellItem(characterItem) : null,
+        canSellDelete ? () => deleteItem(characterItem) : null
     )
 
     if (!itemData) {
@@ -69,6 +75,7 @@ function AmmoRow({ characterItem, itemData }) {
                         }}
                         title={t('sell')}
                     >
+                        {/* TODO Use an appropriate image */}
                         <img src="img/svg/caps.svg" alt="Sell" />
                     </button>
                     <button

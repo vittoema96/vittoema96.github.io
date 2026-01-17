@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
-import EquippedArmorEffects from '@/app/tabs/EquippedArmorEffects'
+import ActiveEffectsDisplay from '@/app/tabs/ActiveEffectsDisplay.tsx'
 import Skill from './components/Skill'
 import DamageReductionDisplay from './components/DamageReductionDisplay'
 import SpecialStat from './components/SpecialStat'
@@ -18,12 +18,6 @@ function StatTab() {
             (a, b) => t(a).localeCompare(t(b))
         ), [t]
     )
-
-    // Toggle edit mode
-    const toggleEditMode = () => {
-        setIsEditing(!isEditing)
-    }
-
 
     return (
         <section className="tabContent">
@@ -58,9 +52,10 @@ function StatTab() {
             <DamageReductionDisplay />
 
             {/* Active Effects from Equipped Armor */}
-            <EquippedArmorEffects equippedItems={character.items.filter(item => item.equipped)} />
+            <ActiveEffectsDisplay/>
 
             {/* Skills Section */}
+            {/* TODO: Could sort skills in different ways other than alphabetically */}
             <div>
                 <h1 className="form-label">Skills:</h1>
                 <section
@@ -84,7 +79,7 @@ function StatTab() {
             </div>
 
             {/* Edit Stats Button */}
-            <button className="button" onClick={toggleEditMode}>
+            <button className="button" onClick={() => setIsEditing(!isEditing)}>
                 {isEditing ? t('stopEditing') : t('editStats')}
             </button>
         </section>

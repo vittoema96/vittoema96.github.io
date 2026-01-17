@@ -1256,22 +1256,11 @@ input[type='text'] {
     justify-content: space-between;
     align-items: flex-start;
     gap: 0.5rem;
+    min-width: 0;
 }
 
 .inventory-row__name-text {
     flex: 1;
-}
-
-.inventory-row__name-text.text-md {
-    font-size: 0.9rem;
-}
-
-.inventory-row__name-text.text-sm {
-    font-size: 0.85rem;
-}
-
-.inventory-row__name-text.text-xs {
-    font-size: 0.8rem;
 }
 
 .inventory-row__badges {

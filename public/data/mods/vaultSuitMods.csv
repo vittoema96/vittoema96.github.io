@@ -1,6 +1,6 @@
-ID,SLOT_TYPE,EFFECTS,WEIGHT,COST,SKILL,PERKS,RARITY,CLOTHING_TYPES
-modInsulatedLining,modSlotVaultSuit,"[""energyResAdd:1""]",0,10,repair,"[]",1,"[""armorVaultJumpsuit""]"
-modTreatedLining,modSlotVaultSuit,"[""energyResAdd:1"",""radiationResAdd:1""]",0.5,20,repair,"[""armorer:2""]",2,"[""armorVaultJumpsuit""]"
-modResistantLining,modSlotVaultSuit,"[""energyResAdd:2"",""radiationResAdd:1""]",0.5,30,repair,"[""armorer:3""]",3,"[""armorVaultJumpsuit""]"
-modProtectiveLining,modSlotVaultSuit,"[""energyResAdd:2"",""radiationResAdd:2""]",0.5,40,repair,"[""armorer:4"",""science:2""]",4,"[""armorVaultJumpsuit""]"
-modShieldedLining,modSlotVaultSuit,"[""energyResAdd:3"",""radiationResAdd:3""]",0.5,50,repair,"[""armorer:4"",""science:4""]",4,"[""armorVaultJumpsuit""]"
+ID,TYPE,SLOT_TYPE,EFFECTS,WEIGHT,COST,SKILL,PERKS,RARITY,CLOTHING_TYPES
+modInsulatedLining,mod,modSlotVaultSuit,"[""energyResAdd:1""]",0,10,repair,[],1,"[""armorVaultJumpsuit""]"
+modTreatedLining,mod,modSlotVaultSuit,"[""energyResAdd:1"",""radiationResAdd:1""]",0.5,20,repair,"[""armorer:2""]",2,"[""armorVaultJumpsuit""]"
+modResistantLining,mod,modSlotVaultSuit,"[""energyResAdd:2"",""radiationResAdd:1""]",0.5,30,repair,"[""armorer:3""]",3,"[""armorVaultJumpsuit""]"
+modProtectiveLining,mod,modSlotVaultSuit,"[""energyResAdd:2"",""radiationResAdd:2""]",0.5,40,repair,"[""armorer:4"",""science:2""]",4,"[""armorVaultJumpsuit""]"
+modShieldedLining,mod,modSlotVaultSuit,"[""energyResAdd:3"",""radiationResAdd:3""]",0.5,50,repair,"[""armorer:4"",""science:4""]",4,"[""armorVaultJumpsuit""]"

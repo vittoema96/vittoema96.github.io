@@ -2,14 +2,14 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
 import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts'
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { getDisplayName } from '@/utils/itemUtils.ts'
-import {CharacterItem, Item} from '@/types'
+import {CharacterItem} from '@/types'
+import { FitText } from '@/app/FitText.tsx';
 
 
 interface InventoryRowProps {
     characterItem: CharacterItem
-    itemData: Item
     isExpanded: boolean
     onToggle: () => void
     cardComponent: React.ComponentType<any>
@@ -21,7 +21,6 @@ interface InventoryRowProps {
  */
 function InventoryRow({
     characterItem,
-    itemData,
     isExpanded,
     onToggle,
     cardComponent: CardComponent,
@@ -32,6 +31,11 @@ function InventoryRow({
     const [contentHeight, setContentHeight] = useState(0)
     const { sellItem, deleteItem, equipItem, useItem } = useInventoryActions()
     const dataManager = getGameDatabase()
+    const itemData = getModifiedItemData(characterItem)
+    if(!itemData) {
+        console.error(`Item data not found for ID: ${characterItem.id}`)
+        return null
+    }
 
     // Check if item can be sold/deleted (unacquirable items cannot)
     const canSellDelete = !dataManager.isUnacquirable(itemData.ID)
@@ -67,6 +71,7 @@ function InventoryRow({
                 resizeObserver.disconnect();
             };
         }
+        return () => {}
     }, [isExpanded, characterItem, itemData])
 
     const quantity = characterItem.quantity
@@ -139,15 +144,6 @@ function InventoryRow({
     // Calculate text length for dynamic font sizing
     // Use getDisplayName to show [+N] for modded items (except robot parts)
     const itemName = getDisplayName(characterItem, t)
-    const nameLength = itemName.length
-    let nameSizeClass = ''
-    if (nameLength > 50) {
-        nameSizeClass = 'text-xs'
-    } else if (nameLength > 40) {
-        nameSizeClass = 'text-sm'
-    } else if (nameLength > 30) {
-        nameSizeClass = 'text-md'
-    }
 
     return (
         <div
@@ -164,9 +160,12 @@ function InventoryRow({
 
                 <div className="inventory-row__info">
                     <div className="inventory-row__name">
-                        <span className={`inventory-row__name-text ${nameSizeClass}`}>
+                        <FitText wrap={true}>
                             {itemName}
-                        </span>
+                        </FitText>
+                        {/*<span className={`inventory-row__name-text ${nameSizeClass}`}>
+                            {itemName}
+                        </span>*/}
                         {badges.length > 0 && (
                             <span className="inventory-row__badges">
                                 {badges.map((badge, index) => (

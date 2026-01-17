@@ -45,7 +45,7 @@ function EquippedApparel() {
     return (
         <div className="equipped-apparel section-label">
             <div className="equipped-apparel__grid">
-                {Object.values(character.origin.bodyParts).map(bodyPart => {
+                {Array.from(character.origin.bodyParts, bodyPart => {
                     const items = itemsByBodyPart[bodyPart]
                     if (!items?.length) {return null}
 

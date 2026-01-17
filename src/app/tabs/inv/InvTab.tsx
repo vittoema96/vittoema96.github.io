@@ -4,7 +4,7 @@ import { useCharacter } from '@/contexts/CharacterContext'
 import { useInventoryFilter } from '@/app/tabs/inv/hooks/useInventoryFilter.ts'
 import InventoryList from '@/app/tabs/inv/components/InventoryList.tsx'
 import EquippedApparel from '@/app/tabs/inv/components/EquippedApparel.tsx'
-import EquippedArmorEffects from '@/app/tabs/EquippedArmorEffects'
+import ActiveEffectsDisplay from '@/app/tabs/ActiveEffectsDisplay.tsx'
 import {BODY_PARTS} from "@/types";
 
 type SubtabType = 'weapon' | 'apparel' | 'aid' | 'other'
@@ -67,9 +67,7 @@ function InvTab() {
                 {character.origin.bodyParts === BODY_PARTS && <EquippedApparel/>}
 
                 {/* Active Effects from Equipped Armor */}
-                <EquippedArmorEffects
-                    equippedItems={character.items.filter(item => item.equipped)}
-                />
+                <ActiveEffectsDisplay/>
 
                 <InventoryList
                     items={items}

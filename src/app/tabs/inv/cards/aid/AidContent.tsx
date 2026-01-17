@@ -1,10 +1,14 @@
-import {getGameDatabase} from "@/hooks/getGameDatabase";
+import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
+import { CharacterItem } from '@/types';
 
 /**
  * Aid-specific content renderer
  * Displays consumable item effects and stats
  */
-function AidContent({ characterItem }) {
+interface AidContentProps {
+    characterItem: CharacterItem
+}
+function AidContent({ characterItem }: Readonly<AidContentProps>) {
 
     const dataManager = getGameDatabase()
     const itemData = dataManager.getItem(characterItem.id)

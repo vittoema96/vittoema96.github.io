@@ -1,10 +1,14 @@
 import { useTranslation } from 'react-i18next'
+import { CharacterItem } from '@/types';
 
 /**
  * Ammo-specific content renderer
  * Simple display for ammunition items
  */
-function AmmoContent({ characterItem }) {
+interface AmmoContentProps{
+    characterItem: CharacterItem
+}
+function AmmoContent({ characterItem }: Readonly<AmmoContentProps>) {
     const { t } = useTranslation()
 
     // Ammo cards are very simple - just the name

@@ -13,8 +13,6 @@ export interface AddItemPopupProps extends GenericPopupProps {
 
 type CategoryFilter = ItemCategory | 'mrHandyWeapons' | undefined;
 
-type SelectableItem = GenericItem & {variant?: Side | undefined} | undefined
-
 /**
  * Add Item popup component for adding items to inventory
  * itemType can be a category ('weapon', 'apparel', 'aid', 'other') or null for all items
@@ -96,10 +94,10 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                 variants = ['left', 'right']
             }
 
-            variants.forEach(variant => {
+            variants.forEach(variation => {
                 itemsWithVariants.push({
                     ...item,
-                    variant: variant
+                    variation
                 })
             })
         })
@@ -110,8 +108,8 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
             const getName = (item: SelectableItem) => {
                 if(!item) {return ''}
                 let name = t(item.ID)
-                if(item.variant){
-                    name += ` (${t(item.variant)})`
+                if(item.variation){
+                    name += ` (${t(item.variation)})`
                 }
                 return name
             }
@@ -171,7 +169,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
         const newItem = {
             id: selectedItem.ID, // This will be the DISPLAY_ID (with _left/_right if applicable)
             type: selectedItem.TYPE, // Use the actual TYPE of the selected item
-            variant: selectedItem.variant,
+            variation: selectedItem.variation,
             quantity: quantity,
             equipped: false,
             mods: [] // New items have no mods
@@ -267,7 +265,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                     <select
                         onChange={(e) => {
                             const item = availableItems.find(i => {
-                                const id = `${i?.ID ?? ''}_${i?.variant ?? ''}`
+                                const id = `${i?.ID ?? ''}_${i?.variation ?? ''}`
                                 return id === e.target.value
                             })
                             setSelectedItem(item)
@@ -276,10 +274,10 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                     >
                         {availableItems.map(item => {
                             let displayName = item ? t(item.ID) : '-'
-                            if (item?.variant) {
-                                displayName += ` (${t(item.variant)})`
+                            if (item?.variation) {
+                                displayName += ` (${t(item.variation)})`
                             }
-                            const id = `${item?.ID ?? ''}_${item?.variant ?? ''}`
+                            const id = `${item?.ID ?? ''}_${item?.variation ?? ''}`
                             return (
                                 <option key={id} value={id}>
                                     {displayName}

@@ -3,20 +3,19 @@ import { useTranslation } from 'react-i18next'
 import { usePopup } from '@/contexts/popup/PopupContext.tsx'
 import InventoryRow from './InventoryRow.tsx'
 import AmmoRow from './AmmoRow.tsx'
-import WeaponCard from './WeaponCard.tsx'
-import ApparelCard from './ApparelCard.tsx'
-import AidCard from './AidCard.tsx'
-import AmmoCard from './AmmoCard.tsx'
-import { getModifiedItemData, getItemKey } from '@/utils/itemUtils.ts'
+import WeaponCard from '../cards/weapon/WeaponCard.tsx'
+import ApparelCard from '../cards/apparel/ApparelCard.tsx'
+import AidCard from '../cards/aid/AidCard.tsx'
+import AmmoCard from '../cards/ammo/AmmoCard.tsx'
+import { getItemKey } from '@/utils/itemUtils.ts'
 import {CharacterItem, ItemCategory, ItemType} from "@/types";
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
-
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 
 interface InventoryListProps {
-    items?: CharacterItem[]
-    showSearch?: boolean
-    groupByType?: boolean
-    typeFilter: ItemType
+    items?: CharacterItem[];
+    showSearch?: boolean;
+    groupByType?: boolean;
+    typeFilter: ItemType;
 }
 type SortBy = 'name' | 'number' | 'rarity'
 

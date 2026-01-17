@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import Panzoom, {PanzoomObject} from '@panzoom/panzoom';
 
-export const usePanzoom = (options = {}) => {
+export const usePanzoom = () => {
     const elementRef: React.RefObject<HTMLImageElement | null> = useRef(null);
     const panzoomRef: React.RefObject<PanzoomObject | null> = useRef(null);
 
@@ -19,7 +19,6 @@ export const usePanzoom = (options = {}) => {
         const panzoom = Panzoom(el, {
             maxScale: 5,
             contain: 'outside',
-            ...options,
         });
 
         panzoomRef.current = panzoom;

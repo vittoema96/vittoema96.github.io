@@ -1,15 +1,23 @@
-import BaseCard from './BaseCard.tsx'
-import AidContent from '../content/AidContent.tsx'
+import BaseCard from '../BaseCard.tsx'
+import AidContent from '@/app/tabs/inv/cards/aid/AidContent.tsx'
+import { CharacterItem, Item } from '@/types';
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 
 /**
  * Aid card component for consumable items (food, drinks, meds)
  * Uses BaseCard with AidContent renderer
  */
-function AidCard({ characterItem, itemData, onConsume }) {
+interface AidCardProps {
+    characterItem: CharacterItem,
+    onConsume?: (item: CharacterItem, data: Item) => void // TODO remove data from this
+}
+function AidCard({ characterItem, onConsume }: Readonly<AidCardProps>) {
 
-    if (!itemData) {
-        console.error(`Aid data not found for ID: ${characterItem.id}`)
-        return null
+    const dataManager = getGameDatabase();
+    const itemData = getModifiedItemData(characterItem)
+    if (!dataManager.isType(itemData, 'aid')) {
+        console.error(`Aid data not found for ID: ${characterItem.id}`);
+        return null;
     }
 
     const handleConsume = () => {

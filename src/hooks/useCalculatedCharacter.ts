@@ -8,23 +8,23 @@ import {
     SkillType
 } from "@/types";
 import {useMemo} from 'react'
-import {getModifiedItemData} from "@/utils/itemUtils";
 import {mapItemLocations} from "@/utils/bodyLocations";
-import {getGameDatabase} from "@/hooks/getGameDatabase";
-
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase';
 
 export const adjustCurrentHp = (prev: RawCharacter | null, current: RawCharacter) => {
-    const result: RawCharacter = {...current}
-    const prevMaxHp = calculateMaxHp(prev)
-    const currentMaxHp = calculateMaxHp(current)
-    const currentHp = prev?.currentHp ?? currentMaxHp
-    const hpDelta = currentMaxHp - prevMaxHp
+    const result: RawCharacter = { ...current };
+    const prevMaxHp = calculateMaxHp(prev);
+    const currentMaxHp = calculateMaxHp(current);
+    const currentHp = prev?.currentHp ?? currentMaxHp;
+    const hpDelta = currentMaxHp - prevMaxHp;
     // TODO per ora se maxHp aumenta, currentHp aumenta di pari passo
     //      se maxHp diminuisce currentHp rimane tale (o scende a maxHp se superiore)
-    if(hpDelta > 0) {result.currentHp = currentHp + hpDelta}
-    result.currentHp = Math.min(currentHp, currentMaxHp)
-    return result
-}
+    if (hpDelta > 0) {
+        result.currentHp = currentHp + hpDelta;
+    }
+    result.currentHp = Math.min(currentHp, currentMaxHp);
+    return result;
+};
 
 export const unequipIrrelevantApparel = (dataManager, current: RawCharacter) => {
     const result: RawCharacter = {...current}

@@ -3,7 +3,6 @@ import { usePopup } from '@/contexts/popup/PopupContext.tsx'
 import {
     applyModToItem as applyModUtil,
     removeModFromItem as removeModUtil,
-    getModifiedItemData,
     isSameConfiguration
 } from '@/utils/itemUtils.ts'
 import {
@@ -15,7 +14,7 @@ import {
 import {
     hasApparelConflict
 } from '@/utils/bodyLocations.ts'
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem, Item, MR_HANDY_PARTS } from '@/types';
 
 /**

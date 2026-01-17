@@ -3,9 +3,10 @@ import { useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
 import { usePopup } from '@/contexts/popup/PopupContext'
 import { useDialog } from '@/hooks/useDialog'
-import { getModifiedItemData, hasEnoughAmmo } from '@/utils/itemUtils';
+import { hasEnoughAmmo } from '@/utils/itemUtils';
 import {CharacterItem, SkillType, SPECIAL} from "@/types";
 import {SKILL_TO_SPECIAL_MAP} from "@/utils/characterSheet";
+import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 
 
 interface D20PopupProps {

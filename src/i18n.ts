@@ -1,4 +1,4 @@
-import i18next from 'i18next'
+import i18next, { PostProcessorModule } from 'i18next';
 import {initReactI18next} from 'react-i18next'
 
 import enTranslations from '@/locales/en.json'
@@ -12,7 +12,21 @@ export const LANGUAGES = {
 export type Language = keyof typeof LANGUAGES
 export const DEFAULT_LANGUAGE: Language = 'it'
 
+
+const variationProcessor: PostProcessorModule = {
+    type: 'postProcessor',
+    name: 'variationAppend',
+    process: (value, _, options) => {
+        // Handle variation appending
+        const variation = options["variation"]
+        return variation && typeof variation  === "string" ?
+            `${value} (${variation})`
+            : value;
+    }
+};
+
 i18next
+    .use(variationProcessor)
     .use(initReactI18next)
     .init({
         lng: localStorage.getItem('language') ?? DEFAULT_LANGUAGE,
@@ -27,6 +41,7 @@ i18next
         interpolation: {
             escapeValue: false,
         },
+        postProcess: variationProcessor.name
     })
 
 /** Checks if a string is a valid Language */
@@ -51,6 +66,8 @@ export const changeLanguage = async (newLanguage: Language | null = null) => {
     document.documentElement.lang = language;
 
     // Use the i18n system to change language
+    // TODO not sure it should be handled like this...
+    //       more likely that i18n-react has a different way
     await i18next.changeLanguage(language)
 
     // Update localStorage

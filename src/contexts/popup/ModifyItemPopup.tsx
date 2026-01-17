@@ -1,10 +1,9 @@
 import { useRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
-import {getGameDatabase} from "@/hooks/getGameDatabase"
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase';
 import { useTooltip } from '@/contexts/TooltipContext'
 import { useDialog } from '@/hooks/useDialog'
-import { getModifiedItemData } from '@/utils/itemUtils'
 import  { CharacterItem, MOD_SLOTS } from '@/types'
 
 /**

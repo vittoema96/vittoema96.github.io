@@ -207,17 +207,18 @@ export interface GenericItem {
     CATEGORY: ItemCategory;
 }
 
-// Comune a Weapons, Apparel
-interface ModdableItem extends GenericItem {
-    AVAILABLE_MODS?: string[];  // JSON array
-}
 
 // Comune a Weapons, Apparel, Mods
 interface ItemWithEffects extends GenericItem {
     EFFECTS?: string[];  // JSON array
 }
 
-export interface WeaponItem extends ModdableItem, ItemWithEffects {
+// Comune a Weapons, Apparel
+export interface ModdableItem extends ItemWithEffects {
+    AVAILABLE_MODS?: string[];  // JSON array
+}
+
+export interface WeaponItem extends ModdableItem {
     DAMAGE_RATING: number;
     DAMAGE_TYPE: DamageType;
     FIRE_RATE: number | string;  // number o "-" per melee TODO should change type (only number? number + undefined?)
@@ -227,7 +228,7 @@ export interface WeaponItem extends ModdableItem, ItemWithEffects {
     CATEGORY: WeaponCategories;
 }
 
-export interface ApparelItem extends ModdableItem, ItemWithEffects {
+export interface ApparelItem extends ModdableItem {
     PHYSICAL_RES: number;
     ENERGY_RES: number;
     RADIATION_RES: number;

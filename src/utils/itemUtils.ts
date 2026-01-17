@@ -3,8 +3,16 @@
  * Handles item identification, grouping, and modification
  */
 
-import { Character, CharacterItem, DamageType, Item, ModItem, Range } from '@/types';
-import {getGameDatabase} from "@/hooks/getGameDatabase";
+import {
+    ApparelItem,
+    Character,
+    CharacterItem,
+    DamageType,
+    Item,
+    Range,
+    WeaponItem,
+} from '@/types';
+import { getGameDatabase } from '@/hooks/getGameDatabase';
 import type { TFunction } from 'i18next';
 
 /**
@@ -45,112 +53,117 @@ export function getItemKey(item: CharacterItem) {
     return `${item.id}_${JSON.stringify(item.mods.toSorted((a, b) => a.localeCompare(b)))}`
 }
 
+
+// TODO should not be string, string, but defined fields
+function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: string) {
+    switch (effectType) {
+        case 'damageAdd':
+            modifiedData.DAMAGE_RATING = (Number(modifiedData.DAMAGE_RATING) || 0) + Number(value)
+            break
+        case 'damageSet':
+            modifiedData.DAMAGE_RATING = Number(value)
+            break
+        case 'fireRateAdd':
+            modifiedData.FIRE_RATE = (Number(modifiedData.FIRE_RATE) || 0) + Number(value)
+            break
+        case 'damageTypeChange':
+            modifiedData.DAMAGE_TYPE = value as DamageType
+            break
+        case 'ammoChange':
+            modifiedData.AMMO_TYPE = value
+            break
+
+        case 'rangeIncrease': {
+            const rangeOrder: Range[] = ['rangeR', 'rangeC', 'rangeM', 'rangeL', 'rangeE']
+            const currentIndex = rangeOrder.indexOf(modifiedData.RANGE)
+            const newIndex = Math.max(0, Math.min(currentIndex + Number(value), rangeOrder.length - 1))
+            if (rangeOrder[newIndex]) {
+                modifiedData.RANGE = rangeOrder[newIndex]
+            }
+            break
+        }
+
+        case 'qualityAdd':
+            modifiedData.QUALITIES ??= [];
+            if (!modifiedData.QUALITIES.includes(value)) {
+                modifiedData.QUALITIES = [...modifiedData.QUALITIES, value]
+            }
+            break
+        case 'qualityRemove':
+            if (modifiedData.QUALITIES) {
+                modifiedData.QUALITIES = modifiedData.QUALITIES.filter(q => q !== value && !q.startsWith(value + ':'))
+            }
+            break
+        case 'ammoConsumption':
+            modifiedData.AMMO_CONSUMPTION = Number(value)
+            break
+        case 'allowMuzzleMod':
+            modifiedData.ALLOW_MUZZLE_MOD = value === 'true'
+            break
+        case 'rerollHitLocation':
+            modifiedData.REROLL_HIT_LOCATION = value === 'true'
+            break
+    }
+    return modifiedData
+}
+
+// TODO should not be string, string, but defined fields
+function applyApparelEffect(modifiedData: ApparelItem, effectType: string, value: string) {
+    switch (effectType) {
+        // Resistances addition
+        case 'physicalResAdd':
+        case 'damageReductionPhysicalAdd':
+            modifiedData.PHYSICAL_RES = (Number(modifiedData.PHYSICAL_RES) || 0) + Number(value)
+            break
+        case 'energyResAdd':
+        case 'damageReductionEnergyAdd':
+            modifiedData.ENERGY_RES = (Number(modifiedData.ENERGY_RES) || 0) + Number(value)
+            break
+        case 'radiationResAdd':
+        case 'damageReductionRadiationAdd':
+            modifiedData.RADIATION_RES = (Number(modifiedData.RADIATION_RES) || 0) + Number(value)
+            break
+        case 'meleeResAdd': // TODO This column doesn't exist
+            modifiedData.MELEE_RES = (Number(modifiedData.MELEE_RES) || 0) + Number(value)
+            break
+        case 'explosiveResAdd': // TODO This column doesn't exist
+            modifiedData.EXPLOSIVE_RES = (Number(modifiedData.EXPLOSIVE_RES) || 0) + Number(value)
+            break
+        case 'fallDamageResAdd': // TODO This column doesn't exist
+            modifiedData.FALL_DAMAGE_RES = (Number(modifiedData.FALL_DAMAGE_RES) || 0) + Number(value)
+            break
+
+        // Other effects
+        case 'carryWeightAdd':
+            modifiedData.CARRY_WEIGHT_BONUS = (Number(modifiedData.CARRY_WEIGHT_BONUS) || 0) + Number(value)
+            break
+        case 'unarmedDamageAdd': // TODO This column doesn't exist
+            modifiedData.UNARMED_DAMAGE = (Number(modifiedData.UNARMED_DAMAGE) || 0) + Number(value)
+            break
+    }
+    return modifiedData
+}
+
 /**
  * Parse and apply a single effect from mod EFFECTS array
  * @param {Object} modifiedData - Item data being modified
  * @param {string} effect - Effect string (e.g., "damageAdd:1", "qualityAdd:qualityMelee")
  */
-function applyEffect(modifiedData: Item, effect: string) {
+export function applyEffect(modifiedData: Item, effect: string): typeof modifiedData {
     const dataManager = getGameDatabase()
     const [effectType, ...valueParts] = effect.split(':')
     const value = valueParts.join(':') // Rejoin in case value contains ':'
+    if(!effectType) {return modifiedData}
+
     if(dataManager.isType(modifiedData, "weapon")){
-        switch (effectType) {
-            case 'damageAdd':
-                modifiedData.DAMAGE_RATING = (Number(modifiedData.DAMAGE_RATING) || 0) + Number(value)
-                break
-            case 'damageSet':
-                modifiedData.DAMAGE_RATING = Number(value)
-                break
-            case 'fireRateAdd':
-                modifiedData.FIRE_RATE = (Number(modifiedData.FIRE_RATE) || 0) + Number(value)
-                break
-            case 'damageTypeChange':
-                modifiedData.DAMAGE_TYPE = value as DamageType
-                break
-            case 'ammoChange':
-                modifiedData.AMMO_TYPE = value
-                break
-
-            case 'rangeIncrease': {
-                const rangeOrder: Range[] = ['rangeR', 'rangeC', 'rangeM', 'rangeL', 'rangeE']
-                const currentIndex = rangeOrder.indexOf(modifiedData.RANGE)
-                const newIndex = Math.max(0, Math.min(currentIndex + Number(value), rangeOrder.length - 1))
-                if (rangeOrder[newIndex]) {
-                    modifiedData.RANGE = rangeOrder[newIndex]
-                }
-                break
-            }
-
-            case 'qualityAdd':
-                modifiedData.QUALITIES ??= [];
-                if (!modifiedData.QUALITIES.includes(value)) {
-                    modifiedData.QUALITIES = [...modifiedData.QUALITIES, value]
-                }
-                break
-            case 'qualityRemove':
-                if (modifiedData.QUALITIES) {
-                    modifiedData.QUALITIES = modifiedData.QUALITIES.filter(q => q !== value && !q.startsWith(value + ':'))
-                }
-                break
-            case 'ammoConsumption':
-                modifiedData.AMMO_CONSUMPTION = Number(value)
-                break
-            case 'allowMuzzleMod':
-                modifiedData.ALLOW_MUZZLE_MOD = value === 'true'
-                break
-            case 'rerollHitLocation':
-                modifiedData.REROLL_HIT_LOCATION = value === 'true'
-                break
-
-            default:
-                // Unknown effect type - log for debugging
-                console.warn(`Unknown effect type: ${effectType} with value: ${value}`)
-                break
-        }
-    } else if (dataManager.isType(modifiedData, "apparel")){
-        switch (effectType) {
-            // Resistances addition
-            case 'physicalResAdd':
-            case 'damageReductionPhysicalAdd':
-                modifiedData.PHYSICAL_RES = (Number(modifiedData.PHYSICAL_RES) || 0) + Number(value)
-                break
-            case 'energyResAdd':
-            case 'damageReductionEnergyAdd':
-                modifiedData.ENERGY_RES = (Number(modifiedData.ENERGY_RES) || 0) + Number(value)
-                break
-            case 'radiationResAdd':
-            case 'damageReductionRadiationAdd':
-                modifiedData.RADIATION_RES = (Number(modifiedData.RADIATION_RES) || 0) + Number(value)
-                break
-            case 'meleeResAdd': // TODO This column doesn't exist
-                modifiedData.MELEE_RES = (Number(modifiedData.MELEE_RES) || 0) + Number(value)
-                break
-            case 'explosiveResAdd': // TODO This column doesn't exist
-                modifiedData.EXPLOSIVE_RES = (Number(modifiedData.EXPLOSIVE_RES) || 0) + Number(value)
-                break
-            case 'fallDamageResAdd': // TODO This column doesn't exist
-                modifiedData.FALL_DAMAGE_RES = (Number(modifiedData.FALL_DAMAGE_RES) || 0) + Number(value)
-                break
-
-            // Other effects
-            case 'carryWeightAdd':
-                modifiedData.CARRY_WEIGHT_BONUS = (Number(modifiedData.CARRY_WEIGHT_BONUS) || 0) + Number(value)
-                break
-            case 'unarmedDamageAdd': // TODO This column doesn't exist
-                modifiedData.UNARMED_DAMAGE = (Number(modifiedData.UNARMED_DAMAGE) || 0) + Number(value)
-                break
-
-            default:
-                // Unknown effect type - log for debugging
-                console.warn(`Unknown effect type: ${effectType} with value: ${value}`)
-                break
-        }
+        modifiedData = applyWeaponEffect(modifiedData, effectType, value)
+    } else if(dataManager.isType(modifiedData, "apparel")){
+        modifiedData = applyApparelEffect(modifiedData, effectType, value)
     }
-
-    if(dataManager.isType(modifiedData, "apparel") || dataManager.isType(modifiedData, "weapon")) {
+    if(dataManager.isType(modifiedData, "apparel") || dataManager.isType(modifiedData, "weapon")){
+        // TODO adding and removing effects should be handled in a proper order, not how it comes
+        //      there could be conflicts with mods adding and others removing effects
         switch (effectType) {
-
             // Quality/Effect additions
             case 'effectAdd':
                 modifiedData.EFFECTS ??= [];
@@ -163,103 +176,8 @@ function applyEffect(modifiedData: Item, effect: string) {
                     modifiedData.EFFECTS = modifiedData.EFFECTS.filter(e => e !== value && !e.startsWith(value + ':'))
                 }
                 break
-
         }
     }
-    switch (effectType) {
-
-        // Special cases
-        case 'meleeDamage':
-            // meleeDamage is handled separately by creating a melee weapon item
-            // See modCreatesMeleeWeapon() and getMeleeWeaponForMod()
-            // This effect is ignored here
-            break
-
-        default:
-            // Unknown effect type - log for debugging
-            console.warn(`Unknown effect type: ${effectType} with value: ${value}`)
-            break
-    }
-}
-
-/**
- * Get item data with mods applied
- */
-// FIXME this method is all wrong. we should provide an id and get the item data from there (i think)
-//          Conduct an investigation on where and why it is used and decide from there
-export function getModifiedItemData(characterItem: CharacterItem): Item | null {
-    const dataManager = getGameDatabase()
-    const baseData = dataManager.getItem(characterItem.id)
-    // TODO i do not like this
-    if(!baseData) { return null }
-
-    // No mods, return base data
-    if (characterItem.mods.length === 0) {
-        return baseData
-    }
-
-    // Clone base data
-    const modifiedData = {
-        ...baseData,
-        MOD_NAMES: [] as string[],
-        MOD_EFFECTS: [] as string[],
-    }
-
-    const isApparel = dataManager.isType(baseData, "apparel")
-    let materialMultiplier = 1
-
-    if(isApparel) {
-        // Check if this is a torso armor piece
-        const isTorsoArmor = baseData.LOCATIONS_COVERED?.length === 1 &&
-                                      baseData.LOCATIONS_COVERED[0] === 'torso'
-        materialMultiplier = isTorsoArmor ? 2 : 1
-    }
-    // Apply each mod
-    characterItem.mods.forEach(modId => {
-        const modData = dataManager.getItem(modId) as ModItem
-        if (!modData) {return}
-
-        // Add mod ID to MOD_NAMES for display as tag
-        modifiedData.MOD_NAMES.push(modId)
-
-        // Check if this is a Material mod applied to Torso armor
-        // Material mods on Torso have doubled weight and cost
-        const isMaterialMod = modData.SLOT_TYPE === 'modSlotMaterial'
-        const multiplier = isMaterialMod ? materialMultiplier : 1
-
-        // Add weight from mod (doubled for Material mods on Torso)
-        if (modData.WEIGHT) {
-            modifiedData.WEIGHT =
-                (Number(modifiedData.WEIGHT) || 0) +
-                (Number(modData.WEIGHT) || 0) * multiplier
-        }
-
-        // Add cost from mod (doubled for Material mods on Torso)
-        if (modData.COST) {
-            modifiedData.COST =
-                (Number(modifiedData.COST) || 0) +
-                (Number(modData.COST) || 0) * multiplier
-        }
-
-        // Apply effects from EFFECTS array
-        if (modData.EFFECTS) {
-            modData.EFFECTS.forEach(effect => {
-                applyEffect(modifiedData, effect)
-
-                // Track effects added via effectAdd/qualityAdd for display
-                const [effectType, ...valueParts] = effect.split(':')
-                const value = valueParts.join(':')
-
-                if (effectType === 'effectAdd' || effectType === 'qualityAdd') {
-                    // Add to MOD_EFFECTS for display purposes
-                    if (!modifiedData.MOD_EFFECTS.includes(value)) {
-                        modifiedData.MOD_EFFECTS.push(value)
-                    }
-                }
-            })
-        }
-    })
-
     return modifiedData
 }
 
@@ -387,11 +305,15 @@ export function getDisplayName(item: CharacterItem, t: TFunction) {
     if (!item) {return ''}
 
     // TODO custom name not implemented, but actually a good idea
-    const baseName = t(item.id)
+    let baseName = t(item.id)
+
+    if (item.variation) {
+        baseName = `${baseName} (${t(item.variation)})`
+    }
 
     // No mods, return base name
-    if (item.mods.length === 0) {
-        return baseName
+    if (item.mods.length > 0) {
+        return `${baseName} [+${item.mods.length}]`
     }
 
     // TODO i think we can keep this commented but keeping it just in case
@@ -399,8 +321,7 @@ export function getDisplayName(item: CharacterItem, t: TFunction) {
     //if (dataManager && dataManager.isUnacquirable(item.id))
     //    return baseName
 
-    // Show mod count
-    return `${baseName} [+${item.mods.length}]`
+    return baseName
 }
 
 /**
@@ -409,9 +330,11 @@ export function getDisplayName(item: CharacterItem, t: TFunction) {
  * @returns {boolean} True if item can be modified
  */
 export function canBeModified(itemData: Item) {
-    if (!itemData) {return false}
+    const dataManager = getGameDatabase()
+    if (!dataManager.isType(itemData, "weapon") && !dataManager.isType(itemData, "apparel")) {
+        return false
+    }
 
     // Check if item has AVAILABLE_MODS field and it's not empty
-    // TODO should work as is, but we could fix the error...
     return !!(itemData.AVAILABLE_MODS && Array.isArray(itemData.AVAILABLE_MODS) && itemData.AVAILABLE_MODS.length > 0);
 }
