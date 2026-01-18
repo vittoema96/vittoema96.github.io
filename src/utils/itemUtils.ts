@@ -3,18 +3,42 @@
  * Handles item identification, grouping, and modification
  */
 
-import {
-    ApparelItem,
-    Character,
-    CharacterItem,
-    DamageType,
-    Item,
-    ModdableItem,
-    Range,
-    WeaponItem,
-} from '@/types';
+import { ApparelItem, Character, CharacterItem, DamageType, Item, ModdableItem, Range, WeaponItem } from '@/types';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
 import type { TFunction } from 'i18next';
+
+
+export function removeItem(items: CharacterItem[], itemToRemove: CharacterItem) {
+    return items.reduce<CharacterItem[]>((acc, item) => {
+        if (isSameConfiguration(item, itemToRemove)) {
+            if (item.quantity > itemToRemove.quantity) {
+                acc.push({ ...item, quantity: item.quantity - itemToRemove.quantity });
+            }
+        } else {
+            acc.push(item);
+        }
+        return acc;
+    }, []);
+}
+
+export function addItem(items: CharacterItem[], itemToAdd: CharacterItem) {
+    let foundItem = false
+    const newItems = items.reduce<CharacterItem[]>((acc, item) => {
+        if(isSameConfiguration(item, itemToAdd)) {
+            foundItem = true
+            acc.push({...item, quantity: item.quantity + itemToAdd.quantity})
+        } else {
+            acc.push(item);
+        }
+        return acc
+    }, [])
+
+    if(!foundItem) {
+        newItems.push({...itemToAdd, quantity: itemToAdd.quantity})
+    }
+    return newItems
+}
+
 
 /**
  * Check if two items have the same configuration (id + mods)
@@ -68,10 +92,10 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
         case 'fireRateAdd':
             modifiedData.FIRE_RATE = (Number(modifiedData.FIRE_RATE) || 0) + Number(value)
             break
-        case 'damageTypeChange':
+        case 'damageTypeSet':
             modifiedData.DAMAGE_TYPE = value as DamageType
             break
-        case 'ammoChange':
+        case 'ammoSet':
             modifiedData.AMMO_TYPE = value
             break
 
@@ -184,121 +208,6 @@ export function applyEffect(modifiedData: ModdableItem, effect: string): typeof 
 }
 
 /**
- * Add item to inventory, grouping with existing items if same configuration
- * @param {Object[]} items - Current inventory items
- * @param {Object} newItem - Item to add
- * @returns {Object[]} Updated inventory
- */
-export function addItemToInventory(items, newItem) {
-    if (!newItem) {return items}
-
-    // Find existing item with same configuration
-    const existingIndex = items.findIndex(item =>
-        isSameConfiguration(item, newItem)
-    )
-
-    const newItems = [...items]
-
-    if (existingIndex === -1) {
-        // New configuration, add as new entry
-        newItems.push({
-            ...newItem
-        })
-    } else {
-        // Same configuration exists, increase quantity
-        newItems[existingIndex] = {
-            ...newItems[existingIndex],
-            quantity: newItems[existingIndex].quantity + newItem.quantity
-        }
-    }
-
-    return newItems
-}
-
-/**
- * Remove item from inventory
- * @param {Object[]} items - Current inventory items
- * @param {Object} itemToRemove - Item to remove
- * @param {number} quantityToRemove - Quantity to remove (default: 1)
- * @returns {Object[]} Updated inventory
- */
-export function removeItemFromInventory(items, itemToRemove, quantityToRemove = 1) {
-    if (!itemToRemove) {return items}
-
-    const existingIndex = items.findIndex(item =>
-        isSameConfiguration(item, itemToRemove)
-    )
-
-    if (existingIndex === -1) {return items}
-
-    const newItems = [...items]
-    newItems[existingIndex] = {
-        ...newItems[existingIndex],
-        quantity: newItems[existingIndex].quantity - quantityToRemove
-    }
-
-    // Remove entry if quantity reaches 0
-    if (newItems[existingIndex].quantity <= 0) {
-        newItems.splice(existingIndex, 1)
-    }
-
-    return newItems
-}
-
-/**
- * Apply mod to an item
- * Removes 1 from original stack, adds 1 to modified stack
- * @param {Object[]} items - Current inventory items
- * @param {Object} itemToModify - Item to modify
- * @param {string} modId - Mod ID to apply
- * @returns {Object[]} Updated inventory
- */
-export function applyModToItem(items, itemToModify, modId) {
-    if (!itemToModify || !modId) {return items}
-
-    // Remove 1 from original stack
-    let newItems = removeItemFromInventory(items, itemToModify, 1)
-
-    // Add 1 with new mod
-    const modifiedItem = {
-        ...itemToModify,
-        mods: [...itemToModify.mods, modId],
-        quantity: 1
-    }
-
-    newItems = addItemToInventory(newItems, modifiedItem)
-
-    return newItems
-}
-
-/**
- * Remove mod from an item
- * Removes 1 from modified stack, adds 1 to unmodified stack
- */
-export function removeModFromItem(items, itemToModify, modId) {
-    if (!itemToModify || !modId) {return items}
-
-    // Check if item has this mod
-    if (!itemToModify.mods.includes(modId)) {
-        return items
-    }
-
-    // Remove 1 from modified stack
-    let newItems = removeItemFromInventory(items, itemToModify, 1)
-
-    // Add 1 without the mod
-    const unmodifiedItem = {
-        ...itemToModify,
-        mods: itemToModify.mods.filter(m => m !== modId),
-        quantity: 1
-    }
-
-    newItems = addItemToInventory(newItems, unmodifiedItem)
-
-    return newItems
-}
-
-/**
  * Get display name for item
  * @param item - Character item
  * @param t - Translation function from useTranslation hook
@@ -328,15 +237,12 @@ export function getDisplayName(item: CharacterItem, t: TFunction) {
 
 /**
  * Check if item can be modified (has mod slots)
- * @param {Object} itemData - Item data from CSV
- * @returns {boolean} True if item can be modified
  */
 export function canBeModified(itemData: Item) {
     const dataManager = getGameDatabase()
     if (!dataManager.isType(itemData, "weapon") && !dataManager.isType(itemData, "apparel")) {
         return false
     }
-
     // Check if item has AVAILABLE_MODS field and it's not empty
-    return !!(itemData.AVAILABLE_MODS && Array.isArray(itemData.AVAILABLE_MODS) && itemData.AVAILABLE_MODS.length > 0);
+    return itemData.AVAILABLE_MODS.length > 0;
 }

@@ -29,6 +29,6 @@ modReconScopeEnergy,mod,modSlotSight,Recon,"[""qualityAdd:qualityAccurate"",""qu
 modLongScopeEnergy,mod,modSlotSight,With Scope,"[""qualityAdd:qualityAccurate"",""rangeAdd:1""]",0.5,29,science,"[""science:2""]",2,"[""energyWeapons""]"
 modLongNightVisionScopeEnergy,mod,modSlotSight,Night Vision,"[""qualityAdd:qualityAccurate"",""qualityAdd:qualityNightVision"",""rangeAdd:1""]",0.5,50,science,"[""science:3""]",4,"[""energyWeapons""]"
 modReflexSightEnergy,mod,modSlotSight,Tactical,"[""rerollHitLocation:true""]",0,14,science,[],1,"[""energyWeapons""]"
-modElectricSignalAntenna,mod,modSlotMuzzle,Electrified,"[""damageSet:7"",""damageTypeChange:energy"",""effectAdd:effectRadioactive""]",0,30,science,"[""science:4""]",4,"[""weaponGammaPistol""]"
+modElectricSignalAntenna,mod,modSlotMuzzle,Electrified,"[""damageSet:7"",""damageTypeSet:energy"",""effectAdd:effectRadioactive""]",0,30,science,"[""science:4""]",4,"[""weaponGammaPistol""]"
 modAutomaticSignalRepeater,mod,modSlotMuzzle,Automatic,"[""fireRateAdd:2"",""effectAdd:effectBurst"",""qualityRemove:qualityBlast""]",0,60,science,"[""science:4""]",4,"[""weaponGammaPistol""]"
 modDeepDish,mod,modSlotDish,Long,"[""damageAdd:1"",""rangeAdd:1""]",1,72,science,"[""science:4""]",4,"[""weaponGammaPistol""]"

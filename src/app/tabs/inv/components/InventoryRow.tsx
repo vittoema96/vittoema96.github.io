@@ -160,7 +160,7 @@ function InventoryRow({
 
                 <div className="inventory-row__info">
                     <div className="inventory-row__name">
-                        <FitText wrap={true}>
+                        <FitText center={false} wrap={true} maxSize={15}>
                             {itemName}
                         </FitText>
                         {/*<span className={`inventory-row__name-text ${nameSizeClass}`}>
@@ -185,7 +185,7 @@ function InventoryRow({
                         )}
                     </div>
                     <div className="inventory-row__subinfo">
-                        <FitText minSize={7}>{getItemSubInfo()}</FitText>
+                        <FitText center={false} minSize={7} maxSize={10}>{getItemSubInfo()}</FitText>
                     </div>
                 </div>
 

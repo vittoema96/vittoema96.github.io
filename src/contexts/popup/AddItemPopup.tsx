@@ -1,17 +1,18 @@
-import {useEffect, useRef, useState} from 'react'
-import { useTranslation } from 'react-i18next'
-import {useCharacter} from '@/contexts/CharacterContext'
-import {useDialog} from '@/hooks/useDialog'
-import {isSameConfiguration} from '@/utils/itemUtils'
-import {ORIGINS} from "@/utils/characterSheet";
-import {getGameDatabase} from "@/hooks/getGameDatabase"
-import {CharacterItem, GenericItem, GenericPopupProps, ItemCategory, ItemType, Side} from "@/types";
+import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useCharacter } from '@/contexts/CharacterContext';
+import { useDialog } from '@/hooks/useDialog';
+import { ORIGINS } from '@/utils/characterSheet';
+import { getGameDatabase } from '@/hooks/getGameDatabase';
+import { GenericItem, GenericPopupProps, ItemCategory, ItemType, Side } from '@/types';
+import { addItem } from '@/utils/itemUtils.ts';
 
 export interface AddItemPopupProps extends GenericPopupProps {
     itemType: ItemType;
 }
 
 type CategoryFilter = ItemCategory | 'mrHandyWeapons' | undefined;
+type SelectableItem = GenericItem & { variation?: Side }
 
 /**
  * Add Item popup component for adding items to inventory
@@ -19,8 +20,8 @@ type CategoryFilter = ItemCategory | 'mrHandyWeapons' | undefined;
  */
 function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     const { t } = useTranslation()
-    const [selectedItem, setSelectedItem] = useState<SelectableItem>(undefined)
-    const [quantity, setQuantity] = useState<number | ''>(1)
+    const [selectedItem, setSelectedItem] = useState<SelectableItem | undefined>(undefined)
+    const [quantity, setQuantity] = useState<number | undefined>(1)
     const [availableItems, setAvailableItems] = useState<SelectableItem[]>([])
     const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>(undefined) // all, or specific subtype
     const [rarityFilter, setRarityFilter] = useState<number | undefined>(undefined) // all, or max rarity level
@@ -79,25 +80,25 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
         if (rarityFilter) {
             const maxRarity = rarityFilter
             allItems = allItems.filter(item => {
-                const itemRarity = item.RARITY || 0
+                const itemRarity = item.RARITY
                 return itemRarity <= maxRarity
             })
         }
 
-        // TODO fix this mess with sides in CharacterItem or something similar
         // Add side variations for items that need them (arms/legs)
         const itemsWithVariants: SelectableItem[] = []
         allItems.forEach(item => {
             let variants: (Side|undefined)[] = [undefined]
-            // TODO might use LOCATIONS_COVERED contains "leg" or "arm" instead
-            if (item.ID.endsWith('Arm') || item.ID.endsWith('Leg')) {
+            if(dataManager.isType(item, "apparel") &&
+                (item.LOCATIONS_COVERED.includes("arm")
+                    || item.LOCATIONS_COVERED.includes("leg"))) {
                 variants = ['left', 'right']
             }
 
             variants.forEach(variation => {
                 itemsWithVariants.push({
                     ...item,
-                    variation
+                    ...(variation ? {variation} : {})
                 })
             })
         })
@@ -107,11 +108,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
 
             const getName = (item: SelectableItem) => {
                 if(!item) {return ''}
-                let name = t(item.ID)
-                if(item.variation){
-                    name += ` (${t(item.variation)})`
-                }
-                return name
+                return t(item.ID, { variation: t(item.variation!) });
             }
             const nameA = getName(a)
             const nameB = getName(b)
@@ -144,69 +141,33 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
         setRarityFilter(undefined)
     }, [itemType])
 
-    const handleClose = () => {
-        closeWithAnimation()
-    }
-
     const handleConfirm = () => {
         if (!selectedItem || !quantity) {return}
 
         // Calculate total cost if buying
         let totalCost = 0
         if (shouldBuy) {
-            const itemCost = selectedItem.COST || 0
-            totalCost = itemCost * quantity
+            totalCost = selectedItem.COST * quantity
 
             // Check if character has enough caps
-            const currentCaps = character.caps || 0
-            if (currentCaps < totalCost) {
+            if (character.caps < totalCost) {
                 // Not enough caps - could show an alert here
                 return
             }
         }
 
-        // Add item to character inventory
-        const newItem = {
-            id: selectedItem.ID, // This will be the DISPLAY_ID (with _left/_right if applicable)
-            type: selectedItem.TYPE, // Use the actual TYPE of the selected item
-            variation: selectedItem.variation,
+        const newItems = addItem(character.items, {
+            id: selectedItem.ID,
             quantity: quantity,
             equipped: false,
-            mods: [] // New items have no mods
-        }
-
-        // Check if item with same configuration already exists in inventory
-        // This considers both id AND mods, so modified weapons are separate from unmodified ones
-        const existingItems = character.items || []
-        const existingItemIndex = existingItems.findIndex(item =>
-            isSameConfiguration(item, newItem)
-        )
-
-        let updatedItems: CharacterItem[]
-        if (existingItemIndex >= 0) {
-            // Same configuration exists, increase quantity
-            updatedItems = [...existingItems]
-            if(updatedItems[existingItemIndex]){
-                updatedItems[existingItemIndex] = {
-                    ...updatedItems[existingItemIndex],
-                    quantity: updatedItems[existingItemIndex].quantity + quantity
-                }
-            }
-        } else {
-            // New configuration, add to inventory
-            updatedItems = [...existingItems, newItem]
-        }
-
-        updateCharacter({
-            items: updatedItems,
-            ...(shouldBuy && { caps: (character.caps || 0) - totalCost })
+            mods: [], // New items have no mods
+            ...(selectedItem.variation ? { variation: selectedItem.variation} : {})
         })
-        handleClose()
-    }
-
-    const handleQuantityChange = (e) => {
-        const val = Number.parseInt(e.target.value)
-        setQuantity(val ? Math.max(1, val) : '')
+        updateCharacter({
+            items: newItems,
+            ...(shouldBuy ? {caps: character.caps - totalCost} : {})
+        })
+        closeWithAnimation()
     }
 
     return (
@@ -216,7 +177,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
             <div onClick={(e) => e.stopPropagation()}>
                 <header className="l-lastSmall">
                     <span className="h2">{t('chooseItem')}</span>
-                    <button className="popup__button-x" onClick={handleClose}>
+                    <button className="popup__button-x" onClick={() => closeWithAnimation()}>
                         &times;
                     </button>
                 </header>
@@ -289,8 +250,11 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                     <input
                         type="number"
                         min="1"
-                        value={quantity}
-                        onChange={handleQuantityChange}
+                        value={quantity ?? ''}
+                        onChange={(e) => {
+                            const val = Number.parseInt(e.target.value)
+                            setQuantity(val ? Math.max(1, val) : undefined)
+                        }}
                         aria-label="Object quantity"
                         style={{ width: '5rem' }}
                     />
@@ -317,10 +281,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                             color: shouldBuy ? 'var(--primary-color)' : 'var(--primary-color-very-translucent)',
                             fontWeight: 'bold'
                         }}>
-                            {(() => {
-                                const itemCost = selectedItem ? (selectedItem.COST || 0) : 0
-                                return itemCost * quantity
-                            })()}
+                            {(selectedItem ? selectedItem.COST : 0) * (quantity ?? 0)}
                         </span>
                     </label>
                 </div>
@@ -337,7 +298,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                     </button>
                     <button
                         className="popup__button-close"
-                        onClick={handleClose}
+                        onClick={() => closeWithAnimation()}
                     >
                         {t('close')}
                     </button>

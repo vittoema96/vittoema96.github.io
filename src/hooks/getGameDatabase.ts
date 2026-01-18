@@ -40,45 +40,18 @@ export const getGameDatabase = () => {
     };
 };
 
-
-const applyMod = (itemData: ModdableItem, modData: ModItem) => {
-
-    const isApparel = isType(itemData, "apparel")
-    let materialMultiplier = 1
-    if(isApparel){
-        const isTorsoArmor = itemData.LOCATIONS_COVERED.includes('torso') &&
-            itemData.LOCATIONS_COVERED.length === 1
-        materialMultiplier = isTorsoArmor ? 2 : 1
-    }
-
-    let resultItem = {...itemData}
-
-    // Check if Material mod applied to Torso (double weight and cost)
-    const isMaterialMod = modData.SLOT_TYPE === 'modSlotMaterial'
-    const multiplier = isMaterialMod ? materialMultiplier : 1
-
-    // Add weight from mod (doubled for Material mods on Torso)
-    // TODO isn't WEIGHT ALWAYS a number? maybe we should ch
-    if (modData.WEIGHT) {
-        resultItem.WEIGHT =
-            (Number(resultItem.WEIGHT) || 0) +
-            (Number(modData.WEIGHT) || 0) * multiplier
-    }
-
-    // Add cost from mod (doubled for Material mods on Torso)
-    if (modData.COST) {
-        resultItem.COST =
-            (Number(resultItem.COST) || 0) +
-            (Number(modData.COST) || 0) * multiplier
-    }
-
-    // Apply effects from EFFECTS array
-    if (modData.EFFECTS) {
-        modData.EFFECTS.forEach(effect => {
-            resultItem = applyEffect(resultItem, effect)
+const applyMods = (itemData: ModdableItem, modsData: ModItem[]): typeof itemData => {
+    itemData.EFFECTS ??= []
+    for (const handleRemove of [false, true]){
+        modsData.forEach((mod) => {
+            mod.EFFECTS?.forEach(effect => {
+                if(handleRemove === ["effectRemove", "qualityRemove"].includes(effect)) {
+                    itemData = applyEffect(itemData, effect);
+                }
+            })
         })
     }
-    return resultItem
+    return itemData;
 }
 
 
@@ -92,16 +65,31 @@ export function getModifiedItemData(characterItem: CharacterItem): ModdableItem 
     if (!dataManager.isType(itemData, "moddable")) {return null}
     if (characterItem.mods.length === 0) {return itemData}
 
-    let modifiedData = {
-        ...itemData
+
+    const modsData = characterItem.mods.map(
+        modId => dataManager.getItem(modId)
+    ).filter(mod => dataManager.isType(mod, "mod"))
+
+    const isApparel = isType(itemData, "apparel")
+    let materialMultiplier = 1
+    if(isApparel){
+        const isTorsoArmor = itemData.LOCATIONS_COVERED.includes('torso') &&
+            itemData.LOCATIONS_COVERED.length === 1
+        materialMultiplier = isTorsoArmor ? 2 : 1
+    }
+    const getValue = (modData: ModItem, value: number) => {
+        const isMaterialMod = modData.SLOT_TYPE === 'modSlotMaterial'
+        const multiplier = isMaterialMod ? materialMultiplier : 1
+        return value * multiplier
     }
 
-    // Apply each mod
-    characterItem.mods.forEach(modId => {
-        const modData = dataManager.getItem(modId)
-        if (!isType(modData, "mod"))  {return}
-        modifiedData = applyMod(modifiedData, modData)
-    })
+    let modifiedData = {
+        ...itemData,
+        COST: modsData.reduce((total, mod) => total + getValue(mod, mod.COST), itemData.COST),
+        WEIGHT: modsData.reduce((total, mod) => total + getValue(mod, mod.WEIGHT), itemData.WEIGHT),
+    }
+
+    modifiedData = applyMods(modifiedData, modsData)
 
     return modifiedData
 }

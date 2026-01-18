@@ -1,5 +1,12 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react'
-import {BODY_PARTS, CharacterContextValue, CharacterItem, MR_HANDY_PARTS, MrHandyPart, RawCharacter} from '@/types'
+import {
+    BODY_PARTS,
+    Character,
+    CharacterItem,
+    MR_HANDY_PARTS,
+    MrHandyPart,
+    RawCharacter,
+} from '@/types';
 import {getOriginById} from "@/utils/characterSheet";
 import {getGameDatabase} from "@/hooks/getGameDatabase";
 import { CharacterRepository } from "@/services/CharacterRepository";
@@ -8,6 +15,18 @@ import useCalculatedCharacter, {
     unequipIrrelevantApparel
 } from "@/hooks/useCalculatedCharacter";
 
+
+// React component prop types
+export interface CharacterContextValue {
+    character: Character;
+    rawCharacter: RawCharacter | null;
+    updateCharacter: (updates: RawCharacter) => void;
+    replenishLuck: () => void;
+    spendLuck: () => void;
+    resetCharacter: () => void;
+    downloadCharacter: () => void;
+    uploadCharacter: (file: Blob) => Promise<RawCharacter>;
+}
 const CharacterContext = createContext<CharacterContextValue | undefined>(undefined)
 
 
@@ -178,6 +197,8 @@ export function CharacterProvider({ onReady, children}:
             }
         }, []
     )
+
+
 
     // Memoize context value to prevent unnecessary re-renders
     const contextValue = useMemo(

@@ -148,18 +148,6 @@ export interface GenericPopupProps {
 
 // **---- Item related----**
 
-// React component prop types
-export interface CharacterContextValue {
-    character: Character;
-    rawCharacter: RawCharacter | null;
-
-    updateCharacter: (updates: RawCharacter) => void;
-    replenishLuck: () => void;
-    spendLuck: () => void;
-    resetCharacter: () => void;
-    downloadCharacter: () => void;
-    uploadCharacter: (file: Blob) => Promise<RawCharacter>;
-}
 
 export interface PopupContextValue {
     showAlert: (message: string) => void;

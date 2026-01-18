@@ -73,7 +73,7 @@ function BaseCard({
                     <span className="card-quantity">
                         <i>{quantity}x</i>
                     </span>
-                    <FitText wrap={true} minSize={13}>
+                    <FitText wrap={true} minSize={13} maxSize={23}>
                         {t(itemData.ID, {
                             variation: t(characterItem.variation!)
                         })}

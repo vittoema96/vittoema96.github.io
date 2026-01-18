@@ -4,9 +4,10 @@ import { useTranslation } from 'react-i18next'
 import { usePopup } from '@/contexts/popup/PopupContext'
 import { useDialog } from '@/hooks/useDialog'
 import { hasEnoughAmmo } from '@/utils/itemUtils';
-import {CharacterItem, SkillType, SPECIAL} from "@/types";
+import { CharacterItem, SkillType, SPECIAL, SpecialType } from '@/types';
 import {SKILL_TO_SPECIAL_MAP} from "@/utils/characterSheet";
 import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { FitText } from '@/app/FitText.tsx';
 
 
 interface D20PopupProps {
@@ -244,15 +245,12 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
             }}
         >
             <div>
-                <header className="l-lastSmall">
-                    <span
-                        className="h1"
-                        style={{ fontSize: getVariableFontSize(skillName) }}
-                    >
+                <div style={{ gap: '1rem', padding: '0.5rem', display: 'flex'}} className="l-lastSmall">
+                    <FitText minSize={20}>
                         {skillName}
-                    </span>
+                    </FitText>
                     <button className="popup__button-x" onClick={handleClose}>&times;</button>
-                </header>
+                </div>
 
                 <div className="l-lastSmall row">
                     <select
@@ -263,7 +261,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                                 setIsUsingLuck(true)
                             } else {
                                 setIsUsingLuck(false)
-                                setSelectedSpecial(value)
+                                setSelectedSpecial(value as SpecialType)
                             }
                         }}
                         disabled={hasRolled || isUsingLuck}

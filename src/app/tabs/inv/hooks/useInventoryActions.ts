@@ -1,21 +1,14 @@
 import { useCharacter } from '@/contexts/CharacterContext.tsx'
 import { usePopup } from '@/contexts/popup/PopupContext.tsx'
 import {
-    applyModToItem as applyModUtil,
-    removeModFromItem as removeModUtil,
     isSameConfiguration
 } from '@/utils/itemUtils.ts'
-import {
-    canEquipItem,
-    canUnequipItem,
-    canSellItem,
-    canDeleteItem
-} from '@/app/tabs/inv/utils/itemValidation.ts'
 import {
     hasApparelConflict
 } from '@/utils/bodyLocations.ts'
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
-import { CharacterItem, Item, MR_HANDY_PARTS } from '@/types';
+import { CharacterItem, Item } from '@/types';
+import { ORIGINS } from '@/utils/characterSheet.ts';
 
 /**
  * Custom hook for inventory actions (sell, delete, equip, use, etc.)
@@ -28,9 +21,8 @@ export const useInventoryActions = () => {
 
     const sellItem = (characterItem: CharacterItem) => {
         // Validate if item can be sold
-        const validation = canSellItem(characterItem.id)
-        if (!validation.canSell) {
-            showAlert(validation.reason)
+        if (dataManager.isUnacquirable(characterItem.id)) {
+            showAlert("Cannot sell this item!")
             return
         }
 
@@ -69,9 +61,8 @@ export const useInventoryActions = () => {
 
     const deleteItem = (characterItem: CharacterItem) => {
         // Validate if item can be deleted
-        const validation = canDeleteItem(characterItem.id)
-        if (!validation.canDelete) {
-            showAlert(validation.reason)
+        if (dataManager.isUnacquirable(characterItem.id)) {
+            showAlert("Cannot delete this item!")
             return
         }
 
@@ -94,9 +85,12 @@ export const useInventoryActions = () => {
 
     const equipItem = (characterItem: CharacterItem, itemData: Item) => {
         // Validate if item can be equipped
-        const validation = canEquipItem(character, itemData)
-        if (!validation.canEquip) {
-            showAlert(validation.reason)
+        if (!dataManager.isType(itemData, 'apparel')) {
+            showAlert("Cannot equip non-apparel items!")
+            return
+        }
+        if(character.origin === ORIGINS.MR_HANDY) {
+            showAlert("Robots cannot equip/unequip apparel.")
             return
         }
 
@@ -104,9 +98,8 @@ export const useInventoryActions = () => {
 
         if (isCurrentlyEquipped) {
             // Validate if item can be unequipped
-            const unequipValidation = canUnequipItem(characterItem.id)
-            if (!unequipValidation.canUnequip) {
-                showAlert(unequipValidation.reason)
+            if (dataManager.isUnacquirable(characterItem.id)) {
+                showAlert("Cannot unequip this item!")
                 return
             }
 
@@ -147,70 +140,10 @@ export const useInventoryActions = () => {
         showAlert('Use functionality coming soon!')
     }
 
-    const applyMod = (characterItem: CharacterItem, modId: string) => {
-
-        // Apply mod using utility function
-        let updatedItems = applyModUtil(character.items, characterItem, modId)
-
-        // Check if this is a robot plating mod being applied to a robot part
-        const modData = dataManager.getItem(modId)
-        const itemData = dataManager.getItem(characterItem.id)
-        if(!itemData || !dataManager.isType(modData, "mod")) {return}
-        const isRobotPart = itemData.CATEGORY === 'robotPart'
-        const isPlatingMod = modData.SLOT_TYPE === 'modSlotRobotPlating'
-
-        if (isRobotPart && isPlatingMod) {
-            // Sync plating across all robot parts (preserve armor mods)
-            updatedItems = updatedItems.map(item => {
-                if (MR_HANDY_PARTS.has(item.id) && item.id !== characterItem.id) {
-                    // Update plating (slot 0) on other robot parts, keep armor (slot 1)
-                    const armorMod = item.mods?.[1] ? item.mods[1] : null;
-                    const newMods = armorMod ? [modId, armorMod] : [modId]
-                    return { ...item, mods: newMods }
-                }
-                return item
-            })
-        }
-
-        updateCharacter({ items: updatedItems })
-        showAlert('Mod applied successfully!')
-    }
-
-    const removeMod = (characterItem, modId) => {
-        if (!characterItem || !modId) {
-            showAlert('Invalid item or mod')
-            return
-        }
-
-        // Check if item has this mod
-        if (!characterItem.mods.includes(modId)) {
-            showAlert('Item does not have this mod')
-            return
-        }
-
-        // Check if this is a robot plating mod being removed from a robot part
-        const modData = dataManager.getItem(modId)
-        const isRobotPart = characterItem.type === 'robotPart'
-        const isPlatingMod = modData && modData.SLOT_TYPE === 'modSlotRobotPlating'
-
-        if (isRobotPart && isPlatingMod) {
-            showAlert('Cannot remove plating mod. Replace it with another plating instead.')
-            return
-        }
-
-        // Remove mod using utility function
-        const updatedItems = removeModUtil(character.items, characterItem, modId)
-
-        updateCharacter({ items: updatedItems })
-        showAlert('Mod removed successfully!')
-    }
-
     return {
         sellItem,
         deleteItem,
         equipItem,
-        useItem,
-        applyMod,
-        removeMod
+        useItem
     }
 }

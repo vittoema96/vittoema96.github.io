@@ -5,7 +5,7 @@ import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase';
 import { useTooltip } from '@/contexts/TooltipContext'
 import { useDialog } from '@/hooks/useDialog'
 import { CharacterItem, ModItem } from '@/types';
-import { isSameConfiguration } from '@/utils/itemUtils.ts';
+import { addItem, removeItem } from '@/utils/itemUtils.ts';
 
 /**
  * Popup for modifying weapons and armor with mods
@@ -88,8 +88,6 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
             .flatMap((data) => {
                 if (data.selectedMod) {
                     return [data.selectedMod.ID];
-                } else if (data.appliedMod) {
-                    return [data.appliedMod.ID];
                 } else {
                     return [];
                 }
@@ -102,36 +100,21 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
             return
         }
 
-        let updatedItems = [...character.items]
-        const newItem = {
+        let newItems = removeItem(character.items, {
             ...characterItem,
-            mods: newMods
-        }
-        let newItemFound = false
-        updatedItems = updatedItems.reduce<CharacterItem[]>((acc, item) => {
-            const result = {...item}
-            if(isSameConfiguration(item, characterItem)) {
-                if(item.quantity > 1) {
-                    result.quantity -= 1
-                    acc.push(result)
-                }
-            }
-            if (isSameConfiguration(item, newItem)) {
-                newItemFound = true
-                result.quantity += 1
-                acc.push(result)
-            }
-            return acc
-        }, [])
-        if(!newItemFound) {
-            updatedItems.push({...newItem, quantity: 1})
-        }
+            quantity: 1
+        })
+        newItems = addItem(newItems, {
+            ...characterItem,
+            mods: newMods,
+            quantity: 1
+        })
 
         // Subtract caps for purchased mods
         const updatedCaps = character.caps - totalCost
 
         updateCharacter({
-            items: updatedItems,
+            items: newItems,
             caps: updatedCaps
         })
 
@@ -155,10 +138,8 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
             }
         } else if(effectType.endsWith('Add')){
             return `${signed(value)} ${t(effectType.replace('Add', ''))}`
-        } else if(effectType.endsWith('Change')){
-            return `${t(effectType.replace('Change', ''))}: ${t(value)}`
         } else if(effectType.endsWith('Set')){
-            return `${t(effectType.replace('Set', ''))}: ${value}`
+            return `${t(effectType.replace('Set', ''))}: ${t(value)}`
         }
         console.error(`${effectType} was not handled correctly`)
         return effectStr

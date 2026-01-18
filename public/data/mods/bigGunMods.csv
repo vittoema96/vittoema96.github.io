@@ -7,7 +7,7 @@ modPhotonicStimulatorGatling,mod,modSlotCapacitor,Stimulated,"[""effectAdd:effec
 modReflexSightGatling,mod,modSlotSight,Tactical,"[""rerollHitLocation:true""]",0,14,science,[],1,"[""weaponGatlingLaser""]"
 modBeamFocuserGatling,mod,modSlotMuzzle,Focused,"[""rangeAdd:1""]",0.5,20,science,"[""science:1""]",2,"[""weaponGatlingLaser""]"
 modCombustionModule,mod,modSlotFuel,Combustion,"[""damageAdd:1"",""effectAdd:effectPersistent""]",0,30,repair,"[""science:2""]",3,"[""weaponJunkJet""]"
-modElectrificationModule,mod,modSlotFuel,Electrification,"[""damageTypeChange:energy"",""effectAdd:effectRadioactive""]",0,40,repair,"[""science:3""]",4,"[""weaponJunkJet""]"
+modElectrificationModule,mod,modSlotFuel,Electrification,"[""damageTypeSet:energy"",""effectAdd:effectRadioactive""]",0,40,repair,"[""science:3""]",4,"[""weaponJunkJet""]"
 modRecoilCompensatingStockJunkJet,mod,modSlotStock,Recoil Compensating,"[""qualityRemove:qualityInaccurate"",""fireRateAdd:1""]",1,3,repair,"[""gunNut:3""]",2,"[""weaponJunkJet""]"
 modLongBarrelJunkJet,mod,modSlotBarrel,Long,"[""rangeAdd:1""]",1,20,repair,[],1,"[""weaponJunkJet""]"
 modGunnerSight,mod,modSlotSight,Gunner,"[""qualityAdd:qualityAccurate""]",0.5,11,repair,[],1,"[""weaponJunkJet""]"
