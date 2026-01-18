@@ -1,4 +1,4 @@
-ID,TYPE,TYPE,SLOT_TYPE,EFFECTS,WEIGHT,COST,RARITY,REQUIRED_PERK,ROBOT_PART
+ID,TYPE,CATEGORY,SLOT_TYPE,EFFECTS,WEIGHT,COST,RARITY,REQUIRED_PERK,ROBOT_PART
 modRobotPlatingStandard,mod,robotArmorMods,modSlotRobotPlating,"[""damageReductionPhysicalAdd:2""]",0,0,0,,all
 modRobotPlatingMisterGutsy,mod,robotArmorMods,modSlotRobotPlating,"[""damageReductionPhysicalAdd:2"",""damageReductionEnergyAdd:2"",""carryWeightAdd:-5""]",0,0,0,,all
 modRobotFactoryArmorOptics,mod,robotArmorMods,modSlotRobotArmor,"[""damageReductionPhysicalAdd:1"",""damageReductionEnergyAdd:1""]",0,10,0,,optics

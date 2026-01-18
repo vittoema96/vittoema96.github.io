@@ -10,7 +10,7 @@ type ItemMap = {
                      K extends 'moddable' ? ModdableItem :
                      GenericItem;
 };
-function isType<T extends ItemType | 'moddable'>(item: Item | null, type: T): item is ItemMap[T] {
+function isType<T extends ItemType | 'moddable'>(item: Item | null | undefined, type: T): item is ItemMap[T] {
     if(type === 'moddable'){
         return isType(item, 'weapon') || isType(item, 'apparel')
     }
@@ -41,7 +41,7 @@ export const getGameDatabase = () => {
 };
 
 
-const applyMod = (itemData: Item, modData: ModItem) => {
+const applyMod = (itemData: ModdableItem, modData: ModItem) => {
 
     const isApparel = isType(itemData, "apparel")
     let materialMultiplier = 1
@@ -85,11 +85,11 @@ const applyMod = (itemData: Item, modData: ModItem) => {
 /**
  * Get item data with mods applied
  */
-export function getModifiedItemData(characterItem: CharacterItem): Item | null {
+export function getModifiedItemData(characterItem: CharacterItem): ModdableItem | null {
     // TODO cyclic import of data manager. move getModifiedItemData inside
     const dataManager = getGameDatabase()
     const itemData = dataManager.getItem(characterItem.id)
-    if (!itemData) {return null}
+    if (!dataManager.isType(itemData, "moddable")) {return null}
     if (characterItem.mods.length === 0) {return itemData}
 
     let modifiedData = {

@@ -1,93 +1,73 @@
-import { useRef, useEffect, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase';
 import { useTooltip } from '@/contexts/TooltipContext'
 import { useDialog } from '@/hooks/useDialog'
-import  { CharacterItem, MOD_SLOTS } from '@/types'
+import { CharacterItem, ModItem } from '@/types';
+import { isSameConfiguration } from '@/utils/itemUtils.ts';
 
 /**
  * Popup for modifying weapons and armor with mods
  * Uses dropdown selectors for each mod slot
  */
-function ModifyItemPopup({ onClose, characterItem, itemData }) {
+interface ModifyItemPopupProps {
+    onClose: () => void;
+    characterItem: CharacterItem;
+}
+
+interface SlotData {
+    availableMods: ModItem[]
+    appliedMod: ModItem | undefined
+    selectedMod: ModItem | undefined
+    buy: boolean
+}
+
+function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupProps>) {
     const { t } = useTranslation()
     const dialogRef = useRef<HTMLDialogElement>(null)
     const { character, updateCharacter } = useCharacter()
     const dataManager = getGameDatabase()
+    const itemData = getModifiedItemData(characterItem) // TODO not sure may be calculated below
+
     const { showTooltip } = useTooltip()
+    // Use dialog hook for dialog management
+    const { closeWithAnimation } = useDialog(dialogRef, onClose)
 
-    // State: selected mod for each slot
-    const [selectedMods, setSelectedMods] = useState({})
-    // State: which mods to buy (slot -> boolean)
-    const [modsToBuy, setModsToBuy] = useState({})
-
-    // Get available mods from AVAILABLE_MODS field
-    const getAvailableMods = () => {
-        if (!itemData || !itemData.AVAILABLE_MODS) {return []}
-        return itemData.AVAILABLE_MODS
-    }
-
-    // Get mod data for each available mod ID
-    const getModsData = () => {
-        const availableModIds = getAvailableMods()
-        return availableModIds.map(modId => dataManager.getItem(modId)).filter(Boolean)
-    }
-
-    // Group mods by slot
-    const getModsBySlot = () => {
-        const modsData = getModsData()
-        const modsBySlot = {}
-
-        modsData.forEach(mod => {
-            const slot = mod.SLOT_TYPE || mod.SLOT || MOD_SLOTS.MISC
-            if (!modsBySlot[slot]) {
-                modsBySlot[slot] = []
-            }
-            modsBySlot[slot].push(mod)
-        })
-
-        return modsBySlot
-    }
-
-    // Get available slots (slots that have mods)
-    const getAvailableSlots = () => {
-        const modsBySlot = getModsBySlot()
-        return Object.keys(modsBySlot)
-    }
-
-    // Initialize selected mods from characterItem on mount
-    useEffect(() => {
-        if (characterItem) {
-            const currentMods = characterItem.mods
-            const modsMap = {}
-
-            // Map current mods to their slots
-            currentMods.forEach(modId => {
-                const modData = dataManager.getItem(modId)
-                if (modData) {
-                    const slot = modData.SLOT_TYPE || modData.SLOT
-                    if (slot) {
-                        modsMap[slot] = modId
-                    }
+    const [ slotsData, setSlotsData ] = useState(() => {
+        if(!dataManager.isType(itemData, 'moddable')) {return {}}
+        const result: Record<string, SlotData> = {}
+        itemData.AVAILABLE_MODS.forEach((modId) => {
+            const modData = dataManager.getItem(modId)
+            if (dataManager.isType(modData, "mod")) {
+                result[modData.SLOT_TYPE] ??= {
+                    availableMods: [],
+                    appliedMod: undefined,
+                    selectedMod: undefined,
+                    buy: false
                 }
-            })
+                result[modData.SLOT_TYPE]!.availableMods.push(modData) // Why do i need ! here?
+            }
+        })
+        characterItem.mods.forEach((modId) => {
+            const modData = dataManager.getItem(modId)
+            if(!dataManager.isType(modData, 'mod')) {return}
+            result[modData.SLOT_TYPE]!.appliedMod = modData // modId exists here
+            result[modData.SLOT_TYPE]!.selectedMod = modData // modId exists here
+        })
+        return result
+    })
 
-            setSelectedMods(modsMap)
-            setModsToBuy({})
-        }
-    }, [])
+    if(!dataManager.isType(itemData, 'moddable')) {return}
+
 
     // Calculate total cost of mods to buy
     const calculateCost = () => {
         let totalCost = 0
 
-        Object.entries(modsToBuy).forEach(([slot, shouldBuy]) => {
-            if (shouldBuy && selectedMods[slot]) {
-                const modData = dataManager.getItem(selectedMods[slot])
-                if (modData && modData.COST) {
-                    totalCost += Number(modData.COST) || 0
-                }
+        Object.values(slotsData).forEach((data) => {
+            if (data.selectedMod && data.buy) {
+                totalCost += data.selectedMod.COST || 0;
             }
         })
 
@@ -96,79 +76,55 @@ function ModifyItemPopup({ onClose, characterItem, itemData }) {
 
     // Get preview of modified item data
     const getPreviewData = () => {
-        const newMods = Object.values(selectedMods).filter(Boolean)
+        const newMods = Object.values(slotsData)
+            .flatMap((data) => data.selectedMod ? [data.selectedMod.ID] : [])
         const previewItem = {...characterItem, mods: newMods}
         return getModifiedItemData(previewItem)
     }
 
     // Handle confirm
     const handleConfirm = () => {
-        if (!characterItem) {return}
-
-        const newMods = Object.values(selectedMods).filter(Boolean)
+        const newMods = Object.values(slotsData)
+            .flatMap((data) => {
+                if (data.selectedMod) {
+                    return [data.selectedMod.ID];
+                } else if (data.appliedMod) {
+                    return [data.appliedMod.ID];
+                } else {
+                    return [];
+                }
+            })
         const totalCost = calculateCost()
 
         // Check if player has enough caps
         if (totalCost > 0 && character.caps < totalCost) {
-            alert(t('notEnoughCaps') || 'Not enough caps!')
+            alert(t('notEnoughCaps'))
             return
         }
 
-        // Find the item in inventory (exact match with same mods)
-        const itemIndex = character.items.findIndex(item =>
-            item.id === characterItem.id &&
-            JSON.stringify([...item.mods].sort()) === JSON.stringify([...characterItem.mods].sort())
-        )
-
-        if (itemIndex === -1) {return}
-
         let updatedItems = [...character.items]
-        const currentItem = updatedItems[itemIndex]
-
-        // Check if this is a robot part
-        const isRobotPart = characterItem.type === 'robotPart'
-        const robotPartIds = ['robotPartSensors', 'robotPartBody', 'robotPartArms', 'robotPartThrusters']
-
-        // If quantity > 1, decrease quantity and add new modified item
-        if (currentItem.quantity > 1) {
-            // Decrease quantity of original
-            updatedItems[itemIndex] = {
-                ...currentItem,
-                quantity: currentItem.quantity - 1
-            } as CharacterItem
-
-            // Add new item with mods
-            updatedItems.push({
-                ...currentItem,
-                quantity: 1,
-                mods: newMods
-            } as CharacterItem)
-        } else {
-            // Just update the single item
-            updatedItems[itemIndex] = {
-                ...currentItem,
-                mods: newMods
-            } as CharacterItem
+        const newItem = {
+            ...characterItem,
+            mods: newMods
         }
-
-        // If this is a robot part and plating was changed, sync across all parts
-        if (isRobotPart) {
-            const platingSlot = 'modSlotRobotPlating'
-            const newPlating = selectedMods[platingSlot]
-            const oldPlating = characterItem.mods[0]
-
-            if (newPlating && newPlating !== oldPlating) {
-                // Plating changed - sync across all robot parts
-                updatedItems = updatedItems.map(item => {
-                    if (robotPartIds.includes(item.id) && item.id !== characterItem.id) {
-                        // Update plating (slot 0), preserve armor (slot 1)
-                        const armorMod = item.mods && item.mods[1] ? item.mods[1] : null
-                        const newMods = armorMod ? [newPlating, armorMod] : [newPlating]
-                        return { ...item, mods: newMods }
-                    }
-                    return item
-                })
+        let newItemFound = false
+        updatedItems = updatedItems.reduce<CharacterItem[]>((acc, item) => {
+            const result = {...item}
+            if(isSameConfiguration(item, characterItem)) {
+                if(item.quantity > 1) {
+                    result.quantity -= 1
+                    acc.push(result)
+                }
             }
+            if (isSameConfiguration(item, newItem)) {
+                newItemFound = true
+                result.quantity += 1
+                acc.push(result)
+            }
+            return acc
+        }, [])
+        if(!newItemFound) {
+            updatedItems.push({...newItem, quantity: 1})
         }
 
         // Subtract caps for purchased mods
@@ -179,46 +135,40 @@ function ModifyItemPopup({ onClose, characterItem, itemData }) {
             caps: updatedCaps
         })
 
-        handleClose()
-    }
-
-    // Use dialog hook for dialog management
-    const { closeWithAnimation } = useDialog(dialogRef, onClose)
-
-    const handleClose = () => {
         closeWithAnimation()
     }
 
     // Format effect string for display in tooltip
-    const formatEffect = (effectStr) => {
+    const formatEffect = (effectStr: string) => {
         const [effectType, ...valueParts] = effectStr.split(':')
         const value = valueParts.join(':')
+        if(!effectType) {return effectStr}
 
-        const signedValue = (value) => {if (value>=0) {return `+${value}`;} else {return `-${value}`}}
+        const signed = (value: string) =>
+            Number.parseInt(value).toLocaleString(undefined, { signDisplay: "exceptZero" })
 
-        const effectMap = {
-            damageAdd: `${signedValue(value)} ${t('damage')}`,
-            fireRateAdd: `${signedValue(value)} ${t('fireRate')}`,
-            rangeIncrease: `${signedValue(value)} ${t('range')}`,
-            physicalResAdd: `${signedValue(value)} ${t('physicalRes')}`,
-            energyResAdd: `${signedValue(value)} ${t('energyRes')}`,
-            radiationResAdd: `${signedValue(value)} ${t('radiationRes')}`,
-            qualityAdd: t(value),
-            qualityRemove: `${t('remove')} ${t(value)}`,
-            effectAdd: t(value),
-            damageTypeChange: `${t('damageType')}: ${t(value)}`,
-            ammoChange: `${t('ammo')}: ${t(value)}`,
-            meleeDamage: `${value} ${t('meleeDamage')}`
+        if(effectType.startsWith('effect') || effectType.startsWith('quality')){
+            if(effectType.endsWith('Add')){
+                return `+ ${valueParts.map(val => t(val)).join(' ')}`
+            } else if(effectType.endsWith('Remove')){
+                return `- ${t(valueParts.map(val => t(val)).join(' '))}`
+            }
+        } else if(effectType.endsWith('Add')){
+            return `${signed(value)} ${t(effectType.replace('Add', ''))}`
+        } else if(effectType.endsWith('Change')){
+            return `${t(effectType.replace('Change', ''))}: ${t(value)}`
+        } else if(effectType.endsWith('Set')){
+            return `${t(effectType.replace('Set', ''))}: ${value}`
         }
-
-        return effectMap[effectType] || effectStr
+        console.error(`${effectType} was not handled correctly`)
+        return effectStr
     }
 
     // Show mod info tooltip
-    const handleModInfo = (e, modData) => {
+    const onModInfoClick = (e: React.MouseEvent<HTMLButtonElement>, modData: ModItem) => {
         e.stopPropagation()
 
-        if (!modData || !modData.EFFECTS || modData.EFFECTS.length === 0) {
+        if (!modData.EFFECTS || modData.EFFECTS?.length === 0) {
             return
         }
 
@@ -227,20 +177,16 @@ function ModifyItemPopup({ onClose, characterItem, itemData }) {
         const effectsList = modData.EFFECTS.map(effect => `• ${formatEffect(effect)}`).join('\n')
         const content = `${modName}\n\n${effectsList}`
 
-        showTooltip(e.currentTarget, content)
+        showTooltip(content, e.currentTarget)
     }
 
-    if (!characterItem || !itemData) {return null}
-
-    const modsBySlot = getModsBySlot()
-    const availableSlots = getAvailableSlots()
     const previewData = getPreviewData()
     const totalCost = calculateCost()
-    const useTwoColumns = availableSlots.length > 3
+    const useTwoColumns = Object.keys(slotsData).length > 3
 
     // Check if this is a robot part (must always have a mod)
-    const [itemId] = characterItem.id.split('_')
-    const isRobotPart = dataManager.isUnacquirable(itemId)
+    // TODO is this the best way?
+    const isRobotPart =  Object.keys(slotsData).includes('modSlotRobotArmor')
 
     return (
         <dialog ref={dialogRef} className="popup modify-item-popup">
@@ -252,7 +198,8 @@ function ModifyItemPopup({ onClose, characterItem, itemData }) {
                 {/* Compact Stats Bar */}
                 <div className="mod-stats-bar">
                     {/* Weapons: 2x2 grid (damage, fire rate, weight, cost) */}
-                    {itemData.DAMAGE_RATING && (
+                    {dataManager.isType(itemData, "weapon")
+                        && dataManager.isType(previewData, "weapon") && (
                         <>
                             <div className="mod-stat-row">
                                 <div className="mod-stat">
@@ -267,7 +214,8 @@ function ModifyItemPopup({ onClose, characterItem, itemData }) {
                                         )}
                                     </span>
                                 </div>
-                                {itemData.FIRE_RATE !== undefined && (
+                                {   // TODO is it possible to change from no fire rate to fire rate?
+                                    itemData.FIRE_RATE !== '-' && previewData.FIRE_RATE !== '-' && (
                                     <div className="mod-stat">
                                         <span className="mod-stat-label">{t('fireRate')}</span>
                                         <span className="mod-stat-value">
@@ -297,13 +245,13 @@ function ModifyItemPopup({ onClose, characterItem, itemData }) {
                                 </div>
                                 <div className="mod-stat">
                                     <span className="mod-stat-label">{t('cost')}</span>
-                                    <span className="mod-stat-value">{itemData.COST || 0}</span>
+                                    <span className="mod-stat-value">{itemData.COST}</span>
                                 </div>
                             </div>
                         </>
                     )}
                     {/* Armor: Resistances row (3 items) + Weight/Cost row (2 items) */}
-                    {!itemData.DAMAGE_RATING && (itemData.PHYSICAL_RES !== undefined || itemData.ENERGY_RES !== undefined || itemData.RADIATION_RES !== undefined) && (
+                    { dataManager.isType(itemData, "apparel") && dataManager.isType(previewData, "apparel") && (
                         <>
                             <div className="mod-stat-row">
                                 {itemData.PHYSICAL_RES !== undefined && (
@@ -364,42 +312,34 @@ function ModifyItemPopup({ onClose, characterItem, itemData }) {
                                 </div>
                                 <div className="mod-stat">
                                     <span className="mod-stat-label">{t('cost')}</span>
-                                    <span className="mod-stat-value">{itemData.COST || 0}</span>
+                                    <span className="mod-stat-value">{itemData.COST}</span>
                                 </div>
                             </div>
                         </>
                     )}
                 </div>
-
                 {/* Mod Slots */}
                 <div className={`mod-slots-container ${useTwoColumns ? 'mod-slots-two-columns' : ''}`}>
-                    {availableSlots.map(slot => {
-                        const modsForSlot = modsBySlot[slot] || []
-                        if (modsForSlot.length === 0) {return null}
-
-                        const selectedModId = selectedMods[slot]
-                        const selectedModData = selectedModId ? dataManager.getItem(selectedModId) : null
-                        const currentMods = characterItem.mods
-                        const isNewMod = selectedModId && !currentMods.includes(selectedModId)
-                        const modCost = selectedModData?.COST || 0
-                        const needsToBuy = isNewMod && selectedModId
-                        const hasEffects = selectedModData?.EFFECTS && selectedModData.EFFECTS.length > 0
+                    {Object.entries(slotsData).map(([slot, data]) => {
+                        const needsToBuy = data.selectedMod && !characterItem.mods.includes(data.selectedMod.ID)
 
                         return (
                             <div key={slot} className="mod-slot-row">
                                 <div className="mod-slot-header">
                                     <div className="mod-slot-label-group">
                                         <label>{t(slot)}</label>
-                                        {selectedModId && hasEffects && (
+                                        {data.selectedMod &&
                                             <button
                                                 type="button"
                                                 className="mod-info-button"
-                                                onClick={(e) => handleModInfo(e, selectedModData)}
+                                                onClick={
+                                                    (e) =>
+                                                        onModInfoClick(e, data.selectedMod!)
+                                                }
                                                 aria-label="Mod info"
                                             >
                                                 <span className="mod-info-icon">ⓘ</span>
-                                            </button>
-                                        )}
+                                            </button>}
                                     </div>
                                     <div className="mod-slot-cost-area">
                                         {needsToBuy && (
@@ -408,43 +348,42 @@ function ModifyItemPopup({ onClose, characterItem, itemData }) {
                                                     type="checkbox"
                                                     className="themed-svg"
                                                     data-icon="caps"
-                                                    checked={modsToBuy[slot] || false}
-                                                    onChange={(e) => setModsToBuy({
-                                                        ...modsToBuy,
-                                                        [slot]: e.target.checked
-                                                    })}
+                                                    checked={data.buy}
+                                                    onChange={
+                                                        (e) =>
+                                                            setSlotsData({
+                                                                ...slotsData,
+                                                                [slot]: {...slotsData[slot]!, buy: e.target.checked}
+                                                            })
+                                                    }
                                                 />
-                                                <span className="mod-cost-value">{modCost}</span>
+                                                <span className="mod-cost-value">{data.selectedMod?.COST || 0}</span>
                                             </div>
                                         )}
                                     </div>
                                 </div>
                                 <select
                                     className="mod-slot-select"
-                                    value={selectedModId || ''}
+                                    value={data.selectedMod?.ID || ''}
                                     onChange={(e) => {
-                                        const newModId = e.target.value || null
-                                        setSelectedMods({
-                                            ...selectedMods,
-                                            [slot]: newModId
-                                        })
-                                        // Auto-check buy if it's a new mod
-                                        if (newModId && !currentMods.includes(newModId)) {
-                                            setModsToBuy({
-                                                ...modsToBuy,
-                                                [slot]: true
-                                            })
-                                        } else {
-                                            setModsToBuy({
-                                                ...modsToBuy,
-                                                [slot]: false
-                                            })
+                                        let newMod = dataManager.getItem(e.target.value) ?? undefined
+                                        if(!dataManager.isType(newMod, "mod")) {
+                                            newMod = undefined
                                         }
+                                        setSlotsData({
+                                            ...slotsData,
+                                            [slot]: {
+                                                ...slotsData[slot]!,
+                                                selectedMod: newMod,
+                                                buy: !!newMod && !characterItem.mods.includes(newMod.ID)
+                                            }
+                                        })
                                     }}
                                 >
-                                    {/* Robot plating slot cannot be empty, but armor slot can */}
-                                    {(!isRobotPart || slot === 'modSlotRobotArmor') && <option value="">{t('none')}</option>}
-                                    {modsForSlot.map(mod => (
+                                    {/* Robot plating slot cannot be empty, but armor slot can
+                                    TODO just check that if robot part cant edit with nothing */}
+                                    {!isRobotPart && <option value="">{t('none')}</option>}
+                                    {slotsData[slot]!.availableMods.map((mod) => (
                                         <option key={mod.ID} value={mod.ID}>
                                             {t(mod.ID)}
                                         </option>
@@ -473,10 +412,10 @@ function ModifyItemPopup({ onClose, characterItem, itemData }) {
                     onClick={handleConfirm}
                     disabled={totalCost > character.caps}
                 >
-                    {t('confirm') || 'Confirm'}
+                    {t('confirm')}
                 </button>
-                <button className="popup__button-cancel" onClick={handleClose}>
-                    {t('cancel') || 'Cancel'}
+                <button className="popup__button-cancel" onClick={() => closeWithAnimation()}>
+                    {t('cancel')}
                 </button>
             </div>
         </dialog>

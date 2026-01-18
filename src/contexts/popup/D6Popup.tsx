@@ -431,7 +431,7 @@ function D6Popup({ onClose, usingItem = null, hasAimed = false }: D6PopupProps) 
                                 data-tooltip-id={tooltipId}
                                 onClick={(e) => {
                                     e.stopPropagation()
-                                    showTooltip(tooltipId, e.currentTarget)
+                                    showTooltip(t(tooltipId), e.currentTarget)
                                 }}
                             >
                                 {t(langId) + (effectOpt ? ' ' + effectOpt : '')}
@@ -448,7 +448,7 @@ function D6Popup({ onClose, usingItem = null, hasAimed = false }: D6PopupProps) 
                                 data-tooltip-id={tooltipId}
                                 onClick={(e) => {
                                     e.stopPropagation()
-                                    showTooltip(tooltipId, e.currentTarget)
+                                    showTooltip(t(tooltipId), e.currentTarget)
                                 }}
                             >
                                 {t(langId) + (qualityOpt ? ' ' + qualityOpt : '')}

@@ -9,6 +9,7 @@ import {
     CharacterItem,
     DamageType,
     Item,
+    ModdableItem,
     Range,
     WeaponItem,
 } from '@/types';
@@ -20,6 +21,7 @@ import type { TFunction } from 'i18next';
  */
 export function isSameConfiguration(item1: CharacterItem, item2: CharacterItem) {
     if (item1.id !== item2.id) {return false}
+    if(item1.variation !== item2.variation) {return false}
     const mods1 = new Set(item1.mods)
     const mods2 = new Set(item2.mods)
     if (mods1.size !== mods2.size) {return false}
@@ -73,7 +75,7 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
             modifiedData.AMMO_TYPE = value
             break
 
-        case 'rangeIncrease': {
+        case 'rangeAdd': {
             const rangeOrder: Range[] = ['rangeR', 'rangeC', 'rangeM', 'rangeL', 'rangeE']
             const currentIndex = rangeOrder.indexOf(modifiedData.RANGE)
             const newIndex = Math.max(0, Math.min(currentIndex + Number(value), rangeOrder.length - 1))
@@ -149,7 +151,7 @@ function applyApparelEffect(modifiedData: ApparelItem, effectType: string, value
  * @param {Object} modifiedData - Item data being modified
  * @param {string} effect - Effect string (e.g., "damageAdd:1", "qualityAdd:qualityMelee")
  */
-export function applyEffect(modifiedData: Item, effect: string): typeof modifiedData {
+export function applyEffect(modifiedData: ModdableItem, effect: string): typeof modifiedData {
     const dataManager = getGameDatabase()
     const [effectType, ...valueParts] = effect.split(':')
     const value = valueParts.join(':') // Rejoin in case value contains ':'

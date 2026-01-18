@@ -215,13 +215,13 @@ interface ItemWithEffects extends GenericItem {
 
 // Comune a Weapons, Apparel
 export interface ModdableItem extends ItemWithEffects {
-    AVAILABLE_MODS?: string[];  // JSON array
+    AVAILABLE_MODS: string[];  // JSON array
 }
 
 export interface WeaponItem extends ModdableItem {
     DAMAGE_RATING: number;
     DAMAGE_TYPE: DamageType;
-    FIRE_RATE: number | string;  // number o "-" per melee TODO should change type (only number? number + undefined?)
+    FIRE_RATE: number | '-';  // number o "-" per melee TODO should change type (only number? number + undefined?)
     RANGE: Range;
     QUALITIES?: string[];  // JSON array
     AMMO_TYPE: string;
@@ -256,7 +256,7 @@ interface FoodItem extends AidItemBase {
 export type AidItem = MedItem | FoodItem;
 
 export interface ModItem extends ItemWithEffects {
-    SLOT_TYPE?: string;
+    SLOT_TYPE: string;
     DESCRIPTOR?: string;  // Alcuni mods usano DESCRIPTOR invece di SLOT_TYPE
     SKILL: SkillType;
     PERKS: string[];  // JSON array // TODO should be perk type

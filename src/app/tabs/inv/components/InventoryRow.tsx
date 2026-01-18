@@ -185,7 +185,7 @@ function InventoryRow({
                         )}
                     </div>
                     <div className="inventory-row__subinfo">
-                        {getItemSubInfo()}
+                        <FitText minSize={7}>{getItemSubInfo()}</FitText>
                     </div>
                 </div>
 

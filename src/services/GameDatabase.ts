@@ -87,7 +87,8 @@ export const GameDatabase = {
         return db;
     },
 
-    getItem(id: string): Readonly<Item> | null {
+    getItem(id: string | undefined): Readonly<Item> | null {
+        if (!id) {return null}
         return this.data.allItems[id] || null;
     },
 

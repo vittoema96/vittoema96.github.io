@@ -40,70 +40,82 @@ const EMPTY_STATE: TooltipState = {
 
 /** --- PROVIDER COMPONENT --- **/
 
-export function TooltipProvider({ children }: React.PropsWithChildren) {
-    const { t } = useTranslation()
-    const [tooltipState, setTooltipState] = useState<TooltipState>(EMPTY_STATE)
+export function TooltipProvider({ children }: Readonly<React.PropsWithChildren>) {
+    const { t } = useTranslation();
+    const [tooltipState, setTooltipState] = useState<TooltipState>(EMPTY_STATE);
 
     // We use a Ref to track state for the global event listener.
     // This allows the listener to stay "stable" (not recreated) while still accessing fresh state.
-    const stateRef = useRef(tooltipState)
-    stateRef.current = tooltipState
-
+    const stateRef = useRef(tooltipState);
+    stateRef.current = tooltipState;
 
     const showTooltip = useCallback((content: string, targetElement: HTMLElement) => {
-        setTooltipState({ isVisible: true, content, targetElement })
-    }, [])
+        setTooltipState({
+            isVisible: true,
+            content,
+            targetElement
+        });
+    }, []);
 
     const hideTooltip = useCallback(() => {
-        setTooltipState(EMPTY_STATE)
-    }, [])
+        setTooltipState(EMPTY_STATE);
+    }, []);
 
     // SCROLL LISTENER: Closes tooltip on any scroll
     useEffect(() => {
-        if (!tooltipState.isVisible) {return}
-        window.addEventListener('scroll', hideTooltip, true)
-        return () => window.removeEventListener('scroll', hideTooltip, true)
-    }, [tooltipState.isVisible, hideTooltip])
+        if (!tooltipState.isVisible) {
+            return;
+        }
+        window.addEventListener('scroll', hideTooltip, true);
+        return () => window.removeEventListener('scroll', hideTooltip, true);
+    }, [tooltipState.isVisible, hideTooltip]);
 
     // GLOBAL CLICK HANDLER: Handles all .tag clicks
     // TODO this should not be handled in here, but on Tag class...
     useEffect(() => {
         const handleClick = (event: MouseEvent) => {
-            const target = event.target as HTMLElement
-            const clickedTag = target.closest('.tag') as HTMLElement | null
+            const target = event.target;
+            if(!(target instanceof Element)) {
+                return;
+            }
+            const clickedTag = target.closest('.tag');
 
-            if (!clickedTag) {
-                if (stateRef.current.isVisible) {hideTooltip()}
-                return
+            if (!(clickedTag instanceof HTMLElement)) {
+                if (stateRef.current.isVisible) {
+                    hideTooltip();
+                }
+                return;
             }
 
-            const tooltipId = clickedTag.dataset["tooltipId"]
-            if (!tooltipId) {return}
+            const tooltipId = clickedTag.dataset['tooltipId'];
+            if (!tooltipId) {
+                return;
+            }
 
-            event.preventDefault()
-            event.stopPropagation()
+            event.preventDefault();
+            event.stopPropagation();
 
             // Toggle logic
-            const isSameElement = clickedTag === stateRef.current.targetElement
+            const isSameElement = clickedTag === stateRef.current.targetElement;
             if (isSameElement && stateRef.current.isVisible) {
-                hideTooltip()
+                hideTooltip();
             } else {
-                showTooltip(t(tooltipId), clickedTag)
+                showTooltip(t(tooltipId), clickedTag);
             }
-        }
+        };
 
-        document.addEventListener('click', handleClick)
-        return () => document.removeEventListener('click', handleClick)
-    }, [hideTooltip, showTooltip]) // Dependencies are stable; listener is never recreated.
+        document.addEventListener('click', handleClick);
+        return () => document.removeEventListener('click', handleClick);
+    }, [hideTooltip, showTooltip, t]); // Dependencies are stable; listener is never recreated.
 
-    const contextValue = useMemo(() => ({ showTooltip, hideTooltip }), [showTooltip, hideTooltip])
+    const contextValue = useMemo(() => ({ showTooltip, hideTooltip }), [showTooltip, hideTooltip]);
 
     return (
         <TooltipContext.Provider value={contextValue}>
             {children}
             <TooltipPortal {...tooltipState} onHide={hideTooltip} />
         </TooltipContext.Provider>
-    )
+    );
 }
 
 /** --- PORTAL COMPONENT --- **/
@@ -118,7 +130,8 @@ function TooltipPortal({ isVisible, content, targetElement, onHide }: TooltipPor
 
     // Lookup the correct portal target (Dialog or Body)
     const portalTarget = useMemo(() => {
-        return targetElement?.closest('dialog[open]') || document.body
+        if(!targetElement) {return document.body}
+        return targetElement.closest('dialog[open]') || document.body
     }, [targetElement])
 
     // useLayoutEffect prevents the "flicker" by positioning BEFORE the browser paints.
