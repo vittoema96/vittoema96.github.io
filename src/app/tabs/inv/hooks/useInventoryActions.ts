@@ -9,12 +9,14 @@ import {
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem, Item } from '@/types';
 import { ORIGINS } from '@/utils/characterSheet.ts';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Custom hook for inventory actions (sell, delete, equip, use, etc.)
  * @returns {Object} Inventory action functions
  */
 export const useInventoryActions = () => {
+    const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
     const { showConfirm, showAlert, showTradeItemPopup } = usePopup()
     const dataManager = getGameDatabase()
@@ -67,7 +69,7 @@ export const useInventoryActions = () => {
         }
 
         showConfirm(
-            `Delete ${characterItem.quantity}x ${characterItem.id}? This action cannot be undone.`,
+            `Delete ${characterItem.quantity}x ${t(characterItem.id)}? This action cannot be undone.`,
             () => {
                 // Remove item from inventory
                 const updatedItems = character.items.filter(item =>

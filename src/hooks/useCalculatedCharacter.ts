@@ -35,23 +35,27 @@ const calculateMaxHp = (character: RawCharacter | null): number => {
 
 function useCalculatedCharacter(raw: RawCharacter | null): Character {
 
+    const dataManager = getGameDatabase()
 
     const name = raw?.name
     const background = raw?.background
     const caps = raw?.caps ?? 0
-    const items = raw?.items ?? []
     const level = raw?.level ?? 1
-    const specialties = raw?.specialties ?? []
-
-    const dataManager = getGameDatabase()
-
-
+    const items = useMemo(
+        () => raw?.items ?? [],
+        [raw?.items]
+    )
+    const specialties = useMemo(
+        () => raw?.specialties ?? [],
+        [raw?.specialties]
+    )
     const origin = useMemo(
         () => getOriginById(raw?.origin),
         [raw?.origin]
     )
 
-    const DEFAULT_SPECIAL = 5
+
+    const DEFAULT_SPECIAL = 4
     const special = {
         strength: useMemo(() => raw?.special?.strength ?? DEFAULT_SPECIAL, [raw?.special?.strength]),
         perception: useMemo(() => raw?.special?.perception ?? DEFAULT_SPECIAL, [raw?.special?.perception]),
@@ -72,12 +76,12 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
             skills[skillId] = Math.min(skillValue, origin.skillMaxValue);
             return skills
         }, {} as Record<SkillType, number>),
-        [raw?.skills, raw?.specialties]
+        [origin.skillMaxValue, raw?.skills, specialties]
     )
 
     const maxHp = useMemo(
         () => calculateMaxHp({level, special: {luck: special.luck, endurance: special.endurance }}),
-        [special.luck, special.endurance, raw?.level]
+        [level, special.luck, special.endurance]
     )
     const currentHp = Math.min(raw?.currentHp ?? maxHp, maxHp)
 
@@ -95,7 +99,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
             });
             return result
         },
-        [origin, special.strength, raw?.items]
+        [origin, special.strength, items]
     )
 
     const currentWeight = useMemo(() => {
@@ -104,7 +108,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         const weight = Number(itemData?.WEIGHT) || 0;
         return total + weight * item.quantity;
     }, 0);
-    }, [raw?.items]);
+    }, [items]);
 
     const maxLuck = useMemo(() => {
         return special.luck // TODO here the Trait like "gifted" could edit max luck
@@ -143,6 +147,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
 
             const itemData = getModifiedItemData(item);
             // Skip robot parts if origin is not Mr. Handy
+            // TODO might not need the below check
             if (!itemData || (itemData?.CATEGORY === 'robotPart' && !origin.isRobot)) {return;}
             if (!dataManager.isType(itemData, "apparel")) {return;}
 
@@ -152,13 +157,9 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
             // Use MAX between current DR and item DR for each damage type
             locations.forEach(location => {
                 if (locationsDR[location]) {
-                    const itemPhysical = Number(itemData.PHYSICAL_RES) || 0;
-                    const itemEnergy = Number(itemData.ENERGY_RES) || 0;
-                    const itemRadiation = Number(itemData.RADIATION_RES) || 0;
-
-                    locationsDR[location].physical = Math.max(locationsDR[location].physical, itemPhysical);
-                    locationsDR[location].energy = Math.max(locationsDR[location].energy, itemEnergy);
-                    locationsDR[location].radiation = Math.max(locationsDR[location].radiation, itemRadiation);
+                    locationsDR[location].physical = Math.max(locationsDR[location].physical, itemData.PHYSICAL_RES);
+                    locationsDR[location].energy = Math.max(locationsDR[location].energy, itemData.ENERGY_RES);
+                    locationsDR[location].radiation = Math.max(locationsDR[location].radiation, itemData.RADIATION_RES);
                 }
             });
         });

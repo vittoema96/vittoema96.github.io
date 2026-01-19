@@ -72,7 +72,10 @@ export type ModSlot =
     | 'weave'
     | 'misc';
 
-export type OriginId = 'vaultDweller' | 'ghoul' | 'survivor' | 'mrHandy' | 'brotherhoodInitiate' | 'superMutant' | undefined;
+export type OriginId = 'vaultDweller' | 'ghoul' | 'survivor' | 'mrHandy' | 'brotherhoodInitiate' | 'superMutant'
+    | "minutemen" | "ncr" | "protectron" | "robobrain" | "securitron"  | "synth"
+    | "assaultron" | "brotherhoodOutcast" | "childOfAtom" | "nightkin" | "tribal"
+    | undefined;
 
 export interface Origin {
     id: OriginId;
@@ -85,7 +88,6 @@ export interface Origin {
     skillMaxValue: number;
     needsSpecializedArmor: boolean;
     needsSpecializedWeapons: boolean;
-    canUseAid: boolean;
     characterSvg: string;
 }
 

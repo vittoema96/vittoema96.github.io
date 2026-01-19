@@ -45,6 +45,7 @@ interface TradeItemState extends UsingItemPopupState {
 
 interface ModifyItemState extends UsingItemPopupState {
     itemData: Item;
+    usingItem: CharacterItem;
 }
 
 export const usePopup = (): PopupContextValue => {
@@ -257,7 +258,6 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             {modifyItemState && <ModifyItemPopup
                 onClose={closeModifyItemPopup}
                 characterItem={modifyItemState.usingItem}
-                itemData={modifyItemState.itemData}
             />}
         </PopupContext.Provider>
     )

@@ -1,10 +1,9 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react'
 import {
-    ApparelItem,
     BODY_PARTS,
+    BodyPart,
     Character,
     CharacterItem,
-    Item,
     MR_HANDY_PARTS,
     MrHandyPart,
     RawCharacter,
@@ -15,7 +14,6 @@ import { CharacterRepository } from "@/services/CharacterRepository";
 import useCalculatedCharacter, {
     adjustCurrentHp
 } from "@/hooks/useCalculatedCharacter";
-import { addItem } from '@/utils/itemUtils.ts';
 
 
 // React component prop types
@@ -152,10 +150,10 @@ export function CharacterProvider({ onReady, children}:
                     }));
                 }
                 updatedCharacter.items = [...items, ...newParts]
-            } else if (!currentOrigin.isRobot && hasRobotParts) {
-                // TODO Only mrHandy parts checked currently
+            } else if (hasRobotParts) {
+                // TODO Only mrHandy and Protectron parts checked currently
                 // TODO CRITICAL ITEMS GET REMOVE (LOOSING MODS IF ACCIDENTALLY SWAPPING ORIGIN)
-                updatedCharacter.items = items.filter(i => MR_HANDY_PARTS.has(i.id as MrHandyPart))
+                updatedCharacter.items = items.filter(i => MR_HANDY_PARTS.has(i.id as MrHandyPart) || BODY_PARTS.has(i.id as BodyPart))
             }
 
             return updatedCharacter

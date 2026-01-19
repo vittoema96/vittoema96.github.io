@@ -56,7 +56,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
 
     // Update available items when itemType, categoryFilter, rarityFilter, or dataManager changes
     useEffect(() => {
-        let allItems = Object.values(dataManager[itemType] || {})
+        let allItems = Object.values(dataManager[itemType])
 
         if(categoryFilter) {
             allItems = allItems.filter(item => {
@@ -116,7 +116,9 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
         setAvailableItems(sortedItems)
 
         // Set first item as default selection
-        setSelectedItem(sortedItems[0])
+        if(!selectedItem){
+            setSelectedItem(sortedItems[0]);
+        }
     }, [itemType, categoryFilter, rarityFilter, dataManager, t])
 
     // Use dialog hook for dialog management
@@ -221,7 +223,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                     <select
                         onChange={(e) => {
                             const item = availableItems.find(i => {
-                                const id = `${i?.ID ?? ''}_${i?.variation ?? ''}`
+                                const id = `${i.ID}_${i?.variation ?? ''}`
                                 return id === e.target.value
                             })
                             setSelectedItem(item)
@@ -229,14 +231,10 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                         aria-label="Object picker"
                     >
                         {availableItems.map(item => {
-                            let displayName = item ? t(item.ID) : '-'
-                            if (item?.variation) {
-                                displayName += ` (${t(item.variation)})`
-                            }
-                            const id = `${item?.ID ?? ''}_${item?.variation ?? ''}`
+                            const id = `${item.ID}_${item?.variation ?? ''}`
                             return (
                                 <option key={id} value={id}>
-                                    {displayName}
+                                    {t(item.ID, { variation: t(item.variation!) })}
                                 </option>
                             )
                         })}
