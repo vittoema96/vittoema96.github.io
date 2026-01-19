@@ -14,7 +14,7 @@ interface AidCardProps {
 function AidCard({ characterItem, onConsume }: Readonly<AidCardProps>) {
 
     const dataManager = getGameDatabase();
-    const itemData = getModifiedItemData(characterItem)
+    const itemData = dataManager.getItem(characterItem.id)
     if (!dataManager.isType(itemData, 'aid')) {
         console.error(`Aid data not found for ID: ${characterItem.id}`);
         return null;

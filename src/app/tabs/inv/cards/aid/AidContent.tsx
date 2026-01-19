@@ -14,7 +14,6 @@ function AidContent({ characterItem }: Readonly<AidContentProps>) {
     const itemData = dataManager.getItem(characterItem.id)
     if(!dataManager.isType(itemData, "aid"))
     { return null }
-    const type = itemData.TYPE
 
     // Determine specific effect stats
     const getSpecificEffectStat = () => {
@@ -59,7 +58,7 @@ function AidContent({ characterItem }: Readonly<AidContentProps>) {
     return (
         <section>
             <div className="row l-spaceBetween">
-                <div className="card-aid-image themed-svg" data-icon={type}></div>
+                <div className="card-aid-image themed-svg" data-icon={itemData.CATEGORY}></div>
 
                 <span className="h5 js-cardAid-effect">{itemData.EFFECT}</span>
 
