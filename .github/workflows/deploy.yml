@@ -43,14 +43,13 @@ jobs:
         id: version
         run: |
           BASE_VERSION=$(node -p "require('./package.json').version")
-          # Replace alpha.0 with alpha.buildNumber
-          BUILD_VERSION=$(echo "$BASE_VERSION" | sed "s/alpha\.BUILD_VERSION/alpha.${{ github.run_number }}/")
+          BUILD_VERSION=$(echo "$BASE_VERSION" | sed "s/BUILD_VERSION/${{ github.run_number }}/")
           echo "base_version=$BASE_VERSION" >> $GITHUB_OUTPUT
           echo "build_version=$BUILD_VERSION" >> $GITHUB_OUTPUT
           echo "Base version: $BASE_VERSION"
           echo "Build version: $BUILD_VERSION"
 
-      # 5. Update version in package.json (used by Vite for PWA manifest and PROJECT_VERSION)
+      # 5. Update version in package.json (used by Vite for PWA manifest and __APP_VERSION__)
       - name: Update Version in package.json 📝
         run: |
           BUILD_VERSION="${{ steps.version.outputs.build_version }}"
@@ -58,7 +57,7 @@ jobs:
 
           # Update package.json - this is read by vite.config.js for:
           # 1. PWA manifest version
-          # 2. window.PROJECT_VERSION (injected via define)
+          # 2. window.__APP_VERSION__ (injected via define)
           sed -i "s/\"version\": \".*\"/\"version\": \"$BUILD_VERSION\"/" ./package.json
 
       # 6. Build the project with Vite

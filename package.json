@@ -1,40 +1,66 @@
 {
   "name": "pip-boy-3000-pwa",
   "version": "0.0.3-alpha.BUILD_VERSION",
+  "private": true,
   "description": "A Pip-Boy 3000 companion app for managing your character stats and inventory in Fallout-themed tabletop RPG",
+  "author": "vittoema96",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vittoema96/vittoema96.github.io.git"
+  },
+  "homepage": "https://vittoema96.github.io",
+  "keywords": [
+    "pwa",
+    "fallout",
+    "pip-boy",
+    "rpg",
+    "character-sheet"
+  ],
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "serve": "python -m http.server 8000",
-    "lint": "eslint src/ --ext .js",
-    "lint:fix": "eslint src/ --ext .js --fix",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
     "type-check": "tsc --noEmit",
-    "quality": "npm run lint && npm run format:check && npm run type-check"
+    "quality": "npm run lint && npm run format:check && npm run type-check",
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "dependencies": {
+    "@eslint/js": "^9.39.2",
     "@fontsource/fira-code": "^5.2.6",
     "@fontsource/roboto-mono": "^5.2.6",
     "@fontsource/share-tech-mono": "^5.2.6",
     "@fortawesome/fontawesome-free": "^7.0.0",
     "@panzoom/panzoom": "^4.6.0",
-    "i18next": "^23.7.0",
+    "fitty": "^2.4.2",
+    "i18next": "^25.7.3",
     "papaparse": "^5.4.1",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-i18next": "^16.5.0"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
+    "@types/papaparse": "^5.5.2",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
-    "@typescript-eslint/eslint-plugin": "^8.41.0",
-    "@typescript-eslint/parser": "^8.41.0",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
     "@vitejs/plugin-react": "^5.0.2",
     "eslint": "^9.34.0",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^16.5.0",
     "prettier": "^3.6.2",
     "typescript": "^5.9.2",
     "vite": "^7.1.12",
