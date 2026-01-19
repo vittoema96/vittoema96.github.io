@@ -55,7 +55,7 @@ const createOrigin = (id?: OriginId, options: CreateOriginOptions = {}): Origin 
         needsSpecializedArmor = false,
         needsSpecializedWeapons = false,
         canUseAid = true,
-        characterSvg = "vaultboy-open-arms"
+        characterSvg = "vaultboy-open-arms",
     } = options;
     const bp = new Set(BODY_PARTS)
     const pbp = new Set(bodyParts)
@@ -111,7 +111,7 @@ export const ORIGINS = Object.freeze({
         needsSpecializedArmor: true,
         needsSpecializedWeapons: true,
         canUseAid: false,
-        characterSvg: "mrHandy"
+        characterSvg: "mrHandy",
     }),
     BROTHERHOOD_INITIATE: createOrigin("brotherhoodInitiate"),
     SUPER_MUTANT: createOrigin("superMutant", {

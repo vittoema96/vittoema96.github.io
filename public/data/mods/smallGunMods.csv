@@ -1,5 +1,5 @@
 ID,TYPE,SLOT_TYPE,DESCRIPTOR,EFFECTS,WEIGHT,COST,SKILL,PERKS,RARITY,WEAPON_TYPES
-modBayonet,mod,modSlotMuzzle,With Bayonet,"[""qualityAdd:qualityMelee"",""meleeDamage:4"",""effectAdd:effectPiercing:1""]",1,10,repair,[],1,"[""smallGuns""]"
+modBayonet,mod,modSlotMuzzle,With Bayonet,"[""qualityAdd:qualityMelee"",""effectAdd:effectPiercing:1""]",1,10,repair,[],1,"[""smallGuns""]"
 modCompensator,mod,modSlotMuzzle,With Compensator,"[""qualityRemove:qualityInaccurate""]",0.5,15,repair,"[""gunNut:1""]",1,"[""smallGuns""]"
 modFlashHider,mod,modSlotMuzzle,With Flash Hider,"[""qualityRemove:qualityInaccurate"",""fireRateAdd:1""]",0.5,30,repair,"[""gunNut:1""]",2,"[""smallGuns""]"
 modSuppressor,mod,modSlotMuzzle,With Suppressor,"[""qualityAdd:qualitySuppressed""]",1,45,repair,"[""gunNut:2""]",2,"[""smallGuns""]"

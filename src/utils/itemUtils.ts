@@ -138,15 +138,12 @@ function applyApparelEffect(modifiedData: ApparelItem, effectType: string, value
     switch (effectType) {
         // Resistances addition
         case 'physicalResAdd':
-        case 'damageReductionPhysicalAdd':
             modifiedData.PHYSICAL_RES = (Number(modifiedData.PHYSICAL_RES) || 0) + Number(value)
             break
         case 'energyResAdd':
-        case 'damageReductionEnergyAdd':
             modifiedData.ENERGY_RES = (Number(modifiedData.ENERGY_RES) || 0) + Number(value)
             break
         case 'radiationResAdd':
-        case 'damageReductionRadiationAdd':
             modifiedData.RADIATION_RES = (Number(modifiedData.RADIATION_RES) || 0) + Number(value)
             break
         case 'meleeResAdd': // TODO This column doesn't exist
@@ -223,8 +220,9 @@ export function getDisplayName(item: CharacterItem, t: TFunction) {
     }
 
     // No mods, return base name
-    if (item.mods.length > 0) {
-        return `${baseName} [+${item.mods.length}]`
+    const modsLength = item.mods.length - (item.mods.includes('modRobotPlatingStandard') ? 1 : 0)
+    if (modsLength > 0) {
+        return `${baseName} [+${modsLength}]`
     }
 
     // TODO i think we can keep this commented but keeping it just in case

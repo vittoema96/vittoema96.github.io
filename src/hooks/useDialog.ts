@@ -33,9 +33,6 @@ export const useDialog =
                 },
                 { once: true }
             )
-        } else {
-            callback()
-            onClose()
         }
     }
 

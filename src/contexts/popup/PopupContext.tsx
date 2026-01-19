@@ -58,6 +58,9 @@ export const usePopup = (): PopupContextValue => {
 // TODO may have to add a "close d20 popup on d6 close / click"
 export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
     const { t } = useTranslation()
+
+    // TODO is there a reason to use all these states here?
+    //  specific popup state lives inside that class, here we case just about open / close
     const [alertState, setAlertState] = useState<AlertState | undefined>(undefined)
     const [d20State, setD20State] = useState<D20State | undefined>(undefined)
     const [d6State, setD6State] = useState<D6State | undefined>(undefined)

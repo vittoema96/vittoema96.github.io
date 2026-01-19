@@ -52,19 +52,19 @@ function InvTab() {
             </div>
 
             {/* Weapon Sub-screen - Accordion List */}
-            <section className={`js-subScreen ${activeSubTab === 'weapon' ? '' : 'hidden'}`}>
+            {activeSubTab === 'weapon' && <section className={`js-subScreen`}>
                 <InventoryList
                     items={items}
                     showSearch={true}
                     groupByType={false}
                     typeFilter="weapon"
                 />
-            </section>
+            </section>}
 
             {/* Apparel Sub-screen - Equipped Items + Accordion List */}
-            <section className={`js-subScreen ${activeSubTab === 'apparel' ? '' : 'hidden'} keep-first`}>
+            {activeSubTab === 'apparel' && <section className={`js-subScreen keep-first`}>
                 {/* Equipped Apparel Display */}
-                {character.origin.bodyParts === BODY_PARTS && <EquippedApparel/>}
+                {!character.origin.isRobot && <EquippedApparel/>}
 
                 {/* Active Effects from Equipped Armor */}
                 <ActiveEffectsDisplay/>
@@ -75,27 +75,27 @@ function InvTab() {
                     groupByType={false}
                     typeFilter="apparel"
                 />
-            </section>
+            </section>}
 
             {/* Aid Sub-screen - Accordion List */}
-            <section className={`js-subScreen ${activeSubTab !== 'aid' ? 'hidden' : ''}`}>
+            {activeSubTab === 'aid' && <section className={`js-subScreen`}>
                 <InventoryList
                     items={items}
                     showSearch={true}
                     groupByType={false}
                     typeFilter="aid"
                 />
-            </section>
+            </section>}
 
             {/* Other Sub-screen - Accordion List */}
-            <section className={`js-subScreen ${activeSubTab !== 'other' ? 'hidden' : ''}`}>
+            {activeSubTab === 'other' && <section className={`js-subScreen`}>
                 <InventoryList
                     items={items}
                     showSearch={true}
                     groupByType={false}
                     typeFilter="other"
                 />
-            </section>
+            </section>}
         </section>
     )
 }

@@ -21,11 +21,11 @@ function DamageReductionDisplay() {
         return value
     }
 
+    const isMrHandy = character.origin === ORIGINS.MR_HANDY
 
     // Get body parts to display based on origin
     const getBodyPartsToDisplay = (): { key: GenericBodyPart; className: string }[] => {
 
-        const isMrHandy = character.origin === ORIGINS.MR_HANDY
         if(isMrHandy){
             // TODO handle other type of robots when introduced
             // Mr Handy has 4 robot parts with unique locations
@@ -44,7 +44,6 @@ function DamageReductionDisplay() {
     }
 
     const bodyParts = getBodyPartsToDisplay()
-    const isMrHandy = character.origin === ORIGINS.MR_HANDY
 
     return (
         <div className={`activeApparel l-spaceAround ${isMrHandy ? 'activeApparel--mrhandy' : ''}`}>

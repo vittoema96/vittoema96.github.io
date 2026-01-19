@@ -75,13 +75,10 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
         // Exclude unacquirable items
         allItems = allItems.filter(item => !dataManager.isUnacquirable(item.ID))
 
-        // TODO might want to add a == or <= toggle for rarity
         // Filter by rarity (show items with rarity <= selected rarity)
         if (rarityFilter) {
-            const maxRarity = rarityFilter
             allItems = allItems.filter(item => {
-                const itemRarity = item.RARITY
-                return itemRarity <= maxRarity
+                return item.RARITY === rarityFilter // TODO do we want equality here? or <=?
             })
         }
 
@@ -119,10 +116,8 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
         setAvailableItems(sortedItems)
 
         // Set first item as default selection
-        if (sortedItems.length > 0) {
-            setSelectedItem(sortedItems[0])
-        }
-    }, [itemType, categoryFilter, rarityFilter])
+        setSelectedItem(sortedItems[0])
+    }, [itemType, categoryFilter, rarityFilter, dataManager, t])
 
     // Use dialog hook for dialog management
     const { closeWithAnimation } = useDialog(dialogRef, onClose)

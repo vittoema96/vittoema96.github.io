@@ -26,18 +26,6 @@ export const adjustCurrentHp = (prev: RawCharacter | null, current: RawCharacter
     return result;
 };
 
-export const unequipIrrelevantApparel = (dataManager, current: RawCharacter) => {
-    const result: RawCharacter = {...current}
-    result.items = current.items?.map(item => {
-        const itemData = dataManager.getItem(item.id)
-        if (dataManager.isType(itemData, 'apparel') && item.equipped) {
-            return {...item, equipped: false}
-        }
-        return item
-    }) || []
-    return result
-}
-
 const calculateMaxHp = (character: RawCharacter | null): number => {
     // TODO duplication of maxHp MEMO...
     return (character?.special?.endurance ?? 5) +
@@ -183,7 +171,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         }
 
         return locationsDR;
-    }, [origin, raw?.items])
+    }, [dataManager, items, origin.bodyParts, origin.hasRadiationImmunity, origin.isRobot])
 
     return {
         // Passthrough (with defaults) values

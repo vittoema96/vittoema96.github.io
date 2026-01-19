@@ -1,19 +1,21 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react'
 import {
+    ApparelItem,
     BODY_PARTS,
     Character,
     CharacterItem,
+    Item,
     MR_HANDY_PARTS,
     MrHandyPart,
     RawCharacter,
 } from '@/types';
-import {getOriginById} from "@/utils/characterSheet";
+import { getOriginById, ORIGINS } from '@/utils/characterSheet';
 import {getGameDatabase} from "@/hooks/getGameDatabase";
 import { CharacterRepository } from "@/services/CharacterRepository";
 import useCalculatedCharacter, {
-    adjustCurrentHp,
-    unequipIrrelevantApparel
+    adjustCurrentHp
 } from "@/hooks/useCalculatedCharacter";
+import { addItem } from '@/utils/itemUtils.ts';
 
 
 // React component prop types
@@ -103,28 +105,56 @@ export function CharacterProvider({ onReady, children}:
             // This needs to be done BEFORE adding/removing robot parts (otherwise after adding them they would be unequipped)
             const changedOrigin = prev?.origin !== updatedCharacter.origin
             const currentOrigin = getOriginById(updatedCharacter.origin)
+
+            // TODO this is better but we need a more robust implementation
+            //  currently supermutant is not handled
             const hasToUnequip = getOriginById(prev?.origin).needsSpecializedArmor ||
                                           currentOrigin.needsSpecializedArmor
             if(changedOrigin && hasToUnequip) {
-                updatedCharacter = unequipIrrelevantApparel(dataManager, updatedCharacter)
+                let filterCategories = ['robotPart', 'superMutantArmor']
+                let include = true
+                if(currentOrigin.isRobot){
+                    include = false
+                    filterCategories = ['robotPart']
+                }
+                if(currentOrigin === ORIGINS.SUPER_MUTANT){
+                    include = false
+                    filterCategories = ['superMutantArmor'] // TODO add this category
+                }
+                updatedCharacter.items = updatedCharacter.items?.map(item => {
+                    const itemData = dataManager.getItem(item.id)
+                    if (dataManager.isType(itemData, 'apparel')
+                        && item.equipped
+                        && filterCategories.includes(itemData.CATEGORY) === include) {
+                        return {...item, equipped: false}
+                    }
+                    return item
+                }) || []
             }
 
             const items = updatedCharacter.items ?? []
-            // Add or remove robot parts based on origin
-            const isRobot = currentOrigin.bodyParts !== BODY_PARTS
             // TODO Only mrHandy parts checked currently
             const hasRobotParts = items.some(i => currentOrigin.bodyParts.has(i.id as MrHandyPart))
-            if (isRobot && !hasRobotParts) {
-                const newParts: CharacterItem[] =
-                    Array.from(currentOrigin.bodyParts, (id) => ({
+            if (currentOrigin.isRobot) {
+                let newParts: CharacterItem[] = []
+                if (hasRobotParts) {
+                    items.forEach(item => {
+                        if (currentOrigin.bodyParts.has(item.id as MrHandyPart)) {
+                            item.equipped = true;
+                        }
+                    });
+                } else {
+                    newParts = Array.from(currentOrigin.bodyParts, id => ({
                         id,
                         quantity: 1,
                         equipped: true,
-                        mods: [DEFAULT_PLATING_MOD]
-                    }))
+                        mods: [DEFAULT_PLATING_MOD],
+                    }));
+                }
                 updatedCharacter.items = [...items, ...newParts]
-            } else if (!isRobot && hasRobotParts) {
+            } else if (!currentOrigin.isRobot && hasRobotParts) {
                 // TODO Only mrHandy parts checked currently
+                // TODO CRITICAL ITEMS GET REMOVE (LOOSING MODS IF ACCIDENTALLY SWAPPING ORIGIN)
                 updatedCharacter.items = items.filter(i => MR_HANDY_PARTS.has(i.id as MrHandyPart))
             }
 

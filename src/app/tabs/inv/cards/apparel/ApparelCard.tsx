@@ -22,7 +22,7 @@ function ApparelCard({ characterItem, onEquip }: Readonly<ApparelCardProps>) {
     const itemData = getModifiedItemData(characterItem)
     const [showDescription, setShowDescription] = useState(false)
 
-    if (!itemData) {
+    if (!dataManager.isType(itemData, 'apparel')) {
         console.error(`Apparel data not found for ID: ${characterItem.id}`)
         return null
     }

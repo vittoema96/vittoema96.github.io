@@ -46,19 +46,6 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
     const criticalValue = hasSpecialty ? skillValue : 1
     const currentLuck = character.currentLuck
 
-    // Get variable font size for skill title
-    // TODO is there a better / built-in way to do this?
-    const getVariableFontSize =
-        (text: string, maxFontSize = 2, step = 0.25, lineSize = 13) => {
-            const rows = Math.ceil(text.length / lineSize)
-            if (rows > 1) {
-                return `${maxFontSize - rows * step}rem`
-            }
-            return `${maxFontSize}rem`
-        }
-
-    const skillName = t(skillId)
-
     // AP Cost calculation
     const getApCost = () => {
         // After first roll, return the initial AP cost
@@ -198,41 +185,8 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
         }
     }
 
-    // Handle close with animation
-    const handleClose = () => {
-        const dialog = dialogRef.current
-        if (dialog?.open) {
-            // Add closing animation class
-            dialog.classList.add('dialog-closing');
-            dialog.addEventListener(
-                'animationend',
-                () => {
-                    dialog.classList.remove('dialog-closing');
-
-                    // Reset state
-                    setIsUsingLuck(false);
-                    setSelectedSpecial(SKILL_TO_SPECIAL_MAP[skillId] || 'strength');
-                    setIsAiming(false);
-                    setHasRolled(false);
-                    setDiceValues(['?', '?', '?', '?', '?']);
-                    setDiceActive([true, true, false, false, false]);
-                    setDiceRerolled([false, false, false, false, false]);
-                    setInitialApCost(0);
-
-                    if (dialog.open) {
-                        dialog.close();
-                    }
-                    onClose();
-                },
-                { once: true },
-            );
-        } else {
-            onClose();
-        }
-    }
-
     // Use dialog hook for dialog management
-    const { closeWithAnimation } = useDialog(dialogRef, handleClose)
+    const { closeWithAnimation } = useDialog(dialogRef, onClose)
 
     if (!skillId) {return null}
 
@@ -246,10 +200,10 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
         >
             <div>
                 <div style={{ gap: '1rem', padding: '0.5rem', display: 'flex'}} className="l-lastSmall">
-                    <FitText minSize={20}>
-                        {skillName}
+                    <FitText minSize={20} maxSize={40}>
+                        {t(skillId)}
                     </FitText>
-                    <button className="popup__button-x" onClick={handleClose}>&times;</button>
+                    <button className="popup__button-x" onClick={() => closeWithAnimation()}>&times;</button>
                 </div>
 
                 <div className="l-lastSmall row">
@@ -361,7 +315,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                             {t('damage')}
                         </button>
                     )}
-                    <button className="popup__button-close" onClick={handleClose}>{t('close')}</button>
+                    <button className="popup__button-close" onClick={() => closeWithAnimation()}>{t('close')}</button>
                 </footer>
             </div>
         </dialog>

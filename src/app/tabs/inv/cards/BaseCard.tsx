@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem, Item } from '@/types';
 import { FitText } from '@/app/FitText.tsx';
 
@@ -35,7 +35,10 @@ function BaseCard({
     const { t } = useTranslation();
     const [showDescription, setShowDescription] = useState(false);
     const dataManager = getGameDatabase();
-    const itemData = dataManager.getItem(characterItem.id);
+    let itemData = dataManager.getItem(characterItem.id);
+    if(dataManager.isType(itemData, "moddable")){
+        itemData = getModifiedItemData(characterItem);
+    }
 
     if (!itemData) {
         console.error(`Item data not found for ID: ${characterItem.id}`);

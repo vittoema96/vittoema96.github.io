@@ -31,10 +31,13 @@ function InventoryRow({
     const [contentHeight, setContentHeight] = useState(0)
     const { sellItem, deleteItem, equipItem, useItem } = useInventoryActions()
     const dataManager = getGameDatabase()
-    const itemData = getModifiedItemData(characterItem)
+    let itemData = dataManager.getItem(characterItem.id)
+
     if(!itemData) {
         console.error(`Item data not found for ID: ${characterItem.id}`)
         return null
+    } else if(dataManager.isType(itemData, "moddable")){
+        itemData = getModifiedItemData(characterItem)
     }
 
     // Check if item can be sold/deleted (unacquirable items cannot)
@@ -185,7 +188,7 @@ function InventoryRow({
                         )}
                     </div>
                     <div className="inventory-row__subinfo">
-                        <FitText center={false} minSize={7} maxSize={10}>{getItemSubInfo()}</FitText>
+                        <FitText center={false} wrap={true} minSize={8} maxSize={10}>{getItemSubInfo()}</FitText>
                     </div>
                 </div>
 

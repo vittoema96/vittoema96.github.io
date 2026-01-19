@@ -40,24 +40,15 @@ function InventoryList({
 
     const dataManager = getGameDatabase()
 
-    // Helper to format category names in Title Case
-    const formatCategoryName = (category: ItemCategory) => {
-        return t(category)
-            .split(' ')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-            .join(' ')
-    }
-
     // Get subcategories based on main category (sorted alphabetically by translation)
     const getCategories = () => {
         const typeMap = dataManager.getItemTypeMap()
         const categories = [...typeMap[typeFilter]]
 
+        // TODO add robot categories when necessary
         // Sort alphabetically by translated name
         return categories.sort((a, b) => {
-            const nameA = formatCategoryName(a)
-            const nameB = formatCategoryName(b)
-            return nameA.localeCompare(nameB)
+            return t(a).localeCompare(t(b))
         })
     }
 
@@ -99,14 +90,10 @@ function InventoryList({
             })
         }
 
-        // TODO i do not like that id in characterItem contains the dx/sx stuff, should be a separate field
-        //     THIS WAS REMOVED
-        //      const [aId] = a.id.split('_')
-        //      const [bId] = b.id.split('_')
         // Apply sorting
         filtered.sort((a, b) => {
             const aData = getModifiedItemData(a)
-            const bData = getModifiedItemData(a)
+            const bData = getModifiedItemData(b)
 
             if (!aData || !bData) {return 0}
 
@@ -156,10 +143,13 @@ function InventoryList({
                     }
                     break
                 case 'rarity':
-                    comparison = (bData.RARITY || 0) - (aData.RARITY || 0)
+                    comparison = (Number(bData.RARITY) || 0) - (Number(aData.RARITY) || 0)
                     break
                 default:
                     comparison = 0
+            }
+            if(comparison === 0){
+                comparison = t(aData.ID).localeCompare(t(bData.ID))
             }
 
             // Apply sort direction
@@ -167,7 +157,7 @@ function InventoryList({
         })
 
         return filtered
-    }, [items, searchQuery, sortBy, isAscendingDirection, dataManager, t])
+    }, [items, searchQuery, dataManager, typeFilter, t, sortBy, isAscendingDirection])
 
     // Group items by type if enabled
     const groupedItems: Partial<Record<ItemCategory, CharacterItem[]>> = useMemo(() => {
@@ -180,7 +170,7 @@ function InventoryList({
                 [category]: [...(acc[category] || []), item]
             }
         }, {} as Record<ItemCategory, CharacterItem[]>)
-    }, [processedItems])
+    }, [dataManager, processedItems])
 
     const handleToggle = (itemId: string) => {
         setExpandedItemId(expandedItemId === itemId ? undefined : itemId)
@@ -231,10 +221,13 @@ function InventoryList({
 
     const renderItems = (itemsList: CharacterItem[]) => {
         return itemsList.map(characterItem => {
-            const itemData = getModifiedItemData(characterItem)
+            const itemData = dataManager.getItem(characterItem.id)
+            if(!itemData
+                || !dataManager.isType(itemData, typeFilter)
+                    || (categoryFilter && itemData.CATEGORY !== categoryFilter)){
+                return null
+            }
             const uniqueKey = getItemKey(characterItem)
-
-            if (!itemData) {return null}
 
             // Ammo items use simple row (no accordion)
             if (itemData.CATEGORY === 'ammo') {
@@ -242,7 +235,6 @@ function InventoryList({
                     <AmmoRow
                         key={uniqueKey}
                         characterItem={characterItem}
-                        itemData={itemData}
                     />
                 )
             }
@@ -252,7 +244,6 @@ function InventoryList({
                 <InventoryRow
                     key={uniqueKey}
                     characterItem={characterItem}
-                    itemData={itemData}
                     isExpanded={expandedItemId === uniqueKey}
                     onToggle={() => handleToggle(uniqueKey)}
                     cardComponent={getCardComponent(characterItem)}
@@ -321,7 +312,7 @@ function InventoryList({
                                 title={t('sortByRarity')}
                             >
                                 <i className="fas fa-star"></i>
-                                <i className={`fas fa-arrow-${isAscendingDirection ? 'down' : 'up'}`} style={{ fontSize: '0.7em', marginLeft: '2px' }}></i>
+                                <i className={`fas fa-arrow-${sortBy === 'rarity' && isAscendingDirection ? 'down' : 'up'}`} style={{ fontSize: '0.7em', marginLeft: '2px' }}></i>
                             </button>
 
                             {/* Type Filter Button - only show if categoryFilter is provided */}
@@ -349,7 +340,7 @@ function InventoryList({
                                                 className={categoryFilter === category ? 'active' : ''}
                                                 onClick={() => handleCategoryFilterChange(category)}
                                             >
-                                                {formatCategoryName(category)}
+                                                {t(category)}
                                             </button>
                                         ))}
                                     </div>

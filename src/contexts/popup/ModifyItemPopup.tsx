@@ -4,7 +4,7 @@ import { useCharacter } from '@/contexts/CharacterContext'
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase';
 import { useTooltip } from '@/contexts/TooltipContext'
 import { useDialog } from '@/hooks/useDialog'
-import { CharacterItem, ModItem } from '@/types';
+import { CharacterItem, ModItem, MrHandyPart } from '@/types';
 import { addItem, removeItem } from '@/utils/itemUtils.ts';
 
 /**
@@ -82,7 +82,6 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
         return getModifiedItemData(previewItem)
     }
 
-    // Handle confirm
     const handleConfirm = () => {
         const newMods = Object.values(slotsData)
             .flatMap((data) => {
@@ -100,15 +99,48 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
             return
         }
 
-        let newItems = removeItem(character.items, {
+        const editItems = (oldItem: CharacterItem, newItem: CharacterItem, items: CharacterItem[]) => {
+            let newItems = removeItem(items, {
+                ...oldItem,
+                quantity: 1
+            })
+            newItems = addItem(newItems, {
+                ...newItem,
+                quantity: 1
+            })
+            return newItems
+        }
+
+        let newItems = character.items
+        // If editing robot plating, edit all OTHER parts (not this one)
+        if(itemData.CATEGORY === 'robotPart'){
+            const data = slotsData['modSlotRobotPlating']
+            if(data && data.selectedMod?.ID !== data.appliedMod?.ID){
+                character.items.map(item => {
+                    if(item.id !== characterItem.id
+                        && character.origin.bodyParts.has(item.id as MrHandyPart)){
+                        newItems = editItems(item, {
+                            ...item,
+                            mods: [
+                                ...item.mods.filter(m => m !== data.appliedMod?.ID),
+                                data.selectedMod?.ID ?? ''
+                            ]
+                        }, newItems)
+                    }
+                })
+            }
+        }
+        // Add THIS item
+        newItems = editItems({
             ...characterItem,
             quantity: 1
-        })
-        newItems = addItem(newItems, {
+        }, {
             ...characterItem,
             mods: newMods,
             quantity: 1
-        })
+        }, newItems)
+
+        // Handle confirm
 
         // Subtract caps for purchased mods
         const updatedCaps = character.caps - totalCost
@@ -164,10 +196,6 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
     const previewData = getPreviewData()
     const totalCost = calculateCost()
     const useTwoColumns = Object.keys(slotsData).length > 3
-
-    // Check if this is a robot part (must always have a mod)
-    // TODO is this the best way?
-    const isRobotPart =  Object.keys(slotsData).includes('modSlotRobotArmor')
 
     return (
         <dialog ref={dialogRef} className="popup modify-item-popup">
@@ -361,9 +389,8 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                                         })
                                     }}
                                 >
-                                    {/* Robot plating slot cannot be empty, but armor slot can
-                                    TODO just check that if robot part cant edit with nothing */}
-                                    {!isRobotPart && <option value="">{t('none')}</option>}
+                                    {/* Robot plating slot cannot be empty, but armor slot can */}
+                                    {slot !== "modSlotRobotPlating" && <option value="">{t('none')}</option>}
                                     {slotsData[slot]!.availableMods.map((mod) => (
                                         <option key={mod.ID} value={mod.ID}>
                                             {t(mod.ID)}
