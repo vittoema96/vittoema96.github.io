@@ -172,7 +172,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         }
 
         return locationsDR;
-    }, [dataManager, items, origin.bodyParts, origin.hasRadiationImmunity, origin.isRobot])
+    }, [items, origin.bodyParts, origin.hasRadiationImmunity, origin.isRobot])
 
     return {
         // Passthrough (with defaults) values

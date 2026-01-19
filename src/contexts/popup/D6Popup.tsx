@@ -5,26 +5,32 @@ import { useTooltip } from '@/contexts/TooltipContext'
 import { useDialog } from '@/hooks/useDialog'
 import { createInitialDiceState, rollRandomHitLocation } from '@/contexts/popup/utils/diceUtils.ts'
 import { BODY_PARTS, CharacterItem, GenericPopupProps, ItemCategory, WeaponItem } from '@/types';
-import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { FitText } from '@/app/FitText.tsx';
 import Tag from '@/components/Tag.tsx';
 
 
 interface D6PopupProps extends GenericPopupProps {
-    usingItem: CharacterItem | null;
+    usingItem: CharacterItem;
     hasAimed: boolean;
 }
 
-function D6Popup({ onClose, usingItem = null, hasAimed = false }: Readonly<D6PopupProps>) {
+function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps>) {
     const { t } = useTranslation();
+    const dataManager = getGameDatabase();
     const dialogRef = useRef<HTMLDialogElement>(null);
     const { character, updateCharacter } = useCharacter();
     // Just use it, we do not need to manually trigger showTooltip
     // as we use it with standard .tag
     useTooltip();
 
+
     // Get weapon data with mods applied
-    const weaponData = usingItem ? (getModifiedItemData(usingItem) as WeaponItem) : null;
+    const weaponData = getModifiedItemData(usingItem) as WeaponItem;
+
+
+
+
 
     // Helper function to check if weapon is melee
     const isMelee = (itemCategory: ItemCategory) => {
@@ -87,30 +93,15 @@ function D6Popup({ onClose, usingItem = null, hasAimed = false }: Readonly<D6Pop
     const [burstEffectsUsed, setBurstEffectsUsed] = useState(0); // Number of burst effects activated
     const [hitLocation, setHitLocation] = useState(rollRandomHitLocation()); // Selected hit location
 
-    const ammoStep = isGatling ? 10 : 1;
+    if(!dataManager.isType(weaponData, "weapon")){
+        return null;
+    }
+
+
+    const ammoStep = isMelee(weaponData.CATEGORY) ? 0 : (isGatling ? 10 : 1);
 
     // Check if weapon has burst effect
     const hasBurst = (weaponData?.EFFECTS || []).includes('effectBurst');
-
-    // Helper function to reset all state
-    const resetState = () => {
-        setHasRolled(false);
-        const diceState = createInitialDiceState(damageRating);
-        setDiceClasses(diceState.classes);
-        setDiceActive(diceState.active);
-        setDiceRerolled(diceState.rerolled);
-
-        const extraDiceState = createInitialDiceState(extraDiceCount, false);
-        setExtraDiceClasses(extraDiceState.classes);
-        setExtraDiceActive(extraDiceState.active);
-        setExtraDiceRerolled(extraDiceState.rerolled);
-
-        setAmmoCost(ammoStep);
-        setAmmoPayed(0);
-        setLuckPayed(0);
-        setBurstEffectsUsed(0);
-        setHitLocation(rollRandomHitLocation());
-    };
 
     // Get current ammo count
     // TODO check that self and na exist and no other values other than actual ammo exist
@@ -254,7 +245,7 @@ function D6Popup({ onClose, usingItem = null, hasAimed = false }: Readonly<D6Pop
                 // Gatling: toggle pairs
                 if (isGatling) {
                     const indexOffset = index % 2 === 0 ? 1 : -1;
-                    newActive[index + indexOffset] = !newActive[index + indexOffset];
+                    newActive[index + indexOffset] = newActive[index];
                 }
 
                 return newActive;
@@ -379,17 +370,6 @@ function D6Popup({ onClose, usingItem = null, hasAimed = false }: Readonly<D6Pop
 
     // Use dialog hook for dialog management
     const { closeWithAnimation } = useDialog(dialogRef, onClose);
-
-    // Initialize state when popup opens
-    useEffect(() => {
-        if (weaponData) {
-            resetState();
-            // Set initial ammo cost for melee weapons
-            if (isMelee(weaponData.CATEGORY)) {
-                setAmmoCost(t('na'));
-            }
-        }
-    }, []);
 
     if (!weaponData) {
         return null;

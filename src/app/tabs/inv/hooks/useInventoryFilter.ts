@@ -26,7 +26,7 @@ export const useInventoryFilter = (itemType: ItemType) => {
         items = addSpecialWeaponItems(items, dataManager)
 
         return items
-    }, [character.items, character.origin, itemType, dataManager])
+    }, [character.items, character.origin, itemType])
 }
 
 /**

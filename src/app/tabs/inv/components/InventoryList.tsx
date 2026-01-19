@@ -157,7 +157,7 @@ function InventoryList({
         })
 
         return filtered
-    }, [items, searchQuery, dataManager, typeFilter, t, sortBy, isAscendingDirection])
+    }, [items, searchQuery, typeFilter, t, sortBy, isAscendingDirection])
 
     // Group items by type if enabled
     const groupedItems: Partial<Record<ItemCategory, CharacterItem[]>> = useMemo(() => {
@@ -170,7 +170,7 @@ function InventoryList({
                 [category]: [...(acc[category] || []), item]
             }
         }, {} as Record<ItemCategory, CharacterItem[]>)
-    }, [dataManager, processedItems])
+    }, [processedItems])
 
     const handleToggle = (itemId: string) => {
         setExpandedItemId(expandedItemId === itemId ? undefined : itemId)

@@ -65,18 +65,18 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
 
     // Luck Cost calculation
     const getLuckCost = () => {
-        if (!hasRolled) {
-            return isUsingLuck ? 1 : 0
-        } else {
-            const rerollingCount = diceActive.filter(Boolean).length
-            const rerolledCount = diceRerolled.filter(Boolean).length
-            let luckCost = rerollingCount
+        if (hasRolled) {
+            const rerollingCount = diceActive.filter(Boolean).length;
+            const rerolledCount = diceRerolled.filter(Boolean).length;
+            let luckCost = rerollingCount;
 
             // First reroll is free with aiming
             if (isAiming && rerolledCount === 0) {
-                luckCost -= 1
+                luckCost -= 1;
             }
-            return Math.max(0, luckCost)
+            return Math.max(0, luckCost);
+        } else {
+            return isUsingLuck ? 1 : 0;
         }
     }
 
@@ -88,7 +88,11 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
 
         diceValues.forEach((value) => {
             // Count successes only for rolled dice (not '?')
-            if (Number(value) <= targetNumber) {
+            const nVal = Number(value)
+            if (nVal <= targetNumber) {
+                successes++
+            }
+            if(nVal <= criticalValue) {
                 successes++
             }
         })
@@ -278,6 +282,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                         className="themed-svg"
                         data-icon="attack"
                         checked={isAiming}
+                        disabled={hasRolled}
                         onChange={(e) => setIsAiming(e.target.checked)}
                         aria-label="Aim"
                     />

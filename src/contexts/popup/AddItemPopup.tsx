@@ -119,18 +119,10 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
         if(!selectedItem){
             setSelectedItem(sortedItems[0]);
         }
-    }, [itemType, categoryFilter, rarityFilter, dataManager, t])
+    }, [itemType, categoryFilter, rarityFilter, t])
 
     // Use dialog hook for dialog management
     const { closeWithAnimation } = useDialog(dialogRef, onClose)
-
-    // Reset form when opening (runs on mount)
-    useEffect(() => {
-        setQuantity(1)
-        setCategoryFilter(undefined)
-        setRarityFilter(undefined)
-        setShouldBuy(false)
-    }, [])
 
     // Reset filter when itemType changes (e.g., switching from weapon to apparel)
     useEffect(() => {
