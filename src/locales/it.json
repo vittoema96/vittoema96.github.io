@@ -175,11 +175,11 @@
     "weaponLaserMusket": "Moschetto Laser",
     "weaponPlasmaPistol": "Pistola al Plasma",
     "weaponGammaPistol": "Pistola Gamma",
-    "weaponMrHandyLaserEmitter": "Emettitore Laser",
-    "weaponMrHandyFlamethrower": "Lanciafiamme",
-    "weaponMrHandyAutomaticPistol": "Pistola Automatica 10mm",
-    "weaponMrHandyCircularSaw": "Sega Circolare",
-    "weaponMrHandyPliers": "Tenaglia",
+    "weaponMrHandyLaserEmitter": "Arto Emettitore Laser",
+    "weaponMrHandyFlamethrower": "Arto Lanciafiamme",
+    "weaponMrHandyAutomaticPistol": "Arto Pistola Automatica 10mm",
+    "weaponMrHandyCircularSaw": "Arto Sega Circolare",
+    "weaponMrHandyPliers": "Arto con Tenaglia",
     "weaponMolotovCocktail": "Bottiglia Molotov",
     "weaponFragmentationGrenade": "Granata a Frammentazione",
     "weaponPulseGrenade": "Granata a Impulsi",
@@ -1396,5 +1396,90 @@
     "effectVoltaic": "Voltaico",
     "effectVoltaicDescription": "Tutti gli attacchi che arrecano danni da Energia infliggono +1 DC. Il bonus aumenta di +1 DC ogni due ulteriori parti dotate di Telaio Voltaico (+2 DC con 3 pezzi o +3 DC con 5 pezzi o più).",
     "effectHydraulic": "Idraulico",
-    "effectHydraulicDescription": "Gli attacchi da mischia effettuati con queste braccia infliggono +1 DC danno e ottengono l'effetto del danno Stordente."
+    "effectHydraulicDescription": "Gli attacchi da mischia effettuati con queste braccia infliggono +1 DC danno e ottengono l'effetto del danno Stordente.",
+
+    "traits": "Tratti",
+    "selectTrait": "Seleziona Tratto",
+    "noTrait": "Nessun Tratto",
+    "benefit": "Beneficio",
+    "penalty": "Penalità",
+
+    "traitFastShot": "Colpo Veloce",
+    "traitFastShotBenefit": "Se esegue una seconda azione maggiore in combattimento per effettuare un attacco a distanza, il costo di tale azione maggiore aggiuntiva sarà di 1 PA invece di 2.",
+    "traitFastShotPenalty": "Non è possibile beneficiare dell'azione minore Mirare in questa azione frenetica.",
+
+    "traitGifted": "Dotato",
+    "traitGiftedBenefit": "Scegliere due attributi S.P.E.C.I.A.L. e aumentarli di +1 ciascuno.",
+    "traitGiftedPenalty": "Il numero massimo di Punti Fortuna è pari all'attributo di Fortuna del personaggio, meno uno.",
+
+    "traitEducated": "Educato",
+    "traitEducatedBenefit": "Il personaggio possiede una specialità aggiuntiva.",
+    "traitEducatedPenalty": "Quando fallisce una prova di abilità usando un'abilità diversa da una specialità, il GM ottiene 1 PA.",
+
+    "traitHeavyHanded": "Mano Pesante",
+    "traitHeavyHandedBenefit": "Il bonus ai Danni in Mischia aumenta di +1 DC.",
+    "traitHeavyHandedPenalty": "Gli attacchi in mischia e senza armi subiscono una complicazione con un 19 o 20, invece che solo con un 20.",
+
+    "traitSmallFrame": "Minuto",
+    "traitSmallFrameBenefit": "È possibile lanciare nuovamente 1d20 in tutte le prove di AGI basate su equilibrio o contorsione.",
+    "traitSmallFramePenalty": "Il peso trasportabile è pari a 75 + (2,5 × FOR) kg, invece che 75 + (5 × FOR) kg.",
+
+    "traitExtraPerk": "Talento Extra",
+    "traitExtraPerkBenefit": "Il personaggio ottiene un talento aggiuntivo al livello 1.",
+    "traitExtraPerkPenalty": "Il personaggio può scegliere solo un tratto invece di due.",
+
+    "traitGoodNatured": "Buona Indole",
+    "traitGoodNaturedBenefit": "Scegli due abilità tra Oratoria, Medicina, Riparare, Scienza e Commercio come specialità.",
+    "traitGoodNaturedPenalty": "Il punteggio massimo per le altre abilità elencate è ridotto da 6 a 4.",
+
+    "traitGrunt": "Fante",
+    "traitGruntBenefit": "+1 DC danno con mitra, fucili da combattimento, fucili d'assalto, granate a frammentazione e coltelli da combattimento.",
+    "traitGruntPenalty": "L'intervallo di complicazione dei test durante un attacco con armi pesanti o armi a energia è aumentato di 2.",
+
+    "traitHomeOnTheRange": "Casa nella Prateria",
+    "traitHomeOnTheRangeBenefit": "Ogni volta che dormi vicino a un falò per almeno 6 ore, la difficoltà per recuperare dalle ferite attraverso il riposo diminuisce di 1.",
+    "traitHomeOnTheRangePenalty": "Non puoi ottenere il bonus ben riposato, come descritto nel Manuale Base di Fallout: Il Gioco di Ruolo p.35.",
+
+    "traitTriggerDiscipline": "Disciplina del Grilletto",
+    "traitTriggerDisciplineBenefit": "Quando effettui attacchi a distanza usando armi leggere o armi a energia puoi rilanciare 1d20.",
+    "traitTriggerDisciplinePenalty": "Mentre impugni armi leggere e armi a energia, riduci la loro cadenza di fuoco di 1.",
+
+    "traitBrahminBaron": "Barone dei Brahmin",
+    "traitBrahminBaronBenefit": "Ogni Mangiatoia per Brahmin fornisce sostentamento per 3 Brahmin in ciascuno dei tuoi insediamenti. Quando esegui l'azione insediamento Coltivare Raccolti, ottieni +1 DC latte di Brahmin aggiuntivo per mangiatoia.",
+    "traitBrahminBaronPenalty": "Lancia +1d20 per determinare il rischio di attacco al tuo insediamento se la sua risorsa Cibo supera la Popolazione dell'insediamento (vedi p.39).",
+
+    "traitMotherWasteland": "Madre Wasteland",
+    "traitMotherWastelandBenefit": "Spendi 1 punto Fortuna per ottenere informazioni sulla missione, situazione o scena come se avessi speso 3 PA per usare Ottenere Informazioni 3 volte. Queste informazioni sono spesso di natura criptica e mistica.",
+    "traitMotherWastelandPenalty": "Le complicazioni rendono le scene che coinvolgono artefatti pre-Guerra più difficili da comprendere, limitando il loro utilizzo.",
+
+    "traitNomad": "Nomade",
+    "traitNomadBenefit": "Rilancia 1d20 nei test di Sopravvivenza per viaggiare, allestire un campo e cercare cibo e acqua. Inoltre, ignora la prima complicazione ottenuta quando effettui questi test.",
+    "traitNomadPenalty": "I test di Commercio e Oratoria aumentano la loro difficoltà e intervallo di complicazione di 1 quando si tratta con abitanti di un insediamento statico. Scienza non può essere un'abilità specialità.",
+
+    "traitRiteOfPassage": "Rito di Passaggio",
+    "traitRiteOfPassageBenefit": "La prima volta che spendi Fortuna in una scena, lancia 1 DC. Se ottieni un effetto non hai speso quel punto Fortuna.",
+    "traitRiteOfPassagePenalty": "Consideri tutti coloro che non hanno affrontato il tuo rito di passaggio come inferiori. Non puoi assistere un altro PG senza prima spendere 1 PA.",
+
+    "traitToolsOfTheOldWorld": "Strumenti del Vecchio Mondo",
+    "traitToolsOfTheOldWorldBenefit": "Puoi usare Sopravvivenza invece di Riparare o Scienza per riparare o utilizzare tecnologia pre-Guerra.",
+    "traitToolsOfTheOldWorldPenalty": "L'intervallo di complicazione dei test che coinvolgono tecnologia pre-Guerra (non armi) è aumentato di 2.",
+
+    "traitTheChosenOne": "Il Prescelto",
+    "traitTheChosenOneBenefit": "Il primo d20 che acquisti è gratuito nei test relativi alla missione della tua tribù, e puoi sempre avere successo a un costo.",
+    "traitTheChosenOnePenalty": "Il GM aggiunge 2 PA alla sua riserva quando si presenta la tua missione.",
+
+    "traitMrHandyLaserEmitter": "Emettitore Laser",
+    "traitMrHandyLaserEmitterBenefit": "Permette di tagliare oggetti o effettuare attacchi a distanza usando un laser (vedere pistola laser, pag. 101).",
+
+    "traitMrHandyFlamethrower": "Lanciafiamme",
+    "traitMrHandyFlamethrowerBenefit": "Permette di incendiare oggetti, cucinare cibo o effettuare attacchi a distanza con un lanciafiamme a corto raggio (vedere lanciafiamme, pag. 106).",
+
+    "traitMrHandyAutomaticPistol": "Pistola Automatica 10mm",
+    "traitMrHandyAutomaticPistolBenefit": "Può effettuare attacchi a distanza usando una pistola automatica da 10mm (vedere Pistola da 10mm con mod castello automatico, pag. 95).",
+
+    "traitMrHandyCircularSaw": "Sega Circolare",
+    "traitMrHandyCircularSawBenefit": "Permette di tagliare oggetti ed effettuare attacchi in mischia con la sega circolare. La sega circolare infligge 3 DC danni Fisici Penetranti 1.",
+
+    "traitMrHandyPliers": "Tenaglia",
+    "traitMrHandyPliersBenefit": "Permette di raccogliere e trasportare oggetti che non pesino più di 20 kg e manipolare gli oggetti circostanti. È possibile anche effettuare attacchi senza armi (2 DC danni Fisici) con la tenaglia."
 }

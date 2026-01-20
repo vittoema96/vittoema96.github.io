@@ -92,11 +92,11 @@
     "weaponMissileLauncher": "Missile Launcher",
     "weaponMissileLauncherBayonet": "Missile Launcher Bayonet",
     "weaponMolotovCocktail": "Molotov Cocktail",
-    "weaponMrHandyAutomaticPistol": "Automatic 10mm Pistol",
-    "weaponMrHandyCircularSaw": "Circular Saw",
-    "weaponMrHandyFlamethrower": "Flamethrower",
-    "weaponMrHandyLaserEmitter": "Laser Emitter",
-    "weaponMrHandyPliers": "Pliers",
+    "weaponMrHandyAutomaticPistol": "Automatic 10mm Pistol Arm",
+    "weaponMrHandyCircularSaw": "Circular Saw Arm",
+    "weaponMrHandyFlamethrower": "Flamethrower Arm",
+    "weaponMrHandyLaserEmitter": "Laser Emitter Arm",
+    "weaponMrHandyPliers": "Arm with Pliers",
     "weaponNailGun": "Nail Gun",
     "weaponNukaGrenade": "Nuka Grenade",
     "weaponPipeWrench": "Pipe Wrench",
@@ -1398,5 +1398,90 @@
     "effectVoltaic": "Voltaic",
     "effectVoltaicDescription": "All attacks that deal Energy damage deal +1 DC. The bonus increases by +1 DC for every two additional parts with Voltaic Frame (+2 DC with 3 pieces or +3 DC with 5 pieces or more).",
     "effectHydraulic": "Hydraulic",
-    "effectHydraulicDescription": "Melee attacks made with these arms deal +1 DC damage and gain the Stun damage effect."
+    "effectHydraulicDescription": "Melee attacks made with these arms deal +1 DC damage and gain the Stun damage effect.",
+
+    "traits": "Traits",
+    "selectTrait": "Select Trait",
+    "noTrait": "No Trait",
+    "benefit": "Benefit",
+    "penalty": "Penalty",
+
+    "traitFastShot": "Fast Shot",
+    "traitFastShotBenefit": "If performing a second major action in combat to make a ranged attack, the cost of that additional major action will be 1 AP instead of 2.",
+    "traitFastShotPenalty": "Cannot benefit from the Aim minor action during this frantic action.",
+
+    "traitGifted": "Gifted",
+    "traitGiftedBenefit": "Choose two S.P.E.C.I.A.L. attributes and increase them by +1 each.",
+    "traitGiftedPenalty": "The maximum number of Luck Points equals the character's Luck attribute, minus one.",
+
+    "traitEducated": "Educated",
+    "traitEducatedBenefit": "The character has an additional tag skill.",
+    "traitEducatedPenalty": "When failing a skill test using a skill other than a tag skill, the GM gains 1 AP.",
+
+    "traitHeavyHanded": "Heavy Handed",
+    "traitHeavyHandedBenefit": "The Melee Damage bonus increases by +1 DC.",
+    "traitHeavyHandedPenalty": "Melee and unarmed attacks suffer a complication on a 19 or 20, instead of only on a 20.",
+
+    "traitSmallFrame": "Small Frame",
+    "traitSmallFrameBenefit": "Can reroll 1d20 on all AGI tests based on balance or contortion.",
+    "traitSmallFramePenalty": "Carry weight is 75 + (2.5 × STR) kg, instead of 75 + (5 × STR) kg.",
+
+    "traitExtraPerk": "Extra Perk",
+    "traitExtraPerkBenefit": "The character gains an additional perk at level 1.",
+    "traitExtraPerkPenalty": "The character can choose only one trait instead of two.",
+
+    "traitGoodNatured": "Good Natured",
+    "traitGoodNaturedBenefit": "Tag two of either Speech, Medicine, Repair, Science, and Barter skills.",
+    "traitGoodNaturedPenalty": "The maximum rating for the other skills listed is reduced from 6 to 4.",
+
+    "traitGrunt": "Grunt",
+    "traitGruntBenefit": "+1 DC damage with submachine guns, combat rifles, assault rifles, frag grenades, and combat knives.",
+    "traitGruntPenalty": "The complication range of tests while making an attack with big guns or energy weapons is increased by 2.",
+
+    "traitHomeOnTheRange": "Home on the Range",
+    "traitHomeOnTheRangeBenefit": "Whenever you sleep by a campfire for at least 6 hours, the difficulty to recover from injuries through rest is decreased by 1.",
+    "traitHomeOnTheRangePenalty": "You cannot gain a well rested bonus, as described in Fallout: The Roleplaying Game Core Rulebook p.35.",
+
+    "traitTriggerDiscipline": "Trigger Discipline",
+    "traitTriggerDisciplineBenefit": "When you make ranged attacks using small guns or energy weapons you may re-roll 1d20.",
+    "traitTriggerDisciplinePenalty": "While you wield small guns and energy weapons, reduce their fire rate by 1.",
+
+    "traitBrahminBaron": "Brahmin Baron",
+    "traitBrahminBaronBenefit": "Each Brahmin Feed Trough provides upkeep for 3 Brahmin in each of your settlements. When you perform the Tend Crops settlement action, you gain an additional +1 DC Brahmin milk per feed trough.",
+    "traitBrahminBaronPenalty": "Roll +1d20 for determining the risk of attack to your settlement if its Food resource exceeds the settlement's People (see p.39).",
+
+    "traitMotherWasteland": "Mother Wasteland",
+    "traitMotherWastelandBenefit": "Spend 1 Luck point to gain insight into the quest, situation, or scene as if you'd spent 3 AP to use Obtain Information 3 times. This information is often cryptic and mystical in nature.",
+    "traitMotherWastelandPenalty": "Complications make scenes involving pre-War artifacts harder to understand, limiting your use of them.",
+
+    "traitNomad": "Nomad",
+    "traitNomadBenefit": "Re-roll 1d20 on Survival tests to travel, set up camp, and forage for food and water. In addition, ignore the first complication rolled when making these tests.",
+    "traitNomadPenalty": "Barter and Speech tests increase their difficulty and complication range by 1 when dealing with inhabitants of a static settlement. Science cannot be a Tag skill.",
+
+    "traitRiteOfPassage": "Rite of Passage",
+    "traitRiteOfPassageBenefit": "The first time you spend Luck in a scene, roll 1 DC. If you roll an effect you have not spent that Luck point.",
+    "traitRiteOfPassagePenalty": "You view everyone who hasn't gone through your rite of passage as lesser. You cannot assist another PC without spending 1 AP first.",
+
+    "traitToolsOfTheOldWorld": "Tools of the Old World",
+    "traitToolsOfTheOldWorldBenefit": "You may use Survival instead of Repair or Science to repair or make use of pre-War tech.",
+    "traitToolsOfTheOldWorldPenalty": "The complication range of tests involving pre-War technology (not weapons) is increased by 2.",
+
+    "traitTheChosenOne": "The Chosen One",
+    "traitTheChosenOneBenefit": "The first d20 you purchase is free on tests relating to your tribe's quest, and you can always succeed at a cost.",
+    "traitTheChosenOnePenalty": "The GM adds 2 AP to their pool when your quest comes up.",
+
+    "traitMrHandyLaserEmitter": "Laser Emitter",
+    "traitMrHandyLaserEmitterBenefit": "Allows cutting objects or making ranged attacks using a laser (see laser pistol, p. 101).",
+
+    "traitMrHandyFlamethrower": "Flamethrower",
+    "traitMrHandyFlamethrowerBenefit": "Allows igniting objects, cooking food, or making ranged attacks with a short-range flamethrower (see flamethrower, p. 106).",
+
+    "traitMrHandyAutomaticPistol": "10mm Automatic Pistol",
+    "traitMrHandyAutomaticPistolBenefit": "Can make ranged attacks using a 10mm automatic pistol (see 10mm Pistol with automatic receiver mod, p. 95).",
+
+    "traitMrHandyCircularSaw": "Circular Saw",
+    "traitMrHandyCircularSawBenefit": "Allows cutting objects and making melee attacks with the circular saw. The circular saw deals 3 DC Physical Piercing 1 damage.",
+
+    "traitMrHandyPliers": "Pliers",
+    "traitMrHandyPliersBenefit": "Allows picking up and carrying objects weighing no more than 20 kg and manipulating surrounding objects. Can also make unarmed attacks (2 DC Physical damage) with the pliers."
 }

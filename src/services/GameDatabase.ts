@@ -11,6 +11,7 @@ interface DatabaseCollections {
     other: Record<string, GenericItem>;
     mod: Record<string, ModItem>;
     perks: Record<string, any>;
+    traits: Record<string, any>;
     allItems: Record<string, Item>; // Pre-calculated lookup for speed
 }
 

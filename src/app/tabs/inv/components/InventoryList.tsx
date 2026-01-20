@@ -10,6 +10,8 @@ import AmmoCard from '../cards/ammo/AmmoCard.tsx'
 import { getItemKey } from '@/utils/itemUtils.ts'
 import {CharacterItem, ItemCategory, ItemType} from "@/types";
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { ORIGINS } from '@/utils/characterSheet.ts';
+import { useCharacter } from '@/contexts/CharacterContext.tsx';
 
 interface InventoryListProps {
     items?: CharacterItem[];
@@ -39,6 +41,27 @@ function InventoryList({
     const [isAscendingDirection, setIsAscendingDirection] = useState(true)
 
     const dataManager = getGameDatabase()
+    const { character } = useCharacter()
+    const traits = character.traits
+        .map(trait => dataManager.traits[trait])
+        .filter(trait => {
+        return trait.ORIGINS.includes(character.origin.id)
+    })
+    const newItems = traits.flatMap(trait => {
+        return trait.EFFECTS?.flatMap(effect => {
+            const [effectType, item] = effect.split(':')
+            if(effectType === 'weaponAdd'){
+                return {
+                    id: item,
+                    quantity: 1,
+                    equipped: false,
+                    mods: []
+                }
+            }
+            return []
+        })
+    })
+    items = [...items, ...newItems]
 
     // Get subcategories based on main category (sorted alphabetically by translation)
     const getCategories = () => {

@@ -49,6 +49,10 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         () => raw?.specialties ?? [],
         [raw?.specialties]
     )
+    const traits = useMemo(
+        () => raw?.traits ?? [],
+        [raw?.traits]
+    )
     const origin = useMemo(
         () => getOriginById(raw?.origin),
         [raw?.origin]
@@ -65,7 +69,6 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         agility: useMemo(() => raw?.special?.agility ?? DEFAULT_SPECIAL, [raw?.special?.agility]),
         luck: useMemo(() => raw?.special?.luck ?? DEFAULT_SPECIAL, [raw?.special?.luck]),
     }
-    const currentLuck = raw?.currentLuck ?? special.luck
 
     const skills = useMemo(
         () => SKILLS.reduce((skills, skillId) => {
@@ -111,8 +114,13 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
     }, [items]);
 
     const maxLuck = useMemo(() => {
-        return special.luck // TODO here the Trait like "gifted" could edit max luck
-    }, [special.luck])
+        let result = special.luck
+        if (traits.includes('traitGifted')) {
+            result -= 1
+        }
+        return result
+    }, [special.luck, traits])
+    const currentLuck = raw?.currentLuck ? Math.min(raw.currentLuck, maxLuck) : maxLuck
 
     const defense = useMemo(() => {
         return special.agility < 9 ? 1 : 2
@@ -180,10 +188,11 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         background,
         currentHp,
         currentLuck,
-        caps: caps,
+        caps,
         items,
-        level: level,
-        specialties: specialties,
+        level,
+        specialties,
+        traits,
 
         // Calculated values
         origin,

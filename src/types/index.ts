@@ -34,6 +34,31 @@ export const SKILLS = [
 ] as const
 export type SkillType = (typeof SKILLS)[number];
 
+const _TRAITS = [
+    "traitFastShot",
+    "traitGifted",
+    "traitEducated",
+    "traitHeavyHanded",
+    "traitSmallFrame",
+    "traitExtraPerk",
+    "traitGoodNatured",
+    "traitGrunt",
+    "traitHomeOnTheRange",
+    "traitTriggerDiscipline",
+    "traitBrahminBaron",
+    "traitMotherWasteland",
+    "traitNomad",
+    "traitRiteOfPassage",
+    "traitToolsOfTheOldWorld",
+    "traitTheChosenOne",
+    "traitMrHandyLaserEmitter",
+    "traitMrHandyFlamethrower",
+    "traitMrHandyAutomaticPistol",
+    "traitMrHandyCircularSaw",
+    "traitMrHandyPliers",
+] as const
+export type TraitId = (typeof _TRAITS)[number];
+export const TRAITS: Set<TraitId> = new Set(_TRAITS)
 
 const _BODY_PARTS = [
     'head',
@@ -83,6 +108,7 @@ export interface Origin {
     hasRadiationImmunity: boolean;
     hasPoisonImmunity: boolean;
     bodyParts: Set<GenericBodyPart>;
+    numberOfTraits: number;
     isRobot: boolean;
     specialMaxValues: Record<SpecialType, number>;
     skillMaxValue: number;
@@ -113,6 +139,7 @@ export interface Character extends Omit<RawCharacter, 'origin'> {
     skills: Record<SkillType, number>;
     specialties: SkillType[];
     items: CharacterItem[];
+    traits: TraitId[];
 
     maxHp: number;
     currentHp: number;
@@ -137,6 +164,7 @@ export interface RawCharacter {
     skills?: Partial<Record<SkillType, number>> | undefined;
     specialties?: SkillType[] | undefined;
     items?: CharacterItem[] | undefined;
+    traits?: TraitId[] | undefined;
 
     currentLuck?: number | undefined;
     currentHp?: number | undefined;

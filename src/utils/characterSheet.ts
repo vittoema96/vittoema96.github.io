@@ -37,6 +37,7 @@ interface CreateOriginOptions {
     hasPoisonImmunity?: boolean;
     bodyParts?: Set<GenericBodyPart>;
     isRobot?: boolean;
+    numberOfTraits?: number;
     specialMaxValues?: Partial<Record<SpecialType, number>>;
     skillMaxValue?: number;
     needsSpecializedArmor?: boolean;
@@ -53,6 +54,7 @@ const createOrigin = (id?: OriginId, options: CreateOriginOptions = {}): Origin 
         isRobot = false,
         specialMaxValues = {},
         skillMaxValue = 6,
+        numberOfTraits = 0,
         needsSpecializedArmor = false,
         needsSpecializedWeapons = false,
         characterSvg = "vaultboy-open-arms",
@@ -75,6 +77,7 @@ const createOrigin = (id?: OriginId, options: CreateOriginOptions = {}): Origin 
             ...specialMaxValues
         },
         skillMaxValue,
+        numberOfTraits,
         needsSpecializedArmor,
         needsSpecializedWeapons,
         characterSvg
@@ -98,7 +101,9 @@ export const ORIGINS = Object.freeze({
         hasRadiationImmunity: true,
         characterSvg: 'ghoul',
     }),
-    SURVIVOR: createOrigin('survivor'), // TODO missing traits
+    SURVIVOR: createOrigin('survivor', {
+        numberOfTraits: 2,
+    }), // TODO missing traits
     MR_HANDY: createOrigin('mrHandy', {
         // TODO might have mr handy weapons as "traits"
         calcMaxCarryWeight: () => 75, // Fixed carry weight for Mr. Handy, can only be upped by armour/mods
@@ -106,6 +111,7 @@ export const ORIGINS = Object.freeze({
         hasPoisonImmunity: true,
         bodyParts: MR_HANDY_PARTS,
         isRobot: true,
+        numberOfTraits: 3,
         needsSpecializedArmor: true,
         needsSpecializedWeapons: true,
         characterSvg: 'mrHandy',
@@ -127,12 +133,15 @@ export const ORIGINS = Object.freeze({
     // #### Settler's Guide Origins
     // TODO all the below needs reviewing and implementation of mechanics
     MINUTEMEN: createOrigin('minutemen'), // TODO missing trait
-    NCR: createOrigin('ncr'), // TODO missing traits
+    NCR: createOrigin('ncr', {
+        numberOfTraits: 2
+    }), // TODO missing traits
     PROTECTRON: createOrigin('protectron', {
         // TODO might have protectron weapons as "traits"
         calcMaxCarryWeight: () => 225 / 2, // Fixed carry weight for Mr. Handy, can only be upped by armour/mods
         hasRadiationImmunity: true,
         hasPoisonImmunity: true,
+        numberOfTraits: 2, // TODO TRAITS ARE NOT HANDLED ON THIS AND BELOW ORIGINS
         // hasDiseaseImmunity: true, TODO
         isRobot: true,
         needsSpecializedArmor: true,

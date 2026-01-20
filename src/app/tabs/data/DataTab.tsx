@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
 import {ORIGINS} from "@/utils/characterSheet";
 import {OriginId} from "@/types";
+import TraitList from '@/app/tabs/data/components/TraitList.tsx';
 
 function DataTab() {
     const { t } = useTranslation()
@@ -104,8 +105,9 @@ function DataTab() {
                 />
             </div>
 
-            <br /><br /><br /><br />
-            <span className="h1">WORK IN PROGRESS</span>
+            <TraitList />
+            <br />
+            <span className="h2">Perks coming soon...</span>
         </section>
     )
 }

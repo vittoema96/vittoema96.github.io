@@ -58,7 +58,7 @@ export const GameDataRepository = {
     },
 
     async loadAllData() {
-        const [weapon, apparel, aid, other, mod, perks] = await Promise.all([
+        const [weapon, apparel, aid, other, mod, perks, traits] = await Promise.all([
             this.mergeCSVs<WeaponItem>([
                 'data/weapon/smallGuns.csv', 'data/weapon/energyWeapons.csv',
                 'data/weapon/bigGuns.csv', 'data/weapon/meleeWeapons.csv',
@@ -78,9 +78,10 @@ export const GameDataRepository = {
                 'data/mods/ballisticWeaveMods.csv', 'data/mods/vaultSuitMods.csv',
                 'data/mods/robotArmorMods.csv'
             ]),
-            this.parseCSV<any>('data/perks.csv')
+            this.parseCSV<any>('data/perks.csv'),
+            this.parseCSV<any>("data/traits.csv")
         ]);
 
-        return { weapon, apparel, aid, other, mod, perks };
+        return { weapon, apparel, aid, other, mod, perks, traits };
     },
 };

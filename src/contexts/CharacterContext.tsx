@@ -172,15 +172,15 @@ export function CharacterProvider({ onReady, children}:
      * Replenish current luck to max ("luck" value)
      */
     const replenishLuck = useCallback(() => {
-        updateCharacter({ currentLuck: calculatedCharacter.special.luck })
-    }, [calculatedCharacter.special.luck])
+        updateCharacter({ currentLuck: calculatedCharacter.maxLuck })
+    }, [calculatedCharacter.maxLuck, updateCharacter])
 
     /**
      * Spend luck point (decrease current luck by 1)
      */
     const spendLuck = useCallback(() => {
         updateCharacter({ currentLuck: Math.max(0, calculatedCharacter.currentLuck - 1) })
-    }, [])
+    }, [calculatedCharacter.currentLuck, updateCharacter])
 
 
 

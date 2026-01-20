@@ -30,6 +30,7 @@ export const getGameDatabase = () => {
         mod: db.mod,
         other: db.other,
         perks: db.perks,
+        traits: db.traits,
         allItems: db.allItems,
 
         // Helpers

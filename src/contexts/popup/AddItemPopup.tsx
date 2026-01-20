@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/contexts/CharacterContext';
 import { useDialog } from '@/hooks/useDialog';
-import { ORIGINS } from '@/utils/characterSheet';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
 import { GenericItem, GenericPopupProps, ItemCategory, ItemType, Side } from '@/types';
 import { addItem } from '@/utils/itemUtils.ts';
@@ -11,7 +10,6 @@ export interface AddItemPopupProps extends GenericPopupProps {
     itemType: ItemType;
 }
 
-type CategoryFilter = ItemCategory | 'mrHandyWeapons' | undefined;
 type SelectableItem = GenericItem & { variation?: Side }
 
 /**
@@ -23,7 +21,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     const [selectedItem, setSelectedItem] = useState<SelectableItem | undefined>(undefined)
     const [quantity, setQuantity] = useState<number | undefined>(1)
     const [availableItems, setAvailableItems] = useState<SelectableItem[]>([])
-    const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>(undefined) // all, or specific subtype
+    const [categoryFilter, setCategoryFilter] = useState<ItemCategory | undefined>(undefined) // all, or specific subtype
     const [rarityFilter, setRarityFilter] = useState<number | undefined>(undefined) // all, or max rarity level
     const [shouldBuy, setShouldBuy] = useState(false) // Whether to deduct caps
 
@@ -35,10 +33,8 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     // Get subcategories for the current category (calculated on render, not memoized)
     const getCategories = () => {
         const typeMap = dataManager.getItemTypeMap()
-        const hasToAddMrHandyWeapons = itemType === 'weapon' && character.origin === ORIGINS.MR_HANDY
-        const categories: CategoryFilter[] = [
+        const categories = [
             ...typeMap[itemType],
-            ...(hasToAddMrHandyWeapons ? ['mrHandyWeapons' as const] : [])
         ]
 
         // Sort alphabetically by translated name
@@ -57,19 +53,16 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     // Update available items when itemType, categoryFilter, rarityFilter, or dataManager changes
     useEffect(() => {
         let allItems = Object.values(dataManager[itemType])
+            .filter(item => {
+                if(dataManager.isType(item, "weapon")){
+                    const hasMrHandyOnlyQuality = (item.QUALITIES || []).includes('qualityMrHandyOnly')
+                    return !hasMrHandyOnlyQuality
+                }
+                return true
+            })
 
         if(categoryFilter) {
-            allItems = allItems.filter(item => {
-                if(dataManager.isType(item, "weapon")){
-                    const hasMrHandyWeaponsFilter = categoryFilter === 'mrHandyWeapons'
-                    const hasMrHandyOnlyQuality = (item.QUALITIES || []).includes('qualityMrHandyOnly')
-                    return hasMrHandyWeaponsFilter
-                        ? hasMrHandyOnlyQuality  // Only check quality
-                        : item.CATEGORY === categoryFilter && !hasMrHandyOnlyQuality
-
-                }
-                return item.CATEGORY === categoryFilter
-            })
+            allItems = allItems.filter(item => item.CATEGORY === categoryFilter)
         }
 
         // Exclude unacquirable items
@@ -180,7 +173,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                         value={categoryFilter ?? 'all'}
                         onChange={(e) => {
                             const value = e.target.value
-                            const filter = value === 'all' ? undefined : value as CategoryFilter
+                            const filter = value === 'all' ? undefined : value as ItemCategory
                             setCategoryFilter(filter)
                         }}
                         aria-label="Type filter"
