@@ -1,42 +1,49 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
-import { CharacterItem, Item } from '@/types';
+import { CharacterItem } from '@/types';
 import { FitText } from '@/app/FitText.tsx';
+import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 
 /**
  * Base card component - provides common card structure and functionality
  * Content is rendered via contentRenderer prop for maximum flexibility
  */
+
+interface ActionDefinition {
+    icon: string,
+    onClick: (item: CharacterItem) => void,
+    isChecked?: (item: CharacterItem) => boolean,
+    isDisabled?: (item: CharacterItem) => boolean,
+}
+
 interface BaseCardProps {
     characterItem: CharacterItem,
+    action: ActionDefinition,
+
+    className?: string,
+
     contentRenderer: React.ComponentType<any>,
-    onAction?: (item: CharacterItem, data: Item) => void,
-    actionIcon?: string,
-    actionType?: string,
-    isEquipped?: boolean,
-    disabled?: boolean,
-    hideControls?: boolean,
-    customControls?: React.ReactNode,
-    className?: string
 }
 
 function BaseCard({
     characterItem,
+    action: {
+        icon: buttonIcon,
+        onClick: onButtonClick,
+        isChecked: isButtonChecked = () => true,
+        isDisabled: isButtonDisabled = () => false,
+    },
     contentRenderer: ContentRenderer,
-    onAction,
-    actionIcon = 'attack',
-    isEquipped = false,
-    disabled = false,
-    hideControls = false,
-    customControls = null,
     className = '',
 }: Readonly<BaseCardProps>) {
     const { t } = useTranslation();
     const [showDescription, setShowDescription] = useState(false);
+    const { showModifyItemPopup } = usePopup()
     const dataManager = getGameDatabase();
     let itemData = dataManager.getItem(characterItem.id);
-    if(dataManager.isType(itemData, "moddable")){
+    const isModdable = dataManager.isType(itemData, "moddable") && itemData.AVAILABLE_MODS.length > 0;
+    if(isModdable){
         itemData = getModifiedItemData(characterItem);
     }
 
@@ -48,12 +55,8 @@ function BaseCard({
     const quantity = characterItem.quantity;
 
     const handleAction = () => {
-        if (disabled) {
-            return;
-        }
-
-        if (onAction) {
-            onAction(characterItem, itemData);
+        if(!isButtonDisabled(characterItem)) {
+            onButtonClick(characterItem);
         }
     };
 
@@ -65,7 +68,7 @@ function BaseCard({
         if (!description) {
             return '';
         }
-        return description.replace(/\\n/g, '\n');
+        return description.replaceAll(String.raw`\n`, '\n');
     };
 
     return (
@@ -101,32 +104,36 @@ function BaseCard({
             {/* Card Content - rendered by content renderer */}
             <div className="card-content">
                 {ContentRenderer && (
-                    // TODO Check that all ContentRenderer DO NOT use side (but use characterItem.variation instead)
                     <ContentRenderer characterItem={characterItem}/>
                 )}
             </div>
 
             {/* Card Controls */}
-            {customControls ||
-                (hideControls ? null : (
-                    <div className="row card-controls">
-                        <input
-                            type="checkbox"
-                            className={`themed-svg button-card`}
-                            data-icon={actionIcon}
-                            checked={isEquipped}
-                            disabled={disabled}
-                            onChange={handleAction}
-                        />
-                        <button
-                            className="description-toggle-button description-toggle-button--icon"
-                            onClick={toggleDescription}
-                            title={t('showDescription')}
-                        >
-                            <i className="fas fa-info-circle"></i>
-                        </button>
-                    </div>
-                ))}
+            <div className="row card-controls">
+                <input
+                    type="checkbox"
+                    className={`themed-svg button-card`}
+                    data-icon={buttonIcon}
+                    checked={isButtonChecked(characterItem)}
+                    disabled={isButtonDisabled(characterItem)}
+                    onChange={handleAction}
+                />
+                {isModdable && (
+                    <button
+                        className="modify-button"
+                        onClick={() => showModifyItemPopup(characterItem)}
+                    >
+                        {t('modify')}
+                    </button>
+                )}
+                <button
+                    className="description-toggle-button description-toggle-button--icon"
+                    onClick={toggleDescription}
+                    title={t('showDescription')}
+                >
+                    <i className="fas fa-info-circle"></i>
+                </button>
+            </div>
 
             {/* Description Overlay - shown when toggled */}
             {showDescription && (

@@ -199,7 +199,7 @@ export interface PopupContextValue {
     showTradeItemPopup: (usingItem: CharacterItem, itemData: Item, onConfirm: (quantity: number, price: number) => void) => void;
     closeTradeItemPopup: () => void;
 
-    showModifyItemPopup: (usingItem: CharacterItem, itemData: Item) => void;
+    showModifyItemPopup: (usingItem: CharacterItem) => void;
     closeModifyItemPopup: () => void;
 }
 

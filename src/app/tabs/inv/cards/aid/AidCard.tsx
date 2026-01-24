@@ -1,7 +1,8 @@
 import BaseCard from '../BaseCard.tsx'
 import AidContent from '@/app/tabs/inv/cards/aid/AidContent.tsx'
-import { CharacterItem, Item } from '@/types';
-import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { CharacterItem } from '@/types';
+import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
+import { useInventoryActions } from '../../hooks/useInventoryActions.ts';
 
 /**
  * Aid card component for consumable items (food, drinks, meds)
@@ -9,10 +10,9 @@ import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts
  */
 interface AidCardProps {
     characterItem: CharacterItem,
-    onConsume?: (item: CharacterItem, data: Item) => void // TODO remove data from this
 }
-function AidCard({ characterItem, onConsume }: Readonly<AidCardProps>) {
-
+function AidCard({ characterItem }: Readonly<AidCardProps>) {
+    const {consumeItem} = useInventoryActions()
     const dataManager = getGameDatabase();
     const itemData = dataManager.getItem(characterItem.id)
     if (!dataManager.isType(itemData, 'aid')) {
@@ -20,23 +20,17 @@ function AidCard({ characterItem, onConsume }: Readonly<AidCardProps>) {
         return null;
     }
 
-    const handleConsume = () => {
-        if (onConsume) {
-            onConsume(characterItem, itemData)
-        } else {
-            // TODO: Implement consume functionality
-            console.log('Consume aid:', characterItem.id)
-        }
-    }
 
     return (
         <BaseCard
+            action={{
+                icon: "aid",
+                onClick: () => consumeItem(characterItem),
+                isDisabled: () => true,
+                isChecked: () => false
+            }}
             characterItem={characterItem}
             contentRenderer={AidContent}
-            onAction={handleConsume}
-            actionIcon="aid"
-            actionType="consume"
-            disabled={true} // TODO: Enable when consume functionality is implemented
             className="aid-card"
         />
     )

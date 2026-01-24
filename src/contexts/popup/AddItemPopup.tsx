@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/contexts/CharacterContext';
 import { useDialog } from '@/hooks/useDialog';
@@ -18,48 +18,21 @@ type SelectableItem = GenericItem & { variation?: Side }
  */
 function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     const { t } = useTranslation()
-    const [selectedItem, setSelectedItem] = useState<SelectableItem | undefined>(undefined)
-    const [quantity, setQuantity] = useState<number | undefined>(1)
-    const [availableItems, setAvailableItems] = useState<SelectableItem[]>([])
-    const [categoryFilter, setCategoryFilter] = useState<ItemCategory | undefined>(undefined) // all, or specific subtype
-    const [rarityFilter, setRarityFilter] = useState<number | undefined>(undefined) // all, or max rarity level
-    const [shouldBuy, setShouldBuy] = useState(false) // Whether to deduct caps
-
     const { character, updateCharacter } = useCharacter()
     const dataManager = getGameDatabase()
     const dialogRef = useRef<HTMLDialogElement>(null)
 
+    const [selectedItem, setSelectedItem] = useState<SelectableItem | undefined>(undefined)
+    const [quantity, setQuantity] = useState<number | undefined>(1)
+    const [categoryFilter, setCategoryFilter] = useState<ItemCategory | undefined>(undefined) // all, or specific subtype
+    const [rarityFilter, setRarityFilter] = useState<number | undefined>(undefined) // all, or max rarity level
+    const [shouldBuy, setShouldBuy] = useState(false) // Whether to deduct caps
 
-    // Get subcategories for the current category (calculated on render, not memoized)
-    const getCategories = () => {
-        const typeMap = dataManager.getItemTypeMap()
-        const categories = [
-            ...typeMap[itemType],
-        ]
-
-        // Sort alphabetically by translated name
-        return categories.toSorted((a, b) => {
-            if(!a && !b) {return 0}
-            if(!a) {return 1}
-            if(!b) {return -1}
-            return t(a).localeCompare(t(b))
-        }).map(categoryFilter => {
-            return <option key={categoryFilter} value={categoryFilter}>
-                        {t(categoryFilter || 'all')}
-                   </option>
-        })
-    }
-
-    // Update available items when itemType, categoryFilter, rarityFilter, or dataManager changes
-    useEffect(() => {
+    const availableItems = useMemo(() => {
         let allItems = Object.values(dataManager[itemType])
-            .filter(item => {
-                if(dataManager.isType(item, "weapon")){
-                    const hasMrHandyOnlyQuality = (item.QUALITIES || []).includes('qualityMrHandyOnly')
-                    return !hasMrHandyOnlyQuality
-                }
-                return true
-            })
+            .filter(item =>
+                !(dataManager.isType(item, 'weapon') && (item.QUALITIES || []).includes('qualityMrHandyOnly'))
+            )
 
         if(categoryFilter) {
             allItems = allItems.filter(item => item.CATEGORY === categoryFilter)
@@ -70,9 +43,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
 
         // Filter by rarity (show items with rarity <= selected rarity)
         if (rarityFilter) {
-            allItems = allItems.filter(item => {
-                return item.RARITY === rarityFilter // TODO do we want equality here? or <=?
-            })
+            allItems = allItems.filter(item => item.RARITY === rarityFilter)
         }
 
         // Add side variations for items that need them (arms/legs)
@@ -94,7 +65,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
         })
 
         // Sort items alphabetically by translated name
-        const sortedItems = itemsWithVariants.toSorted((a, b) => {
+        return itemsWithVariants.toSorted((a, b) => {
 
             const getName = (item: SelectableItem) => {
                 if(!item) {return ''}
@@ -105,14 +76,33 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
 
             return nameA.localeCompare(nameB)
         })
+    }, [rarityFilter, categoryFilter, t, itemType])
+    useEffect(() => {
+        setSelectedItem(availableItems[0])
+    }, [availableItems]);
 
-        setAvailableItems(sortedItems)
 
-        // Set first item as default selection
-        if(!selectedItem){
-            setSelectedItem(sortedItems[0]);
-        }
-    }, [itemType, categoryFilter, rarityFilter, t])
+
+
+    // Get subcategories for the current category (calculated on render, not memoized)
+    const getCategories = () => {
+        const typeMap = dataManager.getItemTypeMap()
+        const categories = [
+            ...typeMap[itemType],
+        ]
+
+        // Sort alphabetically by translated name
+        return categories.toSorted((a, b) => {
+            if(!a && !b) {return 0}
+            if(!a) {return 1}
+            if(!b) {return -1}
+            return t(a).localeCompare(t(b))
+        }).map(categoryFilter => {
+            return <option key={categoryFilter} value={categoryFilter}>
+                        {t(categoryFilter || 'all')}
+                   </option>
+        })
+    }
 
     // Use dialog hook for dialog management
     const { closeWithAnimation } = useDialog(dialogRef, onClose)

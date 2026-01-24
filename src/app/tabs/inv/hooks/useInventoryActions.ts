@@ -7,8 +7,7 @@ import {
     hasApparelConflict
 } from '@/utils/bodyLocations.ts'
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
-import { CharacterItem, Item } from '@/types';
-import { ORIGINS } from '@/utils/characterSheet.ts';
+import { CharacterItem } from '@/types';
 import { useTranslation } from 'react-i18next';
 
 /**
@@ -85,26 +84,19 @@ export const useInventoryActions = () => {
         )
     }
 
-    const equipItem = (characterItem: CharacterItem, itemData: Item) => {
-        // Validate if item can be equipped
-        if (!dataManager.isType(itemData, 'apparel')) {
-            showAlert("Cannot equip non-apparel items!")
-            return
-        }
-        if(character.origin === ORIGINS.MR_HANDY) {
+    const equipItem = (characterItem: CharacterItem) => {
+        // Robot parts cannot be unequipped
+        const itemData = dataManager.getItem(characterItem.id)
+        if(character.origin.isRobot) {
             showAlert("Robots cannot equip/unequip apparel.")
             return
+        } else if(itemData?.CATEGORY === 'robotPart'){
+            showAlert("Cannot equip robot parts on non-robots.")
+            return
         }
-
         const isCurrentlyEquipped = characterItem.equipped === true
 
         if (isCurrentlyEquipped) {
-            // Validate if item can be unequipped
-            if (dataManager.isUnacquirable(characterItem.id)) {
-                showAlert("Cannot unequip this item!")
-                return
-            }
-
             // Unequip the item
             const updatedItems = character.items.map(item => {
                 if (item.id === characterItem.id) {
@@ -115,28 +107,28 @@ export const useInventoryActions = () => {
             updateCharacter({ items: updatedItems })
         } else {
             // Equip the item - first unequip any items in the same locations
-            const updatedItems = character.items.map(item => {
+            const updatedItems = character.items.map(otherItem => {
                 // Skip the item we're equipping
-                if (item.id === characterItem.id) {
-                    return { ...item, equipped: true }
+                if (otherItem.id === characterItem.id && otherItem.variation === characterItem.variation) {
+                    return { ...otherItem, equipped: true }
                 }
 
-                const otherItemData = dataManager.getItem(item.id)
-                if (!item.equipped || !dataManager.isType(otherItemData, 'apparel')) {
-                    return item
+                const otherItemData = dataManager.getItem(otherItem.id)
+                if (!otherItem.equipped || !dataManager.isType(otherItemData, 'apparel')) {
+                    return otherItem
                 }
 
-                if(hasApparelConflict(characterItem, item)){
-                    return {...item, equipped: false}
+                if(hasApparelConflict(characterItem, otherItem)){
+                    return {...otherItem, equipped: false}
                 }
-                return item
+                return otherItem
             })
 
             updateCharacter({ items: updatedItems })
         }
     }
 
-    const useItem = (characterItem: CharacterItem) => {
+    const consumeItem = (characterItem: CharacterItem) => {
         // TODO: Implement use logic for consumables
         console.log('Use item:', characterItem.id)
         showAlert('Use functionality coming soon!')
@@ -146,6 +138,6 @@ export const useInventoryActions = () => {
         sellItem,
         deleteItem,
         equipItem,
-        useItem
+        consumeItem
     }
 }

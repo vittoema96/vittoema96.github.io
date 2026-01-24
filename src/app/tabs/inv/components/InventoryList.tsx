@@ -10,7 +10,6 @@ import AmmoCard from '../cards/ammo/AmmoCard.tsx'
 import { getItemKey } from '@/utils/itemUtils.ts'
 import {CharacterItem, ItemCategory, ItemType} from "@/types";
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
-import { ORIGINS } from '@/utils/characterSheet.ts';
 import { useCharacter } from '@/contexts/CharacterContext.tsx';
 
 interface InventoryListProps {
@@ -48,7 +47,7 @@ function InventoryList({
         return trait.ORIGINS.includes(character.origin.id)
     })
     const newItems = traits.flatMap(trait => {
-        return trait.EFFECTS?.flatMap(effect => {
+        return trait.EFFECTS?.flatMap((effect: string) => {
             const [effectType, item] = effect.split(':')
             if(effectType === 'weaponAdd'){
                 return {

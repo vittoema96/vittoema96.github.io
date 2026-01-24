@@ -7,6 +7,7 @@ import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
  * Ammo card component - now uses BaseCard with AmmoContent renderer
  * Eliminates code duplication and provides consistent card behavior
  */
+// TODO THIS SHOULD NEVER BE VISIBLE, WHY WE HAVE IT??
 interface AmmoCardProps {
     characterItem: CharacterItem,
     onSell: (item: CharacterItem) => void,
@@ -31,7 +32,6 @@ function AmmoCard({ characterItem, onSell, onDelete }: Readonly<AmmoCardProps>) 
             onAction={() => {}} // Ammo doesn't have primary actions
             // TODO these are not even relevant...
             actionIcon={null}
-            actionType={null}
             isEquipped={false}
             disabled={true}
             hideControls={true} // Ammo only has sell/delete via overlay

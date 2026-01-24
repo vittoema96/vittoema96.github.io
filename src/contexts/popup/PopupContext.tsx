@@ -8,6 +8,7 @@ import TradeItemPopup from '@/contexts/popup/TradeItemPopup'
 import ModifyItemPopup from '@/contexts/popup/ModifyItemPopup'
 import { useTranslation } from 'react-i18next'
 import {CharacterItem, Item, ItemType, PopupContextValue, SkillType} from "@/types";
+import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 
 const PopupContext = createContext<PopupContextValue | undefined>(undefined)
 
@@ -166,10 +167,10 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
 
     // ModifyItem Popup functions
     const showModifyItemPopup = useCallback(
-        (usingItem: CharacterItem, itemData: Item) => {
+        (usingItem: CharacterItem) => {
             setModifyItemState({
                 usingItem: usingItem,
-                itemData: itemData
+                itemData: getModifiedItemData(usingItem)!
             })
         }, []
     )

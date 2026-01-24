@@ -29,19 +29,16 @@ function InventoryRow({
     const { t } = useTranslation()
     const contentRef = useRef<HTMLDivElement>(null)
     const [contentHeight, setContentHeight] = useState(0)
-    const { sellItem, deleteItem, equipItem, useItem } = useInventoryActions()
+    const { sellItem, deleteItem } = useInventoryActions()
     const dataManager = getGameDatabase()
     let itemData = dataManager.getItem(characterItem.id)
 
-    if(!itemData) {
-        console.error(`Item data not found for ID: ${characterItem.id}`)
-        return null
-    } else if(dataManager.isType(itemData, "moddable")){
+    if(dataManager.isType(itemData, "moddable")){
         itemData = getModifiedItemData(characterItem)
     }
 
     // Check if item can be sold/deleted (unacquirable items cannot)
-    const canSellDelete = !dataManager.isUnacquirable(itemData.ID)
+    const canSellDelete = !dataManager.isUnacquirable(itemData?.ID || '')
 
     // Use overlay hook for sell/delete functionality (only if item can be sold/deleted)
     const {
@@ -54,6 +51,11 @@ function InventoryRow({
         canSellDelete ? () => sellItem(characterItem) : null,
         canSellDelete ? () => deleteItem(characterItem) : null
     )
+
+    if(!itemData) {
+        console.error(`Item data not found for ID: ${characterItem.id}`);
+        return null;
+    }
 
     // Calculate content height for smooth animation
     useEffect(() => {
@@ -210,12 +212,7 @@ function InventoryRow({
             >
                 <div ref={contentRef} className="inventory-row__card">
                     {isExpanded && CardComponent && (
-                        <CardComponent
-                            characterItem={characterItem}
-                            itemData={itemData}
-                            onEquip={(item, data) => equipItem(item, data)}
-                            onConsume={(item, data) => useItem(item, data)}
-                        />
+                        <CardComponent characterItem={characterItem}/>
                     )}
                 </div>
             </div>
