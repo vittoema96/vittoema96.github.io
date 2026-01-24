@@ -120,7 +120,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         }
         return result
     }, [special.luck, traits])
-    const currentLuck = raw?.currentLuck ? Math.min(raw.currentLuck, maxLuck) : maxLuck
+    const currentLuck = Math.min(raw?.currentLuck ?? maxLuck, maxLuck)
 
     const defense = useMemo(() => {
         return special.agility < 9 ? 1 : 2

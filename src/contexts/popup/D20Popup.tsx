@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useMemo } from 'react'
 import { useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
 import { usePopup } from '@/contexts/popup/PopupContext'
@@ -63,8 +63,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
         }
     }
 
-    // Luck Cost calculation
-    const getLuckCost = () => {
+    const luckCost = useMemo(() => {
         if (hasRolled) {
             const rerollingCount = diceActive.filter(Boolean).length;
             const rerolledCount = diceRerolled.filter(Boolean).length;
@@ -78,7 +77,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
         } else {
             return isUsingLuck ? 1 : 0;
         }
-    }
+    }, [diceActive, diceRerolled, isAiming, isUsingLuck, hasRolled])
 
     // Success calculation
     const getSuccesses = () => {
@@ -151,7 +150,6 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
             return
         }
 
-        const luckCost = getLuckCost()
         if (currentLuck < luckCost) {
             alert(t('notEnoughLuckAlert') || 'Not enough luck!')
             return
@@ -291,7 +289,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                 <div className="row l-distributed l-lastSmall">
                     <span>{t('luckCost')}</span>
                     <div className="row l-centered">
-                        <span>{getLuckCost()} / {currentLuck}</span>
+                        <span>{luckCost} / {currentLuck}</span>
                     </div>
                 </div>
 
@@ -305,7 +303,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                     <button
                         className="popup__button-confirm"
                         onClick={handleRoll}
-                        disabled={hasRolled && (diceActive.filter(Boolean).length === 0 || getLuckCost() > currentLuck)}
+                        disabled={hasRolled && (diceActive.filter(Boolean).length === 0 || luckCost > currentLuck)}
                     >
                         {t(hasRolled ? 'reroll' : 'roll')}
                     </button>

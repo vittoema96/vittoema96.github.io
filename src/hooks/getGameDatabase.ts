@@ -17,9 +17,8 @@ function isType<T extends ItemType | 'moddable'>(item: Item | null | undefined, 
     return item?.TYPE === type;
 }
 
-export const getGameDatabase = () => {
-    // Direct access to the singleton.
-    // No context overhead. No dependency arrays.
+let cachedDataManager: ReturnType<typeof createGameDatabase> | null = null;
+function createGameDatabase() {
     const db = GameDatabase.data;
 
     return {
@@ -39,6 +38,11 @@ export const getGameDatabase = () => {
         getItemTypeMap: () => ITEM_TYPE_MAP,
         isType,
     };
+}
+
+export const getGameDatabase = () => {
+    cachedDataManager ??= createGameDatabase();
+    return cachedDataManager
 };
 
 const applyMods = (itemData: ModdableItem, modsData: ModItem[]): typeof itemData => {
