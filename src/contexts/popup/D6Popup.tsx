@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react';
 import { useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
 import { useTooltip } from '@/contexts/TooltipContext'
@@ -87,7 +87,8 @@ function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps
     const [extraDiceActive, setExtraDiceActive] = useState(initialExtraDiceState.active);
     const [extraDiceRerolled, setExtraDiceRerolled] = useState(initialExtraDiceState.rerolled);
 
-    const [ammoCost, setAmmoCost] = useState(0);
+    const ammoStep = isMelee(weaponData.CATEGORY) ? 0 : (isGatling ? 10 : 1);
+    const [ammoCost, setAmmoCost] = useState(ammoStep);
     const [ammoPayed, setAmmoPayed] = useState(0);
     const [luckPayed, setLuckPayed] = useState(0);
     const [burstEffectsUsed, setBurstEffectsUsed] = useState(0); // Number of burst effects activated
@@ -97,18 +98,12 @@ function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps
         return null;
     }
 
-
-    const ammoStep = isMelee(weaponData.CATEGORY) ? 0 : (isGatling ? 10 : 1);
-
     // Check if weapon has burst effect
     const hasBurst = (weaponData?.EFFECTS || []).includes('effectBurst');
 
     // Get current ammo count
     // TODO check that self and na exist and no other values other than actual ammo exist
     const getCurrentAmmo = () => {
-        if (!weaponData) {
-            return 0;
-        }
         let ammoId = weaponData.AMMO_TYPE;
         if (ammoId === 'self') {
             ammoId = weaponData.ID;

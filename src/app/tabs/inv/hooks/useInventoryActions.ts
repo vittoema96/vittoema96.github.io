@@ -28,12 +28,15 @@ export const useInventoryActions = () => {
         }
 
         // Use modified data for price calculation
-        const modifiedData = getModifiedItemData(characterItem)
-        if (!modifiedData) {
+        let itemData = dataManager.getItem(characterItem.id)
+        if(dataManager.isType(itemData, "moddable")){
+            itemData = getModifiedItemData(characterItem)
+        }
+        if (!itemData) {
             console.error('Item data not found!')
             return
         }
-        showTradeItemPopup(characterItem, modifiedData, (quantity, price) => {
+        showTradeItemPopup(characterItem, itemData, (quantity, price) => {
             const total = Math.floor(quantity * price)
 
             // Remove sold quantity from inventory
