@@ -50,6 +50,27 @@ function StatTab() {
     return (
         <section className="tabContent">
             {/* SPECIAL Stats */}
+
+            {isEditing && <div className="inventory-list__controls">
+                <div style={specialPoints<0 ? {color: 'var(--failure-color)'} : {}} className="row row--spaced">
+                    <span className="h4">{t("availableSpecial")}</span>
+                    <span className="h4">{specialPoints}</span>
+                </div>
+                <div style={skillPoints<0 ? {color: 'var(--failure-color)'} : {}} className="row row--spaced">
+                    <span className="h4">{t("availableSkillPoints")}</span>
+                    <span className="h4">{skillPoints}</span>
+                </div>
+                <div style={specialtyPoints<0 ? {color: 'var(--failure-color)'} : {}} className="row row--spaced">
+                    <span className="h4">{t("availableSpecialtyPoints")}</span>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <span className="h4">{specialtyPoints}{extraSpecialties && x>0 ? ` (${t("any")})` : ''}</span>
+                        {extraSpecialties && x>0 && (
+                            <span className="h5">{x} ({extraSpecialties?.map(s => t(s)).join(', ')})</span>
+                        )}
+                    </div>
+                </div>
+            </div>}
+
             <div id="c-special">
                 {SPECIAL.map((specialName) => (
                     <SpecialStat
@@ -59,10 +80,6 @@ function StatTab() {
                     />
                 ))}
             </div>
-            {isEditing && <div style={specialPoints<0 ? {color: 'var(--failure-color)'} : {}} className="row row--spaced">
-                <span className="h4">{t("availableSpecial")}</span>
-                <span className="h4">{specialPoints}</span>
-            </div>}
 
             {/* Derived Stats */}
             <div className="row row--spaced">
@@ -80,11 +97,13 @@ function StatTab() {
                 </div>
             </div>
 
-            {/* Damage Reduction Display */}
-            <DamageReductionDisplay />
+            {!isEditing && <>
+                {/* Damage Reduction Display */}
+                <DamageReductionDisplay />
 
-            {/* Active Effects from Equipped Armor */}
-            <ActiveEffectsDisplay/>
+                {/* Active Effects from Equipped Armor */}
+                <ActiveEffectsDisplay/>
+            </>}
 
             {/* Skills Section */}
             {/* TODO: Could sort skills in different ways other than alphabetically */}
@@ -109,22 +128,6 @@ function StatTab() {
                     })}
                 </section>
             </div>
-
-            {isEditing && <>
-                <div style={skillPoints<0 ? {color: 'var(--failure-color)'} : {}} className="row row--spaced">
-                    <span className="h4">{t("availableSkillPoints")}</span>
-                    <span className="h4">{skillPoints}</span>
-                </div>
-                <div style={specialtyPoints<0 ? {color: 'var(--failure-color)'} : {}} className="row row--spaced">
-                    <span className="h4">{t("availableSpecialtyPoints")}</span>
-                    <div style={{display: 'flex', flexDirection: 'column'}}>
-                        <span className="h4">{specialtyPoints}{extraSpecialties && x>0 ? ` (${t("any")})` : ''}</span>
-                        {extraSpecialties && x>0 && (
-                            <span className="h5">{x} ({extraSpecialties?.map(s => t(s)).join(', ')})</span>
-                        )}
-                    </div>
-                </div>
-            </>}
 
             {/* Edit Stats Button */}
             <button className="button" onClick={() => setIsEditing(!isEditing)}>
