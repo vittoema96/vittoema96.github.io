@@ -19,7 +19,11 @@ function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
     const specialName = SKILL_TO_SPECIAL_MAP[skillId]
     const hasSpecialty = character.specialties.includes(skillId)
     const specialtyBonus = hasSpecialty ? 2 : 0
-    const skillMax = character.origin.skillMaxValue
+    const skillMax = character.traits.includes('traitGoodNatured')
+                             && !hasSpecialty && [
+                                 'speech', 'medicine', 'repair' , 'science', 'barter'
+                             ].includes(skillId) ?
+            character.origin.skillMaxValue - 2 : character.origin.skillMaxValue
     const skill = character.skills[skillId]
 
     // Handle skill changes
@@ -33,7 +37,6 @@ function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
 
         updateCharacter({
             skills: {
-                ...character.skills,
                 [skillId]: next
             }
         })
@@ -54,6 +57,16 @@ function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
 
         updateCharacter({ specialties: newSpecialties })
     }
+    let valueText;
+    if(isEditing){
+        let baseValue = `${character.skills[skillId] - specialtyBonus}`
+        if(specialtyBonus){
+            baseValue += `+${specialtyBonus}`;
+        }
+        valueText = baseValue + `/${skillMax}`
+    } else {
+        valueText = character.skills[skillId]
+    }
 
     return (
         <div
@@ -70,7 +83,9 @@ function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
             <span>
                 <i>[<span>{t(specialName)}</span>]</i>
             </span>
-            <span>{character.skills[skillId]}</span>
+            <span>{
+                valueText
+            }</span>
             <input
                 type="checkbox"
                 disabled={!isEditing}

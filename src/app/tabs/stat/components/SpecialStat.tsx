@@ -7,14 +7,14 @@ import {useCharacter} from "@/contexts/CharacterContext";
 
 interface SpecialStatProps {
     specialType: SpecialType;
-    editable?: boolean;
+    isEditing?: boolean;
     children?: React.ReactNode;
 }
 
 /**
  * Reusable SPECIAL stat display component
  */
-function SpecialStat({ specialType, editable = false, children }: Readonly<SpecialStatProps>) {
+function SpecialStat({ specialType, isEditing = false, children }: Readonly<SpecialStatProps>) {
     const { t } = useTranslation()
     const { updateCharacter, replenishLuck } = useCharacter()
     const { showConfirm } = usePopup()
@@ -22,7 +22,7 @@ function SpecialStat({ specialType, editable = false, children }: Readonly<Speci
 
     // Handle SPECIAL stat changes (click to increment in edit mode)
     const handleSpecialClick = (specialType: SpecialType) => {
-        if (!editable) {return}
+        if (!isEditing) {return}
         const current = character.special[specialType]
         const max = character.origin.specialMaxValues[specialType]
         const next = current < max ? current + 1 : 4 // Cycle back to 4 if at max
@@ -37,22 +37,25 @@ function SpecialStat({ specialType, editable = false, children }: Readonly<Speci
 
     // Handle current luck replenish
     const handleLuckReplenish = () => {
-        if (!editable) {
+        if (!isEditing) {
             showConfirm(t('replenishLuckConfirm'), replenishLuck)
         }
     }
 
     const style = {
-        cursor: editable ? 'pointer' : 'default'
+        cursor: isEditing ? 'pointer' : 'default'
     }
-
+    let valueText = character.special[specialType];
+    if(isEditing){
+        valueText += `/${character.origin.specialMaxValues[specialType]}`
+    }
     return (
         <div
             className="special"
             onClick={() => handleSpecialClick(specialType)}
             style={style}>
             <span className="special__name">{t(specialType)}</span>
-            <span className="special__value">{character.special[specialType]}</span>
+            <span className="special__value">{valueText}</span>
             {specialType === "luck" && (
                 <div
                     className="themed-svg sub-special"

@@ -20,7 +20,7 @@ function TraitList() {
             .filter(trait => trait.ORIGINS.includes(character.origin.id))
             .map(trait => trait.ID)
         setAllTraits(allTraits)
-        setSelectedTraits(character.traits.filter(trait => allTraits.includes(trait)))
+        setSelectedTraits(character.traits)
     }, [character.origin, character.traits])
 
 

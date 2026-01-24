@@ -92,6 +92,14 @@ export function CharacterProvider({ onReady, children}:
                 specialties: updates.specialties ?? prev?.specialties,
                 items: updates.items ?? prev?.items ?? [],
             }
+            if(updates.traits){
+                updatedCharacter.traits = [
+                    ...(prev?.traits?.filter(
+                        t => !dataManager.traits[t].ORIGINS.includes(updatedCharacter.origin),
+                    ) ?? []),
+                    ...(updates.traits ?? []),
+                ];
+            }
             const recalculateCurrentHp = updates.special?.endurance ||
                                                          updates.special?.luck ||
                                                          updates.level !== undefined

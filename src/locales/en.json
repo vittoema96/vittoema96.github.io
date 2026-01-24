@@ -6,6 +6,9 @@
     "luck": "Luck",
     "perception": "Perception",
     "strength": "Strength",
+    "availableSpecial": "S.P.E.C.I.A.L. Points",
+    "availableSkillPoints": "Skill Points",
+    "availableSpecialtyPoints": "Specialty Pt",
     "defense": "Defense",
     "initiative": "Initiative",
     "melee-damage": "Melee Damage",
@@ -1428,7 +1431,6 @@
 
     "traitExtraPerk": "Extra Perk",
     "traitExtraPerkBenefit": "The character gains an additional perk at level 1.",
-    "traitExtraPerkPenalty": "The character can choose only one trait instead of two.",
 
     "traitGoodNatured": "Good Natured",
     "traitGoodNaturedBenefit": "Tag two of either Speech, Medicine, Repair, Science, and Barter skills.",

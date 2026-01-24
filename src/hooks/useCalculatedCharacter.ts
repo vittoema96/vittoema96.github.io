@@ -49,13 +49,13 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         () => raw?.specialties ?? [],
         [raw?.specialties]
     )
-    const traits = useMemo(
-        () => raw?.traits ?? [],
-        [raw?.traits]
-    )
     const origin = useMemo(
         () => getOriginById(raw?.origin),
         [raw?.origin]
+    )
+    const traits = useMemo(
+        () => (raw?.traits ?? []).filter(trait => dataManager.traits[trait].ORIGINS.includes(origin.id)),
+        [raw?.traits, origin]
     )
 
 

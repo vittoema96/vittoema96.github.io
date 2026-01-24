@@ -204,5 +204,22 @@ export const ORIGINS = Object.freeze({
         needsSpecializedArmor: true,
         // characterSvg: "nightkin" TODO add nightkin svg
     }),
-    TRIBAL: createOrigin('tribal'),
+    TRIBAL: createOrigin('tribal', {
+        numberOfTraits: 2
+    }),
 });
+
+// TODO Trait implementations needed:
+//  - traitEducated: add as info or something (penalty: When failing a skill test using a skill other than a tag skill, the GM gains 1 AP)
+//  - traitHeavyHanded: implement (Melee attacks suffer complication on 19-20 instead of only 20)
+//  - traitSmallFrame: implement (Carry weight is 75 + (2.5 × STR) kg instead of 75 + (5 × STR) kg)
+//  - traitExtraPerk: implement (character gains an additional perk at level 1)
+//  - traitGrunt: implement (+1 DC damage with specific weapons, increased complication range with big guns/energy weapons)
+//  - traitHomeOnTheRange: implement (campfire rest mechanics, cannot gain well rested bonus)
+//  - traitTriggerDiscipline: implement (re-roll 1d20 on ranged attacks, reduce fire rate by 1)
+//  - traitBrahminBaron: implement (settlement mechanics for Brahmin)
+//  - traitMotherWasteland: implement (?) maybe add a button to decrease current luck (spend 1 Luck for insight)
+//  - traitNomad: implement (re-roll on Survival tests, increased difficulty/complication on Barter/Speech in settlements)
+//  - traitRiteOfPassage: implement (first Luck spend in scene has chance to not consume, cannot assist PCs without spending 1 AP)
+//  - traitToolsOfTheOldWorld: implement (use Survival instead of Repair/Science, increased complication range)
+//  - traitTheChosenOne: implement (first d20 purchase free on tribe quest tests, GM gains 2 AP when quest comes up)

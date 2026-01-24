@@ -47,7 +47,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'autoUpdate', // TODO investigate 'prompt' register type
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,csv}'],
           skipWaiting: true,
