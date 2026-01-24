@@ -42,14 +42,17 @@ export default defineConfig({
 
   // Ensure all assets are copied (only csv is non-standard)
   assetsInclude: ['**/*.csv'],
-  
+
   // Plugins
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,csv}']
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,csv}'],
+          skipWaiting: true,
+          clientsClaim: true,
+          cleanupOutdatedCaches: true
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
