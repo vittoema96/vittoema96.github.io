@@ -4,6 +4,7 @@ import { useCharacter } from '@/contexts/CharacterContext'
 import {ORIGINS} from "@/utils/characterSheet";
 import {OriginId} from "@/types";
 import TraitList from '@/app/tabs/data/components/TraitList.tsx';
+import PerkList from '@/app/tabs/data/components/PerkList.tsx';
 
 function DataTab() {
     const { t } = useTranslation()
@@ -107,7 +108,7 @@ function DataTab() {
 
             <TraitList />
             <br />
-            <span className="h2">Perks coming soon...</span>
+            <PerkList />
         </section>
     )
 }

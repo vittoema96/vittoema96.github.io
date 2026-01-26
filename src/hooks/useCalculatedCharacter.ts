@@ -186,6 +186,10 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         return raw?.mapCodes ?? []
     }, [raw?.mapCodes])
 
+    const perks = useMemo(() => {
+        return raw?.perks ?? []
+    }, [raw?.perks])
+
     return {
         // Passthrough (with defaults) values
         name,
@@ -197,6 +201,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         level,
         specialties,
         traits,
+        perks,
         mapCodes,
 
         // Calculated values
