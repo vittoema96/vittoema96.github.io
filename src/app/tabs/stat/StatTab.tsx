@@ -45,6 +45,9 @@ function StatTab() {
         );
     }, [character.specialties, extraSpecialties, x])
 
+    let pointsClasses = "row l-distributed"
+    pointsClasses += x <= 0 ? ' l-lastSmall' : ''
+
 
 
     return (
@@ -52,15 +55,15 @@ function StatTab() {
             {/* SPECIAL Stats */}
 
             {isEditing && <div className="inventory-list__controls">
-                <div style={specialPoints<0 ? {color: 'var(--failure-color)'} : {}} className="row l-distributed l-lastSmall">
+                <div style={specialPoints<0 ? {color: 'var(--failure-color)'} : {}} className={pointsClasses}>
                     <span className="h4">{t("availableSpecial")}</span>
                     <span className="h4">{specialPoints}</span>
                 </div>
-                <div style={skillPoints<0 ? {color: 'var(--failure-color)'} : {}} className="row l-distributed  l-lastSmall">
+                <div style={skillPoints<0 ? {color: 'var(--failure-color)'} : {}} className={pointsClasses}>
                     <span className="h4">{t("availableSkillPoints")}</span>
                     <span className="h4">{skillPoints}</span>
                 </div>
-                <div style={specialtyPoints<0 ? {color: 'var(--failure-color)'} : {}} className="row l-lastSmall">
+                <div style={specialtyPoints<0 ? {color: 'var(--failure-color)'} : {}} className={pointsClasses}>
                     <span className="h4">{t("availableSpecialtyPoints")}</span>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         <span className="h4">{specialtyPoints}{extraSpecialties && x>0 ? ` (${t("any")})` : ''}</span>

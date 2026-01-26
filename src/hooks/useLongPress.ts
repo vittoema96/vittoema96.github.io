@@ -29,7 +29,7 @@ export const useLongPress = (onLongPress, delay = 500) => {
         }
 
         longPressTimer.current = setTimeout(() => {
-            onLongPress()
+            onLongPress(e)
         }, delay)
     }, [onLongPress, delay])
 

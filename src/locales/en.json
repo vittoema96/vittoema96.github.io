@@ -1485,5 +1485,8 @@
     "traitMrHandyCircularSawBenefit": "Allows cutting objects and making melee attacks with the circular saw. The circular saw deals 3 DC Physical Piercing 1 damage.",
 
     "traitMrHandyPliers": "Pliers",
-    "traitMrHandyPliersBenefit": "Allows picking up and carrying objects weighing no more than 20 kg and manipulating surrounding objects. Can also make unarmed attacks (2 DC Physical damage) with the pliers."
+    "traitMrHandyPliersBenefit": "Allows picking up and carrying objects weighing no more than 20 kg and manipulating surrounding objects. Can also make unarmed attacks (2 DC Physical damage) with the pliers.",
+
+    "unlock" : "Unlock",
+    "deleteMarker": "Do you really want to delete the marker?"
 }

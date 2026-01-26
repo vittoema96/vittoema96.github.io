@@ -182,6 +182,10 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         return locationsDR;
     }, [items, origin.bodyParts, origin.hasRadiationImmunity, origin.isRobot])
 
+    const mapCodes = useMemo(() => {
+        return raw?.mapCodes ?? []
+    }, [raw?.mapCodes])
+
     return {
         // Passthrough (with defaults) values
         name,
@@ -193,6 +197,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         level,
         specialties,
         traits,
+        mapCodes,
 
         // Calculated values
         origin,

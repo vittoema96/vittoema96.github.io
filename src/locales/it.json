@@ -1484,5 +1484,8 @@
     "traitMrHandyCircularSawBenefit": "Permette di tagliare oggetti ed effettuare attacchi in mischia con la sega circolare. La sega circolare infligge 3 DC danni Fisici Penetranti 1.",
 
     "traitMrHandyPliers": "Tenaglia",
-    "traitMrHandyPliersBenefit": "Permette di raccogliere e trasportare oggetti che non pesino più di 20 kg e manipolare gli oggetti circostanti. È possibile anche effettuare attacchi senza armi (2 DC danni Fisici) con la tenaglia."
+    "traitMrHandyPliersBenefit": "Permette di raccogliere e trasportare oggetti che non pesino più di 20 kg e manipolare gli oggetti circostanti. È possibile anche effettuare attacchi senza armi (2 DC danni Fisici) con la tenaglia.",
+
+    "unlock": "Sblocca",
+    "deleteMarker": "Vuoi davvero eliminare l'indicatore?"
 }

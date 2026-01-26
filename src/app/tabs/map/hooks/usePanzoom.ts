@@ -2,11 +2,11 @@ import React, {useEffect, useRef} from 'react';
 import Panzoom, {PanzoomObject} from '@panzoom/panzoom';
 
 export const usePanzoom = () => {
-    const elementRef: React.RefObject<HTMLImageElement | null> = useRef(null);
+    const mapRef: React.RefObject<HTMLImageElement | null> = useRef(null);
     const panzoomRef: React.RefObject<PanzoomObject | null> = useRef(null);
 
     useEffect(() => {
-        const el = elementRef.current;
+        const el = mapRef.current;
         if (!el) { return }
 
         // Parent container for wheel events
@@ -17,8 +17,9 @@ export const usePanzoom = () => {
 
         // Initialize instance
         const panzoom = Panzoom(el, {
-            maxScale: 5,
+            maxScale: 9,
             contain: 'outside',
+            excludeClass: 'map-marker',
         });
 
         panzoomRef.current = panzoom;
@@ -48,5 +49,5 @@ export const usePanzoom = () => {
         };
     }, []);
 
-    return elementRef; // We only need to return the image ref!
+    return { mapRef, panzoomRef }; // We only need to return the image ref!
 };

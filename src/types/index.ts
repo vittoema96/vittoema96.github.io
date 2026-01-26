@@ -140,6 +140,7 @@ export interface Character extends Omit<RawCharacter, 'origin'> {
     specialties: SkillType[];
     items: CharacterItem[];
     traits: TraitId[];
+    mapCodes: string[];
 
     maxHp: number;
     currentHp: number;
@@ -165,6 +166,7 @@ export interface RawCharacter {
     specialties?: SkillType[] | undefined;
     items?: CharacterItem[] | undefined;
     traits?: TraitId[] | undefined;
+    mapCodes?: string[] | undefined;
 
     currentLuck?: number | undefined;
     currentHp?: number | undefined;
