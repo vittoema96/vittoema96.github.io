@@ -71,7 +71,7 @@ function MapTab() {
 
 
     const markerSize = "20px"
-    const markerTextThreshold = 4;
+    const markerTextThreshold = 2.5;
 
     const visibleMarkers = useMemo(() => {
         return markers.filter(m => character.mapCodes.includes(m.code))
@@ -90,12 +90,6 @@ function MapTab() {
             img.removeEventListener('panzoomchange', syncTransform as EventListener);
         };
     }, [mapRef]);
-
-    const handleMarkerClick = (marker: any) => {
-        showConfirm(t('deleteMarker'), () => {
-            updateCharacter({ mapCodes: character.mapCodes.filter(m => m !== marker.code) })
-        })
-    }
 
     const handleUnlockLocation = () => {
         if (code.length !== 4) {return}
@@ -148,7 +142,7 @@ function MapTab() {
                 </div>
             </div>
             <div className="row">
-                <input type="text" style={{textAlign: 'center' }} maxLength={4} placeholder="○○○○" onChange={(e) => setCode(e.target.value)} />
+                <input type="text" style={{textAlign: 'center' }} maxLength={4} placeholder="○○○○" onChange={(e) => setCode((e.target?.value ?? '').toLowerCase())} />
                 <button onClick={handleUnlockLocation}>{t("unlock")}</button>
             </div>
         </section>

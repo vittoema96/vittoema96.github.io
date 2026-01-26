@@ -20,6 +20,7 @@ export const usePanzoom = () => {
             maxScale: 9,
             contain: 'outside',
             excludeClass: 'map-marker',
+            step: 0.6
         });
 
         panzoomRef.current = panzoom;
