@@ -18,3 +18,14 @@ ammo38,other,ammo,0,1,0
 ammoFlare,other,ammo,0,1,1
 ammoSyringer,other,ammo,0,?,2
 ammoFusionCore,other,ammo,2,200,3
+ammo357Magnum,other,ammo,0,2,1
+ammo127mm,other,ammo,0,2,2
+ammo9mm,other,ammo,0,1,0
+ammo50Ball,other,ammo,0,1,3
+ammo25mmGrenade,other,ammo,0,8,4
+ammo40mmGrenade,other,ammo,0,20,4
+ammoAlienPowerCell,other,ammo,0,5,5
+ammoAlienPowerModule,other,ammo,0,10,6
+ammoArrow,other,ammo,0,2,1
+ammoCrossbowBolt,other,ammo,0,3,2
+ammoPlasmaCore,other,ammo,4,200,5
