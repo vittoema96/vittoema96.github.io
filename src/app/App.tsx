@@ -26,7 +26,7 @@ function App() {
         <div
             id="main"
             style={{
-                height: '100vh',
+                height: '100dvh',
                 display: 'flex',
                 flexDirection: 'column',
                 overflow: 'hidden' // Prevent body scroll, let main-container handle it
