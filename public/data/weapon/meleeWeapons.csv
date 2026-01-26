@@ -30,3 +30,16 @@ weaponKnuckles,weapon,unarmed,3,[],physical,-,rangeR,"[""qualityConcealed""]",0,
 weaponLeadPipe,weapon,meleeWeapons,3,[],physical,-,rangeR,[],1.5,15,0,na,"[""modSpikedLeadPipe"", ""modHeavyLeadPipe""]"
 weaponMrHandyCircularSaw,weapon,meleeWeapons,3,"[""effectPiercing:1""]",physical,-,rangeR,"[""qualityMrHandyOnly""]",0,50,2,na,[]
 weaponMrHandyPliers,weapon,unarmed,2,[],physical,-,rangeR,"[""qualityMrHandyOnly""]",0,10,1,na,[]
+weaponAssaultronBlade,weapon,meleeWeapons,4,"[""effectPiercing:1""]",physical,0,rangeR,"[]",1.5,50,3,na,"[""modElectrifiedBlade""]"
+weaponAutoAxe,weapon,meleeWeapons,5,"[""effectVicious""]",physical,0,rangeR,"[""qualityTwoHanded""]",10.0,100,3,na,"[""modElectrified"",""modBurning"",""modPoisoned"",""modTurbo""]"
+weaponBallisticFist,weapon,unarmed,6,"[""effectStun"",""effectVicious""]",physical,0,rangeR,"[""qualitySlowLoad""]",3.0,150,4,ammoShotgunShell,"[]"
+weaponBumperSword,weapon,meleeWeapons,6,"[""effectPiercing:1""]",physical,0,rangeR,"[""qualityRecoil:7"",""qualityTwoHanded""]",6.0,125,2,na,"[]"
+weaponCattleProd,weapon,meleeWeapons,7,"[""effectStun""]",energy,0,rangeR,"[]",1.5,90,4,na,"[]"
+weaponChainsaw,weapon,meleeWeapons,6,"[""effectVicious""]",physical,0,rangeR,"[""qualityTwoHanded""]",6.0,140,3,na,"[""modDualBar"",""modBowBar"",""modLongBowBar"",""modFlaming""]"
+weaponDeathTambo,weapon,unarmed,4,"[""effectPiercing:1""]",physical,0,rangeR,"[]",0.5,40,2,na,"[]"
+weaponDisplacerGlove,weapon,unarmed,6,"[""effectPiercing:1"",""effectStun""]",physical,0,rangeR,"[]",3.0,175,4,na,"[]"
+weaponGuitarSword,weapon,meleeWeapons,4,"[""effectPiercing:1""]",physical,0,rangeR,"[""qualityParry""]",1.5,45,3,na,"[]"
+weaponMrHandyBuzzBlade,weapon,meleeWeapons,4,"[""effectVicious""]",physical,0,rangeR,"[""qualityTwoHanded""]",5.0,50,2,na,"[]"
+weaponMultiPurposeAxe,weapon,meleeWeapons,5,"[]",physical,0,rangeR,"[""qualityTwoHanded""]",2.0,40,2,na,"[]"
+weaponProtonAxe,weapon,meleeWeapons,5,"[""effectPiercing:1""]",energy,0,rangeR,"[""qualitySurge""]",4.0,175,5,na,"[]"
+weaponWarDrum,weapon,meleeWeapons,5,"[""effectStun""]",physical,0,rangeR,"[""qualityTwoHanded""]",10.0,115,3,na,"[]"

@@ -42,7 +42,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
         allItems = allItems.filter(item => !dataManager.isUnacquirable(item.ID))
 
         // Filter by rarity (show items with rarity <= selected rarity)
-        if (rarityFilter) {
+        if (rarityFilter !== undefined) {
             allItems = allItems.filter(item => item.RARITY === rarityFilter)
         }
 
@@ -76,7 +76,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
 
             return nameA.localeCompare(nameB)
         })
-    }, [rarityFilter, categoryFilter, t, itemType])
+    }, [itemType, categoryFilter, rarityFilter, t])
     useEffect(() => {
         setSelectedItem(availableItems[0])
     }, [availableItems]);
@@ -191,6 +191,8 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                         <option value={2}>{t('rarity2')}</option>
                         <option value={3}>{t('rarity3')}</option>
                         <option value={4}>{t('rarity4')}</option>
+                        <option value={5}>{t('rarity5')}</option>
+                        <option value={6}>{t('rarity6')}</option>
                     </select>
                 </div>
 
