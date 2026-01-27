@@ -16,7 +16,7 @@ function AmmoRow({ characterItem }: Readonly<AmmoRowProps>) {
     const { sellItem, deleteItem } = useInventoryActions()
     const dataManager = getGameDatabase()
     const itemData = dataManager.getItem(characterItem.id)
-    if(!dataManager.isType(itemData, 'other') || itemData.CATEGORY !== 'ammo') {
+    if(!dataManager.isType(itemData, 'other')) {
         return null
     }
 
@@ -54,7 +54,7 @@ function AmmoRow({ characterItem }: Readonly<AmmoRowProps>) {
                         {t(itemData.ID)}
                     </div>
                     <div className="inventory-row__subinfo">
-                        {t('ammo')}
+                        {itemData.CATEGORY === 'ammo' ? t('ammo') : itemData.EFFECT}
                     </div>
                 </div>
 

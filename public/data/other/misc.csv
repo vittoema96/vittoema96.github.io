@@ -1,0 +1,20 @@
+ID,TYPE,CATEGORY,EFFECT,WEIGHT,COST,RARITY
+miscLocksmithTools,other,misc,"Riduce la difficoltà delle prove di Scassinare di 1 (fino a un minimo di 0). Dopo 3 complicazioni, gli attrezzi si rompono.",1,150,2
+miscDoctorBag,other,misc,"Riduce la difficoltà delle prove di Medicina di 1 (fino a un minimo di 0). Quando si prestano cure a lungo termine, si consuma se si ottengono due o più complicazioni insieme.",5,300,3
+miscPackBrahmin,other,misc,"Una mucca mutante capace di portare carichi pesanti, oltre che produrre latte e fertilizzante",0,200,3
+miscDeluxeToolbox,other,misc,Riduce la difficoltà delle prove di Riparare di 1 (fino a un minimo di 0). Si possono tentare delle prove di Riparare che solitamente richiederebbero un tavolo da lavoro aumentando la difficoltà di +1,10,150,3
+miscGeigerCounter,other,misc,Permette di effettuare una prova di PER + Sopravvivenza a difficoltà 1 per determinare se un’area è radioattiva e quanto,4,325,3
+miscBobbyPin,other,misc,Riduce la difficoltà delle prove di Scassinare di 1 (fino a un minimo di 1). Si rompe una forcina per ogni complicazione tirata.,0,1,0
+miscElectronicLockpick,other,misc,"Riduce la difficoltà delle prove di Scassinare di 2 (fino a un minimo di 0). Ignora la prima complicazione tirata, si rompe se vengono tirate due o più complicazioni insieme.",2,375,4
+miscFirstAidKit,other,misc,"Con un’azione di Primo Soccorso che ha avuto successo, guarisce +2 PS",2,200,2
+miscLantern,other,misc,"Genera una forte luce a distanza Ravvicinata, che diventa fioca a Media distanza",1.5,15,2
+miscHolotapePlayer,other,misc,Permette di leggere gli audio degli olonastri,1.5,250,2
+miscMultitool,other,misc,Riduce la difficoltà delle prove di Riparare di 1(fino a un minimo di 0),0.5,100,2
+miscHolotag,other,misc,Identifica i caduti.,0,5,2
+miscFlashlight,other,misc,Genera una forte luce su una singola zona a distanza Media. Chi la tiene decide quale zona è illuminata,1,100,3
+miscPipBoy,other,misc,Vedere descrizione,0,0,0
+miscRadio,other,misc,Capta e trasmette trasmissioni radio,1,75,2
+miscFlare,other,misc,Genera una forte luce a distanza Ravvicinata fino alla fine della scena in corso. Ha un unico utilizzo.,0,10,1
+miscTorch,other,misc,"Genera una forte luce a distanza Ravvicinata fino alla fine della scena corrente. Bisogna effettuare una prova di INT+ Sopravvivenza per accenderla con difficoltà 1, aumentata di +1 per ogni utilizzo precedente",0.5,10,1
+miscBackpackLarge,other,misc,Chi lo indossa aumenta il massimo peso Trasportabile di 5 x FOR,0,60,2
+miscBackpackSmall,other,misc,"Chi lo indossa aumenta il massimo peso Trasportabile di 2,5 x FOR",0,30,1

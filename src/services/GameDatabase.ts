@@ -53,9 +53,9 @@ export const ITEM_TYPE_MAP: Record<ItemType, ItemCategory[]> = {
         'syntheticArmor',
         'vaultTecSecurity'
     ],
-    aid: ['food', 'drinks', 'meds'],
+    aid: ['food', 'drinks', 'meds', 'misc'],
     mod: ['mods'], // TODO HAVE to decide how to handle mod categories
-    other: ['ammo'],
+    other: ['ammo', 'misc'],
 };
 
 // 3. The Service Object

@@ -114,7 +114,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
 
     const handleDiceClick = (index: number) => {
         // After roll: only allow clicking on rolled dice (not '?')
-        if (hasRolled && diceValues[index] === '?') {
+        if (hasRolled && (diceValues[index] === '?' || diceRerolled[index])) {
             return // Can't select unrolled dice
         }
 

@@ -1,0 +1,4 @@
+ID,TYPE,CATEGORY,EFFECT,WEIGHT,COST,RARITY
+aidStimpakDiffuser,aid,misc,Ripristina 4 PS a distanza Ravvicinata,0,100,5
+aidRobotRepairKit,aid,misc,Ripristina 4 PS a un robot o a una Armatura Atomica,0.5,48,2
+aidStealthBoy,aid,misc,Invisibilità (vedere descrizione),0.5,100,3

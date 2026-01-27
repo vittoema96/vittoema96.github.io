@@ -252,7 +252,7 @@ function InventoryList({
             const uniqueKey = getItemKey(characterItem)
 
             // Ammo items use simple row (no accordion)
-            if (itemData.CATEGORY === 'ammo') {
+            if (itemData.TYPE === 'other') {
                 return (
                     <AmmoRow
                         key={uniqueKey}

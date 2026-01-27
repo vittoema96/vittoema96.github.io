@@ -16,7 +16,7 @@ interface AmmoCardProps {
 function AmmoCard({ characterItem, onSell, onDelete }: Readonly<AmmoCardProps>) {
     const dataManager = getGameDatabase()
     const itemData = dataManager.getItem(characterItem.id)
-    if (!dataManager.isType(itemData, 'other') || itemData.CATEGORY !== 'ammo') {
+    if (!dataManager.isType(itemData, 'other')) {
         console.error(`Ammo data not found for ID: ${characterItem.id}`);
         return null;
     }

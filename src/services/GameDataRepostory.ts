@@ -68,9 +68,9 @@ export const GameDataRepository = {
                 'data/apparel/armor.csv', 'data/apparel/clothing.csv', 'data/apparel/robotParts.csv'
             ]),
             this.mergeCSVs<AidItem>([
-                'data/aid/food.csv', 'data/aid/drinks.csv', 'data/aid/meds.csv'
+                'data/aid/food.csv', 'data/aid/drinks.csv', 'data/aid/meds.csv', 'data/aid/misc.csv'
             ]),
-            this.mergeCSVs<GenericItem>(['data/other/ammo.csv']),
+            this.mergeCSVs<GenericItem>(['data/other/ammo.csv', 'data/other/misc.csv']),
             this.mergeCSVs<ModItem>([
                 'data/mods/smallGunMods.csv', 'data/mods/bigGunMods.csv',
                 'data/mods/energyWeaponMods.csv', 'data/mods/meleeWeaponMods.csv',

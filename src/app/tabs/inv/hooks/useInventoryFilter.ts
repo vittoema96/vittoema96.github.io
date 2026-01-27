@@ -23,7 +23,7 @@ export const useInventoryFilter = (itemType: ItemType) => {
             return itemData?.CATEGORY !== 'robotPart' || character.origin === ORIGINS.MR_HANDY;
         })
 
-        items = addSpecialWeaponItems(items, dataManager)
+        items = addSpecialWeaponItems(items, character.origin.isRobot)
 
         return items
     }, [character.items, character.origin, itemType])
@@ -32,7 +32,8 @@ export const useInventoryFilter = (itemType: ItemType) => {
 /**
  * Add special weapon items (unarmed strike, gun bash)
  */
-const addSpecialWeaponItems = (items: CharacterItem[], dataManager) => {
+const addSpecialWeaponItems = (items: CharacterItem[], isRobot: boolean) => {
+    const dataManager = getGameDatabase()
     const resultItems: CharacterItem[] = [...items]
 
     const addSpecialItem = (itemToCheck: CharacterItem, specialItemId: string, condition: (item: CharacterItem) => boolean) => {
@@ -78,12 +79,14 @@ const addSpecialWeaponItems = (items: CharacterItem[], dataManager) => {
 
 
     // Everyone has unarmed strike
-    resultItems.push({
-        id: 'weaponUnarmedStrike',
-        quantity: 1,
-        mods: [],
-        equipped: false
-    })
+    if(!isRobot){
+        resultItems.push({
+            id: 'weaponUnarmedStrike',
+            quantity: 1,
+            mods: [],
+            equipped: false,
+        });
+    }
 
     // Cycle over character items and add/update specialItems
     resultItems.forEach(item => {
