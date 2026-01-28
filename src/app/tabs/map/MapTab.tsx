@@ -6,7 +6,7 @@ import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import { useLongPress } from '@/hooks/useLongPress.ts';
 import { useTranslation } from 'react-i18next';
 
-const SHOW_ALL = true; // For debug only
+const SHOW_ALL = false; // For debug only
 const markers = [
     { id: `Goodsprings`,
         code: 'g00d', x: 34, y: 57 },
@@ -95,7 +95,9 @@ const markers = [
     { id: `Crimson Caravan Company`,
         code: "cc4c", x: 54.5, y: 23.5 },
     { id: `Old Mormon Fort`,
-        code: "0mm4", x: 51.7, y: 23.5 }
+        code: "0mm4", x: 51.7, y: 23.5 },
+    { id: `King's School of Impersonation`,
+        code: "ks01", x: 50.5, y: 25 }
     // Removed:
     // Calville Bay,
     // El Dorado Substation,
@@ -186,7 +188,7 @@ function MapTab() {
                                     pointerEvents: 'none',
                                     textAlign: 'center',
                                     width: 'max-content',
-                                    maxWidth: '110px',
+                                    maxWidth: '140px',
                                     whiteSpace: 'normal',
                                     wordWrap: 'break-word'
                                 }}>{marker.id}</span>}
