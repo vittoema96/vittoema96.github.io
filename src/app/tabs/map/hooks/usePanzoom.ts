@@ -17,7 +17,7 @@ export const usePanzoom = () => {
 
         // Initialize instance
         const panzoom = Panzoom(el, {
-            maxScale: 9,
+            maxScale: 15,
             contain: 'outside',
             excludeClass: 'map-marker',
             step: 0.6

@@ -6,6 +6,7 @@ import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import { useLongPress } from '@/hooks/useLongPress.ts';
 import { useTranslation } from 'react-i18next';
 
+const SHOW_ALL = true; // For debug only
 const markers = [
     { id: `Goodsprings`,
         code: 'g00d', x: 34, y: 57 },
@@ -50,7 +51,58 @@ const markers = [
     { id: `Camp Searchlight`,
         code: 'cmsl', x: 64.3, y: 88 },
     { id: `Nellis Air Force Base`,
-        code: 'n4fb', x: 67, y: 17 }
+        code: 'n4fb', x: 67, y: 17 },
+
+    { id: `Freeside East Gate`,
+        code: "fr3g", x: 52.7, y: 25.2 },
+    { id: `Freeside North Gate`,
+        code: "frng", x: 53, y: 22.5 },
+    { id: `Westside West Entrance`,
+        code: "w3w3", x: 43, y: 22.2 },
+    { id: `Westside South Entrance`,
+        code: "w3s3", x: 44.4, y: 23.6 },
+
+    { id: `Quarry Junction`,
+        code: 'quju', x: 45, y: 53 },
+    { id: `HELIOS One`,
+        code: "h3l1", x: 62.5, y: 58.2 },
+    { id: `Camp Golf`,
+        code: "c4g0", x: 64.7, y: 37.3 },
+    { id: `Camp Forlorn Hope`,
+        code: "c4fh", x: 74.7, y: 61.3 },
+    { id: `Vault 22`,
+        code: "vt22", x: 35, y: 21 },
+    { id: `Vault 3`,
+        code: "vt03", x: 44, y: 37.5 },
+    { id: `Vault 34`,
+        code: "vt34", x: 62.5, y: 31},
+    { id: `Vault 11`,
+        code: "vt11", x: 64.5, y: 50.7 },
+    { id: `Vault 19`,
+        code: "vt19", x: 42.1, y: 45.7 },
+    { id: `Vault 21`,
+        code: "vt21", x: 48, y: 30 },
+    { id: `North Vegas Square`,
+        code: "nv3s", x: 51.2, y: 21.7 },
+    { id: `The Thorn`,
+        code: "t3th", x: 44.4, y: 25 },
+    { id: `Legate's Camp`,
+        code: "l3g4", x: 89.1, y: 51.8 },
+    { id: `REPCONN Test Site`,
+        code: "r3tt", x: 53.3, y: 67 },
+    { id: `REPCONN Headquarters`,
+        code: "r3h3", x: 56.3, y: 44.3 },
+    { id: `Crimson Caravan Company`,
+        code: "cc4c", x: 54.5, y: 23.5 },
+    { id: `Old Mormon Fort`,
+        code: "0mm4", x: 51.7, y: 23.5 }
+    // Removed:
+    // Calville Bay,
+    // El Dorado Substation,
+    // Brooks Tumbleweed Ranch,
+    // Ivanpah Dry Lake,
+    // Crescent Canyon
+    // The casinos and freeside places (i will provide a strip map separate)
 ]
 
 
@@ -70,11 +122,11 @@ function MapTab() {
     })
 
 
-    const markerSize = "20px"
+    const markerSizePx = "20px"
     const markerTextThreshold = 2.5;
 
     const visibleMarkers = useMemo(() => {
-        return markers.filter(m => character.mapCodes.includes(m.code))
+        return markers.filter(m => SHOW_ALL || character.mapCodes.includes(m.code))
     }, [character.mapCodes])
 
     // Unscales markers
@@ -125,18 +177,23 @@ function MapTab() {
                             {...longPressHandlers}
                             onContextMenu={(e) => e.preventDefault()}
                         >
-                            {scale > markerTextThreshold &&<span style={{
-                                position: 'absolute',
-                                bottom: '100%',  // Position above the icon
-                                left: '50%',
-                                transform: 'translateX(-50%)',  // Center horizontally
-                                pointerEvents: 'none',
-                                textAlign: 'center',
-                            }}>{marker.id}</span>}
+                            {scale > markerTextThreshold &&<span
+                                style={{
+                                    position: 'absolute',
+                                    bottom: '100%',  // Position above the icon
+                                    left: '50%',
+                                    transform: 'translateX(-50%)',  // Center horizontally
+                                    pointerEvents: 'none',
+                                    textAlign: 'center',
+                                    width: 'max-content',
+                                    maxWidth: '110px',
+                                    whiteSpace: 'normal',
+                                    wordWrap: 'break-word'
+                                }}>{marker.id}</span>}
                             <div className="themed-svg"
                                  id={marker.code}
                                  data-icon="caps"
-                                 style={{ width: markerSize, height: markerSize }} /> {/*<MarkerIcon />*/}
+                                 style={{ width: markerSizePx, height: markerSizePx }} /> {/*<MarkerIcon />*/}
                         </div>
                     ))}
                 </div>
