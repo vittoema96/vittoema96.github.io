@@ -216,7 +216,7 @@ export type ItemType = 'weapon' | 'apparel' | 'aid' | 'other' | 'mod';
 export type WeaponCategories = 'smallGuns' | 'bigGuns' | 'energyWeapons' | 'meleeWeapons' | 'explosives' | 'throwing' | 'unarmed';
 export type ApparelCategories = 'clothing' | 'headgear' | 'outfit' | 'raiderArmor' | 'leatherArmor' | 'metalArmor' | 'combatArmor' | 'syntheticArmor' | 'vaultTecSecurity' | 'robotPart';
 export type AidCategories = 'food' | 'drinks' | 'meds';
-export type OtherCategories = 'ammo' | 'mods' | 'misc';
+export type OtherCategories = 'ammo' | 'mods' | 'misc' | 'junk';
 export type ItemCategory = WeaponCategories | ApparelCategories | AidCategories | OtherCategories;
 export type Range = 'rangeR' | 'rangeC' | 'rangeM' | 'rangeL' | 'rangeE';
 

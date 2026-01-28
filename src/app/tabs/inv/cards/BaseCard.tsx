@@ -19,7 +19,7 @@ interface ActionDefinition {
 
 interface BaseCardProps {
     characterItem: CharacterItem,
-    action: ActionDefinition,
+    action: ActionDefinition | undefined,
 
     className?: string,
 
@@ -28,15 +28,16 @@ interface BaseCardProps {
 
 function BaseCard({
     characterItem,
-    action: {
-        icon: buttonIcon,
-        onClick: onButtonClick,
-        isChecked: isButtonChecked = () => true,
-        isDisabled: isButtonDisabled = () => false,
-    },
+    action,
     contentRenderer: ContentRenderer,
     className = '',
 }: Readonly<BaseCardProps>) {
+    const {
+        icon: buttonIcon,
+        onClick: onButtonClick = () => {},
+        isChecked: isButtonChecked = () => true,
+        isDisabled: isButtonDisabled = () => false,
+    } = action || {};
     const { t } = useTranslation();
     const [showDescription, setShowDescription] = useState(false);
     const { showModifyItemPopup } = usePopup()
@@ -109,7 +110,7 @@ function BaseCard({
             </div>
 
             {/* Card Controls */}
-            <div className="row card-controls">
+            {action && (<div className="row card-controls">
                 <input
                     type="checkbox"
                     className={`themed-svg button-card`}
@@ -133,7 +134,7 @@ function BaseCard({
                 >
                     <i className="fas fa-info-circle"></i>
                 </button>
-            </div>
+            </div>)}
 
             {/* Description Overlay - shown when toggled */}
             {showDescription && (

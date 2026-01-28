@@ -84,6 +84,9 @@ This application is an installable PWA.
 
 ---
 
+## Fixes
+weaponArcWelder uses ammoFusionCell as ammoElectronChargePack is nowhere to be found on manuals.
+
 ## 🛠️ Development
 
 If you want to mess with the code (good luck lol):

@@ -7,7 +7,7 @@ weaponGammaPistol,weapon,energyWeapons,3,"[""effectPiercing:1"",""effectStun""]"
 weaponMrHandyLaserEmitter,weapon,energyWeapons,4,"[""effectPiercing:1""]",energy,2,rangeC,"[""qualityCloseQuarters"", ""qualityMrHandyOnly""]",0,69,2,ammoFusionCell,[]
 weaponAlienAtomizer,weapon,energyWeapons,6,"[""effectVicious""]",energy,3,rangeC,"[""qualityCloseQuarters"",""qualityReliable""]",1.5,1536,5,ammoAlienPowerCell,"[]"
 weaponAlienDisintegrator,weapon,energyWeapons,8,"[""effectVicious""]",energy,2,rangeM,"[""qualityTwoHanded"",""qualityReliable""]",3.5,921,5,ammoAlienPowerCell,"[]"
-weaponArcWelder,weapon,energyWeapons,3,"[""effectStun""]",energy,4,rangeC,"[""qualitySurge"",""qualityTwoHanded""]",7.5,370,4,ammoElectronChargePack,"[]"
+weaponArcWelder,weapon,energyWeapons,3,"[""effectStun""]",energy,4,rangeC,"[""qualitySurge"",""qualityTwoHanded""]",7.5,370,4,ammoFusionCell,"[]"
 weaponAssaultronHead,weapon,energyWeapons,5,"[""effectPiercing:1""]",energy,0,rangeC,"[]",4.0,500,3,ammoFusionCell,"[""modCapacitorMk3"",""modCapacitorMk4"",""modCapacitorMk5"",""modCapacitorMk6""]"
 weaponMicrowaveEmitter,weapon,energyWeapons,6,"[""effectPersistent"",""effectPiercing:3""]",energy,1,rangeM,"[""qualityTwoHanded""]",4.0,500,5,ammoFusionCell,"[]"
 weaponTeslaRifle,weapon,energyWeapons,5,"[""effectArc""]",energy,2,rangeM,"[""qualityTwoHanded""]",4.0,180,4,ammoFusionCell,"[""modAutomaticBarrel"",""modSplitterBarrel"",""modImprovedBarrel"",""modAmplifiedBeamSplitter"",""modFineTunedBeamFocuser"",""modQuantumGyroCompensatingLens"",""modReflexSight""]"

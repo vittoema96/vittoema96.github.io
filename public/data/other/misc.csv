@@ -18,3 +18,6 @@ miscFlare,other,misc,Genera una forte luce a distanza Ravvicinata fino alla fine
 miscTorch,other,misc,"Genera una forte luce a distanza Ravvicinata fino alla fine della scena corrente. Bisogna effettuare una prova di INT+ Sopravvivenza per accenderla con difficoltà 1, aumentata di +1 per ogni utilizzo precedente",0.5,10,1
 miscBackpackLarge,other,misc,Chi lo indossa aumenta il massimo peso Trasportabile di 5 x FOR,0,60,2
 miscBackpackSmall,other,misc,"Chi lo indossa aumenta il massimo peso Trasportabile di 2,5 x FOR",0,30,1
+miscCommonJunk,other,junk,Utilizzati per creare o riparare oggetti semplici,0.5,1,0
+miscUncommonJunk,other,junk,Utilizzati per creare o riparare oggetti avanzati,0.5,3,1
+miscRareJunk,other,junk,Utilizzati per creare o riparare oggetti complessi,0.5,5,2

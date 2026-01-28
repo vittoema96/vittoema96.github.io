@@ -113,13 +113,15 @@ function InventoryRow({
 
         // Aid - show effect
         if (dataManager.isType(itemData, "aid")) {
-            return itemData.EFFECT || t('aid')
+            return itemData.EFFECT || t(itemData.CATEGORY)
         }
 
         // Ammo - show type
-        if (itemData.CATEGORY === 'ammo') {
-            return t('ammo')
+        if (dataManager.isType(itemData, "other")) {
+            return itemData.EFFECT || t(itemData.CATEGORY)
         }
+
+        // TODO add all info
 
         return "ERROR"
     }
@@ -154,13 +156,10 @@ function InventoryRow({
         <div
             className={`inventory-row ${isExpanded ? 'expanded' : ''}`}
             {...longPressHandlers}
-            onContextMenu={(e) => e.preventDefault()}
+            onContextMenu={e => e.preventDefault()}
         >
             {/* Compact Row Header */}
-            <div
-                className="inventory-row__header"
-                onClick={handleRowClick}
-            >
+            <div className="inventory-row__header" onClick={handleRowClick}>
                 <div className="inventory-row__icon themed-svg" data-icon={getItemIcon()}></div>
 
                 <div className="inventory-row__info">
@@ -168,35 +167,32 @@ function InventoryRow({
                         <FitText center={false} wrap={true} maxSize={15}>
                             {itemName}
                         </FitText>
-                        {/*<span className={`inventory-row__name-text ${nameSizeClass}`}>
-                            {itemName}
-                        </span>*/}
                         {badges.length > 0 && (
                             <span className="inventory-row__badges">
-                                {badges.map((badge, index) => (
+                                {badges.map(badge => (
                                     <span
-                                        key={index}
+                                        key={characterItem.id + badge.icon}
                                         className={`inventory-row__badge badge-${badge.color}`}
                                         title={badge.icon ? t('equipped') : ''}
                                     >
-                                        {badge.icon ? (
-                                            <div className="themed-svg" data-icon={badge.icon}></div>
-                                        ) : (
-                                            badge.label
-                                        )}
+                                        <div className="themed-svg" data-icon={badge.icon}></div>
                                     </span>
                                 ))}
                             </span>
                         )}
                     </div>
                     <div className="inventory-row__subinfo">
-                        <FitText center={false} wrap={true} minSize={8} maxSize={10}>{getItemSubInfo()}</FitText>
+                        <FitText center={false} wrap={true} minSize={8} maxSize={10}>
+                            {getItemSubInfo()}
+                        </FitText>
                     </div>
                 </div>
 
-                {quantity && <div className="inventory-row__quantity">
-                    <span>{quantity}x</span>
-                </div>}
+                {quantity > 0 && (
+                    <div className="inventory-row__quantity">
+                        <span>{quantity}x</span>
+                    </div>
+                )}
 
                 <div className="inventory-row__expand">
                     <i className={`fas fa-chevron-${isExpanded ? 'up' : 'down'}`}></i>
@@ -207,25 +203,26 @@ function InventoryRow({
             <div
                 className="inventory-row__content"
                 style={{
-                    maxHeight: isExpanded ? `${contentHeight}px` : '0px'
+                    maxHeight: isExpanded ? `${contentHeight}px` : '0px',
                 }}
             >
                 <div ref={contentRef} className="inventory-row__card">
-                    {isExpanded && CardComponent && (
-                        <CardComponent characterItem={characterItem}/>
-                    )}
+                    {isExpanded && CardComponent && <CardComponent characterItem={characterItem} />}
                 </div>
             </div>
 
             {/* Sell/Delete Overlay - shown on long press (only for items that can be sold/deleted) */}
             {canSellDelete && (
-                <div className={`card-overlay ${showOverlay ? '' : 'hidden'}`} onClick={handleHideOverlay}>
+                <div
+                    className={`card-overlay ${showOverlay ? '' : 'hidden'}`}
+                    onClick={handleHideOverlay}
+                >
                     <button
                         className="popup__button-confirm"
                         data-icon="caps"
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            handleSell()
+                        onClick={e => {
+                            e.stopPropagation();
+                            handleSell();
                         }}
                         title={t('sell')}
                     >
@@ -233,9 +230,9 @@ function InventoryRow({
                     </button>
                     <button
                         className="delete-button"
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            handleDelete()
+                        onClick={e => {
+                            e.stopPropagation();
+                            handleDelete();
                         }}
                         title={t('delete')}
                     >
@@ -244,7 +241,7 @@ function InventoryRow({
                 </div>
             )}
         </div>
-    )
+    );
 }
 
 export default InventoryRow

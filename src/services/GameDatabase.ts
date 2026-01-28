@@ -55,7 +55,7 @@ export const ITEM_TYPE_MAP: Record<ItemType, ItemCategory[]> = {
     ],
     aid: ['food', 'drinks', 'meds', 'misc'],
     mod: ['mods'], // TODO HAVE to decide how to handle mod categories
-    other: ['ammo', 'misc'],
+    other: ['ammo', 'misc', 'junk'],
 };
 
 // 3. The Service Object

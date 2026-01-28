@@ -639,6 +639,7 @@
   "drinkWatermelonJuice": "Watermelon Juice",
   "drinkWhiskey": "Whiskey",
   "drinkWine": "Wine",
+  "drinkSunsetSarsaparilla": "Sunset Sarsaparilla",
   "drinkBeerDescription": "One of the oldest beverages created by humans, beer is a carbonated alcoholic drink made from fermented cereal grains, popular pre-War to relax after a hard day's work or during a sunny afternoon. Ale, beer, lager, stout, and a variety of similar beverages all have distinct combinations of ingredients, and each have their own proponents, but the effects are largely the same. You receive 1 cap upon opening and drinking a bottle of beer.",
   "drinkBloodPackDescription": "A sealed, sterile plastic bag of preserved blood used pre-War for blood transfusions. Not the most conventional of beverages, but useful if you're desperate. Some people come to like the taste.",
   "drinkBourbonDescription": "A distinctly American type of whiskey, bourbon is a barrel-aged, distilled spirit made mainly of corn. Pre-War, those who favored it tended to get a reputation as being tough or rugged.",
@@ -1866,5 +1867,16 @@
   "aidRobotRepairKit": "Robot Repair Kit",
   "aidRobotRepairKitDescription": "This equipment helps repair and reactivate damaged robots and Power Armor. Most robots are equipped with self-diagnostic and repair protocols that activate when the robot repairs itself or is repaired by someone else. The kit serves to initiate and accelerate these protocols.\n\nUsage: A robot repair kit can be used in two ways: with the Take Substance minor action to immediately restore 4 HP or treat an injury, or it can be activated as part of a First Aid action to heal 4 HP or treat an injury, in addition to any other healing. Like all repairs performed on a robot or Power Armor, these are done with the Repair skill rather than Medicine, but the actions are used in the same way.",
   "aidStealthBoy": "Stealth Boy",
-  "aidStealthBoyDescription": "One of the most interesting technologies developed before the War, the Stealth Boy 3001 is a compact device that generates a modular refraction field that transmits light from one side to the other, resulting in near-perfect camouflage—ranging from a sort of distorted transparency when moving to total invisibility when standing still. The Stealth Boy was reverse-engineered from a Chinese Stealth Armor captured during the War. Although the technology was never perfected (even the most advanced Stealth Boy drains its battery in about 30 seconds), it was deemed reliable enough for use. It has been noted that prolonged use of Stealth Boy technology causes permanent neurological changes resulting in paranoid delusions, hallucinations, and other altered mental states.\n\nUsage: The Stealth Boy is activated with the Interact minor action. Once active, it functions for three turns: the current one, the next, and the one after that; after this time, it stops working and becomes junk. When turned on, the Stealth Boy makes the character and their equipment almost entirely invisible. Enemies increase the difficulty of all checks to spot them by 2; if they search carefully enough, they can still hear or sense their presence in other ways. Additionally, even once seen, the invisibility increases Defense by +2."
+  "aidStealthBoyDescription": "One of the most interesting technologies developed before the War, the Stealth Boy 3001 is a compact device that generates a modular refraction field that transmits light from one side to the other, resulting in near-perfect camouflage—ranging from a sort of distorted transparency when moving to total invisibility when standing still. The Stealth Boy was reverse-engineered from a Chinese Stealth Armor captured during the War. Although the technology was never perfected (even the most advanced Stealth Boy drains its battery in about 30 seconds), it was deemed reliable enough for use. It has been noted that prolonged use of Stealth Boy technology causes permanent neurological changes resulting in paranoid delusions, hallucinations, and other altered mental states.\n\nUsage: The Stealth Boy is activated with the Interact minor action. Once active, it functions for three turns: the current one, the next, and the one after that; after this time, it stops working and becomes junk. When turned on, the Stealth Boy makes the character and their equipment almost entirely invisible. Enemies increase the difficulty of all checks to spot them by 2; if they search carefully enough, they can still hear or sense their presence in other ways. Additionally, even once seen, the invisibility increases Defense by +2.",
+
+  "ammoUsedBy": "Ammo used by",
+  "misc": "Miscellaneous",
+  "junk": "Junk Materials",
+  "miscCommonJunk": "Common Junk Materials",
+  "miscCommonJunkDescription": "",
+  "miscUncommonJunk": "Uncommon Junk Materials",
+  "miscUncommonJunkDescription": "",
+  "miscRareJunk": "Rare Junk Materials",
+  "miscRareJunkDescription": ""
+
 }

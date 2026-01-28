@@ -2,11 +2,10 @@ import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { usePopup } from '@/contexts/popup/PopupContext.tsx'
 import InventoryRow from './InventoryRow.tsx'
-import AmmoRow from './AmmoRow.tsx'
 import WeaponCard from '../cards/weapon/WeaponCard.tsx'
 import ApparelCard from '../cards/apparel/ApparelCard.tsx'
 import AidCard from '../cards/aid/AidCard.tsx'
-import AmmoCard from '../cards/ammo/AmmoCard.tsx'
+import OtherCard from '../cards/ammo/OtherCard.tsx'
 import { getItemKey } from '@/utils/itemUtils.ts'
 import {CharacterItem, ItemCategory, ItemType} from "@/types";
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
@@ -88,7 +87,7 @@ function InventoryList({
             return AidCard
         }
         if(dataManager.isType(itemData, 'other')) {
-            return AmmoCard
+            return OtherCard
         }
         return null
     }
@@ -250,16 +249,6 @@ function InventoryList({
                 return null
             }
             const uniqueKey = getItemKey(characterItem)
-
-            // Ammo items use simple row (no accordion)
-            if (itemData.TYPE === 'other') {
-                return (
-                    <AmmoRow
-                        key={uniqueKey}
-                        characterItem={characterItem}
-                    />
-                )
-            }
 
             // All other items use accordion row
             return (

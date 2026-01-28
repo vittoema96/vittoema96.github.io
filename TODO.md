@@ -7,12 +7,11 @@
 - [ ] **qualityThrown choice** - Add choice mechanism for thrown weapons
 - [ ] **Weapon mods** - Finish implementing mods (some effects currently do nothing) 
 - [ ] **Consumable items** - Proper aid item consumption mechanics
-- [ ] **Body part targeting** - Add to d6 popup layout
+- [ ] **Traits** - Add traits and abilities integration (gifted, good natured, extra perk, mr handy weapons already implemented)
+- [ ] **Perks** - Add perks integration (all are present but effects not implemented)
+- [ ] **Effects and Qualities** - Add missing effects and qualities (DLC effects and robot effects)
 
 ### UI/UX Fixes
-- [ ] **Fix close popup button position** - Currently misaligned
-- [ ] **Add current luck/ammo to popups** - Show in d20/d6 popups
-- [ ] **D6 icons secondary color** - Visual improvement
 - [ ] **Remove unrolled dice** - Make the change smooth
 - [ ] **Free rerolls display** - Show in both d20 and d6 popups
 
@@ -22,16 +21,14 @@
 - [ ] **Armor dataset** - Complete armor data implementation (names for synthetic pieces + power armor)
 
 ### Map System
-- [ ] **Map markers** - Add interactive markers
-- [ ] **Unlockable markers** - Progression-based reveals
+- [ ] **Map markers** - Improve + add all markers
 - [ ] **Multiple map types** - Different map variants
 - [ ] **General map improvements** - Polish and features
 
-### Technical Improvements
-- [ ] **Performance** - Lazy loading for data files
-- [ ] **Testing** - Add unit tests for core functionality
-
 ## 🔮 Low Priority / Future
+
+### Syringer ammo
+Syringer does not have all ammo implemented
 
 ### Polish & Enhancement
 - [ ] **Image optimization** - Serve images as WebP instead of JPG
@@ -43,25 +40,10 @@
 ### Language & Accessibility
 - [ ] **Complete English translations** - Finish incomplete translations
 - [ ] **Remove hardcoded text** - Any remaining Italian/English phrases
-- [ ] **ARIA labels** - Accessibility improvements
 - [ ] **Keyboard navigation** - Full keyboard support
-- [ ] **Screen reader support** - Better accessibility
 
 ### Advanced Features
 - [ ] **Character progression** - Leveling system, perk selection
 - [ ] **Multiple characters** - Save slots, character switching
 - [ ] **Campaign management** - Multiple campaigns/sessions
 - [ ] **Statistics tracking** - Roll history, character stats
-- [ ] **Data import/export** - Character sharing, backup/restore
-
-### Technical Debt
-- [ ] **TypeScript migration** - 
-- [ ] **Component system** - Reusable UI components
-- [ ] **Bundle analysis** - Optimize bundle size and loading
-- [ ] **Security audit** - CSP, input validation, XSS protection
-- [ ] **Performance monitoring** - Add metrics and monitoring
-
----
-
-**Current focus**: Game features (qualityAccurate, weapon mods, consumables)
-**Next up**: UI polish and armor system
