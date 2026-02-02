@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next'
 import { usePopup } from '@/contexts/popup/PopupContext'
 import { useDialog } from '@/hooks/useDialog'
 import { hasEnoughAmmo } from '@/utils/itemUtils';
-import { CharacterItem, SkillType, SPECIAL, SpecialType } from '@/types';
+import { CharacterItem, SkillType, SPECIAL, SpecialType, WeaponItem } from '@/types';
 import {SKILL_TO_SPECIAL_MAP} from "@/utils/characterSheet";
-import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { FitText } from '@/app/FitText.tsx';
 
 
@@ -21,6 +21,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
     const dialogRef = useRef<HTMLDialogElement>(null)
     const { character, updateCharacter } = useCharacter()
     const { showD6Popup } = usePopup()
+    const dataManager = getGameDatabase()
 
     // Get weapon data with mods applied
     const itemData = usingItem
@@ -192,6 +193,14 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
 
     if (!skillId) {return null}
 
+    function toggleAiming(checked: boolean) {
+        if(dataManager.isType(itemData, "weapon")
+              && (itemData as WeaponItem).QUALITIES?.includes('qualityInaccurate')) {
+            return
+        }
+        setIsAiming(checked)
+    }
+
     return (
         <dialog
             ref={dialogRef}
@@ -281,7 +290,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                         data-icon="attack"
                         checked={isAiming}
                         disabled={hasRolled}
-                        onChange={(e) => setIsAiming(e.target.checked)}
+                        onChange={(e) => toggleAiming(e.target.checked)}
                         aria-label="Aim"
                     />
                 </div>

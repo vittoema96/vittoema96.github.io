@@ -64,7 +64,6 @@ const applyMods = (itemData: ModdableItem, modsData: ModItem[]): typeof itemData
  * Get item data with mods applied
  */
 export function getModifiedItemData(characterItem: CharacterItem): ModdableItem | null {
-    // TODO cyclic import of data manager. move getModifiedItemData inside
     const dataManager = getGameDatabase()
     const itemData = dataManager.getItem(characterItem.id)
     if (!dataManager.isType(itemData, "moddable")) {return null}

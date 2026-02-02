@@ -50,6 +50,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps
     };
 
     const isGatling = (weaponData?.QUALITIES || []).includes('qualityGatling');
+    const isAmmoHungry = (weaponData?.QUALITIES || []).some(q => q.startsWith('qualityAmmoHungry'));
 
     // Calculate extra dice count
     const getExtraDiceCount = () => {
@@ -87,7 +88,18 @@ function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps
     const [extraDiceActive, setExtraDiceActive] = useState(initialExtraDiceState.active);
     const [extraDiceRerolled, setExtraDiceRerolled] = useState(initialExtraDiceState.rerolled);
 
-    const ammoStep = isMelee(weaponData.CATEGORY) ? 0 : (isGatling ? 10 : 1);
+    let ammoStep = 0;
+    if(!["na", undefined, "-"].includes(weaponData.AMMO_TYPE)){
+        if(isGatling){
+            ammoStep = 10;
+        } else if(isAmmoHungry) {
+            const quality = weaponData.QUALITIES?.find(q => q.startsWith("qualityAmmoHungry"))
+            const [_, qualityOpt] = quality?.split(':') ?? [];
+            ammoStep = Number(qualityOpt) || 1;
+        } else {
+            ammoStep = 1
+        }
+    }
     const [ammoCost, setAmmoCost] = useState(ammoStep);
     const [ammoPayed, setAmmoPayed] = useState(0);
     const [luckPayed, setLuckPayed] = useState(0);
@@ -188,6 +200,10 @@ function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps
         const effects = getEffectCount();
         const damage1 = getDamage1Count();
         const damage2 = getDamage2Count();
+        if(weaponData.EFFECTS?.includes('effectVicious')){
+            const baseDamage = effects + damage1 + damage2 * 2;
+            return `${baseDamage + effects} (${baseDamage}+${effects})`
+        }
         return effects + damage1 + damage2 * 2;
     };
 

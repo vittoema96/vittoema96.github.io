@@ -6,6 +6,7 @@
 import { ApparelItem, Character, CharacterItem, DamageType, Item, ModdableItem, Range, WeaponItem } from '@/types';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
 import type { TFunction } from 'i18next';
+import { getWeaponAmmoPerShot } from '@/app/tabs/inv/utils/weaponUtils.ts';
 
 
 export function removeItem(items: CharacterItem[], itemToRemove: CharacterItem) {
@@ -56,8 +57,6 @@ export function isSameConfiguration(item1: CharacterItem, item2: CharacterItem) 
 export function hasEnoughAmmo(itemData: Item, character: Character) {
     const dataManager = getGameDatabase()
     if (!dataManager.isType(itemData, "weapon")) {return true}
-    const weaponType = itemData.CATEGORY
-    if (weaponType === 'meleeWeapons' || weaponType === 'unarmed') {return true}
 
     let ammoId = itemData.AMMO_TYPE
     if (ammoId === 'self') {ammoId = itemData.ID}
@@ -66,9 +65,7 @@ export function hasEnoughAmmo(itemData: Item, character: Character) {
     const ammoItem = character.items.find(item => item.id === ammoId)
     const currentAmmo = ammoItem ? ammoItem.quantity : 0
 
-    const isGatling = (itemData.QUALITIES || []).includes('qualityGatling')
-    const ammoStep = isGatling ? 10 : 1
-
+    const ammoStep = getWeaponAmmoPerShot(itemData)
     return currentAmmo >= ammoStep
 }
 
