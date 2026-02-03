@@ -40,6 +40,10 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
     const name = raw?.name
     const background = raw?.background
     const caps = raw?.caps ?? 0
+    const ncrDollars = raw?.ncrDollars ?? 0
+    const legionDenarius = raw?.legionDenarius ?? 0
+    const prewarMoney = raw?.prewarMoney ?? 0
+    const exchangeRates = raw?.exchangeRates ?? {}
     const level = raw?.level ?? 1
     const items = useMemo(
         () => raw?.items ?? [],
@@ -86,7 +90,9 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         () => calculateMaxHp({level, special: {luck: special.luck, endurance: special.endurance }}),
         [level, special.luck, special.endurance]
     )
-    const currentHp = Math.min(raw?.currentHp ?? maxHp, maxHp)
+    const rads = Math.min(raw?.rads ?? 0, maxHp)
+    const effectiveMaxHp = maxHp - rads
+    const currentHp = Math.min(raw?.currentHp ?? effectiveMaxHp, effectiveMaxHp)
 
     const maxWeight = useMemo(
         () => {
@@ -195,8 +201,13 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         name,
         background,
         currentHp,
+        rads,
         currentLuck,
         caps,
+        ncrDollars,
+        legionDenarius,
+        prewarMoney,
+        exchangeRates,
         items,
         level,
         specialties,

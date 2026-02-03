@@ -28,8 +28,11 @@ function InventoryRow({
 }: Readonly<InventoryRowProps>) {
     const { t } = useTranslation()
     const contentRef = useRef<HTMLDivElement>(null)
+    const nameInputRef = useRef<HTMLInputElement>(null)
     const [contentHeight, setContentHeight] = useState(0)
-    const { sellItem, deleteItem } = useInventoryActions()
+    const [isEditingName, setIsEditingName] = useState(false)
+    const [editedName, setEditedName] = useState(characterItem.customName || '')
+    const { sellItem, deleteItem, updateItemCustomName } = useInventoryActions()
     const dataManager = getGameDatabase()
     let itemData = dataManager.getItem(characterItem.id)
 
@@ -39,6 +42,9 @@ function InventoryRow({
 
     // Check if item can be sold/deleted (unacquirable items cannot)
     const canSellDelete = !dataManager.isUnacquirable(itemData?.ID || '')
+
+    // Check if item supports custom naming (weapons and apparel only)
+    const supportsCustomName = dataManager.isType(itemData, 'weapon') || dataManager.isType(itemData, 'apparel')
 
     // Use overlay hook for sell/delete functionality (only if item can be sold/deleted)
     const {
@@ -51,6 +57,38 @@ function InventoryRow({
         canSellDelete ? () => sellItem(characterItem) : null,
         canSellDelete ? () => deleteItem(characterItem) : null
     )
+
+    // Focus input when editing starts
+    useEffect(() => {
+        if (isEditingName && nameInputRef.current) {
+            nameInputRef.current.focus()
+            nameInputRef.current.select()
+        }
+    }, [isEditingName])
+
+    const handleStartRename = () => {
+        setEditedName(characterItem.customName || '')
+        setIsEditingName(true)
+        handleHideOverlay()
+    }
+
+    const handleSaveName = () => {
+        updateItemCustomName(characterItem, editedName)
+        setIsEditingName(false)
+    }
+
+    const handleCancelEditing = () => {
+        setEditedName(characterItem.customName || '')
+        setIsEditingName(false)
+    }
+
+    const handleNameKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            handleSaveName()
+        } else if (e.key === 'Escape') {
+            handleCancelEditing()
+        }
+    }
 
     if(!itemData) {
         console.error(`Item data not found for ID: ${characterItem.id}`);
@@ -164,21 +202,37 @@ function InventoryRow({
 
                 <div className="inventory-row__info">
                     <div className="inventory-row__name">
-                        <FitText center={false} wrap={true} maxSize={15}>
-                            {itemName}
-                        </FitText>
-                        {badges.length > 0 && (
-                            <span className="inventory-row__badges">
-                                {badges.map(badge => (
-                                    <span
-                                        key={characterItem.id + badge.icon}
-                                        className={`inventory-row__badge badge-${badge.color}`}
-                                        title={badge.icon ? t('equipped') : ''}
-                                    >
-                                        <div className="themed-svg" data-icon={badge.icon}></div>
+                        {isEditingName ? (
+                            <input
+                                ref={nameInputRef}
+                                type="text"
+                                className="inventory-row__name-input"
+                                value={editedName}
+                                onChange={(e) => setEditedName(e.target.value)}
+                                onKeyDown={handleNameKeyDown}
+                                onBlur={handleSaveName}
+                                onClick={(e) => e.stopPropagation()}
+                                placeholder={t(characterItem.id)}
+                            />
+                        ) : (
+                            <>
+                                <FitText center={false} wrap={true} maxSize={15}>
+                                    {itemName}
+                                </FitText>
+                                {badges.length > 0 && (
+                                    <span className="inventory-row__badges">
+                                        {badges.map(badge => (
+                                            <span
+                                                key={characterItem.id + badge.icon}
+                                                className={`inventory-row__badge badge-${badge.color}`}
+                                                title={badge.icon ? t('equipped') : ''}
+                                            >
+                                                <div className="themed-svg" data-icon={badge.icon}></div>
+                                            </span>
+                                        ))}
                                     </span>
-                                ))}
-                            </span>
+                                )}
+                            </>
                         )}
                     </div>
                     <div className="inventory-row__subinfo">
@@ -211,33 +265,49 @@ function InventoryRow({
                 </div>
             </div>
 
-            {/* Sell/Delete Overlay - shown on long press (only for items that can be sold/deleted) */}
-            {canSellDelete && (
+            {/* Sell/Delete/Rename Overlay - shown on long press */}
+            {(canSellDelete || supportsCustomName) && (
                 <div
                     className={`card-overlay ${showOverlay ? '' : 'hidden'}`}
                     onClick={handleHideOverlay}
                 >
-                    <button
-                        className="popup__button-confirm"
-                        data-icon="caps"
-                        onClick={e => {
-                            e.stopPropagation();
-                            handleSell();
-                        }}
-                        title={t('sell')}
-                    >
-                        <img src="img/svg/caps.svg" alt="Sell" />
-                    </button>
-                    <button
-                        className="delete-button"
-                        onClick={e => {
-                            e.stopPropagation();
-                            handleDelete();
-                        }}
-                        title={t('delete')}
-                    >
-                        <i className="fas fa-trash"></i>
-                    </button>
+                    {supportsCustomName && (
+                        <button
+                            className="rename-button"
+                            onClick={e => {
+                                e.stopPropagation();
+                                handleStartRename();
+                            }}
+                            title={t('editItemName')}
+                        >
+                            <i className="fas fa-pen"></i>
+                        </button>
+                    )}
+                    {canSellDelete && (
+                        <button
+                            className="popup__button-confirm"
+                            data-icon="caps"
+                            onClick={e => {
+                                e.stopPropagation();
+                                handleSell();
+                            }}
+                            title={t('sell')}
+                        >
+                            <img src="img/svg/caps.svg" alt="Sell" />
+                        </button>
+                    )}
+                    {canSellDelete && (
+                        <button
+                            className="delete-button"
+                            onClick={e => {
+                                e.stopPropagation();
+                                handleDelete();
+                            }}
+                            title={t('delete')}
+                        >
+                            <i className="fas fa-trash"></i>
+                        </button>
+                    )}
                 </div>
             )}
         </div>

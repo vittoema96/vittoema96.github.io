@@ -34,6 +34,35 @@ export const SKILLS = [
 ] as const
 export type SkillType = (typeof SKILLS)[number];
 
+// **---- Currency related ----**
+export const CURRENCIES = [
+    "caps",
+    "ncrDollars",
+    "legionDenarius",
+    "prewarMoney",
+] as const;
+export type CurrencyType = (typeof CURRENCIES)[number];
+
+// Default exchange rates: how many of each currency equals 1 Cap
+// These are defaults that can be overridden by user in character data
+export const DEFAULT_EXCHANGE_RATES: Record<CurrencyType, number> = {
+    caps: 1,
+    ncrDollars: 2.5,      // 2.5 NCR Dollars = 1 Cap
+    legionDenarius: 4,    // 4 Legion Denarius = 1 Cap
+    prewarMoney: 10,      // 10 Pre-war Money = 1 Cap
+};
+
+// Type for user-configurable exchange rates (excludes caps which is always 1:1)
+export type ExchangeRates = Partial<Record<Exclude<CurrencyType, 'caps'>, number>>;
+
+// Currency icons for display
+export const CURRENCY_ICONS: Record<CurrencyType, string> = {
+    caps: "caps",
+    ncrDollars: "ncrDollars",
+    legionDenarius: "legionDenarius",
+    prewarMoney: "prewarMoney",
+};
+
 const _TRAITS = [
     "traitFastShot",
     "traitGifted",
@@ -126,6 +155,7 @@ export interface CharacterItem {
     quantity: number;
     equipped?: boolean;
     mods: string[];
+    customName?: string;
 }
 
 export interface Character extends Omit<RawCharacter, 'origin'> {
@@ -135,6 +165,10 @@ export interface Character extends Omit<RawCharacter, 'origin'> {
     origin: Origin;
     level: number;
     caps: number;
+    ncrDollars: number;
+    legionDenarius: number;
+    prewarMoney: number;
+    exchangeRates: ExchangeRates;
     special: Record<SpecialType, number>;
     skills: Record<SkillType, number>;
     specialties: SkillType[];
@@ -145,6 +179,7 @@ export interface Character extends Omit<RawCharacter, 'origin'> {
 
     maxHp: number;
     currentHp: number;
+    rads: number;
     maxLuck: number;
     currentLuck: number;
     maxWeight: number;
@@ -162,6 +197,10 @@ export interface RawCharacter {
     origin?: OriginId;
     level?: number | undefined;
     caps?: number | undefined;
+    ncrDollars?: number | undefined;
+    legionDenarius?: number | undefined;
+    prewarMoney?: number | undefined;
+    exchangeRates?: ExchangeRates | undefined;
     special?: Partial<Record<SpecialType, number>> | undefined;
     skills?: Partial<Record<SkillType, number>> | undefined;
     specialties?: SkillType[] | undefined;
@@ -172,6 +211,7 @@ export interface RawCharacter {
 
     currentLuck?: number | undefined;
     currentHp?: number | undefined;
+    rads?: number | undefined;
 }
 
 

@@ -209,10 +209,10 @@ export function applyEffect(modifiedData: ModdableItem, effect: string): typeof 
 export function getDisplayName(item: CharacterItem, t: TFunction) {
     if (!item) {return ''}
 
-    // TODO custom name not implemented, but actually a good idea
-    let baseName = t(item.id)
+    // Use custom name if set, otherwise use translated name
+    let baseName = item.customName || t(item.id)
 
-    if (item.variation) {
+    if (item.variation && !item.customName) {
         baseName = `${baseName} (${t(item.variation)})`
     }
 
@@ -221,11 +221,6 @@ export function getDisplayName(item: CharacterItem, t: TFunction) {
     if (modsLength > 0) {
         return `${baseName} [+${modsLength}]`
     }
-
-    // TODO i think we can keep this commented but keeping it just in case
-    // Robot parts always have exactly one mod, so don't show [+1]
-    //if (dataManager && dataManager.isUnacquirable(item.id))
-    //    return baseName
 
     return baseName
 }

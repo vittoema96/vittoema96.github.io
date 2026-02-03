@@ -137,10 +137,26 @@ export const useInventoryActions = () => {
         showAlert('Use functionality coming soon!')
     }
 
+    const updateItemCustomName = (characterItem: CharacterItem, customName: string) => {
+        const updatedItems = character.items.map(item => {
+            if (isSameConfiguration(item, characterItem)) {
+                // If customName is empty, remove it from the item
+                if (customName.trim() === '') {
+                    const { customName: _, ...rest } = item
+                    return rest
+                }
+                return { ...item, customName: customName.trim() }
+            }
+            return item
+        })
+        updateCharacter({ items: updatedItems })
+    }
+
     return {
         sellItem,
         deleteItem,
         equipItem,
-        consumeItem
+        consumeItem,
+        updateItemCustomName
     }
 }

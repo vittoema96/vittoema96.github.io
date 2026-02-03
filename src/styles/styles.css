@@ -212,6 +212,11 @@ input[type='text'] {
     padding: 0 8px;
 }
 
+/* Utility classes */
+.text-danger {
+    color: #ff4444;
+}
+
 /*********************
  *   Main Container  *
  *********************/
@@ -726,6 +731,7 @@ input[type='text'] {
 .card-quantity {
     font-size: 0.8rem;
 }
+
 .card__header-stats {
     display: flex;
     flex-direction: column;
@@ -854,7 +860,12 @@ input[type='text'] {
 
 .delete-button {
     background-color: var(--delete-button-color);
-} /* TODO same background as others? maybe use red for the icon */
+}
+
+.rename-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
 
 /***************
  *  Ammo Cards *
@@ -1257,6 +1268,24 @@ input[type='text'] {
     align-items: flex-start;
     gap: 0.5rem;
     min-width: 0;
+}
+
+.inventory-row__name-input {
+    flex: 1;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    min-width: 0;
+    width: 100%;
+}
+
+.inventory-row__name-input:focus {
+    outline: none;
+    border-color: var(--accent-color, var(--primary-color));
 }
 
 .inventory-row__name-text {
@@ -1760,6 +1789,16 @@ body::before {
 .themed-svg[data-icon='armor'] {
     --image-url: url('/img/svg/armor.svg');
 }
+/* Currency icons */
+.themed-svg[data-icon='ncrDollars'] {
+    --image-url: url('/img/svg/ncrMoney.svg');
+}
+.themed-svg[data-icon='legionDenarius'] {
+    --image-url: url('/img/svg/denarius.svg');
+}
+.themed-svg[data-icon='prewarMoney'] {
+    --image-url: url('/img/svg/prewarmoney.svg');
+}
 
 /****************************
  *   TODO Focus and Hover   *
@@ -1979,6 +2018,211 @@ dialog::backdrop {
 .modify-item-popup .popup__footer button {
     padding: 0.5rem 0.75rem;
     font-size: 0.85rem;
+}
+
+/* Stat Adjustment Popup */
+.stat-adjustment-popup {
+    gap: 0.5rem;
+    padding: 0.75rem;
+}
+
+.stat-adjustment-popup__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-adjustment-popup__section-title {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* Stats table for HP/Rads/Luck */
+.stat-adjustment-popup__stats-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stat-adjustment-popup__stats-table th,
+.stat-adjustment-popup__stats-table td {
+    padding: 0.4rem 0.25rem;
+    vertical-align: middle;
+}
+
+.stat-adjustment-popup__stats-table th {
+    width: 1%;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: normal;
+}
+
+.stat-adjustment-popup__stat-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.stat-adjustment-popup__stat-label-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+}
+
+.stat-adjustment-popup__stat-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    flex-wrap: nowrap;
+}
+
+.stat-adjustment-popup__stat-input {
+    width: 3rem;
+    min-width: 2.5rem;
+    text-align: center;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+    flex-shrink: 1;
+}
+
+.stat-adjustment-popup__stat-max {
+    font-size: 0.85rem;
+    color: var(--primary-color-translucent);
+    white-space: nowrap;
+}
+
+.stat-adjustment-popup__rads-icon {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    color: var(--warning-color, #f0ad4e);
+}
+
+.stat-adjustment-popup__rads-input {
+    width: 2.5rem;
+    min-width: 2rem;
+    text-align: center;
+    padding: 0.25rem;
+    font-size: 0.85rem;
+    border-color: var(--warning-color, #f0ad4e);
+    flex-shrink: 1;
+}
+
+/* Currency Table */
+.stat-adjustment-popup__currency-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    table-layout: fixed;
+}
+
+.stat-adjustment-popup__currency-table th,
+.stat-adjustment-popup__currency-table td {
+    padding: 0.35rem 0.2rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.stat-adjustment-popup__currency-table th {
+    font-weight: bold;
+    font-size: 0.7rem;
+    color: var(--primary-color-translucent);
+    border-bottom: 1px solid var(--primary-color-very-translucent);
+}
+
+/* Column widths */
+.stat-adjustment-popup__currency-table th:nth-child(1),
+.stat-adjustment-popup__currency-table td:nth-child(1) {
+    width: 45%;
+    text-align: left;
+}
+
+.stat-adjustment-popup__currency-table th:nth-child(2),
+.stat-adjustment-popup__currency-table td:nth-child(2) {
+    width: 30%;
+}
+
+.stat-adjustment-popup__currency-table th:nth-child(3),
+.stat-adjustment-popup__currency-table td:nth-child(3) {
+    width: 25%;
+}
+
+.stat-adjustment-popup__currency-name {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    overflow: hidden;
+}
+
+.stat-adjustment-popup__currency-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    flex-shrink: 0;
+}
+
+.stat-adjustment-popup__currency-label {
+    font-weight: bold;
+    font-size: 0.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    width: 100%;
+}
+
+.stat-adjustment-popup__currency-input {
+    width: 100%;
+    max-width: 3.5rem;
+    text-align: center;
+    padding: 0.25rem;
+    font-size: 0.85rem;
+}
+
+.stat-adjustment-popup__rate-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+}
+
+.stat-adjustment-popup__rate-input {
+    width: 2.5rem;
+    text-align: center;
+    padding: 0.2rem;
+    font-size: 0.75rem;
+}
+
+.stat-adjustment-popup__rate-fixed {
+    font-size: 0.7rem;
+    text-wrap: nowrap;
+    color: var(--primary-color-translucent);
+}
+
+/* Total Row */
+.stat-adjustment-popup__total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--primary-color-very-translucent);
+    border-radius: 4px;
+    margin-top: 0.25rem;
+}
+
+.stat-adjustment-popup__total-label {
+    font-size: 0.8rem;
+}
+
+.stat-adjustment-popup__total-value {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.stat-adjustment-popup__total-icon {
+    width: 1rem;
+    height: 1rem;
 }
 
 /* Compact Stats Bar */
