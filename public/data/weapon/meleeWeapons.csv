@@ -19,7 +19,7 @@ weaponSledgehammer,weapon,meleeWeapons,5,[],physical,-,rangeR,"[""qualityTwoHand
 weaponHammer,weapon,meleeWeapons,3,[],physical,-,rangeR,[],0.5,10,0,na,"[""modSharpRollingPin"", ""modSpikedRollingPin""]"
 weaponBaseballBat,weapon,meleeWeapons,4,[],physical,-,rangeR,"[""qualityTwoHanded""]",1.5,25,1,na,"[""modSharpBaseballBat"", ""modChainBaseballBat"", ""modSpikedBaseballBat"", ""modBarbedBaseballBat"", ""modBladeBaseballBat""]"
 weaponAluminumBaseballBat,weapon,meleeWeapons,5,[],physical,-,rangeR,"[""qualityTwoHanded""]",1,32,2,na,"[""modSharpBaseballBat"", ""modChainBaseballBat"", ""modSpikedBaseballBat"", ""modBarbedBaseballBat"", ""modBladeBaseballBat""]"
-weaponStone,weapon,unarmed,2,"[""effectVicious""]",physical,-,rangeR,"[""qualityThrownC""]",0.5,-,-,na,[]
+weaponStone,weapon,unarmed,2,"[""effectVicious""]",physical,-,rangeR,"[""qualityThrown""]",0.5,-,-,na,[]
 weaponPowerFist,weapon,unarmed,4,"[""effectStun""]",physical,-,rangeR,[],2,100,2,na,"[""modPuncturedPowerFist"", ""modHeatingPowerFist""]"
 weaponRipper,weapon,meleeWeapons,4,"[""effectVicious""]",physical,-,rangeR,[],3,50,2,na,"[""modCurvedRipper"", ""modExtendedRipper""]"
 weaponShishkebab,weapon,meleeWeapons,5,"[""effectPiercing:1""]",energy,-,rangeR,"[""qualityParry""]",1.5,200,3,ammoFlamerFuel,"[""modExtraFlamesShishkebab""]"

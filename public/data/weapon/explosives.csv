@@ -1,15 +1,15 @@
 ID,TYPE,CATEGORY,DAMAGE_RATING,EFFECTS,DAMAGE_TYPE,FIRE_RATE,RANGE,QUALITIES,WEIGHT,COST,RARITY,AMMO_TYPE,AVAILABLE_MODS
-weaponMolotovCocktail,weapon,explosives,4,"[""effectPersistent""]",energy,-,rangeM,"[""qualityThrownM"", ""qualityBlast""]",0.5,20,1,self,[]
-weaponFragmentationGrenade,weapon,explosives,6,[],physical,-,rangeM,"[""qualityThrownM"", ""qualityBlast""]",0,50,2,self,[]
-weaponPulseGrenade,weapon,explosives,6,"[""effectStun""]",energy,-,rangeM,"[""qualityThrownM"", ""qualityBlast""]",0,100,3,self,[]
-weaponNukaGrenade,weapon,explosives,9,"[""effectVicious"",""effectBreaking"",""effectRadioactive""]",energy,-,rangeM,"[""qualityThrownM"", ""qualityBlast""]",0.5,100,4,self,[]
-weaponPlasmaGrenade,weapon,explosives,9,[],energy,-,rangeM,"[""qualityThrownM"", ""qualityBlast""]",0,135,3,self,[]
+weaponMolotovCocktail,weapon,explosives,4,"[""effectPersistent""]",energy,-,rangeM,"[""qualityThrown"", ""qualityBlast""]",0.5,20,1,self,[]
+weaponFragmentationGrenade,weapon,explosives,6,[],physical,-,rangeM,"[""qualityThrown"", ""qualityBlast""]",0,50,2,self,[]
+weaponPulseGrenade,weapon,explosives,6,"[""effectStun""]",energy,-,rangeM,"[""qualityThrown"", ""qualityBlast""]",0,100,3,self,[]
+weaponNukaGrenade,weapon,explosives,9,"[""effectVicious"",""effectBreaking"",""effectRadioactive""]",energy,-,rangeM,"[""qualityThrown"", ""qualityBlast""]",0.5,100,4,self,[]
+weaponPlasmaGrenade,weapon,explosives,9,[],energy,-,rangeM,"[""qualityThrown"", ""qualityBlast""]",0,135,3,self,[]
 weaponAtomicMine,weapon,explosives,9,"[""effectVicious"",""effectBreaking"",""effectRadioactive""]",energy,-,-,"[""qualityBlast"", ""qualityMine""]",0.5,100,4,self,[]
 weaponFragmentationMine,weapon,explosives,6,[],physical,-,-,"[""qualityBlast"", ""qualityMine""]",0.5,50,2,self,[]
 weaponPulseMine,weapon,explosives,6,"[""effectStun""]",energy,-,-,"[""qualityBlast"", ""qualityMine""]",0,100,3,self,[]
 weaponPlasmaMine,weapon,explosives,9,[],energy,-,-,"[""qualityBlast"", ""qualityMine""]",0,135,3,self,[]
 weaponBottlecapMine,weapon,explosives,6,[],physical,-,-,"[""qualityBlast"", ""qualityMine""]",0.5,75,2,self,[]
-weaponExplosiveBaseball,weapon,explosives,5,[],physical,-,rangeM,"[""qualityThrownM"", ""qualityBlast""]",0.5,40,1,self,[]
+weaponExplosiveBaseball,weapon,explosives,5,[],physical,-,rangeM,"[""qualityThrown"", ""qualityBlast""]",0.5,40,1,self,[]
 weaponCryogenicGrenade,weapon,explosives,6,"[""effectFreeze""]",energy,0,rangeM,"[""qualityBlast"",""qualityThrown""]",0.5,50,3,self,"[]"
 weaponCryoMine,weapon,explosives,6,"[""effectFreeze""]",energy,0,-,"[""qualityBlast"",""qualityMine""]",0.5,50,3,self,"[]"
 weaponDetonator,weapon,explosives,0,"[]",-,0,rangeL,"[]",0.5,75,3,self,"[]"

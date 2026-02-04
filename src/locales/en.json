@@ -34,7 +34,6 @@
   "energy": "Energy",
   "radiation": "Rads",
   "damagePoison": "Poison",
-
   "aid": "Aid",
   "ammo": "Ammo",
   "apparel": "Apparel",
@@ -911,12 +910,10 @@
   "effectCarryWeight": "Carry Weight",
   "effectIgnoreLightPenalty": "Ignore Light Penalty",
   "effectGasMask": "Gas Mask",
-
   "specialStrAgi": "STR or AGI",
   "specialCha": "CHA",
   "specialEnd": "END",
   "specialInt": "INT",
-
   "qualityAccurate": "Accurate",
   "qualityBlast": "Blast",
   "qualityCloseQuarters": "Close Quarters",
@@ -932,8 +929,7 @@
   "qualityRecon": "Recon",
   "qualityReliable": "Reliable",
   "qualitySuppressed": "Suppressed",
-  "qualityThrownC": "Thrown (C)",
-  "qualityThrownM": "Thrown (M)",
+  "qualityThrown": "Thrown",
   "qualityTwoHanded": "Two-Handed",
   "qualityUnreliable": "Unreliable",
   "qualityMrHandyOnly": "Mr Handy Only",
@@ -956,8 +952,6 @@
   "effectCarryWeightDescription": "Increases the maximum carry weight by the specified amount",
   "effectIgnoreLightPenaltyDescription": "Ignore any difficulty increase due to excessive light",
   "effectGasMaskDescription": "+3 to Poison Damage Resistance against any airborne or gaseous poison; Wearer suffers no effects from gas or dust; +1 to difficulty of all Speech checks",
-
-
   "qualityAccurateDescription": "If you take the Aim minor action before attacking with an Accurate weapon, you may spend up to 3 AP to add +1 DC per AP spent to the attack's damage. If you gain damage in this way, you may not spend ammunition for extra damage. A weapon cannot be both Accurate and Inaccurate.",
   "qualityBlastDescription": "When you make an attack with a Blast weapon, you do not target a single opponent. Instead, select a single zone you can see, and make the appropriate skill test to attack, with a basic difficulty of 2 (adjusted for range as normal). If you succeed, every creature (and other damageable target) in that zone suffers the weapon's damage. If you fail, your misplaced attack is less effective: roll only half the weapon's DC to determine the damage inflicted to creatures in the target zone and ignore the weapon's normal damage effects.",
   "qualityCloseQuartersDescription": "A Close Quarters weapon is easy to use up-close, and suffers no difficulty increase for being used when within Reach of an enemy.",
@@ -973,8 +967,7 @@
   "qualityReconDescription": "When you Aim with a Recon weapon, you may mark the target you aimed at. The next ally to attack that target may re-roll one d20 on their attack.",
   "qualityReliableDescription": "During each combat encounter, a Reliable weapon ignores the first complication you roll on a test to use that weapon. A weapon may not be both Reliable and Unreliable.",
   "qualitySuppressedDescription": "If an enemy is not aware of you when you attack with a Suppressed weapon, they do not notice the attack unless they are the target or they pass a PER + Survival test with a difficulty of 2.",
-  "qualityThrownCDescription": "A Thrown (C) weapon can be thrown, as a ranged attack with an ideal range of Close. You make an AGI + Throwing test to attack with the weapon.",
-  "qualityThrownMDescription": "A Thrown (M) weapon can be thrown, as a ranged attack with an ideal range of Medium. You make an AGI + Throwing test to attack with the weapon.",
+  "qualityThrownDescription": "A Thrown (C) weapon can be thrown, as a ranged attack with an ideal range of Close. A Thrown (M) weapon can be thrown, as a ranged attack with an ideal range of Medium. You make an AGI + Throwing test to attack with the weapon.",
   "qualityTwoHandedDescription": "A Two-Handed weapon must be held in two hands to be used effectively; attempting to attack with a Two-Handed weapon in one hand increases the difficulty by +2.",
   "qualityUnreliableDescription": "When you make an attack with an Unreliable weapon, increase the complication range of the attack by 1. A weapon may not be both Reliable and Unreliable.",
   "qualityMrHandyOnlyDescription": "This weapon is integrated into a Mr Handy robot's body and can only be used by Mr Handy units. It cannot be equipped by other character types.",
@@ -1417,7 +1410,6 @@
   "effectVoltaicDescription": "All attacks that deal Energy damage deal +1 DC. The bonus increases by +1 DC for every two additional parts with Voltaic Frame (+2 DC with 3 pieces or +3 DC with 5 pieces or more).",
   "effectHydraulic": "Hydraulic",
   "effectHydraulicDescription": "Melee attacks made with these arms deal +1 DC damage and gain the Stun damage effect.",
-
   "perkSkilled": "Skilled",
   "perkSkilledDescription": "Allows you to add +1 rank to two skills, or +2 ranks to one skill. No skill may have more than 6 ranks. Each time this perk is selected, the level requirements increase by 3.",
   "perkAccuracy": "Accuracy",
@@ -1606,7 +1598,6 @@
   "perkJunktownVendorDescription": "The difficulty of any CHA + Barter check made to buy or sell goods is reduced by 1, to a minimum of 0.",
   "perkActionBoyGirl": "Action Boy/Girl",
   "perkActionBoyGirlDescription": "When spending AP to perform an additional major action, the character does not suffer the increased skill check difficulty during the second action.",
-
   "ammo357Magnum": ".357 Magnum",
   "ammo357MagnumDescription": "The .357 Magnum round, a Magnum handgun cartridge manufactured by Big Chief, has a significant powder load making it a very powerful cartridge for a pistol round, and acceptable for use in carbine-length lever-action rifles.",
   "ammo127mm": "12.7mm",
@@ -1629,7 +1620,6 @@
   "ammoCrossbowBoltDescription": "A bolt is more like a dart in design, having the key arrow elements of having a sharp tip opposite of stabilizers. A bolt designed for use with crossbows. Like arrows, crossbow bolts can usually be recovered from slain enemies.",
   "ammoPlasmaCore": "Plasma Core",
   "ammoPlasmaCoreDescription": "Like the smaller plasma cartridges, these devices combine power supply and fuel: each one contains both a compact, specialized fusion core, and a reservoir of the chemical which is transformed into the plasma that the weapon fires. Plasma cores are exclusively used by the Gatling Plasma, and each one contains 500 shots for that weapon. Note that, as a Gatling Plasma is a Gatling weapon, it consumes ammunition at ten times the normal rate. The Scrounger perk cannot increase the number of Plasma Cores found.",
-
   "weapon357Revolver": ".357 Revolver",
   "weapon357RevolverDescription": "A single-action revolver chambered for .357 magnum (though ones using .38 special rounds also exist). Not as potent as the feared and respected .44 revolver, these guns remain scattered around parts of the Wasteland due to their common use by police forces as service weapons and due to their extremely simple, durable build that makes them easy to maintain and extremely reliable.",
   "weapon127mmPistol": "12.7mm Pistol",
@@ -1676,97 +1666,74 @@
   "weaponMicrowaveEmitterDescription": "This advanced energy weapon generates intense blasts of microwave radiation. While it won’t irradiate you—microwaves are non-ionizing radiation—it can cause intense burns as whatever is hit by the blast is heated up from the inside, boiling the water in your cells. Metal is little protection: the microwave blast can’t effectively be dispersed by metallic objects.",
   "weaponTeslaRifle": "Tesla Rifle",
   "weaponTeslaRifleDescription": "An odd blend of advanced technology and jury-rigged components, a Tesla Rifle can shoot deadly arcs of electricity that jump from enemy to enemy, injuring anyone caught nearby.",
-
   "traits": "Traits",
   "perks": "Talenti",
   "selectTrait": "Select Trait",
   "selectPerk": "Select Perk",
   "noTrait": "No Trait",
   "noPerk": "No Perk",
+  "summonStranger": "Summon Stranger",
   "benefit": "Benefit",
   "penalty": "Penalty",
-
   "traitFastShot": "Fast Shot",
   "traitFastShotBenefit": "If performing a second major action in combat to make a ranged attack, the cost of that additional major action will be 1 AP instead of 2.",
   "traitFastShotPenalty": "Cannot benefit from the Aim minor action during this frantic action.",
-
   "traitGifted": "Gifted",
   "traitGiftedBenefit": "Choose two S.P.E.C.I.A.L. attributes and increase them by +1 each.",
   "traitGiftedPenalty": "The maximum number of Luck Points equals the character's Luck attribute, minus one.",
-
   "traitEducated": "Educated",
   "traitEducatedBenefit": "The character has an additional tag skill.",
   "traitEducatedPenalty": "When failing a skill test using a skill other than a tag skill, the GM gains 1 AP.",
-
   "traitHeavyHanded": "Heavy Handed",
   "traitHeavyHandedBenefit": "The Melee Damage bonus increases by +1 DC.",
   "traitHeavyHandedPenalty": "Melee and unarmed attacks suffer a complication on a 19 or 20, instead of only on a 20.",
-
   "traitSmallFrame": "Small Frame",
   "traitSmallFrameBenefit": "Can reroll 1d20 on all AGI tests based on balance or contortion.",
   "traitSmallFramePenalty": "Carry weight is 75 + (2.5 × STR) kg, instead of 75 + (5 × STR) kg.",
-
   "traitExtraPerk": "Extra Perk",
   "traitExtraPerkBenefit": "The character gains an additional perk at level 1.",
-
   "traitGoodNatured": "Good Natured",
   "traitGoodNaturedBenefit": "Tag two of either Speech, Medicine, Repair, Science, and Barter skills.",
   "traitGoodNaturedPenalty": "The maximum rating for the other skills listed is reduced from 6 to 4.",
-
   "traitGrunt": "Grunt",
   "traitGruntBenefit": "+1 DC damage with submachine guns, combat rifles, assault rifles, frag grenades, and combat knives.",
   "traitGruntPenalty": "The complication range of tests while making an attack with big guns or energy weapons is increased by 2.",
-
   "traitHomeOnTheRange": "Home on the Range",
   "traitHomeOnTheRangeBenefit": "Whenever you sleep by a campfire for at least 6 hours, the difficulty to recover from injuries through rest is decreased by 1.",
   "traitHomeOnTheRangePenalty": "You cannot gain a well rested bonus, as described in Fallout: The Roleplaying Game Core Rulebook p.35.",
-
   "traitTriggerDiscipline": "Trigger Discipline",
   "traitTriggerDisciplineBenefit": "When you make ranged attacks using small guns or energy weapons you may re-roll 1d20.",
   "traitTriggerDisciplinePenalty": "While you wield small guns and energy weapons, reduce their fire rate by 1.",
-
   "traitBrahminBaron": "Brahmin Baron",
   "traitBrahminBaronBenefit": "Each Brahmin Feed Trough provides upkeep for 3 Brahmin in each of your settlements. When you perform the Tend Crops settlement action, you gain an additional +1 DC Brahmin milk per feed trough.",
   "traitBrahminBaronPenalty": "Roll +1d20 for determining the risk of attack to your settlement if its Food resource exceeds the settlement's People (see p.39).",
-
   "traitMotherWasteland": "Mother Wasteland",
   "traitMotherWastelandBenefit": "Spend 1 Luck point to gain insight into the quest, situation, or scene as if you'd spent 3 AP to use Obtain Information 3 times. This information is often cryptic and mystical in nature.",
   "traitMotherWastelandPenalty": "Complications make scenes involving pre-War artifacts harder to understand, limiting your use of them.",
-
   "traitNomad": "Nomad",
   "traitNomadBenefit": "Re-roll 1d20 on Survival tests to travel, set up camp, and forage for food and water. In addition, ignore the first complication rolled when making these tests.",
   "traitNomadPenalty": "Barter and Speech tests increase their difficulty and complication range by 1 when dealing with inhabitants of a static settlement. Science cannot be a Tag skill.",
-
   "traitRiteOfPassage": "Rite of Passage",
   "traitRiteOfPassageBenefit": "The first time you spend Luck in a scene, roll 1 DC. If you roll an effect you have not spent that Luck point.",
   "traitRiteOfPassagePenalty": "You view everyone who hasn't gone through your rite of passage as lesser. You cannot assist another PC without spending 1 AP first.",
-
   "traitToolsOfTheOldWorld": "Tools of the Old World",
   "traitToolsOfTheOldWorldBenefit": "You may use Survival instead of Repair or Science to repair or make use of pre-War tech.",
   "traitToolsOfTheOldWorldPenalty": "The complication range of tests involving pre-War technology (not weapons) is increased by 2.",
-
   "traitTheChosenOne": "The Chosen One",
   "traitTheChosenOneBenefit": "The first d20 you purchase is free on tests relating to your tribe's quest, and you can always succeed at a cost.",
   "traitTheChosenOnePenalty": "The GM adds 2 AP to their pool when your quest comes up.",
-
   "traitMrHandyLaserEmitter": "Laser Emitter",
   "traitMrHandyLaserEmitterBenefit": "Allows cutting objects or making ranged attacks using a laser (see laser pistol, p. 101).",
-
   "traitMrHandyFlamethrower": "Flamethrower",
   "traitMrHandyFlamethrowerBenefit": "Allows igniting objects, cooking food, or making ranged attacks with a short-range flamethrower (see flamethrower, p. 106).",
-
   "traitMrHandyAutomaticPistol": "10mm Automatic Pistol",
   "traitMrHandyAutomaticPistolBenefit": "Can make ranged attacks using a 10mm automatic pistol (see 10mm Pistol with automatic receiver mod, p. 95).",
-
   "traitMrHandyCircularSaw": "Circular Saw",
   "traitMrHandyCircularSawBenefit": "Allows cutting objects and making melee attacks with the circular saw. The circular saw deals 3 DC Physical Piercing 1 damage.",
-
   "traitMrHandyPliers": "Pliers",
   "traitMrHandyPliersBenefit": "Allows picking up and carrying objects weighing no more than 20 kg and manipulating surrounding objects. Can also make unarmed attacks (2 DC Physical damage) with the pliers.",
-
-  "unlock" : "Unlock",
+  "unlock": "Unlock",
   "deleteMarker": "Do you really want to delete the marker?",
-
   "effectArc": "Arc",
   "effectArcDescription": "Each Effect rolled automatically hits one additional target within Close range of the primary target. Each additional target suffers half the rolled damage (rounded up). Unlike Burst, this does not cost additional ammunition.",
   "effectFreeze": "Freeze",
@@ -1847,7 +1814,6 @@
   "weaponPlasmaCasterDescription": "An older, bulkier plasma weapon rediscovered after the Great War. It is more damaging and has a superior fire rate to a typical plasma rifle, but is far less accurate and much heavier. Note: Inflicts both Physical and Energy damage (use the lower resistance).",
   "weaponTeslaCannon": "Tesla Cannon",
   "weaponTeslaCannonDescription": "A shoulder-mounted directed energy weapon based on designs by Nikola Tesla. It is a rare sight in the Wastelands, though some branches of the Brotherhood of Steel have attempted to recreate the technology.",
-
   "miscLocksmithTools": "Locksmith Tools",
   "miscLocksmithToolsDescription": "A rolled leather case containing a variety of lockpicks and tension wrenches for opening mechanical locks. It is more durable than improvised counterparts but can become useless if too many components break.",
   "miscDoctorBag": "Doctor's Bag",
@@ -1892,7 +1858,6 @@
   "aidRobotRepairKitDescription": "This equipment helps repair and reactivate damaged robots and Power Armor. Most robots are equipped with self-diagnostic and repair protocols that activate when the robot repairs itself or is repaired by someone else. The kit serves to initiate and accelerate these protocols.\n\nUsage: A robot repair kit can be used in two ways: with the Take Substance minor action to immediately restore 4 HP or treat an injury, or it can be activated as part of a First Aid action to heal 4 HP or treat an injury, in addition to any other healing. Like all repairs performed on a robot or Power Armor, these are done with the Repair skill rather than Medicine, but the actions are used in the same way.",
   "aidStealthBoy": "Stealth Boy",
   "aidStealthBoyDescription": "One of the most interesting technologies developed before the War, the Stealth Boy 3001 is a compact device that generates a modular refraction field that transmits light from one side to the other, resulting in near-perfect camouflage—ranging from a sort of distorted transparency when moving to total invisibility when standing still. The Stealth Boy was reverse-engineered from a Chinese Stealth Armor captured during the War. Although the technology was never perfected (even the most advanced Stealth Boy drains its battery in about 30 seconds), it was deemed reliable enough for use. It has been noted that prolonged use of Stealth Boy technology causes permanent neurological changes resulting in paranoid delusions, hallucinations, and other altered mental states.\n\nUsage: The Stealth Boy is activated with the Interact minor action. Once active, it functions for three turns: the current one, the next, and the one after that; after this time, it stops working and becomes junk. When turned on, the Stealth Boy makes the character and their equipment almost entirely invisible. Enemies increase the difficulty of all checks to spot them by 2; if they search carefully enough, they can still hear or sense their presence in other ways. Additionally, even once seen, the invisibility increases Defense by +2.",
-
   "ammoUsedBy": "Ammo used by",
   "misc": "Miscellaneous",
   "junk": "Junk Materials",
@@ -1902,5 +1867,4 @@
   "miscUncommonJunkDescription": "",
   "miscRareJunk": "Rare Junk Materials",
   "miscRareJunkDescription": ""
-
 }

@@ -4,6 +4,26 @@ import { useEffect, useState } from 'react';
 import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
 import { SpecialType } from '@/types';
 
+/**
+ * Configuration for perk-specific actions.
+ * Each perk can have an optional action with a button that appears in the perk description.
+ * To add a new perk action, add an entry with the perk ID as key.
+ */
+interface PerkAction {
+    buttonLabel: string;  // i18n key for the button text
+    onClick: () => void;  // Handler when button is clicked
+}
+
+const PERK_ACTIONS: Record<string, PerkAction> = {
+    'perkMysteriousStranger': {
+        buttonLabel: 'summonStranger',
+        onClick: () => {
+            // TODO: Implement Mysterious Stranger action
+            console.log('Mysterious Stranger action triggered!');
+        }
+    }
+};
+
 function PerkList() {
     const dataManager = getGameDatabase()
     const { t } = useTranslation()
@@ -106,6 +126,11 @@ function PerkList() {
                                     }}
                                 >
                                     {t(selectedPerk + 'Description')}
+                                        <button
+                                            className="perk-action-button"
+                                            onClick={PERK_ACTIONS[selectedPerk].onClick}
+                                        </button>
+                                    )}
                                 </div>
                             )}
                         </div>
