@@ -125,10 +125,14 @@ function PerkList() {
                                         lineHeight: '1.5',
                                     }}
                                 >
-                                    {t(selectedPerk + 'Description')}
+                                    <p>{t(selectedPerk + 'Description')}</p>
+                                    {/* Perk-specific action button */}
+                                    {PERK_ACTIONS[selectedPerk] && (
                                         <button
                                             className="perk-action-button"
                                             onClick={PERK_ACTIONS[selectedPerk].onClick}
+                                        >
+                                            {t(PERK_ACTIONS[selectedPerk].buttonLabel)}
                                         </button>
                                     )}
                                 </div>
