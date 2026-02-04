@@ -1,6 +1,10 @@
 export const THEMES = {
     'theme-fallout-3': 'Fallout 3',
     'theme-fallout-new-vegas': 'Fallout New Vegas',
+    'theme-old-world-blues': 'Old World Blues',
+    'theme-dead-money': 'Dead Money',
+    'theme-the-institute': 'The Institute',
+    'theme-the-kings': 'The Kings',
 } as const
 export type Theme = keyof typeof THEMES
 export const DEFAULT_THEME: Theme = 'theme-fallout-3'

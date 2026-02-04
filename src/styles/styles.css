@@ -1678,6 +1678,50 @@ body.theme-fallout-new-vegas {
     --cancel-btn-background: #615849;
     --animation-glow-color: rgba(255, 190, 11, 0.7);
 }
+
+body.theme-old-world-blues {
+    --primary-color: #5dc6ff;
+    --secondary-color: #05161f;
+    --button-background: #103142;
+    --tab-hover: #1b4f69;
+    --button-hover: #80d4ff;
+    --cancel-btn-background: #3e4e55;
+    --animation-glow-color: rgba(93, 198, 255, 0.5);
+}
+
+body.theme-dead-money {
+    --primary-color: #ff4d4d;
+    --secondary-color: #1a0505;
+    --button-background: #4d0000;
+
+    --tab-hover: #801a00;
+    --button-hover: #ff1a1a;
+    --cancel-btn-background: #3d3434;
+
+    --animation-glow-color: rgba(255, 0, 0, 0.6);
+}
+
+body.theme-the-institute {
+    --primary-color: #e2e2e2;
+    --secondary-color: #2c2c2c;
+    --button-background: #444444;
+    --tab-hover: #5a5a5a;
+    --button-hover: #ffffff;
+    --cancel-btn-background: #666666;
+    --animation-glow-color: rgba(226, 226, 226, 0.4);
+}
+
+body.theme-the-kings {
+    --primary-color: #e02aff;
+    --secondary-color: #121212;
+    --button-background: #2a0033;
+    --tab-hover: #4d0059;
+    --button-hover: #ff00ff;
+    --cancel-btn-background: #333333;
+    --animation-glow-color: rgba(224, 42, 255, 0.8);
+}
+
+
 /* Just body's derived variables, body attributes are set below */
 body {
     --primary-color-translucent: rgba(from var(--primary-color) r g b / 0.7);
