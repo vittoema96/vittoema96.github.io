@@ -92,6 +92,8 @@ const markers = [
         code: "r3tt", x: 53.3, y: 67 },
     { id: `REPCONN Headquarters`,
         code: "r3h3", x: 56.3, y: 44.3 },
+    { id: `Follower's Outpost`,
+        code: "f040", x: 61.3, y: 41.7 },
     { id: `Crimson Caravan Company`,
         code: "cc4c", x: 54.5, y: 23.5 },
     { id: `Old Mormon Fort`,
