@@ -150,8 +150,10 @@ function MapTab() {
     const handleUnlockLocation = () => {
         if (code.length !== 4) {return}
         const marker = markers.some(m => m.code === code)
-        if(!marker) {return}
-        updateCharacter({ mapCodes: [...character.mapCodes, code] })
+        if(marker) {
+            updateCharacter({ mapCodes: [...character.mapCodes, code] });
+        }
+        setCode('')
     }
 
     return (
@@ -203,7 +205,7 @@ function MapTab() {
                 </div>
             </div>
             <div className="row">
-                <input type="text" style={{textAlign: 'center' }} maxLength={4} placeholder="○○○○" onChange={(e) => setCode((e.target?.value ?? '').toLowerCase())} />
+                <input type="text" style={{textAlign: 'center' }} maxLength={4} placeholder="○○○○" value={code} onChange={(e) => setCode((e.target?.value ?? '').toLowerCase())} />
                 <button onClick={handleUnlockLocation}>{t("unlock")}</button>
             </div>
         </section>
