@@ -12,7 +12,7 @@ import { FitText } from '@/app/FitText.tsx';
 
 interface D20PopupProps {
     onClose: () => void;
-    skillId: SkillType;
+    skillId: SkillType | 'perkMysteriousStranger';
     usingItem: CharacterItem | null;
 }
 
@@ -28,21 +28,28 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
         ? getModifiedItemData(usingItem)
         : null
 
+    const isMysteriousStranger = skillId === 'perkMysteriousStranger'
+    const skill = isMysteriousStranger ? 'smallGuns' : skillId
     // State
     const [isUsingLuck, setIsUsingLuck] = useState(false)
-    const [selectedSpecial, setSelectedSpecial] = useState(SKILL_TO_SPECIAL_MAP[skillId] || 'strength')
+    const [selectedSpecial, setSelectedSpecial] = useState(SKILL_TO_SPECIAL_MAP[skill] || 'strength')
     const [isAiming, setIsAiming] = useState(false)
     const [hasRolled, setHasRolled] = useState(false)
-    const [diceValues, setDiceValues] = useState<Array<string | number>>(['?', '?', '?', '?', '?'])
-    const [diceActive, setDiceActive] = useState([true, true, false, false, false])
-    const [diceRerolled, setDiceRerolled] = useState([false, false, false, false, false])
+    const [diceValues, setDiceValues] = useState<Array<string | number>>(
+        isMysteriousStranger ? ['?', '?', '?'] : ['?', '?', '?', '?', '?']
+    )
+    const [diceActive, setDiceActive] = useState(
+        isMysteriousStranger ? [true, true, true] : [true, true, false, false, false]
+    )
+    const [diceRerolled, setDiceRerolled] = useState(
+        isMysteriousStranger ? [true, true, true] : [false, false, false, false, false])
     const [initialApCost, setInitialApCost] = useState(0) // Store AP cost from first roll
 
     // Calculations
-    const skillValue = character.skills[skillId]
-    const hasSpecialty = character.specialties.includes(skillId)
+    const skillValue = isMysteriousStranger ? 6 : character.skills[skill]
+    const hasSpecialty = isMysteriousStranger || character.specialties.includes(skill)
     const activeSpecialId = isUsingLuck ? 'luck' : selectedSpecial
-    const specialValue = character.special[activeSpecialId]
+    const specialValue = isMysteriousStranger ? 10 : character.special[activeSpecialId]
     const targetNumber = skillValue + specialValue
     const criticalValue = hasSpecialty ? skillValue : 1
     const currentLuck = character.currentLuck
@@ -191,7 +198,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
     // Use dialog hook for dialog management
     const { closeWithAnimation } = useDialog(dialogRef, onClose)
 
-    if (!skillId) {return null}
+    if (!skill) {return null}
 
     function toggleAiming(checked: boolean) {
         if(dataManager.isType(itemData, "weapon")
@@ -212,7 +219,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
             <div>
                 <div style={{ gap: '1rem', padding: '0.5rem', display: 'flex'}} className="l-lastSmall">
                     <FitText minSize={20} maxSize={40}>
-                        {t(skillId)}
+                        {t(skill)}
                     </FitText>
                     <button className="popup__button-x" onClick={() => closeWithAnimation()}>&times;</button>
                 </div>
@@ -229,8 +236,9 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                                 setSelectedSpecial(value as SpecialType)
                             }
                         }}
-                        disabled={hasRolled || isUsingLuck}
+                        disabled={hasRolled || isUsingLuck || isMysteriousStranger}
                         aria-label="Special to use?"
+                        style={{ width: '100%' }}
                     >
                         {SPECIAL.map(specialValue => (
                             <option key={specialValue} value={specialValue}>
@@ -238,7 +246,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                             </option>
                         ))}
                     </select>
-                    <input
+                    {!isMysteriousStranger && <input
                         type="checkbox"
                         className="themed-svg"
                         data-icon="luck"
@@ -248,7 +256,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                         }}
                         disabled={hasRolled}
                         aria-label="Use Luck"
-                    />
+                    />}
                 </div>
 
                 <hr />
@@ -261,7 +269,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
 
                 <hr />
 
-                <div className="row">
+                <div className="row l-spaceBetween">
                     {diceValues.map((value, index) => {
                         const diceClass = getDiceClass(value)
                         return (
@@ -269,7 +277,10 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                                 key={index}
                                 className={`d20-dice dice ${diceActive[index] ? 'active' : ''} ${diceRerolled[index] ? 'rerolled' : ''} ${diceClass}`}
                                 onClick={() => handleDiceClick(index)}
-                                style={{ cursor: 'pointer' }}
+                                style={{
+                                    cursor: 'pointer',
+                                    ...(isMysteriousStranger || index < 2 ? {} : { transform: 'scale(0.8)' })
+                                }}
                             >
                                 {value}
                             </div>
@@ -277,30 +288,36 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                     })}
                 </div>
 
-                <div className="row l-distributed l-lastSmall">
-                    <span>{t('apCost')}</span>
-                    <span>{getApCost()}</span>
-                </div>
 
-                <div className="row l-distributed l-lastSmall">
-                    <span>{t('aim')}?</span>
-                    <input
-                        type="checkbox"
-                        className="themed-svg"
-                        data-icon="attack"
-                        checked={isAiming}
-                        disabled={hasRolled}
-                        onChange={(e) => toggleAiming(e.target.checked)}
-                        aria-label="Aim"
-                    />
-                </div>
+                {
+                    !isMysteriousStranger &&
+                    <>
+                        <div className="row l-distributed l-lastSmall">
+                            <span>{t('apCost')}</span>
+                            <span>{getApCost()}</span>
+                        </div>
 
-                <div className="row l-distributed l-lastSmall">
-                    <span>{t('luckCost')}</span>
-                    <div className="row l-centered">
-                        <span>{luckCost} / {currentLuck}</span>
-                    </div>
-                </div>
+                        <div className="row l-distributed l-lastSmall">
+                            <span>{t('aim')}?</span>
+                            <input
+                                type="checkbox"
+                                className="themed-svg"
+                                data-icon="attack"
+                                checked={isAiming}
+                                disabled={hasRolled}
+                                onChange={(e) => toggleAiming(e.target.checked)}
+                                aria-label="Aim"
+                            />
+                        </div>
+
+                        <div className="row l-distributed l-lastSmall">
+                            <span>{t('luckCost')}</span>
+                            <div className="row l-centered">
+                                <span>{luckCost} / {currentLuck}</span>
+                            </div>
+                        </div>
+                    </>
+                }
 
                 <hr />
 
@@ -309,20 +326,20 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                 <hr />
 
                 <footer>
-                    <button
+                    {(!isMysteriousStranger || !hasRolled) && <button
                         className="popup__button-confirm"
                         onClick={handleRoll}
                         disabled={hasRolled && (diceActive.filter(Boolean).length === 0 || luckCost > currentLuck)}
                     >
                         {t(hasRolled ? 'reroll' : 'roll')}
-                    </button>
-                    {itemData && (
+                    </button>}
+                    {itemData && (!isMysteriousStranger || hasRolled) && (
                         <button
                             className="popup__button-confirm"
                             onClick={() => {
-                                showD6Popup(usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }, isAiming)
+                                showD6Popup(usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }, isAiming, isMysteriousStranger)
                             }}
-                            disabled={!hasRolled || !hasEnoughAmmo(itemData, character)}
+                            disabled={!hasRolled || (isMysteriousStranger ? false : !hasEnoughAmmo(itemData, character))}
                         >
                             {t('damage')}
                         </button>

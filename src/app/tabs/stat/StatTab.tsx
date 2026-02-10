@@ -22,7 +22,8 @@ function StatTab() {
         const specialSum = Object.values(character.special).reduce((total, value) => total + value, 0)
         const usedPoints = specialSum - 7*4
         const giftedBonus = character.traits.includes('traitGifted') ? 2 : 0
-        return 12 + giftedBonus - usedPoints
+        const intenseTrainingBonus = character.perks.filter(p => p === 'perkIntenseTraining').length
+        return 12 + giftedBonus + intenseTrainingBonus - usedPoints
     }, [character.special, character.traits])
     const skillPoints = useMemo(() => {
         const skillSum = Object.values(rawCharacter?.skills ?? {}).reduce((total, value) => total + value, 0)

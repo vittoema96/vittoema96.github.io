@@ -228,10 +228,10 @@ export interface PopupContextValue {
     showConfirm: (message: string, onConfirm: () => void) => void;
     closeAlert: () => void;
 
-    showD20Popup: (skillId: SkillType, usingItem?: CharacterItem) => void;
+    showD20Popup: (skillId: SkillType | 'perkMysteriousStranger', usingItem?: CharacterItem) => void;
     closeD20Popup: () => void;
 
-    showD6Popup: (usingItem: CharacterItem, hasAimed?: boolean) => void;
+    showD6Popup: (usingItem: CharacterItem, hasAimed?: boolean, isMysteriousStranger?: boolean) => void;
     closeD6Popup: () => void;
 
     showAddItemPopup: (itemType: ItemType) => void;

@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/contexts/CharacterContext.tsx';
 import { useEffect, useState } from 'react';
 import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
-import { SpecialType } from '@/types';
+import { Side, SpecialType } from '@/types';
+import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 
 /**
  * Configuration for perk-specific actions.
@@ -14,19 +15,12 @@ interface PerkAction {
     onClick: () => void;  // Handler when button is clicked
 }
 
-const PERK_ACTIONS: Record<string, PerkAction> = {
-    'perkMysteriousStranger': {
-        buttonLabel: 'summonStranger',
-        onClick: () => {
-            // TODO: Implement Mysterious Stranger action
-            console.log('Mysterious Stranger action triggered!');
-        }
-    }
-};
+
 
 function PerkList() {
     const dataManager = getGameDatabase()
     const { t } = useTranslation()
+    const { showD20Popup } = usePopup()
     const { character, updateCharacter } = useCharacter()
     const numberOfPerks = character.level + (character.traits.includes("traitExtraPerk") ? 1 : 0)
 
@@ -34,23 +28,38 @@ function PerkList() {
     const [selectedPerks, setSelectedPerks] = useState<(string | undefined)[]>([]);
     const [allPerks, setAllPerks] = useState<string[]>([])
 
+    const PERK_ACTIONS: Record<string, PerkAction> = {
+        'perkMysteriousStranger': {
+            buttonLabel: 'summonStranger',
+            onClick: () => {
+                showD20Popup('perkMysteriousStranger', {
+                    id: "weaponFortyFourPistol",
+                    quantity: 1,
+                    mods: ["modErgonomicGrip", "modMarksmanGrip", "modPowerful"],
+                    customName: "Mysterious .44 Magnum"
+                })
+                console.log('Mysterious Stranger action triggered!');
+            }
+        }
+    };
 
     useEffect(() => {
-        const allPerks = Object.values(dataManager.perks)
+        const availablePerks = Object.values(dataManager.perks)
             .filter(perk => {
                 const req = perk.REQUISITES
-                return Object.entries(req).every(([key, value]) => {
+                return Object.entries(req).every(([key, val]) => {
+                    const value = Number(val)
                     if(key === 'level') {
-                        return character.level >= Number(value)
+                        return character.level >= value
                     }
                     if(key in character.special){
-                        return character.special[key as SpecialType] >= Number(value)
+                        return character.special[key as SpecialType] >= value
                     }
                     return false
                 })
             })
             .map(perk => perk.ID).sort((a, b) => t(a).localeCompare(t(b)))
-        setAllPerks(allPerks)
+        setAllPerks(availablePerks)
         setSelectedPerks(character.perks ?? [])
     }, [character.level, character.origin, character.special, character.perks])
 
@@ -68,12 +77,20 @@ function PerkList() {
 
     const getAvailablePerksForSlot = (currentSlotIndex: number): string[] => {
         // Filter out perks that are already selected in other slots
-
         return allPerks.filter(perk => {
+            if (selectedPerks[currentSlotIndex] === perk) {
+                return true;
+            }
             const isSelectedInOtherSlot = selectedPerks.some(
                 (selected, index) => index !== currentSlotIndex && selected === perk
             );
-            return !isSelectedInOtherSlot;
+            const alreadySelected = selectedPerks.filter(p => p === perk).length
+            const perkData = dataManager.perks[perk]
+
+            return !isSelectedInOtherSlot || (
+                perkData.TIER > alreadySelected &&
+                perkData.REQUISITES.level + perkData.LEVEL_REQ_INCREASE * alreadySelected <= character.level
+            );
         });
     };
 
@@ -131,6 +148,9 @@ function PerkList() {
                                         <button
                                             className="perk-action-button"
                                             onClick={PERK_ACTIONS[selectedPerk].onClick}
+                                            style={{
+                                                width: '100%'
+                                            }}
                                         >
                                             {t(PERK_ACTIONS[selectedPerk].buttonLabel)}
                                         </button>

@@ -26,11 +26,12 @@ interface AlertState {
 }
 
 interface D20State extends UsingItemPopupState {
-    skillId: SkillType;
+    skillId: SkillType | 'perkMysteriousStranger';
 }
 
 interface D6State extends UsingItemPopupState {
     hasAimed: boolean;
+    isMysteriousStranger: boolean;
 }
 
 interface AddItemState {
@@ -100,7 +101,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
 
     // D20 Popup functions
     const showD20Popup = useCallback(
-        (skillId: SkillType, usingItem: CharacterItem | null = null) => {
+        (skillId: SkillType | 'perkMysteriousStranger', usingItem: CharacterItem | null = null) => {
             setD20State({
                 skillId: skillId,
                 usingItem: usingItem,
@@ -114,10 +115,11 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
 
     // D6 Popup functions
     const showD6Popup = useCallback(
-        (usingItem: CharacterItem, hasAimed = false) => {
+        (usingItem: CharacterItem, hasAimed = false, isMysteriousStranger = false) => {
             setD6State({
                 usingItem: usingItem,
-                hasAimed: hasAimed
+                hasAimed: hasAimed,
+                isMysteriousStranger: isMysteriousStranger
             })
         }, []
     )
@@ -238,6 +240,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
                 onClose={closeD6Popup}
                 usingItem={d6State.usingItem}
                 hasAimed={d6State.hasAimed}
+                isMysteriousStranger={d6State.isMysteriousStranger}
             />}
 
             {addItemState?.itemType && <AddItemPopup

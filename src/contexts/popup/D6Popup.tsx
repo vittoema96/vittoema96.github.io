@@ -13,9 +13,10 @@ import Tag from '@/components/Tag.tsx';
 interface D6PopupProps extends GenericPopupProps {
     usingItem: CharacterItem;
     hasAimed: boolean;
+    isMysteriousStranger: boolean;
 }
 
-function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps>) {
+function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = false }: Readonly<D6PopupProps>) {
     const { t } = useTranslation();
     const dataManager = getGameDatabase();
     const dialogRef = useRef<HTMLDialogElement>(null);
@@ -54,7 +55,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps
 
     // Calculate extra dice count
     const getExtraDiceCount = () => {
-        if (!weaponData) {
+        if (isMysteriousStranger || !weaponData) {
             return 0;
         }
 
@@ -81,7 +82,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps
     const initialDiceState = createInitialDiceState(damageRating);
     const [diceClasses, setDiceClasses] = useState(initialDiceState.classes);
     const [diceActive, setDiceActive] = useState(initialDiceState.active);
-    const [diceRerolled, setDiceRerolled] = useState(initialDiceState.rerolled);
+    const [diceRerolled, setDiceRerolled] = useState(isMysteriousStranger ? initialDiceState.active : initialDiceState.rerolled);
 
     const initialExtraDiceState = createInitialDiceState(extraDiceCount, false);
     const [extraDiceClasses, setExtraDiceClasses] = useState(initialExtraDiceState.classes);
@@ -89,7 +90,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps
     const [extraDiceRerolled, setExtraDiceRerolled] = useState(initialExtraDiceState.rerolled);
 
     let ammoStep = 0;
-    if(!["na", undefined, "-"].includes(weaponData.AMMO_TYPE)){
+    if(!isMysteriousStranger && !["na", undefined, "-"].includes(weaponData.AMMO_TYPE)){
         if(isGatling){
             ammoStep = 10;
         } else if(isAmmoHungry) {
@@ -397,11 +398,10 @@ function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps
             }}
         >
             <div>
-                <div
-                    style={{ gap: '1rem', display: 'flex' }}
-                    className="l-lastSmall"
-                >
-                    <FitText minSize={20} maxSize={40}>{t(weaponData.ID)}</FitText>
+                <div style={{ gap: '1rem', display: 'flex' }} className="l-lastSmall">
+                    <FitText minSize={20} maxSize={40}>
+                        {t(weaponData.ID)}
+                    </FitText>
                     <button
                         className="popup__button-x"
                         onClick={() => closeWithAnimation(callback)}
@@ -410,7 +410,9 @@ function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps
                     </button>
                 </div>
 
-                <div style={{ marginBottom: '0.5rem' }} className="h4">{t("damage")}: {t(weaponData.DAMAGE_TYPE)}</div>
+                <div style={{ marginBottom: '0.5rem' }} className="h4">
+                    {t('damage')}: {t(weaponData.DAMAGE_TYPE)}
+                </div>
 
                 {/* Effects and Qualities Tags */}
                 <div
@@ -547,80 +549,88 @@ function D6Popup({ onClose, usingItem, hasAimed = false }: Readonly<D6PopupProps
 
                 <hr />
 
-                {/* Costs */}
-                {!isMelee(weaponData.CATEGORY) && (
-                    <div className="row l-distributed l-lastSmall">
-                        <span>{t('ammo')}</span>
-                        <span
-                            style={{
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                gap: '0.25rem',
-                                whiteSpace: 'nowrap',
-                            }}
-                        >
-                            {!hasRolled ? (
-                                // Before roll: show ammo about to consume / total
-                                <span>
-                                    {ammoCost} / {getCurrentAmmo()}
+                {!isMysteriousStranger && (
+                    <>
+                        {/* Costs */}
+                        {!isMelee(weaponData.CATEGORY) && (
+                            <div className="row l-distributed l-lastSmall">
+                                <span>{t('ammo')}</span>
+                                <span
+                                    style={{
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '0.25rem',
+                                        whiteSpace: 'nowrap',
+                                    }}
+                                >
+                                    {!hasRolled ? (
+                                        // Before roll: show ammo about to consume / total
+                                        <span>
+                                            {ammoCost} / {getCurrentAmmo()}
+                                        </span>
+                                    ) : hasBurst ? (
+                                        // After roll with burst: show dropdown / total
+                                        // Max = min(effect dice rolled, current ammo)
+                                        <>
+                                            <select
+                                                value={burstEffectsUsed}
+                                                onChange={e =>
+                                                    setBurstEffectsUsed(parseInt(e.target.value))
+                                                }
+                                                style={{
+                                                    padding: '0.125rem 0.25rem',
+                                                    backgroundColor: 'var(--secondary-color)',
+                                                    color: 'var(--primary-color)',
+                                                    border: 'var(--border-primary-thin)',
+                                                    fontSize: 'inherit',
+                                                }}
+                                            >
+                                                {Array.from(
+                                                    {
+                                                        length:
+                                                            Math.min(
+                                                                getEffectCount(),
+                                                                getCurrentAmmo(),
+                                                            ) + 1,
+                                                    },
+                                                    (_, i) => (
+                                                        <option key={i} value={i}>
+                                                            {i}
+                                                        </option>
+                                                    ),
+                                                )}
+                                            </select>
+                                            <span>/ {getCurrentAmmo()}</span>
+                                        </>
+                                    ) : (
+                                        // After roll without burst: show 0 / total
+                                        <span>0 / {getCurrentAmmo()}</span>
+                                    )}
                                 </span>
-                            ) : hasBurst ? (
-                                // After roll with burst: show dropdown / total
-                                // Max = min(effect dice rolled, current ammo)
-                                <>
-                                    <select
-                                        value={burstEffectsUsed}
-                                        onChange={e =>
-                                            setBurstEffectsUsed(parseInt(e.target.value))
-                                        }
-                                        style={{
-                                            padding: '0.125rem 0.25rem',
-                                            backgroundColor: 'var(--secondary-color)',
-                                            color: 'var(--primary-color)',
-                                            border: 'var(--border-primary-thin)',
-                                            fontSize: 'inherit',
-                                        }}
-                                    >
-                                        {Array.from(
-                                            {
-                                                length:
-                                                    Math.min(getEffectCount(), getCurrentAmmo()) +
-                                                    1,
-                                            },
-                                            (_, i) => (
-                                                <option key={i} value={i}>
-                                                    {i}
-                                                </option>
-                                            ),
-                                        )}
-                                    </select>
-                                    <span>/ {getCurrentAmmo()}</span>
-                                </>
-                            ) : (
-                                // After roll without burst: show 0 / total
-                                <span>0 / {getCurrentAmmo()}</span>
-                            )}
-                        </span>
-                    </div>
+                            </div>
+                        )}
+
+                        <div className="row l-distributed l-lastSmall">
+                            <span>{t('luck')}</span>
+                            <span>
+                                {getLuckCost()} / {character.currentLuck}
+                            </span>
+                        </div>
+
+                        <hr />
+                    </>
                 )}
 
-                <div className="row l-distributed l-lastSmall">
-                    <span>{t('luck')}</span>
-                    <span>
-                        {getLuckCost()} / {character.currentLuck}
-                    </span>
-                </div>
-
-                <hr />
-
                 <footer>
-                    <button
-                        className="popup__button-confirm"
-                        onClick={handleRoll}
-                        disabled={!isMelee(weaponData.CATEGORY) && getCurrentAmmo() < ammoCost}
-                    >
-                        {hasRolled ? t('reroll') : t('roll')}
-                    </button>
+                    {(!hasRolled || !(diceRerolled.every(Boolean) && extraDiceRerolled.every(Boolean))) && (
+                        <button
+                            className="popup__button-confirm"
+                            onClick={handleRoll}
+                            disabled={!isMelee(weaponData.CATEGORY) && getCurrentAmmo() < ammoCost}
+                        >
+                            {hasRolled ? t('reroll') : t('roll')}
+                        </button>
+                    )}
                     <button
                         className="popup__button-close"
                         onClick={() => closeWithAnimation(callback)}
