@@ -7,7 +7,7 @@ import { hasEnoughAmmo } from '@/utils/itemUtils';
 import { CharacterItem, SkillType, SPECIAL, SpecialType, WeaponItem } from '@/types';
 import {SKILL_TO_SPECIAL_MAP} from "@/utils/characterSheet";
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
-import { FitText } from '@/app/FitText.tsx';
+import PopupHeader from '@/contexts/popup/common/PopupHeader.tsx';
 
 
 interface D20PopupProps {
@@ -209,144 +209,131 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
     }
 
     return (
-        <dialog
-            ref={dialogRef}
-            style={{
-                zIndex: 10000,
-                position: 'fixed'
-            }}
-        >
-            <div>
-                <div style={{ gap: '1rem', padding: '0.5rem', display: 'flex'}} className="l-lastSmall">
-                    <FitText minSize={20} maxSize={40}>
-                        {t(skill)}
-                    </FitText>
-                    <button className="popup__button-x" onClick={() => closeWithAnimation()}>&times;</button>
-                </div>
+        <dialog ref={dialogRef}>
+            <PopupHeader title={skill} onClose={() => closeWithAnimation()}/>
 
-                <div className="l-lastSmall row">
-                    <select
-                        value={isUsingLuck ? 'luck' : selectedSpecial}
-                        onChange={(e) => {
-                            const value = e.target.value
-                            if (value === 'luck') {
-                                setIsUsingLuck(true)
-                            } else {
-                                setIsUsingLuck(false)
-                                setSelectedSpecial(value as SpecialType)
-                            }
-                        }}
-                        disabled={hasRolled || isUsingLuck || isMysteriousStranger}
-                        aria-label="Special to use?"
-                        style={{ width: '100%' }}
-                    >
-                        {SPECIAL.map(specialValue => (
-                            <option key={specialValue} value={specialValue}>
-                                {t(specialValue)}
-                            </option>
-                        ))}
-                    </select>
-                    {!isMysteriousStranger && <input
-                        type="checkbox"
-                        className="themed-svg"
-                        data-icon="luck"
-                        checked={isUsingLuck}
-                        onChange={(e) => {
-                            setIsUsingLuck(e.target.checked)
-                        }}
-                        disabled={hasRolled}
-                        aria-label="Use Luck"
-                    />}
-                </div>
-
-                <hr />
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                    <span className="h2">Target: {targetNumber}</span>
-                    <span className="h5">{skillValue} (Skill) + {specialValue} ({t(activeSpecialId) || activeSpecialId})</span>
-                    <span className="h5">Critical Hit: Roll {criticalValue > 1 ? `≤` : `=`} {criticalValue}</span>
-                </div>
-
-                <hr />
-
-                <div className="row l-spaceBetween">
-                    {diceValues.map((value, index) => {
-                        const diceClass = getDiceClass(value)
-                        return (
-                            <div
-                                key={index}
-                                className={`d20-dice dice ${diceActive[index] ? 'active' : ''} ${diceRerolled[index] ? 'rerolled' : ''} ${diceClass}`}
-                                onClick={() => handleDiceClick(index)}
-                                style={{
-                                    cursor: 'pointer',
-                                    ...(isMysteriousStranger || index < 2 ? {} : { transform: 'scale(0.8)' })
-                                }}
-                            >
-                                {value}
-                            </div>
-                        )
-                    })}
-                </div>
-
-
-                {
-                    !isMysteriousStranger &&
-                    <>
-                        <div className="row l-distributed l-lastSmall">
-                            <span>{t('apCost')}</span>
-                            <span>{getApCost()}</span>
-                        </div>
-
-                        <div className="row l-distributed l-lastSmall">
-                            <span>{t('aim')}?</span>
-                            <input
-                                type="checkbox"
-                                className="themed-svg"
-                                data-icon="attack"
-                                checked={isAiming}
-                                disabled={hasRolled}
-                                onChange={(e) => toggleAiming(e.target.checked)}
-                                aria-label="Aim"
-                            />
-                        </div>
-
-                        <div className="row l-distributed l-lastSmall">
-                            <span>{t('luckCost')}</span>
-                            <div className="row l-centered">
-                                <span>{luckCost} / {currentLuck}</span>
-                            </div>
-                        </div>
-                    </>
-                }
-
-                <hr />
-
-                <span className="h3">{t('successes')}: {getSuccesses()}</span>
-
-                <hr />
-
-                <footer>
-                    {(!isMysteriousStranger || !hasRolled) && <button
-                        className="popup__button-confirm"
-                        onClick={handleRoll}
-                        disabled={hasRolled && (diceActive.filter(Boolean).length === 0 || luckCost > currentLuck)}
-                    >
-                        {t(hasRolled ? 'reroll' : 'roll')}
-                    </button>}
-                    {itemData && (!isMysteriousStranger || hasRolled) && (
-                        <button
-                            className="popup__button-confirm"
-                            onClick={() => {
-                                showD6Popup(usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }, isAiming, isMysteriousStranger)
-                            }}
-                            disabled={!hasRolled || (isMysteriousStranger ? false : !hasEnoughAmmo(itemData, character))}
-                        >
-                            {t('damage')}
-                        </button>
-                    )}
-                    <button className="popup__button-close" onClick={() => closeWithAnimation()}>{t('close')}</button>
-                </footer>
+            <div className="row l-lastSmall">
+                <select
+                    value={isUsingLuck ? 'luck' : selectedSpecial}
+                    onChange={(e) => {
+                        const value = e.target.value
+                        if (value === 'luck') {
+                            setIsUsingLuck(true)
+                        } else {
+                            setIsUsingLuck(false)
+                            setSelectedSpecial(value as SpecialType)
+                        }
+                    }}
+                    disabled={hasRolled || isUsingLuck || isMysteriousStranger}
+                    aria-label="Special to use?"
+                    style={{ width: '100%' }}
+                >
+                    {SPECIAL.map(specialValue => (
+                        <option key={specialValue} value={specialValue}>
+                            {t(specialValue)}
+                        </option>
+                    ))}
+                </select>
+                {!isMysteriousStranger && <input
+                    type="checkbox"
+                    className="themed-svg"
+                    data-icon="luck"
+                    checked={isUsingLuck}
+                    onChange={(e) => {
+                        setIsUsingLuck(e.target.checked)
+                    }}
+                    disabled={hasRolled}
+                    aria-label="Use Luck"
+                />}
             </div>
+
+            <hr />
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                <span className="h2">Target: {targetNumber}</span>
+                <span className="h5">{skillValue} (Skill) + {specialValue} ({t(activeSpecialId) || activeSpecialId})</span>
+                <span className="h5">Critical Hit: Roll {criticalValue > 1 ? `≤` : `=`} {criticalValue}</span>
+            </div>
+
+            <hr />
+
+            <div className="row l-spaceBetween">
+                {diceValues.map((value, index) => {
+                    const diceClass = getDiceClass(value)
+                    return (
+                        <div
+                            key={index}
+                            className={`d20-dice dice ${diceActive[index] ? 'active' : ''} ${diceRerolled[index] ? 'rerolled' : ''} ${diceClass}`}
+                            onClick={() => handleDiceClick(index)}
+                            style={{
+                                cursor: 'pointer',
+                                ...(isMysteriousStranger || index < 2 ? {} : { transform: 'scale(0.8)' })
+                            }}
+                        >
+                            {value}
+                        </div>
+                    )
+                })}
+            </div>
+
+
+            {
+                !isMysteriousStranger &&
+                <>
+                    <div className="row l-distributed l-lastSmall">
+                        <span>{t('apCost')}</span>
+                        <span>{getApCost()}</span>
+                    </div>
+
+                    <div className="row l-distributed l-lastSmall">
+                        <span>{t('aim')}?</span>
+                        <input
+                            type="checkbox"
+                            className="themed-svg"
+                            data-icon="attack"
+                            checked={isAiming}
+                            disabled={hasRolled}
+                            onChange={(e) => toggleAiming(e.target.checked)}
+                            aria-label="Aim"
+                        />
+                    </div>
+
+                    <div className="row l-distributed l-lastSmall">
+                        <span>{t('luckCost')}</span>
+                        <div className="row l-centered">
+                            <span>{luckCost} / {currentLuck}</span>
+                        </div>
+                    </div>
+                </>
+            }
+
+            <hr />
+
+            <span className="h3">{t('successes')}: {getSuccesses()}</span>
+
+            <hr />
+
+            <footer>
+                {(!isMysteriousStranger || !hasRolled) && <button
+                    className="popup__button-confirm"
+                    onClick={handleRoll}
+                    disabled={hasRolled && (diceActive.filter(Boolean).length === 0 || luckCost > currentLuck)}
+                >
+                    {t(hasRolled ? 'reroll' : 'roll')}
+                </button>}
+                {itemData && (!isMysteriousStranger || hasRolled) && (
+                    <button
+                        className="popup__button-confirm"
+                        onClick={() => {
+                            showD6Popup(usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }, isAiming, isMysteriousStranger)
+                        }}
+                        disabled={!hasRolled || (isMysteriousStranger ? false : !hasEnoughAmmo(itemData, character))}
+                    >
+                        {t('damage')}
+                    </button>
+                )}
+                <button className="popup__button-close" onClick={() => closeWithAnimation()}>{t('close')}</button>
+            </footer>
         </dialog>
     )
 }

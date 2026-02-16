@@ -5,6 +5,7 @@ interface FitTextProps {
     children: React.ReactNode;
     minSize?: number;
     maxSize?: number;
+    style?: React.CSSProperties;
     center?: boolean;
     wrap?: boolean; // explicit prop to handle multi-line vs single-line
     className?: string;
@@ -14,6 +15,7 @@ export const FitText = ({
                             children,
                             minSize = 10,
                             maxSize = 100,
+                            style={},
                             center = true,
                             wrap = false,
                             className
@@ -43,6 +45,7 @@ export const FitText = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: center ? 'space-around' : 'flex-start',
+            ...style
         }}>
             <div ref={textRef} className={className} style={{
                 display: 'inline-block',

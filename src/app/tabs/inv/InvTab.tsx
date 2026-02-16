@@ -24,32 +24,32 @@ function InvTab() {
     return (
         <section className="tabContent">
             {/* Sub-tab Navigation - EXACT copy of original */}
-            <div className="navigator">
+            <nav className="navigator">
                 <button
                     className={`subTab-button ${activeSubTab === 'weapon' ? 'active' : ''}`}
                     onClick={() => handleSubTabClick('weapon')}
                 >
-                    {t('weaponsUpper')}
+                    {t('weapons').toUpperCase()}
                 </button>
                 <button
                     className={`subTab-button ${activeSubTab === 'apparel' ? 'active' : ''}`}
                     onClick={() => handleSubTabClick('apparel')}
                 >
-                    {t('apparelUpper')}
+                    {t('apparel').toUpperCase()}
                 </button>
                 <button
                     className={`subTab-button ${activeSubTab === 'aid' ? 'active' : ''}`}
                     onClick={() => handleSubTabClick('aid')}
                 >
-                    {t('aidUpper')}
+                    {t('aid').toUpperCase()}
                 </button>
                 <button
                     className={`subTab-button ${activeSubTab === 'other' ? 'active' : ''}`}
                     onClick={() => handleSubTabClick('other')}
                 >
-                    {t('otherUpper')}
+                    {t('other').toUpperCase()}
                 </button>
-            </div>
+            </nav>
 
             {/* Weapon Sub-screen - Accordion List */}
             {activeSubTab === 'weapon' && <section className={`js-subScreen`}>

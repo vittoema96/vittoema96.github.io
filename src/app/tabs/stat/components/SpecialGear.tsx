@@ -14,14 +14,14 @@ interface SpecialStatProps {
 /**
  * Reusable SPECIAL stat display component
  */
-function SpecialStat({ specialType, isEditing = false, children }: Readonly<SpecialStatProps>) {
+function SpecialGear({ specialType, isEditing = false, children }: Readonly<SpecialStatProps>) {
     const { t } = useTranslation()
     const { updateCharacter, replenishLuck } = useCharacter()
     const { showConfirm } = usePopup()
     const { character } = useCharacter()
 
     // Handle SPECIAL stat changes (click to increment in edit mode)
-    const handleSpecialClick = (specialType: SpecialType) => {
+    const handleClick = (specialType: SpecialType) => {
         if (!isEditing) {return}
         const current = character.special[specialType]
         const max = character.origin.specialMaxValues[specialType]
@@ -43,19 +43,24 @@ function SpecialStat({ specialType, isEditing = false, children }: Readonly<Spec
     }
 
     const style = {
-        cursor: isEditing ? 'pointer' : 'default'
-    }
-    let valueText = character.special[specialType];
+        cursor: isEditing ? 'pointer' : 'default',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        aspectRatio: 1
+    } as const
+    let valueText = `${character.special[specialType]}`
     if(isEditing){
         valueText += `/${character.origin.specialMaxValues[specialType]}`
     }
     return (
         <div
+            onClick={() => handleClick(specialType)}
             className="special"
-            onClick={() => handleSpecialClick(specialType)}
             style={style}>
             <span className="special__name">{t(specialType)}</span>
-            <span className="special__value">{valueText}</span>
+            <span style={{fontSize: '24cqw'}}>{valueText}</span>
             {specialType === "luck" && (
                 <div
                     className="themed-svg sub-special"
@@ -64,7 +69,7 @@ function SpecialStat({ specialType, isEditing = false, children }: Readonly<Spec
                         handleLuckReplenish()
                     }}
                     style={style}>
-                    <span className="special__value">
+                    <span style={{fontSize: '24cqw'}}>
                         {character.currentLuck}
                     </span>
                 </div>
@@ -74,5 +79,5 @@ function SpecialStat({ specialType, isEditing = false, children }: Readonly<Spec
     )
 }
 
-export default SpecialStat
+export default SpecialGear
 

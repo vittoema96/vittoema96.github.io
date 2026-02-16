@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/contexts/CharacterContext';
-import { useDialog } from '@/hooks/useDialog';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
 import { GenericItem, GenericPopupProps, ItemCategory, ItemType, Side } from '@/types';
 import { addItem } from '@/utils/itemUtils.ts';
+import BasePopup from '@/contexts/popup/common/BasePopup.tsx';
 
 export interface AddItemPopupProps extends GenericPopupProps {
     itemType: ItemType;
@@ -20,7 +20,6 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
     const dataManager = getGameDatabase()
-    const dialogRef = useRef<HTMLDialogElement>(null)
 
     const [selectedItem, setSelectedItem] = useState<SelectableItem | undefined>(undefined)
     const [quantity, setQuantity] = useState<number | undefined>(1)
@@ -104,9 +103,6 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
         })
     }
 
-    // Use dialog hook for dialog management
-    const { closeWithAnimation } = useDialog(dialogRef, onClose)
-
     // Reset filter when itemType changes (e.g., switching from weapon to apparel)
     useEffect(() => {
         setCategoryFilter(undefined)
@@ -139,142 +135,119 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
             items: newItems,
             ...(shouldBuy ? {caps: character.caps - totalCost} : {})
         })
-        closeWithAnimation()
     }
 
     return (
-        <dialog
-            ref={dialogRef}
-        >
-            <div onClick={(e) => e.stopPropagation()}>
-                <header className="l-lastSmall">
-                    <span className="h2">{t('chooseItem')}</span>
-                    <button className="popup__button-x" onClick={() => closeWithAnimation()}>
-                        &times;
-                    </button>
-                </header>
+        <BasePopup
+            title={'chooseItem'}
+            onConfirm={handleConfirm}
+            onClose={onClose}
+            disabled={!selectedItem || !quantity}>
+            <hr />
 
-                <hr />
-
-                {/* Category Filter */}
-                <div className="row" style={{ marginBottom: '1rem' }}>
-                    <label style={{ marginRight: '0.5rem' }}>{t('type')}:</label>
-                    <select
-                        value={categoryFilter ?? 'all'}
-                        onChange={(e) => {
-                            const value = e.target.value
-                            const filter = value === 'all' ? undefined : value as ItemCategory
-                            setCategoryFilter(filter)
-                        }}
-                        aria-label="Type filter"
-                    >
-                        <option value={'all'}>{t('all')}</option>
-                        {getCategories()}
-                    </select>
-                </div>
-
-                {/* Rarity Filter */}
-                <div className="row" style={{ marginBottom: '1rem' }}>
-                    <label style={{ marginRight: '0.5rem' }}>{t('rarity')}:</label>
-                    <select
-                        value={rarityFilter ?? 'all'}
-                        onChange={(e) => {
-                            const value = e.target.value
-                            const filter = value === 'all' ? undefined : Number.parseInt(value)
-                            setRarityFilter(filter)
-                        }}
-                        aria-label="Rarity filter"
-                    >
-                        <option value={'all'}>{t('all')}</option>
-                        <option value={0}>{t('rarity0')}</option>
-                        <option value={1}>{t('rarity1')}</option>
-                        <option value={2}>{t('rarity2')}</option>
-                        <option value={3}>{t('rarity3')}</option>
-                        <option value={4}>{t('rarity4')}</option>
-                        <option value={5}>{t('rarity5')}</option>
-                        <option value={6}>{t('rarity6')}</option>
-                    </select>
-                </div>
-
-                <div className="row">
-                    <select
-                        onChange={(e) => {
-                            const item = availableItems.find(i => {
-                                const id = `${i.ID}_${i?.variation ?? ''}`
-                                return id === e.target.value
-                            })
-                            setSelectedItem(item)
-                        }}
-                        aria-label="Object picker"
-                    >
-                        {availableItems.map(item => {
-                            const id = `${item.ID}_${item?.variation ?? ''}`
-                            return (
-                                <option key={id} value={id}>
-                                    {t(item.ID, { variation: t(item.variation!) })}
-                                </option>
-                            )
-                        })}
-                    </select>
-
-                    <input
-                        type="number"
-                        min="1"
-                        value={quantity ?? ''}
-                        onChange={(e) => {
-                            const val = Number.parseInt(e.target.value)
-                            setQuantity(val ? Math.max(1, val) : undefined)
-                        }}
-                        aria-label="Object quantity"
-                        style={{ width: '5rem' }}
-                    />
-                </div>
-
-                {/* Buy checkbox and price */}
-                <div className="row" style={{ marginTop: '1rem', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        {t('buy')}?
-                    </label>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                        <input
-                            type="checkbox"
-                            className="themed-svg"
-                            data-icon="caps"
-                            checked={shouldBuy}
-                            onChange={(e) => setShouldBuy(e.target.checked)}
-                            style={{
-                                width: '1.2rem',
-                                height: '1.2rem'
-                            }}
-                        />
-                        <span style={{
-                            color: shouldBuy ? 'var(--primary-color)' : 'var(--primary-color-very-translucent)',
-                            fontWeight: 'bold'
-                        }}>
-                            {(selectedItem ? selectedItem.COST : 0) * (quantity ?? 0)}
-                        </span>
-                    </label>
-                </div>
-
-                <hr />
-
-                <footer>
-                    <button
-                        className="popup__button-confirm"
-                        onClick={handleConfirm}
-                        disabled={!selectedItem || !quantity}
-                    >
-                        {t('confirm')}
-                    </button>
-                    <button
-                        className="popup__button-close"
-                        onClick={() => closeWithAnimation()}
-                    >
-                        {t('close')}
-                    </button>
-                </footer>
+            {/* Category Filter */}
+            <div className="row" style={{ marginBottom: '1rem' }}>
+                <label style={{ marginRight: '0.5rem' }}>{t('type')}:</label>
+                <select
+                    value={categoryFilter ?? 'all'}
+                    onChange={(e) => {
+                        const value = e.target.value
+                        const filter = value === 'all' ? undefined : value as ItemCategory
+                        setCategoryFilter(filter)
+                    }}
+                    aria-label="Type filter"
+                >
+                    <option value={'all'}>{t('all')}</option>
+                    {getCategories()}
+                </select>
             </div>
-        </dialog>
+
+            {/* Rarity Filter */}
+            <div className="row" style={{ marginBottom: '1rem' }}>
+                <label style={{ marginRight: '0.5rem' }}>{t('rarity')}:</label>
+                <select
+                    value={rarityFilter ?? 'all'}
+                    onChange={(e) => {
+                        const value = e.target.value
+                        const filter = value === 'all' ? undefined : Number.parseInt(value)
+                        setRarityFilter(filter)
+                    }}
+                    aria-label="Rarity filter"
+                >
+                    <option value={'all'}>{t('all')}</option>
+                    <option value={0}>{t('rarity0')}</option>
+                    <option value={1}>{t('rarity1')}</option>
+                    <option value={2}>{t('rarity2')}</option>
+                    <option value={3}>{t('rarity3')}</option>
+                    <option value={4}>{t('rarity4')}</option>
+                    <option value={5}>{t('rarity5')}</option>
+                    <option value={6}>{t('rarity6')}</option>
+                </select>
+            </div>
+
+            <div className="row">
+                <select
+                    onChange={(e) => {
+                        const item = availableItems.find(i => {
+                            const id = `${i.ID}_${i?.variation ?? ''}`
+                            return id === e.target.value
+                        })
+                        setSelectedItem(item)
+                    }}
+                    aria-label="Object picker"
+                >
+                    {availableItems.map(item => {
+                        const id = `${item.ID}_${item?.variation ?? ''}`
+                        return (
+                            <option key={id} value={id}>
+                                {t(item.ID, { variation: t(item.variation!) })}
+                            </option>
+                        )
+                    })}
+                </select>
+
+                <input
+                    type="number"
+                    min="1"
+                    value={quantity ?? ''}
+                    onChange={(e) => {
+                        const val = Number.parseInt(e.target.value)
+                        setQuantity(val ? Math.max(1, val) : undefined)
+                    }}
+                    aria-label="Object quantity"
+                    style={{ width: '5rem' }}
+                />
+            </div>
+
+            {/* Buy checkbox and price */}
+            <div className="row" style={{ marginTop: '1rem', alignItems: 'center', justifyContent: 'space-between' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    {t('buy')}?
+                </label>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                    <input
+                        type="checkbox"
+                        className="themed-svg"
+                        data-icon="caps"
+                        checked={shouldBuy}
+                        onChange={(e) => setShouldBuy(e.target.checked)}
+                        style={{
+                            width: '1.2rem',
+                            height: '1.2rem'
+                        }}
+                    />
+                    <span style={{
+                        color: shouldBuy ? 'var(--primary-color)' : 'var(--primary-color-very-translucent)',
+                        fontWeight: 'bold'
+                    }}>
+                        {(selectedItem ? selectedItem.COST : 0) * (quantity ?? 0)}
+                    </span>
+                </label>
+            </div>
+
+            <hr />
+
+        </BasePopup>
     )
 }
 

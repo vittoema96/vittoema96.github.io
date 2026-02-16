@@ -4,7 +4,7 @@ import { useCharacter } from '@/contexts/CharacterContext'
 import ActiveEffectsDisplay from '@/app/tabs/ActiveEffectsDisplay.tsx'
 import Skill from './components/Skill'
 import DamageReductionDisplay from './components/DamageReductionDisplay'
-import SpecialStat from './components/SpecialStat'
+import SpecialGear from './components/SpecialGear.tsx'
 import {SKILLS, SPECIAL} from "@/types";
 
 function StatTab() {
@@ -77,7 +77,7 @@ function StatTab() {
 
             <div id="c-special">
                 {SPECIAL.map((specialName) => (
-                    <SpecialStat
+                    <SpecialGear
                         key={specialName}
                         specialType={specialName}
                         isEditing={isEditing}

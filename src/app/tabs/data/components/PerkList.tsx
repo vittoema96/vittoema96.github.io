@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/contexts/CharacterContext.tsx';
 import { useEffect, useState } from 'react';
 import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
-import { Side, SpecialType } from '@/types';
+import { SpecialType } from '@/types';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 
 /**

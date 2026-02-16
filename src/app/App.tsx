@@ -5,7 +5,7 @@ import DataTab from '@/app/tabs/data/DataTab'
 import MapTab from '@/app/tabs/map/MapTab'
 import SettingsTab from '@/app/tabs/settings/SettingsTab'
 import TabButton, {TabType} from '@/app/tabs/TabButton'
-import HeaderStats from "@/app/HeaderStats";
+import AppHeader from "@/app/AppHeader.tsx";
 
 const TABS = {
     stat: StatTab,
@@ -23,16 +23,14 @@ function App() {
 
 
     return (
-        <div
-            id="main"
-            style={{
+        <div style={{
                 height: '100dvh',
                 display: 'flex',
                 flexDirection: 'column',
                 overflow: 'hidden' // Prevent body scroll, let main-container handle it
             }}
         >
-            <HeaderStats />
+            <AppHeader />
 
             <hr />
 

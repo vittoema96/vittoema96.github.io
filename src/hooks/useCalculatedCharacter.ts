@@ -97,6 +97,9 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
     const maxWeight = useMemo(
         () => {
             let result = origin?.calcMaxCarryWeight(special.strength)
+            if(traits.includes('traitSmallFrame')) {
+                result = 75 + (special.strength * 2.5)
+            }
             // Add carry weight bonuses from equipped items with mods
             items.forEach(item => {
                 if (!item.equipped) {return;}

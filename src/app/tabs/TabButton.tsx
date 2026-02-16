@@ -1,30 +1,37 @@
-import { JSX } from 'react/jsx-runtime'
-
 export type TabType = "stat" | "inv" | "data" | "map" | "settings"
 
 interface TabButtonProps {
     tabType: TabType;
     active: boolean;
     onClick: () => void;
-    icon?: JSX.Element;
 }
 
 /**
  * Reusable tab button component
  */
-function TabButton({ tabType, active, onClick }: TabButtonProps) {
-    const isSettings = tabType === "settings"
+function TabButton({ tabType, active, onClick }: Readonly<TabButtonProps>) {
+    const isSettings = tabType === 'settings';
 
     return (
-        <button className={`tab-button ${isSettings ? 'mini-tab-button' : ''} ${active ? 'active' : ''}`}
-                onClick={onClick}>
-            {
-                isSettings ?
-                <i className="fas fa-gear"/> :
-                tabType.toUpperCase()
-            }
+        <button
+            style={{
+                borderBottom: 0,
+                borderBottomLeftRadius: 0,
+                borderBottomRightRadius: 0,
+                padding: '0.2rem',
+                flex: 1,
+                boxSizing: 'border-box',
+                ...(isSettings ? {flex: '0 0 auto'} : {}),
+                ...(active? {
+                    color: 'var(--secondary-color)',
+                    backgroundColor: 'var(--primary-color)',
+                }: {})
+            }}
+            onClick={onClick}
+        >
+            {isSettings ? <i className="fas fa-gear" /> : tabType.toUpperCase()}
         </button>
-    )
+    );
 }
 
 export default TabButton
