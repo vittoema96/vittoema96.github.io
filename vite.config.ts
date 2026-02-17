@@ -50,9 +50,9 @@ export default defineConfig({
       registerType: 'autoUpdate', // TODO investigate 'prompt' register type
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,csv,woff,woff2,ttf,eot}'],
-          skipWaiting: true,
-          clientsClaim: true,
-          cleanupOutdatedCaches: true
+        skipWaiting: true,
+        clientsClaim: true,
+        cleanupOutdatedCaches: true
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
@@ -111,6 +111,9 @@ export default defineConfig({
             label: 'New Vegas Theme'
           }
         ]
+      },
+      devOptions: {
+        enabled: true
       }
     })
   ]
