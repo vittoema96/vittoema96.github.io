@@ -49,7 +49,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate', // TODO investigate 'prompt' register type
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,csv}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,csv,woff,woff2,ttf,eot}'],
           skipWaiting: true,
           clientsClaim: true,
           cleanupOutdatedCaches: true
