@@ -47,6 +47,9 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
         if (isMelee(weaponData.CATEGORY)) {
             rating += character.meleeDamage;
         }
+        if(weaponData.CATEGORY === "energyWeapons"){
+            rating += character.perks.filter(p => p === 'perkLaserCommander').length
+        }
         return rating;
     };
 

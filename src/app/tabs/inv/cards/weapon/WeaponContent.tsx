@@ -35,28 +35,34 @@ function WeaponContent({ characterItem }: Readonly<WeaponContentProps>) {
     const getAmmoCount = () => getWeaponAmmoCount(itemData, character)
     const checkHasEnoughAmmo = () => hasEnoughAmmo(itemData, character)
 
+
+    let damageRating = `${itemData.DAMAGE_RATING}`
+    const damageBonus = itemData.CATEGORY === 'energyWeapons' ? character.perks.filter(p => p === 'perkLaserCommander').length : 0
+    if(damageBonus > 0){
+        damageRating = `(${damageRating}+${damageBonus})`
+    }
+
     return (
         <section>
             <div className="row l-spaceBetween">
                 <section>
                     <div className="card-stat">
-                        <div className="js-cardWeapon-skill">{t(itemData.CATEGORY)}</div>
+                        <div>{t(itemData.CATEGORY)}</div>
                         <div className="row l-centered">
                             <span>{t('target')}:</span>
-                            <span className="js-cardWeapon-target">{targetNumber}</span>
+                            <span >{targetNumber}</span>
                         </div>
                         <div className="row l-centered">
                             <span>{t('crit')}:</span>
-                            <span className="js-cardWeapon-crit">{critThreshold}</span>
+                            <span >{critThreshold}</span>
                         </div>
                     </div>
                     <div className="card-stat">
-                        <div className="js-cardWeapon-ammoType">
+                        <div>
                             {/*TODO check this. may not be relevant anymore */}
                             {t(itemData.AMMO_TYPE === 'self' ? 'quantity' : itemData.AMMO_TYPE)}
                         </div>
                         <div
-                            className="js-cardWeapon-ammoCount"
                             style={{
                                 color: checkHasEnoughAmmo() ? 'var(--primary-color)' : 'var(--failure-color)'
                             }}
@@ -77,16 +83,16 @@ function WeaponContent({ characterItem }: Readonly<WeaponContentProps>) {
                 <section>
                     <div className="card-stat">
                         <div>{t('damageLabel')}</div>
-                        <div className="js-cardWeapon-damageRating">{itemData.DAMAGE_RATING}d6</div>
-                        <div className="js-cardWeapon-damageType">{t(itemData.DAMAGE_TYPE)}</div>
+                        <div>{damageRating}d6</div>
+                        <div>{t(itemData.DAMAGE_TYPE)}</div>
                     </div>
                     <div className="card-stat">
                         <div>{t('fireRateLabel')}</div>
-                        <div className="js-cardWeapon-fireRate">{itemData.FIRE_RATE}</div>
+                        <div>{itemData.FIRE_RATE}</div>
                     </div>
                     <div className="card-stat">
                         <div>{t('rangeLabel')}</div>
-                        <div className="js-cardWeapon-range">{t(`${itemData.RANGE}Full`)}</div>
+                        <div>{t(`${itemData.RANGE}Full`)}</div>
                     </div>
                 </section>
             </div>
