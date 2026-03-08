@@ -111,8 +111,20 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
     const getDiceClass = (value: string | number) => {
         if (typeof value !== 'number') {return ''}
 
-        if (value === 20) {
-            return 'roll-complication' // Critical fail (20)
+        const extraComplications = []
+        let baseComplication = 20
+        if(dataManager.isType(itemData, "weapon")){
+            if(itemData.QUALITIES?.includes('qualityUnreliable')) {
+                extraComplications.push(19)
+            }
+            if(character.traits.includes('traitHeavyHanded')
+                && ['meleeWeapons', 'unarmed'].includes(skill)) {
+                baseComplication -= 1
+            }
+        }
+
+        if (value >= Math.min(baseComplication, ...extraComplications)) {
+            return 'roll-complication' // Critical fail
         } else if (value <= criticalValue) {
             return 'roll-crit' // Critical hit
         }

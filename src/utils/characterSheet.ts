@@ -96,16 +96,25 @@ export const ORIGINS = Object.freeze({
     //  - Supermutant starts with +2 on Str and End
     //  - Survivor has to choose Traits
     NO_ORIGIN: createOrigin(),
+
+    // TODO
+    //  Reduce diff on COS (illness)
+    //  recovers luck on vault experiment
+    //  +1 specialty
     VAULT_DWELLER: createOrigin('vaultDweller'),
+    // TODO
+    //  survival specialty + 2
     GHOUL: createOrigin('ghoul', {
         hasRadiationImmunity: true,
         characterSvg: 'ghoul',
     }),
     SURVIVOR: createOrigin('survivor', {
         numberOfTraits: 2,
-    }), // TODO missing traits
+    }),
+    // TODO
+    //  Reduce diff on PER (sight and smell)
+    //  isRobot == No aid consumption allowed
     MR_HANDY: createOrigin('mrHandy', {
-        // TODO might have mr handy weapons as "traits"
         calcMaxCarryWeight: () => 75, // Fixed carry weight for Mr. Handy, can only be upped by armour/mods
         hasRadiationImmunity: true,
         hasPoisonImmunity: true,
@@ -116,7 +125,11 @@ export const ORIGINS = Object.freeze({
         needsSpecializedWeapons: true,
         characterSvg: 'mrHandy',
     }),
+    // TODO
+    //  additional specialty (energyWeapons, Science or Repair)
     BROTHERHOOD_INITIATE: createOrigin('brotherhoodInitiate'),
+    // TODO
+    //  +2 Str and End
     SUPER_MUTANT: createOrigin('superMutant', {
         hasRadiationImmunity: true,
         hasPoisonImmunity: true,
@@ -132,6 +145,9 @@ export const ORIGINS = Object.freeze({
 
     // #### Settler's Guide Origins
     // TODO all the below needs reviewing and implementation of mechanics
+
+    // TODO
+    //
     MINUTEMEN: createOrigin('minutemen'), // TODO missing trait
     NCR: createOrigin('ncr', {
         numberOfTraits: 2

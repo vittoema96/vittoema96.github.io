@@ -19,36 +19,45 @@ function StatTab() {
         ), [t]
     )
     const specialPoints = useMemo(() => {
+        const baseSpecialSum = 7*4
         const specialSum = Object.values(character.special).reduce((total, value) => total + value, 0)
-        const usedPoints = specialSum - 7*4
+        const usedPoints = specialSum - baseSpecialSum
         const giftedBonus = character.traits.includes('traitGifted') ? 2 : 0
         const intenseTrainingBonus = character.perks.filter(p => p === 'perkIntenseTraining').length
         return 12 + giftedBonus + intenseTrainingBonus - usedPoints
-    }, [character.special, character.traits])
+    }, [character.perks, character.special, character.traits])
+
     const skillPoints = useMemo(() => {
         const skillSum = Object.values(rawCharacter?.skills ?? {}).reduce((total, value) => total + value, 0)
         return 9 + character.special.intelligence + character.level - 1 - skillSum
     }, [character.level, character.special.intelligence, rawCharacter?.skills])
-    const extraSpecialties = useMemo(() => {
-        return character.traits.includes('traitGoodNatured') ? ['speech', 'medicine', 'repair' , 'science', 'barter'] : undefined
-    }, [character.traits])
-    const x = useMemo(() => {
-        return character.traits.includes('traitGoodNatured') ?
-            2 - character.specialties.filter(
-                s => (extraSpecialties ?? []).includes(s)
-            ).length : 0
-    }, [character.specialties, character.traits, extraSpecialties])
-    const specialtyPoints = useMemo(() => {
-        return (
-            3 -
-            character.specialties.filter(s => !(extraSpecialties ?? []).includes(s)).length +
-            Math.min(x, 0)
-        );
-    }, [character.specialties, extraSpecialties, x])
+
+    const goodNaturedSkills = ['speech', 'medicine', 'repair' , 'science', 'barter']
+    const hasGoodNatured = useMemo(
+        () => character.traits.includes('traitGoodNatured'),
+        [character.traits]
+    )
+    const { specialties, bonusSpecialties } = useMemo(() =>character.specialties.reduce(
+        (acc, s) => {
+            if(goodNaturedSkills.includes(s)){
+                acc.bonusSpecialties++
+            } else {
+                acc.specialties++
+            }
+            return acc
+        }, {specialties: 0, bonusSpecialties: 0}
+    ), [character.specialties])
+    const bonusSpecialtyPoints = hasGoodNatured ? 2 : 0
+    const specialtyPoints = 3 + character.traits.filter(p => p === 'traitEducated').length
+    const remainingBonusSpecialtyPoints = Math.max(0, bonusSpecialtyPoints - bonusSpecialties)
+    const bonusSpecialtyOverflow = Math.max(0, bonusSpecialties - bonusSpecialtyPoints)
+    const remainingSpecialtyPoints = specialtyPoints - specialties - bonusSpecialtyOverflow
 
     let pointsClasses = "row l-distributed"
-    pointsClasses += x <= 0 ? ' l-lastSmall' : ''
+    pointsClasses += remainingBonusSpecialtyPoints <= 0 ? ' l-lastSmall' : ''
 
+
+    const meleeDamageBonus = character.meleeDamage + character.traits.filter(p => p === 'traitHeavyHanded').length
 
 
     return (
@@ -64,12 +73,12 @@ function StatTab() {
                     <span className="h4">{t("availableSkillPoints")}</span>
                     <span className="h4">{skillPoints}</span>
                 </div>
-                <div style={specialtyPoints<0 ? {color: 'var(--failure-color)'} : {}} className={pointsClasses}>
+                <div style={remainingSpecialtyPoints<0 ? {color: 'var(--failure-color)'} : {}} className={pointsClasses}>
                     <span className="h4">{t("availableSpecialtyPoints")}</span>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
-                        <span className="h4">{specialtyPoints}{extraSpecialties && x>0 ? ` (${t("any")})` : ''}</span>
-                        {extraSpecialties && x>0 && (
-                            <span className="h5">{x} ({extraSpecialties?.map(s => t(s)).join(', ')})</span>
+                        <span className="h4">{remainingSpecialtyPoints}{remainingBonusSpecialtyPoints>0 ? ` (${t("any")})` : ''}</span>
+                        {remainingBonusSpecialtyPoints>0 && (
+                            <span className="h5">{remainingBonusSpecialtyPoints} ({goodNaturedSkills.map(s => t(s)).join(', ')})</span>
                         )}
                     </div>
                 </div>
@@ -97,7 +106,7 @@ function StatTab() {
                 </div>
                 <div className="derived-stat">
                     <span>{t('melee-damage')}</span>
-                    <span>{character.meleeDamage.toLocaleString(undefined, { signDisplay: "exceptZero" })}</span>
+                    <span>{meleeDamageBonus.toLocaleString(undefined, { signDisplay: "exceptZero" })}</span>
                 </div>
             </div>
 
