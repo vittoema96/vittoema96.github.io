@@ -1,4 +1,4 @@
-export type TabType = "stat" | "inv" | "data" | "map" | "settings"
+export type TabType = "companion" | "stat" | "inv" | "data" | "map" | "settings"
 
 interface TabButtonProps {
     tabType: TabType;
@@ -11,6 +11,8 @@ interface TabButtonProps {
  */
 function TabButton({ tabType, active, onClick }: Readonly<TabButtonProps>) {
     const isSettings = tabType === 'settings';
+    const isCompanion = tabType === 'companion';
+    const isMiniTab = isSettings || isCompanion;
 
     return (
         <button
@@ -21,7 +23,7 @@ function TabButton({ tabType, active, onClick }: Readonly<TabButtonProps>) {
                 padding: '0.2rem',
                 flex: 1,
                 boxSizing: 'border-box',
-                ...(isSettings ? {flex: '0 0 auto'} : {}),
+                ...(isMiniTab ? {flex: '0 0 auto'} : {}),
                 ...(active? {
                     color: 'var(--secondary-color)',
                     backgroundColor: 'var(--primary-color)',
@@ -29,7 +31,9 @@ function TabButton({ tabType, active, onClick }: Readonly<TabButtonProps>) {
             }}
             onClick={onClick}
         >
-            {isSettings ? <i className="fas fa-gear" /> : tabType.toUpperCase()}
+            {isSettings && <i className="fas fa-gear" />}
+            {isCompanion && <i className="fas fa-user" />}
+            {!isMiniTab && tabType.toUpperCase()}
         </button>
     );
 }

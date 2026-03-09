@@ -158,6 +158,27 @@ export interface CharacterItem {
     customName?: string;
 }
 
+// Companion data structure
+export type CompanionId = 'eyebot' | 'dog' | 'mrHandy' | 'humanoid';
+
+export interface CompanionData {
+    type: CompanionId;
+    name: string;
+    // Body/Mind stats (for non-SPECIAL companions like eyebot)
+    body: number;
+    mind: number;
+    // Skills
+    melee: number;
+    guns: number;
+    other: number;
+    // Current HP
+    currentHp: number;
+    // Perks
+    perks: (string | undefined)[];
+    // Weapons (stored as CharacterItem for compatibility)
+    weapons: CharacterItem[];
+}
+
 export interface Character extends Omit<RawCharacter, 'origin'> {
     name: string | undefined;
     background: string | undefined;
@@ -176,6 +197,7 @@ export interface Character extends Omit<RawCharacter, 'origin'> {
     traits: TraitId[];
     perks: string[]
     mapCodes: string[];
+    companion?: CompanionData;  // Optional companion data
 
     maxHp: number;
     currentHp: number;
@@ -208,6 +230,7 @@ export interface RawCharacter {
     traits?: TraitId[] | undefined;
     perks?: string[] | undefined;
     mapCodes?: string[] | undefined;
+    companion?: CompanionData | undefined;  // Optional companion data
 
     currentLuck?: number | undefined;
     currentHp?: number | undefined;

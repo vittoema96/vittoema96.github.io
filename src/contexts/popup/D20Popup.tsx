@@ -10,29 +10,60 @@ import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts
 import PopupHeader from '@/contexts/popup/common/PopupHeader.tsx';
 
 
+type RollerType = 'companion' | 'mysteriousStranger'
+
 interface D20PopupProps {
     onClose: () => void;
     skillId: SkillType | 'perkMysteriousStranger';
     usingItem: CharacterItem | null;
+    /**
+     * Optional roller type used by PopupContext.
+     * When provided, the surrounding CharacterProvider will already have
+     * overridden the character in context to match the roller.
+     */
+    roller?: RollerType;
 }
 
-function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>) {
+function D20Popup({ onClose, skillId, usingItem = null, roller }: Readonly<D20PopupProps>) {
     const { t } = useTranslation()
     const dialogRef = useRef<HTMLDialogElement>(null)
     const { character, updateCharacter } = useCharacter()
     const { showD6Popup } = usePopup()
     const dataManager = getGameDatabase()
 
+    // The "roller" character always comes from context.
+    // When rolling as companion or mysterious stranger, PopupContext wraps
+    // this component in a nested CharacterProvider with an overridden
+    // character. When rolling as the main character, this is just the
+    // player character.
+    const rollerCharacter = character
+
     // Get weapon data with mods applied
     const itemData = usingItem
         ? getModifiedItemData(usingItem)
         : null
 
-    const isMysteriousStranger = skillId === 'perkMysteriousStranger'
-    const skill = isMysteriousStranger ? 'smallGuns' : skillId
+    const isMysteriousStranger = roller === 'mysteriousStranger' || skillId === 'perkMysteriousStranger'
+    const isCompanion = roller === 'companion'
+    const skill = skillId === 'perkMysteriousStranger' ? 'smallGuns' : skillId
+
+    // For companions, map skills to Body (strength) or Mind (perception)
+    const getDefaultSpecialForCompanion = (skillType: SkillType): SpecialType => {
+        // Guns and melee use Body (mapped to strength)
+        if (['smallGuns', 'bigGuns', 'energyWeapons', 'meleeWeapons', 'unarmed'].includes(skillType)) {
+            return 'strength'  // Body
+        }
+        // Other skills use Mind (mapped to perception)
+        return 'perception'  // Mind
+    }
+
     // State
     const [isUsingLuck, setIsUsingLuck] = useState(false)
-    const [selectedSpecial, setSelectedSpecial] = useState(SKILL_TO_SPECIAL_MAP[skill] || 'strength')
+    const [selectedSpecial, setSelectedSpecial] = useState(
+        isCompanion
+            ? getDefaultSpecialForCompanion(skill)
+            : (SKILL_TO_SPECIAL_MAP[skill] || 'strength')
+    )
     const [isAiming, setIsAiming] = useState(false)
     const [hasRolled, setHasRolled] = useState(false)
     const [diceValues, setDiceValues] = useState<Array<string | number>>(
@@ -45,14 +76,15 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
         isMysteriousStranger ? [true, true, true] : [false, false, false, false, false])
     const [initialApCost, setInitialApCost] = useState(0) // Store AP cost from first roll
 
-    // Calculations
-    const skillValue = isMysteriousStranger ? 6 : character.skills[skill]
-    const hasSpecialty = isMysteriousStranger || character.specialties.includes(skill)
+    // Calculations - always use the character from context (which may be
+    // the player, the companion-as-character, or the mysterious stranger).
     const activeSpecialId = isUsingLuck ? 'luck' : selectedSpecial
-    const specialValue = isMysteriousStranger ? 10 : character.special[activeSpecialId]
+    const skillValue = rollerCharacter.skills[skill]
+    const hasSpecialty = rollerCharacter.specialties.includes(skill) || isMysteriousStranger
+    const specialValue = rollerCharacter.special[activeSpecialId]
     const targetNumber = skillValue + specialValue
     const criticalValue = hasSpecialty ? skillValue : 1
-    const currentLuck = character.currentLuck
+    const currentLuck = rollerCharacter.currentLuck
 
     // AP Cost calculation
     const getApCost = () => {
@@ -117,7 +149,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
             if(itemData.QUALITIES?.includes('qualityUnreliable')) {
                 extraComplications.push(19)
             }
-            if(character.traits.includes('traitHeavyHanded')
+            if(rollerCharacter.traits.includes('traitHeavyHanded')
                 && ['meleeWeapons', 'unarmed'].includes(skill)) {
                 baseComplication -= 1
             }
@@ -207,8 +239,8 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
         }
     }
 
-    // Use dialog hook for dialog management
-    const { closeWithAnimation } = useDialog(dialogRef, onClose)
+	    // Use dialog hook for dialog management
+	    const { closeWithAnimation } = useDialog(dialogRef, onClose)
 
     if (!skill) {return null}
 
@@ -236,7 +268,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                             setSelectedSpecial(value as SpecialType)
                         }
                     }}
-                    disabled={hasRolled || isUsingLuck || isMysteriousStranger}
+                    disabled={hasRolled || isUsingLuck || isMysteriousStranger || isCompanion}
                     aria-label="Special to use?"
                     style={{ width: '100%' }}
                 >
@@ -246,7 +278,7 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                         </option>
                     ))}
                 </select>
-                {!isMysteriousStranger && <input
+                {!isMysteriousStranger && !isCompanion && <input
                     type="checkbox"
                     className="themed-svg"
                     data-icon="luck"
@@ -337,9 +369,9 @@ function D20Popup({ onClose, skillId, usingItem = null}: Readonly<D20PopupProps>
                     <button
                         className="popup__button-confirm"
                         onClick={() => {
-                            showD6Popup(usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }, isAiming, isMysteriousStranger)
+                            showD6Popup(usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }, isAiming, isMysteriousStranger || isCompanion)
                         }}
-                        disabled={!hasRolled || (isMysteriousStranger ? false : !hasEnoughAmmo(itemData, character))}
+                        disabled={!hasRolled || ((isMysteriousStranger || isCompanion) ? false : !hasEnoughAmmo(itemData, character))}
                     >
                         {t('damage')}
                     </button>

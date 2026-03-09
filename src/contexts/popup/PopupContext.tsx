@@ -9,8 +9,42 @@ import ModifyItemPopup from '@/contexts/popup/ModifyItemPopup'
 import { useTranslation } from 'react-i18next'
 import {CharacterItem, Item, ItemType, PopupContextValue, SkillType} from "@/types";
 import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { CharacterProvider, companionToCharacter, createMysteriousStranger, useCharacter } from '@/contexts/CharacterContext';
 
 const PopupContext = createContext<PopupContextValue | undefined>(undefined)
+
+/**
+ * Wrapper component that provides a CharacterProvider with the appropriate roller character
+ */
+function D20PopupWithRoller({
+    onClose,
+    skillId,
+    usingItem,
+    roller
+}: {
+    onClose: () => void;
+    skillId: SkillType | 'perkMysteriousStranger';
+    usingItem: CharacterItem | null;
+    roller: 'companion' | 'mysteriousStranger';
+}) {
+    const { character } = useCharacter()
+
+    // Create the appropriate character based on roller type
+    const rollerCharacter = roller === 'companion'
+        ? companionToCharacter(character.companion, character)
+        : createMysteriousStranger(character)
+
+    return (
+        <CharacterProvider overrideCharacter={rollerCharacter}>
+            <D20Popup
+                onClose={onClose}
+                skillId={skillId}
+                usingItem={usingItem}
+	                roller={roller}
+            />
+        </CharacterProvider>
+    )
+}
 
 
 // TODO most of UsingItemPopups NEED a CharacterItem (except for D20)
@@ -27,6 +61,7 @@ interface AlertState {
 
 interface D20State extends UsingItemPopupState {
     skillId: SkillType | 'perkMysteriousStranger';
+    roller?: 'companion' | 'mysteriousStranger';  // Optional: which character is rolling
 }
 
 interface D6State extends UsingItemPopupState {
@@ -101,10 +136,11 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
 
     // D20 Popup functions
     const showD20Popup = useCallback(
-        (skillId: SkillType | 'perkMysteriousStranger', usingItem: CharacterItem | null = null) => {
+        (skillId: SkillType | 'perkMysteriousStranger', usingItem: CharacterItem | null = null, roller?: 'companion' | 'mysteriousStranger') => {
             setD20State({
                 skillId: skillId,
                 usingItem: usingItem,
+                roller: roller
             })
         }, []
     )
@@ -230,11 +266,22 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
                 showConfirm={alertState.showConfirm}
             />}
 
-            {d20State && <D20Popup
-                onClose={closeD20Popup}
-                skillId={d20State.skillId}
-                usingItem={d20State.usingItem}
-            />}
+            {d20State && (
+                d20State.roller ? (
+                    <D20PopupWithRoller
+                        onClose={closeD20Popup}
+                        skillId={d20State.skillId}
+                        usingItem={d20State.usingItem}
+                        roller={d20State.roller}
+                    />
+                ) : (
+                    <D20Popup
+                        onClose={closeD20Popup}
+                        skillId={d20State.skillId}
+                        usingItem={d20State.usingItem}
+                    />
+                )
+            )}
 
             {d6State && <D6Popup
                 onClose={closeD6Popup}

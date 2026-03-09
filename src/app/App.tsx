@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import CompanionTab from '@/app/tabs/companion/CompanionTab'
 import StatTab from '@/app/tabs/stat/StatTab'
 import InvTab from '@/app/tabs/inv/InvTab'
 import DataTab from '@/app/tabs/data/DataTab'
@@ -8,6 +9,7 @@ import TabButton, {TabType} from '@/app/tabs/TabButton'
 import AppHeader from "@/app/AppHeader.tsx";
 
 const TABS = {
+    companion: CompanionTab,
     stat: StatTab,
     inv: InvTab,
     data: DataTab,

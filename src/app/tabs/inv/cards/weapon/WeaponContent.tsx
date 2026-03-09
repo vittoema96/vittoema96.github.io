@@ -5,6 +5,7 @@ import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo } from '@/app/t
 import {getGameDatabase, getModifiedItemData } from "@/hooks/getGameDatabase.ts";
 import { CharacterItem } from '@/types';
 import { SKILL_TO_SPECIAL_MAP } from '@/utils/characterSheet.ts';
+import React from 'react';
 
 /**
  * Weapon-specific content renderer

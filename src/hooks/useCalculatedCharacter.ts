@@ -199,6 +199,34 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         return raw?.perks ?? []
     }, [raw?.perks])
 
+    // Default companion (Eyebot)
+    const companion = useMemo(() => {
+        if (raw?.companion) {
+            return raw.companion
+        }
+        // Return default eyebot companion
+        return {
+            type: 'eyebot' as const,
+            name: 'Eyebot',
+            body: 4,
+            mind: 4,
+            melee: 0,
+            guns: 3,
+            other: 1,
+            currentHp: 5,
+            perks: [],
+            weapons: [
+                {
+                    id: 'weaponLaserPistol',
+                    quantity: 1,
+                    equipped: false,
+                    mods: [],
+                    customName: 'LASER'
+                }
+            ]
+        }
+    }, [raw?.companion])
+
     return {
         // Passthrough (with defaults) values
         name,
@@ -217,6 +245,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         traits,
         perks,
         mapCodes,
+        companion,
 
         // Calculated values
         origin,

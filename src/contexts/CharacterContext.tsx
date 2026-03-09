@@ -27,6 +27,87 @@ export interface CharacterContextValue {
     downloadCharacter: () => void;
     uploadCharacter: (file: Blob) => Promise<RawCharacter>;
 }
+
+/**
+ * Helper function to convert companion data to Character format
+ */
+export function companionToCharacter(companion: Character['companion'], baseCharacter: Character): Character {
+    // Calculate maxHp based on companion type
+    // For eyebot: baseHp=5, baseBody=4
+    // Formula: baseHp + (level - 1) + (body - baseBody)
+    const baseHp = companion.type === 'eyebot' ? 5 : 10  // Default to 10 for other types
+    const baseBody = companion.type === 'eyebot' ? 4 : 5
+    const maxHp = baseHp + (baseCharacter.level - 1) + (companion.body - baseBody)
+
+    return {
+        ...baseCharacter,
+        name: companion.name,
+        // Map companion stats to character format
+        // Body maps to Strength (primary for guns/melee)
+        // Mind maps to Perception (primary for other skills)
+        special: {
+            strength: companion.body,      // Body → Strength (for guns, melee)
+            perception: companion.mind,    // Mind → Perception (for other)
+            endurance: companion.body,     // Body affects HP
+            charisma: companion.mind,
+            intelligence: companion.mind,
+            agility: companion.body,       // Body affects initiative
+            luck: 0  // Companions don't have luck
+        },
+        skills: {
+            ...baseCharacter.skills,
+            meleeWeapons: companion.melee,
+            smallGuns: companion.guns,
+            bigGuns: companion.guns,
+            energyWeapons: companion.guns,
+            explosives: companion.other,
+            throwing: companion.other,
+            unarmed: companion.melee
+        },
+        currentHp: companion.currentHp,
+        maxHp: maxHp,
+        currentLuck: 0,  // Companions don't use luck
+        maxLuck: 0,
+        items: companion.weapons,  // Only weapons for rolling
+        specialties: []  // Companions don't have specialties (unless they have perks that grant them)
+    }
+}
+
+/**
+ * Helper function to create Mysterious Stranger character
+ */
+export function createMysteriousStranger(baseCharacter: Character): Character {
+    return {
+        ...baseCharacter,
+        name: 'Mysterious Stranger',
+        special: {
+            strength: 6,
+            perception: 6,
+            endurance: 6,
+            charisma: 10,
+            intelligence: 6,
+            agility: 10,  // High agility for initiative
+            luck: 10  // Max luck
+        },
+        skills: {
+            ...baseCharacter.skills,
+            smallGuns: 6,  // Max skill
+            bigGuns: 6,
+            energyWeapons: 6,
+            meleeWeapons: 6,
+            unarmed: 6
+        },
+        currentLuck: 10,
+        maxLuck: 10,
+        items: [{
+            id: 'weapon44Magnum',  // Mysterious Stranger's signature weapon
+            quantity: 1,
+            equipped: true,
+            mods: []
+        }]
+    }
+}
+
 const CharacterContext = createContext<CharacterContextValue | undefined>(undefined)
 
 
@@ -46,11 +127,31 @@ export const useCharacter = (): CharacterContextValue => {
 }
 
 
-export function CharacterProvider({ onReady, children}:
-                                  Readonly<{ onReady: () => void; children: React.ReactNode }>) {
+export function CharacterProvider({ onReady, children, overrideCharacter }:
+                                  Readonly<{
+                                      onReady?: () => void;
+                                      children: React.ReactNode;
+                                      overrideCharacter?: Character;
+                                  }>) {
     const [isReady, setIsReady] = useState(false)
 
+    // If this is a nested provider with overrideCharacter, use parent context for data management
+    const parentContext = useContext(CharacterContext)
 
+    // If overrideCharacter is provided, this is a nested provider
+    if (overrideCharacter && parentContext) {
+        // Return a modified context with the override character
+        return (
+            <CharacterContext.Provider value={{
+                ...parentContext,
+                character: overrideCharacter
+            }}>
+                {children}
+            </CharacterContext.Provider>
+        )
+    }
+
+    // Otherwise, this is the root provider - normal behavior
     // Lazy load character
     const [rawCharacter, setRawCharacter] = useState(() => CharacterRepository.load())
 
@@ -70,7 +171,7 @@ export function CharacterProvider({ onReady, children}:
 
     useEffect(() => {
         setIsReady(true)
-        onReady()
+        onReady?.()
     }, [onReady])
 
     // Load all csv data
@@ -234,8 +335,6 @@ export function CharacterProvider({ onReady, children}:
         }, []
     )
 
-
-
     // Memoize context value to prevent unnecessary re-renders
     const contextValue = useMemo(
         () => ({
@@ -248,8 +347,7 @@ export function CharacterProvider({ onReady, children}:
             downloadCharacter,
             uploadCharacter
         }),
-        [rawCharacter, calculatedCharacter]
-        // TODO do we need updateCharacter, resetCharacter, downloadCharacter, uploadCharacter??
+        [rawCharacter, calculatedCharacter, updateCharacter, replenishLuck, spendLuck, resetCharacter, downloadCharacter, uploadCharacter]
     )
 
     return (
