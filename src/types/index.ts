@@ -11,7 +11,15 @@ export const SPECIAL = [
     "agility",
     "luck",
 ] as const
-export type SpecialType = (typeof SPECIAL)[number];
+
+// Companion-specific SPECIAL stats (defined here for use in SpecialType)
+export const COMPANION_SPECIAL = [
+    "body",
+    "mind",
+] as const
+
+// SpecialType includes both player and companion SPECIAL stats for polymorphic character structure
+export type SpecialType = (typeof SPECIAL)[number] | (typeof COMPANION_SPECIAL)[number];
 
 export const SKILLS = [
     "athletics",
@@ -32,7 +40,16 @@ export const SKILLS = [
     "throwing",
     "unarmed",
 ] as const
-export type SkillType = (typeof SKILLS)[number];
+
+// Companion skills (defined later in the file)
+export const COMPANION_SKILLS = [
+    "melee",
+    "guns",
+    "other",
+] as const
+
+// SkillType includes both player and companion skills for polymorphic character structure
+export type SkillType = (typeof SKILLS)[number] | (typeof COMPANION_SKILLS)[number];
 
 // **---- Currency related ----**
 export const CURRENCIES = [
@@ -158,19 +175,20 @@ export interface CharacterItem {
     customName?: string;
 }
 
-// Companion data structure
+// Companion-specific types (same structure as Character, but with different stat names)
 export type CompanionId = 'eyebot' | 'dog' | 'mrHandy' | 'humanoid';
+
+// Companion type aliases (COMPANION_SPECIAL and COMPANION_SKILLS are defined earlier)
+export type CompanionSpecialType = (typeof COMPANION_SPECIAL)[number];
+export type CompanionSkillType = (typeof COMPANION_SKILLS)[number];
 
 export interface CompanionData {
     type: CompanionId;
     name: string;
-    // Body/Mind stats (for non-SPECIAL companions like eyebot)
-    body: number;
-    mind: number;
-    // Skills
-    melee: number;
-    guns: number;
-    other: number;
+    // SPECIAL equivalent (body/mind instead of strength/perception/etc)
+    special: Record<CompanionSpecialType, number>;
+    // Skills (melee/guns/other instead of meleeWeapons/smallGuns/etc)
+    skills: Record<CompanionSkillType, number>;
     // Current HP
     currentHp: number;
     // Perks
@@ -251,7 +269,7 @@ export interface PopupContextValue {
     showConfirm: (message: string, onConfirm: () => void) => void;
     closeAlert: () => void;
 
-    showD20Popup: (skillId: SkillType | 'perkMysteriousStranger', usingItem?: CharacterItem) => void;
+	    showD20Popup: (skillId: SkillType, usingItem?: CharacterItem | null, roller?: 'companion' | 'mysteriousStranger') => void;
     closeD20Popup: () => void;
 
     showD6Popup: (usingItem: CharacterItem, hasAimed?: boolean, isMysteriousStranger?: boolean) => void;

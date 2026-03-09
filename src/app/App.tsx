@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import CompanionTab from '@/app/tabs/companion/CompanionTab'
 import StatTab from '@/app/tabs/stat/StatTab'
 import InvTab from '@/app/tabs/inv/InvTab'
@@ -7,6 +7,7 @@ import MapTab from '@/app/tabs/map/MapTab'
 import SettingsTab from '@/app/tabs/settings/SettingsTab'
 import TabButton, {TabType} from '@/app/tabs/TabButton'
 import AppHeader from "@/app/AppHeader.tsx";
+import { useCharacter } from '@/contexts/CharacterContext'
 
 const TABS = {
     companion: CompanionTab,
@@ -18,7 +19,23 @@ const TABS = {
 } as const
 
 function App() {
+    const { character } = useCharacter()
     const [activeTab, setActiveTab] = useState<TabType>('stat')
+
+    // Check if player has Robot Wrangler perk
+    const hasRobotWrangler = character.perks.includes('perkRobotWrangler')
+
+    // Filter visible tabs based on perks
+    const visibleTabs = useMemo(() => {
+        const allTabs = Object.keys(TABS) as TabType[]
+        return allTabs.filter(tabType => {
+            // Hide companion tab if player doesn't have Robot Wrangler perk
+            if (tabType === 'companion' && !hasRobotWrangler) {
+                return false
+            }
+            return true
+        })
+    }, [hasRobotWrangler])
 
     // Get active tab component (only render the active one for better performance)
     const ActiveTabComponent = TABS[activeTab]
@@ -38,7 +55,7 @@ function App() {
 
             {/* Tab Navigation */}
             <nav className="navigator">
-                {(Object.keys(TABS) as TabType[]).map((tabType) => (
+                {visibleTabs.map((tabType) => (
                     <TabButton
                         key={tabType}
                         onClick={() => setActiveTab(tabType)}

@@ -41,6 +41,7 @@ export const ITEM_TYPE_MAP: Record<ItemType, ItemCategory[]> = {
         'explosives',
         'throwing',
         'unarmed',
+        'companionWeapon',
     ],
     apparel: [
         'clothing',

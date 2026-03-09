@@ -8,6 +8,7 @@ import { BODY_PARTS, CharacterItem, GenericPopupProps, ItemCategory, WeaponItem 
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import Tag from '@/components/Tag.tsx';
 import PopupHeader from '@/contexts/popup/common/PopupHeader.tsx';
+import DialogPortal from '@/contexts/popup/common/DialogPortal.tsx';
 
 
 interface D6PopupProps extends GenericPopupProps {
@@ -393,6 +394,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
     const extraHitsType = getExtraHitsType();
 
     return (
+        <DialogPortal>
         <dialog ref={dialogRef}>
             <PopupHeader title={weaponData.ID} onClose={() => closeWithAnimation(callback)}/>
 
@@ -625,6 +627,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                 </button>
             </footer>
         </dialog>
+        </DialogPortal>
     );
 }
 

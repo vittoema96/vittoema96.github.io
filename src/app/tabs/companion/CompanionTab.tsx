@@ -2,62 +2,10 @@ import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
 import { usePopup } from '@/contexts/popup/PopupContext'
-import SpecialGear from '@/app/tabs/stat/components/SpecialGear'
 import GenericGear from './components/GenericGear'
-import { SPECIAL, CharacterItem, CompanionData, CompanionId } from '@/types'
+import { CharacterItem, CompanionId, CompanionSkillType } from '@/types'
 import { getGameDatabase } from '@/hooks/getGameDatabase'
-
-interface CompanionTypeDefinition {
-    id: CompanionId
-    name: string
-    usesSpecial: boolean // true = SPECIAL, false = BODY/MIND
-    baseBody: number
-    baseMind: number
-    baseHp: number
-    baseDefense: number
-    baseMelee: number
-    baseGuns: number
-    baseOther: number
-    baseDR: {
-        physical: number
-        energy: number
-        radiation: number
-        poison: number
-    }
-    weapons: {
-        id: string
-        customName: string
-        skill: 'melee' | 'guns' | 'other'
-    }[]
-}
-
-const COMPANION_TYPES: CompanionTypeDefinition[] = [
-    {
-        id: 'eyebot',
-        name: 'Eyebot',
-        usesSpecial: false,
-        baseBody: 4,
-        baseMind: 4,
-        baseHp: 5,
-        baseDefense: 2,
-        baseMelee: 0,
-        baseGuns: 3,
-        baseOther: 1,
-        baseDR: {
-            physical: 2,
-            energy: 2,
-            radiation: Infinity, // Immune
-            poison: Infinity     // Immune
-        },
-        weapons: [
-            {
-                id: 'weaponLaserPistol', // TODO: Create specific eyebot laser weapon with 4CD energy damage
-                customName: 'LASER',
-                skill: 'guns'
-            }
-        ]
-    }
-]
+import { COMPANION_TYPES } from '@/utils/companionTypes'
 
 // Companion-specific perks (different from character perks)
 const COMPANION_PERKS = [
@@ -90,7 +38,7 @@ function CompanionTab() {
 
     // Memoize selectedCompanionType
     const selectedCompanionType = useMemo(
-        () => COMPANION_TYPES.find(c => c.id === character.companion.type)!,
+        () => COMPANION_TYPES[character.companion.type],
         [character.companion.type]
     )
 
@@ -98,7 +46,7 @@ function CompanionTab() {
     const perkSlots = Math.floor(character.level / 5)
 
     // Calculate max HP: baseHp + (character.level - 1) + (body - baseBody)
-    const bodyBonus = character.companion.body - selectedCompanionType.baseBody
+    const bodyBonus = character.companion.special.body - selectedCompanionType.special.body
     const maxHp = selectedCompanionType.baseHp + (character.level - 1) + bodyBonus
 
     // Handle perk selection
@@ -124,52 +72,20 @@ function CompanionTab() {
         })
     }
 
-    // Calculate initiative: body + mind
-    const initiative = character.initiative
-
-    // Derived companion display data
-    const companionDisplayData = {
-        // SPECIAL-based companion stats (not used for eyebot)
-        special: {
-            strength: 4,
-            perception: 4,
-            endurance: 4,
-            charisma: 4,
-            intelligence: 4,
-            agility: 4,
-            luck: 4
-        },
-        // Derived stats
-        maxHp: maxHp,
-        initiative: initiative,
-        defense: selectedCompanionType.baseDefense,
-        // Damage Reduction by type (from companion type)
-        dr: selectedCompanionType.baseDR
-    }
-
     // Handle attack click - opens D20 popup with companion weapon (no ammo consumption)
     const handleAttackClick = (attackItem: CharacterItem) => {
-        const weaponData = dataManager.getItem(attackItem.id)
-        if (weaponData && dataManager.isType(weaponData, 'weapon')) {
-            // Determine skill based on weapon type
-            const skill = weaponData.CATEGORY === 'meleeWeapons' || weaponData.CATEGORY === 'unarmed'
-                ? 'meleeWeapons'
-                : weaponData.CATEGORY === 'smallGuns' || weaponData.CATEGORY === 'bigGuns' || weaponData.CATEGORY === 'energyWeapons'
-                ? 'smallGuns'  // All gun types use 'guns' skill for companion
-                : 'explosives'  // Other
-            // Pass 'companion' as the roller parameter
-            showD20Popup(skill, attackItem, 'companion')
+        // Find the weapon definition in companion type to get the correct skill
+        const companionWeapon = selectedCompanionType.weapons.find(w => w.id === attackItem.id)
+        if (companionWeapon) {
+            // Use the skill defined in companion type (melee/guns/other)
+            showD20Popup(companionWeapon.skill as CompanionSkillType, attackItem, 'companion')
         }
     }
 
     // Calculate available companion SPECIAL points
     const companionSpecialPoints = Math.floor((character.level - 1) / 2)
-    const baseSpecialSum = selectedCompanionType.usesSpecial
-        ? 7 * 4 // 7 SPECIAL stats
-        : selectedCompanionType.baseBody + selectedCompanionType.baseMind // BODY + MIND base
-    const currentSpecialSum = selectedCompanionType.usesSpecial
-        ? Object.values(companionDisplayData.special).reduce((sum, val) => sum + val, 0)
-        : character.companion.body + character.companion.mind
+    const baseSpecialSum = selectedCompanionType.special.body + selectedCompanionType.special.mind
+    const currentSpecialSum = character.companion.special.body + character.companion.special.mind
     const usedSpecialPoints = currentSpecialSum - baseSpecialSum
     const remainingSpecialPoints = companionSpecialPoints - usedSpecialPoints
 
@@ -184,7 +100,7 @@ function CompanionTab() {
                     })}
                     style={{ flex: 1 }}
                 >
-                    {COMPANION_TYPES.map(type => (
+                    {Object.values(COMPANION_TYPES).map(type => (
                         <option key={type.id} value={type.id}>{type.name}</option>
                     ))}
                 </select>
@@ -229,7 +145,7 @@ function CompanionTab() {
                         }}
                         style={{ width: '3rem', textAlign: 'center' }}
                     />
-                    <span>/{companionDisplayData.maxHp}</span>
+                    <span>/{maxHp}</span>
                 </div>
             </div>
 
@@ -246,31 +162,19 @@ function CompanionTab() {
                 </div>
             )}
 
-            {/* SPECIAL or BODY/MIND Stats */}
-            {selectedCompanionType.usesSpecial ? (
-                <div id="c-special">
-                    {SPECIAL.map((specialName) => (
-                        <SpecialGear
-                            key={specialName}
-                            specialType={specialName}
-                            isEditing={isEditing}
-                        />
-                    ))}
-                </div>
-            ) : (
-                <div id="c-special" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
-                    <GenericGear
-                        statType="body"
-                        baseValue={selectedCompanionType.baseBody}
-                        isEditing={isEditing}
-                    />
-                    <GenericGear
-                        statType="mind"
-                        baseValue={selectedCompanionType.baseMind}
-                        isEditing={isEditing}
-                    />
-                </div>
-            )}
+            {/* BODY/MIND Stats */}
+            <div id="c-special" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
+                <GenericGear
+                    statType="body"
+                    baseValue={selectedCompanionType.special.body}
+                    isEditing={isEditing}
+                />
+                <GenericGear
+                    statType="mind"
+                    baseValue={selectedCompanionType.special.mind}
+                    isEditing={isEditing}
+                />
+            </div>
 
             {/* Edit Stats Button - Right after SPECIAL/BODY-MIND */}
             <button
@@ -288,7 +192,7 @@ function CompanionTab() {
                     <h4 style={{ marginBottom: '0.3rem', fontSize: '0.9rem' }}>{t('skills')}</h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
                         {(['melee', 'guns', 'other'] as const).map(skillType => {
-                            const baseValue = selectedCompanionType[`base${skillType.charAt(0).toUpperCase() + skillType.slice(1)}` as keyof typeof selectedCompanionType] as number
+                            const baseValue = selectedCompanionType.skills[skillType]
                             return (
                                 <div
                                     key={skillType}
@@ -296,19 +200,22 @@ function CompanionTab() {
                                     style={{ cursor: isEditing ? 'pointer' : 'default' }}
                                     onClick={() => {
                                         if (isEditing) {
-                                            const current = character.companion[skillType]
+                                            const current = character.companion.skills[skillType]
                                             const next = current < 6 ? current + 1 : baseValue
                                             updateCharacter({
                                                 companion: {
                                                     ...character.companion,
-                                                    [skillType]: next
+                                                    skills: {
+                                                        ...character.companion.skills,
+                                                        [skillType]: next
+                                                    }
                                                 }
                                             })
                                         }
                                     }}
                                 >
                                     <span><b>{t(skillType)}</b></span>
-                                    <span>{character.companion[skillType]}</span>
+                                    <span>{character.companion.skills[skillType]}</span>
                                 </div>
                             )
                         })}
@@ -325,11 +232,11 @@ function CompanionTab() {
                         </div>
                         <div className="skill" style={{ cursor: 'default' }}>
                             <span><b>{t('initiative')}</b></span>
-                            <span>{companionDisplayData.initiative}</span>
+                            <span>{character.initiative}</span>
                         </div>
                         <div className="skill" style={{ cursor: 'default' }}>
                             <span><b>{t('defense')}</b></span>
-                            <span>{companionDisplayData.defense}</span>
+                            <span>{selectedCompanionType.baseDefense}</span>
                         </div>
                     </div>
                 </div>
@@ -341,19 +248,19 @@ function CompanionTab() {
                 <div className="row row--spaced">
                     <div className="derived-stat">
                         <span>{t('physical')}</span>
-                        <span>{companionDisplayData.dr.physical === Infinity ? t('immune') : companionDisplayData.dr.physical}</span>
+                        <span>{selectedCompanionType.baseDR.physical === Infinity ? t('immune') : selectedCompanionType.baseDR.physical}</span>
                     </div>
                     <div className="derived-stat">
                         <span>{t('energy')}</span>
-                        <span>{companionDisplayData.dr.energy === Infinity ? t('immune') : companionDisplayData.dr.energy}</span>
+                        <span>{selectedCompanionType.baseDR.energy === Infinity ? t('immune') : selectedCompanionType.baseDR.energy}</span>
                     </div>
                     <div className="derived-stat">
                         <span>{t('radiation')}</span>
-                        <span>{companionDisplayData.dr.radiation === Infinity ? t('immune') : companionDisplayData.dr.radiation}</span>
+                        <span>{selectedCompanionType.baseDR.radiation === Infinity ? t('immune') : selectedCompanionType.baseDR.radiation}</span>
                     </div>
                     <div className="derived-stat">
                         <span>{t('poison')}</span>
-                        <span>{companionDisplayData.dr.poison === Infinity ? t('immune') : companionDisplayData.dr.poison}</span>
+                        <span>{selectedCompanionType.baseDR.poison === Infinity ? t('immune') : selectedCompanionType.baseDR.poison}</span>
                     </div>
                 </div>
             </div>

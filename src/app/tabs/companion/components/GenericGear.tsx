@@ -19,20 +19,23 @@ function GenericGear({ statType, baseValue, isEditing = false, children }: Reado
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
 
-    const value = character.companion[statType]
+    const value = character.companion.special[statType]
     const maxValue = 10
 
     // Handle stat changes (click to increment in edit mode)
     const handleClick = () => {
         if (!isEditing) return
 
-        const current = character.companion[statType]
+        const current = character.companion.special[statType]
         const next = current < maxValue ? current + 1 : baseValue // Cycle back to base if at max
 
         updateCharacter({
             companion: {
                 ...character.companion,
-                [statType]: next
+                special: {
+                    ...character.companion.special,
+                    [statType]: next
+                }
             }
         })
     }

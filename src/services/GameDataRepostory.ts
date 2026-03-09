@@ -62,7 +62,8 @@ export const GameDataRepository = {
             this.mergeCSVs<WeaponItem>([
                 'data/weapon/smallGuns.csv', 'data/weapon/energyWeapons.csv',
                 'data/weapon/bigGuns.csv', 'data/weapon/meleeWeapons.csv',
-                'data/weapon/throwing.csv', 'data/weapon/explosives.csv'
+                'data/weapon/throwing.csv', 'data/weapon/explosives.csv',
+                'data/weapon/companionWeapons.csv'
             ]),
             this.mergeCSVs<ApparelItem>([
                 'data/apparel/armor.csv', 'data/apparel/clothing.csv', 'data/apparel/robotParts.csv'

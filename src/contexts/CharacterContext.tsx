@@ -30,46 +30,23 @@ export interface CharacterContextValue {
 
 /**
  * Helper function to convert companion data to Character format
+ * With the new structure, companion already has special/skills like Character,
+ * so we just need to map the companion data to Character interface
  */
 export function companionToCharacter(companion: Character['companion'], baseCharacter: Character): Character {
-    // Calculate maxHp based on companion type
-    // For eyebot: baseHp=5, baseBody=4
-    // Formula: baseHp + (level - 1) + (body - baseBody)
-    const baseHp = companion.type === 'eyebot' ? 5 : 10  // Default to 10 for other types
-    const baseBody = companion.type === 'eyebot' ? 4 : 5
-    const maxHp = baseHp + (baseCharacter.level - 1) + (companion.body - baseBody)
-
     return {
         ...baseCharacter,
         name: companion.name,
-        // Map companion stats to character format
-        // Body maps to Strength (primary for guns/melee)
-        // Mind maps to Perception (primary for other skills)
-        special: {
-            strength: companion.body,      // Body → Strength (for guns, melee)
-            perception: companion.mind,    // Mind → Perception (for other)
-            endurance: companion.body,     // Body affects HP
-            charisma: companion.mind,
-            intelligence: companion.mind,
-            agility: companion.body,       // Body affects initiative
-            luck: 0  // Companions don't have luck
-        },
-        skills: {
-            ...baseCharacter.skills,
-            meleeWeapons: companion.melee,
-            smallGuns: companion.guns,
-            bigGuns: companion.guns,
-            energyWeapons: companion.guns,
-            explosives: companion.other,
-            throwing: companion.other,
-            unarmed: companion.melee
-        },
+        // Companion already has special with body/mind keys
+        special: companion.special as any,
+        // Companion already has skills with melee/guns/other keys
+        skills: companion.skills as any,
         currentHp: companion.currentHp,
-        maxHp: maxHp,
-        currentLuck: 0,  // Companions don't use luck
-        maxLuck: 0,
-        items: companion.weapons,  // Only weapons for rolling
-        specialties: []  // Companions don't have specialties (unless they have perks that grant them)
+        // maxHp, maxLuck, etc. are calculated in useCalculatedCharacter
+        currentLuck: 0,
+        items: companion.weapons,
+        perks: companion.perks.filter((p): p is string => p !== undefined),
+        specialties: []
     }
 }
 

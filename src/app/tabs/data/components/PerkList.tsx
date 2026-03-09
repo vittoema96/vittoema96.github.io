@@ -29,15 +29,15 @@ function PerkList() {
     const [allPerks, setAllPerks] = useState<string[]>([])
 
     const PERK_ACTIONS: Record<string, PerkAction> = {
-        'perkMysteriousStranger': {
+	        'perkMysteriousStranger': {
             buttonLabel: 'summonStranger',
             onClick: () => {
-                showD20Popup('perkMysteriousStranger', {
+	                showD20Popup('smallGuns', {
                     id: "weaponFortyFourPistol",
                     quantity: 1,
                     mods: ["modErgonomicGrip", "modMarksmanGrip", "modPowerful"],
                     customName: "Mysterious .44 Magnum"
-                })
+	                }, 'mysteriousStranger')
                 console.log('Mysterious Stranger action triggered!');
             }
         }

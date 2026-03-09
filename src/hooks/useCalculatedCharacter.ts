@@ -10,6 +10,7 @@ import {
 import {useMemo} from 'react'
 import {mapItemLocations} from "@/utils/bodyLocations";
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase';
+import {createDefaultCompanion} from '@/utils/companionTypes';
 
 export const adjustCurrentHp = (prev: RawCharacter | null, current: RawCharacter) => {
     const result: RawCharacter = { ...current };
@@ -205,26 +206,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
             return raw.companion
         }
         // Return default eyebot companion
-        return {
-            type: 'eyebot' as const,
-            name: 'Eyebot',
-            body: 4,
-            mind: 4,
-            melee: 0,
-            guns: 3,
-            other: 1,
-            currentHp: 5,
-            perks: [],
-            weapons: [
-                {
-                    id: 'weaponLaserPistol',
-                    quantity: 1,
-                    equipped: false,
-                    mods: [],
-                    customName: 'LASER'
-                }
-            ]
-        }
+        return createDefaultCompanion('eyebot')
     }, [raw?.companion])
 
     return {

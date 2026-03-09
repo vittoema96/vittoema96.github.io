@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import PopupHeader from '@/contexts/popup/common/PopupHeader.tsx';
 import React, { useRef } from 'react';
 import { useDialog } from '@/hooks/useDialog.ts';
+import DialogPortal from '@/contexts/popup/common/DialogPortal.tsx';
 
 interface BasePopupProps {
     title: string;
@@ -28,17 +29,19 @@ function BasePopup({
     const { closeWithAnimation } = useDialog(dialogRef, onClose)
 
     return (
+        <DialogPortal>
+            <dialog ref={dialogRef} className={className}>
+                <PopupHeader title={title} onClose={() => closeWithAnimation()}/>
 
-        <dialog ref={dialogRef} className={className}>
-            <PopupHeader title={title} onClose={() => closeWithAnimation()}/>
+                {children}
 
-            {children}
-
-            <footer style={{
+                <footer
+                    style={{
                         padding: 0,
                         marginTop: '0.25rem',
                         gap: '0.5rem'
-                    }}>
+                    }}
+                >
                     {onConfirm && (
                         <button
                             className="popup__button-confirm"
@@ -47,16 +50,16 @@ function BasePopup({
                         >
                             {t(confirmLabel ?? 'confirm')}
                         </button>
-                    )
-                    }
-                <button
-                    className="popup__button-close"
-                    onClick={() => closeWithAnimation()}
-                >
-                    {t('close')}
-                </button>
-            </footer>
-        </dialog>
+                    )}
+                    <button
+                        className="popup__button-close"
+                        onClick={() => closeWithAnimation()}
+                    >
+                        {t('close')}
+                    </button>
+                </footer>
+            </dialog>
+        </DialogPortal>
     );
 }
 
