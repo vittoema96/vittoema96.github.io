@@ -20,8 +20,8 @@ interface InventoryListProps {
 type SortBy = 'name' | 'number' | 'rarity'
 
 /**
- * Accordion-style inventory list
- * Shows compact rows that expand to reveal full card details
+ * Inventory list with selection-based card display
+ * Shows compact rows that can be selected to display details in a dedicated area at the bottom
  */
 function InventoryList({
     items = [],
@@ -31,7 +31,7 @@ function InventoryList({
 }: Readonly<InventoryListProps>) {
     const { t } = useTranslation()
     const { showAddItemPopup } = usePopup()
-    const [expandedItemId, setExpandedItemId] = useState<string | undefined>(undefined)
+    const [selectedItemId, setSelectedItemId] = useState<string | undefined>(undefined)
     const [searchQuery, setSearchQuery] = useState('')
     const [categoryFilter, setCategoryFilter] = useState<ItemCategory | undefined>(undefined)
     const [showFilterDropdown, setShowFilterDropdown] = useState(false)
@@ -193,20 +193,20 @@ function InventoryList({
         }, {} as Record<ItemCategory, CharacterItem[]>)
     }, [processedItems])
 
-    const handleToggle = (itemId: string) => {
-        setExpandedItemId(expandedItemId === itemId ? undefined : itemId)
+    const handleSelect = (itemId: string) => {
+        setSelectedItemId(selectedItemId === itemId ? undefined : itemId)
     }
 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value)
-        // Close expanded item when searching
-        setExpandedItemId(undefined)
+        // Clear selection when searching
+        setSelectedItemId(undefined)
     }
 
     const handleCategoryFilterChange = (newCategory: ItemCategory | undefined) => {
         setCategoryFilter(newCategory)
         setShowFilterDropdown(false)
-        setExpandedItemId(undefined)
+        setSelectedItemId(undefined)
     }
 
     const toggleFilterDropdown = () => {
@@ -236,8 +236,8 @@ function InventoryList({
             setSortBy(newSort)
             setIsAscendingDirection(true)
         }
-        // Close expanded item when sorting
-        setExpandedItemId(undefined)
+        // Clear selection when sorting
+        setSelectedItemId(undefined)
     }
 
     const renderItems = (itemsList: CharacterItem[]) => {
@@ -250,13 +250,12 @@ function InventoryList({
             }
             const uniqueKey = getItemKey(characterItem)
 
-            // All other items use accordion row
             return (
                 <InventoryRow
                     key={uniqueKey}
                     characterItem={characterItem}
-                    isExpanded={expandedItemId === uniqueKey}
-                    onToggle={() => handleToggle(uniqueKey)}
+                    isSelected={selectedItemId === uniqueKey}
+                    onSelect={() => handleSelect(uniqueKey)}
                     cardComponent={getCardComponent(characterItem)}
                 />
             )
@@ -278,6 +277,7 @@ function InventoryList({
     }
 
     return (
+        <>
         <div className="inventory-list">
             {/* Search and Sort Controls */}
             {showSearch && (
@@ -386,6 +386,22 @@ function InventoryList({
                 )}
             </div>
         </div>
+
+        {/* Selected Item Card Area - Outside inventory-list */}
+        {selectedItemId && (() => {
+            const selectedItem = processedItems.find(item => getItemKey(item) === selectedItemId)
+            if (!selectedItem) {return null}
+
+            const CardComponent = getCardComponent(selectedItem)
+            if (!CardComponent) {return null}
+
+            return (
+                <div className="inventory-list__selection">
+                    <CardComponent characterItem={selectedItem} />
+                </div>
+            )
+        })()}
+        </>
     )
 }
 

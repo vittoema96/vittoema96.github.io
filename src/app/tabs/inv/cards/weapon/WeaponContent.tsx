@@ -12,8 +12,9 @@ import { SKILL_TO_SPECIAL_MAP } from '@/utils/characterSheet.ts';
  */
 interface WeaponContentProps {
     characterItem: CharacterItem
+    actionButtons?: React.ReactNode
 }
-function WeaponContent({ characterItem }: Readonly<WeaponContentProps>) {
+function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentProps>) {
     const { t } = useTranslation()
     const { character } = useCharacter()
 
@@ -43,110 +44,114 @@ function WeaponContent({ characterItem }: Readonly<WeaponContentProps>) {
     }
 
     return (
-        <section>
-            <div className="row l-spaceBetween">
-                <section>
-                    <div className="card-stat">
-                        <div>{t(itemData.CATEGORY)}</div>
-                        <div className="row l-centered">
-                            <span>{t('target')}:</span>
-                            <span >{targetNumber}</span>
-                        </div>
-                        <div className="row l-centered">
-                            <span>{t('crit')}:</span>
-                            <span >{critThreshold}</span>
+        <>
+            <div className="card-weapon-stats card-weapon-stats--4col">
+                {/* Column 1 - Skill & Ammo */}
+                <div className="card-weapon-stats__column">
+                    <div className="card-stat-compact">
+                        <i className="fas fa-bullseye" title={t(itemData.CATEGORY)}></i>
+                        <div className="card-stat-compact__values">
+                            <div style={{ fontSize: '0.65em', opacity: 0.8 }}>
+                                {t(itemData.CATEGORY)}
+                            </div>
+                            <div title={t('target')}>
+                                <i className="fas fa-crosshairs"></i> {targetNumber}
+                            </div>
+                            <div title={t('crit')}>
+                                <i className="fas fa-location-crosshairs"></i> {critThreshold}
+                            </div>
                         </div>
                     </div>
-                    <div className="card-stat">
-                        <div>
-                            {/*TODO check this. may not be relevant anymore */}
-                            {t(itemData.AMMO_TYPE === 'self' ? 'quantity' : itemData.AMMO_TYPE)}
-                        </div>
-                        <div
-                            style={{
-                                color: checkHasEnoughAmmo() ? 'var(--primary-color)' : 'var(--failure-color)'
-                            }}
-                        >
-                            {getAmmoCount()}
-                            {/*TODO check this. may not be relevant anymore */}
-                            {itemData.AMMO_TYPE !== 'na' && ammoPerShot > 1 && (
-                                <span style={{ fontSize: '0.8em', opacity: 0.8 }}>
-                                    {' '}(-{ammoPerShot})
-                                </span>
+                    <div className="card-stat-compact">
+                        <i className="mdi mdi-ammunition" title={t(itemData.AMMO_TYPE === 'self' ? 'quantity' : itemData.AMMO_TYPE)}></i>
+                        <div className="card-stat-compact__values">
+                            {itemData.AMMO_TYPE !== 'na' && (
+                                <div style={{ fontSize: '0.65em', opacity: 0.8 }}>
+                                    {t(itemData.AMMO_TYPE === 'self' ? 'quantity' : itemData.AMMO_TYPE)}
+                                </div>
                             )}
+                            <div
+                                className="card-stat-compact__value"
+                                style={{
+                                    color: checkHasEnoughAmmo() ? 'var(--primary-color)' : 'var(--failure-color)'
+                                }}
+                            >
+                                {itemData.AMMO_TYPE === 'na' ? '-' : getAmmoCount()}
+                                {itemData.AMMO_TYPE !== 'na' && ammoPerShot > 1 && (
+                                    <span style={{ fontSize: '0.7em', opacity: 0.7 }}>
+                                        {' '}(-{ammoPerShot})
+                                    </span>
+                                )}
+                            </div>
                         </div>
                     </div>
-                </section>
+                </div>
 
-                <div className="card-weapon-image themed-svg" data-icon={itemData.CATEGORY}></div>
+                {/* Column 2 - Weapon Icon */}
+                <div className="card-weapon-image--compact themed-svg" data-icon={itemData.CATEGORY}></div>
 
-                <section>
-                    <div className="card-stat">
-                        <div>{t('damageLabel')}</div>
-                        <div>{damageRating}d6</div>
-                        <div>{t(itemData.DAMAGE_TYPE)}</div>
+                {/* Column 3 - Damage, Fire Rate, Range */}
+                <div className="card-weapon-stats__column">
+                    <div className="card-stat-compact">
+                        <i className="fas fa-burst" title={t('damageLabel')}></i>
+                        <div className="card-stat-compact__values">
+                            <div>{damageRating}d6</div>
+                            <div style={{ fontSize: '0.7em' }}>{t(itemData.DAMAGE_TYPE)}</div>
+                        </div>
                     </div>
-                    <div className="card-stat">
-                        <div>{t('fireRateLabel')}</div>
-                        <div>{itemData.FIRE_RATE}</div>
+                    <div className="card-stat-compact">
+                        <div className="card-stat-compact__icon-group" title={t('fireRateLabel')}>
+                            <i className="mdi mdi-bullet"></i>
+                            <i className="fas fa-plus"></i>
+                        </div>
+                        <div className="card-stat-compact__value">{itemData.FIRE_RATE}</div>
                     </div>
-                    <div className="card-stat">
-                        <div>{t('rangeLabel')}</div>
-                        <div>{t(`${itemData.RANGE}Full`)}</div>
+                    <div className="card-stat-compact">
+                        <i className="fas fa-arrows-left-right" title={t('rangeLabel')}></i>
+                        <div className="card-stat-compact__value">{t(`${itemData.RANGE}Full`)}</div>
                     </div>
-                </section>
+                </div>
+
+                {/* Column 4 - Action Buttons */}
+                {actionButtons}
             </div>
 
-            {/* Tags container for effects and qualities */}
-            <div className="tags-container">
-                {/* Intrinsic EFFECTS (from base item) */}
-                {itemData.EFFECTS?.map((effect) => {
-                    const [effectType, effectOpt] = effect.split(':');
-                    // If it's a number, keep it as is. If it's a string, try to translate it.
-                    let displayValue = t(effectOpt!) // undefined or number = itself, translatable gets translated
-                    if (displayValue) {
-                        displayValue = ` ${displayValue}`;
-                    }
-                    const displayText = `${t(effectType!)}${displayValue}`;
-                    return (
-                        <Tag key={effect} tooltipId={`${effectType}Description`}>
-                            {displayText}
-                        </Tag>
-                    );
-                })}
+            {/* Tags container for effects and qualities - Compact */}
+            {(itemData.EFFECTS?.length > 0 || itemData.QUALITIES?.length > 0) && (
+                <div className="tags-container tags-container--compact">
+                    {/* Intrinsic EFFECTS (from base item) */}
+                    {itemData.EFFECTS?.map((effect) => {
+                        const [effectType, effectOpt] = effect.split(':');
+                        let displayValue = t(effectOpt!)
+                        if (displayValue) {
+                            displayValue = ` ${displayValue}`;
+                        }
+                        const displayText = `${t(effectType!)}${displayValue}`;
+                        return (
+                            <Tag key={effect} tooltipId={`${effectType}Description`}>
+                                {displayText}
+                            </Tag>
+                        );
+                    })}
 
-                {itemData.QUALITIES?.map((effect) => {
-                    const [qualityType, qualityOpt] = effect.split(':');
-                    // If it's a number, keep it as is. If it's a string, try to translate it.
-                    let displayValue = t(qualityOpt!) // undefined or number = itself, translatable gets translated
-                    if (displayValue) {
-                        displayValue = ` ${displayValue}`;
-                    }
-                    const displayText = `${t(qualityType!)}${displayValue}`;
-                    return (
-                        <Tag key={effect}
-                             isEmpty={true}
-                             tooltipId={`${qualityType}Description`}>
-                            {displayText}
-                        </Tag>
-                    );
-                })}
-
-                {/* MOD_NAMES (names of applied mods) */}
-                {/* TODO mod names not cool here, but could be added somewhere
-                characterItem.mods.map((modId) => {
-                    return (
-                        <Tag
-                            key={modId}
-                            tooltipId={`${modId}Description`}
-                            isMod={true}
-                        >
-                            {t(modId)}
-                        </Tag>
-                    );
-                }) */}
-            </div>
-        </section>
+                    {itemData.QUALITIES?.map((effect) => {
+                        const [qualityType, qualityOpt] = effect.split(':');
+                        let displayValue = t(qualityOpt!)
+                        if (displayValue) {
+                            displayValue = ` ${displayValue}`;
+                        }
+                        const displayText = `${t(qualityType!)}${displayValue}`;
+                        return (
+                            <Tag key={effect}
+                                 isEmpty={true}
+                                 tooltipId={`${qualityType}Description`}>
+                                {displayText}
+                            </Tag>
+                        );
+                    })}
+                </div>
+            )}
+        </>
     )
 }
 

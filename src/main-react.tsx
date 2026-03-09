@@ -2,6 +2,7 @@ import React, { useState, useEffect, useLayoutEffect }  from 'react'
 import ReactDOM from 'react-dom/client'
 
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import '@mdi/font/css/materialdesignicons.min.css'
 import '@fontsource/fira-code'
 import '@fontsource/roboto-mono'
 import '@fontsource/share-tech-mono'

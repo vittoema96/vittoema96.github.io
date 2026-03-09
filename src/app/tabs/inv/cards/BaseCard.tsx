@@ -73,68 +73,71 @@ function BaseCard({
     };
 
     return (
-        <section className={`card ${className}`}>
-            {/* Card Header */}
-            <div className="row card-header l-lastSmall">
-                <div className="row" style={{ minWidth: 0 }}>
-                    <span className="card-quantity">
-                        <i>{quantity}x</i>
-                    </span>
-                    <FitText wrap={true} minSize={13} maxSize={23}>
+        <div className={`card card--compact ${className}`}>
+            {/* Card Header - Single Line */}
+            <div className="card-header card-header--compact">
+                <div className="card-header__title">
+                    {quantity > 1 && <span className="card-quantity">{quantity}x</span>}
+                    <FitText wrap={true} minSize={10} maxSize={14}>
                         {t(itemData.ID, {
                             variation: t(characterItem.variation!)
                         })}
                     </FitText>
                 </div>
-                <div className="row">
-                    <div className="card__header-stats">
-                        <span>{t('cost')}</span>
+                <div className="card-header__stats">
+                    <div className="card-stat-icon" title={t('cost')}>
+                        <i className="fas fa-coins"></i>
                         <span>{itemData.COST}</span>
                     </div>
-                    <div className="card__header-stats">
-                        <span>{t('weight')}</span>
+                    <div className="card-stat-icon" title={t('weight')}>
+                        <i className="fas fa-weight-hanging"></i>
                         <span>{itemData.WEIGHT}</span>
                     </div>
-                    <div className="card__header-stats">
-                        <span>{t('rarity')}</span>
+                    <div className="card-stat-icon" title={t('rarity')}>
+                        <i className="fas fa-star"></i>
                         <span>{itemData.RARITY}</span>
                     </div>
                 </div>
             </div>
 
             {/* Card Content - rendered by content renderer */}
-            <div className="card-content">
+            <div className="card-content card-content--compact">
                 {ContentRenderer && (
-                    <ContentRenderer characterItem={characterItem}/>
+                    <ContentRenderer
+                        characterItem={characterItem}
+                        actionButtons={action ? (
+                            <div className="card-content__buttons">
+                                <button
+                                    className={`card-action-btn card-action-btn--primary card-action-btn--large ${!isButtonChecked(characterItem) ? 'disabled' : ''}`}
+                                    onClick={handleAction}
+                                    disabled={isButtonDisabled(characterItem)}
+                                    title={buttonIcon}
+                                >
+                                    <div className="themed-svg" data-icon={buttonIcon}></div>
+                                </button>
+                                <div className="card-content__buttons-row">
+                                    <button
+                                        className="card-action-btn card-action-btn--info card-action-btn--small"
+                                        onClick={toggleDescription}
+                                        title={t('showDescription')}
+                                    >
+                                        <i className="fas fa-info-circle"></i>
+                                    </button>
+                                    {isModdable && (
+                                        <button
+                                            className="card-action-btn card-action-btn--modify card-action-btn--small"
+                                            onClick={() => showModifyItemPopup(characterItem)}
+                                            title={t('modify')}
+                                        >
+                                            <i className="fas fa-wrench"></i>
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        ) : undefined}
+                    />
                 )}
             </div>
-
-            {/* Card Controls */}
-            {action && (<div className="row card-controls">
-                <input
-                    type="checkbox"
-                    className={`themed-svg button-card`}
-                    data-icon={buttonIcon}
-                    checked={isButtonChecked(characterItem)}
-                    disabled={isButtonDisabled(characterItem)}
-                    onChange={handleAction}
-                />
-                {isModdable && (
-                    <button
-                        className="modify-button"
-                        onClick={() => showModifyItemPopup(characterItem)}
-                    >
-                        {t('modify')}
-                    </button>
-                )}
-                <button
-                    className="description-toggle-button description-toggle-button--icon"
-                    onClick={toggleDescription}
-                    title={t('showDescription')}
-                >
-                    <i className="fas fa-info-circle"></i>
-                </button>
-            </div>)}
 
             {/* Description Overlay - shown when toggled */}
             {showDescription && (
@@ -159,7 +162,7 @@ function BaseCard({
                     </div>
                 </div>
             )}
-        </section>
+        </div>
     );
 }
 

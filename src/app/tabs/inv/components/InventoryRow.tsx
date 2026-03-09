@@ -10,26 +10,24 @@ import { FitText } from '@/app/FitText.tsx';
 
 interface InventoryRowProps {
     characterItem: CharacterItem
-    isExpanded: boolean
-    onToggle: () => void
+    isSelected: boolean
+    onSelect: () => void
     cardComponent: React.ComponentType<any>
     showBadges?: boolean
 }
 /**
- * Compact inventory row that expands to show full card
- * Accordion-style interaction for mobile-friendly inventory browsing
+ * Compact inventory row that can be selected to display details in a dedicated area
+ * Click to select/deselect, long press for sell/delete/rename options
  */
 function InventoryRow({
     characterItem,
-    isExpanded,
-    onToggle,
+    isSelected,
+    onSelect,
     cardComponent: CardComponent,
     showBadges = true
 }: Readonly<InventoryRowProps>) {
     const { t } = useTranslation()
-    const contentRef = useRef<HTMLDivElement>(null)
     const nameInputRef = useRef<HTMLInputElement>(null)
-    const [contentHeight, setContentHeight] = useState(0)
     const [isEditingName, setIsEditingName] = useState(false)
     const [editedName, setEditedName] = useState(characterItem.customName || '')
     const { sellItem, deleteItem, updateItemCustomName } = useInventoryActions()
@@ -95,28 +93,6 @@ function InventoryRow({
         return null;
     }
 
-    // Calculate content height for smooth animation
-    useEffect(() => {
-        if (contentRef.current && isExpanded) {
-            // Use ResizeObserver to track content height changes (e.g., when description expands)
-            const resizeObserver = new ResizeObserver(() => {
-                if (contentRef.current) {
-                    setContentHeight(contentRef.current.scrollHeight);
-                }
-            });
-
-            resizeObserver.observe(contentRef.current);
-
-            // Initial height calculation
-            setContentHeight(contentRef.current.scrollHeight);
-
-            return () => {
-                resizeObserver.disconnect();
-            };
-        }
-        return () => {}
-    }, [isExpanded, characterItem, itemData])
-
     const quantity = characterItem.quantity
 
     // Determine item type for icon
@@ -176,12 +152,8 @@ function InventoryRow({
         return badges
     }
 
-    const handleRowClick = (e) => {
-        // Don't toggle if clicking inside the expanded card
-        if (isExpanded && e.target.closest('.inventory-row__card')) {
-            return
-        }
-        onToggle()
+    const handleRowClick = () => {
+        onSelect()
     }
 
     const badges = showBadges ? getBadges() : []
@@ -192,7 +164,7 @@ function InventoryRow({
 
     return (
         <div
-            className={`inventory-row ${isExpanded ? 'expanded' : ''}`}
+            className={`inventory-row ${isSelected ? 'selected' : ''}`}
             {...longPressHandlers}
             onContextMenu={e => e.preventDefault()}
         >
@@ -247,22 +219,6 @@ function InventoryRow({
                         <span>{quantity}x</span>
                     </div>
                 )}
-
-                <div className="inventory-row__expand">
-                    <i className={`fas fa-chevron-${isExpanded ? 'up' : 'down'}`}></i>
-                </div>
-            </div>
-
-            {/* Expandable Card Content */}
-            <div
-                className="inventory-row__content"
-                style={{
-                    maxHeight: isExpanded ? `${contentHeight}px` : '0px',
-                }}
-            >
-                <div ref={contentRef} className="inventory-row__card">
-                    {isExpanded && CardComponent && <CardComponent characterItem={characterItem} />}
-                </div>
             </div>
 
             {/* Sell/Delete/Rename Overlay - shown on long press */}

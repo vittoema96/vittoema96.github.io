@@ -9,8 +9,9 @@ import { CharacterItem } from '@/types';
  */
 interface ApparelContentProps {
     characterItem: CharacterItem
+    actionButtons?: React.ReactNode
 }
-function ApparelContent({ characterItem }: Readonly<ApparelContentProps>) {
+function ApparelContent({ characterItem, actionButtons }: Readonly<ApparelContentProps>) {
     const { t } = useTranslation();
 
     const dataManager = getGameDatabase();
@@ -23,88 +24,67 @@ function ApparelContent({ characterItem }: Readonly<ApparelContentProps>) {
     const isRobotPart = itemData.CATEGORY === 'robotPart';
 
     return (
-        <section>
-            <div className="row l-spaceBetween">
-                <section>
-                    <div className="card-stat">
-                        <div>{t('damageReductionFull')}</div>
-                        <div className="row l-centered">
-                            <span>{t('physical')}:</span>
-                            <span className="js-cardApparel-physical">{itemData.PHYSICAL_RES}</span>
-                        </div>
-                        <div className="row l-centered">
-                            <span>{t('energy')}:</span>
-                            <span className="js-cardApparel-energy">{itemData.ENERGY_RES}</span>
-                        </div>
-                        <div className="row l-centered">
-                            <span>{t('radiation')}:</span>
-                            <span className="js-cardApparel-radiation">
-                                {isRobotPart ? t('immune') : itemData.RADIATION_RES}
-                            </span>
+        <>
+            <div className="card-apparel-stats card-apparel-stats--4col">
+                {/* Column 1 - Damage Resistances */}
+                <div className="card-apparel-stats__column">
+                    <div className="card-stat-compact" title={t('physical')}>
+                        <i className="fas fa-shield-halved"></i>
+                        <div className="card-stat-compact__value js-cardApparel-physical">{itemData.PHYSICAL_RES}</div>
+                    </div>
+                    <div className="card-stat-compact" title={t('energy')}>
+                        <i className="fas fa-bolt"></i>
+                        <div className="card-stat-compact__value js-cardApparel-energy">{itemData.ENERGY_RES}</div>
+                    </div>
+                    <div className="card-stat-compact" title={t('radiation')}>
+                        <i className="fas fa-radiation"></i>
+                        <div className="card-stat-compact__value js-cardApparel-radiation">
+                            {isRobotPart ? t('immune') : itemData.RADIATION_RES}
                         </div>
                     </div>
-                </section>
-
-                <div
-                    className="themed-svg js-cardApparel-image"
-                    style={{
-                        textAlign: 'center',
-                        padding: '2rem 0.5rem',
-                        color: 'var(--secondary-color)',
-                    }}
-                >
-                    Work In Progress
                 </div>
 
-                <section>
-                    <div className="card-stat js-cardApparel-protects">
-                        <div>{t('protects')}</div>
-                        {itemData.LOCATIONS_COVERED?.map(location => {
-                            // TODO i don't know if variant should be handled the same way here, we are talking about location not items
-                            const locationText = t(location, {
-                                variation: t(characterItem.variation!), // if var=undefined, t() returns undefined (handled)
-                            });
+                {/* Column 2 - Apparel Icon */}
+                <div className="card-apparel-image--compact themed-svg" data-icon={itemData.CATEGORY}></div>
 
-                            return <div key={locationText}>{locationText}</div>;
-                        })}
+                {/* Column 3 - Locations Covered */}
+                <div className="card-apparel-stats__column">
+                    <div className="card-apparel-stats__locations">
+                        <i className="fas fa-user" title={t('protects')}></i>
+                        <div className="card-apparel-stats__locations-list">
+                            {itemData.LOCATIONS_COVERED?.map(location => {
+                                const locationText = t(location, {
+                                    variation: t(characterItem.variation!),
+                                });
+                                return <span key={locationText}>{locationText}</span>;
+                            })}
+                        </div>
                     </div>
-                </section>
+                </div>
+
+                {/* Column 4 - Action Buttons */}
+                {actionButtons}
             </div>
 
-            {/* Tags container for effects, qualities, and mod effects */}
-            <div className="tags-container">
-                {/* Intrinsic EFFECTS (from base item) */}
-                {itemData.EFFECTS?.map((effect) => {
-                    const [effectType, effectOpt] = effect.split(':');
-                    // If it's a number, keep it as is. If it's a string, try to translate it.
-                    let displayValue = t(effectOpt!) // undefined or number = itself, translatable gets translated
-                    if (displayValue) {
-                        displayValue = ` ${displayValue}`;
-                    }
-                    const displayText = `${t(effectType!)}${displayValue}`;
-                    return (
-                        <Tag key={effect} tooltipId={`${effectType}Description`}>
-                            {displayText}
-                        </Tag>
-                    );
-                })}
-
-                {/* MOD_NAMES (names of applied mods) */}
-                {/* TODO mod names not cool here, but could be added somewhere
-                characterItem.mods.map((modId) => {
+            {/* Tags container for effects - Compact */}
+            {itemData.EFFECTS?.length > 0 && (
+                <div className="tags-container tags-container--compact">
+                    {itemData.EFFECTS.map((effect) => {
+                        const [effectType, effectOpt] = effect.split(':');
+                        let displayValue = t(effectOpt!)
+                        if (displayValue) {
+                            displayValue = ` ${displayValue}`;
+                        }
+                        const displayText = `${t(effectType!)}${displayValue}`;
                         return (
-                            <Tag
-                                key={modId}
-                                tooltipId={`${modId}Description`}
-                                isMod={true}
-                            >
-                                {t(modId)}
+                            <Tag key={effect} tooltipId={`${effectType}Description`}>
+                                {displayText}
                             </Tag>
                         );
-                    })
-                */}
-            </div>
-        </section>
+                    })}
+                </div>
+            )}
+        </>
     );
 }
 

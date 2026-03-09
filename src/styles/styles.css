@@ -229,6 +229,17 @@ input[type='text'] {
 }
 .tabContent {
     gap: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.js-subScreen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 0;
 }
 
 .subTab-button {
@@ -632,6 +643,12 @@ input[type='text'] {
     box-shadow: 5px 5px 10px var(--overlay-color);
     position: relative;
 }
+
+/* Compact Card Variant */
+.card--compact {
+    max-width: 100%;
+}
+
 .card-header {
     padding: 10px;
     align-items: start;
@@ -640,8 +657,136 @@ input[type='text'] {
     text-align: center;
 }
 
+/* Compact Header - Single Line */
+.card-header--compact {
+    padding: 0.3rem 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-header__title {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.card-header__stats {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+}
+
+/* Action Buttons */
+.card-content__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.card-content__buttons-row {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.card-action-btn {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex: 1;
+}
+
+.card-action-btn i {
+    font-size: 0.9rem;
+}
+
+.card-action-btn .themed-svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.card-action-btn:hover:not(.disabled) {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.card-action-btn:hover:not(.disabled) .themed-svg {
+    background-color: var(--secondary-color);
+}
+
+.card-action-btn--primary {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.card-action-btn--primary .themed-svg {
+    background-color: var(--secondary-color);
+}
+
+.card-action-btn--primary:hover:not(.disabled) {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.card-action-btn--primary:hover:not(.disabled) .themed-svg {
+    background-color: var(--primary-color);
+}
+
+.card-action-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.card-action-btn--large {
+    min-height: 3.2rem;
+    aspect-ratio: 1 / 1;
+}
+
+.card-action-btn--large i {
+    font-size: 1.5rem;
+}
+
+.card-action-btn--large .themed-svg {
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
+.card-action-btn--small {
+    min-height: 1.5rem;
+    padding: 0.3rem;
+}
+
+.card-action-btn--small i {
+    font-size: 0.75rem;
+}
+
+.card-stat-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.75rem;
+}
+
+.card-stat-icon i {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
 .card-quantity {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    opacity: 0.9;
 }
 
 .card__header-stats {
@@ -649,11 +794,31 @@ input[type='text'] {
     flex-direction: column;
     font-size: 0.6rem;
 }
+
+.card-content--compact {
+    padding: 0.4rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .card-controls {
     margin: 5px;
     justify-content: space-around;
     align-items: center;
     display: flex;
+}
+
+.card-controls--compact {
+    margin: 0;
+    padding: 0.3rem 0.4rem;
+    gap: 0.4rem;
+}
+
+.modify-button--compact,
+.description-toggle-button--compact {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.85rem;
+    min-width: auto;
 }
 .description-toggle-button {
     padding: 0.5rem;
@@ -911,6 +1076,172 @@ input[type='text'] {
     color: var(--secondary-color);
 }
 
+/* Compact Weapon Stats */
+.card-weapon-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.2rem 0;
+}
+
+/* 4-Column Layout for Weapons */
+.card-weapon-stats--4col {
+    display: grid;
+    grid-template-columns: auto auto auto 3.5rem;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.card-weapon-stats__column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: stretch;
+}
+
+.card-stat-compact {
+    display: grid;
+    grid-template-columns: 1.1rem 1fr;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+}
+
+.card-stat-compact i {
+    font-size: 1rem;
+    width: 1.1rem;
+    text-align: left;
+    color: var(--primary-color);
+    opacity: 0.9;
+}
+
+.card-stat-compact__value,
+.card-stat-compact__values {
+    text-align: center;
+}
+
+.card-stat-compact__icon-group {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: 1.1rem;
+    justify-content: center;
+    position: relative;
+}
+
+.card-stat-compact__icon-group i {
+    width: auto;
+}
+
+.card-stat-compact__icon-group .fa-plus {
+    font-size: 0.6rem;
+    margin-left: -0.15rem;
+}
+
+.card-stat-compact__value {
+    font-weight: bold;
+}
+
+.card-stat-compact__values {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    font-size: 0.75rem;
+    align-items: center;
+}
+
+.card-stat-compact__values div {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.card-stat-compact__values i {
+    font-size: 0.7rem;
+}
+
+.card-weapon-image--compact {
+    width: 5rem;
+    height: 5rem;
+    flex-shrink: 0;
+    opacity: 0.9;
+}
+
+.card-apparel-image--compact {
+    width: 5rem;
+    height: 5rem;
+    flex-shrink: 0;
+    opacity: 0.9;
+}
+
+/* Compact Apparel Stats */
+.card-apparel-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.2rem 0;
+}
+
+/* 4-Column Layout for Apparel */
+.card-apparel-stats--4col {
+    display: grid;
+    grid-template-columns: auto auto auto 3.5rem;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.card-apparel-stats__column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: stretch;
+}
+
+.card-apparel-stats__locations {
+    display: grid;
+    grid-template-columns: 1.1rem 1fr;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+}
+
+.card-apparel-stats__locations i {
+    font-size: 1rem;
+    width: 1.1rem;
+    text-align: left;
+    color: var(--primary-color);
+}
+
+.card-apparel-stats__locations-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    text-align: center;
+}
+
+.card-apparel-stats__locations-list span {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.35rem;
+    background-color: var(--button-background);
+    border-radius: 2px;
+}
+
+/* Compact Tags */
+.tags-container--compact {
+    margin-top: 0;
+    padding-top: 0.5rem;
+    gap: 0.3rem;
+    border-top: 1px solid var(--primary-color);
+    opacity: 0.95;
+}
+
+.tags-container--compact .tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+}
+
 .card-weapon-image {
     margin: 10px;
     align-self: stretch;
@@ -931,6 +1262,8 @@ input[type='text'] {
     flex-direction: column;
     gap: 0;
     width: 100%;
+    flex: 1;
+    overflow-y: auto;
 }
 
 /* Search and Sort Controls */
@@ -947,7 +1280,7 @@ input[type='text'] {
 }
 
 .inventory-list__search {
-    display: flex;
+    display: none; /* Hidden to save space */
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem;
@@ -1130,8 +1463,24 @@ input[type='text'] {
     background-color: var(--button-background);
 }
 
-.inventory-row.expanded {
-    background-color: var(--button-background);
+.inventory-row.selected {
+    background-color: var(--primary-color);
+}
+
+.inventory-row.selected .inventory-row__name,
+.inventory-row.selected .inventory-row__subinfo,
+.inventory-row.selected .inventory-row__quantity,
+.inventory-row.selected .inventory-row__expand {
+    color: var(--secondary-color);
+}
+
+.inventory-row.selected .inventory-row__icon {
+    background-color: var(--secondary-color);
+}
+
+.inventory-row.selected .inventory-row__quantity {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 /* Row Header (Compact View) */
@@ -1214,16 +1563,7 @@ input[type='text'] {
     flex-shrink: 0;
 }
 
-.inventory-row__expand {
-    color: var(--primary-color);
-    font-size: 0.9rem;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-}
 
-.inventory-row.expanded .inventory-row__expand {
-    transform: rotate(180deg);
-}
 
 /* Badges */
 .inventory-row__badge {
@@ -1249,27 +1589,43 @@ input[type='text'] {
     padding: 0.1rem 0.25rem;
 }
 
-/* Expandable Content */
-.inventory-row__content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
+.inventory-row.selected .badge-success .themed-svg {
+    background-color: var(--secondary-color);
 }
 
-.inventory-row__card {
-    padding: 1rem;
-    background-color: var(--button-background);
+/* Selected Item Display Area */
+.inventory-list__selection {
+    position: sticky;
+    bottom: -1rem; /* Compensate for main-container padding */
+    margin-left: -1rem; /* Extend to full width, ignoring main-container padding */
+    margin-right: -1rem;
+    margin-bottom: -1rem;
+    padding: 0.4rem 0.3rem 0.4rem 0.3rem;
+    background: linear-gradient(to bottom, var(--button-background) 0%, var(--secondary-color) 100%);
+    border-top: 2px solid var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
+    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Make cards fit nicely in accordion */
-.inventory-row__card .card {
+.inventory-list__selection .card {
     margin: 0;
-    border: var(--border-primary-thin);
-    background-color: var(--secondary-color);
-    box-shadow: 5px 5px 10px var(--overlay-color);
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    max-width: 100%;
+}
+
+.inventory-list__selection .card-header--compact {
+    padding: 0.3rem 0.4rem;
+}
+
+.inventory-list__selection .card-content--compact {
+    padding: 0.4rem;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 /***********
