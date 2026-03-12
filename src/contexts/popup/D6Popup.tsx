@@ -3,12 +3,13 @@ import { useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
 import { useTooltip } from '@/contexts/TooltipContext'
 import { useDialog } from '@/hooks/useDialog'
-import { createInitialDiceState, rollRandomHitLocation } from '@/contexts/popup/utils/diceUtils.ts'
-import { BODY_PARTS, CharacterItem, GenericPopupProps, ItemCategory, WeaponItem } from '@/types';
+import { createInitialDiceState, rollD20, getHitLocationFromRoll, CreatureType } from '@/contexts/popup/utils/diceUtils.ts'
+import { CharacterItem, GenericPopupProps, ItemCategory, WeaponItem } from '@/types';
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import Tag from '@/components/Tag.tsx';
 import PopupHeader from '@/contexts/popup/common/PopupHeader.tsx';
 import DialogPortal from '@/contexts/popup/common/DialogPortal.tsx';
+import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 
 
 interface D6PopupProps extends GenericPopupProps {
@@ -25,6 +26,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
     // Just use it, we do not need to manually trigger showTooltip
     // as we use it with standard .tag
     useTooltip();
+    const { showConfirm } = usePopup();
 
 
     // Get weapon data with mods applied
@@ -109,7 +111,18 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
     const [ammoPayed, setAmmoPayed] = useState(0);
     const [luckPayed, setLuckPayed] = useState(0);
     const [burstEffectsUsed, setBurstEffectsUsed] = useState(0); // Number of burst effects activated
-    const [hitLocation, setHitLocation] = useState(rollRandomHitLocation()); // Selected hit location
+    const [creatureType, setCreatureType] = useState<CreatureType>('humanoid'); // Creature type for hit location
+    const [hitLocationRoll, setHitLocationRoll] = useState(rollD20()); // d20 roll for hit location (1-20)
+    const [gunFuUsed, setGunFuUsed] = useState(false); // Track if Gun Fu has been used
+    const [slayerUsed, setSlayerUsed] = useState(false); // Track if Slayer has been used
+
+    // Calculate hit location from roll and creature type
+    const hitLocation = getHitLocationFromRoll(hitLocationRoll, creatureType);
+
+    // Reroll hit location (rolls a new d20)
+    const rerollHitLocation = () => {
+        setHitLocationRoll(rollD20());
+    };
 
     if(!dataManager.isType(weaponData, "weapon")){
         return null;
@@ -395,217 +408,273 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
 
     return (
         <DialogPortal>
-        <dialog ref={dialogRef}>
+        <dialog ref={dialogRef} style={{ minWidth: '300px', maxWidth: '320px' }}>
             <PopupHeader title={weaponData.ID} onClose={() => closeWithAnimation(callback)}/>
 
-            <div style={{ marginBottom: '0.5rem' }} className="h4">
-                {t('damage')}: {t(weaponData.DAMAGE_TYPE)}
+            {/* Compact header: damage type + effects/qualities in one section */}
+            <div style={{ marginBottom: '0.25rem' }}>
+                <div className="h4" style={{ marginBottom: '0.25rem' }}>
+                    {t('damage')}: {t(weaponData.DAMAGE_TYPE)}
+                </div>
+
+                {/* Effects and Qualities Tags - compact */}
+                {(weaponData.EFFECTS?.length > 0 || weaponData.QUALITIES?.length > 0) && (
+                    <div
+                        className="row"
+                        style={{ flexWrap: 'wrap', gap: '0.25rem', justifyContent: 'center' }}
+                    >
+                        {weaponData.EFFECTS?.map(effect => {
+                            const [effectType, effectOpt] = effect.split(':');
+                            let displayValue = t(effectOpt!);
+                            if (displayValue) {
+                                displayValue = ` ${displayValue}`;
+                            }
+                            const displayText = `${t(effectType!)}${displayValue}`;
+                            return (
+                                <Tag key={effect} tooltipId={`${effectType}Description`}>
+                                    {displayText}
+                                </Tag>
+                            );
+                        })}
+
+                        {weaponData.QUALITIES?.map(effect => {
+                            const [qualityType, qualityOpt] = effect.split(':');
+                            let displayValue = t(qualityOpt!);
+                            if (displayValue) {
+                                displayValue = ` ${displayValue}`;
+                            }
+                            const displayText = `${t(qualityType!)}${displayValue}`;
+                            return (
+                                <Tag
+                                    key={effect}
+                                    isEmpty={true}
+                                    tooltipId={`${qualityType}Description`}
+                                >
+                                    {displayText}
+                                </Tag>
+                            );
+                        })}
+                    </div>
+                )}
             </div>
 
-            {/* Effects and Qualities Tags */}
-            <div
-                className="row"
-                style={{ flexWrap: 'wrap', gap: '0.25rem', justifyContent: 'center' }}
-            >
-                {/* Intrinsic EFFECTS (from base item) */}
-                {weaponData.EFFECTS?.map(effect => {
-                    const [effectType, effectOpt] = effect.split(':');
-                    // If it's a number, keep it as is. If it's a string, try to translate it.
-                    let displayValue = t(effectOpt!); // undefined or number = itself, translatable gets translated
-                    if (displayValue) {
-                        displayValue = ` ${displayValue}`;
-                    }
-                    const displayText = `${t(effectType!)}${displayValue}`;
-                    return (
-                        <Tag key={effect} tooltipId={`${effectType}Description`}>
-                            {displayText}
-                        </Tag>
-                    );
-                })}
+            <hr style={{ margin: '0.25rem 0' }} />
 
-                {weaponData.QUALITIES?.map(effect => {
-                    const [qualityType, qualityOpt] = effect.split(':');
-                    // If it's a number, keep it as is. If it's a string, try to translate it.
-                    let displayValue = t(qualityOpt!); // undefined or number = itself, translatable gets translated
-                    if (displayValue) {
-                        displayValue = ` ${displayValue}`;
-                    }
-                    const displayText = `${t(qualityType!)}${displayValue}`;
-                    return (
-                        <Tag
-                            key={effect}
-                            isEmpty={true}
-                            tooltipId={`${qualityType}Description`}
-                        >
-                            {displayText}
-                        </Tag>
-                    );
-                })}
-            </div>
-
-            <hr />
-
-            {/* Hit Location Selector */}
-            <div className="row l-distributed l-lastSmall">
-                <span>{t('hitLocation')}</span>
+            <span style={{ fontSize: '0.9rem', flexShrink: 0 }}>{t('hitLocation')}:</span>
+            {/* Hit Location - compact single row */}
+            <div className="row" style={{ gap: '0.5rem', alignItems: 'center', marginBottom: '0.25rem' }}>
                 <select
-                    value={hitLocation}
-                    onChange={e => setHitLocation(e.target.value)}
+                    value={creatureType}
+                    onChange={e => setCreatureType(e.target.value as CreatureType)}
                     style={{
-                        padding: '0.25rem 0.5rem',
+                        padding: '0.125rem 0.25rem',
                         backgroundColor: 'var(--secondary-color)',
                         color: 'var(--primary-color)',
                         border: 'var(--border-primary-thin)',
-                        fontSize: 'inherit',
+                        fontSize: '0.85rem',
                         borderRadius: '0.25rem',
-                        width: 'auto',
-                        minWidth: '150px',
-                        flex: '0 0 auto',
+                        flex: 1,
+                        minWidth: '80px',
                     }}
                 >
-                    {Array.from(BODY_PARTS, location => (
-                        <option key={location} value={location}>
-                            {t(location)}
-                        </option>
-                    ))}
+                    <option value="humanoid">{t('humanoid')}</option>
+                    <option value="mrHandy">{t('mrHandy')}</option>
                 </select>
+                <span
+                    style={{
+                        flex: 1,
+                        textAlign: 'center',
+                        fontWeight: 'bold',
+                        minWidth: 0,
+                        fontSize: '0.95rem',
+                        wordBreak: 'break-word',
+                        overflowWrap: 'break-word'
+                    }}
+                >
+                    {t(hitLocation)}
+                </span>
+                <button
+                    onClick={rerollHitLocation}
+                    style={{
+                        padding: '0.125rem 0.375rem',
+                        backgroundColor: 'var(--secondary-color)',
+                        color: 'var(--primary-color)',
+                        border: 'var(--border-primary-thin)',
+                        borderRadius: '0.25rem',
+                        cursor: 'pointer',
+                        fontSize: '0.9rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                    title={t('rerollHitLocation')}
+                >
+                    <i className="fas fa-dice"></i>
+                </button>
             </div>
 
-            <hr />
+            <hr style={{ margin: '0.25rem 0' }} />
 
-            {/* Damage Dice */}
-            <div
-                className="row"
-                style={{ flexWrap: 'wrap', justifyContent: 'center', marginBottom: '0.5rem' }}
-            >
-                {diceClasses.map((diceClass, index) => (
-                    <div
-                        key={index}
-                        className={`d6-dice dice ${diceClass || ''} ${diceActive[index] ? 'active' : ''} ${diceRerolled[index] ? 'rerolled' : ''}`}
-                        onClick={() => handleDiceClick(index)}
-                        style={{
-                            cursor: hasRolled && !diceRerolled[index] ? 'pointer' : 'default',
-                        }}
-                    >
-                        {diceClass ? '' : '?'}
-                    </div>
-                ))}
+            {/* Dice Section - fixed height container with grid layout */}
+            <div style={{ marginBottom: '0.25rem' }}>
+                {/* Damage Dice */}
+                <div
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, 2.5rem)',
+                        gap: '0.25rem',
+                        justifyContent: 'center',
+                        minHeight: '2.5rem',
+                        marginBottom: extraDiceCount > 0 ? '0.5rem' : '0'
+                    }}
+                >
+                    {diceClasses.map((diceClass, index) => (
+                        <div
+                            key={index}
+                            className={`d6-dice dice ${diceClass || ''} ${diceActive[index] ? 'active' : ''} ${diceRerolled[index] ? 'rerolled' : ''}`}
+                            onClick={() => handleDiceClick(index)}
+                            style={{
+                                cursor: hasRolled && !diceRerolled[index] ? 'pointer' : 'default',
+                            }}
+                        >
+                            {diceClass ? '' : '?'}
+                        </div>
+                    ))}
+                </div>
+
+                {/* Extra Hits */}
+                {extraDiceCount > 0 && (
+                    <>
+                        <div
+                            className="row"
+                            style={{
+                                justifyContent: 'space-between',
+                                fontSize: '0.85rem',
+                                marginBottom: '0.25rem'
+                            }}
+                        >
+                            <span>{t('extraHits')}</span>
+                            <span>[{t(extraHitsType)}]</span>
+                        </div>
+                        <div
+                            style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fit, 2.5rem)',
+                                gap: '0.25rem',
+                                justifyContent: 'center',
+                                minHeight: '2.5rem'
+                            }}
+                        >
+                            {extraDiceClasses.map((diceClass, index) => (
+                                <div
+                                    key={index}
+                                    className={`d6-dice dice ${diceClass || ''} ${extraDiceActive[index] ? 'active' : ''} ${extraDiceRerolled[index] ? 'rerolled' : ''}`}
+                                    onClick={() => handleExtraDiceClick(index)}
+                                    style={{
+                                        cursor:
+                                            !hasRolled || (diceClass && !extraDiceRerolled[index])
+                                                ? 'pointer'
+                                                : 'default',
+                                    }}
+                                >
+                                    {diceClass ? '' : '?'}
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )}
             </div>
 
-            {/* Extra Hits */}
-            {extraDiceCount > 0 && (
-                <>
-                    <div
-                        className="row l-distributed l-lastSmall"
-                        style={{ marginTop: '0.5rem' }}
-                    >
-                        <span>{t('extraHits')}</span>
-                        <span>[{t(extraHitsType)}]</span>
-                    </div>
-                    <div className="row" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
-                        {extraDiceClasses.map((diceClass, index) => (
-                            <div
-                                key={index}
-                                className={`d6-dice dice ${diceClass || ''} ${extraDiceActive[index] ? 'active' : ''} ${extraDiceRerolled[index] ? 'rerolled' : ''}`}
-                                onClick={() => handleExtraDiceClick(index)}
-                                style={{
-                                    cursor:
-                                        !hasRolled || (diceClass && !extraDiceRerolled[index])
-                                            ? 'pointer'
-                                            : 'default',
-                                }}
-                            >
-                                {diceClass ? '' : '?'}
-                            </div>
-                        ))}
-                    </div>
-                </>
-            )}
+            <hr style={{ margin: '0.25rem 0' }} />
 
-            <hr />
-
-            {/* Stats */}
-            <div className="row l-distributed l-lastSmall">
-                <span>{t('totalDamage')}</span>
-                <span className="h2">{getTotalDamage()}</span>
+            {/* Stats - compact grid */}
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '0.5rem',
+                marginBottom: '0.25rem'
+            }}>
+                <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: '0.85rem' }}>{t('totalDamage')}</div>
+                    <div className="h2" style={{ margin: 0 }}>{getTotalDamage()}</div>
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: '0.85rem' }}>{t('totalEffects')}</div>
+                    <div className="h2" style={{ margin: 0 }}>{getTotalEffects()}</div>
+                </div>
             </div>
 
-            <div className="row l-distributed l-lastSmall">
-                <span>{t('totalEffects')}</span>
-                <span className="h2">{getTotalEffects()}</span>
-            </div>
-
-            <hr />
+            <hr style={{ margin: '0.25rem 0' }} />
 
             {!isMysteriousStranger && (
                 <>
-                    {/* Costs */}
-                    {!isMelee(weaponData.CATEGORY) && (
-                        <div className="row l-distributed l-lastSmall">
-                            <span>{t('ammo')}</span>
-                            <span
-                                style={{
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    gap: '0.25rem',
-                                    whiteSpace: 'nowrap',
-                                }}
-                            >
-                                {!hasRolled ? (
-                                    // Before roll: show ammo about to consume / total
-                                    <span>
-                                        {ammoCost} / {getCurrentAmmo()}
-                                    </span>
-                                ) : hasBurst ? (
-                                    // After roll with burst: show dropdown / total
-                                    // Max = min(effect dice rolled, current ammo)
-                                    <>
-                                        <select
-                                            value={burstEffectsUsed}
-                                            onChange={e =>
-                                                setBurstEffectsUsed(parseInt(e.target.value))
-                                            }
-                                            style={{
-                                                padding: '0.125rem 0.25rem',
-                                                backgroundColor: 'var(--secondary-color)',
-                                                color: 'var(--primary-color)',
-                                                border: 'var(--border-primary-thin)',
-                                                fontSize: 'inherit',
-                                            }}
-                                        >
-                                            {Array.from(
-                                                {
-                                                    length:
-                                                        Math.min(
-                                                            getEffectCount(),
-                                                            getCurrentAmmo(),
-                                                        ) + 1,
-                                                },
-                                                (_, i) => (
-                                                    <option key={i} value={i}>
-                                                        {i}
-                                                    </option>
-                                                ),
-                                            )}
-                                        </select>
-                                        <span>/ {getCurrentAmmo()}</span>
-                                    </>
-                                ) : (
-                                    // After roll without burst: show 0 / total
-                                    <span>0 / {getCurrentAmmo()}</span>
-                                )}
-                            </span>
-                        </div>
-                    )}
+                    {/* Costs - compact */}
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: !isMelee(weaponData.CATEGORY) ? '1fr 1fr' : '1fr',
+                        gap: '0.5rem',
+                        fontSize: '0.9rem',
+                        marginBottom: '0.25rem'
+                    }}>
+                        {!isMelee(weaponData.CATEGORY) && (
+                            <div className="row" style={{ justifyContent: 'space-between' }}>
+                                <span>{t('ammo')}:</span>
+                                <span
+                                    style={{
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '0.25rem',
+                                        whiteSpace: 'nowrap',
+                                    }}
+                                >
+                                    {!hasRolled ? (
+                                        <span>{ammoCost} / {getCurrentAmmo()}</span>
+                                    ) : hasBurst ? (
+                                        <>
+                                            <select
+                                                value={burstEffectsUsed}
+                                                onChange={e =>
+                                                    setBurstEffectsUsed(parseInt(e.target.value))
+                                                }
+                                                style={{
+                                                    padding: '0.125rem 0.25rem',
+                                                    backgroundColor: 'var(--secondary-color)',
+                                                    color: 'var(--primary-color)',
+                                                    border: 'var(--border-primary-thin)',
+                                                    fontSize: '0.85rem',
+                                                }}
+                                            >
+                                                {Array.from(
+                                                    {
+                                                        length:
+                                                            Math.min(
+                                                                getEffectCount(),
+                                                                getCurrentAmmo(),
+                                                            ) + 1,
+                                                    },
+                                                    (_, i) => (
+                                                        <option key={i} value={i}>
+                                                            {i}
+                                                        </option>
+                                                    ),
+                                                )}
+                                            </select>
+                                            <span>/ {getCurrentAmmo()}</span>
+                                        </>
+                                    ) : (
+                                        <span>0 / {getCurrentAmmo()}</span>
+                                    )}
+                                </span>
+                            </div>
+                        )}
 
-                    <div className="row l-distributed l-lastSmall">
-                        <span>{t('luck')}</span>
-                        <span>
-                            {getLuckCost()} / {character.currentLuck}
-                        </span>
+                        <div className="row" style={{ justifyContent: 'space-between' }}>
+                            <span>{t('luck')}:</span>
+                            <span>{getLuckCost()} / {character.currentLuck}</span>
+                        </div>
                     </div>
 
-                    <hr />
+                    <hr style={{ margin: '0.25rem 0' }} />
                 </>
             )}
 
@@ -619,6 +688,76 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                         {hasRolled ? t('reroll') : t('roll')}
                     </button>
                 )}
+
+                {/* Gun Fu button - only for ranged weapons when player has the perk */}
+                {!isMysteriousStranger &&
+                 !isMelee(weaponData.CATEGORY) &&
+                 character.perks.includes('perkGunFu') &&
+                 !gunFuUsed && (
+                    <button
+                        className="popup__button-confirm"
+                        onClick={() => {
+                            const totalDamage = getTotalDamage();
+
+                            showConfirm(
+                                `${t('perkGunFu')}\n\n` +
+                                `${t('damage')}: ${totalDamage}\n\n` +
+                                `${t('confirmGunFu')}`,
+                                () => {
+                                    // Consume 1 ammo
+                                    let ammoId = weaponData.AMMO_TYPE;
+                                    if (ammoId === 'self') {
+                                        ammoId = weaponData.ID;
+                                    } // TODO should "SELF" ammo types use Gun Fu?
+                                    if (ammoId && ammoId !== 'na') {
+                                        updateCharacter({
+                                            items: character.items
+                                                .map(item =>
+                                                    item.id === ammoId
+                                                        ? { ...item, quantity: item.quantity - 1 }
+                                                        : item,
+                                                )
+                                                .filter(item => item.quantity > 0),
+                                        });
+                                    }
+                                    // Mark Gun Fu as used
+                                    setGunFuUsed(true);
+                            })
+                        }}
+                        disabled={!hasRolled || getCurrentAmmo() < 1}
+                        title={t('perkGunFuDescription')}
+                    >
+                        {t('perkGunFu')}
+                    </button>
+                )}
+
+                {/* Slayer button - only for melee/unarmed weapons when player has the perk */}
+                {!isMysteriousStranger &&
+                 isMelee(weaponData.CATEGORY) &&
+                 character.perks.includes('perkSlayer') &&
+                 !slayerUsed && (
+                    <button
+                        className="popup__button-confirm"
+                        onClick={() => {
+                            showConfirm(
+                                `${t('perkSlayer')}\n\n` +
+                                `${t('confirmSlayer')}`,
+                                () => {
+                                    // Spend 1 Luck point
+                                    updateCharacter({
+                                        currentLuck: character.currentLuck - 1
+                                    });
+                                    // Mark Slayer as used
+                                    setSlayerUsed(true);
+                                })
+                        }}
+                        disabled={!hasRolled || character.currentLuck < 1}
+                        title={t('perkSlayerDescription')}
+                    >
+                        {t('perkSlayer')}
+                    </button>
+                )}
+
                 <button
                     className="popup__button-close"
                     onClick={() => closeWithAnimation(callback)}

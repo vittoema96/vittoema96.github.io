@@ -77,24 +77,22 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
     // Alert Popup functions
     const showAlert = useCallback(
         (content: string) => {
-            const translatedContent = t(content || '')
             setAlertState({
-                content: translatedContent,
+                content: content,
                 onConfirm: () => {},
                 showConfirm: false
             })
-        }, [t]
+        }, []
     )
 
     const showConfirm = useCallback(
         (content: string, onConfirm: () => void) => {
-            const translatedContent = t(content || '')
             setAlertState({
-                content: translatedContent,
+                content: content,
                 onConfirm: onConfirm,
                 showConfirm: true
             })
-        }, [t]
+        }, []
     )
 
     const closeAlert = useCallback(() => {

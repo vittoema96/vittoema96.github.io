@@ -23,7 +23,7 @@ export const useInventoryActions = () => {
     const sellItem = (characterItem: CharacterItem) => {
         // Validate if item can be sold
         if (dataManager.isUnacquirable(characterItem.id)) {
-            showAlert("Cannot sell this item!")
+            showAlert(t('cannotSellItem'))
             return
         }
 
@@ -59,19 +59,22 @@ export const useInventoryActions = () => {
                 caps: newCaps
             })
 
-            showAlert(`Sold for ${total} caps!`)
+            showAlert(t('soldForCaps', { caps: total }))
         })
     }
 
     const deleteItem = (characterItem: CharacterItem) => {
         // Validate if item can be deleted
         if (dataManager.isUnacquirable(characterItem.id)) {
-            showAlert("Cannot delete this item!")
+            showAlert(t('cannotDeleteItem'))
             return
         }
 
         showConfirm(
-            `Delete ${characterItem.quantity}x ${t(characterItem.id)}? This action cannot be undone.`,
+            t('confirmDeleteItem', {
+                quantity: characterItem.quantity,
+                itemName: t(characterItem.id)
+            }),
             () => {
                 // Remove item from inventory
                 const updatedItems = character.items.filter(item =>
@@ -82,7 +85,7 @@ export const useInventoryActions = () => {
                     items: updatedItems
                 })
 
-                showAlert('Item deleted.')
+                showAlert(t('itemDeleted'))
             }
         )
     }
@@ -91,10 +94,10 @@ export const useInventoryActions = () => {
         // Robot parts cannot be unequipped
         const itemData = dataManager.getItem(characterItem.id)
         if(character.origin.isRobot) {
-            showAlert("Robots cannot equip/unequip apparel.")
+            showAlert(t('robotsCannotEquipApparel'))
             return
         } else if(itemData?.CATEGORY === 'robotPart'){
-            showAlert("Cannot equip robot parts on non-robots.")
+            showAlert(t('cannotEquipRobotParts'))
             return
         }
         const isCurrentlyEquipped = characterItem.equipped === true
@@ -134,7 +137,7 @@ export const useInventoryActions = () => {
     const consumeItem = (characterItem: CharacterItem) => {
         // TODO: Implement use logic for consumables
         console.log('Use item:', characterItem.id)
-        showAlert('Use functionality coming soon!')
+        showAlert(t('useFunctionalityComingSoon'))
     }
 
     const updateItemCustomName = (characterItem: CharacterItem, customName: string) => {

@@ -15,6 +15,9 @@ function DamageReductionDisplay() {
 
     const characterIcon = character.origin.characterSvg
 
+    // Check if character has Toughness perk (+1 Physical DR to all body parts)
+    const hasToughnessPerk = character.perks.includes('perkToughness')
+
     // Helper function to format DR value (show "Immune" for Infinity)
     const formatDR = (value: number) => {
         if (value === Infinity) {return t('immune')}
@@ -53,7 +56,7 @@ function DamageReductionDisplay() {
                     <div className="row l-centered">
                         <span>{t('physical')}:</span>
                         <span>
-                            {formatDR(damageReduction[key].physical)}
+                            {formatDR(damageReduction[key].physical + (hasToughnessPerk ? 1 : 0))}
                         </span>
                     </div>
                     <div className="row l-centered">

@@ -249,8 +249,15 @@ interface D20PopupProps {
         setDiceActive([false, false, false, false, false])
 
         // Update luck AFTER setting hasRolled to true
-        if (luckCost > 0) {
-            updateCharacter({ currentLuck: currentLuck - luckCost })
+        let totalLuckCost = luckCost
+
+        // Mysterious Stranger costs 1 additional luck point (only on first roll)
+        if (isMysteriousStranger && !hasRolled) {
+            totalLuckCost += 1
+        }
+
+        if (totalLuckCost > 0) {
+            updateCharacter({ currentLuck: currentLuck - totalLuckCost })
         }
     }
 

@@ -109,7 +109,16 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
                     </div>
                     <div className="card-stat-compact">
                         <i className="fas fa-arrows-left-right" title={t('rangeLabel')}></i>
-                        <div className="card-stat-compact__value">{t(`${itemData.RANGE}Full`)}</div>
+                        <div className="card-stat-compact__values">
+                            <div>{t(`${itemData.RANGE}Full`)}</div>
+                            <div style={{ fontSize: '0.7em' }}>
+                                {itemData.RANGE === 'rangeR' && '1 sq'}
+                                {itemData.RANGE === 'rangeC' && '1-6 sq'}
+                                {itemData.RANGE === 'rangeM' && '7-12 sq'}
+                                {itemData.RANGE === 'rangeL' && '13-20 sq'}
+                                {itemData.RANGE === 'rangeE' && '21+ sq'}
+                            </div>
+                        </div>
                     </div>
                 </div>
 

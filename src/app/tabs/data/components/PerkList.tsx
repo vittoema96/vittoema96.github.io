@@ -32,6 +32,12 @@ function PerkList() {
 	        'perkMysteriousStranger': {
             buttonLabel: 'summonStranger',
             onClick: () => {
+                // Check if player has at least 1 luck
+                if (character.currentLuck < 1) {
+                    alert(t('notEnoughLuckAlert') || 'Not enough luck!');
+                    return;
+                }
+
 	                showD20Popup('smallGuns', {
                     id: "weaponFortyFourPistol",
                     quantity: 1,

@@ -29,8 +29,9 @@ function StatTab() {
 
     const skillPoints = useMemo(() => {
         const skillSum = Object.values(rawCharacter?.skills ?? {}).reduce((total, value) => total + value, 0)
-        return 9 + character.special.intelligence + character.level - 1 - skillSum
-    }, [character.level, character.special.intelligence, rawCharacter?.skills])
+        const skilledBonus = character.perks.filter(p => p === 'perkSkilled').length * 2
+        return 9 + character.special.intelligence + (character.level - 1) + skilledBonus - skillSum
+    }, [character.level, character.perks, character.special.intelligence, rawCharacter?.skills])
 
     const goodNaturedSkills = ['speech', 'medicine', 'repair' , 'science', 'barter']
     const hasGoodNatured = useMemo(
