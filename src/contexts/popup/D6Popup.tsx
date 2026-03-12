@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
 import { useTooltip } from '@/contexts/TooltipContext'
@@ -22,6 +22,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
     const { t } = useTranslation();
     const dataManager = getGameDatabase();
     const dialogRef = useRef<HTMLDialogElement>(null);
+    const meltdownDialogRef = useRef<HTMLDialogElement>(null);
     const { character, updateCharacter } = useCharacter();
     // Just use it, we do not need to manually trigger showTooltip
     // as we use it with standard .tag
@@ -115,13 +116,47 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
     const [hitLocationRoll, setHitLocationRoll] = useState(rollD20()); // d20 roll for hit location (1-20)
     const [gunFuUsed, setGunFuUsed] = useState(false); // Track if Gun Fu has been used
     const [slayerUsed, setSlayerUsed] = useState(false); // Track if Slayer has been used
+    const [meltdownUsed, setMeltdownUsed] = useState(false); // Track if Meltdown has been used
+    const [meltdownPopupOpen, setMeltdownPopupOpen] = useState(false); // Track if Meltdown popup is open
+    const [meltdownDiceValues, setMeltdownDiceValues] = useState<number[]>([]); // Meltdown dice results
 
     // Calculate hit location from roll and creature type
     const hitLocation = getHitLocationFromRoll(hitLocationRoll, creatureType);
 
+    // Handle Meltdown popup open/close
+    useEffect(() => {
+        if (meltdownPopupOpen && meltdownDialogRef.current) {
+            meltdownDialogRef.current.showModal();
+        } else if (!meltdownPopupOpen && meltdownDialogRef.current) {
+            meltdownDialogRef.current.close();
+        }
+    }, [meltdownPopupOpen]);
+
     // Reroll hit location (rolls a new d20)
     const rerollHitLocation = () => {
         setHitLocationRoll(rollD20());
+    };
+
+    // Meltdown functions
+    const getMeltdownDiceCount = () => {
+        return Math.floor(getDamageRating() / 2);
+    };
+
+    const rollMeltdownDice = () => {
+        const diceCount = getMeltdownDiceCount();
+        const rolls = Array.from({ length: diceCount }, () => Math.floor(Math.random() * 6) + 1);
+        setMeltdownDiceValues(rolls);
+    };
+
+    const getMeltdownEffectCount = () => {
+        // Effects are on rolls 3-4
+        return meltdownDiceValues.filter(roll => roll >= 3 && roll <= 4).length;
+    };
+
+    const closeMeltdownPopup = () => {
+        setMeltdownPopupOpen(false);
+        setMeltdownUsed(true);
+        setMeltdownDiceValues([]);
     };
 
     if(!dataManager.isType(weaponData, "weapon")){
@@ -758,6 +793,23 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                     </button>
                 )}
 
+                {/* Meltdown button - only for energy weapons when player has the perk */}
+                {!isMysteriousStranger &&
+                 weaponData.CATEGORY === 'energyWeapons' &&
+                 character.perks.includes('perkMeltdown') &&
+                 !meltdownUsed && (
+                    <button
+                        className="popup__button-confirm"
+                        onClick={() => {
+                            setMeltdownPopupOpen(true);
+                        }}
+                        disabled={!hasRolled}
+                        title={t('perkMeltdownDescription')}
+                    >
+                        {t('perkMeltdown')}
+                    </button>
+                )}
+
                 <button
                     className="popup__button-close"
                     onClick={() => closeWithAnimation(callback)}
@@ -766,6 +818,76 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                 </button>
             </footer>
         </dialog>
+
+        {/* Meltdown Popup - inline dialog for rolling explosion dice */}
+        <dialog
+            ref={meltdownDialogRef}
+            style={{
+                padding: '1rem',
+                borderRadius: '8px',
+                minWidth: '300px',
+                maxWidth: '500px',
+            }}
+        >
+                <PopupHeader
+                    title={t('meltdownTitle')}
+                    onClose={closeMeltdownPopup}
+                />
+                <hr />
+
+                <div style={{ padding: '1rem 0' }}>
+                    <p style={{ marginBottom: '1rem', textAlign: 'center' }}>
+                        {t('meltdownRollDice', { diceCount: getMeltdownDiceCount() })}
+                    </p>
+
+                    <div style={{
+                        display: 'flex',
+                        gap: '0.5rem',
+                        justifyContent: 'center',
+                        marginBottom: '1rem',
+                        flexWrap: 'wrap'
+                    }}>
+                        {Array.from({ length: getMeltdownDiceCount() }, (_, index) => {
+                            const roll = meltdownDiceValues[index];
+                            const diceClass = roll ? getDiceClassFromRoll(roll) : null;
+
+                            return (
+                                <div
+                                    key={index}
+                                    className={`d6-dice dice ${diceClass || ''}`}
+                                >
+                                    {diceClass ? '' : '?'}
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    {meltdownDiceValues.length > 0 && (
+                        <p style={{ textAlign: 'center', fontWeight: 'bold' }}>
+                            {t('meltdownResult', {
+                                effectCount: getMeltdownEffectCount(),
+                                totalDamage: getMeltdownEffectCount()
+                            })}
+                        </p>
+                    )}
+                </div>
+
+                <hr />
+                <footer style={{ padding: 0, marginTop: '0.25rem', gap: '0.5rem' }}>
+                    <button
+                        className="popup__button-confirm"
+                        onClick={meltdownDiceValues.length === 0 ? rollMeltdownDice : closeMeltdownPopup}
+                    >
+                        {meltdownDiceValues.length === 0 ? t('roll') : t('confirm')}
+                    </button>
+                    <button
+                        className="popup__button-close"
+                        onClick={closeMeltdownPopup}
+                    >
+                        {t('close')}
+                    </button>
+                </footer>
+            </dialog>
         </DialogPortal>
     );
 }
