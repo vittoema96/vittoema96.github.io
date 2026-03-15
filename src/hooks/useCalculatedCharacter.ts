@@ -50,17 +50,39 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         () => raw?.items ?? [],
         [raw?.items]
     )
-    const specialties = useMemo(
-        () => raw?.specialties ?? [],
-        [raw?.specialties]
-    )
     const origin = useMemo(
         () => getOriginById(raw?.origin),
         [raw?.origin]
     )
+    const specialties = useMemo(
+        () => {
+            const baseSpecialties = raw?.specialties ?? [];
+            // Ghoul origin adds Survival as specialty
+            const isGhoul = origin.id === 'ghoul';
+            if (isGhoul && !baseSpecialties.includes('survival')) {
+                return [...baseSpecialties, 'survival'];
+            }
+            return baseSpecialties;
+        },
+        [raw?.specialties, origin.id]
+    )
     const traits = useMemo(
-        () => (raw?.traits ?? []).filter(trait => dataManager.traits[trait].ORIGINS.includes(origin.id)),
-        [raw?.traits, origin]
+        () => {
+            // Get fixed traits from database where FIXED === true AND ORIGINS includes current origin
+            const fixedTraits = Object.values(dataManager.traits)
+                .filter(trait => trait.FIXED === true && trait.ORIGINS.includes(origin.id))
+                .map(trait => trait.ID);
+
+            // Filter user-selected traits to only include those valid for this origin
+            const userTraits = (raw?.traits ?? []).filter(trait => {
+                const traitData = dataManager.traits[trait];
+                return traitData && traitData.ORIGINS.includes(origin.id);
+            });
+
+            // Combine and deduplicate
+            return [...new Set([...fixedTraits, ...userTraits])];
+        },
+        [raw?.traits, origin.id, dataManager.traits]
     )
 
 
@@ -197,7 +219,13 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
     }, [raw?.mapCodes])
 
     const perks = useMemo(() => {
-        return raw?.perks ?? []
+        const rawPerks = raw?.perks ?? []
+        // Handle case where perks might be stored as object instead of array (legacy data)
+        if (Array.isArray(rawPerks)) {
+            return rawPerks
+        }
+        // Convert object to array and filter out undefined/null values
+        return Object.values(rawPerks).filter((p): p is string => typeof p === 'string')
     }, [raw?.perks])
 
     // Default companion (Eyebot)

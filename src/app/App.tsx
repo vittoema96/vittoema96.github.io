@@ -23,7 +23,7 @@ function App() {
     const [activeTab, setActiveTab] = useState<TabType>('stat')
 
     // Check if player has Robot Wrangler perk
-    const hasRobotWrangler = character.perks.includes('perkRobotWrangler')
+    const hasRobotWrangler = character.perks?.includes('perkRobotWrangler') ?? false
 
     // Filter visible tabs based on perks
     const visibleTabs = useMemo(() => {

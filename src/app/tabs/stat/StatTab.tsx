@@ -49,7 +49,11 @@ function StatTab() {
         }, {specialties: 0, bonusSpecialties: 0}
     ), [character.specialties])
     const bonusSpecialtyPoints = hasGoodNatured ? 2 : 0
-    const specialtyPoints = 3 + character.traits.filter(p => p === 'traitEducated').length
+    const specialtyPoints = useMemo(() => {
+        return 3
+            + character.traits.filter(p => p === 'traitEducated').length
+            + (character.origin.id === 'ghoul' ? 1 : 0) // Ghoul has Survival as extra specialty
+    }, [character.traits, character.origin])
     const remainingBonusSpecialtyPoints = Math.max(0, bonusSpecialtyPoints - bonusSpecialties)
     const bonusSpecialtyOverflow = Math.max(0, bonusSpecialties - bonusSpecialtyPoints)
     const remainingSpecialtyPoints = specialtyPoints - specialties - bonusSpecialtyOverflow

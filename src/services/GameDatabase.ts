@@ -1,5 +1,5 @@
 import type {
-    Item, WeaponItem, ApparelItem, AidItem, ModItem, GenericItem, ItemType, ItemCategory
+    Item, WeaponItem, ApparelItem, AidItem, ModItem, GenericItem, ItemType, ItemCategory, TraitData
 } from '@/types';
 import {GameDataRepository} from "@/services/GameDataRepostory";
 
@@ -11,7 +11,7 @@ interface DatabaseCollections {
     other: Record<string, GenericItem>;
     mod: Record<string, ModItem>;
     perks: Record<string, any>;
-    traits: Record<string, any>;
+    traits: Record<string, TraitData>;
     allItems: Record<string, Item>; // Pre-calculated lookup for speed
 }
 

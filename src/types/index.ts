@@ -102,9 +102,23 @@ const _TRAITS = [
     "traitMrHandyAutomaticPistol",
     "traitMrHandyCircularSaw",
     "traitMrHandyPliers",
+    "traitGhoulRadiationHealing",
+    "traitGhoulRadiationRest",
+    "traitGhoulAgeless",
+    "traitGhoulDiscrimination",
+    "traitBrotherhoodChain",
 ] as const
 export type TraitId = (typeof _TRAITS)[number];
 export const TRAITS: Set<TraitId> = new Set(_TRAITS)
+
+// Trait data from CSV
+export interface TraitData {
+    ID: TraitId;
+    EFFECTS: string[];
+    ORIGINS: OriginId[];
+    IMPLEMENTED: boolean;
+    FIXED: boolean;
+}
 
 const _BODY_PARTS = [
     'head',

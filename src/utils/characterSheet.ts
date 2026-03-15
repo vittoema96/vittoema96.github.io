@@ -4,7 +4,8 @@ import {
     Origin,
     OriginId,
     SkillType,
-    SpecialType
+    SpecialType,
+    TraitId
 } from "@/types";
 
 // TODO delete this class:
@@ -102,11 +103,9 @@ export const ORIGINS = Object.freeze({
     //  recovers luck on vault experiment
     //  +1 specialty
     VAULT_DWELLER: createOrigin('vaultDweller'),
-    // TODO
-    //  survival specialty + 2
     GHOUL: createOrigin('ghoul', {
         hasRadiationImmunity: true,
-        characterSvg: 'ghoul',
+        characterSvg: 'ghoul'
     }),
     SURVIVOR: createOrigin('survivor', {
         numberOfTraits: 2,

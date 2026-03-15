@@ -1,8 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/contexts/CharacterContext.tsx';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
 import { TraitId } from '@/types';
+import TraitPerkItem from './TraitPerkItem.tsx';
+import TraitPerkSelector from './TraitPerkSelector.tsx';
+import TraitPerkSelectionPopup from './TraitPerkSelectionPopup.tsx';
 
 function TraitList() {
     const dataManager = getGameDatabase()
@@ -10,28 +13,50 @@ function TraitList() {
     const { character, updateCharacter } = useCharacter()
     const numberOfTraits = character.origin.numberOfTraits
 
+    // Calculate fixed traits from database where FIXED === true AND ORIGINS includes current origin
+    const fixedTraits = useMemo(
+        () => Object.values(dataManager.traits)
+            .filter(trait => trait.FIXED === true && trait.ORIGINS.includes(character.origin.id))
+            .map(trait => trait.ID),
+        [dataManager.traits, character.origin.id]
+    );
+
     // Initialize traits from rawCharacter or create empty slots
     const [selectedTraits, setSelectedTraits] = useState<(TraitId | undefined)[]>([]);
-    const [allTraits, setAllTraits] = useState<TraitId[]>([])
+    const [allTraits, setAllTraits] = useState<TraitId[]>([]);
+    const [changingSlotIndex, setChangingSlotIndex] = useState<number | null>(null);
 
 
     useEffect(() => {
         const allTraits = Object.values(dataManager.traits)
             .filter(trait => trait.ORIGINS.includes(character.origin.id))
+            .filter(trait => !fixedTraits.includes(trait.ID)) // Exclude fixed traits from selectable list
             .map(trait => trait.ID)
         setAllTraits(allTraits)
-        setSelectedTraits(character.traits)
-    }, [character.origin, character.traits])
+        // Only show user-selected traits (not fixed ones)
+        setSelectedTraits(character.traits.filter(t => !fixedTraits.includes(t)))
+    }, [character.origin, character.traits, fixedTraits])
 
 
-    // Don't render if no trait slots
-    if (numberOfTraits === 0) {
+    // Don't render if no trait slots AND no fixed traits
+    if (numberOfTraits === 0 && fixedTraits.length === 0) {
         return null;
     }
 
-    const handleTraitChange = (slotIndex: number, traitId: TraitId | 'none') => {
+    const handleTraitSelect = (slotIndex: number, traitId: TraitId) => {
         const newTraits = [...selectedTraits];
-        newTraits[slotIndex] = traitId === 'none' ? undefined : traitId
+        newTraits[slotIndex] = traitId;
+        setSelectedTraits(newTraits);
+
+        // Update character with new traits
+        updateCharacter({
+            traits: newTraits.filter(t => t !== undefined)
+        });
+    };
+
+    const handleTraitRemove = (slotIndex: number) => {
+        const newTraits = [...selectedTraits];
+        newTraits[slotIndex] = undefined;
         setSelectedTraits(newTraits);
 
         // Update character with new traits
@@ -60,67 +85,58 @@ function TraitList() {
                 {t('traits')}:
             </label>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                {traitSlots.map((selectedTrait, index) => {
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                {/* Fixed Traits - displayed first */}
+                {fixedTraits.map(traitId => (
+                    <TraitPerkItem
+                        key={traitId}
+                        id={traitId}
+                        type="trait"
+                        isFixed={true}
+                    />
+                ))}
+
+                {/* Selectable Traits */}
+                {numberOfTraits > 0 && traitSlots.map((selectedTrait, index) => {
                     const availableTraits = getAvailableTraitsForSlot(index);
 
+                    // If trait selected, show item with change button
+                    if (selectedTrait) {
+                        return (
+                            <TraitPerkItem
+                                key={index}
+                                id={selectedTrait}
+                                type="trait"
+                                isFixed={false}
+                                onChangeClick={() => setChangingSlotIndex(index)}
+                                onDeleteClick={() => handleTraitRemove(index)}
+                            />
+                        );
+                    }
+
+                    // If no trait selected, show add button
                     return (
-                        <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                            {/* Trait Selector */}
-                            <select
-                                value={selectedTrait || 'none'}
-                                onChange={(e) => handleTraitChange(index, e.target.value as (TraitId | 'none'))}
-                                style={{
-                                    width: '100%',
-                                    padding: '0.75rem',
-                                    fontSize: '1rem',
-                                    fontWeight: selectedTrait ? 'bold' : 'normal'
-                                }}
-                            >
-                                <option value="none">
-                                    {selectedTrait ? t('noTrait') : '+ ' + t('selectTrait')}
-                                </option>
-                                {availableTraits.map(trait => (
-                                    <option key={trait} value={trait}>
-                                        {t(trait)}
-                                    </option>
-                                ))}
-                            </select>
-
-                            {/* Trait Benefit */}
-                            {selectedTrait && (
-                                <div
-                                    style={{
-                                        padding: '0.75rem',
-                                        backgroundColor: 'var(--button-background)',
-                                        border: 'var(--border-primary-thin)',
-                                        borderRadius: '5px',
-                                        fontSize: '0.85rem',
-                                        lineHeight: '1.5',
-                                    }}
-                                >
-                                    <strong>+ {t('benefit')}:</strong> {t(selectedTrait + 'Benefit')}
-                                </div>
-                            )}
-
-                            {/* Trait Penalty */}
-                            {selectedTrait && t(selectedTrait + 'Penalty') !== selectedTrait + "Penalty" && (
-                                <div
-                                    style={{
-                                        padding: '0.75rem',
-                                        backgroundColor: 'var(--button-background)',
-                                        border: 'var(--border-primary-thin)',
-                                        borderRadius: '5px',
-                                        fontSize: '0.85rem',
-                                        lineHeight: '1.5',
-                                    }}
-                                >
-                                    <strong>- {t('penalty')}:</strong> {t(selectedTrait + 'Penalty')}
-                                </div>
-                            )}
-                        </div>
+                        <TraitPerkSelector
+                            key={index}
+                            type="trait"
+                            availableIds={availableTraits}
+                            onSelect={(traitId) => handleTraitSelect(index, traitId as TraitId)}
+                        />
                     );
                 })}
+
+                {/* Popup for changing trait - always rendered to avoid hooks issues */}
+                {changingSlotIndex !== null ? (
+                    <TraitPerkSelectionPopup
+                        type="trait"
+                        availableIds={getAvailableTraitsForSlot(changingSlotIndex)}
+                        onSelect={(traitId) => {
+                            handleTraitSelect(changingSlotIndex, traitId as TraitId);
+                            setChangingSlotIndex(null);
+                        }}
+                        onClose={() => setChangingSlotIndex(null)}
+                    />
+                ) : null}
             </div>
         </div>
     );

@@ -52,7 +52,9 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,csv,woff,woff2,ttf,eot}'],
         skipWaiting: true,
         clientsClaim: true,
-        cleanupOutdatedCaches: true
+        cleanupOutdatedCaches: true,
+        // Ignore dev-only resources to reduce console warnings
+        navigateFallbackDenylist: [/^\/@vite/, /^\/@react-refresh/, /^\/node_modules/]
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
@@ -113,7 +115,8 @@ export default defineConfig({
         ]
       },
       devOptions: {
-        enabled: true
+        enabled: true, // Enable service worker in development to test PWA features
+        type: 'module'
       }
     })
   ]

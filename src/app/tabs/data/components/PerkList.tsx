@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
 import { SpecialType } from '@/types';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
+import TraitPerkItem from './TraitPerkItem.tsx';
+import TraitPerkSelector from './TraitPerkSelector.tsx';
+import TraitPerkSelectionPopup from './TraitPerkSelectionPopup.tsx';
 
 /**
  * Configuration for perk-specific actions.
@@ -70,9 +73,9 @@ function PerkList() {
     }, [character.level, character.origin, character.special, character.perks])
 
 
-    const handlePerkChange = (slotIndex: number, perkId: string) => {
+    const handlePerkSelect = (slotIndex: number, perkId: string) => {
         const newPerks = [...selectedPerks];
-        newPerks[slotIndex] = perkId === 'none' ? undefined : perkId
+        newPerks[slotIndex] = perkId;
         setSelectedPerks(newPerks);
 
         // Update character with new perks
@@ -80,6 +83,19 @@ function PerkList() {
             perks: newPerks.filter(t => t !== undefined)
         });
     };
+
+    const handlePerkRemove = (slotIndex: number) => {
+        const newPerks = [...selectedPerks];
+        newPerks[slotIndex] = undefined;
+        setSelectedPerks(newPerks);
+
+        // Update character with new perks
+        updateCharacter({
+            perks: newPerks.filter(t => t !== undefined)
+        });
+    };
+
+    const [changingSlotIndex, setChangingSlotIndex] = useState<number | null>(null);
 
     const getAvailablePerksForSlot = (currentSlotIndex: number): string[] => {
         // Filter out perks that are already selected in other slots
@@ -109,63 +125,51 @@ function PerkList() {
                 {t('perks')}:
             </label>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
                 {perkSlots.map((selectedPerk, index) => {
                     const availablePerks = getAvailablePerksForSlot(index);
 
-                    return (
-                        <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                            {/* Perk Selector */}
-                            <select
-                                value={selectedPerk || 'none'}
-                                onChange={(e) => handlePerkChange(index, e.target.value)}
-                                style={{
-                                    width: '100%',
-                                    padding: '0.75rem',
-                                    fontSize: '1rem',
-                                    fontWeight: selectedPerk ? 'bold' : 'normal'
-                                }}
-                            >
-                                <option value="none">
-                                    {selectedPerk ? t('noPerk') : '+ ' + t('selectPerk')}
-                                </option>
-                                {availablePerks.map(perk => (
-                                    <option key={perk} value={perk}>
-                                        {t(perk)}
-                                    </option>
-                                ))}
-                            </select>
+                    // If perk selected, show item with change button
+                    if (selectedPerk) {
+                        return (
+                            <TraitPerkItem
+                                key={index}
+                                id={selectedPerk}
+                                type="perk"
+                                isFixed={false}
+                                onChangeClick={() => setChangingSlotIndex(index)}
+                                onDeleteClick={() => handlePerkRemove(index)}
+                                actionButton={PERK_ACTIONS[selectedPerk] ? {
+                                    label: PERK_ACTIONS[selectedPerk].buttonLabel,
+                                    onClick: PERK_ACTIONS[selectedPerk].onClick
+                                } : undefined}
+                            />
+                        );
+                    }
 
-                            {/* Perk Benefit */}
-                            {selectedPerk && (
-                                <div
-                                    style={{
-                                        padding: '0.75rem',
-                                        backgroundColor: 'var(--button-background)',
-                                        border: 'var(--border-primary-thin)',
-                                        borderRadius: '5px',
-                                        fontSize: '0.85rem',
-                                        lineHeight: '1.5',
-                                    }}
-                                >
-                                    <p>{t(selectedPerk + 'Description')}</p>
-                                    {/* Perk-specific action button */}
-                                    {PERK_ACTIONS[selectedPerk] && (
-                                        <button
-                                            className="perk-action-button"
-                                            onClick={PERK_ACTIONS[selectedPerk].onClick}
-                                            style={{
-                                                width: '100%'
-                                            }}
-                                        >
-                                            {t(PERK_ACTIONS[selectedPerk].buttonLabel)}
-                                        </button>
-                                    )}
-                                </div>
-                            )}
-                        </div>
+                    // If no perk selected, show add button
+                    return (
+                        <TraitPerkSelector
+                            key={index}
+                            type="perk"
+                            availableIds={availablePerks}
+                            onSelect={(perkId) => handlePerkSelect(index, perkId)}
+                        />
                     );
                 })}
+
+                {/* Popup for changing perk */}
+                {changingSlotIndex !== null && (
+                    <TraitPerkSelectionPopup
+                        type="perk"
+                        availableIds={getAvailablePerksForSlot(changingSlotIndex)}
+                        onSelect={(perkId) => {
+                            handlePerkSelect(changingSlotIndex, perkId);
+                            setChangingSlotIndex(null);
+                        }}
+                        onClose={() => setChangingSlotIndex(null)}
+                    />
+                )}
             </div>
         </div>
     );

@@ -1745,6 +1745,9 @@
   "summonStranger": "Evoca Alleato (Fortuna)",
   "benefit": "Beneficio",
   "penalty": "Penalità",
+  "sortByLevel": "Ordina per Livello",
+  "sortByTotal": "Ordina per Requisiti Totali",
+  "showUnavailable": "Mostra talenti non disponibili",
 
   "traitFastShot": "Colpo Veloce",
   "traitFastShotBenefit": "Se esegue una seconda azione maggiore in combattimento per effettuare un attacco a distanza, il costo di tale azione maggiore aggiuntiva sarà di 1 PA invece di 2.",
@@ -1824,6 +1827,28 @@
 
   "traitMrHandyPliers": "Tenaglia",
   "traitMrHandyPliersBenefit": "Permette di raccogliere e trasportare oggetti che non pesino più di 20 kg e manipolare gli oggetti circostanti. È possibile anche effettuare attacchi senza armi (2 DC danni Fisici) con la tenaglia.",
+
+  "traitGhoulRadiationHealing": "Guarigione da Radiazioni",
+  "traitGhoulRadiationHealingDescription": "Sei guarito dalle radiazioni: recuperi 1 PS per ogni 3 punti di danno da Radiazioni subiti.",
+  "traitGhoulRadiationRest": "Riposo Irradiato",
+  "traitGhoulRadiationRestDescription": "Se riposi in un luogo irradiato, puoi rilanciare la riserva di dadi quando effettui una prova per vedere se le ferite guariscono.",
+  "traitGhoulAgeless": "Senza Età",
+  "traitGhoulAgelessDescription": "Invecchi a un ritmo molto ridotto e probabilmente sei più vecchio dei compagni non mutati (potresti persino essere sopravvissuto alla Grande Guerra del 2077), ma sei sterile.",
+  "traitGhoulDiscrimination": "Discriminazione Pelle Liscia",
+  "traitGhoulDiscriminationDescription": "Puoi subire discriminazioni da parte dei 'pelle liscia' (umani che non sono ghoul), causando un aumento della difficoltà o della gamma di complicazioni delle prove di Carisma a seconda delle credenze dell'avversario.",
+
+  "traitBrotherhoodChain": "La Catena Che Unisce",
+  "traitBrotherhoodChainDescription": "Come membro della Confraternita d'Acciaio, sei legato alla catena di comando. Devi eseguire gli ordini dei tuoi diretti superiori e sei responsabile dei propri fratelli subordinati. Se non adempi al tuo dovere, verrai espulso dalla Confraternita e la tecnologia in tuo possesso verrà recuperata, con ogni mezzo necessario.",
+
+  "originTraits": "Tratti dell'Origine",
+  "selectableTraits": "Tratti Selezionabili",
+  "origin": "Origine",
+  "change": "Cambia",
+  "addTrait": "Aggiungi Tratto",
+  "addPerk": "Aggiungi Perk",
+  "close": "Chiudi",
+  "noTraitsAvailable": "Nessun tratto disponibile",
+  "noPerksAvailable": "Nessun perk disponibile",
 
   "unlock": "Sblocca",
   "deleteMarker": "Vuoi davvero eliminare l'indicatore?",
