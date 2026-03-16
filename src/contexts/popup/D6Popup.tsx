@@ -58,24 +58,40 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
     };
 
     const isGatling = (weaponData?.QUALITIES || []).includes('qualityGatling');
+    const isAccurate = (weaponData?.QUALITIES || []).includes('qualityAccurate');
+    const fireRateNum = Number(weaponData?.FIRE_RATE) || 0;
     const isAmmoHungry = (weaponData?.QUALITIES || []).some(q => q.startsWith('qualityAmmoHungry'));
 
-    // Calculate extra dice count
+    // User-selectable extra hits type for Accurate + Aimed
+    const canChooseExtraHitsType = !!(weaponData && !isMelee(weaponData.CATEGORY) && hasAimed && isAccurate && fireRateNum > 0);
+    const getDefaultExtraHitsType = () => {
+        if (!weaponData) return null as 'ap' | 'ammo' | null;
+        if (isMelee(weaponData.CATEGORY)) return 'ap';
+        if (Number(weaponData.FIRE_RATE) > 0) return 'ammo';
+        if (hasAimed && isAccurate) return 'ap';
+        return null;
+    };
+    const [chosenExtraHitsType, setChosenExtraHitsType] = useState<'ap' | 'ammo' | null>(
+        canChooseExtraHitsType ? 'ap' : getDefaultExtraHitsType()
+    );
+
+    const getEffectiveExtraHitsType = () => (
+        canChooseExtraHitsType ? (chosenExtraHitsType ?? getDefaultExtraHitsType()) : getDefaultExtraHitsType()
+    );
+
+    // Calculate extra dice count based on effective type
     const getExtraDiceCount = () => {
         if (isMysteriousStranger || !weaponData) {
             return 0;
         }
-
-        const hasAccurate = (weaponData.QUALITIES || []).includes('qualityAccurate');
-
         if (isMelee(weaponData.CATEGORY)) {
-            return 3; // Melee always has 3 extra dice
-        } else if (Number(weaponData.FIRE_RATE) > 0) {
-            return Number(weaponData.FIRE_RATE) * (isGatling ? 2 : 1);
-        } else if (hasAimed && hasAccurate) {
-            // TODO user should be able to choose between:
-            //  - 3 extra dice (aimed + accurate) costing AP
-            //  - (regular) extra dice costing ammo
+            return 3; // Melee always has 3 extra dice (AP)
+        }
+        const t = getEffectiveExtraHitsType();
+        if (t === 'ammo') {
+            return Math.max(0, Number(weaponData.FIRE_RATE) || 0) * (isGatling ? 2 : 1);
+        }
+        if (t === 'ap') {
             return 3;
         }
         return 0;
@@ -95,6 +111,24 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
     const [extraDiceClasses, setExtraDiceClasses] = useState(initialExtraDiceState.classes);
     const [extraDiceActive, setExtraDiceActive] = useState(initialExtraDiceState.active);
     const [extraDiceRerolled, setExtraDiceRerolled] = useState(initialExtraDiceState.rerolled);
+
+    // Reinitialize extra dice arrays when count changes
+    useEffect(() => {
+        const s = createInitialDiceState(extraDiceCount, false);
+        setExtraDiceClasses(s.classes);
+        setExtraDiceActive(s.active);
+        setExtraDiceRerolled(s.rerolled);
+        // If switching mode before rolling, reset ammo cost appropriately
+        if (!hasRolled && !isMelee(weaponData.CATEGORY)) {
+            const hitsType = getEffectiveExtraHitsType();
+            if (hitsType === 'ap') {
+                setAmmoCost(ammoStep); // only base shot cost
+            } else if (hitsType === 'ammo') {
+                const activeExtra = s.active.filter(Boolean).length; // initially 0
+                setAmmoCost(ammoStep + activeExtra * ammoStep);
+            }
+        }
+    }, [extraDiceCount]);
 
     let ammoStep = 0;
     if(!isMysteriousStranger && !["na", undefined, "-"].includes(weaponData.AMMO_TYPE)){
@@ -294,7 +328,9 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                 ammoId = undefined;
             }
 
-            if (isActivating && ammoId) {
+            const hitsType = getEffectiveExtraHitsType();
+
+            if (hitsType === 'ammo' && isActivating && ammoId) {
                 const currentAmmo = character.items.find(item => item.id === ammoId)?.quantity ?? 0;
                 if (currentAmmo < ammoCost + ammoStep) {
                     alert(t('notEnoughAmmoAlert') || 'Not enough ammo!');
@@ -315,8 +351,8 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                 return newActive;
             });
 
-            // Update ammo cost
-            if (ammoId) {
+            // Update ammo cost only if extra hits are ammo-based
+            if (hitsType === 'ammo' && ammoId) {
                 setAmmoCost(prev => prev + (isActivating ? 1 : -1) * ammoStep);
             }
         } else {
@@ -439,7 +475,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
         return null;
     }
 
-    const extraHitsType = getExtraHitsType();
+    const extraHitsType = getEffectiveExtraHitsType();
 
     return (
         <DialogPortal>
@@ -589,7 +625,26 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                             }}
                         >
                             <span>{t('extraHits')}</span>
-                            <span>[{t(extraHitsType)}]</span>
+                            {canChooseExtraHitsType ? (
+                                <select
+                                    value={extraHitsType || 'ap'}
+                                    onChange={e => setChosenExtraHitsType(e.target.value as 'ap' | 'ammo')}
+                                    disabled={hasRolled}
+                                    style={{
+                                        padding: '0.125rem 0.25rem',
+                                        backgroundColor: 'var(--secondary-color)',
+                                        color: 'var(--primary-color)',
+                                        border: 'var(--border-primary-thin)',
+                                        fontSize: '0.85rem',
+                                        borderRadius: '0.25rem',
+                                    }}
+                                >
+                                    <option value="ap">[{t('ap')}]</option>
+                                    <option value="ammo">[{t('ammo')}]</option>
+                                </select>
+                            ) : (
+                                <span>[{t(extraHitsType)}]</span>
+                            )}
                         </div>
                         <div
                             style={{

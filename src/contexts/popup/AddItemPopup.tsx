@@ -32,6 +32,8 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
             .filter(item =>
                 !(dataManager.isType(item, 'weapon') && (item.QUALITIES || []).includes('qualityMrHandyOnly'))
             )
+            // Exclude companion weapons from addable items
+            .filter(item => !(dataManager.isType(item, 'weapon') && (item as any).CATEGORY === 'companionWeapon'))
 
         if(categoryFilter) {
             allItems = allItems.filter(item => item.CATEGORY === categoryFilter)
@@ -86,9 +88,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     // Get subcategories for the current category (calculated on render, not memoized)
     const getCategories = () => {
         const typeMap = dataManager.getItemTypeMap()
-        const categories = [
-            ...typeMap[itemType],
-        ]
+        const categories = typeMap[itemType].filter((c: any) => c !== 'companionWeapon')
 
         // Sort alphabetically by translated name
         return categories.toSorted((a, b) => {

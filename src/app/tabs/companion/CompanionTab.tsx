@@ -197,7 +197,7 @@ function CompanionTab() {
                                 <div
                                     key={skillType}
                                     className="skill"
-                                    style={{ cursor: isEditing ? 'pointer' : 'default' }}
+                                    style={{ cursor: 'pointer' }}
                                     onClick={() => {
                                         if (isEditing) {
                                             const current = character.companion.skills[skillType]
@@ -211,6 +211,9 @@ function CompanionTab() {
                                                     }
                                                 }
                                             })
+                                        } else {
+                                            // Roll a d20 using the companion's sheet for this skill
+                                            showD20Popup(skillType as CompanionSkillType, null, 'companion')
                                         }
                                     }}
                                 >
@@ -247,15 +250,15 @@ function CompanionTab() {
                 <h4 style={{ marginBottom: '0.3rem', fontSize: '0.9rem' }}>{t('damageReduction')}</h4>
                 <div className="row row--spaced">
                     <div className="derived-stat">
-                        <span>{t('physical')}</span>
+                        <span><i className="fas fa-shield-halved" title={t('physical')}></i></span>
                         <span>{selectedCompanionType.baseDR.physical === Infinity ? t('immune') : selectedCompanionType.baseDR.physical}</span>
                     </div>
                     <div className="derived-stat">
-                        <span>{t('energy')}</span>
+                        <span><i className="fas fa-bolt" title={t('energy')}></i></span>
                         <span>{selectedCompanionType.baseDR.energy === Infinity ? t('immune') : selectedCompanionType.baseDR.energy}</span>
                     </div>
                     <div className="derived-stat">
-                        <span>{t('radiation')}</span>
+                        <span><i className="fas fa-radiation" title={t('radiation')}></i></span>
                         <span>{selectedCompanionType.baseDR.radiation === Infinity ? t('immune') : selectedCompanionType.baseDR.radiation}</span>
                     </div>
                     <div className="derived-stat">

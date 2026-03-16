@@ -54,19 +54,19 @@ function DamageReductionDisplay() {
                 <div key={key} className={`apparel-stat ${className}`}>
                     <div>{t(key)}</div>
                     <div className="row l-centered">
-                        <span>{t('physical')}:</span>
+                        <i className="fas fa-shield-halved" title={t('physical')}></i>
                         <span>
                             {formatDR(damageReduction[key].physical + (hasToughnessPerk ? 1 : 0))}
                         </span>
                     </div>
                     <div className="row l-centered">
-                        <span>{t('energy')}:</span>
+                        <i className="fas fa-bolt" title={t('energy')}></i>
                         <span>
                             {formatDR(damageReduction[key].energy)}
                         </span>
                     </div>
                     <div className="row l-centered">
-                        <span>{t('radiation')}:</span>
+                        <i className="fas fa-radiation" title={t('radiation')}></i>
                         <span>
                             {formatDR(damageReduction[key].radiation)}
                         </span>
