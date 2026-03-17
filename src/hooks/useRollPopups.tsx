@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
-import D20Popup, { RollerType } from '@/contexts/popup/D20Popup'
-import D20PopupWithRoller from '@/contexts/popup/D20PopupWithRoller'
-import D6Popup from '@/contexts/popup/D6Popup'
+import D20Popup, { RollerType } from '@/components/popup/D20Popup'
+import D20PopupWithRoller from '@/components/popup/D20PopupWithRoller'
+import D6Popup from '@/components/popup/D6Popup'
 import { CharacterItem, SkillType } from '@/types'
 
 interface D20Config {

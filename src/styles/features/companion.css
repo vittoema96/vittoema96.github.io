@@ -1,0 +1,15 @@
+/* Companion feature styles */
+
+.companion-perks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.companion-perk {
+    padding: 0.4rem 0.6rem;
+    background-color: var(--button-background);
+    border: var(--border-primary-thin);
+    border-radius: 3px;
+    font-size: 0.85rem;
+}

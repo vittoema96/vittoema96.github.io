@@ -1,0 +1,224 @@
+/* Component-level styles extracted from styles.css */
+
+/* SubTab buttons */
+.subTab-button {
+    /* Override button behaviour */
+    color: var(--primary-color-very-translucent);
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    font-size: 0.7rem;
+    padding: 0.25rem 0;
+
+    font-weight: normal;
+    box-sizing: border-box;
+}
+.subTab-button.active + .subTab-button,
+.subTab-button:has(+ .subTab-button.active) {
+    color: var(--primary-color-translucent);
+    font-size: 0.8rem;
+}
+.subTab-button.active {
+    font-size: 1rem;
+    font-weight: bolder;
+    color: var(--primary-color);
+    border-top: var(--border-primary-thick);
+    border-bottom: var(--border-primary-thick);
+}
+
+/* Popup buttons */
+.popup__button-confirm {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.popup__button-close {
+    background-color: var(--cancel-btn-background); /* TODO use different color? */
+    color: var(--primary-color);
+}
+
+/* Dice */
+.dice {
+    color: var(--primary-color);
+    background-color: var(--button-background);
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    aspect-ratio: 1 / 1;
+}
+.d6-dice.active,
+.d20-dice.active {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.d20-dice {
+    min-width: 3rem;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    position: relative;
+}
+
+/* Crit/fail dice always have colored background */
+/* Deselected: less saturated (30% opacity) */
+.d20-dice.roll-crit {
+    background-color: rgba(from var(--success-color) r g b / 0.3); /* Light success background */
+    filter: drop-shadow(0 0 2px var(--success-color));
+}
+.d20-dice.roll-complication {
+    background-color: rgba(from var(--failure-color) r g b / 0.3); /* Light failure background */
+    filter: drop-shadow(0 0 2px var(--failure-color));
+}
+
+/* Selected: more saturated (60% opacity) */
+.d20-dice.active.roll-crit {
+    background-color: rgba(from var(--success-color) r g b / 0.6); /* More saturated success */
+}
+.d20-dice.active.roll-complication {
+    background-color: rgba(from var(--failure-color) r g b / 0.6); /* More saturated failure */
+}
+
+.d6-dice {
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 2.5rem;
+    height: 2.5rem;
+    position: relative;
+}
+
+/* D6 dice faces - use ::before pseudo-element for the icon with mask */
+.d6-face-damage1::before,
+.d6-face-damage2::before,
+.d6-face-effect::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    background-color: var(--primary-color); /* Default: primary color */
+}
+.d6-face-damage1::before {
+    mask-image: url('/img/svg/damage1.svg');
+    -webkit-mask-image: url('/img/svg/damage1.svg');
+}
+.d6-face-damage2::before {
+    mask-image: url('/img/svg/damage2.svg');
+    -webkit-mask-image: url('/img/svg/damage2.svg');
+}
+.d6-face-effect::before {
+    mask-image: url('/img/svg/vaultboy.svg');
+    -webkit-mask-image: url('/img/svg/vaultboy.svg');
+}
+
+/* Selected state - secondary color */
+.d6-dice.active.d6-face-damage1::before,
+.d6-dice.active.d6-face-damage2::before,
+.d6-dice.active.d6-face-effect::before {
+    background-color: var(--secondary-color);
+}
+.d6-face-blank { background-image: none; }
+
+/* Tags */
+.tags-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    gap: 0.5rem;
+}
+.tag {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: 4px;
+    padding: 0.3rem;
+    font-size: 0.8rem;
+}
+.tag-empty {
+    background-color: var(--button-background) !important;
+    color: var(--primary-color) !important;
+    border: var(--border-primary-thin) !important;
+}
+.tag-mod {
+    background-color: var(--button-background) !important;
+    color: var(--primary-color) !important;
+}
+
+/* Themed SVGs */
+.themed-svg {
+    /* TODO define a default image-url */
+    /* Use the SVG as a mask */
+    background-color: var(--primary-color);
+    -webkit-mask-image: var(--image-url);
+    mask-image: var(--image-url);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+.themed-svg[data-icon='attack'] { --image-url: url('/img/svg/attack.svg'); }
+.themed-svg[data-icon='bigGuns'] { --image-url: url('/img/svg/bigGuns.svg'); }
+.themed-svg[data-icon='caps'] { --image-url: url('/img/svg/caps.svg'); }
+.themed-svg[data-icon='drinks'] { --image-url: url('/img/svg/drinks.svg'); }
+.themed-svg[data-icon='energyWeapons'] { --image-url: url('/img/svg/energyWeapons.svg'); }
+.themed-svg[data-icon='explosives'] { --image-url: url('/img/svg/explosives.svg'); }
+.themed-svg[data-icon='food'] { --image-url: url('/img/svg/food.svg'); }
+.themed-svg[data-icon='gear'] { --image-url: url('/img/svg/gear.svg'); }
+.themed-svg[data-icon='drinks'] { --image-url: url('/img/svg/drinks.svg'); }
+.themed-svg[data-icon='hp'] { --image-url: url('/img/svg/hp.svg'); }
+.themed-svg[data-icon='luck'] { --image-url: url('/img/svg/luck.svg'); }
+.themed-svg[data-icon='meds'] { --image-url: url('/img/svg/meds.svg'); }
+.themed-svg[data-icon='meleeWeapons'] { --image-url: url('/img/svg/meleeWeapons.svg'); }
+.themed-svg[data-icon='smallGuns'] { --image-url: url('/img/svg/smallGuns.svg'); }
+.themed-svg[data-icon='throwing'] { --image-url: url('/img/svg/throwing.svg'); }
+.themed-svg[data-icon='unarmed'] { --image-url: url('/img/svg/unarmed.svg'); }
+.themed-svg[data-icon='vaultboy'] { --image-url: url('/img/svg/vaultboy.svg'); }
+.themed-svg[data-icon='vaultboy-open-arms'] { --image-url: url('/img/svg/vaultboy-open-arms.svg'); }
+.themed-svg[data-icon='mrHandy'] { --image-url: url('/img/svg/mrHandy.svg'); }
+.themed-svg[data-icon='ghoul'] { --image-url: url('/img/svg/ghoul.svg'); }
+.themed-svg[data-icon='weight'] { --image-url: url('/img/svg/weight.svg'); }
+.themed-svg[data-icon='armor'] { --image-url: url('/img/svg/armor.svg'); }
+/* Currency icons */
+.themed-svg[data-icon='ncrDollars'] { --image-url: url('/img/svg/ncrMoney.svg'); }
+.themed-svg[data-icon='legionDenarius'] { --image-url: url('/img/svg/denarius.svg'); }
+.themed-svg[data-icon='prewarMoney'] { --image-url: url('/img/svg/prewarmoney.svg'); }
+
+/* Popups (dialog) */
+dialog {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border: var(--border-primary-thin);
+    max-width: calc(320px - 2rem);
+    max-height: calc(100vh - 2rem);
+    gap: 0.5rem;
+    flex-direction: column;
+    text-align: center;
+}
+dialog[open] {
+    overflow: visible;
+    display: flex;
+    animation: crt-turn-on 0.7s forwards;
+    pointer-events: auto;
+}
+.dialog-closing { animation: crt-turn-off 0.3s forwards !important; }
+dialog::backdrop {
+    background-color: var(--shadow-color);
+    backdrop-filter: blur(3px);
+}
+.popup__button-x {
+    /* overwrite button */
+    font-size: 2rem;
+    background: none;
+    border: none;
+    padding: 0;
+    align-self: start;
+}

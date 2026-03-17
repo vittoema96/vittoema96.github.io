@@ -21,6 +21,7 @@ body.theme-fallout-new-vegas {
     --button-hover: #ffd466;
     --cancel-btn-background: #615849;
     --animation-glow-color: rgba(255, 190, 11, 0.7);
+    /* Theme-specific semantic tuning */
     --warning-color: rgb(45, 255, 113);
 }
 
@@ -32,6 +33,7 @@ body.theme-old-world-blues {
     --button-hover: #80d4ff;
     --cancel-btn-background: #3e4e55;
     --animation-glow-color: rgba(93, 198, 255, 0.5);
+    /* Theme-specific semantic tuning */
     --success-color: #44BB17;
 }
 
@@ -43,6 +45,7 @@ body.theme-dead-money {
     --button-hover: #ff1a1a;
     --cancel-btn-background: #3d3434;
     --animation-glow-color: rgba(255, 0, 0, 0.6);
+    /* Theme-specific semantic tuning */
     --failure-color: #c0b020;
 }
 

@@ -6,14 +6,13 @@ import '@mdi/font/css/materialdesignicons.min.css'
 import '@fontsource/fira-code'
 import '@fontsource/roboto-mono'
 import '@fontsource/share-tech-mono'
-import './styles/themes.css'
-import './styles/styles.css'
+import './styles/index.css'
 
 // Initialize i18n before anything else
 import './i18n'
 import { useTranslation } from 'react-i18next'
 
-import { applyTheme } from '@/app/tabs/settings/utils/themeUtils'
+import { applyTheme } from '@/theme/themeUtils'
 
 import ErrorBoundary from "./ErrorBoundary";
 import { CharacterProvider } from "@/contexts/CharacterContext";

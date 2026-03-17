@@ -6,7 +6,7 @@
 import { ApparelItem, Character, CharacterItem, DamageType, Item, ModdableItem, Range, WeaponItem } from '@/types';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
 import type { TFunction } from 'i18next';
-import { getWeaponAmmoPerShot } from '@/app/tabs/inv/utils/weaponUtils.ts';
+import { getWeaponAmmoPerShot } from '@/features/inv/utils/weaponUtils.ts';
 
 
 export function removeItem(items: CharacterItem[], itemToRemove: CharacterItem) {

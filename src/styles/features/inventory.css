@@ -1,0 +1,371 @@
+/* Inventory list and row styles */
+
+/* INVENTORY ACCORDION LIST */
+.inventory-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Search and Sort Controls */
+.inventory-list__controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--secondary-color);
+    border-bottom: var(--border-primary-thin);
+    position: sticky;
+    top: -1rem;
+    z-index: 100;
+}
+
+.inventory-list__search {
+    display: none; /* Hidden to save space */
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--button-background);
+    border: var(--border-primary-thin);
+    border-radius: 3px;
+}
+
+.inventory-list__search i {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+.inventory-list__search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.inventory-list__search-input::placeholder {
+    color: var(--primary-color);
+    opacity: 0.5;
+}
+
+.inventory-list__search-clear {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.inventory-list__actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inventory-list__sort {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.inventory-list__sort-btn {
+    flex: 1;
+    padding: 0.5rem;
+    background-color: var(--button-background);
+    border: var(--border-primary-thin);
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.inventory-list__sort-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.inventory-list__sort-btn.active {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.inventory-list__add-btn {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    border: var(--border-primary-thin);
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.inventory-list__add-btn:hover {
+    background-color: var(--button-background);
+    color: var(--primary-color);
+}
+
+.inventory-list__add-btn i {
+    font-size: 0.9rem;
+}
+
+/* Type Filter Dropdown */
+.inventory-list__filter-wrapper {
+    position: relative;
+}
+
+.inventory-list__filter-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.25rem;
+    background-color: var(--secondary-color);
+    border: var(--border-primary-thin);
+    border-radius: 3px;
+    box-shadow: 5px 5px 10px var(--shadow-color);
+    z-index: 200;
+    min-width: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.inventory-list__filter-dropdown button {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease;
+}
+
+.inventory-list__filter-dropdown button:hover {
+    background-color: var(--button-background);
+}
+
+.inventory-list__filter-dropdown button.active {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* Items Container */
+.inventory-list__items {
+    display: flex;
+    flex-direction: column;
+}
+
+.inventory-list__empty {
+    padding: 2rem;
+    text-align: center;
+    color: var(--primary-color);
+    opacity: 0.6;
+    font-style: italic;
+}
+
+/* Group Headers */
+.inventory-list__group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: 0.9rem;
+    border-bottom: var(--border-primary-thin);
+    position: sticky;
+    top: 4rem;
+    z-index: 5;
+}
+
+.inventory-list__group-count {
+    opacity: 0.7;
+    font-size: 0.8rem;
+}
+
+/* Inventory Row */
+.inventory-row {
+    position: relative;
+    border-bottom: var(--border-primary-thin);
+    background-color: var(--secondary-color-translucent);
+    transition: background-color 0.2s ease;
+}
+
+.inventory-row:hover {
+    background-color: var(--button-background);
+}
+
+.inventory-row.selected {
+    background-color: var(--primary-color);
+}
+
+.inventory-row.selected .inventory-row__name,
+.inventory-row.selected .inventory-row__subinfo,
+.inventory-row.selected .inventory-row__quantity,
+.inventory-row.selected .inventory-row__expand {
+    color: var(--secondary-color);
+}
+
+.inventory-row.selected .inventory-row__icon {
+    background-color: var(--secondary-color);
+}
+
+.inventory-row.selected .inventory-row__quantity {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+/* Row Header (Compact View) */
+.inventory-row__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.inventory-row__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+}
+
+.inventory-row__info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.inventory-row__name {
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.inventory-row__name-input {
+    flex: 1;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    min-width: 0;
+    width: 100%;
+}
+
+.inventory-row__name-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.inventory-row__badges {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.inventory-row__subinfo {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    opacity: 0.7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.inventory-row__quantity {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--secondary-color);
+    border: var(--border-primary-thin);
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+/* Badges */
+.inventory-row__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.inventory-row__badge .themed-svg {
+    width: 0.9rem;
+    height: 0.9rem;
+    padding: 0;
+}
+
+.badge-success {
+    background-color: transparent;
+    color: var(--primary-color);
+    padding: 0.1rem 0.25rem;
+}
+
+.inventory-row.selected .badge-success .themed-svg {
+    background-color: var(--secondary-color);
+}
+
+/* Selected Item Display Area */
+.inventory-list__selection {
+    position: sticky;
+    bottom: -1rem; /* Compensate for main-container padding */
+    margin-left: -1rem; /* Extend to full width, ignoring main-container padding */
+    margin-right: -1rem;
+    margin-bottom: -1rem;
+    padding: 0.4rem 0.3rem 0.4rem 0.3rem;
+    background: linear-gradient(to bottom, var(--button-background) 0%, var(--secondary-color) 100%);
+    border-top: 2px solid var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 0 -3px 10px rgba(from var(--shadow-color) r g b / 0.3);
+}
+
+.inventory-list__selection .card {
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    max-width: 100%;
+}
+
+.inventory-list__selection .card-header--compact {
+    padding: 0.3rem 0.4rem;
+}
+
+.inventory-list__selection .card-content--compact {
+    padding: 0.4rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}

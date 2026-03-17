@@ -1,11 +1,11 @@
 import { useState, useMemo } from 'react'
-import CompanionTab from '@/app/tabs/companion/CompanionTab'
-import StatTab from '@/app/tabs/stat/StatTab'
-import InvTab from '@/app/tabs/inv/InvTab'
-import DataTab from '@/app/tabs/data/DataTab'
-import MapTab from '@/app/tabs/map/MapTab'
-import SettingsTab from '@/app/tabs/settings/SettingsTab'
-import TabButton, {TabType} from '@/app/tabs/TabButton'
+import CompanionTab from '@/features/companion/CompanionTab'
+import StatTab from '@/features/stat/StatTab'
+import InvTab from '@/features/inv/InvTab'
+import DataTab from '@/features/data/DataTab'
+import MapTab from '@/features/map/MapTab'
+import SettingsTab from '@/features/settings/SettingsTab'
+import TabButton, { TabType } from '@/features/TabButton'
 import AppHeader from "@/app/AppHeader.tsx";
 import { useCharacter } from '@/contexts/CharacterContext'
 

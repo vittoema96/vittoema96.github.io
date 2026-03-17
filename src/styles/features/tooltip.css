@@ -1,0 +1,52 @@
+/* Tooltip panel styles */
+
+.tooltip-panel {
+    position: fixed; /* Use fixed positioning to place relative to viewport */
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: var(--border-primary-thin);
+    padding: 0.75rem;
+    z-index: 10000; /* Ensure tooltip is above everything including dialogs */
+    border-radius: 3px;
+    z-index: 10000; /* Higher than the scanlines */
+
+    /* Sizing and appearance */
+    max-width: 250px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+
+    /* Visibility & Animation */
+    opacity: 0;
+    pointer-events: none; /* Prevents tooltip from blocking mouse events */
+    transform: scale(0.95);
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+.tooltip-panel.visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto; /* Allow interaction if needed */
+}
+/* The little arrow pointing to the element */
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    transform: translateX(-50%); /* center arrow */
+    left: 50%; /* In the middle of the container */
+}
+/* Position arrow on the bottom */
+.tooltip-panel.pos-top .tooltip-arrow {
+    bottom: -8px; /* Half the arrow height */
+    border-width: 8px 8px 0 8px; /* Creates an upward-pointing triangle */
+    border-color: var(--primary-color) transparent transparent transparent;
+}
+/* Position arrow on the top */
+.tooltip-panel.pos-bottom .tooltip-arrow {
+    top: -8px; /* Half the arrow height */
+    border-width: 0 8px 8px 8px; /* Creates a downward-pointing triangle */
+    border-color: transparent transparent var(--primary-color) transparent;
+}
