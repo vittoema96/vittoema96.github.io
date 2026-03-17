@@ -24,7 +24,7 @@ function InvTab() {
     return (
         <section className="tabContent">
             {/* Sub-tab Navigation - EXACT copy of original */}
-            <nav className="navigator">
+            <nav>
                 <button
                     className={`subTab-button ${activeSubTab === 'weapon' ? 'active' : ''}`}
                     onClick={() => handleSubTabClick('weapon')}

@@ -128,7 +128,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
             <hr />
 
             {/* Category Filter */}
-            <div className="row" style={{ marginBottom: '1rem' }}>
+            <div className="row" style={{ marginBottom: '1rem', alignItems: 'center' }}>
                 <label style={{ marginRight: '0.5rem' }}>{t('type')}:</label>
                 <select
                     value={categoryFilter ?? 'all'}
@@ -138,6 +138,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                         setCategoryFilter(filter)
                     }}
                     aria-label="Type filter"
+                    style={{ flex: 1, minWidth: 0 }}
                 >
                     <option value={'all'}>{t('all')}</option>
                     {getCategories()}
@@ -145,7 +146,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
             </div>
 
             {/* Rarity Filter */}
-            <div className="row" style={{ marginBottom: '1rem' }}>
+            <div className="row" style={{ marginBottom: '1rem', alignItems: 'center' }}>
                 <label style={{ marginRight: '0.5rem' }}>{t('rarity')}:</label>
                 <select
                     value={rarityFilter ?? 'all'}
@@ -155,6 +156,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                         setRarityFilter(filter)
                     }}
                     aria-label="Rarity filter"
+                    style={{ flex: 1, minWidth: 0 }}
                 >
                     <option value={'all'}>{t('all')}</option>
                     <option value={0}>{t('rarity0')}</option>
@@ -167,7 +169,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                 </select>
             </div>
 
-            <div className="row">
+            <div className="row" style={{ alignItems: 'center' }}>
                 <select
                     onChange={(e) => {
                         const item = availableItems.find(i => {
@@ -177,6 +179,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                         setSelectedItem(item)
                     }}
                     aria-label="Object picker"
+                    style={{ flex: 1, minWidth: 0 }}
                 >
                     {availableItems.map(item => {
                         const id = `${item.ID}_${item?.variation ?? ''}`

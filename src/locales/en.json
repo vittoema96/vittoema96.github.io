@@ -1939,5 +1939,7 @@
   "miscUncommonJunk": "Uncommon Junk Materials",
   "miscUncommonJunkDescription": "",
   "miscRareJunk": "Rare Junk Materials",
-  "miscRareJunkDescription": ""
+  "miscRareJunkDescription": "",
+  "item": "Item",
+  "tradeItem": "Trade item"
 }

@@ -1,116 +1,153 @@
-import { useMemo, useState } from 'react';
-import { useCharacter } from '@/contexts/CharacterContext';
-import { useTooltip } from '@/contexts/TooltipContext';
-import { useTranslation } from 'react-i18next';
-import { CharacterItem, GenericPopupProps } from '@/types';
-import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
-import { addItem } from '@/utils/itemUtils.ts';
-import Tag from '@/components/Tag.tsx';
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
 
-interface TradeItemPopupProps extends GenericPopupProps {
-    item?: CharacterItem
-}
+function TradeItemPopup({ onClose, characterItem, itemData, onConfirm }) {
+    const { t } = useTranslation()
 
-function TradeItemPopup({ onClose, item }: Readonly<TradeItemPopupProps>) {
-    const { t } = useTranslation();
-    const { character, updateCharacter } = useCharacter();
-    const dataManager = getGameDatabase();
-    useTooltip();
+    const [quantity, setQuantity] = useState('')
+    const [price, setPrice] = useState('')
 
-    const [selectedItemId, setSelectedItemId] = useState<string | undefined>(item?.id)
-    const [quantity, setQuantity] = useState<number | undefined>(1)
+    // Calculate sell price (70% of cost)
+    const tradeValueRate = 0.7
 
-    const availableItems = useMemo(() => {
-        return Object.values(dataManager['aid'])
-            .filter(i => i.CATEGORY !== 'drinks')
-            .toSorted((a, b) => t(a.ID).localeCompare(t(b.ID)))
-    }, [])
+    // Initialize on mount
+    useEffect(() => {
+        if (characterItem && itemData) {
+            // Initialize quantity to max available
+            setQuantity(characterItem.quantity)
 
-    const getAvailableTags = () => {
-        if (!selectedItemId) {return []}
-        const data = dataManager['aid'][selectedItemId]
-        return [
-            ...(data.EFFECTS || []).map(tag => [tag.includes(':') ? tag : `${tag}: ]`]),
-        ]
-            .map(tag => {
-                const [effectType, effectOpt] = (tag as string).split(':');
-                let displayValue = t(effectOpt!);
-                if (displayValue) { displayValue = ` ${displayValue}`; }
-                const displayText = `${t(effectType!)}${displayValue}`;
-                return (
-                    <Tag key={tag as string} tooltipId={`${effectType}Description`}>
-                        {displayText}
-                    </Tag>
-                );
-        })
-    }
-
+            // Calculate price with trade rate (70%)
+            let basePrice = itemData.COST || 1
+            basePrice = basePrice * tradeValueRate
+            basePrice = Math.round(basePrice * 100) / 100 // Round decimals
+            setPrice(basePrice)
+        }
+    }, [characterItem, itemData])
 
     const handleConfirm = () => {
-        if (!selectedItemId || !quantity) {return}
-        const data = dataManager['aid'][selectedItemId]
+        if (onConfirm) {
+            onConfirm(quantity, price)
+        }
+    }
 
-        const currItemIndex = character.items.findIndex(i => i.id === selectedItemId)
+    const handleQuantityChange = (e) => {
+        const value = e.target.value
 
-        const newItems = character.items.toSpliced(currItemIndex, 1)
-        const addedItem: CharacterItem = {
-            id: selectedItemId,
-            quantity,
-            equipped: false,
-            mods: []
+        // Allow empty string
+        if (value === '') {
+            setQuantity('')
+            return
         }
 
-        updateCharacter({ items: addItem(newItems, addedItem) })
+        const numValue = parseInt(value)
+        if (!isNaN(numValue) && numValue >= 1 && numValue <= characterItem.quantity) {
+            setQuantity(numValue)
+        }
     }
+
+    const handlePriceChange = (e) => {
+        const value = e.target.value
+
+        // Allow empty string
+        if (value === '') {
+            setPrice('')
+            return
+        }
+
+        const numValue = parseFloat(value)
+        if (!isNaN(numValue) && numValue >= 0) {
+            setPrice(numValue)
+        }
+    }
+
+    // Check if inputs are valid
+    const isQuantityValid = quantity !== '' && !isNaN(quantity) && quantity >= 1 && quantity <= characterItem.quantity
+    const isPriceValid = price !== '' && !isNaN(price) && price >= 0
+    const isFormValid = isQuantityValid && isPriceValid
+
+    const total = isFormValid ? Math.floor(quantity * price) : 0
+    const [, side] = characterItem?.id.split('_') || ['', '']
 
     return (
         <BasePopup
-            title={'tradeItem'}
+            title="barter"
             onConfirm={handleConfirm}
             onClose={onClose}
-            disabled={!selectedItemId || !quantity}>
+            disabled={!isFormValid}
+        >
+            {/* Item Name */}
+            {itemData && (
+                <div className="row l-centered" style={{ marginBottom: '0.5rem' }}>
+                    <span className="h2">
+                        {t(itemData.ID, side ? { side } : {})}
+                    </span>
+                </div>
+            )}
 
-            <div className="row l-lastSmall" style={{ alignItems: 'center' }}>
-                <span className="h5" style={{ minWidth: '5rem' }}>{t('item')}:</span>
-                <select
-                    value={selectedItemId}
-                    style={{ width: '100%' }}
-                    onChange={(e) => {
-                        const val = e.target.value
-                        setSelectedItemId(val)
+            <span className="h5" style={{ display: 'block', textAlign: 'center', marginBottom: '1rem' }}>
+                {t('selling')}
+            </span>
 
-                        if (!val) { return }
+            <hr />
 
-                        const item = dataManager['aid'][val]
-                        setQuantity(1)
-                    }}
-                >
-                    <option value={undefined as any}>{''}</option>
-                    {availableItems.map(i => <option key={i.ID} value={i.ID}>{t(i.ID)}</option>)}
-                </select>
-            </div>
-
-            <div className="row">
-                <span className="h5" style={{ minWidth: '5rem' }}>{t('quantity')}:</span>
+            {/* Quantity */}
+            <div className="row l-distributed" style={{ marginBottom: '0.5rem' }}>
+                <label className="h3">{t('quantityLabel')}:</label>
                 <input
                     type="number"
                     min="1"
-                    value={quantity ?? ''}
-                    onChange={(e) => {
-                        const val = Number.parseInt(e.target.value)
-                        setQuantity(val ? Math.max(1, val) : undefined)
-                    }}
+                    max={characterItem.quantity}
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                    placeholder="1"
+                    aria-label="Trade quantity"
                     style={{ width: '5rem' }}
                 />
             </div>
 
-            <div className="row l-distributed l-wrapped" style={{ marginTop: '1rem' }}>
-                {getAvailableTags()}
+            {/* Price per unit */}
+            <div className="row l-distributed" style={{ marginBottom: '0.5rem' }}>
+                <label className="h3">{t('priceLabel')}:</label>
+                <div className="row l-centered" style={{ gap: '0.5rem' }}>
+                    <input
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        value={price}
+                        onChange={handlePriceChange}
+                        placeholder="0"
+                        aria-label="Trade price"
+                        style={{ width: '5rem' }}
+                    />
+                    <div
+                        className="themed-svg"
+                        data-icon="caps"
+                        style={{ width: '1rem', height: '1rem' }}
+                    ></div>
+                </div>
             </div>
+
+            <hr />
+
+            {/* Total */}
+            <div className="row l-distributed" style={{ marginTop: '1rem' }}>
+                <span className="h2">{t('totalLabel')}:</span>
+                <div className="row l-centered" style={{ gap: '0.5rem' }}>
+                    <span className="h2" style={{ color: 'var(--primary-color)' }}>
+                        +{total}
+                    </span>
+                    <div
+                        className="themed-svg"
+                        data-icon="caps"
+                        style={{ width: '1.5rem', height: '1.5rem' }}
+                    ></div>
+                </div>
+            </div>
+
+            <hr />
         </BasePopup>
     )
 }
 
 export default TradeItemPopup
-

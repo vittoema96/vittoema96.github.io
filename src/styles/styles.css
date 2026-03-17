@@ -55,32 +55,13 @@
 /*********************
  *   Main Container  *
  *********************/
-#main-container {
-    width: 100%;
-    overflow-y: auto;
-    margin: 0 auto;
-    padding: 1rem;
-    border: 4px solid var(--primary-color);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    align-items: stretch;
-    box-sizing: border-box;
-}
+/* main styles moved to src/styles/base.css */
 
 /**************
  *   Tabs   *
  **************/
-.navigator {
-    display: flex;
-    padding: 0.5rem 1rem 0;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 0.5rem;
-}
+
+/* main styles moved to src/styles/base.css */
 .tabContent {
     gap: 1rem;
     flex: 1;

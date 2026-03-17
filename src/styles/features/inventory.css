@@ -338,8 +338,8 @@
 /* Selected Item Display Area */
 .inventory-list__selection {
     position: sticky;
-    bottom: -1rem; /* Compensate for main-container padding */
-    margin-left: -1rem; /* Extend to full width, ignoring main-container padding */
+    bottom: -1rem; /* Compensate for main padding */
+    margin-left: -1rem; /* Extend to full width, ignoring main padding */
     margin-right: -1rem;
     margin-bottom: -1rem;
     padding: 0.4rem 0.3rem 0.4rem 0.3rem;

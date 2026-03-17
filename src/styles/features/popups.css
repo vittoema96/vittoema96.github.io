@@ -4,7 +4,7 @@
 .modify-item-popup {
     gap: 0.3rem;
     padding: 0.6rem;
-    max-height: calc(100vh - 1.5rem);
+    max-height: calc(100svh - 1.5rem);
 }
 
 /* Stat Adjustment Popup */

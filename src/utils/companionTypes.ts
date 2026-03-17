@@ -16,7 +16,6 @@ export const COMPANION_SKILL_TO_SPECIAL_MAP: Record<CompanionSkillType, Companio
  */
 export interface CompanionTypeDefinition {
     id: CompanionId
-    name: string
     // Base SPECIAL (body/mind)
     special: Record<CompanionSpecialType, number>
     // Base skills (melee/guns/other)
@@ -45,7 +44,6 @@ export interface CompanionTypeDefinition {
 export const COMPANION_TYPES: Record<CompanionId, CompanionTypeDefinition> = {
     eyebot: {
         id: 'eyebot',
-        name: 'Eyebot',
         special: {
             body: 4,
             mind: 4
@@ -73,7 +71,6 @@ export const COMPANION_TYPES: Record<CompanionId, CompanionTypeDefinition> = {
     },
     dog: {
         id: 'dog',
-        name: 'Dog',
         special: {
             body: 5,
             mind: 3
@@ -95,7 +92,6 @@ export const COMPANION_TYPES: Record<CompanionId, CompanionTypeDefinition> = {
     },
     mrHandy: {
         id: 'mrHandy',
-        name: 'Mr. Handy',
         special: {
             body: 5,
             mind: 5
@@ -117,7 +113,6 @@ export const COMPANION_TYPES: Record<CompanionId, CompanionTypeDefinition> = {
     },
     humanoid: {
         id: 'humanoid',
-        name: 'Humanoid',
         special: {
             body: 5,
             mind: 5
@@ -147,7 +142,8 @@ export function createDefaultCompanion(companionId: CompanionId): CompanionData 
 
     return {
         type: companionId,
-        name: type.name,
+        // Default to empty custom name; UI will display t(type) where needed
+        name: '',
         special: { ...type.special },
         skills: { ...type.skills },
         currentHp: type.baseHp,

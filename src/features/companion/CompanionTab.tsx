@@ -17,6 +17,11 @@ const COMPANION_PERKS = [
     'perkProtector'
 ]
 
+const COMPANION_MAP: Record<string, CompanionId[]> = {
+    "perkDogmeat": ["dog"],
+    "perkRobotWrangler": ["eyebot"] // TODO add more
+}
+
 /**
  * Companion Tab - Shows companion stats and info
  * Visible when player has a companion (controlled by perk in future)
@@ -45,7 +50,6 @@ function CompanionTab() {
     // Calculate perk slots: 1 every 5 levels
     const perkSlots = Math.floor(character.level / 5)
 
-    // Calculate max HP: baseHp + (character.level - 1) + (body - baseBody)
     const bodyBonus = character.companion.special.body - selectedCompanionType.special.body
     const maxHp = selectedCompanionType.baseHp + (character.level - 1) + bodyBonus
 
@@ -78,7 +82,7 @@ function CompanionTab() {
         const companionWeapon = selectedCompanionType.weapons.find(w => w.id === attackItem.id)
         if (companionWeapon) {
             // Use the skill defined in companion type (melee/guns/other)
-            showD20Popup(companionWeapon.skill as CompanionSkillType, attackItem, 'companion')
+            showD20Popup(companionWeapon.skill, attackItem, 'companion');
         }
     }
 
@@ -100,9 +104,16 @@ function CompanionTab() {
                     })}
                     style={{ flex: 1 }}
                 >
-                    {Object.values(COMPANION_TYPES).map(type => (
-                        <option key={type.id} value={type.id}>{type.name}</option>
-                    ))}
+                    {
+                        Object.entries(COMPANION_MAP).reduce((acc, [perk, types]) => {
+                            if(character.perks?.includes(perk)) {
+                                acc.push(...types)
+                            }
+                            return acc
+                        }, [] as CompanionId[]).map(type => (
+                            <option key={type} value={type}>{t(type)}</option>
+                        ))
+                    }
                 </select>
             </div>
 
@@ -110,11 +121,11 @@ function CompanionTab() {
             <div className="row l-spaceBetween" style={{ marginBottom: '0.5rem' }}>
                 <input
                     type="text"
-                    value={character.companion.name || ''}
+                    value={character.companion.name}
                     onChange={(e) => updateCharacter({
                         companion: { ...character.companion, name: e.target.value }
                     })}
-                    placeholder={t('companionNamePlaceholder')}
+                    placeholder={t(character.companion.type)}
                     style={{ flex: 1, marginRight: '0.5rem' }}
                 />
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>

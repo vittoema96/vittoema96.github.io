@@ -24,37 +24,30 @@ function App() {
 
     // Check if player has Robot Wrangler perk
     const hasRobotWrangler = character.perks?.includes('perkRobotWrangler') ?? false
+    const hasDogmeat = character.perks?.includes('perkDogmeat') ?? false
 
     // Filter visible tabs based on perks
     const visibleTabs = useMemo(() => {
         const allTabs = Object.keys(TABS) as TabType[]
         return allTabs.filter(tabType => {
             // Hide companion tab if player doesn't have Robot Wrangler perk
-            if (tabType === 'companion' && !hasRobotWrangler) {
-                return false
-            }
-            return true
+            return !(tabType === 'companion' && !hasRobotWrangler && !hasDogmeat);
+
         })
-    }, [hasRobotWrangler])
+    }, [hasDogmeat, hasRobotWrangler])
 
     // Get active tab component (only render the active one for better performance)
     const ActiveTabComponent = TABS[activeTab]
 
 
     return (
-        <div style={{
-                height: '100dvh',
-                display: 'flex',
-                flexDirection: 'column',
-                overflow: 'hidden' // Prevent body scroll, let main-container handle it
-            }}
-        >
+        <>
             <AppHeader />
 
             <hr />
 
             {/* Tab Navigation */}
-            <nav className="navigator">
+            <nav>
                 {visibleTabs.map((tabType) => (
                     <TabButton
                         key={tabType}
@@ -67,10 +60,10 @@ function App() {
             </nav>
 
             {/* Tab Content - Only render active tab for better performance */}
-            <main id="main-container">
+            <main>
                 <ActiveTabComponent />
             </main>
-        </div>
+        </>
     )
 }
 

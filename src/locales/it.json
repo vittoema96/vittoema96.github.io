@@ -1977,5 +1977,7 @@
   "miscUncommonJunk": "Materiali Inusuali",
   "miscUncommonJunkDescription": "I materiali inusuali sono più rari e difficili da recuperare e includono rame, alluminio, cuoio e argento, così come sughero, vetro, fertilizzante, vetroresina e piccoli componenti come ingranaggi, molle e viti.\nUna singola unità di materiali inusuali costa 3 tappi e pesa mezzo chilo.",
   "miscRareJunk": "Materiali Rari",
-  "miscRareJunkDescription": "I materiali rari sono i più introvabili e difficili da recuperare. Amianto, trama balistica, circuiti, fibra ottica, sostanze chimiche corrosive e antisettiche, persino materiali nucleari si possono trovare in molti oggetti, ma sono difficili da recuperare. Una singola unità di materiali rari costa 5 tappi e pesa mezzo chilo."
+  "miscRareJunkDescription": "I materiali rari sono i più introvabili e difficili da recuperare. Amianto, trama balistica, circuiti, fibra ottica, sostanze chimiche corrosive e antisettiche, persino materiali nucleari si possono trovare in molti oggetti, ma sono difficili da recuperare. Una singola unità di materiali rari costa 5 tappi e pesa mezzo chilo.",
+  "item": "",
+  "tradeItem": ""
 }
