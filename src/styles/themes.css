@@ -1,0 +1,87 @@
+/* Theme palettes (applied by adding the corresponding class to <body>) */
+body.theme-fallout-3 {
+    --primary-color: #afff03;
+    --secondary-color: #0f3003;
+    --button-background: #1a5205;
+
+    --tab-hover: #338006;
+    --button-hover: #7cba02;
+    --cancel-btn-background: #4a5568;
+
+    --animation-glow-color: rgba(45, 255, 113, 0.75);
+}
+
+/* FALLOUT New Vegas Theme */
+body.theme-fallout-new-vegas {
+    --primary-color: #ffbe0b;
+    --secondary-color: #2a1d00;
+    --button-background: #4d3d1a;
+
+    --tab-hover: #785d21;
+    --button-hover: #ffd466;
+    --cancel-btn-background: #615849;
+    --animation-glow-color: rgba(255, 190, 11, 0.7);
+    --warning-color: rgb(45, 255, 113);
+}
+
+body.theme-old-world-blues {
+    --primary-color: #5dc6ff;
+    --secondary-color: #05161f;
+    --button-background: #103142;
+    --tab-hover: #1b4f69;
+    --button-hover: #80d4ff;
+    --cancel-btn-background: #3e4e55;
+    --animation-glow-color: rgba(93, 198, 255, 0.5);
+    --success-color: #44BB17;
+}
+
+body.theme-dead-money {
+    --primary-color: #ff4d4d;
+    --secondary-color: #1a0505;
+    --button-background: #4d0000;
+    --tab-hover: #801a00;
+    --button-hover: #ff1a1a;
+    --cancel-btn-background: #3d3434;
+    --animation-glow-color: rgba(255, 0, 0, 0.6);
+    --failure-color: #c0b020;
+}
+
+body.theme-the-institute {
+    --primary-color: #e2e2e2;
+    --secondary-color: #2c2c2c;
+    --button-background: #444444;
+    --tab-hover: #5a5a5a;
+    --button-hover: #ffffff;
+    --cancel-btn-background: #666666;
+    --animation-glow-color: rgba(226, 226, 226, 0.4);
+}
+
+body.theme-the-kings {
+    --primary-color: #e02aff;
+    --secondary-color: #121212;
+    --button-background: #2a0033;
+    --tab-hover: #4d0059;
+    --button-hover: #ff00ff;
+    --cancel-btn-background: #333333;
+    --animation-glow-color: rgba(224, 42, 255, 0.8);
+}
+
+/* Derived aliases that depend on the active theme */
+body {
+    /* Helpful computed variants */
+    --primary-color-translucent: rgba(from var(--primary-color) r g b / 0.7);
+    --primary-color-very-translucent: rgba(from var(--primary-color) r g b / 0.25);
+    --secondary-color-translucent: rgba(from var(--secondary-color) r g b / 0.25);
+
+    /* Borders using current theme colors */
+    --border-primary-thick: 2px solid var(--primary-color);
+    --border-primary-thin: 1px solid var(--primary-color);
+    --border-secondary-thick: 2px solid var(--secondary-color);
+    --border-secondary-thin: 1px solid var(--secondary-color);
+
+    /* Aliases expected by component CSS */
+    --text-color: var(--primary-color);
+    --background-color: var(--secondary-color);
+    --accent-color: var(--primary-color);
+}
+

@@ -6,6 +6,7 @@ import '@mdi/font/css/materialdesignicons.min.css'
 import '@fontsource/fira-code'
 import '@fontsource/roboto-mono'
 import '@fontsource/share-tech-mono'
+import './styles/themes.css'
 import './styles/styles.css'
 
 // Initialize i18n before anything else

@@ -3,14 +3,12 @@
    ========================================================================== */
 
 :root {
-    --loader-display: flex;
-
     /* Should not change, regardless of theme */
     --success-color: #0088ff;
     --failure-color: #dc143c;
-    --overlay-color: rgba(0, 0, 0, 0.5);
-    --delete-button-color: #ff4d4d;
+    --shadow-color: rgba(0, 0, 0, 0.5);
     --special-text-color: #ffdb58;
+    --warning-color: #f0ad4e;
 
     /* Control loader durations */
     --turn-on-delay: 0.1s;
@@ -193,9 +191,8 @@ input[type='text'] {
  **********************/
 
 /* Utility classes */
-/* TODO standardize color usage */
 .text-danger {
-    color: #ff4444;
+    color: var(--failure-color);
 }
 
 /*********************
@@ -476,7 +473,7 @@ input[type='text'] {
     align-items: flex-start;
     gap: 0.4rem;
     padding: 0.3rem 0.6rem;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(from var(--shadow-color) r g b / 0.3);
     border: 1px solid var(--primary-color);
     border-radius: 2px;
     transition: all 0.15s ease;
@@ -488,7 +485,7 @@ input[type='text'] {
 }
 
 .equipped-apparel__slot:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(from var(--shadow-color) r g b / 0.5);
     border-color: var(--secondary-color);
 }
 
@@ -658,7 +655,7 @@ input[type='text'] {
     width: 100%;
     max-width: 300px;
     border: var(--border-primary-thick);
-    box-shadow: 5px 5px 10px var(--overlay-color);
+    box-shadow: 5px 5px 10px var(--shadow-color);
     position: relative;
 }
 
@@ -855,7 +852,7 @@ input[type='text'] {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--overlay-color);
+    background-color: var(--shadow-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -885,7 +882,7 @@ input[type='text'] {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--overlay-color);
+    background-color: var(--shadow-color);
     backdrop-filter: blur(2px);
     display: flex;
     flex-direction: column;
@@ -945,7 +942,7 @@ input[type='text'] {
 }
 
 .delete-button {
-    background-color: var(--delete-button-color);
+    background-color: var(--failure-color);
 }
 
 .rename-button {
@@ -1004,20 +1001,20 @@ input[type='text'] {
 /* Crit/fail dice always have colored background */
 /* Deselected: less saturated (30% opacity) */
 .d20-dice.roll-crit {
-    background-color: rgba(0, 136, 255, 0.3); /* Light blue background */
+    background-color: rgba(from var(--success-color) r g b / 0.3); /* Light success background */
     filter: drop-shadow(0 0 2px var(--success-color));
 }
 .d20-dice.roll-complication {
-    background-color: rgba(220, 20, 60, 0.3); /* Light red background */
+    background-color: rgba(from var(--failure-color) r g b / 0.3); /* Light failure background */
     filter: drop-shadow(0 0 2px var(--failure-color));
 }
 
 /* Selected: more saturated (60% opacity) */
 .d20-dice.active.roll-crit {
-    background-color: rgba(0, 136, 255, 0.6); /* More saturated blue */
+    background-color: rgba(from var(--success-color) r g b / 0.6); /* More saturated success */
 }
 .d20-dice.active.roll-complication {
-    background-color: rgba(220, 20, 60, 0.6); /* More saturated red */
+    background-color: rgba(from var(--failure-color) r g b / 0.6); /* More saturated failure */
 }
 
 .d6-dice {
@@ -1404,7 +1401,7 @@ input[type='text'] {
     background-color: var(--secondary-color);
     border: var(--border-primary-thin);
     border-radius: 3px;
-    box-shadow: 5px 5px 10px var(--overlay-color);
+    box-shadow: 5px 5px 10px var(--shadow-color);
     z-index: 200;
     min-width: 200px;
     max-height: 300px;
@@ -1625,7 +1622,7 @@ input[type='text'] {
     justify-content: center;
     align-items: center;
     z-index: 10;
-    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 -3px 10px rgba(from var(--shadow-color) r g b / 0.3);
 }
 
 .inventory-list__selection .card {
@@ -1702,7 +1699,7 @@ section#map-tabContent:not(.hidden) {
  *  LOADING OVERLAY  *
  *********************/
 #loader {
-    display: var(--loader-display); /* Used to 'toggle' the loader animation for debugging */
+    display: flex; /* Used to 'toggle' the loader animation for debugging */
     position: fixed;
     inset: 0;
     background: var(--secondary-color);
@@ -1914,84 +1911,7 @@ section#map-tabContent:not(.hidden) {
  *    THEMES   *
  ***************/
 
-/* FALLOUT 3 THEME */
-body.theme-fallout-3 {
-    --primary-color: #afff03;
-    --secondary-color: #0f3003;
-    --button-background: #1a5205;
-
-    --tab-hover: #338006;
-    --button-hover: #7cba02;
-    --cancel-btn-background: #4a5568;
-
-    --animation-glow-color: rgba(45, 255, 113, 0.75);
-}
-/* FALLOUT New Vegas Theme */
-body.theme-fallout-new-vegas {
-    --primary-color: #ffbe0b;
-    --secondary-color: #2a1d00;
-    --button-background: #4d3d1a;
-
-    --tab-hover: #785d21;
-    --button-hover: #ffd466;
-    --cancel-btn-background: #615849;
-    --animation-glow-color: rgba(255, 190, 11, 0.7);
-}
-
-body.theme-old-world-blues {
-    --primary-color: #5dc6ff;
-    --secondary-color: #05161f;
-    --button-background: #103142;
-    --tab-hover: #1b4f69;
-    --button-hover: #80d4ff;
-    --cancel-btn-background: #3e4e55;
-    --animation-glow-color: rgba(93, 198, 255, 0.5);
-}
-
-body.theme-dead-money {
-    --primary-color: #ff4d4d;
-    --secondary-color: #1a0505;
-    --button-background: #4d0000;
-
-    --tab-hover: #801a00;
-    --button-hover: #ff1a1a;
-    --cancel-btn-background: #3d3434;
-
-    --animation-glow-color: rgba(255, 0, 0, 0.6);
-}
-
-body.theme-the-institute {
-    --primary-color: #e2e2e2;
-    --secondary-color: #2c2c2c;
-    --button-background: #444444;
-    --tab-hover: #5a5a5a;
-    --button-hover: #ffffff;
-    --cancel-btn-background: #666666;
-    --animation-glow-color: rgba(226, 226, 226, 0.4);
-}
-
-body.theme-the-kings {
-    --primary-color: #e02aff;
-    --secondary-color: #121212;
-    --button-background: #2a0033;
-    --tab-hover: #4d0059;
-    --button-hover: #ff00ff;
-    --cancel-btn-background: #333333;
-    --animation-glow-color: rgba(224, 42, 255, 0.8);
-}
-
-
-/* Just body's derived variables, body attributes are set below */
-body {
-    --primary-color-translucent: rgba(from var(--primary-color) r g b / 0.7);
-    --primary-color-very-translucent: rgba(from var(--primary-color) r g b / 0.25);
-    --secondary-color-translucent: rgba(from var(--secondary-color) r g b / 0.25);
-
-    --border-primary-thick: 2px solid var(--primary-color);
-    --border-primary-thin: 1px solid var(--primary-color);
-    --border-secondary-thick: 2px solid var(--secondary-color);
-    --border-secondary-thin: 1px solid var(--secondary-color);
-}
+/* Themes moved to src/styles/themes.css */
 /* Applies the scan lines on top of the whole body */
 body::before {
     content: ' ';
@@ -2207,7 +2127,7 @@ dialog[open] {
     animation: crt-turn-off 0.3s forwards !important;
 }
 dialog::backdrop {
-    background-color: var(--overlay-color);
+    background-color: var(--shadow-color);
     backdrop-filter: blur(3px);
 }
 .popup__button-x {
@@ -2335,7 +2255,7 @@ dialog::backdrop {
 .stat-adjustment-popup__rads-icon {
     font-size: 0.9rem;
     flex-shrink: 0;
-    color: var(--warning-color, #f0ad4e);
+    color: var(--warning-color);
 }
 
 .stat-adjustment-popup__rads-input {
@@ -2344,7 +2264,7 @@ dialog::backdrop {
     text-align: center;
     padding: 0.25rem;
     font-size: 0.85rem;
-    border-color: var(--warning-color, #f0ad4e);
+    border-color: var(--warning-color);
     flex-shrink: 1;
 }
 

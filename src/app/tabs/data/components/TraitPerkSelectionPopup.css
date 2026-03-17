@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(from var(--shadow-color) r g b / 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,7 +23,7 @@
     max-height: 80vh;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 20px var(--shadow-color);
 }
 
 /* Header */
@@ -61,9 +61,9 @@
 
 .trait-perk-popup__toggle.active {
     opacity: 1;
-    background-color: var(--color-primary, #4caf50);
-    border-color: var(--color-primary, #4caf50);
-    color: #000;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .trait-perk-popup__close {
@@ -114,9 +114,9 @@
 }
 
 .trait-perk-popup__sort button.active {
-    background-color: var(--color-primary, #4caf50);
-    color: #000;
-    border-color: var(--color-primary, #4caf50);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-color: var(--primary-color);
 }
 
 /* Scrollable List */
@@ -147,8 +147,8 @@
 
 .trait-perk-popup__item:hover {
     background-color: var(--background-color);
-    border-color: var(--color-primary, #4caf50);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(from var(--shadow-color) r g b / 0.2);
     transform: translateY(-1px);
 }
 
@@ -193,7 +193,7 @@
 }
 
 .trait-perk-popup__item-lock {
-    color: var(--color-danger, #f44336);
+    color: var(--failure-color);
     font-size: 0.85rem;
     opacity: 0.7;
     flex-shrink: 0;
@@ -229,17 +229,17 @@
 }
 
 .req-badge.req-level {
-    background-color: rgba(76, 175, 80, 0.15);
-    border-color: rgba(76, 175, 80, 0.5);
-    color: #a5d6a7;
-    text-shadow: 0 0 6px rgba(76, 175, 80, 0.6);
+    background-color: rgba(from var(--primary-color) r g b / 0.15);
+    border-color: rgba(from var(--primary-color) r g b / 0.5);
+    color: var(--primary-color);
+    text-shadow: 0 0 6px rgba(from var(--primary-color) r g b / 0.6);
 }
 
 .req-badge.req-special {
-    background-color: rgba(33, 150, 243, 0.15);
-    border-color: rgba(33, 150, 243, 0.5);
-    color: #90caf9;
-    text-shadow: 0 0 6px rgba(33, 150, 243, 0.6);
+    background-color: rgba(from var(--primary-color) r g b / 0.15);
+    border-color: rgba(from var(--primary-color) r g b / 0.5);
+    color: var(--primary-color);
+    text-shadow: 0 0 6px rgba(from var(--primary-color) r g b / 0.6);
 }
 
 /* Item Preview (for future use) */

@@ -16,7 +16,7 @@ class ErrorBoundary extends React.Component {
     componentDidCatch(error, errorInfo) {
         // Log error details for debugging
         console.error('ErrorBoundary caught an error:', error, errorInfo)
-        
+
         this.setState({
             error: error,
             errorInfo: errorInfo
@@ -38,26 +38,26 @@ class ErrorBoundary extends React.Component {
                     alignItems: 'center',
                     height: '100vh',
                     padding: '2rem',
-                    backgroundColor: 'var(--primary-color, #000)',
-                    color: 'var(--secondary-color, #afff03)',
+                    backgroundColor: 'var(--primary-color)',
+                    color: 'var(--secondary-color)',
                     fontFamily: 'monospace',
                     textAlign: 'center'
                 }}>
-                    <h1 style={{ color: 'var(--failure-color, #dc143c)', marginBottom: '1rem' }}>
+                    <h1 style={{ color: 'var(--failure-color)', marginBottom: '1rem' }}>
                         ⚠️ Something went wrong
                     </h1>
-                    
+
                     <p style={{ marginBottom: '2rem', maxWidth: '600px' }}>
-                        The Pip-Boy encountered an error and needs to restart. 
+                        The Pip-Boy encountered an error and needs to restart.
                         Your character data should be safe in localStorage.
                     </p>
 
-                    <button 
+                    <button
                         onClick={this.handleReset}
                         style={{
                             padding: '0.75rem 1.5rem',
-                            backgroundColor: 'var(--secondary-color, #afff03)',
-                            color: 'var(--primary-color, #000)',
+                            backgroundColor: 'var(--secondary-color)',
+                            color: 'var(--primary-color)',
                             border: 'none',
                             borderRadius: '4px',
                             cursor: 'pointer',
@@ -74,10 +74,10 @@ class ErrorBoundary extends React.Component {
                             width: '100%',
                             maxWidth: '800px',
                             textAlign: 'left',
-                            backgroundColor: 'rgba(220, 20, 60, 0.1)',
+                            backgroundColor: 'rgba(from var(--failure-color) r g b / 0.1)',
                             padding: '1rem',
                             borderRadius: '4px',
-                            border: '1px solid var(--failure-color, #dc143c)',
+                            border: '1px solid var(--failure-color)',
                             boxSizing: 'border-box'
                         }}>
                             <summary style={{ cursor: 'pointer', marginBottom: '1rem' }}>

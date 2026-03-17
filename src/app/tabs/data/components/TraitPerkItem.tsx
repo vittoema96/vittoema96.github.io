@@ -148,10 +148,10 @@ function TraitPerkItem({ id, type, isFixed = false, onChangeClick, onDeleteClick
                             }}
                             style={{
                                 ...squareButtonStyle,
-                                backgroundColor: 'var(--color-primary, #4caf50)',
+                                backgroundColor: 'var(--primary-color)',
                                 border: 'none',
                                 fontSize: '0.9rem',
-                                color: '#000',
+                                color: 'var(--secondary-color)',
                             }}
                             title={t(actionButton.label)}
                         >
@@ -180,7 +180,7 @@ function TraitPerkItem({ id, type, isFixed = false, onChangeClick, onDeleteClick
                                         ...squareButtonStyle,
                                         backgroundColor: 'transparent',
                                         border: 'var(--border-primary-thin)',
-                                        color: 'var(--color-danger, #f44336)',
+                                        color: 'var(--failure-color)',
                                     }}
                                     title={t('delete')}
                                 >
@@ -194,7 +194,7 @@ function TraitPerkItem({ id, type, isFixed = false, onChangeClick, onDeleteClick
                                         ...squareButtonStyle,
                                         backgroundColor: 'transparent',
                                         border: 'var(--border-primary-thin)',
-                                        color: 'var(--color-primary, #4caf50)',
+                                        color: 'var(--primary-color)',
                                     }}
                                     title={t('change')}
                                 >
@@ -229,13 +229,13 @@ function TraitPerkItem({ id, type, isFixed = false, onChangeClick, onDeleteClick
                     {showAsBenefitPenalty && (
                         <>
                             <div style={{ marginBottom: '0.5rem' }}>
-                                <strong style={{ color: 'var(--color-success, #4caf50)' }}>
+                                <strong style={{ color: 'var(--primary-color)' }}>
                                     + {t('benefit')}:
                                 </strong>{' '}
                                 {t(id + 'Benefit')}
                             </div>
                             <div>
-                                <strong style={{ color: 'var(--color-danger, #f44336)' }}>
+                                <strong style={{ color: 'var(--failure-color)' }}>
                                     - {t('penalty')}:
                                 </strong>{' '}
                                 {t(id + 'Penalty')}
