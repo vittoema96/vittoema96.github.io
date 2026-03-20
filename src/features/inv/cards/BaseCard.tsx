@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem } from '@/types';
-import { FitText } from '@/app/FitText.tsx';
+import { FitText } from '@/components/FitText.tsx';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 
 /**
@@ -147,7 +147,6 @@ function BaseCard({
                         onClick={e => e.stopPropagation()}
                     >
                         <div className="card-description-overlay__header">
-                            {/* TODO currently no translation uses parameters, but...*/}
                             <h3>{t(itemData.ID, {variation: t(characterItem.variation!)})}</h3>
                             <button
                                 className="card-description-overlay__close"

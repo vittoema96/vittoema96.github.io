@@ -25,25 +25,6 @@ export const usePanzoom = () => {
 
         panzoomRef.current = panzoom;
 
-        // Auto-fit logic once image loads
-        el.onload = () => {
-            console.log("Fitting to container")
-            if (parent) {
-                const containerRect = parent.getBoundingClientRect();
-                const scale = Math.max(
-                    containerRect.width / el.naturalWidth,
-                    containerRect.height / el.naturalHeight
-                );
-                const x = (containerRect.width - el.naturalWidth * scale) / 2 / scale;
-                const y = (containerRect.height - el.naturalHeight * scale) / 2 / scale;
-
-                panzoom.zoom(scale, {animate: false})
-                requestAnimationFrame(() => {
-                    panzoom.pan(x, y, {relative: true, animate: false})
-                })
-            }
-        };
-
         return () => {
             parent?.removeEventListener('wheel', handleWheel);
             panzoom.destroy();

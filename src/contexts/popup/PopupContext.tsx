@@ -4,10 +4,8 @@ import D20Popup from '@/components/popup/D20Popup'
 import D20PopupWithRoller from '@/components/popup/D20PopupWithRoller'
 import D6Popup from '@/components/popup/D6Popup'
 import AddItemPopup from '@/components/popup/AddItemPopup'
-import StatAdjustmentPopup from '@/components/popup/StatAdjustmentPopup'
 import TradeItemPopup from '@/components/popup/TradeItemPopup'
 import ModifyItemPopup from '@/components/popup/ModifyItemPopup'
-import { useTranslation } from 'react-i18next'
 import { CharacterItem, Item, ItemType, PopupContextValue, SkillType } from '@/types'
 import { getModifiedItemData } from '@/hooks/getGameDatabase.ts'
 
@@ -40,8 +38,6 @@ interface AddItemState {
     itemType: ItemType;
 }
 
-interface StatAdjustmentState {}
-
 interface TradeItemState extends UsingItemPopupState {
     itemData: Item;
     onConfirm: ((quantity: number, price: number) => void) | null;
@@ -62,7 +58,7 @@ export const usePopup = (): PopupContextValue => {
 
 // TODO may have to add a "close d20 popup on d6 close / click"
 export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
-    const { t } = useTranslation()
+    // No translations needed here currently
 
     // TODO is there a reason to use all these states here?
     //  specific popup state lives inside that class, here we case just about open / close
@@ -70,7 +66,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
     const [d20State, setD20State] = useState<D20State | undefined>(undefined)
     const [d6State, setD6State] = useState<D6State | undefined>(undefined)
     const [addItemState, setAddItemState] = useState<AddItemState | undefined>(undefined)
-    const [statAdjustmentState, setStatAdjustmentState] = useState<StatAdjustmentState | undefined>(undefined)
+    // StatAdjustment popup was moved to AppHeader (local only)
     const [tradeItemState, setTradeItemState] = useState<TradeItemState | undefined>(undefined)
     const [modifyItemState, setModifyItemState] = useState<ModifyItemState | undefined>(undefined)
 
@@ -142,14 +138,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
         setAddItemState(undefined)
     }, [])
 
-    // StatAdjustment Popup functions
-    const showStatAdjustmentPopup = useCallback(() => {
-        setStatAdjustmentState({ isOpen: true })
-    }, [])
-
-    const closeStatAdjustmentPopup = useCallback(() => {
-        setStatAdjustmentState(undefined)
-    }, [])
+    // StatAdjustment Popup handlers removed (moved to AppHeader)
 
     // TradeItem Popup functions
     const showTradeItemPopup = useCallback(
@@ -194,8 +183,6 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             closeD6Popup,
             showAddItemPopup,
             closeAddItemPopup,
-            showStatAdjustmentPopup,
-            closeStatAdjustmentPopup,
             showTradeItemPopup,
             closeTradeItemPopup,
             showModifyItemPopup,
@@ -211,8 +198,6 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             closeD6Popup,
             showAddItemPopup,
             closeAddItemPopup,
-            showStatAdjustmentPopup,
-            closeStatAdjustmentPopup,
             showTradeItemPopup,
             closeTradeItemPopup,
             showModifyItemPopup,
@@ -266,9 +251,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
                 itemType={addItemState.itemType}
             />}
 
-            {statAdjustmentState && <StatAdjustmentPopup
-                onClose={closeStatAdjustmentPopup}
-            />}
+            {/* StatAdjustmentPopup moved to AppHeader */}
 
             {tradeItemState && <TradeItemPopup
                 onClose={closeTradeItemPopup}

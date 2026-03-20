@@ -292,9 +292,6 @@ export interface PopupContextValue {
     showAddItemPopup: (itemType: ItemType) => void;
     closeAddItemPopup: () => void;
 
-    showStatAdjustmentPopup: () => void;
-    closeStatAdjustmentPopup: () => void;
-
     showTradeItemPopup: (usingItem: CharacterItem, itemData: Item, onConfirm: (quantity: number, price: number) => void) => void;
     closeTradeItemPopup: () => void;
 

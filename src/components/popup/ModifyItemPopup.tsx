@@ -351,7 +351,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                                         <div className="mod-slot-cost-badge">
                                             <input
                                                 type="checkbox"
-                                                className="themed-svg"
+                                                className="themed-svg small-icon"
                                                 data-icon="caps"
                                                 checked={data.buy}
                                                 onChange={
@@ -403,7 +403,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                 <div className="mod-total-section">
                     <span className="mod-total-label">{t('totalCost') || 'Total Cost'}:</span>
                     <span className="mod-total-value">
-                        <span className="themed-svg" data-icon="caps"></span>
+                        <span className="themed-svg small-icon" data-icon="caps"></span>
                         {totalCost}
                     </span>
                 </div>

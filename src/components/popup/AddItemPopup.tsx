@@ -5,6 +5,7 @@ import { getGameDatabase } from '@/hooks/getGameDatabase';
 import { GenericItem, GenericPopupProps, ItemCategory, ItemType, Side } from '@/types';
 import { addItem } from '@/utils/itemUtils.ts';
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
+import useInputNumberState from '@/hooks/useInputNumberState.ts';
 
 export interface AddItemPopupProps extends GenericPopupProps {
     itemType: ItemType;
@@ -17,10 +18,10 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     const { character, updateCharacter } = useCharacter()
     const dataManager = getGameDatabase()
 
-    const [selectedItem, setSelectedItem] = useState<SelectableItem | undefined>(undefined)
-    const [quantity, setQuantity] = useState<number | undefined>(1)
-    const [categoryFilter, setCategoryFilter] = useState<ItemCategory | undefined>(undefined)
-    const [rarityFilter, setRarityFilter] = useState<number | undefined>(undefined)
+    const [selectedItem, setSelectedItem] = useState<SelectableItem>()
+    const [quantity, setQuantity] = useInputNumberState(1)
+    const [categoryFilter, setCategoryFilter] = useState<ItemCategory>()
+    const [rarityFilter, setRarityFilter] = useState<number>()
     const [shouldBuy, setShouldBuy] = useState(false)
 
     const availableItems = useMemo(() => {
@@ -194,10 +195,9 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                 <input
                     type="number"
                     min="1"
-                    value={quantity ?? ''}
+                    value={quantity}
                     onChange={(e) => {
-                        const val = Number.parseInt(e.target.value)
-                        setQuantity(val ? Math.max(1, val) : undefined)
+                        setQuantity(e.target.value)
                     }}
                     aria-label="Object quantity"
                     style={{ width: '5rem' }}
@@ -223,10 +223,8 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                     />
                     <span style={{
                         color: shouldBuy ? 'var(--primary-color)' : 'var(--primary-color-very-translucent)',
-                        fontWeight: 'bold'
                     }}>
-                        {(selectedItem ? selectedItem.COST : 0) * (quantity ?? 0)
-                        }
+                        {(selectedItem ? selectedItem.COST : 0) * Number(quantity)}
                     </span>
                 </label>
             </div>

@@ -3,7 +3,7 @@
 .companion-perks {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: var(--space-s);
 }
 
 .companion-perk {

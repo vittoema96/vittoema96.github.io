@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
 import {ORIGINS} from "@/utils/characterSheet";
 import {OriginId} from "@/types";
 import TraitList from '@/features/data/components/TraitList.tsx';
 import PerkList from '@/features/data/components/PerkList.tsx';
+import useInputNumberState from '@/hooks/useInputNumberState.ts';
 
 function DataTab() {
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
-    const [ levelInput, setLevelInput ] = useState<number | ''>(character.level)
+    const [ levelInput, setLevelInput ] = useInputNumberState(character.level)
 
     // Update levelInput when character.level changes (e.g., when loading a character)
     useEffect(() => {
@@ -19,13 +20,13 @@ function DataTab() {
     const handleLevelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         // Allow empty string temporarily
-        if (value === '') {
+        const numValue = Number.parseInt(value)
+        if (Number.isNaN(numValue)) {
             setLevelInput('')
             return
         }
 
-        const numValue = Number.parseInt(value)
-        if (!Number.isNaN(numValue) && numValue >= 1) {
+        if (numValue >= 1) {
             setLevelInput(numValue)
             updateCharacter({ level: numValue })
         }
@@ -33,7 +34,7 @@ function DataTab() {
 
     const handleLevelBlur = () => {
         // On blur, if empty or invalid, restore previous value
-        if (!levelInput || levelInput < 1) {
+        if (!levelInput) {
             setLevelInput(character.level)
         }
     }
@@ -77,13 +78,13 @@ function DataTab() {
                 </label>
                 <select
                     id="origin"
-                    value={character.origin.id || 'none'}
+                    value={character.origin.id}
                     onChange={(e) => updateCharacter({
-                        origin: e.target.value === 'none' ? undefined : e.target.value as OriginId
+                        origin: e.target.value as OriginId
                     })}
                 >
 
-                    <option value="none" disabled>-</option>
+                    <option value={undefined} disabled>-</option>
                     {Object.values(ORIGINS).map(origin => (
                         origin.id && <option key={origin.id} value={origin.id}>
                             {t(origin.id)}

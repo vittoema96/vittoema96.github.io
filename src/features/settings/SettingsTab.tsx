@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { getCurrentTheme, applyTheme, Theme, THEMES } from '@/theme/themeUtils'
+import { getCurrentTheme, applyTheme, Theme, THEMES } from '@/styles/theme/themeUtils'
 import { usePopup } from '@/contexts/popup/PopupContext'
 import { useCharacter } from '@/contexts/CharacterContext'
 import {changeLanguage, getCurrentLanguage, Language, LANGUAGES} from "@/i18n";

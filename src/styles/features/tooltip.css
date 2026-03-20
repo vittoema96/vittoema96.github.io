@@ -6,7 +6,6 @@
     color: var(--primary-color);
     border: var(--border-primary-thin);
     padding: 0.75rem;
-    z-index: 10000; /* Ensure tooltip is above everything including dialogs */
     border-radius: 3px;
     z-index: 10000; /* Higher than the scanlines */
 

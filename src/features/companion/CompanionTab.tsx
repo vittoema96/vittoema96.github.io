@@ -6,6 +6,7 @@ import GenericGear from './components/GenericGear'
 import { CharacterItem, CompanionId, CompanionSkillType } from '@/types'
 import { getGameDatabase } from '@/hooks/getGameDatabase'
 import { COMPANION_TYPES } from '@/utils/companionTypes'
+import useInputNumberState from '@/hooks/useInputNumberState.ts';
 
 // Companion-specific perks (different from character perks)
 const COMPANION_PERKS = [
@@ -34,7 +35,7 @@ function CompanionTab() {
     const [isEditing, setIsEditing] = useState(false)
 
     // Local state for HP input (to allow empty string for deletion)
-    const [hpInput, setHpInput] = useState<number | ''>(character.companion.currentHp)
+    const [hpInput, setHpInput] = useInputNumberState(character.companion.currentHp)
 
     // Update hpInput when character.companion.currentHp changes (e.g., when loading a character)
     useEffect(() => {
@@ -162,14 +163,10 @@ function CompanionTab() {
 
             {/* Available SPECIAL Points (only when editing) */}
             {isEditing && (
-                <div className="inventory-list__controls" style={{ marginBottom: '0.3rem' }}>
-                    <div
-                        style={remainingSpecialPoints < 0 ? { color: 'var(--failure-color)' } : {}}
-                        className="row l-distributed"
-                    >
-                        <span className="h4">{t('availableSpecial')}</span>
-                        <span className="h4">{remainingSpecialPoints}</span>
-                    </div>
+                <div className="inventory-list__controls row l-distributed"
+                     style={remainingSpecialPoints < 0 ? { color: 'var(--failure-color)' } : {}}>
+                    <span className="h4">{t('availableSpecial')}</span>
+                    <span className="h4">{remainingSpecialPoints}</span>
                 </div>
             )}
 
@@ -262,19 +259,19 @@ function CompanionTab() {
                 <div className="row row--spaced">
                     <div className="derived-stat">
                         <span><i className="fas fa-shield-halved" title={t('physical')}></i></span>
-                        <span>{selectedCompanionType.baseDR.physical === Infinity ? t('immune') : selectedCompanionType.baseDR.physical}</span>
+                        <DRValue value={selectedCompanionType.baseDR.physical} />
                     </div>
                     <div className="derived-stat">
                         <span><i className="fas fa-bolt" title={t('energy')}></i></span>
-                        <span>{selectedCompanionType.baseDR.energy === Infinity ? t('immune') : selectedCompanionType.baseDR.energy}</span>
+                        <DRValue value={selectedCompanionType.baseDR.energy} />
                     </div>
                     <div className="derived-stat">
                         <span><i className="fas fa-radiation" title={t('radiation')}></i></span>
-                        <span>{selectedCompanionType.baseDR.radiation === Infinity ? t('immune') : selectedCompanionType.baseDR.radiation}</span>
+                        <DRValue value={selectedCompanionType.baseDR.radiation} />
                     </div>
                     <div className="derived-stat">
                         <span>{t('poison')}</span>
-                        <span>{selectedCompanionType.baseDR.poison === Infinity ? t('immune') : selectedCompanionType.baseDR.poison}</span>
+                        <DRValue value={selectedCompanionType.baseDR.poison} />
                     </div>
                 </div>
             </div>
@@ -282,14 +279,7 @@ function CompanionTab() {
             {/* Attack Items - Clickable */}
             <div style={{ marginTop: '0.5rem' }}>
                 <h4 style={{ marginBottom: '0.3rem', fontSize: '0.9rem' }}>{t('attacks')}</h4>
-                <section
-                    className="itemlist"
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '0.2rem'
-                    }}
-                >
+                <section>
                     {character.companion.weapons.map((attack, index) => {
                         const weaponData = dataManager.getItem(attack.id)
                         const displayName = attack.customName || (weaponData ? t(weaponData.ID) : 'Unknown')
@@ -370,6 +360,18 @@ function CompanionTab() {
                 </div>
             </div>
         </section>
+    )
+}
+
+const DRValue = ({ value }: { value: number }) => {
+    const { t } = useTranslation()
+
+    return (
+        <span>
+            {value === Infinity
+                ? <i className="fas fa-infinity" aria-label={t('immune')} title={t('immune')} />
+                : value}
+        </span>
     )
 }
 

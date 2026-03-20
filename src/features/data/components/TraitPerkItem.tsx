@@ -229,7 +229,7 @@ function TraitPerkItem({ id, type, isFixed = false, onChangeClick, onDeleteClick
                     {showAsBenefitPenalty && (
                         <>
                             <div style={{ marginBottom: '0.5rem' }}>
-                                <strong style={{ color: 'var(--primary-color)' }}>
+                                <strong style={{ color: 'var(--success-color)' }}>
                                     + {t('benefit')}:
                                 </strong>{' '}
                                 {t(id + 'Benefit')}

@@ -1,3 +1,15 @@
+/* 1) Reset-lite and media defaults */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img, svg, video, canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 2) Root document setup */
 html {
     height: 100%;
     overflow: hidden; /* only main content area should scroll */
@@ -12,6 +24,7 @@ body {
     color: var(--primary-color);
     background-color: var(--secondary-color);
     font-family: 'Share Tech Mono', 'Roboto Mono', 'Courier New', monospace;
+    font-weight: bold;
     line-height: 1.4;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -20,8 +33,17 @@ body {
         0 0 10px var(--animation-glow-color);
 }
 
+div {
+    font-weight: bold;
+}
+
 /* Ensure app root behaves as a full-height flex column */
-#root { height: 100svh; display: flex; flex-direction: column; overflow: hidden; }
+#root {
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
 
 /* Main application content: single scroll container */
 main {
@@ -30,13 +52,12 @@ main {
     width: 100%;
     overflow-y: auto;
     margin: 0 auto;
-    padding: 1rem;
+    padding: var(--space-l);
     border: 4px solid var(--primary-color);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    box-sizing: border-box;
 }
 
 /* 3) Structural blocks */
@@ -54,7 +75,7 @@ footer {
 section {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-m);
 }
 hr {
     border: none;
@@ -86,7 +107,7 @@ button, input, select, textarea {
     color: inherit;
     text-shadow: inherit; /* preserve CRT glow */
     font-size: 0.8rem;
-    padding: 0.5rem;
+    padding: var(--space-m);
     background-color: var(--button-background);
     border: var(--border-primary-thin);
     border-radius: 5px;
@@ -106,7 +127,7 @@ input[type='number'] {
     -moz-appearance: textfield;
     font-size: 1rem;
     text-align: center;
-    padding: 0.3rem;
+    padding: var(--space-s);
 }
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
@@ -118,6 +139,7 @@ input[type='checkbox'] {
     width: 1.5rem;
     height: 1.5rem;
     border: 0;
+    margin: 0;
     background-color: var(--button-background); /* Keep this even if its a "duplication" because removing it breaks stuff*/
     background-size: contain;
     background-repeat: no-repeat;
@@ -126,7 +148,7 @@ input[type='checkbox']:checked { background-color: var(--primary-color); }
 
 /* Buttons */
 button {
-    padding: 0.5rem 0.75rem;
+    padding: var(--space-m) 0.75rem;
     text-align: center;
     font-weight: bold;
     transition:
@@ -139,11 +161,11 @@ button:disabled { opacity: 0.5; }
 
 nav {
     display: flex;
-    padding: 0.5rem 1rem 0;
+    padding: var(--space-m) var(--space-l) 0;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 0.5rem;
+    gap: var(--space-m);
     flex-shrink: 0;
 }

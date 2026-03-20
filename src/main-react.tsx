@@ -8,11 +8,10 @@ import '@fontsource/roboto-mono'
 import '@fontsource/share-tech-mono'
 import './styles/index.css'
 
-// Initialize i18n before anything else
 import './i18n'
 import { useTranslation } from 'react-i18next'
 
-import { applyTheme } from '@/theme/themeUtils'
+import { applyTheme } from '@/styles/theme/themeUtils'
 
 import ErrorBoundary from "./ErrorBoundary";
 import { CharacterProvider } from "@/contexts/CharacterContext";
@@ -22,7 +21,7 @@ import BootScreen from "@/BootScreen";
 import App from "@/app/App";
 import {GameDatabase} from "@/services/GameDatabase";
 
-// DEV ONLY
+// DEV ONLY (boot screen is usually disabled while developing)
 const FORCE_BOOT_SCREEN = false;
 
 

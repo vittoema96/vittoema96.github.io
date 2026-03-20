@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
 import {ORIGINS} from "@/utils/characterSheet";
-import {GenericBodyPart} from "@/types";
+import { DamageType, GenericBodyPart } from '@/types';
 
 /**
  * Component to display damage reduction stats by body part
@@ -18,11 +18,7 @@ function DamageReductionDisplay() {
     // Check if character has Toughness perk (+1 Physical DR to all body parts)
     const hasToughnessPerk = character.perks.includes('perkToughness')
 
-    // Helper function to format DR value (show "Immune" for Infinity)
-    const formatDR = (value: number) => {
-        if (value === Infinity) {return t('immune')}
-        return value
-    }
+
 
     const isMrHandy = character.origin === ORIGINS.MR_HANDY
 
@@ -49,34 +45,66 @@ function DamageReductionDisplay() {
     const bodyParts = getBodyPartsToDisplay()
 
     return (
-        <div className={`activeApparel l-spaceAround ${isMrHandy ? 'activeApparel--mrhandy' : ''}`}>
-            {bodyParts.map(({ key, className }) => (
+        <div className={`activeApparel row l-spaceAround ${isMrHandy ? 'activeApparel--mrhandy' : ''}`}>
+            { bodyParts.map(({ key, className }) => (
                 <div key={key} className={`apparel-stat ${className}`}>
                     <div>{t(key)}</div>
-                    <div className="row l-centered">
-                        <i className="fas fa-shield-halved" title={t('physical')}></i>
-                        <span>
-                            {formatDR(damageReduction[key].physical + (hasToughnessPerk ? 1 : 0))}
-                        </span>
-                    </div>
-                    <div className="row l-centered">
-                        <i className="fas fa-bolt" title={t('energy')}></i>
-                        <span>
-                            {formatDR(damageReduction[key].energy)}
-                        </span>
-                    </div>
-                    <div className="row l-centered">
-                        <i className="fas fa-radiation" title={t('radiation')}></i>
-                        <span>
-                            {formatDR(damageReduction[key].radiation)}
-                        </span>
+                    <div className="row no-gap">
+                        <DREntry locationKey={key} damageType="physical" />
+                        <DREntry locationKey={key} damageType="energy" />
+                        <DREntry locationKey={key} damageType="radiation" />
                     </div>
                 </div>
-            ))}
+            )) }
             <div className={`apparel-vaultboy themed-svg ${isMrHandy ? 'apparel-mrhandy' : ''}`} data-icon={characterIcon}></div>
         </div>
     )
 }
+
+const DREntry = (
+    { locationKey, damageType, hasToughnessPerk }: { locationKey: GenericBodyPart, damageType: DamageType, hasToughnessPerk: boolean }
+    ) => {
+        const { t } = useTranslation()
+        const { character } = useCharacter()
+        const damageReduction = character.locationsDR
+
+        // Helper function to format DR value (show "Immune" for Infinity)
+        const formatDR = (value: number) => {
+            if (value === Infinity) {return t('immune')}
+            return value + (hasToughnessPerk ? 1 : 0)
+        }
+
+        const getIcon = (damageType: DamageType) => {
+            switch(damageType){
+                case 'physical':
+                    return 'fa-shield-halved'
+                case 'energy':
+                    return 'fa-bolt'
+                case 'radiation':
+                    return 'fa-radiation'
+            }
+        }
+
+        return (
+            <div className="stack no-gap l-centered"
+                 style={{
+                     padding: 'var(--space-s)',
+                     paddingBottom: 0,
+                     border: 'var(--border-primary-thin)',
+                     flex: 1
+                }}>
+                <i className={`fas ${getIcon(damageType)}`} title={t(damageType)}></i>
+                <span>
+                    {(() => {
+                        const val = damageReduction[locationKey][damageType]
+                        return val === Infinity
+                            ? (<i className="fas fa-infinity" aria-label={t('immune')} title={t('immune')} />)
+                            : formatDR(val)
+                    })()}
+                </span>
+            </div>
+        )
+    }
 
 export default DamageReductionDisplay
 

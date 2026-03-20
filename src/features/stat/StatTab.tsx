@@ -69,7 +69,7 @@ function StatTab() {
         <section className="tabContent">
             {/* SPECIAL Stats */}
 
-            {isEditing && <div className="inventory-list__controls">
+            {isEditing && <div className="inventory-list__controls stack">
                 <div style={specialPoints<0 ? {color: 'var(--failure-color)'} : {}} className={pointsClasses}>
                     <span className="h4">{t("availableSpecial")}</span>
                     <span className="h4">{specialPoints}</span>
@@ -127,14 +127,7 @@ function StatTab() {
             {/* TODO: Could sort skills in different ways other than alphabetically */}
             <div>
                 <h1 className="form-label">Skills:</h1>
-                <section
-                    className="itemlist"
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '0.2rem'
-                    }}
-                >
+                <section>
                     {sortedSkills.map((skillId) => {
                         return (
                             <Skill

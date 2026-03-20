@@ -5,7 +5,6 @@ import { useInventoryFilter } from '@/features/inv/hooks/useInventoryFilter.ts'
 import InventoryList from '@/features/inv/components/InventoryList.tsx'
 import EquippedApparel from '@/features/inv/components/EquippedApparel.tsx'
 import ActiveEffectsDisplay from '@/features/ActiveEffectsDisplay.tsx'
-import {BODY_PARTS} from "@/types";
 
 type SubtabType = 'weapon' | 'apparel' | 'aid' | 'other'
 
@@ -17,87 +16,32 @@ function InvTab() {
     // Get filtered items for active category
     const items = useInventoryFilter(activeSubTab)
 
-    const handleSubTabClick = (subTab: SubtabType) => {
-        setActiveSubTab(subTab)
-    }
-
     return (
         <section className="tabContent">
             {/* Sub-tab Navigation - EXACT copy of original */}
             <nav>
-                <button
-                    className={`subTab-button ${activeSubTab === 'weapon' ? 'active' : ''}`}
-                    onClick={() => handleSubTabClick('weapon')}
-                >
-                    {t('weapons').toUpperCase()}
-                </button>
-                <button
-                    className={`subTab-button ${activeSubTab === 'apparel' ? 'active' : ''}`}
-                    onClick={() => handleSubTabClick('apparel')}
-                >
-                    {t('apparel').toUpperCase()}
-                </button>
-                <button
-                    className={`subTab-button ${activeSubTab === 'aid' ? 'active' : ''}`}
-                    onClick={() => handleSubTabClick('aid')}
-                >
-                    {t('aid').toUpperCase()}
-                </button>
-                <button
-                    className={`subTab-button ${activeSubTab === 'other' ? 'active' : ''}`}
-                    onClick={() => handleSubTabClick('other')}
-                >
-                    {t('other').toUpperCase()}
-                </button>
+                {['weapon', 'apparel', 'aid', 'other'].map(subtab => (
+                    <button
+                        key={subtab}
+                        className={`subTab-button ${activeSubTab === subtab ? 'active' : ''}`}
+                        onClick={() => setActiveSubTab(subtab)}
+                    >
+                        {t(subtab).toUpperCase()}
+                    </button>
+                ))}
             </nav>
 
-            {/* Weapon Sub-screen - Accordion List */}
-            {activeSubTab === 'weapon' && <section className={`js-subScreen`}>
-                <InventoryList
-                    items={items}
-                    showSearch={true}
-                    groupByType={false}
-                    typeFilter="weapon"
-                />
-            </section>}
-
-            {/* Apparel Sub-screen - Equipped Items + Accordion List */}
-            {activeSubTab === 'apparel' && <section className={`js-subScreen keep-first`}>
-                {/* Equipped Apparel Display */}
-                {!character.origin.isRobot && <EquippedApparel/>}
-
-                {/* Active Effects from Equipped Armor */}
-                <ActiveEffectsDisplay/>
-
-                <InventoryList
-                    items={items}
-                    showSearch={true}
-                    groupByType={false}
-                    typeFilter="apparel"
-                />
-            </section>}
-
-            {/* Aid Sub-screen - Accordion List */}
-            {activeSubTab === 'aid' && <section className={`js-subScreen`}>
-                <InventoryList
-                    items={items}
-                    showSearch={true}
-                    groupByType={false}
-                    typeFilter="aid"
-                />
-            </section>}
-
-            {/* Other Sub-screen - Accordion List */}
-            {activeSubTab === 'other' && <section className={`js-subScreen`}>
-                <InventoryList
-                    items={items}
-                    showSearch={true}
-                    groupByType={false}
-                    typeFilter="other"
-                />
-            </section>}
+            <section>
+                {activeSubTab === 'apparel' && (
+                    <>
+                        <EquippedApparel />
+                        <ActiveEffectsDisplay />
+                    </>
+                )}
+                <InventoryList items={items} typeFilter={activeSubTab} />
+            </section>
         </section>
-    )
+    );
 }
 
 export default InvTab

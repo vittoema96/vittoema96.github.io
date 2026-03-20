@@ -1,40 +1,33 @@
-import { useState, useMemo } from 'react'
-import { useCharacter } from '@/contexts/CharacterContext'
+import { useMemo } from 'react'
+import { useCharacter } from '@/contexts/CharacterContext.tsx'
 import { useTranslation } from 'react-i18next'
 import { DEFAULT_EXCHANGE_RATES, ExchangeRates } from '@/types'
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
+import useInputNumberState from '@/hooks/useInputNumberState.ts';
 
 /**
  * StatAdjustmentPopup - Allows editing HP, Luck, and currencies with exchange rates
  */
-function StatAdjustmentPopup({ onClose }: Readonly<{ onClose: () => void }>) {
+function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
     const { t } = useTranslation();
     const { character, updateCharacter } = useCharacter();
 
     // Local state for form inputs
-    const [currentHp, setCurrentHp] = useState<number | ''>(() => character.currentHp);
-    const [rads, setRads] = useState<number | ''>(() => character.rads);
-    const [caps, setCaps] = useState<number | ''>(() => character.caps);
-    const [ncrDollars, setNcrDollars] = useState<number | ''>(() => character.ncrDollars);
-    const [legionDenarius, setLegionDenarius] = useState<number | ''>(
-        () => character.legionDenarius,
-    );
-    const [prewarMoney, setPrewarMoney] = useState<number | ''>(() => character.prewarMoney);
-    const [currentLuck, setCurrentLuck] = useState<number | ''>(() => character.currentLuck);
+    const [currentHp, setCurrentHp] = useInputNumberState(character.currentHp);
+    const [rads, setRads] = useInputNumberState(character.rads);
+    const [caps, setCaps] = useInputNumberState(character.caps);
+    const [ncrDollars, setNcrDollars] = useInputNumberState(character.ncrDollars);
+    const [legionDenarius, setLegionDenarius] = useInputNumberState(character.legionDenarius);
+    const [prewarMoney, setPrewarMoney] = useInputNumberState(character.prewarMoney);
+    const [currentLuck, setCurrentLuck] = useInputNumberState(character.currentLuck);
 
     // Effective max HP is reduced by rads
-    const effectiveMaxHp = character.maxHp - (typeof rads === 'number' ? rads : 0);
+    const effectiveMaxHp = character.maxHp - Number(rads);
 
     // Exchange rates state (user-configurable)
-    const [rateNcr, setRateNcr] = useState<number | ''>(
-        () => character.exchangeRates?.ncrDollars ?? DEFAULT_EXCHANGE_RATES.ncrDollars,
-    );
-    const [rateLegion, setRateLegion] = useState<number | ''>(
-        () => character.exchangeRates?.legionDenarius ?? DEFAULT_EXCHANGE_RATES.legionDenarius,
-    );
-    const [ratePrewar, setRatePrewar] = useState<number | ''>(
-        () => character.exchangeRates?.prewarMoney ?? DEFAULT_EXCHANGE_RATES.prewarMoney,
-    );
+    const [rateNcr, setRateNcr] = useInputNumberState(character.exchangeRates?.ncrDollars ?? DEFAULT_EXCHANGE_RATES.ncrDollars);
+    const [rateLegion, setRateLegion] = useInputNumberState(character.exchangeRates?.legionDenarius ?? DEFAULT_EXCHANGE_RATES.legionDenarius);
+    const [ratePrewar, setRatePrewar] = useInputNumberState(character.exchangeRates?.prewarMoney ?? DEFAULT_EXCHANGE_RATES.prewarMoney);
 
     // Get effective exchange rates for calculation
     const effectiveRates = useMemo(
@@ -57,10 +50,10 @@ function StatAdjustmentPopup({ onClose }: Readonly<{ onClose: () => void }>) {
 
     // Calculate total wealth in caps equivalent
     const totalCapsEquivalent = useMemo(() => {
-        const capsVal = typeof caps === 'number' ? caps : 0;
-        const ncrVal = typeof ncrDollars === 'number' ? ncrDollars : 0;
-        const legionVal = typeof legionDenarius === 'number' ? legionDenarius : 0;
-        const prewarVal = typeof prewarMoney === 'number' ? prewarMoney : 0;
+        const capsVal = Number(caps);
+        const ncrVal = Number(ncrDollars);
+        const legionVal = Number(legionDenarius);
+        const prewarVal = Number(prewarMoney);
 
         return (
             capsVal +
@@ -119,8 +112,9 @@ function StatAdjustmentPopup({ onClose }: Readonly<{ onClose: () => void }>) {
 
     const isFormValid =
         currentHp !== '' &&
-        caps !== '' &&
+        rads !== '' &&
         currentLuck !== '' &&
+        caps !== '' &&
         ncrDollars !== '' &&
         legionDenarius !== '' &&
         prewarMoney !== '' &&
@@ -345,7 +339,7 @@ function StatAdjustmentPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                         {totalCapsEquivalent}
                     </span>
                     <div
-                        className="themed-svg stat-adjustment-popup__total-icon"
+                        className="themed-svg small-icon"
                         data-icon="caps"
                     />
                 </div>
@@ -356,4 +350,4 @@ function StatAdjustmentPopup({ onClose }: Readonly<{ onClose: () => void }>) {
     );
 }
 
-export default StatAdjustmentPopup
+export default HeaderInfoPopup

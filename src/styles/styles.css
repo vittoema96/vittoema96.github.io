@@ -13,8 +13,19 @@
     display: flex;
     align-items: center;
     flex-flow: row;
-    gap: 0.5rem;
+    gap: var(--space-m);
+    width: 100%;
 }
+.stack {
+    display: flex;
+    flex-flow: column;
+    gap: var(--space-m);
+    height: 100%;
+}
+.no-gap {
+    gap: 0;
+}
+
 .row--spaced {
     justify-content: space-evenly;
 }
@@ -43,6 +54,12 @@
     border-bottom: var(--border-primary-thick);
 }
 
+
+.small-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
 /**********************
  *     Main Header    *
  **********************/
@@ -52,32 +69,14 @@
     color: var(--failure-color);
 }
 
-/*********************
- *   Main Container  *
- *********************/
-/* main styles moved to src/styles/base.css */
-
 /**************
  *   Tabs   *
  **************/
 
-/* main styles moved to src/styles/base.css */
 .tabContent {
-    gap: 1rem;
     flex: 1;
-    display: flex;
-    flex-direction: column;
+    gap: var(--space-l);
 }
-
-.js-subScreen {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    gap: 0;
-}
-
-/* SubTab button styles moved to src/styles/components.css */
 
 /*********************
  *  COMPANION SCREEN *
@@ -207,25 +206,6 @@
 /***************
  *  INV SCREEN *
  ***************/
-.itemlist {
-    gap: 0.2rem;
-}
-.button-card {
-    background-color: var(--primary-color);
-    border: none;
-    height: 2.5rem !important;
-    width: 2.5rem !important;
-}
-
-.activeApparel {
-    position: relative;
-    width: 100%;
-    max-width: 380px;
-    aspect-ratio: 1 / 1;
-    min-height: 350px;
-    max-height: 500px;
-    margin: 1rem auto;
-}
 
 /* Equipped Apparel Display */
 .equipped-apparel {
@@ -366,89 +346,6 @@
     font-size: 0.8rem;
 }
 
-.apparel-stat {
-    position: absolute;
-    z-index: 1;
-}
-.apparel-stat.head,
-.apparel-stat.torso {
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.apparel-stat.head {
-    top: 3rem;
-}
-.apparel-stat.leftArm,
-.apparel-stat.rightArm {
-    top: 8rem;
-}
-.apparel-stat.leftLeg,
-.apparel-stat.rightLeg {
-    top: 20rem;
-}
-.apparel-stat.leftArm {
-    transform: translateY(-50%);
-}
-.apparel-stat.rightArm {
-    left: 100%;
-    transform: translate(-100%, -50%);
-}
-.apparel-stat.torso {
-    top: 15rem;
-}
-.apparel-stat.leftLeg {
-    transform: translateY(-50%);
-    left: 5%;
-}
-.apparel-stat.rightLeg {
-    left: 95%;
-    transform: translate(-100%, -50%);
-}
-.apparel-stat div {
-    text-align: center;
-    background-color: var(--secondary-color);
-    border: 1px solid var(--primary-color);
-    padding: 5px;
-    width: 70px;
-    font-size: 0.6rem;
-    font-weight: bold;
-}
-.apparel-stat div:first-child {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    font-size: 0.8rem;
-}
-
-/* Mr. Handy specific positioning - stats are in 4 corners, container is shorter */
-.activeApparel--mrhandy {
-    min-height: 300px;
-    max-height: 400px;
-}
-
-.activeApparel--mrhandy .apparel-stat.leftArm,
-.activeApparel--mrhandy .apparel-stat.rightArm {
-    top: 5rem; /* 8rem - 3rem */
-}
-
-.activeApparel--mrhandy .apparel-stat.leftLeg,
-.activeApparel--mrhandy .apparel-stat.rightLeg {
-    top: 17rem; /* 20rem - 3rem */
-}
-
-.apparel-vaultboy {
-    position: absolute;
-    width: 80%;
-    height: 80%;
-    top: calc(50% + 3rem);
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-}
-
-/* Mr. Handy doesn't need the extra top offset since stats are in 4 corners */
-.apparel-vaultboy.apparel-mrhandy {
-    top: 50%;
-}
 
 /**********************
  *  CARD DEFINITIONS  *
@@ -967,143 +864,6 @@
     margin: 5px;
 }
 
-/****************************
- *  INVENTORY ACCORDION LIST *
- ****************************/
-
-/* Inventory styles moved to src/styles/features/inventory.css */
-
-/* Search and Sort Controls */
-/* moved: .inventory-list__controls */
-
-/* moved: .inventory-list__search */
-
-/* moved: .inventory-list__search i */
-
-/* moved: .inventory-list__search-input */
-
-/* moved: .inventory-list__search-input::placeholder */
-
-/* moved: .inventory-list__search-clear */
-
-/* moved: .inventory-list__actions */
-
-/* moved: .inventory-list__sort */
-
-/* moved: .inventory-list__sort-btn */
-
-/* moved: .inventory-list__sort-btn:hover */
-
-/* moved: .inventory-list__sort-btn.active */
-
-/* moved: .inventory-list__add-btn */
-
-/* moved: .inventory-list__add-btn:hover */
-
-/* moved: .inventory-list__add-btn i */
-
-/* Type Filter Dropdown */
-/* moved: .inventory-list__filter-wrapper */
-
-/* moved: .inventory-list__filter-dropdown */
-
-/* moved: .inventory-list__filter-dropdown button */
-
-/* moved: .inventory-list__filter-dropdown button:hover */
-
-/* moved: .inventory-list__filter-dropdown button.active */
-
-/* Items Container */
-/* moved: .inventory-list__items */
-
-/* moved: .inventory-list__empty */
-
-/* Group Headers */
-/* moved: .inventory-list__group-header */
-
-/* moved: .inventory-list__group-count */
-
-/* Inventory Row */
-/* moved: .inventory-row */
-
-/* moved: .inventory-row:hover */
-
-/* moved: .inventory-row.selected */
-
-/* moved: .inventory-row.selected nested color overrides */
-
-/* moved: .inventory-row.selected .inventory-row__icon */
-
-/* moved: .inventory-row.selected .inventory-row__quantity */
-
-/* Row Header (Compact View) */
-/* moved: .inventory-row__header */
-
-/* moved: .inventory-row__icon */
-
-/* moved: .inventory-row__info */
-
-/* moved: .inventory-row__name */
-
-/* moved: .inventory-row__name-input */
-
-/* moved: .inventory-row__name-input:focus */
-
-/* moved: .inventory-row__badges */
-
-/* moved: .inventory-row__subinfo */
-
-/* moved: .inventory-row__quantity */
-
-
-
-/* Badges */
-/* moved: .inventory-row__badge */
-
-/* moved: .inventory-row__badge .themed-svg */
-
-/* moved: .badge-success (inventory context) */
-
-/* moved: .inventory-row.selected .badge-success .themed-svg */
-
-/* Selected Item Display Area */
-/* moved: .inventory-list__selection */
-
-/* moved: .inventory-list__selection .card */
-
-/* moved: .inventory-list__selection .card-header--compact */
-
-/* moved: .inventory-list__selection .card-content--compact */
-
-/***********
- *  OTHER  *
- ***********/
-
-/* Tag styles moved to src/styles/components.css */
-
-/****************
- *  MAP SCREEN  *
- ****************/
-
-section#map-tabContent {
-    overflow: hidden;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-section#map-tabContent:not(.hidden) {
-    display: flex;
-}
-
-#map-container {
-    height: 100%;
-    width: 100%;
-}
-
 /*********************
  *  LOADING OVERLAY  *
  *********************/
@@ -1347,35 +1107,11 @@ body::before {
  ****************************/
 
 @media (hover: hover) {
-    .button-card:hover {
-        opacity: 0.8;
-    }
     .button:hover,
-    .popup__button-confirm:hover {
+    .confirmButton:hover {
         background-color: var(--button-hover);
     }
-    .popup__button-x:hover {
-        color: var(--primary-color);
-    }
 }
-/* TODO vedere che fare con i focus
-    GENERICO PER (QUASI) TUTTI I BOTTONI */
-/* button:focus { color: var(--primary-color); }*/
-select:focus {
-    outline: none;
-    box-shadow: 0 0 5px var(--primary-color-translucent);
-}
-
-/*********************
- *   Tooltip Panel   *
- *********************/
-/* Tooltip styles moved to src/styles/features/tooltip.css */
-
-/* Dialog styles moved to src/styles/components.css */
-
-/*****************
- * MODIFY ITEM POPUP - Mobile-First Design
- *****************/
 
 /* Modify Button in Card Controls */
 .card-controls .modify-button {
@@ -1403,126 +1139,3 @@ select:focus {
 .description-toggle-button--icon i {
     font-size: 1rem;
 }
-
-/* Modify Item Popup Specific Overrides */
-/* Modify Item Popup moved to src/styles/features/popups.css */
-
-/* Stat Adjustment Popup */
-/* Stat Adjustment Popup moved to src/styles/features/popups.css */
-
-/* moved: .stat-adjustment-popup__section */
-
-/* moved: .stat-adjustment-popup__section-title */
-
-/* Stats table for HP/Rads/Luck */
-/* moved: .stat-adjustment-popup__stats-table */
-
-/* moved: .stat-adjustment-popup__stats-table th,td */
-
-/* moved: .stat-adjustment-popup__stats-table th */
-
-/* moved: .stat-adjustment-popup__stat-label */
-
-/* moved: .stat-adjustment-popup__stat-label-icon */
-
-/* moved: .stat-adjustment-popup__stat-inputs */
-
-/* moved: .stat-adjustment-popup__stat-input */
-
-/* moved: .stat-adjustment-popup__stat-max */
-
-/* moved: .stat-adjustment-popup__rads-icon */
-
-/* moved: .stat-adjustment-popup__rads-input */
-
-/* Currency Table */
-/* moved: .stat-adjustment-popup__currency-table */
-
-/* moved: .stat-adjustment-popup__currency-table th, td */
-
-/* moved: .stat-adjustment-popup__currency-table th (header) */
-
-/* Column widths */
-/* moved: .stat-adjustment-popup__currency-table columns 1 */
-
-/* moved: .stat-adjustment-popup__currency-table columns 2 */
-
-/* moved: .stat-adjustment-popup__currency-table columns 3 */
-
-/* moved: .stat-adjustment-popup__currency-name */
-
-/* moved: .stat-adjustment-popup__currency-icon */
-
-/* moved: .stat-adjustment-popup__currency-label */
-
-/* moved: .stat-adjustment-popup__currency-input */
-
-/* moved: .stat-adjustment-popup__rate-cell */
-
-/* moved: .stat-adjustment-popup__rate-input */
-
-/* moved: .stat-adjustment-popup__rate-fixed */
-
-/* Total Row */
-/* moved: .stat-adjustment-popup__total */
-
-/* moved: .stat-adjustment-popup__total-label */
-
-/* moved: .stat-adjustment-popup__total-value */
-
-/* moved: .stat-adjustment-popup__total-icon */
-
-/* Compact Stats Bar */
-/* moved: .mod-stats-bar */
-
-/* moved: .mod-stat-row */
-
-/* moved: .mod-stat */
-
-/* moved: .mod-stat-label */
-
-/* moved: .mod-stat-value */
-
-/* moved: .mod-stat-change */
-
-/* Mod Slots Container */
-/* moved: .mod-slots-container */
-
-/* Two-column layout for many slots */
-/* moved: .mod-slots-two-columns */
-
-/* Mod Slot Row */
-/* moved: .mod-slot-row */
-
-/* moved: .mod-slot-header */
-
-/* moved: .mod-slot-label-group */
-
-/* moved: .mod-slot-header label */
-
-/* Info Button */
-/* moved: .mod-info-button */
-
-/* moved: .mod-info-button:hover */
-
-/* moved: .mod-info-icon */
-
-/* Cost badge container */
-/* moved: .mod-slot-cost-area */
-
-/* moved: .mod-slot-cost-badge */
-
-/* moved: .mod-slot-cost-badge input[type="checkbox"] */
-
-/* moved: .mod-cost-value */
-
-/* moved: .mod-slot-select */
-
-/* Total Cost Section */
-/* moved: .mod-total-section */
-
-/* moved: .mod-total-label */
-
-/* moved: .mod-total-value */
-
-/* moved: .mod-total-value .themed-svg */

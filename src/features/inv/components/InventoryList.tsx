@@ -13,8 +13,6 @@ import { useCharacter } from '@/contexts/CharacterContext.tsx';
 
 interface InventoryListProps {
     items?: CharacterItem[];
-    showSearch?: boolean;
-    groupByType?: boolean;
     typeFilter: ItemType;
 }
 type SortBy = 'name' | 'number' | 'rarity'
@@ -25,14 +23,11 @@ type SortBy = 'name' | 'number' | 'rarity'
  */
 function InventoryList({
     items = [],
-    showSearch = true,
-    groupByType = false,
     typeFilter
 }: Readonly<InventoryListProps>) {
     const { t } = useTranslation()
     const { showAddItemPopup } = usePopup()
     const [selectedItemId, setSelectedItemId] = useState<string | undefined>(undefined)
-    const [searchQuery, setSearchQuery] = useState('')
     const [categoryFilter, setCategoryFilter] = useState<ItemCategory | undefined>(undefined)
     const [showFilterDropdown, setShowFilterDropdown] = useState(false)
     const [sortBy, setSortBy] = useState<SortBy>('name')
@@ -101,16 +96,6 @@ function InventoryList({
             return dataManager.isType(dataManager.getItem(item.id), typeFilter)
         })
 
-
-        // Apply search filter
-        if (searchQuery) {
-            const query = searchQuery.toLowerCase()
-            filtered = filtered.filter(item => {
-                const itemName = t(item.id).toLowerCase()
-                return itemName.includes(query)
-            })
-        }
-
         // Apply sorting
         filtered.sort((a, b) => {
             const aData = getModifiedItemData(a)
@@ -178,29 +163,10 @@ function InventoryList({
         })
 
         return filtered
-    }, [items, searchQuery, typeFilter, t, sortBy, isAscendingDirection])
-
-    // Group items by type if enabled
-    const groupedItems: Partial<Record<ItemCategory, CharacterItem[]>> = useMemo(() => {
-
-        return processedItems.reduce((acc, item) => {
-            const itemData = dataManager.getItem(item.id)
-            const category = itemData?.CATEGORY || 'ammo'
-            return {
-                ...acc,
-                [category]: [...(acc[category] || []), item]
-            }
-        }, {} as Record<ItemCategory, CharacterItem[]>)
-    }, [processedItems])
+    }, [items, typeFilter, t, sortBy, isAscendingDirection])
 
     const handleSelect = (itemId: string) => {
         setSelectedItemId(selectedItemId === itemId ? undefined : itemId)
-    }
-
-    const handleSearchChange = (e) => {
-        setSearchQuery(e.target.value)
-        // Clear selection when searching
-        setSelectedItemId(undefined)
     }
 
     const handleCategoryFilterChange = (newCategory: ItemCategory | undefined) => {
@@ -262,126 +228,82 @@ function InventoryList({
         })
     }
 
-    const renderGroupedItems = (groupedItems: Record<string, CharacterItem[]>) => {
-        return Object.entries(groupedItems).map(([category, typeItems]) => (
-            <div key={category} className="inventory-list__group">
-                <div className="inventory-list__group-header">
-                    <span>{t(category)}</span>
-                    <span className="inventory-list__group-count">
-                                    ({typeItems.length})
-                                </span>
-                </div>
-                {renderItems(typeItems)}
-            </div>
-        ))
-    }
-
     return (
         <>
         <div className="inventory-list">
-            {/* Search and Sort Controls */}
-            {showSearch && (
-                <div className="inventory-list__controls">
-                    <div className="inventory-list__search">
-                        <i className="fas fa-search"></i>
-                        <input
-                            type="text"
-                            placeholder={t('searchItems')}
-                            value={searchQuery}
-                            onChange={handleSearchChange}
-                            className="inventory-list__search-input"
-                        />
-                        {searchQuery && (
-                            <button
-                                className="inventory-list__search-clear"
-                                onClick={() => setSearchQuery('')}
-                            >
-                                <i className="fas fa-times"></i>
-                            </button>
-                        )}
-                    </div>
+            {/* Sort and Filter Controls */}
+            <div className="inventory-list__controls row">
+                <button
+                    className={`inventory-list__sort-btn ${sortBy === 'name' ? 'active' : ''}`}
+                    onClick={() => handleSortChange('name')}
+                    title={t('sortByName')}
+                >
+                    <i className={`fas fa-sort-alpha-${sortBy === 'name' && isAscendingDirection ? 'down' : 'up'}`}></i>
+                </button>
+                <button
+                    className={`inventory-list__sort-btn ${sortBy === 'number' ? 'active' : ''}`}
+                    onClick={() => handleSortChange('number')}
+                    title={t('sortByNumber')}
+                >
+                    <i className={`fas fa-sort-numeric-${sortBy === 'number' && isAscendingDirection ? 'down' : 'up'}`}></i>
+                </button>
+                <button
+                    className={`inventory-list__sort-btn ${sortBy === 'rarity' ? 'active' : ''}`}
+                    onClick={() => handleSortChange('rarity')}
+                    title={t('sortByRarity')}
+                >
+                    <i className="fas fa-star"></i>
+                    <i className={`fas fa-arrow-${sortBy === 'rarity' && isAscendingDirection ? 'down' : 'up'}`} style={{ fontSize: '0.7em', marginLeft: '2px' }}></i>
+                </button>
 
-                    <div className="inventory-list__actions">
-                        <div className="inventory-list__sort">
-                            <button
-                                className={`inventory-list__sort-btn ${sortBy === 'name' ? 'active' : ''}`}
-                                onClick={() => handleSortChange('name')}
-                                title={t('sortByName')}
-                            >
-                                <i className={`fas fa-sort-alpha-${sortBy === 'name' && isAscendingDirection ? 'down' : 'up'}`}></i>
-                            </button>
-                            <button
-                                className={`inventory-list__sort-btn ${sortBy === 'number' ? 'active' : ''}`}
-                                onClick={() => handleSortChange('number')}
-                                title={t('sortByNumber')}
-                            >
-                                <i className={`fas fa-sort-numeric-${sortBy === 'number' && isAscendingDirection ? 'down' : 'up'}`}></i>
-                            </button>
-                            <button
-                                className={`inventory-list__sort-btn ${sortBy === 'rarity' ? 'active' : ''}`}
-                                onClick={() => handleSortChange('rarity')}
-                                title={t('sortByRarity')}
-                            >
-                                <i className="fas fa-star"></i>
-                                <i className={`fas fa-arrow-${sortBy === 'rarity' && isAscendingDirection ? 'down' : 'up'}`} style={{ fontSize: '0.7em', marginLeft: '2px' }}></i>
-                            </button>
+                {/* Type Filter Button */}
+                <div className="inventory-list__filter-wrapper">
+                    <button
+                        className={`inventory-list__sort-btn ${categoryFilter ? 'active' : ''}`}
+                        onClick={toggleFilterDropdown}
+                        title={t('filterByType')}
+                    >
+                        <i className="fas fa-filter"></i>
+                    </button>
 
-                            {/* Type Filter Button - only show if categoryFilter is provided */}
-                            <div className="inventory-list__filter-wrapper">
+                    {/* Dropdown menu */}
+                    {showFilterDropdown && (
+                        <div className="inventory-list__filter-dropdown">
+                            <button
+                                className={categoryFilter ? '' : 'active'}
+                                onClick={() => handleCategoryFilterChange(undefined)}
+                            >
+                                {t('all')}
+                            </button>
+                            {getCategories().map(category => (
                                 <button
-                                    className={`inventory-list__sort-btn ${categoryFilter ? 'active' : ''}`}
-                                    onClick={toggleFilterDropdown}
-                                    title={t('filterByType')}
+                                    key={category}
+                                    className={categoryFilter === category ? 'active' : ''}
+                                    onClick={() => handleCategoryFilterChange(category)}
                                 >
-                                    <i className="fas fa-filter"></i>
+                                    {t(category)}
                                 </button>
-
-                                {/* Dropdown menu */}
-                                {showFilterDropdown && (
-                                    <div className="inventory-list__filter-dropdown">
-                                        <button
-                                            className={categoryFilter ? '' : 'active'}
-                                            onClick={() => handleCategoryFilterChange(undefined)}
-                                        >
-                                            {t('all')}
-                                        </button>
-                                        {getCategories().map(category => (
-                                            <button
-                                                key={category}
-                                                className={categoryFilter === category ? 'active' : ''}
-                                                onClick={() => handleCategoryFilterChange(category)}
-                                            >
-                                                {t(category)}
-                                            </button>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-
+                            ))}
                         </div>
-
-                        <button
-                            className="inventory-list__add-btn"
-                            onClick={() => showAddItemPopup(typeFilter)}
-                            title={t('addItem')}
-                        >
-                            <i className="fas fa-plus"></i>
-                        </button>
-                    </div>
+                    )}
                 </div>
-            )}
+
+                <button
+                    className="inventory-list__add-btn"
+                    onClick={() => showAddItemPopup(typeFilter)}
+                    title={t('addItem')}
+                >
+                    <i className="fas fa-plus"></i>
+                </button>
+            </div>
 
             {/* Items List */}
-            <div className="inventory-list__items">
+            <div className="stack">
                 {processedItems.length === 0 ? (
                     <div className="inventory-list__empty">
-                        {searchQuery ? t('noItemsFound') : t('noItems')}
+                        {t('noItems')}
                     </div>
-                ) : groupByType ? (
-                    // Grouped by type
-                    renderGroupedItems(groupedItems)
                 ) : (
-                    // Flat list
                     renderItems(processedItems)
                 )}
             </div>

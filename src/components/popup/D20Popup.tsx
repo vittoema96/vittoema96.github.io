@@ -293,7 +293,6 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
                         }}
                         disabled={hasRolled || isUsingLuck || isMysteriousStranger || isCompanion}
                         aria-label="Special to use?"
-                        style={{ width: '100%' }}
                     >
                         {(isCompanion ? COMPANION_SPECIAL : SPECIAL).map(specialValue => (
                             <option key={specialValue} value={specialValue}>
@@ -316,7 +315,7 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
 
                 <hr />
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                <div className={"stack no-gap"}>
                     <span className="h2">Target: {targetNumber}</span>
                     <span className="h5">{skillValue} (Skill) + {specialValue} ({getSpecialDisplayName(activeSpecialId)})</span>
                     <span className="h5">Critical Hit: Roll {criticalValue > 1 ? `≤` : `=`} {criticalValue}</span>
@@ -361,15 +360,17 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
 
                         <div className="row l-distributed l-lastSmall">
                             <span>{t('aim')}?</span>
-                            <input
-                                type="checkbox"
-                                className="themed-svg"
-                                data-icon="attack"
-                                checked={isAiming}
-                                disabled={hasRolled}
-                                onChange={(e) => toggleAiming(e.target.checked)}
-                                aria-label="Aim"
-                            />
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    className="themed-svg"
+                                    data-icon="attack"
+                                    checked={isAiming}
+                                    disabled={hasRolled}
+                                    onChange={(e) => toggleAiming(e.target.checked)}
+                                    aria-label="Aim"
+                                />
+                            </div>
                         </div>
 
                         <div className="row l-distributed l-lastSmall">
@@ -394,7 +395,7 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
                     flexWrap: 'wrap'
                 }}>
                     {(!isSpecialRoller || !hasRolled) && <button
-                        className="popup__button-confirm"
+                        className="confirmButton"
                         onClick={handleRoll}
                         disabled={hasRolled && (diceActive.filter(Boolean).length === 0 || luckCost > currentLuck)}
                         style={{ flex: '1 1 auto', minWidth: '8rem' }}
@@ -403,7 +404,7 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
                     </button>}
                     {itemData && (!isSpecialRoller || hasRolled) && (
                         <button
-                            className="popup__button-confirm"
+                            className="confirmButton"
                             onClick={() => {
                                 if (!onShowDamage) {return}
                                 const damageItem = usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }
@@ -416,7 +417,7 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
                         </button>
                     )}
                     <button
-                        className="popup__button-close"
+                        className="cancelButton"
                         onClick={() => closeWithAnimation()}
                         style={{ flex: '1 1 auto', minWidth: '8rem' }}
                     >

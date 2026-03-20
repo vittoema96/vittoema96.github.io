@@ -6,7 +6,7 @@ import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import { useLongPress } from '@/hooks/useLongPress.ts';
 import { useTranslation } from 'react-i18next';
 
-const SHOW_ALL = false; // For debug only
+const SHOW_ALL = true; // For debug only
 const markers = [
     { id: `Goodsprings`,
         code: 'g00d', x: 34, y: 57 },
@@ -157,16 +157,13 @@ function MapTab() {
     }
 
     return (
-        <section id="map-tabContent" className="tabContent">
-            <div id="map-container" style={{ overflow: 'hidden', width: '100%', height: '500px' }}>
-
+        <section className="tabContent">
+            <div style={{flex: 1}}>
                 <div
                     ref={mapRef}
                     style={{
-                        display: 'block',
                         backgroundImage: 'url(/img/png/map.png)',
                         backgroundSize: 'cover',
-                        width: '100%',
                         aspectRatio: '1 / 1'
                     }}
                 >
@@ -204,7 +201,7 @@ function MapTab() {
                     ))}
                 </div>
             </div>
-            <div className="row">
+            <div className="row" style={{justifyContent: "center"}}>
                 <input type="text" style={{textAlign: 'center' }} maxLength={4} placeholder="○○○○" value={code} onChange={(e) => setCode((e.target?.value ?? '').toLowerCase())} />
                 <button onClick={handleUnlockLocation}>{t("unlock")}</button>
             </div>

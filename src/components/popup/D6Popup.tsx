@@ -771,7 +771,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                 <footer>
                     {(!hasRolled || !(diceRerolled.every(Boolean) && extraDiceRerolled.every(Boolean))) && (
                         <button
-                            className="popup__button-confirm"
+                            className="confirmButton"
                             onClick={handleRoll}
                             disabled={!isMelee(weaponData.CATEGORY) && getCurrentAmmo() < ammoCost}
                         >
@@ -785,7 +785,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                         character.perks.includes('perkGunFu') &&
                         !gunFuUsed && (
                             <button
-                                className="popup__button-confirm"
+                                className="confirmButton"
                                 onClick={() => {
                                     const totalDamage = getTotalDamage();
 
@@ -827,7 +827,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                         character.perks.includes('perkSlayer') &&
                         !slayerUsed && (
                             <button
-                                className="popup__button-confirm"
+                                className="confirmButton"
                                 onClick={() => {
                                     showConfirm(
                                         `${t('perkSlayer')}\n\n` +
@@ -854,7 +854,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                         character.perks.includes('perkMeltdown') &&
                         !meltdownUsed && (
                             <button
-                                className="popup__button-confirm"
+                                className="confirmButton"
                                 onClick={() => {
                                     setMeltdownPopupOpen(true);
                                 }}
@@ -866,7 +866,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                         )}
 
                     <button
-                        className="popup__button-close"
+                        className="cancelButton"
                         onClick={() => closeWithAnimation(callback)}
                     >
                         {t('close')}
@@ -930,13 +930,13 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                 <hr />
                 <footer style={{ padding: 0, marginTop: '0.25rem', gap: '0.5rem' }}>
                     <button
-                        className="popup__button-confirm"
+                        className="confirmButton"
                         onClick={meltdownDiceValues.length === 0 ? rollMeltdownDice : closeMeltdownPopup}
                     >
                         {meltdownDiceValues.length === 0 ? t('roll') : t('confirm')}
                     </button>
                     <button
-                        className="popup__button-close"
+                        className="cancelButton"
                         onClick={closeMeltdownPopup}
                     >
                         {t('close')}

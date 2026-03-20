@@ -1,4 +1,4 @@
-import { FitText } from '@/app/FitText.tsx';
+import { FitText } from '@/components/FitText.tsx';
 import { useTranslation } from 'react-i18next';
 
 interface PopupHeaderProps {

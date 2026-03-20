@@ -58,7 +58,7 @@ export const getHitLocationFromRoll = (roll: number, creatureType: CreatureType)
     if(creatureType === "mrHandy") {
         if (roll <= 2) { return 'robotPartSensors'; }
         if (roll <= 8) { return 'robotPartBody'; }
-        if (roll <= 11) { return 'robotPartArm1'; } // TODO should distinguish arm 1, 2 and 3
+        if (roll <= 11) { return 'robotPartArm1'; }
         if (roll <= 14) { return 'robotPartArm2'; }
         if (roll <= 17) { return 'robotPartArm3'; }
         return 'robotPartThrusters';

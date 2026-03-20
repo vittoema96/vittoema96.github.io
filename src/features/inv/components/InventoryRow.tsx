@@ -5,7 +5,7 @@ import { useInventoryActions } from '@/features/inv/hooks/useInventoryActions.ts
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { getDisplayName } from '@/utils/itemUtils.ts'
 import {CharacterItem} from '@/types'
-import { FitText } from '@/app/FitText.tsx';
+import { FitText } from '@/components/FitText.tsx';
 
 
 interface InventoryRowProps {
@@ -241,7 +241,7 @@ function InventoryRow({
                     )}
                     {canSellDelete && (
                         <button
-                            className="popup__button-confirm"
+                            className="confirmButton"
                             data-icon="caps"
                             onClick={e => {
                                 e.stopPropagation();

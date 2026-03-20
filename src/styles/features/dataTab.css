@@ -1,0 +1,75 @@
+
+.activeApparel {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    min-height: 280px;
+    align-self: center;
+}
+
+.apparel-vaultboy {
+    width: 70%;
+    aspect-ratio: 1 / 1;
+    margin-top: 20%;
+}
+.apparel-mrhandy {
+    margin-top: 0;
+}
+
+.apparel-stat {
+    position: absolute;
+    width: 80px;
+    z-index: 1;
+}
+.apparel-stat > div:first-child {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    font-size: 0.8rem;
+    padding: 5px;
+}
+.apparel-stat div {
+    text-align: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+    font-size: 0.6rem;
+}
+
+.apparel-stat.head {
+    top: 0;
+}
+.apparel-stat.leftArm,
+.apparel-stat.rightArm {
+    top: 25%;
+}
+.apparel-stat.torso {
+    top: 53%;
+}
+.apparel-stat.leftLeg,
+.apparel-stat.rightLeg {
+    top: 80%;
+}
+
+.apparel-stat.head,
+.apparel-stat.torso {
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.apparel-stat.leftArm {
+    left: 0;
+}
+.apparel-stat.rightArm {
+    right: 0;
+}
+.apparel-stat.leftLeg {
+    left: 5%;
+}
+.apparel-stat.rightLeg {
+    right: 5%;
+}
+
+/* Mr. Handy specific positioning - stats are in 4 corners, container is shorter */
+
+.activeApparel--mrhandy .apparel-stat.leftArm,
+.activeApparel--mrhandy .apparel-stat.rightArm {
+    top: 10%; /* 8rem - 3rem */
+}

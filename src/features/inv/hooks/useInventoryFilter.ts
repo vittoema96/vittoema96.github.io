@@ -19,7 +19,7 @@ export const useInventoryFilter = (itemType: ItemType) => {
             const itemData = dataManager.getItem(item.id)
             if (itemData?.TYPE !== itemType) {return false}
 
-            // Hide robot parts if origin is not Mr. Handy
+            // TODO should we "hide" robot parts? aren't they dynamic?
             return itemData?.CATEGORY !== 'robotPart' || character.origin === ORIGINS.MR_HANDY;
         })
 

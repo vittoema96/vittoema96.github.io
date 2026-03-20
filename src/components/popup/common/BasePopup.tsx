@@ -44,7 +44,7 @@ function BasePopup({
                 >
                     {onConfirm && (
                         <button
-                            className="popup__button-confirm"
+                            className="confirmButton"
                             onClick={() => closeWithAnimation(onConfirm)}
                             disabled={disabled}
                         >
@@ -52,7 +52,7 @@ function BasePopup({
                         </button>
                     )}
                     <button
-                        className="popup__button-close"
+                        className="cancelButton"
                         onClick={() => closeWithAnimation()}
                     >
                         {t('close')}

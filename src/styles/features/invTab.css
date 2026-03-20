@@ -12,76 +12,16 @@
 
 /* Search and Sort Controls */
 .inventory-list__controls {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.5rem;
     background-color: var(--secondary-color);
     border-bottom: var(--border-primary-thin);
     position: sticky;
-    top: -1rem;
+    top: calc(-1 * var(--space-l));
+    padding: var(--space-m) 0;
     z-index: 100;
-}
-
-.inventory-list__search {
-    display: none; /* Hidden to save space */
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    background-color: var(--button-background);
-    border: var(--border-primary-thin);
-    border-radius: 3px;
-}
-
-.inventory-list__search i {
-    color: var(--primary-color);
-    font-size: 0.9rem;
-}
-
-.inventory-list__search-input {
-    flex: 1;
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    font-family: inherit;
-    font-size: 0.9rem;
-    outline: none;
-}
-
-.inventory-list__search-input::placeholder {
-    color: var(--primary-color);
-    opacity: 0.5;
-}
-
-.inventory-list__search-clear {
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    cursor: pointer;
-    padding: 0.25rem;
-    font-size: 0.9rem;
-}
-
-.inventory-list__actions {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.inventory-list__sort {
-    display: flex;
-    gap: 0.5rem;
-    flex: 1;
 }
 
 .inventory-list__sort-btn {
     flex: 1;
-    padding: 0.5rem;
-    background-color: var(--button-background);
-    border: var(--border-primary-thin);
-    color: var(--primary-color);
-    cursor: pointer;
     transition: all 0.2s ease;
 }
 
@@ -96,16 +36,10 @@
 }
 
 .inventory-list__add-btn {
-    padding: 0.5rem 1rem;
     background-color: var(--primary-color);
     border: var(--border-primary-thin);
     color: var(--secondary-color);
-    cursor: pointer;
     transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    white-space: nowrap;
 }
 
 .inventory-list__add-btn:hover {
@@ -158,12 +92,6 @@
     background-color: var(--primary-color);
     color: var(--secondary-color);
     font-weight: bold;
-}
-
-/* Items Container */
-.inventory-list__items {
-    display: flex;
-    flex-direction: column;
 }
 
 .inventory-list__empty {
@@ -368,4 +296,30 @@
     padding: 0.4rem;
     padding-top: 0;
     padding-bottom: 0;
+}
+
+/* SubTab buttons (used only in Inventory tab) */
+.subTab-button {
+    /* Override button behaviour */
+    color: var(--primary-color-very-translucent);
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    font-size: 0.7rem;
+    padding: 0.25rem 0;
+
+    font-weight: normal;
+    box-sizing: border-box;
+}
+.subTab-button.active + .subTab-button,
+.subTab-button:has(+ .subTab-button.active) {
+    color: var(--primary-color-translucent);
+    font-size: 0.8rem;
+}
+.subTab-button.active {
+    font-size: 1rem;
+    font-weight: bolder;
+    color: var(--primary-color);
+    border-top: var(--border-primary-thick);
+    border-bottom: var(--border-primary-thick);
 }
