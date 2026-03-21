@@ -289,6 +289,9 @@ export interface PopupContextValue {
     showD6Popup: (usingItem: CharacterItem, hasAimed?: boolean, isMysteriousStranger?: boolean) => void;
     closeD6Popup: () => void;
 
+    showNd6Popup: (diceCount: number, title: string, description?: string, resultDisplay?: 'damage' | 'effects' | 'both', onResult?: (result: { totalDamage: number; totalEffects: number; rolls: number[] }) => void) => void;
+    closeNd6Popup: () => void;
+
     showAddItemPopup: (itemType: ItemType) => void;
     closeAddItemPopup: () => void;
 

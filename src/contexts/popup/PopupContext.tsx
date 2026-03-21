@@ -3,6 +3,7 @@ import AlertPopup from '@/components/popup/AlertPopup'
 import D20Popup from '@/components/popup/D20Popup'
 import D20PopupWithRoller from '@/components/popup/D20PopupWithRoller'
 import D6Popup from '@/components/popup/D6Popup'
+import Nd6Popup from '@/components/popup/Nd6Popup'
 import AddItemPopup from '@/components/popup/AddItemPopup'
 import TradeItemPopup from '@/components/popup/TradeItemPopup'
 import ModifyItemPopup from '@/components/popup/ModifyItemPopup'
@@ -32,6 +33,14 @@ interface D20State extends UsingItemPopupState {
 interface D6State extends UsingItemPopupState {
     hasAimed: boolean;
     isMysteriousStranger: boolean;
+}
+
+interface Nd6State {
+    diceCount: number;
+    title: string;
+    description?: string;
+    resultDisplay?: 'damage' | 'effects' | 'both';
+    onResult?: (result: { totalDamage: number; totalEffects: number; rolls: number[] }) => void;
 }
 
 interface AddItemState {
@@ -65,6 +74,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
     const [alertState, setAlertState] = useState<AlertState | undefined>(undefined)
     const [d20State, setD20State] = useState<D20State | undefined>(undefined)
     const [d6State, setD6State] = useState<D6State | undefined>(undefined)
+    const [nd6State, setNd6State] = useState<Nd6State | undefined>(undefined)
     const [addItemState, setAddItemState] = useState<AddItemState | undefined>(undefined)
     // StatAdjustment popup was moved to AppHeader (local only)
     const [tradeItemState, setTradeItemState] = useState<TradeItemState | undefined>(undefined)
@@ -125,6 +135,23 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
         setD6State(undefined)
     }, [])
 
+    // Nd6 Popup functions
+    const showNd6Popup = useCallback(
+        (diceCount: number, title: string, description?: string, resultDisplay?: 'damage' | 'effects' | 'both', onResult?: (result: { totalDamage: number; totalEffects: number; rolls: number[] }) => void) => {
+            setNd6State({
+                diceCount,
+                title,
+                description,
+                resultDisplay,
+                onResult
+            })
+        }, []
+    )
+
+    const closeNd6Popup = useCallback(() => {
+        setNd6State(undefined)
+    }, [])
+
     // AddItem Popup functions
     const showAddItemPopup = useCallback(
         (itemType: ItemType) => {
@@ -181,6 +208,8 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             closeD20Popup,
             showD6Popup,
             closeD6Popup,
+            showNd6Popup,
+            closeNd6Popup,
             showAddItemPopup,
             closeAddItemPopup,
             showTradeItemPopup,
@@ -196,6 +225,8 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             closeD20Popup,
             showD6Popup,
             closeD6Popup,
+            showNd6Popup,
+            closeNd6Popup,
             showAddItemPopup,
             closeAddItemPopup,
             showTradeItemPopup,
@@ -244,6 +275,15 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
                 usingItem={d6State.usingItem}
                 hasAimed={d6State.hasAimed}
                 isMysteriousStranger={d6State.isMysteriousStranger}
+            />}
+
+            {nd6State && <Nd6Popup
+                onClose={closeNd6Popup}
+                diceCount={nd6State.diceCount}
+                title={nd6State.title}
+                description={nd6State.description}
+                resultDisplay={nd6State.resultDisplay}
+                onResult={nd6State.onResult}
             />}
 
             {addItemState?.itemType && <AddItemPopup

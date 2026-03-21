@@ -6,11 +6,13 @@ import { TraitId } from '@/types';
 import TraitPerkItem from './TraitPerkItem.tsx';
 import TraitPerkSelector from './TraitPerkSelector.tsx';
 import TraitPerkSelectionPopup from './TraitPerkSelectionPopup.tsx';
+import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 
 function TraitList() {
     const dataManager = getGameDatabase()
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
+    const { showNd6Popup } = usePopup()
     const numberOfTraits = character.origin.numberOfTraits
 
     // Calculate fixed traits from database where FIXED === true AND ORIGINS includes current origin
@@ -36,6 +38,28 @@ function TraitList() {
         // Only show user-selected traits (not fixed ones)
         setSelectedTraits(character.traits.filter(t => !fixedTraits.includes(t)))
     }, [character.origin, character.traits, fixedTraits])
+
+    // Trait actions configuration (similar to perk actions)
+    const TRAIT_ACTIONS: Record<string, { buttonLabel: string; onClick: () => void }> = {
+        'traitRiteOfPassage': {
+            buttonLabel: 'riteOfPassageAction',
+            onClick: () => {
+                showNd6Popup(
+                    1,
+                    t('traitRiteOfPassage'),
+                    t('riteOfPassageRollDescription'),
+                    'effects',
+                    (result) => {
+                        // If rolled an effect (3-4 on d6), gain +1 luck
+                        if (result.totalEffects > 0) {
+                            const newLuck = Math.min(character.currentLuck + 1, character.special.luck);
+                            updateCharacter({ currentLuck: newLuck });
+                        }
+                    }
+                );
+            }
+        }
+    }
 
 
     // Don't render if no trait slots AND no fixed traits
@@ -93,6 +117,10 @@ function TraitList() {
                         id={traitId}
                         type="trait"
                         isFixed={true}
+                        actionButton={TRAIT_ACTIONS[traitId] ? {
+                            label: TRAIT_ACTIONS[traitId].buttonLabel,
+                            onClick: TRAIT_ACTIONS[traitId].onClick
+                        } : undefined}
                     />
                 ))}
 
@@ -110,6 +138,10 @@ function TraitList() {
                                 isFixed={false}
                                 onChangeClick={() => setChangingSlotIndex(index)}
                                 onDeleteClick={() => handleTraitRemove(index)}
+                                actionButton={TRAIT_ACTIONS[selectedTrait] ? {
+                                    label: TRAIT_ACTIONS[selectedTrait].buttonLabel,
+                                    onClick: TRAIT_ACTIONS[selectedTrait].onClick
+                                } : undefined}
                             />
                         );
                     }
