@@ -11,14 +11,7 @@ import { DamageType, GenericBodyPart } from '@/types';
 function DamageReductionDisplay() {
     const { t } = useTranslation()
     const { character } = useCharacter()
-    const damageReduction = character.locationsDR
-
     const characterIcon = character.origin.characterSvg
-
-    // Check if character has Toughness perk (+1 Physical DR to all body parts)
-    const hasToughnessPerk = character.perks.includes('perkToughness')
-
-
 
     const isMrHandy = character.origin === ORIGINS.MR_HANDY
 
@@ -50,9 +43,9 @@ function DamageReductionDisplay() {
                 <div key={key} className={`apparel-stat ${className}`}>
                     <div>{t(key)}</div>
                     <div className="row no-gap">
-                        <DREntry locationKey={key} damageType="physical" />
-                        <DREntry locationKey={key} damageType="energy" />
-                        <DREntry locationKey={key} damageType="radiation" />
+                        <DREntry locationKey={key} damageType="physical"/>
+                        <DREntry locationKey={key} damageType="energy"/>
+                        <DREntry locationKey={key} damageType="radiation"/>
                     </div>
                 </div>
             )) }
@@ -62,16 +55,20 @@ function DamageReductionDisplay() {
 }
 
 const DREntry = (
-    { locationKey, damageType, hasToughnessPerk }: { locationKey: GenericBodyPart, damageType: DamageType, hasToughnessPerk: boolean }
+    { locationKey, damageType }: { locationKey: GenericBodyPart, damageType: DamageType }
     ) => {
         const { t } = useTranslation()
         const { character } = useCharacter()
         const damageReduction = character.locationsDR
 
+        let toughnessBonus = 0;
+        if (damageType === "physical" && character.perks.includes('perkToughness')) {
+            toughnessBonus = 1;
+        }
         // Helper function to format DR value (show "Immune" for Infinity)
         const formatDR = (value: number) => {
             if (value === Infinity) {return t('immune')}
-            return value + (hasToughnessPerk ? 1 : 0)
+            return value + toughnessBonus
         }
 
         const getIcon = (damageType: DamageType) => {
@@ -92,8 +89,9 @@ const DREntry = (
                      border: 'var(--border-primary-thin)',
                      flex: 1
                 }}>
-                <i className={`fas ${getIcon(damageType)}`} title={t(damageType)}></i>
-                <span>
+                <i className={`fas ${getIcon(damageType)}`} title={t(damageType)}
+                    style={{ fontSize: '0.6rem' }}></i>
+                <span style={{ fontSize: '0.7rem' }}>
                     {(() => {
                         const val = damageReduction[locationKey][damageType]
                         return val === Infinity

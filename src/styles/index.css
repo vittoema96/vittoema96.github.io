@@ -2,6 +2,7 @@
 @import './tokens.css';
 @import './theme/themes.css';
 
+@import './features/statTab.css';
 @import './features/dataTab.css';
 @import './features/shared.css';
 @import './features/companion.css';

@@ -53,98 +53,21 @@ dialog::backdrop {
 /* STAT ADJUSTMENT POPUP STYLES */
 /*<editor-fold desc="Stat Adjustment Popup">*/
 
-.header-info-popup__section-title {
-    font-weight: bold;
-    font-size: 0.9rem;
-    color: var(--primary-color);
-    margin: 0;
-}
-
 /* Stats table for HP/Rads/Luck */
-.header-info-popup__stats-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.header-info-popup__stats-table th,
-.header-info-popup__stats-table td {
-    padding: 0.4rem 0.25rem;
-    vertical-align: middle;
-}
-
-.header-info-popup__stats-table th {
-    width: 1%;
-    white-space: nowrap;
-    text-align: left;
-    font-weight: normal;
-}
-
-.header-info-popup__stat-label {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-weight: bold;
-    font-size: 0.85rem;
-}
-
-.header-info-popup__stat-label-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    flex-shrink: 0;
-}
-
-.header-info-popup__stat-inputs {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    flex-wrap: nowrap;
-}
 
 .header-info-popup__stat-input {
-    width: 3rem;
+    max-width: 3.5rem;
     min-width: 2.5rem;
-    text-align: center;
-    padding: 0.3rem;
-    font-size: 0.9rem;
-    flex-shrink: 1;
 }
 
-.header-info-popup__stat-max {
-    font-size: 0.85rem;
-    color: var(--primary-color-translucent);
-    white-space: nowrap;
-}
-
-.header-info-popup__rads-icon {
-    font-size: 0.9rem;
-    flex-shrink: 0;
-    color: var(--warning-color);
-}
-
-.header-info-popup__rads-input {
-    width: 2.5rem;
-    min-width: 2rem;
+.header-info-popup__currency-input {
+    width: 100%;
+    max-width: 3.5rem;
     text-align: center;
     padding: 0.25rem;
-    font-size: 0.85rem;
-    border-color: var(--warning-color);
-    flex-shrink: 1;
 }
 
 /* Currency Table */
-.header-info-popup__currency-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.85rem;
-    table-layout: fixed;
-}
-
-.header-info-popup__currency-table th,
-.header-info-popup__currency-table td {
-    padding: 0.35rem 0.2rem;
-    text-align: center;
-    vertical-align: middle;
-}
 
 .header-info-popup__currency-table th {
     font-weight: bold;
@@ -170,34 +93,10 @@ dialog::backdrop {
     width: 25%;
 }
 
-.header-info-popup__currency-name {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    overflow: hidden;
-}
-
-.header-info-popup__currency-icon {
-    width: 1.75rem;
-    height: 1.75rem;
-    flex-shrink: 0;
-}
-
 .header-info-popup__currency-label {
-    font-weight: bold;
     font-size: 0.75rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
     text-align: center;
     width: 100%;
-}
-
-.header-info-popup__currency-input {
-    width: 100%;
-    max-width: 3.5rem;
-    text-align: center;
-    padding: 0.25rem;
-    font-size: 0.85rem;
 }
 
 .header-info-popup__rate-cell {

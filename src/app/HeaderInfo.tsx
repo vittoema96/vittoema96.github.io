@@ -58,12 +58,12 @@ function HeaderInfoRow({
             className={"row"}
         >
             <div
-                className="themed-svg small-icon"
+                className="themed-svg icon-s"
                 data-icon={icon}
             ></div>
             <div style={{ flex: 1 }}>
                 {value}
-                {value2 && <span className={value2Danger ? 'text-danger' : ''}> / {value2}</span>}
+                {value2 && <span className={value2Danger ? 'text-warning' : ''}> / {value2}</span>}
             </div>
         </div>
     );

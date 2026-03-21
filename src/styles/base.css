@@ -171,3 +171,15 @@ nav {
     gap: var(--space-s);
     flex-shrink: 0;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 0.85rem;
+}
+th {
+    gap: var(--space-m);
+    align-items: center;
+    font-weight: bold;
+}

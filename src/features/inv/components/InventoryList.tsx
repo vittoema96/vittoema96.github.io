@@ -229,7 +229,6 @@ function InventoryList({
     }
 
     return (
-        <>
         <div className="inventory-list">
             {/* Sort and Filter Controls */}
             <div className="inventory-list__controls row">
@@ -307,23 +306,22 @@ function InventoryList({
                     renderItems(processedItems)
                 )}
             </div>
+
+            {/* Selected Item Card Area - Outside inventory-list */}
+            {selectedItemId && (() => {
+                const selectedItem = processedItems.find(item => getItemKey(item) === selectedItemId)
+                if (!selectedItem) {return null}
+
+                const CardComponent = getCardComponent(selectedItem)
+                if (!CardComponent) {return null}
+
+                return (
+                    <div className="inventory-list__selected">
+                        <CardComponent characterItem={selectedItem} />
+                    </div>
+                )
+            })()}
         </div>
-
-        {/* Selected Item Card Area - Outside inventory-list */}
-        {selectedItemId && (() => {
-            const selectedItem = processedItems.find(item => getItemKey(item) === selectedItemId)
-            if (!selectedItem) {return null}
-
-            const CardComponent = getCardComponent(selectedItem)
-            if (!CardComponent) {return null}
-
-            return (
-                <div className="inventory-list__selection">
-                    <CardComponent characterItem={selectedItem} />
-                </div>
-            )
-        })()}
-        </>
     )
 }
 

@@ -31,15 +31,13 @@ function InvTab() {
                 ))}
             </nav>
 
-            <section>
-                {activeSubTab === 'apparel' && (
-                    <>
-                        <EquippedApparel />
-                        <ActiveEffectsDisplay />
-                    </>
-                )}
-                <InventoryList items={items} typeFilter={activeSubTab} />
-            </section>
+            {activeSubTab === 'apparel' && (
+                <>
+                    <EquippedApparel />
+                    <ActiveEffectsDisplay />
+                </>
+            )}
+            <InventoryList items={items} typeFilter={activeSubTab} />
         </section>
     );
 }
