@@ -127,8 +127,9 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
             </div>
 
             {/* Tags container for effects and qualities - Compact */}
-            {(itemData.EFFECTS?.length > 0 || itemData.QUALITIES?.length > 0) && (
-                <div className="tags-container tags-container--compact">
+            {(itemData.EFFECTS?.length > 0 || itemData.QUALITIES?.length > 0) && <>
+                <hr/>
+                <div className="tags-container">
                     {/* Intrinsic EFFECTS (from base item) */}
                     {itemData.EFFECTS?.map((effect) => {
                         const [effectType, effectOpt] = effect.split(':');
@@ -160,7 +161,7 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
                         );
                     })}
                 </div>
-            )}
+            </>}
         </>
     )
 }

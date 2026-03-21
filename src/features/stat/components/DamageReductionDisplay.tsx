@@ -88,8 +88,7 @@ const DREntry = (
         return (
             <div className="stack no-gap l-centered"
                  style={{
-                     padding: 'var(--space-s)',
-                     paddingBottom: 0,
+                     padding: 'var(--space-xs) var(--space-s) 0 var(--space-s)',
                      border: 'var(--border-primary-thin)',
                      flex: 1
                 }}>

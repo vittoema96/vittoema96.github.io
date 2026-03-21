@@ -16,19 +16,7 @@ function TabButton({ tabType, active, onClick }: Readonly<TabButtonProps>) {
 
     return (
         <button
-            style={{
-                borderBottom: 0,
-                borderBottomLeftRadius: 0,
-                borderBottomRightRadius: 0,
-                padding: '0.2rem',
-                flex: 1,
-                boxSizing: 'border-box',
-                ...(isMiniTab ? {flex: '0 0 auto'} : {}),
-                ...(active? {
-                    color: 'var(--secondary-color)',
-                    backgroundColor: 'var(--primary-color)',
-                }: {})
-            }}
+            className={`tab-button ${isMiniTab ? 'mini' : ''} ${active ? 'active' : ''}`}
             onClick={onClick}
         >
             {isSettings && <i className="fas fa-gear" />}

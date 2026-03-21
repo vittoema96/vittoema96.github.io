@@ -67,8 +67,9 @@ function ApparelContent({ characterItem, actionButtons }: Readonly<ApparelConten
             </div>
 
             {/* Tags container for effects - Compact */}
-            {itemData.EFFECTS?.length > 0 && (
-                <div className="tags-container tags-container--compact">
+            {itemData.EFFECTS?.length > 0 && <>
+                <hr/>
+                <div className="tags-container">
                     {itemData.EFFECTS.map((effect) => {
                         const [effectType, effectOpt] = effect.split(':');
                         let displayValue = t(effectOpt!)
@@ -83,7 +84,7 @@ function ApparelContent({ characterItem, actionButtons }: Readonly<ApparelConten
                         );
                     })}
                 </div>
-            )}
+            </>}
         </>
     );
 }

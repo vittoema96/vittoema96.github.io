@@ -52,20 +52,18 @@ function HeaderInfoRow({
     return (
         <div
             style={{
-                padding: '2px',
-                display: 'flex',
+                borderBottom: useBorder ? "var(--border-primary-thick)" : 0,
+                paddingRight: "var(--space-m)"
             }}
-            className={useBorder ? 'bottomBorder' : ''}
+            className={"row"}
         >
             <div
-                className="themed-svg"
-                style={{ width: '15px', height: '15px' }}
+                className="themed-svg small-icon"
                 data-icon={icon}
             ></div>
-            <div style={{ flex: 1, textAlign: 'center', padding: '0 8px' }}>
+            <div style={{ flex: 1 }}>
                 {value}
-                {value2 && ' / '}
-                {value2 && <span className={value2Danger ? 'text-danger' : ''}>{value2}</span>}
+                {value2 && <span className={value2Danger ? 'text-danger' : ''}> / {value2}</span>}
             </div>
         </div>
     );

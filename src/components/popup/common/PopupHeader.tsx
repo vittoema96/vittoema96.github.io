@@ -11,7 +11,7 @@ function PopupHeader({ title, onClose }: Readonly<PopupHeaderProps>) {
     return (
         <div className="row l-lastSmall">
             <div style={{ padding: '0.5rem' }}>
-                <FitText minSize={20} maxSize={40}>
+                <FitText wrap minSize={20} maxSize={40}>
                     {t(title)}
                 </FitText>
             </div>

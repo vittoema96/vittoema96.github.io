@@ -75,7 +75,7 @@
 
 .tabContent {
     flex: 1;
-    gap: var(--space-l);
+    gap: var(--space-xl);
 }
 
 /*********************
@@ -838,21 +838,6 @@
     border-radius: 2px;
 }
 
-/* Compact Tags */
-.tags-container--compact {
-    margin-top: 0;
-    padding-top: 0.5rem;
-    gap: 0.3rem;
-    border-top: 1px solid var(--primary-color);
-    opacity: 0.95;
-}
-
-.tags-container--compact .tag {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-}
-
 .card-weapon-image {
     margin: 10px;
     align-self: stretch;
@@ -1102,16 +1087,6 @@ body::before {
 }
 /* Themed SVG styles moved to src/styles/components.css */
 
-/****************************
- *   TODO Focus and Hover   *
- ****************************/
-
-@media (hover: hover) {
-    .button:hover,
-    .confirmButton:hover {
-        background-color: var(--button-hover);
-    }
-}
 
 /* Modify Button in Card Controls */
 .card-controls .modify-button {

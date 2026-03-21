@@ -1,5 +1,19 @@
 /* Component-level styles extracted from styles.css */
 
+.tab-button {
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: var(--space-xs) var(--space-s);
+    flex: 1;
+}
+.tab-button.active {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+}
+.tab-button.mini {
+    flex: 0 0 auto;
+}
 
 /* Tags */
 .tags-container {
@@ -8,15 +22,17 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    gap: 0.5rem;
+    gap: var(--space-s);
 }
 .tag {
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    border-radius: 4px;
-    padding: 0.3rem;
-    font-size: 0.8rem;
+    border-radius: var(--space-xs);
+    padding: var(--space-xs) var(--space-s);
+    font-size: 0.7rem;
 }
+
+/* TODO is !important needed? */
 .tag-empty {
     background-color: var(--button-background) !important;
     color: var(--primary-color) !important;
@@ -44,12 +60,11 @@
 .themed-svg[data-icon='attack'] { --image-url: url('/img/svg/attack.svg'); }
 .themed-svg[data-icon='bigGuns'] { --image-url: url('/img/svg/bigGuns.svg'); }
 .themed-svg[data-icon='caps'] { --image-url: url('/img/svg/caps.svg'); }
-.themed-svg[data-icon='drinks'] { --image-url: url('/img/svg/drinks.svg'); }
 .themed-svg[data-icon='energyWeapons'] { --image-url: url('/img/svg/energyWeapons.svg'); }
 .themed-svg[data-icon='explosives'] { --image-url: url('/img/svg/explosives.svg'); }
 .themed-svg[data-icon='food'] { --image-url: url('/img/svg/food.svg'); }
-.themed-svg[data-icon='gear'] { --image-url: url('/img/svg/gear.svg'); }
 .themed-svg[data-icon='drinks'] { --image-url: url('/img/svg/drinks.svg'); }
+.themed-svg[data-icon='gear'] { --image-url: url('/img/svg/gear.svg'); }
 .themed-svg[data-icon='hp'] { --image-url: url('/img/svg/hp.svg'); }
 .themed-svg[data-icon='luck'] { --image-url: url('/img/svg/luck.svg'); }
 .themed-svg[data-icon='meds'] { --image-url: url('/img/svg/meds.svg'); }

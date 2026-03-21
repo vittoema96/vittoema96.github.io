@@ -161,112 +161,109 @@ function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
             onConfirm={onConfirm}
             onClose={onClose}
             disabled={!isFormValid}
-            className="stat-adjustment-popup"
         >
             <hr />
 
             {/* HP, Rads & Luck Section */}
-            <div className="stat-adjustment-popup__section">
-                <table className="stat-adjustment-popup__stats-table">
-                    <tbody>
-                    {/* HP Row */}
-                    <tr>
-                        <th scope="row">
-                            <div className="stat-adjustment-popup__stat-label">
-                                <div
-                                    className="themed-svg stat-adjustment-popup__stat-label-icon"
-                                    data-icon="hp"
-                                />
-                                HP
-                            </div>
-                        </th>
-                        <td>
+            <table className="header-info-popup__stats-table">
+                <tbody>
+                {/* HP Row */}
+                <tr>
+                    <th scope="row">
+                        <div className="header-info-popup__stat-label">
                             <div
-                                className="stat-adjustment-popup__stat-inputs"
-                                style={{ justifyContent: 'space-between' }}
-                            >
-                                <div>
-                                    <input
-                                        type="number"
-                                        className="stat-adjustment-popup__stat-input"
-                                        value={currentHp}
-                                        onChange={handleNumberChange(
-                                            setCurrentHp,
-                                            0,
-                                            effectiveMaxHp,
-                                        )}
-                                        min="0"
-                                        max={effectiveMaxHp}
-                                    />
-                                    <span className="stat-adjustment-popup__stat-max">
-                                            &nbsp;/ {effectiveMaxHp}
-                                        </span>
-                                </div>
-                                <div>
-                                    <i
-                                        className="fas fa-radiation stat-adjustment-popup__rads-icon"
-                                        title={t('radiation')}
-                                        style={{ padding: '0.3rem' }}
-                                    />
-                                    <input
-                                        type="number"
-                                        className="stat-adjustment-popup__rads-input"
-                                        value={rads}
-                                        onChange={handleNumberChange(
-                                            setRads,
-                                            0,
-                                            character.maxHp,
-                                        )}
-                                        min="0"
-                                        max={character.maxHp}
-                                        title={t('radiation')}
-                                    />
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    {/* Luck Row */}
-                    <tr>
-                        <th scope="row">
-                            <div className="stat-adjustment-popup__stat-label">
-                                <div
-                                    className="themed-svg stat-adjustment-popup__stat-label-icon"
-                                    data-icon="luck"
-                                />
-                                {t('luck')}
-                            </div>
-                        </th>
-                        <td>
-                            <div className="stat-adjustment-popup__stat-inputs">
+                                className="themed-svg header-info-popup__stat-label-icon"
+                                data-icon="hp"
+                            />
+                            HP
+                        </div>
+                    </th>
+                    <td>
+                        <div
+                            className="header-info-popup__stat-inputs"
+                            style={{ justifyContent: 'space-between' }}
+                        >
+                            <div>
                                 <input
                                     type="number"
-                                    className="stat-adjustment-popup__stat-input"
-                                    value={currentLuck}
+                                    className="header-info-popup__stat-input"
+                                    value={currentHp}
                                     onChange={handleNumberChange(
-                                        setCurrentLuck,
+                                        setCurrentHp,
                                         0,
-                                        character.maxLuck,
+                                        effectiveMaxHp,
                                     )}
                                     min="0"
-                                    max={character.maxLuck}
+                                    max={effectiveMaxHp}
                                 />
-                                <span className="stat-adjustment-popup__stat-max">
-                                        &nbsp;/ {character.maxLuck}
+                                <span className="header-info-popup__stat-max">
+                                        &nbsp;/ {effectiveMaxHp}
                                     </span>
                             </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                            <div>
+                                <i
+                                    className="fas fa-radiation header-info-popup__rads-icon"
+                                    title={t('radiation')}
+                                    style={{ padding: '0.3rem' }}
+                                />
+                                <input
+                                    type="number"
+                                    className="header-info-popup__rads-input"
+                                    value={rads}
+                                    onChange={handleNumberChange(
+                                        setRads,
+                                        0,
+                                        character.maxHp,
+                                    )}
+                                    min="0"
+                                    max={character.maxHp}
+                                    title={t('radiation')}
+                                />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {/* Luck Row */}
+                <tr>
+                    <th scope="row">
+                        <div className="header-info-popup__stat-label">
+                            <div
+                                className="themed-svg header-info-popup__stat-label-icon"
+                                data-icon="luck"
+                            />
+                            {t('luck')}
+                        </div>
+                    </th>
+                    <td>
+                        <div className="header-info-popup__stat-inputs">
+                            <input
+                                type="number"
+                                className="header-info-popup__stat-input"
+                                value={currentLuck}
+                                onChange={handleNumberChange(
+                                    setCurrentLuck,
+                                    0,
+                                    character.maxLuck,
+                                )}
+                                min="0"
+                                max={character.maxLuck}
+                            />
+                            <span className="header-info-popup__stat-max">
+                                    &nbsp;/ {character.maxLuck}
+                                </span>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
             <hr />
 
             {/* Currency Section */}
-            <div className="stat-adjustment-popup__section">
-                <h3 className="stat-adjustment-popup__section-title">{t('currency')}</h3>
+            <section>
+                <h3 className="header-info-popup__section-title">{t('currency')}</h3>
 
-                <table className="stat-adjustment-popup__currency-table">
+                <table className="header-info-popup__currency-table">
                     <thead>
                     <tr>
                         <th>{t('type')}</th>
@@ -278,12 +275,12 @@ function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                     {currencies.map(currency => (
                         <tr key={currency.id}>
                             <td>
-                                <div className="stat-adjustment-popup__currency-name">
+                                <div className="header-info-popup__currency-name">
                                     <div
-                                        className="themed-svg stat-adjustment-popup__currency-icon"
+                                        className="themed-svg header-info-popup__currency-icon"
                                         data-icon={currency.icon}
                                     />
-                                    <span className="stat-adjustment-popup__currency-label">
+                                    <span className="header-info-popup__currency-label">
                                             {t(currency.id)}
                                         </span>
                                 </div>
@@ -291,19 +288,19 @@ function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                             <td>
                                 <input
                                     type="number"
-                                    className="stat-adjustment-popup__currency-input"
+                                    className="header-info-popup__currency-input"
                                     value={currency.value}
                                     onChange={handleNumberChange(currency.setter, 0)}
                                     min="0"
                                 />
                             </td>
                             <td>
-                                <div className="stat-adjustment-popup__rate-cell">
+                                <div className="header-info-popup__rate-cell">
                                     {currency.rateSetter ? (
                                         <>
                                             <input
                                                 type="number"
-                                                className="stat-adjustment-popup__rate-input"
+                                                className="header-info-popup__rate-input"
                                                 value={currency.rate}
                                                 style={{
                                                     fontSize: '0.75rem',
@@ -316,12 +313,12 @@ function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                                                 min="0.1"
                                                 step="0.1"
                                             />
-                                            <span className="stat-adjustment-popup__rate-fixed">
+                                            <span className="header-info-popup__rate-fixed">
                                                     &nbsp;: 1
                                                 </span>
                                         </>
                                     ) : (
-                                        <span className="stat-adjustment-popup__rate-fixed">
+                                        <span className="header-info-popup__rate-fixed">
                                                 1 : 1
                                             </span>
                                     )}
@@ -333,9 +330,9 @@ function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                 </table>
 
                 {/* Total Caps Equivalent */}
-                <div className="stat-adjustment-popup__total">
-                    <span className="stat-adjustment-popup__total-label">{t('total')}:</span>
-                    <span className="stat-adjustment-popup__total-value">
+                <div className="header-info-popup__total">
+                    <span className="header-info-popup__total-label">{t('total')}:</span>
+                    <span className="header-info-popup__total-value">
                         {totalCapsEquivalent}
                     </span>
                     <div
@@ -343,9 +340,7 @@ function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                         data-icon="caps"
                     />
                 </div>
-            </div>
-
-            <hr />
+            </section>
         </BasePopup>
     );
 }

@@ -144,8 +144,6 @@ function TradeItemPopup({ onClose, characterItem, itemData, onConfirm }) {
                     ></div>
                 </div>
             </div>
-
-            <hr />
         </BasePopup>
     )
 }

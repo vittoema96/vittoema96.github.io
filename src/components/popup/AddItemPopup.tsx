@@ -229,8 +229,6 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                 </label>
             </div>
 
-            <hr />
-
         </BasePopup>
     )
 }

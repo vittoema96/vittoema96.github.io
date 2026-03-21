@@ -7,7 +7,6 @@
     gap: 0;
     width: 100%;
     flex: 1;
-    overflow-y: auto;
 }
 
 /* Search and Sort Controls */
@@ -15,7 +14,7 @@
     background-color: var(--secondary-color);
     border-bottom: var(--border-primary-thin);
     position: sticky;
-    top: calc(-1 * var(--space-l));
+    top: calc(-1 * var(--space-xl));
     padding: var(--space-m) 0;
     z-index: 100;
 }

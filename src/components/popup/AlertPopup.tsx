@@ -18,7 +18,6 @@ function AlertPopup({ onClose, content, onConfirm, showConfirm = false }: Readon
             onClose={onClose}>
             <hr />
             <p style={{ whiteSpace: 'pre-line' }}>{content}</p>
-            <hr />
         </BasePopup>
     )
 }

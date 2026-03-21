@@ -479,20 +479,20 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
 
     return (
         <DialogPortal>
-            <dialog ref={dialogRef} style={{ minWidth: '300px', maxWidth: '320px' }}>
-                <PopupHeader title={weaponData.ID} onClose={() => closeWithAnimation(callback)}/>
+            <dialog ref={dialogRef}>
+                <div className="stack no-gap">
+                    <PopupHeader title={weaponData.ID} onClose={() => closeWithAnimation(callback)}/>
 
-                {/* Compact header: damage type + effects/qualities in one section */}
-                <div style={{ marginBottom: '0.25rem' }}>
-                    <div className="h4" style={{ marginBottom: '0.25rem' }}>
+                    {/* Damage Type */}
+                    <div className="h4">
                         {t('damage')}: {t(weaponData.DAMAGE_TYPE)}
                     </div>
 
-                    {/* Effects and Qualities Tags - compact */}
+                    {/* Effects and Qualities Tags */}
                     {(weaponData.EFFECTS?.length > 0 || weaponData.QUALITIES?.length > 0) && (
                         <div
-                            className="row"
-                            style={{ flexWrap: 'wrap', gap: '0.25rem', justifyContent: 'center' }}
+                            className="row l-centered"
+                            style={{ flexWrap: 'wrap', gap: '0.25rem'}}
                         >
                             {weaponData.EFFECTS?.map(effect => {
                                 const [effectType, effectOpt] = effect.split(':');
@@ -866,7 +866,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                         )}
 
                     <button
-                        className="cancelButton"
+                        className="closeButton"
                         onClick={() => closeWithAnimation(callback)}
                     >
                         {t('close')}
@@ -936,7 +936,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                         {meltdownDiceValues.length === 0 ? t('roll') : t('confirm')}
                     </button>
                     <button
-                        className="cancelButton"
+                        className="closeButton"
                         onClick={closeMeltdownPopup}
                     >
                         {t('close')}

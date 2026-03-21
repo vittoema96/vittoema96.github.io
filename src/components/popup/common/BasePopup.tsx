@@ -34,14 +34,8 @@ function BasePopup({
                 <PopupHeader title={title} onClose={() => closeWithAnimation()}/>
 
                 {children}
-
-                <footer
-                    style={{
-                        padding: 0,
-                        marginTop: '0.25rem',
-                        gap: '0.5rem'
-                    }}
-                >
+            <hr/>
+                <footer>
                     {onConfirm && (
                         <button
                             className="confirmButton"
@@ -52,7 +46,7 @@ function BasePopup({
                         </button>
                     )}
                     <button
-                        className="cancelButton"
+                        className="closeButton"
                         onClick={() => closeWithAnimation()}
                     >
                         {t('close')}

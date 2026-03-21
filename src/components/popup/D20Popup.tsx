@@ -279,21 +279,15 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
             <dialog ref={dialogRef}>
                 <PopupHeader title={skillId} onClose={() => closeWithAnimation()}/>
 
+                { /* Special selection + checkbox */ }
                 <div className="row l-lastSmall">
                     <select
                         value={isUsingLuck ? 'luck' : selectedSpecial}
-                        onChange={(e) => {
-                            const value = e.target.value
-                            if (value === 'luck') {
-                                setIsUsingLuck(true)
-                            } else {
-                                setIsUsingLuck(false)
-                                setSelectedSpecial(value as SpecialType)
-                            }
-                        }}
+                        onChange={(e) => setSelectedSpecial(e.target.value as SpecialType)}
                         disabled={hasRolled || isUsingLuck || isMysteriousStranger || isCompanion}
                         aria-label="Special to use?"
                     >
+                        {/* TODO COMPANION not all companions have mind/body, some have normal specials */}
                         {(isCompanion ? COMPANION_SPECIAL : SPECIAL).map(specialValue => (
                             <option key={specialValue} value={specialValue}>
                                 {getSpecialDisplayName(specialValue as SpecialType)}
@@ -305,9 +299,7 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
                         className="themed-svg"
                         data-icon="luck"
                         checked={isUsingLuck}
-                        onChange={(e) => {
-                            setIsUsingLuck(e.target.checked)
-                        }}
+                        onChange={(e) => setIsUsingLuck(e.target.checked)}
                         disabled={hasRolled}
                         aria-label="Use Luck"
                     />}
@@ -323,13 +315,9 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
 
                 <hr />
 
-                <div style={{
-                    display: 'flex',
+                <div className={"row "} style={{
                     justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    flexWrap: 'wrap',
-                    minHeight: '4rem'
+                    flexWrap: 'wrap'
                 }}>
                     {diceValues.map((value, index) => {
                         const diceClass = getDiceClass(value)
@@ -388,20 +376,17 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
 
                 <hr />
 
-                <footer style={{
-                    display: 'flex',
-                    gap: '0.5rem',
-                    justifyContent: 'center',
-                    flexWrap: 'wrap'
-                }}>
+                <footer>
+                    {/* Reroll button  */}
                     {(!isSpecialRoller || !hasRolled) && <button
                         className="confirmButton"
                         onClick={handleRoll}
                         disabled={hasRolled && (diceActive.filter(Boolean).length === 0 || luckCost > currentLuck)}
-                        style={{ flex: '1 1 auto', minWidth: '8rem' }}
                     >
                         {t(hasRolled ? 'reroll' : 'roll')}
                     </button>}
+
+                    {/* Damage button */}
                     {itemData && (!isSpecialRoller || hasRolled) && (
                         <button
                             className="confirmButton"
@@ -410,22 +395,43 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
                                 const damageItem = usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }
                                 onShowDamage(damageItem, isAiming, isMysteriousStranger || isCompanion)
                             }}
+                            /* TODO Companions SHOULD use ammo too */
                             disabled={!hasRolled || ((isMysteriousStranger || isCompanion) ? false : !hasEnoughAmmo(itemData, character))}
-                            style={{ flex: '1 1 auto', minWidth: '8rem' }}
                         >
                             {t('damage')}
                         </button>
                     )}
+
+                    {/* Close button */}
                     <button
-                        className="cancelButton"
+                        className="closeButton"
                         onClick={() => closeWithAnimation()}
-                        style={{ flex: '1 1 auto', minWidth: '8rem' }}
                     >
                         {t('close')}
                     </button>
                 </footer>
             </dialog>
         </DialogPortal>
+    )
+}
+
+function D20({ value, onClick, isActive, isRerolled }: Readonly<{
+    value: string | number;
+    onClick: () => void;
+    isActive: boolean;
+    isRerolled: boolean;
+}>) {
+    return (
+        <input
+            type="checkbox"
+            className="themed-svg"
+            data-icon="attack"
+            checked={isActive}
+            onChange={onClick}
+            aria-label="Select dice"
+        >
+
+        </input>
     )
 }
 
