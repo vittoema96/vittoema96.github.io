@@ -1,12 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
+import { CharacterItem, Item } from '@/types';
+import useInputNumberState from '@/hooks/useInputNumberState.ts';
 
-function TradeItemPopup({ onClose, characterItem, itemData, onConfirm }) {
+function TradeItemPopup({ onClose, characterItem, itemData, onConfirm } : Readonly<{
+    onClose: () => void;
+    characterItem: CharacterItem;
+    itemData: Item;
+    onConfirm: (quantity: number, price: number) => void;
+}>) {
     const { t } = useTranslation()
 
-    const [quantity, setQuantity] = useState('')
-    const [price, setPrice] = useState('')
+    const [quantity, setQuantity] = useInputNumberState()
+    const [price, setPrice] = useInputNumberState()
 
     // Calculate sell price (70% of cost)
     const tradeValueRate = 0.7
@@ -26,7 +33,7 @@ function TradeItemPopup({ onClose, characterItem, itemData, onConfirm }) {
     }, [characterItem, itemData])
 
     const handleConfirm = () => {
-        if (onConfirm) {
+        if (onConfirm && quantity && price) {
             onConfirm(quantity, price)
         }
     }
@@ -35,35 +42,23 @@ function TradeItemPopup({ onClose, characterItem, itemData, onConfirm }) {
         const value = e.target.value
 
         // Allow empty string
-        if (value === '') {
-            setQuantity('')
-            return
-        }
-
-        const numValue = parseInt(value)
-        if (!isNaN(numValue) && numValue >= 1 && numValue <= characterItem.quantity) {
-            setQuantity(numValue)
-        }
+        const val = Number.parseInt(value)
+        if (Number.isNaN(val)) { setQuantity('') }
+        else if (val >= 1 && val <= characterItem.quantity) { setQuantity(val) }
     }
 
     const handlePriceChange = (e) => {
         const value = e.target.value
 
         // Allow empty string
-        if (value === '') {
-            setPrice('')
-            return
-        }
-
-        const numValue = parseFloat(value)
-        if (!isNaN(numValue) && numValue >= 0) {
-            setPrice(numValue)
-        }
+        const val = Number.parseInt(value)
+        if (Number.isNaN(val)) { setPrice('') }
+        else if (val >= 0) { setPrice(val) }
     }
 
     // Check if inputs are valid
-    const isQuantityValid = quantity !== '' && !isNaN(quantity) && quantity >= 1 && quantity <= characterItem.quantity
-    const isPriceValid = price !== '' && !isNaN(price) && price >= 0
+    const isQuantityValid = quantity !== '' && !Number.isNaN(quantity) && quantity >= 1 && quantity <= characterItem.quantity
+    const isPriceValid = price !== '' && !Number.isNaN(price) && price >= 0
     const isFormValid = isQuantityValid && isPriceValid
 
     const total = isFormValid ? Math.floor(quantity * price) : 0
@@ -74,7 +69,7 @@ function TradeItemPopup({ onClose, characterItem, itemData, onConfirm }) {
             title="barter"
             onConfirm={handleConfirm}
             onClose={onClose}
-            disabled={!isFormValid}
+            confirmDisabled={!isFormValid}
         >
             {/* Item Name */}
             {itemData && (

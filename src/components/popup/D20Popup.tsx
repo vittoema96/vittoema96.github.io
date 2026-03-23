@@ -1,14 +1,13 @@
-import { useState, useRef, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
-import { useDialog } from '@/hooks/useDialog'
 import { hasEnoughAmmo } from '@/utils/itemUtils';
 import { CharacterItem, SkillType, SPECIAL, COMPANION_SPECIAL, SpecialType, WeaponItem, CompanionSkillType } from '@/types';
 import {SKILL_TO_SPECIAL_MAP} from "@/utils/characterSheet";
 import { COMPANION_SKILL_TO_SPECIAL_MAP } from '@/utils/companionTypes';
-import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
-import PopupHeader from '@/components/popup/common/PopupHeader.tsx';
-import DialogPortal from '@/components/popup/common/DialogPortal.tsx';
+import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
+import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import BasePopup from '@/components/popup/common/BasePopup.tsx';
 
 
 export type RollerType = 'companion' | 'mysteriousStranger'
@@ -33,7 +32,6 @@ interface D20PopupProps {
 
 function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: Readonly<D20PopupProps>) {
     const { t } = useTranslation()
-    const dialogRef = useRef<HTMLDialogElement>(null)
     const { character, updateCharacter } = useCharacter()
     const dataManager = getGameDatabase()
 
@@ -261,9 +259,6 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
         }
     }
 
-    // Use dialog hook for dialog management
-    const { closeWithAnimation } = useDialog(dialogRef, onClose)
-
     if (!skill) {return null}
 
     function toggleAiming(checked: boolean) {
@@ -275,9 +270,38 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
     }
 
     return (
-        <DialogPortal>
-            <dialog ref={dialogRef}>
-                <PopupHeader title={skillId} onClose={() => closeWithAnimation()}/>
+        <BasePopup
+            title={skillId}
+            onClose={onClose}
+            footerChildren={
+                <>
+                    {/* Reroll button  */}
+                    {(!isSpecialRoller || !hasRolled) && <button
+                        className="confirmButton"
+                        onClick={handleRoll}
+                        disabled={hasRolled && (diceActive.filter(Boolean).length === 0 || luckCost > currentLuck)}
+                    >
+                        {t(hasRolled ? 'reroll' : 'roll')}
+                    </button>}
+
+                    {/* Damage button */}
+                    {itemData && (!isSpecialRoller || hasRolled) && (
+                        <button
+                            className="confirmButton"
+                            onClick={() => {
+                                if (!onShowDamage) {return}
+                                const damageItem = usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }
+                                onShowDamage(damageItem, isAiming, isMysteriousStranger || isCompanion)
+                            }}
+                            /* TODO Companions SHOULD use ammo too */
+                            disabled={!hasRolled || ((isMysteriousStranger || isCompanion) ? false : !hasEnoughAmmo(itemData, character))}
+                        >
+                            {t('damage')}
+                        </button>
+                    )}
+                </>
+            }
+        >
 
                 { /* Special selection + checkbox */ }
                 <div className="row l-lastSmall">
@@ -373,45 +397,7 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
                 <hr />
 
                 <span className="h3">{t('successes')}: {getSuccesses()}</span>
-
-                <hr />
-
-                <footer>
-                    {/* Reroll button  */}
-                    {(!isSpecialRoller || !hasRolled) && <button
-                        className="confirmButton"
-                        onClick={handleRoll}
-                        disabled={hasRolled && (diceActive.filter(Boolean).length === 0 || luckCost > currentLuck)}
-                    >
-                        {t(hasRolled ? 'reroll' : 'roll')}
-                    </button>}
-
-                    {/* Damage button */}
-                    {itemData && (!isSpecialRoller || hasRolled) && (
-                        <button
-                            className="confirmButton"
-                            onClick={() => {
-                                if (!onShowDamage) {return}
-                                const damageItem = usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }
-                                onShowDamage(damageItem, isAiming, isMysteriousStranger || isCompanion)
-                            }}
-                            /* TODO Companions SHOULD use ammo too */
-                            disabled={!hasRolled || ((isMysteriousStranger || isCompanion) ? false : !hasEnoughAmmo(itemData, character))}
-                        >
-                            {t('damage')}
-                        </button>
-                    )}
-
-                    {/* Close button */}
-                    <button
-                        className="closeButton"
-                        onClick={() => closeWithAnimation()}
-                    >
-                        {t('close')}
-                    </button>
-                </footer>
-            </dialog>
-        </DialogPortal>
+        </BasePopup>
     )
 }
 

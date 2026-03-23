@@ -149,6 +149,34 @@ input[type='checkbox'] {
 }
 input[type='checkbox']:checked { background-color: var(--primary-color); }
 
+input[type='radio'] {
+    cursor: pointer;
+    width: 0.9rem;
+    height: 0.9rem;
+    appearance: none;
+    border: var(--border-primary-thick);
+    border-radius: 50%;
+    background-color: transparent;
+    position: relative;
+    transition: all 0.2s ease;
+    padding: var(--space-s);
+}
+input[type='radio']:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+input[type='radio']:hover {
+    border-color: var(--button-hover);
+}
+input[type='radio']:focus {
+    outline: var(--border-primary-thick);
+    outline-offset: 2px;
+}
+
+
+
+
+
 /* Buttons */
 button {
     text-align: center;

@@ -10,7 +10,7 @@ import {
 } from '@/types';
 import { getOriginById, ORIGINS } from '@/utils/characterSheet';
 import {getGameDatabase} from "@/hooks/getGameDatabase";
-import { CharacterRepository } from "@/services/CharacterRepository";
+import { CharacterSlotManager } from "@/services/CharacterSlotManager";
 import useCalculatedCharacter, {
     adjustCurrentHp
 } from "@/hooks/useCalculatedCharacter";
@@ -24,8 +24,8 @@ export interface CharacterContextValue {
     replenishLuck: () => void;
     spendLuck: () => void;
     resetCharacter: () => void;
-    downloadCharacter: () => void;
-    uploadCharacter: (file: Blob) => Promise<RawCharacter>;
+    switchToSlot: (slotIndex: number) => void;
+    activeSlot: number;
 }
 
 /**
@@ -129,14 +129,28 @@ export function CharacterProvider({ onReady, children, overrideCharacter }:
     }
 
     // Otherwise, this is the root provider - normal behavior
-    // Lazy load character
-    const [rawCharacter, setRawCharacter] = useState(() => CharacterRepository.load())
+    // Migrate legacy data if present (runs once on first load)
+    CharacterSlotManager.migrateLegacyData()
+
+    // Track active slot
+    const [activeSlot, setActiveSlot] = useState(() => CharacterSlotManager.getActiveSlot())
+
+    // Lazy load character from active slot
+    const [rawCharacter, setRawCharacter] = useState(() => CharacterSlotManager.load())
 
     // Auto-save on every change
     useEffect(() => {
-        if(rawCharacter) { CharacterRepository.save(rawCharacter) }
-        else { CharacterRepository.clear() }
+        if(rawCharacter) { CharacterSlotManager.save(rawCharacter) }
+        else { CharacterSlotManager.clear() }
     }, [rawCharacter])
+
+    // Switch to a different character slot
+    const switchToSlot = useCallback((slotIndex: number) => {
+        CharacterSlotManager.setActiveSlot(slotIndex)
+        setActiveSlot(slotIndex)
+        const loadedCharacter = CharacterSlotManager.loadFromSlot(slotIndex)
+        setRawCharacter(loadedCharacter)
+    }, [])
 
     // Reset to default character
     const resetCharacter = useCallback(() => {
@@ -247,13 +261,6 @@ export function CharacterProvider({ onReady, children, overrideCharacter }:
     }, [])
 
 
-
-
-
-
-
-
-
     /**
      * Replenish current luck to max ("luck" value)
      */
@@ -269,49 +276,6 @@ export function CharacterProvider({ onReady, children, overrideCharacter }:
     }, [calculatedCharacter.currentLuck, updateCharacter])
 
 
-
-
-
-
-
-
-
-
-    /**
-     * Utility method to download character as JSON
-     */
-    const downloadCharacter = useCallback(() => {
-        const dataStr = JSON.stringify(rawCharacter, null, 2)
-        const dataBlob = new Blob([dataStr], { type: 'application/json' })
-        const url = URL.createObjectURL(dataBlob)
-
-        const link = document.createElement('a')
-        link.href = url
-        link.download = `character_${rawCharacter?.name || 'unnamed'}_${new Date().toISOString().split('T')[0]}.json`
-        document.body.appendChild(link)
-        link.click()
-        link.remove()
-        URL.revokeObjectURL(url)
-    }, [rawCharacter])
-
-
-    /**
-     * Utility method to upload character from JSON.
-     */
-    const uploadCharacter = useCallback(
-        async (file: Blob): Promise<RawCharacter> => {
-            try {
-                const text = await file.text()
-                const rawData = JSON.parse(text)
-                setRawCharacter(rawData)
-                return rawData
-            } catch (error) {
-                const errorMessage = error instanceof Error ? error.message : String(error)
-                throw new Error(`Failed to parse character file: ${errorMessage}`)
-            }
-        }, []
-    )
-
     // Memoize context value to prevent unnecessary re-renders
     const contextValue = useMemo(
         () => ({
@@ -321,10 +285,10 @@ export function CharacterProvider({ onReady, children, overrideCharacter }:
             replenishLuck,
             spendLuck,
             resetCharacter,
-            downloadCharacter,
-            uploadCharacter
+            switchToSlot,
+            activeSlot
         }),
-        [rawCharacter, calculatedCharacter, updateCharacter, replenishLuck, spendLuck, resetCharacter, downloadCharacter, uploadCharacter]
+        [rawCharacter, calculatedCharacter, updateCharacter, replenishLuck, spendLuck, resetCharacter, switchToSlot, activeSlot]
     )
 
     return (

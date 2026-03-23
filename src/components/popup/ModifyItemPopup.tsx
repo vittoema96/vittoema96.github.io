@@ -197,7 +197,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
             title={itemData.ID}
             onConfirm={handleConfirm}
             onClose={onClose}
-            disabled={totalCost > character.caps}
+            confirmDisabled={totalCost > character.caps}
             className="modify-item-popup"
         >
             {/* Compact Stats Bar */}

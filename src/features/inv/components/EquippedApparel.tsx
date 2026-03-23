@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
+import { getGameDatabase } from "@/hooks/getGameDatabase.ts"
 import { useCharacter } from '@/contexts/CharacterContext.tsx'
 import {ApparelItem, CharacterItem, GenericBodyPart} from "@/types";
 import {mapItemLocations} from "@/utils/bodyLocations.ts";

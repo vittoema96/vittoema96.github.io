@@ -1,5 +1,5 @@
 import type {
-    Item, WeaponItem, ApparelItem, AidItem, ModItem, GenericItem, ItemType, ItemCategory, TraitData
+    Item, WeaponItem, ApparelItem, AidItem, AmmoItem, ModItem, GenericItem, ItemType, ItemCategory, TraitData
 } from '@/types';
 import {GameDataRepository} from "@/services/GameDataRepository";
 
@@ -8,6 +8,7 @@ interface DatabaseCollections {
     weapon: Record<string, WeaponItem>;
     apparel: Record<string, ApparelItem>;
     aid: Record<string, AidItem>;
+    ammo: Record<string, AmmoItem>;
     other: Record<string, GenericItem>;
     mod: Record<string, ModItem>;
     perks: Record<string, any>;
@@ -55,8 +56,9 @@ export const ITEM_TYPE_MAP: Record<ItemType, ItemCategory[]> = {
         'vaultTecSecurity'
     ],
     aid: ['food', 'drinks', 'meds', 'misc'],
+    ammo: ['ammo'],
     mod: ['mods'], // TODO HAVE to decide how to handle mod categories
-    other: ['ammo', 'misc', 'junk'],
+    other: ['misc', 'junk'],
 };
 
 // 3. The Service Object
@@ -74,6 +76,7 @@ export const GameDatabase = {
             ...rawData.weapon,
             ...rawData.apparel,
             ...rawData.aid,
+            ...rawData.ammo,
             ...rawData.mod,
             ...rawData.other,
         };

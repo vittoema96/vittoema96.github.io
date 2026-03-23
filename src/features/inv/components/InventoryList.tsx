@@ -61,6 +61,14 @@ function InventoryList({
         const typeMap = dataManager.getItemTypeMap()
         const categories = [...typeMap[typeFilter]]
 
+        // Add 'custom' category if there are custom items of this type
+        if (typeFilter === 'other' && character.customItems && character.customItems.length > 0) {
+            const hasCustomItems = character.customItems.some(item => item.type === typeFilter)
+            if (hasCustomItems && !categories.includes('custom')) {
+                categories.push('custom')
+            }
+        }
+
         // TODO add robot categories when necessary
         // Sort alphabetically by translated name
         return categories.sort((a, b) => {
@@ -81,7 +89,7 @@ function InventoryList({
         if(dataManager.isType(itemData, 'aid')) {
             return AidCard
         }
-        if(dataManager.isType(itemData, 'other')) {
+        if(dataManager.isType(itemData, 'ammo') || dataManager.isType(itemData, 'other')) {
             return OtherCard
         }
         return null
@@ -228,6 +236,34 @@ function InventoryList({
         })
     }
 
+    // Render custom items (only for 'other' type)
+    const renderCustomItems = () => {
+        if (typeFilter !== 'other') return null;
+        if (!character.customItems || character.customItems.length === 0) return null;
+
+        // Filter by type first (custom items should match the typeFilter)
+        const typeFilteredItems = character.customItems.filter(item => item.type === typeFilter);
+
+        // Filter by category if needed (custom items have category 'custom')
+        const filteredCustomItems = categoryFilter
+            ? typeFilteredItems.filter(item => item.category === categoryFilter)
+            : typeFilteredItems;
+
+        return filteredCustomItems.map((customItem, index) => {
+            const uniqueKey = `custom_${index}`;
+
+            return (
+                <InventoryRow
+                    key={uniqueKey}
+                    customItem={customItem}
+                    isSelected={selectedItemId === uniqueKey}
+                    onSelect={() => handleSelect(uniqueKey)}
+                    cardComponent={OtherCard}
+                />
+            );
+        });
+    }
+
     return (
         <div className="inventory-list">
             {/* Sort and Filter Controls */}
@@ -298,17 +334,34 @@ function InventoryList({
 
             {/* Items List */}
             <div className="stack">
-                {processedItems.length === 0 ? (
+                {processedItems.length === 0 && (typeFilter !== 'other' || !character.customItems || character.customItems.length === 0) ? (
                     <div className="inventory-list__empty">
                         {t('noItems')}
                     </div>
                 ) : (
-                    renderItems(processedItems)
+                    <>
+                        {renderItems(processedItems)}
+                        {renderCustomItems()}
+                    </>
                 )}
             </div>
 
             {/* Selected Item Card Area - Outside inventory-list */}
             {selectedItemId && (() => {
+                // Check if it's a custom item
+                if (selectedItemId.startsWith('custom_')) {
+                    const index = parseInt(selectedItemId.replace('custom_', ''))
+                    const selectedCustomItem = character.customItems?.[index]
+                    if (!selectedCustomItem) {return null}
+
+                    return (
+                        <div className="inventory-list__selected">
+                            <OtherCard customItem={selectedCustomItem} />
+                        </div>
+                    )
+                }
+
+                // Handle normal database items
                 const selectedItem = processedItems.find(item => getItemKey(item) === selectedItemId)
                 if (!selectedItem) {return null}
 

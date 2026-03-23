@@ -50,6 +50,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         () => raw?.items ?? [],
         [raw?.items]
     )
+    const customItems = raw?.customItems
     const origin = useMemo(
         () => getOriginById(raw?.origin),
         [raw?.origin]
@@ -250,6 +251,7 @@ function useCalculatedCharacter(raw: RawCharacter | null): Character {
         prewarMoney,
         exchangeRates,
         items,
+        customItems,
         level,
         specialties,
         traits,

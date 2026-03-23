@@ -180,6 +180,7 @@ export interface Origin {
 export const LEFT = "left"
 export const RIGHT = "right"
 export type Side = typeof LEFT | typeof RIGHT
+
 export interface CharacterItem {
     id: string;
     variation?: Side;
@@ -187,6 +188,21 @@ export interface CharacterItem {
     equipped?: boolean;
     mods: string[];
     customName?: string;
+}
+
+/**
+ * Custom items created by the user
+ * Stored separately from database items
+ */
+export interface CustomItem {
+    name: string;
+    quantity: number;
+    value: number;      // Cost in caps
+    weight: number;     // Weight in kg
+    rarity: number;     // Always 0 for now
+    type: ItemType;     // For now only 'other'
+    category: string;   // For now only 'custom'
+    description?: string;
 }
 
 // Companion-specific types (same structure as Character, but with different stat names)
@@ -226,6 +242,7 @@ export interface Character extends Omit<RawCharacter, 'origin'> {
     skills: Record<SkillType, number>;
     specialties: SkillType[];
     items: CharacterItem[];
+    customItems?: CustomItem[];  // Custom items created by user (separate from database items)
     traits: TraitId[];
     perks: string[]
     mapCodes: string[];
@@ -307,12 +324,13 @@ export interface PopupContextValue {
 export type DamageType = "physical" | 'energy' | 'radiation';
 export type DamageResistanceMap = Record<DamageType, number>
 
-export type ItemType = 'weapon' | 'apparel' | 'aid' | 'other' | 'mod';
+export type ItemType = 'weapon' | 'apparel' | 'aid' | 'ammo' | 'other' | 'mod';
 export type WeaponCategories = 'smallGuns' | 'bigGuns' | 'energyWeapons' | 'meleeWeapons' | 'explosives' | 'throwing' | 'unarmed';
 export type ApparelCategories = 'clothing' | 'headgear' | 'outfit' | 'raiderArmor' | 'leatherArmor' | 'metalArmor' | 'combatArmor' | 'syntheticArmor' | 'vaultTecSecurity' | 'robotPart';
 export type AidCategories = 'food' | 'drinks' | 'meds';
-export type OtherCategories = 'ammo' | 'mods' | 'misc' | 'junk';
-export type ItemCategory = WeaponCategories | ApparelCategories | AidCategories | OtherCategories;
+export type AmmoCategories = 'ammo';
+export type OtherCategories = 'misc' | 'junk';
+export type ItemCategory = WeaponCategories | ApparelCategories | AidCategories | AmmoCategories | OtherCategories;
 export type Range = 'rangeR' | 'rangeC' | 'rangeM' | 'rangeL' | 'rangeE';
 
 export interface GenericItem {
@@ -381,11 +399,12 @@ export interface ModItem extends ItemWithEffects {
     ARMOR_TYPES?: string[];   // JSON array (per armor mods)
 }
 
-interface AmmoItem extends GenericItem {
-    // Solo le colonne base (ID, TYPE, WEIGHT, COST, RARITY)
+export interface AmmoItem extends GenericItem {
+    TYPE: 'ammo';
+    CATEGORY: AmmoCategories;
 }
 
-export type Item = WeaponItem | ApparelItem | AidItem | ModItem | AmmoItem;
+export type Item = WeaponItem | ApparelItem | AidItem | AmmoItem | ModItem;
 // Mod slots for weapon/armor modifications
 export const MOD_SLOTS = Object.freeze({
     BARREL: 'barrel' as ModSlot,

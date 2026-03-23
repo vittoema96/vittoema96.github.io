@@ -9,13 +9,12 @@ interface AlertPopupProps {
 
 // TODO Do we need this class? Maybe use BasePopup directly?
 function AlertPopup({ onClose, content, onConfirm, showConfirm = false }: Readonly<AlertPopupProps>) {
-
-    // Always render the dialog, but control visibility with showModal/close
     return (
         <BasePopup
             title={showConfirm ? 'confirm' : 'warning'}
             onConfirm={showConfirm ? onConfirm : undefined}
-            onClose={onClose}>
+            onClose={onClose}
+        >
             <hr />
             <p style={{ whiteSpace: 'pre-line' }}>{content}</p>
         </BasePopup>

@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
-import { CharacterItem } from '@/types';
+import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
+import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { CharacterItem, CustomItem } from '@/types';
 import { FitText } from '@/components/FitText.tsx';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 
 /**
  * Base card component - provides common card structure and functionality
  * Content is rendered via contentRenderer prop for maximum flexibility
+ * Supports both database items (CharacterItem) and custom items (CustomItem)
  */
 
 interface ActionDefinition {
@@ -18,7 +20,8 @@ interface ActionDefinition {
 }
 
 interface BaseCardProps {
-    characterItem: CharacterItem,
+    characterItem?: CharacterItem,
+    customItem?: CustomItem,
     action: ActionDefinition | undefined,
 
     className?: string,
@@ -28,6 +31,7 @@ interface BaseCardProps {
 
 function BaseCard({
     characterItem,
+    customItem,
     action,
     contentRenderer: ContentRenderer,
     className = '',
@@ -41,8 +45,56 @@ function BaseCard({
     const { t } = useTranslation();
     const [showDescription, setShowDescription] = useState(false);
     const { showModifyItemPopup } = usePopup()
+
+    // Handle custom items (separate list)
+    if (customItem) {
+        return (
+            <div className={`card card--compact ${className}`}>
+                {/* Card Header - Single Line */}
+                <div className="card-header card-header--compact">
+                    <div className="card-header__title">
+                        {customItem.quantity > 1 && <span className="card-quantity">{customItem.quantity}x</span>}
+                        <FitText wrap={true} minSize={10} maxSize={14}>
+                            {customItem.name}
+                        </FitText>
+                    </div>
+                    <div className="card-header__stats">
+                        <div className="card-stat-icon" title={t('cost')}>
+                            <i className="fas fa-coins"></i>
+                            <span>{customItem.value}</span>
+                        </div>
+                        <div className="card-stat-icon" title={t('weight')}>
+                            <i className="fas fa-weight-hanging"></i>
+                            <span>{customItem.weight}</span>
+                        </div>
+                        <div className="card-stat-icon" title={t('rarity')}>
+                            <i className="fas fa-star"></i>
+                            <span>{customItem.rarity}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Card Content - rendered by content renderer */}
+                <div className="card-content card-content--compact">
+                    {ContentRenderer && (
+                        <ContentRenderer
+                            customItem={customItem}
+                        />
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    // Handle database items (CharacterItem)
+    if (!characterItem) {
+        console.error('BaseCard: neither characterItem nor customItem provided');
+        return null;
+    }
+
     const dataManager = getGameDatabase();
     let itemData = dataManager.getItem(characterItem.id);
+
     const isModdable = dataManager.isType(itemData, "moddable") && itemData.AVAILABLE_MODS.length > 0;
     if(isModdable){
         itemData = getModifiedItemData(characterItem);
@@ -79,7 +131,7 @@ function BaseCard({
                 <div className="card-header__title">
                     {quantity > 1 && <span className="card-quantity">{quantity}x</span>}
                     <FitText wrap={true} minSize={10} maxSize={14}>
-                        {t(itemData.ID, {
+                        {characterItem.customName || t(itemData.ID, {
                             variation: t(characterItem.variation!)
                         })}
                     </FitText>

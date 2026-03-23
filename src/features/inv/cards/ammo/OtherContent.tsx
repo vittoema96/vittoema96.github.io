@@ -1,28 +1,40 @@
 import { useTranslation } from 'react-i18next'
-import { CharacterItem } from '@/types';
+import { CharacterItem, CustomItem } from '@/types';
 import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
 
 /**
- * Ammo-specific content renderer
- * Simple display for ammunition items
+ * Other items content renderer
+ * Handles both database items (ammo, misc) and custom items
  */
-interface AmmoContentProps{
-    characterItem: CharacterItem
+interface OtherContentProps {
+    characterItem?: CharacterItem;
+    customItem?: CustomItem;
 }
-function OtherContent({ characterItem }: Readonly<AmmoContentProps>) {
+
+function OtherContent({ characterItem, customItem }: Readonly<OtherContentProps>) {
     const { t } = useTranslation()
     const dataManager = getGameDatabase()
 
-    // Ammo cards are very simple - just the name
-    // The quantity and basic stats are handled by BaseCard header
-    const itemData = dataManager.getItem(characterItem.id)
-    let description;
-    if(itemData?.CATEGORY === "ammo"){
-        const weapons = Object.values(dataManager.weapon).filter(w => w.AMMO_TYPE === itemData.ID)
-        description = t("ammoUsedBy") + ":\n" + weapons.map(w => t(w.ID)).join(', ')
-    } else {
-        description = t(itemData?.ID+"Description")
+    let description: string;
+
+    // Handle custom items (separate list)
+    if (customItem) {
+        description = customItem.description || t('noDescription')
     }
+    // Handle database items
+    else if (characterItem) {
+        const itemData = dataManager.getItem(characterItem.id)
+
+        if (itemData?.TYPE === "ammo") {
+            const weapons = Object.values(dataManager.weapon).filter(w => w.AMMO_TYPE === itemData.ID)
+            description = t("ammoUsedBy") + ":\n" + weapons.map(w => t(w.ID)).join(', ')
+        } else {
+            description = t(itemData?.ID + "Description")
+        }
+    } else {
+        description = t('noDescription')
+    }
+
     return (
         <section className="card-description-overlay__content" style={{padding: "1rem"}}>
             <div className="card-description-overlay__text">

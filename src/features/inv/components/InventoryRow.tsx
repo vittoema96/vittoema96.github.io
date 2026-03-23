@@ -2,14 +2,16 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
 import { useInventoryActions } from '@/features/inv/hooks/useInventoryActions.ts'
-import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
+import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { getDisplayName } from '@/utils/itemUtils.ts'
-import {CharacterItem} from '@/types'
+import {CharacterItem, CustomItem} from '@/types'
 import { FitText } from '@/components/FitText.tsx';
 
 
 interface InventoryRowProps {
-    characterItem: CharacterItem
+    characterItem?: CharacterItem
+    customItem?: CustomItem
     isSelected: boolean
     onSelect: () => void
     cardComponent: React.ComponentType<any>
@@ -18,15 +20,57 @@ interface InventoryRowProps {
 /**
  * Compact inventory row that can be selected to display details in a dedicated area
  * Click to select/deselect, long press for sell/delete/rename options
+ * Supports both database items (CharacterItem) and custom items (CustomItem)
  */
 function InventoryRow({
     characterItem,
+    customItem,
     isSelected,
     onSelect,
     cardComponent: CardComponent,
     showBadges = true
 }: Readonly<InventoryRowProps>) {
     const { t } = useTranslation()
+
+    // Handle custom items (simplified rendering)
+    if (customItem) {
+        return (
+            <div
+                className={`inventory-row ${isSelected ? 'selected' : ''}`}
+                onClick={onSelect}
+            >
+                <div className="inventory-row__header">
+                    <div className="inventory-row__icon themed-svg" data-icon="caps"></div>
+
+                    <div className="inventory-row__info">
+                        <div className="inventory-row__name">
+                            <FitText center={false} wrap={true} maxSize={15}>
+                                {customItem.name}
+                            </FitText>
+                        </div>
+                        <div className="inventory-row__subinfo">
+                            <FitText center={false} wrap={true} minSize={8} maxSize={10}>
+                                {t(customItem.category)}
+                            </FitText>
+                        </div>
+                    </div>
+
+                    {customItem.quantity > 0 && (
+                        <div className="inventory-row__quantity">
+                            <span>{customItem.quantity}x</span>
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    // Handle database items (CharacterItem)
+    if (!characterItem) {
+        console.error('InventoryRow: neither characterItem nor customItem provided');
+        return null;
+    }
+
     const nameInputRef = useRef<HTMLInputElement>(null)
     const [isEditingName, setIsEditingName] = useState(false)
     const [editedName, setEditedName] = useState(characterItem.customName || '')
@@ -110,7 +154,6 @@ function InventoryRow({
 
     // Get item subinfo (type, damage, DR, etc.)
     const getItemSubInfo = () => {
-
         // Weapon - show damage and type
         if (dataManager.isType(itemData, "weapon")) {
             return `${t(itemData.CATEGORY)} • ${itemData.DAMAGE_RATING} ${t(itemData.DAMAGE_TYPE)}`
@@ -125,19 +168,11 @@ function InventoryRow({
 
         }
 
-        // Aid - show effect
+        // TODO improve subinfo
         if (dataManager.isType(itemData, "aid")) {
-            return itemData.EFFECT || t(itemData.CATEGORY)
+            return t(itemData.EFFECT) || t(itemData.CATEGORY)
         }
-
-        // Ammo - show type
-        if (dataManager.isType(itemData, "other")) {
-            return itemData.EFFECT || t(itemData.CATEGORY)
-        }
-
-        // TODO add all info
-
-        return "ERROR"
+        return t(itemData.CATEGORY || "ERROR")
     }
 
     // Check if item has special badges

@@ -3,7 +3,7 @@ import {SKILLS, SPECIAL} from "@/types";
 import { ORIGINS } from '@/utils/characterSheet.ts';
 
 // Constants
-const STORAGE_KEY = 'character_default'
+const LEGACY_STORAGE_KEY = 'character_default'
 
 /**
  * Comprehensive type guard to validate RawCharacter data structure
@@ -168,24 +168,90 @@ function validateCharacterData(data: unknown): data is RawCharacter {
         }
     }
 
+    // Validate customItems array (if present)
+    if (obj.customItems !== undefined) {
+        if (!Array.isArray(obj.customItems)) {
+            console.warn('Invalid customItems field - must be an array');
+            return false;
+        }
+
+        // Validate each custom item in the array
+        for (let i = 0; i < obj.customItems.length; i++) {
+            const customItem = obj.customItems[i];
+
+            if (!customItem || typeof customItem !== 'object') {
+                console.warn('Invalid customItem at index', i);
+                return false;
+            }
+
+            // Required fields
+            if (typeof customItem.name !== 'string') {
+                console.warn('Invalid customItem.name at index', i);
+                return false;
+            }
+
+            if (typeof customItem.quantity !== 'number') {
+                console.warn('Invalid customItem.quantity at index', i);
+                return false;
+            }
+
+            if (typeof customItem.value !== 'number') {
+                console.warn('Invalid customItem.value at index', i);
+                return false;
+            }
+
+            if (typeof customItem.weight !== 'number') {
+                console.warn('Invalid customItem.weight at index', i);
+                return false;
+            }
+
+            if (typeof customItem.rarity !== 'number') {
+                console.warn('Invalid customItem.rarity at index', i);
+                return false;
+            }
+
+            if (typeof customItem.type !== 'string') {
+                console.warn('Invalid customItem.type at index', i);
+                return false;
+            }
+
+            if (typeof customItem.category !== 'string') {
+                console.warn('Invalid customItem.category at index', i);
+                return false;
+            }
+
+            // Optional fields
+            if (customItem.description !== undefined && typeof customItem.description !== 'string') {
+                console.warn('Invalid customItem.description at index', i);
+                return false;
+            }
+        }
+    }
+
     return true;
 }
 
+/**
+ * CharacterRepository - Pure storage layer
+ * Responsibilities:
+ * - Save/Load/Delete character data from localStorage
+ * - Validate character data structure
+ * - Handle legacy data migration
+ */
 export const CharacterRepository = {
     /**
-     * Save character to localStorage
+     * Save character data to localStorage with a given key
      */
-    save(raw: RawCharacter): void {
+    save(key: string, raw: RawCharacter): void {
         const jsonCharacter = JSON.stringify(raw)
-        localStorage.setItem(STORAGE_KEY, jsonCharacter)
+        localStorage.setItem(key, jsonCharacter)
     },
 
     /**
-     * Load character from localStorage
+     * Load character data from localStorage with a given key
      */
-    load(): RawCharacter | null {
-
-        const saved = localStorage.getItem(STORAGE_KEY)
+    load(key: string): RawCharacter | null {
+        const saved = localStorage.getItem(key)
         if (!saved) { return null }
 
         try {
@@ -193,21 +259,64 @@ export const CharacterRepository = {
 
             // Validate the parsed data
             if (!validateCharacterData(parsed)) {
-                console.warn('Invalid character data in localStorage, clearing...');
-                localStorage.setItem("archived_character", saved)
-                this.clear();
-                return null;
+                console.warn(`Invalid character data for key '${key}', archiving...`)
+                localStorage.setItem(`archived_${key}`, saved)
+                this.delete(key)
+                return null
             }
 
             return parsed
         } catch (error) {
-            console.error('Failed to parse saved character:', error)
-            this.clear();
+            console.error(`Failed to parse character from key '${key}':`, error)
+            this.delete(key)
             return null
         }
     },
 
-    clear(): void {
-        localStorage.removeItem(STORAGE_KEY)
+    /**
+     * Delete character data from localStorage with a given key
+     */
+    delete(key: string): void {
+        localStorage.removeItem(key)
+    },
+
+    /**
+     * Check if a key exists in localStorage
+     */
+    exists(key: string): boolean {
+        return localStorage.getItem(key) !== null
+    },
+
+    /**
+     * Migrate legacy character data from 'character_default' to a new key
+     * Returns the migrated data if successful, null otherwise
+     */
+    migrateLegacyData(targetKey: string): RawCharacter | null {
+        const legacyData = localStorage.getItem(LEGACY_STORAGE_KEY)
+        if (!legacyData) { return null }
+
+        try {
+            const parsed = JSON.parse(legacyData)
+
+            // Validate the legacy data
+            if (!validateCharacterData(parsed)) {
+                console.warn('Invalid legacy character data, skipping migration')
+                localStorage.removeItem(LEGACY_STORAGE_KEY)
+                return null
+            }
+
+            // Save to the target key
+            this.save(targetKey, parsed)
+
+            // Remove legacy key
+            localStorage.removeItem(LEGACY_STORAGE_KEY)
+
+            console.log(`Migrated legacy character data to '${targetKey}'`)
+            return parsed
+        } catch (error) {
+            console.error('Failed to migrate legacy character data:', error)
+            localStorage.removeItem(LEGACY_STORAGE_KEY)
+            return null
+        }
     }
 }

@@ -4,8 +4,7 @@ import {
     Origin,
     OriginId,
     SkillType,
-    SpecialType,
-    TraitId
+    SpecialType
 } from "@/types";
 
 // TODO delete this class:

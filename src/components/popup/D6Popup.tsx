@@ -2,12 +2,13 @@ import { useState, useRef, useEffect } from 'react';
 import { useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
 import { useTooltip } from '@/contexts/TooltipContext'
-import { useDialog } from '@/hooks/useDialog'
 import { createInitialDiceState, rollD20, getHitLocationFromRoll, CreatureType } from '@/components/popup/utils/diceUtils.ts'
 import { CharacterItem, GenericPopupProps, ItemCategory, WeaponItem } from '@/types';
-import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
+import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import Tag from '@/components/Tag.tsx';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
+import BasePopup from '@/components/popup/common/BasePopup.tsx';
 import DialogPortal from '@/components/popup/common/DialogPortal.tsx';
 import PopupHeader from '@/components/popup/common/PopupHeader.tsx';
 
@@ -21,7 +22,6 @@ interface D6PopupProps extends GenericPopupProps {
 function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = false }: Readonly<D6PopupProps>) {
     const { t } = useTranslation();
     const dataManager = getGameDatabase();
-    const dialogRef = useRef<HTMLDialogElement>(null);
     const meltdownDialogRef = useRef<HTMLDialogElement>(null);
     const { character, updateCharacter } = useCharacter();
     // Just use it, we do not need to manually trigger showTooltip
@@ -447,7 +447,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
         setHasRolled(true);
     };
 
-    const callback = () => {
+    const handleClose = () => {
         // Consume burst ammo if any were selected
         if (burstEffectsUsed > 0 && weaponData && !isMelee(weaponData.CATEGORY)) {
             let ammoId = weaponData.AMMO_TYPE;
@@ -466,10 +466,8 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                 });
             }
         }
+        onClose();
     };
-
-    // Use dialog hook for dialog management
-    const { closeWithAnimation } = useDialog(dialogRef, onClose);
 
     if (!weaponData) {
         return null;
@@ -478,10 +476,111 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
     const extraHitsType = getEffectiveExtraHitsType();
 
     return (
-        <DialogPortal>
-            <dialog ref={dialogRef}>
+        <>
+            <BasePopup
+                title={weaponData.ID}
+                onClose={handleClose}
+                footerChildren={
+                    <>
+                        {(!hasRolled || !(diceRerolled.every(Boolean) && extraDiceRerolled.every(Boolean))) && (
+                            <button
+                                className="confirmButton"
+                                onClick={handleRoll}
+                                disabled={!isMelee(weaponData.CATEGORY) && getCurrentAmmo() < ammoCost}
+                            >
+                                {hasRolled ? t('reroll') : t('roll')}
+                            </button>
+                        )}
+
+                        {/* Gun Fu button - only for ranged weapons when player has the perk */}
+                        {!isMysteriousStranger &&
+                            !isMelee(weaponData.CATEGORY) &&
+                            character.perks.includes('perkGunFu') &&
+                            !gunFuUsed && (
+                                <button
+                                    className="confirmButton"
+                                    onClick={() => {
+                                        const totalDamage = getTotalDamage();
+
+                                        showConfirm(
+                                            `${t('perkGunFu')}\n\n` +
+                                            `${t('damage')}: ${totalDamage}\n\n` +
+                                            `${t('confirmGunFu')}`,
+                                            () => {
+                                                // Consume 1 ammo
+                                                let ammoId = weaponData.AMMO_TYPE;
+                                                if (ammoId === 'self') {
+                                                    ammoId = weaponData.ID;
+                                                } // TODO should "SELF" ammo types use Gun Fu?
+                                                if (ammoId && ammoId !== 'na') {
+                                                    updateCharacter({
+                                                        items: character.items
+                                                            .map(item =>
+                                                                item.id === ammoId
+                                                                    ? { ...item, quantity: item.quantity - 1 }
+                                                                    : item,
+                                                            )
+                                                            .filter(item => item.quantity > 0),
+                                                    });
+                                                }
+                                                // Mark Gun Fu as used
+                                                setGunFuUsed(true);
+                                            })
+                                    }}
+                                    disabled={!hasRolled || getCurrentAmmo() < 1}
+                                    title={t('perkGunFuDescription')}
+                                >
+                                    {t('perkGunFu')}
+                                </button>
+                            )}
+
+                        {/* Slayer button - only for melee/unarmed weapons when player has the perk */}
+                        {!isMysteriousStranger &&
+                            isMelee(weaponData.CATEGORY) &&
+                            character.perks.includes('perkSlayer') &&
+                            !slayerUsed && (
+                                <button
+                                    className="confirmButton"
+                                    onClick={() => {
+                                        showConfirm(
+                                            `${t('perkSlayer')}\n\n` +
+                                            `${t('confirmSlayer')}`,
+                                            () => {
+                                                // Spend 1 Luck point
+                                                updateCharacter({
+                                                    currentLuck: character.currentLuck - 1
+                                                });
+                                                // Mark Slayer as used
+                                                setSlayerUsed(true);
+                                            })
+                                    }}
+                                    disabled={!hasRolled || character.currentLuck < 1}
+                                    title={t('perkSlayerDescription')}
+                                >
+                                    {t('perkSlayer')}
+                                </button>
+                            )}
+
+                        {/* Meltdown button - only for energy weapons when player has the perk */}
+                        {!isMysteriousStranger &&
+                            weaponData.CATEGORY === 'energyWeapons' &&
+                            character.perks.includes('perkMeltdown') &&
+                            !meltdownUsed && (
+                                <button
+                                    className="confirmButton"
+                                    onClick={() => {
+                                        setMeltdownPopupOpen(true);
+                                    }}
+                                    disabled={!hasRolled}
+                                    title={t('perkMeltdownDescription')}
+                                >
+                                    {t('perkMeltdown')}
+                                </button>
+                            )}
+                    </>
+                }
+            >
                 <div className="stack no-gap">
-                    <PopupHeader title={weaponData.ID} onClose={() => closeWithAnimation(callback)}/>
 
                     {/* Damage Type */}
                     <div className="h4">
@@ -767,183 +866,80 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                         <hr style={{ margin: '0.25rem 0' }} />
                     </>
                 )}
-
-                <footer>
-                    {(!hasRolled || !(diceRerolled.every(Boolean) && extraDiceRerolled.every(Boolean))) && (
-                        <button
-                            className="confirmButton"
-                            onClick={handleRoll}
-                            disabled={!isMelee(weaponData.CATEGORY) && getCurrentAmmo() < ammoCost}
-                        >
-                            {hasRolled ? t('reroll') : t('roll')}
-                        </button>
-                    )}
-
-                    {/* Gun Fu button - only for ranged weapons when player has the perk */}
-                    {!isMysteriousStranger &&
-                        !isMelee(weaponData.CATEGORY) &&
-                        character.perks.includes('perkGunFu') &&
-                        !gunFuUsed && (
-                            <button
-                                className="confirmButton"
-                                onClick={() => {
-                                    const totalDamage = getTotalDamage();
-
-                                    showConfirm(
-                                        `${t('perkGunFu')}\n\n` +
-                                        `${t('damage')}: ${totalDamage}\n\n` +
-                                        `${t('confirmGunFu')}`,
-                                        () => {
-                                            // Consume 1 ammo
-                                            let ammoId = weaponData.AMMO_TYPE;
-                                            if (ammoId === 'self') {
-                                                ammoId = weaponData.ID;
-                                            } // TODO should "SELF" ammo types use Gun Fu?
-                                            if (ammoId && ammoId !== 'na') {
-                                                updateCharacter({
-                                                    items: character.items
-                                                        .map(item =>
-                                                            item.id === ammoId
-                                                                ? { ...item, quantity: item.quantity - 1 }
-                                                                : item,
-                                                        )
-                                                        .filter(item => item.quantity > 0),
-                                                });
-                                            }
-                                            // Mark Gun Fu as used
-                                            setGunFuUsed(true);
-                                        })
-                                }}
-                                disabled={!hasRolled || getCurrentAmmo() < 1}
-                                title={t('perkGunFuDescription')}
-                            >
-                                {t('perkGunFu')}
-                            </button>
-                        )}
-
-                    {/* Slayer button - only for melee/unarmed weapons when player has the perk */}
-                    {!isMysteriousStranger &&
-                        isMelee(weaponData.CATEGORY) &&
-                        character.perks.includes('perkSlayer') &&
-                        !slayerUsed && (
-                            <button
-                                className="confirmButton"
-                                onClick={() => {
-                                    showConfirm(
-                                        `${t('perkSlayer')}\n\n` +
-                                        `${t('confirmSlayer')}`,
-                                        () => {
-                                            // Spend 1 Luck point
-                                            updateCharacter({
-                                                currentLuck: character.currentLuck - 1
-                                            });
-                                            // Mark Slayer as used
-                                            setSlayerUsed(true);
-                                        })
-                                }}
-                                disabled={!hasRolled || character.currentLuck < 1}
-                                title={t('perkSlayerDescription')}
-                            >
-                                {t('perkSlayer')}
-                            </button>
-                        )}
-
-                    {/* Meltdown button - only for energy weapons when player has the perk */}
-                    {!isMysteriousStranger &&
-                        weaponData.CATEGORY === 'energyWeapons' &&
-                        character.perks.includes('perkMeltdown') &&
-                        !meltdownUsed && (
-                            <button
-                                className="confirmButton"
-                                onClick={() => {
-                                    setMeltdownPopupOpen(true);
-                                }}
-                                disabled={!hasRolled}
-                                title={t('perkMeltdownDescription')}
-                            >
-                                {t('perkMeltdown')}
-                            </button>
-                        )}
-
-                    <button
-                        className="closeButton"
-                        onClick={() => closeWithAnimation(callback)}
-                    >
-                        {t('close')}
-                    </button>
-                </footer>
-            </dialog>
+            </BasePopup>
 
             {/* Meltdown Popup - inline dialog for rolling explosion dice */}
-            <dialog
-                ref={meltdownDialogRef}
-                style={{
-                    padding: '1rem',
-                    borderRadius: '8px',
-                    minWidth: '300px',
-                    maxWidth: '500px',
-                }}
-            >
-                <PopupHeader
-                    title={t('meltdownTitle')}
-                    onClose={closeMeltdownPopup}
-                />
-                <hr />
+            <DialogPortal>
+                <dialog
+                    ref={meltdownDialogRef}
+                    style={{
+                        padding: '1rem',
+                        borderRadius: '8px',
+                        minWidth: '300px',
+                        maxWidth: '500px',
+                    }}
+                >
+                    <PopupHeader
+                        title={t('meltdownTitle')}
+                        onClose={closeMeltdownPopup}
+                    />
+                    <hr />
 
-                <div style={{ padding: '1rem 0' }}>
-                    <p style={{ marginBottom: '1rem', textAlign: 'center' }}>
-                        {t('meltdownRollDice', { diceCount: getMeltdownDiceCount() })}
-                    </p>
+                    <div style={{ padding: '1rem 0' }}>
+                        <p style={{ marginBottom: '1rem', textAlign: 'center' }}>
+                            {t('meltdownRollDice', { diceCount: getMeltdownDiceCount() })}
+                        </p>
 
-                    <div style={{
-                        display: 'flex',
-                        gap: '0.5rem',
-                        justifyContent: 'center',
-                        marginBottom: '1rem',
-                        flexWrap: 'wrap'
-                    }}>
-                        {Array.from({ length: getMeltdownDiceCount() }, (_, index) => {
-                            const roll = meltdownDiceValues[index];
-                            const diceClass = roll ? getDiceClassFromRoll(roll) : null;
+                        <div style={{
+                            display: 'flex',
+                            gap: '0.5rem',
+                            justifyContent: 'center',
+                            marginBottom: '1rem',
+                            flexWrap: 'wrap'
+                        }}>
+                            {Array.from({ length: getMeltdownDiceCount() }, (_, index) => {
+                                const roll = meltdownDiceValues[index];
+                                const diceClass = roll ? getDiceClassFromRoll(roll) : null;
 
-                            return (
-                                <div
-                                    key={index}
-                                    className={`d6-dice dice ${diceClass || ''}`}
-                                >
-                                    {diceClass ? '' : '?'}
-                                </div>
-                            );
-                        })}
+                                return (
+                                    <div
+                                        key={index}
+                                        className={`d6-dice dice ${diceClass || ''}`}
+                                    >
+                                        {diceClass ? '' : '?'}
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        {meltdownDiceValues.length > 0 && (
+                            <p style={{ textAlign: 'center', fontWeight: 'bold' }}>
+                                {t('meltdownResult', {
+                                    effectCount: getMeltdownEffectCount(),
+                                    totalDamage: getMeltdownEffectCount()
+                                })}
+                            </p>
+                        )}
                     </div>
 
-                    {meltdownDiceValues.length > 0 && (
-                        <p style={{ textAlign: 'center', fontWeight: 'bold' }}>
-                            {t('meltdownResult', {
-                                effectCount: getMeltdownEffectCount(),
-                                totalDamage: getMeltdownEffectCount()
-                            })}
-                        </p>
-                    )}
-                </div>
-
-                <hr />
-                <footer style={{ padding: 0, marginTop: '0.25rem', gap: '0.5rem' }}>
-                    <button
-                        className="confirmButton"
-                        onClick={meltdownDiceValues.length === 0 ? rollMeltdownDice : closeMeltdownPopup}
-                    >
-                        {meltdownDiceValues.length === 0 ? t('roll') : t('confirm')}
-                    </button>
-                    <button
-                        className="closeButton"
-                        onClick={closeMeltdownPopup}
-                    >
-                        {t('close')}
-                    </button>
-                </footer>
-            </dialog>
-        </DialogPortal>
+                    <hr />
+                    <footer style={{ padding: 0, marginTop: '0.25rem', gap: '0.5rem' }}>
+                        <button
+                            className="confirmButton"
+                            onClick={meltdownDiceValues.length === 0 ? rollMeltdownDice : closeMeltdownPopup}
+                        >
+                            {meltdownDiceValues.length === 0 ? t('roll') : t('confirm')}
+                        </button>
+                        <button
+                            className="closeButton"
+                            onClick={closeMeltdownPopup}
+                        >
+                            {t('close')}
+                        </button>
+                    </footer>
+                </dialog>
+            </DialogPortal>
+        </>
     );
 }
 

@@ -1,11 +1,12 @@
 import { GameDatabase, ITEM_TYPE_MAP } from '@/services/GameDatabase';
-import { ModdableItem, AidItem, ApparelItem, CharacterItem, GenericItem, Item, ItemType, ModItem, WeaponItem } from '@/types';
+import { ModdableItem, AidItem, AmmoItem, ApparelItem, CharacterItem, GenericItem, Item, ItemType, ModItem, WeaponItem } from '@/types';
 import { applyEffect } from '@/utils/itemUtils.ts';
 
 type ItemMap = {
     [K in ItemType | 'moddable']: K extends 'weapon' ? WeaponItem :
                      K extends 'apparel' ? ApparelItem :
                      K extends 'aid' ? AidItem :
+                     K extends 'ammo' ? AmmoItem :
                      K extends 'mod' ? ModItem :
                      K extends 'moddable' ? ModdableItem :
                      GenericItem;
@@ -26,6 +27,7 @@ function createGameDatabase() {
         weapon: db.weapon,
         apparel: db.apparel,
         aid: db.aid,
+        ammo: db.ammo,
         mod: db.mod,
         other: db.other,
         perks: db.perks,
@@ -34,6 +36,10 @@ function createGameDatabase() {
 
         // Helpers
         getItem: GameDatabase.getItem.bind(GameDatabase),
+        getItemWithCustom: (id: string, customItems?: Record<string, GenericItem>) => {
+            // Check custom items first, then database
+            return customItems?.[id] || GameDatabase.getItem(id);
+        },
         isUnacquirable: GameDatabase.isUnacquirable,
         getItemTypeMap: () => ITEM_TYPE_MAP,
         isType,

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/contexts/CharacterContext';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
@@ -15,7 +15,62 @@ type SelectableItem = GenericItem & { variation?: Side }
 
 function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     const { t } = useTranslation()
+
+    const [isFormValid, setIsFormValid] = useState(false)
+    const [onConfirmCallback, setOnConfirmCallback] = useState<() => void>(() => {})
+
+    // Custom item mode
+    const [isCustomMode, setIsCustomMode] = useState(false)
+
+
+    return (
+        <BasePopup
+            title={isCustomMode ? 'customItem' : 'chooseItem'}
+            onConfirm={() => {
+                onConfirmCallback()
+                onClose()
+            }}
+            onClose={onClose}
+            confirmDisabled={!isFormValid}
+            footerChildren={itemType === 'other' ? (
+                <button
+                    type="button"
+                    className="closeButton"
+                    onClick={() => setIsCustomMode(!isCustomMode)}
+                >
+                    {t(isCustomMode ? 'backToList' : 'customItem')}
+                </button>
+            ) : undefined}
+        >
+            <hr />
+
+            {isCustomMode ? (
+                <AddCustomItemContent
+                    itemType={itemType}
+                    setIsFormValid={setIsFormValid}
+                    setOnConfirmCallback={setOnConfirmCallback}/>
+            ) : (
+                <AddItemFromListContent
+                    itemType={itemType}
+                    setIsFormValid={setIsFormValid}
+                    setOnConfirmCallback={setOnConfirmCallback}/>
+            )}
+
+        </BasePopup>
+    )
+}
+
+export default AddItemPopup
+
+function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback }: Readonly<{
+    itemType: ItemType,
+    setIsFormValid: (valid: boolean) => void,
+    setOnConfirmCallback: (callback: () => void) => void
+}>) {
+
+    const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
+
     const dataManager = getGameDatabase()
 
     const [selectedItem, setSelectedItem] = useState<SelectableItem>()
@@ -70,9 +125,49 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
             return nameA.localeCompare(nameB)
         })
     }, [itemType, categoryFilter, rarityFilter, t])
+
     useEffect(() => {
         setSelectedItem(availableItems[0])
     }, [availableItems]);
+
+    useEffect(() => {
+        setCategoryFilter(undefined)
+        setRarityFilter(undefined)
+    }, [itemType])
+
+    useEffect(() => {
+        setIsFormValid(Boolean(selectedItem && quantity))
+    }, [quantity, selectedItem, setIsFormValid]);
+
+    const handleConfirm = useCallback(() => {
+        if(selectedItem && quantity){
+            let totalCost = 0;
+            if (shouldBuy) {
+                totalCost = selectedItem.COST * quantity;
+
+                if (character.caps < totalCost) {
+                    return;
+                }
+            }
+
+            const newItems = addItem(character.items, {
+                id: selectedItem.ID,
+                quantity: quantity,
+                equipped: false,
+                mods: [],
+                ...(selectedItem.variation ? { variation: selectedItem.variation } : {}),
+            });
+            updateCharacter({
+                items: newItems,
+                ...(shouldBuy ? { caps: character.caps - totalCost } : {}),
+            });
+        }
+    }, [character.caps, character.items, quantity, selectedItem, shouldBuy, updateCharacter])
+
+    // Registra la callback quando cambia
+    useEffect(() => {
+        setOnConfirmCallback(() => handleConfirm)
+    }, [handleConfirm, setOnConfirmCallback])
 
     const getCategories = () => {
         const typeMap = dataManager.getItemTypeMap()
@@ -85,49 +180,12 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
             return t(a).localeCompare(t(b))
         }).map(categoryFilter => {
             return <option key={categoryFilter} value={categoryFilter}>
-                        {t(categoryFilter || 'all')}
-                   </option>
+                {t(categoryFilter || 'all')}
+            </option>
         })
     }
 
-    useEffect(() => {
-        setCategoryFilter(undefined)
-        setRarityFilter(undefined)
-    }, [itemType])
-
-    const handleConfirm = () => {
-        if (!selectedItem || !quantity) {return}
-
-        let totalCost = 0
-        if (shouldBuy) {
-            totalCost = selectedItem.COST * quantity
-
-            if (character.caps < totalCost) {
-                return
-            }
-        }
-
-        const newItems = addItem(character.items, {
-            id: selectedItem.ID,
-            quantity: quantity,
-            equipped: false,
-            mods: [],
-            ...(selectedItem.variation ? { variation: selectedItem.variation} : {})
-        })
-        updateCharacter({
-            items: newItems,
-            ...(shouldBuy ? {caps: character.caps - totalCost} : {})
-        })
-    }
-
-    return (
-        <BasePopup
-            title={'chooseItem'}
-            onConfirm={handleConfirm}
-            onClose={onClose}
-            disabled={!selectedItem || !quantity}>
-            <hr />
-
+    return (<>
             {/* Category Filter */}
             <div className="row" style={{ marginBottom: '1rem', alignItems: 'center' }}>
                 <label style={{ marginRight: '0.5rem' }}>{t('type')}:</label>
@@ -228,10 +286,139 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                     </span>
                 </label>
             </div>
-
-        </BasePopup>
-    )
+        </>)
 }
 
-export default AddItemPopup
+function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }: Readonly<{
+    itemType: ItemType,
+    setIsFormValid: (valid: boolean) => void,
+    setOnConfirmCallback: (callback: () => void) => void
+}>) {
+    const { t } = useTranslation()
+    const { character, updateCharacter } = useCharacter()
 
+    // Custom item mode
+    const [customName, setCustomName] = useState('')
+    const [customQuantity, setCustomQuantity] = useState('1')
+    const [customWeight, setCustomWeight] = useState('0')
+    const [customValue, setCustomValue] = useState('0')
+    const [customRarity, setCustomRarity] = useState('0')
+    const [customDescription, setCustomDescription] = useState('')
+
+    useEffect(() => {
+        setIsFormValid(customName.trim().length > 0)
+    }, [customName, setIsFormValid]);
+
+
+    const handleConfirm = useCallback(() => {
+        // Create custom item (separate from database items)
+        const newCustomItem = {
+            name: customName.trim(),
+            quantity: Math.max(1, Number.parseInt(customQuantity) || 1),
+            value: Math.max(0, Number.parseInt(customValue) || 0),
+            weight: Math.max(0, Number.parseFloat(customWeight) || 0),
+            rarity: Math.max(0, Number.parseInt(customRarity) || 0),
+            type: itemType,
+            category: 'custom',
+            description: customDescription.trim() || undefined
+        }
+
+        // Add to character's custom items array
+        const updatedCustomItems = [
+            ...(character.customItems || []),
+            newCustomItem
+        ]
+
+        updateCharacter({
+            customItems: updatedCustomItems
+        })
+    }, [character.customItems, customDescription, customName, customQuantity, customRarity, customValue, customWeight, itemType, updateCharacter])
+
+    // Registra la callback quando cambia
+    useEffect(() => {
+        setOnConfirmCallback(() => handleConfirm)
+    }, [handleConfirm, setOnConfirmCallback])
+
+    return (
+        <>
+            {/* Weight, Value, Rarity - Single Row */}
+            <div className="row" style={{ marginTop: '0.5rem', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <i className="fas fa-weight-hanging" title={t('weight')}></i>
+                    <input
+                        type="number"
+                        min="0"
+                        step="0.5"
+                        value={customWeight}
+                        onChange={(e) => setCustomWeight(e.target.value)}
+                        style={{ width: '2.5rem', fontSize: '0.8rem' }}
+                    />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <i className="fas fa-coins" title={t('value')}></i>
+                    <input
+                        type="number"
+                        min="0"
+                        step="1"
+                        value={customValue}
+                        onChange={(e) => setCustomValue(e.target.value)}
+                        style={{ width: '2.5rem', fontSize: '0.8rem' }}
+                    />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <i className="fas fa-star" title={t('rarity')}></i>
+                    <input
+                        type="number"
+                        min="0"
+                        step="1"
+                        max="6"
+                        value={customRarity}
+                        onChange={(e) => setCustomRarity(e.target.value)}
+                        style={{ width: '2.5rem', fontSize: '0.8rem' }}
+                    />
+                </div>
+            </div>
+
+            {/* Name and Quantity - Single Row */}
+            <div className="row">
+                <input
+                    type="text"
+                    value={customName}
+                    onChange={(e) => setCustomName(e.target.value)}
+                    placeholder={t('name')}
+                    style={{ flex: 1, minWidth: 0 }}
+                    maxLength={50}
+                />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <span title={t('quantity')}>x</span>
+                    <input
+                        type="number"
+                        min="1"
+                        step="1"
+                        value={customQuantity}
+                        onChange={(e) => setCustomQuantity(e.target.value)}
+                        style={{ width: '2.5rem', fontSize: '0.8rem' }}
+                    />
+                </div>
+            </div>
+            {/* Description */}
+            <div style={{ marginBottom: '1rem' }}>
+                <label style={{ display: 'block', marginBottom: '0.25rem' }}>
+                    {t('description')}:
+                </label>
+                <textarea
+                    value={customDescription}
+                    onChange={(e) => setCustomDescription(e.target.value)}
+                    placeholder={t('descriptionOptional')}
+                    style={{
+                        width: '100%',
+                        minHeight: '4rem',
+                        resize: 'vertical',
+                        padding: '0.5rem'
+                    }}
+                    maxLength={500}
+                />
+            </div>
+        </>
+    )
+}

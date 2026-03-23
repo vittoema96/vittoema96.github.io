@@ -23,17 +23,16 @@ export const useInventoryFilter = (itemType: ItemType) => {
             return itemData?.CATEGORY !== 'robotPart' || character.origin === ORIGINS.MR_HANDY;
         })
 
-        items = addSpecialWeaponItems(items, character.origin.isRobot)
+        items = addSpecialWeaponItems(items, character.origin.isRobot, dataManager)
 
         return items
-    }, [character.items, character.origin, itemType])
+    }, [character.items, character.origin, itemType, dataManager])
 }
 
 /**
  * Add special weapon items (unarmed strike, gun bash)
  */
-const addSpecialWeaponItems = (items: CharacterItem[], isRobot: boolean) => {
-    const dataManager = getGameDatabase()
+const addSpecialWeaponItems = (items: CharacterItem[], isRobot: boolean, dataManager: ReturnType<typeof getGameDatabase>) => {
     const resultItems: CharacterItem[] = [...items]
 
     const addSpecialItem = (itemToCheck: CharacterItem, specialItemId: string, condition: (item: CharacterItem) => boolean) => {

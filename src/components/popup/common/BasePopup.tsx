@@ -6,22 +6,24 @@ import DialogPortal from '@/components/popup/common/DialogPortal.tsx';
 
 interface BasePopupProps {
     title: string;
-    onConfirm?: (() => void) | undefined;
     confirmLabel?: string;
+    onConfirm?: (() => void) | undefined;
+    confirmDisabled?: boolean;
     onClose: () => void;
-    disabled?: boolean;
-    className?: string;
     children: React.ReactNode;
+    footerChildren?: React.ReactNode;
+    className?: string; // TODO: Remove className later - popups should not need custom styling
 }
 
 function BasePopup({
        title,
+       confirmLabel = 'confirm',
        onConfirm,
-       confirmLabel,
+       confirmDisabled = false,
        onClose,
-       disabled,
-       className,
-       children
+       children,
+       footerChildren,
+       className
     }: Readonly<BasePopupProps>) {
     const { t } = useTranslation();
 
@@ -34,17 +36,22 @@ function BasePopup({
                 <PopupHeader title={title} onClose={() => closeWithAnimation()}/>
 
                 {children}
-            <hr/>
+
+                <hr/>
+
                 <footer>
                     {onConfirm && (
                         <button
                             className="confirmButton"
                             onClick={() => closeWithAnimation(onConfirm)}
-                            disabled={disabled}
+                            disabled={confirmDisabled}
                         >
-                            {t(confirmLabel ?? 'confirm')}
+                            {t(confirmLabel)}
                         </button>
                     )}
+
+                    {footerChildren}
+
                     <button
                         className="closeButton"
                         onClick={() => closeWithAnimation()}

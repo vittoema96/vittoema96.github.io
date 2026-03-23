@@ -78,13 +78,13 @@ function DataTab() {
                 </label>
                 <select
                     id="origin"
-                    value={character.origin.id}
+                    value={character.origin.id || ''}
                     onChange={(e) => updateCharacter({
-                        origin: e.target.value as OriginId
+                        origin: (e.target.value || undefined) as OriginId
                     })}
                 >
 
-                    <option value={undefined} disabled>-</option>
+                    <option value="" disabled>-</option>
                     {Object.values(ORIGINS).map(origin => (
                         origin.id && <option key={origin.id} value={origin.id}>
                             {t(origin.id)}

@@ -1,5 +1,5 @@
 import Papa from 'papaparse';
-import { WeaponItem, ApparelItem, AidItem, ModItem, GenericItem } from '@/types';
+import { WeaponItem, ApparelItem, AidItem, AmmoItem, ModItem, GenericItem } from '@/types';
 
 export const GameDataRepository = {
     /**
@@ -56,7 +56,7 @@ export const GameDataRepository = {
     },
 
     async loadAllData() {
-        const [weapon, apparel, aid, other, mod, perks, traits] = await Promise.all([
+        const [weapon, apparel, aid, ammo, other, mod, perks, traits] = await Promise.all([
             this.mergeCSVs<WeaponItem>([
                 'data/weapon/smallGuns.csv', 'data/weapon/energyWeapons.csv',
                 'data/weapon/bigGuns.csv', 'data/weapon/meleeWeapons.csv',
@@ -69,7 +69,8 @@ export const GameDataRepository = {
             this.mergeCSVs<AidItem>([
                 'data/aid/food.csv', 'data/aid/drinks.csv', 'data/aid/meds.csv', 'data/aid/misc.csv'
             ]),
-            this.mergeCSVs<GenericItem>(['data/other/ammo.csv', 'data/other/misc.csv']),
+            this.parseCSV<AmmoItem>('data/other/ammo.csv'),
+            this.mergeCSVs<GenericItem>(['data/other/misc.csv']),
             this.mergeCSVs<ModItem>([
                 'data/mods/smallGunMods.csv', 'data/mods/bigGunMods.csv',
                 'data/mods/energyWeaponMods.csv', 'data/mods/meleeWeaponMods.csv',
@@ -81,7 +82,7 @@ export const GameDataRepository = {
             this.parseCSV<any>('data/traits.csv')
         ]);
 
-        return { weapon, apparel, aid, other, mod, perks, traits };
+        return { weapon, apparel, aid, ammo, other, mod, perks, traits };
     },
 };
 

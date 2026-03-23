@@ -1,10 +1,7 @@
-import { useState, useRef } from 'react';
-import { useCharacter } from '@/contexts/CharacterContext';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDialog } from '@/hooks/useDialog';
 import { GenericPopupProps } from '@/types';
-import DialogPortal from '@/components/popup/common/DialogPortal.tsx';
-import PopupHeader from '@/components/popup/common/PopupHeader.tsx';
+import BasePopup from '@/components/popup/common/BasePopup.tsx';
 
 type ResultDisplay = 'damage' | 'effects' | 'both';
 
@@ -22,8 +19,6 @@ interface Nd6PopupProps extends GenericPopupProps {
  */
 function Nd6Popup({ onClose, diceCount, title, description, resultDisplay = 'both', onResult }: Readonly<Nd6PopupProps>) {
     const { t } = useTranslation();
-    const dialogRef = useRef<HTMLDialogElement>(null);
-    const { closeWithAnimation } = useDialog(dialogRef, onClose);
 
     const [diceValues, setDiceValues] = useState<number[]>([]);
 
@@ -68,14 +63,17 @@ function Nd6Popup({ onClose, diceCount, title, description, resultDisplay = 'bot
                 rolls: diceValues
             });
         }
-        closeWithAnimation();
+        onClose();
     };
 
     return (
-        <DialogPortal>
-            <dialog ref={dialogRef}>
-                <div className="stack no-gap">
-                    <PopupHeader title={title} onClose={() => closeWithAnimation()} />
+        <BasePopup
+            title={title}
+            confirmLabel={hasRolled ? 'confirm' : 'roll'}
+            onConfirm={hasRolled ? handleConfirm : handleRoll}
+            onClose={onClose}
+        >
+            <div className="stack no-gap">
 
                     {description && (
                         <>
@@ -123,26 +121,8 @@ function Nd6Popup({ onClose, diceCount, title, description, resultDisplay = 'bot
                             )}
                         </div>
                     )}
-
-                    <hr />
-
-                    <footer>
-                        <button
-                            className="confirmButton"
-                            onClick={hasRolled ? handleConfirm : handleRoll}
-                        >
-                            {t(hasRolled ? 'confirm' : 'roll')}
-                        </button>
-                        <button
-                            className="closeButton"
-                            onClick={() => closeWithAnimation()}
-                        >
-                            {t('close')}
-                        </button>
-                    </footer>
                 </div>
-            </dialog>
-        </DialogPortal>
+        </BasePopup>
     );
 }
 
