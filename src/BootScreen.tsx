@@ -23,6 +23,14 @@ export default function BootScreen() {
                 <span className="boot-text">&gt; LOADER {__APP_VERSION__}</span>
                 <span className="boot-text">&gt; WELCOME, OVERSEER</span>
             </pre>
+            {/* Easily readable alpha version TODO edit when moving to beta / stable */}
+            <div style={{
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                padding: "var(--space-m)",
+                fontSize: "var(--space-m)"
+            }}>v{__APP_VERSION__.split('.').at(-1)}</div>
         </div>
     )
 }

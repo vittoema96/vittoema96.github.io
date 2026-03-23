@@ -62,7 +62,7 @@ function Main() {
 
     // Boot screen logic
     const isProduction  = !__APP_VERSION__.includes('BUILD_VERSION') || FORCE_BOOT_SCREEN
-    const [ showBootScreen, setShowBootScreen ] = useState(isProduction)
+    const [ showBootScreen, setShowBootScreen ] = useState<boolean>(isProduction)
     useEffect(() => {
         if (!showBootScreen) {return}
 
