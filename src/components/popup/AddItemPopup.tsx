@@ -299,10 +299,10 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
 
     // Custom item mode
     const [customName, setCustomName] = useState('')
-    const [customQuantity, setCustomQuantity] = useState('1')
+    const [customQuantity, setCustomQuantity] = useInputNumberState(1)
     const [customWeight, setCustomWeight] = useState('0')
-    const [customValue, setCustomValue] = useState('0')
-    const [customRarity, setCustomRarity] = useState('0')
+    const [customValue, setCustomValue] = useInputNumberState(0)
+    const [customRarity, setCustomRarity] = useInputNumberState(0)
     const [customDescription, setCustomDescription] = useState('')
 
     useEffect(() => {
@@ -314,10 +314,10 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
         // Create custom item (separate from database items)
         const newCustomItem = {
             name: customName.trim(),
-            quantity: Math.max(1, Number.parseInt(customQuantity) || 1),
-            value: Math.max(0, Number.parseInt(customValue) || 0),
+            quantity: Math.max(1, customQuantity || 1),
+            value: Math.max(0, customValue || 0),
             weight: Math.max(0, Number.parseFloat(customWeight) || 0),
-            rarity: Math.max(0, Number.parseInt(customRarity) || 0),
+            rarity: Math.max(0, customRarity || 0),
             type: itemType,
             category: 'custom',
             description: customDescription.trim() || undefined
@@ -350,7 +350,17 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
                         min="0"
                         step="0.5"
                         value={customWeight}
-                        onChange={(e) => setCustomWeight(e.target.value)}
+                        onChange={(e) => {
+                            const value = Number.parseFloat(e.target.value)
+                            if (!Number.isNaN(value)) {
+                                setCustomWeight(`${Math.round(value * 2) / 2}`)
+                            }
+                        }}
+                        onBlur={(e) => {
+                            if (Number.isNaN(Number.parseFloat(e.target.value))) {
+                                setCustomWeight('0')
+                            }
+                        }}
                         style={{ width: '2.5rem', fontSize: '0.8rem' }}
                     />
                 </div>
@@ -362,6 +372,11 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
                         step="1"
                         value={customValue}
                         onChange={(e) => setCustomValue(e.target.value)}
+                        onBlur={(e) => {
+                            if (Number.isNaN(Number.parseInt(e.target.value))) {
+                                setCustomValue(0)
+                            }
+                        }}
                         style={{ width: '2.5rem', fontSize: '0.8rem' }}
                     />
                 </div>
@@ -374,6 +389,11 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
                         max="6"
                         value={customRarity}
                         onChange={(e) => setCustomRarity(e.target.value)}
+                        onBlur={(e) => {
+                            if (Number.isNaN(Number.parseInt(e.target.value))) {
+                                setCustomRarity(0)
+                            }
+                        }}
                         style={{ width: '2.5rem', fontSize: '0.8rem' }}
                     />
                 </div>
@@ -397,6 +417,11 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
                         step="1"
                         value={customQuantity}
                         onChange={(e) => setCustomQuantity(e.target.value)}
+                        onBlur={(e) => {
+                            if (Number.isNaN(Number.parseInt(e.target.value))) {
+                                setCustomQuantity(0)
+                            }
+                        }}
                         style={{ width: '2.5rem', fontSize: '0.8rem' }}
                     />
                 </div>

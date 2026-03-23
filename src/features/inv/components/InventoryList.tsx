@@ -230,7 +230,6 @@ function InventoryList({
                     characterItem={characterItem}
                     isSelected={selectedItemId === uniqueKey}
                     onSelect={() => handleSelect(uniqueKey)}
-                    cardComponent={getCardComponent(characterItem)}
                 />
             )
         })
@@ -258,7 +257,6 @@ function InventoryList({
                     customItem={customItem}
                     isSelected={selectedItemId === uniqueKey}
                     onSelect={() => handleSelect(uniqueKey)}
-                    cardComponent={OtherCard}
                 />
             );
         });

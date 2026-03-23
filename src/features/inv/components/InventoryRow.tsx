@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
 import { useInventoryActions } from '@/features/inv/hooks/useInventoryActions.ts'
-import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
-import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { getDisplayName } from '@/utils/itemUtils.ts'
 import {CharacterItem, CustomItem} from '@/types'
 import { FitText } from '@/components/FitText.tsx';
@@ -14,7 +13,6 @@ interface InventoryRowProps {
     customItem?: CustomItem
     isSelected: boolean
     onSelect: () => void
-    cardComponent: React.ComponentType<any>
     showBadges?: boolean
 }
 /**
@@ -27,7 +25,6 @@ function InventoryRow({
     customItem,
     isSelected,
     onSelect,
-    cardComponent: CardComponent,
     showBadges = true
 }: Readonly<InventoryRowProps>) {
     const { t } = useTranslation()
@@ -215,10 +212,10 @@ function InventoryRow({
                                 type="text"
                                 className="inventory-row__name-input"
                                 value={editedName}
-                                onChange={(e) => setEditedName(e.target.value)}
+                                onChange={e => setEditedName(e.target.value)}
                                 onKeyDown={handleNameKeyDown}
                                 onBlur={handleSaveName}
-                                onClick={(e) => e.stopPropagation()}
+                                onClick={e => e.stopPropagation()}
                                 placeholder={t(characterItem.id)}
                             />
                         ) : (
@@ -234,7 +231,10 @@ function InventoryRow({
                                                 className={`inventory-row__badge badge-${badge.color}`}
                                                 title={badge.icon ? t('equipped') : ''}
                                             >
-                                                <div className="themed-svg" data-icon={badge.icon}></div>
+                                                <div
+                                                    className="themed-svg"
+                                                    data-icon={badge.icon}
+                                                ></div>
                                             </span>
                                         ))}
                                     </span>
@@ -277,6 +277,7 @@ function InventoryRow({
                     {canSellDelete && (
                         <button
                             className="confirmButton"
+                            style={{ flex: 0 }}
                             data-icon="caps"
                             onClick={e => {
                                 e.stopPropagation();
