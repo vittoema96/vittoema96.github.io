@@ -47,12 +47,12 @@ function TraitList() {
                 showNd6Popup(
                     1,
                     t('traitRiteOfPassage'),
-                    t('riteOfPassageRollDescription'),
+                    t('traitRiteOfPassageBenefit'),
                     'effects',
                     (result) => {
                         // If rolled an effect (3-4 on d6), gain +1 luck
                         if (result.totalEffects > 0) {
-                            const newLuck = Math.min(character.currentLuck + 1, character.special.luck);
+                            const newLuck = Math.min(character.currentLuck + 1, character.maxLuck);
                             updateCharacter({ currentLuck: newLuck });
                         }
                     }
@@ -115,7 +115,6 @@ function TraitList() {
                     <TraitPerkItem
                         key={traitId}
                         id={traitId}
-                        type="trait"
                         isFixed={true}
                         actionButton={TRAIT_ACTIONS[traitId] ? {
                             label: TRAIT_ACTIONS[traitId].buttonLabel,
@@ -134,7 +133,6 @@ function TraitList() {
                             <TraitPerkItem
                                 key={index}
                                 id={selectedTrait}
-                                type="trait"
                                 isFixed={false}
                                 onChangeClick={() => setChangingSlotIndex(index)}
                                 onDeleteClick={() => handleTraitRemove(index)}

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo } from '@/features/inv/utils/weaponUtils.ts'
 import {getGameDatabase, getModifiedItemData } from "@/hooks/getGameDatabase.ts";
 import { CharacterItem } from '@/types';
-import { SKILL_TO_SPECIAL_MAP } from '@/utils/characterSheet.ts';
+import { getSpecialFromSkill } from '@/services/character/utils.ts';
 import React from 'react';
 
 /**
@@ -28,7 +28,7 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
     }
 
     const skillValue = character.skills[itemData.CATEGORY]
-    const targetNumber = character.special[SKILL_TO_SPECIAL_MAP[itemData.CATEGORY]] + skillValue
+    const targetNumber = character.special[getSpecialFromSkill(itemData.CATEGORY)] + skillValue
 
     const critThreshold = character.specialties.includes(itemData.CATEGORY) ? Math.max(skillValue, 1) : 1
 
@@ -127,11 +127,11 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
             </div>
 
             {/* Tags container for effects and qualities - Compact */}
-            {(itemData.EFFECTS?.length > 0 || itemData.QUALITIES?.length > 0) && <>
+            {(itemData.EFFECTS.length > 0 || itemData.QUALITIES.length > 0) && <>
                 <hr/>
                 <div className="tags-container">
                     {/* Intrinsic EFFECTS (from base item) */}
-                    {itemData.EFFECTS?.map((effect) => {
+                    {itemData.EFFECTS.map((effect) => {
                         const [effectType, effectOpt] = effect.split(':');
                         let displayValue = t(effectOpt!)
                         if (displayValue) {
@@ -145,7 +145,7 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
                         );
                     })}
 
-                    {itemData.QUALITIES?.map((effect) => {
+                    {itemData.QUALITIES.map((effect) => {
                         const [qualityType, qualityOpt] = effect.split(':');
                         let displayValue = t(qualityOpt!)
                         if (displayValue) {

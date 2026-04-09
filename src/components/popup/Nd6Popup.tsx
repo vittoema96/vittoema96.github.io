@@ -1,76 +1,84 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GenericPopupProps } from '@/types';
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
 
 type ResultDisplay = 'damage' | 'effects' | 'both';
 
+
+// Get dice face class from roll (1-6)
+const getDiceClassFromRoll = (roll: number): string => {
+    if (roll >= 5) {
+        return 'd6-face-blank';
+    }
+    if (roll >= 3) {
+        return 'd6-face-effect';
+    }
+    if (roll >= 2) {
+        return 'd6-face-damage2';
+    }
+    return 'd6-face-damage1';
+};
+
 interface Nd6PopupProps extends GenericPopupProps {
     diceCount: number;
     title: string;
-    description?: string;
-    resultDisplay?: ResultDisplay;
-    onResult?: (result: { totalDamage: number; totalEffects: number; rolls: number[] }) => void;
+    description?: string | undefined;
+    resultDisplay: ResultDisplay;
+    onResult: (result: { totalDamage: number; totalEffects: number; rolls: number[] }) => void;
 }
 
 /**
  * Generic N d6 popup for rolling multiple d6 dice
  * Used for various game mechanics that require rolling combat dice
  */
-function Nd6Popup({ onClose, diceCount, title, description, resultDisplay = 'both', onResult }: Readonly<Nd6PopupProps>) {
+function Nd6Popup({ onClose, diceCount, title, description, resultDisplay, onResult }: Readonly<Nd6PopupProps>) {
     const { t } = useTranslation();
 
     const [diceValues, setDiceValues] = useState<number[]>([]);
-
-    // Get dice face class from roll (1-6)
-    const getDiceClassFromRoll = (roll: number): string => {
-        if (roll >= 5) {
-            return 'd6-face-blank';
-        }
-        if (roll >= 3) {
-            return 'd6-face-effect';
-        }
-        if (roll >= 2) {
-            return 'd6-face-damage2';
-        }
-        return 'd6-face-damage1';
-    };
+    const [hasRolled, setHasRolled] = useState<boolean>(false);
 
     // Count damage (1-4 on dice)
-    const getTotalDamage = (): number => {
-        return diceValues.filter(v => v <= 4).length;
-    };
+    const totalDamage = useMemo(() => {
+            return diceValues.filter(v => v <= 4).length
+        }, [diceValues])
 
     // Count effects (3-4 on dice)
-    const getTotalEffects = (): number => {
-        return diceValues.filter(v => v >= 3 && v <= 4).length;
-    };
-
-    const hasRolled = diceValues.length > 0;
+    const totalEffects = useMemo(() => {
+        return diceValues.filter(v => v === 3 || v === 4).length;
+    }, [diceValues]);
 
     // Handle roll
     const handleRoll = () => {
         const rolls = Array.from({ length: diceCount }, () => Math.floor(Math.random() * 6) + 1);
         setDiceValues(rolls);
+        setHasRolled(true);
     };
 
     // Handle confirm (call onResult callback if provided)
     const handleConfirm = () => {
         if (onResult && hasRolled) {
             onResult({
-                totalDamage: getTotalDamage(),
-                totalEffects: getTotalEffects(),
+                totalDamage,
+                totalEffects,
                 rolls: diceValues
             });
         }
-        onClose();
     };
 
     return (
         <BasePopup
             title={title}
-            confirmLabel={hasRolled ? 'confirm' : 'roll'}
-            onConfirm={hasRolled ? handleConfirm : handleRoll}
+            confirmLabel={'confirm'}
+            onConfirm={hasRolled ? handleConfirm : undefined}
+            footerChildren={!hasRolled &&
+                <button
+                    className="confirmButton"
+                    onClick={handleRoll}
+                >
+                    {t('roll')}
+                </button>
+            }
             onClose={onClose}
         >
             <div className="stack no-gap">
@@ -114,10 +122,10 @@ function Nd6Popup({ onClose, diceCount, title, description, resultDisplay = 'bot
                     {hasRolled && (
                         <div style={{ textAlign: 'center', margin: '0.5rem 0' }}>
                             {(resultDisplay === 'damage' || resultDisplay === 'both') && (
-                                <div>{t('totalDamage')}: {getTotalDamage()}</div>
+                                <div>{t('totalDamage')}: {totalDamage}</div>
                             )}
                             {(resultDisplay === 'effects' || resultDisplay === 'both') && (
-                                <div>{t('totalEffects')}: {getTotalEffects()}</div>
+                                <div>{t('totalEffects')}: {totalEffects}</div>
                             )}
                         </div>
                     )}

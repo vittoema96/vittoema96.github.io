@@ -26,7 +26,12 @@ function ApparelCard({ characterItem }: Readonly<ApparelCardProps>) {
             action={{
                 icon: "armor",
                 onClick: () => equipItem(characterItem),
-                isChecked: (item) => item.equipped === true,
+                isChecked: (item) => {
+                    return {
+                        equipped: false,
+                        ...item,
+                    }.equipped;
+                }
                 // TODO isDisabled for non origin compatible apparel
             }}
             characterItem={characterItem}

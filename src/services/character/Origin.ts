@@ -1,35 +1,43 @@
-import {
-    BODY_PARTS, GenericBodyPart,
-    MR_HANDY_PARTS,
-    Origin,
-    OriginId,
-    SkillType,
-    SpecialType
-} from "@/types";
+import { BODY_PARTS, GenericBodyPart, MR_HANDY_PARTS } from '@/types';
+import { SpecialType } from '@/services/character/utils.ts';
 
-// TODO delete this class:
-//   - Most stuff can be moved to index.ts
-//   - An Origin.ts class or something similar has to be created to contain Origin related stuff (complex handling)
+// ORIGIN ENUM
+export const ORIGIN_IDS = [
+    'vaultDweller',
+    'ghoul',
+    'survivor',
+    'mrHandy',
+    'brotherhoodInitiate',
+    'superMutant',
+    'minutemen',
+    'ncr',
+    'protectron',
+    'robobrain',
+    'securitron',
+    'synth',
+    'assaultron',
+    'brotherhoodOutcast',
+    'childOfAtom',
+    'nightkin',
+    'tribal',
+] as const;
+export type OriginId = (typeof ORIGIN_IDS)[number] | undefined;
 
-export const SKILL_TO_SPECIAL_MAP: Record<SkillType, SpecialType> = {
-    athletics: "strength",
-    barter: "charisma",
-    bigGuns: "endurance",
-    energyWeapons: "perception",
-    explosives: "perception",
-    lockpick: "perception",
-    medicine: "intelligence",
-    meleeWeapons: "strength",
-    pilot: "perception",
-    repair: "intelligence",
-    science: "intelligence",
-    smallGuns: "agility",
-    sneak: "agility",
-    speech: "charisma",
-    survival: "endurance",
-    throwing: "agility",
-    unarmed: "strength",
-} as const;
+export interface Origin {
+    id: OriginId;
+    calcMaxCarryWeight: (strengthVal: number) => number;
+    hasRadiationImmunity: boolean;
+    hasPoisonImmunity: boolean;
+    bodyParts: Set<GenericBodyPart>;
+    numberOfTraits: number;
+    isRobot: boolean;
+    specialMaxValues: Record<SpecialType, number>;
+    skillMaxValue: number;
+    needsSpecializedArmor: boolean;
+    needsSpecializedWeapons: boolean;
+    characterSvg: string;
+}
+
 
 interface CreateOriginOptions {
     calcMaxCarryWeight?: (strengthVal: number) => number;
@@ -45,9 +53,10 @@ interface CreateOriginOptions {
     characterSvg?: string;
 }
 
+
 const createOrigin = (id?: OriginId, options: CreateOriginOptions = {}): Origin => {
     const {
-        calcMaxCarryWeight = (strengthVal) => 75 + (strengthVal * 5),
+        calcMaxCarryWeight = strengthVal => 75 + strengthVal * 5,
         hasRadiationImmunity = false,
         hasPoisonImmunity = false,
         bodyParts = BODY_PARTS,
@@ -57,7 +66,7 @@ const createOrigin = (id?: OriginId, options: CreateOriginOptions = {}): Origin 
         numberOfTraits = 0,
         needsSpecializedArmor = false,
         needsSpecializedWeapons = false,
-        characterSvg = "vaultboy-open-arms",
+        characterSvg = 'vaultboy-open-arms',
     } = options;
     return Object.freeze({
         id,
@@ -74,13 +83,13 @@ const createOrigin = (id?: OriginId, options: CreateOriginOptions = {}): Origin 
             intelligence: 10,
             agility: 10,
             luck: 10,
-            ...specialMaxValues
+            ...specialMaxValues,
         },
         skillMaxValue,
         numberOfTraits,
         needsSpecializedArmor,
         needsSpecializedWeapons,
-        characterSvg
+        characterSvg,
     });
 };
 export const getOriginById = (id: OriginId): Origin => {
@@ -222,6 +231,7 @@ export const ORIGINS = Object.freeze({
         numberOfTraits: 2
     }),
 });
+
 
 // TODO Trait implementations needed:
 //  - traitEducated: add as info or something (penalty: When failing a skill test using a skill other than a tag skill, the GM gains 1 AP)

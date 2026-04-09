@@ -1,20 +1,16 @@
 import { GameDatabase, ITEM_TYPE_MAP } from '@/services/GameDatabase';
-import { ModdableItem, AidItem, AmmoItem, ApparelItem, CharacterItem, GenericItem, Item, ItemType, ModItem, WeaponItem } from '@/types';
+import { AidItem, AmmoItem, ApparelItem, CharacterItem, GenericItem, Item, ItemType, ModItem, WeaponItem } from '@/types';
 import { applyEffect } from '@/utils/itemUtils.ts';
 
 type ItemMap = {
-    [K in ItemType | 'moddable']: K extends 'weapon' ? WeaponItem :
+    [K in ItemType]: K extends 'weapon' ? WeaponItem :
                      K extends 'apparel' ? ApparelItem :
                      K extends 'aid' ? AidItem :
                      K extends 'ammo' ? AmmoItem :
                      K extends 'mod' ? ModItem :
-                     K extends 'moddable' ? ModdableItem :
                      GenericItem;
 };
-function isType<T extends ItemType | 'moddable'>(item: Item | null | undefined, type: T): item is ItemMap[T] {
-    if(type === 'moddable'){
-        return isType(item, 'weapon') || isType(item, 'apparel')
-    }
+function isType<T extends ItemType>(item: Item | null | undefined, type: T): item is ItemMap[T] {
     return item?.TYPE === type;
 }
 
@@ -36,10 +32,6 @@ function createGameDatabase() {
 
         // Helpers
         getItem: GameDatabase.getItem.bind(GameDatabase),
-        getItemWithCustom: (id: string, customItems?: Record<string, GenericItem>) => {
-            // Check custom items first, then database
-            return customItems?.[id] || GameDatabase.getItem(id);
-        },
         isUnacquirable: GameDatabase.isUnacquirable,
         getItemTypeMap: () => ITEM_TYPE_MAP,
         isType,
@@ -51,11 +43,10 @@ export const getGameDatabase = () => {
     return cachedDataManager
 };
 
-const applyMods = (itemData: ModdableItem, modsData: ModItem[]): typeof itemData => {
-    itemData.EFFECTS ??= []
+const applyMods = (itemData: WeaponItem | ApparelItem, modsData: ModItem[]): typeof itemData => {
     for (const handleRemove of [false, true]){
         modsData.forEach((mod) => {
-            mod.EFFECTS?.forEach(effect => {
+            mod.EFFECTS.forEach(effect => {
                 if(handleRemove === ["effectRemove", "qualityRemove"].includes(effect)) {
                     itemData = applyEffect(itemData, effect);
                 }
@@ -69,10 +60,11 @@ const applyMods = (itemData: ModdableItem, modsData: ModItem[]): typeof itemData
 /**
  * Get item data with mods applied
  */
-export function getModifiedItemData(characterItem: CharacterItem): ModdableItem | null {
+export function getModifiedItemData(characterItem: CharacterItem | null): WeaponItem | ApparelItem | null {
+    if(!characterItem) { return null }
     const dataManager = getGameDatabase()
     const itemData = dataManager.getItem(characterItem.id)
-    if (!dataManager.isType(itemData, "moddable")) {return null}
+    if (!dataManager.isType(itemData, "weapon") && !dataManager.isType(itemData, "apparel")) {return null}
     if (characterItem.mods.length === 0) {return itemData}
 
 

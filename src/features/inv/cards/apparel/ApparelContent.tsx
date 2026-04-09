@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import Tag from '@/components/Tag.tsx'
 import {getGameDatabase, getModifiedItemData } from "@/hooks/getGameDatabase.ts";
 import { CharacterItem } from '@/types';
+import React from 'react';
 
 /**
  * Apparel-specific content renderer
@@ -67,7 +68,7 @@ function ApparelContent({ characterItem, actionButtons }: Readonly<ApparelConten
             </div>
 
             {/* Tags container for effects - Compact */}
-            {itemData.EFFECTS?.length > 0 && <>
+            {itemData.EFFECTS.length > 0 && <>
                 <hr/>
                 <div className="tags-container">
                     {itemData.EFFECTS.map((effect) => {

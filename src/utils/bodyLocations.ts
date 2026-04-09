@@ -1,4 +1,4 @@
-import type { ApparelCategories, CharacterItem, GenericBodyPart } from '@/types';
+import type { ApparelCategory, CharacterItem, GenericBodyPart } from '@/types';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
 
 /**
@@ -59,7 +59,7 @@ export function hasApparelConflict(item1: CharacterItem, item2: CharacterItem) {
 
 
 type ItemLayer = 'under' | 'over' | 'both';
-const getItemLayer = (itemCategory: ApparelCategories): ItemLayer => {
+const getItemLayer = (itemCategory: ApparelCategory): ItemLayer => {
     switch (itemCategory) {
         case 'clothing':
             return 'under';

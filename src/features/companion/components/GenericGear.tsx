@@ -18,22 +18,23 @@ interface GenericGearProps {
 function GenericGear({ statType, baseValue, isEditing = false, children }: Readonly<GenericGearProps>) {
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
+    const companion = character.companion!
 
-    const value = character.companion.special[statType]
+    const value = companion.special[statType]
     const maxValue = 10
 
     // Handle stat changes (click to increment in edit mode)
     const handleClick = () => {
-        if (!isEditing) return
+        if (!isEditing) { return }
 
-        const current = character.companion.special[statType]
+        const current = companion.special[statType]
         const next = current < maxValue ? current + 1 : baseValue // Cycle back to base if at max
 
         updateCharacter({
             companion: {
-                ...character.companion,
+                ...companion,
                 special: {
-                    ...character.companion.special,
+                    ...companion.special,
                     [statType]: next
                 }
             }

@@ -23,13 +23,13 @@ export const getWeaponAmmoCount = (weapon: WeaponItem, character: Character) => 
 export const getWeaponAmmoPerShot = (weapon: WeaponItem) => {
     if(weapon.AMMO_TYPE === 'na') {return 0}
 
-    const isGatling = (weapon.QUALITIES || []).includes('qualityGatling')
-    const isAmmoHungry = (weapon.QUALITIES || []).some(q => q.startsWith('qualityAmmoHungry'))
+    const isGatling = weapon.QUALITIES.includes('qualityGatling')
+    const isAmmoHungry = weapon.QUALITIES.some(q => q.startsWith('qualityAmmoHungry'))
 
     if(isGatling){
         return  10
     } else if(isAmmoHungry){
-        const quality = (weapon.QUALITIES || []).find(q => q.startsWith('qualityAmmoHungry'))
+        const quality = weapon.QUALITIES.find(q => q.startsWith('qualityAmmoHungry'))
         const [_, qualityOpt] = quality?.split(':') ?? [];
         return Number(qualityOpt) || 1;
     }

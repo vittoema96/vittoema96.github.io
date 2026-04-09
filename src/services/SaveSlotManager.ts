@@ -1,5 +1,5 @@
 import { RawCharacter } from '@/types';
-import { CharacterRepository } from './CharacterRepository';
+import { CharacterRepository } from './character/CharacterRepository.ts';
 
 // Constants
 const STORAGE_KEY_PREFIX = 'character_slot_';
@@ -10,7 +10,7 @@ export interface CharacterSlotInfo {
     slotIndex: number;
     name: string;
     level: number;
-    origin?: string;
+    origin?: string | undefined;
 }
 
 /**
@@ -20,7 +20,7 @@ export interface CharacterSlotInfo {
  * - Track active slot
  * - Provide slot metadata
  */
-export const CharacterSlotManager = {
+export const SaveSlotManager = {
     /**
      * Get the storage key for a specific slot
      */
@@ -34,7 +34,7 @@ export const CharacterSlotManager = {
     getActiveSlot(): number {
         const saved = localStorage.getItem(ACTIVE_SLOT_KEY);
         if (!saved) { return 0; }
-        const slot = parseInt(saved, 10);
+        const slot = Number.parseInt(saved, 10);
         return (slot >= 0 && slot < MAX_SLOTS) ? slot : 0;
     },
 
@@ -67,7 +67,8 @@ export const CharacterSlotManager = {
     loadFromSlot(slotIndex: number): RawCharacter | null {
         if (slotIndex < 0 || slotIndex >= MAX_SLOTS) {
             console.warn('Invalid slot index:', slotIndex);
-            return null;
+            console.warn('Defaulting to slot 0');
+            slotIndex = 0;
         }
         const key = this.getSlotKey(slotIndex);
         return CharacterRepository.load(key);
@@ -95,8 +96,8 @@ export const CharacterSlotManager = {
             if (character) {
                 slots.push({
                     slotIndex: i,
-                    name: character.name || 'Unnamed',
-                    level: character.level || 1,
+                    name: character.name ?? 'Unnamed', // TODO translate Unnamed
+                    level: character.level,
                     origin: character.origin
                 });
             } else {
@@ -133,6 +134,7 @@ export const CharacterSlotManager = {
     /**
      * Migrate legacy data to first available slot
      */
+    // TODO ideally this has to go when everyone has migrated
     migrateLegacyData(): void {
         // Find first available slot (prefer slot 0)
         let targetSlot = 0;

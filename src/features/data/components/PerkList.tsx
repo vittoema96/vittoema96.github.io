@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { useCharacter } from '@/contexts/CharacterContext.tsx';
+import { MYSTERIOUS_44_MAGNUM, useCharacter } from '@/contexts/CharacterContext.tsx';
 import { useEffect, useState } from 'react';
 import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
-import { SpecialType } from '@/types';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import TraitPerkItem from './TraitPerkItem.tsx';
 import TraitPerkSelector from './TraitPerkSelector.tsx';
 import TraitPerkSelectionPopup from './TraitPerkSelectionPopup.tsx';
+import { SpecialType } from '@/services/character/utils.ts';
 
 /**
  * Configuration for perk-specific actions.
@@ -41,12 +41,7 @@ function PerkList() {
                     return;
                 }
 
-	                showD20Popup('smallGuns', {
-                    id: "weaponFortyFourPistol",
-                    quantity: 1,
-                    mods: ["modErgonomicGrip", "modMarksmanGrip", "modPowerful"],
-                    customName: "Mysterious .44 Magnum"
-	                }, 'mysteriousStranger')
+	                showD20Popup('smallGuns', MYSTERIOUS_44_MAGNUM, 'mysteriousStranger')
                 console.log('Mysterious Stranger action triggered!');
             }
         }
@@ -135,7 +130,6 @@ function PerkList() {
                             <TraitPerkItem
                                 key={index}
                                 id={selectedPerk}
-                                type="perk"
                                 isFixed={false}
                                 onChangeClick={() => setChangingSlotIndex(index)}
                                 onDeleteClick={() => handlePerkRemove(index)}

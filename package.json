@@ -32,7 +32,6 @@
     "format:check": "prettier --check src/",
     "type-check": "tsc --noEmit",
     "quality": "npm run lint && npm run format:check && npm run type-check",
-
     "test": "echo \"No tests yet\" && exit 0"
   },
   "dependencies": {
@@ -48,7 +47,8 @@
     "papaparse": "^5.4.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-i18next": "^16.5.0"
+    "react-i18next": "^16.5.0",
+    "zustand": "^5.0.12"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",

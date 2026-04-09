@@ -1,11 +1,11 @@
 /* Companion feature styles */
 
+/* TODO These may not be currently used. Check and remove */
 .companion-perks {
     display: flex;
     flex-direction: column;
     gap: var(--space-s);
 }
-
 .companion-perk {
     padding: 0.4rem 0.6rem;
     background-color: var(--button-background);

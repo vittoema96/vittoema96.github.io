@@ -27,14 +27,13 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
     const dataManager = getGameDatabase()
-    const itemData = getModifiedItemData(characterItem) // TODO not sure may be calculated below
+    const itemData = getModifiedItemData(characterItem)
 
     const { showTooltip } = useTooltip()
 
     const [ slotsData, setSlotsData ] = useState(() => {
-        if(!dataManager.isType(itemData, 'moddable')) {return {}}
         const result: Record<string, SlotData> = {}
-        itemData.AVAILABLE_MODS.forEach((modId) => {
+        itemData?.AVAILABLE_MODS.forEach((modId) => {
             const modData = dataManager.getItem(modId)
             if (dataManager.isType(modData, "mod")) {
                 result[modData.SLOT_TYPE] ??= {
@@ -55,7 +54,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
         return result
     })
 
-    if(!dataManager.isType(itemData, 'moddable')) {return}
+    if(!itemData) { return }
 
 
     // Calculate total cost of mods to buy
@@ -176,7 +175,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
     const onModInfoClick = (e: React.MouseEvent<HTMLButtonElement>, modData: ModItem) => {
         e.stopPropagation()
 
-        if (!modData.EFFECTS || modData.EFFECTS?.length === 0) {
+        if (modData.EFFECTS.length === 0) {
             return
         }
 

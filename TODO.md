@@ -1,19 +1,22 @@
 # TODO & Project Status
 
+## Developer Notes
+Things to fix:
+- FIRE_RATE is number | - ... can we do at least number | undefined?
+- Don't allow same customName for 2 different CustomItems (customName is object ID)
+
 ## 🔥 High Priority
 
-### Game Features (Alpha 4)
+### Game Features
 - [ ] **qualityAccurate effect** - Implement accurate weapon quality
-- [ ] **qualityThrown choice** - Add choice mechanism for thrown weapons
 - [ ] **Weapon mods** - Finish implementing mods (some effects currently do nothing) 
 - [ ] **Consumable items** - Proper aid item consumption mechanics
-- [ ] **Traits** - Add traits and abilities integration (gifted, good natured, extra perk, mr handy weapons already implemented)
-- [ ] **Perks** - Add perks integration (all are present but effects not implemented)
-- [ ] **Effects and Qualities** - Add missing effects and qualities (DLC effects and robot effects)
+- [ ] **Traits** - Keep adding traits (some traits missing and some need implementation)
+- [ ] **Perks** - Keep adding perks (some perks missing (dlc) and some need implementation)
+- [ ] **Effects and Qualities** - Check that all Effects and Qualities are implemented (some may not be)
 
 ### UI/UX Fixes
 - [ ] **Remove unrolled dice** - Make the change smooth
-- [ ] **Free rerolls display** - Show in both d20 and d6 popups
 
 ## 🎯 Medium Priority
 
@@ -44,6 +47,5 @@ Syringer does not have all ammo implemented
 
 ### Advanced Features
 - [ ] **Character progression** - Leveling system, perk selection
-- [ ] **Multiple characters** - Save slots, character switching
 - [ ] **Campaign management** - Multiple campaigns/sessions
 - [ ] **Statistics tracking** - Roll history, character stats

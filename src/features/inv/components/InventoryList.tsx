@@ -36,16 +36,16 @@ function InventoryList({
     const dataManager = getGameDatabase()
     const { character } = useCharacter()
     const traits = character.traits
-        .map(trait => dataManager.traits[trait])
+        .map(trait => dataManager.traits[trait]!)
         .filter(trait => {
-        return trait.ORIGINS.includes(character.origin.id)
+        return trait?.ORIGINS.includes(character.origin.id)
     })
     const newItems = traits.flatMap(trait => {
-        return trait.EFFECTS?.flatMap((effect: string) => {
+        return trait?.EFFECTS.flatMap((effect: string) => {
             const [effectType, item] = effect.split(':')
             if(effectType === 'weaponAdd'){
                 return {
-                    id: item,
+                    id: item as string,
                     quantity: 1,
                     equipped: false,
                     mods: []
@@ -63,7 +63,7 @@ function InventoryList({
 
         // Add 'custom' category if there are custom items of this type
         if (typeFilter === 'other' && character.customItems && character.customItems.length > 0) {
-            const hasCustomItems = character.customItems.some(item => item.type === typeFilter)
+            const hasCustomItems = character.customItems.some(item => item.TYPE === typeFilter)
             if (hasCustomItems && !categories.includes('custom')) {
                 categories.push('custom')
             }
@@ -106,8 +106,8 @@ function InventoryList({
 
         // Apply sorting
         filtered.sort((a, b) => {
-            const aData = getModifiedItemData(a)
-            const bData = getModifiedItemData(b)
+            const aData = getModifiedItemData(a) ?? dataManager.getItem(a.id)
+            const bData = getModifiedItemData(b) ?? dataManager.getItem(b.id)
 
             if (!aData || !bData) {return 0}
 
@@ -147,8 +147,9 @@ function InventoryList({
                     }
                     // Aid - sort by HP restoration
                     else if (dataManager.isType(aData, "aid") && dataManager.isType(bData, "aid")) {
-                        const aHP = aData.HP || 0
-                        const bHP = bData.HP || 0
+
+                        const aHP = {HP: 0, ...aData}.HP
+                        const bHP = {HP: 0, ...bData}.HP
                         comparison = bHP - aHP
                     }
                     // Ammo or mixed types - sort by quantity
@@ -191,8 +192,9 @@ function InventoryList({
     useEffect(() => {
         if (!showFilterDropdown) {return}
 
-        const handleClickOutside = (e) => {
-            if (!e.target.closest('.inventory-list__filter-wrapper')) {
+        const handleClickOutside = (e: MouseEvent) => {
+            const target = e.target
+            if (target instanceof Element && !target.closest('.inventory-list__filter-wrapper')) {
                 setShowFilterDropdown(false)
             }
         }
@@ -237,15 +239,15 @@ function InventoryList({
 
     // Render custom items (only for 'other' type)
     const renderCustomItems = () => {
-        if (typeFilter !== 'other') return null;
-        if (!character.customItems || character.customItems.length === 0) return null;
+        if (typeFilter !== 'other') {return null;}
+        if (character.customItems.length === 0) {return null;}
 
         // Filter by type first (custom items should match the typeFilter)
-        const typeFilteredItems = character.customItems.filter(item => item.type === typeFilter);
+        const typeFilteredItems = character.customItems.filter(item => item.TYPE === typeFilter);
 
         // Filter by category if needed (custom items have category 'custom')
         const filteredCustomItems = categoryFilter
-            ? typeFilteredItems.filter(item => item.category === categoryFilter)
+            ? typeFilteredItems.filter(item => item.CATEGORY === categoryFilter)
             : typeFilteredItems;
 
         return filteredCustomItems.map((customItem, index) => {
@@ -254,7 +256,7 @@ function InventoryList({
             return (
                 <InventoryRow
                     key={uniqueKey}
-                    customItem={customItem}
+                    characterItem={customItem}
                     isSelected={selectedItemId === uniqueKey}
                     onSelect={() => handleSelect(uniqueKey)}
                 />
@@ -354,7 +356,7 @@ function InventoryList({
 
                     return (
                         <div className="inventory-list__selected">
-                            <OtherCard customItem={selectedCustomItem} />
+                            <OtherCard characterItem={selectedCustomItem} />
                         </div>
                     )
                 }

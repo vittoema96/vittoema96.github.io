@@ -2,12 +2,11 @@ import { useTranslation } from 'react-i18next'
 import React from 'react'
 import { usePopup } from '@/contexts/popup/PopupContext'
 import { useCharacter } from "@/contexts/CharacterContext"
-import {SkillType} from "@/types";
-import {SKILL_TO_SPECIAL_MAP} from "@/utils/characterSheet";
+import { getSpecialFromSkill, SkillType } from '@/services/character/utils.ts';
 
 interface SkillProps {
-    skillId: SkillType,
-    isEditing: boolean
+    skillId: SkillType;
+    isEditing: boolean;
 }
 
 function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
@@ -16,7 +15,7 @@ function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
     const { character, updateCharacter } = useCharacter()
 
     // Derived values - recalculated when character changes
-    const specialName = SKILL_TO_SPECIAL_MAP[skillId]
+    const specialName = getSpecialFromSkill(skillId)
     const hasSpecialty = character.specialties.includes(skillId)
     const specialtyBonus = hasSpecialty ? 2 : 0
     const skillMax = character.traits.includes('traitGoodNatured')

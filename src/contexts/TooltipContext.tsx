@@ -75,32 +75,26 @@ export function TooltipProvider({ children }: Readonly<React.PropsWithChildren>)
     useEffect(() => {
         const handleClick = (event: MouseEvent) => {
             const target = event.target;
-            if(!(target instanceof Element)) {
-                return;
-            }
-            const clickedTag = target.closest('.tag');
+            if(target instanceof Element){
+                const clickedTag = target.closest('.tag');
 
-            if (!(clickedTag instanceof HTMLElement)) {
-                if (stateRef.current.isVisible) {
+                if(clickedTag instanceof HTMLElement){
+                    const tooltipId = clickedTag.dataset['tooltipId'];
+                    if (!tooltipId) { return; }
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    // Toggle logic
+                    const isSameElement = clickedTag === stateRef.current.targetElement;
+                    if (isSameElement && stateRef.current.isVisible) {
+                        hideTooltip();
+                    } else {
+                        showTooltip(t(tooltipId), clickedTag);
+                    }
+                } else if (stateRef.current.isVisible) {
                     hideTooltip();
                 }
-                return;
-            }
-
-            const tooltipId = clickedTag.dataset['tooltipId'];
-            if (!tooltipId) {
-                return;
-            }
-
-            event.preventDefault();
-            event.stopPropagation();
-
-            // Toggle logic
-            const isSameElement = clickedTag === stateRef.current.targetElement;
-            if (isSameElement && stateRef.current.isVisible) {
-                hideTooltip();
-            } else {
-                showTooltip(t(tooltipId), clickedTag);
             }
         };
 

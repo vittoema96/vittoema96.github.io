@@ -1,5 +1,19 @@
-import type {
-    Item, WeaponItem, ApparelItem, AidItem, AmmoItem, ModItem, GenericItem, ItemType, ItemCategory, TraitData
+import {
+    Item,
+    WeaponItem,
+    ApparelItem,
+    AidItem,
+    AmmoItem,
+    ModItem,
+    GenericItem,
+    ItemType,
+    ItemCategory,
+    TraitData,
+    WEAPON_CATEGORIES,
+    APPAREL_CATEGORIES,
+    AID_CATEGORIES,
+    AMMO_CATEGORIES,
+    OTHER_CATEGORIES,
 } from '@/types';
 import {GameDataRepository} from "@/services/GameDataRepository";
 
@@ -33,32 +47,13 @@ export const UNACQUIRABLE_IDS = [
     'robotPartThrusters'
 ] as const;
 
-export const ITEM_TYPE_MAP: Record<ItemType, ItemCategory[]> = {
-    weapon: [
-        'smallGuns',
-        'energyWeapons',
-        'bigGuns',
-        'meleeWeapons',
-        'explosives',
-        'throwing',
-        'unarmed',
-        'companionWeapon',
-    ],
-    apparel: [
-        'clothing',
-        'outfit',
-        'headgear',
-        'raiderArmor',
-        'leatherArmor',
-        'metalArmor',
-        'combatArmor',
-        'syntheticArmor',
-        'vaultTecSecurity'
-    ],
-    aid: ['food', 'drinks', 'meds', 'misc'],
-    ammo: ['ammo'],
+export const ITEM_TYPE_MAP: Record<ItemType, readonly ItemCategory[]> = {
+    weapon: WEAPON_CATEGORIES,
+    apparel: APPAREL_CATEGORIES,
+    aid: AID_CATEGORIES,
+    ammo: AMMO_CATEGORIES,
     mod: ['mods'], // TODO HAVE to decide how to handle mod categories
-    other: ['misc', 'junk'],
+    other: OTHER_CATEGORIES,
 };
 
 // 3. The Service Object

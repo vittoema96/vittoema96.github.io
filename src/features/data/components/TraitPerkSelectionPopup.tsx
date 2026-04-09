@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
 import { useCharacter } from '@/contexts/CharacterContext.tsx';
-import useCalculatedCharacter from '@/hooks/useCalculatedCharacter.ts';
 import './TraitPerkSelectionPopup.css';
 
 type SortMode = 'none' | 'level' | 'strength' | 'perception' | 'endurance' | 'charisma' | 'intelligence' | 'agility' | 'luck' | 'total';
@@ -31,7 +30,7 @@ interface Requirements {
  * Helper component to render requirement badges
  */
 function RequirementBadges({ reqs }: { reqs: Requirements | null }) {
-    if (!reqs) return null;
+    if (!reqs) {return null;}
 
     const badges: Array<{ key: keyof Requirements; label: string; isLevel: boolean }> = [
         { key: 'level', label: 'LVL', isLevel: true },
@@ -48,7 +47,7 @@ function RequirementBadges({ reqs }: { reqs: Requirements | null }) {
         <div className="trait-perk-popup__item-reqs">
             {badges.map(({ key, label, isLevel }) => {
                 const value = reqs[key];
-                if (value <= 0) return null;
+                if (value <= 0) {return null;}
                 return (
                     <span key={key} className={`req-badge ${isLevel ? 'req-level' : 'req-special'}`}>
                         {label} {value}
@@ -67,8 +66,7 @@ function RequirementBadges({ reqs }: { reqs: Requirements | null }) {
 function TraitPerkSelectionPopup({ type, availableIds, onSelect, onClose }: Readonly<TraitPerkSelectionPopupProps>) {
     const { t } = useTranslation();
     const dataManager = getGameDatabase();
-    const { character, rawCharacter } = useCharacter();
-    const calculatedCharacter = useCalculatedCharacter(rawCharacter);
+    const { character } = useCharacter();
     const [sortMode, setSortMode] = useState<SortMode>('none');
     const [showUnavailable, setShowUnavailable] = useState(false);
 
@@ -115,16 +113,16 @@ function TraitPerkSelectionPopup({ type, availableIds, onSelect, onClose }: Read
         if (reqs.level > 0 && character?.level < reqs.level) {return false;}
 
         // Check SPECIAL attributes
-        if (reqs.strength > 0 && calculatedCharacter?.special.strength < reqs.strength) {return false;}
-        if (reqs.perception > 0 && calculatedCharacter?.special.perception < reqs.perception) {return false;}
-        if (reqs.endurance > 0 && calculatedCharacter?.special.endurance < reqs.endurance) {return false;}
-        if (reqs.charisma > 0 && calculatedCharacter?.special.charisma < reqs.charisma) {return false;}
-        if (reqs.intelligence > 0 && calculatedCharacter?.special.intelligence < reqs.intelligence) {return false;}
-        if (reqs.agility > 0 && calculatedCharacter?.special.agility < reqs.agility) {return false;}
-        if (reqs.luck > 0 && calculatedCharacter?.special.luck < reqs.luck) {return false;}
+        if (reqs.strength > 0 && character?.special.strength < reqs.strength) {return false;}
+        if (reqs.perception > 0 && character?.special.perception < reqs.perception) {return false;}
+        if (reqs.endurance > 0 && character?.special.endurance < reqs.endurance) {return false;}
+        if (reqs.charisma > 0 && character?.special.charisma < reqs.charisma) {return false;}
+        if (reqs.intelligence > 0 && character?.special.intelligence < reqs.intelligence) {return false;}
+        if (reqs.agility > 0 && character?.special.agility < reqs.agility) {return false;}
+        if (reqs.luck > 0 && character?.special.luck < reqs.luck) {return false;}
 
         return true;
-    }, [type, character, calculatedCharacter, getRequirements]);
+    }, [type, character, getRequirements]);
 
     // Get all IDs if showing unavailable, otherwise use availableIds
     const allIds = useMemo(() => {

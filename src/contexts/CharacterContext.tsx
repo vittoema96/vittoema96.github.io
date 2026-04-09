@@ -1,4 +1,4 @@
-import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react'
+import React, {createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState} from 'react'
 import {
     BODY_PARTS,
     BodyPart,
@@ -8,83 +8,52 @@ import {
     MrHandyPart,
     RawCharacter,
 } from '@/types';
-import { getOriginById, ORIGINS } from '@/utils/characterSheet';
 import {getGameDatabase} from "@/hooks/getGameDatabase";
-import { CharacterSlotManager } from "@/services/CharacterSlotManager";
+import { SaveSlotManager } from "@/services/SaveSlotManager.ts";
 import useCalculatedCharacter, {
     adjustCurrentHp
 } from "@/hooks/useCalculatedCharacter";
+import { getOriginById, ORIGINS } from '@/services/character/Origin.ts';
+import { RawCharacterSchema } from '@/services/character/characterSchemes.ts';
 
+/**
+ * Helper function to create Mysterious Stranger character
+ */
+export const MYSTERIOUS_44_MAGNUM = {
+    id: 'weaponFortyFourPistol', // Mysterious Stranger's signature weapon
+    quantity: 1,
+    equipped: true,
+    mods: ['modMarksmanGrip', 'modPowerful'],
+}
+export const MYSTERIOUS_STRANGER: RawCharacter = RawCharacterSchema.parse({
+    name: 'Mysterious Stranger',
+    special: {
+        agility: 10,
+    },
+    skills: {
+        smallGuns: 6,
+    },
+    specialties: ['smallGuns'],
+    items: [ MYSTERIOUS_44_MAGNUM ],
+})
+
+type DeepPartial<T> = {
+    [P in keyof T]?: T[P] extends (infer U)[]
+        ? U[] : T[P] extends object
+            ? DeepPartial<T[P]> : T[P];
+};
 
 // React component prop types
 export interface CharacterContextValue {
     character: Character;
     rawCharacter: RawCharacter | null;
-    updateCharacter: (updates: RawCharacter) => void;
+    updateCharacter: (updates: DeepPartial<RawCharacter>) => void;
     replenishLuck: () => void;
     spendLuck: () => void;
     resetCharacter: () => void;
     switchToSlot: (slotIndex: number) => void;
     activeSlot: number;
 }
-
-/**
- * Helper function to convert companion data to Character format
- * With the new structure, companion already has special/skills like Character,
- * so we just need to map the companion data to Character interface
- */
-export function companionToCharacter(companion: Character['companion'], baseCharacter: Character): Character {
-    return {
-        ...baseCharacter,
-        name: companion.name,
-        // Companion already has special with body/mind keys
-        special: companion.special as any,
-        // Companion already has skills with melee/guns/other keys
-        skills: companion.skills as any,
-        currentHp: companion.currentHp,
-        // maxHp, maxLuck, etc. are calculated in useCalculatedCharacter
-        currentLuck: 0,
-        items: companion.weapons,
-        perks: companion.perks.filter((p): p is string => p !== undefined),
-        specialties: []
-    }
-}
-
-/**
- * Helper function to create Mysterious Stranger character
- */
-export function createMysteriousStranger(baseCharacter: Character): Character {
-    return {
-        ...baseCharacter,
-        name: 'Mysterious Stranger',
-        special: {
-            strength: 6,
-            perception: 6,
-            endurance: 6,
-            charisma: 10,
-            intelligence: 6,
-            agility: 10,  // High agility for initiative
-            luck: 10  // Max luck
-        },
-        skills: {
-            ...baseCharacter.skills,
-            smallGuns: 6,  // Max skill
-            bigGuns: 6,
-            energyWeapons: 6,
-            meleeWeapons: 6,
-            unarmed: 6
-        },
-        currentLuck: 10,
-        maxLuck: 10,
-        items: [{
-            id: 'weapon44Magnum',  // Mysterious Stranger's signature weapon
-            quantity: 1,
-            equipped: true,
-            mods: []
-        }]
-    }
-}
-
 const CharacterContext = createContext<CharacterContextValue | undefined>(undefined)
 
 
@@ -103,70 +72,70 @@ export const useCharacter = (): CharacterContextValue => {
     return context
 }
 
+function CharacterOverrideProvider({ overrideCharacter, parentContext, children}: Readonly<{
+    overrideCharacter: Character,
+    parentContext: CharacterContextValue,
+    children: ReactNode
+}>){
+    const contextValue = useMemo(() => ({
+        ...parentContext,
+        character: overrideCharacter
+    }), [parentContext, overrideCharacter])
 
-export function CharacterProvider({ onReady, children, overrideCharacter }:
-                                  Readonly<{
-                                      onReady?: () => void;
-                                      children: React.ReactNode;
-                                      overrideCharacter?: Character;
-                                  }>) {
+    return (
+        <CharacterContext.Provider value={contextValue}>
+            {children}
+        </CharacterContext.Provider>
+    )
+}
+
+function CharacterRootProvider({ onReady, children }: Readonly<{
+    onReady: (() => void) | undefined,
+    children: ReactNode
+}>) {
+
     const [isReady, setIsReady] = useState(false)
+    const dataManager = getGameDatabase()
 
-    // If this is a nested provider with overrideCharacter, use parent context for data management
-    const parentContext = useContext(CharacterContext)
-
-    // If overrideCharacter is provided, this is a nested provider
-    if (overrideCharacter && parentContext) {
-        // Return a modified context with the override character
-        return (
-            <CharacterContext.Provider value={{
-                ...parentContext,
-                character: overrideCharacter
-            }}>
-                {children}
-            </CharacterContext.Provider>
-        )
-    }
-
-    // Otherwise, this is the root provider - normal behavior
-    // Migrate legacy data if present (runs once on first load)
-    CharacterSlotManager.migrateLegacyData()
-
-    // Track active slot
-    const [activeSlot, setActiveSlot] = useState(() => CharacterSlotManager.getActiveSlot())
-
-    // Lazy load character from active slot
-    const [rawCharacter, setRawCharacter] = useState(() => CharacterSlotManager.load())
-
-    // Auto-save on every change
     useEffect(() => {
-        if(rawCharacter) { CharacterSlotManager.save(rawCharacter) }
-        else { CharacterSlotManager.clear() }
-    }, [rawCharacter])
+        SaveSlotManager.migrateLegacyData()
+    }, [])
 
+    const [activeSlot, setActiveSlot] = useState(() => SaveSlotManager.getActiveSlot());
+    const [rawCharacter, setRawCharacter] = useState(() => {
+        let res = SaveSlotManager.load()
+        if(!res){
+            res = RawCharacterSchema.parse({})
+            SaveSlotManager.save(res)
+        }
+        return res
+    });
+
+    const saveAndSetRawCharacter = (data: RawCharacter) => {
+        SaveSlotManager.save(data)
+        setRawCharacter(data)
+    }
     // Switch to a different character slot
     const switchToSlot = useCallback((slotIndex: number) => {
-        CharacterSlotManager.setActiveSlot(slotIndex)
+        SaveSlotManager.setActiveSlot(slotIndex)
         setActiveSlot(slotIndex)
-        const loadedCharacter = CharacterSlotManager.loadFromSlot(slotIndex)
-        setRawCharacter(loadedCharacter)
+        let loadedCharacter = SaveSlotManager.loadFromSlot(slotIndex)
+        loadedCharacter ??= RawCharacterSchema.parse({});
+        saveAndSetRawCharacter(loadedCharacter)
     }, [])
 
     // Reset to default character
     const resetCharacter = useCallback(() => {
-        setRawCharacter(null)
+        const character = RawCharacterSchema.parse({})
+        saveAndSetRawCharacter(character)
     }, [])
 
     const calculatedCharacter = useCalculatedCharacter(rawCharacter)
-
 
     useEffect(() => {
         setIsReady(true)
         onReady?.()
     }, [onReady])
-
-    // Load all csv data
-    const dataManager = getGameDatabase()
 
     /**
      * Function used to update character state.
@@ -175,26 +144,26 @@ export function CharacterProvider({ onReady, children, overrideCharacter }:
      * - LEVEL changes: adjust HP accordingly
      * - ORIGIN changes: add/remove robot parts
      */
-    const updateCharacter = useCallback((updates: RawCharacter): void => {
+    const updateCharacter = useCallback((updates: DeepPartial<RawCharacter>): void => {
         setRawCharacter(prev => {
-            let updatedCharacter: RawCharacter = {
+            let updatedCharacter: RawCharacter = RawCharacterSchema.parse({
                 ...prev, ...updates,
                 special: {...prev?.special, ...updates.special},
                 skills: {...prev?.skills, ...updates.skills},
-                specialties: updates.specialties ?? prev?.specialties,
-                items: updates.items ?? prev?.items ?? [],
-            }
+            })
+
+            // Filter out traits not relevant to origin
             if(updates.traits){
                 updatedCharacter.traits = [
                     ...(prev?.traits?.filter(
-                        t => !dataManager.traits[t].ORIGINS.includes(updatedCharacter.origin),
+                        t => !dataManager.traits[t]!.ORIGINS.includes(updatedCharacter.origin),
                     ) ?? []),
                     ...(updates.traits ?? []),
                 ];
             }
             const recalculateCurrentHp = updates.special?.endurance ||
-                                                         updates.special?.luck ||
-                                                         updates.level !== undefined
+                updates.special?.luck ||
+                updates.level !== undefined
             if (recalculateCurrentHp) {
                 updatedCharacter = adjustCurrentHp(prev, updatedCharacter)
             }
@@ -207,7 +176,7 @@ export function CharacterProvider({ onReady, children, overrideCharacter }:
             // TODO this is better but we need a more robust implementation
             //  currently supermutant is not handled
             const hasToUnequip = getOriginById(prev?.origin).needsSpecializedArmor ||
-                                          currentOrigin.needsSpecializedArmor
+                currentOrigin.needsSpecializedArmor
             if(changedOrigin && hasToUnequip) {
                 let filterCategories = ['robotPart', 'superMutantArmor']
                 let include = true
@@ -219,7 +188,7 @@ export function CharacterProvider({ onReady, children, overrideCharacter }:
                     include = false
                     filterCategories = ['superMutantArmor'] // TODO add this category
                 }
-                updatedCharacter.items = updatedCharacter.items?.map(item => {
+                updatedCharacter.items = updatedCharacter.items.map(item => {
                     const itemData = dataManager.getItem(item.id)
                     if (dataManager.isType(itemData, 'apparel')
                         && item.equipped
@@ -230,7 +199,7 @@ export function CharacterProvider({ onReady, children, overrideCharacter }:
                 }) || []
             }
 
-            const items = updatedCharacter.items ?? []
+            const items = updatedCharacter.items
             // TODO Only mrHandy parts checked currently
             const hasRobotParts = items.some(i => currentOrigin.bodyParts.has(i.id as MrHandyPart))
             if (currentOrigin.isRobot) {
@@ -256,10 +225,10 @@ export function CharacterProvider({ onReady, children, overrideCharacter }:
                 updatedCharacter.items = items.filter(i => MR_HANDY_PARTS.has(i.id as MrHandyPart) || BODY_PARTS.has(i.id as BodyPart))
             }
 
+            SaveSlotManager.save(updatedCharacter)
             return updatedCharacter
         })
     }, [])
-
 
     /**
      * Replenish current luck to max ("luck" value)
@@ -295,5 +264,32 @@ export function CharacterProvider({ onReady, children, overrideCharacter }:
         <CharacterContext.Provider value={contextValue}>
             {isReady ? children : null}
         </CharacterContext.Provider>
-    )
+    );
+}
+
+export function CharacterProvider({ onReady, children, overrideCharacter }:
+                                  Readonly<{
+                                      onReady?: () => void;
+                                      children: React.ReactNode;
+                                      overrideCharacter?: Character;
+                                  }>) {
+
+    const parentContext = useContext(CharacterContext);
+
+    // If override is provided and we are inside a context, branch to the Override component
+    if (overrideCharacter && parentContext) {
+        return (
+            <CharacterOverrideProvider
+                overrideCharacter={overrideCharacter}
+                parentContext={parentContext}
+            >
+                {children}
+            </CharacterOverrideProvider>
+        );
+    }
+    return (
+        <CharacterRootProvider onReady={onReady}>
+            {children}
+        </CharacterRootProvider>
+    );
 }

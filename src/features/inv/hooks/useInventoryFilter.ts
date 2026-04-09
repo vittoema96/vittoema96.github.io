@@ -1,8 +1,8 @@
 import {useMemo} from 'react'
 import {useCharacter} from '@/contexts/CharacterContext.tsx'
-import {ORIGINS} from "@/utils/characterSheet.ts";
 import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
 import {CharacterItem, ItemType} from "@/types";
+import { ORIGINS } from '@/services/character/Origin.ts';
 
 /**
  * Custom hook for filtering and organizing inventory items
@@ -63,7 +63,7 @@ const addSpecialWeaponItems = (items: CharacterItem[], isRobot: boolean, dataMan
             }
             if(dataManager.isType(itemData, 'weapon')) {
                 const hasGunBash = ['bigGuns', 'smallGuns', 'energyWeapons'].includes(itemData.CATEGORY)
-                const isTwoHanded = itemData.QUALITIES?.includes('qualityTwoHanded')
+                const isTwoHanded = itemData.QUALITIES.includes('qualityTwoHanded')
                 return hasGunBash && (twoHandedCondition === isTwoHanded)
             }
             return false

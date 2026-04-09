@@ -14,14 +14,13 @@ import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 
 interface ActionDefinition {
     icon: string,
-    onClick: (item: CharacterItem) => void,
-    isChecked?: (item: CharacterItem) => boolean,
-    isDisabled?: (item: CharacterItem) => boolean,
+    onClick: (item: CharacterItem | CustomItem) => void,
+    isChecked?: (item: CharacterItem | CustomItem) => boolean,
+    isDisabled?: (item: CharacterItem | CustomItem) => boolean,
 }
 
 interface BaseCardProps {
-    characterItem?: CharacterItem,
-    customItem?: CustomItem,
+    characterItem: CharacterItem | CustomItem,
     action: ActionDefinition | undefined,
 
     className?: string,
@@ -31,7 +30,6 @@ interface BaseCardProps {
 
 function BaseCard({
     characterItem,
-    customItem,
     action,
     contentRenderer: ContentRenderer,
     className = '',
@@ -46,70 +44,31 @@ function BaseCard({
     const [showDescription, setShowDescription] = useState(false);
     const { showModifyItemPopup } = usePopup()
 
-    // Handle custom items (separate list)
-    if (customItem) {
-        return (
-            <div className={`card card--compact ${className}`}>
-                {/* Card Header - Single Line */}
-                <div className="card-header card-header--compact">
-                    <div className="card-header__title">
-                        {customItem.quantity > 1 && <span className="card-quantity">{customItem.quantity}x</span>}
-                        <FitText wrap={true} minSize={10} maxSize={14}>
-                            {customItem.name}
-                        </FitText>
-                    </div>
-                    <div className="card-header__stats">
-                        <div className="card-stat-icon" title={t('cost')}>
-                            <i className="fas fa-coins"></i>
-                            <span>{customItem.value}</span>
-                        </div>
-                        <div className="card-stat-icon" title={t('weight')}>
-                            <i className="fas fa-weight-hanging"></i>
-                            <span>{customItem.weight}</span>
-                        </div>
-                        <div className="card-stat-icon" title={t('rarity')}>
-                            <i className="fas fa-star"></i>
-                            <span>{customItem.rarity}</span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Card Content - rendered by content renderer */}
-                <div className="card-content card-content--compact">
-                    {ContentRenderer && (
-                        <ContentRenderer
-                            customItem={customItem}
-                        />
-                    )}
-                </div>
-            </div>
-        );
-    }
-
-    // Handle database items (CharacterItem)
-    if (!characterItem) {
-        console.error('BaseCard: neither characterItem nor customItem provided');
-        return null;
+    const item = {
+        variation: undefined,
+        ...characterItem
     }
 
     const dataManager = getGameDatabase();
-    let itemData = dataManager.getItem(characterItem.id);
-
-    const isModdable = dataManager.isType(itemData, "moddable") && itemData.AVAILABLE_MODS.length > 0;
-    if(isModdable){
-        itemData = getModifiedItemData(characterItem);
+    let itemData
+    let isModdable = false
+    if("id" in item){
+        itemData = getModifiedItemData(item) ?? dataManager.getItem(item.id);
+        isModdable = (dataManager.isType(itemData, "weapon")
+            || dataManager.isType(itemData, "apparel"))
+    } else {
+        itemData = item
     }
 
     if (!itemData) {
-        console.error(`Item data not found for ID: ${characterItem.id}`);
         return null;
     }
 
-    const quantity = characterItem.quantity;
+    const quantity = item.quantity;
 
     const handleAction = () => {
-        if(!isButtonDisabled(characterItem)) {
-            onButtonClick(characterItem);
+        if(!isButtonDisabled(item)) {
+            onButtonClick(item);
         }
     };
 
@@ -131,8 +90,8 @@ function BaseCard({
                 <div className="card-header__title">
                     {quantity > 1 && <span className="card-quantity">{quantity}x</span>}
                     <FitText wrap={true} minSize={10} maxSize={14}>
-                        {characterItem.customName || t(itemData.ID, {
-                            variation: t(characterItem.variation!)
+                        {item.customName || t(itemData.ID ?? '', {
+                            variation: t(item.variation!)
                         })}
                     </FitText>
                 </div>
@@ -156,13 +115,13 @@ function BaseCard({
             <div className="card-content card-content--compact">
                 {ContentRenderer && (
                     <ContentRenderer
-                        characterItem={characterItem}
+                        characterItem={item}
                         actionButtons={action ? (
                             <div className="card-content__buttons">
                                 <button
-                                    className={`card-action-btn card-action-btn--primary card-action-btn--large ${!isButtonChecked(characterItem) ? 'disabled' : ''}`}
+                                    className={`card-action-btn card-action-btn--primary card-action-btn--large ${!isButtonChecked(item) ? 'disabled' : ''}`}
                                     onClick={handleAction}
-                                    disabled={isButtonDisabled(characterItem)}
+                                    disabled={isButtonDisabled(item)}
                                     title={buttonIcon}
                                 >
                                     <div className="themed-svg" data-icon={buttonIcon}></div>
@@ -178,7 +137,7 @@ function BaseCard({
                                     {isModdable && (
                                         <button
                                             className="card-action-btn card-action-btn--modify card-action-btn--small"
-                                            onClick={() => showModifyItemPopup(characterItem)}
+                                            onClick={() => showModifyItemPopup(item as CharacterItem)}
                                             title={t('modify')}
                                         >
                                             <i className="fas fa-wrench"></i>
@@ -199,7 +158,7 @@ function BaseCard({
                         onClick={e => e.stopPropagation()}
                     >
                         <div className="card-description-overlay__header">
-                            <h3>{t(itemData.ID, {variation: t(characterItem.variation!)})}</h3>
+                            <h3>{t(itemData.ID ?? '', {variation: t(item.variation!)})}</h3>
                             <button
                                 className="card-description-overlay__close"
                                 onClick={toggleDescription}

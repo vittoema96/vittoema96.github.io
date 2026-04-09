@@ -1,17 +1,15 @@
-import { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
 
 interface TraitPerkItemProps {
     id: string;
-    type: 'trait' | 'perk';
     isFixed?: boolean;
     onChangeClick?: () => void; // Callback when user wants to change selection
     onDeleteClick?: () => void; // Callback when user wants to delete/clear selection
     actionButton?: {
         label: string;
         onClick: () => void;
-    };
+    } | undefined;
 }
 
 /**
@@ -21,7 +19,7 @@ interface TraitPerkItemProps {
  * - Optional "Change" button for selectable items
  * - Optional action button for perks
  */
-function TraitPerkItem({ id, type, isFixed = false, onChangeClick, onDeleteClick, actionButton }: Readonly<TraitPerkItemProps>) {
+function TraitPerkItem({ id, isFixed = false, onChangeClick, onDeleteClick, actionButton }: Readonly<TraitPerkItemProps>) {
     const { t } = useTranslation();
     const [isExpanded, setIsExpanded] = useState(false);
     const [showActionButtons, setShowActionButtons] = useState(false);
@@ -33,10 +31,10 @@ function TraitPerkItem({ id, type, isFixed = false, onChangeClick, onDeleteClick
 
     const handlePressStart = () => {
         if (!isFixed && (onChangeClick || onDeleteClick)) {
-            const timer = setTimeout(() => {
+            // 500ms long press
+            longPressTimerRef.current = setTimeout(() => {
                 setShowActionButtons(true);
-            }, 500); // 500ms long press
-            longPressTimerRef.current = timer;
+            }, 500);
         }
     };
 

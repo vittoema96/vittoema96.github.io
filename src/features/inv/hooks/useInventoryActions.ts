@@ -6,8 +6,8 @@ import {
 import {
     hasApparelConflict
 } from '@/utils/bodyLocations.ts'
-import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
-import { CharacterItem } from '@/types';
+import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
+import { CharacterItem, CustomItem } from '@/types';
 import { useTranslation } from 'react-i18next';
 
 /**
@@ -20,52 +20,64 @@ export const useInventoryActions = () => {
     const { showConfirm, showAlert, showTradeItemPopup } = usePopup()
     const dataManager = getGameDatabase()
 
-    const sellItem = (characterItem: CharacterItem) => {
+
+
+    const removeItem = (
+        characterItem: CharacterItem | CustomItem,
+        quantity?: number | undefined,
+        price = 0,
+    ) => {
+        quantity = quantity ?? characterItem.quantity;
+        let update;
+        if ('id' in characterItem) {
+            // Remove sold quantity from inventory
+            const updatedItems = character.items
+                .map(item => {
+                    if (isSameConfiguration(item, characterItem)) {
+                        const newQuantity = item.quantity - quantity;
+                        if (newQuantity <= 0) {
+                            return null; // Will be filtered out
+                        }
+                        return { ...item, quantity: newQuantity };
+                    }
+                    return item;
+                })
+                .filter(item => item !== null);
+            update = { items: updatedItems };
+        } else {
+            const jsonItem = JSON.stringify(characterItem);
+            const updatedItems = character.customItems
+                .map(item => {
+                    if (JSON.stringify(item) === jsonItem) {
+                        const newQuantity = item.quantity - quantity;
+                        if (newQuantity <= 0) {
+                            return null; // Will be filtered out
+                        }
+                        return { ...item, quantity: newQuantity };
+                    }
+                    return item;
+                })
+                .filter(item => item !== null);
+            update = { customItems: updatedItems };
+        }
+        updateCharacter({
+            ...update,
+            caps: character.caps + Math.floor(quantity * price),
+        });
+    };
+
+    const sellItem = (characterItem: CharacterItem | CustomItem) => {
         // Validate if item can be sold
-        if (dataManager.isUnacquirable(characterItem.id)) {
+        if("id" in characterItem && dataManager.isUnacquirable(characterItem.id)) {
             showAlert(t('cannotSellItem'))
             return
         }
-
-        // Use modified data for price calculation
-        let itemData = dataManager.getItem(characterItem.id)
-        if(dataManager.isType(itemData, "moddable")){
-            itemData = getModifiedItemData(characterItem)
-        }
-        if (!itemData) {
-            console.error('Item data not found!')
-            return
-        }
-        showTradeItemPopup(characterItem, itemData, (quantity, price) => {
-            const total = Math.floor(quantity * price)
-
-            // Remove sold quantity from inventory
-            const updatedItems = character.items.map(item => {
-                if (isSameConfiguration(item, characterItem)) {
-                    const newQuantity = item.quantity - quantity
-                    if (newQuantity <= 0) {
-                        return null // Will be filtered out
-                    }
-                    return { ...item, quantity: newQuantity }
-                }
-                return item
-            }).filter(item => item !== null)
-
-            // Add caps to character
-            const newCaps = character.caps + total
-
-            updateCharacter({
-                items: updatedItems,
-                caps: newCaps
-            })
-
-            showAlert(t('soldForCaps', { caps: total }))
-        })
+        showTradeItemPopup(characterItem)
     }
 
-    const deleteItem = (characterItem: CharacterItem) => {
+    const deleteItem = (characterItem: CharacterItem | CustomItem) => {
         // Validate if item can be deleted
-        if (dataManager.isUnacquirable(characterItem.id)) {
+        if ("id" in characterItem && dataManager.isUnacquirable(characterItem.id)) {
             showAlert(t('cannotDeleteItem'))
             return
         }
@@ -73,18 +85,10 @@ export const useInventoryActions = () => {
         showConfirm(
             t('confirmDeleteItem', {
                 quantity: characterItem.quantity,
-                itemName: t(characterItem.id)
+                itemName: t(characterItem.customName ?? {id: '', ...characterItem}.id)
             }),
             () => {
-                // Remove item from inventory
-                const updatedItems = character.items.filter(item =>
-                    !isSameConfiguration(item, characterItem)
-                )
-
-                updateCharacter({
-                    items: updatedItems
-                })
-
+                removeItem(characterItem)
                 showAlert(t('itemDeleted'))
             }
         )
@@ -140,19 +144,30 @@ export const useInventoryActions = () => {
         showAlert(t('useFunctionalityComingSoon'))
     }
 
-    const updateItemCustomName = (characterItem: CharacterItem, customName: string) => {
-        const updatedItems = character.items.map(item => {
-            if (isSameConfiguration(item, characterItem)) {
-                // If customName is empty, remove it from the item
-                if (customName.trim() === '') {
-                    const { customName: _, ...rest } = item
-                    return rest
+    const updateItemCustomName = (characterItem: CharacterItem | CustomItem, customName: string) => {
+        if("id" in characterItem){
+            const updatedItems = character.items.map(item => {
+                if (isSameConfiguration(item, characterItem)) {
+                    // If customName is empty, remove it from the item
+                    if (customName.trim() === '') {
+                        const { customName: _, ...rest } = item
+                        return rest
+                    }
+                    return { ...item, customName: customName.trim() }
                 }
-                return { ...item, customName: customName.trim() }
-            }
-            return item
-        })
-        updateCharacter({ items: updatedItems })
+                return item
+            })
+            updateCharacter({ items: updatedItems })
+        } else {
+            const jsonItem = JSON.stringify(characterItem)
+            const updatedCustomItems = character.customItems.map(item => {
+                if (JSON.stringify(item) === jsonItem) {
+                    item.customName = customName
+                }
+                return item
+            })
+            updateCharacter({ customItems: updatedCustomItems })
+        }
     }
 
     return {
@@ -160,6 +175,7 @@ export const useInventoryActions = () => {
         deleteItem,
         equipItem,
         consumeItem,
-        updateItemCustomName
+        updateItemCustomName,
+        removeItem
     }
 }

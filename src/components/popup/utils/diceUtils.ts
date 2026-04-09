@@ -10,17 +10,6 @@ export interface DiceState {
 }
 
 /**
- * Create initial dice state arrays
- */
-export const createInitialDiceState = (count: number, active: boolean = true): DiceState => {
-    return {
-        classes: new Array(count).fill(null),
-        active: new Array(count).fill(active),
-        rerolled: new Array(count).fill(false)
-    };
-};
-
-/**
  * Roll a random d20 for hit location
  */
 export const rollD20 = (): number => {

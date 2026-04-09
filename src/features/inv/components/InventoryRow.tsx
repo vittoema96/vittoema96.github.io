@@ -3,14 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
 import { useInventoryActions } from '@/features/inv/hooks/useInventoryActions.ts'
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
-import { getDisplayName } from '@/utils/itemUtils.ts'
+import { getDisplayName } from '@/utils/itemUtils.ts';
 import {CharacterItem, CustomItem} from '@/types'
 import { FitText } from '@/components/FitText.tsx';
 
 
 interface InventoryRowProps {
-    characterItem?: CharacterItem
-    customItem?: CustomItem
+    characterItem: CharacterItem | CustomItem
     isSelected: boolean
     onSelect: () => void
     showBadges?: boolean
@@ -22,68 +21,24 @@ interface InventoryRowProps {
  */
 function InventoryRow({
     characterItem,
-    customItem,
     isSelected,
     onSelect,
     showBadges = true
 }: Readonly<InventoryRowProps>) {
     const { t } = useTranslation()
 
-    // Handle custom items (simplified rendering)
-    if (customItem) {
-        return (
-            <div
-                className={`inventory-row ${isSelected ? 'selected' : ''}`}
-                onClick={onSelect}
-            >
-                <div className="inventory-row__header">
-                    <div className="inventory-row__icon themed-svg" data-icon="caps"></div>
-
-                    <div className="inventory-row__info">
-                        <div className="inventory-row__name">
-                            <FitText center={false} wrap={true} maxSize={15}>
-                                {customItem.name}
-                            </FitText>
-                        </div>
-                        <div className="inventory-row__subinfo">
-                            <FitText center={false} wrap={true} minSize={8} maxSize={10}>
-                                {t(customItem.category)}
-                            </FitText>
-                        </div>
-                    </div>
-
-                    {customItem.quantity > 0 && (
-                        <div className="inventory-row__quantity">
-                            <span>{customItem.quantity}x</span>
-                        </div>
-                    )}
-                </div>
-            </div>
-        );
-    }
-
-    // Handle database items (CharacterItem)
-    if (!characterItem) {
-        console.error('InventoryRow: neither characterItem nor customItem provided');
-        return null;
-    }
-
     const nameInputRef = useRef<HTMLInputElement>(null)
     const [isEditingName, setIsEditingName] = useState(false)
-    const [editedName, setEditedName] = useState(characterItem.customName || '')
-    const { sellItem, deleteItem, updateItemCustomName } = useInventoryActions()
+    const [editedName, setEditedName] = useState(characterItem.customName ?? '')
+    const { updateItemCustomName } = useInventoryActions()
     const dataManager = getGameDatabase()
-    let itemData = dataManager.getItem(characterItem.id)
-
-    if(dataManager.isType(itemData, "moddable")){
-        itemData = getModifiedItemData(characterItem)
-    }
+    let itemData
+    if("id" in characterItem){ itemData = getModifiedItemData(characterItem) ?? dataManager.getItem(characterItem.id)! }
+    else { itemData = characterItem; }
 
     // Check if item can be sold/deleted (unacquirable items cannot)
-    const canSellDelete = !dataManager.isUnacquirable(itemData?.ID || '')
-
-    // Check if item supports custom naming (weapons and apparel only)
-    const supportsCustomName = dataManager.isType(itemData, 'weapon') || dataManager.isType(itemData, 'apparel')
+    const canSellDelete = !dataManager.isUnacquirable(itemData.ID || '')
+    const quantity = characterItem.quantity
 
     // Use overlay hook for sell/delete functionality (only if item can be sold/deleted)
     const {
@@ -92,10 +47,7 @@ function InventoryRow({
         handleSell,
         handleDelete,
         longPressHandlers
-    } = useOverlay(
-        canSellDelete ? () => sellItem(characterItem) : null,
-        canSellDelete ? () => deleteItem(characterItem) : null
-    )
+    } = useOverlay(characterItem, canSellDelete, canSellDelete)
 
     // Focus input when editing starts
     useEffect(() => {
@@ -105,22 +57,20 @@ function InventoryRow({
         }
     }, [isEditingName])
 
+    // TODO could move the renaming logic to useOverlay
     const handleStartRename = () => {
         setEditedName(characterItem.customName || '')
         setIsEditingName(true)
         handleHideOverlay()
     }
-
     const handleSaveName = () => {
         updateItemCustomName(characterItem, editedName)
         setIsEditingName(false)
     }
-
     const handleCancelEditing = () => {
         setEditedName(characterItem.customName || '')
         setIsEditingName(false)
     }
-
     const handleNameKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
             handleSaveName()
@@ -129,22 +79,18 @@ function InventoryRow({
         }
     }
 
-    if(!itemData) {
-        console.error(`Item data not found for ID: ${characterItem.id}`);
-        return null;
-    }
-
-    const quantity = characterItem.quantity
 
     // Determine item type for icon
     const getItemIcon = () => {
         // Weapon and Aid use their category
-        if (dataManager.isType(itemData, "weapon") || dataManager.isType(itemData, "aid")) {
-            return itemData.CATEGORY
-        }
-        // Apparel types FOR NOW use all the same icon TODO
-        if (dataManager.isType(itemData, "apparel")) {
-            return 'armor'
+        if(itemData.ID){
+            if (dataManager.isType(itemData, 'weapon') || dataManager.isType(itemData, 'aid')) {
+                return itemData.CATEGORY;
+            }
+            // Apparel types FOR NOW use all the same icon TODO
+            if (dataManager.isType(itemData, 'apparel')) {
+                return 'armor';
+            }
         }
         return 'caps' // Default fallback
     }
@@ -152,22 +98,23 @@ function InventoryRow({
     // Get item subinfo (type, damage, DR, etc.)
     const getItemSubInfo = () => {
         // Weapon - show damage and type
-        if (dataManager.isType(itemData, "weapon")) {
-            return `${t(itemData.CATEGORY)} • ${itemData.DAMAGE_RATING} ${t(itemData.DAMAGE_TYPE)}`
-        }
+        if(itemData.ID){
+            if (dataManager.isType(itemData, 'weapon')) {
+                return `${t(itemData.CATEGORY)} • ${itemData.DAMAGE_RATING} ${t(itemData.DAMAGE_TYPE)}`;
+            }
 
+            if (dataManager.isType(itemData, 'apparel')) {
+                const physical = itemData.PHYSICAL_RES;
+                const energy = itemData.ENERGY_RES;
+                const radiation =
+                    itemData.RADIATION_RES === Infinity ? t('immune') : itemData.RADIATION_RES;
+                return `${t('damageReduction')}: ${physical} - ${energy} - ${radiation}`;
+            }
 
-        if(dataManager.isType(itemData, "apparel")){
-            const physical = itemData.PHYSICAL_RES
-            const energy = itemData.ENERGY_RES
-            const radiation = itemData.RADIATION_RES === Infinity ? t('immune') : itemData.RADIATION_RES
-            return `${t('damageReduction')}: ${physical} - ${energy} - ${radiation}`
-
-        }
-
-        // TODO improve subinfo
-        if (dataManager.isType(itemData, "aid")) {
-            return t(itemData.EFFECT) || t(itemData.CATEGORY)
+            // TODO improve subinfo
+            if (dataManager.isType(itemData, 'aid')) {
+                return t(itemData.EFFECT) || t(itemData.CATEGORY);
+            }
         }
         return t(itemData.CATEGORY || "ERROR")
     }
@@ -177,7 +124,7 @@ function InventoryRow({
         const badges = []
 
         // Equipped badge - show icon instead of text
-        if (characterItem.equipped) {
+        if ({equipped: false, ...characterItem}.equipped) {
             badges.push({ type: 'equipped', icon: 'armor', color: 'success' })
         }
 
@@ -216,7 +163,7 @@ function InventoryRow({
                                 onKeyDown={handleNameKeyDown}
                                 onBlur={handleSaveName}
                                 onClick={e => e.stopPropagation()}
-                                placeholder={t(characterItem.id)}
+                                placeholder={"..."}
                             />
                         ) : (
                             <>
@@ -227,7 +174,7 @@ function InventoryRow({
                                     <span className="inventory-row__badges">
                                         {badges.map(badge => (
                                             <span
-                                                key={characterItem.id + badge.icon}
+                                                key={(itemData.ID ?? characterItem.customName) + badge.icon}
                                                 className={`inventory-row__badge badge-${badge.color}`}
                                                 title={badge.icon ? t('equipped') : ''}
                                             >
@@ -257,12 +204,12 @@ function InventoryRow({
             </div>
 
             {/* Sell/Delete/Rename Overlay - shown on long press */}
-            {(canSellDelete || supportsCustomName) && (
+            {canSellDelete && (
                 <div
                     className={`card-overlay ${showOverlay ? '' : 'hidden'}`}
                     onClick={handleHideOverlay}
                 >
-                    {supportsCustomName && (
+                    {
                         <button
                             className="rename-button"
                             onClick={e => {
@@ -273,7 +220,7 @@ function InventoryRow({
                         >
                             <i className="fas fa-pen"></i>
                         </button>
-                    )}
+                    }
                     {canSellDelete && (
                         <button
                             className="confirmButton"
@@ -302,8 +249,7 @@ function InventoryRow({
                     )}
                 </div>
             )}
-        </div>
-    );
+        </div>);
 }
 
 export default InventoryRow

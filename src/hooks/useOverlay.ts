@@ -1,14 +1,16 @@
 import { useState, useCallback } from 'react'
 import { useLongPress } from './useLongPress'
+import { CharacterItem, CustomItem } from '@/types';
+import { useInventoryActions } from '@/features/inv/hooks/useInventoryActions.ts';
 
-/**
- * Custom hook for managing overlay state with long press
- * @param {Function} onSell - Callback for sell action
- * @param {Function} onDelete - Callback for delete action
- * @returns {Object} Overlay state and handlers
- */
-export const useOverlay = (onSell, onDelete) => {
+export const useOverlay = (
+    characterItem: CharacterItem | CustomItem,
+    canSell=false,
+    canDelete=false,
+) => {
     const [showOverlay, setShowOverlay] = useState(false)
+
+    const { sellItem, deleteItem } = useInventoryActions()
 
     const handleShowOverlay = useCallback(() => {
         setShowOverlay(true)
@@ -19,18 +21,18 @@ export const useOverlay = (onSell, onDelete) => {
     }, [])
 
     const handleSell = useCallback(() => {
-        if (onSell) {
-            onSell()
+        if (canSell) {
+            sellItem(characterItem)
         }
         setShowOverlay(false)
-    }, [onSell])
+    }, [canSell, characterItem, sellItem])
 
     const handleDelete = useCallback(() => {
-        if (onDelete) {
-            onDelete()
+        if (canDelete) {
+            deleteItem(characterItem)
         }
         setShowOverlay(false)
-    }, [onDelete])
+    }, [canDelete, characterItem, deleteItem])
 
     const longPressHandlers = useLongPress(handleShowOverlay)
 

@@ -33,7 +33,7 @@ export default function ActiveEffectsDisplay() {
         return item.mods.flatMap(mod => {
             const modData = dataManager.getItem(mod)
             if(!dataManager.isType(modData, "mod")) {return []}
-            return (modData.EFFECTS || []).flatMap(effect => {
+            return modData.EFFECTS.flatMap(effect => {
                 const [effectType, ...valueParts] = effect.split(':');
                 const value = valueParts.join(':')
                 if(!['effectAdd', 'qualityAdd'].includes(effectType ?? '')) {return []}

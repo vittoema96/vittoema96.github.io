@@ -119,11 +119,11 @@ function MapTab() {
     const [ code, setCode ] = useState('')
     const { showConfirm } = usePopup()
 
-    const longPressHandlers = useLongPress((e) => {
+    const longPressHandlers = useLongPress((e: { target: { id: string } }) => {
         showConfirm(t('deleteMarker'), () => {
-            updateCharacter({ mapCodes: character.mapCodes.filter(m => m !== e.target?.id) })
-        })
-    })
+            updateCharacter({ mapCodes: character.mapCodes.filter(m => m !== e.target?.id) });
+        });
+    });
 
 
     const markerSizePx = "20px"

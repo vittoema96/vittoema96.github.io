@@ -25,9 +25,9 @@ function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
     const effectiveMaxHp = character.maxHp - Number(rads);
 
     // Exchange rates state (user-configurable)
-    const [rateNcr, setRateNcr] = useInputNumberState(character.exchangeRates?.ncrDollars ?? DEFAULT_EXCHANGE_RATES.ncrDollars);
-    const [rateLegion, setRateLegion] = useInputNumberState(character.exchangeRates?.legionDenarius ?? DEFAULT_EXCHANGE_RATES.legionDenarius);
-    const [ratePrewar, setRatePrewar] = useInputNumberState(character.exchangeRates?.prewarMoney ?? DEFAULT_EXCHANGE_RATES.prewarMoney);
+    const [rateNcr, setRateNcr] = useInputNumberState(character.exchangeRates.ncrDollars);
+    const [rateLegion, setRateLegion] = useInputNumberState(character.exchangeRates.legionDenarius);
+    const [ratePrewar, setRatePrewar] = useInputNumberState(character.exchangeRates.prewarMoney);
 
     // Get effective exchange rates for calculation
     const effectiveRates = useMemo(
@@ -93,8 +93,7 @@ function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
         setter: (val: number | '') => void,
         min = 0,
         max?: number
-    ) =>
-        e => {
+    ) => (e: { target: { value: any } }) => {
             const val = e.target.value;
             if (val === '') {
                 setter('');
@@ -160,7 +159,7 @@ function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
             title="edit"
             onConfirm={onConfirm}
             onClose={onClose}
-            disabled={!isFormValid}
+            confirmDisabled={!isFormValid}
         >
             <hr />
 

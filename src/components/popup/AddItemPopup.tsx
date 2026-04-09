@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/contexts/CharacterContext';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
-import { GenericItem, GenericPopupProps, ItemCategory, ItemType, Side } from '@/types';
+import { CustomItem, GenericItem, GenericPopupProps, ItemCategory, ItemType, Side } from '@/types';
 import { addItem } from '@/utils/itemUtils.ts';
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
@@ -82,7 +82,7 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
     const availableItems = useMemo(() => {
         let allItems = Object.values(dataManager[itemType])
             .filter(item =>
-                !(dataManager.isType(item, 'weapon') && (item.QUALITIES || []).includes('qualityMrHandyOnly'))
+                !(dataManager.isType(item, 'weapon') && item.QUALITIES.includes('qualityMrHandyOnly'))
             )
             .filter(item => !(dataManager.isType(item, 'weapon') && (item as any).CATEGORY === 'companionWeapon'))
 
@@ -312,20 +312,22 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
 
     const handleConfirm = useCallback(() => {
         // Create custom item (separate from database items)
-        const newCustomItem = {
-            name: customName.trim(),
+        const newCustomItem: CustomItem = {
+            customName: customName.trim(),
             quantity: Math.max(1, customQuantity || 1),
-            value: Math.max(0, customValue || 0),
-            weight: Math.max(0, Number.parseFloat(customWeight) || 0),
-            rarity: Math.max(0, customRarity || 0),
-            type: itemType,
-            category: 'custom',
+
+            COST: Math.max(0, customValue || 0),
+            WEIGHT: Math.max(0, Number.parseFloat(customWeight) || 0),
+            RARITY: Math.max(0, customRarity || 0),
+            TYPE: itemType,
+            CATEGORY: 'custom',
+
             description: customDescription.trim() || undefined
         }
 
         // Add to character's custom items array
         const updatedCustomItems = [
-            ...(character.customItems || []),
+            ...(character.customItems),
             newCustomItem
         ]
 

@@ -487,9 +487,7 @@
 }
 
 .card-content--compact {
-    padding: 0.4rem;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0 0.4rem;
 }
 
 .card-controls {

@@ -1,14 +1,5 @@
-import { CompanionId, CompanionData, CharacterItem, CompanionSpecialType, CompanionSkillType } from '@/types'
-
-/**
- * Mapping from companion skills to companion SPECIAL stats
- * Similar to SKILL_TO_SPECIAL_MAP but for companions
- */
-export const COMPANION_SKILL_TO_SPECIAL_MAP: Record<CompanionSkillType, CompanionSpecialType> = {
-    melee: 'body',  // Physical melee attacks use body
-    guns: 'body',   // Ranged attacks use body for coordination
-    other: 'mind'   // Technical/other skills use mind
-} as const
+import { CompanionData, CompanionId } from '@/types';
+import { CompanionSkillType, CompanionSpecialType } from '@/services/character/utils.ts';
 
 /**
  * Companion type definition with base stats and configuration
@@ -148,7 +139,7 @@ export function createDefaultCompanion(companionId: CompanionId): CompanionData 
         skills: { ...type.skills },
         currentHp: type.baseHp,
         perks: [],
-        weapons: type.weapons.map(w => ({
+        items: type.weapons.map(w => ({
             id: w.id,
             quantity: 1,
             equipped: false,

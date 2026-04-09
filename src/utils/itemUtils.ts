@@ -3,10 +3,17 @@
  * Handles item identification, grouping, and modification
  */
 
-import { ApparelItem, Character, CharacterItem, DamageType, Item, ModdableItem, Range, WeaponItem } from '@/types';
+import {
+    ApparelItem,
+    CharacterItem,
+    CustomItem,
+    DamageType,
+    ItemCategory,
+    Range,
+    WeaponItem,
+} from '@/types';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
 import type { TFunction } from 'i18next';
-import { getWeaponAmmoPerShot } from '@/features/inv/utils/weaponUtils.ts';
 
 
 export function removeItem(items: CharacterItem[], itemToRemove: CharacterItem) {
@@ -53,22 +60,6 @@ export function isSameConfiguration(item1: CharacterItem, item2: CharacterItem) 
     return mods1.isSubsetOf(mods2);
 }
 
-// Check if weapon has enough ammo
-export function hasEnoughAmmo(itemData: Item, character: Character) {
-    const dataManager = getGameDatabase()
-    if (!dataManager.isType(itemData, "weapon")) {return true}
-
-    let ammoId = itemData.AMMO_TYPE
-    if (ammoId === 'self') {ammoId = itemData.ID}
-    if (ammoId === 'na') {return true}
-
-    const ammoItem = character.items.find(item => item.id === ammoId)
-    const currentAmmo = ammoItem ? ammoItem.quantity : 0
-
-    const ammoStep = getWeaponAmmoPerShot(itemData)
-    return currentAmmo >= ammoStep
-}
-
 /**
  * Generate unique key for item configuration
  */
@@ -107,7 +98,6 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
         }
 
         case 'qualityAdd':
-            modifiedData.QUALITIES ??= [];
             if (!modifiedData.QUALITIES.includes(value)) {
                 modifiedData.QUALITIES = [...modifiedData.QUALITIES, value]
             }
@@ -169,7 +159,7 @@ function applyApparelEffect(modifiedData: ApparelItem, effectType: string, value
  * @param {Object} modifiedData - Item data being modified
  * @param {string} effect - Effect string (e.g., "damageAdd:1", "qualityAdd:qualityMelee")
  */
-export function applyEffect(modifiedData: ModdableItem, effect: string): typeof modifiedData {
+export function applyEffect(modifiedData: WeaponItem | ApparelItem, effect: string): typeof modifiedData {
     const dataManager = getGameDatabase()
     const [effectType, ...valueParts] = effect.split(':')
     const value = valueParts.join(':') // Rejoin in case value contains ':'
@@ -186,7 +176,6 @@ export function applyEffect(modifiedData: ModdableItem, effect: string): typeof 
         switch (effectType) {
             // Quality/Effect additions
             case 'effectAdd':
-                modifiedData.EFFECTS ??= [];
                 if (!modifiedData.EFFECTS.includes(value)) {
                     modifiedData.EFFECTS = [...modifiedData.EFFECTS, value]
                 }
@@ -206,18 +195,24 @@ export function applyEffect(modifiedData: ModdableItem, effect: string): typeof 
  * @param item - Character item
  * @param t - Translation function from useTranslation hook
  */
-export function getDisplayName(item: CharacterItem, t: TFunction) {
+export function getDisplayName(item: CharacterItem | CustomItem, t: TFunction) {
     if (!item) {return ''}
+    const filledItem = {
+        id: '',
+        variation: undefined,
+        mods: [] as string[],
+        ...item
+    }
 
     // Use custom name if set, otherwise use translated name
-    let baseName = item.customName || t(item.id)
+    let baseName = filledItem.customName || t(filledItem.id)
 
-    if (item.variation && !item.customName) {
-        baseName = `${baseName} (${t(item.variation)})`
+    if (filledItem.variation && !filledItem.customName) {
+        baseName = `${baseName} (${t(filledItem.variation)})`
     }
 
     // No mods, return base name
-    const modsLength = item.mods.length - (item.mods.includes('modRobotPlatingStandard') ? 1 : 0)
+    const modsLength = filledItem.mods.length - (filledItem.mods.includes('modRobotPlatingStandard') ? 1 : 0)
     if (modsLength > 0) {
         return `${baseName} [+${modsLength}]`
     }
@@ -225,14 +220,6 @@ export function getDisplayName(item: CharacterItem, t: TFunction) {
     return baseName
 }
 
-/**
- * Check if item can be modified (has mod slots)
- */
-export function canBeModified(itemData: Item) {
-    const dataManager = getGameDatabase()
-    if (!dataManager.isType(itemData, "weapon") && !dataManager.isType(itemData, "apparel")) {
-        return false
-    }
-    // Check if item has AVAILABLE_MODS field and it's not empty
-    return itemData.AVAILABLE_MODS.length > 0;
+export function isCloseCombat(category: ItemCategory) {
+    return category === 'meleeWeapons' || category === 'unarmed'
 }

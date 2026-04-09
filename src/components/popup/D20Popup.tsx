@@ -1,93 +1,131 @@
-import { useState, useMemo } from 'react'
-import { useCharacter } from '@/contexts/CharacterContext'
+import { useState, useMemo } from 'react';
+import { MYSTERIOUS_STRANGER, useCharacter } from '@/contexts/CharacterContext'
 import { useTranslation } from 'react-i18next'
-import { hasEnoughAmmo } from '@/utils/itemUtils';
-import { CharacterItem, SkillType, SPECIAL, COMPANION_SPECIAL, SpecialType, WeaponItem, CompanionSkillType } from '@/types';
-import {SKILL_TO_SPECIAL_MAP} from "@/utils/characterSheet";
-import { COMPANION_SKILL_TO_SPECIAL_MAP } from '@/utils/companionTypes';
-import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
-import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { CharacterItem, RawCharacter, CompanionData, TraitId } from '@/types';
+import {
+    COMPANION_SPECIAL,
+    CompanionSkillType,
+    CompanionSpecialType,
+    getSpecialFromSkill,
+    getSpecialFromSkillCompanion, isCharacterSkill,
+    SkillType,
+    SPECIAL,
+    SpecialType,
+} from '@/services/character/utils.ts';
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
+import { usePopup } from '@/contexts/popup/PopupContext.tsx';
+import useDice from '@/utils/useDice.ts';
+import { Dice } from '@/components/popup/D6Popup.tsx';
 
 
 export type RollerType = 'companion' | 'mysteriousStranger'
 
-interface D20PopupProps {
-    onClose: () => void;
-    skillId: SkillType;
-    usingItem: CharacterItem | null;
-    /**
-     * Optional roller type used by wrappers.
-     * When provided, the surrounding CharacterProvider will already have
-     * overridden the character in context to match the roller.
-     */
-    roller?: RollerType;
-
-    /**
-     * Callback to trigger the damage popup (D6) from the parent.
-     * This decouples D20Popup from PopupContext/global state.
-     */
-    onShowDamage?: (usingItem: CharacterItem, hasAimed: boolean, isMysteriousStrangerOrCompanion: boolean) => void;
+interface SimpleRoller {
+    special: Record<CompanionSpecialType, number>;
+    skills: Record<CompanionSkillType, number>;
+    items: CharacterItem[];
+}
+interface CharacterRoller {
+    special: Record<SpecialType, number>;
+    skills: Record<SkillType, number>;
+    specialties: SkillType[];
+    items: CharacterItem[];
+    companion?: CompanionData | undefined;
+}
+type Roller = (SimpleRoller | CharacterRoller) & {
+    traits?: TraitId[] | undefined;
+    currentLuck?: number | undefined;
 }
 
-function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: Readonly<D20PopupProps>) {
+function D20Popup({ skillId, usingItem, roller, onClose }: Readonly<{
+    skillId: SkillType | CompanionSkillType;
+    roller: RollerType | undefined; // undefined means the player
+    usingItem: CharacterItem | null;
+    onClose: () => void;
+}>) {
     const { t } = useTranslation()
-    const { character, updateCharacter } = useCharacter()
     const dataManager = getGameDatabase()
+    const { showD6Popup } = usePopup()
 
-    // The "roller" character always comes from context.
-    // When rolling as companion or mysterious stranger, PopupContext wraps
-    // this component in a nested CharacterProvider with an overridden
-    // character. When rolling as the main character, this is just the
-    // player character.
-    const rollerCharacter = character
+    let { character, updateCharacter }: {
+        character: Roller;
+        updateCharacter: (c: Partial<RawCharacter>) => void;
+    } = useCharacter()
+
+    const currentLuck = character.currentLuck ?? 0
+    // Handle updates and character when roller is not undefined
+    const isCompanion = roller === 'companion'
+    const isMysteriousStranger = roller === 'mysteriousStranger'
+    if(roller){
+        if (isCompanion && character.companion) {
+            character = character.companion ;
+        } else if (isMysteriousStranger) {
+            character = MYSTERIOUS_STRANGER;
+        }
+    }
 
     // Get weapon data with mods applied
-    const itemData = usingItem
-        ? getModifiedItemData(usingItem)
-        : null
-
-    const isMysteriousStranger = roller === 'mysteriousStranger'
-    const isCompanion = roller === 'companion'
-    const isSpecialRoller = isMysteriousStranger || isCompanion
-    const skill = skillId
-
-
-    // Get display name for SPECIAL stat
-    const getSpecialDisplayName = (specialType: SpecialType): string => {
-        return t(specialType)
-    }
+    const itemData = getModifiedItemData(usingItem)
 
     // State
     const [isUsingLuck, setIsUsingLuck] = useState(false)
-    const [selectedSpecial, setSelectedSpecial] = useState(
-        isCompanion
-            ? COMPANION_SKILL_TO_SPECIAL_MAP[skill as CompanionSkillType]
-            : (SKILL_TO_SPECIAL_MAP[skill] || 'strength')
-    )
     const [isAiming, setIsAiming] = useState(false)
     const [hasRolled, setHasRolled] = useState(false)
-    const [diceValues, setDiceValues] = useState<Array<string | number>>(
-        isMysteriousStranger ? ['?', '?', '?'] : isCompanion ? ['?', '?'] : ['?', '?', '?', '?', '?']
-    )
-    const [diceActive, setDiceActive] = useState(
-        isMysteriousStranger ? [true, true, true] : isCompanion ? [true, true] : [true, true, false, false, false]
-    )
-    const [diceRerolled, setDiceRerolled] = useState(
-        isMysteriousStranger ? [false, false, false] : isCompanion ? [false, false] : [false, false, false, false, false])
-    const [initialApCost, setInitialApCost] = useState(0) // Store AP cost from first roll
 
-    // Calculations - always use the character from context (which may be
-    // the player, the companion-as-character, or the mysterious stranger).
+    const diceNumber = isMysteriousStranger ? 3 : (isCompanion ? 2 : 5)
+    const [
+        diceValues, setDiceValues,
+        diceActive, setDiceActive,
+        diceRerolled, setDiceRerolled
+    ] = useDice(
+        diceNumber,
+        // if non-character, roll all and don't allow reroll
+        roller ? diceNumber : 2,
+        roller ? diceNumber : 0
+    )
+
+    const [initialApCost, setInitialApCost] = useState(0)
+
+
+    const [selectedSpecial, setSelectedSpecial] = useState(
+        isCompanion
+            ? getSpecialFromSkillCompanion(skillId as CompanionSkillType)
+            : (getSpecialFromSkill(skillId as SkillType) || 'strength')
+    )
     const activeSpecialId = isUsingLuck ? 'luck' : selectedSpecial
-    const skillValue = rollerCharacter.skills[skill]
-    const hasSpecialty = rollerCharacter.specialties.includes(skill) || isMysteriousStranger
-    const specialValue = rollerCharacter.special[activeSpecialId]
+
+    let specialValue
+    let skillValue
+    let hasSpecialty = false
+    if(isCharacterSkill(skillId)){
+        character = character as CharacterRoller;
+        specialValue = character.special[activeSpecialId as SpecialType]
+        skillValue = character.skills[skillId]
+        hasSpecialty = character.specialties.includes(skillId)
+    } else {
+        character = character as SimpleRoller;
+        specialValue = character.special[activeSpecialId as CompanionSpecialType]
+        skillValue = character.skills[skillId]
+    }
     const targetNumber = skillValue + specialValue
     const criticalValue = hasSpecialty ? skillValue : 1
-    const currentLuck = rollerCharacter.currentLuck
+
+    const extraComplications = []
+    let baseComplication = 20
+    if(dataManager.isType(itemData, "weapon")){
+        if(itemData.QUALITIES.includes('qualityUnreliable')) {
+            extraComplications.push(19)
+        }
+        if(character.traits?.includes('traitHeavyHanded')
+            && ['meleeWeapons', 'unarmed'].includes(skillId)) {
+            baseComplication -= 1
+        }
+    }
+    const complicationValue = Math.min(baseComplication, ...extraComplications)
 
     // AP Cost calculation
+    // Relevant only for roller = undefined
     const getApCost = () => {
         // After first roll, return the initial AP cost
         if (hasRolled) {
@@ -106,7 +144,10 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
 
     const luckCost = useMemo(() => {
         // Companion and Mysterious Stranger do not spend Luck or reroll dice
-        if (isSpecialRoller) {
+        if (roller) {
+            if(isMysteriousStranger && !hasRolled) {
+                return 1
+            }
             return 0
         }
         if (hasRolled) {
@@ -122,7 +163,7 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
         } else {
             return isUsingLuck ? 1 : 0;
         }
-    }, [diceActive, diceRerolled, isAiming, isUsingLuck, hasRolled, isSpecialRoller])
+    }, [diceActive, diceRerolled, isAiming, isUsingLuck, hasRolled, roller])
 
     // Success calculation
     const getSuccesses = () => {
@@ -144,38 +185,13 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
         return successes
     }
 
-    // Get dice class based on value
-    const getDiceClass = (value: string | number) => {
-        if (typeof value !== 'number') {return ''}
-
-        const extraComplications = []
-        let baseComplication = 20
-        if(dataManager.isType(itemData, "weapon")){
-            if(itemData.QUALITIES?.includes('qualityUnreliable')) {
-                extraComplications.push(19)
-            }
-            if(rollerCharacter.traits.includes('traitHeavyHanded')
-                && ['meleeWeapons', 'unarmed'].includes(skill)) {
-                baseComplication -= 1
-            }
-        }
-
-        if (value >= Math.min(baseComplication, ...extraComplications)) {
-            return 'roll-complication' // Critical fail
-        } else if (value <= criticalValue) {
-            return 'roll-crit' // Critical hit
-        }
-
-        return ''
-    }
-
     const handleDiceClick = (index: number) => {
         // Companion and Mysterious Stranger rolls use fixed dice; no editing
-        if (isSpecialRoller) {
-            return
-        }
-        // After roll: only allow clicking on rolled dice (not '?')
-        if (hasRolled && (diceValues[index] === '?' || diceRerolled[index])) {
+        // After roll: only allow clicking on non '?' non rerolled dice
+        if (roller || (
+            hasRolled
+            && (diceValues[index] === '?' || diceRerolled[index])
+        )) {
             return // Can't select unrolled dice
         }
 
@@ -206,7 +222,7 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
     // Handle roll/reroll
     const handleRoll = () => {
         // Companion and Mysterious Stranger roll only once
-        if (isSpecialRoller && hasRolled) {
+        if (roller && hasRolled) {
             return
         }
         const activeDiceCount = diceActive.filter(Boolean).length
@@ -220,11 +236,7 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
             return
         }
 
-        // Save initial AP cost on first roll
-        if (!hasRolled) {
-            const apCost = getApCost()
-            setInitialApCost(apCost)
-        }
+        setInitialApCost(getApCost())
 
         // Roll dice
         const newValues = [...diceValues]
@@ -244,26 +256,19 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
         setHasRolled(true)
 
         // Deselect all dice after roll/reroll
-        setDiceActive([false, false, false, false, false])
+        setDiceActive(Array.from(diceActive).fill(false))
 
         // Update luck AFTER setting hasRolled to true
-        let totalLuckCost = luckCost
-
-        // Mysterious Stranger costs 1 additional luck point (only on first roll)
-        if (isMysteriousStranger && !hasRolled) {
-            totalLuckCost += 1
-        }
-
-        if (totalLuckCost > 0) {
-            updateCharacter({ currentLuck: currentLuck - totalLuckCost })
+        if (luckCost > 0) {
+            updateCharacter({ currentLuck: currentLuck - luckCost  })
         }
     }
 
-    if (!skill) {return null}
+    if (!skillId) {return null}
 
     function toggleAiming(checked: boolean) {
         if(dataManager.isType(itemData, "weapon")
-            && (itemData as WeaponItem).QUALITIES?.includes('qualityInaccurate')) {
+            && itemData.QUALITIES.includes('qualityInaccurate')) {
             return
         }
         setIsAiming(checked)
@@ -276,7 +281,7 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
             footerChildren={
                 <>
                     {/* Reroll button  */}
-                    {(!isSpecialRoller || !hasRolled) && <button
+                    {(!roller || !hasRolled) && <button
                         className="confirmButton"
                         onClick={handleRoll}
                         disabled={hasRolled && (diceActive.filter(Boolean).length === 0 || luckCost > currentLuck)}
@@ -285,16 +290,16 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
                     </button>}
 
                     {/* Damage button */}
-                    {itemData && (!isSpecialRoller || hasRolled) && (
+                    {itemData && (!roller || hasRolled) && (
                         <button
                             className="confirmButton"
                             onClick={() => {
-                                if (!onShowDamage) {return}
+                                if (!usingItem) {return}
                                 const damageItem = usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }
-                                onShowDamage(damageItem, isAiming, isMysteriousStranger || isCompanion)
+                                showD6Popup(damageItem, isAiming, isMysteriousStranger || isCompanion)
                             }}
                             /* TODO Companions SHOULD use ammo too */
-                            disabled={!hasRolled || ((isMysteriousStranger || isCompanion) ? false : !hasEnoughAmmo(itemData, character))}
+                            disabled={!hasRolled}
                         >
                             {t('damage')}
                         </button>
@@ -308,17 +313,17 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
                     <select
                         value={isUsingLuck ? 'luck' : selectedSpecial}
                         onChange={(e) => setSelectedSpecial(e.target.value as SpecialType)}
-                        disabled={hasRolled || isUsingLuck || isMysteriousStranger || isCompanion}
+                        disabled={hasRolled || isUsingLuck || isMysteriousStranger}
                         aria-label="Special to use?"
                     >
                         {/* TODO COMPANION not all companions have mind/body, some have normal specials */}
-                        {(isCompanion ? COMPANION_SPECIAL : SPECIAL).map(specialValue => (
+                        {(isCharacterSkill(skillId) ? SPECIAL : COMPANION_SPECIAL).map(specialValue => (
                             <option key={specialValue} value={specialValue}>
-                                {getSpecialDisplayName(specialValue as SpecialType)}
+                                {t(specialValue)}
                             </option>
                         ))}
                     </select>
-                    {!isMysteriousStranger && !isCompanion && <input
+                    {!roller && <input
                         type="checkbox"
                         className="themed-svg"
                         data-icon="luck"
@@ -333,7 +338,7 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
 
                 <div className={"stack no-gap"}>
                     <span className="h2">Target: {targetNumber}</span>
-                    <span className="h5">{skillValue} (Skill) + {specialValue} ({getSpecialDisplayName(activeSpecialId)})</span>
+                    <span className="h5">{skillValue} (Skill) + {specialValue} ({t(activeSpecialId)})</span>
                     <span className="h5">Critical Hit: Roll {criticalValue > 1 ? `≤` : `=`} {criticalValue}</span>
                 </div>
 
@@ -343,27 +348,22 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
                     justifyContent: 'center',
                     flexWrap: 'wrap'
                 }}>
-                    {diceValues.map((value, index) => {
-                        const diceClass = getDiceClass(value)
-                        return (
-                            <div
-                                key={index}
-                                className={`d20-dice dice ${diceActive[index] ? 'active' : ''} ${diceRerolled[index] ? 'rerolled' : ''} ${diceClass}`}
-                                onClick={() => handleDiceClick(index)}
-                                style={{
-                                    cursor: (isMysteriousStranger || isCompanion) ? 'default' : 'pointer',
-                                    ...(isMysteriousStranger || isCompanion || index < 2 ? {} : { transform: 'scale(0.8)' })
-                                }}
-                            >
-                                {value}
-                            </div>
-                        )
-                    })}
+                    {diceValues.map((value, index) => (
+                        <D20Die
+                            key={index}
+                            value={value}
+                            minComplication={complicationValue}
+                            maxCritical={criticalValue}
+                            isActive={diceActive[index]!}
+                            isRerolled={diceRerolled[index]!}
+                            onClick={() => handleDiceClick(index)}
+                            biggerDie={isMysteriousStranger || isCompanion || index < 2}/>
+                    ))}
                 </div>
 
 
                 {
-                    !isMysteriousStranger && !isCompanion &&
+                    !isMysteriousStranger && !isCompanion && // TODO can a companion aim?
                     <>
                         <div className="row l-distributed l-lastSmall">
                             <span>{t('apCost')}</span>
@@ -384,15 +384,17 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
                                 />
                             </div>
                         </div>
-
-                        <div className="row l-distributed l-lastSmall">
-                            <span>{t('luckCost')}</span>
-                            <div className="row l-centered">
-                                <span>{luckCost} / {currentLuck}</span>
-                            </div>
-                        </div>
                     </>
                 }
+                {
+                    !isCompanion && <div className="row l-distributed l-lastSmall">
+                        <span>{t('luckCost')}</span>
+                        <div className="row l-centered">
+                            <span>{luckCost} / {currentLuck}</span>
+                        </div>
+                    </div>
+                }
+
 
                 <hr />
 
@@ -401,23 +403,34 @@ function D20Popup({ onClose, skillId, usingItem = null, roller, onShowDamage }: 
     )
 }
 
-function D20({ value, onClick, isActive, isRerolled }: Readonly<{
-    value: string | number;
-    onClick: () => void;
-    isActive: boolean;
-    isRerolled: boolean;
-}>) {
-    return (
-        <input
-            type="checkbox"
-            className="themed-svg"
-            data-icon="attack"
-            checked={isActive}
-            onChange={onClick}
-            aria-label="Select dice"
-        >
 
-        </input>
+function D20Die({ value, minComplication, maxCritical, isActive, isRerolled, biggerDie, onClick }: Readonly<{
+    value: number | '?',
+    minComplication: number,
+    maxCritical: number,
+    isActive: boolean,
+    isRerolled: boolean,
+    biggerDie: boolean,
+    onClick: () => void
+}>) {
+    const getDiceClass = (val: number | '?') => {
+        if(val === '?') { return '' }
+        if (val >= minComplication) {
+            return 'roll-complication' // Critical fail
+        } else if (val <= maxCritical) {
+            return 'roll-crit' // Critical hit
+        }
+        return ''
+    }
+    return (
+        <Dice
+            value={value}
+            baseClass={'d20-dice'}
+            getClassFromValue={getDiceClass}
+            isActive={isActive}
+            isRerolled={isRerolled}
+            extraStyle={biggerDie ? {} : {transform: "scale(0.8)"}}
+            onClick={onClick}/>
     )
 }
 

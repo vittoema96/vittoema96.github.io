@@ -1,16 +1,31 @@
-import { useState, useRef, useEffect } from 'react';
-import { useCharacter } from '@/contexts/CharacterContext'
-import { useTranslation } from 'react-i18next'
-import { useTooltip } from '@/contexts/TooltipContext'
-import { createInitialDiceState, rollD20, getHitLocationFromRoll, CreatureType } from '@/components/popup/utils/diceUtils.ts'
-import { CharacterItem, GenericPopupProps, ItemCategory, WeaponItem } from '@/types';
-import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCharacter } from '@/contexts/CharacterContext';
+import { useTranslation } from 'react-i18next';
+import { CreatureType, getHitLocationFromRoll, rollD20 } from '@/components/popup/utils/diceUtils.ts';
+import { CharacterItem, GenericPopupProps, WeaponItem } from '@/types';
 import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import Tag from '@/components/Tag.tsx';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
 import DialogPortal from '@/components/popup/common/DialogPortal.tsx';
 import PopupHeader from '@/components/popup/common/PopupHeader.tsx';
+import useDice from '@/utils/useDice.ts';
+import { isCloseCombat } from '@/utils/itemUtils.ts';
+
+
+
+const getFaceClass = (value: number | '?') => {
+    const classBase = 'd6-face-'
+    switch (value) {
+        case 1: return classBase + 'damage1'
+        case 2: return classBase + 'damage2'
+        case 3:
+        case 4: return classBase + 'effect'
+        case 5:
+        case 6: return classBase + 'blank'
+        default: return ''
+    }
+}
 
 
 interface D6PopupProps extends GenericPopupProps {
@@ -21,143 +36,134 @@ interface D6PopupProps extends GenericPopupProps {
 
 function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = false }: Readonly<D6PopupProps>) {
     const { t } = useTranslation();
-    const dataManager = getGameDatabase();
     const meltdownDialogRef = useRef<HTMLDialogElement>(null);
     const { character, updateCharacter } = useCharacter();
-    // Just use it, we do not need to manually trigger showTooltip
-    // as we use it with standard .tag
-    useTooltip();
     const { showConfirm } = usePopup();
 
 
     // Get weapon data with mods applied
     const weaponData = getModifiedItemData(usingItem) as WeaponItem;
 
+    // Checks on EFFECTS and QUALITIES
+    const isGatling = weaponData.QUALITIES.includes('qualityGatling');
+    const isAccurate = weaponData.QUALITIES.includes('qualityAccurate');
+    const hasBurst = weaponData.EFFECTS.includes('effectBurst');
+
+    const fireRateNum = Number(weaponData.FIRE_RATE) || 0;
+
+
+    // User-selectable extra hits type for Accurate + Aimed
+    const canChooseExtraHitsType = (
+        !isCloseCombat(weaponData.CATEGORY) //
+        && hasAimed && isAccurate // aiming + accurate allows to roll more damage (PA)
+        && fireRateNum > 0
+    );
+
+    // Extra dice: AP or AMMO cost?
+    const defaultExtraHitType =  isCloseCombat(weaponData.CATEGORY) ? 'ap'
+        : fireRateNum > 0 ? 'ammo'
+            :(hasAimed && isAccurate) ? 'ap'
+                : null;
+
+    const [extraHitTypeChoice, setExtraHitTypeChoice] = useState<'ap' | 'ammo' | null>(null);
+    const extraHitsType = canChooseExtraHitsType ? (extraHitTypeChoice ?? defaultExtraHitType) : defaultExtraHitType;
 
 
 
-
-    // Helper function to check if weapon is melee
-    const isMelee = (itemCategory: ItemCategory) => {
-        return itemCategory === 'meleeWeapons' || itemCategory === 'unarmed';
-    };
-
-    // Calculate damage rating (base + melee damage bonus)
-    const getDamageRating = () => {
-        if (!weaponData) {
-            return 2;
-        }
+    // Number of Damage dice
+    const diceCount = useMemo(() => {
         let rating = weaponData.DAMAGE_RATING;
-        if (isMelee(weaponData.CATEGORY)) {
+        if (isCloseCombat(weaponData.CATEGORY)) {
             rating += character.meleeDamage;
         }
         if(weaponData.CATEGORY === "energyWeapons"){
             rating += character.perks.filter(p => p === 'perkLaserCommander').length
         }
         return rating;
-    };
+    }, [character.meleeDamage, character.perks, weaponData.CATEGORY, weaponData.DAMAGE_RATING]);
 
-    const isGatling = (weaponData?.QUALITIES || []).includes('qualityGatling');
-    const isAccurate = (weaponData?.QUALITIES || []).includes('qualityAccurate');
-    const fireRateNum = Number(weaponData?.FIRE_RATE) || 0;
-    const isAmmoHungry = (weaponData?.QUALITIES || []).some(q => q.startsWith('qualityAmmoHungry'));
-
-    // User-selectable extra hits type for Accurate + Aimed
-    const canChooseExtraHitsType = !!(weaponData && !isMelee(weaponData.CATEGORY) && hasAimed && isAccurate && fireRateNum > 0);
-    const getDefaultExtraHitsType = () => {
-        if (!weaponData) {return null as 'ap' | 'ammo' | null;}
-        if (isMelee(weaponData.CATEGORY)) {return 'ap';}
-        if (Number(weaponData.FIRE_RATE) > 0) {return 'ammo';}
-        if (hasAimed && isAccurate) {return 'ap';}
-        return null;
-    };
-    const [chosenExtraHitsType, setChosenExtraHitsType] = useState<'ap' | 'ammo' | null>(
-        canChooseExtraHitsType ? 'ap' : getDefaultExtraHitsType()
-    );
-
-    const getEffectiveExtraHitsType = () => (
-        canChooseExtraHitsType ? (chosenExtraHitsType ?? getDefaultExtraHitsType()) : getDefaultExtraHitsType()
-    );
-
-    // Calculate extra dice count based on effective type
-    const getExtraDiceCount = () => {
-        if (isMysteriousStranger || !weaponData) {
+    // Number of Extra dice
+    const extraDiceCount = useMemo(() => {
+        if (isMysteriousStranger) {
             return 0;
         }
-        if (isMelee(weaponData.CATEGORY)) {
+        if (isCloseCombat(weaponData.CATEGORY)) {
             return 3; // Melee always has 3 extra dice (AP)
         }
-        const t = getEffectiveExtraHitsType();
-        if (t === 'ammo') {
-            return Math.max(0, Number(weaponData.FIRE_RATE) || 0) * (isGatling ? 2 : 1);
+        if (extraHitsType === 'ammo') {
+            return fireRateNum * (isGatling ? 2 : 1);
         }
-        if (t === 'ap') {
+        if (extraHitsType === 'ap') {
             return 3;
         }
         return 0;
-    };
-
-    const damageRating = getDamageRating();
-    const extraDiceCount = getExtraDiceCount();
+    }, [extraHitsType, fireRateNum, isGatling, isMysteriousStranger, weaponData.CATEGORY])
 
     // State
     const [hasRolled, setHasRolled] = useState(false);
-    const initialDiceState = createInitialDiceState(damageRating);
-    const [diceClasses, setDiceClasses] = useState(initialDiceState.classes);
-    const [diceActive, setDiceActive] = useState(initialDiceState.active);
-    const [diceRerolled, setDiceRerolled] = useState(isMysteriousStranger ? initialDiceState.active : initialDiceState.rerolled);
+    const [
+        diceValues, setDiceValues,
+        diceActive, setDiceActive,
+        diceRerolled, setDiceRerolled
+    ] = useDice(
+        diceCount,
+        diceCount,
+        isMysteriousStranger ? diceCount : 0
+    )
+    const [
+        extraDiceValues, setExtraDiceValues,
+        extraDiceActive, setExtraDiceActive,
+        extraDiceRerolled, setExtraDiceRerolled
+    ] = useDice(
+        extraDiceCount,
+        0,
+        isMysteriousStranger ? extraDiceCount : 0 // just in case, not actually needed
+    )
 
-    const initialExtraDiceState = createInitialDiceState(extraDiceCount, false);
-    const [extraDiceClasses, setExtraDiceClasses] = useState(initialExtraDiceState.classes);
-    const [extraDiceActive, setExtraDiceActive] = useState(initialExtraDiceState.active);
-    const [extraDiceRerolled, setExtraDiceRerolled] = useState(initialExtraDiceState.rerolled);
+    const ammoStep = useMemo(() => {
+        if(isMysteriousStranger || ["na", undefined, "-"].includes(weaponData.AMMO_TYPE)){
+            return 0;
+        }
+        if(isGatling){
+            return 10;
+        }
+        const ammoHungryQuality = weaponData.QUALITIES.find(q => q.startsWith("qualityAmmoHungry"))
+        if(ammoHungryQuality) {
+            const [_, qualityOpt] = ammoHungryQuality.split(':');
+            return  Number(qualityOpt) || 1;
+        }
+        return 1;
+    }, [isGatling, isMysteriousStranger, weaponData.AMMO_TYPE, weaponData.QUALITIES])
 
     // Reinitialize extra dice arrays when count changes
     useEffect(() => {
-        const s = createInitialDiceState(extraDiceCount, false);
-        setExtraDiceClasses(s.classes);
-        setExtraDiceActive(s.active);
-        setExtraDiceRerolled(s.rerolled);
         // If switching mode before rolling, reset ammo cost appropriately
-        if (!hasRolled && !isMelee(weaponData.CATEGORY)) {
-            const hitsType = getEffectiveExtraHitsType();
-            if (hitsType === 'ap') {
+        if (!hasRolled && !isCloseCombat(weaponData.CATEGORY)) {
+            if (extraHitsType === 'ap') {
                 setAmmoCost(ammoStep); // only base shot cost
-            } else if (hitsType === 'ammo') {
-                const activeExtra = s.active.filter(Boolean).length; // initially 0
+            } else if (extraHitsType === 'ammo') {
+                const activeExtra = 0
                 setAmmoCost(ammoStep + activeExtra * ammoStep);
             }
         }
-    }, [extraDiceCount]);
+    }, [ammoStep, extraHitsType, hasRolled, weaponData.CATEGORY]);
 
-    let ammoStep = 0;
-    if(!isMysteriousStranger && !["na", undefined, "-"].includes(weaponData.AMMO_TYPE)){
-        if(isGatling){
-            ammoStep = 10;
-        } else if(isAmmoHungry) {
-            const quality = weaponData.QUALITIES?.find(q => q.startsWith("qualityAmmoHungry"))
-            const [_, qualityOpt] = quality?.split(':') ?? [];
-            ammoStep = Number(qualityOpt) || 1;
-        } else {
-            ammoStep = 1
-        }
-    }
+
     const [ammoCost, setAmmoCost] = useState(ammoStep);
-    const [ammoPayed, setAmmoPayed] = useState(0);
-    const [luckPayed, setLuckPayed] = useState(0);
-    const [burstEffectsUsed, setBurstEffectsUsed] = useState(0); // Number of burst effects activated
-    const [creatureType, setCreatureType] = useState<CreatureType>('humanoid'); // Creature type for hit location
+    const [targetCreatureType, setTargetCreatureType] = useState<CreatureType>('humanoid');
     const [hitLocationRoll, setHitLocationRoll] = useState(rollD20()); // d20 roll for hit location (1-20)
+    const hitLocation = getHitLocationFromRoll(hitLocationRoll, targetCreatureType);
+
+    // States relative to PERKS
+    const [burstEffectsUsed, setBurstEffectsUsed] = useState(0); // Number of burst effects activated
     const [gunFuUsed, setGunFuUsed] = useState(false); // Track if Gun Fu has been used
     const [slayerUsed, setSlayerUsed] = useState(false); // Track if Slayer has been used
+
     const [meltdownUsed, setMeltdownUsed] = useState(false); // Track if Meltdown has been used
     const [meltdownPopupOpen, setMeltdownPopupOpen] = useState(false); // Track if Meltdown popup is open
     const [meltdownDiceValues, setMeltdownDiceValues] = useState<number[]>([]); // Meltdown dice results
 
-    // Calculate hit location from roll and creature type
-    const hitLocation = getHitLocationFromRoll(hitLocationRoll, creatureType);
-
-    // Handle Meltdown popup open/close
+    // Meltdown functions
     useEffect(() => {
         if (meltdownPopupOpen && meltdownDialogRef.current) {
             meltdownDialogRef.current.showModal();
@@ -165,43 +171,24 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
             meltdownDialogRef.current.close();
         }
     }, [meltdownPopupOpen]);
-
-    // Reroll hit location (rolls a new d20)
-    const rerollHitLocation = () => {
-        setHitLocationRoll(rollD20());
-    };
-
-    // Meltdown functions
     const getMeltdownDiceCount = () => {
-        return Math.floor(getDamageRating() / 2);
+        return Math.floor(diceCount / 2);
     };
-
     const rollMeltdownDice = () => {
         const diceCount = getMeltdownDiceCount();
         const rolls = Array.from({ length: diceCount }, () => Math.floor(Math.random() * 6) + 1);
         setMeltdownDiceValues(rolls);
     };
-
     const getMeltdownEffectCount = () => {
-        // Effects are on rolls 3-4
-        return meltdownDiceValues.filter(roll => roll >= 3 && roll <= 4).length;
+        return meltdownDiceValues.filter(roll => roll === 3 || roll === 4).length;
     };
-
     const closeMeltdownPopup = () => {
         setMeltdownPopupOpen(false);
         setMeltdownUsed(true);
         setMeltdownDiceValues([]);
     };
 
-    if(!dataManager.isType(weaponData, "weapon")){
-        return null;
-    }
-
-    // Check if weapon has burst effect
-    const hasBurst = (weaponData?.EFFECTS || []).includes('effectBurst');
-
     // Get current ammo count
-    // TODO check that self and na exist and no other values other than actual ammo exist
     const getCurrentAmmo = () => {
         let ammoId = weaponData.AMMO_TYPE;
         if (ammoId === 'self') {
@@ -213,21 +200,6 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
 
         const ammoItem = character.items.find(item => item.id === ammoId);
         return ammoItem ? ammoItem.quantity : 0;
-    };
-
-    // Get extra hits type (ap or ammo)
-    const getExtraHitsType = () => {
-        // TODO should probably check for aimed + accurate too
-        if (!weaponData) {
-            return null;
-        }
-        if (isMelee(weaponData.CATEGORY)) {
-            return 'ap';
-        }
-        if (Number(weaponData.FIRE_RATE) > 0) {
-            return 'ammo';
-        }
-        return null;
     };
 
     // Count functions
@@ -253,31 +225,16 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
         return Math.max(0, luckCost);
     };
 
-    // Get dice face class from roll
-    const getDiceClassFromRoll = (roll: number) => {
-        if (roll >= 5) {
-            return 'd6-face-blank';
-        }
-        if (roll >= 3) {
-            return 'd6-face-effect';
-        }
-        if (roll >= 2) {
-            return 'd6-face-damage2';
-        }
-        return 'd6-face-damage1';
-    };
 
     // Count damage and effects
-    const getEffectCount = () => {
-        return [...diceClasses, ...extraDiceClasses].filter(c => c === 'd6-face-effect').length;
-    };
-
     const getDamage1Count = () => {
-        return [...diceClasses, ...extraDiceClasses].filter(c => c === 'd6-face-damage1').length;
+        return [...diceValues, ...extraDiceValues].filter(c => c === 1).length;
     };
-
     const getDamage2Count = () => {
-        return [...diceClasses, ...extraDiceClasses].filter(c => c === 'd6-face-damage2').length;
+        return [...diceValues, ...extraDiceValues].filter(c => c === 2).length;
+    };
+    const getEffectCount = () => {
+        return [...diceValues, ...extraDiceValues].filter(c => c === 3 || c === 4).length;
     };
 
     const getTotalDamage = () => {
@@ -287,7 +244,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
         const effects = getEffectCount();
         const damage1 = getDamage1Count();
         const damage2 = getDamage2Count();
-        if(weaponData.EFFECTS?.includes('effectVicious')){
+        if(weaponData.EFFECTS.includes('effectVicious')){
             const baseDamage = effects + damage1 + damage2 * 2;
             return `${baseDamage + effects} (${baseDamage}+${effects})`
         }
@@ -320,20 +277,18 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
             const isActivating = !extraDiceActive[index];
 
             // Check ammo availability
-            let ammoId = weaponData?.AMMO_TYPE;
+            let ammoId: string | undefined = weaponData.AMMO_TYPE;
             if (ammoId === 'self') {
-                ammoId = weaponData?.ID;
+                ammoId = weaponData.ID;
             }
             if (ammoId === 'na') {
                 ammoId = undefined;
             }
 
-            const hitsType = getEffectiveExtraHitsType();
-
-            if (hitsType === 'ammo' && isActivating && ammoId) {
+            if (extraHitsType === 'ammo' && isActivating && ammoId) {
                 const currentAmmo = character.items.find(item => item.id === ammoId)?.quantity ?? 0;
                 if (currentAmmo < ammoCost + ammoStep) {
-                    alert(t('notEnoughAmmoAlert') || 'Not enough ammo!');
+                    alert(t('notEnoughAmmoAlert'));
                     return;
                 }
             }
@@ -352,18 +307,15 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
             });
 
             // Update ammo cost only if extra hits are ammo-based
-            if (hitsType === 'ammo' && ammoId) {
+            if (extraHitsType === 'ammo' && ammoId) {
                 setAmmoCost(prev => prev + (isActivating ? 1 : -1) * ammoStep);
             }
-        } else {
-            // After rolling: toggle for reroll (only if rolled and not rerolled)
-            if (extraDiceClasses[index] && !extraDiceRerolled[index]) {
-                setExtraDiceActive(prev => {
-                    const newActive = [...prev];
-                    newActive[index] = !newActive[index];
-                    return newActive;
-                });
-            }
+        } else if (extraDiceValues[index] !== '?' && !extraDiceRerolled[index]) {
+            setExtraDiceActive(prev => {
+                const newActive = [...prev];
+                newActive[index] = !newActive[index];
+                return newActive;
+            });
         }
     };
 
@@ -381,46 +333,40 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
         }
 
         // Roll damage dice
-        const newClasses = [...diceClasses];
+        const newValues = [...diceValues];
         const newRerolled = [...diceRerolled];
-
         diceActive.forEach((isActive, index) => {
             if (isActive) {
-                const roll = Math.floor(Math.random() * 6) + 1;
-                newClasses[index] = getDiceClassFromRoll(roll);
+                newValues[index] = Math.floor(Math.random() * 6) + 1;
                 if (hasRolled) {
                     newRerolled[index] = true;
                 }
             }
         });
-
-        setDiceClasses(newClasses);
+        setDiceValues(newValues);
         setDiceRerolled(newRerolled);
-        setDiceActive(new Array(damageRating).fill(false));
+        setDiceActive(new Array(diceCount).fill(false));
 
         // Roll extra dice
-        const newExtraClasses = [...extraDiceClasses];
+        const newExtraClasses = [...extraDiceValues];
         const newExtraRerolled = [...extraDiceRerolled];
-
         extraDiceActive.forEach((isActive, index) => {
             if (isActive) {
-                const roll = Math.floor(Math.random() * 6) + 1;
-                newExtraClasses[index] = getDiceClassFromRoll(roll);
+                newExtraClasses[index] = Math.floor(Math.random() * 6) + 1;
                 if (hasRolled) {
                     newExtraRerolled[index] = true;
                 }
             }
         });
-
-        setExtraDiceClasses(newExtraClasses);
+        setExtraDiceValues(newExtraClasses);
         setExtraDiceRerolled(newExtraRerolled);
         setExtraDiceActive(new Array(extraDiceCount).fill(false));
 
         // First roll: consume ammo
         if (!hasRolled) {
-            let ammoId = weaponData?.AMMO_TYPE;
+            let ammoId = weaponData.AMMO_TYPE;
             if (ammoId === 'self') {
-                ammoId = weaponData?.ID;
+                ammoId = weaponData.ID;
             }
             if (ammoId && ammoId !== 'na') {
                 // Only consume base ammo cost on first roll
@@ -433,13 +379,11 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                         )
                         .filter(item => item.quantity > 0),
                 });
-                setAmmoPayed(ammoCost);
                 setAmmoCost(0); // Reset cost after consuming
             }
         }
 
         // Update luck
-        setLuckPayed(prev => prev + luckCost);
         if (luckCost > 0) {
             updateCharacter({ currentLuck: character.currentLuck - luckCost });
         }
@@ -449,7 +393,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
 
     const handleClose = () => {
         // Consume burst ammo if any were selected
-        if (burstEffectsUsed > 0 && weaponData && !isMelee(weaponData.CATEGORY)) {
+        if (burstEffectsUsed > 0 && weaponData && !isCloseCombat(weaponData.CATEGORY)) {
             let ammoId = weaponData.AMMO_TYPE;
             if (ammoId === 'self') {
                 ammoId = weaponData.ID;
@@ -469,11 +413,6 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
         onClose();
     };
 
-    if (!weaponData) {
-        return null;
-    }
-
-    const extraHitsType = getEffectiveExtraHitsType();
 
     return (
         <>
@@ -486,7 +425,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                             <button
                                 className="confirmButton"
                                 onClick={handleRoll}
-                                disabled={!isMelee(weaponData.CATEGORY) && getCurrentAmmo() < ammoCost}
+                                disabled={!isCloseCombat(weaponData.CATEGORY) && getCurrentAmmo() < ammoCost}
                             >
                                 {hasRolled ? t('reroll') : t('roll')}
                             </button>
@@ -494,7 +433,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
 
                         {/* Gun Fu button - only for ranged weapons when player has the perk */}
                         {!isMysteriousStranger &&
-                            !isMelee(weaponData.CATEGORY) &&
+                            !isCloseCombat(weaponData.CATEGORY) &&
                             character.perks.includes('perkGunFu') &&
                             !gunFuUsed && (
                                 <button
@@ -536,7 +475,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
 
                         {/* Slayer button - only for melee/unarmed weapons when player has the perk */}
                         {!isMysteriousStranger &&
-                            isMelee(weaponData.CATEGORY) &&
+                            isCloseCombat(weaponData.CATEGORY) &&
                             character.perks.includes('perkSlayer') &&
                             !slayerUsed && (
                                 <button
@@ -588,12 +527,12 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                     </div>
 
                     {/* Effects and Qualities Tags */}
-                    {(weaponData.EFFECTS?.length > 0 || weaponData.QUALITIES?.length > 0) && (
+                    {(weaponData.EFFECTS.length > 0 || weaponData.QUALITIES.length > 0) && (
                         <div
                             className="row l-centered"
                             style={{ flexWrap: 'wrap', gap: '0.25rem'}}
                         >
-                            {weaponData.EFFECTS?.map(effect => {
+                            {weaponData.EFFECTS.map(effect => {
                                 const [effectType, effectOpt] = effect.split(':');
                                 let displayValue = t(effectOpt!);
                                 if (displayValue) {
@@ -607,7 +546,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                                 );
                             })}
 
-                            {weaponData.QUALITIES?.map(effect => {
+                            {weaponData.QUALITIES.map(effect => {
                                 const [qualityType, qualityOpt] = effect.split(':');
                                 let displayValue = t(qualityOpt!);
                                 if (displayValue) {
@@ -634,8 +573,8 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                 {/* Hit Location - compact single row */}
                 <div className="row" style={{ gap: '0.5rem', alignItems: 'center', marginBottom: '0.25rem' }}>
                     <select
-                        value={creatureType}
-                        onChange={e => setCreatureType(e.target.value as CreatureType)}
+                        value={targetCreatureType}
+                        onChange={e => setTargetCreatureType(e.target.value as CreatureType)}
                         style={{
                             padding: '0.125rem 0.25rem',
                             backgroundColor: 'var(--secondary-color)',
@@ -664,7 +603,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                     {t(hitLocation)}
                 </span>
                     <button
-                        onClick={rerollHitLocation}
+                        onClick={() => setHitLocationRoll(rollD20())}
                         style={{
                             padding: '0.125rem 0.375rem',
                             backgroundColor: 'var(--secondary-color)',
@@ -698,18 +637,16 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                             marginBottom: extraDiceCount > 0 ? '0.5rem' : '0'
                         }}
                     >
-                        {diceClasses.map((diceClass, index) => (
-                            <div
-                                key={index}
-                                className={`d6-dice dice ${diceClass || ''} ${diceActive[index] ? 'active' : ''} ${diceRerolled[index] ? 'rerolled' : ''}`}
-                                onClick={() => handleDiceClick(index)}
-                                style={{
-                                    cursor: hasRolled && !diceRerolled[index] ? 'pointer' : 'default',
-                                }}
-                            >
-                                {diceClass ? '' : '?'}
-                            </div>
-                        ))}
+                        {
+                            diceValues.map((value, index) => (
+                                <D6Die
+                                    value={value}
+                                    key={index}
+                                    isActive={diceActive[index]!}
+                                    isRerolled={diceRerolled[index]!}
+                                    onClick={() => handleDiceClick(index)}/>
+                            ))
+                        }
                     </div>
 
                     {/* Extra Hits */}
@@ -727,7 +664,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                                 {canChooseExtraHitsType ? (
                                     <select
                                         value={extraHitsType || 'ap'}
-                                        onChange={e => setChosenExtraHitsType(e.target.value as 'ap' | 'ammo')}
+                                        onChange={e => setExtraHitTypeChoice(e.target.value as 'ap' | 'ammo')}
                                         disabled={hasRolled}
                                         style={{
                                             padding: '0.125rem 0.25rem',
@@ -742,7 +679,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                                         <option value="ammo">[{t('ammo')}]</option>
                                     </select>
                                 ) : (
-                                    <span>[{t(extraHitsType)}]</span>
+                                    <span>[{t(extraHitsType ?? '')}]</span>
                                 )}
                             </div>
                             <div
@@ -754,20 +691,13 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                                     minHeight: '2.5rem'
                                 }}
                             >
-                                {extraDiceClasses.map((diceClass, index) => (
-                                    <div
+                                {extraDiceValues.map((value, index) => (
+                                    <D6Die
                                         key={index}
-                                        className={`d6-dice dice ${diceClass || ''} ${extraDiceActive[index] ? 'active' : ''} ${extraDiceRerolled[index] ? 'rerolled' : ''}`}
-                                        onClick={() => handleExtraDiceClick(index)}
-                                        style={{
-                                            cursor:
-                                                !hasRolled || (diceClass && !extraDiceRerolled[index])
-                                                    ? 'pointer'
-                                                    : 'default',
-                                        }}
-                                    >
-                                        {diceClass ? '' : '?'}
-                                    </div>
+                                        value={value}
+                                        isActive={extraDiceActive[index]!}
+                                        isRerolled={extraDiceRerolled[index]!}
+                                        onClick={() => handleExtraDiceClick(index)}/>
                                 ))}
                             </div>
                         </>
@@ -800,12 +730,12 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                         {/* Costs - compact */}
                         <div style={{
                             display: 'grid',
-                            gridTemplateColumns: !isMelee(weaponData.CATEGORY) ? '1fr 1fr' : '1fr',
+                            gridTemplateColumns: isCloseCombat(weaponData.CATEGORY) ? '1fr' : '1fr 1fr',
                             gap: '0.5rem',
                             fontSize: '0.9rem',
                             marginBottom: '0.25rem'
                         }}>
-                            {!isMelee(weaponData.CATEGORY) && (
+                            {!isCloseCombat(weaponData.CATEGORY) && (
                                 <div className="row" style={{ justifyContent: 'space-between' }}>
                                     <span>{t('ammo')}:</span>
                                     <span
@@ -862,8 +792,6 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                                 <span>{getLuckCost()} / {character.currentLuck}</span>
                             </div>
                         </div>
-
-                        <hr style={{ margin: '0.25rem 0' }} />
                     </>
                 )}
             </BasePopup>
@@ -899,7 +827,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                         }}>
                             {Array.from({ length: getMeltdownDiceCount() }, (_, index) => {
                                 const roll = meltdownDiceValues[index];
-                                const diceClass = roll ? getDiceClassFromRoll(roll) : null;
+                                const diceClass = roll ? getFaceClass(roll) : null;
 
                                 return (
                                     <div
@@ -941,6 +869,47 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
             </DialogPortal>
         </>
     );
+}
+
+
+export function Dice({ value, displayValue, baseClass, getClassFromValue, isActive, isRerolled, extraStyle, onClick }: Readonly<{
+    value: number | '?',
+    displayValue?: string,
+    baseClass: string,
+    getClassFromValue: (index: number | '?') => string,
+    isActive: boolean,
+    isRerolled: boolean,
+    extraStyle?: Record<string, any> | undefined,
+    onClick: () => void
+}>) {
+
+    return (
+        <button
+            className={`${baseClass} dice ${getClassFromValue(value)} ${isActive ? 'active' : ''} ${isRerolled ? 'rerolled' : ''}`}
+            onClick={onClick}
+            style={extraStyle ?? {}}
+        >
+            {displayValue ?? value}
+        </button>
+    );
+}
+
+function D6Die({ value, isActive, isRerolled, onClick }: Readonly<{
+    value: number | '?',
+    isActive: boolean,
+    isRerolled: boolean,
+    onClick: () => void
+}>) {
+    return (
+        <Dice
+            value={value}
+            displayValue={value === '?' ? '?' : ''}
+            baseClass={'d6-dice'}
+            getClassFromValue={getFaceClass}
+            isActive={isActive}
+            isRerolled={isRerolled}
+            onClick={onClick}/>
+    )
 }
 
 export default D6Popup

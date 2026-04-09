@@ -1,8 +1,8 @@
 import React from 'react'
-import {SpecialType} from "@/types";
 import { useTranslation } from 'react-i18next'
 import {usePopup} from "@/contexts/popup/PopupContext";
 import {useCharacter} from "@/contexts/CharacterContext";
+import { SpecialType } from '@/services/character/utils.ts';
 
 
 interface SpecialStatProps {

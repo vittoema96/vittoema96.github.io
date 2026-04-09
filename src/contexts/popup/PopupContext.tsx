@@ -1,14 +1,14 @@
 import React, { createContext, useContext, useState, useCallback, useMemo } from 'react'
 import AlertPopup from '@/components/popup/AlertPopup'
 import D20Popup from '@/components/popup/D20Popup'
-import D20PopupWithRoller from '@/components/popup/D20PopupWithRoller'
 import D6Popup from '@/components/popup/D6Popup'
 import Nd6Popup from '@/components/popup/Nd6Popup'
 import AddItemPopup from '@/components/popup/AddItemPopup'
-import TradeItemPopup from '@/components/popup/TradeItemPopup'
 import ModifyItemPopup from '@/components/popup/ModifyItemPopup'
-import { CharacterItem, Item, ItemType, PopupContextValue, SkillType } from '@/types'
+import { CharacterItem, CustomItem, Item, ItemType, PopupContextValue } from '@/types';
 import { getModifiedItemData } from '@/hooks/getGameDatabase.ts'
+import { CompanionSkillType, SkillType } from '@/services/character/utils.ts';
+import TradeItemPopup from '@/components/popup/TradeItemPopup.tsx';
 
 const PopupContext = createContext<PopupContextValue | undefined>(undefined)
 
@@ -26,11 +26,12 @@ interface AlertState {
 }
 
 interface D20State extends UsingItemPopupState {
-    skillId: SkillType;
-    roller?: 'companion' | 'mysteriousStranger';  // Optional: which character is rolling
+    skillId: SkillType | CompanionSkillType;
+    roller?: 'companion' | 'mysteriousStranger' | undefined;  // Optional: which character is rolling
 }
 
-interface D6State extends UsingItemPopupState {
+interface D6State {
+    usingItem: CharacterItem;
     hasAimed: boolean;
     isMysteriousStranger: boolean;
 }
@@ -38,18 +39,17 @@ interface D6State extends UsingItemPopupState {
 interface Nd6State {
     diceCount: number;
     title: string;
-    description?: string;
-    resultDisplay?: 'damage' | 'effects' | 'both';
-    onResult?: (result: { totalDamage: number; totalEffects: number; rolls: number[] }) => void;
+    description?: string | undefined;
+    resultDisplay: 'damage' | 'effects' | 'both';
+    onResult: (result: { totalDamage: number; totalEffects: number; rolls: number[] }) => void;
 }
 
 interface AddItemState {
     itemType: ItemType;
 }
 
-interface TradeItemState extends UsingItemPopupState {
-    itemData: Item;
-    onConfirm: ((quantity: number, price: number) => void) | null;
+interface TradeItemState {
+    usingItem: CharacterItem | CustomItem;
 }
 
 interface ModifyItemState extends UsingItemPopupState {
@@ -76,7 +76,6 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
     const [d6State, setD6State] = useState<D6State | undefined>(undefined)
     const [nd6State, setNd6State] = useState<Nd6State | undefined>(undefined)
     const [addItemState, setAddItemState] = useState<AddItemState | undefined>(undefined)
-    // StatAdjustment popup was moved to AppHeader (local only)
     const [tradeItemState, setTradeItemState] = useState<TradeItemState | undefined>(undefined)
     const [modifyItemState, setModifyItemState] = useState<ModifyItemState | undefined>(undefined)
 
@@ -107,7 +106,11 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
 
     // D20 Popup functions
     const showD20Popup = useCallback(
-        (skillId: SkillType, usingItem: CharacterItem | null = null, roller?: 'companion' | 'mysteriousStranger') => {
+        (
+            skillId: SkillType | CompanionSkillType,
+            usingItem: CharacterItem | null = null,
+            roller?: 'companion' | 'mysteriousStranger'
+        ) => {
             setD20State({
                 skillId: skillId,
                 usingItem: usingItem,
@@ -136,14 +139,19 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
     }, [])
 
     // Nd6 Popup functions
-    const showNd6Popup = useCallback(
-        (diceCount: number, title: string, description?: string, resultDisplay?: 'damage' | 'effects' | 'both', onResult?: (result: { totalDamage: number; totalEffects: number; rolls: number[] }) => void) => {
+    const showNd6Popup = useCallback((
+            diceCount: number,
+            title: string,
+            description?: string,
+            resultDisplay?: 'damage' | 'effects' | 'both',
+            onResult?: (result: { totalDamage: number; totalEffects: number; rolls: number[] }) => void
+        ) => {
             setNd6State({
                 diceCount,
                 title,
                 description,
-                resultDisplay,
-                onResult
+                resultDisplay: resultDisplay ?? 'both',
+                onResult: onResult ?? (() => {})
             })
         }, []
     )
@@ -169,13 +177,9 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
 
     // TradeItem Popup functions
     const showTradeItemPopup = useCallback(
-        (usingItem: CharacterItem,
-         itemData: Item,
-         onConfirm: (quantity: number, price: number) => void) => {
+        (usingItem: CharacterItem | CustomItem) => {
             setTradeItemState({
-                usingItem: usingItem,
-                itemData: itemData,
-                onConfirm: onConfirm
+                usingItem: usingItem
             })
         }, []
     )
@@ -248,26 +252,12 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             />}
 
 	            {d20State && (
-	                d20State.roller ? (
-	                    <D20PopupWithRoller
-	                        onClose={closeD20Popup}
-	                        skillId={d20State.skillId}
-	                        usingItem={d20State.usingItem}
-	                        roller={d20State.roller}
-	                        onShowDamage={(usingItem, hasAimed, isMysteriousStrangerOrCompanion) => {
-	                            showD6Popup(usingItem, hasAimed, isMysteriousStrangerOrCompanion)
-	                        }}
-	                    />
-	                ) : (
-	                    <D20Popup
-	                        onClose={closeD20Popup}
-	                        skillId={d20State.skillId}
-	                        usingItem={d20State.usingItem}
-	                        onShowDamage={(usingItem, hasAimed, isMysteriousStrangerOrCompanion) => {
-	                            showD6Popup(usingItem, hasAimed, isMysteriousStrangerOrCompanion)
-	                        }}
-	                    />
-	                )
+                    <D20Popup
+                        skillId={d20State.skillId}
+                        usingItem={d20State.usingItem}
+                        roller={d20State.roller}
+                        onClose={closeD20Popup}
+                    />
 	            )}
 
             {d6State && <D6Popup
@@ -296,8 +286,6 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             {tradeItemState && <TradeItemPopup
                 onClose={closeTradeItemPopup}
                 characterItem={tradeItemState.usingItem}
-                itemData={tradeItemState.itemData}
-                onConfirm={tradeItemState.onConfirm}
             />}
 
             {modifyItemState && <ModifyItemPopup

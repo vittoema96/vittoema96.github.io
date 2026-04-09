@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
-import {ORIGINS} from "@/utils/characterSheet";
 import { DamageType, GenericBodyPart } from '@/types';
+import { ORIGINS } from '@/services/character/Origin.ts';
 
 /**
  * Component to display damage reduction stats by body part

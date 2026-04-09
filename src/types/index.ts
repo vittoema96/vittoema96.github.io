@@ -2,54 +2,13 @@
 
 
 // **---- Character sheet related----**
-export const SPECIAL = [
-    "strength",
-    "perception",
-    "endurance",
-    "charisma",
-    "intelligence",
-    "agility",
-    "luck",
-] as const
-
-// Companion-specific SPECIAL stats (defined here for use in SpecialType)
-export const COMPANION_SPECIAL = [
-    "body",
-    "mind",
-] as const
-
-// SpecialType includes both player and companion SPECIAL stats for polymorphic character structure
-export type SpecialType = (typeof SPECIAL)[number] | (typeof COMPANION_SPECIAL)[number];
-
-export const SKILLS = [
-    "athletics",
-    "barter",
-    "bigGuns",
-    "energyWeapons",
-    "explosives",
-    "lockpick",
-    "medicine",
-    "meleeWeapons",
-    "pilot",
-    "repair",
-    "science",
-    "smallGuns",
-    "sneak",
-    "speech",
-    "survival",
-    "throwing",
-    "unarmed",
-] as const
-
-// Companion skills (defined later in the file)
-export const COMPANION_SKILLS = [
-    "melee",
-    "guns",
-    "other",
-] as const
-
-// SkillType includes both player and companion skills for polymorphic character structure
-export type SkillType = (typeof SKILLS)[number] | (typeof COMPANION_SKILLS)[number];
+import { Origin, OriginId } from '@/services/character/Origin.ts';
+import {
+    CompanionSkillType,
+    CompanionSpecialType,
+    SkillType,
+    SpecialType,
+} from '@/services/character/utils.ts';
 
 // **---- Currency related ----**
 export const CURRENCIES = [
@@ -70,17 +29,9 @@ export const DEFAULT_EXCHANGE_RATES: Record<CurrencyType, number> = {
 };
 
 // Type for user-configurable exchange rates (excludes caps which is always 1:1)
-export type ExchangeRates = Partial<Record<Exclude<CurrencyType, 'caps'>, number>>;
+export type ExchangeRates = Record<Exclude<CurrencyType, 'caps'>, number>;
 
-// Currency icons for display
-export const CURRENCY_ICONS: Record<CurrencyType, string> = {
-    caps: "caps",
-    ncrDollars: "ncrDollars",
-    legionDenarius: "legionDenarius",
-    prewarMoney: "prewarMoney",
-};
-
-const _TRAITS = [
+export const TRAITS = [
     "traitFastShot",
     "traitGifted",
     "traitEducated",
@@ -108,8 +59,7 @@ const _TRAITS = [
     "traitGhoulDiscrimination",
     "traitBrotherhoodChain",
 ] as const
-export type TraitId = (typeof _TRAITS)[number];
-export const TRAITS: Set<TraitId> = new Set(_TRAITS)
+export type TraitId = (typeof TRAITS)[number];
 
 // Trait data from CSV
 export interface TraitData {
@@ -157,37 +107,17 @@ export type ModSlot =
     | 'weave'
     | 'misc';
 
-export type OriginId = 'vaultDweller' | 'ghoul' | 'survivor' | 'mrHandy' | 'brotherhoodInitiate' | 'superMutant'
-    | "minutemen" | "ncr" | "protectron" | "robobrain" | "securitron"  | "synth"
-    | "assaultron" | "brotherhoodOutcast" | "childOfAtom" | "nightkin" | "tribal"
-    | undefined;
-
-export interface Origin {
-    id: OriginId;
-    calcMaxCarryWeight: (strengthVal: number) => number;
-    hasRadiationImmunity: boolean;
-    hasPoisonImmunity: boolean;
-    bodyParts: Set<GenericBodyPart>;
-    numberOfTraits: number;
-    isRobot: boolean;
-    specialMaxValues: Record<SpecialType, number>;
-    skillMaxValue: number;
-    needsSpecializedArmor: boolean;
-    needsSpecializedWeapons: boolean;
-    characterSvg: string;
-}
-
 export const LEFT = "left"
 export const RIGHT = "right"
 export type Side = typeof LEFT | typeof RIGHT
 
 export interface CharacterItem {
     id: string;
-    variation?: Side;
+    variation?: Side | undefined;
     quantity: number;
     equipped?: boolean;
     mods: string[];
-    customName?: string;
+    customName?: string | undefined;
 }
 
 /**
@@ -195,26 +125,26 @@ export interface CharacterItem {
  * Stored separately from database items
  */
 export interface CustomItem {
-    name: string;
+    customName: string;
     quantity: number;
-    value: number;      // Cost in caps
-    weight: number;     // Weight in kg
-    rarity: number;     // Always 0 for now
-    type: ItemType;     // For now only 'other'
-    category: string;   // For now only 'custom'
-    description?: string;
+
+    ID?: undefined;
+    COST: number;
+    WEIGHT: number;
+    RARITY: number;
+    CATEGORY: ItemCategory;
+    TYPE: ItemType;
+
+    description?: string | undefined;
 }
 
 // Companion-specific types (same structure as Character, but with different stat names)
-export type CompanionId = 'eyebot' | 'dog' | 'mrHandy' | 'humanoid';
-
-// Companion type aliases (COMPANION_SPECIAL and COMPANION_SKILLS are defined earlier)
-export type CompanionSpecialType = (typeof COMPANION_SPECIAL)[number];
-export type CompanionSkillType = (typeof COMPANION_SKILLS)[number];
+export const COMPANION_IDS = ['eyebot', 'dog', 'mrHandy', 'humanoid'] as const
+export type CompanionId = (typeof COMPANION_IDS)[number]
 
 export interface CompanionData {
     type: CompanionId;
-    name: string;
+    name?: string | undefined;
     // SPECIAL equivalent (body/mind instead of strength/perception/etc)
     special: Record<CompanionSpecialType, number>;
     // Skills (melee/guns/other instead of meleeWeapons/smallGuns/etc)
@@ -222,31 +152,20 @@ export interface CompanionData {
     // Current HP
     currentHp: number;
     // Perks
-    perks: (string | undefined)[];
+    perks: string[];
     // Weapons (stored as CharacterItem for compatibility)
-    weapons: CharacterItem[];
+    items: CharacterItem[];
 }
 
 export interface Character extends Omit<RawCharacter, 'origin'> {
-    name: string | undefined;
-    background: string | undefined;
-
     origin: Origin;
-    level: number;
-    caps: number;
-    ncrDollars: number;
-    legionDenarius: number;
-    prewarMoney: number;
+
     exchangeRates: ExchangeRates;
-    special: Record<SpecialType, number>;
-    skills: Record<SkillType, number>;
-    specialties: SkillType[];
+
     items: CharacterItem[];
-    customItems?: CustomItem[];  // Custom items created by user (separate from database items)
-    traits: TraitId[];
-    perks: string[]
+    customItems: CustomItem[];  // Custom items created by user (separate from database items)
     mapCodes: string[];
-    companion?: CompanionData;  // Optional companion data
+    companion?: CompanionData | undefined;  // Optional companion data
 
     maxHp: number;
     currentHp: number;
@@ -263,27 +182,31 @@ export interface Character extends Omit<RawCharacter, 'origin'> {
 
 export interface RawCharacter {
     name?: string | undefined;
+    level: number;
+    origin?: OriginId;
     background?: string | undefined;
 
-    origin?: OriginId;
-    level?: number | undefined;
-    caps?: number | undefined;
-    ncrDollars?: number | undefined;
-    legionDenarius?: number | undefined;
-    prewarMoney?: number | undefined;
-    exchangeRates?: ExchangeRates | undefined;
-    special?: Partial<Record<SpecialType, number>> | undefined;
-    skills?: Partial<Record<SkillType, number>> | undefined;
-    specialties?: SkillType[] | undefined;
-    items?: CharacterItem[] | undefined;
-    traits?: TraitId[] | undefined;
-    perks?: string[] | undefined;
-    mapCodes?: string[] | undefined;
-    companion?: CompanionData | undefined;  // Optional companion data
+    caps: number;
+    ncrDollars: number;
+    legionDenarius: number;
+    prewarMoney: number;
+    exchangeRates: ExchangeRates;
+
+    special: Record<SpecialType, number>;
+    skills: Record<SkillType, number>;
+    specialties: SkillType[];
+    traits: TraitId[];
+    perks: string[];
 
     currentLuck?: number | undefined;
     currentHp?: number | undefined;
-    rads?: number | undefined;
+    rads: number ;
+
+    items: CharacterItem[];
+    customItems: CustomItem[];
+
+    mapCodes: string[];
+    companion?: CompanionData | undefined;  // Optional companion data
 }
 
 
@@ -300,7 +223,7 @@ export interface PopupContextValue {
     showConfirm: (message: string, onConfirm: () => void) => void;
     closeAlert: () => void;
 
-	    showD20Popup: (skillId: SkillType, usingItem?: CharacterItem | null, roller?: 'companion' | 'mysteriousStranger') => void;
+    showD20Popup: (skillId: SkillType | CompanionSkillType, usingItem?: CharacterItem | null, roller?: 'companion' | 'mysteriousStranger') => void;
     closeD20Popup: () => void;
 
     showD6Popup: (usingItem: CharacterItem, hasAimed?: boolean, isMysteriousStranger?: boolean) => void;
@@ -312,7 +235,7 @@ export interface PopupContextValue {
     showAddItemPopup: (itemType: ItemType) => void;
     closeAddItemPopup: () => void;
 
-    showTradeItemPopup: (usingItem: CharacterItem, itemData: Item, onConfirm: (quantity: number, price: number) => void) => void;
+    showTradeItemPopup: (usingItem: CharacterItem | CustomItem) => void;
     closeTradeItemPopup: () => void;
 
     showModifyItemPopup: (usingItem: CharacterItem) => void;
@@ -324,13 +247,30 @@ export interface PopupContextValue {
 export type DamageType = "physical" | 'energy' | 'radiation';
 export type DamageResistanceMap = Record<DamageType, number>
 
-export type ItemType = 'weapon' | 'apparel' | 'aid' | 'ammo' | 'other' | 'mod';
-export type WeaponCategories = 'smallGuns' | 'bigGuns' | 'energyWeapons' | 'meleeWeapons' | 'explosives' | 'throwing' | 'unarmed';
-export type ApparelCategories = 'clothing' | 'headgear' | 'outfit' | 'raiderArmor' | 'leatherArmor' | 'metalArmor' | 'combatArmor' | 'syntheticArmor' | 'vaultTecSecurity' | 'robotPart';
-export type AidCategories = 'food' | 'drinks' | 'meds';
-export type AmmoCategories = 'ammo';
-export type OtherCategories = 'misc' | 'junk';
-export type ItemCategory = WeaponCategories | ApparelCategories | AidCategories | AmmoCategories | OtherCategories;
+export const ITEM_TYPES = ['weapon', 'apparel', 'aid', 'ammo', 'other', 'mod'] as const
+export type ItemType = (typeof ITEM_TYPES)[number]
+
+
+export const WEAPON_CATEGORIES = ['smallGuns', 'bigGuns', 'energyWeapons', 'meleeWeapons', 'explosives', 'throwing', 'unarmed'] as const;
+export const APPAREL_CATEGORIES = ['clothing', 'headgear', 'outfit', 'raiderArmor', 'leatherArmor', 'metalArmor', 'combatArmor', 'syntheticArmor', 'vaultTecSecurity', 'robotPart'] as const;
+export const AID_CATEGORIES = ['food', 'drinks', 'meds'] as const;
+export const AMMO_CATEGORIES = ['ammo'] as const;
+export const OTHER_CATEGORIES = ['misc', 'junk', 'custom'] as const;
+
+export type WeaponCategory = (typeof WEAPON_CATEGORIES)[number];
+export type ApparelCategory = (typeof APPAREL_CATEGORIES)[number];
+export type AidCategory = (typeof AID_CATEGORIES)[number];
+export type AmmoCategory = (typeof AMMO_CATEGORIES)[number];
+export type OtherCategory = (typeof OTHER_CATEGORIES)[number]
+
+export const ITEM_CATEGORIES = [
+    ...WEAPON_CATEGORIES,
+    ...APPAREL_CATEGORIES,
+    ...AID_CATEGORIES,
+    ...AMMO_CATEGORIES,
+    ...OTHER_CATEGORIES
+]
+export type ItemCategory = WeaponCategory | ApparelCategory | AidCategory | AmmoCategory | OtherCategory;
 export type Range = 'rangeR' | 'rangeC' | 'rangeM' | 'rangeL' | 'rangeE';
 
 export interface GenericItem {
@@ -345,36 +285,33 @@ export interface GenericItem {
 
 // Comune a Weapons, Apparel, Mods
 interface ItemWithEffects extends GenericItem {
-    EFFECTS?: string[];  // JSON array
+    EFFECTS: string[];  // JSON array
 }
 
-// Comune a Weapons, Apparel
-export interface ModdableItem extends ItemWithEffects {
-    AVAILABLE_MODS: string[];  // JSON array
-}
-
-export interface WeaponItem extends ModdableItem {
+export interface WeaponItem extends ItemWithEffects {
     DAMAGE_RATING: number;
     DAMAGE_TYPE: DamageType;
     FIRE_RATE: number | '-';  // number o "-" per melee TODO should change type (only number? number + undefined?)
     RANGE: Range;
-    QUALITIES?: string[];  // JSON array
+    QUALITIES: string[];  // JSON array
     AMMO_TYPE: string;
-    CATEGORY: WeaponCategories;
+    CATEGORY: WeaponCategory;
+    AVAILABLE_MODS: string[];  // JSON array
 }
 
-export interface ApparelItem extends ModdableItem {
+export interface ApparelItem extends ItemWithEffects {
     PHYSICAL_RES: number;
     ENERGY_RES: number;
     RADIATION_RES: number;
     LOCATIONS_COVERED: (GenericBodyPart | 'arm' | 'arms' | 'leg' | 'legs')[];  // JSON array
-    CATEGORY: ApparelCategories;
+    CATEGORY: ApparelCategory;
+    AVAILABLE_MODS: string[];  // JSON array
 }
 
 interface AidItemBase extends GenericItem {
     EFFECT: string;
     DESCRIPTION?: string;
-    CATEGORY: AidCategories;
+    CATEGORY: AidCategory;
 }
 
 interface MedItem extends AidItemBase {
@@ -401,10 +338,10 @@ export interface ModItem extends ItemWithEffects {
 
 export interface AmmoItem extends GenericItem {
     TYPE: 'ammo';
-    CATEGORY: AmmoCategories;
+    CATEGORY: AmmoCategory;
 }
 
-export type Item = WeaponItem | ApparelItem | AidItem | AmmoItem | ModItem;
+export type Item = WeaponItem | ApparelItem | AidItem | AmmoItem | ModItem | GenericItem;
 // Mod slots for weapon/armor modifications
 export const MOD_SLOTS = Object.freeze({
     BARREL: 'barrel' as ModSlot,

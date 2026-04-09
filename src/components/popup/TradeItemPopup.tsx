@@ -1,44 +1,48 @@
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
-import { CharacterItem, Item } from '@/types';
+import { CharacterItem, CustomItem } from '@/types';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { usePopup } from '@/contexts/popup/PopupContext.tsx';
+import { useInventoryActions } from '@/features/inv/hooks/useInventoryActions.ts';
+import { ChangeEventHandler } from 'react';
 
-function TradeItemPopup({ onClose, characterItem, itemData, onConfirm } : Readonly<{
+function TradeItemPopup({ onClose, characterItem } : Readonly<{
     onClose: () => void;
-    characterItem: CharacterItem;
-    itemData: Item;
-    onConfirm: (quantity: number, price: number) => void;
+    characterItem: CharacterItem | CustomItem;
 }>) {
     const { t } = useTranslation()
+    const { showAlert } = usePopup()
+    const { removeItem } = useInventoryActions()
+    const dataManager = getGameDatabase()
 
-    const [quantity, setQuantity] = useInputNumberState()
-    const [price, setPrice] = useInputNumberState()
+    let itemData
+    if("id" in characterItem) {
+        itemData = getModifiedItemData(characterItem) ?? dataManager.getItem(characterItem.id)!
+    } else {
+        itemData = characterItem
+    }
 
     // Calculate sell price (70% of cost)
     const tradeValueRate = 0.7
 
-    // Initialize on mount
-    useEffect(() => {
-        if (characterItem && itemData) {
-            // Initialize quantity to max available
-            setQuantity(characterItem.quantity)
-
-            // Calculate price with trade rate (70%)
-            let basePrice = itemData.COST || 1
-            basePrice = basePrice * tradeValueRate
-            basePrice = Math.round(basePrice * 100) / 100 // Round decimals
-            setPrice(basePrice)
-        }
-    }, [characterItem, itemData])
+    const [quantity, setQuantity] = useInputNumberState(characterItem.quantity)
+    const [price, setPrice] = useInputNumberState(() => {
+        let basePrice = itemData.COST || 1
+        basePrice = basePrice * tradeValueRate
+        basePrice = Math.round(basePrice * 100) / 100
+        return basePrice
+    })
 
     const handleConfirm = () => {
-        if (onConfirm && quantity && price) {
-            onConfirm(quantity, price)
+        if (quantity && price !== '') {
+            const total = Math.floor(quantity * price)
+            removeItem(characterItem, quantity, price)
+            showAlert(t('soldForCaps', { caps: total }))
         }
     }
 
-    const handleQuantityChange = (e) => {
+    const handleQuantityChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const value = e.target.value
 
         // Allow empty string
@@ -47,7 +51,7 @@ function TradeItemPopup({ onClose, characterItem, itemData, onConfirm } : Readon
         else if (val >= 1 && val <= characterItem.quantity) { setQuantity(val) }
     }
 
-    const handlePriceChange = (e) => {
+    const handlePriceChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const value = e.target.value
 
         // Allow empty string
@@ -57,12 +61,16 @@ function TradeItemPopup({ onClose, characterItem, itemData, onConfirm } : Readon
     }
 
     // Check if inputs are valid
-    const isQuantityValid = quantity !== '' && !Number.isNaN(quantity) && quantity >= 1 && quantity <= characterItem.quantity
-    const isPriceValid = price !== '' && !Number.isNaN(price) && price >= 0
+    const isQuantityValid = (
+        quantity !== ''
+        && quantity >= 1
+        && quantity <= characterItem.quantity
+    )
+    const isPriceValid = price !== '' && price >= 0
     const isFormValid = isQuantityValid && isPriceValid
 
     const total = isFormValid ? Math.floor(quantity * price) : 0
-    const [, side] = characterItem?.id.split('_') || ['', '']
+    const side = {variation: undefined, ...characterItem}.variation
 
     return (
         <BasePopup
@@ -75,7 +83,7 @@ function TradeItemPopup({ onClose, characterItem, itemData, onConfirm } : Readon
             {itemData && (
                 <div className="row l-centered" style={{ marginBottom: '0.5rem' }}>
                     <span className="h2">
-                        {t(itemData.ID, side ? { side } : {})}
+                        {t(itemData.ID ?? '', side ? { side } : {})}
                     </span>
                 </div>
             )}

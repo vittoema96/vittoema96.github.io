@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next'
 import { getCurrentTheme, applyTheme, Theme, THEMES } from '@/styles/theme/themeUtils'
 import { usePopup } from '@/contexts/popup/PopupContext'
 import { useCharacter } from '@/contexts/CharacterContext'
 import {changeLanguage, getCurrentLanguage, Language, LANGUAGES} from "@/i18n"
-import { CharacterSlotManager, CharacterSlotInfo } from '@/services/CharacterSlotManager'
+import { SaveSlotManager, CharacterSlotInfo } from '@/services/SaveSlotManager.ts'
 
 function SettingsTab() {
     const { t } = useTranslation()
 
     const [ currentTheme, setCurrentTheme ] = useState(getCurrentTheme)
     const [ currentLanguage, setCurrentLanguage ] = useState(getCurrentLanguage)
-    const [ characterSlots, setCharacterSlots ] = useState<(CharacterSlotInfo | null)[]>(() => CharacterSlotManager.getAllSlots())
+    const [ characterSlots, setCharacterSlots ] = useState<(CharacterSlotInfo | null)[]>(() => SaveSlotManager.getAllSlots())
 
     const { showAlert, showConfirm } = usePopup()
-    const { resetCharacter, switchToSlot, activeSlot } = useCharacter()
+    const { rawCharacter, resetCharacter, switchToSlot, activeSlot } = useCharacter()
 
     /** Fired when user changes Language in selector */
     const handleLanguageChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -32,13 +32,16 @@ function SettingsTab() {
 
     /** Refresh character slots list */
     const refreshSlots = () => {
-        setCharacterSlots(CharacterSlotManager.getAllSlots())
+        setCharacterSlots(SaveSlotManager.getAllSlots())
     }
+
+    useEffect(() => {
+        refreshSlots()
+    }, [rawCharacter])
 
     /** Switch to a different character slot */
     const handleSwitchSlot = (slotIndex: number) => {
         switchToSlot(slotIndex)
-        refreshSlots()
     }
 
     /** Delete a character from a slot */
@@ -49,7 +52,7 @@ function SettingsTab() {
         showConfirm(
             `${t('confirmDeleteCharacter')}\n${t("name")}: ${characterName}`,
             () => {
-                CharacterSlotManager.clearSlot(slotIndex)
+                SaveSlotManager.clearSlot(slotIndex)
                 refreshSlots()
                 // If we deleted the active slot, switch to slot 0
                 // TODO why? we can stay on the current slot...
@@ -62,7 +65,7 @@ function SettingsTab() {
 
     /** Export a character from a specific slot */
     const handleExportSlot = (slotIndex: number) => {
-        const character = CharacterSlotManager.loadFromSlot(slotIndex)
+        const character = SaveSlotManager.loadFromSlot(slotIndex)
         if (!character) {
             showAlert(t('noCharacterInSlot'))
             return
@@ -86,7 +89,7 @@ function SettingsTab() {
         file.text()
             .then(text => {
                 const rawData = JSON.parse(text)
-                CharacterSlotManager.saveToSlot(slotIndex, rawData)
+                SaveSlotManager.saveToSlot(slotIndex, rawData)
                 refreshSlots()
                 showAlert(t('characterImportSuccess'))
             })
