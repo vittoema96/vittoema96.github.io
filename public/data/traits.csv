@@ -1,20 +1,20 @@
 ID,EFFECTS,ORIGINS,IMPLEMENTED,FIXED
-traitFastShot,"[]","[""survivor"",""ncr"", ""tribal""]",false,false
+traitFastShot,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
 traitGifted,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
 traitEducated,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
 traitHeavyHanded,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
 traitSmallFrame,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
 traitExtraPerk,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
 traitGoodNatured,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
-traitGrunt,"[]","[""survivor"",""ncr"", ""tribal""]",false,false
-traitHomeOnTheRange,"[]","[""survivor"",""ncr"", ""tribal""]",false,false
-traitTriggerDiscipline,"[]","[""survivor"",""ncr"", ""tribal""]",false,false
+traitGrunt,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
+traitHomeOnTheRange,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
+traitTriggerDiscipline,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
 traitBrahminBaron,"[]","[""survivor"",""ncr"", ""tribal""]",false,false
-traitMotherWasteland,"[]","[""tribal""]",false,false
-traitNomad,"[]","[""tribal""]",false,false
-traitRiteOfPassage,"[]","[""tribal""]",false,false
-traitToolsOfTheOldWorld,"[]","[""tribal""]",false,false
-traitTheChosenOne,"[]","[""tribal""]",false,false
+traitMotherWasteland,"[]","[""tribal""]",true,false
+traitNomad,"[]","[""tribal""]",true,false
+traitRiteOfPassage,"[]","[""tribal""]",true,false
+traitToolsOfTheOldWorld,"[]","[""tribal""]",true,false
+traitTheChosenOne,"[]","[""tribal""]",true,false
 traitMrHandyLaserEmitter,"[""weaponAdd:weaponMrHandyLaserEmitter""]","[""mrHandy""]",true,false
 traitMrHandyFlamethrower,"[""weaponAdd:weaponMrHandyFlamethrower""]","[""mrHandy""]",true,false
 traitMrHandyAutomaticPistol,"[""weaponAdd:weaponMrHandyAutomaticPistol""]","[""mrHandy""]",true,false
@@ -25,3 +25,6 @@ traitGhoulRadiationRest,"[]","[""ghoul""]",true,true
 traitGhoulAgeless,"[]","[""ghoul""]",true,true
 traitGhoulDiscrimination,"[]","[""ghoul""]",true,true
 traitBrotherhoodChain,"[]","[""brotherhoodInitiate""]",true,true
+traitVaultKid,[],"[""vaultDweller""]",false,true
+traitMrHandy,[],"[""mrHandy""]",true,true
+traitForcedEvolution,[],"[""superMutant""]",true,true

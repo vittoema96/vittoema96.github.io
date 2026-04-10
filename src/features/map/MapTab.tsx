@@ -119,7 +119,7 @@ function MapTab() {
     const [ code, setCode ] = useState('')
     const { showConfirm } = usePopup()
 
-    const longPressHandlers = useLongPress((e: { target: { id: string } }) => {
+    const longPressHandlers = useLongPress((e: MouseEvent) => {
         showConfirm(t('deleteMarker'), () => {
             updateCharacter({ mapCodes: character.mapCodes.filter(m => m !== e.target?.id) });
         });

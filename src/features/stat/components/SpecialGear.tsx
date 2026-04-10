@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import {usePopup} from "@/contexts/popup/PopupContext";
 import {useCharacter} from "@/contexts/CharacterContext";
 import { SpecialType } from '@/services/character/utils.ts';
+import { ORIGINS } from '@/services/character/Origin.ts';
 
 
 interface SpecialStatProps {
@@ -25,7 +26,11 @@ function SpecialGear({ specialType, isEditing = false, children }: Readonly<Spec
         if (!isEditing) {return}
         const current = character.special[specialType]
         const max = character.origin.specialMaxValues[specialType]
-        const next = current < max ? current + 1 : 4 // Cycle back to 4 if at max
+
+        const isSupermutant = character.origin === ORIGINS.SUPER_MUTANT
+        const isSupermutantSpecial = ['strength', 'endurance'].includes(specialType)
+        const min = isSupermutant && isSupermutantSpecial ? 6 : 4
+        const next = current < max ? current + 1 : min // Cycle back to min if at max
 
         updateCharacter({
             special: {

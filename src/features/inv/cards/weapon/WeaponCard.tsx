@@ -3,8 +3,7 @@ import WeaponContent from '@/features/inv/cards/weapon/WeaponContent.tsx'
 import { useCharacter } from '@/contexts/CharacterContext.tsx'
 import { usePopup } from '@/contexts/popup/PopupContext.tsx'
 import { hasEnoughAmmo as checkHasEnoughAmmo } from '@/features/inv/utils/weaponUtils.ts'
-import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
-import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem } from '@/types';
 
 /**

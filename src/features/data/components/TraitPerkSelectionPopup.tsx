@@ -24,6 +24,7 @@ interface Requirements {
     agility: number;
     luck: number;
     total: number;
+    tier: string | undefined;
 }
 
 /**
@@ -32,25 +33,27 @@ interface Requirements {
 function RequirementBadges({ reqs }: { reqs: Requirements | null }) {
     if (!reqs) {return null;}
 
-    const badges: Array<{ key: keyof Requirements; label: string; isLevel: boolean }> = [
-        { key: 'level', label: 'LVL', isLevel: true },
-        { key: 'strength', label: 'S', isLevel: false },
-        { key: 'perception', label: 'P', isLevel: false },
-        { key: 'endurance', label: 'E', isLevel: false },
-        { key: 'charisma', label: 'C', isLevel: false },
-        { key: 'intelligence', label: 'I', isLevel: false },
-        { key: 'agility', label: 'A', isLevel: false },
-        { key: 'luck', label: 'L', isLevel: false },
+    const badges: Array<{ key: keyof Requirements; label: string | undefined }> = [
+        { key: 'level', label: 'Lv' },
+        { key: 'strength', label: 'S' },
+        { key: 'perception', label: 'P' },
+        { key: 'endurance', label: 'E' },
+        { key: 'charisma', label: 'C' },
+        { key: 'intelligence', label: 'I' },
+        { key: 'agility', label: 'A' },
+        { key: 'luck', label: 'L' },
+        { key: 'tier', label: undefined },
     ];
 
     return (
         <div className="trait-perk-popup__item-reqs">
-            {badges.map(({ key, label, isLevel }) => {
+            {badges.map(({ key, label }) => {
                 const value = reqs[key];
-                if (value <= 0) {return null;}
+                if(!value) { return null }
+                const content = label ? `${label} ${value}` : value;
                 return (
-                    <span key={key} className={`req-badge ${isLevel ? 'req-level' : 'req-special'}`}>
-                        {label} {value}
+                    <span key={key} className={`req-badge`}>
+                        {content}
                     </span>
                 );
             })}
@@ -88,8 +91,9 @@ function TraitPerkSelectionPopup({ type, availableIds, onSelect, onClose }: Read
         const perkData = dataManager.perks[id];
         if (!perkData?.REQUISITES) {return null;}
 
+        const tier = character.perks.filter(p => p === perkData.ID).length + 1
         const reqs = perkData.REQUISITES;
-        const level = reqs.level || 0;
+        const level = (reqs.level || 0) + (tier - 1) * (perkData.LEVEL_REQ_INCREASE ?? 1);
         const strength = reqs.strength || 0;
         const perception = reqs.perception || 0;
         const endurance = reqs.endurance || 0;
@@ -98,8 +102,11 @@ function TraitPerkSelectionPopup({ type, availableIds, onSelect, onClose }: Read
         const agility = reqs.agility || 0;
         const luck = reqs.luck || 0;
         const total = strength + perception + endurance + charisma + intelligence + agility + luck;
+        const tierString = perkData.TIER > 1 ?
+            `${tier}/${perkData.TIER}`
+            : undefined
 
-        return { level, strength, perception, endurance, charisma, intelligence, agility, luck, total };
+        return { level, strength, perception, endurance, charisma, intelligence, agility, luck, total, tier: tierString };
     }, [type, dataManager.perks]);
 
     // Check if character meets requirements for a perk
@@ -110,16 +117,16 @@ function TraitPerkSelectionPopup({ type, availableIds, onSelect, onClose }: Read
         if (!reqs) {return true;} // No requirements
 
         // Check level
-        if (reqs.level > 0 && character?.level < reqs.level) {return false;}
+        if (reqs.level > 0 && character.level < reqs.level) {return false;}
 
         // Check SPECIAL attributes
-        if (reqs.strength > 0 && character?.special.strength < reqs.strength) {return false;}
-        if (reqs.perception > 0 && character?.special.perception < reqs.perception) {return false;}
-        if (reqs.endurance > 0 && character?.special.endurance < reqs.endurance) {return false;}
-        if (reqs.charisma > 0 && character?.special.charisma < reqs.charisma) {return false;}
-        if (reqs.intelligence > 0 && character?.special.intelligence < reqs.intelligence) {return false;}
-        if (reqs.agility > 0 && character?.special.agility < reqs.agility) {return false;}
-        if (reqs.luck > 0 && character?.special.luck < reqs.luck) {return false;}
+        if (reqs.strength > 0 && character.special.strength < reqs.strength) {return false;}
+        if (reqs.perception > 0 && character.special.perception < reqs.perception) {return false;}
+        if (reqs.endurance > 0 && character.special.endurance < reqs.endurance) {return false;}
+        if (reqs.charisma > 0 && character.special.charisma < reqs.charisma) {return false;}
+        if (reqs.intelligence > 0 && character.special.intelligence < reqs.intelligence) {return false;}
+        if (reqs.agility > 0 && character.special.agility < reqs.agility) {return false;}
+        if (reqs.luck > 0 && character.special.luck < reqs.luck) {return false;}
 
         return true;
     }, [type, character, getRequirements]);

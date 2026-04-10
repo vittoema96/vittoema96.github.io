@@ -9,12 +9,14 @@ export const ORIGIN_IDS = [
     'mrHandy',
     'brotherhoodInitiate',
     'superMutant',
+
     'minutemen',
     'ncr',
     'protectron',
     'robobrain',
     'securitron',
     'synth',
+
     'assaultron',
     'brotherhoodOutcast',
     'childOfAtom',
@@ -97,19 +99,10 @@ export const getOriginById = (id: OriginId): Origin => {
 };
 export const ORIGINS = Object.freeze({
     // TODO to implement on origin:
-    //  - additional tag skills
-    //      * BrotherhoodInitiate: 1 of energyWeapons, Science or Repair
-    //      * Ghoul: Survival
-    //      * VaultDweller: any 1 skill
     //  - additional tag apparel
-    //  - Supermutant starts with +2 on Str and End
-    //  - Survivor has to choose Traits
     NO_ORIGIN: createOrigin(),
 
-    // TODO
-    //  Reduce diff on COS (illness)
-    //  recovers luck on vault experiment
-    //  +1 specialty
+    // TODO make trait gain 1 luck when clicked
     VAULT_DWELLER: createOrigin('vaultDweller'),
     GHOUL: createOrigin('ghoul', {
         hasRadiationImmunity: true,
@@ -119,7 +112,6 @@ export const ORIGINS = Object.freeze({
         numberOfTraits: 2,
     }),
     // TODO
-    //  Reduce diff on PER (sight and smell)
     //  isRobot == No aid consumption allowed
     MR_HANDY: createOrigin('mrHandy', {
         calcMaxCarryWeight: () => 75, // Fixed carry weight for Mr. Handy, can only be upped by armour/mods
@@ -132,11 +124,7 @@ export const ORIGINS = Object.freeze({
         needsSpecializedWeapons: true,
         characterSvg: 'mrHandy',
     }),
-    // TODO
-    //  additional specialty (energyWeapons, Science or Repair)
     BROTHERHOOD_INITIATE: createOrigin('brotherhoodInitiate'),
-    // TODO
-    //  +2 Str and End
     SUPER_MUTANT: createOrigin('superMutant', {
         hasRadiationImmunity: true,
         hasPoisonImmunity: true,
@@ -152,15 +140,12 @@ export const ORIGINS = Object.freeze({
 
     // #### Settler's Guide Origins
     // TODO all the below needs reviewing and implementation of mechanics
-
-    // TODO
-    //
     MINUTEMEN: createOrigin('minutemen'), // TODO missing trait
     NCR: createOrigin('ncr', {
         numberOfTraits: 2
     }), // TODO missing traits
     PROTECTRON: createOrigin('protectron', {
-        // TODO might have protectron weapons as "traits"
+        // TODO protectron weapons as "traits"
         calcMaxCarryWeight: () => 225 / 2, // Fixed carry weight for Mr. Handy, can only be upped by armour/mods
         hasRadiationImmunity: true,
         hasPoisonImmunity: true,
@@ -231,19 +216,3 @@ export const ORIGINS = Object.freeze({
         numberOfTraits: 2
     }),
 });
-
-
-// TODO Trait implementations needed:
-//  - traitEducated: add as info or something (penalty: When failing a skill test using a skill other than a tag skill, the GM gains 1 AP)
-//  - traitHeavyHanded: implement (Melee attacks suffer complication on 19-20 instead of only 20)
-//  - traitSmallFrame: implement (Carry weight is 75 + (2.5 × STR) kg instead of 75 + (5 × STR) kg)
-//  - traitExtraPerk: implement (character gains an additional perk at level 1)
-//  - traitGrunt: implement (+1 DC damage with specific weapons, increased complication range with big guns/energy weapons)
-//  - traitHomeOnTheRange: implement (campfire rest mechanics, cannot gain well rested bonus)
-//  - traitTriggerDiscipline: implement (re-roll 1d20 on ranged attacks, reduce fire rate by 1)
-//  - traitBrahminBaron: implement (settlement mechanics for Brahmin)
-//  - traitMotherWasteland: implement (?) maybe add a button to decrease current luck (spend 1 Luck for insight)
-//  - traitNomad: implement (re-roll on Survival tests, increased difficulty/complication on Barter/Speech in settlements)
-//  - traitRiteOfPassage: implement (first Luck spend in scene has chance to not consume, cannot assist PCs without spending 1 AP)
-//  - traitToolsOfTheOldWorld: implement (use Survival instead of Repair/Science, increased complication range)
-//  - traitTheChosenOne: implement (first d20 purchase free on tribe quest tests, GM gains 2 AP when quest comes up)

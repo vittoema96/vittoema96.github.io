@@ -1417,9 +1417,7 @@
   "mind": "Mente",
   "melee": "Mischia",
   "guns": "Proiettile",
-  "other": "Altro",
   "hp": "PS",
-  "damageReduction": "Riduzione Danno",
   "poison": "Veleno",
   "attacks": "Attacchi",
   "skills": "Abilità",
@@ -1806,8 +1804,8 @@
   "traitTriggerDisciplineBenefit": "Quando effettui attacchi a distanza usando armi leggere o armi a energia puoi rilanciare 1d20.",
   "traitTriggerDisciplinePenalty": "Mentre impugni armi leggere e armi a energia, riduci la loro cadenza di fuoco di 1.",
 
-  "traitBrahminBaron": "Barone dei Brahmin",
-  "traitBrahminBaronBenefit": "Ogni Mangiatoia per Brahmin fornisce sostentamento per 3 Brahmin in ciascuno dei tuoi insediamenti. Quando esegui l'azione insediamento Coltivare Raccolti, ottieni +1 DC latte di Brahmin aggiuntivo per mangiatoia.",
+  "traitBrahminBaron": "Barone dei Bramini",
+  "traitBrahminBaronBenefit": "Ogni Mangiatoia per Bramini fornisce sostentamento per 3 Bramini in ciascuno dei tuoi insediamenti. Quando esegui l'azione insediamento Coltivare Raccolti, ottieni +1 DC latte di Bramino aggiuntivo per mangiatoia.",
   "traitBrahminBaronPenalty": "Lancia +1d20 per determinare il rischio di attacco al tuo insediamento se la sua risorsa Cibo supera la Popolazione dell'insediamento (vedi p.39).",
 
   "traitMotherWasteland": "Madre Wasteland",
@@ -1857,13 +1855,20 @@
   "traitBrotherhoodChain": "La Catena Che Unisce",
   "traitBrotherhoodChainDescription": "Come membro della Confraternita d'Acciaio, sei legato alla catena di comando. Devi eseguire gli ordini dei tuoi diretti superiori e sei responsabile dei propri fratelli subordinati. Se non adempi al tuo dovere, verrai espulso dalla Confraternita e la tecnologia in tuo possesso verrà recuperata, con ogni mezzo necessario.",
 
+  "traitVaultKid": "Figlio del Vault",
+  "traitVaultKidDescription": "Essendo nato più sano grazie ai medici ben preparati e ai sofisticati auto-doc, il personaggio riduce la difficoltà di tutte le prove su COS per resistere agli effetti delle malattie. Inoltre, la sua educazione accuratamente pianificata gli permette di avere una specialità aggiuntiva a scelta. È possibile stabilire con il gamemaster il tipo di esperimento che ha avuto luogo nel Vault. Una volta per missione, il GM può introdurre una complicazione che rifletta la natura dell’esperimento a cui ha inconsapevolmente preso parte o introdurre una complicazione relativa ai primi anni di vita in isolamento e confinamento all’interno del Vault. Se il GM lo fa, il personaggio recupera immediatamente un Punto Fortuna.",
+
+  "traitMrHandy": "Robot Mr. Handy",
+  "traitMrHandyDescription": "Il personaggio possiede una visione a 360° e sistemi sensoriali migliorati che possono rilevare odori, sostanze chimiche e radiazioni, riducendo di 1 la difficoltà delle prove di Percezione basate su vista e olfatto. È anche immune ai danni da Radiazioni e da Veleno, ma non può utilizzare sostanze, né può trarre benefici da cibo, bevande o riposo. Utilizza il propulsore per muoversi, librandosi sul terreno, non influenzato da terreni difficili od ostacoli. Il peso trasportabile è di 75 kg e non può essere aumentato dalla Forza o con i talenti, ma può essere aumentato con un’armatura modificata. Non può essere guarito dalle ferite e non può curare i punti salute senza ricevere riparazioni.",
+
+  "traitForcedEvolution": "Evoluzione Forzata",
+  "traitForcedEvolutionDescription": "Gli attributi iniziali di Forza e Costituzione sono aumentati di +2 ciascuno e il limite massimo degli attributi Forza e Costituzione è aumentato a 12. Il limite massimo di Intelligenza e Carisma è ridotto a 6. Non è possibile avere più di 4 gradi in nessuna abilità. Il personaggio è immune ai danni da Radiazioni e da Veleno. È alto più di due metri e il suo corpo è massiccio e muscoloso. La pelle è verde, gialla o grigia, indipendentemente dal colore che aveva quando era umano. Non sembra invecchiare, ma è sterile. Può indossare solo un’armatura che è stata fatta per essere indossata da un supermutante.",
+
   "originTraits": "Tratti dell'Origine",
   "selectableTraits": "Tratti Selezionabili",
-  "origin": "Origine",
   "change": "Cambia",
   "addTrait": "Aggiungi Tratto",
   "addPerk": "Aggiungi Talento",
-  "close": "Chiudi",
   "noTraitsAvailable": "Nessun tratto disponibile",
   "noPerksAvailable": "Nessun perk disponibile",
 
@@ -1980,7 +1985,7 @@
   "miscBackpackSmall": "Zaino Piccolo",
   "miscBackpackSmallDescription": "Disponibili in più taglie, gli zaini sono degli oggetti di inestimabile valore per portarsi appresso più cose. Un vero e proprio zaino permette di farlo più facilmente e in maniera più efficiente.",
   "aidStimpakDiffuser": "Diffusore Stimpak",
-  "aidStimpakDiffuserDescription": "Questo meccanismo di rilascio fa sì che il contenuto di un super Stimpak venga disperso in una nube di aerosol, inondando una zona ristretta con uno scoppio di vapori medicinali.\n\u0083 Utilizzo: Quando viene rilasciato attraverso l’azione minore Interagire produce una nube che ripristina immediatamente 4 PS a chiunque (fatta eccezione per i robot) a distanza Ravvicinata. Ogni volta che si usa un diffusore, si consuma un super Stimpak.",
+  "aidStimpakDiffuserDescription": "Questo meccanismo di rilascio fa sì che il contenuto di un super Stimpak venga disperso in una nube di aerosol, inondando una zona ristretta con uno scoppio di vapori medicinali. Utilizzo: Quando viene rilasciato attraverso l’azione minore Interagire produce una nube che ripristina immediatamente 4 PS a chiunque (fatta eccezione per i robot) a distanza Ravvicinata. Ogni volta che si usa un diffusore, si consuma un super Stimpak.",
   "aidRobotRepairKit": "Kit di Riparazione per Robot",
   "aidRobotRepairKitDescription": "È un’apparecchiatura che può aiutare a riparare e riattivare robot danneggiati e Armature Atomiche.\nLa maggior parte dei robot è dotata di protocolli di autodiagnostica e riparazione che si attivano quando questo si ripara o viene riparato da qualcun altro. Il kit serve ad avviare e accelerare questi protocolli.\n\u0083 Utilizzo: Un kit di riparazione per robot può essere usato in due modi: con l’azione minore Assumere Sostanze per ripristinare immediatamente 4 PS o curare una ferita, oppure può essere attivato come parte di un’azione di Primo Soccorso e guarire 4 PS o curare una ferita, in aggiunta a ogni altra cura. Come tutte le riparazioni eseguite su un robot o un’Armatura Atomica, anche queste vengono fatte con l’abilità Riparare piuttosto che Medicina, ma le azioni vengono usate nello stesso modo.",
   "aidStealthBoy": "Stealth Boy",

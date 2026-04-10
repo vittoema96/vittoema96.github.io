@@ -14,12 +14,9 @@ import {
 } from '@/services/character/utils.ts';
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
-import { usePopup } from '@/contexts/popup/PopupContext.tsx';
+import { RollerType, usePopup } from '@/contexts/popup/PopupContext.tsx';
 import useDice from '@/utils/useDice.ts';
 import { Dice } from '@/components/popup/D6Popup.tsx';
-
-
-export type RollerType = 'companion' | 'mysteriousStranger'
 
 interface SimpleRoller {
     special: Record<CompanionSpecialType, number>;
@@ -40,7 +37,7 @@ type Roller = (SimpleRoller | CharacterRoller) & {
 
 function D20Popup({ skillId, usingItem, roller, onClose }: Readonly<{
     skillId: SkillType | CompanionSkillType;
-    roller: RollerType | undefined; // undefined means the player
+    roller: RollerType; // undefined means the player
     usingItem: CharacterItem | null;
     onClose: () => void;
 }>) {
@@ -72,6 +69,11 @@ function D20Popup({ skillId, usingItem, roller, onClose }: Readonly<{
     const [isUsingLuck, setIsUsingLuck] = useState(false)
     const [isAiming, setIsAiming] = useState(false)
     const [hasRolled, setHasRolled] = useState(false)
+
+    const hasTriggerDiscipline = useMemo(() => {
+        return character.traits?.includes("traitTriggerDiscipline")
+            && ['smallGuns', 'energyWeapons'].includes(skillId)
+    }, [character.traits, skillId])
 
     const diceNumber = isMysteriousStranger ? 3 : (isCompanion ? 2 : 5)
     const [
@@ -115,11 +117,15 @@ function D20Popup({ skillId, usingItem, roller, onClose }: Readonly<{
     let baseComplication = 20
     if(dataManager.isType(itemData, "weapon")){
         if(itemData.QUALITIES.includes('qualityUnreliable')) {
-            extraComplications.push(19)
+            baseComplication -= 1
         }
         if(character.traits?.includes('traitHeavyHanded')
             && ['meleeWeapons', 'unarmed'].includes(skillId)) {
-            baseComplication -= 1
+            extraComplications.push(19)
+        }
+        if(character.traits?.includes("traitGrunt")
+            && ["energyWeapons", "bigGuns"].includes(skillId)) {
+            baseComplication -= 2
         }
     }
     const complicationValue = Math.min(baseComplication, ...extraComplications)
@@ -145,20 +151,22 @@ function D20Popup({ skillId, usingItem, roller, onClose }: Readonly<{
     const luckCost = useMemo(() => {
         // Companion and Mysterious Stranger do not spend Luck or reroll dice
         if (roller) {
-            if(isMysteriousStranger && !hasRolled) {
-                return 1
-            }
+            if(isMysteriousStranger && !hasRolled) { return 1 }
             return 0
         }
         if (hasRolled) {
             const rerollingCount = diceActive.filter(Boolean).length;
             const rerolledCount = diceRerolled.filter(Boolean).length;
+
             let luckCost = rerollingCount;
 
-            // First reroll is free with aiming
-            if (isAiming && rerolledCount === 0) {
-                luckCost -= 1;
-            }
+            let discount = 0
+            if(isAiming) { discount += 1 }
+            if(hasTriggerDiscipline) { discount += 1 }
+            discount -= Math.min(discount, rerolledCount) // discount >= 0
+
+            luckCost -= discount
+
             return Math.max(0, luckCost);
         } else {
             return isUsingLuck ? 1 : 0;
@@ -296,7 +304,7 @@ function D20Popup({ skillId, usingItem, roller, onClose }: Readonly<{
                             onClick={() => {
                                 if (!usingItem) {return}
                                 const damageItem = usingItem || { id: itemData.ID, quantity: 1, equipped: false, mods: [] }
-                                showD6Popup(damageItem, isAiming, isMysteriousStranger || isCompanion)
+                                showD6Popup(damageItem, isAiming, roller)
                             }}
                             /* TODO Companions SHOULD use ammo too */
                             disabled={!hasRolled}
@@ -316,7 +324,6 @@ function D20Popup({ skillId, usingItem, roller, onClose }: Readonly<{
                         disabled={hasRolled || isUsingLuck || isMysteriousStranger}
                         aria-label="Special to use?"
                     >
-                        {/* TODO COMPANION not all companions have mind/body, some have normal specials */}
                         {(isCharacterSkill(skillId) ? SPECIAL : COMPANION_SPECIAL).map(specialValue => (
                             <option key={specialValue} value={specialValue}>
                                 {t(specialValue)}

@@ -37,11 +37,26 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
     const getAmmoCount = () => getWeaponAmmoCount(itemData, character)
     const checkHasEnoughAmmo = () => hasEnoughAmmo(itemData, character)
 
-
+    // TODO should unify logic with D6Popup
     let damageRating = `${itemData.DAMAGE_RATING}`
-    const damageBonus = itemData.CATEGORY === 'energyWeapons' ? character.perks.filter(p => p === 'perkLaserCommander').length : 0
-    if(damageBonus > 0){
-        damageRating = `(${damageRating}+${damageBonus})`
+    const laserCommanderBonus = itemData.CATEGORY === 'energyWeapons' ? character.perks.filter(p => p === 'perkLaserCommander').length : 0
+    const gruntBonus = [
+        'weaponCombatRifle', 'weaponAssaultRifle',
+        'weaponFragmentationGrenade', 'weaponCombatKnife',
+        // TODO all these machine gun types? it says generically "machine guns"
+        'weaponMachineGun', 'weaponLightMachineGun', 'weapon50caMachineGun'
+    ].includes(itemData.ID) && character.traits.includes("traitGrunt") ? 1 : 0
+    if(laserCommanderBonus+gruntBonus > 0){
+        damageRating = `(${damageRating}+${laserCommanderBonus+gruntBonus})`
+    }
+
+    let fireRate = `${itemData.FIRE_RATE}`
+    if(
+        character.traits.includes("traitTriggerDiscipline")
+        && ['smallGuns', 'energyWeapons'].includes(itemData.CATEGORY)
+        && Number(itemData.FIRE_RATE) > 0
+    ) {
+        fireRate = `(${fireRate}-1)`
     }
 
     return (
@@ -105,7 +120,7 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
                             <i className="mdi mdi-bullet"></i>
                             <i className="fas fa-plus"></i>
                         </div>
-                        <div className="card-stat-compact__value">{itemData.FIRE_RATE}</div>
+                        <div className="card-stat-compact__value">{fireRate}</div>
                     </div>
                     <div className="card-stat-compact">
                         <i className="fas fa-arrows-left-right" title={t('rangeLabel')}></i>

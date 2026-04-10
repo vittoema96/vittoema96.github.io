@@ -7,7 +7,6 @@ interface AlertPopupProps {
     showConfirm: boolean;
 }
 
-// TODO Do we need this class? Maybe use BasePopup directly?
 function AlertPopup({ onClose, content, onConfirm, showConfirm = false }: Readonly<AlertPopupProps>) {
     return (
         <BasePopup

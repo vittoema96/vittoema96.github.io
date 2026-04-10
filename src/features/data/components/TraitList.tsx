@@ -12,7 +12,7 @@ function TraitList() {
     const dataManager = getGameDatabase()
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
-    const { showNd6Popup } = usePopup()
+    const { showNd6Popup, showConfirm, showAlert } = usePopup()
     const numberOfTraits = character.origin.numberOfTraits
 
     // Calculate fixed traits from database where FIXED === true AND ORIGINS includes current origin
@@ -42,7 +42,7 @@ function TraitList() {
     // Trait actions configuration (similar to perk actions)
     const TRAIT_ACTIONS: Record<string, { buttonLabel: string; onClick: () => void }> = {
         'traitRiteOfPassage': {
-            buttonLabel: 'riteOfPassageAction',
+            buttonLabel: 'traitRiteOfPassage',
             onClick: () => {
                 showNd6Popup(
                     1,
@@ -57,6 +57,18 @@ function TraitList() {
                         }
                     }
                 );
+            }
+        },
+        'traitMotherWasteland': {
+            buttonLabel: 'traitMotherWasteland',
+            onClick: () => {
+                if(character.currentLuck > 0){
+                    showConfirm(t('traitMotherWastelandBenefit'), () => {
+                        updateCharacter({ currentLuck: character.currentLuck - 1 });
+                    });
+                } else {
+                    showAlert(t('notEnoughLuckAlert'))
+                }
             }
         }
     }

@@ -223,21 +223,10 @@
     border-radius: 3px;
     font-size: 0.7rem;
     font-weight: bold;
-    border: 1px solid;
+    border: 1px solid rgba(from var(--primary-color) r g b / 0.5);
     line-height: 1;
     white-space: nowrap;
-}
-
-.req-badge.req-level {
     background-color: rgba(from var(--primary-color) r g b / 0.15);
-    border-color: rgba(from var(--primary-color) r g b / 0.5);
-    color: var(--primary-color);
-    text-shadow: 0 0 6px rgba(from var(--primary-color) r g b / 0.6);
-}
-
-.req-badge.req-special {
-    background-color: rgba(from var(--primary-color) r g b / 0.15);
-    border-color: rgba(from var(--primary-color) r g b / 0.5);
     color: var(--primary-color);
     text-shadow: 0 0 6px rgba(from var(--primary-color) r g b / 0.6);
 }

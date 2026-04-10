@@ -17,7 +17,7 @@ export const adjustCurrentHp = (prev: RawCharacter, current: RawCharacter) => {
     const result: RawCharacter = { ...current };
     const prevMaxHp = calculateMaxHp(prev);
     const currentMaxHp = calculateMaxHp(current);
-    const currentHp = prev?.currentHp ?? currentMaxHp;
+    const currentHp = prev.currentHp ?? currentMaxHp;
     const hpDelta = currentMaxHp - prevMaxHp;
     // TODO per ora se maxHp aumenta, currentHp aumenta di pari passo
     //      se maxHp diminuisce currentHp rimane tale (o scende a maxHp se superiore)
@@ -37,7 +37,7 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
 
     const dataManager = getGameDatabase()
     // TODO init exchange rates
-    const exchangeRates = raw.exchangeRates ?? {}
+    const exchangeRates = raw.exchangeRates
 
     const origin = useMemo(
         () => getOriginById(raw.origin),
@@ -46,13 +46,16 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
     const specialties: SkillType[] = useMemo(
         () => {
             // Ghoul origin adds Survival as specialty
+            let result = raw.specialties
             const isGhoul = origin.id === 'ghoul';
-            if (isGhoul && !raw.specialties.includes('survival')) {
-                return [...raw.specialties, 'survival'];
+            if (isGhoul && !result.includes('survival')) {
+                result = [...result, 'survival'];
             }
-            return raw.specialties;
-        },
-        [raw.specialties, origin.id]
+            if(raw.traits.includes("traitNomad")){
+                result = result.filter(r => r !== 'science')
+            }
+            return result;
+        }, [raw.specialties, raw.traits, origin.id]
     )
     const traits = useMemo(
         () => {

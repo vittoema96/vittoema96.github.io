@@ -5,7 +5,7 @@ import { CreatureType, getHitLocationFromRoll, rollD20 } from '@/components/popu
 import { CharacterItem, GenericPopupProps, WeaponItem } from '@/types';
 import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import Tag from '@/components/Tag.tsx';
-import { usePopup } from '@/contexts/popup/PopupContext.tsx';
+import { RollerType, usePopup } from '@/contexts/popup/PopupContext.tsx';
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
 import DialogPortal from '@/components/popup/common/DialogPortal.tsx';
 import PopupHeader from '@/components/popup/common/PopupHeader.tsx';
@@ -31,10 +31,10 @@ const getFaceClass = (value: number | '?') => {
 interface D6PopupProps extends GenericPopupProps {
     usingItem: CharacterItem;
     hasAimed: boolean;
-    isMysteriousStranger: boolean;
+    roller?: RollerType;
 }
 
-function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = false }: Readonly<D6PopupProps>) {
+function D6Popup({ onClose, usingItem, hasAimed = false, roller = undefined }: Readonly<D6PopupProps>) {
     const { t } = useTranslation();
     const meltdownDialogRef = useRef<HTMLDialogElement>(null);
     const { character, updateCharacter } = useCharacter();
@@ -72,6 +72,8 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
 
     // Number of Damage dice
     const diceCount = useMemo(() => {
+
+        // TODO should unify logic with WeaponContent
         let rating = weaponData.DAMAGE_RATING;
         if (isCloseCombat(weaponData.CATEGORY)) {
             rating += character.meleeDamage;
@@ -79,25 +81,35 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
         if(weaponData.CATEGORY === "energyWeapons"){
             rating += character.perks.filter(p => p === 'perkLaserCommander').length
         }
+        if([
+            'weaponCombatRifle', 'weaponAssaultRifle',
+            'weaponFragmentationGrenade', 'weaponCombatKnife',
+            // TODO all these machine gun types? it says generically "machine guns"
+            'weaponMachineGun', 'weaponLightMachineGun', 'weapon50caMachineGun'
+        ].includes(weaponData.ID) && character.traits.includes("traitGrunt")){
+            rating += 1
+        }
         return rating;
-    }, [character.meleeDamage, character.perks, weaponData.CATEGORY, weaponData.DAMAGE_RATING]);
+    }, [character.meleeDamage, character.perks, character.traits, weaponData.CATEGORY, weaponData.DAMAGE_RATING, weaponData.ID]);
 
     // Number of Extra dice
     const extraDiceCount = useMemo(() => {
-        if (isMysteriousStranger) {
+        if (roller) {
             return 0;
         }
         if (isCloseCombat(weaponData.CATEGORY)) {
             return 3; // Melee always has 3 extra dice (AP)
         }
         if (extraHitsType === 'ammo') {
-            return fireRateNum * (isGatling ? 2 : 1);
+            const triggerDisciplineMalus = ['smallGuns', 'energyWeapons'].includes(weaponData.CATEGORY)
+                && character.traits.includes("traitTriggerDiscipline") ? 1 : 0
+            return Math.min(0, fireRateNum * (isGatling ? 2 : 1) - triggerDisciplineMalus);
         }
         if (extraHitsType === 'ap') {
             return 3;
         }
         return 0;
-    }, [extraHitsType, fireRateNum, isGatling, isMysteriousStranger, weaponData.CATEGORY])
+    }, [character.traits, extraHitsType, fireRateNum, isGatling, roller, weaponData.CATEGORY])
 
     // State
     const [hasRolled, setHasRolled] = useState(false);
@@ -108,7 +120,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
     ] = useDice(
         diceCount,
         diceCount,
-        isMysteriousStranger ? diceCount : 0
+        roller ? diceCount : 0
     )
     const [
         extraDiceValues, setExtraDiceValues,
@@ -117,11 +129,12 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
     ] = useDice(
         extraDiceCount,
         0,
-        isMysteriousStranger ? extraDiceCount : 0 // just in case, not actually needed
+        roller ? extraDiceCount : 0 // just in case, not actually needed
     )
 
     const ammoStep = useMemo(() => {
-        if(isMysteriousStranger || ["na", undefined, "-"].includes(weaponData.AMMO_TYPE)){
+        // TODO should companion consume ammo?
+        if(roller || ["na", undefined, "-"].includes(weaponData.AMMO_TYPE)){
             return 0;
         }
         if(isGatling){
@@ -133,7 +146,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
             return  Number(qualityOpt) || 1;
         }
         return 1;
-    }, [isGatling, isMysteriousStranger, weaponData.AMMO_TYPE, weaponData.QUALITIES])
+    }, [isGatling, roller, weaponData.AMMO_TYPE, weaponData.QUALITIES])
 
     // Reinitialize extra dice arrays when count changes
     useEffect(() => {
@@ -244,11 +257,19 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
         const effects = getEffectCount();
         const damage1 = getDamage1Count();
         const damage2 = getDamage2Count();
-        if(weaponData.EFFECTS.includes('effectVicious')){
-            const baseDamage = effects + damage1 + damage2 * 2;
-            return `${baseDamage + effects} (${baseDamage}+${effects})`
+        const baseDamage = effects + damage1 + damage2 * 2;
+        let result = baseDamage
+        let extra = ''
+        const hasVicious = weaponData.EFFECTS.includes('effectVicious')
+        const hasRadioactive = weaponData.EFFECTS.includes('effectRadioactive')
+        if(hasVicious){
+            result += effects
+            extra += ` (${baseDamage}+${effects})`
         }
-        return effects + damage1 + damage2 * 2;
+        if(hasRadioactive){
+            extra += ` +${effects}rads` // TODO ugly UI, improve (ie with FatMan)
+        }
+        return `${result}${extra}`
     };
 
     const getTotalEffects = () => {
@@ -432,7 +453,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                         )}
 
                         {/* Gun Fu button - only for ranged weapons when player has the perk */}
-                        {!isMysteriousStranger &&
+                        {!roller &&
                             !isCloseCombat(weaponData.CATEGORY) &&
                             character.perks.includes('perkGunFu') &&
                             !gunFuUsed && (
@@ -474,7 +495,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                             )}
 
                         {/* Slayer button - only for melee/unarmed weapons when player has the perk */}
-                        {!isMysteriousStranger &&
+                        {!roller &&
                             isCloseCombat(weaponData.CATEGORY) &&
                             character.perks.includes('perkSlayer') &&
                             !slayerUsed && (
@@ -501,7 +522,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
                             )}
 
                         {/* Meltdown button - only for energy weapons when player has the perk */}
-                        {!isMysteriousStranger &&
+                        {!roller &&
                             weaponData.CATEGORY === 'energyWeapons' &&
                             character.perks.includes('perkMeltdown') &&
                             !meltdownUsed && (
@@ -725,7 +746,7 @@ function D6Popup({ onClose, usingItem, hasAimed = false, isMysteriousStranger = 
 
                 <hr style={{ margin: '0.25rem 0' }} />
 
-                {!isMysteriousStranger && (
+                {!roller && (
                     <>
                         {/* Costs - compact */}
                         <div style={{

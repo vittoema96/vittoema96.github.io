@@ -23,7 +23,7 @@ interface PerkAction {
 function PerkList() {
     const dataManager = getGameDatabase()
     const { t } = useTranslation()
-    const { showD20Popup } = usePopup()
+    const { showD20Popup, showAlert } = usePopup()
     const { character, updateCharacter } = useCharacter()
     const numberOfPerks = character.level + (character.traits.includes("traitExtraPerk") ? 1 : 0)
 
@@ -36,13 +36,11 @@ function PerkList() {
             buttonLabel: 'summonStranger',
             onClick: () => {
                 // Check if player has at least 1 luck
-                if (character.currentLuck < 1) {
-                    alert(t('notEnoughLuckAlert') || 'Not enough luck!');
-                    return;
+                if(character.currentLuck > 0){
+                    showD20Popup('smallGuns', MYSTERIOUS_44_MAGNUM, 'mysteriousStranger')
+                } else {
+                    showAlert(t('notEnoughLuckAlert'));
                 }
-
-	                showD20Popup('smallGuns', MYSTERIOUS_44_MAGNUM, 'mysteriousStranger')
-                console.log('Mysterious Stranger action triggered!');
             }
         }
     };
@@ -64,7 +62,7 @@ function PerkList() {
             })
             .map(perk => perk.ID).sort((a, b) => t(a).localeCompare(t(b)))
         setAllPerks(availablePerks)
-        setSelectedPerks(character.perks ?? [])
+        setSelectedPerks(character.perks)
     }, [character.level, character.origin, character.special, character.perks])
 
 

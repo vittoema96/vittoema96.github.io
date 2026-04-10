@@ -3,12 +3,7 @@
 
 // **---- Character sheet related----**
 import { Origin, OriginId } from '@/services/character/Origin.ts';
-import {
-    CompanionSkillType,
-    CompanionSpecialType,
-    SkillType,
-    SpecialType,
-} from '@/services/character/utils.ts';
+import { CompanionSkillType, CompanionSpecialType, SkillType, SpecialType } from '@/services/character/utils.ts';
 
 // **---- Currency related ----**
 export const CURRENCIES = [
@@ -58,6 +53,8 @@ export const TRAITS = [
     "traitGhoulAgeless",
     "traitGhoulDiscrimination",
     "traitBrotherhoodChain",
+    "traitVaultKid",
+    "traitMrHandy"
 ] as const
 export type TraitId = (typeof TRAITS)[number];
 
@@ -216,31 +213,6 @@ export interface GenericPopupProps {
 
 
 // **---- Item related----**
-
-
-export interface PopupContextValue {
-    showAlert: (message: string) => void;
-    showConfirm: (message: string, onConfirm: () => void) => void;
-    closeAlert: () => void;
-
-    showD20Popup: (skillId: SkillType | CompanionSkillType, usingItem?: CharacterItem | null, roller?: 'companion' | 'mysteriousStranger') => void;
-    closeD20Popup: () => void;
-
-    showD6Popup: (usingItem: CharacterItem, hasAimed?: boolean, isMysteriousStranger?: boolean) => void;
-    closeD6Popup: () => void;
-
-    showNd6Popup: (diceCount: number, title: string, description?: string, resultDisplay?: 'damage' | 'effects' | 'both', onResult?: (result: { totalDamage: number; totalEffects: number; rolls: number[] }) => void) => void;
-    closeNd6Popup: () => void;
-
-    showAddItemPopup: (itemType: ItemType) => void;
-    closeAddItemPopup: () => void;
-
-    showTradeItemPopup: (usingItem: CharacterItem | CustomItem) => void;
-    closeTradeItemPopup: () => void;
-
-    showModifyItemPopup: (usingItem: CharacterItem) => void;
-    closeModifyItemPopup: () => void;
-}
 
 
 

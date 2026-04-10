@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import CompanionTab from '@/features/companion/CompanionTab';
 import StatTab from '@/features/stat/StatTab';
 import InvTab from '@/features/inv/InvTab';
@@ -10,7 +10,7 @@ import { useCharacter } from '@/contexts/CharacterContext';
 import { FitText } from '@/components/FitText.tsx';
 import HeaderInfo from '@/app/HeaderInfo.tsx';
 
-const TABS = {
+const TABS: Record<TabType, React.ComponentType<any>> = {
     companion: CompanionTab,
     stat: StatTab,
     inv: InvTab,
@@ -18,6 +18,7 @@ const TABS = {
     map: MapTab,
     settings: SettingsTab
 } as const
+const getKeys = <T extends object>(obj: T) => Object.keys(obj) as Array<keyof T>;
 
 function App() {
     const { character } = useCharacter();
@@ -29,7 +30,7 @@ function App() {
 
     // Filter visible tabs based on perks
     const visibleTabs = useMemo(() => {
-        const allTabs = Object.keys(TABS) as TabType[];
+        const allTabs = getKeys(TABS);
         return allTabs.filter(tabType => {
             // Hide companion tab if player doesn't have Robot Wrangler perk
             return !(tabType === 'companion' && !hasRobotWrangler && !hasDogmeat);

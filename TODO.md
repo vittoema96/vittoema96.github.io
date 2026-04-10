@@ -4,7 +4,6 @@
 Things to fix:
 - FIRE_RATE is number | - ... can we do at least number | undefined?
 - Don't allow same customName for 2 different CustomItems (customName is object ID)
-
 ## 🔥 High Priority
 
 ### Game Features

@@ -279,7 +279,7 @@ function CompanionTab() {
             {/* Damage Reduction by Type */}
             <div style={{ marginTop: '0.5rem' }}>
                 <h4 style={{ marginBottom: '0.3rem', fontSize: '0.9rem' }}>
-                    {t('damageReduction')}
+                    {t('damageReductionFull')}
                 </h4>
                 <div className="row row--spaced">
                     <div className="derived-stat">
