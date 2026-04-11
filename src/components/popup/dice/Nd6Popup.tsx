@@ -2,26 +2,14 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GenericPopupProps } from '@/types';
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
+import useInputNumberState from '@/hooks/useInputNumberState.ts';
+import { D6Die } from '@/components/popup/dice/components/dice.tsx';
 
 type ResultDisplay = 'damage' | 'effects' | 'both';
 
 
-// Get dice face class from roll (1-6)
-const getDiceClassFromRoll = (roll: number): string => {
-    if (roll >= 5) {
-        return 'd6-face-blank';
-    }
-    if (roll >= 3) {
-        return 'd6-face-effect';
-    }
-    if (roll >= 2) {
-        return 'd6-face-damage2';
-    }
-    return 'd6-face-damage1';
-};
-
 interface Nd6PopupProps extends GenericPopupProps {
-    diceCount: number;
+    diceCount: number | undefined;
     title: string;
     description?: string | undefined;
     resultDisplay: ResultDisplay;
@@ -35,6 +23,7 @@ interface Nd6PopupProps extends GenericPopupProps {
 function Nd6Popup({ onClose, diceCount, title, description, resultDisplay, onResult }: Readonly<Nd6PopupProps>) {
     const { t } = useTranslation();
 
+    const [diceNumber, setDiceNumber] = useInputNumberState(diceCount ?? 6);
     const [diceValues, setDiceValues] = useState<number[]>([]);
     const [hasRolled, setHasRolled] = useState<boolean>(false);
 
@@ -50,7 +39,7 @@ function Nd6Popup({ onClose, diceCount, title, description, resultDisplay, onRes
 
     // Handle roll
     const handleRoll = () => {
-        const rolls = Array.from({ length: diceCount }, () => Math.floor(Math.random() * 6) + 1);
+        const rolls = Array.from({ length: Number(diceNumber) }, () => Math.floor(Math.random() * 6) + 1);
         setDiceValues(rolls);
         setHasRolled(true);
     };
@@ -81,7 +70,8 @@ function Nd6Popup({ onClose, diceCount, title, description, resultDisplay, onRes
             }
             onClose={onClose}
         >
-            <div className="stack no-gap">
+            <div className="stack no-gap"
+                style={{width: "100%"}}>
 
                     {description && (
                         <>
@@ -89,6 +79,21 @@ function Nd6Popup({ onClose, diceCount, title, description, resultDisplay, onRes
                             <p style={{ textAlign: 'center', margin: '0.5rem 0' }}>
                                 {description}
                             </p>
+                        </>
+                    )}
+
+                    {diceCount === undefined && (
+                        <>
+                            <hr />
+                            <div className={"row l-distributed l-lastSmall"}>
+                                <p>{t("diceToRoll")}:</p>
+                                <input type={"number"}
+                                       min={1}
+                                       max={54} // on small devices it's the max with no overflow
+                                       defaultValue={diceNumber}
+                                       disabled={hasRolled}
+                                       onChange={e => setDiceNumber(e.target.value)}/>
+                            </div>
                         </>
                     )}
 
@@ -103,19 +108,14 @@ function Nd6Popup({ onClose, diceCount, title, description, resultDisplay, onRes
                         minHeight: '2.5rem',
                         margin: '0.5rem 0'
                     }}>
-                        {Array.from({ length: diceCount }, (_, index) => {
-                            const roll = diceValues[index];
-                            const diceClass = roll ? getDiceClassFromRoll(roll) : null;
-
-                            return (
-                                <div
-                                    key={index}
-                                    className={`d6-dice dice ${diceClass || ''}`}
-                                >
-                                    {diceClass ? '' : '?'}
-                                </div>
-                            );
-                        })}
+                        {Array.from({ length: Number(diceNumber) }, (_, i) => (
+                            <D6Die
+                                value={diceValues[i] ?? '?'}
+                                key={i}
+                                isActive={false}
+                                isRerolled={true}
+                                onClick={() => {}}/>
+                        ))}
                     </div>
 
                     {/* Results display */}

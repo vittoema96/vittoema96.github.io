@@ -1,14 +1,15 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 import AlertPopup from '@/components/popup/AlertPopup';
-import D20Popup from '@/components/popup/D20Popup';
-import D6Popup from '@/components/popup/D6Popup';
-import Nd6Popup from '@/components/popup/Nd6Popup';
+import D20Popup from '@/components/popup/dice/D20Popup.tsx';
+import D6Popup from '@/components/popup/dice/D6Popup.tsx';
+import Nd6Popup from '@/components/popup/dice/Nd6Popup.tsx';
 import AddItemPopup from '@/components/popup/AddItemPopup';
 import ModifyItemPopup from '@/components/popup/ModifyItemPopup';
-import { CharacterItem, CustomItem, Item, ItemType } from '@/types';
+import { CharacterItem, CustomItem, Item } from '@/types';
 import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { CompanionSkillType, SkillType } from '@/services/character/utils.ts';
 import TradeItemPopup from '@/components/popup/TradeItemPopup.tsx';
+import { ItemType } from '@/types/item.ts';
 
 export type RollerType = 'companion' | 'mysteriousStranger' | undefined
 
@@ -32,7 +33,7 @@ export interface PopupContextValue {
     closeD6Popup: () => void;
 
     showNd6Popup: (
-        diceCount: number,
+        diceCount: number | undefined,
         title: string,
         description?: string,
         resultDisplay?: 'damage' | 'effects' | 'both',
@@ -72,7 +73,7 @@ interface D6State {
 }
 
 interface Nd6State {
-    diceCount: number;
+    diceCount: number | undefined;
     title: string;
     description?: string | undefined;
     resultDisplay: 'damage' | 'effects' | 'both';
@@ -175,7 +176,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
 
     // Nd6 Popup functions
     const showNd6Popup = useCallback((
-            diceCount: number,
+            diceCount: number | undefined,
             title: string,
             description?: string,
             resultDisplay?: 'damage' | 'effects' | 'both',

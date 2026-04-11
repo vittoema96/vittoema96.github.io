@@ -7,14 +7,11 @@ import ApparelCard from '../cards/apparel/ApparelCard.tsx'
 import AidCard from '../cards/aid/AidCard.tsx'
 import OtherCard from '../cards/ammo/OtherCard.tsx'
 import { getItemKey } from '@/utils/itemUtils.ts'
-import {CharacterItem, ItemCategory, ItemType} from "@/types";
+import { CharacterItem } from '@/types';
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { useCharacter } from '@/contexts/CharacterContext.tsx';
+import { ItemCategory, ItemType } from '@/types/item.ts';
 
-interface InventoryListProps {
-    items?: CharacterItem[];
-    typeFilter: ItemType;
-}
 type SortBy = 'name' | 'number' | 'rarity'
 
 /**
@@ -24,24 +21,33 @@ type SortBy = 'name' | 'number' | 'rarity'
 function InventoryList({
     items = [],
     typeFilter
-}: Readonly<InventoryListProps>) {
+}: Readonly<{
+    items?: CharacterItem[];
+    typeFilter: ItemType;
+}>) {
     const { t } = useTranslation()
     const { showAddItemPopup } = usePopup()
-    const [selectedItemId, setSelectedItemId] = useState<string | undefined>(undefined)
-    const [categoryFilter, setCategoryFilter] = useState<ItemCategory | undefined>(undefined)
-    const [showFilterDropdown, setShowFilterDropdown] = useState(false)
+
     const [sortBy, setSortBy] = useState<SortBy>('name')
     const [isAscendingDirection, setIsAscendingDirection] = useState(true)
 
+    const [categoryFilter, setCategoryFilter] = useState<ItemCategory | undefined>(undefined)
+    const [showFilterDropdown, setShowFilterDropdown] = useState(false)
+
+    const [selectedItemId, setSelectedItemId] = useState<string | undefined>(undefined)
+
     const dataManager = getGameDatabase()
     const { character } = useCharacter()
+
+    // TODO do we need to filter out non-origin traits here?
     const traits = character.traits
         .map(trait => dataManager.traits[trait]!)
         .filter(trait => {
-        return trait?.ORIGINS.includes(character.origin.id)
+        return trait.ORIGINS.includes(character.origin.id)
     })
+    // TODO should we add ORIGIN apparel here too? but both weapons and apparel might be modified, so should be saved on storage...
     const newItems = traits.flatMap(trait => {
-        return trait?.EFFECTS.flatMap((effect: string) => {
+        return trait.EFFECTS.flatMap((effect: string) => {
             const [effectType, item] = effect.split(':')
             if(effectType === 'weaponAdd'){
                 return {
@@ -62,6 +68,7 @@ function InventoryList({
         const categories = [...typeMap[typeFilter]]
 
         // Add 'custom' category if there are custom items of this type
+        // TODO we add custom like this? should we make it a valid category?
         if (typeFilter === 'other' && character.customItems && character.customItems.length > 0) {
             const hasCustomItems = character.customItems.some(item => item.TYPE === typeFilter)
             if (hasCustomItems && !categories.includes('custom')) {
@@ -69,7 +76,6 @@ function InventoryList({
             }
         }
 
-        // TODO add robot categories when necessary
         // Sort alphabetically by translated name
         return categories.sort((a, b) => {
             return t(a).localeCompare(t(b))
@@ -121,16 +127,16 @@ function InventoryList({
 
                     // Weapons - sort by damage rating
                     if (dataManager.isType(aData, "weapon") && dataManager.isType(bData, "weapon")) {
-                        const aDamage = aData.DAMAGE_RATING || 0
-                        const bDamage = bData.DAMAGE_RATING || 0
+                        const aDamage = aData.DAMAGE_RATING
+                        const bDamage = bData.DAMAGE_RATING
                         comparison = bDamage - aDamage
                     } else if (dataManager.isType(aData, "apparel") && dataManager.isType(bData, "apparel")) {
-                        const aPhysical = aData.PHYSICAL_RES || 0
-                        const aEnergy = aData.ENERGY_RES || 0
-                        const aRadiation = aData.RADIATION_RES || 0
-                        const bPhysical = bData.PHYSICAL_RES || 0
-                        const bEnergy = bData.ENERGY_RES || 0
-                        const bRadiation = bData.RADIATION_RES || 0
+                        const aPhysical = aData.PHYSICAL_RES
+                        const aEnergy = aData.ENERGY_RES
+                        const aRadiation = aData.RADIATION_RES
+                        const bPhysical = bData.PHYSICAL_RES
+                        const bEnergy = bData.ENERGY_RES
+                        const bRadiation = bData.RADIATION_RES
 
                         const aMaxDR = Math.max(aPhysical, aEnergy, aRadiation)
                         const bMaxDR = Math.max(bPhysical, bEnergy, bRadiation)
@@ -350,7 +356,7 @@ function InventoryList({
             {selectedItemId && (() => {
                 // Check if it's a custom item
                 if (selectedItemId.startsWith('custom_')) {
-                    const index = parseInt(selectedItemId.replace('custom_', ''))
+                    const index = Number.parseInt(selectedItemId.replace('custom_', ''))
                     const selectedCustomItem = character.customItems?.[index]
                     if (!selectedCustomItem) {return null}
 

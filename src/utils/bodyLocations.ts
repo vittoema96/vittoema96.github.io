@@ -1,5 +1,6 @@
-import type { ApparelCategory, CharacterItem, GenericBodyPart } from '@/types';
+import type { CharacterItem, GenericBodyPart } from '@/types';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
+import { ApparelCategory } from '@/types/item.ts';
 
 /**
  * Body location utilities

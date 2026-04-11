@@ -2,16 +2,18 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/contexts/CharacterContext';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
-import { CustomItem, GenericItem, GenericPopupProps, ItemCategory, ItemType, Side } from '@/types';
+import { CustomItem, GenericPopupProps, Side } from '@/types';
 import { addItem } from '@/utils/itemUtils.ts';
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
+import { BaseItem } from '@/schemas/items/baseItemSchemas.ts';
+import { ItemCategory, ItemType } from '@/types/item.ts';
 
 export interface AddItemPopupProps extends GenericPopupProps {
     itemType: ItemType;
 }
 
-type SelectableItem = GenericItem & { variation?: Side }
+type SelectableItem = BaseItem & { variation?: Side }
 
 function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     const { t } = useTranslation()
@@ -80,21 +82,21 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
     const [shouldBuy, setShouldBuy] = useState(false)
 
     const availableItems = useMemo(() => {
-        let allItems = Object.values(dataManager[itemType])
-            .filter(item =>
-                !(dataManager.isType(item, 'weapon') && item.QUALITIES.includes('qualityMrHandyOnly'))
-            )
-            .filter(item => !(dataManager.isType(item, 'weapon') && (item as any).CATEGORY === 'companionWeapon'))
+        const allItems = Object.values(dataManager[itemType])
+            .filter(item => {
+                // Remove unacquirable
+                if(dataManager.isUnacquirable(item.ID)) { return false }
+                // If rarity or category filters, filter out what doesn't adhere
+                if(categoryFilter && item.CATEGORY !== categoryFilter) { return false }
+                if(rarityFilter && item.RARITY !== rarityFilter) { return false }
 
-        if(categoryFilter) {
-            allItems = allItems.filter(item => item.CATEGORY === categoryFilter)
-        }
-
-        allItems = allItems.filter(item => !dataManager.isUnacquirable(item.ID))
-
-        if (rarityFilter !== undefined) {
-            allItems = allItems.filter(item => item.RARITY === rarityFilter)
-        }
+                // Filter out mrHandyOnly and companionWeapons
+                const isWeapon = dataManager.isType(item, 'weapon')
+                return !(isWeapon && (
+                    item.QUALITIES.includes('qualityMrHandyOnly')
+                    || item.ID.startsWith('weaponCompanion') // TODO better check for this
+                ))
+            })
 
         const itemsWithVariants: SelectableItem[] = []
         allItems.forEach(item => {
@@ -143,7 +145,7 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
         if(selectedItem && quantity){
             let totalCost = 0;
             if (shouldBuy) {
-                totalCost = selectedItem.COST * quantity;
+                totalCost = (Number(selectedItem.COST) || 0) * quantity;
 
                 if (character.caps < totalCost) {
                     return;
@@ -252,7 +254,7 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
 
                 <input
                     type="number"
-                    min="1"
+                    min={1}
                     value={quantity}
                     onChange={(e) => {
                         setQuantity(e.target.value)
@@ -282,7 +284,7 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                     <span style={{
                         color: shouldBuy ? 'var(--primary-color)' : 'var(--primary-color-very-translucent)',
                     }}>
-                        {(selectedItem ? selectedItem.COST : 0) * Number(quantity)}
+                        {(Number(selectedItem?.COST) || 0) * Number(quantity)}
                     </span>
                 </label>
             </div>
@@ -349,8 +351,8 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
                     <i className="fas fa-weight-hanging" title={t('weight')}></i>
                     <input
                         type="number"
-                        min="0"
-                        step="0.5"
+                        min={0}
+                        step={0.5}
                         value={customWeight}
                         onChange={(e) => {
                             const value = Number.parseFloat(e.target.value)
@@ -370,8 +372,8 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
                     <i className="fas fa-coins" title={t('value')}></i>
                     <input
                         type="number"
-                        min="0"
-                        step="1"
+                        min={0}
+                        step={1}
                         value={customValue}
                         onChange={(e) => setCustomValue(e.target.value)}
                         onBlur={(e) => {

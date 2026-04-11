@@ -28,7 +28,7 @@ function TradeItemPopup({ onClose, characterItem } : Readonly<{
 
     const [quantity, setQuantity] = useInputNumberState(characterItem.quantity)
     const [price, setPrice] = useInputNumberState(() => {
-        let basePrice = itemData.COST || 1
+        let basePrice = Number(itemData.COST) || 0
         basePrice = basePrice * tradeValueRate
         basePrice = Math.round(basePrice * 100) / 100
         return basePrice

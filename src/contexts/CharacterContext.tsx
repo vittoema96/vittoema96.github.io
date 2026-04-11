@@ -14,7 +14,7 @@ import useCalculatedCharacter, {
     adjustCurrentHp
 } from "@/hooks/useCalculatedCharacter";
 import { getOriginById, ORIGINS } from '@/services/character/Origin.ts';
-import { RawCharacterSchema } from '@/services/character/characterSchemes.ts';
+import { RawCharacterSchema } from '@/schemas/characterSchemas.ts';
 
 /**
  * Helper function to create Mysterious Stranger character

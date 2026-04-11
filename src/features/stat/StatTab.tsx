@@ -7,11 +7,13 @@ import DamageReductionDisplay from './components/DamageReductionDisplay'
 import SpecialGear from './components/SpecialGear.tsx'
 import { SKILLS, SkillType, SPECIAL } from '@/services/character/utils.ts';
 import { ORIGINS } from '@/services/character/Origin.ts';
+import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 
 function StatTab() {
     const { t } = useTranslation();
     const [isEditing, setIsEditing] = useState(false);
     const { rawCharacter, character } = useCharacter();
+    const { showNd6Popup } = usePopup()
 
     // THIS SHOULD BE THE CORRECT WAY TO HANDLE SORTING USING DIFFERENT LANGUAGES
     const sortedSkills = useMemo(
@@ -196,7 +198,21 @@ function StatTab() {
             {/* Skills Section */}
             {/* TODO: Could sort skills in different ways other than alphabetically */}
             <div>
-                <h1 className="form-label">Skills:</h1>
+                <div className={"row l-lastSmall l-spaceBetween"}>
+                    <h1 className="form-label">Skills:</h1>
+                    <div className={"row"} style={{ width:'auto'}}>
+                        <button
+                            style={{flexShrink: 0}}
+                            onClick={() => showNd6Popup(undefined, "Nd6")}>
+                            <i className={"fas fa-dice-d6 fa-xl"}/>
+                        </button>
+                        <button
+                            style={{flexShrink: 0}}
+                            onClick={() => {}}>
+                            <i className={"fas fa-dice-d20 fa-xl"}/>
+                        </button>
+                    </div>
+                </div>
                 <section>
                     {sortedSkills.map(skillId => {
                         return <Skill key={skillId} skillId={skillId} isEditing={isEditing} />;

@@ -1,8 +1,9 @@
 import {useMemo} from 'react'
 import {useCharacter} from '@/contexts/CharacterContext.tsx'
 import {getGameDatabase} from "@/hooks/getGameDatabase.ts"
-import {CharacterItem, ItemType} from "@/types";
+import { CharacterItem } from '@/types';
 import { ORIGINS } from '@/services/character/Origin.ts';
+import { ItemType } from '@/types/item.ts';
 
 /**
  * Custom hook for filtering and organizing inventory items

@@ -112,7 +112,7 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
                         <i className="fas fa-burst" title={t('damageLabel')}></i>
                         <div className="card-stat-compact__values">
                             <div>{damageRating}d6</div>
-                            <div style={{ fontSize: '0.7em' }}>{t(itemData.DAMAGE_TYPE)}</div>
+                            <div style={{ fontSize: '0.7em' }}>{itemData.DAMAGE_TYPES.map(dt => t(dt)).join(', ')}</div> {/* TODO check the formatting when multiple */}
                         </div>
                     </div>
                     <div className="card-stat-compact">

@@ -100,7 +100,7 @@ function InventoryRow({
         // Weapon - show damage and type
         if(itemData.ID){
             if (dataManager.isType(itemData, 'weapon')) {
-                return `${t(itemData.CATEGORY)} • ${itemData.DAMAGE_RATING} ${t(itemData.DAMAGE_TYPE)}`;
+                return `${t(itemData.CATEGORY)} • ${itemData.DAMAGE_RATING} ${itemData.DAMAGE_TYPES.map(dt => t(dt)).join(', ')}`;
             }
 
             if (dataManager.isType(itemData, 'apparel')) {

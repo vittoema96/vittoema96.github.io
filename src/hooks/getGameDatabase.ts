@@ -1,6 +1,11 @@
-import { GameDatabase, ITEM_TYPE_MAP } from '@/services/GameDatabase';
-import { AidItem, AmmoItem, ApparelItem, CharacterItem, GenericItem, Item, ItemType, ModItem, WeaponItem } from '@/types';
+import { GameDatabase } from '@/services/GameDatabase';
+import { AidItem, AmmoItem, CharacterItem, Item, ModItem } from '@/types';
 import { applyEffect } from '@/utils/itemUtils.ts';
+import { WeaponItem } from '@/schemas/items/weaponSchemas.ts';
+import { BaseItem } from '@/schemas/items/baseItemSchemas.ts';
+import { ApparelItem } from '@/schemas/items/apparelSchemas.ts';
+import { ITEM_TYPE_MAP } from '@/types/item.ts';
+import { ItemType } from '@/types/item.ts';
 
 type ItemMap = {
     [K in ItemType]: K extends 'weapon' ? WeaponItem :
@@ -8,7 +13,7 @@ type ItemMap = {
                      K extends 'aid' ? AidItem :
                      K extends 'ammo' ? AmmoItem :
                      K extends 'mod' ? ModItem :
-                     GenericItem;
+                     BaseItem;
 };
 function isType<T extends ItemType>(item: Item | null | undefined, type: T): item is ItemMap[T] {
     return item?.TYPE === type;
@@ -79,19 +84,15 @@ export function getModifiedItemData(characterItem: CharacterItem | null): Weapon
             itemData.LOCATIONS_COVERED.length === 1
         materialMultiplier = isTorsoArmor ? 2 : 1
     }
-    const getValue = (modData: ModItem, value: number) => {
+    const getValue = (modData: ModItem, value: number | '-') => {
         const isMaterialMod = modData.SLOT_TYPE === 'modSlotMaterial'
         const multiplier = isMaterialMod ? materialMultiplier : 1
-        return value * multiplier
+        return (Number(value) || 0) * multiplier
     }
 
-    let modifiedData = {
+    return applyMods({
         ...itemData,
-        COST: modsData.reduce((total, mod) => total + getValue(mod, mod.COST), itemData.COST),
-        WEIGHT: modsData.reduce((total, mod) => total + getValue(mod, mod.WEIGHT), itemData.WEIGHT),
-    }
-
-    modifiedData = applyMods(modifiedData, modsData)
-
-    return modifiedData
+        COST: modsData.reduce((total, mod) => total + getValue(mod, mod.COST), Number(itemData.COST) || 0),
+        WEIGHT: modsData.reduce((total, mod) => total + getValue(mod, mod.WEIGHT), Number(itemData.WEIGHT) || 0),
+    }, modsData)
 }

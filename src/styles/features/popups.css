@@ -3,6 +3,7 @@ dialog {
     color: var(--primary-color);
     background-color: var(--secondary-color);
     border: var(--border-primary-thin);
+    min-width: calc(max(75%, 300px));
     max-width: calc(min(95%, 400px));
     max-height: calc(100svh - 2rem);
     padding: 0.75rem;

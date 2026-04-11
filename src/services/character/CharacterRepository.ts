@@ -1,5 +1,5 @@
 import { RawCharacter } from '@/types';
-import { RawCharacterSchema } from '@/services/character/characterSchemes.ts';
+import { RawCharacterSchema } from '@/schemas/characterSchemas.ts';
 
 // Constants
 const LEGACY_STORAGE_KEY = 'character_default';

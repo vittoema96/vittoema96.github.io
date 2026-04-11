@@ -63,7 +63,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
 
         Object.values(slotsData).forEach((data) => {
             if (data.selectedMod && data.buy) {
-                totalCost += data.selectedMod.COST || 0;
+                totalCost += Number(data.selectedMod.COST) || 0;
             }
         })
 
@@ -242,7 +242,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                                         {previewData.WEIGHT !== itemData.WEIGHT && (
                                             <span className="mod-stat-change">
                                             {previewData.WEIGHT > itemData.WEIGHT ? '+' : ''}
-                                                {(previewData.WEIGHT - itemData.WEIGHT).toFixed(1)}
+                                                {((Number(previewData.WEIGHT) || 0) - (Number(itemData.WEIGHT) || 0)).toFixed(1)}
                                         </span>
                                         )}
                                 </span>
@@ -309,7 +309,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                                     {previewData.WEIGHT !== itemData.WEIGHT && (
                                         <span className="mod-stat-change">
                                             {previewData.WEIGHT > itemData.WEIGHT ? '+' : ''}
-                                            {(previewData.WEIGHT - itemData.WEIGHT).toFixed(1)}
+                                            {((Number(previewData.WEIGHT) || 0) - (Number(itemData.WEIGHT) || 0)).toFixed(1)}
                                         </span>
                                     )}
                                 </span>

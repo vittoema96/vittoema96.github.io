@@ -3,17 +3,12 @@
  * Handles item identification, grouping, and modification
  */
 
-import {
-    ApparelItem,
-    CharacterItem,
-    CustomItem,
-    DamageType,
-    ItemCategory,
-    Range,
-    WeaponItem,
-} from '@/types';
+import { CharacterItem, CustomItem, DamageType } from '@/types';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
 import type { TFunction } from 'i18next';
+import { WeaponItem, Range } from '@/schemas/items/weaponSchemas.ts';
+import { ApparelItem } from '@/schemas/items/apparelSchemas.ts';
+import { ItemCategory } from '@/types/item.ts';
 
 
 export function removeItem(items: CharacterItem[], itemToRemove: CharacterItem) {
@@ -81,7 +76,7 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
             modifiedData.FIRE_RATE = (Number(modifiedData.FIRE_RATE) || 0) + Number(value)
             break
         case 'damageTypeSet':
-            modifiedData.DAMAGE_TYPE = value as DamageType
+            modifiedData.DAMAGE_TYPES = [value] as DamageType[]
             break
         case 'ammoSet':
             modifiedData.AMMO_TYPE = value
@@ -108,7 +103,7 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
             }
             break
         case 'ammoConsumption':
-            modifiedData.AMMO_CONSUMPTION = Number(value)
+            modifiedData.AMMO_CONSUMPTION = Number(value) // TODO could use ammoHungry
             break
         case 'allowMuzzleMod':
             modifiedData.ALLOW_MUZZLE_MOD = value === 'true'

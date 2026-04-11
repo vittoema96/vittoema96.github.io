@@ -1,9 +1,15 @@
 import Papa from 'papaparse';
-import { WeaponItem, ApparelItem, AidItem, AmmoItem, ModItem, GenericItem } from '@/types';
+import { AidItem, AmmoItem, ModItem } from '@/types';
+import { WeaponItem, WeaponSchema } from '@/schemas/items/weaponSchemas.ts';
+import { ApparelItem, ApparelSchema } from '@/schemas/items/apparelSchemas.ts';
+import { BaseItem } from '@/schemas/items/baseItemSchemas.ts';
+import { z } from 'zod';
 
 export const GameDataRepository = {
     /**
      * Internal helper to handle JSON strings within CSV cells
+     * - If [...] or {...} JSON.parse
+     * - If 'Infinity' parses to Infinity
      */
     transformRow(row: any): any {
         const processed = { ...row };
@@ -31,7 +37,7 @@ export const GameDataRepository = {
     /**
      * Core Parsing logic
      */
-    async parseCSV<T>(url: string): Promise<Record<string, T>> {
+    async parseCSV<T>(url: string, schema: z.ZodType<T> = z.any()): Promise<Record<string, T>> {
         return new Promise((resolve, reject) => {
             Papa.parse(url, {
                 download: true,
@@ -39,10 +45,20 @@ export const GameDataRepository = {
                 dynamicTyping: true,
                 skipEmptyLines: true,
                 complete: (results: any) => {
-                    const map = results.data.reduce((acc: any, row: any) => {
-                        if (row.ID) { acc[row.ID] = this.transformRow(row) }
-                        return acc;
-                    }, {});
+                    const map: Record<string, T> = {};
+                    results.data.forEach((row: any, index: number) => {
+                        if (!row.ID) { return }
+                        const processed = this.transformRow(row);
+                        const validation = schema.safeParse(processed);
+                        if (validation.success) {
+                            map[row.ID] = validation.data;
+                        } else {
+                            console.error(
+                                `❌ Validation error in ${url} (row ${index + 2}):`,
+                                validation.error.format()
+                            );
+                        }
+                    });
                     resolve(map);
                 },
                 error: reject,
@@ -50,8 +66,8 @@ export const GameDataRepository = {
         });
     },
 
-    async mergeCSVs<T>(urls: string[]): Promise<Record<string, T>> {
-        const results = await Promise.all(urls.map(url => this.parseCSV<T>(url)));
+    async mergeCSVs<T>(urls: string[], schema?: z.Schema<T>): Promise<Record<string, T>> {
+        const results = await Promise.all(urls.map(url => this.parseCSV<T>(url, schema)));
         return Object.assign({}, ...results);
     },
 
@@ -62,15 +78,15 @@ export const GameDataRepository = {
                 'data/weapon/bigGuns.csv', 'data/weapon/meleeWeapons.csv',
                 'data/weapon/throwing.csv', 'data/weapon/explosives.csv',
                 'data/weapon/companionWeapons.csv'
-            ]),
+            ], WeaponSchema),
             this.mergeCSVs<ApparelItem>([
                 'data/apparel/armor.csv', 'data/apparel/clothing.csv', 'data/apparel/robotParts.csv'
-            ]),
+            ], ApparelSchema),
             this.mergeCSVs<AidItem>([
                 'data/aid/food.csv', 'data/aid/drinks.csv', 'data/aid/meds.csv', 'data/aid/misc.csv'
             ]),
             this.parseCSV<AmmoItem>('data/other/ammo.csv'),
-            this.mergeCSVs<GenericItem>(['data/other/misc.csv']),
+            this.mergeCSVs<BaseItem>(['data/other/misc.csv']),
             this.mergeCSVs<ModItem>([
                 'data/mods/smallGunMods.csv', 'data/mods/bigGunMods.csv',
                 'data/mods/energyWeaponMods.csv', 'data/mods/meleeWeaponMods.csv',

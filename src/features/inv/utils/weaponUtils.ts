@@ -3,7 +3,8 @@
  * Centralized logic for weapon-related calculations
  */
 
-import {Character, WeaponItem} from "@/types";
+import {Character} from "@/types";
+import { WeaponItem } from '@/schemas/items/weaponSchemas.ts';
 
 /**
  * Get ammo count for a weapon

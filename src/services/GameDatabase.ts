@@ -1,21 +1,8 @@
-import {
-    Item,
-    WeaponItem,
-    ApparelItem,
-    AidItem,
-    AmmoItem,
-    ModItem,
-    GenericItem,
-    ItemType,
-    ItemCategory,
-    TraitData,
-    WEAPON_CATEGORIES,
-    APPAREL_CATEGORIES,
-    AID_CATEGORIES,
-    AMMO_CATEGORIES,
-    OTHER_CATEGORIES,
-} from '@/types';
-import {GameDataRepository} from "@/services/GameDataRepository";
+import { AidItem, AmmoItem, Item, ModItem, TraitData } from '@/types';
+import { GameDataRepository } from '@/services/GameDataRepository';
+import { WeaponItem } from '@/schemas/items/weaponSchemas.ts';
+import { BaseItem } from '@/schemas/items/baseItemSchemas.ts';
+import { ApparelItem } from '@/schemas/items/apparelSchemas.ts';
 
 // Define the shape of your DB
 interface DatabaseCollections {
@@ -23,7 +10,7 @@ interface DatabaseCollections {
     apparel: Record<string, ApparelItem>;
     aid: Record<string, AidItem>;
     ammo: Record<string, AmmoItem>;
-    other: Record<string, GenericItem>;
+    other: Record<string, BaseItem>;
     mod: Record<string, ModItem>;
     perks: Record<string, any>;
     traits: Record<string, TraitData>;
@@ -44,17 +31,8 @@ export const UNACQUIRABLE_IDS = [
     'robotPartSensors',
     'robotPartBody',
     'robotPartArms',
-    'robotPartThrusters'
+    'robotPartThrusters',
 ] as const;
-
-export const ITEM_TYPE_MAP: Record<ItemType, readonly ItemCategory[]> = {
-    weapon: WEAPON_CATEGORIES,
-    apparel: APPAREL_CATEGORIES,
-    aid: AID_CATEGORIES,
-    ammo: AMMO_CATEGORIES,
-    mod: ['mods'], // TODO HAVE to decide how to handle mod categories
-    other: OTHER_CATEGORIES,
-};
 
 // 3. The Service Object
 export const GameDatabase = {
@@ -62,7 +40,9 @@ export const GameDatabase = {
      * Initializes the database. Call this ONCE at app startup.
      */
     async init(): Promise<void> {
-        if (db) { return } // Already initialized
+        if (db) {
+            return;
+        } // Already initialized
 
         const rawData = await GameDataRepository.loadAllData();
 
@@ -83,17 +63,21 @@ export const GameDatabase = {
      * Returns the full DB. Throws if accessed before init.
      */
     get data() {
-        if (!db) { throw new Error("GameDatabase not initialized! Call GameDatabase.init() first.") }
+        if (!db) {
+            throw new Error('GameDatabase not initialized! Call GameDatabase.init() first.');
+        }
         return db;
     },
 
     getItem(id: string | undefined): Readonly<Item> | null {
-        if (!id) {return null}
+        if (!id) {
+            return null;
+        }
         return this.data.allItems[id] || null;
     },
 
     isUnacquirable(target: string | { ID: string }): boolean {
         const id = typeof target === 'string' ? target : target.ID;
         return UNACQUIRABLE_IDS.includes(id as any);
-    }
+    },
 };

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { COMPANION_IDS, ITEM_CATEGORIES, ITEM_TYPES, LEFT, RIGHT, TraitId, TRAITS } from '@/types';
+import { COMPANION_IDS, LEFT, RIGHT, TraitId, TRAITS } from '@/types';
 import { ORIGIN_IDS } from '@/services/character/Origin.ts';
 import {
     COMPANION_SKILLS,
@@ -11,6 +11,8 @@ import {
     SPECIAL,
     SpecialType,
 } from '@/services/character/utils.ts';
+import { ITEM_CATEGORIES } from '@/types/item.ts';
+import { ITEM_TYPES } from '@/types/item.ts';
 
 // Fills all missing special with value 4. Validates 4 <= SPECIAL <= 12
 const SpecialMapSchema = z.object(
