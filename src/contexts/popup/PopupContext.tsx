@@ -10,6 +10,7 @@ import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { CompanionSkillType, SkillType } from '@/services/character/utils.ts';
 import TradeItemPopup from '@/components/popup/TradeItemPopup.tsx';
 import { ItemType } from '@/types/item.ts';
+import Nd20Popup from '@/components/popup/dice/Nd20Popup.tsx';
 
 export type RollerType = 'companion' | 'mysteriousStranger' | undefined
 
@@ -31,6 +32,16 @@ export interface PopupContextValue {
         roller?: RollerType,
     ) => void;
     closeD6Popup: () => void;
+
+    showNd20Popup: (
+        diceCount: number | undefined,
+        title: string,
+        onResult?: (result: { total: number; crits: number; failures: number; rolls: number[] }) => void,
+        description?: string | undefined,
+        maxCritical?: number | undefined,
+        minFailure?: number | undefined
+    ) => void;
+    closeNd20Popup: () => void;
 
     showNd6Popup: (
         diceCount: number | undefined,
@@ -72,6 +83,15 @@ interface D6State {
     roller: RollerType;
 }
 
+interface Nd20State {
+    diceCount: number | undefined;
+    title: string;
+    description?: string | undefined;
+    maxCritical?: number | undefined;
+    minFailure?: number | undefined;
+    onResult: (result: { total: number; crits: number; failures: number; rolls: number[] }) => void;
+}
+
 interface Nd6State {
     diceCount: number | undefined;
     title: string;
@@ -111,6 +131,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
     const [d20State, setD20State] = useState<D20State | undefined>(undefined)
     const [d6State, setD6State] = useState<D6State | undefined>(undefined)
     const [nd6State, setNd6State] = useState<Nd6State | undefined>(undefined)
+    const [nd20State, setNd20State] = useState<Nd20State | undefined>(undefined)
     const [addItemState, setAddItemState] = useState<AddItemState | undefined>(undefined)
     const [tradeItemState, setTradeItemState] = useState<TradeItemState | undefined>(undefined)
     const [modifyItemState, setModifyItemState] = useState<ModifyItemState | undefined>(undefined)
@@ -172,6 +193,30 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
 
     const closeD6Popup = useCallback(() => {
         setD6State(undefined)
+    }, [])
+
+    // Nd6 Popup functions
+    const showNd20Popup = useCallback((
+            diceCount: number | undefined,
+            title: string,
+            description?: string,
+            maxCritical?: number | undefined,
+            minFailure?: number | undefined,
+            onResult?: (result: { total: number; crits: number; failures: number; rolls: number[] }) => void
+        ) => {
+            setNd20State({
+                diceCount,
+                title,
+                description,
+                maxCritical: maxCritical,
+                minFailure: minFailure,
+                onResult: onResult ?? (() => {})
+            })
+        }, []
+    )
+
+    const closeNd20Popup = useCallback(() => {
+        setNd20State(undefined)
     }, [])
 
     // Nd6 Popup functions
@@ -248,6 +293,8 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             closeD20Popup,
             showD6Popup,
             closeD6Popup,
+            showNd20Popup,
+            closeNd20Popup,
             showNd6Popup,
             closeNd6Popup,
             showAddItemPopup,
@@ -264,6 +311,8 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             showD20Popup,
             closeD20Popup,
             showD6Popup,
+            showNd20Popup,
+            closeNd20Popup,
             closeD6Popup,
             showNd6Popup,
             closeNd6Popup,
@@ -310,6 +359,16 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
                 description={nd6State.description}
                 resultDisplay={nd6State.resultDisplay}
                 onResult={nd6State.onResult}
+            />}
+
+            {nd20State && <Nd20Popup
+                onClose={closeNd20Popup}
+                diceCount={nd20State.diceCount}
+                title={nd20State.title}
+                description={nd20State.description}
+                maxCritical={nd20State.maxCritical}
+                minFailure={nd20State.minFailure}
+                onResult={nd20State.onResult}
             />}
 
             {addItemState?.itemType && <AddItemPopup

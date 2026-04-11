@@ -13,7 +13,7 @@ function StatTab() {
     const { t } = useTranslation();
     const [isEditing, setIsEditing] = useState(false);
     const { rawCharacter, character } = useCharacter();
-    const { showNd6Popup } = usePopup()
+    const { showNd6Popup, showNd20Popup } = usePopup()
 
     // THIS SHOULD BE THE CORRECT WAY TO HANDLE SORTING USING DIFFERENT LANGUAGES
     const sortedSkills = useMemo(
@@ -208,7 +208,7 @@ function StatTab() {
                         </button>
                         <button
                             style={{flexShrink: 0}}
-                            onClick={() => {}}>
+                            onClick={() => showNd20Popup(undefined, "Nd20")}>
                             <i className={"fas fa-dice-d20 fa-xl"}/>
                         </button>
                     </div>

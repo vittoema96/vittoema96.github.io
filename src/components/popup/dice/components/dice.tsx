@@ -1,7 +1,13 @@
 
 
+export interface DiceProps {
+    value: number | '?';
+    isActive: boolean;
+    isRerolled: boolean;
+    onClick?: (() => void) | undefined;
+}
 
-export function Dice({
+export function BaseDice({
     value,
     displayValue,
     baseClass,
@@ -10,15 +16,11 @@ export function Dice({
     isRerolled,
     extraStyle,
     onClick,
-}: Readonly<{
-    value: number | '?';
+}: Readonly<DiceProps & {
     displayValue?: string;
     baseClass: string;
     getClassFromValue: (index: number | '?') => string;
-    isActive: boolean;
-    isRerolled: boolean;
     extraStyle?: Record<string, any> | undefined;
-    onClick: () => void;
 }>) {
     return (
         <button
@@ -31,22 +33,18 @@ export function Dice({
     );
 }
 
-export function D20Die({
+export function D20Dice({
     value,
-    minComplication,
-    maxCritical,
     isActive,
     isRerolled,
-    biggerDie,
+    minComplication=20,
+    maxCritical=1,
+    biggerDie=true,
     onClick,
-}: Readonly<{
-    value: number | '?';
-    minComplication: number;
-    maxCritical: number;
-    isActive: boolean;
-    isRerolled: boolean;
-    biggerDie: boolean;
-    onClick: () => void;
+}: Readonly<DiceProps & {
+    minComplication?: number;
+    maxCritical?: number;
+    biggerDie?: boolean;
 }>) {
     const getDiceClass = (val: number | '?') => {
         if (val === '?') {
@@ -60,7 +58,7 @@ export function D20Die({
         return '';
     };
     return (
-        <Dice
+        <BaseDice
             value={value}
             baseClass={'d20-dice'}
             getClassFromValue={getDiceClass}
@@ -92,19 +90,14 @@ export const getFaceClass = (value: number | '?') => {
             return '';
     }
 };
-export function D6Die({
+export function D6Dice({
     value,
     isActive,
     isRerolled,
     onClick,
-}: Readonly<{
-    value: number | '?';
-    isActive: boolean;
-    isRerolled: boolean;
-    onClick: () => void;
-}>) {
+}: Readonly<DiceProps>) {
     return (
-        <Dice
+        <BaseDice
             value={value}
             displayValue={value === '?' ? '?' : ''}
             baseClass={'d6-dice'}

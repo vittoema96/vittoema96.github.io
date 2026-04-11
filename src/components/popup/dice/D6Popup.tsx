@@ -16,7 +16,7 @@ import PopupHeader from '@/components/popup/common/PopupHeader.tsx';
 import useDice from '@/utils/useDice.ts';
 import { isCloseCombat } from '@/utils/itemUtils.ts';
 import { WeaponItem } from '@/schemas/items/weaponSchemas.ts';
-import { D6Die, getFaceClass } from '@/components/popup/dice/components/dice.tsx';
+import { D6Dice, getFaceClass } from '@/components/popup/dice/components/dice.tsx';
 
 interface D6PopupProps extends GenericPopupProps {
     usingItem: CharacterItem;
@@ -675,7 +675,7 @@ function D6Popup({
                         }}
                     >
                         {diceValues.map((value, index) => (
-                            <D6Die
+                            <D6Dice
                                 value={value}
                                 key={index}
                                 isActive={diceActive[index]!}
@@ -730,7 +730,7 @@ function D6Popup({
                                 }}
                             >
                                 {extraDiceValues.map((value, index) => (
-                                    <D6Die
+                                    <D6Dice
                                         key={index}
                                         value={value}
                                         isActive={extraDiceActive[index]!}

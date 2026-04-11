@@ -17,7 +17,7 @@ import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
 import { RollerType, usePopup } from '@/contexts/popup/PopupContext.tsx';
 import useDice from '@/utils/useDice.ts';
-import { D20Die } from '@/components/popup/dice/components/dice.tsx';
+import { D20Dice } from '@/components/popup/dice/components/dice.tsx';
 
 interface SimpleRoller {
     special: Record<CompanionSpecialType, number>;
@@ -402,7 +402,7 @@ function D20Popup({
                 }}
             >
                 {diceValues.map((value, index) => (
-                    <D20Die
+                    <D20Dice
                         key={index}
                         value={value}
                         minComplication={complicationValue}
