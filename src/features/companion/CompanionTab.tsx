@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
 import { usePopup } from '@/contexts/popup/PopupContext'
@@ -7,6 +7,8 @@ import { CharacterItem, CompanionId } from '@/types'
 import { getGameDatabase } from '@/hooks/getGameDatabase'
 import { COMPANION_TYPES } from '@/utils/companionTypes'
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
+import { FitText } from '@/components/FitText.tsx';
+import { COMPANION_SKILLS, CompanionSkillType } from '@/services/character/utils.ts';
 
 // Companion-specific perks (different from character perks)
 const COMPANION_PERKS = [
@@ -207,12 +209,11 @@ function CompanionTab() {
             </button>
 
             {/* Compact Stats Row: Melee/Guns/Other + Init/Def */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-                {/* Skills Column */}
-                <div>
-                    <h4 style={{ marginBottom: '0.3rem', fontSize: '0.9rem' }}>{t('skills')}</h4>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
-                        {(['melee', 'guns', 'other'] as const).map(skillType => {
+            <div className={"row l-distributed"}>
+                {[
+                    {
+                        columnLabel: 'skills',
+                        children: COMPANION_SKILLS.map((skillType: CompanionSkillType) => {
                             const baseValue = selectedCompanionType.skills[skillType];
                             return (
                                 <button
@@ -240,33 +241,34 @@ function CompanionTab() {
                                     <span>{t(skillType)}</span>
                                     <span style={{ fontSize: '1rem' }}>{companion.skills[skillType]}</span>
                                 </button>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                {/* Derived Stats Column (with Level) */}
-                <div>
-                    <h4 style={{ marginBottom: '0.3rem', fontSize: '0.9rem' }}>
-                        {t('derivedStats')}
-                    </h4>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
-                        {[
+                            )
+                        })
+                    },
+                    {
+                        columnLabel: 'derivedStats',
+                        children: [
                             { label: 'level', value: character.level },
                             { label: 'initiative', value: character.initiative },
                             { label: 'defense', value: selectedCompanionType.baseDefense }
-                        ].map(({label, value}) => (
+                        ].map( ({label, value}) => (
                             <div
                                 key={label}
                                 className="buttonlike row l-distributed l-lastSmall skill"
-                                style={{ backgroundColor: 'var(--secondary-color)' }}
+                                style={{ backgroundColor: 'var(--secondary-color)'}}
                             >
                                 <span>{t(label)}</span>
                                 <span style={{ fontSize: '1rem' }}>{value}</span>
                             </div>
-                        ))}
-                    </div>
-                </div>
+                        ))
+                    }
+                ].map( ({ columnLabel, children}) => (
+                    <div className={"stack l-distributed"} key={columnLabel}>
+                        <FitText wrap center={false}
+                                 minSize={10} maxSize={15} style={{maxWidth: '80%'}}>
+                            {t(columnLabel)}
+                        </FitText>
+                        {children}
+                    </div>))}
             </div>
 
             {/* Damage Reduction by Type */}
@@ -304,16 +306,14 @@ function CompanionTab() {
             <div style={{ marginTop: '0.5rem' }}>
                 <h4 style={{ marginBottom: '0.3rem', fontSize: '0.9rem' }}>{t('attacks')}</h4>
                 <section>
-                    {companion.items.map((attack, index) => {
-                        console.log("Attack id", attack.id)
+                    {companion.items.map((attack) => {
                         const weaponData = dataManager.getItem(attack.id);
-                        console.log("item", weaponData)
                         const displayName =
                             attack.customName || (weaponData ? t(weaponData.ID) : 'Unknown');
 
                         return (
                             <button
-                                key={index}
+                                key={attack.id}
                                 className="row l-distributed skill"
                                 style={{ cursor: 'pointer' }}
                                 onClick={() => handleAttackClick(attack)}

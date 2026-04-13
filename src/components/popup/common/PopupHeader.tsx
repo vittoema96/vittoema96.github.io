@@ -10,11 +10,9 @@ function PopupHeader({ title, onClose }: Readonly<PopupHeaderProps>) {
     const { t } = useTranslation();
     return (
         <div className="row l-lastSmall">
-            <div style={{ padding: '0.5rem' }}>
-                <FitText wrap minSize={20} maxSize={40}>
-                    {t(title)}
-                </FitText>
-            </div>
+            <FitText wrap minSize={20} maxSize={40}>
+                {t(title)}
+            </FitText>
             <button className="popup__button-x" onClick={() => onClose()}>
                 &times;
             </button>
