@@ -6,11 +6,58 @@ import { useCharacter } from '@/contexts/CharacterContext'
 import {changeLanguage, getCurrentLanguage, Language, LANGUAGES} from "@/i18n"
 import { SaveSlotManager, CharacterSlotInfo } from '@/services/SaveSlotManager.ts'
 
+const DISPLAY_EFFECTS = ['on', 'noFlicker', 'off'] as const
+type DisplayEffect = (typeof DISPLAY_EFFECTS)[number]
+type Settings = {
+    CRT_effect?: DisplayEffect
+}
+
+const applyDisplayEffect = (val: DisplayEffect) => {
+    document.body.dataset['crt'] = val;
+};
+
+const useSettings = () => {
+
+    const SETTINGS_KEY = 'PB3K_settings'
+
+    const [ settings, setSettings ] = useState<Settings>(() => {
+        return  JSON.parse(localStorage.getItem(SETTINGS_KEY) ?? '{}')
+    })
+
+    const setMethod = (val: Settings) => {
+        setSettings(val)
+        localStorage.setItem(SETTINGS_KEY, JSON.stringify(val))
+    }
+
+    return [settings, setMethod] as const
+}
+
+const useDisplayEffectsState = () => {
+
+    const [settings, setSettings ] = useSettings()
+
+    const [ displayEffects, setDisplayEffects ] = useState<DisplayEffect>(() => {
+        return settings.CRT_effect ?? 'on'
+    })
+
+    const setMethod = (val: DisplayEffect) => {
+        setDisplayEffects(val)
+        setSettings({
+            ...settings,
+            CRT_effect: val
+        })
+        applyDisplayEffect(val)
+    }
+
+    return [displayEffects, setMethod] as const
+}
+
 function SettingsTab() {
     const { t } = useTranslation()
 
     const [ currentTheme, setCurrentTheme ] = useState(getCurrentTheme)
     const [ currentLanguage, setCurrentLanguage ] = useState(getCurrentLanguage)
+    const [ displayEffects, setDisplayEffects ] = useDisplayEffectsState()
     const [ characterSlots, setCharacterSlots ] = useState<(CharacterSlotInfo | null)[]>(() => SaveSlotManager.getAllSlots())
 
     const { showAlert, showConfirm } = usePopup()
@@ -125,34 +172,50 @@ function SettingsTab() {
         <section className="tabContent">
             <span className="h3">{t('settings')}</span>
 
-            {/* Language Selection */}
-            <label htmlFor="language-select">{t('language')}:</label>
-            <select
-                id="language-select"
-                value={currentLanguage}
-                onChange={handleLanguageChange}
-            >
-                {Object.entries(LANGUAGES).map(([lang, label]) => (
-                    <option key={lang} value={lang}>
-                        {label}
-                    </option>
-                ))}
-            </select>
+            <div className={"row l-distributed"}>
+                <div className={"stack"}>
+                    {/* Language Selection */}
+                    <label htmlFor="language-select">{t('language')}:</label>
+                    <select id="language-select" value={currentLanguage} onChange={handleLanguageChange}>
+                        {Object.entries(LANGUAGES).map(([lang, label]) => (
+                            <option key={lang} value={lang}>
+                                {label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className={"stack"}>
+                    {/* Theme Selection */}
+                    <label htmlFor="theme-select">{t('theme')}:</label>
+                    <select id="theme-select" value={currentTheme} onChange={handleThemeChange}>
+                        {Object.entries(THEMES).map(([lang, label]) => (
+                            <option key={lang} value={lang}>
+                                {label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </div>
 
-            <hr />
 
-            {/* Theme Selection */}
-            <label htmlFor="theme-select">{t('theme')}:</label>
-            <select
-                id="theme-select"
-                value={currentTheme}
-                onChange={handleThemeChange}>
-                {Object.entries(THEMES).map(([lang, label]) => (
-                    <option key={lang} value={lang}>
-                        {label}
-                    </option>
-                ))}
-            </select>
+            <fieldset>
+                <legend>{t('crtDisplayEffects')}</legend>
+                <div className={'row'}>
+                    {DISPLAY_EFFECTS.map(val => (
+                        <div className={"row"} key={val}>
+                            <input
+                                type="radio"
+                                id={`crtDisplayEffects_${val}`}
+                                name="crtDisplayEffects"
+                                value={val}
+                                checked={displayEffects === val}
+                                onChange={() => setDisplayEffects(val)}
+                            />
+                            <label htmlFor={`crtDisplayEffects_${val}`}>{t(val)}</label>
+                        </div>
+                    ))}
+                </div>
+            </fieldset>
 
             <hr />
 
@@ -165,9 +228,13 @@ function SettingsTab() {
                         className="row"
                         style={{
                             padding: 'var(--space-m)',
-                            border: activeSlot === index ? "var(--border-primary-thick)" : "var(--border-secondary-thin)",
+                            border:
+                                activeSlot === index
+                                    ? 'var(--border-primary-thick)'
+                                    : 'var(--border-secondary-thin)',
                             borderRadius: '4px',
-                            backgroundColor: activeSlot === index ? 'var(--secondary-color)' : 'transparent'
+                            backgroundColor:
+                                activeSlot === index ? 'var(--secondary-color)' : 'transparent',
                         }}
                     >
                         {/* Radio button for active selection */}
@@ -178,12 +245,16 @@ function SettingsTab() {
                             onChange={() => handleSwitchSlot(index)}
                         />
 
-                        <div className={"stack no-gap"} style={{ flex: 1, minWidth: '130px' }}>
-                            <span className="h4">{slot ? slot.name : `--- ${t('emptySlot')} ---`}</span>
-                            {slot && <>
-                                <span className="h5">{slot.origin ? t(slot.origin) : ""}</span>
-                                <span className="h5">{`Lv. ${slot.level}`}</span>
-                            </>}
+                        <div className={'stack no-gap'} style={{ flex: 1, minWidth: '130px' }}>
+                            <span className="h4">
+                                {slot ? slot.name : `--- ${t('emptySlot')} ---`}
+                            </span>
+                            {slot && (
+                                <>
+                                    <span className="h5">{slot.origin ? t(slot.origin) : ''}</span>
+                                    <span className="h5">{`Lv. ${slot.level}`}</span>
+                                </>
+                            )}
                         </div>
 
                         {slot && (
@@ -191,11 +262,11 @@ function SettingsTab() {
                                 {/* Export icon button */}
                                 <button
                                     onClick={() => handleExportSlot(index)}
-                                    className={"icon-m"}
+                                    className={'icon-m'}
                                     style={{
                                         justifyContent: 'center',
                                         alignItems: 'center',
-                                        display: 'flex'
+                                        display: 'flex',
                                     }}
                                     title={t('export')}
                                 >
@@ -210,7 +281,7 @@ function SettingsTab() {
                                         justifyContent: 'center',
                                         alignItems: 'center',
                                         display: 'flex',
-                                        flex: 0
+                                        flex: 0,
                                     }}
                                     title={t('delete')}
                                 >
@@ -242,12 +313,12 @@ function SettingsTab() {
                             type="file"
                             accept=".json,application/json"
                             className="hidden"
-                            onChange={(e) => {
-                                const file = e.target.files?.[0]
+                            onChange={e => {
+                                const file = e.target.files?.[0];
                                 if (file) {
-                                    handleImportToSlot(index, file)
+                                    handleImportToSlot(index, file);
                                 }
-                                e.target.value = ''
+                                e.target.value = '';
                             }}
                         />
                     </div>
@@ -257,13 +328,9 @@ function SettingsTab() {
             <hr />
 
             {/* Reset Memory */}
-            <button onClick={handleResetMemory}>
-                {t('resetMemory')}
-            </button>
-
-
+            <button onClick={handleResetMemory}>{t('resetMemory')}</button>
         </section>
-    )
+    );
 }
 
 export default SettingsTab

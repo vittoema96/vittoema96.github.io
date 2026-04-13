@@ -11,8 +11,7 @@ import {
     SPECIAL,
     SpecialType,
 } from '@/services/character/utils.ts';
-import { ITEM_CATEGORIES } from '@/types/item.ts';
-import { ITEM_TYPES } from '@/types/item.ts';
+import { ITEM_CATEGORIES, ITEM_TYPES } from '@/types/item.ts';
 
 // Fills all missing special with value 4. Validates 4 <= SPECIAL <= 12
 const SpecialMapSchema = z.object(
@@ -138,7 +137,6 @@ export const RawCharacterSchema = z.object({
     prewarMoney: z.number().int().default(0),
 
     exchangeRates: ExchangeRatesSchema.default(() => ExchangeRatesSchema.parse({})),
-    // FIXME exchange rates
 
     special: SpecialMapSchema.default(() => SpecialMapSchema.parse({})),
     skills: SkillMapSchema.default(() => SkillMapSchema.parse({})),
@@ -157,5 +155,3 @@ export const RawCharacterSchema = z.object({
 
     companion: CompanionDataSchema.optional(),
 });
-
-console.log("RAW CHARACTER", RawCharacterSchema.parse({}))

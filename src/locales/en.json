@@ -40,7 +40,10 @@
 
 
 
-
+  "crtDisplayEffects": "Display Effects",
+  "on": "On",
+  "noFlicker": "No Flicker",
+  "off": "Off",
 
   "mrHandyWeapons": "Mr Handy Weapons",
 
@@ -1775,7 +1778,7 @@
   "weaponTeslaRifle": "Tesla Rifle",
   "weaponTeslaRifleDescription": "An odd blend of advanced technology and jury-rigged components, a Tesla Rifle can shoot deadly arcs of electricity that jump from enemy to enemy, injuring anyone caught nearby.",
   "traits": "Traits",
-  "perks": "Talenti",
+  "perks": "Perks",
   "selectTrait": "Select Trait",
   "selectPerk": "Select Perk",
   "noTrait": "No Trait",

@@ -325,7 +325,20 @@ body::before {
         100% 3px,
         4px 100%;
 }
-/* Themed SVG styles moved to src/styles/components.css */
+
+body[data-crt="noFlicker"]::before {
+    animation: none;
+    background:
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(from var(--shadow-color) r g b / 0.05) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size:
+        100% 3px,
+        4px 100%;
+}
+
+body[data-crt="off"]::before {
+    display: none;
+}
 
 
 /* Modify Button in Card Controls */

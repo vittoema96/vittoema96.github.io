@@ -80,7 +80,7 @@
 }
 
 .derived-stat {
-    border: var(--border-primary-thick); /* FIXME use class */
+    border: var(--border-primary-thick);
     display: flex;
     flex-direction: column;
     border-radius: 5px;

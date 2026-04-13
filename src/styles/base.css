@@ -211,3 +211,7 @@ th {
     align-items: center;
     font-weight: bold;
 }
+
+fieldset {
+    border-color: var(--primary-color);
+}
