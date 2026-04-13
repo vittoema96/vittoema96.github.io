@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">
+    <defs>
+        <mask id="pHole">
+            <rect width="100%" height="100%" fill="white"/>
+            <path d="M700 350 c150 -20, 150 140, 0 120 z"/>
+        </mask>
+    </defs>
+    <path
+          d="M25 200 h150 v225 h150 v-225 h150 v600 h-150 v-225 h-150 v225 h-150 z
+             M550 200 h150 c375 -20, 375 445, 0 425 v175 h-150z"
+            mask="url(#pHole)"/>
+</svg>

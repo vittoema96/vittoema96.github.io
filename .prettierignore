@@ -1,0 +1,24 @@
+# Build outputs
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Generated files
+*.min.js
+*.min.css
+
+# Data files (CSV formatting should be preserved)
+public/data/**/*.csv
+
+# Lock files
+package-lock.json
+yarn.lock
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

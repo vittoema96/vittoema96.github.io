@@ -1,0 +1,356 @@
+/* Base tokens moved to src/styles/tokens.css */
+
+/* Base elements moved to src/styles/base.css */
+
+/**********************
+ *   Generic classes  *
+ **********************/
+
+.hidden {
+    display: none !important; /* override any other 'display' */
+}
+.row {
+    display: flex;
+    align-items: center;
+    flex-flow: row;
+    gap: var(--space-m);
+    width: 100%;
+}
+.stack {
+    display: flex;
+    flex-flow: column;
+    gap: var(--space-m);
+    height: 100%;
+}
+.no-gap {
+    gap: 0;
+}
+
+.row--spaced {
+    justify-content: space-evenly;
+}
+/* All items take the same space */
+.l-distributed > * {
+    flex: 1;
+}
+.l-spaceAround {
+    justify-content: space-around;
+}
+/* Squished the items to the center */
+.l-centered {
+    justify-content: center;
+}
+.l-spaceBetween {
+    justify-content: space-between;
+}
+/* Can be used either alone or in conjunction with l-distributed */
+.l-lastSmall > :not(:last-child) {
+    flex: 2;
+}
+.l-firstSmall > :not(:first-child) {
+    flex: 2;
+}
+.bottomBorder {
+    border-bottom: var(--border-primary-thick);
+}
+
+
+.icon-s {
+    width: 1rem !important;
+    height: 1rem !important;
+}
+.icon-m {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+}
+.icon-l {
+    width: 1.8rem !important;
+    height: 1.8rem !important;
+}
+
+/**********************
+ *     Main Header    *
+ **********************/
+
+/* Utility classes */
+.text-warning {
+    color: var(--warning-color);
+}
+.border-warning {
+    border-color: var(--warning-color);
+}
+
+/**************
+ *   Tabs   *
+ **************/
+
+.tabContent {
+    flex: 1;
+    gap: var(--space-xl);
+}
+
+/*********************
+ *  LOADING OVERLAY  *
+ *********************/
+#loader {
+    display: flex; /* Used to 'toggle' the loader animation for debugging */
+    position: fixed;
+    inset: 0;
+    background: var(--secondary-color);
+    z-index: 9998; /* One below body::before */
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.75s ease-out;
+
+    animation: fadeOut 0.5s forwards;
+    animation-delay: calc(
+        var(--turn-on-delay) + var(--turn-on-duration) + 4 * var(--typewrite-duration)
+    );
+    font-size: calc(min(2.5vw, 2vh));
+}
+#loader pre {
+    font-family: 'Fira Code', monospace; /* To make loader render properly on (my) Android */
+    margin: 0; /* No margin, pre presents stuff as is. Use margin on pre children (like spans in loader) */
+    white-space: pre-wrap; /* TODO do we need this (or is there a better alternative)? Test it and check other values) */
+}
+/* Loader entries */
+#loader span {
+    opacity: 0;
+    display: block;
+    overflow: hidden;
+    margin: 1rem;
+}
+/* PIP-BOY 3000 text */
+#loader .turn-on-animation {
+    transform-origin: center;
+    animation: crt-turn-on var(--turn-on-duration) forwards;
+    animation-delay: var(--turn-on-delay);
+    align-self: center;
+    margin: 2rem 0;
+}
+/* Code entries */
+#loader .boot-text {
+    white-space: nowrap;
+    animation: typewriter var(--typewrite-duration) steps(40, end) forwards;
+    animation-delay: calc(
+        var(--turn-on-delay) + var(--turn-on-duration) + var(--line-idx) * var(--typewrite-duration)
+    );
+}
+#loader .boot-text:nth-child(2) {
+    --line-idx: 0;
+}
+#loader .boot-text:nth-child(3) {
+    --line-idx: 1;
+}
+#loader .boot-text:nth-child(4) {
+    --line-idx: 2;
+}
+#loader .boot-text:nth-child(5) {
+    --line-idx: 3;
+}
+
+/****************
+ *  ANIMATIONS  *
+ ****************/
+
+@keyframes crt-turn-on {
+    0% {
+        transform: scale(1.5, 0.005);
+        filter: brightness(6);
+        opacity: 0;
+    }
+    20% {
+        transform: scale(1, 0.005);
+        filter: brightness(4.2);
+        opacity: 1;
+    }
+    40% {
+        transform: scale(1, 1);
+        filter: brightness(2.8);
+    }
+    60% {
+        filter: brightness(1.8);
+    }
+    80% {
+        filter: brightness(1.2);
+    }
+    100% {
+        transform: scale(1, 1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+}
+@keyframes crt-turn-off {
+    0% {
+        transform: scale(1, 1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+    20% {
+        filter: brightness(1.2);
+    }
+    40% {
+        filter: brightness(1.8);
+    }
+    60% {
+        transform: scale(1, 1);
+        filter: brightness(2.8);
+    }
+    80% {
+        transform: scale(1, 0.005);
+        filter: brightness(4.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5, 0.005);
+        filter: brightness(6);
+        opacity: 0;
+    }
+}
+
+/* Animation to make the scan lines flicker */
+@keyframes flicker {
+    0% {
+        opacity: 0.27861;
+    }
+    5% {
+        opacity: 0.34769;
+    }
+    10% {
+        opacity: 0.23604;
+    }
+    15% {
+        opacity: 0.90626;
+    }
+    20% {
+        opacity: 0.18128;
+    }
+    25% {
+        opacity: 0.83891;
+    }
+    30% {
+        opacity: 0.65583;
+    }
+    35% {
+        opacity: 0.67807;
+    }
+    40% {
+        opacity: 0.26559;
+    }
+    45% {
+        opacity: 0.84693;
+    }
+    50% {
+        opacity: 0.96019;
+    }
+    55% {
+        opacity: 0.08594;
+    }
+    60% {
+        opacity: 0.20313;
+    }
+    65% {
+        opacity: 0.71988;
+    }
+    70% {
+        opacity: 0.53455;
+    }
+    75% {
+        opacity: 0.37288;
+    }
+    80% {
+        opacity: 0.71428;
+    }
+    85% {
+        opacity: 0.70428;
+    }
+    90% {
+        opacity: 0.7003;
+    }
+    95% {
+        opacity: 0.36108;
+    }
+    100% {
+        opacity: 0.24387;
+    }
+}
+
+/* Fade out to opacity:0 and visibility:hidden (which forwards clicks) */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Grows element width so it looks like strings are typed in */
+@keyframes typewriter {
+    0% {
+        width: 1ch;
+        opacity: 1;
+    }
+    50% {
+        width: 1ch;
+        opacity: 1;
+    }
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+
+
+/***************
+ *    THEMES   *
+ ***************/
+
+/* Themes moved to src/styles/themes.css */
+/* Applies the scan lines on top of the whole body */
+body::before {
+    content: ' ';
+    display: block; /* Necessary to make the ::before exist and behave like a block */
+    position: fixed; /* Use fixed to cover the viewport */
+    inset: 0; /* same as top/left/etc: 0; */
+
+    z-index: 9999; /* It's the topmost element */
+    pointer-events: none; /* Allows clicks to go through to elements underneath */
+    animation: flicker 0.15s infinite; /* Makes the scan lines flicker */
+
+    /* Actual scan line effect */
+    background:
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(from var(--shadow-color) r g b / 0.25) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size:
+        100% 3px,
+        4px 100%;
+}
+/* Themed SVG styles moved to src/styles/components.css */
+
+
+/* Modify Button in Card Controls */
+.card-controls .modify-button {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    min-width: 70px;
+    max-width: 80px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Icon-only description button */
+.description-toggle-button--icon {
+    width: auto;
+    min-width: 40px;
+    max-width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.description-toggle-button--icon i {
+    font-size: 1rem;
+}

@@ -1,0 +1,2199 @@
+ARMI, MUNIZIONI E RELATIVE MODIFICHE
+TIPI DI DANNO
+Tutte le armi che si imbracciano sono descritte da una
+serie di caratteristiche e valori.
+La tipologia del danno descrive il tipo di danno
+inflitto da un’arma:
+TIPOLOGIA D’ARMA
+Ogni tipologia d’arma corrisponde ad un’unica abilità,
+che è quella impiegata per servirsene in attacco:
+ Danno Fisico: solitamente viene inflitto da colpi
+portati a mano nuda, con oggetti contundenti o
+affilati, proiettili o dalla forza d’urto e dalle schegge
+prodotte dalle esplosioni.
+ Armi a Energia
+ Armi da Mischia
+ Armi Leggere
+ Armi Pesanti
+ Da Lancio
+ Esplosivi
+ Senza Armi
+ Danno da Energia: solitamente inflitto da fuoco,
+laser e plasma
+ Danno da Radiazioni: deriva dall’esposizione alle
+radiazioni provenienti, per esempio, da armi nucle-
+ari o irradiate.
+ Danno da Veleno: è causato da sostanze tossiche e
+veleni animali.
+VALORE DI DANNO
+Il valore di danno è il numero di Dadi Combattimento
+che si tirano per determinare il danno che viene
+inflitto al bersaglio. Ogni Dado Combattimento ha due
+facce speciali, chiamate Effetti, che fanno scaturire gli
+effetti di danno dell’arma. In questo manuale, i Dadi
+Combattimento sono rappresentati col simbolo D C .
+Bisogna ricordarsi che agli attacchi senza armi o con
+armi da mischia si deve aggiungere al valore dei danni
+tanti D C quanta è la FOR del personaggio (vedere
+Danni da Mischia a pag. 48).
+Il valore di danno di un’arma a distanza si basa sulle
+munizioni e varia a seconda della tipologia usata.
+EFFETTI DEI DANNI
+Gli effetti dei danni sono le particolarità che caratteriz-
+zano il modo in cui un’arma infligge danno. Quando si
+ottengono uno o più Effetti in una prova per infliggere
+danni, si attivano tutti gli effetti dei danni dell’arma.
+Alcuni dipendono dal numero di simboli D C presenti
+nel risultato, come descritto in ciascuna voce.
+In ogni arma la lista degli effetti dei danni è riportata
+subito dopo il valore di danno.
+Vittorio Emanuele Veloccia - 54644888 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+ Dirompente: Per ogni Effetto ottenuto, riduce
+permanentemente di 1 il numero di D C forniti al
+bersaglio da una copertura. Se il bersaglio non ha
+copertura, allora riduce di 1 la RD del punto d’impatto
+colpito in base al tipo di danno dell’arma; ad esempio
+il danno fisico riduce soltanto la RD fisica.
+ Penetrante X: Ignora X punti della RD del bersa-
+glio per ogni Effetto ottenuto, dove X corrisponde
+al valore dell’effetto del danno.
+ Persistente: Se si ottengono uno o più Effetti, il
+bersaglio subisce nuovamente il danno dell’arma
+alla fine dei turni successivi, per un numero di
+round pari al numero di Effetti ottenuti. Il bersa-
+glio può utilizzare un’azione maggiore per effet-
+tuare una prova in modo da interrompere antici-
+patamente il danno persistente e la difficoltà è pari
+al numero di Effetti ottenuti e l’attributo + abilità
+vengono scelti dal GM. Alcune armi Persistenti
+possono infliggere un tipo differente di danno
+rispetto a quello dell’arma, in questi casi viene indi-
+cato fra parentesi, ad esempio: Persistente (Veleno).
+ Propagato: Per ogni Effetto ottenuto, l’attacco
+infligge uno o più colpi aggiuntivi al bersaglio.
+Ogni colpo aggiuntivo infligge la metà del danno
+tirato (arrotondato per difetto) e colpisce un punto
+d’impatto casuale, anche se era stato bersagliato un
+punto specifico per l’attacco iniziale.
+ Radioattivo: Per ogni Effetto ottenuto, il bersaglio
+subisce anche 1 punto di danno da radiazione. Il
+danno da radiazione viene sommato e applicato
+separatamente, dopo che il personaggio ha subito il
+danno normale dell’attacco.
+ Raffica: L’attacco colpisce un bersaglio aggiun-
+tivo che si trova a distanza Ravvicinata dal primo
+bersaglio per ogni Effetto ottenuto. Tutti i bersagli
+aggiuntivi richiedono l’utilizzo di una carica di
+munizioni aggiuntiva dell’arma.
+ Stordente: Se si ottengono uno o più Effetti, il bersa-
+glio non può effettuare azioni normali nel suo pros-
+simo turno. Un individuo o creatura storditi possono
+comunque spendere PA per ottenere azioni aggiuntive.
+ Violento: Per ogni Effetto ottenuto, l’attacco infligge
++1 danno.
+Vittorio Emanuele Veloccia - 546448
+CADENZA DI FUOCO
+Tutte le armi da fuoco ed alcuni esplosivi sono dotati
+di una cadenza di fuoco, che rappresenta la velocità
+con cui sparano ed è indicata con un numero da 0 a 6.
+Quando si attacca con un fucile, si spende 1 carica di
+munizioni solo per fare l’attacco. Si possono spendere
+cariche aggiuntive per aumentare il danno inflitto,
+aggiungendo +1 D C alla cadenza di fuoco dell’arma
+(valido solo per quell’attacco) per ogni carica spesa. La
+cadenza di fuoco di un’arma è il massimo numero di
+cariche che si possono usare per aumentare i danni in
+questo modo.
+Un m»ento:
+Cadenza di Fuoco ZERO?
+Ci sono alcune armi che hanno una cadenza di fuoco pari
+a 0. Ciò non significa altro che l’arma è così lenta, o che
+necessita di essere ricaricata così frequentemente, che non è
+possibile aggiungere degli spari aggiuntivi per aumentare il
+danno causato in un attacco.
+GITTATA
+Le armi a distanza riportano tutte una gittata ideale a
+cui essere usate, che sono le seguenti:
+ Ravvicinata (R): L’arma ha la sua massima efficacia
+contro bersagli nella stessa zona.
+ Media (M): L’arma ha la sua massima efficacia con-
+tro bersagli in una zona adiacente
+ Lunga (L): L’arma ha la sua massima efficacia con-
+tro bersagli a due zone di distanza.
+ Estrema (E): L’arma ha la sua massima efficacia con-
+tro bersagli a tre o più zone di distanza.
+La gittata di un’arma modifica la difficoltà degli attacchi
+contro un bersaglio a seconda di quanto questo sia
+lontano, come descritto a pag. 28. Le armi da mischia e
+gli attacchi senza armi non hanno una gittata e possono
+essere usati solo per attaccare nemici a Portata.
+Capitolo Quattro  EQUIPAGGIAMENTO
+89
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+QUALITÀ
+Le qualità sono le regole che descrivono il modo in cui
+un’arma agisce e si differenzia dalle altre.
+ A Due Mani: Un’arma A Due Mani deve essere
+impugnata con entrambe le mani per poter essere
+usata efficacemente: se si prova ad attaccare con una
+mano sola, la difficoltà aumenta di 2.
+ Affidabile: Un’arma Affidabile ignora la prima
+complicazione tirata durante l’utilizzo in ogni
+scontro. Un’arma non può essere contemporanea-
+mente Affidabile ed Inaffidabile.
+ Corpo a Corpo: Un’arma da Corpo a Corpo è facile
+da utilizzare a distanza Ravvicinata e la difficoltà
+non aumenta quando viene usata entro la Portata
+del nemico.
+ Da Lancio: Un’arma Da Lancio (R) può essere lanciata
+come attacco a distanza Ravvicinata. Un’arma Da
+Lancio (M) può essere lanciata come attacco a Media
+distanza. A seconda del tipo di arma, per attaccare, il
+personaggio effettua una prova di AGI + Lanciare.
+ Da Ricognizione: quando si prende la mira con
+un’arma Da Ricognizione, si può marchiare il bersa-
+glio a cui si è mirato. Il prossimo alleato che attac-
+cherà quel bersaglio può ritirare un d20 in attacco.
+ Di Precisione: Se un PG compie l’azione minore
+di Mirare prima di attaccare con un’arma Di
+Precisione, può spendere fino a 3 PA per aggiungere
++1 D C ogni PA speso così per aumentare il danno
+dell’attacco. Se così facendo subisce dei danni,
+non può spendere munizioni per infliggere danni
+aggiuntivi. Un’arma non può essere contemporane-
+amente Di Precisione e Imprecisa.
+ Esplosiva: Quando il PG effettua un’attacco con
+un’arma Esplosiva, non bersaglia un singolo avver-
+sario, ma seleziona una zona entro il proprio raggio
+visivo ed effettua la debita prova per attaccare, con
+una difficoltà base di 2 (da aggiustare a seconda della
+distanza). Se ha successo, ogni creatura (e qualsiasi
+altro obiettivo danneggiabile) in quella zona subisce
+i danni dell’arma. Se fallisce, l’attacco mal calibrato
+è meno efficace: il giocatore tira solo la metà degli
+D C dell’arma per determinare il danno inflitto alle
+creature nella zona bersagliata e queste ignorano i
+normali effetti dei danni dell’arma.
+ Gatling: Le armi Gatling spendono munizioni
+a una velocità dieci volte superiore rispetto alla
+norma: invece di spendere una carica di muni-
+zioni, ne spende una raffica da 10. Quando si
+spendono munizioni per aumentarne il danno, si
+aggiungono 2 D C ogni raffica da 10 (fino a un mas-
+simo pari alla Cadenza di Fuoco dell’arma) invece
+di 1 D C per sparo.
+ Imprecisa: Quando il PG attacca con un’arma
+Imprecisa non ottiene alcun beneficio dall’azione
+minore di Mirare. Un’arma non può essere contem-
+poraneamente Di Precisione ed Imprecisa.
+ Inaffidabile: Quando si attacca con un’arma
+Inaffidabile, la complicazione dovuta alla distanza
+dell’attacco aumenta di 1. Un’arma non può essere
+contemporaneamente Affidabile ed Inaffidabile.
+ Invalidante: La difficoltà di ogni prova per curare le
+ferite causate da un’arma Invalidante è aumentata di 1.
+ Mina: Quando una Mina è piazzata su una superfi-
+cie e innescata, diventa un oggetto pericoloso, che
+infligge danni a chiunque si trovi nel proprio rag-
+gio d’azione (e anche su altri individui, se possiede
+la caratteristica Esplosiva)
+ Occultata: Le armi Occultate sono piccole o
+comunque facili da nascondersi addosso. I nemici
+non si accorgono delle armi Occultate a meno che
+non si stiano impugnando o dopo aver fatto un’at-
+tenta prequisizione e aver avuto successo in un tiro
+di PER + Sopravvivenza difficoltà 2.
+ Parata: Durante un attacco in mischia contro un
+individuo, se questi imbraccia un’arma da Parata,
+può spendere 1 PA per aggiungere 1 alla sua Difesa
+contro quell’attacco.
+ Silenziata: Se un nemico non è conscio che il
+personaggio sta attaccando con un’arma Silenziata,
+non si accorge dell’attacco a meno che non ne
+sia il bersaglio o che superi una prova di PER +
+Sopravvivenza difficoltà 2.
+ Visione Notturna: Il design di un’arma con Visione
+Notturna è fatto per permettere di vedere meglio al
+buio. Quando si effettua l’azione Mirare con un’arma
+con Visione Notturna, si ignora qualsiasi aumento
+della difficoltà dell’attacco dovuto all’oscurità.
+Vittorio Emanuele Veloccia - 54644890 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+PESO
+Il peso dell’arma in chilogrammi (kg) fornito nelle
+voci di base presenti in questo capitolo si riferisce a
+esse prima di qualsiasi alterazione dovuta a mod.
+COSTO
+Il costo dell’arma in tappi fornito nelle voci di base
+presenti in questo capitolo si riferisce a esse prima di
+qualsiasi alterazione dovuta a mod.
+RARITÀ
+La rarità dell’arma può aumentare a seguito di mod
+incredibilmente rare o efficienti.
+MUNIZIONI
+Tutte le armi leggere, le armi a energia e le armi
+pesanti usano delle munizioni specifiche, elencate
+all’inizio della loro descrizione. Le munizioni sono
+misurate in colpi.
+Ogni volta che si attacca con una di queste armi, si usa
+un colpo delle apposite munizioni. Se non si possiede
+il giusto tipo di munizioni, non si può attaccare con
+un’arma.
+Esistono inoltre altri modi di spendere munizioni per
+migliorare gli attacchi, i più comuni dei quali sono men-
+zionati sotto Cadenza di Fuoco (pag. 89) e nell’effetto del
+danno Raffica (pag. 88). Oltretutto, la caratteristica Gatling
+di un’arma le farà usare il decuplo delle munizioni allo
+stesso ritmo, per sottolineare il loro consumo massiccio.
+Ottenere munizioni è un altro paio di maniche.
+Il modo più semplice di reperirle è comprarle dai
+mercanti, depredando i nemici uccisi o trovando delle
+riserve nascoste per la Zona Contaminata, ma alcune
+sono più difficili da trovare di altre.
+La Reperibilità e Rarità delle Munizioni elenca i tipi
+di munizioni adoperati dalle armi presenti in questo
+capitolo a seconda della rarità, così come la quantità
+che solitamente se ne trova quando si possono com-
+prare o saccheggiare. Ovviamente, i personaggi con
+il talento Scroccone (pag. 71) trovano una maggiore
+quantità per ogni tipo.
+Vittorio Emanuele Veloccia - 546448
+Ric≥ic≥e!
+Molto probabilmente sarà saltato agli occhi che non ci sono
+regole sulla quantità di colpi nel caricatore di un’arma, né
+su che tipo di azione serva per ricaricare un’arma scarica.
+Ciò è da attribuirsi al fatto che Fallout: Il Gioco di Ruolo
+parte dal presupposto che i personaggi ricarichino auto-
+maticamente ogni volta sia necessario, come atto naturale
+durante i combattimenti, gli attacchi e le manutenzioni
+dell’arma. L’unica cosa a cui bisogna stare attenti è di avere
+abbastanza munizioni per la propria arma preferita e di
+quante se ne vogliono usare per abbattere qualsiasi minac-
+cia si trovi nel proprio mirino.
+Reperibilità e Rarità delle Munizioni
+TIPO DI MUNIZIONI QUANTITÀ
+TROVATA PESO COSTO RARITÀ
+.308 6+3 D C <0,5 3 1
+.38 10+5 D C <0,5 1 0
+.44 Magnum 4+2 D C <0,5 3 3
+.45 8+4 D C <0,5 3 2
+.50 4+2 D C <0,5 4 3
+2mm EC 6+3 D C <0,5 10 5
+5 mm 10x12+6 D C <0,5 1 3
+5.56 mm 8+4 D C <0,5 2 3
+10mm 8+4 D C <0,5 2 0
+Cartucce al Plasma 10+5 D C <0,5 5 4
+Cartucce per fucile
+6+3 D C <0,5 3 1
+a pompa
+Cella di Fusione 14+7 D C <0,5 3 2
+Combustibile per
+Lanciafiamme 12+6 D C <0,5 1 2
+MiniNuke 1+1 D C 6 100 6
+Missile 2+1 D C 3,5 25 3
+Munizioni Gamma 4+2 D C <0,5 10 2
+Nucleo di Fusione 1 2 200 3
+Proiettili Syringer 4+2 D C <0,5 var 2
+Razzo 2+1 D C <0,5 1 1
+Spuntone
+Sparachiodi 6+3 D C <0,5 1 2
+Capitolo Quattro  EQUIPAGGIAMENTO
+91
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+.308
+Si tratta di un tipo di munizioni per fucili di precisione,
+usate per quelli da caccia e per alcune carabine artigia-
+nali bolt-action. È talmente facile trovarle nella Zona
+Contaminata che è altamente improbabile che un’arma
+che usa cartucce .308 si trovi a corto di munizioni.
+2MM EC
+Le Cartucce Elettromagnetiche da 2mm sono dei
+caricatori indipendenti che contengono sia i proiettili
+ferromagnetici ad alta velocità che le batterie necessa-
+rie ad alimentare l’arma gauss per spararli.
+Non si trovano sfuse, ma all’interno di caricatori che
+contengono il numero di spari generati (e una batteria
+abbastanza carica da permettere all’arma di spararli).
+.38
+Sono delle munizioni di piccolo calibro pensate per
+rivoltelle a doppia azione risalenti a prima della
+Grande Guerra. Sono talmente facili da trovare che
+vanno bene per la maggior parte delle armi da fuoco
+di fortuna, inoltre sono diverse le armi più potenti che
+possono essere modificate per sparare con cartucce
+.38, sacrificando la capacità offensiva per la reperibilità
+delle munizioni.
+5MM
+Si tratta di munizioni di piccolo calibro solitamente
+utilizzate dai militari per le mitragliatrici. Nonostante
+sia raro imbattersi in delle scorte, quando succede si
+trovano in gran quantità. Il problema è che le armi che
+le usano consumano munizioni ad una velocità incre-
+dibile, per cui un’intera scatola di 5mm non dura molto.
+.44 MAGNUM
+I potenti proiettili .44 magnum in origine erano stati
+concepiti per i revolver. Il loro eccellente potere di
+fuoco li rende quasi perfetti per qualsiasi abitante della
+Zona Contaminata che abbia bisogno di munizioni in
+grado di fermare mostri, umani e via di seguito. L’unico
+problema è la loro difficoltà di reperimento.
+.45
+Si tratta di buone cartucce che combinano una ragio-
+nevole potenza di fuoco con un rinculo gestibile e una
+discreta precisione. Possono essere usate da diverse
+armi facili da trovare nella Zona Contaminata e non
+sono troppo rare.
+5.56 MM
+Sono delle munizioni leggere che di solito si utiliz-
+zano nei fucili d’assalto. Sviluppate secoli or sono per
+i fucili in dotazione all’esercito americano, hanno
+continuato a essere prodotte e usate fino alla fine della
+Grande Guerra e, se si sa dove cercare, non sono diffi-
+cili da trovare.
+10MM
+Si tratta di uno dei tipi di munizioni per pistola più
+facili da trovare nella Zona Contaminata, fabbricate su
+ampia scala prima della Grande Guerra per fare il pari
+con il gran numero di pistole 10mm date in dotazione
+ai soldati e usate dai civili per difesa personale.
+.50
+Si tratta di munizioni molto grosse, potenti e ad alta
+prestazione che possono essere usate solo dai fucili più
+potenti. Prima della guerra venivano usate solitamente
+dalle mitragliatrici pesanti e dai fucili anti-materiale,
+per cui tendono a essere abbastanza rare, a meno che
+non ci sia una base militare nei paraggi. Un loro colpo
+è in grado di ridurre a brandelli qualsiasi cosa colpisce,
+ma ogni colpo è prezioso ed è bene che vada a segno.
+CARTUCCE AL PLASMA
+Le armi al plasma sono alimentate da apposite car-
+tucce, che sono una combinazione di celle di fusione
+che forniscono l’energia necessaria con una capsula
+contenente una versione stabile del composto chimico
+che diventerà il plasma sparato.
+Vittorio Emanuele Veloccia - 54644892 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+CARTUCCE PER FUCILE A POMPA
+Quelle che di solito si trovano nella Zona Contaminata
+sono delle cartucce calibro .12 2 3/4” riempite di pal-
+lettoni #0. Relativamente facili da trovare, gli abitanti
+della Zona Contaminata pensano che, nell’evenienza
+di un incontro ravvicinato, sia utile avere a portata di
+mano un fucile a pompa.
+Vanno bene per chiedere aiuto e poco più.
+CELLE DI FUSIONE
+Una cella di microfusione, o di fusione, è un reattore
+a fusione in miniatura che viene impiegato nelle
+armi a energia leggere. Sfrutta gli isotopi di idrogeno,
+i quali fondono quando sottoposti a un calore e una
+pressione estremi, e può esplodere se viene esposto
+a una fonte di calore esterna considerevole. Senza le
+giuste strutture, queste celle sono difficili da ricari-
+care, per cui spesso vengono semplicemente abban-
+donate una volta esaurite.
+Si trova solitamente sotto forma di un’unica cella con-
+tenente il numero di colpi generati.
+COMBUSTIBILE PER LANCIAFIAMME
+Si tratta di un composto chimico altamente infiam-
+mabile progettato per i lanciafiamme. La qualità del
+combustibile può variare, ma di solito è una sostanza
+vischiosa che continua a bruciare ad alte temperature
+per molto tempo.
+Si trova solitamente sotto forma di bombole conte-
+nenti abbastanza combustibile per il numero di colpi
+generati.
+MININUKE
+Una piccola testata nucleare, delle dimensioni di una
+palla da football, pensata per essere lanciata lontano
+con un lanciagranate. Sono estremamente rare e si
+trovano solo in quantità minime. Il talento Scroccone
+non può aumentare il numero di MiniNuke trovate.
+Vittorio Emanuele Veloccia - 546448
+MISSILI
+Sono dei razzi altamente esplosivi pensati per essere
+utilizzati con un lanciamissili. Se chi li lancia è in
+possesso di un sistema di controllo, possono essere
+direzionati su un bersaglio, cosa che un razzo artigia-
+nale non è in grado di fare.
+Se vengono trovati da un personaggio con il talento
+Scroccone, questi tira solo un +1 D C per Grado, invece
+che il normale numero bonus.
+MUNIZIONI GAMMA
+Sono delle grosse batterie ricoperte di plastica con una
+carica tale da far funzionare una Pistola Gamma.
+NUCLEI DI FUSIONE
+I nuclei di fusione risalenti all’anteguerra sono delle
+pile nucleari a lunga durata di prima qualità. Un sin-
+golo nucleo può fornire energia a un piccolo edificio
+per molto tempo o dare molta energia a qualcosa
+molto rapidamente. La maggior parte delle armature a
+energia funzionano con un nucleo di fusione, in grado
+di farle funzionare per ore. Possono anche essere usati
+come munizioni per un laser Gatling.
+Quando lo si trova, un nucleo di fusione ha un numero
+di cariche pari a 10 più l’abilità Scienza dell’utilizza-
+tore (chi ha maggiori conoscenze scientifiche può
+usarlo in maniera più efficiente; anche il talento Fisico
+Nucleare, a pag. 66, aggiunge cariche). Il modo in cui
+vengono usate o esaurite dipende da ciò a cui vengono
+collegate (vedere Armatura Atomica a pag. 123).
+Se si utilizzano come munizioni per un laser Gatling,
+ogni carica equivale a 50 colpi. Poichè si tratta di
+un’arma gatling, il laser Gatling consuma munizioni
+dieci volte più velocemente della maggior parte delle
+armi (vedere Gatling a pag. 90).
+Il talento Scroccone non può aumentare il numero di
+nuclei di fusione trovati.
+Capitolo Quattro  EQUIPAGGIAMENTO
+93
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+PROIETTILI SYRINGER
+I proiettili Syringer sono spesso fatti a mano da chimici della Zona Contaminata e si trovano nelle forme riportate
+qui di seguito. Nessuno degli Effetti descritti può essere applicato più di una volta nello stesso momento e sullo
+stesso bersaglio.
+Tipi di Proiettili Syringer
+NOME DEI PROIETTILI EFFETTO COSTO
+Berserk Se per il danno dell’arma vengono tirati uno o più Effetti, il bersaglio impazzisce e attacca
+la creatura vivente più vicina (sia essa amica o nemica) per il resto della scena. 50
+Dissanguanti L’arma ottiene l’effetto del danno Persistente. 17
+Endangerol Se per il danno dell’arma vengono tirati uno o più effetti, la Resistenza ai Danni Fisici del
+bersaglio si abbassa di 2 per il resto della scena. 60
+Larva di Mosca
+Mutante
+Se per il danno dell’arma vengono tirati uno o più Effetti, alla morte del bersaglio dal suo
+cadavere emerge una mosca mutante. 10
+Se per il danno dell’arma vengono tirati uno o più Effetti, il bersaglio diventa confuso e
+Nube Ottenebrante
+la difficoltà su tutti i suoi tiri di PER aumenta di 2 per un numero di round pari al numero
+73
+degli Effetti tirati.
+Se per il danno dell’arma vengono tirati uno o più Effetti, il bersaglio non può
+Pace
+intraprendere azioni ostili o di aggressione per un numero di round pari al numero degli
+39
+Effetti tirati.
+Se per il danno dell’arma vengono tirati uno o più Effetti, ogni turno il bersaglio deve usare
+Pancia Gialla
+almeno una delle sue azioni per allontanarsi da tutti i nemici seguendo la traiettoria più
+55
+semplice. L’effetto dura per un numero di round pari al numero degli Effetti tirati.
+Paralizzanti L’arma ottiene l’effetto del danno Stordente. 40
+Veleno di Scorpione L’arma aggiunge 1 D C di danno e ottiene la qualità del danno Persistente (Veleno). 65
+RAZZI
+SPUNTONI SPARACHIODI
+Si tratta di un cilindretto simile ad una cartuccia da
+fucile contenente una sostanza chimica che produce una
+fiammata brillante una volta accesa. Si sparano con una
+pistola lanciarazzi, che innesca la miccia al momento del
+lancio: il razzo esplode in aria illuminando l’area circo-
+stante, per poi ridiscendere in una scia di fumo bianco.
+Sono dei chiodi di ferro originariamente pensati per
+tenere ferme le rotaie. Non sono così semplici da
+trovare come si potrebbe pensare, anche se si trattava
+di cose ordinarie.
+Vittorio Emanuele Veloccia - 54644894 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+ARMI LEGGERE
+ARMI LEGGERE TIPO DI
+ARMA
+GRADO
+DI
+DANNO
+EFFETTO
+DEL
+DANNO
+TIPO DI
+DANNO
+CADENZA
+DI FUOCO GITTATA QUALITÀ PESO COSTO RARITÀ
+Bolt-Action
+Artigianale
+Fucile a
+Doppia Canna
+Fucile a Pompa
+da Combattimento
+Armi
+Leggere 5 D C Penetrante 1 Fisico 0 R Impreciso 1,5 30 0
+Armi
+Leggere 5 D C Propagato,
+Violento Fisico 0 R A Due Mani,
+Impreciso 4,5 39 1
+Armi
+Leggere 5 D C Propagato Fisico 2 R A Due Mani,
+Impreciso 5,5 87 2
+Fucile d’Assalto Armi
+Leggere 5 D C Raffica Fisico 2 M A Due Mani 6,5 144 2
+Fucile da Caccia Armi
+Leggere 6 D C Penetrante 1 Fisico 0 M A Due Mani 5 55 2
+Fucile da
+Combattimento
+Armi
+Leggere 5 D C – Fisico 2 M A Due Mani 5,5 117 2
+Fucile Gauss Armi
+Leggere 10 D C Penetrante 1 Fisico 1 L A Due Mani 8 228 4
+Fucile Sparachiodi Armi
+Leggere 10 D C Dirompente Fisico 0 M
+A Due Mani,
+Inaffidabile,
+7 290 4
+Invalidante
+Mitragliatrice Armi
+Leggere 3 D C Raffica Fisico 3 R A Due Mani,
+Imprecisa 6 109 1
+Pistola .44 Armi
+Leggere 6 D C Violento Fisico 1 R Corpo a
+Corpo 2 99 2
+Affidabile,
+Pistola 10mm Armi
+Leggere 4 D C – Fisico 2 R
+Corpo
+2 50 1
+a Corpo
+Corpo
+Pistola Artigianale Armi
+Leggere 3 D C – Fisico 2 R
+a Corpo,
+1 30 0
+Inaffidabile
+Pistola Lanciarazzi Armi
+Leggere 3 D C – Fisico 0 M Affidabile 1 50 1
+Revolver
+Artigianale
+Armi
+Leggere 4 D C – Fisico 1 R
+Corpo
+a Corpo,
+Inaffidabile
+2 25 0
+Syringer Armi
+Leggere 3 D C – Fisico 0 M A Due Mani 3 132 2
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+95
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+C»plicazi÷i delle Armi Leggµe
+Qui di seguito sono suggerite alcune problematiche che potreb-
+bero insorgere se un giocatore dovesse ottenere un 20 alla sua
+prova mentre sta usando un’Arma Leggera. Le complicazioni
+vengono risolte dopo aver effettuato una prova di abilità, per cui
+nessuno dei seguenti risultati può far fallire un attacco riuscito.
+Sprecone: Il personaggio ha sparato più di quanto pensi.
+Perde un ulteriore colpo di munizioni per quell’arma.
+Click...: Il personaggio preme di nuovo il grilletto, ma
+non succede niente. La pistola si è inceppata, lo sparo
+non si è innescato o magari ha solo finito il caricatore. Ad
+ogni modo, si deve ricorrere all’azione minore Interagire
+sull’arma prima di poterla usare di nuovo.
+Logora e Distrutta: L’arma ha visto giorni migliori e non fun-
+ziona più bene come una volta. Il grado di danno dell’arma viene
+ridotto di 1 o perde uno dei suoi effetti di danno, che possono
+essere recuperati se viene riparata. Se non è la prima volta che
+accade, il GM può decidere che si tratta di una rottura definitiva.
+Rimbalzo: Uno dei colpi del personaggio non è andato pro-
+prio nella giusta direzione e prende qualcosa che, forse, non
+avrebbe voluto colpire. Potrebbe trattarsi di un alleato vicino al
+bersaglio, una tanica di combustibile, un pannello di controllo
+per delle macchine nelle vicinanze o una bestia errante.
+ Canna: Canna Alettata, Canna Forata, Canna Lunga
+ Caricatore: Caricatore Grande, Caricatore Grande
+Rapido, Caricatore Rapido
+ Castello: Automatico, Calibrato, Castello .38,
+Castello .50, Potente, Temprato
+ Impugnatura: Impugnatura da Tiratore Esperto
+ Mirino: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+FUCILE A DOPPIA CANNA
+Munizioni: Cartucce per Fucile a Pompa
+Prima della Grande Guerra i fucili a doppia canna
+venivano usati soprattutto per la caccia e la difesa
+domestica... e le cose non sono cambiate gran-
+ché. A canna basculante, si possono trovare sia a
+canne giustapposte che sovrapposte. Semplici da
+costruire e manutenere, non è insolito vederli nel
+Commonwealth e nel resto della Zona Contaminata.
+Un fucile a doppia canna può montare una per tipo
+delle seguenti modifiche:
+ Bocca: Rompifiamma
+ Calcio: Calcio Completo
+ Canna: Canna Lunga, Canna Mozza
+ Castello: Avanzato, Grilletto Sensibile, Potente,
+Temprato
+ Mirino: Mirino Reflex
+BOLT-ACTION ARTIGIANALE
+Munizioni: .308
+È un’arma artigianale che è facile scorgere nelle mani di
+coloro che non possono costruire, comprare o razziare
+nulla di meglio. Le armi artigianali sono rozze e alquanto
+inaffidabili, ma abbastanza efficaci; di solito i bolt-action
+sono fatti per sparare cartucce da fucile, rinunciando alla
+Cadenza di Fuoco in favore di potenza e semplicità.
+Un bolt-action artigianale può montare una per tipo
+delle seguenti modifiche. Non si può avere una mod
+sia all’Impugnatura che al Calcio. Ogni modifica al
+Calcio aggiunge la parola “Fucile” al nome dell’arma.
+ Bocca: Baionetta, Compensatore, Rompifiamma,
+Silenziatore
+ Calcio: Calcio Completo, Calcio da Tiratore Scelto,
+Calcio per Compensazione del Rinculo
+FUCILE A POMPA DA COMBATTIMENTO
+Munizioni: Cartucce per Fucile a Pompa
+Quelli da combattimento sono fucili a pompa usati
+solitamente da una fazione militare per assolvere ad
+uno scopo offensivo: sono perfetti per i combattimenti
+ravvicinati nei tunnel, dentro agli edifici o fra le strade
+in rovina delle vecchie città.
+Un fucile da combattimento può montare una per tipo
+delle seguenti modifiche:
+ Bocca: Baionetta, Compensatore, Rompifiamma,
+Silenziatore
+ Calcio: Calcio Completo, Calcio da Tiratore Scelto,
+Calcio per Compensazione del Rinculo
+ Canna: Canna Forata, Canna Lunga
+ Caricatore: Caricatore Grande, Caricatore Grande
+Rapido, Caricatore Rapido
+Vittorio Emanuele Veloccia - 54644896 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+ Castello: Automatico, Avanzato, Calibrato, Grilletto
+Sensibile, Potente, Temprato
+ Mirino: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+FUCILE D’ASSALTO
+Munizioni: 5.56mm
+Questo fucile a gas è molto comune nella Zona
+Contaminata, oltre a essere molto apprezzato per via
+del poco rinculo, della sua discreta precisione e della
+facilità di personalizzazione. In genere ci si imbatte
+in versioni semiautomatiche, ma è un’arma che può
+diventare automatica facilmente.
+Un fucile d’assalto può montare una per tipo delle
+seguenti modifiche:
+ Bocca: Compensatore, Silenziatore
+ Calcio: Calcio Completo, Calcio da Tiratore Scelto,
+Calcio per Compensazione del Rinculo
+ Canna: Canna Forata, Canna Lunga, Canna Ventilata
+ Caricatore: Caricatore Grande, Caricatore Grande
+Rapido, Caricatore Rapido
+ Castello: Automatico, Avanzato, Calibrato, Grilletto
+Sensibile, Temprato
+ Mirino: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+FUCILE DA CACCIA
+Munizioni: .308
+Fucile bolt-action di cui si servono solitamente i supermu-
+tanti e i Predoni. Prima della Grande Guerra, la sua strut-
+tura semplice lo ha reso famoso fra i cacciatori e i surviva-
+listi, oltre a renderlo personalizzabile all’infinito. Potrebbe
+sembrare eccessivo suggerire che un semplice lanciapro-
+iettili a canne mozze utilizzato da un mutante possa essere
+trasformato in un fucile da cecchino, eppure ciò descrive
+alla perfezione la versatilità del fucile da caccia.
+Vittorio Emanuele Veloccia - 546448
+Un fucile da caccia può montare una per tipo delle
+seguenti modifiche:
+ Bocca: Baionetta, Silenziatore
+ Calcio: Calcio Completo, Calcio da Tiratore Scelto
+ Canna: Canna Forata, Canna Lunga, Canna Ventilata
+ Caricatore: Caricatore Grande, Caricatore Grande
+Rapido, Caricatore Rapido
+ Castello: Calibrato, Castello .38, Castello .50,
+Grilletto Sensibile, Potente, Temprato
+ Mirino: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+FUCILE DA COMBATTIMENTO
+Munizioni: .45
+Si tratta di un’arma dell’anteguerra che si può trovare
+nella Zona Contaminata e che è ampiamente utilizzata
+da alcune fazioni bellicose. Le carabine da combatti-
+mento sono robuste e versatili e possono essere modi-
+ficate per servire a diversi scopi in battaglia.
+Un fucile da combattimento può montare una per tipo
+delle seguenti modifiche:
+ Bocca: Baionetta, Compensatore, Silenziatore
+ Calcio: Calcio Completo, Calcio da Tiratore Scelto,
+Calcio per compensazione del Rinculo
+ Canna: Canna Forata, Canna Lunga, Canna Ventilata
+ Caricatore: Caricatore Grande, Caricatore Grande
+Rapido, Caricatore Rapido
+ Castello: Automatico, Avanzato, Calibrato, Castello .38,
+Castello .308, Grilletto Sensibile, Potente, Temprato
+ Visione: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+FUCILE GAUSS
+Munizioni: 2mm EC
+Il fucile gauss sfrutta l’induzione magnetica per
+sparare proiettili ad una velocità incredibile e deva-
+stante. Ogni sparo può essere caricato affinché faccia il
+maggior danno possibile tenendo premuto il grilletto
+per un istante prima di rilasciarlo.
+Un fucile gauss può montare una per tipo delle
+seguenti modifiche:
+Capitolo Quattro  EQUIPAGGIAMENTO
+97
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+ Bocca: Silenziatore
+ Calcio: Calcio per Compensazione del Rinculo
+ Canna: Canna Schermata
+ Condensatore: Condensatore Completo,
+Condensatore con Bobina Potenziata
+ Mirino: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+ Bocca: Compensatore, Rompifiamma, Silenziatore
+ Calcio: Calcio Completo, Calcio per
+Compensazione del Rinculo
+ Caricatore: Caricatore Grande, Caricatore Grande
+Rapido, Caricatore Rapido
+ Castello: Grilletto Sensibile, Potente, Temprato
+ Mirino: Mirino Reflex
+FUCILE SPARACHIODI
+Munizioni: Spuntone sparachiodi
+Arma artigianale creata da intraprendenti ingegneri
+della Zona Contaminata, il fucile sparachiodi sfrutta
+del vapore ad alta pressione per sparare spuntoni
+sparachiodi a una velocità tale da riuscire a trapassare
+e impalare la maggior parte dei bersagli.
+Un fucile sparachiodi può montare una per tipo delle
+seguenti modifiche:
+ Bocca: Baionetta
+ Calcio: Calcio per Compensazione del Rinculo
+ Canna: Canna Lunga
+ Castello: Castello Automatico a Pistone
+ Mirino: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+MITRAGLIATRICE
+Munizioni:.45
+Le mitragliatrici erano armi vecchie anche prima della
+Guerra e, sebbene siano mostruosamente imprecise, la
+loro Cadenza di Fuoco rende inutile la mira.
+Una mitragliatrice può montare una per tipo delle
+seguenti modifiche:
+PISTOLA .44
+Munizioni: .44 Magnum
+La pistola .44 è un revolver a doppia azione, pen-
+sato per utilizzare proiettili .44 Magnum. Si tratta di
+un’arma potente, ma non personalizzabile quanto altre
+rivoltelle. Il loro design semplice e robusto le rende
+preziose agli occhi dei proprietari, ma non è così diffi-
+cile vederne una da poterla definire davvero rara.
+Una pistola .44 può montare una per tipo delle
+seguenti modifiche:
+ Canna: Ridotta, Canna Stabile
+ Castello: Avanzato, Potente, Temprato
+ Impugnatura: Impugnatura Ergonomica
+ Mirino: Mirino Corto, Mirino da Ricognizione,
+Mirino Reflex
+PISTOLA 10MM
+Munizioni: 10mm
+Piccola, affidabile, abba-
+stanza potente e facilmente
+reperibile, la pistola 10mm è una costante nei combatti-
+menti nella Zona Contaminata sin dal momento in cui
+caddero le prime bombe. La sua versatilità e il poten-
+ziale di personalizzazione implicano che una pistola
+10mm ben tenuta terrà a sua volta il proprietario al
+sicuro per molto tempo.
+Una pistola 10mm può montare una per tipo delle
+seguenti modifiche:
+ Bocca: Compensatore, Silenziatore
+ Canna: Canna Forata, Canna Lunga
+ Caricatore: Caricatore Grande, Caricatore Grande
+Rapido, Caricatore Rapido
+ Castello: Automatico, Avanzato, Calibrato, Grilletto
+Sensibile, Potente, Temprato
+ Impugnatura: Impugnatura Ergonomica,
+Impugnatura da Tiratore Esperto
+ Mirino: Mirino da Ricognizione, Mirino Reflex
+Vittorio Emanuele Veloccia - 54644898 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+PISTOLA ARTIGIANALE
+Munizioni: .38
+Primitive, fatte in casa, normalmente impiegate da chi
+non può costruire, comprare o razziare nulla di meglio,
+le pistole artigianali sono rozze e alquanto inaffidabili,
+ma efficaci quanto basta. Quelle più comuni assom-
+gliano a delle piccole semiautomatiche, fatte per ospi-
+tare delle comuni munizioni .38... ma si sa che ci sono
+stati degli ardimentosi (o disperati) che le hanno modi-
+ficate per farle diventare automatiche o di precisione.
+Una pistola artigianale può montare una per tipo delle
+seguenti modifiche. Ogni mod al Calcio cambia la
+parola “Pistola” nel nome dell’arma in “Fucile”.
+ Bocca: Baionetta, Compensatore, Rompifiamma,
+Silenziatore
+ Calcio: Calcio Completo, Calcio da Tiratore Scelto,
+Calcio per Compensazione del Rinculo
+ Canna: Canna Alettata, Canna Forata, Canna Lunga
+ Caricatore: Caricatore Grande, Caricatore Grande
+Rapido, Caricatore Rapido
+ Castello: Automatico, Calibrato, Castello .45,
+Grilletto Sensibile, Temprato
+ Mirino: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+Un revolver artigianale può montare una per tipo delle
+seguenti modifiche. Ogni mod al Calcio aggiunge la
+parola “Fucile” al nome dell’arma.
+ Bocca: Baionetta, Compensatore, Rompifiamma,
+Silenziatore
+ Calcio: Calcio Completo, Calcio da Tiratore Scelto,
+Calcio per Compensazione del Rinculo
+ Canna: Canna Alettata, Canna Forata, Canna Lunga
+ Castello: Calibrato, Castello .38, Castello.308,
+Potente, Temprato
+ Impugnatura: Impugnatura da Tiratore Esperto
+ Mirino: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+SYRINGER
+Munizioni: Proiettili Syringer
+Si tratta di un’arma artigianale ad aria compressa che
+spara sul bersaglio delle siringhe personalizzate che
+di per sé fanno poco danno, ma possono infliggere
+un’ampia gamma di effetti debilitanti.
+Un Syringer può montare una per tipo delle seguenti
+modifiche:
+ Calcio: Calcio da Tiratore Scelto, Calcio per
+Compensazione del Rinculo
+ Canna: Canna Lunga
+ Mirino: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+PISTOLA LANCIARAZZI
+Munizioni: Razzi
+Una pistola lanciarazzi è un’arma a colpo singolo a
+canna basculante non propriamente progettata per
+infliggere danni, quanto piuttosto per eiettare razzi di
+segnalazione, che molte fazioni usano per richiedere
+aiuto sparandoli in aria.
+REVOLVER ARTIGIANALE
+Munizioni: .45
+Proprio come le altre armi artigianali, anche queste sono
+delle pistole di fortuna o fatte in casa, in questo caso
+sulla base di un revolver. Si tratta di un punto d’incontro
+tra la potenza di fuoco del bolt-action e la rapidità di
+fuoco delle pistole, inoltre essendo anch’esso un’arma
+“Improvvisata” è parimenti facile da modificare.
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+99
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+MOD ALLE ARMI LEGGERE
+Qui di seguito si trovano le mod disponibili per le Armi Leggere appena descritte. Tutte le mod per Armi Leggere
+vengono apportate con l’abilità Riparare, ma solo se si possiede uno dei vantaggi elencati (se ce ne sono).
+Mod per le Armi Leggere
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+MOD ALLA BOCCA
+Baionetta Con Baionetta Arma da Mischia, infligge 4 D C danni
+Fisici Penetranti 1 +1 +10 –
+Compensatore Con Compensatore Perde Impreciso +0,5 +15 Fanatico delle Armi 1
+Rompifiamma Con Rompifiamma Perde Impreciso, +1 Cadenza di Fuoco +0,5 +30 Fanatico delle Armi 1
+Silenziatore Con Silenziatore Ottiene Silenziata +1 +45 Fanatico delle Armi 2
+MOD AL CALCIO
+Calcio da
+Tiratore Scelto Calcio per Compen-
+Calcio Completo – Ottiene A Due Mani, perde Impreciso +0,5 +10 –
+Ottiene A Due Mani, perde Impreciso,
+ottiene Di Precisione Ottiene A Due Mani, perde Impreciso,
++1 Cadenza di Fuoco sazione del Rinculo
+Da Tiratore Scelto A Rinculo
+Compensato
++1 +20 Fanatico delle Armi 2
++1 +3 Fanatico delle Armi 3
+MOD ALLA CANNA
+Canna Alettata Alettata +1 danno D C , aumenta la Gittata di
++1 grado +1 +15 Fanatico delle Armi 2
+Canna Forata Forata Aumenta la Gittata di +1 grado,
++1 Cadenza di Fuoco +0,5 +35 Fanatico delle Armi 4
+Canna Lunga Lunga Aumenta la Gittata di +1 grado +0,5 +20 Fanatico delle Armi 1
+Canna Mozza Mozza Perde A Due Mani, ottiene Corpo a Corpo -1 +3 –
+Canna Ridotta Ridotto Ottiene Imprecisa -0,5 – –
+Canna Schermata Schermata +1 danno D C – +37 Fanatico delle Armi 3,
+Riparare
+Canna Stabile Canna stabile Ottiene Affidabile – +10 Fanatico delle Armi 3
+Canna Ventilata Ventilata Aumenta la Gittata di +1 grado, +1
+Cadenza di Fuoco, ottiene Affidabile +0,5 +36 Fanatico delle Armi 4
+MOD AL CARICATORE
+Caricatore Grande Alta Capacità +1 Cadenza di Fuoco, Inaffidabile +0,5 +8 Fanatico delle Armi 2
+Caricatore Grande
+Alta Capacità
+Rapido
+Rapido +1 Cadenza di Fuoco +0,5 +23 Fanatico delle Armi 2
+Caricatore Rapido Rapido Ottiene Affidabile – +8 Fanatico delle Armi 1
+MOD AL CASTELLO
+Automatico Auto -1 danno D C , + 2 Cadenza di Fuoco,
+ottiene Raffica, ottiene Impreciso +0,5 +30 Fanatico delle Armi 1
+Avanzato Castello .308 Avanzato +3 danno D C , + 1 Cadenza di Fuoco +1 +35 Fanatico delle Armi 2
+Calibrato Calibrato Ottiene Violento – +25 –
+.308 I danni diventano 7 D C ,
+le Munizioni diventano .308 +2 +40 Fanatico delle Armi 4
+Castello .38 .38 I danni diventano 4 D C ,
+le Munizioni diventano .38 +1,5 +20 Fanatico delle Armi 4
+Vittorio Emanuele Veloccia - 546448100 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Castello .45 .45 I danni diventano 4 D C , +1 Cadenza
+di Fuoco, le Munizioni diventano .45 +1 +19 Fanatico delle Armi 2
+Castello .50 .50 I danni diventano 8 D C , ottiene Violento,
+le Munizioni diventano .50 +2 +30 Fanatico delle Armi 4
+Castello Automatico
+a Pistone Automatico +2 Cadenza di Fuoco,
+riduce la Gittata di 1 grado +1 +75 Fanatico delle Armi 2
+Grilletto Sensibile Grilletto Sensibile + 1 Cadenza di Fuoco – +20 Fanatico delle Armi 2
+Potente Potente +2 danno D C +0,5 +25 Fanatico delle Armi 1
+Temprato Temprato +1 danno D C – +20 –
+MOD AL CONDENSATORE
+Condensatore
+Completo Alta Capacità Ottiene Violento Condensatore con
+Bobina Potenziata Capacità Massima +1 danno D C, , ottiene Violento – +37 Fanatico delle Armi 3,
+Scienza! 2
++1 +82 Fanatico delle Armi 4,
+Scienza! 3
+MOD ALL’IMPUGNATURA
+Impugnatura
+Ergonomica Ergonomica Perde Impreciso – +6 –
+Impugnatura da
+Tiratore Esperto Da Tiratore Esperto Perde Impreciso, ottiene Penetrante 1 – +10 Fanatico delle Armi 1
+MOD AL MIRINO
+Mirino Corto Con Mirino Ottiene Di Precisione +0,5 +11 –
+Mirino Corto
+Visione Notturna Visione Notturna Ottiene Di Precisione,
+ottiene Visione Notturna +0,5 +38 Scienza! 2
+Mirino da
+Ricognizione Da Ricognizione Ottiene Di Precisione,
+ottiene Da Ricognizione +0,5 +59 Scienza! 3
+Mirino Lungo Con Mirino Aumenta la Gittata di 1,
+ottiene Di Precisione +0,5 +29 Scienza! 2
+Mirino Lungo
+Visione Notturna Visione Notturna Ottiene Di Precisione, ottiene Visione
+Notturna, aumenta la Gittata di 1 +0,5 +50 Scienza! 3
+Mirino Reflex Tattico Può ritirare il dado del Punto di Impatto – +14 –
+ARMI A ENERGIA
+ARMA A
+ENERGIA
+Laser
+dell’Istituto
+TIPO DI
+ARMA
+GRADO
+DI
+DANNO
+EFFETTO DEL
+DANNO
+TIPO DI
+DANNO
+CADENZA
+DI FUOCO GITTATA QUALITÀ PESO COSTO RARITÀ
+Arma a
+Energia 3 D C Raffica Da
+Energia 3 R Corpo a Corpo,
+Impreciso 2 50 2
+Moschetto
+Laser
+Arma a
+Energia 5 D C Penetrante 1 Da
+Energia 0 M A Due Mani 6,5 57 1
+Pistola al
+Plasma
+Arma a
+Energia 6 D C –
+Pistola
+Gamma
+Arma a
+Energia 3 D C Penetrante 1,
+Stordente
+Fisico/Da
+Energia 1 R Corpo a Corpo 2 123 3
+da
+Radiazioni 1 M Esplosiva,
+Imprecisa 1,5 156 5
+Pistola Laser Arma a
+Energia 4 D C Penetrante 1 Da
+Energia 2 R Corpo a Corpo 2 69 2
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+101
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+C»plicazi÷i delle Armi a Enµgia
+Qui di seguito sono suggerite alcune problematiche che potreb-
+bero insorgere quando un giocatore ottiene un 20 alla prova
+mentre sta usando un’Arma a Energia. Le complicazioni vengono
+risolte dopo aver effettuato una prova di abilità, per cui nessuno
+dei seguenti risultati può evitare un attacco che ha colpito.
+ Sprecone: Il personaggio ha sparato più di quanto pensi.
+Perde un ulteriore colpo di munizioni per quell’arma.
+ Surriscaldata! Le componenti dell’arma si surriscaldano per
+aver sparato troppo e il personaggio subisce 2 danni D C da
+Energia al braccio con cui sta impugnando l’arma, inoltre il
+prossimo turno non può usarla perchè deve raffreddarsi.
+ Logora e Distrutta: L’arma non funziona più come una
+volta. Il grado di danno dell’arma viene ridotto di 1 o perde
+uno dei suoi effetti di danno, che possono essere recuperati
+se viene riparata. Se non è la prima volta che accade, il
+GM può decidere che si tratti di una rottura definitiva.
+MOSCHETTO LASER
+Munizioni: Celle di Fusione
+Il moschetto laser è un tipo di fucile laser artigianale
+che unisce una tecnologia avanzata con dei mecca-
+nismi insolitamente primitivi ed è molto diffuso
+tra le milizie come i Minutemen. Deve essere cari-
+cato manualmente, girando una manovella sul retro
+dell’arma. Sebbene sembri rozzo, può essere un’ottima
+arma da cecchino, soprattutto con un condensatore
+modificato in grado di sostenere una carica maggiore.
+Speciale: Sparare con un moschetto laser fa usare ogni
+volta due colpi di munizioni. Ogni mod Condensatore
+aumenta sia il danno, che il numero di colpi consu-
+mati, che possono essere ridotti abbassando il danno
+di -1 D C per ogni colpo risparmiato (fino a un minimo
+di 4 danno D C e 1 colpo usato).
+Un moschetto laser può montare una per tipo delle
+seguenti modifiche:
+ Bocca: Concentratore di Raggio, Lenti di
+Compensazione Circolari, Separatore di Raggio
+ Calcio: Calcio Completo
+ Canna: Canna Corta Rinforzata, Canna Lunga,
+Canna Lunga Rinforzata
+ Condensatore: Condensatore a Tre Cariche,
+Condensatore a Quattro Cariche, Condensatore a
+Cinque Cariche, Condensatore a Sei Cariche
+ Mirino: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+Le mod al Condensatore dei moschetti laser fun-
+zionano solo su queste armi, vengono installate con
+l’abilità Scienza e sono introdotte subito, invece che
+più avanti nel capitolo.
+LASER DELL’ISTITUTO
+Munizioni: Celle di Fusione
+Sviluppati dall’Istituto dopo la Grande Guerra, i laser
+dell’istituto sono diversi sia nell’aspetto che nella
+funzione rispetto a quelli dell’anteguerra che vengono
+utilizzati da altre fazioni, come la Confraternita d’Ac-
+ciaio. Rinunciando alla potenza di fuoco in favore di
+una rapida successione di raggi, possono riversare una
+pioggia incandescente di fuoco di sbarramento.
+La configurazione di base si riferisce a una pistola
+laser dell’Istituto, che può montare una per tipo delle
+seguenti modifiche. Ogni mod Calcio trasforma l’arma
+in un fucile laser dell’Istituto.
+ Bocca: Concentratore di Raggio, Lenti di
+Compensazione Circolari, Separatore di Raggio
+ Calcio: Calcio Standard
+ Canna: Canna Automatica, Canna Lunga,
+Canna Migliorata
+ Condensatore: Agitatore Fotonico, Condensatore
+Potenziato, Sintonizzatore di Onde Beta,
+Stimolatore Fotonico
+ Mirino: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+Vittorio Emanuele Veloccia - 546448102 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+Mod al Condensatore Esclusive del Moschetto Laser
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Condensatore a
+Tre Cariche A Tre Cariche +1 D C , consuma 3 Colpi ad Attacco – +4 –
+Condensatore a
+Quattro Cariche
+A Quattro
+Cariche +2 D C , consuma 4 Colpi ad Attacco +0,5 +8 Scienza! 1
+Condensatore a
+Cinque Cariche
+A Cinque
+Cariche +3 D C , consuma 5 Colpi ad Attacco +0,5 +12 Scienza! 2
+Condensatore a
+Sei Cariche A Sei Cariche +4 D C , consuma 6 Colpi ad Attacco +1 +16 Scienza! 3
+PISTOLA AL
+PLASMA
+Munizioni:
+Cartucce al Plasma
+Le armi al plasma,
+dette anche plasmacaster, sono
+delle armi altamente tecnolo-
+giche che sparano gas ioniz-
+zato ad altissime temperature,
+o plasma. Queste armi, che
+funzionano con cartucce al plasma, sono rare e molto
+potenti, in grado come sono di arrecare danno attraverso
+l’impatto ad alta velocità del raggio al plasma e, succes-
+sivamente, con il trasferimento termico del calore che
+viene riversato sul bersaglio al momento dell’impatto.
+Speciale: Le armi al plasma infliggono danni sia Fisici
+che da Energia. Si esegue il tiro per il danno come sem-
+pre, quindi si sottrae al risultato il valore di Resistenza
+ai Danni più basso del bersaglio tra Fisica o Energia.
+Qualsiasi effetto Persistente dei danni (applicato attra-
+verso le mod dell’arma) infligge danni da Energia.
+La configurazione di base si riferisce a una pistola al pla-
+sma, che può montare una per tipo delle seguenti modifi-
+che. Ogni mod Calcio la trasforma in un fucile al plasma.
+ Calcio: Calcio da Tiratore Scelto, Calcio per
+Compensazione del Rinculo, Calcio Standard
+ Canna: Canna Automatica, Canna da Cecchino,
+Canna Lanciafiamme, Canna Migliorata, Separatore
+ Condensatore: Agitatore Fotonico, Condensatore
+Potenziato, Sintonizzatore di Onde Beta,
+Stimolatore Fotonico
+ Mirino: Mirino Corto, Mirino Corto Visione
+Notturna, Mirino da Ricognizione, Mirino Lungo,
+Mirino Lungo Visione Notturna, Mirino Reflex
+PISTOLA GAMMA
+Munizioni: Munizioni Gamma
+La pistola gamma, col suo aspetto apparentemente
+rozzo, emette dei raggi direzionali di radiazioni ioniz-
+zanti ad alta intensità, che possono essere devastanti
+per qualsiasi creatura non sia immune o incredibil-
+mente resistente alle radiazioni ma, al contempo, non
+fanno quasi alcun danno sugli altri bersagli.
+Una pistola Gamma può montare una per tipo delle
+seguenti modifiche, che funzionano solo per questo
+tipo d’arma e vengono installate con l’abilità Scienza.
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+103
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+Mod Esclusive per Pistole Gamma
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+MOD ALLA BOCCA
+Antenna Segnale
+Elettrico Elettrificata Ripetitore di Segnale Automatica I danni diventano 7 D C , i danni diventano da
+Energia, ottiene Radioattivo
++2 Cadenza di Fuoco, ottiene Raffica,
+perde Scoppio
+– +30 Scienza! 4
+– +60 Scienza! 4
+MOD AL DISCO
+Disco Profondo Lunga +1 D C , aumenta la Gittata di 1 grado +1 +72 Scienza! 4
+PISTOLA LASER
+Munizioni: Celle di Fusione
+La configurazione di base si riferisce a una pistola laser
+che può montare una per tipo delle seguenti modifi-
+che. Ogni mod Calcio la trasforma in un fucile laser.
+Le pistole laser sono armi tecnologiche in grado di
+emettere un raggio di luce direzionale coeso e abba-
+stanza intenso da causare gravi danni. Negli anni
+prima della Grande Guerra erano un’evoluzione rela-
+tivamente nuova, per cui è difficile trovarle nella Zona
+Contaminata, al di fuori dei gruppi che sono riusciti
+ad accaparrarsi i vecchi depositi delle armi dell’e-
+sercito. La maggior parte dei modelli sopravvissuti
+di pistole laser, come l’affidabile AER9, ampiamente
+usata dall’esercito americano, si serve di un condensa-
+tore interno caricato da una batteria a microfusione.
+ Bocca: Concentratore di Raggio, Lenti di
+Compensazione Circolari, Separatore di Raggio
+ Calcio: Calcio da Tiratore Scelto, Calcio per
+Compensazione del Rinculo, Calcio Standard
+ Canna: Canna Lunga, Canna Automatica, Canna da
+Cecchino, Canna Migliorata
+ Condensatore: Stimolatore Fotonico,
+Sintonizzatore di Onde Beta, Condensatore
+Potenziato, Agitatore Fotonico
+ Impugnatura: Impugnatura da Tiratore Esperto
+ Mirino: Mirino Reflex, Mirino Corto, Mirino Lungo,
+Mirino Corto Visione Notturna, Mirino Lungo
+Visione Notturna, Mirino da Ricognizione
+MOD DELLE ARMI A ENERGIA
+Qui di seguito si trovano le mod disponibili per le Armi a Energia appena descritte. Tutte le mod per Armi a
+Energia vengono apportate con l’abilità Scienza, ma solo se si possiede uno dei talenti elencati (se ce ne sono).
+Mod delle Armi a Energia
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+MOD ALLA BOCCA
+Concentratore
+di Raggio Concentrato Aumenta la Gittata di 1 grado +0,5 +20 Scienza! 1
+Lenti di Compen-
+sazione Circolari Di Puntamento +1 Cadenza di Fuoco, perde Impreciso +0,5 +25 Scienza! 1
+di Raggio Separatore
+Frammentato -1 D C , ottiene Propagato, -1 Cadenza di Fuoco,
+ottiene Impreciso, riduce la Gittata di 1 grado +0,5 +15 Scienza! 1
+Vittorio Emanuele Veloccia - 546448104 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+MOD AL CALCIO
+Calcio Completo –
+Calcio da
+Tiratore Scelto
+Da Tiratore
+Scelto
+Calcio per Compen-
+sazione del Rinculo
+A Rinculo
+Compensato
+Calcio Standard –
+Ottiene A Due Mani, ottiene Penetrante 1,
+perde Corpo a Corpo +0,5 +15 –
+Ottiene A Due Mani, perde Impreciso,
+ottiene Di Precisione, perde Corpo a Corpo +1 +20 Fanatico di
+Armi 2
+Ottiene A Due Mani, perde Impreciso, +1 Cadenza
+di Fuoco, perde Corpo a Corpo +1 +3 Fanatico di
+Armi 3
+Ottiene A Due Mani, perde Impreciso,
+perde Corpo a Corpo +0,5 +10 –
+MOD ALLA CANNA
+Canna Automatica Automatica -1 D C , perde Corpo a Corpo, aumenta la Gittata di 1
+grado, +1 Cadenza di Fuoco +0,5 +24 Scienza! 1
+Canna Corta
+Rinforzata
+Canna da Cecchino – Permette all’arma di avere una mod alla Bocca – +6 –
+Da Cecchino + 2 D C , perde Corpo a Corpo, aumenta la Gittata di
+1 grado, -1 Cadenza di fuoco +1 +30 Scienza! 1
+Canna
+Lanciafiamme Lanciafiamme -2 D C , +2 Cadenza di Fuoco, ottiene Raffica,
+riduce la Gittata di 1 grado, ottiene Impreciso +0,5 +35 Scienza! 2
+Canna Lunga Lunga Perde Corpo a Corpo, aumenta la Gittata di 1 grado +1 +20 –
+Canna Lunga
+Perde Corpo a Corpo, aumenta la Gittata di 1 grado,
+–
+Rinforzata
+permette all’arma di avere una mod alla Bocca +1 +25 Scienza! 1
+Canna Migliorata Migliorata +1 D C +0,5 +26 Scienza! 1
+Separatore A Dispersione -1 D C , ottiene Propagato, ottiene Imprecisa +0,5 +31 –
+MOD AL CONDENSATORE
+Agitatore Fotonico Agitato +1 D C , ottiene Violento +0,5 +35 Scienza! 2
+Condensatore
+Potenziato Potenziato +1 D C , -1 Cadenza di Fuoco – +35 –
+Sintonizzatore di
+Onde Beta Incendiario Ottiene Persistente – +30 –
+Stimolatore Fotonico Stimolato Ottiene Violento – +30 Scienza! 1
+MOD ALL’IMPUGNATURA
+Impugnatura da
+Tiratore Esperto
+Da Tiratore
+Esperto Rimuove Impreciso, ottiene Penetrante 1 – +10 Fanatico delle
+Armi 1
+MOD AL MIRINO
+Mirino Corto Con Mirino Ottiene Di Precisione +0,5 +11 –
+Mirino Corto
+Visione Notturna
+Visione
+Notturna Ottiene Di Precisione, ottiene Visione Notturna +0,5 +38 Scienza! 2
+Mirino da
+Ricognizione
+Mirino Lungo
+Visione Notturna
+Da
+Ricognizione Ottiene Di Precisione, ottiene Da Ricognizione +0,5 +59 Scienza! 3
+Mirino Lungo Con Mirino Ottiene Di Precisione, aumenta la Gittata di 1 grado +0,5 +29 Scienza! 2
+Visione
+Notturna
+Ottiene Di Precisione, ottiene Visione Notturna,
+aumenta la Gittata di 1 grado +0,5 +50 Scienza! 3
+Mirino Reflex Tattico Può ritirare il dado del Punto di Impatto – +14 –
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+105
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+ARMI PESANTI
+ARMA PESANTE TIPO DI
+ARMA
+GRADO DI
+DANNO
+EFFETTI DEL
+DANNO
+TIPO DI
+DANNO
+CADENZA
+DI FUOCO GITTATA QUALITÀ PESO COSTO RARITÀ
+Fat Man Armi
+Pesanti 21 D C
+Dirompente,
+Radioattivo,
+Violento
+Fisico 0 M
+A Due Mani,
+Esplosivo,
+Impreciso
+15,5 512 4
+Inceneritore
+pesante
+Armi
+Pesanti 5 D C
+Persistente,
+Propagato,
+Raffica
+Da
+Energia 3 M A Due Mani,
+Invalidante 10 350 4
+Junk Jet Armi
+Pesanti 6 D C– Fisico 1 M A Due Mani 15 285 3
+Lanciafiamme Armi
+Pesanti 3 D C
+Persistente,
+Propagato,
+Raffica
+Da
+Energia 4 R
+A Due Mani,
+Impreciso,
+Invalidante
+8 137 3
+Lanciamissili Armi
+Pesanti 11 D C– Fisico 0 L A Due Mani,
+Esplosivo 10,5 314 4
+Laser Gatling Armi
+Pesanti 3 D C Penetrante 1,
+Raffica
+Da
+Energia 6 M
+A Due Mani,
+Gatling,
+Impreciso
+9,5 804 3
+Mitragliatore a
+Canne Rotanti
+Armi
+Pesanti 3 D C Propagato,
+Raffica Fisico 5 M
+A Due Mani,
+Gatling,
+Impreciso
+13,5 382 2
+C»plicazi÷i delle Armi Pesanti
+Qui di seguito sono suggerite alcune problematiche che potreb-
+bero insorgere se un giocatore dovesse ottenere un 20 alla sua
+prova mentre sta usando un’Arma Pesante. Le complicazioni
+vengono risolte dopo aver effettuato una prova di abilità, per cui
+nessuno dei seguenti risultati può evitare un attacco che è entrato.
+ Sprecone: Il personaggio ha sparato più di quanto pensi.
+Perde un ulteriore colpo di munizioni per quell’arma.
+ Click...: Il personaggio preme di nuovo il grilletto, ma
+non succede niente. L’arma si è inceppata, lo sparo non
+si è innescato, o magari è solo finito il caricatore. Ad
+ogni modo, si deve ricorrere all’azione minore Interagire
+sull’arma prima di poterla usare di nuovo.
+ Logora e distrutta: L’arma ha visto giorni migliori e
+non funziona più bene come una volta. Il grado di danno
+dell’arma viene ridotto di 1 o perde uno dei suoi effetti di
+danno, che possono essere recuperati se viene riparata.
+Se non è la prima volta che accade, il GM può decidere
+che si tratta di una rottura definitiva.
+ Rinculo potente: Il peso e il terribile rinculo dell’arma
+sono un po’ troppo per il personaggio, che nel prossimo
+turno non potrà fare azioni di movimento o Scatto per-
+ché deve mantenere l’equilibrio.
+Vittorio Emanuele Veloccia - 546448106 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+Mod alle Armi Pesanti
+A differenza di quanto accade con le Armi Leggere e quelle a Energia, le armi di questa sezione che possono essere modifi-
+cate tollerano solo poche mod, che sono specifiche per ogni arma. Tutte le mod elencate riportano, oltre all’abilità richiesta per
+essere installate, anche se serve un qualche talento.
+FAT MAN
+Munizioni: MiniNuke
+La Catapulta Nucleare M42 è un’arma a spalla di sup-
+porto alla fanteria che lancia a breve distanza testate
+nucleari tattiche compatte (le MiniNuke, grandi
+all’incirca quanto un pallone da football) per infliggere
+danni pesanti all’interno della posizione bersagliata.
+LASER GATLING
+Un laser gatling può montare una per tipo delle
+seguenti modifiche, da installare con l’abilità Scienza.
+Munizioni: Celle di Fusione o Nucleo di Fusione
+Ricordano alcune mod delle Armi a Energia, ma a causa
+Il laser gatling è un’arma a laser con una enorme cadenza
+delle dimensioni dell’arma sono in qualche modo più
+di fuoco che si serve di una serie di canne rotanti che spa-
+grosse e hanno degli effetti leggermente diversi.
+rano velocemente una dopo l’altra per produrre una deva-
+stante pioggia di impulsi laser. I singoli impulsi non sono
+molto potenti, ma sommati insieme possono distruggere
+praticamente qualsiasi bersaglio. Possono essere azionati
+con qualsiasi fonte d’energia abbastanza potente, e seb-
+bene possano funzionare con le celle di fusione, la loro
+cadenza di fuoco fa sì che le esauriscano quasi subito. La
+maggior parte di chi li utilizza si affida a fonti di energia
+maggiori, come un nucleo di fusione.
+Mod Specifiche per Laser Gatling
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+MOD ALLA CANNA
+Canne a
+Caricamento A Caricamento +4 D C , -3 Cadenza di Fuoco, aumenta la
+Gittata di 1 Grado +5 +357 Scienza! 4
+MOD AL CONDENSATORE
+Agitatore Fotonico Agitato +1 D C , ottiene Violento +1,5 +132 Scienza! 3
+Condensatore
+Potenziato Potenziato +1 D C +0,5 +94 –
+Sintonizzatore di
+Onde Beta Incendiario Ottiene Persistente +0,5 +57 –
+Stimolatore Fotonico Eccitato Ottiene Violento +0,5 +19 Scienza! 3
+MOD AL MIRINO
+Mirino Reflex Tattico Perde Impreciso +0,5 +169 Scienza! 4
+MOD ALL’UGELLO
+Concentratore
+di Raggio Concentrato Ottiene Penetrante 1, aumenta la Gittata
+di 1 grado
+– +22 –
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+107
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+INCENERITORE PESANTE
+Munizioni: Combustibile per Lanciafiamme
+Proprio come un lanciafiamme, anche l’inceneritore
+pesante riversa una miscela incendiata sul bersaglio
+per bruciarlo, ma la differenza sta nel fatto che sembra
+lanciare una serie di palle di fuoco con una traietto-
+ria ad arco, proprio come un lanciagranate, le quali
+esplodono sul colpo e appiccano il fuoco non appena il
+combustibile spruzza il bersaglio.
+Speciale: Quando utilizza un Junk Jet, il personaggio
+può scegliere di sparare qualsiasi oggetto stia portando.
+Per ogni ulteriore colpo speso per l’attacco, sceglie un
+oggetto aggiuntivo. Gli oggetti devono essere abbastanza
+piccoli da entrare in una mano per essere caricati nella
+tramoggia. Alla fine della scena, il giocatore può tirare
+1 D C per ogni oggetto lanciato: se ottiene un Effetto,
+l’oggetto è sopravvissuto al lancio e può riaverlo indietro.
+Un Junk Jet può montare una per tipo delle seguenti
+modifiche, che sono specifiche e vengono installate
+con l’abilità Riparare.
+JUNK JET
+Munizioni: Qualsiasi Cosa
+Il Junk Jet è un’arma pesante artigianale in grado di
+sparare qualsiasi cosa. Qualsiasi oggetto che venga cari-
+cato nella tramoggia viene poi lanciato con una potenza
+letale dalla bocca dell’arma. Ciò lo rende ovviamente
+molto utile in situazioni in cui c’è abbondanza di cian-
+frusaglie inutili e le vere munizioni scarseggiano.
+Mod Specifiche per Junk Jet
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+MOD ALLA BOCCA
+Modulo di
+Combustione Infuocato Ottiene Persistente (Energia) +0,5 +130 Fanatico delle Armi 3,
+Scienza! 1
+Modulo di
+Elettrificazione Elettrificato Ottiene Violento,
+i danni diventano da Energia +0,5 +70 Fanatico delle Armi 2,
+Scienza! 1
+MOD AL CALCIO
+Calcio per
+Compensazione
+del Rinculo
+A Rinculo
+Compensato + 1 Cadenza di Fuoco +1 +40 –
+MOD ALLA CANNA
+Canna Lunga Lunga Aumenta la Gittata di 1 grado +1 +20 Fanatico delle Armi 1
+MOD AL MIRINO
+Mirino Gunner Tattico Può ritirare il dado del Punto di Impatto +0,5 +5 –
+Vittorio Emanuele Veloccia - 546448108 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+LANCIAFIAMME
+Munizioni: Combustibile per Lanciafiamme
+I lanciafiamme sono armi che spruzzano in un’area una
+miscela di carburante incendiato, creando essenzial-
+mente un getto di fiamme che può bruciare o appiccare
+il fuoco al bersaglio a distanza. Ideali per fare piazza
+pulita di foglie morte, delinquenti e bunker fortificati!
+Un lanciafiamme può montare una per tipo delle
+seguenti modifiche, che sono specifiche e devono
+essere installate con l’abilità Riparare.
+Mod Specifiche per Lanciafiamme
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+MOD ALLA CANNA
+Canna Lunga Lunga Perde Impreciso +1 +28 Fanatico delle Armi 1
+MOD AL COMBUSTIBILE
+Napalm Al Napalm +1 D C +3,5 +59 Fanatico delle Armi 1
+MOD AL SERBATOIO PROPELLENTE
+Serbatoio Grande Alta Capacità +1 Cadenza di Fuoco +1,5 +28 Fanatico delle Armi 1
+Serbatoio Enorme Massima
+Capacità +2 Cadenza di Fuoco +3 +34 Fanatico delle Armi 2
+MOD ALL’UGELLO
+Ugello di
+Compressione Compresso +1 D C Ugello Vaporizzatore Vaporizzante +1 D C , Violento – +22 Fanatico delle Armi 1
+– +47 Fanatico delle Armi 2
+LANCIAMISSILI
+Munizioni: Missili
+Il lanciamissili modulare, un’arma polivalente molto
+sofisticata ed estremamente adattabile che è entrata
+a far parte dell’arsenale americano, è più piccolo e
+maneggevole del modello precedente. È composto da
+un tubo di lancio in due parti, il meccanismo di lan-
+cio, le staffe di fissaggio, un mirino a tutto campo e un
+supporto per un sistema di guida. È un’arma a retroca-
+rica che viene caricata alzando la sezione anteriore del
+tubo di lancio e facendo scivolare dentro il missile .72
+ad alette stabilizzatrici. La parte posteriore del tubo è
+progettata per disperdere in maniera sicura i gas del
+lancio, facendo sì che si possa sparare anche da luoghi
+chiusi. Nella Zona Contaminata si possono trovare
+lanciamissili di altre forme e modelli, ma questo tipo è
+abbastanza comune da essere considerato lo standard.
+Un lanciamissili può montare una per tipo delle
+seguenti modifiche, che sono specifiche e vengono
+installate con l’abilità Riparare.
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+109
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+Modifiche per Lanciamissili
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+MOD ALLA BOCCA
+Baionetta Con Baionetta
+Triturante
+Arma da Mischia, infligge 4 D C danni
+Fisici Penetranti 1 +0,5 +30 –
+Stabilizzatore Con
+Rompifiamma Ottiene Penetrante 1 +1 +60 Fanatico delle Armi 2
+MOD ALLA CANNA
+Canna Tripla A Canna Tripla +1 Cadenza di Fuoco Canna Quadrupla A Canna
+Quadrupla +2 Cadenza di Fuoco +8 +143 Fanatico delle Armi 2
++10 +218 Fanatico delle Armi 3
+MOD AL MIRINO
+Computer di
+Puntamento Di Puntamento
+Quando si mira a un bersaglio, questo non
+ha alcun beneficio derivante da copertura,
+inoltre il bonus per la mira si applica
+al prossimo attacco in qualsiasi turno
+successivo della scena
++3,5 +293 Fanatico delle Armi 2,
+Scienza! 2
+Mirino Con Mirino Ottiene Di Precisione +3 +143 Fanatico delle Armi 2
+Mirino Visione
+Notturna Notturna Visione Notturna Ottiene Di Precisione, ottiene Visione
++3 +248 Fanatico delle Armi 4,
+Scienza! 1
+MITRAGLIATORE A CANNE ROTANTI
+mano da supporto. L’elevata rapidità di fuoco implica
+Munizioni: 5mm
+che può causare danni devastanti a scapito di un
+consumo altissimo delle munizioni, perciò è molto
+Il mitragliatore a canne rotanti è un’arma motorizzata
+difficile che ne abbiano sempre a disposizione.
+per il fuoco rapido simile al gatling, comunemente
+usata dall’esercito o da fazioni minori che sono riu-
+scite ad impossessarsene. Si possono trovare fissati alle
+porte sui Vertibird o come armi di artiglieria pesante a
+Un mitragliatore a canne rotanti può montare una per
+tipo delle seguenti modifiche, che sono specifiche e
+vengono installate con l’abilità Riparare.
+Mod Specifiche per Mitragliatore a Canne Rotanti
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+MOD ALLA BOCCA
+Trituratore Con Baionetta
+Triturante
+Arma da Mischia, infligge un Numero di
+D C danni Fisici pari alla Cadenza di Fuoco +2,5 +5 Fanatico delle Armi 2
+MOD ALLA CANNA
+Canna Accelerata Ad Alta Velocità +1 D C , riduce la Gittata di 1 grado,
++1 Cadenza di Fuoco Ad Alta Potenza +2 D C , -2 Cadenza di Fuoco +2,5 +45 Fanatico delle Armi 3
++1,5 +75 Fanatico delle Armi 4
+Canna Tripla MOD AL MIRINO
+Mirino Gunner Tattico Rimuove Impreciso +0,5 +68 –
+Vittorio Emanuele Veloccia - 546448110 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+ARMI DA MISCHIA
+ARMA DA MISCHIA TIPO DI ARMA GRADO DI
+EFFETTI DEL
+TIPO DI
+DANNO
+DANNO
+DANNO QUALITÀ PESO COSTO RARITÀ
+Asse Arma da Mischia 4 D C – Fisico A Due Mani 1,5 20 0
+Bastone da Passeggio Arma da Mischia 3 D C – Fisico – 1 10 0
+Calcio dell’Arma
+(1 mano) Arma da Mischia 2 D C Stordente Fisico ————— Come una Pistola —————
+Calcio dell’Arma Arma da Mischia 3 D C Stordente Fisico —— Come una Pistola A Due Mani ——
+Chiave Idraulica Arma da Mischia 3 D C – Fisico – 1 30 1
+Colpo Senza Armi Senza Armi 2 D C – Fisico – – – –
+Coltello a
+Serramanico Arma da Mischia 2 D C Penetrante 1 Fisico Occultato 0,5 20 0
+Coltello da
+Combattimento Arma da Mischia 3 D C Penetrante 1 Fisico – 0,5 25 1
+Guanto da Deathclaw Senza Armi 5 D C Penetrante 1 Fisico – 5 75 3
+Guantone da Boxe Senza Armi 3 D C Stordente Fisico – 0,5 10 1
+Leva per Ruote Arma da Mischia 3 D C – Fisico – 1 25 1
+Machete Arma da Mischia 3 D C Penetrante 1 Fisico – 1 25 1
+Manganello Arma da Mischia 3 D C – Fisico – 1 15 1
+Martello Demolitore Arma da Mischia 5 D C – Fisico A Due Mani 6 40 2
+Mattarello Arma da Mischia 3 D C – Fisico – 0,5 10 0
+Mazza da Baseball Arma da Mischia 4 D C – Fisico A Due Mani 1,5 25 1
+Mazza da Baseball
+in Alluminio Arma da Mischia 5 D C – Fisico A Due Mani 1 32 2
+Pietra Senza Armi 2 D C Violento Fisico Da Lancio (R) 0,5 – –
+Pugno Potenziato Senza Armi 4 D C Stordente Fisico – 2 100 2
+Ripper Arma da Mischia 4 D C Violento Fisico – 3 50 2
+Shishkebab Arma da Mischia 5 D C Penetrante 1 energy Parata 1,5 200 3
+Spada Arma da Mischia 4 D C Penetrante 1 Fisico Parata 1,5 50 2
+Stecca da Biliardo Arma da Mischia 3 D C – Fisico A Due Mani 0,5 10 0
+Super Martello Arma da Mischia 6 D C Dirompente Fisico A Due Mani 10 180 3
+Tirapugni Senza Armi 3 D C – Fisico Occultato <0,5 10 1
+Tubo di Piombo Arma da Mischia 3 D C – Fisico – 1,5 15 0
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+111
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+Mod alle Armi da Mischia
+Al contrario delle armi a distanza, le armi da mischia
+C»plicazi÷i delle Armi da Mischia
+possono montare al massimo una modifica. Oltretutto,
+quelle che possono essere modificate elencano le specifiche
+mod che possono montare, che sono esclusive per ciascuna
+arma. Ogni mod riporta l’abilità necessaria per installarla
+e, qualora siano richiesti, anche i talenti necessari.
+Qui di seguito sono suggerite alcune problematiche che
+potrebbero insorgere durante il tiro del d20 mentre si usa
+un’Arma da Mischia. Le complicazioni vengono risolte dopo
+aver effettuato una prova di abilità, per cui nessuno dei
+seguenti risultati può evitare un attacco che è entrato.
+ Sbilanciata: l’attacco lascia il personaggio incapace di
+difendersi efficacemente. La difesa diminuisce di 1 fino
+all’inizio del suo prossimo turno.
+ Incastrata: L’arma del personaggio si è incastrata in qual-
+cosa... forse nel terreno, forse nel nemico, ma ad ogni modo
+dovrà lasciare la presa sull’arma (non potendola quindi usare,
+ovviamente) o recuperarla usando l’azione minore Interagire.
+ Logora e Distrutta: L’arma ha visto giorni migliori e
+non funziona più bene come una volta. Il grado di danno
+dell’arma viene ridotto di 1 o perde uno dei suoi effetti di
+danno, che possono essere recuperati se viene riparata.
+Se non è la prima volta che accade, il GM può decidere
+che si tratta di una rottura definitiva.
+ASSE
+Poco più che delle lunghe tavole di legno con un
+manico avvolto nel nastro adesivo, le assi sono della
+armi pesanti da mischia solitamente predilette dai
+supermutanti, che possiedono la forza per utilizzarle
+in maniera efficace.
+Un’asse può montare una delle seguenti modifiche,
+che vengono installate con l’abilità Riparare.
+Mod Specifiche per Assi
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Chiodata Chiodata + 1 D C , ottiene Penetrante 1 +0,5 +6 –
+Pungente Pungente + 2 D C +0,5 +9 Fabbro 1
+Tagliente Tagliente +2 D C , ottiene Persistente +1 +12 Fabbro 1
+BASTONE DA PASSEGGIO
+Un semplice bastone di quelli usati come ausilio da
+chi non cammina bene, il bastone da passeggio è
+abbastanza robusto da poter essere usato come arma
+improvvisata se non ci sono altre opzioni.
+Un bastone da passeggio può montare una delle seguenti
+modifiche, che vengono installate con l’abilità Riparare.
+Mod Specifiche per Bastoni da Passeggio
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Chiodato Chiodato +1 D C , ottiene Penetrante 1 – +3 –
+Spinato Spinato +1 D C , ottiene Penetrante 1 – +3 –
+CHIAVE IDRAULICA
+Si tratta di una pesante chiave idraulica regolabile in
+metallo, abbastanza lunga da poter essere utilizzata
+come arma da mischia artigianale. Spesso le ganasce
+regolabili sono sfruttate per tenere degli accessori,
+fatto che la rende molto semplice da modificare.
+Una chiave idraulica può montare una delle seguenti
+modifiche, che vengono installate con l’abilità
+Riparare. La difficoltà di ogni prova per installare una
+mod su una chiave idraulica è ridotta di 1.
+Vittorio Emanuele Veloccia - 546448112 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+Mod Specifiche per Chiavi Idrauliche
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Molto Pesante Pesante +3 D C +1 +22 Fabbro 2
+Pesante Bilanciata +2 D C +0,5 +12 Fabbro 1
+Pungente Pungente +2 D C , ottiene Penetrante 1 +0,5 +13 Fabbro 1
++1 D C , se l’attacco ha successo, si possono
+Uncinata Uncinata
+spendere 2 PA per disarmare l’avversario,
+– +9 –
+scagliando via l’arma che impugnava
+COLTELLO A SERRAMANICO
+Il coltello a serramanico è un’arma da mischia molto
+comune. Le sue piccole dimensioni lo rendono
+maneggevole e adatto a essere introdotto di nascosto
+in zone riservate, anche se non fa tanti danni quanto
+altri coltelli o spade più grandi.
+I coltelli a serramanico possono montare la seguente
+modifica, che viene installata con l’abilità Riparare.
+Mod Specifica per Coltelli a Serramanico
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Lama Seghettata Seghettato +1 D C , ottiene Persistente – +10 Fabbro 1
+COLTELLO DA COMBATTIMENTO
+Spesso i soldati (e chi vuole imitarli) si portano dietro
+un coltello che serve sia per combattere, che per uso
+quotidiano. Di solito i Coltelli da Combattimento che
+si trovano nella Zona Contaminata sono dello stesso
+tipo di quelli in dotazione ai soldati dell’esercito
+americano durante la Grande Guerra, con una lama
+tronca a filo singolo. Si tratta di un’arma molto leggera
+e resistente, fatta per essere usata spesso.
+I Coltelli da combattimento possono montare una
+delle seguenti modifiche, che vengono installate con
+l’abilità Riparare.
+Mod Specifiche per Coltelli da Combattimento
+MODS DESCRITTORE EFFETTI PESO COSTO TALENTI
+Lama Seghettata Seghettato +1 D C , ottiene Persistente – +12 Fabbro 1
+Lama Stealth Stealth +1 D C , ottiene Persistente, +2 D C per gli
+– +18 Fabbro 2
+Attacchi a Sorpresa
+GUANTO DA DEATHCLAW
+Fatto con le dita mozzate e gli artigli di un deathclaw
+montati su un polsino stretto al polso, il Guanto con-
+sente a chi lo indossa di colpire con un po’ della forza
+del precedente proprietario degli artigli.
+Un guanto da deathclaw può montare la seguente
+modifica, che viene installata con l’abilità Riparare.
+Mod Specifica per Guanti da Deathclaw
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
++1 D C , se l’attacco ha successo, si possono
+Artiglio Extra Grande
+spendere 2 PA per disarmare l’avversario,
++1 +22 –
+scagliando via l’arma che impugnava
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+113
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+GUANTONE DA BOXE
+Un grosso guanto di pelle usato per proteggere mani e
+polsi quando si tirano pugni. Originariamente usato per
+gli incontri sportivi, un lottatore esperto li può usare
+per piazzare dei forti colpi in combattimenti concitati,
+soprattutto se li ha in qualche modo modificati.
+Un Guantone da Boxe può montare una delle
+seguenti modifiche, che vengono installate con
+l’abilità Riparare.
+Mod Specifiche per Guantoni da Boxe
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Chiodato Chiodato Ottiene Penetrante 1 – +3 –
+Pungente Pungente +1 D C , ottiene Penetrante 1 – +4 Fabbro 1
+Rivestimento Piombato Piombato +2 D C +0,5 +7 Fabbro 1
+LEVA PER RUOTE
+Si tratta di un semplice arnese a forma di L che si
+trova solitamente nelle auto e nei garage e che può
+diventare un’utile arma, se non la si usa per cambiare
+le gomme dell’auto.
+Una Leva per Ruote può montare la seguente modifica,
+che viene installata con l’abilità Riparare.
+Mod Specifica per Leve per Ruote
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Tagliente Tagliente + 1 D C , ottiene Persistente +0,5 +12 Fabbro 2
+MACHETE
+Si tratta di un lungo coltello affilato pensato per farsi
+strada attraverso una fitta vegetazione, fatto che lo
+rende sia un oggetto molto utile che un’arma efficace.
+Alcuni di quelli che si possono trovare nella Zona
+Contaminata sono veri e propri machete, mentre altri
+sono delle armi artigianali, composti generalmente da
+Mod Specifica per Machete
+una lama affilata di metallo (presa per esempio da un
+tagliaerba) che viene inchiodata, legata, incollata o in
+qualche altro modo fissata a un semplice manico.
+I machete possono montare la seguente modifica, che
+è specifica e viene installata con l’abilità Riparare:
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Lama Seghettata Seghettato + 2 D C , ottiene Persistente – +12 Fabbro 2
+MANGANELLO
+Un bastone telescopico come quelli usati dalla polizia
+e dalle forze di sicurezza private prima della Grande
+Guerra. La sicurezza della Vault-tec ne aveva una riserva
+in ogni caveau, per cui sono tutt’oggi molto diffusi
+come un’arma da mischia leggera da intimidazione.
+Un manganello può montare una delle seguenti modi-
+fiche, che vengono installate con l’abilità Riparare:
+Vittorio Emanuele Veloccia - 546448114 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+Mod Specifiche per Manganelli
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Elettrificato Fulminante +2 D C , i danni diventano da Energia – +15 Fabbro 2, Scienza! 1
+Stordente Stordente +3 D C , ottiene Stordente, i danni diventano
+– +30 Fabbro 2, Scienza! 1
+da Energia
+MARTELLO DEMOLITORE
+I martelli demolitori sono armi primitive che, prima
+della guerra, venivano usate come utensili per fare
+lavori edilizi o distruggere cose. Sebbene di solito non
+venga considerato un’arma potente, una persona forte
+(o un supermutante) lo può brandire come una clava e
+sfruttarne appieno il peso.
+Un martello demolitore può montare una delle
+seguenti modifiche, che vengono installate con
+l’abilità Riparare.
+Mod Specifiche Per Martelli Demolitori
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Pesante Pesante +2 D C +4,5 +30 Fabbro 2
+Pungente Pungente +1 D C ottiene Penetrante 1 +2,5 +18 Fabbro 2
+MATTARELLO
+È un solido cilindro di legno che si può trovare in qual-
+siasi cucina. Se non c’è nulla di più pericoloso, è abba-
+stanza minaccioso da far desistere diversi aggressori.
+Un mattarello può montare una delle seguenti modifi-
+che, che vengono installate con l’abilità Riparare.
+Mod Specifiche Per Mattarelli
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Affilato Affilato +1 D C , ottiene Persistente – +3 –
+Chiodato Chiodato +1 D C , ottiene Penetrante 1 – +3 –
+MAZZA DA BASEBALL
+Una volta le mazze da baseball erano usate nell’omonimo
+sport, considerato il passatempo numero uno dell’A-
+merica nell’epoca antecedente alla Guerra. Duecento
+anni dopo, sono state riconvertite in delle rozze, ma
+efficaci armi da mischia. La maggior parte è formata da
+un singolo ciocco di legno (solitamente frassino, ma
+spesso vengono usati altri legni duri), ma se ne pos-
+sono trovare alcune in alluminio, più leggere e dure.
+Una mazza da baseball può montare una delle seguenti
+modifiche, che vengono installate con l’abilità
+Riparare. Si possono apportare mod a una mazza in
+alluminio solo se si possiede il talento Fabbro 1.
+Mod Specifiche per Mazze da Baseball
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Affilata Affilata +1 D C , ottiene Persistente +0,5 +7 –
+Catena Con Catena +2 D C +0,5 +10 Fabbro 1
+Chiodata Chiodata +1 D C , ottiene Penetrante 1 +0,5 +7 –
+Spinata Spinata Ottiene Penetrante 1 – +5 –
+Tagliente Tagliente +2 D C , ottiene Persistente +1 +12 Fabbro 2
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+115
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+PUGNO POTENZIATO
+I Pugni Potenziati non sono altro che guanti o avam-
+bracci pesanti rinforzati con un robusto ariete pneu-
+matico sulle nocche. Pensati per essere utilizzati dalle
+squadre di demolizione, sono stati anche impiegati per
+scopi militari come fare breccia nelle fortificazioni e fare
+piazza pulita delle barricate nemiche... assieme ai nemici.
+Un pugno potenziato può montare una delle seguenti
+modifiche, che vengono installate con l’Abilità Riparare.
+Mod Specifiche per Pugno Potenziato
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Pungente Pungente +2 D C , ottiene Penetrante 1 +0,5 +45 Fabbro 2
+Serpentina Riscaldante Bruciante +2 D C , i danni diventano da Energia – +100 Fabbro 3
+RIPPER
+Il ripper è una piccola sega elettrica militare portatile
+ampiamente impiegata nei conflitti armati antecedenti
+alla Grande Guerra, che è in grado di tagliare con facilità
+la carne come il metallo. Del ripper è stata fatta anche una
+versione in scala ridotta, disponibile sul mercato generale.
+I ripper possono montare una delle seguenti modifiche,
+che devono essere installate con l’abilità Riparare.
+Mod Specifiche per Ripper
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
++1 D C , quando un attacco ha successo può
+Lama Curva Ricurva
+spendere 2 PA per disarmare l’avversario,
++0,5 +15 –
+scagliando lontano un’arma impugnata
+Lama Estesa Estesa +1 D C , ottiene Persistente +1,5 +25 Fabbro 3
+SHISHKEBAB
+Lo Shishkebab è una “Spada Fiammeggiante” artigianale
+di cui si possono trovare diverse versioni nella Zona
+Contaminata: alcune costruite partendo da una spada
+vera e propria, mentre altre formate da diversi compo-
+nenti. Tutte, però, hanno alcuni elementi in comune:
+una qualche sorta di serbatoio o bombola (che possono
+essere collegati all’arma con un tubo e trasportati da chi
+la utilizza, o direttamente attaccati a essa), una fiamma
+pilota e un meccanismo d’innesco solitamente rubato da
+Mod Specifica per Shishkebab
+una motocicletta. Quando vengono usati, il combusti-
+bile viene fatto scorrere lungo la lama e incendiato dalla
+fiamma pilota, che la ricopre di fiamme.
+Lo Shishkebab può montare la seguente modifica, che
+viene installata con l’abilità Riparare:
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Getti di Fiamme
+Ulteriori Rovente +1 D C , ottiene Persistente +0,5 +100 Fabbro 3
+Vittorio Emanuele Veloccia - 546448116 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+SPADA
+Le spade sono antiche tanto quanto le guerre e fino
+alla Grande Guerra sono sempre state diffuse fra i sol-
+dati (soprattutto gli ufficiali) in tutto il mondo come
+simbolo di status e prestigio. Molte delle spade che si
+possono trovare nella Zona Contaminata sono quelle
+appartenute agli ufficiali cinesi durante la Grande
+Guerra, spesso prese dai campi di battaglia come trofei
+dalle truppe americane, mentre altre sono pezzi da
+museo o imitazioni provenienti da collezioni private,
+spesso simili alle sciabole utilizzate dalla cavalleria
+durante la Rivoluzione Americana.
+Le spade possono montare una delle seguenti modi-
+fiche, che sono specifiche e devono essere installate
+con l’Abilità Riparare.
+Mod Specifiche per Spade
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Elettrificata Stordente Stordente + 2 D C , i danni diventano da Energia,
+ottiene Stordente
+– +100 Fabbro 3,
+Scienza! 1
+Lama Elettrificata Elettrificata + 1 D C , i danni diventano da Energia – +50 Fabbro 2,
+Scienza! 1
+Lama Seghettata Seghettata Ottiene Persistente – +25 Fabbro 2
+Lama Seghettata
+Elettrificata
+Elettrificata
+Seghettata
++ 1 D C , i danni diventano da Energia,
+– +75 Fabbro 3,
+ottiene Persistente (Fisico)
+Scienza! 1
+STECCA DA BILIARDO
+Si tratta di un pezzo di legno lungo e sottile, usato in
+giochi come il biliardo. Se non c’è nulla di più pesante,
+può essere utile come arma da mischia.
+Una stecca da biliardo può montare una delle
+seguenti modifiche, che vengono installate con
+l’abilità Riparare.
+Mod Specifiche per Stecche da Biliardo
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Affilata Affilata +1 D C , ottiene Persistente – +3 –
+Spinato Spinata +1 D C , ottiene Penetrante 1 – +2 –
+SUPER MARTELLO
+I Super Martelli non sono che versioni potenziate di
+un normale martello. I vecchi modelli d’anteguerra
+erano dotati di dispositivi di stoccaggio di energia
+cinetica per aumentare la forza d’impatto, mentre
+quelli successivi montano un piccolo motore a razzo
+Un super martello può montare una delle
+all’interno della testa del martello per accelerare il
+seguenti modifiche, che vengono installate con
+movimento e colpire più forte.
+l’abilità Riparare.
+Mod Specifiche Per Super Martelli
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Serpentina Riscaldante Bruciante +1 D C , i danni diventano da Energia – +180 Fabbro 2
+Elettrificata Stordente Stordente +2 D C , ottiene Stordente, i danni diventano
+– +360 Fabbro 3,
+da Energia
+Scienza! 1
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+117
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+TIRAPUGNI
+Creata nell’antichità, quest’arma è comunque molto
+diffusa nella Zona Contaminata che si è creata dopo la
+Grande Guerra. Il tirapugni d’ottone, o noccoliere, ha
+la forma di quattro anelli di metallo saldati in un arco
+convesso, con un paracolpi attaccato alla parte concava.
+Il combattente si infila gli anelli sulle dita, con il para-
+colpi premuto contro il palmo della mano. Quando si
+tira un pugno, il tirapugni d’ottone assorbe la maggior
+parte dell’impulso dell’impatto, riversando buona parte
+dell’energia cinetica del pugno sul bersaglio attraverso
+la superficie d’impatto, più piccola, degli anelli di
+metallo. Ciò aumenta drasticamente le probabilità di
+distruzione dei tessuti e danni alle ossa.
+Un tirapugni può montare una delle seguenti modifi-
+che, che vengono installate con l’abilità Riparare.
+Mod Specifiche per Tirapugni
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Affilato Affilato Ottiene Persistente – +3 –
+Chiodato Chiodato Ottiene Penetrante 1 – +3 –
+Pungente Pungente +1 D C , ottiene Penetrante 1 – +4 Fabbro 1
+Tagliente Tagliente +1 D C , ottiene Persistente – +5 Fabbro 1
+TUBO DI PIOMBO
+Si tratta di un lungo e pesante tubo in metallo (nor-
+malmente piombo) con un’impugnatura di nastro
+adesivo a un’estremità e alcuni dadi e bulloni attaccati
+all’altra. Violento, semplice e fa un male cane.
+Un tubo di piombo può montare una delle seguenti modi-
+fiche, che vengono installate con l’abilità Riparare.
+Mod Specifiche per Tubi di Piombo
+MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
+Chiodato Chiodato +1 D C , ottiene Penetrante 1 +0,5 +4 –
+Pesante Pesante +2 D C +1 +11 Fabbro 2
+Vittorio Emanuele Veloccia - 546448118 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+ARMI DA LANCIO
+ARMA DA LANCIO TIPO DI
+GRADO DI
+EFFETTI DEL
+TIPO DI
+ARMA
+DANNO
+DANNO
+DANNO QUALITÀ PESO COSTO RARITÀ
+Coltelli da Lancio Da Lancio 3 D C Penetrante 1 Fisico Da Lancio (R),
+Occultabili, Silenziati <0,5 10 1
+Giavellotto Da Lancio 4 D C Penetrante 1 Fisico Da Lancio (M), Silenziato 2 10 1
+Tomahawk Da Lancio 4 D C Penetrante 1 Fisico Da Lancio (R), Silenziato <0,5 15 2
+COLTELLI DA LANCIO
+Si tratta di piccoli coltelli affilati progettati specifica-
+C»plicazi÷i delle Armi da Lancio
+mente per essere lanciati. Solitamente sono fatti con
+metalli leggeri, con un manico cavo per ridurre il peso.
+Di per sé fanno poco danno, ma sono leggeri, silen-
+ziosi e rapidi da utilizzare.
+Qui di seguito sono suggerite alcune problematiche che
+potrebbero insorgere se si ottenesse un 20 mentre si effettua
+una prova con un’Arma Da Lancio. Le complicazioni ven-
+gono risolte dopo aver effettuato una prova di abilità, per
+cui nessuno dei seguenti risultati può evitare un attacco che
+è entrato.
+ Sfuggito: Nel prendere la propria arma, il personaggio
+ne urta un’altra nella sacca. Un’altra arma da lancio
+dello stesso tipo cade per terra e, a meno che non la
+raccolga, resta persa.
+ Sbilanciato: L’attacco lascia il personaggio incapace di
+difendersi efficacemente. La difesa diminuisce di 1 fino
+all’inizio del suo prossimo turno.
+GIAVELLOTTO
+È una lancia piuttosto corta, di solito non abbastanza
+resistente per il combattimento ravvicinato, che può
+essere lanciata abbastanza lontano.
+TOMAHAWK
+Si tratta di una piccola ascia da battaglia col manico
+corto, molto simile a un’accetta. Più vistoso di un col-
+tello da lancio, un tomahawk lanciato è senza ombra
+di dubbio in grado di impressionare il nemico.
+Vittorio Emanuele Veloccia - 546448
+Capitolo Quattro  EQUIPAGGIAMENTO
+119
+INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
+ESPLOSIVI
+ESPLOSIVO TIPO DI
+GRADO DI
+ARMA
+DANNO EFFETTI DEL DANNO TIPO DI
+DANNO QUALITÀ PESO COSTO RARITÀ
+Bottiglia Molotov Esplosiva 4 D C Persistente energy Da Lancio (M), Esplosiva 0,5 20 1
+Granata a
+Frammentazione Esplosiva 6 D C – Fisico Da Lancio (M), Esplosiva <0,5 50 2
+Granata a Impulsi Esplosiva 6 D C Stordente energy Da Lancio (M), Esplosiva <0,5 100 3
+Granata Nuka Esplosiva 9 D C Violento, Dirompente,
+Radioattivo energy Da Lancio (M), Esplosiva 0,5 100 4
+Granata al Plasma Esplosiva 9 D C – energy Da Lancio (M), Esplosiva <0,5 135 3
+Mina Atomica Esplosiva 9 D C Violento, Dirompente,
+Radioattivo energy Esplosiva, Mina 0,5 100 4
+Mina a
+Frammentazione Esplosiva 6 D C – Fisico Esplosiva, Mina 0,5 50 2
+Mina a Impulsi Esplosiva 6 D C Stordente energy Esplosiva, Mina <0,5 100 3
+Mina al Plasma Esplosiva 9 D C – energy Esplosiva, Mina <0,5 135 3
+Mina a Tappi Esplosiva 6 D C – Fisico Esplosiva, Mina 0,5 75 2
+Palla da Baseball
+Esplosiva Esplosiva 5 D C – Fisico Da Lancio (M), Esplosiva 0,5 40 1
+BOTTIGLIA MOLOTOV
+Si tratta di una bottiglia di vetro (normalmente di
+qualche alcolico) contenente una miscela combusti-
+bile infiammabile, un pochino di olio da motore per
+aiutare le fiamme ad allargarsi e uno straccio imbevuto
+nell’alcol infilato nel collo per fare da miccia. Per
+usarla si accende la miccia e la si lancia verso il bersa-
+glio: la bottiglia si infrange spargendo la miscela, che
+prende rapidamente fuoco per bruciare qualsiasi cosa
+nelle vicinanze. Economica ed efficace.
+C»plicazi÷i degli Esplosivi
+Qui di seguito sono suggerite alcune problematiche che
+potrebbero insorgere se si ottenesse un 20 in una prova mentre
+si usa un Esplosivo. Le complicazioni vengono risolte dopo aver
+effettuato una prova di abilità, per cui nessuno dei seguenti
+risultati può evitare un attacco riuscito, ma le complicazioni che
+emergono da un attacco fallito possono essere esito diverso
+rispetto a quelle di un tiro che ha avuto successo.
+ Danno Collaterale: Nel punto dell’esplosione c’è
+qualcosa di cui il personaggio non si è accorto per tempo
+o che non ha considerato nel lanciare la granata. Il GM
+sceglie qualcosa nella zona che sia di valore o utile per
+il personaggio o un altro PG (o lo aggiunge) che verrà
+danneggiato dall’esplosione.
+ Cilecca: Una qualche parte dell’esplosivo è difettosa
+e non detona. Se l’attacco è fallito e il personaggio ha
+tirato e ottenuto una complicazione, l’esplosivo potrebbe
+non avere alcun effetto (e infliggere 0 danni), invece che
+un effetto ridotto come al solito.
+ Ops...: Al personaggio cade la granata prima di lanciarla.
+Se l’attacco ha fallito e ha tirato e ottenuto più di una com-
+plicazione, probabilmente gli è sfuggita la presa e l’ha fatta
+cadere. La granata infligge il massimo dei danni sul perso-
+naggio e la metà su chiunque si trovi nella stessa zona.
+ Mira Sbagliata: La granata è un po’ fuori bersaglio,
+rimbalza su qualcosa o, ad ogni modo, non finisce pro-
+prio dove avrebbe dovuto. I nemici al riparo all’interno
+della zona tirano +2 dadi di difesa.
+Vittorio Emanuele Veloccia - 546448120 FALLOUT  Il Gioco di Ruolo
+CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
+GRANATA A FRAMMENTAZIONE
+Non è altro che una semplice granata a frammentazione
+formata da un nucleo di esplosivo racchiuso in un invo-
+lucro di metallo progettato per frantumarsi in schegge
+non appena esplode. Sono semplici e molto efficaci:
+basta ricordarsi di lanciare la granata, non la sicura.
+GRANATA A IMPULSI
+Le granate a impulsi emettono un’onda elettroma-
+gnetica che infligge gravi danni alle macchine (come
+robot, synth e Armature Atomiche) nelle vicinanze,
+lasciando ogni creatura vivente incolume.
+Speciale: Le granate a impulsi infliggono danni solo a
+robot, synth, Armature Atomiche (sebbene non a chi le
+indossa) ed altri bersagli meccanici o tecnologici, oltre a
+danneggiare qualsiasi computer nell’area dell’esplosione.
+Contro ogni altro tipo di bersaglio infliggono 0 danni.
+GRANATA AL PLASMA
+Si tratta di un serbatoio pieno di sostanze chimiche
+che, quando scoppiano, si trasformano rapidamente
+in gas ionizzato ad altissime temperature, o plasma.
+L’esplosione di una granata al plasma libera moltissimo
+calore, che è più che sufficiente per compensare la
+mancanza di schegge od onde d’urto.
+Speciale: Le granate al plasma infliggono sia danni Fisici
+che da Energia. Si tira il danno normalmente, per poi
+sottrarre al totale ottenuto il valore di resistenza minore
+che il bersaglio possiede fra RD Fisici e da Energia.
+GRANATA NUKA
+Le granate nuka sono delle piccole armi nucleari
+tattiche portatili il cui uso è estremamente pericoloso
+(non è consigliato farne cadere una), ma devastante-
+mente efficace, simile a quello delle MiniNuke usate
+dal lanciatore Fat Man.
+MINA A FRAMMENTAZIONE
+Molto simile per progettazione e costruzione alle
+granate a frammentazione, le mine a frammentazione
+vengono piazzate per terra e si servono di una lastra a
+pressione o di un sensore di prossimità per innescare
+l’esplosione quando qualcuno si avvicina troppo.
+MINA A IMPULSI
+Questa mina è un potente dispositivo EMP collegato a
+un fuso di prossimità che viene sigillato in un con-
+tenitore di metallo pesante. Sebbene non sia molto
+Vittorio Emanuele Veloccia - 546448
+dannosa per i bersagli organici, infligge gravi danni ai
+nemici robotici, stordendoli o addirittura disattivan-
+doli per sempre.
+Speciale: Le mine a impulsi infliggono danni solo a
+robot, synth, Armature Atomiche (sebbene non a chi
+le indossa) e qualsiasi altro bersaglio meccanico o
+tecnologico, oltre a danneggiare qualsiasi computer
+nell’area dell’esplosione. Contro ogni altro tipo di
+bersaglio infliggono 0 danni.
+MINA A TAPPI
+Le mine a tappi vengono assemblate in maniera gros-
+solana, eppure è un esplosivo formidabile. Si compon-
+gono di un semplice contenitore, come un cestino
+per il pranzo, pieno di tappi di bottiglia e di una rozza
+miscela esplosiva, a cui vengono applicati un sensore
+e un detonatore. La forza dell’esplosione scaraventa i
+tappi a una buona distanza, a velocità tale che diven-
+tano delle vere e proprie schegge.
+Speciale: Quando si costruisce una mina a tappi, si
+possono aggiungere dei tappi in più: ogni 10 tappi il
+danno aumenta di +1 D C . Quando la mina detona,
+bisogna fare due volte il tiro per il grado di danno: la
+cifra ottenuta equivale al numero di tappi intatti che si
+possono ritrovare nell’area della detonazione.
+MINA AL PLASMA
+Queste mine sigillate magneticamente quando vengono
+innescate emettono un’ondata di plasma energizzato
+che abbrustolisce chi ne ha attivato i sensori.
+Speciale: Il plasma infligge sia danni Fisici che da
+Energia. Si tira il danno come sempre, per poi sot-
+trarre al totale ottenuto il valore di resistenza minore
+che il bersaglio possiede fra RD Fisici e da Energia.
+MINA ATOMICA
+È la variante nucleare di una mina terrestre.
+Funzionano esattamente come ogni altra mina, anche
+se l’esplosione assomiglia più a quella di una MiniNuke.
+Ovviamente, ciò implica che infliggono danni sia per
+l’esplosione che per le radiazioni emesse dallo scoppio.
+PALLA DA BASEBALL ESPLOSIVA
+Poco più che una palla da baseball svuotata e riempita
+con miscele esplosive improvvisate. Queste granate sono
+rozze, antiquate e facili da realizzare, e riescono a inflig-
+gere qualche danno a chi si trova a raggio di esplosione.

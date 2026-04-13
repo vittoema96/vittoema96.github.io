@@ -1,0 +1,84 @@
+/* Component-level styles extracted from styles.css */
+
+.tab-button {
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: var(--space-xs) var(--space-s);
+    flex: 1;
+}
+.tab-button.active {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+}
+.tab-button.mini {
+    flex: 0 0 auto;
+}
+
+/* Tags */
+.tags-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    gap: var(--space-s);
+}
+.tag {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: var(--space-xs);
+    padding: var(--space-xs) var(--space-s);
+    font-size: 0.7rem;
+}
+
+/* TODO is !important needed? */
+.tag-empty {
+    background-color: var(--button-background) !important;
+    color: var(--primary-color) !important;
+    border: var(--border-primary-thin) !important;
+}
+.tag-mod {
+    background-color: var(--button-background) !important;
+    color: var(--primary-color) !important;
+}
+
+/* Themed SVGs */
+.themed-svg {
+    /* TODO define a default image-url */
+    /* Use the SVG as a mask */
+    background-color: var(--primary-color);
+    -webkit-mask-image: var(--image-url);
+    mask-image: var(--image-url);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+.themed-svg[data-icon='attack'] { --image-url: url('/img/svg/attack.svg'); }
+.themed-svg[data-icon='bigGuns'] { --image-url: url('/img/svg/bigGuns.svg'); }
+.themed-svg[data-icon='caps'] { --image-url: url('/img/svg/caps.svg'); }
+.themed-svg[data-icon='energyWeapons'] { --image-url: url('/img/svg/energyWeapons.svg'); }
+.themed-svg[data-icon='explosives'] { --image-url: url('/img/svg/explosives.svg'); }
+.themed-svg[data-icon='food'] { --image-url: url('/img/svg/food.svg'); }
+.themed-svg[data-icon='drinks'] { --image-url: url('/img/svg/drinks.svg'); }
+.themed-svg[data-icon='gear'] { --image-url: url('/img/svg/gear.svg'); }
+.themed-svg[data-icon='hp'] { --image-url: url('/img/svg/hp.svg'); }
+.themed-svg[data-icon='luck'] { --image-url: url('/img/svg/luck.svg'); }
+.themed-svg[data-icon='meds'] { --image-url: url('/img/svg/meds.svg'); }
+.themed-svg[data-icon='meleeWeapons'] { --image-url: url('/img/svg/meleeWeapons.svg'); }
+.themed-svg[data-icon='smallGuns'] { --image-url: url('/img/svg/smallGuns.svg'); }
+.themed-svg[data-icon='throwing'] { --image-url: url('/img/svg/throwing.svg'); }
+.themed-svg[data-icon='unarmed'] { --image-url: url('/img/svg/unarmed.svg'); }
+.themed-svg[data-icon='vaultboy'] { --image-url: url('/img/svg/vaultboy.svg'); }
+.themed-svg[data-icon='vaultboy-open-arms'] { --image-url: url('/img/svg/vaultboy-open-arms.svg'); }
+.themed-svg[data-icon='mrHandy'] { --image-url: url('/img/svg/mrHandy.svg'); }
+.themed-svg[data-icon='ghoul'] { --image-url: url('/img/svg/ghoul.svg'); }
+.themed-svg[data-icon='weight'] { --image-url: url('/img/svg/weight.svg'); }
+.themed-svg[data-icon='armor'] { --image-url: url('/img/svg/armor.svg'); }
+/* Currency icons */
+.themed-svg[data-icon='ncrDollars'] { --image-url: url('/img/svg/ncrMoney.svg'); }
+.themed-svg[data-icon='legionDenarius'] { --image-url: url('/img/svg/denarius.svg'); }
+.themed-svg[data-icon='prewarMoney'] { --image-url: url('/img/svg/prewarmoney.svg'); }

@@ -1,0 +1,271 @@
+/* Backdrop */
+.trait-perk-popup-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(from var(--shadow-color) r g b / 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+/* Popup Container */
+.trait-perk-popup {
+    background-color: var(--background-color);
+    border: var(--border-primary-thin);
+    border-radius: 5px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80svh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+/* Header */
+.trait-perk-popup__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: var(--border-primary-thin);
+    background-color: var(--button-background);
+}
+
+.trait-perk-popup__title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.trait-perk-popup__toggle {
+    background: none;
+    border: var(--border-primary-thin);
+    border-radius: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    transition: all 0.2s;
+}
+
+.trait-perk-popup__toggle:hover {
+    opacity: 1;
+    border-color: var(--text-color);
+}
+
+.trait-perk-popup__toggle.active {
+    opacity: 1;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.trait-perk-popup__close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.trait-perk-popup__close:hover {
+    opacity: 1;
+}
+
+/* Sort buttons */
+.trait-perk-popup__sort {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    border-bottom: var(--border-primary-thin);
+    flex-wrap: nowrap;
+    background-color: var(--background-color);
+    justify-content: space-between;
+}
+
+.trait-perk-popup__sort button {
+    padding: 0.25rem 0.35rem;
+    background-color: var(--button-background);
+    border: var(--border-primary-thin);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: bold;
+    transition: all 0.2s;
+    flex: 1;
+    max-width: 3rem;
+    color: var(--text-color);
+    white-space: nowrap;
+}
+
+.trait-perk-popup__sort button:hover {
+    background-color: var(--background-color);
+    border-color: var(--text-color);
+    transform: translateY(-1px);
+}
+
+.trait-perk-popup__sort button.active {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-color: var(--primary-color);
+}
+
+/* Scrollable List */
+.trait-perk-popup__list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+/* Empty State */
+.trait-perk-popup__empty {
+    padding: 2rem;
+    text-align: center;
+    opacity: 0.6;
+}
+
+/* List Item */
+.trait-perk-popup__item {
+    padding: 0.875rem 1rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--button-background);
+    border: var(--border-primary-thin);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s ease-out;
+    position: relative;
+}
+
+.trait-perk-popup__item:hover {
+    background-color: var(--background-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(from var(--shadow-color) r g b / 0.2);
+    transform: translateY(-1px);
+}
+
+.trait-perk-popup__item:active {
+    transform: translateY(0);
+}
+
+.trait-perk-popup__item.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.trait-perk-popup__item.disabled:hover {
+    background-color: var(--button-background);
+    border-color: var(--border-primary-thin);
+    box-shadow: none;
+    transform: none;
+}
+
+/* Item Header - contains name and requirements */
+.trait-perk-popup__item-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Title row - name and lock icon */
+.trait-perk-popup__item-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.trait-perk-popup__item-name {
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.3;
+}
+
+.trait-perk-popup__item-lock {
+    color: var(--failure-color);
+    font-size: 0.85rem;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+/* Item Description */
+.trait-perk-popup__item-description {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+/* Item Requirements - displayed on same line as name */
+.trait-perk-popup__item-reqs {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.req-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border: 1px solid rgba(from var(--primary-color) r g b / 0.5);
+    line-height: 1;
+    white-space: nowrap;
+    background-color: rgba(from var(--primary-color) r g b / 0.15);
+    color: var(--primary-color);
+    text-shadow: 0 0 6px rgba(from var(--primary-color) r g b / 0.6);
+}
+
+/* Item Preview (for future use) */
+.trait-perk-popup__item-preview {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: var(--border-primary-thin);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    opacity: 0.8;
+}
+
+/* Footer (for future use) */
+.trait-perk-popup__footer {
+    padding: 1rem;
+    border-top: var(--border-primary-thin);
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+/* Scrollbar Styling */
+.trait-perk-popup__list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.trait-perk-popup__list::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+.trait-perk-popup__list::-webkit-scrollbar-thumb {
+    background: var(--button-background);
+    border-radius: 4px;
+}
+
+.trait-perk-popup__list::-webkit-scrollbar-thumb:hover {
+    background: var(--text-color);
+    opacity: 0.5;
+}
+

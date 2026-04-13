@@ -1,0 +1,30 @@
+ID,EFFECTS,ORIGINS,IMPLEMENTED,FIXED
+traitFastShot,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
+traitGifted,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
+traitEducated,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
+traitHeavyHanded,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
+traitSmallFrame,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
+traitExtraPerk,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
+traitGoodNatured,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
+traitGrunt,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
+traitHomeOnTheRange,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
+traitTriggerDiscipline,"[]","[""survivor"",""ncr"", ""tribal""]",true,false
+traitBrahminBaron,"[]","[""survivor"",""ncr"", ""tribal""]",false,false
+traitMotherWasteland,"[]","[""tribal""]",true,false
+traitNomad,"[]","[""tribal""]",true,false
+traitRiteOfPassage,"[]","[""tribal""]",true,false
+traitToolsOfTheOldWorld,"[]","[""tribal""]",true,false
+traitTheChosenOne,"[]","[""tribal""]",true,false
+traitMrHandyLaserEmitter,"[""weaponAdd:weaponMrHandyLaserEmitter""]","[""mrHandy""]",true,false
+traitMrHandyFlamethrower,"[""weaponAdd:weaponMrHandyFlamethrower""]","[""mrHandy""]",true,false
+traitMrHandyAutomaticPistol,"[""weaponAdd:weaponMrHandyAutomaticPistol""]","[""mrHandy""]",true,false
+traitMrHandyCircularSaw,"[""weaponAdd:weaponMrHandyCircularSaw""]","[""mrHandy""]",true,false
+traitMrHandyPliers,"[""weaponAdd:weaponMrHandyPliers""]","[""mrHandy""]",true,false
+traitGhoulRadiationHealing,"[]","[""ghoul""]",true,true
+traitGhoulRadiationRest,"[]","[""ghoul""]",true,true
+traitGhoulAgeless,"[]","[""ghoul""]",true,true
+traitGhoulDiscrimination,"[]","[""ghoul""]",true,true
+traitBrotherhoodChain,"[]","[""brotherhoodInitiate""]",true,true
+traitVaultKid,[],"[""vaultDweller""]",false,true
+traitMrHandy,[],"[""mrHandy""]",true,true
+traitForcedEvolution,[],"[""superMutant""]",true,true

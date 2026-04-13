@@ -1,0 +1,24 @@
+import BasePopup from '@/components/popup/common/BasePopup.tsx';
+
+interface AlertPopupProps {
+    onClose: () => void;
+    content: string;
+    onConfirm: () => void;
+    showConfirm: boolean;
+}
+
+function AlertPopup({ onClose, content, onConfirm, showConfirm = false }: Readonly<AlertPopupProps>) {
+    return (
+        <BasePopup
+            title={showConfirm ? 'confirm' : 'warning'}
+            onConfirm={showConfirm ? onConfirm : undefined}
+            onClose={onClose}
+        >
+            <hr />
+            <p style={{ whiteSpace: 'pre-line' }}>{content}</p>
+        </BasePopup>
+    )
+}
+
+export default AlertPopup
+

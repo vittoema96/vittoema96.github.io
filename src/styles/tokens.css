@@ -1,0 +1,22 @@
+/* Non-theme tokens with sensible defaults; themes may override these as needed */
+:root {
+  /* Semantic color defaults (themes may override for better palette blending) */
+  --success-color: #0088ff;
+  --failure-color: #dc143c;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --delete-button-color: #ff4d4d;
+  --special-text-color: #ffdb58;
+  --warning-color: #f0ad4e;
+
+  /* Loader/animation timings */
+  --turn-on-delay: 0.1s;
+  --turn-on-duration: 1s;
+  --typewrite-duration: 1s; /* n% is dedicated to show the '> ' *% */
+
+  --space-xs: 0.2rem;
+  --space-s: 0.3rem;
+  --space-m: 0.5rem;
+  --space-l: 0.75rem;
+  --space-xl: 1rem;
+}
+

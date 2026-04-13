@@ -1,0 +1,213 @@
+/* 1) Reset-lite and media defaults */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img, svg, video, canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 2) Root document setup */
+html {
+    height: 100%;
+    overflow: hidden; /* only main content area should scroll */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+body {
+    margin: 0;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    font-family: 'Share Tech Mono', 'Roboto Mono', 'Courier New', monospace;
+    font-weight: bold;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow:
+        0 0 5px var(--animation-glow-color),
+        0 0 10px var(--animation-glow-color);
+}
+
+div {
+    font-weight: bold;
+}
+
+/* Ensure app root behaves as a full-height flex column */
+#root {
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Main application content: single scroll container */
+main {
+    flex: 1;
+    min-height: 0; /* enable flex child scrolling */
+    width: 100%;
+    overflow-y: auto;
+    margin: 0 auto;
+    padding: var(--space-xl);
+    border: 4px solid var(--primary-color);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* 3) Structural blocks */
+header {
+    text-align: center; /* text centered in block */
+    align-items: center; /* block centered in his space */
+    display: flex; /* elements stack horizontally */
+}
+footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-m);
+}
+section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
+hr {
+    border: none;
+    border-top: var(--border-primary-thick);
+    margin: var(--space-s) 0;
+    width: 100%;
+}
+
+/* 4) Typography helpers */
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 { text-align: center; }
+.h1 { font-size: 2rem; }
+.h2 { font-size: 1.5rem; }
+.h3 { font-size: 1.3rem; }
+.h4 { font-size: 1rem; }
+.h5 { font-size: 0.7rem; }
+
+
+::selection { background: var(--primary-color-translucent); color: var(--secondary-color); }
+
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 2px; }
+
+/* 7) Form controls baseline */
+button, input, select, textarea {
+    font: inherit;
+    color: inherit;
+    text-shadow: inherit; /* preserve CRT glow */
+    font-size: 0.8rem;
+    padding: var(--space-m);
+    background-color: var(--button-background);
+    border: var(--border-primary-thin);
+    border-radius: 5px;
+}
+button, input, textarea {
+    appearance: none;
+}
+
+/* Cursors */
+input, textarea { cursor: text; }
+button, select, [role="button"]  { cursor: pointer; }
+
+/* Placeholders */
+::placeholder { color: var(--primary-color-very-translucent); }
+
+input[type='number'] {
+    -moz-appearance: textfield;
+    font-size: 1rem;
+    text-align: center;
+    padding: var(--space-s);
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+/* Checkbox (unstyled -> themed block) */
+input[type='checkbox'] {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0;
+    margin: 0;
+    background-color: var(--button-background); /* Keep this even if its a "duplication" because removing it breaks stuff*/
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+input[type='checkbox']:checked { background-color: var(--primary-color); }
+
+input[type='radio'] {
+    cursor: pointer;
+    width: 0.9rem;
+    height: 0.9rem;
+    appearance: none;
+    border: var(--border-primary-thick);
+    border-radius: 50%;
+    background-color: transparent;
+    position: relative;
+    transition: all 0.2s ease;
+    padding: var(--space-s);
+}
+input[type='radio']:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+input[type='radio']:hover {
+    border-color: var(--button-hover);
+}
+input[type='radio']:focus {
+    outline: var(--border-primary-thick);
+    outline-offset: 2px;
+}
+
+
+
+
+
+/* Buttons */
+button {
+    text-align: center;
+    font-weight: bold;
+    transition:
+        color 0.3s ease,
+        background-color 0.3s ease,
+        font-size 0.3s ease,
+        font-weight 0.3s ease;
+}
+button:disabled { opacity: 0.5; }
+
+nav {
+    display: flex;
+    padding: var(--space-xs) var(--space-m) 0;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: var(--space-s);
+    flex-shrink: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 0.85rem;
+}
+th {
+    gap: var(--space-m);
+    align-items: center;
+    font-weight: bold;
+}

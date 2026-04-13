@@ -1,0 +1,87 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allow manual triggering
+
+# Grant the GITHUB_TOKEN permissions to deploy to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout repository
+      - name: Checkout Repository 🛎️
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js
+      - name: Setup Node.js 🟢
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 3. Install dependencies
+      - name: Install Dependencies 📦
+        run: npm ci
+
+      # 4. Create build version (alpha.buildNumber)
+      - name: Create Build Version 🏷️
+        id: version
+        run: |
+          BASE_VERSION=$(node -p "require('./package.json').version")
+          BUILD_VERSION=$(echo "$BASE_VERSION" | sed "s/BUILD_VERSION/${{ github.run_number }}/")
+          echo "base_version=$BASE_VERSION" >> $GITHUB_OUTPUT
+          echo "build_version=$BUILD_VERSION" >> $GITHUB_OUTPUT
+          echo "Base version: $BASE_VERSION"
+          echo "Build version: $BUILD_VERSION"
+
+      # 5. Update version in package.json (used by Vite for PWA manifest and __APP_VERSION__)
+      - name: Update Version in package.json 📝
+        run: |
+          BUILD_VERSION="${{ steps.version.outputs.build_version }}"
+          echo "Setting version to: $BUILD_VERSION"
+
+          # Update package.json - this is read by vite.config.js for:
+          # 1. PWA manifest version
+          # 2. window.__APP_VERSION__ (injected via define)
+          sed -i "s/\"version\": \".*\"/\"version\": \"$BUILD_VERSION\"/" ./package.json
+
+      # 6. Build the project with Vite
+      - name: Build Project 🏗️
+        run: npm run build
+
+      # 7. Setup GitHub Pages
+      - name: Setup GitHub Pages 📄
+        uses: actions/configure-pages@v5
+
+      # 8. Upload build artifacts
+      - name: Upload Build Artifacts 📤
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

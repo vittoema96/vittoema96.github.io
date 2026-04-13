@@ -1,0 +1,243 @@
+
+/*****************
+ *  STAT SCREEN  *
+ *****************/
+
+#c-special {
+    container-type: inline-size;
+    container-name: container-special;
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-around;
+    gap: 0.5rem;
+}
+/************************
+ *  SPECIFIC TO MOBILE  *
+ ************************/
+@media (min-width: 768px) {
+    #c-special {
+        flex-wrap: nowrap;
+    }
+    .special {
+        flex-basis: 0;
+    }
+    .special__name {
+        font-size: calc(100cqw / (18 * 0.5)) !important; /* 100% width - 12 letters of size .5em */
+    }
+}
+
+.special::before,
+.sub-special::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    /* Use the SVG as a mask */
+    background-color: var(--primary-color);
+    -webkit-mask-image: url('/img/svg/gear.svg');
+    mask-image: url('/img/svg/gear.svg');
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.special,
+.sub-special {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+}
+.special {
+    position: relative;
+    flex-basis: calc(25% - 0.5rem);
+    container-type: inline-size;
+
+    min-width: 60px;
+}
+.special__name {
+    margin-top: 12cqw;
+    font-size: calc(100cqw / (14 * 0.5)); /* 100% width - 14 letters of size .5em */
+    color: var(--special-text-color);
+}
+#c-special .sub-special {
+    --image-url: url('/img/svg/gear-full.svg');
+    background-color: var(--secondary-color);
+
+    width: 50%;
+    min-width: 30px;
+
+    position: absolute;
+    bottom: -5px;
+    right: -10px;
+}
+
+.derived-stat {
+    border: var(--border-primary-thick); /* FIXME use class */
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    flex: 1;
+    align-self: stretch;
+    text-align: center;
+    font-size: clamp(10px, 3vw, 32px);
+}
+.derived-stat > * {
+    padding: 0.5rem;
+    align-content: center;
+}
+.derived-stat > :first-child {
+    flex: 1;
+    background-color: var(--button-background);
+    border-bottom: var(--border-primary-thin);
+}
+
+/***************
+ *  INV SCREEN *
+ ***************/
+
+/* Equipped Apparel Display */
+.equipped-apparel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin: 0.75rem 0;
+    background: linear-gradient(135deg, rgba(from var(--shadow-color) r g b / 0.4) 0%, rgba(from var(--shadow-color) r g b / 0.2) 100%);
+    border-left: 3px solid var(--primary-color);
+    border-right: 1px solid var(--primary-color);
+    border-top: 1px solid var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+    position: relative;
+    user-select: none;
+}
+
+/* Base style for section labels */
+.section-label::after {
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background-color: var(--button-background);
+    padding: 0 0.5rem;
+    color: var(--primary-color);
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+}
+
+.equipped-apparel::after {
+    content: '▸ EQUIPPED ARMOR';
+}
+
+.equipped-apparel h2 {
+    display: none;
+}
+
+.equipped-apparel__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.equipped-apparel__slot {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    padding: 0.3rem 0.6rem;
+    background-color: rgba(from var(--shadow-color) r g b / 0.3);
+    border: 1px solid var(--primary-color);
+    border-radius: 2px;
+    transition: all 0.15s ease;
+    position: relative;
+    user-select: none;
+    cursor: default;
+    pointer-events: none;
+    max-width: 200px;
+}
+
+.equipped-apparel__slot:hover {
+    background-color: rgba(from var(--shadow-color) r g b / 0.5);
+    border-color: var(--secondary-color);
+}
+
+.equipped-apparel__slot:focus,
+.equipped-apparel__slot:active {
+    outline: none;
+    border: 1px solid var(--primary-color);
+}
+
+.equipped-apparel__slot-label {
+    font-weight: bold;
+    font-size: 0.7rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    flex-shrink: 0;
+    max-width: 4rem;
+    line-height: 1.1;
+}
+
+.equipped-apparel__slot-label::after {
+    content: ':';
+    margin-left: 0.1rem;
+}
+
+.equipped-apparel__slot-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.75rem;
+}
+
+.equipped-apparel__item {
+    color: var(--primary-color);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.3rem;
+}
+
+.equipped-apparel__item::before {
+    content: '•';
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.equipped-apparel__item:only-child::before {
+    content: '';
+}
+
+/* Equipped Armor Effects Display */
+.equipped-armor-effects {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin: 0.75rem 0;
+    background: linear-gradient(135deg, rgba(from var(--shadow-color) r g b / 0.4) 0%, rgba(from var(--shadow-color) r g b / 0.2) 100%);
+    border-left: 3px solid var(--secondary-color);
+    border-right: 1px solid var(--secondary-color);
+    border-top: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+    position: relative;
+    user-select: none;
+}
+
+.equipped-armor-effects::after {
+    content: '▸ ACTIVE EFFECTS';
+}
+
+.equipped-armor-effects__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
