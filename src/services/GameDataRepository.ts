@@ -52,6 +52,12 @@ export const GameDataRepository = {
                         const validation = schema.safeParse(processed);
                         if (validation.success) {
                             map[row.ID] = validation.data;
+                        } else if(['guns', 'body'].includes(processed.CATEGORY)){
+                            console.warn(
+                                `⚠️ Remember to fix CompanionSkills in Weapons, ${url} (row ${index + 2}):`,
+                                validation.error.format()
+                            );
+                            map[row.ID] = processed as T;
                         } else {
                             console.error(
                                 `❌ Validation error in ${url} (row ${index + 2}):`,

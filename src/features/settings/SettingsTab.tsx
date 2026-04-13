@@ -12,24 +12,22 @@ type Settings = {
     CRT_effect?: DisplayEffect
 }
 
-const applyDisplayEffect = (val: DisplayEffect) => {
-    document.body.dataset['crt'] = val;
+const SETTINGS_KEY = 'PB3K_settings'
+const loadSettings = (): Settings => JSON.parse(localStorage.getItem(SETTINGS_KEY) ?? '{}')
+
+export const applyDisplayEffect = (val?: DisplayEffect) => {
+    val ??= loadSettings().CRT_effect ?? 'on'
+    document.body.dataset['crt'] = val
 };
 
 const useSettings = () => {
+    const [ settings, setSettings ] = useState<Settings>(() => loadSettings())
 
-    const SETTINGS_KEY = 'PB3K_settings'
+    useEffect(() => {
+        localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings))
+    }, [settings])
 
-    const [ settings, setSettings ] = useState<Settings>(() => {
-        return  JSON.parse(localStorage.getItem(SETTINGS_KEY) ?? '{}')
-    })
-
-    const setMethod = (val: Settings) => {
-        setSettings(val)
-        localStorage.setItem(SETTINGS_KEY, JSON.stringify(val))
-    }
-
-    return [settings, setMethod] as const
+    return [settings, setSettings] as const
 }
 
 const useDisplayEffectsState = () => {
@@ -40,16 +38,15 @@ const useDisplayEffectsState = () => {
         return settings.CRT_effect ?? 'on'
     })
 
-    const setMethod = (val: DisplayEffect) => {
-        setDisplayEffects(val)
+    useEffect(() => {
         setSettings({
             ...settings,
-            CRT_effect: val
+            CRT_effect: displayEffects
         })
-        applyDisplayEffect(val)
-    }
+        applyDisplayEffect(displayEffects)
+    }, [displayEffects])
 
-    return [displayEffects, setMethod] as const
+    return [displayEffects, setDisplayEffects] as const
 }
 
 function SettingsTab() {
@@ -200,9 +197,9 @@ function SettingsTab() {
 
             <fieldset>
                 <legend>{t('crtDisplayEffects')}</legend>
-                <div className={'row'}>
+                <div className={'row l-spaceAround'}>
                     {DISPLAY_EFFECTS.map(val => (
-                        <div className={"row"} key={val}>
+                        <div className={"row"} key={val} style={{width: 'unset'}}>
                             <input
                                 type="radio"
                                 id={`crtDisplayEffects_${val}`}

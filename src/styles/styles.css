@@ -340,6 +340,11 @@ body[data-crt="off"]::before {
     display: none;
 }
 
+.skill {
+    padding: var(--space-m) var(--space-m) var(--space-s);
+    border-radius: 5px;
+}
+
 
 /* Modify Button in Card Controls */
 .card-controls .modify-button {

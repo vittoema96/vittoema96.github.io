@@ -215,10 +215,9 @@ function CompanionTab() {
                         {(['melee', 'guns', 'other'] as const).map(skillType => {
                             const baseValue = selectedCompanionType.skills[skillType];
                             return (
-                                <div
+                                <button
                                     key={skillType}
-                                    className="skill"
-                                    style={{ cursor: 'pointer' }}
+                                    className="row l-distributed l-lastSmall skill"
                                     onClick={() => {
                                         if (isEditing) {
                                             const current = companion.skills[skillType];
@@ -238,11 +237,9 @@ function CompanionTab() {
                                         }
                                     }}
                                 >
-                                    <span>
-                                        <b>{t(skillType)}</b>
-                                    </span>
-                                    <span>{companion.skills[skillType]}</span>
-                                </div>
+                                    <span>{t(skillType)}</span>
+                                    <span style={{ fontSize: '1rem' }}>{companion.skills[skillType]}</span>
+                                </button>
                             );
                         })}
                     </div>
@@ -254,24 +251,20 @@ function CompanionTab() {
                         {t('derivedStats')}
                     </h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
-                        <div className="skill" style={{ cursor: 'default' }}>
-                            <span>
-                                <b>{t('level')}</b>
-                            </span>
-                            <span>{character.level}</span>
-                        </div>
-                        <div className="skill" style={{ cursor: 'default' }}>
-                            <span>
-                                <b>{t('initiative')}</b>
-                            </span>
-                            <span>{character.initiative}</span>
-                        </div>
-                        <div className="skill" style={{ cursor: 'default' }}>
-                            <span>
-                                <b>{t('defense')}</b>
-                            </span>
-                            <span>{selectedCompanionType.baseDefense}</span>
-                        </div>
+                        {[
+                            { label: 'level', value: character.level },
+                            { label: 'initiative', value: character.initiative },
+                            { label: 'defense', value: selectedCompanionType.baseDefense }
+                        ].map(({label, value}) => (
+                            <div
+                                key={label}
+                                className="buttonlike row l-distributed l-lastSmall skill"
+                                style={{ backgroundColor: 'var(--secondary-color)' }}
+                            >
+                                <span>{t(label)}</span>
+                                <span style={{ fontSize: '1rem' }}>{value}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -312,20 +305,20 @@ function CompanionTab() {
                 <h4 style={{ marginBottom: '0.3rem', fontSize: '0.9rem' }}>{t('attacks')}</h4>
                 <section>
                     {companion.items.map((attack, index) => {
+                        console.log("Attack id", attack.id)
                         const weaponData = dataManager.getItem(attack.id);
+                        console.log("item", weaponData)
                         const displayName =
                             attack.customName || (weaponData ? t(weaponData.ID) : 'Unknown');
 
                         return (
-                            <div
+                            <button
                                 key={index}
-                                className="skill"
+                                className="row l-distributed skill"
                                 style={{ cursor: 'pointer' }}
                                 onClick={() => handleAttackClick(attack)}
                             >
-                                <span>
-                                    <b>{displayName}</b>
-                                </span>
+                                <span>{displayName}</span>
                                 {weaponData && dataManager.isType(weaponData, 'weapon') && (
                                     <>
                                         <span>{weaponData.DAMAGE_RATING}CD</span>
@@ -334,7 +327,7 @@ function CompanionTab() {
                                         </span>
                                     </>
                                 )}
-                            </div>
+                            </button>
                         );
                     })}
                 </section>

@@ -20,6 +20,7 @@ import { PopupProvider } from "@/contexts/popup/PopupContext";
 import BootScreen from "@/BootScreen";
 import App from "@/app/App";
 import {GameDatabase} from "@/services/GameDatabase";
+import { applyDisplayEffect } from '@/features/settings/SettingsTab.tsx';
 
 // DEV ONLY (boot screen is usually disabled while developing)
 const FORCE_BOOT_SCREEN = false;
@@ -57,6 +58,7 @@ function Main() {
     // Apply theme before React renders
     useLayoutEffect(() => {
         applyTheme()
+        applyDisplayEffect()
     }, []);
 
 

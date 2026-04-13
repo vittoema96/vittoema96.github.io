@@ -105,7 +105,7 @@ hr {
 :focus-visible { outline: 2px solid var(--primary-color); outline-offset: 2px; }
 
 /* 7) Form controls baseline */
-button, input, select, textarea {
+button, input, select, textarea, .buttonlike {
     font: inherit;
     color: inherit;
     text-shadow: inherit; /* preserve CRT glow */
@@ -178,7 +178,7 @@ input[type='radio']:focus {
 
 
 /* Buttons */
-button {
+button, .buttonlike {
     text-align: center;
     font-weight: bold;
     transition:

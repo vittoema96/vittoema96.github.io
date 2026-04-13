@@ -4,8 +4,7 @@ import { applyEffect } from '@/utils/itemUtils.ts';
 import { WeaponItem } from '@/schemas/items/weaponSchemas.ts';
 import { BaseItem } from '@/schemas/items/baseItemSchemas.ts';
 import { ApparelItem } from '@/schemas/items/apparelSchemas.ts';
-import { ITEM_TYPE_MAP } from '@/types/item.ts';
-import { ItemType } from '@/types/item.ts';
+import { ITEM_TYPE_MAP, ItemType } from '@/types/item.ts';
 
 type ItemMap = {
     [K in ItemType]: K extends 'weapon' ? WeaponItem :

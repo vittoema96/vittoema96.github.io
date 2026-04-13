@@ -70,12 +70,7 @@ function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
 
     return (
         <button
-            className="row no-gap"
-            style={{
-                padding: "var(--space-m) var(--space-m) var(--space-s)", // top | left&right | bottom
-                borderRadius: "5px",
-                gap: "var(--space-m)",
-            }}
+            className="row skill"
             onClick={onSkillClick}
         >
             <div className="stack" style={{
@@ -90,28 +85,27 @@ function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
                     <i>[{t(specialName)}]</i>
                 </span>
             </div>
-            {/*<div className={"row l-spaceBetween"}
-                style={{flex: "0 1 auto" /* grow, shrink, basis /}}>*/}
-                <span style={{
-                    fontSize: isEditing ? "0.7rem" : "1rem",
-                    flex: "0 0 auto",
-                }}>
-                    {valueText}
-                </span>
-                <input
-                    type="checkbox"
-                    disabled={!isEditing}
-                    checked={hasSpecialty}
-                    onClick={(e) => e.stopPropagation()}
-                    onChange={onSpecialtyChange}
-                    className="themed-svg"
-                    data-icon="vaultboy"
-                    style={{
-                        pointerEvents: isEditing ? 'auto' : 'none',
-                        backgroundColor: hasSpecialty ? "var(--primary-color)" : "var(--secondary-color)",
-                        flex: "0 0 1.5rem",
-                    }}
-                />
+
+            <span style={{
+                fontSize: isEditing ? "0.7rem" : "1rem",
+                flex: "0 0 auto",
+            }}>
+                {valueText}
+            </span>
+            <input
+                type="checkbox"
+                disabled={!isEditing}
+                checked={hasSpecialty}
+                onClick={(e) => e.stopPropagation()}
+                onChange={onSpecialtyChange}
+                className="themed-svg"
+                data-icon="vaultboy"
+                style={{
+                    pointerEvents: isEditing ? 'auto' : 'none',
+                    backgroundColor: hasSpecialty ? "var(--primary-color)" : "var(--secondary-color)",
+                    flex: "0 0 1.5rem",
+                }}
+            />
 
         </button>
     )
