@@ -125,6 +125,7 @@ const CompanionDataSchema = z.preprocess((input: any) => {
     items: z.array(CharacterItemSchema).default([]),
 }))
 
+
 export const RawCharacterSchema = z.object({
     name: z.string().optional(),
     level: z.number().int().min(1).default(1),
@@ -136,11 +137,11 @@ export const RawCharacterSchema = z.object({
     legionDenarius: z.number().int().default(0),
     prewarMoney: z.number().int().default(0),
 
-    exchangeRates: ExchangeRatesSchema.default({} as z.infer<typeof ExchangeRatesSchema>),
+    exchangeRates: ExchangeRatesSchema.default(() => ExchangeRatesSchema.parse({})),
     // FIXME exchange rates
 
-    special: SpecialMapSchema.default({} as z.infer<typeof SpecialMapSchema>),
-    skills: SkillMapSchema.default({} as z.infer<typeof SkillMapSchema>),
+    special: SpecialMapSchema.default(() => SpecialMapSchema.parse({})),
+    skills: SkillMapSchema.default(() => SkillMapSchema.parse({})),
     specialties: z.array(z.enum(SKILLS)).default([] as SkillType[]),
     traits: z.array(z.enum(TRAITS)).default([] as TraitId[]),
     perks: z.array(z.string()).default([]),
@@ -156,3 +157,5 @@ export const RawCharacterSchema = z.object({
 
     companion: CompanionDataSchema.optional(),
 });
+
+console.log("RAW CHARACTER", RawCharacterSchema.parse({}))
