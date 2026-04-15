@@ -272,8 +272,8 @@ function CompanionTab() {
             </div>
 
             {/* Damage Reduction by Type */}
-            <div style={{ marginTop: '0.5rem' }}>
-                <h4 style={{ marginBottom: '0.3rem', fontSize: '0.9rem' }}>
+            <div>
+                <h4 style={{ marginBottom: '0.3rem' }}>
                     {t('damageReductionFull')}
                 </h4>
                 <div className="row row--spaced">
@@ -303,8 +303,8 @@ function CompanionTab() {
             </div>
 
             {/* Attack Items - Clickable */}
-            <div style={{ marginTop: '0.5rem' }}>
-                <h4 style={{ marginBottom: '0.3rem', fontSize: '0.9rem' }}>{t('attacks')}</h4>
+            <div>
+                <h4 style={{ marginBottom: '0.3rem'}}>{t('attacks')}</h4>
                 <section>
                     {companion.items.map((attack) => {
                         const weaponData = dataManager.getItem(attack.id);
@@ -334,8 +334,8 @@ function CompanionTab() {
             </div>
 
             {/* Perks - Selectable */}
-            <div style={{ marginTop: '0.5rem' }}>
-                <h4 style={{ marginBottom: '0.3rem', fontSize: '0.9rem' }}>
+            <div>
+                <h4 style={{ marginBottom: '0.3rem'}}>
                     {t('perks')} ({companion.perks.filter(Boolean).length}/{perkSlots})
                 </h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>

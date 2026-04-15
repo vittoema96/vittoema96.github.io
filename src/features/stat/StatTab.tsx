@@ -204,7 +204,7 @@ function StatTab() {
                             fontSize: '2rem',
                             marginTop: '2rem',
                         }}
-                        className="form-label">Skills:</div>
+                        className="form-label">{t('skills')}</div>
                     <div className={"row"} style={{ width:'auto'}}>
                         <button
                             style={{flexShrink: 0}}

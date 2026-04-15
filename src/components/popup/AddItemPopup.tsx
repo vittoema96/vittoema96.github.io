@@ -138,8 +138,13 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
     }, [itemType])
 
     useEffect(() => {
-        setIsFormValid(Boolean(selectedItem && quantity))
-    }, [quantity, selectedItem, setIsFormValid]);
+        setIsFormValid(
+            Boolean(
+                selectedItem && quantity
+                && (!shouldBuy || character.caps >= Number(selectedItem.COST))
+            )
+        )
+    }, [character.caps, quantity, selectedItem, setIsFormValid, shouldBuy]);
 
     const handleConfirm = useCallback(() => {
         if(selectedItem && quantity){
