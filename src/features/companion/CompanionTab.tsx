@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
 import { usePopup } from '@/contexts/popup/PopupContext'
@@ -90,7 +90,7 @@ function CompanionTab() {
         const companionWeapon = selectedCompanionType.weapons.find(w => w.id === attackItem.id)
         if (companionWeapon) {
             // Use the skill defined in companion type (melee/guns/other)
-            showD20Popup(companionWeapon.skill, attackItem, 'companion');
+            showD20Popup({skillId: companionWeapon.skill, usingItem: attackItem, roller: 'companion'});
         }
     }
 
@@ -234,7 +234,7 @@ function CompanionTab() {
                                             });
                                         } else {
                                             // Roll a d20 using the companion's sheet for this skill
-                                            showD20Popup(skillType, null, 'companion');
+                                            showD20Popup({skillId: skillType, roller: 'companion'});
                                         }
                                     }}
                                 >
@@ -276,7 +276,7 @@ function CompanionTab() {
                 <h4 style={{ marginBottom: '0.3rem' }}>
                     {t('damageReductionFull')}
                 </h4>
-                <div className="row row--spaced">
+                <div className="row l-spaceEvenly">
                     <div className="derived-stat">
                         <span>
                             <i className="fas fa-shield-halved" title={t('physical')}></i>

@@ -1,37 +1,28 @@
 import Papa from 'papaparse';
-import { AidItem, AmmoItem, ModItem } from '@/types';
+import { AidItem, AmmoItem, LegendaryEffect, ModItem, TraitData } from '@/types';
 import { WeaponItem, WeaponSchema } from '@/schemas/items/weaponSchemas.ts';
 import { ApparelItem, ApparelSchema } from '@/schemas/items/apparelSchemas.ts';
 import { BaseItem } from '@/schemas/items/baseItemSchemas.ts';
 import { z } from 'zod';
 
 export const GameDataRepository = {
-    /**
-     * Internal helper to handle JSON strings within CSV cells
-     * - If [...] or {...} JSON.parse
-     * - If 'Infinity' parses to Infinity
-     */
-    transformRow(row: any): any {
-        const processed = { ...row };
-        for (const key in processed) {
-            const val = processed[key];
-            if (typeof val === 'string') {
-                const trimmed = val.trim();
-                if (trimmed === 'Infinity') {
-                    processed[key] = Infinity;
-                    continue;
-                }
-                if ((trimmed.startsWith('[') && trimmed.endsWith(']')) ||
-                    (trimmed.startsWith('{') && trimmed.endsWith('}'))) {
-                    try {
-                        processed[key] = JSON.parse(trimmed);
-                    } catch (e) {
-                        console.error(`Error parsing JSON in CSV: ${trimmed}. Error: ${e}`)
-                    }
-                }
+
+
+    transformField(value: string | number): any {
+        if (typeof value !== 'string') { return value }
+
+        const trimmed = value.trim();
+        if (trimmed === 'Infinity') { return Infinity }
+
+        if ((trimmed.startsWith('[') && trimmed.endsWith(']')) ||
+            (trimmed.startsWith('{') && trimmed.endsWith('}'))) {
+            try {
+                return JSON.parse(trimmed);
+            } catch {
+                return value; // Fallback to raw string if JSON parsing fails
             }
         }
-        return processed;
+        return value;
     },
 
     /**
@@ -44,25 +35,26 @@ export const GameDataRepository = {
                 header: true,
                 dynamicTyping: true,
                 skipEmptyLines: true,
+                transform: this.transformField,
                 complete: (results: any) => {
                     const map: Record<string, T> = {};
+
                     results.data.forEach((row: any, index: number) => {
                         if (!row.ID) { return }
-                        const processed = this.transformRow(row);
-                        const validation = schema.safeParse(processed);
+
+                        const validation = schema.safeParse(row);
                         if (validation.success) {
                             map[row.ID] = validation.data;
-                        } else if(['guns', 'body'].includes(processed.CATEGORY)){
-                            console.warn(
-                                `⚠️ Remember to fix CompanionSkills in Weapons, ${url} (row ${index + 2}):`,
-                                validation.error.format()
-                            );
-                            map[row.ID] = processed as T;
-                        } else {
-                            console.error(
-                                `❌ Validation error in ${url} (row ${index + 2}):`,
-                                validation.error.format()
-                            );
+                        }
+
+                        // TODO this is temporary, we need to fix the CompnaionSkillType problem
+                        else if(['guns', 'body'].includes(row.CATEGORY)){
+                            console.warn(`⚠️ Remember to fix CompanionSkills in Weapons, ${url} (row ${index + 2}):`, z.treeifyError(validation.error));
+                            map[row.ID] = row as T;
+                        }
+
+                        else {
+                            console.error(`❌ Validation error in ${url} (row ${index + 2}):`, z.treeifyError(validation.error));
                         }
                     });
                     resolve(map);
@@ -78,7 +70,7 @@ export const GameDataRepository = {
     },
 
     async loadAllData() {
-        const [weapon, apparel, aid, ammo, other, mod, perks, traits] = await Promise.all([
+        const [weapon, apparel, aid, ammo, other, mod, perks, traits, legendaryEffects] = await Promise.all([
             this.mergeCSVs<WeaponItem>([
                 'data/weapon/smallGuns.csv', 'data/weapon/energyWeapons.csv',
                 'data/weapon/bigGuns.csv', 'data/weapon/meleeWeapons.csv',
@@ -90,21 +82,22 @@ export const GameDataRepository = {
             ], ApparelSchema),
             this.mergeCSVs<AidItem>([
                 'data/aid/food.csv', 'data/aid/drinks.csv', 'data/aid/meds.csv', 'data/aid/misc.csv'
-            ]),
-            this.parseCSV<AmmoItem>('data/other/ammo.csv'),
-            this.mergeCSVs<BaseItem>(['data/other/misc.csv']),
+            ]), // TODO provide Zod schema
+            this.parseCSV<AmmoItem>('data/other/ammo.csv'), // TODO provide Zod schema
+            this.mergeCSVs<BaseItem>(['data/other/misc.csv']), // TODO provide Zod schema
             this.mergeCSVs<ModItem>([
                 'data/mods/smallGunMods.csv', 'data/mods/bigGunMods.csv',
                 'data/mods/energyWeaponMods.csv', 'data/mods/meleeWeaponMods.csv',
                 'data/mods/armorMaterialMods.csv', 'data/mods/armorImprovementMods.csv',
                 'data/mods/ballisticWeaveMods.csv', 'data/mods/vaultSuitMods.csv',
                 'data/mods/robotArmorMods.csv'
-            ]),
-            this.parseCSV<any>('data/perks.csv'),
-            this.parseCSV<any>('data/traits.csv')
+            ]), // TODO provide Zod schema
+            this.parseCSV<any>('data/perks.csv'), // TODO provide Zod schema
+            this.parseCSV<TraitData>('data/traits.csv'), // TODO provide Zod schema
+            this.parseCSV<LegendaryEffect>('data/legendaryEffects.csv'), // TODO provide Zod schema
         ]);
 
-        return { weapon, apparel, aid, ammo, other, mod, perks, traits };
+        return { weapon, apparel, aid, ammo, other, mod, perks, traits, legendaryEffects };
     },
 };
 

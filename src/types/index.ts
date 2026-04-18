@@ -261,3 +261,10 @@ export const MOD_SLOTS = Object.freeze({
     WEAVE: 'weave' as ModSlot,
     MISC: 'misc' as ModSlot,
 });
+
+export interface LegendaryEffect {
+    ID: string;
+    FOR_TYPE: ItemType;
+    FOR_CATEGORY: ItemCategory[];
+    EFFECTS: string[];
+}

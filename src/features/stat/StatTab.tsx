@@ -168,7 +168,7 @@ function StatTab() {
             </div>
 
             {/* Derived Stats */}
-            <div className="row row--spaced">
+            <div className="row l-spaceEvenly">
                 <div className="derived-stat">
                     <span>{t('defense')}</span>
                     <span>{character.defense}</span>
@@ -208,12 +208,12 @@ function StatTab() {
                     <div className={"row"} style={{ width:'auto'}}>
                         <button
                             style={{flexShrink: 0}}
-                            onClick={() => showNd6Popup(undefined, "Nd6")}>
+                            onClick={() => showNd6Popup({ title: "Nd6" })}>
                             <i className={"fas fa-dice-d6 fa-xl"}/>
                         </button>
                         <button
                             style={{flexShrink: 0}}
-                            onClick={() => showNd20Popup(undefined, "Nd20")}>
+                            onClick={() => showNd20Popup({title: "Nd20"})}>
                             <i className={"fas fa-dice-d20 fa-xl"}/>
                         </button>
                     </div>

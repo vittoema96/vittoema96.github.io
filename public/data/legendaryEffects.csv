@@ -1,73 +1,73 @@
-ID,FOR_TYPE,FOR_CATEGORY,EFFECTS,DESCRIPTION
-legendaryAssassin_W,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],"Against humans: gains Vicious. If already Vicious, +2 damage per Effect instead of +1."
-legendaryBerserker,weapon,"[""meleeWeapons"", ""unarmed""]",[],If Torso Physical DR < 6: +1 CD damage per point below 6.
-legendaryBlazing,weapon,"[""meleeWeapons""]",[],When using Defend and missed by melee: attacker suffers 4 CD Persistent Energy damage.
-legendaryBloodied,weapon,"[""meleeWeapons"", ""unarmed""]",[],"Bonus CD damage based on HP: <Max: +1, <75%: +2, <50%: +3, <25%: +4."
-legendaryCavalier_W,weapon,"[""meleeWeapons"", ""unarmed""]",[],When using Defend or Sprint: +2 Physical DR until next turn.
-legendaryCharged,weapon,"[""meleeWeapons""]",[],When using Defend and missed by melee: attacker suffers 4 CD Stun Energy damage.
-legendaryCrippling,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Attacking arm/leg: causes injury if 4+ damage inflicted in one hit.
-legendaryDeadeye,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],When Aiming: additional minor/major actions cost 1 AP less (does not stack with Jet).
-legendaryDefiant,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],Once per scene: spend max Fire Rate ammo to declare Empty. Inflicts +2 CD damage; must reload.
-legendaryDuelist_W,weapon,"[""meleeWeapons"", ""unarmed""]",[],"When using Defend and missed by melee: roll 1 CD. On Effect, attacker is disarmed."
-legendaryEnraging,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],When inflicting damage: spend 1 Luck to Enrage enemy (must attack nearest enemy).
-legendaryExplosive,weapon,"[""smallGuns""]",[],Each Effect rolled on damage hits secondary targets within Close range for half damage.
-legendaryExterminator,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],"Against insects/mirelurks: gains Vicious. If already Vicious, +2 damage per Effect instead of +1."
-legendaryFreezing,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],When attacking: may spend 1 Luck to add Freeze damage effect.
-legendaryFrigid,weapon,"[""meleeWeapons""]",[],When using Defend and missed by melee: attacker suffers 4 CD Freeze Energy damage.
-legendaryFurious,weapon,"[""meleeWeapons"", ""unarmed""]",[],Each consecutive hit on the same enemy in a scene adds +1 CD damage (cumulative).
-legendaryGhoulSlayer,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],"Against ghouls: gains Vicious. If already Vicious, +2 damage per Effect instead of +1."
-legendaryHitman,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],When Aiming: weapon inflicts +1 CD damage (stacks with Accurate).
-legendaryHunter,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],"Against mammals/lizards: gains Vicious. If already Vicious, +2 damage per Effect instead of +1."
-legendaryIncendiary,weapon,"[""smallGuns""]","[""effectAdd:effectPersistent""]",Weapon gains Persistent (Energy) damage effect.
-legendaryInstigating,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],If target is at maximum HP: weapon inflicts +3 CD damage.
-legendaryIrradiated,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectRadioactive""]",Weapon gains Radioactive damage effect.
-legendaryJunkie,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Inflicts +1 CD damage for each addiction the wielder is suffering from.
-legendaryKneecapper,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Attacking leg: causes critical hit if 3+ damage inflicted in one hit.
-legendaryLucky_W,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],"After attack: if Luck was spent to reroll, roll 1 CD. On Effect, regain 1 spent Luck."
-legendaryMutantSlayer,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],"Against super mutants: gains Vicious. If already Vicious, +2 damage per Effect instead of +1."
-legendaryNimble,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],When Aiming: may take a Move minor action for free.
-legendaryNocturnal,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],"Between sunset and sunrise: gains Vicious. If already Vicious, +2 per Effect instead of +1."
-legendaryPenetrating,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectPiercing:2""]","Gains Piercing 2. If already Piercing, increase rating by +2."
-legendaryPlasmaInfused,weapon,"[""smallGuns""]","[""damageAdd:2""]",+2 CD damage. Deals both Energy and Physical damage (uses target's lower resistance).
-legendaryPoisoner_W,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectPersistent""]",Weapon gains Persistent (Poison) damage effect.
-legendaryPowerfulMighty,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""damageAdd:2""]",Attacks with this weapon inflict +2 CD damage.
-legendaryQuickdraw,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Drawing item does not count against minor action limit and costs 0 AP.
-legendaryRapid,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]","[""fireRateAdd:3""]",Weapon gains +3 Fire Rate (can exceed 6).
-legendaryRelentless,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],On Critical Hit: may spend 1 Luck to regain all AP spent on the attack.
-legendarySentinel_W,weapon,"[""meleeWeapons"", ""unarmed""]",[],"If you did not move last turn: +2 Physical/Energy DR. If Parry quality, +3 DR."
-legendaryStaggering,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectStun""]",Weapon gains the Stun damage effect.
-legendaryStalker,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],On Sneak Attack (with Aim and no other actions): replace 1d20 with a pre-rolled 1.
-legendarySteadfast,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],When Aiming: +2 Physical DR until next turn.
-legendaryTroubleshooter,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],"Against robots: gains Vicious. If already Vicious, +2 damage per Effect instead of +1."
-legendaryTwoShot,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]","[""effectAdd:effectVicious"",""damageAdd:2"",""qualityAdd:qualityAmmoHungry:2""]","Gains Vicious, +2 CD damage, and Ammo-Hungry (2) quality."
-legendaryViolent,weapon,"[""smallGuns""]","[""damageAdd:2"",""qualityAdd:qualityRecoil:7""]",+2 CD damage; injury on 4+ damage. Gains Recoil (7) or increases existing Recoil by +1.
-legendaryWounding,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectPersistent""]",Weapon gains Persistent (Physical) damage effect.
-
-legendaryAcrobat,apparel,"[""leg""]",[],Halve falling damage. If wearing two pieces: no damage from falling.
-legendaryAssassin_A,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],+2 Physical and Energy DR against human enemies.
-legendaryAutoStim,apparel,"[""torso""]",[],Once per scene: if HP < 1/4 use a Stimpak automatically (no action required).
-legendaryBolstering,apparel,"[""torso""]",[],If HP < 1/2: +2 Physical and Energy DR to all locations. If HP < 1/4: +3 DR instead.
-legendaryCavalier_A,apparel,"[""arm""]",[],When using Defend or Sprint: +2 Physical DR to all locations until next turn.
-legendaryChameleon,apparel,"[""torso""]",[],When hidden and still: enemies add +1 difficulty to tests to find you.
-legendaryChampion,apparel,"[""arm""]",[],Once per scene: may set 1d20 to a 1 on any STR or END test.
-legendaryCloaking,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Once per scene: when hit by melee become invisible (as Stealth Boy).
-legendaryCryogenic,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],"Melee attackers increase complication range by 1. On complication: attacker suffers X CD Freeze Energy damage (X = their damage dice)."
-legendaryCunning,apparel,"[""head"", ""leg""]",[],Once per scene: may set 1d20 to a 1 on any AGI or PER test.
-legendaryDuelist_A,apparel,"[""arm""]",[],"Melee attackers increase complication range by 1. On complication: attacker is disarmed."
-legendaryExterminator,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],+2 Physical and Energy DR against insects; arachnids; and mirelurks.
-legendaryGhoulSlayer,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],+2 Physical; Energy; and Radiation DR against ghouls.
-legendaryHunter,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],+2 Physical and Energy DR against mammals and lizards.
-legendaryIncendiary,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],"Melee attackers increase complication range by 1. On complication: attacker suffers X CD Persistent Energy damage (X = their damage dice)."
-legendaryLucky_A,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Once per day: when spending Luck to reroll; may set a d20 to 1 or all CD to Effects instead.
-legendaryMartyr,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],If HP < 1/4: reduce AP cost of additional actions by 1 (does not stack with Jet).
-legendaryMutantSlayer,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],+2 Physical and Energy DR against super mutants.
-legendaryPoisoner_A,apparel,"[""torso"", ""arm"", ""leg"", ""head""]","[""drPoisonAdd:4""]",Provides +4 Poison damage resistance.
-legendaryPowered,apparel,"[""head"", ""arm"", ""leg""]",[],Add 1 AP to the group pool at the start of each of your turns in combat.
-legendaryPunishing,apparel,"[""torso"", ""leg""]",[],"When hit by melee: each Effect rolled on damage inflicts 1 damage (same type) back to the attacker."
-legendaryRadPowered,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],"Once per scene: if irradiated; set 1d20 to a 1 on a STR test. +1 use per 5 Rad damage."
-legendarySafecracker,apparel,"[""arm""]",[],Once per scene: may set 1d20 to a 1 on any Lockpick test.
-legendarySentinel_A,apparel,"[""arm""]",[],If you did not move last turn: +3 Physical and Energy DR.
-legendarySharp,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Once per scene: may set 1d20 to a 1 on any INT or CHA test.
-legendarySprinter,apparel,"[""head"", ""leg""]",[],Reduce AP cost to cross difficult terrain or obstacles by 1 (min 0).
-legendaryTroubleshooter,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],+2 Physical and Energy DR against robots.
-legendaryUnyielding,apparel,"[""torso""]",[],If HP < 1/4: may re-roll 1d20 on any test attempted.
+ID,FOR_TYPE,FOR_CATEGORY,EFFECTS
+legendaryAssassin_W,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryBerserker,weapon,"[""meleeWeapons"", ""unarmed""]",[]
+legendaryBlazing,weapon,"[""meleeWeapons""]",[]
+legendaryBloodied,weapon,"[""meleeWeapons"", ""unarmed""]",[]
+legendaryCavalier_W,weapon,"[""meleeWeapons"", ""unarmed""]",[]
+legendaryCharged,weapon,"[""meleeWeapons""]",[]
+legendaryCrippling,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryDeadeye,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
+legendaryDefiant,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
+legendaryDuelist_W,weapon,"[""meleeWeapons"", ""unarmed""]",[]
+legendaryEnraging,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryExplosive,weapon,"[""smallGuns""]",[]
+legendaryExterminator,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryFreezing,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryFrigid,weapon,"[""meleeWeapons""]",[]
+legendaryFurious,weapon,"[""meleeWeapons"", ""unarmed""]",[]
+legendaryGhoulSlayer,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryHitman,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
+legendaryHunter,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryIncendiary,weapon,"[""smallGuns""]","[""effectAdd:effectPersistent""]"
+legendaryInstigating,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryIrradiated,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectRadioactive""]"
+legendaryJunkie,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryKneecapper,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryLucky_W,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryMutantSlayer,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryNimble,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
+legendaryNocturnal,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryPenetrating,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectPiercing:2""]"
+legendaryPlasmaInfused,weapon,"[""smallGuns""]","[""damageAdd:2""]"
+legendaryPoisoner_W,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectPersistent""]"
+legendaryPowerfulMighty,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""damageAdd:2""]"
+legendaryQuickdraw,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryRapid,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]","[""fireRateAdd:3""]"
+legendaryRelentless,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
+legendarySentinel_W,weapon,"[""meleeWeapons"", ""unarmed""]",[]
+legendaryStaggering,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectStun""]"
+legendaryStalker,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
+legendarySteadfast,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
+legendaryTroubleshooter,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
+legendaryTwoShot,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]","[""effectAdd:effectVicious"",""damageAdd:2"",""qualityAdd:qualityAmmoHungry:2""]"
+legendaryViolent,weapon,"[""smallGuns""]","[""damageAdd:2"",""qualityAdd:qualityRecoil:7""]"
+legendaryWounding,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectPersistent""]"
+,NULL,NULL,NULL
+legendaryAcrobat,apparel,"[""leg""]",[]
+legendaryAssassin_A,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendaryAutoStim,apparel,"[""torso""]",[]
+legendaryBolstering,apparel,"[""torso""]",[]
+legendaryCavalier_A,apparel,"[""arm""]",[]
+legendaryChameleon,apparel,"[""torso""]",[]
+legendaryChampion,apparel,"[""arm""]",[]
+legendaryCloaking,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendaryCryogenic,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendaryCunning,apparel,"[""head"", ""leg""]",[]
+legendaryDuelist_A,apparel,"[""arm""]",[]
+legendaryExterminator,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendaryGhoulSlayer,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendaryHunter,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendaryIncendiary,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendaryLucky_A,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendaryMartyr,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendaryMutantSlayer,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendaryPoisoner_A,apparel,"[""torso"", ""arm"", ""leg"", ""head""]","[""drPoisonAdd:4""]"
+legendaryPowered,apparel,"[""head"", ""arm"", ""leg""]",[]
+legendaryPunishing,apparel,"[""torso"", ""leg""]",[]
+legendaryRadPowered,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendarySafecracker,apparel,"[""arm""]",[]
+legendarySentinel_A,apparel,"[""arm""]",[]
+legendarySharp,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendarySprinter,apparel,"[""head"", ""leg""]",[]
+legendaryTroubleshooter,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
+legendaryUnyielding,apparel,"[""torso""]",[]

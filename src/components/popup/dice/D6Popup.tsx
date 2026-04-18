@@ -18,9 +18,9 @@ import { isCloseCombat } from '@/utils/itemUtils.ts';
 import { WeaponItem } from '@/schemas/items/weaponSchemas.ts';
 import { D6Dice, getFaceClass } from '@/components/popup/dice/components/dice.tsx';
 
-interface D6PopupProps extends GenericPopupProps {
+export interface D6PopupProps extends GenericPopupProps {
     usingItem: CharacterItem;
-    hasAimed: boolean;
+    hasAimed?: boolean;
     roller?: RollerType;
 }
 
@@ -594,6 +594,19 @@ function D6Popup({
                                         tooltipId={`${qualityType}Description`}
                                     >
                                         {displayText}
+                                    </Tag>
+                                );
+                            })}
+
+                            {usingItem.mods.filter(
+                                m => m.startsWith("legendary")
+                            ).map(effect => {
+                                return (
+                                    <Tag key={effect}
+                                         tooltipId={`${effect}Description`}
+                                         color={'var(--warning-color)'}
+                                    >
+                                        {t(effect)}
                                     </Tag>
                                 );
                             })}

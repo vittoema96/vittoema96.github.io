@@ -279,14 +279,18 @@ function InventoryList({
                     onClick={() => handleSortChange('name')}
                     title={t('sortByName')}
                 >
-                    <i className={`fas fa-sort-alpha-${sortBy === 'name' && isAscendingDirection ? 'down' : 'up'}`}></i>
+                    <i
+                        className={`fas fa-sort-alpha-${sortBy === 'name' && isAscendingDirection ? 'down' : 'up'}`}
+                    ></i>
                 </button>
                 <button
                     className={`inventory-list__sort-btn ${sortBy === 'number' ? 'active' : ''}`}
                     onClick={() => handleSortChange('number')}
                     title={t('sortByNumber')}
                 >
-                    <i className={`fas fa-sort-numeric-${sortBy === 'number' && isAscendingDirection ? 'down' : 'up'}`}></i>
+                    <i
+                        className={`fas fa-sort-numeric-${sortBy === 'number' && isAscendingDirection ? 'down' : 'up'}`}
+                    ></i>
                 </button>
                 <button
                     className={`inventory-list__sort-btn ${sortBy === 'rarity' ? 'active' : ''}`}
@@ -294,7 +298,10 @@ function InventoryList({
                     title={t('sortByRarity')}
                 >
                     <i className="fas fa-star"></i>
-                    <i className={`fas fa-arrow-${sortBy === 'rarity' && isAscendingDirection ? 'down' : 'up'}`} style={{ fontSize: '0.7em', marginLeft: '2px' }}></i>
+                    <i
+                        className={`fas fa-arrow-${sortBy === 'rarity' && isAscendingDirection ? 'down' : 'up'}`}
+                        style={{ fontSize: '0.7em', marginLeft: '2px' }}
+                    ></i>
                 </button>
 
                 {/* Type Filter Button */}
@@ -331,7 +338,7 @@ function InventoryList({
 
                 <button
                     className="inventory-list__add-btn"
-                    onClick={() => showAddItemPopup(typeFilter)}
+                    onClick={() => showAddItemPopup({ itemType: typeFilter })}
                     title={t('addItem')}
                 >
                     <i className="fas fa-plus"></i>
@@ -340,10 +347,11 @@ function InventoryList({
 
             {/* Items List */}
             <div className="stack">
-                {processedItems.length === 0 && (typeFilter !== 'other' || !character.customItems || character.customItems.length === 0) ? (
-                    <div className="inventory-list__empty">
-                        {t('noItems')}
-                    </div>
+                {processedItems.length === 0 &&
+                (typeFilter !== 'other' ||
+                    !character.customItems ||
+                    character.customItems.length === 0) ? (
+                    <div className="inventory-list__empty">{t('noItems')}</div>
                 ) : (
                     <>
                         {renderItems(processedItems)}
@@ -353,35 +361,44 @@ function InventoryList({
             </div>
 
             {/* Selected Item Card Area - Outside inventory-list */}
-            {selectedItemId && (() => {
-                // Check if it's a custom item
-                if (selectedItemId.startsWith('custom_')) {
-                    const index = Number.parseInt(selectedItemId.replace('custom_', ''))
-                    const selectedCustomItem = character.customItems?.[index]
-                    if (!selectedCustomItem) {return null}
+            {selectedItemId &&
+                (() => {
+                    // Check if it's a custom item
+                    if (selectedItemId.startsWith('custom_')) {
+                        const index = Number.parseInt(selectedItemId.replace('custom_', ''));
+                        const selectedCustomItem = character.customItems?.[index];
+                        if (!selectedCustomItem) {
+                            return null;
+                        }
+
+                        return (
+                            <div className="inventory-list__selected">
+                                <OtherCard characterItem={selectedCustomItem} />
+                            </div>
+                        );
+                    }
+
+                    // Handle normal database items
+                    const selectedItem = processedItems.find(
+                        item => getItemKey(item) === selectedItemId,
+                    );
+                    if (!selectedItem) {
+                        return null;
+                    }
+
+                    const CardComponent = getCardComponent(selectedItem);
+                    if (!CardComponent) {
+                        return null;
+                    }
 
                     return (
                         <div className="inventory-list__selected">
-                            <OtherCard characterItem={selectedCustomItem} />
+                            <CardComponent characterItem={selectedItem} />
                         </div>
-                    )
-                }
-
-                // Handle normal database items
-                const selectedItem = processedItems.find(item => getItemKey(item) === selectedItemId)
-                if (!selectedItem) {return null}
-
-                const CardComponent = getCardComponent(selectedItem)
-                if (!CardComponent) {return null}
-
-                return (
-                    <div className="inventory-list__selected">
-                        <CardComponent characterItem={selectedItem} />
-                    </div>
-                )
-            })()}
+                    );
+                })()}
         </div>
-    )
+    );
 }
 
 export default InventoryList

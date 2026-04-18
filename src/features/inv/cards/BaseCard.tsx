@@ -137,7 +137,7 @@ function BaseCard({
                                     {isModdable && (
                                         <button
                                             className="card-action-btn card-action-btn--modify card-action-btn--small"
-                                            onClick={() => showModifyItemPopup(item as CharacterItem)}
+                                            onClick={() => showModifyItemPopup({ characterItem: item as CharacterItem })}
                                             title={t('modify')}
                                         >
                                             <i className="fas fa-wrench"></i>

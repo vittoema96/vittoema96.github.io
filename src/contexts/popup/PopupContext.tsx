@@ -1,16 +1,13 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
-import { CharacterItem, CustomItem } from '@/types';
-import { CompanionSkillType, SkillType } from '@/services/character/utils.ts';
-import { ItemType } from '@/types/item.ts';
 
 import AlertPopup from '@/components/popup/AlertPopup';
-import D20Popup from '@/components/popup/dice/D20Popup.tsx';
-import D6Popup from '@/components/popup/dice/D6Popup.tsx';
-import Nd6Popup, { ResultDisplay } from '@/components/popup/dice/Nd6Popup.tsx';
-import Nd20Popup from '@/components/popup/dice/Nd20Popup.tsx';
-import AddItemPopup from '@/components/popup/AddItemPopup';
-import TradeItemPopup from '@/components/popup/TradeItemPopup.tsx';
-import ModifyItemPopup from '@/components/popup/ModifyItemPopup';
+import D20Popup, { D20PopupProps } from '@/components/popup/dice/D20Popup.tsx';
+import D6Popup, { D6PopupProps } from '@/components/popup/dice/D6Popup.tsx';
+import Nd6Popup, { Nd6PopupProps } from '@/components/popup/dice/Nd6Popup.tsx';
+import Nd20Popup, { Nd20PopupProps } from '@/components/popup/dice/Nd20Popup.tsx';
+import AddItemPopup, { AddItemPopupProps } from '@/components/popup/AddItemPopup';
+import TradeItemPopup, { TradeItemPopupProps } from '@/components/popup/TradeItemPopup.tsx';
+import ModifyItemPopup, { ModifyItemPopupProps } from '@/components/popup/ModifyItemPopup';
 
 export type RollerType = 'companion' | 'mysteriousStranger' | undefined;
 
@@ -20,36 +17,22 @@ interface ActivePopup {
     props: any;
 }
 
+// Utility to avoid writing Omit<T, 'onClose'> every time
+type OmitOnClose<T> = Omit<T, 'onClose'>
+
 export interface PopupContextValue {
-    open: <T>(Component: React.ComponentType<T>, props: Omit<T, 'onClose'>) => void;
+    open: <T>(Component: React.ComponentType<T>, props: OmitOnClose<T>) => void;
     close: (identifier?: string | React.ComponentType<any>) => void;
 
     showAlert: (content: string) => void;
     showConfirm: (content: string, onConfirm: () => void) => void;
-    showD20Popup: (
-        skillId: SkillType | CompanionSkillType,
-        usingItem?: CharacterItem | null,
-        roller?: RollerType,
-    ) => void;
-    showD6Popup: (usingItem: CharacterItem, hasAimed?: boolean, roller?: RollerType) => void;
-    showNd20Popup: (
-        diceCount: number | undefined,
-        title: string,
-        onResult?: any,
-        description?: string,
-        maxCritical?: number,
-        minFailure?: number,
-    ) => void;
-    showNd6Popup: (
-        diceCount: number | undefined,
-        title: string,
-        description?: string,
-        resultDisplay?: ResultDisplay,
-        onResult?: any,
-    ) => void;
-    showAddItemPopup: (itemType: ItemType) => void;
-    showTradeItemPopup: (usingItem: CharacterItem | CustomItem) => void;
-    showModifyItemPopup: (usingItem: CharacterItem) => void;
+    showD20Popup: (props: OmitOnClose<D20PopupProps>) => void;
+    showD6Popup: (props: OmitOnClose<D6PopupProps>) => void;
+    showNd20Popup: (props: OmitOnClose<Nd20PopupProps>) => void;
+    showNd6Popup: (props: OmitOnClose<Nd6PopupProps>) => void;
+    showAddItemPopup: (props: OmitOnClose<AddItemPopupProps>) => void;
+    showTradeItemPopup: (props: OmitOnClose<TradeItemPopupProps>) => void;
+    showModifyItemPopup: (props: OmitOnClose<ModifyItemPopupProps>) => void;
 }
 
 const PopupContext = createContext<PopupContextValue | undefined>(undefined);
@@ -88,8 +71,8 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
 
     // --- Specific implementations of 'open'
 
-    const showAlert = useCallback(
-        (content: string) =>
+    const showAlert: PopupContextValue["showAlert"] = useCallback(
+        (content) =>
             open(AlertPopup, {
                 content,
                 showConfirm: false,
@@ -98,8 +81,8 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
         [open],
     );
 
-    const showConfirm = useCallback(
-        (content: string, onConfirm: () => void) =>
+    const showConfirm: PopupContextValue["showConfirm"] = useCallback(
+        (content, onConfirm) =>
             open(AlertPopup, {
                 content,
                 showConfirm: true,
@@ -108,79 +91,45 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
         [open],
     );
 
-    const showD20Popup = useCallback(
-        (skillId: any, roller: any, usingItem: any = null) =>
-            open(D20Popup, {
-                skillId,
-                usingItem,
-                roller,
-            }),
+    const showD20Popup: PopupContextValue["showD20Popup"] = useCallback(
+        (props) =>
+            open(D20Popup, props),
         [open],
     );
 
-    const showD6Popup = useCallback(
-        (usingItem: any, roller: any, hasAimed = false) =>
-            open(D6Popup, {
-                usingItem,
-                hasAimed,
-                roller,
-            }),
+    const showD6Popup: PopupContextValue["showD6Popup"] = useCallback(
+        (props) =>
+            open(D6Popup, props),
         [open],
     );
 
-    const showNd20Popup = useCallback(
-        (
-            diceCount: any,
-            title: string,
-            onResult: any,
-            description: any,
-            maxCritical: any,
-            minFailure: any,
-        ) =>
-            open(Nd20Popup, {
-                diceCount,
-                title,
-                onResult: onResult || (() => {}),
-                description,
-                maxCritical,
-                minFailure,
-            }),
+    const showNd20Popup: PopupContextValue["showNd20Popup"] = useCallback(
+        (props) =>
+            open(Nd20Popup, props),
         [open],
     );
 
-    const showNd6Popup = useCallback(
-        (diceCount: any, title: string, description: any, onResult: any, resultDisplay: ResultDisplay = 'both') =>
-            open(Nd6Popup, {
-                diceCount,
-                title,
-                description,
-                resultDisplay,
-                onResult: onResult || (() => {}),
-            }),
+    const showNd6Popup: PopupContextValue["showNd6Popup"] = useCallback(
+        (props) =>
+            open(Nd6Popup, props),
         [open],
     );
 
-    const showAddItemPopup = useCallback(
-        (itemType: ItemType) =>
-            open(AddItemPopup, {
-                itemType,
-            }),
+    const showAddItemPopup: PopupContextValue["showAddItemPopup"] = useCallback(
+        (props) =>
+            open(AddItemPopup, props),
         [open],
     );
 
-    const showTradeItemPopup = useCallback(
-        (usingItem: any) =>
-            open(TradeItemPopup, {
-                characterItem: usingItem,
-            }),
+    const showTradeItemPopup: PopupContextValue["showTradeItemPopup"] = useCallback(
+        (props) =>
+            open(TradeItemPopup, props),
         [open],
     );
 
-    const showModifyItemPopup = useCallback(
-        (usingItem: any) =>
-            open(ModifyItemPopup, {
-                characterItem: usingItem,
-            }),
+    const showModifyItemPopup: PopupContextValue["showModifyItemPopup"] = useCallback(
+        (props) =>
+            open(ModifyItemPopup, props),
         [open],
     );
 

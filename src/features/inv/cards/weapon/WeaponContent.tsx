@@ -161,17 +161,29 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
                     })}
 
                     {itemData.QUALITIES.map((effect) => {
-                        const [qualityType, qualityOpt] = effect.split(':');
-                        let displayValue = t(qualityOpt!)
-                        if (displayValue) {
-                            displayValue = ` ${displayValue}`;
+                        const [qualityType, qualityOpt] = effect.split(':')
+                        const textParts = [t(qualityType!)]
+                        if(qualityOpt){
+                            textParts.push(t(qualityOpt))
                         }
-                        const displayText = `${t(qualityType!)}${displayValue}`;
                         return (
                             <Tag key={effect}
                                  isEmpty={true}
                                  tooltipId={`${qualityType}Description`}>
-                                {displayText}
+                                {textParts.join(' ')}
+                            </Tag>
+                        );
+                    })}
+
+                    {characterItem.mods.filter(
+                        m => m.startsWith("legendary")
+                    ).map(effect => {
+                        return (
+                            <Tag key={effect}
+                                 tooltipId={`${effect}Description`}
+                                 color={'var(--warning-color)'}
+                                 >
+                                {t(effect)}
                             </Tag>
                         );
                     })}

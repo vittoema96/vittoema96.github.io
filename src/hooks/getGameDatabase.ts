@@ -1,5 +1,5 @@
 import { GameDatabase } from '@/services/GameDatabase';
-import { AidItem, AmmoItem, CharacterItem, Item, ModItem } from '@/types';
+import { AidItem, AmmoItem, CharacterItem, Item, LegendaryEffect, ModItem } from '@/types';
 import { applyEffect } from '@/utils/itemUtils.ts';
 import { WeaponItem } from '@/schemas/items/weaponSchemas.ts';
 import { BaseItem } from '@/schemas/items/baseItemSchemas.ts';
@@ -32,6 +32,7 @@ function createGameDatabase() {
         other: db.other,
         perks: db.perks,
         traits: db.traits,
+        legendaryEffects: db.legendaryEffects,
         allItems: db.allItems,
 
         // Helpers
@@ -47,7 +48,7 @@ export const getGameDatabase = () => {
     return cachedDataManager
 };
 
-const applyMods = (itemData: WeaponItem | ApparelItem, modsData: ModItem[]): typeof itemData => {
+const applyMods = (itemData: WeaponItem | ApparelItem, modsData: (ModItem | LegendaryEffect)[]): typeof itemData => {
     for (const handleRemove of [false, true]){
         modsData.forEach((mod) => {
             mod.EFFECTS.forEach(effect => {
@@ -64,7 +65,7 @@ const applyMods = (itemData: WeaponItem | ApparelItem, modsData: ModItem[]): typ
 /**
  * Get item data with mods applied
  */
-export function getModifiedItemData(characterItem: CharacterItem | null): WeaponItem | ApparelItem | null {
+export function getModifiedItemData(characterItem: CharacterItem | null | undefined): WeaponItem | ApparelItem | null {
     if(!characterItem) { return null }
     const dataManager = getGameDatabase()
     const itemData = dataManager.getItem(characterItem.id)
@@ -72,9 +73,14 @@ export function getModifiedItemData(characterItem: CharacterItem | null): Weapon
     if (characterItem.mods.length === 0) {return itemData}
 
 
-    const modsData = characterItem.mods.map(
-        modId => dataManager.getItem(modId)
-    ).filter(mod => dataManager.isType(mod, "mod"))
+    const modsData = [
+        ...characterItem.mods.map(
+                modId => dataManager.getItem(modId)
+            ).filter(mod => dataManager.isType(mod, "mod")),
+        ...characterItem.mods.map(
+                modId => dataManager.legendaryEffects[modId]
+            ).filter(e => e !== undefined)
+    ]
 
     const isApparel = isType(itemData, "apparel")
     let materialMultiplier = 1
@@ -83,15 +89,24 @@ export function getModifiedItemData(characterItem: CharacterItem | null): Weapon
             itemData.LOCATIONS_COVERED.length === 1
         materialMultiplier = isTorsoArmor ? 2 : 1
     }
-    const getValue = (modData: ModItem, value: number | '-') => {
-        const isMaterialMod = modData.SLOT_TYPE === 'modSlotMaterial'
+    const getValue = (modData: ModItem | LegendaryEffect, value: number | '-') => {
+        const isMaterialMod = {SLOT_TYPE: null, ...modData}.SLOT_TYPE === 'modSlotMaterial'
         const multiplier = isMaterialMod ? materialMultiplier : 1
         return (Number(value) || 0) * multiplier
     }
 
+    const COST = itemData.COST === '-' ? '-' : modsData.reduce(
+        (total, mod) => total + getValue(mod, {COST: 0, ...mod}.COST),
+        Number(itemData.COST) || 0
+    )
+    const WEIGHT = itemData.WEIGHT === '-' ? '-' : modsData.reduce(
+        (total, mod) => total + getValue(mod, {WEIGHT: 0, ...mod}.WEIGHT),
+        Number(itemData.WEIGHT) || 0
+    )
+
     return applyMods({
         ...itemData,
-        COST: itemData.COST === '-' ? '-' : modsData.reduce((total, mod) => total + getValue(mod, mod.COST), Number(itemData.COST) || 0),
-        WEIGHT: itemData.WEIGHT === '-' ? '-' : modsData.reduce((total, mod) => total + getValue(mod, mod.WEIGHT), Number(itemData.WEIGHT) || 0),
+        COST,
+        WEIGHT
     }, modsData)
 }

@@ -7,10 +7,12 @@ import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import { useInventoryActions } from '@/features/inv/hooks/useInventoryActions.ts';
 import { ChangeEventHandler } from 'react';
 
-function TradeItemPopup({ onClose, characterItem } : Readonly<{
+export interface TradeItemPopupProps {
     onClose: () => void;
     characterItem: CharacterItem | CustomItem;
-}>) {
+}
+
+function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProps>) {
     const { t } = useTranslation()
     const { showAlert } = usePopup()
     const { removeItem } = useInventoryActions()

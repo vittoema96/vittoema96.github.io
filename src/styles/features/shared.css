@@ -25,22 +25,9 @@
     gap: var(--space-s);
 }
 .tag {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
     border-radius: var(--space-xs);
     padding: var(--space-xs) var(--space-s);
     font-size: 0.7rem;
-}
-
-/* TODO is !important needed? */
-.tag-empty {
-    background-color: var(--button-background) !important;
-    color: var(--primary-color) !important;
-    border: var(--border-primary-thin) !important;
-}
-.tag-mod {
-    background-color: var(--button-background) !important;
-    color: var(--primary-color) !important;
 }
 
 /* Themed SVGs */

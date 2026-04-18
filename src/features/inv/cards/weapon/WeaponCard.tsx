@@ -34,7 +34,7 @@ function WeaponCard({ characterItem }: Readonly<WeaponCardProps>) {
         }
 
         // Open D20 popup for weapon attack, passing characterItem
-        showD20Popup(itemData.CATEGORY, characterItem);
+        showD20Popup({skillId: itemData.CATEGORY, usingItem: characterItem});
     };
 
     return (

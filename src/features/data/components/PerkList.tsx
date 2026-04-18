@@ -37,7 +37,7 @@ function PerkList() {
             onClick: () => {
                 // Check if player has at least 1 luck
                 if(character.currentLuck > 0){
-                    showD20Popup('smallGuns', MYSTERIOUS_44_MAGNUM, 'mysteriousStranger')
+                    showD20Popup({skillId: 'smallGuns', usingItem: MYSTERIOUS_44_MAGNUM, roller: 'mysteriousStranger'})
                 } else {
                     showAlert(t('notEnoughLuckAlert'));
                 }

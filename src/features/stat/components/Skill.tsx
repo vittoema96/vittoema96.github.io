@@ -29,7 +29,7 @@ function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
     // Handle skill changes
     const onSkillClick = () => {
         if (!isEditing) {
-            showD20Popup(skillId)
+            showD20Popup({ skillId: skillId });
             return
         }
 
@@ -46,7 +46,7 @@ function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
     const onSpecialtyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const checked = e.target.checked
         if (!isEditing) {
-            showD20Popup(skillId)
+            showD20Popup({ skillId: skillId })
             return
         }
 

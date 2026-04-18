@@ -6,12 +6,12 @@ import NdXPopup from '@/components/popup/dice/NdXPopup.tsx';
 export type ResultDisplay = 'damage' | 'effects' | 'both';
 
 
-interface Nd6PopupProps extends GenericPopupProps {
-    diceCount: number | undefined;
+export interface Nd6PopupProps extends GenericPopupProps {
+    diceCount?: number | undefined;
     title: string;
     description?: string | undefined;
-    resultDisplay: ResultDisplay;
-    onResult: (result: { totalDamage: number; totalEffects: number; rolls: number[] }) => void;
+    resultDisplay?: ResultDisplay;
+    onResult?: (result: { totalDamage: number; totalEffects: number; rolls: number[] }) => void;
 }
 
 /**
@@ -19,7 +19,7 @@ interface Nd6PopupProps extends GenericPopupProps {
  * Used for various game mechanics that require rolling combat dice
  */
 
-function Nd6Popup({ onClose, diceCount, title, description, resultDisplay, onResult }: Readonly<Nd6PopupProps>) {
+function Nd6Popup({ onClose, diceCount, title, description, resultDisplay='both', onResult=(_) => {} }: Readonly<Nd6PopupProps>) {
 
     const { t } = useTranslation();
 

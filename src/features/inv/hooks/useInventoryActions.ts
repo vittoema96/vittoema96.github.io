@@ -72,7 +72,7 @@ export const useInventoryActions = () => {
             showAlert(t('cannotSellItem'))
             return
         }
-        showTradeItemPopup(characterItem)
+        showTradeItemPopup({ characterItem: characterItem });
     }
 
     const deleteItem = (characterItem: CharacterItem | CustomItem) => {

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase';
 import { useTooltip } from '@/contexts/TooltipContext'
-import { CharacterItem, ModItem, MrHandyPart } from '@/types';
+import { CharacterItem, MrHandyPart } from '@/types';
 import { addItem, removeItem } from '@/utils/itemUtils.ts';
 import BasePopup from './common/BasePopup';
 
@@ -11,16 +11,22 @@ import BasePopup from './common/BasePopup';
  * Popup for modifying weapons and armor with mods
  * Uses dropdown selectors for each mod slot
  */
-interface ModifyItemPopupProps {
+export interface ModifyItemPopupProps {
     onClose: () => void;
     characterItem: CharacterItem;
 }
 
+interface SlotOption {
+    id: string;
+    effects: string[];
+    cost: number;
+}
+
 interface SlotData {
-    availableMods: ModItem[]
-    appliedMod: ModItem | undefined
-    selectedMod: ModItem | undefined
-    buy: boolean
+    availableMods: SlotOption[]
+    appliedMod: SlotOption | undefined
+    selectedMod: SlotOption | undefined
+    buy: boolean | undefined
 }
 
 function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupProps>) {
@@ -33,23 +39,56 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
 
     const [ slotsData, setSlotsData ] = useState(() => {
         const result: Record<string, SlotData> = {}
-        itemData?.AVAILABLE_MODS.forEach((modId) => {
+
+        if(!itemData) { return result }
+
+        itemData.AVAILABLE_MODS.forEach((modId) => {
             const modData = dataManager.getItem(modId)
             if (dataManager.isType(modData, "mod")) {
-                result[modData.SLOT_TYPE] ??= {
+                const slot = result[modData.SLOT_TYPE] ??= {
                     availableMods: [],
                     appliedMod: undefined,
                     selectedMod: undefined,
                     buy: false
                 }
-                result[modData.SLOT_TYPE]!.availableMods.push(modData) // Why do i need ! here?
+                const data = {
+                    id: modData.ID,
+                    effects: modData.EFFECTS,
+                    cost: Number(modData.COST) || 0,
+                }
+                slot.availableMods.push(data)
+                if(characterItem.mods.includes(data.id)) {
+                    slot.appliedMod = data
+                    slot.selectedMod = data
+                }
             }
         })
-        characterItem.mods.forEach((modId) => {
-            const modData = dataManager.getItem(modId)
-            if(!dataManager.isType(modData, 'mod')) {return}
-            result[modData.SLOT_TYPE]!.appliedMod = modData // modId exists here
-            result[modData.SLOT_TYPE]!.selectedMod = modData // modId exists here
+
+        Object.values(dataManager.legendaryEffects).filter(
+            effect => (
+                !dataManager.isUnacquirable(itemData)
+                && effect.FOR_CATEGORY.includes(itemData.CATEGORY)
+                && effect.FOR_TYPE.includes(itemData.TYPE)
+            )
+        ).sort(
+            (a, b) => t(a.ID).localeCompare(t(b.ID))
+        ).forEach(effect => {
+            const slot = result["modSlotLegendary"] ??= {
+                availableMods: [],
+                appliedMod: undefined,
+                selectedMod: undefined,
+                buy: undefined
+            }
+            const data ={
+                id: effect.ID,
+                effects: effect.EFFECTS,
+                cost: 0
+            }
+            slot.availableMods.push(data)
+            if(characterItem.mods.includes(data.id)) {
+                slot.appliedMod = data
+                slot.selectedMod = data
+            }
         })
         return result
     })
@@ -63,7 +102,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
 
         Object.values(slotsData).forEach((data) => {
             if (data.selectedMod && data.buy) {
-                totalCost += Number(data.selectedMod.COST) || 0;
+                totalCost += data.selectedMod.cost;
             }
         })
 
@@ -73,7 +112,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
     // Get preview of modified item data
     const getPreviewData = () => {
         const newMods = Object.values(slotsData)
-            .flatMap((data) => data.selectedMod ? [data.selectedMod.ID] : [])
+            .flatMap((data) => data.selectedMod ? [data.selectedMod.id] : [])
         const previewItem = {...characterItem, mods: newMods}
         return getModifiedItemData(previewItem)
     }
@@ -82,7 +121,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
         const newMods = Object.values(slotsData)
             .flatMap((data) => {
                 if (data.selectedMod) {
-                    return [data.selectedMod.ID];
+                    return [data.selectedMod.id];
                 } else {
                     return [];
                 }
@@ -111,15 +150,15 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
         // If editing robot plating, edit all OTHER parts (not this one)
         if(itemData.CATEGORY === 'robotPart'){
             const data = slotsData['modSlotRobotPlating']
-            if(data && data.selectedMod?.ID !== data.appliedMod?.ID){
+            if(data && data.selectedMod?.id !== data.appliedMod?.id){
                 character.items.map(item => {
                     if(item.id !== characterItem.id
                         && character.origin.bodyParts.has(item.id as MrHandyPart)){
                         newItems = editItems(item, {
                             ...item,
                             mods: [
-                                ...item.mods.filter(m => m !== data.appliedMod?.ID),
-                                data.selectedMod?.ID ?? ''
+                                ...item.mods.filter(m => m !== data.appliedMod?.id),
+                                data.selectedMod?.id ?? ''
                             ]
                         }, newItems)
                     }
@@ -172,16 +211,16 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
     }
 
     // Show mod info tooltip
-    const onModInfoClick = (e: React.MouseEvent<HTMLButtonElement>, modData: ModItem) => {
+    const onModInfoClick = (e: React.MouseEvent<HTMLButtonElement>, modData: SlotOption) => {
         e.stopPropagation()
 
-        if (modData.EFFECTS.length === 0) {
+        if (modData.effects.length === 0) {
             return
         }
 
         // Format as: Title + list of effects
-        const modName = t(modData.ID)
-        const effectsList = modData.EFFECTS.map(effect => `• ${formatEffect(effect)}`).join('\n')
+        const modName = t(modData.id)
+        const effectsList = modData.effects.map(effect => `• ${formatEffect(effect)}`).join('\n')
         const content = `${modName}\n\n${effectsList}`
 
         showTooltip(content, e.currentTarget)
@@ -322,78 +361,85 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                     </>
                 )}
             </div>
+
             {/* Mod Slots */}
             <div className={`mod-slots-container ${useTwoColumns ? 'mod-slots-two-columns' : ''}`}>
-                {Object.entries(slotsData).map(([slot, data]) => {
-                    const needsToBuy = data.selectedMod && !characterItem.mods.includes(data.selectedMod.ID)
+                { Object.entries(slotsData).map(([slot, data]) => {
+                    const needsToBuy = data.selectedMod !== undefined && data.buy !== undefined && !characterItem.mods.includes(data.selectedMod.id)
 
-                    return (
-                        <div key={slot} className="mod-slot-row">
-                            <div className="mod-slot-header">
-                                <div className="mod-slot-label-group">
-                                    <label>{t(slot)}</label>
-                                    {data.selectedMod &&
-                                        <button
-                                            type="button"
-                                            className="mod-info-button"
-                                            onClick={
-                                                (e) =>
-                                                    onModInfoClick(e, data.selectedMod!)
-                                            }
-                                            aria-label="Mod info"
-                                        >
-                                            <span className="mod-info-icon">ⓘ</span>
-                                        </button>}
-                                </div>
-                                <div className="mod-slot-cost-area">
-                                    {needsToBuy && (
-                                        <div className="mod-slot-cost-badge">
-                                            <input
-                                                type="checkbox"
-                                                className="themed-svg icon-s"
-                                                data-icon="caps"
-                                                checked={data.buy}
-                                                onChange={
-                                                    (e) =>
-                                                        setSlotsData({
-                                                            ...slotsData,
-                                                            [slot]: {...slotsData[slot]!, buy: e.target.checked}
-                                                        })
-                                                }
-                                            />
-                                            <span className="mod-cost-value">{data.selectedMod?.COST || 0}</span>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                            <select
-                                className="mod-slot-select"
-                                value={data.selectedMod?.ID || ''}
-                                onChange={(e) => {
-                                    let newMod = dataManager.getItem(e.target.value) ?? undefined
-                                    if(!dataManager.isType(newMod, "mod")) {
-                                        newMod = undefined
+                    return <div key={slot}>
+                        {/* Header */}
+                        <div className="row l-spaceBetween" style={{padding: "0 var(--space-s)"}}>
+                            <label style={{fontSize: "0.8rem", textAlign: "start", padding: "var(--space-xs) 0" }}>
+                                {t(slot)}
+                            </label>
+                            <div className="row" style={{ width: "auto" }}>
+                                {data.selectedMod && <button
+                                    type="button"
+                                    className="mod-info-button"
+                                    onClick={
+                                        (e) =>
+                                            onModInfoClick(e, data.selectedMod!)
                                     }
-                                    setSlotsData({
-                                        ...slotsData,
-                                        [slot]: {
-                                            ...slotsData[slot]!,
-                                            selectedMod: newMod,
-                                            buy: !!newMod && !characterItem.mods.includes(newMod.ID)
-                                        }
-                                    })
-                                }}
-                            >
-                                {/* Robot plating slot cannot be empty, but armor slot can */}
-                                {slot !== "modSlotRobotPlating" && <option value="">{t('none')}</option>}
-                                {slotsData[slot]!.availableMods.map((mod) => (
-                                    <option key={mod.ID} value={mod.ID}>
-                                        {t(mod.ID)}
-                                    </option>
-                                ))}
-                            </select>
+                                    aria-label="Mod info"
+                                >ⓘ</button>}
+                                {needsToBuy && <div className="mod-slot-cost-area">
+                                    <div className="mod-slot-cost-badge">
+                                        <input
+                                            type="checkbox"
+                                            className="themed-svg icon-s"
+                                            data-icon="caps"
+                                            checked={data.buy}
+                                            onChange={
+                                                (e) =>
+                                                    setSlotsData({
+                                                        ...slotsData,
+                                                        [slot]: {...slotsData[slot]!, buy: e.target.checked}
+                                                    })
+                                            }
+                                        />
+                                        <span className="mod-cost-value">{data.selectedMod?.cost ?? 0}</span>
+                                    </div>
+                                </div>}
+                            </div>
                         </div>
-                    )
+                        <select
+                            className="mod-slot-select"
+                            value={data.selectedMod?.id ?? ''}
+                            onChange={(e) => {
+                                const newMod = dataManager.getItem(e.target.value)
+                                    ?? dataManager.legendaryEffects[e.target.value]
+                                    ?? undefined
+                                let data = undefined
+                                if(newMod){
+                                    data = {
+                                        id: newMod.ID,
+                                        effects: { EFFECTS: [], ...newMod }.EFFECTS,
+                                        cost: Number({ COST: 0, ...newMod }.COST) || 0,
+                                    };
+                                }
+                                setSlotsData({
+                                    ...slotsData,
+                                    [slot]: {
+                                        ...slotsData[slot]!,
+                                        selectedMod: data,
+                                        // set buy=true if selected an actual mod that is not the applied one
+                                        // TODO might want to add mods to inventory and do something else here if mod is in inventory
+                                        ...(slotsData[slot]?.buy === undefined ? {} : { buy: data && slotsData[slot]?.appliedMod?.id !== data.id })
+
+                                    }
+                                })
+                            }}
+                        >
+                            {/* Robot plating slot cannot be empty, but armor slot can */}
+                            {slot !== "modSlotRobotPlating" && <option value="">{t('none')}</option>}
+                            {slotsData[slot]!.availableMods.map((mod) => (
+                                <option key={mod.id} value={mod.id}>
+                                    {t(mod.id)}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 })}
             </div>
 

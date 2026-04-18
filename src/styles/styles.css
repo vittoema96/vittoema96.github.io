@@ -26,7 +26,7 @@
     gap: 0;
 }
 
-.row--spaced {
+.l-spaceEvenly {
     justify-content: space-evenly;
 }
 /* All items take the same space */

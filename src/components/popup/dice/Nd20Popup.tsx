@@ -3,15 +3,15 @@ import { GenericPopupProps } from '@/types';
 import { D20Dice } from '@/components/popup/dice/components/dice.tsx';
 import NdXPopup from '@/components/popup/dice/NdXPopup.tsx';
 
-interface Nd20PopupProps extends GenericPopupProps {
-    diceCount: number | undefined;
+export interface Nd20PopupProps extends GenericPopupProps {
+    diceCount?: number | undefined;
     title: string;
     description?: string | undefined;
 
-    minFailure?: number | undefined;
-    maxCritical?: number | undefined;
+    minFailure?: number;
+    maxCritical?: number;
 
-    onResult: (result: {
+    onResult?: (result: {
         total: number;
         crits: number;
         failures: number;
@@ -30,7 +30,8 @@ function Nd20Popup({
     description,
     minFailure = 20,
     maxCritical = 1,
-    onClose, onResult
+    onClose,
+    onResult = (_) => {}
 }: Readonly<Nd20PopupProps>) {
 
     const { t } = useTranslation();

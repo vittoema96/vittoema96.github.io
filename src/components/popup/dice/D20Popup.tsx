@@ -36,17 +36,19 @@ type Roller = (SimpleRoller | CharacterRoller) & {
     currentLuck?: number | undefined;
 };
 
+export interface D20PopupProps {
+    skillId: SkillType | CompanionSkillType;
+    roller?: RollerType; // undefined means the player
+    usingItem?: CharacterItem | undefined;
+    onClose: () => void;
+}
+
 function D20Popup({
     skillId,
     usingItem,
     roller,
     onClose,
-}: Readonly<{
-    skillId: SkillType | CompanionSkillType;
-    roller: RollerType; // undefined means the player
-    usingItem: CharacterItem | null;
-    onClose: () => void;
-}>) {
+}: Readonly<D20PopupProps>) {
     const { t } = useTranslation();
     const dataManager = getGameDatabase();
     const { showD6Popup } = usePopup();
@@ -298,6 +300,8 @@ function D20Popup({
         return null;
     }
 
+    console.log("ROLLER:", roller)
+
     function toggleAiming(checked: boolean) {
         if (
             dataManager.isType(itemData, 'weapon') &&
@@ -342,7 +346,7 @@ function D20Popup({
                                     equipped: false,
                                     mods: [],
                                 };
-                                showD6Popup(damageItem, isAiming, roller);
+                                showD6Popup({usingItem: damageItem, hasAimed: isAiming, roller: roller});
                             }}
                             /* TODO Companions SHOULD use ammo too */
                             disabled={!hasRolled}

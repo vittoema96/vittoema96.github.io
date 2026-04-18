@@ -44,19 +44,19 @@ function TraitList() {
         'traitRiteOfPassage': {
             buttonLabel: 'traitRiteOfPassage',
             onClick: () => {
-                showNd6Popup(
-                    1,
-                    t('traitRiteOfPassage'),
-                    t('traitRiteOfPassageBenefit'),
-                    'effects',
-                    (result) => {
+                showNd6Popup({
+                    diceCount: 1,
+                    title: t('traitRiteOfPassage'),
+                    description: t('traitRiteOfPassageBenefit'),
+                    resultDisplay: 'effects',
+                    onResult: (result) => {
                         // If rolled an effect (3-4 on d6), gain +1 luck
                         if (result.totalEffects > 0) {
                             const newLuck = Math.min(character.currentLuck + 1, character.maxLuck);
                             updateCharacter({ currentLuck: newLuck });
                         }
                     }
-                );
+                });
             }
         },
         'traitMotherWasteland': {

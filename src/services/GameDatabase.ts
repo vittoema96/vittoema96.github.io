@@ -1,4 +1,4 @@
-import { AidItem, AmmoItem, Item, ModItem, TraitData } from '@/types';
+import { AidItem, AmmoItem, Item, LegendaryEffect, ModItem, TraitData } from '@/types';
 import { GameDataRepository } from '@/services/GameDataRepository';
 import { WeaponItem } from '@/schemas/items/weaponSchemas.ts';
 import { BaseItem } from '@/schemas/items/baseItemSchemas.ts';
@@ -14,6 +14,7 @@ interface DatabaseCollections {
     mod: Record<string, ModItem>;
     perks: Record<string, any>;
     traits: Record<string, TraitData>;
+    legendaryEffects: Record<string, LegendaryEffect>;
     allItems: Record<string, Item>; // Pre-calculated lookup for speed
 }
 
@@ -64,16 +65,12 @@ export const GameDatabase = {
      * Returns the full DB. Throws if accessed before init.
      */
     get data() {
-        if (!db) {
-            throw new Error('GameDatabase not initialized! Call GameDatabase.init() first.');
-        }
+        if (!db) { throw new Error('GameDatabase not initialized! Call GameDatabase.init() first.') }
         return db;
     },
 
     getItem(id: string | undefined): Readonly<Item> | null {
-        if (!id) {
-            return null;
-        }
+        if (!id) { return null }
         return this.data.allItems[id] || null;
     },
 
