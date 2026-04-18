@@ -1,9 +1,9 @@
 import { useCharacter } from '@/contexts/CharacterContext';
 import { useState } from 'react';
-import HeaderInfoPopup from '@/app/HeaderInfoPopup.tsx';
+import AppHeaderPopup from '@/app/AppHeaderPopup.tsx';
 
-function HeaderInfo() {
-    const [isStatPopupOpen, setIsStatPopupOpen] = useState(false);
+function AppHeaderData() {
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const { character } = useCharacter();
 
@@ -12,12 +12,12 @@ function HeaderInfo() {
     const hasRads = character.rads > 0;
     return (
         <>
-            <div onClick={() => setIsStatPopupOpen(true)} style={{ cursor: 'pointer' }}>
+            <div onClick={() => setIsPopupOpen(true)} style={{ cursor: 'pointer' }}>
                 <HeaderInfoRow
                     icon="hp"
                     value={character.currentHp}
-                    value2={effectiveMaxHp}
-                    value2Danger={hasRads}
+                    valueTot={effectiveMaxHp}
+                    valueTotDanger={hasRads}
                     useBorder
                 />
                 <HeaderInfoRow
@@ -27,11 +27,11 @@ function HeaderInfo() {
                 <HeaderInfoRow
                     icon="weight"
                     value={character.currentWeight}
-                    value2={character.maxWeight}
+                    valueTot={character.maxWeight}
                 />
             </div>
 
-            {isStatPopupOpen && <HeaderInfoPopup onClose={() => setIsStatPopupOpen(false)} />}
+            {isPopupOpen && <AppHeaderPopup onClose={() => setIsPopupOpen(false)} />}
         </>
     );
 }
@@ -39,15 +39,15 @@ function HeaderInfo() {
 function HeaderInfoRow({
     icon,
     value,
-    value2,
+    valueTot,
     useBorder,
-    value2Danger,
+    valueTotDanger,
 }: Readonly<{
     icon: string;
     value: number | string;
-    value2?: number | string;
+    valueTot?: number | string;
     useBorder?: boolean;
-    value2Danger?: boolean;
+    valueTotDanger?: boolean;
 }>) {
     return (
         <div
@@ -63,10 +63,10 @@ function HeaderInfoRow({
             ></div>
             <div style={{ flex: 1 }}>
                 {value}
-                {value2 && <span className={value2Danger ? 'text-warning' : ''}> / {value2}</span>}
+                {valueTot && <span className={valueTotDanger ? 'text-warning' : ''}> / {valueTot}</span>}
             </div>
         </div>
     );
 }
 
-export default HeaderInfo;
+export default AppHeaderData;

@@ -1,25 +1,26 @@
 import { useMemo } from 'react'
 import { useCharacter } from '@/contexts/CharacterContext.tsx'
 import { useTranslation } from 'react-i18next'
-import { DEFAULT_EXCHANGE_RATES, ExchangeRates } from '@/types'
+import { DEFAULT_EXCHANGE_RATES } from '@/types'
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
 
 /**
  * StatAdjustmentPopup - Allows editing HP, Luck, and currencies with exchange rates
  */
-function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
+function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
     const { t } = useTranslation();
     const { character, updateCharacter } = useCharacter();
 
     // Local state for form inputs
     const [currentHp, setCurrentHp] = useInputNumberState(character.currentHp);
     const [rads, setRads] = useInputNumberState(character.rads);
+    const [currentLuck, setCurrentLuck] = useInputNumberState(character.currentLuck);
+
     const [caps, setCaps] = useInputNumberState(character.caps);
     const [ncrDollars, setNcrDollars] = useInputNumberState(character.ncrDollars);
     const [legionDenarius, setLegionDenarius] = useInputNumberState(character.legionDenarius);
     const [prewarMoney, setPrewarMoney] = useInputNumberState(character.prewarMoney);
-    const [currentLuck, setCurrentLuck] = useInputNumberState(character.currentLuck);
 
     // Effective max HP is reduced by rads
     const effectiveMaxHp = character.maxHp - Number(rads);
@@ -29,52 +30,29 @@ function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
     const [rateLegion, setRateLegion] = useInputNumberState(character.exchangeRates.legionDenarius);
     const [ratePrewar, setRatePrewar] = useInputNumberState(character.exchangeRates.prewarMoney);
 
-    // Get effective exchange rates for calculation
-    const effectiveRates = useMemo(
-        () => ({
-            ncrDollars:
-                typeof rateNcr === 'number' && rateNcr > 0
-                    ? rateNcr
-                    : DEFAULT_EXCHANGE_RATES.ncrDollars,
-            legionDenarius:
-                typeof rateLegion === 'number' && rateLegion > 0
-                    ? rateLegion
-                    : DEFAULT_EXCHANGE_RATES.legionDenarius,
-            prewarMoney:
-                typeof ratePrewar === 'number' && ratePrewar > 0
-                    ? ratePrewar
-                    : DEFAULT_EXCHANGE_RATES.prewarMoney,
-        }),
-        [rateNcr, rateLegion, ratePrewar],
-    );
+
+    const getVal =
+        (val: number | '', fallback = 0) => (val === '' ? fallback : val);
 
     // Calculate total wealth in caps equivalent
     const totalCapsEquivalent = useMemo(() => {
-        const capsVal = Number(caps);
-        const ncrVal = Number(ncrDollars);
-        const legionVal = Number(legionDenarius);
-        const prewarVal = Number(prewarMoney);
+        const ncrRate = getVal(rateNcr, DEFAULT_EXCHANGE_RATES.ncrDollars);
+        const legRate = getVal(rateLegion, DEFAULT_EXCHANGE_RATES.legionDenarius);
+        const preRate = getVal(ratePrewar, DEFAULT_EXCHANGE_RATES.prewarMoney);
 
         return (
-            capsVal +
-            Math.floor(ncrVal / effectiveRates.ncrDollars) +
-            Math.floor(legionVal / effectiveRates.legionDenarius) +
-            Math.floor(prewarVal / effectiveRates.prewarMoney)
+            getVal(caps) +
+            Math.floor(getVal(ncrDollars) / ncrRate) +
+            Math.floor(getVal(legionDenarius) / legRate) +
+            Math.floor(getVal(prewarMoney) / preRate)
         );
-    }, [caps, ncrDollars, legionDenarius, prewarMoney, effectiveRates]);
+    }, [rateNcr, rateLegion, ratePrewar, caps, ncrDollars, legionDenarius, prewarMoney]);
+
 
     const onConfirm = () => {
         if (!isFormValid) {
             return;
         }
-
-        const exchangeRates: ExchangeRates = {
-            ncrDollars: typeof rateNcr === 'number' ? rateNcr : DEFAULT_EXCHANGE_RATES.ncrDollars,
-            legionDenarius:
-                typeof rateLegion === 'number' ? rateLegion : DEFAULT_EXCHANGE_RATES.legionDenarius,
-            prewarMoney:
-                typeof ratePrewar === 'number' ? ratePrewar : DEFAULT_EXCHANGE_RATES.prewarMoney,
-        };
 
         updateCharacter({
             currentHp,
@@ -83,9 +61,14 @@ function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
             ncrDollars,
             legionDenarius,
             prewarMoney,
-            exchangeRates,
+            exchangeRates: {
+                ncrDollars: getVal(rateNcr, DEFAULT_EXCHANGE_RATES.ncrDollars),
+                legionDenarius: getVal(rateLegion, DEFAULT_EXCHANGE_RATES.legionDenarius),
+                prewarMoney: getVal(ratePrewar, DEFAULT_EXCHANGE_RATES.prewarMoney),
+            },
             currentLuck,
         });
+        onClose();
     };
 
     // Generic number input handler
@@ -334,4 +317,4 @@ function HeaderInfoPopup({ onClose }: Readonly<{ onClose: () => void }>) {
     );
 }
 
-export default HeaderInfoPopup
+export default AppHeaderPopup

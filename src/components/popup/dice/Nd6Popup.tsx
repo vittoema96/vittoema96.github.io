@@ -24,7 +24,8 @@ function Nd6Popup({ onClose, diceCount, title, description, resultDisplay, onRes
     const { t } = useTranslation();
 
     const getTotalDamage = (diceValues: number[]) => {
-        return diceValues.filter(v => v <= 4).length;
+        return diceValues.filter(v => v <= 4).length // 5 & 6 are blanks
+            + diceValues.filter(v => v === 2).length; // 2 is 2 damage, the rest is 1
     }
 
     const getTotalEffects = (diceValues: number[]) => {

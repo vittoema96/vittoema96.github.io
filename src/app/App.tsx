@@ -8,7 +8,7 @@ import SettingsTab from '@/features/settings/SettingsTab';
 import TabButton, { TabType } from '@/features/TabButton';
 import { useCharacter } from '@/contexts/CharacterContext';
 import { FitText } from '@/components/FitText.tsx';
-import HeaderInfo from '@/app/HeaderInfo.tsx';
+import AppHeaderData from '@/app/AppHeaderData.tsx';
 
 const TABS: Record<TabType, React.ComponentType<any>> = {
     companion: CompanionTab,
@@ -44,7 +44,7 @@ function App() {
         <>
             <header className="l-lastSmall">
                 <FitText maxSize={35}>Pip-Boy 3000</FitText>
-                <HeaderInfo />
+                <AppHeaderData />
             </header>
 
             <hr />
