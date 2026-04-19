@@ -36,31 +36,37 @@ function InventoryList({
 
     const [selectedItemId, setSelectedItemId] = useState<string | undefined>(undefined)
 
+    useEffect(() => {
+        setCategoryFilter(undefined)
+    }, [typeFilter]);
+
     const dataManager = getGameDatabase()
     const { character } = useCharacter()
 
-    // TODO do we need to filter out non-origin traits here?
-    const traits = character.traits
-        .map(trait => dataManager.traits[trait]!)
-        .filter(trait => {
-        return trait.ORIGINS.includes(character.origin.id)
-    })
     // TODO should we add ORIGIN apparel here too? but both weapons and apparel might be modified, so should be saved on storage...
-    const newItems = traits.flatMap(trait => {
-        return trait.EFFECTS.flatMap((effect: string) => {
-            const [effectType, item] = effect.split(':')
-            if(effectType === 'weaponAdd'){
-                return {
-                    id: item as string,
-                    quantity: 1,
-                    equipped: false,
-                    mods: []
+    const newItems = useMemo(() => {
+        // TODO do we need to filter out non-origin traits here?
+        const activeTraits = character.traits
+            .map(trait => dataManager.traits[trait]!)
+            .filter(trait => trait.ORIGINS.includes(character.origin.id));
+
+        return activeTraits.flatMap(trait => {
+            return trait.EFFECTS.flatMap((effect) => {
+                const [effectType, item] = effect.split(':')
+                if(effectType === 'weaponAdd'){
+                    return {
+                        id: item as string,
+                        quantity: 1,
+                        equipped: false,
+                        mods: []
+                    }
                 }
-            }
-            return []
+                return []
+            })
         })
-    })
-    items = [...items, ...newItems]
+    }, [character.origin.id, character.traits])
+
+    const allItems = useMemo(() => [...items, ...newItems], [items, newItems]);
 
     // Get subcategories based on main category (sorted alphabetically by translation)
     const getCategories = () => {
@@ -103,11 +109,13 @@ function InventoryList({
 
     // Filter and sort items
     const processedItems = useMemo(() => {
-        let filtered = [...items]
-
         // Apply type filter
-        filtered = filtered.filter(item => {
-            return dataManager.isType(dataManager.getItem(item.id), typeFilter)
+        const filtered = allItems.filter(item => {
+            const itemData = dataManager.getItem(item.id);
+            if (!itemData || !dataManager.isType(itemData, typeFilter)) {
+                return false;
+            }
+            return !(categoryFilter && itemData.CATEGORY !== categoryFilter);
         })
 
         // Apply sorting
@@ -178,7 +186,7 @@ function InventoryList({
         })
 
         return filtered
-    }, [items, typeFilter, t, sortBy, isAscendingDirection])
+    }, [allItems, typeFilter, categoryFilter, sortBy, isAscendingDirection, t])
 
     const handleSelect = (itemId: string) => {
         setSelectedItemId(selectedItemId === itemId ? undefined : itemId)
@@ -224,13 +232,7 @@ function InventoryList({
 
     const renderItems = (itemsList: CharacterItem[]) => {
         return itemsList.map(characterItem => {
-            const itemData = dataManager.getItem(characterItem.id)
-            if(!itemData
-                || !dataManager.isType(itemData, typeFilter)
-                    || (categoryFilter && itemData.CATEGORY !== categoryFilter)){
-                return null
-            }
-            const uniqueKey = getItemKey(characterItem)
+            const uniqueKey = getItemKey(characterItem);
 
             return (
                 <InventoryRow
@@ -239,8 +241,8 @@ function InventoryList({
                     isSelected={selectedItemId === uniqueKey}
                     onSelect={() => handleSelect(uniqueKey)}
                 />
-            )
-        })
+            );
+        });
     }
 
     // Render custom items (only for 'other' type)
