@@ -96,7 +96,7 @@ robot, dato che le punte acuminate possono ferire.
 Speciale: Quando viene effettuato un attacco da
 mischia contro una parte dotata di placcatura zigrinata
 e l’attaccante subisce una complicazione, soffre anche
-2 D C danni Persistenti (Fisici). Inoltre gli attacchi da
+2 DC danni Persistenti (Fisici). Inoltre gli attacchi da
 mischia fatti con braccia dotate di placcatura zigrinata
 ottengono l’effetto danno Persistente (Fisico).
 PLACCATURA TOSSICA
@@ -106,7 +106,7 @@ creatura vivente nelle vicinanze.
 Speciale: Quando viene effettuato un attacco da
 mischia contro una parte dotata di placcatura tossica
 e l’attaccante subisce una complicazione, subisce
-anche 2 D C danni da Radiazioni. Inoltre gli attacchi da
+anche 2 DC danni da Radiazioni. Inoltre gli attacchi da
 mischia fatti con braccia dotate di placcatura tossica
 ottengono l’effetto danno Radioattivo.
 PLACCATURA VELENOSA
@@ -116,14 +116,14 @@ al robot o ai suoi compagni.
 Speciale: Quando viene effettuato un attacco da
 mischia contro una parte dotata di placcatura velenosa
 e l’attaccante subisce una complicazione, subisce anche
-2 D C danni Persistenti (Veleno). Inoltre gli attacchi da
+2 DC danni Persistenti (Veleno). Inoltre gli attacchi da
 mischia fatti con braccia dotate di placcatura velenosa
 ottengono l’effetto danno Persistente (Veleno).
 TELAIO AD ATTIVAZIONE
 Si tratta di un’armatura dotata di attuatori e sistemi
 motori che facilitano le azioni del robot.
 Speciale: Gli attacchi da mischia portati con brac-
-cia dotate di telaio ad attivazione infliggono +1 D C
+cia dotate di telaio ad attivazione infliggono +1 DC
 danno. Se il propulsore del robot è dotato di un telaio
 ad attivazione, può compiere sia un’azione minore di
 Movimento che un’azione maggiore di Scatto nello
@@ -134,12 +134,12 @@ satori aggiuntivi per potenziare l’efficacia delle armi a
 energia.
 Speciale: Se il robot è dotato di un telaio voltaico,
 tutti i suoi attacchi che arrecano danni da Energia
-infliggono +1 D C . Il bonus aumenta di +1 D C ogni due
-ulteriori parti dotate di Telaio Voltaico (per cui +2 D C
-con 3 pezzi o +3 D C con 5 pezzi o più).
+infliggono +1 DC . Il bonus aumenta di +1 DC ogni due
+ulteriori parti dotate di Telaio Voltaico (per cui +2 DC
+con 3 pezzi o +3 DC con 5 pezzi o più).
 TELAIO IDRAULICO
 Si tratta di un’apposita armatura che cela un potente
 sistema idraulico, che migliora i movimenti del robot.
 Speciale: Gli attacchi da mischia effettuati con braccia
-dotate di Telaio Idraulico infliggono +1 D C danno e
+dotate di Telaio Idraulico infliggono +1 DC danno e
 ottengono l’effetto del danno Stordente.

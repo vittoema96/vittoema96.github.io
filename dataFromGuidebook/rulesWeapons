@@ -31,10 +31,10 @@ che si tirano per determinare il danno che viene
 inflitto al bersaglio. Ogni Dado Combattimento ha due
 facce speciali, chiamate Effetti, che fanno scaturire gli
 effetti di danno dell’arma. In questo manuale, i Dadi
-Combattimento sono rappresentati col simbolo D C .
+Combattimento sono rappresentati col simbolo DC .
 Bisogna ricordarsi che agli attacchi senza armi o con
 armi da mischia si deve aggiungere al valore dei danni
-tanti D C quanta è la FOR del personaggio (vedere
+tanti DC quanta è la FOR del personaggio (vedere
 Danni da Mischia a pag. 48).
 Il valore di danno di un’arma a distanza si basa sulle
 munizioni e varia a seconda della tipologia usata.
@@ -43,14 +43,14 @@ Gli effetti dei danni sono le particolarità che caratteriz-
 zano il modo in cui un’arma infligge danno. Quando si
 ottengono uno o più Effetti in una prova per infliggere
 danni, si attivano tutti gli effetti dei danni dell’arma.
-Alcuni dipendono dal numero di simboli D C presenti
+Alcuni dipendono dal numero di simboli DC presenti
 nel risultato, come descritto in ciascuna voce.
 In ogni arma la lista degli effetti dei danni è riportata
 subito dopo il valore di danno.
 Vittorio Emanuele Veloccia - 54644888 FALLOUT  Il Gioco di Ruolo
 CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
  Dirompente: Per ogni Effetto ottenuto, riduce
-permanentemente di 1 il numero di D C forniti al
+permanentemente di 1 il numero di DC forniti al
 bersaglio da una copertura. Se il bersaglio non ha
 copertura, allora riduce di 1 la RD del punto d’impatto
 colpito in base al tipo di danno dell’arma; ad esempio
@@ -100,7 +100,7 @@ con cui sparano ed è indicata con un numero da 0 a 6.
 Quando si attacca con un fucile, si spende 1 carica di
 munizioni solo per fare l’attacco. Si possono spendere
 cariche aggiuntive per aumentare il danno inflitto,
-aggiungendo +1 D C alla cadenza di fuoco dell’arma
+aggiungendo +1 DC alla cadenza di fuoco dell’arma
 (valido solo per quell’attacco) per ogni carica spesa. La
 cadenza di fuoco di un’arma è il massimo numero di
 cariche che si possono usare per aumentare i danni in
@@ -158,7 +158,7 @@ cherà quel bersaglio può ritirare un d20 in attacco.
  Di Precisione: Se un PG compie l’azione minore
 di Mirare prima di attaccare con un’arma Di
 Precisione, può spendere fino a 3 PA per aggiungere
-+1 D C ogni PA speso così per aumentare il danno
++1 DC ogni PA speso così per aumentare il danno
 dell’attacco. Se così facendo subisce dei danni,
 non può spendere munizioni per infliggere danni
 aggiuntivi. Un’arma non può essere contemporane-
@@ -172,7 +172,7 @@ distanza). Se ha successo, ogni creatura (e qualsiasi
 altro obiettivo danneggiabile) in quella zona subisce
 i danni dell’arma. Se fallisce, l’attacco mal calibrato
 è meno efficace: il giocatore tira solo la metà degli
-D C dell’arma per determinare il danno inflitto alle
+DC dell’arma per determinare il danno inflitto alle
 creature nella zona bersagliata e queste ignorano i
 normali effetti dei danni dell’arma.
  Gatling: Le armi Gatling spendono munizioni
@@ -180,9 +180,9 @@ a una velocità dieci volte superiore rispetto alla
 norma: invece di spendere una carica di muni-
 zioni, ne spende una raffica da 10. Quando si
 spendono munizioni per aumentarne il danno, si
-aggiungono 2 D C ogni raffica da 10 (fino a un mas-
+aggiungono 2 DC ogni raffica da 10 (fino a un mas-
 simo pari alla Cadenza di Fuoco dell’arma) invece
-di 1 D C per sparo.
+di 1 DC per sparo.
  Imprecisa: Quando il PG attacca con un’arma
 Imprecisa non ottiene alcun beneficio dall’azione
 minore di Mirare. Un’arma non può essere contem-
@@ -274,30 +274,30 @@ cia si trovi nel proprio mirino.
 Reperibilità e Rarità delle Munizioni
 TIPO DI MUNIZIONI QUANTITÀ
 TROVATA PESO COSTO RARITÀ
-.308 6+3 D C <0,5 3 1
-.38 10+5 D C <0,5 1 0
-.44 Magnum 4+2 D C <0,5 3 3
-.45 8+4 D C <0,5 3 2
-.50 4+2 D C <0,5 4 3
-2mm EC 6+3 D C <0,5 10 5
-5 mm 10x12+6 D C <0,5 1 3
-5.56 mm 8+4 D C <0,5 2 3
-10mm 8+4 D C <0,5 2 0
-Cartucce al Plasma 10+5 D C <0,5 5 4
+.308 6+3 DC <0,5 3 1
+.38 10+5 DC <0,5 1 0
+.44 Magnum 4+2 DC <0,5 3 3
+.45 8+4 DC <0,5 3 2
+.50 4+2 DC <0,5 4 3
+2mm EC 6+3 DC <0,5 10 5
+5 mm 10x12+6 DC <0,5 1 3
+5.56 mm 8+4 DC <0,5 2 3
+10mm 8+4 DC <0,5 2 0
+Cartucce al Plasma 10+5 DC <0,5 5 4
 Cartucce per fucile
-6+3 D C <0,5 3 1
+6+3 DC <0,5 3 1
 a pompa
-Cella di Fusione 14+7 D C <0,5 3 2
+Cella di Fusione 14+7 DC <0,5 3 2
 Combustibile per
-Lanciafiamme 12+6 D C <0,5 1 2
-MiniNuke 1+1 D C 6 100 6
-Missile 2+1 D C 3,5 25 3
-Munizioni Gamma 4+2 D C <0,5 10 2
+Lanciafiamme 12+6 DC <0,5 1 2
+MiniNuke 1+1 DC 6 100 6
+Missile 2+1 DC 3,5 25 3
+Munizioni Gamma 4+2 DC <0,5 10 2
 Nucleo di Fusione 1 2 200 3
-Proiettili Syringer 4+2 D C <0,5 var 2
-Razzo 2+1 D C <0,5 1 1
+Proiettili Syringer 4+2 DC <0,5 var 2
+Razzo 2+1 DC <0,5 1 1
 Spuntone
-Sparachiodi 6+3 D C <0,5 1 2
+Sparachiodi 6+3 DC <0,5 1 2
 Capitolo Quattro  EQUIPAGGIAMENTO
 91
 INTRODUZIONE REGOLE BASE COMBATTIMENTO CREAZIONE DEL PERSONAGGIO EQUIPAGGIAMENTO SOPRAVVIVENZA
@@ -417,7 +417,7 @@ possesso di un sistema di controllo, possono essere
 direzionati su un bersaglio, cosa che un razzo artigia-
 nale non è in grado di fare.
 Se vengono trovati da un personaggio con il talento
-Scroccone, questi tira solo un +1 D C per Grado, invece
+Scroccone, questi tira solo un +1 DC per Grado, invece
 che il normale numero bonus.
 MUNIZIONI GAMMA
 Sono delle grosse batterie ricoperte di plastica con una
@@ -479,7 +479,7 @@ almeno una delle sue azioni per allontanarsi da tutti i nemici seguendo la traie
 55
 semplice. L’effetto dura per un numero di round pari al numero degli Effetti tirati.
 Paralizzanti L’arma ottiene l’effetto del danno Stordente. 40
-Veleno di Scorpione L’arma aggiunge 1 D C di danno e ottiene la qualità del danno Persistente (Veleno). 65
+Veleno di Scorpione L’arma aggiunge 1 DC di danno e ottiene la qualità del danno Persistente (Veleno). 65
 RAZZI
 SPUNTONI SPARACHIODI
 Si tratta di un cilindretto simile ad una cartuccia da
@@ -514,60 +514,60 @@ Doppia Canna
 Fucile a Pompa
 da Combattimento
 Armi
-Leggere 5 D C Penetrante 1 Fisico 0 R Impreciso 1,5 30 0
+Leggere 5 DC Penetrante 1 Fisico 0 R Impreciso 1,5 30 0
 Armi
-Leggere 5 D C Propagato,
+Leggere 5 DC Propagato,
 Violento Fisico 0 R A Due Mani,
 Impreciso 4,5 39 1
 Armi
-Leggere 5 D C Propagato Fisico 2 R A Due Mani,
+Leggere 5 DC Propagato Fisico 2 R A Due Mani,
 Impreciso 5,5 87 2
 Fucile d’Assalto Armi
-Leggere 5 D C Raffica Fisico 2 M A Due Mani 6,5 144 2
+Leggere 5 DC Raffica Fisico 2 M A Due Mani 6,5 144 2
 Fucile da Caccia Armi
-Leggere 6 D C Penetrante 1 Fisico 0 M A Due Mani 5 55 2
+Leggere 6 DC Penetrante 1 Fisico 0 M A Due Mani 5 55 2
 Fucile da
 Combattimento
 Armi
-Leggere 5 D C – Fisico 2 M A Due Mani 5,5 117 2
+Leggere 5 DC – Fisico 2 M A Due Mani 5,5 117 2
 Fucile Gauss Armi
-Leggere 10 D C Penetrante 1 Fisico 1 L A Due Mani 8 228 4
+Leggere 10 DC Penetrante 1 Fisico 1 L A Due Mani 8 228 4
 Fucile Sparachiodi Armi
-Leggere 10 D C Dirompente Fisico 0 M
+Leggere 10 DC Dirompente Fisico 0 M
 A Due Mani,
 Inaffidabile,
 7 290 4
 Invalidante
 Mitragliatrice Armi
-Leggere 3 D C Raffica Fisico 3 R A Due Mani,
+Leggere 3 DC Raffica Fisico 3 R A Due Mani,
 Imprecisa 6 109 1
 Pistola .44 Armi
-Leggere 6 D C Violento Fisico 1 R Corpo a
+Leggere 6 DC Violento Fisico 1 R Corpo a
 Corpo 2 99 2
 Affidabile,
 Pistola 10mm Armi
-Leggere 4 D C – Fisico 2 R
+Leggere 4 DC – Fisico 2 R
 Corpo
 2 50 1
 a Corpo
 Corpo
 Pistola Artigianale Armi
-Leggere 3 D C – Fisico 2 R
+Leggere 3 DC – Fisico 2 R
 a Corpo,
 1 30 0
 Inaffidabile
 Pistola Lanciarazzi Armi
-Leggere 3 D C – Fisico 0 M Affidabile 1 50 1
+Leggere 3 DC – Fisico 0 M Affidabile 1 50 1
 Revolver
 Artigianale
 Armi
-Leggere 4 D C – Fisico 1 R
+Leggere 4 DC – Fisico 1 R
 Corpo
 a Corpo,
 Inaffidabile
 2 25 0
 Syringer Armi
-Leggere 3 D C – Fisico 0 M A Due Mani 3 132 2
+Leggere 3 DC – Fisico 0 M A Due Mani 3 132 2
 Vittorio Emanuele Veloccia - 546448
 Capitolo Quattro  EQUIPAGGIAMENTO
 95
@@ -890,7 +890,7 @@ vengono apportate con l’abilità Riparare, ma solo se si possiede uno dei vant
 Mod per le Armi Leggere
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
 MOD ALLA BOCCA
-Baionetta Con Baionetta Arma da Mischia, infligge 4 D C danni
+Baionetta Con Baionetta Arma da Mischia, infligge 4 DC danni
 Fisici Penetranti 1 +1 +10 –
 Compensatore Con Compensatore Perde Impreciso +0,5 +15 Fanatico delle Armi 1
 Rompifiamma Con Rompifiamma Perde Impreciso, +1 Cadenza di Fuoco +0,5 +30 Fanatico delle Armi 1
@@ -907,14 +907,14 @@ Compensato
 +1 +20 Fanatico delle Armi 2
 +1 +3 Fanatico delle Armi 3
 MOD ALLA CANNA
-Canna Alettata Alettata +1 danno D C , aumenta la Gittata di
+Canna Alettata Alettata +1 danno DC , aumenta la Gittata di
 +1 grado +1 +15 Fanatico delle Armi 2
 Canna Forata Forata Aumenta la Gittata di +1 grado,
 +1 Cadenza di Fuoco +0,5 +35 Fanatico delle Armi 4
 Canna Lunga Lunga Aumenta la Gittata di +1 grado +0,5 +20 Fanatico delle Armi 1
 Canna Mozza Mozza Perde A Due Mani, ottiene Corpo a Corpo -1 +3 –
 Canna Ridotta Ridotto Ottiene Imprecisa -0,5 – –
-Canna Schermata Schermata +1 danno D C – +37 Fanatico delle Armi 3,
+Canna Schermata Schermata +1 danno DC – +37 Fanatico delle Armi 3,
 Riparare
 Canna Stabile Canna stabile Ottiene Affidabile – +10 Fanatico delle Armi 3
 Canna Ventilata Ventilata Aumenta la Gittata di +1 grado, +1
@@ -927,31 +927,31 @@ Rapido
 Rapido +1 Cadenza di Fuoco +0,5 +23 Fanatico delle Armi 2
 Caricatore Rapido Rapido Ottiene Affidabile – +8 Fanatico delle Armi 1
 MOD AL CASTELLO
-Automatico Auto -1 danno D C , + 2 Cadenza di Fuoco,
+Automatico Auto -1 danno DC , + 2 Cadenza di Fuoco,
 ottiene Raffica, ottiene Impreciso +0,5 +30 Fanatico delle Armi 1
-Avanzato Castello .308 Avanzato +3 danno D C , + 1 Cadenza di Fuoco +1 +35 Fanatico delle Armi 2
+Avanzato Castello .308 Avanzato +3 danno DC , + 1 Cadenza di Fuoco +1 +35 Fanatico delle Armi 2
 Calibrato Calibrato Ottiene Violento – +25 –
-.308 I danni diventano 7 D C ,
+.308 I danni diventano 7 DC ,
 le Munizioni diventano .308 +2 +40 Fanatico delle Armi 4
-Castello .38 .38 I danni diventano 4 D C ,
+Castello .38 .38 I danni diventano 4 DC ,
 le Munizioni diventano .38 +1,5 +20 Fanatico delle Armi 4
 Vittorio Emanuele Veloccia - 546448100 FALLOUT  Il Gioco di Ruolo
 CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Castello .45 .45 I danni diventano 4 D C , +1 Cadenza
+Castello .45 .45 I danni diventano 4 DC , +1 Cadenza
 di Fuoco, le Munizioni diventano .45 +1 +19 Fanatico delle Armi 2
-Castello .50 .50 I danni diventano 8 D C , ottiene Violento,
+Castello .50 .50 I danni diventano 8 DC , ottiene Violento,
 le Munizioni diventano .50 +2 +30 Fanatico delle Armi 4
 Castello Automatico
 a Pistone Automatico +2 Cadenza di Fuoco,
 riduce la Gittata di 1 grado +1 +75 Fanatico delle Armi 2
 Grilletto Sensibile Grilletto Sensibile + 1 Cadenza di Fuoco – +20 Fanatico delle Armi 2
-Potente Potente +2 danno D C +0,5 +25 Fanatico delle Armi 1
-Temprato Temprato +1 danno D C – +20 –
+Potente Potente +2 danno DC +0,5 +25 Fanatico delle Armi 1
+Temprato Temprato +1 danno DC – +20 –
 MOD AL CONDENSATORE
 Condensatore
 Completo Alta Capacità Ottiene Violento Condensatore con
-Bobina Potenziata Capacità Massima +1 danno D C, , ottiene Violento – +37 Fanatico delle Armi 3,
+Bobina Potenziata Capacità Massima +1 danno DC, , ottiene Violento – +37 Fanatico delle Armi 3,
 Scienza! 2
 +1 +82 Fanatico delle Armi 4,
 Scienza! 3
@@ -991,22 +991,22 @@ DANNO
 CADENZA
 DI FUOCO GITTATA QUALITÀ PESO COSTO RARITÀ
 Arma a
-Energia 3 D C Raffica Da
+Energia 3 DC Raffica Da
 Energia 3 R Corpo a Corpo,
 Impreciso 2 50 2
 Moschetto
 Laser
 Arma a
-Energia 5 D C Penetrante 1 Da
+Energia 5 DC Penetrante 1 Da
 Energia 0 M A Due Mani 6,5 57 1
 Pistola al
 Plasma
 Arma a
-Energia 6 D C –
+Energia 6 DC –
 Pistola
 Gamma
 Arma a
-Energia 3 D C Penetrante 1,
+Energia 3 DC Penetrante 1,
 Stordente
 Fisico/Da
 Energia 1 R Corpo a Corpo 2 123 3
@@ -1014,7 +1014,7 @@ da
 Radiazioni 1 M Esplosiva,
 Imprecisa 1,5 156 5
 Pistola Laser Arma a
-Energia 4 D C Penetrante 1 Da
+Energia 4 DC Penetrante 1 Da
 Energia 2 R Corpo a Corpo 2 69 2
 Vittorio Emanuele Veloccia - 546448
 Capitolo Quattro  EQUIPAGGIAMENTO
@@ -1029,7 +1029,7 @@ dei seguenti risultati può evitare un attacco che ha colpito.
  Sprecone: Il personaggio ha sparato più di quanto pensi.
 Perde un ulteriore colpo di munizioni per quell’arma.
  Surriscaldata! Le componenti dell’arma si surriscaldano per
-aver sparato troppo e il personaggio subisce 2 danni D C da
+aver sparato troppo e il personaggio subisce 2 danni DC da
 Energia al braccio con cui sta impugnando l’arma, inoltre il
 prossimo turno non può usarla perchè deve raffreddarsi.
  Logora e Distrutta: L’arma non funziona più come una
@@ -1051,8 +1051,8 @@ Speciale: Sparare con un moschetto laser fa usare ogni
 volta due colpi di munizioni. Ogni mod Condensatore
 aumenta sia il danno, che il numero di colpi consu-
 mati, che possono essere ridotti abbassando il danno
-di -1 D C per ogni colpo risparmiato (fino a un minimo
-di 4 danno D C e 1 colpo usato).
+di -1 DC per ogni colpo risparmiato (fino a un minimo
+di 4 danno DC e 1 colpo usato).
 Un moschetto laser può montare una per tipo delle
 seguenti modifiche:
  Bocca: Concentratore di Raggio, Lenti di
@@ -1099,17 +1099,17 @@ CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMI
 Mod al Condensatore Esclusive del Moschetto Laser
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
 Condensatore a
-Tre Cariche A Tre Cariche +1 D C , consuma 3 Colpi ad Attacco – +4 –
+Tre Cariche A Tre Cariche +1 DC , consuma 3 Colpi ad Attacco – +4 –
 Condensatore a
 Quattro Cariche
 A Quattro
-Cariche +2 D C , consuma 4 Colpi ad Attacco +0,5 +8 Scienza! 1
+Cariche +2 DC , consuma 4 Colpi ad Attacco +0,5 +8 Scienza! 1
 Condensatore a
 Cinque Cariche
 A Cinque
-Cariche +3 D C , consuma 5 Colpi ad Attacco +0,5 +12 Scienza! 2
+Cariche +3 DC , consuma 5 Colpi ad Attacco +0,5 +12 Scienza! 2
 Condensatore a
-Sei Cariche A Sei Cariche +4 D C , consuma 6 Colpi ad Attacco +1 +16 Scienza! 3
+Sei Cariche A Sei Cariche +4 DC , consuma 6 Colpi ad Attacco +1 +16 Scienza! 3
 PISTOLA AL
 PLASMA
 Munizioni:
@@ -1163,14 +1163,14 @@ Mod Esclusive per Pistole Gamma
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
 MOD ALLA BOCCA
 Antenna Segnale
-Elettrico Elettrificata Ripetitore di Segnale Automatica I danni diventano 7 D C , i danni diventano da
+Elettrico Elettrificata Ripetitore di Segnale Automatica I danni diventano 7 DC , i danni diventano da
 Energia, ottiene Radioattivo
 +2 Cadenza di Fuoco, ottiene Raffica,
 perde Scoppio
 – +30 Scienza! 4
 – +60 Scienza! 4
 MOD AL DISCO
-Disco Profondo Lunga +1 D C , aumenta la Gittata di 1 grado +1 +72 Scienza! 4
+Disco Profondo Lunga +1 DC , aumenta la Gittata di 1 grado +1 +72 Scienza! 4
 PISTOLA LASER
 Munizioni: Celle di Fusione
 La configurazione di base si riferisce a una pistola laser
@@ -1211,7 +1211,7 @@ di Raggio Concentrato Aumenta la Gittata di 1 grado +0,5 +20 Scienza! 1
 Lenti di Compen-
 sazione Circolari Di Puntamento +1 Cadenza di Fuoco, perde Impreciso +0,5 +25 Scienza! 1
 di Raggio Separatore
-Frammentato -1 D C , ottiene Propagato, -1 Cadenza di Fuoco,
+Frammentato -1 DC , ottiene Propagato, -1 Cadenza di Fuoco,
 ottiene Impreciso, riduce la Gittata di 1 grado +0,5 +15 Scienza! 1
 Vittorio Emanuele Veloccia - 546448104 FALLOUT  Il Gioco di Ruolo
 CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
@@ -1238,15 +1238,15 @@ Armi 3
 Ottiene A Due Mani, perde Impreciso,
 perde Corpo a Corpo +0,5 +10 –
 MOD ALLA CANNA
-Canna Automatica Automatica -1 D C , perde Corpo a Corpo, aumenta la Gittata di 1
+Canna Automatica Automatica -1 DC , perde Corpo a Corpo, aumenta la Gittata di 1
 grado, +1 Cadenza di Fuoco +0,5 +24 Scienza! 1
 Canna Corta
 Rinforzata
 Canna da Cecchino – Permette all’arma di avere una mod alla Bocca – +6 –
-Da Cecchino + 2 D C , perde Corpo a Corpo, aumenta la Gittata di
+Da Cecchino + 2 DC , perde Corpo a Corpo, aumenta la Gittata di
 1 grado, -1 Cadenza di fuoco +1 +30 Scienza! 1
 Canna
-Lanciafiamme Lanciafiamme -2 D C , +2 Cadenza di Fuoco, ottiene Raffica,
+Lanciafiamme Lanciafiamme -2 DC , +2 Cadenza di Fuoco, ottiene Raffica,
 riduce la Gittata di 1 grado, ottiene Impreciso +0,5 +35 Scienza! 2
 Canna Lunga Lunga Perde Corpo a Corpo, aumenta la Gittata di 1 grado +1 +20 –
 Canna Lunga
@@ -1254,12 +1254,12 @@ Perde Corpo a Corpo, aumenta la Gittata di 1 grado,
 –
 Rinforzata
 permette all’arma di avere una mod alla Bocca +1 +25 Scienza! 1
-Canna Migliorata Migliorata +1 D C +0,5 +26 Scienza! 1
-Separatore A Dispersione -1 D C , ottiene Propagato, ottiene Imprecisa +0,5 +31 –
+Canna Migliorata Migliorata +1 DC +0,5 +26 Scienza! 1
+Separatore A Dispersione -1 DC , ottiene Propagato, ottiene Imprecisa +0,5 +31 –
 MOD AL CONDENSATORE
-Agitatore Fotonico Agitato +1 D C , ottiene Violento +0,5 +35 Scienza! 2
+Agitatore Fotonico Agitato +1 DC , ottiene Violento +0,5 +35 Scienza! 2
 Condensatore
-Potenziato Potenziato +1 D C , -1 Cadenza di Fuoco – +35 –
+Potenziato Potenziato +1 DC , -1 Cadenza di Fuoco – +35 –
 Sintonizzatore di
 Onde Beta Incendiario Ottiene Persistente – +30 –
 Stimolatore Fotonico Stimolato Ottiene Violento – +30 Scienza! 1
@@ -1303,7 +1303,7 @@ DANNO
 CADENZA
 DI FUOCO GITTATA QUALITÀ PESO COSTO RARITÀ
 Fat Man Armi
-Pesanti 21 D C
+Pesanti 21 DC
 Dirompente,
 Radioattivo,
 Violento
@@ -1315,7 +1315,7 @@ Impreciso
 Inceneritore
 pesante
 Armi
-Pesanti 5 D C
+Pesanti 5 DC
 Persistente,
 Propagato,
 Raffica
@@ -1323,9 +1323,9 @@ Da
 Energia 3 M A Due Mani,
 Invalidante 10 350 4
 Junk Jet Armi
-Pesanti 6 D C– Fisico 1 M A Due Mani 15 285 3
+Pesanti 6 DC– Fisico 1 M A Due Mani 15 285 3
 Lanciafiamme Armi
-Pesanti 3 D C
+Pesanti 3 DC
 Persistente,
 Propagato,
 Raffica
@@ -1336,10 +1336,10 @@ Impreciso,
 Invalidante
 8 137 3
 Lanciamissili Armi
-Pesanti 11 D C– Fisico 0 L A Due Mani,
+Pesanti 11 DC– Fisico 0 L A Due Mani,
 Esplosivo 10,5 314 4
 Laser Gatling Armi
-Pesanti 3 D C Penetrante 1,
+Pesanti 3 DC Penetrante 1,
 Raffica
 Da
 Energia 6 M
@@ -1350,7 +1350,7 @@ Impreciso
 Mitragliatore a
 Canne Rotanti
 Armi
-Pesanti 3 D C Propagato,
+Pesanti 3 DC Propagato,
 Raffica Fisico 5 M
 A Due Mani,
 Gatling,
@@ -1414,12 +1414,12 @@ Mod Specifiche per Laser Gatling
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
 MOD ALLA CANNA
 Canne a
-Caricamento A Caricamento +4 D C , -3 Cadenza di Fuoco, aumenta la
+Caricamento A Caricamento +4 DC , -3 Cadenza di Fuoco, aumenta la
 Gittata di 1 Grado +5 +357 Scienza! 4
 MOD AL CONDENSATORE
-Agitatore Fotonico Agitato +1 D C , ottiene Violento +1,5 +132 Scienza! 3
+Agitatore Fotonico Agitato +1 DC , ottiene Violento +1,5 +132 Scienza! 3
 Condensatore
-Potenziato Potenziato +1 D C +0,5 +94 –
+Potenziato Potenziato +1 DC +0,5 +94 –
 Sintonizzatore di
 Onde Beta Incendiario Ottiene Persistente +0,5 +57 –
 Stimolatore Fotonico Eccitato Ottiene Violento +0,5 +19 Scienza! 3
@@ -1449,7 +1449,7 @@ Per ogni ulteriore colpo speso per l’attacco, sceglie un
 oggetto aggiuntivo. Gli oggetti devono essere abbastanza
 piccoli da entrare in una mano per essere caricati nella
 tramoggia. Alla fine della scena, il giocatore può tirare
-1 D C per ogni oggetto lanciato: se ottiene un Effetto,
+1 DC per ogni oggetto lanciato: se ottiene un Effetto,
 l’oggetto è sopravvissuto al lancio e può riaverlo indietro.
 Un Junk Jet può montare una per tipo delle seguenti
 modifiche, che sono specifiche e vengono installate
@@ -1499,14 +1499,14 @@ MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
 MOD ALLA CANNA
 Canna Lunga Lunga Perde Impreciso +1 +28 Fanatico delle Armi 1
 MOD AL COMBUSTIBILE
-Napalm Al Napalm +1 D C +3,5 +59 Fanatico delle Armi 1
+Napalm Al Napalm +1 DC +3,5 +59 Fanatico delle Armi 1
 MOD AL SERBATOIO PROPELLENTE
 Serbatoio Grande Alta Capacità +1 Cadenza di Fuoco +1,5 +28 Fanatico delle Armi 1
 Serbatoio Enorme Massima
 Capacità +2 Cadenza di Fuoco +3 +34 Fanatico delle Armi 2
 MOD ALL’UGELLO
 Ugello di
-Compressione Compresso +1 D C Ugello Vaporizzatore Vaporizzante +1 D C , Violento – +22 Fanatico delle Armi 1
+Compressione Compresso +1 DC Ugello Vaporizzatore Vaporizzante +1 DC , Violento – +22 Fanatico delle Armi 1
 – +47 Fanatico delle Armi 2
 LANCIAMISSILI
 Munizioni: Missili
@@ -1537,7 +1537,7 @@ MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
 MOD ALLA BOCCA
 Baionetta Con Baionetta
 Triturante
-Arma da Mischia, infligge 4 D C danni
+Arma da Mischia, infligge 4 DC danni
 Fisici Penetranti 1 +0,5 +30 –
 Stabilizzatore Con
 Rompifiamma Ottiene Penetrante 1 +1 +60 Fanatico delle Armi 2
@@ -1580,10 +1580,10 @@ MOD ALLA BOCCA
 Trituratore Con Baionetta
 Triturante
 Arma da Mischia, infligge un Numero di
-D C danni Fisici pari alla Cadenza di Fuoco +2,5 +5 Fanatico delle Armi 2
+DC danni Fisici pari alla Cadenza di Fuoco +2,5 +5 Fanatico delle Armi 2
 MOD ALLA CANNA
-Canna Accelerata Ad Alta Velocità +1 D C , riduce la Gittata di 1 grado,
-+1 Cadenza di Fuoco Ad Alta Potenza +2 D C , -2 Cadenza di Fuoco +2,5 +45 Fanatico delle Armi 3
+Canna Accelerata Ad Alta Velocità +1 DC , riduce la Gittata di 1 grado,
++1 Cadenza di Fuoco Ad Alta Potenza +2 DC , -2 Cadenza di Fuoco +2,5 +45 Fanatico delle Armi 3
 +1,5 +75 Fanatico delle Armi 4
 Canna Tripla MOD AL MIRINO
 Mirino Gunner Tattico Rimuove Impreciso +0,5 +68 –
@@ -1596,36 +1596,36 @@ TIPO DI
 DANNO
 DANNO
 DANNO QUALITÀ PESO COSTO RARITÀ
-Asse Arma da Mischia 4 D C – Fisico A Due Mani 1,5 20 0
-Bastone da Passeggio Arma da Mischia 3 D C – Fisico – 1 10 0
+Asse Arma da Mischia 4 DC – Fisico A Due Mani 1,5 20 0
+Bastone da Passeggio Arma da Mischia 3 DC – Fisico – 1 10 0
 Calcio dell’Arma
-(1 mano) Arma da Mischia 2 D C Stordente Fisico ————— Come una Pistola —————
-Calcio dell’Arma Arma da Mischia 3 D C Stordente Fisico —— Come una Pistola A Due Mani ——
-Chiave Idraulica Arma da Mischia 3 D C – Fisico – 1 30 1
-Colpo Senza Armi Senza Armi 2 D C – Fisico – – – –
+(1 mano) Arma da Mischia 2 DC Stordente Fisico ————— Come una Pistola —————
+Calcio dell’Arma Arma da Mischia 3 DC Stordente Fisico —— Come una Pistola A Due Mani ——
+Chiave Idraulica Arma da Mischia 3 DC – Fisico – 1 30 1
+Colpo Senza Armi Senza Armi 2 DC – Fisico – – – –
 Coltello a
-Serramanico Arma da Mischia 2 D C Penetrante 1 Fisico Occultato 0,5 20 0
+Serramanico Arma da Mischia 2 DC Penetrante 1 Fisico Occultato 0,5 20 0
 Coltello da
-Combattimento Arma da Mischia 3 D C Penetrante 1 Fisico – 0,5 25 1
-Guanto da Deathclaw Senza Armi 5 D C Penetrante 1 Fisico – 5 75 3
-Guantone da Boxe Senza Armi 3 D C Stordente Fisico – 0,5 10 1
-Leva per Ruote Arma da Mischia 3 D C – Fisico – 1 25 1
-Machete Arma da Mischia 3 D C Penetrante 1 Fisico – 1 25 1
-Manganello Arma da Mischia 3 D C – Fisico – 1 15 1
-Martello Demolitore Arma da Mischia 5 D C – Fisico A Due Mani 6 40 2
-Mattarello Arma da Mischia 3 D C – Fisico – 0,5 10 0
-Mazza da Baseball Arma da Mischia 4 D C – Fisico A Due Mani 1,5 25 1
+Combattimento Arma da Mischia 3 DC Penetrante 1 Fisico – 0,5 25 1
+Guanto da Deathclaw Senza Armi 5 DC Penetrante 1 Fisico – 5 75 3
+Guantone da Boxe Senza Armi 3 DC Stordente Fisico – 0,5 10 1
+Leva per Ruote Arma da Mischia 3 DC – Fisico – 1 25 1
+Machete Arma da Mischia 3 DC Penetrante 1 Fisico – 1 25 1
+Manganello Arma da Mischia 3 DC – Fisico – 1 15 1
+Martello Demolitore Arma da Mischia 5 DC – Fisico A Due Mani 6 40 2
+Mattarello Arma da Mischia 3 DC – Fisico – 0,5 10 0
+Mazza da Baseball Arma da Mischia 4 DC – Fisico A Due Mani 1,5 25 1
 Mazza da Baseball
-in Alluminio Arma da Mischia 5 D C – Fisico A Due Mani 1 32 2
-Pietra Senza Armi 2 D C Violento Fisico Da Lancio (R) 0,5 – –
-Pugno Potenziato Senza Armi 4 D C Stordente Fisico – 2 100 2
-Ripper Arma da Mischia 4 D C Violento Fisico – 3 50 2
-Shishkebab Arma da Mischia 5 D C Penetrante 1 energy Parata 1,5 200 3
-Spada Arma da Mischia 4 D C Penetrante 1 Fisico Parata 1,5 50 2
-Stecca da Biliardo Arma da Mischia 3 D C – Fisico A Due Mani 0,5 10 0
-Super Martello Arma da Mischia 6 D C Dirompente Fisico A Due Mani 10 180 3
-Tirapugni Senza Armi 3 D C – Fisico Occultato <0,5 10 1
-Tubo di Piombo Arma da Mischia 3 D C – Fisico – 1,5 15 0
+in Alluminio Arma da Mischia 5 DC – Fisico A Due Mani 1 32 2
+Pietra Senza Armi 2 DC Violento Fisico Da Lancio (R) 0,5 – –
+Pugno Potenziato Senza Armi 4 DC Stordente Fisico – 2 100 2
+Ripper Arma da Mischia 4 DC Violento Fisico – 3 50 2
+Shishkebab Arma da Mischia 5 DC Penetrante 1 energy Parata 1,5 200 3
+Spada Arma da Mischia 4 DC Penetrante 1 Fisico Parata 1,5 50 2
+Stecca da Biliardo Arma da Mischia 3 DC – Fisico A Due Mani 0,5 10 0
+Super Martello Arma da Mischia 6 DC Dirompente Fisico A Due Mani 10 180 3
+Tirapugni Senza Armi 3 DC – Fisico Occultato <0,5 10 1
+Tubo di Piombo Arma da Mischia 3 DC – Fisico – 1,5 15 0
 Vittorio Emanuele Veloccia - 546448
 Capitolo Quattro  EQUIPAGGIAMENTO
 111
@@ -1666,9 +1666,9 @@ Un’asse può montare una delle seguenti modifiche,
 che vengono installate con l’abilità Riparare.
 Mod Specifiche per Assi
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Chiodata Chiodata + 1 D C , ottiene Penetrante 1 +0,5 +6 –
-Pungente Pungente + 2 D C +0,5 +9 Fabbro 1
-Tagliente Tagliente +2 D C , ottiene Persistente +1 +12 Fabbro 1
+Chiodata Chiodata + 1 DC , ottiene Penetrante 1 +0,5 +6 –
+Pungente Pungente + 2 DC +0,5 +9 Fabbro 1
+Tagliente Tagliente +2 DC , ottiene Persistente +1 +12 Fabbro 1
 BASTONE DA PASSEGGIO
 Un semplice bastone di quelli usati come ausilio da
 chi non cammina bene, il bastone da passeggio è
@@ -1678,8 +1678,8 @@ Un bastone da passeggio può montare una delle seguenti
 modifiche, che vengono installate con l’abilità Riparare.
 Mod Specifiche per Bastoni da Passeggio
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Chiodato Chiodato +1 D C , ottiene Penetrante 1 – +3 –
-Spinato Spinato +1 D C , ottiene Penetrante 1 – +3 –
+Chiodato Chiodato +1 DC , ottiene Penetrante 1 – +3 –
+Spinato Spinato +1 DC , ottiene Penetrante 1 – +3 –
 CHIAVE IDRAULICA
 Si tratta di una pesante chiave idraulica regolabile in
 metallo, abbastanza lunga da poter essere utilizzata
@@ -1694,10 +1694,10 @@ Vittorio Emanuele Veloccia - 546448112 FALLOUT  Il Gioco di Ruolo
 CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
 Mod Specifiche per Chiavi Idrauliche
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Molto Pesante Pesante +3 D C +1 +22 Fabbro 2
-Pesante Bilanciata +2 D C +0,5 +12 Fabbro 1
-Pungente Pungente +2 D C , ottiene Penetrante 1 +0,5 +13 Fabbro 1
-+1 D C , se l’attacco ha successo, si possono
+Molto Pesante Pesante +3 DC +1 +22 Fabbro 2
+Pesante Bilanciata +2 DC +0,5 +12 Fabbro 1
+Pungente Pungente +2 DC , ottiene Penetrante 1 +0,5 +13 Fabbro 1
++1 DC , se l’attacco ha successo, si possono
 Uncinata Uncinata
 spendere 2 PA per disarmare l’avversario,
 – +9 –
@@ -1712,7 +1712,7 @@ I coltelli a serramanico possono montare la seguente
 modifica, che viene installata con l’abilità Riparare.
 Mod Specifica per Coltelli a Serramanico
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Lama Seghettata Seghettato +1 D C , ottiene Persistente – +10 Fabbro 1
+Lama Seghettata Seghettato +1 DC , ottiene Persistente – +10 Fabbro 1
 COLTELLO DA COMBATTIMENTO
 Spesso i soldati (e chi vuole imitarli) si portano dietro
 un coltello che serve sia per combattere, che per uso
@@ -1727,8 +1727,8 @@ delle seguenti modifiche, che vengono installate con
 l’abilità Riparare.
 Mod Specifiche per Coltelli da Combattimento
 MODS DESCRITTORE EFFETTI PESO COSTO TALENTI
-Lama Seghettata Seghettato +1 D C , ottiene Persistente – +12 Fabbro 1
-Lama Stealth Stealth +1 D C , ottiene Persistente, +2 D C per gli
+Lama Seghettata Seghettato +1 DC , ottiene Persistente – +12 Fabbro 1
+Lama Stealth Stealth +1 DC , ottiene Persistente, +2 DC per gli
 – +18 Fabbro 2
 Attacchi a Sorpresa
 GUANTO DA DEATHCLAW
@@ -1740,7 +1740,7 @@ Un guanto da deathclaw può montare la seguente
 modifica, che viene installata con l’abilità Riparare.
 Mod Specifica per Guanti da Deathclaw
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-+1 D C , se l’attacco ha successo, si possono
++1 DC , se l’attacco ha successo, si possono
 Artiglio Extra Grande
 spendere 2 PA per disarmare l’avversario,
 +1 +22 –
@@ -1761,8 +1761,8 @@ l’abilità Riparare.
 Mod Specifiche per Guantoni da Boxe
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
 Chiodato Chiodato Ottiene Penetrante 1 – +3 –
-Pungente Pungente +1 D C , ottiene Penetrante 1 – +4 Fabbro 1
-Rivestimento Piombato Piombato +2 D C +0,5 +7 Fabbro 1
+Pungente Pungente +1 DC , ottiene Penetrante 1 – +4 Fabbro 1
+Rivestimento Piombato Piombato +2 DC +0,5 +7 Fabbro 1
 LEVA PER RUOTE
 Si tratta di un semplice arnese a forma di L che si
 trova solitamente nelle auto e nei garage e che può
@@ -1772,7 +1772,7 @@ Una Leva per Ruote può montare la seguente modifica,
 che viene installata con l’abilità Riparare.
 Mod Specifica per Leve per Ruote
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Tagliente Tagliente + 1 D C , ottiene Persistente +0,5 +12 Fabbro 2
+Tagliente Tagliente + 1 DC , ottiene Persistente +0,5 +12 Fabbro 2
 MACHETE
 Si tratta di un lungo coltello affilato pensato per farsi
 strada attraverso una fitta vegetazione, fatto che lo
@@ -1787,7 +1787,7 @@ qualche altro modo fissata a un semplice manico.
 I machete possono montare la seguente modifica, che
 è specifica e viene installata con l’abilità Riparare:
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Lama Seghettata Seghettato + 2 D C , ottiene Persistente – +12 Fabbro 2
+Lama Seghettata Seghettato + 2 DC , ottiene Persistente – +12 Fabbro 2
 MANGANELLO
 Un bastone telescopico come quelli usati dalla polizia
 e dalle forze di sicurezza private prima della Grande
@@ -1800,8 +1800,8 @@ Vittorio Emanuele Veloccia - 546448114 FALLOUT  Il Gioco di Ruolo
 CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
 Mod Specifiche per Manganelli
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Elettrificato Fulminante +2 D C , i danni diventano da Energia – +15 Fabbro 2, Scienza! 1
-Stordente Stordente +3 D C , ottiene Stordente, i danni diventano
+Elettrificato Fulminante +2 DC , i danni diventano da Energia – +15 Fabbro 2, Scienza! 1
+Stordente Stordente +3 DC , ottiene Stordente, i danni diventano
 – +30 Fabbro 2, Scienza! 1
 da Energia
 MARTELLO DEMOLITORE
@@ -1816,8 +1816,8 @@ seguenti modifiche, che vengono installate con
 l’abilità Riparare.
 Mod Specifiche Per Martelli Demolitori
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Pesante Pesante +2 D C +4,5 +30 Fabbro 2
-Pungente Pungente +1 D C ottiene Penetrante 1 +2,5 +18 Fabbro 2
+Pesante Pesante +2 DC +4,5 +30 Fabbro 2
+Pungente Pungente +1 DC ottiene Penetrante 1 +2,5 +18 Fabbro 2
 MATTARELLO
 È un solido cilindro di legno che si può trovare in qual-
 siasi cucina. Se non c’è nulla di più pericoloso, è abba-
@@ -1826,8 +1826,8 @@ Un mattarello può montare una delle seguenti modifi-
 che, che vengono installate con l’abilità Riparare.
 Mod Specifiche Per Mattarelli
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Affilato Affilato +1 D C , ottiene Persistente – +3 –
-Chiodato Chiodato +1 D C , ottiene Penetrante 1 – +3 –
+Affilato Affilato +1 DC , ottiene Persistente – +3 –
+Chiodato Chiodato +1 DC , ottiene Penetrante 1 – +3 –
 MAZZA DA BASEBALL
 Una volta le mazze da baseball erano usate nell’omonimo
 sport, considerato il passatempo numero uno dell’A-
@@ -1843,11 +1843,11 @@ Riparare. Si possono apportare mod a una mazza in
 alluminio solo se si possiede il talento Fabbro 1.
 Mod Specifiche per Mazze da Baseball
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Affilata Affilata +1 D C , ottiene Persistente +0,5 +7 –
-Catena Con Catena +2 D C +0,5 +10 Fabbro 1
-Chiodata Chiodata +1 D C , ottiene Penetrante 1 +0,5 +7 –
+Affilata Affilata +1 DC , ottiene Persistente +0,5 +7 –
+Catena Con Catena +2 DC +0,5 +10 Fabbro 1
+Chiodata Chiodata +1 DC , ottiene Penetrante 1 +0,5 +7 –
 Spinata Spinata Ottiene Penetrante 1 – +5 –
-Tagliente Tagliente +2 D C , ottiene Persistente +1 +12 Fabbro 2
+Tagliente Tagliente +2 DC , ottiene Persistente +1 +12 Fabbro 2
 Vittorio Emanuele Veloccia - 546448
 Capitolo Quattro  EQUIPAGGIAMENTO
 115
@@ -1863,8 +1863,8 @@ Un pugno potenziato può montare una delle seguenti
 modifiche, che vengono installate con l’Abilità Riparare.
 Mod Specifiche per Pugno Potenziato
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Pungente Pungente +2 D C , ottiene Penetrante 1 +0,5 +45 Fabbro 2
-Serpentina Riscaldante Bruciante +2 D C , i danni diventano da Energia – +100 Fabbro 3
+Pungente Pungente +2 DC , ottiene Penetrante 1 +0,5 +45 Fabbro 2
+Serpentina Riscaldante Bruciante +2 DC , i danni diventano da Energia – +100 Fabbro 3
 RIPPER
 Il ripper è una piccola sega elettrica militare portatile
 ampiamente impiegata nei conflitti armati antecedenti
@@ -1875,12 +1875,12 @@ I ripper possono montare una delle seguenti modifiche,
 che devono essere installate con l’abilità Riparare.
 Mod Specifiche per Ripper
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-+1 D C , quando un attacco ha successo può
++1 DC , quando un attacco ha successo può
 Lama Curva Ricurva
 spendere 2 PA per disarmare l’avversario,
 +0,5 +15 –
 scagliando lontano un’arma impugnata
-Lama Estesa Estesa +1 D C , ottiene Persistente +1,5 +25 Fabbro 3
+Lama Estesa Estesa +1 DC , ottiene Persistente +1,5 +25 Fabbro 3
 SHISHKEBAB
 Lo Shishkebab è una “Spada Fiammeggiante” artigianale
 di cui si possono trovare diverse versioni nella Zona
@@ -1899,7 +1899,7 @@ Lo Shishkebab può montare la seguente modifica, che
 viene installata con l’abilità Riparare:
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
 Getti di Fiamme
-Ulteriori Rovente +1 D C , ottiene Persistente +0,5 +100 Fabbro 3
+Ulteriori Rovente +1 DC , ottiene Persistente +0,5 +100 Fabbro 3
 Vittorio Emanuele Veloccia - 546448116 FALLOUT  Il Gioco di Ruolo
 CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
 SPADA
@@ -1919,18 +1919,18 @@ fiche, che sono specifiche e devono essere installate
 con l’Abilità Riparare.
 Mod Specifiche per Spade
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Elettrificata Stordente Stordente + 2 D C , i danni diventano da Energia,
+Elettrificata Stordente Stordente + 2 DC , i danni diventano da Energia,
 ottiene Stordente
 – +100 Fabbro 3,
 Scienza! 1
-Lama Elettrificata Elettrificata + 1 D C , i danni diventano da Energia – +50 Fabbro 2,
+Lama Elettrificata Elettrificata + 1 DC , i danni diventano da Energia – +50 Fabbro 2,
 Scienza! 1
 Lama Seghettata Seghettata Ottiene Persistente – +25 Fabbro 2
 Lama Seghettata
 Elettrificata
 Elettrificata
 Seghettata
-+ 1 D C , i danni diventano da Energia,
++ 1 DC , i danni diventano da Energia,
 – +75 Fabbro 3,
 ottiene Persistente (Fisico)
 Scienza! 1
@@ -1943,8 +1943,8 @@ seguenti modifiche, che vengono installate con
 l’abilità Riparare.
 Mod Specifiche per Stecche da Biliardo
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Affilata Affilata +1 D C , ottiene Persistente – +3 –
-Spinato Spinata +1 D C , ottiene Penetrante 1 – +2 –
+Affilata Affilata +1 DC , ottiene Persistente – +3 –
+Spinato Spinata +1 DC , ottiene Penetrante 1 – +2 –
 SUPER MARTELLO
 I Super Martelli non sono che versioni potenziate di
 un normale martello. I vecchi modelli d’anteguerra
@@ -1958,8 +1958,8 @@ movimento e colpire più forte.
 l’abilità Riparare.
 Mod Specifiche Per Super Martelli
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Serpentina Riscaldante Bruciante +1 D C , i danni diventano da Energia – +180 Fabbro 2
-Elettrificata Stordente Stordente +2 D C , ottiene Stordente, i danni diventano
+Serpentina Riscaldante Bruciante +1 DC , i danni diventano da Energia – +180 Fabbro 2
+Elettrificata Stordente Stordente +2 DC , ottiene Stordente, i danni diventano
 – +360 Fabbro 3,
 da Energia
 Scienza! 1
@@ -1987,8 +1987,8 @@ Mod Specifiche per Tirapugni
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
 Affilato Affilato Ottiene Persistente – +3 –
 Chiodato Chiodato Ottiene Penetrante 1 – +3 –
-Pungente Pungente +1 D C , ottiene Penetrante 1 – +4 Fabbro 1
-Tagliente Tagliente +1 D C , ottiene Persistente – +5 Fabbro 1
+Pungente Pungente +1 DC , ottiene Penetrante 1 – +4 Fabbro 1
+Tagliente Tagliente +1 DC , ottiene Persistente – +5 Fabbro 1
 TUBO DI PIOMBO
 Si tratta di un lungo e pesante tubo in metallo (nor-
 malmente piombo) con un’impugnatura di nastro
@@ -1998,8 +1998,8 @@ Un tubo di piombo può montare una delle seguenti modi-
 fiche, che vengono installate con l’abilità Riparare.
 Mod Specifiche per Tubi di Piombo
 MOD DESCRITTORE EFFETTI PESO COSTO TALENTI
-Chiodato Chiodato +1 D C , ottiene Penetrante 1 +0,5 +4 –
-Pesante Pesante +2 D C +1 +11 Fabbro 2
+Chiodato Chiodato +1 DC , ottiene Penetrante 1 +0,5 +4 –
+Pesante Pesante +2 DC +1 +11 Fabbro 2
 Vittorio Emanuele Veloccia - 546448118 FALLOUT  Il Gioco di Ruolo
 CORPORAZIONI VAULT-TEC IL COMMONWEALTH IL GAMEMASTER CREATURE DELLA ZONA CONTAMINATA AVVENTURA
 ARMI DA LANCIO
@@ -2011,10 +2011,10 @@ ARMA
 DANNO
 DANNO
 DANNO QUALITÀ PESO COSTO RARITÀ
-Coltelli da Lancio Da Lancio 3 D C Penetrante 1 Fisico Da Lancio (R),
+Coltelli da Lancio Da Lancio 3 DC Penetrante 1 Fisico Da Lancio (R),
 Occultabili, Silenziati <0,5 10 1
-Giavellotto Da Lancio 4 D C Penetrante 1 Fisico Da Lancio (M), Silenziato 2 10 1
-Tomahawk Da Lancio 4 D C Penetrante 1 Fisico Da Lancio (R), Silenziato <0,5 15 2
+Giavellotto Da Lancio 4 DC Penetrante 1 Fisico Da Lancio (M), Silenziato 2 10 1
+Tomahawk Da Lancio 4 DC Penetrante 1 Fisico Da Lancio (R), Silenziato <0,5 15 2
 COLTELLI DA LANCIO
 Si tratta di piccoli coltelli affilati progettati specifica-
 C»plicazi÷i delle Armi da Lancio
@@ -2054,22 +2054,22 @@ GRADO DI
 ARMA
 DANNO EFFETTI DEL DANNO TIPO DI
 DANNO QUALITÀ PESO COSTO RARITÀ
-Bottiglia Molotov Esplosiva 4 D C Persistente energy Da Lancio (M), Esplosiva 0,5 20 1
+Bottiglia Molotov Esplosiva 4 DC Persistente energy Da Lancio (M), Esplosiva 0,5 20 1
 Granata a
-Frammentazione Esplosiva 6 D C – Fisico Da Lancio (M), Esplosiva <0,5 50 2
-Granata a Impulsi Esplosiva 6 D C Stordente energy Da Lancio (M), Esplosiva <0,5 100 3
-Granata Nuka Esplosiva 9 D C Violento, Dirompente,
+Frammentazione Esplosiva 6 DC – Fisico Da Lancio (M), Esplosiva <0,5 50 2
+Granata a Impulsi Esplosiva 6 DC Stordente energy Da Lancio (M), Esplosiva <0,5 100 3
+Granata Nuka Esplosiva 9 DC Violento, Dirompente,
 Radioattivo energy Da Lancio (M), Esplosiva 0,5 100 4
-Granata al Plasma Esplosiva 9 D C – energy Da Lancio (M), Esplosiva <0,5 135 3
-Mina Atomica Esplosiva 9 D C Violento, Dirompente,
+Granata al Plasma Esplosiva 9 DC – energy Da Lancio (M), Esplosiva <0,5 135 3
+Mina Atomica Esplosiva 9 DC Violento, Dirompente,
 Radioattivo energy Esplosiva, Mina 0,5 100 4
 Mina a
-Frammentazione Esplosiva 6 D C – Fisico Esplosiva, Mina 0,5 50 2
-Mina a Impulsi Esplosiva 6 D C Stordente energy Esplosiva, Mina <0,5 100 3
-Mina al Plasma Esplosiva 9 D C – energy Esplosiva, Mina <0,5 135 3
-Mina a Tappi Esplosiva 6 D C – Fisico Esplosiva, Mina 0,5 75 2
+Frammentazione Esplosiva 6 DC – Fisico Esplosiva, Mina 0,5 50 2
+Mina a Impulsi Esplosiva 6 DC Stordente energy Esplosiva, Mina <0,5 100 3
+Mina al Plasma Esplosiva 9 DC – energy Esplosiva, Mina <0,5 135 3
+Mina a Tappi Esplosiva 6 DC – Fisico Esplosiva, Mina 0,5 75 2
 Palla da Baseball
-Esplosiva Esplosiva 5 D C – Fisico Da Lancio (M), Esplosiva 0,5 40 1
+Esplosiva Esplosiva 5 DC – Fisico Da Lancio (M), Esplosiva 0,5 40 1
 BOTTIGLIA MOLOTOV
 Si tratta di una bottiglia di vetro (normalmente di
 qualche alcolico) contenente una miscela combusti-
@@ -2174,7 +2174,7 @@ tappi a una buona distanza, a velocità tale che diven-
 tano delle vere e proprie schegge.
 Speciale: Quando si costruisce una mina a tappi, si
 possono aggiungere dei tappi in più: ogni 10 tappi il
-danno aumenta di +1 D C . Quando la mina detona,
+danno aumenta di +1 DC . Quando la mina detona,
 bisogna fare due volte il tiro per il grado di danno: la
 cifra ottenuta equivale al numero di tappi intatti che si
 possono ritrovare nell’area della detonazione.

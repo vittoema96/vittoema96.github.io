@@ -269,7 +269,6 @@ function InventoryList({
         return filteredCustomItems.map((customItem) => {
             const uniqueKey = getUniqueKey(customItem);
 
-            console.log("CUSTOM: ", uniqueKey)
             return (
                 <InventoryRow
                     key={uniqueKey}
@@ -376,7 +375,6 @@ function InventoryList({
                 (() => {
 
                     // Handle normal database items
-                    console.log("ITEMS: ", processedItems);
                     const selectedItem = [...processedItems, ...character.customItems].find(
                         item => getUniqueKey(item) === selectedItemId,
                     );

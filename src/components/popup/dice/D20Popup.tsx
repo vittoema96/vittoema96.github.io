@@ -300,8 +300,6 @@ function D20Popup({
         return null;
     }
 
-    console.log("ROLLER:", roller)
-
     function toggleAiming(checked: boolean) {
         if (
             dataManager.isType(itemData, 'weapon') &&
