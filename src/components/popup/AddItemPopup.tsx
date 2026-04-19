@@ -88,7 +88,7 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                 if(dataManager.isUnacquirable(item.ID)) { return false }
                 // If rarity or category filters, filter out what doesn't adhere
                 if(categoryFilter && item.CATEGORY !== categoryFilter) { return false }
-                if(rarityFilter && item.RARITY !== rarityFilter) { return false }
+                if(rarityFilter !== undefined && item.RARITY !== rarityFilter) { return false }
 
                 // Filter out mrHandyOnly and companionWeapons
                 const isWeapon = dataManager.isType(item, 'weapon')
