@@ -37,7 +37,12 @@ function InventoryList({
 
     useEffect(() => {
         setCategoryFilter(undefined)
+        setShowFilterDropdown(false)
     }, [typeFilter]);
+
+    useEffect(() => {
+        setShowFilterDropdown(false)
+    }, [categoryFilter]);
 
     const dataManager = getGameDatabase()
     const { character } = useCharacter()
@@ -54,18 +59,21 @@ function InventoryList({
                 const [effectType, item] = effect.split(':')
                 if(effectType === 'weaponAdd'){
                     return {
-                        id: item as string,
+                        id: item,
                         quantity: 1,
                         equipped: false,
                         mods: []
-                    }
+                    } as CharacterItem
                 }
                 return []
             })
         })
     }, [character.origin.id, character.traits])
 
-    const allItems = useMemo(() => [...items, ...newItems], [items, newItems]);
+    const allItems = useMemo(
+        () => [...items, ...newItems],
+        [items, newItems]
+    );
 
     // Get subcategories based on main category (sorted alphabetically by translation)
     const getCategories = () => {
@@ -187,23 +195,9 @@ function InventoryList({
         return filtered
     }, [allItems, typeFilter, categoryFilter, sortBy, isAscendingDirection, t])
 
-    const handleSelect = (itemId: string) => {
-        setSelectedItemId(selectedItemId === itemId ? undefined : itemId)
-    }
-
-    const handleCategoryFilterChange = (newCategory: ItemCategory | undefined) => {
-        setCategoryFilter(newCategory)
-        setShowFilterDropdown(false)
-        setSelectedItemId(undefined)
-    }
-
-    const toggleFilterDropdown = () => {
-        setShowFilterDropdown(!showFilterDropdown)
-    }
-
     // Close filter dropdown when clicking outside
     useEffect(() => {
-        if (!showFilterDropdown) {return}
+        if (!showFilterDropdown) { return }
 
         const handleClickOutside = (e: MouseEvent) => {
             const target = e.target
@@ -253,7 +247,7 @@ function InventoryList({
                     key={uniqueKey}
                     characterItem={characterItem}
                     isSelected={selectedItemId === uniqueKey}
-                    onSelect={() => handleSelect(uniqueKey)}
+                    onSelect={() => setSelectedItemId(selectedItemId === uniqueKey ? undefined : uniqueKey)}
                 />
             );
         });
@@ -272,15 +266,16 @@ function InventoryList({
             ? typeFilteredItems.filter(item => item.CATEGORY === categoryFilter)
             : typeFilteredItems;
 
-        return filteredCustomItems.map((customItem, index) => {
-            const uniqueKey = `custom_${index}`;
+        return filteredCustomItems.map((customItem) => {
+            const uniqueKey = getUniqueKey(customItem);
 
+            console.log("CUSTOM: ", uniqueKey)
             return (
                 <InventoryRow
                     key={uniqueKey}
                     characterItem={customItem}
                     isSelected={selectedItemId === uniqueKey}
-                    onSelect={() => handleSelect(uniqueKey)}
+                    onSelect={() => setSelectedItemId(selectedItemId === uniqueKey ? undefined : uniqueKey)}
                 />
             );
         });
@@ -324,7 +319,7 @@ function InventoryList({
                 <div className="inventory-list__filter-wrapper">
                     <button
                         className={`inventory-list__sort-btn ${categoryFilter ? 'active' : ''}`}
-                        onClick={toggleFilterDropdown}
+                        onClick={() => setShowFilterDropdown(!showFilterDropdown)}
                         title={t('filterByType')}
                     >
                         <i className="fas fa-filter"></i>
@@ -335,7 +330,7 @@ function InventoryList({
                         <div className="inventory-list__filter-dropdown">
                             <button
                                 className={categoryFilter ? '' : 'active'}
-                                onClick={() => handleCategoryFilterChange(undefined)}
+                                onClick={() => setCategoryFilter(undefined)}
                             >
                                 {t('all')}
                             </button>
@@ -343,7 +338,7 @@ function InventoryList({
                                 <button
                                     key={category}
                                     className={categoryFilter === category ? 'active' : ''}
-                                    onClick={() => handleCategoryFilterChange(category)}
+                                    onClick={() => setCategoryFilter(category)}
                                 >
                                     {t(category)}
                                 </button>
@@ -379,27 +374,20 @@ function InventoryList({
             {/* Selected Item Card Area - Outside inventory-list */}
             {selectedItemId &&
                 (() => {
-                    // Check if it's a custom item
-                    if (selectedItemId.startsWith('custom_')) {
-                        const index = Number.parseInt(selectedItemId.replace('custom_', ''));
-                        const selectedCustomItem = character.customItems?.[index];
-                        if (!selectedCustomItem) {
-                            return null;
-                        }
-
-                        return (
-                            <div className="inventory-list__selected">
-                                <OtherCard characterItem={selectedCustomItem} />
-                            </div>
-                        );
-                    }
 
                     // Handle normal database items
-                    const selectedItem = processedItems.find(
+                    console.log("ITEMS: ", processedItems);
+                    const selectedItem = [...processedItems, ...character.customItems].find(
                         item => getUniqueKey(item) === selectedItemId,
                     );
                     if (!selectedItem) {
                         return null;
+                    } else if ("CATEGORY" in selectedItem) {
+                        return (
+                            <div className="inventory-list__selected">
+                                <OtherCard characterItem={selectedItem} />
+                            </div>
+                        );
                     }
 
                     const CardComponent = getCardComponent(selectedItem);
