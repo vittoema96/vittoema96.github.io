@@ -55,12 +55,6 @@ export function isSameConfiguration(item1: CharacterItem, item2: CharacterItem) 
     return mods1.isSubsetOf(mods2);
 }
 
-/**
- * Generate unique key for item configuration
- */
-export function getItemKey(item: CharacterItem) {
-    return `${item.id}_${JSON.stringify(item.mods.toSorted((a, b) => a.localeCompare(b)))}`
-}
 
 const addValues: {
     (base: number, addition: string): number;

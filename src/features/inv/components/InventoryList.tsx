@@ -6,8 +6,7 @@ import WeaponCard from '../cards/weapon/WeaponCard.tsx'
 import ApparelCard from '../cards/apparel/ApparelCard.tsx'
 import AidCard from '../cards/aid/AidCard.tsx'
 import OtherCard from '../cards/ammo/OtherCard.tsx'
-import { getItemKey } from '@/utils/itemUtils.ts'
-import { CharacterItem } from '@/types';
+import { CharacterItem, CustomItem } from '@/types';
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { useCharacter } from '@/contexts/CharacterContext.tsx';
 import { ItemCategory, ItemType } from '@/types/item.ts';
@@ -230,9 +229,24 @@ function InventoryList({
         setSelectedItemId(undefined)
     }
 
+    const getUniqueKey = (i: CharacterItem | CustomItem) => {
+        const item = {
+            id: 'customItem',
+            variation: undefined,
+            mods: [],
+            ...i
+        }
+        return [
+            item.id,
+            item.variation,
+            item.customName,
+            item.mods.sort()
+        ].filter(v => v!== undefined).join("_")
+    }
+
     const renderItems = (itemsList: CharacterItem[]) => {
         return itemsList.map(characterItem => {
-            const uniqueKey = getItemKey(characterItem);
+            const uniqueKey = getUniqueKey(characterItem)
 
             return (
                 <InventoryRow
@@ -382,7 +396,7 @@ function InventoryList({
 
                     // Handle normal database items
                     const selectedItem = processedItems.find(
-                        item => getItemKey(item) === selectedItemId,
+                        item => getUniqueKey(item) === selectedItemId,
                     );
                     if (!selectedItem) {
                         return null;
