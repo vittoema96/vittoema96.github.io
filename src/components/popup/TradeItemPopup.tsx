@@ -26,7 +26,7 @@ function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProp
     }
 
     // Calculate sell price (70% of cost)
-    const tradeValueRate = 0.7
+    const tradeValueRate = 0.9
 
     const [quantity, setQuantity] = useInputNumberState(characterItem.quantity)
     const [price, setPrice] = useInputNumberState(() => {

@@ -176,8 +176,8 @@ Players can unlock markers on the New Vegas map by entering specific codes found
 ---
 
 ## Fixes on Manual Rules
-weaponArcWelder uses ammoFusionCell, as ammoElectronChargePack is nowhere to be found on manuals.  
-NOT FINAL: Musket has damage 4 and fire rate 1 (instead of 5 and 0). This works as the special rule, 
+- weaponArcWelder uses ammoFusionCell, as ammoElectronChargePack is nowhere to be found on manuals.  
+- NOT FINAL: Musket has damage 4 and fire rate 1 (instead of 5 and 0). This works as the special rule, 
 but mods can bring fire rate to 0 (and this should not happen, I need to find a better solution)
 
 ## 🛠️ Development
