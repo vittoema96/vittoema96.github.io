@@ -5,7 +5,7 @@ import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import { useInventoryActions } from '@/features/inv/hooks/useInventoryActions.ts';
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, useMemo, useState } from 'react';
 
 export interface TradeItemPopupProps {
     onClose: () => void;
@@ -25,15 +25,11 @@ function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProp
         itemData = characterItem
     }
 
-    // Calculate sell price (70% of cost)
-    const tradeValueRate = 0.9
-
     const [quantity, setQuantity] = useInputNumberState(characterItem.quantity)
+    const [rate, setRate] = useState(0.9)
+    const basePrice = useMemo(() => Number(itemData.COST) || 0, [itemData.COST])
     const [price, setPrice] = useInputNumberState(() => {
-        let basePrice = Number(itemData.COST) || 0
-        basePrice = basePrice * tradeValueRate
-        basePrice = Math.round(basePrice * 100) / 100
-        return basePrice
+        return Math.round(basePrice * rate * 100) / 100
     })
 
     const handleConfirm = () => {
@@ -42,6 +38,16 @@ function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProp
             removeItem(characterItem, quantity, price)
             showAlert(t('soldForCaps', { caps: total }))
         }
+    }
+
+    const handleAdjust = (delta: number) => {
+        const currentPct = Math.round(rate * 100)
+        let newPct = currentPct + (delta * 100)
+        if (newPct < 0) { newPct = 0 }
+        const newRate = newPct / 100
+
+        setRate(newRate)
+        setPrice(Math.round(basePrice * newRate * 100) / 100)
     }
 
     const handleQuantityChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -57,9 +63,18 @@ function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProp
         const value = e.target.value
 
         // Allow empty string
+
         const val = Number.parseInt(value)
-        if (Number.isNaN(val)) { setPrice('') }
-        else if (val >= 0) { setPrice(val) }
+        if (Number.isNaN(val) || value === '') {
+            setPrice('')
+            setRate(0)
+        }
+        else if (val >= 0) {
+            setPrice(val)
+            if (basePrice > 0) {
+                setRate(val / basePrice)
+            }
+        }
     }
 
     // Check if inputs are valid
@@ -111,25 +126,62 @@ function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProp
                 />
             </div>
 
-            {/* Price per unit */}
-            <div className="row l-distributed" style={{ marginBottom: '0.5rem' }}>
-                <label className="h3">{t('price')}:</label>
-                <div className="row l-centered" style={{ gap: '0.5rem' }}>
-                    <input
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value={price}
-                        onChange={handlePriceChange}
-                        placeholder="0"
-                        aria-label="Trade price"
-                        style={{ width: '5rem' }}
-                    />
-                    <div
-                        className="themed-svg"
-                        data-icon="caps"
-                        style={{ width: '1rem', height: '1rem' }}
-                    ></div>
+            <hr />
+
+            {/* Price Adjustment Cluster */}
+            <div className="row l-firstSmall" style={{ marginBottom: '1rem' }}>
+                {/* Contenitore flessibile centrale per controlli */}
+
+                <label className="h3">{t('price')}: </label>
+                <div className="row l-centered">
+
+                    {/* Pulsante -10% */}
+                    <button
+                        type="button"
+                        onClick={() => handleAdjust(-0.1)}
+                        title="Decrease by 10%"
+                        style={{ padding: 'var(--space-s)' }} // Un po' più compatto per il mobile
+                    >
+                        -10%
+                    </button>
+
+                    {/* Gruppo Input (Editabile) + Percentuale */}
+                    <div className={"stack l-centered no-gap"}>
+                        <input
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value={price}
+                            onChange={handlePriceChange}
+                            placeholder="0"
+                            aria-label="Trade price"
+                            style={{
+                                width: '4.5rem',
+                                borderBottomLeftRadius: 0,
+                                borderBottomRightRadius: 0,
+                            }}
+                        />
+                        <span className="h5" style={{
+                            border: "var(--border-primary-thin)",
+                            borderRadius: "5px",
+                            borderTop: 0,
+                            borderTopLeftRadius: 0,
+                            borderTopRightRadius: 0,
+                        }}>
+                            {Math.round(rate * 100)}%
+                        </span>
+                    </div>
+
+                    {/* Pulsante +10% */}
+                    <button
+                        type="button"
+                        onClick={() => handleAdjust(0.1)}
+                        title="Increase by 10%"
+                        style={{ padding: 'var(--space-s)' }}
+                    >
+                        +10%
+                    </button>
+
                 </div>
             </div>
 
