@@ -42,6 +42,7 @@ function D6Popup({
     const isGatling = weaponData.QUALITIES.includes('qualityGatling');
     const isAccurate = weaponData.QUALITIES.includes('qualityAccurate');
     const hasBurst = weaponData.EFFECTS.includes('effectBurst');
+    const hasAwareness = character.perks.includes('perkAwareness');
 
     const fireRateNum = Number(weaponData.FIRE_RATE) || 0;
 
@@ -579,6 +580,12 @@ function D6Popup({
                                     </Tag>
                                 );
                             })}
+
+                            {hasAwareness && hasAimed && (
+                                <Tag key={"awareness"} tooltipId={`perkAwarenessDescription`}>
+                                    {t("perkAwareness")}
+                                </Tag>
+                            )}
 
                             {weaponData.QUALITIES.map(effect => {
                                 const [qualityType, qualityOpt] = effect.split(':');

@@ -1,16 +1,33 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
 import TraitList from '@/features/data/components/TraitList.tsx';
 import PerkList from '@/features/data/components/PerkList.tsx';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { ORIGINS, OriginId } from '@/services/character/Origin.ts';
+import DialogPortal from '@/components/popup/common/DialogPortal.tsx';
+import { useDialog } from '@/hooks/useDialog.ts';
 
-function DataTab() {
+
+
+export default function DataTab() {
     const { t } = useTranslation();
     const { character, updateCharacter } = useCharacter();
-    const [levelInput, setLevelInput] = useInputNumberState(character.level);
+    const [ levelInput, setLevelInput ] = useInputNumberState(character.level);
 
+    const [ background, setBackground ] = useState(character.background);
+    const [ isBackgroundOpen, setIsBackgroundOpen ] = useState(false);
+
+    const backgroundDialogRef = useRef<HTMLDialogElement>(null);
+    const { closeWithAnimation } = useDialog(backgroundDialogRef, () => setIsBackgroundOpen(false));
+    // Meltdown functions
+    useEffect(() => {
+        if (isBackgroundOpen && backgroundDialogRef.current) {
+            backgroundDialogRef.current.showModal();
+        } else if (!isBackgroundOpen && backgroundDialogRef.current) {
+            backgroundDialogRef.current.close();
+        }
+    }, [isBackgroundOpen]);
     // Update levelInput when character.level changes (e.g., when loading a character)
     useEffect(() => {
         setLevelInput(character.level);
@@ -108,9 +125,46 @@ function DataTab() {
                     rows={7}
                     placeholder={t('backgroundPlaceholder')}
                     value={character.background || ''}
+                    onClick={() => setIsBackgroundOpen(true)}
                     onChange={e => updateCharacter({ background: e.target.value })}
                 />
             </div>
+
+            { isBackgroundOpen && (
+                <DialogPortal>
+                    <dialog
+                        ref={backgroundDialogRef}
+                        style={{
+                            height: '85%',
+                            width: '95%',
+                        }}
+                    >
+                        <textarea
+                            id="character-background"
+                            style={{ flex: 1, fontSize: "1rem" }}
+                            placeholder={t('backgroundPlaceholder')}
+                            value={background || ''}
+                            onClick={() => setIsBackgroundOpen(true)}
+                            onChange={e => setBackground(e.target.value)}
+                        />
+                        <footer>
+                            <button
+                                    className="confirmButton"
+                                    onClick={() => closeWithAnimation(() => updateCharacter({ background }))}
+                                    disabled={ character.background === background }
+                                >
+                                Save
+                            </button>
+                            <button
+                                className="closeButton"
+                                onClick={() => closeWithAnimation()}
+                            >
+                                {t('close')}
+                            </button>
+                        </footer>
+                    </dialog>
+                </DialogPortal>
+            )}
 
             <TraitList />
             <br />
@@ -118,5 +172,3 @@ function DataTab() {
         </section>
     );
 }
-
-export default DataTab

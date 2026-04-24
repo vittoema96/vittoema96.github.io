@@ -7,7 +7,7 @@ const parseInputNumber = (val: any): InputNumberType => {
     return Number.isNaN(parsed) ? '' : parsed;
 }
 
-function useInputNumberState(initial?: InputNumberType | (() => InputNumberType)):
+export default function useInputNumberState(initial?: InputNumberType | (() => InputNumberType)):
     [InputNumberType,  Dispatch<SetStateAction<number | string>>] {
         const [value, setValue] = useState<InputNumberType>(() => {
             return typeof initial === 'function' ? parseInputNumber(initial()) : parseInputNumber(initial)
@@ -23,5 +23,3 @@ function useInputNumberState(initial?: InputNumberType | (() => InputNumberType)
         }, []);
         return [value, setInputNumber];
     }
-
-export default useInputNumberState;
