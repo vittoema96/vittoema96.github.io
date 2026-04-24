@@ -1886,6 +1886,7 @@
   "cannotSellItem": "Cannot sell this item!",
   "cannotDeleteItem": "Cannot delete this item!",
   "itemDeleted": "Item deleted.",
+  "boughtForCaps": "Bought for {{caps}} caps!",
   "soldForCaps": "Sold for {{caps}} caps!",
   "robotsCannotEquipApparel": "Robots cannot equip/unequip apparel.",
   "cannotEquipRobotParts": "Cannot equip robot parts on non-robots.",

@@ -5,18 +5,34 @@ import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import { useInventoryActions } from '@/features/inv/hooks/useInventoryActions.ts';
+import { useCharacter } from '@/contexts/CharacterContext.tsx';
+import Skill from '@/features/stat/components/Skill.tsx';
+import { addItem } from '@/utils/itemUtils.ts';
 import { ChangeEventHandler, useMemo, useState } from 'react';
+
+type TradeMode = 'sell' | 'buy'
 
 export interface TradeItemPopupProps {
     onClose: () => void;
     characterItem: CharacterItem | CustomItem;
+    tradeMode?: TradeMode;
+    initialQuantity?: number;
+    maxQuantity?: number;
 }
 
-function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProps>) {
+function TradeItemPopup({
+    onClose,
+    characterItem,
+    tradeMode = 'sell',
+    initialQuantity,
+    maxQuantity,
+} : Readonly<TradeItemPopupProps>) {
     const { t } = useTranslation()
     const { showAlert } = usePopup()
     const { removeItem } = useInventoryActions()
+    const { character, updateCharacter } = useCharacter()
     const dataManager = getGameDatabase()
+    const isBuying = tradeMode === 'buy'
 
     let itemData
     if("id" in characterItem) {
@@ -25,8 +41,11 @@ function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProp
         itemData = characterItem
     }
 
-    const [quantity, setQuantity] = useInputNumberState(characterItem.quantity)
-    const [rate, setRate] = useState(0.9)
+    const maxTradeQuantity = isBuying ? (maxQuantity ?? 99) : characterItem.quantity
+    const startingQuantity = isBuying ? (initialQuantity ?? 1) : characterItem.quantity
+
+    const [quantity, setQuantity] = useInputNumberState(startingQuantity)
+    const [rate, setRate] = useState(1)
     const basePrice = useMemo(() => Number(itemData.COST) || 0, [itemData.COST])
     const [price, setPrice] = useInputNumberState(() => {
         return Math.round(basePrice * rate * 100) / 100
@@ -35,6 +54,33 @@ function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProp
     const handleConfirm = () => {
         if (quantity && price !== '') {
             const total = Math.floor(quantity * price)
+
+            if (isBuying) {
+                if (!('id' in characterItem)) {
+                    return
+                }
+
+                if (character.caps < total) {
+                    showAlert(t('notEnoughCaps'))
+                    return
+                }
+
+                const newItems = addItem(character.items, {
+                    id: characterItem.id,
+                    quantity,
+                    equipped: false,
+                    mods: [],
+                    ...(characterItem.variation ? { variation: characterItem.variation } : {}),
+                })
+
+                updateCharacter({
+                    items: newItems,
+                    caps: character.caps - total,
+                })
+                showAlert(t('boughtForCaps', { caps: total }))
+                return
+            }
+
             removeItem(characterItem, quantity, price)
             showAlert(t('soldForCaps', { caps: total }))
         }
@@ -56,7 +102,7 @@ function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProp
         // Allow empty string
         const val = Number.parseInt(value)
         if (Number.isNaN(val)) { setQuantity('') }
-        else if (val >= 1 && val <= characterItem.quantity) { setQuantity(val) }
+        else if (val >= 1 && val <= maxTradeQuantity) { setQuantity(val) }
     }
 
     const handlePriceChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -81,72 +127,60 @@ function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProp
     const isQuantityValid = (
         quantity !== ''
         && quantity >= 1
-        && quantity <= characterItem.quantity
+        && quantity <= maxTradeQuantity
     )
     const isPriceValid = price !== '' && price >= 0
-    const isFormValid = isQuantityValid && isPriceValid
+    const total = isQuantityValid && isPriceValid ? Math.floor(quantity * price) : 0
+    const canAfford = !isBuying || character.caps >= total
+    const isFormValid = isQuantityValid && isPriceValid && canAfford
 
-    const total = isFormValid ? Math.floor(quantity * price) : 0
     const side = {variation: undefined, ...characterItem}.variation
 
     return (
         <BasePopup
             title="barter"
+            confirmLabel={isBuying ? 'buy' : 'confirm'}
             onConfirm={handleConfirm}
             onClose={onClose}
             confirmDisabled={!isFormValid}
         >
-            {/* Item Name */}
-            {itemData && (
-                <div className="row l-centered" style={{ marginBottom: '0.5rem' }}>
-                    <span className="h2">
-                        {t(itemData.ID ?? '', side ? { side } : {})}
-                    </span>
-                </div>
-            )}
-
-            <span className="h5" style={{ display: 'block', textAlign: 'center', marginBottom: '1rem' }}>
-                {t('selling')}
-            </span>
+            {/* buying / selling */}
+            <span className="h5">{t(isBuying ? 'buying' : 'selling')}</span>
 
             <hr />
 
-            {/* Quantity */}
-            <div className="row l-distributed" style={{ marginBottom: '0.5rem' }}>
-                <label className="h3">{t('quantity')}:</label>
-                <input
-                    type="number"
-                    min="1"
-                    max={characterItem.quantity}
-                    value={quantity}
-                    onChange={handleQuantityChange}
-                    placeholder="1"
-                    aria-label="Trade quantity"
-                    style={{ width: '5rem' }}
-                />
+            {/* Item name × quantity */}
+            <div className="row l-distributed">
+                <span>{t(itemData.ID ?? '', side ? { side } : {})}</span>
+                <div className="row l-centered">
+                    <span className="h3">×</span>
+                    <input
+                        type="number"
+                        min="1"
+                        max={maxTradeQuantity}
+                        value={quantity}
+                        onChange={handleQuantityChange}
+                        placeholder="1"
+                        aria-label="Trade quantity"
+                        style={{ width: '5rem' }}
+                    />
+                </div>
             </div>
 
             <hr />
 
-            {/* Price Adjustment Cluster */}
-            <div className="row l-firstSmall" style={{ marginBottom: '1rem' }}>
-                {/* Contenitore flessibile centrale per controlli */}
+            {/* Price label */}
 
-                <label className="h3">{t('price')}: </label>
-                <div className="row l-centered">
+            {/* Price controls + barter skill on same row */}
+            <div className="row l-distributed l-space-between">
+                <span>{t('price')}:</span>
 
-                    {/* Pulsante -10% */}
-                    <button
-                        type="button"
-                        onClick={() => handleAdjust(-0.1)}
-                        title="Decrease by 10%"
-                        style={{ padding: 'var(--space-s)' }} // Un po' più compatto per il mobile
-                    >
+                <div className={"row"}>
+                    <button type="button" onClick={() => handleAdjust(-0.1)} style={{ padding: 'var(--space-s)' }}>
                         -10%
                     </button>
 
-                    {/* Gruppo Input (Editabile) + Percentuale */}
-                    <div className={"stack l-centered no-gap"}>
+                    <div className="stack l-centered no-gap">
                         <input
                             type="number"
                             min="0"
@@ -162,8 +196,8 @@ function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProp
                             }}
                         />
                         <span className="h5" style={{
-                            border: "var(--border-primary-thin)",
-                            borderRadius: "5px",
+                            border: 'var(--border-primary-thin)',
+                            borderRadius: '5px',
                             borderTop: 0,
                             borderTopLeftRadius: 0,
                             borderTopRightRadius: 0,
@@ -172,33 +206,25 @@ function TradeItemPopup({ onClose, characterItem } : Readonly<TradeItemPopupProp
                         </span>
                     </div>
 
-                    {/* Pulsante +10% */}
-                    <button
-                        type="button"
-                        onClick={() => handleAdjust(0.1)}
-                        title="Increase by 10%"
-                        style={{ padding: 'var(--space-s)' }}
-                    >
+                    <button type="button" onClick={() => handleAdjust(0.1)} style={{ padding: 'var(--space-s)' }}>
                         +10%
                     </button>
-
                 </div>
+
             </div>
+
+            <Skill skillId="barter" isEditing={false} />
 
             <hr />
 
             {/* Total */}
-            <div className="row l-distributed" style={{ marginTop: '1rem' }}>
+            <div className="row l-distributed">
                 <span className="h2">{t('total')}:</span>
-                <div className="row l-centered" style={{ gap: '0.5rem' }}>
-                    <span className="h2" style={{ color: 'var(--primary-color)' }}>
-                        +{total}
+                <div className="row l-centered">
+                    <span className="h2" style={{ color: canAfford ? 'var(--primary-color)' : 'var(--failure-color)' }}>
+                        {isBuying ? '-' : '+'}{total}
                     </span>
-                    <div
-                        className="themed-svg"
-                        data-icon="caps"
-                        style={{ width: '1.5rem', height: '1.5rem' }}
-                    ></div>
+                    <div className="themed-svg" data-icon="caps" style={{ width: '1.5rem', height: '1.5rem' }} />
                 </div>
             </div>
         </BasePopup>

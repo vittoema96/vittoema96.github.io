@@ -418,7 +418,8 @@ function D20Popup({
             </div>
 
             {!isMysteriousStranger &&
-                !isCompanion && ( // TODO can a companion aim?
+                !isCompanion &&
+                dataManager.isType(itemData, 'weapon') && ( // Show Aim only when rolling for a weapon
                     <>
                         <div className="row l-distributed l-lastSmall">
                             <span>{t('apCost')}</span>

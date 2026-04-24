@@ -582,7 +582,7 @@ function D6Popup({
                             })}
 
                             {hasAwareness && hasAimed && (
-                                <Tag key={"awareness"} tooltipId={`perkAwarenessDescription`}>
+                                <Tag key={"awareness"} color={"var(--warning-color)"} tooltipId={`perkAwarenessDescription`}>
                                     {t("perkAwareness")}
                                 </Tag>
                             )}

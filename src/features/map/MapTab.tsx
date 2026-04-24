@@ -1,13 +1,23 @@
 import { usePanzoom } from '@/features/map/hooks/usePanzoom';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, RefObject } from 'react';
 import { PanzoomEventDetail } from '@panzoom/panzoom';
 import { useCharacter } from '@/contexts/CharacterContext.tsx';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import { useLongPress } from '@/hooks/useLongPress.ts';
 import { useTranslation } from 'react-i18next';
 
-const SHOW_ALL = false; // For debug only
-const markers = [
+const SHOW_ALL = true; // For debug only
+const MARKER_SIZE_PX = '20px';
+const MARKER_TEXT_THRESHOLD = 2.5;
+
+type MapMarker = {
+    id: string;
+    code: string;
+    x: number;
+    y: number;
+};
+
+const markers: MapMarker[] = [
     { id: `Goodsprings`,
         code: 'g00d', x: 34, y: 57 },
     { id: `Goodsprings Cemetery`,
@@ -64,6 +74,8 @@ const markers = [
 
     { id: `Quarry Junction`,
         code: 'quju', x: 45, y: 53 },
+    { id: `Gibson Scrap Yard`,
+        code: "g1sy", x: 63.2, y: 64.5 },
     { id: `HELIOS One`,
         code: "h3l1", x: 62.5, y: 58.2 },
     { id: `Camp Golf`,
@@ -110,42 +122,161 @@ const markers = [
 ]
 
 
+type MapMarkerItemProps = Readonly<{
+    marker: MapMarker;
+    scale: number;
+    activeMarkerCode: string | null;
+    markerRefs: RefObject<Record<string, HTMLDivElement | null>>;
+    onLongPress: (code: string) => void;
+}>;
+
+function MapMarkerItem({ marker, scale, activeMarkerCode, markerRefs, onLongPress }: MapMarkerItemProps) {
+    const longPressHandlers = useLongPress(() => {
+        onLongPress(marker.code);
+    });
+
+    return (
+        <div
+            key={marker.code}
+            className="map-marker"
+            ref={(element) => {
+                markerRefs.current[marker.code] = element;
+            }}
+            style={{
+                position: 'absolute',
+                pointerEvents: 'auto',
+                left: `${marker.x}%`, top: `${marker.y}%`,
+                transform: `translate(-50%, -50%) scale(${1/(scale??1)})`,
+            }}
+            {...longPressHandlers}
+            onContextMenu={(e) => e.preventDefault()}
+        >
+            {scale > MARKER_TEXT_THRESHOLD && marker.code === activeMarkerCode && <span
+                style={{
+                    position: 'absolute',
+                    bottom: '100%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    pointerEvents: 'none',
+                    textAlign: 'center',
+                    width: 'max-content',
+                    maxWidth: '140px',
+                    whiteSpace: 'normal',
+                    wordWrap: 'break-word'
+                }}>{marker.id}</span>}
+            <div className="themed-svg"
+                 id={marker.code}
+                 data-icon="caps"
+                 style={{ width: MARKER_SIZE_PX, height: MARKER_SIZE_PX }} />
+        </div>
+    );
+}
+
 function MapTab() {
-    // The hook handles everything; we just attach the ref it gives us
     const { t } = useTranslation()
     const { mapRef } = usePanzoom();
     const { character, updateCharacter } = useCharacter()
     const [ scale, setScale ] = useState<number>(1);
     const [ code, setCode ] = useState('')
+    const [ activeMarkerCode, setActiveMarkerCode ] = useState<string | null>(null)
     const { showConfirm } = usePopup()
+    const viewportRef = useRef<HTMLDivElement | null>(null)
+    const markerRefs = useRef<Record<string, HTMLDivElement | null>>({})
 
-    const longPressHandlers = useLongPress((e: MouseEvent) => {
+    const handleLongPress = useCallback((markerCode: string) => {
         showConfirm(t('deleteMarker'), () => {
-            updateCharacter({ mapCodes: character.mapCodes.filter(m => m !== e.target?.id) });
+            updateCharacter({ mapCodes: character.mapCodes.filter(m => m !== markerCode) });
         });
-    });
-
-
-    const markerSizePx = "20px"
-    const markerTextThreshold = 2.5;
+    }, [showConfirm, t, updateCharacter, character.mapCodes]);
 
     const visibleMarkers = useMemo(() => {
         return markers.filter(m => SHOW_ALL || character.mapCodes.includes(m.code))
     }, [character.mapCodes])
+
+    const updateActiveMarker = useCallback((nextScale = scale) => {
+        if (nextScale <= MARKER_TEXT_THRESHOLD || visibleMarkers.length === 0) {
+            setActiveMarkerCode(null);
+            return;
+        }
+
+        const viewport = viewportRef.current;
+
+        if (!viewport) {
+            setActiveMarkerCode(null);
+            return;
+        }
+
+        const viewportRect = viewport.getBoundingClientRect();
+        const viewportCenterX = viewportRect.left + (viewportRect.width / 2);
+        const viewportCenterY = viewportRect.top + (viewportRect.height / 2);
+
+        let closestMarkerCode: string | null = null;
+        let closestDistance = Number.POSITIVE_INFINITY;
+
+        for (const marker of visibleMarkers) {
+            const markerElement = markerRefs.current[marker.code];
+
+            if (!markerElement) {
+                continue;
+            }
+
+            const markerRect = markerElement.getBoundingClientRect();
+            const markerCenterX = markerRect.left + (markerRect.width / 2);
+            const markerCenterY = markerRect.top + (markerRect.height / 2);
+            const distance = ((markerCenterX - viewportCenterX) ** 2) + ((markerCenterY - viewportCenterY) ** 2);
+
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestMarkerCode = marker.code;
+            }
+        }
+
+        setActiveMarkerCode(closestMarkerCode);
+    }, [scale, visibleMarkers])
 
     // Unscales markers
     useEffect(() => {
         const img = mapRef.current;
         if (!img) { return; }
 
+        let animationFrameId: number | null = null;
+
         const syncTransform = (event: CustomEvent<PanzoomEventDetail>) => {
             setScale(event.detail.scale)
+            if (animationFrameId !== null) {
+                cancelAnimationFrame(animationFrameId);
+            }
+
+            animationFrameId = requestAnimationFrame(() => {
+                updateActiveMarker(event.detail.scale)
+            });
         };
+
         img.addEventListener('panzoomchange', syncTransform as EventListener);
         return () => {
+            if (animationFrameId !== null) {
+                cancelAnimationFrame(animationFrameId);
+            }
+
             img.removeEventListener('panzoomchange', syncTransform as EventListener);
         };
-    }, [mapRef]);
+    }, [mapRef, updateActiveMarker]);
+
+    useEffect(() => {
+        updateActiveMarker();
+    }, [updateActiveMarker]);
+
+    useEffect(() => {
+        const handleResize = () => {
+            updateActiveMarker();
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [updateActiveMarker]);
 
     const handleUnlockLocation = () => {
         if (code.length !== 4) {return}
@@ -158,7 +289,7 @@ function MapTab() {
 
     return (
         <section className="tabContent">
-            <div style={{flex: 1}}>
+            <div ref={viewportRef} style={{flex: 1}}>
                 <div
                     ref={mapRef}
                     style={{
@@ -168,41 +299,19 @@ function MapTab() {
                     }}
                 >
                     {visibleMarkers.map(marker => (
-                        <div
+                        <MapMarkerItem
                             key={marker.code}
-                            className="map-marker"
-                            style={{
-                                position: 'absolute',
-                                pointerEvents: 'auto',
-                                left: `${marker.x}%`, top: `${marker.y}%`,
-                                transform: `translate(-50%, -50%) scale(${1/(scale??1)})`,  // Center marker on point
-                            }}
-                            {...longPressHandlers}
-                            onContextMenu={(e) => e.preventDefault()}
-                        >
-                            {scale > markerTextThreshold &&<span
-                                style={{
-                                    position: 'absolute',
-                                    bottom: '100%',  // Position above the icon
-                                    left: '50%',
-                                    transform: 'translateX(-50%)',  // Center horizontally
-                                    pointerEvents: 'none',
-                                    textAlign: 'center',
-                                    width: 'max-content',
-                                    maxWidth: '140px',
-                                    whiteSpace: 'normal',
-                                    wordWrap: 'break-word'
-                                }}>{marker.id}</span>}
-                            <div className="themed-svg"
-                                 id={marker.code}
-                                 data-icon="caps"
-                                 style={{ width: markerSizePx, height: markerSizePx }} /> {/*<MarkerIcon />*/}
-                        </div>
+                            marker={marker}
+                            scale={scale}
+                            activeMarkerCode={activeMarkerCode}
+                            markerRefs={markerRefs}
+                            onLongPress={handleLongPress}
+                        />
                     ))}
                 </div>
             </div>
             <div className="row" style={{justifyContent: "center"}}>
-                <input type="text" style={{textAlign: 'center' }} maxLength={4} placeholder="○○○○" value={code} onChange={(e) => setCode((e.target?.value ?? '').toLowerCase())} />
+                <input type="text" style={{textAlign: 'center' }} maxLength={4} placeholder="○○○○" value={code} onChange={(e) => setCode(e.currentTarget.value.toLowerCase())} />
                 <button onClick={handleUnlockLocation}>{t("unlock")}</button>
             </div>
         </section>

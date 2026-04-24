@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/contexts/CharacterContext';
+import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
 import { CustomItem, GenericPopupProps, Side } from '@/types';
 import { addItem } from '@/utils/itemUtils.ts';
@@ -15,15 +16,51 @@ export interface AddItemPopupProps extends GenericPopupProps {
 
 type SelectableItem = BaseItem & { variation?: Side }
 
+const BUY_MAX_QUANTITY = 99
+
 function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
     const { t } = useTranslation()
 
     const [isFormValid, setIsFormValid] = useState(false)
     const [onConfirmCallback, setOnConfirmCallback] = useState<() => void>(() => {})
+    const [onBuyCallback, setOnBuyCallback] = useState<(() => void) | null>(null)
 
     // Custom item mode
     const [isCustomMode, setIsCustomMode] = useState(false)
 
+    useEffect(() => {
+        if (isCustomMode) {
+            setOnBuyCallback(null)
+        }
+    }, [isCustomMode])
+
+    const footerChildren = (
+        <>
+            {!isCustomMode && (
+                <button
+                    type="button"
+                    className="confirmButton"
+                    disabled={!onBuyCallback}
+                    onClick={() => {
+                        onClose()
+                        onBuyCallback?.()
+                    }}
+                >
+                    {t('buy')}
+                </button>
+            )}
+
+            {itemType === 'other' && (
+                <button
+                    type="button"
+                    className="closeButton"
+                    onClick={() => setIsCustomMode(!isCustomMode)}
+                >
+                    {t(isCustomMode ? 'backToList' : 'customItem')}
+                </button>
+            )}
+        </>
+    )
 
     return (
         <BasePopup
@@ -34,15 +71,7 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
             }}
             onClose={onClose}
             confirmDisabled={!isFormValid}
-            footerChildren={itemType === 'other' ? (
-                <button
-                    type="button"
-                    className="closeButton"
-                    onClick={() => setIsCustomMode(!isCustomMode)}
-                >
-                    {t(isCustomMode ? 'backToList' : 'customItem')}
-                </button>
-            ) : undefined}
+            footerChildren={footerChildren}
         >
             <hr />
 
@@ -55,7 +84,8 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                 <AddItemFromListContent
                     itemType={itemType}
                     setIsFormValid={setIsFormValid}
-                    setOnConfirmCallback={setOnConfirmCallback}/>
+                    setOnConfirmCallback={setOnConfirmCallback}
+                    setOnBuyCallback={setOnBuyCallback}/>
             )}
 
         </BasePopup>
@@ -64,14 +94,16 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
 
 export default AddItemPopup
 
-function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback }: Readonly<{
+function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback, setOnBuyCallback }: Readonly<{
     itemType: ItemType,
     setIsFormValid: (valid: boolean) => void,
     setOnConfirmCallback: (callback: () => void) => void
+    setOnBuyCallback: (callback: (() => void) | null) => void,
 }>) {
 
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
+    const { showTradeItemPopup } = usePopup()
 
     const dataManager = getGameDatabase()
 
@@ -79,7 +111,6 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
     const [quantity, setQuantity] = useInputNumberState(1)
     const [categoryFilter, setCategoryFilter] = useState<ItemCategory>()
     const [rarityFilter, setRarityFilter] = useState<number>()
-    const [shouldBuy, setShouldBuy] = useState(false)
 
     const availableItems = useMemo(() => {
         const allItems = Object.values(dataManager[itemType])
@@ -126,7 +157,7 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
 
             return nameA.localeCompare(nameB)
         })
-    }, [itemType, categoryFilter, rarityFilter, t])
+    }, [dataManager, itemType, categoryFilter, rarityFilter, t])
 
     useEffect(() => {
         setSelectedItem(availableItems[0])
@@ -138,25 +169,33 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
     }, [itemType])
 
     useEffect(() => {
-        setIsFormValid(
-            Boolean(
-                selectedItem && quantity
-                && (!shouldBuy || character.caps >= Number(selectedItem.COST))
-            )
-        )
-    }, [character.caps, quantity, selectedItem, setIsFormValid, shouldBuy]);
+        setIsFormValid(Boolean(selectedItem && quantity))
+    }, [quantity, selectedItem, setIsFormValid]);
+
+    useEffect(() => {
+        if (!selectedItem || quantity === '') {
+            setOnBuyCallback(null)
+            return
+        }
+
+        setOnBuyCallback(() => () => {
+            showTradeItemPopup({
+                characterItem: {
+                    id: selectedItem.ID,
+                    quantity,
+                    equipped: false,
+                    mods: [],
+                    ...(selectedItem.variation ? { variation: selectedItem.variation } : {}),
+                },
+                tradeMode: 'buy',
+                initialQuantity: quantity,
+                maxQuantity: BUY_MAX_QUANTITY,
+            })
+        })
+    }, [quantity, selectedItem, setOnBuyCallback, showTradeItemPopup]);
 
     const handleConfirm = useCallback(() => {
         if(selectedItem && quantity){
-            let totalCost = 0;
-            if (shouldBuy) {
-                totalCost = (Number(selectedItem.COST) || 0) * quantity;
-
-                if (character.caps < totalCost) {
-                    return;
-                }
-            }
-
             const newItems = addItem(character.items, {
                 id: selectedItem.ID,
                 quantity: quantity,
@@ -166,10 +205,9 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
             });
             updateCharacter({
                 items: newItems,
-                ...(shouldBuy ? { caps: character.caps - totalCost } : {}),
             });
         }
-    }, [character.caps, character.items, quantity, selectedItem, shouldBuy, updateCharacter])
+    }, [character.items, quantity, selectedItem, updateCharacter])
 
     // Registra la callback quando cambia
     useEffect(() => {
@@ -267,31 +305,6 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                     aria-label="Object quantity"
                     style={{ width: '5rem' }}
                 />
-            </div>
-
-            {/* Buy checkbox and price */}
-            <div className="row" style={{ marginTop: '1rem', alignItems: 'center', justifyContent: 'space-between' }}>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    {t('buy')}?
-                </label>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                    <input
-                        type="checkbox"
-                        className="themed-svg"
-                        data-icon="caps"
-                        checked={shouldBuy}
-                        onChange={(e) => setShouldBuy(e.target.checked)}
-                        style={{
-                            width: '1.2rem',
-                            height: '1.2rem'
-                        }}
-                    />
-                    <span style={{
-                        color: shouldBuy ? 'var(--primary-color)' : 'var(--primary-color-very-translucent)',
-                    }}>
-                        {(Number(selectedItem?.COST) || 0) * Number(quantity)}
-                    </span>
-                </label>
             </div>
         </>)
 }

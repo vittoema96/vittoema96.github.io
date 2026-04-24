@@ -11,6 +11,7 @@ import { ItemType } from '@/types/item.ts';
 export const useInventoryFilter = (itemType: ItemType) => {
     const { character } = useCharacter()
     const dataManager = getGameDatabase()
+    const ironFistTier = character.perks.filter(p => p === 'perkIronFist').length
 
     return useMemo(() => {
         if (!character.items || !dataManager.getItemTypeMap) {return []}
@@ -24,16 +25,21 @@ export const useInventoryFilter = (itemType: ItemType) => {
             return itemData?.CATEGORY !== 'robotPart' || character.origin === ORIGINS.MR_HANDY;
         })
 
-        items = addSpecialWeaponItems(items, character.origin.isRobot, dataManager)
+        items = addSpecialWeaponItems(items, character.origin.isRobot, ironFistTier, dataManager)
 
         return items
-    }, [character.items, character.origin, itemType, dataManager])
+    }, [character.items, character.origin, ironFistTier, itemType, dataManager])
 }
 
 /**
  * Add special weapon items (unarmed strike, gun bash)
  */
-const addSpecialWeaponItems = (items: CharacterItem[], isRobot: boolean, dataManager: ReturnType<typeof getGameDatabase>) => {
+const addSpecialWeaponItems = (
+    items: CharacterItem[],
+    isRobot: boolean,
+    ironFistTier: number,
+    dataManager: ReturnType<typeof getGameDatabase>,
+) => {
     const resultItems: CharacterItem[] = [...items]
 
     const addSpecialItem = (itemToCheck: CharacterItem, specialItemId: string, condition: (item: CharacterItem) => boolean) => {
@@ -77,11 +83,8 @@ const addSpecialWeaponItems = (items: CharacterItem[], isRobot: boolean, dataMan
         }
     }
 
-    const {character} = useCharacter()
-
     // Everyone has unarmed strike
     if(!isRobot){
-        const ironFistTier = character.perks.filter(p => p === 'perkIronFist').length
 
         if(ironFistTier) {
             resultItems.push({

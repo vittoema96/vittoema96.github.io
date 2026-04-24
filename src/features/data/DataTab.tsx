@@ -15,7 +15,7 @@ export default function DataTab() {
     const { character, updateCharacter } = useCharacter();
     const [ levelInput, setLevelInput ] = useInputNumberState(character.level);
 
-    const [ background, setBackground ] = useState(character.background);
+    const [ background, setBackground ] = useState(character.background ?? '');
     const [ isBackgroundOpen, setIsBackgroundOpen ] = useState(false);
 
     const backgroundDialogRef = useRef<HTMLDialogElement>(null);
@@ -53,6 +53,11 @@ export default function DataTab() {
         if (!levelInput) {
             setLevelInput(character.level);
         }
+    };
+
+    const handleOpenBackground = () => {
+        setBackground(character.background ?? '');
+        setIsBackgroundOpen(true);
     };
 
     return (
@@ -125,7 +130,7 @@ export default function DataTab() {
                     rows={7}
                     placeholder={t('backgroundPlaceholder')}
                     value={character.background || ''}
-                    onClick={() => setIsBackgroundOpen(true)}
+                    onClick={handleOpenBackground}
                     onChange={e => updateCharacter({ background: e.target.value })}
                 />
             </div>

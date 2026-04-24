@@ -1324,7 +1324,7 @@
   "filterByType": "Filtra per tipo",
   "filterByRarity": "Filtra per rarità",
   "all": "Tutti",
-  "buy": "Comprare",
+  "buy": "Compra",
 
   "rarity0": "Molto Comune (0)",
   "rarity1": "Comune (1)",
@@ -1886,6 +1886,7 @@
   "cannotSellItem": "Non puoi vendere questo oggetto!",
   "cannotDeleteItem": "Non puoi eliminare questo oggetto!",
   "itemDeleted": "Oggetto eliminato.",
+  "boughtForCaps": "Comprato per {{caps}} tappi!",
   "soldForCaps": "Venduto per {{caps}} tappi!",
   "robotsCannotEquipApparel": "I robot non possono equipaggiare/rimuovere abbigliamento.",
   "cannotEquipRobotParts": "Non puoi equipaggiare parti robot su non-robot.",
