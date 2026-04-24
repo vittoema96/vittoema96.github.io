@@ -6,7 +6,7 @@ import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import { useLongPress } from '@/hooks/useLongPress.ts';
 import { useTranslation } from 'react-i18next';
 
-const SHOW_ALL = true; // For debug only
+const SHOW_ALL = false; // For debug only
 const MARKER_SIZE_PX = '20px';
 const MARKER_TEXT_THRESHOLD = 2.5;
 
