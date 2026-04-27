@@ -45,10 +45,8 @@ If you want to have a more native feel and **run the app while offline**, you ca
 # What is NOT present...
 ## ...and will be implemented soon
 ### 90% of Perk actual effects
-All Core Rulebook perks are in the app, but most of the effects are not automatically applied.  
+All Core Rulebook and DLC perks are in the app, but most of the effects are not automatically applied.  
 I'll slowly implement them all. If you need a particular one implemented open an issue here on Github.
-### DLC Perks
-All DLC Perks are missing. I will probably start adding them once I'm done with Core Rulebook perks.
 ### Most of DLC-Origins
 You will probably see all origins (even DLC ones) as selectable. However, most of DLC origins are currently badly implemented.  
 Tribal and NCR are exceptions and can be used (though not all traits may have proper implementation).

@@ -61,10 +61,9 @@ const DREntry = (
         const { character } = useCharacter()
         const damageReduction = character.locationsDR
 
-        let toughnessBonus = 0;
-        if (damageType === "physical" && character.perks.includes('perkToughness')) {
-            toughnessBonus = 1;
-        }
+        const toughnessBonus = damageType === "physical"
+            ? character.perks.filter(p => p === 'perkToughness').length
+            : 0;
         // Helper function to format DR value (show "Immune" for Infinity)
         const formatDR = (value: number) => {
             if (value === Infinity) {return t('immune')}

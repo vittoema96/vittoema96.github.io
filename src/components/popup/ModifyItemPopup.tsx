@@ -34,7 +34,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
     const dataManager = getGameDatabase()
-    const itemData = getModifiedItemData(characterItem)
+    const itemData = getModifiedItemData(characterItem, character.perks)
 
     const { showTooltip } = useTooltip()
 
@@ -112,7 +112,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
         const newMods = Object.values(slotsData)
             .flatMap((data) => data.selectedMod ? [data.selectedMod.id] : [])
         const previewItem = {...characterItem, mods: newMods}
-        return getModifiedItemData(previewItem)
+        return getModifiedItemData(previewItem, character.perks)
     }
 
     const handleConfirm = () => {

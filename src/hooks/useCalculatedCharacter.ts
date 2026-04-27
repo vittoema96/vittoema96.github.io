@@ -106,20 +106,23 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
             raw.items.forEach(item => {
                 if (!item.equipped) {return;}
                 // TODO Carry weight bonus not currently fully implemented
-                const itemData = getModifiedItemData(item);
-                if (itemData?.CARRY_WEIGHT_BONUS) {
-                    result += Number(itemData.CARRY_WEIGHT_BONUS) || 0;
+                const itemData = getModifiedItemData(item, raw.perks);
+                const carryWeightBonus = dataManager.isType(itemData, 'apparel')
+                    ? (itemData as typeof itemData & { CARRY_WEIGHT_BONUS?: number }).CARRY_WEIGHT_BONUS
+                    : undefined
+                if (carryWeightBonus) {
+                    result += Number(carryWeightBonus) || 0;
                 }
             });
             return result
         },
-        [origin, raw.special.strength, raw.items, traits]
+        [dataManager, origin, raw.special.strength, raw.items, raw.perks, traits]
     )
 
     const currentWeight = useMemo(() => {
         let total = 0
         total += raw.items.reduce((total, item) => {
-            const itemData = getModifiedItemData(item);
+            const itemData = getModifiedItemData(item, raw.perks);
             const weight = Number(itemData?.WEIGHT) || 0;
             return total + weight * item.quantity;
         }, 0);
@@ -127,7 +130,7 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
             return total + item.WEIGHT * item.quantity;
         }, 0)
         return total
-    }, [raw.items, raw.customItems]);
+    }, [raw.items, raw.customItems, raw.perks]);
 
     const maxLuck = useMemo(() => {
         let result = raw.special.luck
@@ -169,7 +172,7 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
                 return;
             }
 
-            const itemData = getModifiedItemData(item);
+            const itemData = getModifiedItemData(item, raw.perks);
             // Skip robot parts if origin is not Mr. Handy
             // TODO might not need the below check
             if (!itemData || (itemData?.CATEGORY === 'robotPart' && !origin.isRobot)) {return;}
@@ -196,7 +199,7 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
         }
 
         return locationsDR;
-    }, [raw.items, origin.bodyParts, origin.hasRadiationImmunity, origin.isRobot])
+    }, [dataManager, raw.items, raw.perks, origin.bodyParts, origin.hasRadiationImmunity, origin.isRobot])
 
 
     // Default companion (Eyebot)

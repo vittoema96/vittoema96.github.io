@@ -60,6 +60,7 @@ function D20Popup({
         character: Roller;
         updateCharacter: (c: Partial<RawCharacter>) => void;
     } = useCharacter();
+    const activePerks = 'perks' in character && Array.isArray(character.perks) ? character.perks : []
 
     const currentLuck = character.currentLuck ?? 0;
     // Handle updates and character when roller is not undefined
@@ -74,7 +75,7 @@ function D20Popup({
     }
 
     // Get weapon data with mods applied
-    const itemData = getModifiedItemData(usingItem);
+    const itemData = getModifiedItemData(usingItem, activePerks);
 
     // State
     const [isUsingLuck, setIsUsingLuck] = useState(false);

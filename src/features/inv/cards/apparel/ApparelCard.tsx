@@ -3,6 +3,7 @@ import ApparelContent from '@/features/inv/cards/apparel/ApparelContent.tsx'
 import {getGameDatabase, getModifiedItemData } from "@/hooks/getGameDatabase.ts"
 import { CharacterItem } from '@/types';
 import { useInventoryActions } from '@/features/inv/hooks/useInventoryActions.ts';
+import { useCharacter } from '@/contexts/CharacterContext.tsx';
 
 /**
  * Apparel card component with armor stats and equip functionality
@@ -12,8 +13,9 @@ interface ApparelCardProps {
     characterItem: CharacterItem,
 }
 function ApparelCard({ characterItem }: Readonly<ApparelCardProps>) {
+    const { character } = useCharacter()
     const dataManager = getGameDatabase()
-    const itemData = getModifiedItemData(characterItem)
+    const itemData = getModifiedItemData(characterItem, character.perks)
     const {equipItem} = useInventoryActions()
 
     if (!dataManager.isType(itemData, 'apparel')) {

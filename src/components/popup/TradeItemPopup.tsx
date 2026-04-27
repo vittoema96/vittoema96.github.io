@@ -36,7 +36,7 @@ function TradeItemPopup({
 
     let itemData
     if("id" in characterItem) {
-        itemData = getModifiedItemData(characterItem) ?? dataManager.getItem(characterItem.id)!
+        itemData = getModifiedItemData(characterItem, character.perks) ?? dataManager.getItem(characterItem.id)!
     } else {
         itemData = characterItem
     }

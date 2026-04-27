@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
-import { getModifiedItemData } from '@/hooks/getGameDatabase.ts';
+import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem, CustomItem } from '@/types';
 import { FitText } from '@/components/FitText.tsx';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
+import { useCharacter } from '@/contexts/CharacterContext.tsx';
 
 /**
  * Base card component - provides common card structure and functionality
@@ -43,6 +43,7 @@ function BaseCard({
     const { t } = useTranslation();
     const [showDescription, setShowDescription] = useState(false);
     const { showModifyItemPopup } = usePopup()
+    const { character } = useCharacter()
 
     const item = {
         variation: undefined,
@@ -53,7 +54,7 @@ function BaseCard({
     let itemData
     let isModdable = false
     if("id" in item){
-        itemData = getModifiedItemData(item) ?? dataManager.getItem(item.id);
+        itemData = getModifiedItemData(item, character.perks) ?? dataManager.getItem(item.id);
         isModdable = (dataManager.isType(itemData, "weapon")
             || dataManager.isType(itemData, "apparel"))
     } else {

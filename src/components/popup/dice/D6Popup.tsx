@@ -36,7 +36,7 @@ function D6Popup({
     const { showConfirm } = usePopup();
 
     // Get weapon data with mods applied
-    const weaponData = getModifiedItemData(usingItem) as WeaponItem;
+    const weaponData = getModifiedItemData(usingItem, character.perks) as WeaponItem;
     const legendaryMods = usingItem.mods.filter(mod => mod.startsWith('legendary'));
 
     // Checks on EFFECTS and QUALITIES
@@ -178,7 +178,7 @@ function D6Popup({
 
     // States relative to PERKS
     const [burstEffectsUsed, setBurstEffectsUsed] = useState(0); // Number of burst effects activated
-    const [gunFuUsed, setGunFuUsed] = useState(false); // Track if Gun Fu has been used
+    const [gunFuUsed, setGunFuUsed] = useState(0); // Track how many times Gun Fu has been used
     const [slayerUsed, setSlayerUsed] = useState(false); // Track if Slayer has been used
 
     const [meltdownUsed, setMeltdownUsed] = useState(false); // Track if Meltdown has been used
@@ -466,49 +466,53 @@ function D6Popup({
                         {/* Gun Fu button - only for ranged weapons when player has the perk */}
                         {!roller &&
                             !isCloseCombat(weaponData.CATEGORY) &&
-                            character.perks.includes('perkGunFu') &&
-                            !gunFuUsed && (
-                                <button
-                                    className="confirmButton"
-                                    onClick={() => {
-                                        const totalDamage = getTotalDamage();
+                            (() => {
+                                const gunFuRank = character.perks.filter(p => p === 'perkGunFu').length;
+                                return gunFuRank > 0 && gunFuUsed < gunFuRank ? (
+                                    <button
+                                        className="confirmButton"
+                                        onClick={() => {
+                                            const totalDamage = getTotalDamage();
 
-                                        showConfirm(
-                                            `${t('perkGunFu')}\n\n` +
-                                                `${t('damage')}: ${totalDamage}\n\n` +
-                                                `${t('confirmGunFu')}`,
-                                            () => {
-                                                // Consume 1 ammo
-                                                let ammoId = weaponData.AMMO_TYPE;
-                                                if (ammoId === 'self') {
-                                                    ammoId = weaponData.ID;
-                                                } // TODO should "SELF" ammo types use Gun Fu?
-                                                if (ammoId && ammoId !== 'na') {
-                                                    updateCharacter({
-                                                        items: character.items
-                                                            .map(item =>
-                                                                item.id === ammoId
-                                                                    ? {
-                                                                          ...item,
-                                                                          quantity:
-                                                                              item.quantity - 1,
-                                                                      }
-                                                                    : item,
-                                                            )
-                                                            .filter(item => item.quantity > 0),
-                                                    });
-                                                }
-                                                // Mark Gun Fu as used
-                                                setGunFuUsed(true);
-                                            },
-                                        );
-                                    }}
-                                    disabled={!hasRolled || getCurrentAmmo() < 1}
-                                    title={t('perkGunFuDescription')}
-                                >
-                                    {t('perkGunFu')}
-                                </button>
-                            )}
+                                            showConfirm(
+                                                `${t('perkGunFu')}${gunFuRank > 1 ? ` (${gunFuUsed + 1}/${gunFuRank})` : ''}\n\n` +
+                                                    `${t('damage')}: ${totalDamage}\n\n` +
+                                                    `${t('confirmGunFu')} (1 ${t('ammo')})`,
+                                                () => {
+                                                    // Consume 1 ammo per use
+                                                    let ammoId = weaponData.AMMO_TYPE;
+                                                    if (ammoId === 'self') {
+                                                        ammoId = weaponData.ID;
+                                                    } // TODO should "SELF" ammo types use Gun Fu?
+                                                    if (ammoId && ammoId !== 'na') {
+                                                        updateCharacter({
+                                                            items: character.items
+                                                                .map(item =>
+                                                                    item.id === ammoId
+                                                                        ? {
+                                                                              ...item,
+                                                                              quantity:
+                                                                                  item.quantity - 1,
+                                                                          }
+                                                                        : item,
+                                                                )
+                                                                .filter(item => item.quantity > 0),
+                                                        });
+                                                    }
+                                                    // Increment Gun Fu use count
+                                                    setGunFuUsed(prev => prev + 1);
+                                                },
+                                            );
+                                        }}
+                                        disabled={!hasRolled || getCurrentAmmo() < 1}
+                                        title={t('perkGunFuDescription')}
+                                    >
+                                        {t('perkGunFu')}
+                                        {gunFuRank > 1 ? ` (${gunFuUsed + 1}/${gunFuRank})` : ''}
+                                    </button>
+                                ) : null;
+                            })()
+                        }
 
                         {/* Slayer button - only for melee/unarmed weapons when player has the perk */}
                         {!roller &&

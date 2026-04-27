@@ -127,8 +127,8 @@ function InventoryList({
 
         // Apply sorting
         filtered.sort((a, b) => {
-            const aData = getModifiedItemData(a) ?? dataManager.getItem(a.id)
-            const bData = getModifiedItemData(b) ?? dataManager.getItem(b.id)
+            const aData = getModifiedItemData(a, character.perks) ?? dataManager.getItem(a.id)
+            const bData = getModifiedItemData(b, character.perks) ?? dataManager.getItem(b.id)
 
             if (!aData || !bData) {return 0}
 
@@ -193,7 +193,7 @@ function InventoryList({
         })
 
         return filtered
-    }, [allItems, typeFilter, categoryFilter, sortBy, isAscendingDirection, t])
+    }, [allItems, typeFilter, categoryFilter, sortBy, isAscendingDirection, character.perks, dataManager, t])
 
     // Close filter dropdown when clicking outside
     useEffect(() => {

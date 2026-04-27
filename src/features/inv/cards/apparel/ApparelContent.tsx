@@ -3,6 +3,7 @@ import Tag from '@/components/Tag.tsx'
 import {getGameDatabase, getModifiedItemData } from "@/hooks/getGameDatabase.ts";
 import { CharacterItem } from '@/types';
 import React from 'react';
+import { useCharacter } from '@/contexts/CharacterContext.tsx';
 
 /**
  * Apparel-specific content renderer
@@ -14,9 +15,10 @@ interface ApparelContentProps {
 }
 function ApparelContent({ characterItem, actionButtons }: Readonly<ApparelContentProps>) {
     const { t } = useTranslation();
+    const { character } = useCharacter()
 
     const dataManager = getGameDatabase();
-    const itemData = getModifiedItemData(characterItem)
+    const itemData = getModifiedItemData(characterItem, character.perks)
     if (!dataManager.isType(itemData, 'apparel')) {
         console.error(`Apparel data not found for ID: ${characterItem.id}`)
         return null;

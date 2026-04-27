@@ -61,17 +61,44 @@ const applyMods = (itemData: WeaponItem | ApparelItem, modsData: (ModItem | Lege
     return itemData;
 }
 
+const applyPerks = (
+    itemData: WeaponItem | ApparelItem,
+    perks: string[] = []
+): typeof itemData => {
+    if (!isType(itemData, 'weapon')) {
+        return itemData
+    }
+
+    const incisorRank = perks.filter(perk => perk === 'perkIncisor').length
+    if (itemData.CATEGORY === 'meleeWeapons' && incisorRank > 0) {
+        itemData = applyEffect(itemData, `effectAdd:effectPiercing:${Math.min(incisorRank, 2)}`)
+    }
+
+    return itemData
+}
+
 
 /**
  * Get item data with mods applied
  */
-export function getModifiedItemData(characterItem: CharacterItem | null | undefined): WeaponItem | ApparelItem | null {
+export function getModifiedItemData(
+    characterItem: CharacterItem | null | undefined,
+    perks: string[] = []
+): WeaponItem | ApparelItem | null {
     if(!characterItem) { return null }
     const dataManager = getGameDatabase()
     const itemData = dataManager.getItem(characterItem.id)
     if (!dataManager.isType(itemData, "weapon") && !dataManager.isType(itemData, "apparel")) {return null}
-    if (characterItem.mods.length === 0) {return itemData}
 
+    const baseItemData = {
+        ...itemData,
+        EFFECTS: [...itemData.EFFECTS],
+        ...(dataManager.isType(itemData, 'weapon') ? { QUALITIES: [...itemData.QUALITIES] } : {}),
+    }
+
+    if (characterItem.mods.length === 0) {
+        return applyPerks(baseItemData, perks)
+    }
 
     const modsData = [
         ...characterItem.mods.map(
@@ -104,9 +131,9 @@ export function getModifiedItemData(characterItem: CharacterItem | null | undefi
         Number(itemData.WEIGHT) || 0
     )
 
-    return applyMods({
-        ...itemData,
+    return applyPerks(applyMods({
+        ...baseItemData,
         COST,
         WEIGHT
-    }, modsData)
+    }, modsData), perks)
 }

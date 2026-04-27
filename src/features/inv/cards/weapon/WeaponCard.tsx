@@ -18,7 +18,7 @@ function WeaponCard({ characterItem }: Readonly<WeaponCardProps>) {
     const { showD20Popup } = usePopup();
 
     const dataManager = getGameDatabase();
-    const itemData = getModifiedItemData(characterItem)
+    const itemData = getModifiedItemData(characterItem, character.perks)
     if (!dataManager.isType(itemData, 'weapon')) {
         console.error(`Weapon data not found for ID: ${characterItem.id}`);
         return null;

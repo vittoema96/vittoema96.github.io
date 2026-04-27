@@ -6,6 +6,7 @@ import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts
 import { getDisplayName } from '@/utils/itemUtils.ts';
 import {CharacterItem, CustomItem} from '@/types'
 import { FitText } from '@/components/FitText.tsx';
+import { useCharacter } from '@/contexts/CharacterContext.tsx';
 
 
 interface InventoryRowProps {
@@ -31,9 +32,10 @@ function InventoryRow({
     const [isEditingName, setIsEditingName] = useState(false)
     const [editedName, setEditedName] = useState(characterItem.customName ?? '')
     const { updateItemCustomName } = useInventoryActions()
+    const { character } = useCharacter()
     const dataManager = getGameDatabase()
     let itemData
-    if("id" in characterItem){ itemData = getModifiedItemData(characterItem) ?? dataManager.getItem(characterItem.id)! }
+    if("id" in characterItem){ itemData = getModifiedItemData(characterItem, character.perks) ?? dataManager.getItem(characterItem.id)! }
     else { itemData = characterItem; }
 
     // Check if item can be sold/deleted (unacquirable items cannot)
