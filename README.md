@@ -145,7 +145,13 @@ Players can unlock markers on the New Vegas map by entering specific codes found
 | Sloan | `sl4n` | Freeside North Gate | `frng` |
 | Camp Searchlight | `cmsl` | Westside West Entrance | `w3w3` |
 | Nellis Air Force Base | `n4fb` | Westside South Entrance | `w3s3` |
-| Quarry Junction | `quju` | | |
+| Quarry Junction | `quju` | 188 Trading Post | `188t` |
+| Gibson Scrap Yard | `g1sy` | Aerotech Office Park | `4r0t` |
+| HELIOS One | `h3l1` | NCR Sharecropper Farms | `ncrs` |
+| Camp Golf | `c4g0` | Silver Rush | `slvr` |
+| Camp Forlorn Hope | `c4fh` | Atomic Wrangler | `at0m` |
+| Vault 22 | `vt22` | Ranger Station Charlie | `rsc3` |
+| Vault 3 | `vt03` | Ranger Station Foxtrot | `rsfx` |
 
 </details>
 
@@ -228,6 +234,18 @@ See [TODO.md](TODO.md) for what needs to be done.
 
 ### ⚖️ Disclaimer
 
-*This is an unofficial fan project. Fallout and the Pip-Boy are trademarks of Bethesda Softworks/ZeniMax Media. Vault-Tec and the developer are not responsible for any radiation sickness, sudden limb loss, or accidental death resulting from the use of this unofficial firmware. Use at your own risk, Wastelander.*
+*This is an unofficial fan project. Fallout, Pip-Boy, Vault-Tec and all related names are trademarks of Bethesda Softworks / ZeniMax Media Inc. This project is not affiliated with, endorsed by, or connected to Bethesda Softworks in any way. No copyright infringement is intended. This app is free, non-commercial, and made purely for fan enjoyment.*
+
+---
+
+### 📜 Third-party Licenses & Credits
+
+| Asset | Source | License |
+|---|---|---|
+| Map marker icons (game-icons:*) | [game-icons.net](https://game-icons.net) — Lorc, Delapouite & contributors | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| UI icons (fa6-solid:*) | [Font Awesome Free](https://fontawesome.com) — Fonticons, Inc. | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
+| UI icons (mdi:*) | [Material Design Icons](https://materialdesignicons.com) | [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) |
+| Fonts (Fira Code, Roboto Mono, Share Tech Mono) | Google Fonts / Fontsource | SIL OFL 1.1 |
+| All other open source libraries | See `package.json` | MIT / Apache 2.0 |
 
 ---

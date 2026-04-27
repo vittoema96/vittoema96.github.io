@@ -32,7 +32,9 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true, // Automatically open browser
-    host: true  // Allow external connections
+    // host: true  // Uncomment to expose on LAN (e.g. for mobile testing)
+    //              ⚠️ CVE-2026-39363/39364/39365 affect Vite when host is enabled.
+    //              Only enable on trusted networks. Fixed in Vite 8.0.5 (blocked by vite-plugin-pwa ≤1.x).
   },
 
   // Build configuration

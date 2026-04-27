@@ -701,6 +701,20 @@
     opacity: 0.9;
 }
 
+.card-stat-compact__iconify {
+    width: 1.1rem;
+    height: 1rem;
+    display: inline-block;
+    text-align: left;
+    color: var(--primary-color);
+    opacity: 0.9;
+    flex-shrink: 0;
+    vertical-align: -0.125em;
+    filter:
+        drop-shadow(0 0 5px var(--animation-glow-color))
+        drop-shadow(0 0 10px var(--animation-glow-color));
+}
+
 .card-stat-compact__value,
 .card-stat-compact__values {
     text-align: center;
@@ -716,6 +730,10 @@
 }
 
 .card-stat-compact__icon-group i {
+    width: auto;
+}
+
+.card-stat-compact__icon-group .card-stat-compact__iconify {
     width: auto;
 }
 

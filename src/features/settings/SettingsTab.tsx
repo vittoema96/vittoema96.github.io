@@ -267,7 +267,7 @@ function SettingsTab() {
                                     }}
                                     title={t('export')}
                                 >
-                                    <i className="mdi mdi-download"></i>
+                                    <i className="fas fa-download"></i>
                                 </button>
 
                                 {/* Delete icon button */}
@@ -282,7 +282,7 @@ function SettingsTab() {
                                     }}
                                     title={t('delete')}
                                 >
-                                    <i className="mdi mdi-delete"></i>
+                                    <i className="fas fa-trash"></i>
                                 </button>
                             </>
                         )}
@@ -303,7 +303,7 @@ function SettingsTab() {
                             }}
                             title={t('import')}
                         >
-                            <i className="mdi mdi-upload"></i>
+                            <i className="fas fa-upload"></i>
                         </label>
                         <input
                             id={`import-slot-${index}`}

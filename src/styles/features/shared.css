@@ -69,3 +69,18 @@
 .themed-svg[data-icon='ncrDollars'] { --image-url: url('/img/svg/ncrMoney.svg'); }
 .themed-svg[data-icon='legionDenarius'] { --image-url: url('/img/svg/denarius.svg'); }
 .themed-svg[data-icon='prewarMoney'] { --image-url: url('/img/svg/prewarmoney.svg'); }
+
+.map-marker__icon-shell {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-marker__icon {
+    display: block;
+    color: var(--primary-color);
+    filter:
+        drop-shadow(0 0 2px var(--background-color))
+        drop-shadow(0 0 2px var(--background-color));
+}
+

@@ -6,6 +6,7 @@ import {getGameDatabase, getModifiedItemData } from "@/hooks/getGameDatabase.ts"
 import { CharacterItem } from '@/types';
 import { getSpecialFromSkill } from '@/services/character/utils.ts';
 import React from 'react';
+import { Icon } from '@iconify/react';
 
 /**
  * Weapon-specific content renderer
@@ -80,7 +81,10 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
                         </div>
                     </div>
                     <div className="card-stat-compact">
-                        <i className="mdi mdi-ammunition" title={t(itemData.AMMO_TYPE === 'self' ? 'quantity' : itemData.AMMO_TYPE)}></i>
+                        <Icon
+                                icon="mdi:ammunition"
+                                className="card-stat-compact__iconify"
+                        />
                         <div className="card-stat-compact__values">
                             {itemData.AMMO_TYPE !== 'na' && (
                                 <div style={{ fontSize: '0.65em', opacity: 0.8 }}>
@@ -118,7 +122,7 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
                     </div>
                     <div className="card-stat-compact">
                         <div className="card-stat-compact__icon-group" title={t('fireRate')}>
-                            <i className="mdi mdi-bullet"></i>
+                            <Icon icon="mdi:bullet" className="card-stat-compact__iconify card-stat-compact__iconify--group" />
                             <i className="fas fa-plus"></i>
                         </div>
                         <div className="card-stat-compact__value">{fireRate}</div>
