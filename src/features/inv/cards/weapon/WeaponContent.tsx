@@ -29,6 +29,7 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
 
     const skillValue = character.skills[itemData.CATEGORY]
     const targetNumber = character.special[getSpecialFromSkill(itemData.CATEGORY)] + skillValue
+    const legendaryMods = characterItem.mods.filter(mod => mod.startsWith('legendary'))
 
     const critThreshold = character.specialties.includes(itemData.CATEGORY) ? Math.max(skillValue, 1) : 1
 
@@ -142,7 +143,7 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
             </div>
 
             {/* Tags container for effects and qualities - Compact */}
-            {(itemData.EFFECTS.length > 0 || itemData.QUALITIES.length > 0) && <>
+            {(itemData.EFFECTS.length > 0 || itemData.QUALITIES.length > 0 || legendaryMods.length > 0) && <>
                 <hr/>
                 <div className="tags-container">
                     {/* Intrinsic EFFECTS (from base item) */}
@@ -175,9 +176,7 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
                         );
                     })}
 
-                    {characterItem.mods.filter(
-                        m => m.startsWith("legendary")
-                    ).map(effect => {
+                    {legendaryMods.map(effect => {
                         return (
                             <Tag key={effect}
                                  tooltipId={`${effect}Description`}

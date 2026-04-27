@@ -173,6 +173,10 @@ input[type='radio']:focus {
     outline-offset: 2px;
 }
 
+select {
+    padding-right: var(--space-xl);
+}
+
 
 
 

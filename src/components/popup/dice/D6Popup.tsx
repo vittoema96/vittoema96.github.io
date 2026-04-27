@@ -37,6 +37,7 @@ function D6Popup({
 
     // Get weapon data with mods applied
     const weaponData = getModifiedItemData(usingItem) as WeaponItem;
+    const legendaryMods = usingItem.mods.filter(mod => mod.startsWith('legendary'));
 
     // Checks on EFFECTS and QUALITIES
     const isGatling = weaponData.QUALITIES.includes('qualityGatling');
@@ -562,7 +563,7 @@ function D6Popup({
                     </div>
 
                     {/* Effects and Qualities Tags */}
-                    {(weaponData.EFFECTS.length > 0 || weaponData.QUALITIES.length > 0) && (
+                    {(weaponData.EFFECTS.length > 0 || weaponData.QUALITIES.length > 0 || legendaryMods.length > 0) && (
                         <div
                             className="row l-centered"
                             style={{ flexWrap: 'wrap', gap: '0.25rem' }}
@@ -605,9 +606,7 @@ function D6Popup({
                                 );
                             })}
 
-                            {usingItem.mods.filter(
-                                m => m.startsWith("legendary")
-                            ).map(effect => {
+                            {legendaryMods.map(effect => {
                                 return (
                                     <Tag key={effect}
                                          tooltipId={`${effect}Description`}

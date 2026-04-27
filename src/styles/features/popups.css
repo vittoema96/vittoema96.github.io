@@ -261,10 +261,6 @@ dialog::backdrop {
 .mod-slot-select {
     width: 100%;
     max-width: 100%;
-    padding: 0.5rem;
-    font-size: 0.9rem;
-    min-height: 38px;
-    cursor: pointer;
     box-sizing: border-box;
 }
 
