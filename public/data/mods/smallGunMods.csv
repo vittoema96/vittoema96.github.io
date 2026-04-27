@@ -11,7 +11,7 @@ modPortedBarrel,mod,modSlotBarrel,Ported,"[""rangeAdd:1"",""fireRateAdd:1""]",0.
 modLongBarrel,mod,modSlotBarrel,Long,"[""rangeAdd:1""]",0.5,20,repair,"[""gunNut:1""]",2,"[""smallGuns""]"
 modSawedOffBarrel,mod,modSlotBarrel,Sawed-Off,"[""qualityRemove:qualityTwoHanded"",""qualityAdd:qualityCloseQuarters""]",-1,3,repair,[],1,"[""smallGuns""]"
 modShortBarrel,mod,modSlotBarrel,Short,"[""qualityAdd:qualityInaccurate""]",-0.5,0,repair,[],1,"[""smallGuns""]"
-modShieldedBarrel,mod,modSlotBarrel,Shielded,"[""damageAdd:1""]",0,37,repair,"[""gunNut:3"",""science:1""]",3,"[""smallGuns""]"
+modShieldedBarrel,mod,modSlotBarrel,Shielded,"[""damageAdd:1""]",0,37,repair,"[""gunNut:3""]",3,"[""smallGuns""]"
 modStableBarrel,mod,modSlotBarrel,Stable,"[""qualityAdd:qualityReliable""]",0,10,repair,"[""gunNut:3""]",2,"[""smallGuns""]"
 modVentedBarrel,mod,modSlotBarrel,Vented,"[""rangeAdd:1"",""fireRateAdd:1"",""qualityAdd:qualityReliable""]",0.5,36,repair,"[""gunNut:4""]",3,"[""smallGuns""]"
 modLargeMagazine,mod,modSlotMagazine,High Capacity,"[""fireRateAdd:1"",""qualityAdd:qualityUnreliable""]",0.5,8,repair,"[""gunNut:2""]",2,"[""smallGuns""]"

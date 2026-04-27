@@ -175,11 +175,30 @@ export function applyEffect(modifiedData: WeaponItem | ApparelItem, effect: stri
         //      there could be conflicts with mods adding and others removing effects
         switch (effectType) {
             // Quality/Effect additions
-            case 'effectAdd':
-                if (!modifiedData.EFFECTS.includes(value)) {
-                    modifiedData.EFFECTS = [...modifiedData.EFFECTS, value]
+            case 'effectAdd': {
+                // Check if the effect carries a numeric rating (e.g. effectPiercing:2)
+                const colonIdx = value.lastIndexOf(':')
+                const numericPart = colonIdx !== -1 ? Number(value.slice(colonIdx + 1)) : NaN
+                if (!Number.isNaN(numericPart) && colonIdx !== -1) {
+                    // Numeric effect: stack with any existing effect that shares the same prefix
+                    const effectPrefix = value.slice(0, colonIdx + 1) // e.g. "effectPiercing:"
+                    const existingIdx = modifiedData.EFFECTS.findIndex(e => e.startsWith(effectPrefix))
+                    if (existingIdx !== -1) {
+                        const existingNum = Number(modifiedData.EFFECTS[existingIdx]!.slice(effectPrefix.length)) || 0
+                        const newEffects = [...modifiedData.EFFECTS]
+                        newEffects[existingIdx] = `${value.slice(0, colonIdx)}:${existingNum + numericPart}`
+                        modifiedData.EFFECTS = newEffects
+                    } else {
+                        modifiedData.EFFECTS = [...modifiedData.EFFECTS, value]
+                    }
+                } else {
+                    // Non-numeric effect: add if not already present
+                    if (!modifiedData.EFFECTS.includes(value)) {
+                        modifiedData.EFFECTS = [...modifiedData.EFFECTS, value]
+                    }
                 }
                 break
+            }
             case 'effectRemove':
                 if (modifiedData.EFFECTS) {
                     modifiedData.EFFECTS = modifiedData.EFFECTS.filter(e => e !== value && !e.startsWith(value + ':'))
