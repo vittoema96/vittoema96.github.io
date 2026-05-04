@@ -35,6 +35,7 @@ export const MYSTERIOUS_STRANGER: RawCharacter = RawCharacterSchema.parse({
     },
     specialties: ['smallGuns'],
     items: [ MYSTERIOUS_44_MAGNUM ],
+    maxHp: 9999,
 })
 
 type DeepPartial<T> = {

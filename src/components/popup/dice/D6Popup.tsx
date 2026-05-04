@@ -22,6 +22,7 @@ export interface D6PopupProps extends GenericPopupProps {
     usingItem: CharacterItem;
     hasAimed?: boolean;
     roller?: RollerType;
+    hitTorso?: boolean;
 }
 
 function D6Popup({
@@ -29,6 +30,7 @@ function D6Popup({
     usingItem,
     hasAimed = false,
     roller = undefined,
+    hitTorso = false,
 }: Readonly<D6PopupProps>) {
     const { t } = useTranslation();
     const meltdownDialogRef = useRef<HTMLDialogElement>(null);
@@ -173,7 +175,7 @@ function D6Popup({
 
     const [ammoCost, setAmmoCost] = useState(ammoStep);
     const [targetCreatureType, setTargetCreatureType] = useState<CreatureType>('humanoid');
-    const [hitLocationRoll, setHitLocationRoll] = useState(rollD20()); // d20 roll for hit location (1-20)
+    const [hitLocationRoll, setHitLocationRoll] = useState(hitTorso ? 3 : rollD20()); // d20 roll for hit location (1-20); 3 = torso for both humanoid and mrHandy
     const hitLocation = getHitLocationFromRoll(hitLocationRoll, targetCreatureType);
 
     // States relative to PERKS

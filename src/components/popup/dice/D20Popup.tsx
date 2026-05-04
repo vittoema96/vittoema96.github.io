@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { MYSTERIOUS_STRANGER, useCharacter } from '@/contexts/CharacterContext.tsx';
 import { useTranslation } from 'react-i18next';
-import { CharacterItem, CompanionData, RawCharacter, TraitId } from '@/types';
+import { Character, CharacterItem, CompanionData, TraitId } from '@/types';
 import {
     COMPANION_SPECIAL,
     CompanionSkillType,
@@ -9,6 +9,9 @@ import {
     getSpecialFromSkill,
     getSpecialFromSkillCompanion,
     isCharacterSkill,
+    isCharacterSpecial,
+    isCompanionSkill,
+    isCompanionSpecial,
     SkillType,
     SPECIAL,
     SpecialType,
@@ -19,26 +22,28 @@ import { RollerType, usePopup } from '@/contexts/popup/PopupContext.tsx';
 import useDice from '@/utils/useDice.ts';
 import { D20Dice } from '@/components/popup/dice/components/dice.tsx';
 
-interface SimpleRoller {
-    special: Record<CompanionSpecialType, number>;
-    skills: Record<CompanionSkillType, number>;
-    items: CharacterItem[];
+// Discriminated union — built from actual domain types, no invented duplicates.
+interface PlayerRollerStats extends Pick<Character,
+    'special' | 'skills' | 'specialties' | 'traits' | 'currentLuck' | 'currentHp' | 'companion' | 'items'
+> {
+    kind: 'player';
 }
-interface CharacterRoller {
+interface CompanionRollerStats extends Pick<CompanionData, 'special' | 'skills' | 'currentHp' | 'items'> {
+    kind: 'companion';
+}
+interface StrangerRollerStats {
+    kind: 'stranger';
     special: Record<SpecialType, number>;
     skills: Record<SkillType, number>;
     specialties: SkillType[];
+    traits: TraitId[];
     items: CharacterItem[];
-    companion?: CompanionData | undefined;
 }
-type Roller = (SimpleRoller | CharacterRoller) & {
-    traits?: TraitId[] | undefined;
-    currentLuck?: number | undefined;
-};
+type RollerStats = PlayerRollerStats | CompanionRollerStats | StrangerRollerStats;
 
 export interface D20PopupProps {
     skillId: SkillType | CompanionSkillType;
-    roller?: RollerType; // undefined means the player
+    roller?: RollerType;
     usingItem?: CharacterItem | undefined;
     onClose: () => void;
 }
@@ -52,27 +57,37 @@ function D20Popup({
     const { t } = useTranslation();
     const dataManager = getGameDatabase();
     const { showD6Popup } = usePopup();
+    const { character, updateCharacter } = useCharacter();
 
-    let {
-        character,
-        updateCharacter,
-    }: {
-        character: Roller;
-        updateCharacter: (c: Partial<RawCharacter>) => void;
-    } = useCharacter();
-    const activePerks = 'perks' in character && Array.isArray(character.perks) ? character.perks : []
+    const activePerks = character.perks;
 
-    const currentLuck = character.currentLuck ?? 0;
-    // Handle updates and character when roller is not undefined
+    // perkAdrenalineRush: treat STR as 10 when HP < max — immutable copy
+    const hasAdrenalineRush = activePerks.includes('perkAdrenalineRush');
+    const effectiveSpecial: Record<SpecialType, number> =
+        hasAdrenalineRush && character.currentHp < character.maxHp
+            ? { ...character.special, strength: 10 }
+            : character.special;
+
+    const currentLuck = character.currentLuck;
     const isCompanion = roller === 'companion';
     const isMysteriousStranger = roller === 'mysteriousStranger';
-    if (roller) {
+
+    // Build discriminated roller stats from real typed objects — no 'as'
+    const rollerStats: RollerStats = (() => {
         if (isCompanion && character.companion) {
-            character = character.companion;
-        } else if (isMysteriousStranger) {
-            character = MYSTERIOUS_STRANGER;
+            const stats: CompanionRollerStats = { kind: 'companion', ...character.companion };
+            return stats;
         }
-    }
+        if (isMysteriousStranger) {
+            const stats: StrangerRollerStats = { kind: 'stranger', ...MYSTERIOUS_STRANGER };
+            return stats;
+        }
+        const stats: PlayerRollerStats = { kind: 'player', ...character, special: effectiveSpecial };
+        return stats;
+    })();
+
+    // Traits are only available on player / stranger rollers — use the roller's own traits, not always the player's
+    const rollerTraits: TraitId[] = rollerStats.kind !== 'companion' ? rollerStats.traits : [];
 
     // Get weapon data with mods applied
     const itemData = getModifiedItemData(usingItem, activePerks);
@@ -82,44 +97,78 @@ function D20Popup({
     const [isAiming, setIsAiming] = useState(false);
     const [hasRolled, setHasRolled] = useState(false);
 
-    const hasTriggerDiscipline = useMemo(() => {
-        return (
-            character.traits?.includes('traitTriggerDiscipline') &&
-            ['smallGuns', 'energyWeapons'].includes(skillId)
-        );
-    }, [character.traits, skillId]);
+    // hasTriggerDiscipline is a cheap boolean derivation — no useMemo needed
+    const hasTriggerDiscipline =
+        rollerTraits.includes('traitTriggerDiscipline') &&
+        ['smallGuns', 'energyWeapons'].includes(skillId);
 
-    const diceNumber = isMysteriousStranger ? 3 : isCompanion ? 2 : 5;
+    // perkCenterOfMass: applies only to ranged attacks by the player (not melee/unarmed, not companion/stranger)
+    // isCharacterSkill narrows skillId to SkillType, removing the need for any cast
+    const isCenterOfMassRanged =
+        !roller &&
+        activePerks.includes('perkCenterOfMass') &&
+        dataManager.isType(itemData, 'weapon') &&
+        isCharacterSkill(skillId) &&
+        !['meleeWeapons', 'unarmed'].includes(skillId);
+
+    // "Hit Torso?" checkbox for perkCenterOfMass: starts checked, locked after rolling.
+    const [hitTorso, setHitTorso] = useState(true);
+
+    // Free reroll: the perk grants +1 reroll discount whenever Torso is targeted.
+    const hasCenterOfMassDiscount = isCenterOfMassRanged && hitTorso;
+
+    let diceNumber: number;
+    if (isMysteriousStranger) {
+        diceNumber = 3;
+    } else if (isCompanion) {
+        diceNumber = 2;
+    } else {
+        diceNumber = 5;
+    }
+
     const [diceValues, setDiceValues, diceActive, setDiceActive, diceRerolled, setDiceRerolled] =
         useDice(
             diceNumber,
-            // if non-character, roll all and don't allow reroll
             roller ? diceNumber : 2,
             roller ? diceNumber : 0,
         );
 
     const [initialApCost, setInitialApCost] = useState(0);
 
-    const [selectedSpecial, setSelectedSpecial] = useState(
-        isCompanion
-            ? getSpecialFromSkillCompanion(skillId as CompanionSkillType)
-            : getSpecialFromSkill(skillId as SkillType) || 'strength',
-    );
-    const activeSpecialId = isUsingLuck ? 'luck' : selectedSpecial;
+    // Derive default specials without 'as' — use existing type guards
+    const defaultPlayerSpecial: SpecialType = isCharacterSkill(skillId)
+        ? getSpecialFromSkill(skillId)
+        : 'strength';
+    const defaultCompanionSpecial: CompanionSpecialType = isCompanionSkill(skillId)
+        ? getSpecialFromSkillCompanion(skillId)
+        : 'body';
 
-    let specialValue;
-    let skillValue;
+    const [selectedSpecial, setSelectedSpecial] = useState<SpecialType | CompanionSpecialType>(
+        isCompanion ? defaultCompanionSpecial : defaultPlayerSpecial,
+    );
+    // 'luck' is itself a SpecialType, so the union stays SpecialType | CompanionSpecialType
+    const activeSpecialId: SpecialType | CompanionSpecialType = isUsingLuck ? 'luck' : selectedSpecial;
+
+    // Narrow to the correct record type via type guards — no 'as' required
+    let specialValue: number;
+    let skillValue: number;
     let hasSpecialty = false;
-    if (isCharacterSkill(skillId)) {
-        character = character as CharacterRoller;
-        specialValue = character.special[activeSpecialId as SpecialType];
-        skillValue = character.skills[skillId];
-        hasSpecialty = character.specialties.includes(skillId);
+
+    if (rollerStats.kind === 'companion') {
+        const cSpecial = isCompanionSpecial(activeSpecialId) ? activeSpecialId : 'body';
+        const cSkill = isCompanionSkill(skillId) ? skillId : 'guns';
+        specialValue = rollerStats.special[cSpecial];
+        skillValue = rollerStats.skills[cSkill];
     } else {
-        character = character as SimpleRoller;
-        specialValue = character.special[activeSpecialId as CompanionSpecialType];
-        skillValue = character.skills[skillId];
+        const pSpecial = isCharacterSpecial(activeSpecialId) ? activeSpecialId : 'strength';
+        const pSkill = isCharacterSkill(skillId) ? skillId : 'smallGuns';
+        specialValue = rollerStats.special[pSpecial];
+        skillValue = rollerStats.skills[pSkill];
+        if (isCharacterSkill(skillId)) {
+            hasSpecialty = rollerStats.specialties.includes(skillId);
+        }
     }
+
     const targetNumber = skillValue + specialValue;
     const criticalValue = hasSpecialty ? skillValue : 1;
 
@@ -130,13 +179,13 @@ function D20Popup({
             baseComplication -= 1;
         }
         if (
-            character.traits?.includes('traitHeavyHanded') &&
+            rollerTraits.includes('traitHeavyHanded') &&
             ['meleeWeapons', 'unarmed'].includes(skillId)
         ) {
             extraComplications.push(19);
         }
         if (
-            character.traits?.includes('traitGrunt') &&
+            rollerTraits.includes('traitGrunt') &&
             ['energyWeapons', 'bigGuns'].includes(skillId)
         ) {
             baseComplication -= 2;
@@ -144,30 +193,21 @@ function D20Popup({
     }
     const complicationValue = Math.min(baseComplication, ...extraComplications);
 
-    // AP Cost calculation
-    // Relevant only for roller = undefined
+    // AP Cost calculation — relevant only for roller = undefined
     const getApCost = () => {
-        // After first roll, return the initial AP cost
         if (hasRolled) {
             return initialApCost;
         }
-
-        // Before first roll, calculate based on active dice
         const activeDiceCount = diceActive.filter(Boolean).length;
         switch (activeDiceCount) {
-            case 5:
-                return 6;
-            case 4:
-                return 3;
-            case 3:
-                return 1;
-            default:
-                return 0;
+            case 5: return 6;
+            case 4: return 3;
+            case 3: return 1;
+            default: return 0;
         }
     };
 
     const luckCost = useMemo(() => {
-        // Companion and Mysterious Stranger do not spend Luck or reroll dice
         if (roller) {
             if (isMysteriousStranger && !hasRolled) {
                 return 1;
@@ -178,73 +218,49 @@ function D20Popup({
             const rerollingCount = diceActive.filter(Boolean).length;
             const rerolledCount = diceRerolled.filter(Boolean).length;
 
-            let luckCost = rerollingCount;
-
+            let cost = rerollingCount;
             let discount = 0;
-            if (isAiming) {
-                discount += 1;
-            }
-            if (hasTriggerDiscipline) {
-                discount += 1;
-            }
-            discount -= Math.min(discount, rerolledCount); // discount >= 0
+            if (isAiming) { discount += 1; }
+            if (hasTriggerDiscipline) { discount += 1; }
+            if (hasCenterOfMassDiscount) { discount += 1; }
+            discount -= Math.min(discount, rerolledCount);
+            cost -= discount;
 
-            luckCost -= discount;
-
-            return Math.max(0, luckCost);
-        } else {
-            return isUsingLuck ? 1 : 0;
+            return Math.max(0, cost);
         }
-    }, [diceActive, diceRerolled, isAiming, isUsingLuck, hasRolled, roller]);
+        return isUsingLuck ? 1 : 0;
+    }, [diceActive, diceRerolled, isAiming, isUsingLuck, hasRolled, roller, isMysteriousStranger, hasTriggerDiscipline, hasCenterOfMassDiscount]);
 
     // Success calculation
     const getSuccesses = () => {
-        if (!hasRolled) {
-            return '?';
-        }
-
+        if (!hasRolled) { return '?'; }
         let successes = 0;
-
         diceValues.forEach(value => {
-            // Count successes only for rolled dice (not '?')
             const nVal = Number(value);
-            if (nVal <= targetNumber) {
-                successes++;
-            }
-            if (nVal <= criticalValue) {
-                successes++;
-            }
+            if (nVal <= targetNumber) { successes++; }
+            if (nVal <= criticalValue) { successes++; }
         });
-
         return successes;
     };
 
     const handleDiceClick = (index: number) => {
-        // Companion and Mysterious Stranger rolls use fixed dice; no editing
-        // After roll: only allow clicking on non '?' non rerolled dice
         if (roller || (hasRolled && (diceValues[index] === '?' || diceRerolled[index]))) {
-            return; // Can't select unrolled dice
+            return;
         }
-
         setDiceActive(prev => {
             const newActive = [...prev];
-
             if (hasRolled) {
-                // After roll: simple toggle for rolled dice
                 newActive[index] = !prev[index];
             } else {
-                // Before roll: cascade selection logic
                 const willBeActive = !prev[index];
-
                 for (let i = 0; i < newActive.length; i++) {
-                    // Special case: die 0 and 1 can't be deselected
                     const alwaysActive = i <= 1;
                     if (i < index) {
-                        newActive[i] = true; // Select all previous
+                        newActive[i] = true;
                     } else if (i === index) {
-                        newActive[i] = alwaysActive || willBeActive; // Toggle clicked
+                        newActive[i] = alwaysActive || willBeActive;
                     } else {
-                        newActive[i] = alwaysActive; // Deselect all after
+                        newActive[i] = alwaysActive;
                     }
                 }
             }
@@ -252,18 +268,13 @@ function D20Popup({
         });
     };
 
-    // Handle roll/reroll
     const handleRoll = () => {
-        // Companion and Mysterious Stranger roll only once
-        if (roller && hasRolled) {
-            return;
-        }
+        if (roller && hasRolled) { return; }
         const activeDiceCount = diceActive.filter(Boolean).length;
         if (activeDiceCount === 0) {
             alert(t('selectDiceAlert') || 'Select at least one die!');
             return;
         }
-
         if (currentLuck < luckCost) {
             alert(t('notEnoughLuckAlert') || 'Not enough luck!');
             return;
@@ -271,35 +282,26 @@ function D20Popup({
 
         setInitialApCost(getApCost());
 
-        // Roll dice
         const newValues = [...diceValues];
         const newRerolled = [...diceRerolled];
-
         diceActive.forEach((isActive, index) => {
             if (isActive) {
                 newValues[index] = Math.floor(Math.random() * 20) + 1;
-                if (hasRolled) {
-                    newRerolled[index] = true;
-                }
+                if (hasRolled) { newRerolled[index] = true; }
             }
         });
 
         setDiceValues(newValues);
         setDiceRerolled(newRerolled);
         setHasRolled(true);
-
-        // Deselect all dice after roll/reroll
         setDiceActive(Array.from(diceActive).fill(false));
 
-        // Update luck AFTER setting hasRolled to true
         if (luckCost > 0) {
             updateCharacter({ currentLuck: currentLuck - luckCost });
         }
     };
 
-    if (!skillId) {
-        return null;
-    }
+    if (!skillId) { return null; }
 
     function toggleAiming(checked: boolean) {
         if (
@@ -345,7 +347,7 @@ function D20Popup({
                                     equipped: false,
                                     mods: [],
                                 };
-                                showD6Popup({usingItem: damageItem, hasAimed: isAiming, roller: roller});
+                                showD6Popup({usingItem: damageItem, hasAimed: isAiming, roller: roller, hitTorso: isCenterOfMassRanged && hitTorso});
                             }}
                             /* TODO Companions SHOULD use ammo too */
                             disabled={!hasRolled}
@@ -356,17 +358,22 @@ function D20Popup({
                 </>
             }
         >
-            {/* Special selection + checkbox */}
+            {/* Special selection */}
             <div className="row l-lastSmall">
                 <select
                     value={isUsingLuck ? 'luck' : selectedSpecial}
-                    onChange={e => setSelectedSpecial(e.target.value as SpecialType)}
+                    onChange={e => {
+                        const val = e.target.value;
+                        if (isCharacterSpecial(val) || isCompanionSpecial(val)) {
+                            setSelectedSpecial(val);
+                        }
+                    }}
                     disabled={hasRolled || isUsingLuck || isMysteriousStranger}
                     aria-label="Special to use?"
                 >
-                    {(isCharacterSkill(skillId) ? SPECIAL : COMPANION_SPECIAL).map(specialValue => (
-                        <option key={specialValue} value={specialValue}>
-                            {t(specialValue)}
+                    {(isCharacterSkill(skillId) ? SPECIAL : COMPANION_SPECIAL).map(sv => (
+                        <option key={sv} value={sv}>
+                            {t(sv)}
                         </option>
                     ))}
                 </select>
@@ -397,13 +404,7 @@ function D20Popup({
 
             <hr />
 
-            <div
-                className={'row '}
-                style={{
-                    justifyContent: 'center',
-                    flexWrap: 'wrap',
-                }}
-            >
+            <div className={'row'} style={{ justifyContent: 'center', flexWrap: 'wrap' }}>
                 {diceValues.map((value, index) => (
                     <D20Dice
                         key={index}
@@ -441,6 +442,22 @@ function D20Popup({
                         </div>
                     </div>
                 )}
+
+            {/* Center of Mass: Hit Torso? checkbox – visible only for ranged weapons */}
+            {isCenterOfMassRanged && (
+                <div className="row l-distributed l-lastSmall">
+                    <span>{t('hitTorso')}</span>
+                    <input
+                        type="checkbox"
+                        className="themed-svg"
+                        data-icon="attack"
+                        checked={hitTorso}
+                        onChange={e => setHitTorso(e.target.checked)}
+                        disabled={hasRolled}
+                        aria-label={t('hitTorso')}
+                    />
+                </div>
+            )}
             {!isCompanion && (
                 <div className="row l-distributed l-lastSmall">
                     <span>{t('luckCost')}</span>

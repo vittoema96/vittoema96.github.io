@@ -1193,6 +1193,7 @@
   "ghoul": "Ghoul",
   "head": "Head",
   "hitLocation": "Hit Location",
+  "hitTorso": "Hit Torso?",
   "humanoid": "Humanoid",
   "rerollHitLocation": "Reroll Hit Location",
   "invalidCapsAlert": "CAPS value is invalid!",

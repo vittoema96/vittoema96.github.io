@@ -2,8 +2,11 @@ import React, { useState, useEffect, useLayoutEffect }  from 'react'
 import ReactDOM from 'react-dom/client'
 
 import '@fortawesome/fontawesome-free/css/all.min.css'
-
 import '@fontsource/share-tech-mono'
+// Fira Code: bundled specifically for the bootscreen ASCII art.
+// Confirmed to render Block Elements (█) and Box Drawing (╔═║╗) at uniform width on Android.
+import '@fontsource/fira-code'
+
 import './styles/index.css'
 
 import './i18n'
@@ -21,7 +24,7 @@ import {GameDatabase} from "@/services/GameDatabase";
 import { applyDisplayEffect } from '@/features/settings/SettingsTab.tsx';
 
 // DEV ONLY (boot screen is usually disabled while developing)
-const FORCE_BOOT_SCREEN = true;
+const FORCE_BOOT_SCREEN = false;
 
 
 // Create React root and render Main

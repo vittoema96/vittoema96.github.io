@@ -108,18 +108,8 @@
     font-size: clamp(8px, 1.8vmin, 14px);
 }
 #loader pre {
-    font-family:
-        'Noto Sans Mono',
-        'Roboto Mono',
-        'Droid Sans Mono',
-        'DejaVu Sans Mono',
-        'Liberation Mono',
-        Consolas,
-        Menlo,
-        Monaco,
-        ui-monospace,
-        monospace; /* To make loader render properly */
-    margin: 0; /* No margin, pre presents stuff as is. Use margin on pre children (like spans in loader) */
+    font-family: 'Fira Code', monospace; /* To make loader render properly on (my) Android */
+    margin: 0;
     white-space: pre;
 }
 /* Loader entries */

@@ -191,6 +191,18 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
             });
         });
 
+        if (raw.perks.includes('perkBarbarian')) {
+            const isWearingPowerArmor = raw.items.some(item => {
+                if (!item.equipped) { return false }
+                const data = dataManager.getItem(item.id);
+                return dataManager.isType(data, 'apparel') && data.CATEGORY === 'powerArmor'; // TODO fix it when powerArmor is implemented
+            });
+            if (!isWearingPowerArmor) {
+                const barbarianBonus = raw.special.strength >= 11 ? 3 : raw.special.strength >= 9 ? 2 : raw.special.strength >= 7 ? 1 : 0;
+                Object.values(locationsDR).forEach(dr => { dr.physical += barbarianBonus; });
+            }
+        }
+
         // Mr Handy and Ghoul have infinite radiation resistance
         if (origin.hasRadiationImmunity) {
             origin.bodyParts.forEach(location => {
