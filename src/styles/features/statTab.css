@@ -110,7 +110,7 @@
     gap: 0.5rem;
     padding: 0.75rem 1rem;
     margin: 0.75rem 0;
-    background: linear-gradient(135deg, rgba(from var(--shadow-color) r g b / 0.4) 0%, rgba(from var(--shadow-color) r g b / 0.2) 100%);
+    background: linear-gradient(135deg, color-mix(in srgb, black 40%, transparent) 0%, color-mix(in srgb, black 20%, transparent) 100%);
     border-left: 3px solid var(--primary-color);
     border-right: 1px solid var(--primary-color);
     border-top: 1px solid var(--primary-color);
@@ -152,7 +152,7 @@
     align-items: flex-start;
     gap: 0.4rem;
     padding: 0.3rem 0.6rem;
-    background-color: rgba(from var(--shadow-color) r g b / 0.3);
+    background-color: color-mix(in srgb, black 30%, transparent);
     border: 1px solid var(--primary-color);
     border-radius: 2px;
     transition: all 0.15s ease;
@@ -164,7 +164,7 @@
 }
 
 .equipped-apparel__slot:hover {
-    background-color: rgba(from var(--shadow-color) r g b / 0.5);
+    background-color: color-mix(in srgb, black 50%, transparent);
     border-color: var(--secondary-color);
 }
 
@@ -222,7 +222,7 @@
     gap: 0.5rem;
     padding: 0.75rem 1rem;
     margin: 0.75rem 0;
-    background: linear-gradient(135deg, rgba(from var(--shadow-color) r g b / 0.4) 0%, rgba(from var(--shadow-color) r g b / 0.2) 100%);
+    background: linear-gradient(135deg, color-mix(in srgb, black 40%, transparent) 0%, color-mix(in srgb, black 20%, transparent) 100%);
     border-left: 3px solid var(--secondary-color);
     border-right: 1px solid var(--secondary-color);
     border-top: 1px solid var(--secondary-color);

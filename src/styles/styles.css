@@ -20,7 +20,6 @@
     display: flex;
     flex-flow: column;
     gap: var(--space-m);
-    height: 100%;
 }
 .no-gap {
     gap: 0;
@@ -106,12 +105,22 @@
     animation-delay: calc(
         var(--turn-on-delay) + var(--turn-on-duration) + 4 * var(--typewrite-duration)
     );
-    font-size: calc(min(2.5vw, 2vh));
+    font-size: clamp(8px, 1.8vmin, 14px);
 }
 #loader pre {
-    font-family: 'Fira Code', monospace; /* To make loader render properly on (my) Android */
+    font-family:
+        'Noto Sans Mono',
+        'Roboto Mono',
+        'Droid Sans Mono',
+        'DejaVu Sans Mono',
+        'Liberation Mono',
+        Consolas,
+        Menlo,
+        Monaco,
+        ui-monospace,
+        monospace; /* To make loader render properly */
     margin: 0; /* No margin, pre presents stuff as is. Use margin on pre children (like spans in loader) */
-    white-space: pre-wrap; /* TODO do we need this (or is there a better alternative)? Test it and check other values) */
+    white-space: pre;
 }
 /* Loader entries */
 #loader span {
@@ -319,7 +328,7 @@ body::before {
 
     /* Actual scan line effect */
     background:
-        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(from var(--shadow-color) r g b / 0.25) 50%),
+        linear-gradient(rgba(18, 16, 16, 0) 50%, color-mix(in srgb, black 25%, transparent) 50%),
         linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
     background-size:
         100% 3px,
@@ -329,7 +338,7 @@ body::before {
 body[data-crt="noFlicker"]::before {
     animation: none;
     background:
-        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(from var(--shadow-color) r g b / 0.05) 50%),
+        linear-gradient(rgba(18, 16, 16, 0) 50%, color-mix(in srgb, black 5%, transparent) 50%),
         linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
     background-size:
         100% 3px,

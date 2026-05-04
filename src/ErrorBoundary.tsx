@@ -36,7 +36,7 @@ class ErrorBoundary extends React.Component {
                     flexDirection: 'column',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    height: '100vh',
+                    height: '100dvh',
                     padding: '2rem',
                     backgroundColor: 'var(--primary-color)',
                     color: 'var(--secondary-color)',

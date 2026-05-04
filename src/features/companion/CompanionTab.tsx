@@ -262,7 +262,7 @@ function CompanionTab() {
                         ))
                     }
                 ].map( ({ columnLabel, children}) => (
-                    <div className={"stack l-distributed"} key={columnLabel}>
+                    <div className={"stack l-distributed"} key={columnLabel} style={{ height: '100%' }}>
                         <FitText wrap center={false}
                                  minSize={10} maxSize={15} style={{maxWidth: '80%'}}>
                             {t(columnLabel)}

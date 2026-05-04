@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(from var(--shadow-color) r g b / 0.7);
+    background-color: color-mix(in srgb, black 70%, transparent);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -148,7 +148,7 @@
 .trait-perk-popup__item:hover {
     background-color: var(--background-color);
     border-color: var(--primary-color);
-    box-shadow: 0 2px 8px rgba(from var(--shadow-color) r g b / 0.2);
+    box-shadow: 0 2px 8px color-mix(in srgb, black 20%, transparent);
     transform: translateY(-1px);
 }
 
@@ -223,12 +223,12 @@
     border-radius: 3px;
     font-size: 0.7rem;
     font-weight: bold;
-    border: 1px solid rgba(from var(--primary-color) r g b / 0.5);
+    border: 1px solid color-mix(in srgb, var(--primary-color) 50%, transparent);
     line-height: 1;
     white-space: nowrap;
-    background-color: rgba(from var(--primary-color) r g b / 0.15);
+    background-color: color-mix(in srgb, var(--primary-color) 15%, transparent);
     color: var(--primary-color);
-    text-shadow: 0 0 6px rgba(from var(--primary-color) r g b / 0.6);
+    text-shadow: 0 0 6px color-mix(in srgb, var(--primary-color) 60%, transparent);
 }
 
 /* Item Preview (for future use) */

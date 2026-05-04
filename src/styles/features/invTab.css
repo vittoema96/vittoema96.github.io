@@ -277,7 +277,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    box-shadow: 0 -3px 10px rgba(from var(--shadow-color) r g b / 0.3);
+    box-shadow: 0 -3px 10px color-mix(in srgb, black 30%, transparent);
 }
 
 .inventory-list__selected .card {

@@ -418,30 +418,28 @@ function D20Popup({
                 ))}
             </div>
 
+            <div className="row l-distributed l-lastSmall">
+                <span>{t('apCost')}</span>
+                <span>{getApCost()}</span>
+            </div>
+
             {!isMysteriousStranger &&
                 !isCompanion &&
                 dataManager.isType(itemData, 'weapon') && ( // Show Aim only when rolling for a weapon
-                    <>
-                        <div className="row l-distributed l-lastSmall">
-                            <span>{t('apCost')}</span>
-                            <span>{getApCost()}</span>
+                    <div className="row l-distributed l-lastSmall">
+                        <span>{t('aim')}?</span>
+                        <div>
+                            <input
+                                type="checkbox"
+                                className="themed-svg"
+                                data-icon="attack"
+                                checked={isAiming}
+                                disabled={hasRolled}
+                                onChange={e => toggleAiming(e.target.checked)}
+                                aria-label="Aim"
+                            />
                         </div>
-
-                        <div className="row l-distributed l-lastSmall">
-                            <span>{t('aim')}?</span>
-                            <div>
-                                <input
-                                    type="checkbox"
-                                    className="themed-svg"
-                                    data-icon="attack"
-                                    checked={isAiming}
-                                    disabled={hasRolled}
-                                    onChange={e => toggleAiming(e.target.checked)}
-                                    aria-label="Aim"
-                                />
-                            </div>
-                        </div>
-                    </>
+                    </div>
                 )}
             {!isCompanion && (
                 <div className="row l-distributed l-lastSmall">

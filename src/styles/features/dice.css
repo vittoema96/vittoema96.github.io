@@ -43,7 +43,7 @@
 /* Deselected: less saturated (30% opacity) */
 
 .d20-dice.roll-crit.active::after {
-    background-color: rgba(from var(--success-color) r g b / 0.6);
+    background-color: color-mix(in srgb, var(--success-color) 60%, transparent);
 }
 .d20-dice.roll-crit::after {
     background-color: var(--success-color);
@@ -51,7 +51,7 @@
 
 
 .d20-dice.roll-complication.active::after {
-    background-color: rgba(from var(--failure-color) r g b / 0.6);
+    background-color: color-mix(in srgb, var(--failure-color) 60%, transparent);
 }
 .d20-dice.roll-complication::after {
     background-color: var(--failure-color);

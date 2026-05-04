@@ -21,7 +21,7 @@ import {GameDatabase} from "@/services/GameDatabase";
 import { applyDisplayEffect } from '@/features/settings/SettingsTab.tsx';
 
 // DEV ONLY (boot screen is usually disabled while developing)
-const FORCE_BOOT_SCREEN = false;
+const FORCE_BOOT_SCREEN = true;
 
 
 // Create React root and render Main

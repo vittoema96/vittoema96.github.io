@@ -19,6 +19,13 @@ html {
 body {
     margin: 0;
     height: 100svh;
+    /* Push content away from notch/home-indicator in PWA standalone mode (viewport-fit=cover).
+       env() returns 0 on desktop and in browser mode, so no visual change there. */
+    padding:
+        env(safe-area-inset-top, 0px)
+        env(safe-area-inset-right, 0px)
+        env(safe-area-inset-bottom, 0px)
+        env(safe-area-inset-left, 0px);
     display: flex;
     flex-direction: column;
     color: var(--primary-color);
@@ -26,11 +33,30 @@ body {
     font-family: 'Share Tech Mono', 'Roboto Mono', 'Courier New', monospace;
     font-weight: bold;
     line-height: 1.4;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-shadow:
+    /* Global CRT text glow.
+       Kept as a variable so we can tune Safari/iPhone separately without changing desktop/Android. */
+    --app-text-shadow:
         0 0 5px var(--animation-glow-color),
         0 0 10px var(--animation-glow-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: var(--app-text-shadow);
+}
+
+/* iPhone/iPad Safari tends to render the same glow much softer/thicker than Chromium.
+   Two things amplify the effect there:
+   1) WebKit grayscale antialiasing (`-webkit-font-smoothing: antialiased`)
+   2) two large blurred shadows applied to all text
+   On touch iOS/WebKit devices we keep the CRT look, but reduce the blur radius/intensity. */
+@supports (-webkit-touch-callout: none) {
+    @media (hover: none) and (pointer: coarse) {
+        body {
+            --app-text-shadow:
+                0 0 2px color-mix(in srgb, var(--animation-glow-color) 75%, transparent),
+                0 0 5px color-mix(in srgb, var(--animation-glow-color) 45%, transparent);
+            -webkit-font-smoothing: auto;
+        }
+    }
 }
 
 div {
@@ -39,7 +65,10 @@ div {
 
 /* Ensure app root behaves as a full-height flex column */
 #root {
-    height: 100svh;
+    /* flex:1 fills body's content area (body already constrains to 100svh).
+       min-height:0 is needed for flex children to shrink and enable scrolling. */
+    flex: 1;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -51,6 +80,8 @@ main {
     min-height: 0; /* enable flex child scrolling */
     width: 100%;
     overflow-y: auto;
+    overscroll-behavior-y: contain; /* prevent pull-to-refresh on Android Chrome PWA */
+    -webkit-overflow-scrolling: touch; /* momentum scrolling on older iOS (< 13) */
     margin: 0 auto;
     padding: var(--space-xl);
     border: 4px solid var(--primary-color);
@@ -108,7 +139,7 @@ hr {
 button, input, select, textarea, .buttonlike {
     font: inherit;
     color: inherit;
-    text-shadow: inherit; /* preserve CRT glow */
+    text-shadow: var(--app-text-shadow);
     font-size: 0.8rem;
     padding: var(--space-m);
     background-color: var(--button-background);
@@ -117,6 +148,15 @@ button, input, select, textarea, .buttonlike {
 }
 button, input, textarea {
     appearance: none;
+}
+
+/* iOS Safari auto-zooms the page when a focused input has font-size < 16px.
+   Override to 1rem (= 16px default) on non-numeric text inputs and select.
+   Buttons are excluded because they don't receive keyboard focus on iOS. */
+input:not([type='number']):not([type='checkbox']):not([type='radio']):not([type='range']),
+select,
+textarea {
+    font-size: 1rem;
 }
 
 /* Cursors */

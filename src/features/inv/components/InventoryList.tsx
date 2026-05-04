@@ -355,8 +355,8 @@ function InventoryList({
                 </button>
             </div>
 
-            {/* Items List */}
-            <div className="stack">
+            {/* Items List - flex:1 pushes the sticky selected panel to the bottom */}
+            <div className="stack" style={{ flex: 1 }}>
                 {processedItems.length === 0 &&
                 (typeFilter !== 'other' ||
                     !character.customItems ||

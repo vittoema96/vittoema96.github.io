@@ -71,10 +71,13 @@ body.theme-the-kings {
 
 /* Derived aliases that depend on the active theme */
 body {
-    /* Helpful computed variants */
-    --primary-color-translucent: rgba(from var(--primary-color) r g b / 0.7);
-    --primary-color-very-translucent: rgba(from var(--primary-color) r g b / 0.25);
-    --secondary-color-translucent: rgba(from var(--secondary-color) r g b / 0.25);
+    /* Helpful computed variants.
+       color-mix() is used instead of relative color syntax (rgba(from var(...) r g b / alpha))
+       for broader browser support: Chrome 111+, Safari 16.2+, Firefox 113+
+       vs relative colors: Chrome 119+, Safari 16.4+, Firefox 128+ */
+    --primary-color-translucent: color-mix(in srgb, var(--primary-color) 70%, transparent);
+    --primary-color-very-translucent: color-mix(in srgb, var(--primary-color) 25%, transparent);
+    --secondary-color-translucent: color-mix(in srgb, var(--secondary-color) 25%, transparent);
 
     /* Borders using current theme colors */
     --border-primary-thick: 2px solid var(--primary-color);
