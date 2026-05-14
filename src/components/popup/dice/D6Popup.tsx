@@ -119,7 +119,7 @@ function D6Popup({
                 character.traits.includes('traitTriggerDiscipline')
                     ? 1
                     : 0;
-            return Math.min(0, fireRateNum * (isGatling ? 2 : 1) - triggerDisciplineMalus);
+            return Math.max(0, fireRateNum * (isGatling ? 2 : 1) - triggerDisciplineMalus);
         }
         if (extraHitsType === 'ap') {
             return 3;
@@ -401,6 +401,7 @@ function D6Popup({
             }
             if (ammoId && ammoId !== 'na') {
                 // Only consume base ammo cost on first roll
+                // TODO this removes from ALL the objects with that id, renamed items at risk
                 updateCharacter({
                     items: character.items
                         .map(item =>

@@ -116,3 +116,7 @@ workbox-*.js.map
 # Keep scripts directory
 # scripts/ - Keep for version management
 dev-dist/sw.js
+
+# AI agent local instructions
+AGENTS.md
+**/AGENTS.md

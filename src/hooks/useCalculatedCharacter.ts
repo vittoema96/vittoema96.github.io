@@ -24,7 +24,7 @@ export const adjustCurrentHp = (prev: RawCharacter, current: RawCharacter) => {
     if (hpDelta > 0) {
         result.currentHp = currentHp + hpDelta;
     }
-    result.currentHp = Math.min(currentHp, currentMaxHp);
+    result.currentHp = Math.min(result.currentHp ?? currentHp, currentMaxHp);
     return result;
 };
 
