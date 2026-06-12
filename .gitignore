@@ -1,5 +1,6 @@
 # Guidebook data for reference in development
 dataFromGuidebook/
+guidebooks/
 
 # Dependencies
 node_modules/

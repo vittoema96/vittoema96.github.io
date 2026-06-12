@@ -20,6 +20,7 @@ export const APPAREL_CATEGORIES = [
     'clothing',
     'headgear',
     'outfit',
+    'armor',
     'raiderArmor',
     'leatherArmor',
     'metalArmor',
@@ -27,6 +28,10 @@ export const APPAREL_CATEGORIES = [
     'syntheticArmor',
     'vaultTecSecurity',
     'robotPart',
+    // Wanderers DLC armor categories
+    'scoutArmor',
+    'marineArmor',
+    'legionaryArmor',
 ] as const;
 export const AID_CATEGORIES = ['food', 'drinks', 'meds'] as const;
 export const AMMO_CATEGORIES = ['ammo'] as const;

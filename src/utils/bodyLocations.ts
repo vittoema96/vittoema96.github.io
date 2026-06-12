@@ -68,12 +68,16 @@ const getItemLayer = (itemCategory: ApparelCategory): ItemLayer => {
         case 'robotPart':
         case 'headgear':
             return 'both';
+        case 'armor':
         case 'raiderArmor':
         case 'leatherArmor':
         case 'metalArmor':
         case 'combatArmor':
         case 'syntheticArmor':
         case 'vaultTecSecurity':
+        case 'scoutArmor':
+        case 'marineArmor':
+        case 'legionaryArmor':
             return 'over';
     }
 };
