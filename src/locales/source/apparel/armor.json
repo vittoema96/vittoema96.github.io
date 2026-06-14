@@ -1,0 +1,642 @@
+{
+  "armorChineseStealth": {
+    "en": "Chinese Stealth Armor",
+    "it": "Armatura Furtiva Cinese",
+    "_description": {
+      "en": "A dark black, form-fitting suit built for near-invisibility, using advanced active camouflage technology to make the operator hard to detect.",
+      "it": "Una tuta nera aderente progettata per risultare quasi invisibile, grazie a una tecnologia avanzata di camuffamento attivo."
+    }
+  },
+  "armorCombatArm": {
+    "en": "Combat Arm",
+    "it": "Braccio da Combattimento",
+    "_description": {
+      "en": "Specially made armor pieces, designed pre-War and issued to the soldiers of the U.S. Armed Forces. It was constructed to keep the wearer protected from physical and energy attacks alike without being cumbersome or awkward to wear.",
+      "it": "Si tratta di pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruite per proteggere chi le indossava sia dagli attacchi fisici, che da quelli a energia, pur senza essere pesanti o scomode da indossare."
+    }
+  },
+  "armorCombatChest": {
+    "en": "Combat Chest Piece",
+    "it": "Pettorale da Combattimento",
+    "_description": {
+      "en": "Specially made armor pieces, designed pre-War and issued to the soldiers of the U.S. Armed Forces. It was constructed to keep the wearer protected from physical and energy attacks alike without being cumbersome or awkward to wear.",
+      "it": "Si tratta di pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruite per proteggere chi le indossava sia dagli attacchi fisici, che da quelli a energia, pur senza essere pesanti o scomode da indossare."
+    }
+  },
+  "armorCombatHeavyArm": {
+    "en": "Heavy Combat Arm",
+    "it": "Braccio da Combattimento Pesante",
+    "_description": {
+      "en": "Specially made armor pieces, designed pre-War and issued to the soldiers of the U.S. Armed Forces. It was constructed to keep the wearer protected from physical and energy attacks alike without being cumbersome or awkward to wear.",
+      "it": "Si tratta di pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruite per proteggere chi le indossava sia dagli attacchi fisici, che da quelli a energia, pur senza essere pesanti o scomode da indossare."
+    }
+  },
+  "armorCombatHeavyChest": {
+    "en": "Heavy Combat Chest Piece",
+    "it": "Pettorale da Combattimento Pesante",
+    "_description": {
+      "en": "Specially made armor pieces, designed pre-War and issued to the soldiers of the U.S. Armed Forces. It was constructed to keep the wearer protected from physical and energy attacks alike without being cumbersome or awkward to wear.",
+      "it": "Si tratta di pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruite per proteggere chi le indossava sia dagli attacchi fisici, che da quelli a energia, pur senza essere pesanti o scomode da indossare."
+    }
+  },
+  "armorCombatHeavyHelmet": {
+    "en": "Heavy Combat Helmet",
+    "it": "Elmo da Combattimento Pesante",
+    "_description": {
+      "en": "Specially made armor pieces, designed pre-War and issued to the soldiers of the U.S. Armed Forces. It was constructed to keep the wearer protected from physical and energy attacks alike without being cumbersome or awkward to wear.",
+      "it": "Si tratta di pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruite per proteggere chi le indossava sia dagli attacchi fisici, che da quelli a energia, pur senza essere pesanti o scomode da indossare."
+    }
+  },
+  "armorCombatHeavyLeg": {
+    "en": "Heavy Combat Leg",
+    "it": "Gambale da Combattimento Pesante",
+    "_description": {
+      "en": "Specially made armor pieces, designed pre-War and issued to the soldiers of the U.S. Armed Forces. It was constructed to keep the wearer protected from physical and energy attacks alike without being cumbersome or awkward to wear.",
+      "it": "Si tratta di pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruite per proteggere chi le indossava sia dagli attacchi fisici, che da quelli a energia, pur senza essere pesanti o scomode da indossare."
+    }
+  },
+  "armorCombatHelmet": {
+    "en": "Combat Helmet",
+    "it": "Elmo da Combattimento",
+    "_description": {
+      "en": "Specially made armor pieces, designed pre-War and issued to the soldiers of the U.S. Armed Forces. It was constructed to keep the wearer protected from physical and energy attacks alike without being cumbersome or awkward to wear.",
+      "it": "Si tratta di pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruite per proteggere chi le indossava sia dagli attacchi fisici, che da quelli a energia, pur senza essere pesanti o scomode da indossare."
+    }
+  },
+  "armorCombatLeg": {
+    "en": "Combat Leg",
+    "it": "Gambale da Combattimento",
+    "_description": {
+      "en": "Specially made armor pieces, designed pre-War and issued to the soldiers of the U.S. Armed Forces. It was constructed to keep the wearer protected from physical and energy attacks alike without being cumbersome or awkward to wear.",
+      "it": "Si tratta di pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruite per proteggere chi le indossava sia dagli attacchi fisici, che da quelli a energia, pur senza essere pesanti o scomode da indossare."
+    }
+  },
+  "armorCombatSturdyArm": {
+    "en": "Sturdy Combat Arm",
+    "it": "Braccio da Combattimento Rinforzato",
+    "_description": {
+      "en": "Specially made armor pieces, designed pre-War and issued to the soldiers of the U.S. Armed Forces. It was constructed to keep the wearer protected from physical and energy attacks alike without being cumbersome or awkward to wear.",
+      "it": "Si tratta di pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruite per proteggere chi le indossava sia dagli attacchi fisici, che da quelli a energia, pur senza essere pesanti o scomode da indossare."
+    }
+  },
+  "armorCombatSturdyChest": {
+    "en": "Sturdy Combat Chest Piece",
+    "it": "Pettorale da Combattimento Rinforzato",
+    "_description": {
+      "en": "Specially made armor pieces, designed pre-War and issued to the soldiers of the U.S. Armed Forces. It was constructed to keep the wearer protected from physical and energy attacks alike without being cumbersome or awkward to wear.",
+      "it": "Si tratta di pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruite per proteggere chi le indossava sia dagli attacchi fisici, che da quelli a energia, pur senza essere pesanti o scomode da indossare."
+    }
+  },
+  "armorCombatSturdyHelmet": {
+    "en": "Sturdy Combat Helmet",
+    "it": "Elmo da Combattimento Rinforzato",
+    "_description": {
+      "en": "Specially made armor pieces, designed pre-War and issued to the soldiers of the U.S. Armed Forces. It was constructed to keep the wearer protected from physical and energy attacks alike without being cumbersome or awkward to wear.",
+      "it": "Si tratta di pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruite per proteggere chi le indossava sia dagli attacchi fisici, che da quelli a energia, pur senza essere pesanti o scomode da indossare."
+    }
+  },
+  "armorCombatSturdyLeg": {
+    "en": "Sturdy Combat Leg",
+    "it": "Gambale da Combattimento Rinforzato",
+    "_description": {
+      "en": "Specially made armor pieces, designed pre-War and issued to the soldiers of the U.S. Armed Forces. It was constructed to keep the wearer protected from physical and energy attacks alike without being cumbersome or awkward to wear.",
+      "it": "Si tratta di pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruite per proteggere chi le indossava sia dagli attacchi fisici, che da quelli a energia, pur senza essere pesanti o scomode da indossare."
+    }
+  },
+  "armorDivingSuit": {
+    "en": "Diving Suit",
+    "it": "Tuta da Sub",
+    "_description": {
+      "en": "A bulky metal-and-rubber suit with sustained air supply, designed to protect the wearer from extreme underwater pressure and cold-water exposure.",
+      "it": "Una pesante tuta in metallo e gomma con riserva d'aria, progettata per proteggere chi la indossa da pressione estrema sott'acqua e freddo intenso."
+    }
+  },
+  "armorLeatherArm": {
+    "en": "Leather Arm",
+    "it": "Braccio di Cuoio",
+    "_description": {
+      "en": "Made from tanned and treated animal hide, these hardened leather pieces provide modest protection from physical impacts and gunshots, as well as serving to insulate the wearer from fire and other dangerous energies.",
+      "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi di pistola, oltre a isolare chi le indossa da fuoco e altre energie pericolose."
+    }
+  },
+  "armorLeatherChest": {
+    "en": "Leather Chest Piece",
+    "it": "Pettorale di Cuoio",
+    "_description": {
+      "en": "Made from tanned and treated animal hide, these hardened leather pieces provide modest protection from physical impacts and gunshots, as well as serving to insulate the wearer from fire and other dangerous energies.",
+      "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi di pistola, oltre a isolare chi le indossa da fuoco e altre energie pericolose."
+    }
+  },
+  "armorLeatherHeavyArm": {
+    "en": "Heavy Leather Arm",
+    "it": "Braccio di Cuoio Pesante",
+    "_description": {
+      "en": "Made from tanned and treated animal hide, these hardened leather pieces provide modest protection from physical impacts and gunshots, as well as serving to insulate the wearer from fire and other dangerous energies.",
+      "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi di pistola, oltre a isolare chi le indossa da fuoco e altre energie pericolose."
+    }
+  },
+  "armorLeatherHeavyChest": {
+    "en": "Heavy Leather Chest Piece",
+    "it": "Pettorale di Cuoio Pesante",
+    "_description": {
+      "en": "Made from tanned and treated animal hide, these hardened leather pieces provide modest protection from physical impacts and gunshots, as well as serving to insulate the wearer from fire and other dangerous energies.",
+      "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi di pistola, oltre a isolare chi le indossa da fuoco e altre energie pericolose."
+    }
+  },
+  "armorLeatherHeavyLeg": {
+    "en": "Heavy Leather Leg",
+    "it": "Gambale di Cuoio Pesante",
+    "_description": {
+      "en": "Made from tanned and treated animal hide, these hardened leather pieces provide modest protection from physical impacts and gunshots, as well as serving to insulate the wearer from fire and other dangerous energies.",
+      "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi di pistola, oltre a isolare chi le indossa da fuoco e altre energie pericolose."
+    }
+  },
+  "armorLeatherLeg": {
+    "en": "Leather Leg",
+    "it": "Gambale di Cuoio",
+    "_description": {
+      "en": "Made from tanned and treated animal hide, these hardened leather pieces provide modest protection from physical impacts and gunshots, as well as serving to insulate the wearer from fire and other dangerous energies.",
+      "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi di pistola, oltre a isolare chi le indossa da fuoco e altre energie pericolose."
+    }
+  },
+  "armorLeatherSturdyArm": {
+    "en": "Sturdy Leather Arm",
+    "it": "Braccio di Cuoio Rinforzato",
+    "_description": {
+      "en": "Made from tanned and treated animal hide, these hardened leather pieces provide modest protection from physical impacts and gunshots, as well as serving to insulate the wearer from fire and other dangerous energies.",
+      "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi di pistola, oltre a isolare chi le indossa da fuoco e altre energie pericolose."
+    }
+  },
+  "armorLeatherSturdyChest": {
+    "en": "Sturdy Leather Chest Piece",
+    "it": "Pettorale di Cuoio Rinforzato",
+    "_description": {
+      "en": "Made from tanned and treated animal hide, these hardened leather pieces provide modest protection from physical impacts and gunshots, as well as serving to insulate the wearer from fire and other dangerous energies.",
+      "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi di pistola, oltre a isolare chi le indossa da fuoco e altre energie pericolose."
+    }
+  },
+  "armorLeatherSturdyLeg": {
+    "en": "Sturdy Leather Leg",
+    "it": "Gambale di Cuoio Rinforzato",
+    "_description": {
+      "en": "Made from tanned and treated animal hide, these hardened leather pieces provide modest protection from physical impacts and gunshots, as well as serving to insulate the wearer from fire and other dangerous energies.",
+      "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi di pistola, oltre a isolare chi le indossa da fuoco e altre energie pericolose."
+    }
+  },
+  "armorLegatusHelmet": {
+    "en": "Legatus Helmet",
+    "it": "Elmo del Legato",
+    "_description": {
+      "en": "Centurion-grade Legion armor showcases rank and prowess, often including trophies such as salvaged power armor pieces.",
+      "it": "Le armature da Centurione mostrano rango e valore, spesso con trofei come pezzi di armatura atomica recuperati."
+    }
+  },
+  "armorLegionaryArm": {
+    "en": "Legionary Arm",
+    "it": "Braccio Legionario",
+    "_description": {
+      "en": "Legion armor follows the military principles of ancient Rome and is often decorated with trophies won in battle.",
+      "it": "Le armature della Legione seguono i principi militari dell'antica Roma e vengono spesso decorate con trofei conquistati in battaglia."
+    }
+  },
+  "armorLegionaryCenturionArm": {
+    "en": "Legionary Centurion Arm",
+    "it": "Braccio Centurione Legionario",
+    "_description": {
+      "en": "Centurion-grade Legion armor showcases rank and prowess, often including trophies such as salvaged power armor pieces.",
+      "it": "Le armature da Centurione mostrano rango e valore, spesso con trofei come pezzi di armatura atomica recuperati."
+    }
+  },
+  "armorLegionaryCenturionChest": {
+    "en": "Legionary Centurion Chest Piece",
+    "it": "Pettorale Centurione Legionario",
+    "_description": {
+      "en": "Centurion-grade Legion armor showcases rank and prowess, often including trophies such as salvaged power armor pieces.",
+      "it": "Le armature da Centurione mostrano rango e valore, spesso con trofei come pezzi di armatura atomica recuperati."
+    }
+  },
+  "armorLegionaryCenturionHelmet": {
+    "en": "Legionary Centurion Helmet",
+    "it": "Elmo Centurione Legionario",
+    "_description": {
+      "en": "Centurion-grade Legion armor showcases rank and prowess, often including trophies such as salvaged power armor pieces.",
+      "it": "Le armature da Centurione mostrano rango e valore, spesso con trofei come pezzi di armatura atomica recuperati."
+    }
+  },
+  "armorLegionaryCenturionLeg": {
+    "en": "Legionary Centurion Leg",
+    "it": "Gambale Centurione Legionario",
+    "_description": {
+      "en": "Centurion-grade Legion armor showcases rank and prowess, often including trophies such as salvaged power armor pieces.",
+      "it": "Le armature da Centurione mostrano rango e valore, spesso con trofei come pezzi di armatura atomica recuperati."
+    }
+  },
+  "armorLegionaryChest": {
+    "en": "Legionary Chest Piece",
+    "it": "Pettorale Legionario",
+    "_description": {
+      "en": "Legion armor follows the military principles of ancient Rome and is often decorated with trophies won in battle.",
+      "it": "Le armature della Legione seguono i principi militari dell'antica Roma e vengono spesso decorate con trofei conquistati in battaglia."
+    }
+  },
+  "armorLegionaryHelmet": {
+    "en": "Legionary Helmet",
+    "it": "Elmo Legionario",
+    "_description": {
+      "en": "Legion armor follows the military principles of ancient Rome and is often decorated with trophies won in battle.",
+      "it": "Le armature della Legione seguono i principi militari dell'antica Roma e vengono spesso decorate con trofei conquistati in battaglia."
+    }
+  },
+  "armorLegionaryLeg": {
+    "en": "Legionary Leg",
+    "it": "Gambale Legionario",
+    "_description": {
+      "en": "Legion armor follows the military principles of ancient Rome and is often decorated with trophies won in battle.",
+      "it": "Le armature della Legione seguono i principi militari dell'antica Roma e vengono spesso decorate con trofei conquistati in battaglia."
+    }
+  },
+  "armorLegionaryRecruitArm": {
+    "en": "Legionary Recruit Arm",
+    "it": "Braccio Recluta Legionario",
+    "_description": {
+      "en": "Legion armor follows the military principles of ancient Rome and starts from basic sports gear reinforced with scrap protection.",
+      "it": "Le armature della Legione seguono i principi militari dell'antica Roma e partono da equipaggiamento sportivo rinforzato con rottami protettivi."
+    }
+  },
+  "armorLegionaryRecruitChest": {
+    "en": "Legionary Recruit Chest Piece",
+    "it": "Pettorale Recluta Legionario",
+    "_description": {
+      "en": "Legion armor follows the military principles of ancient Rome and starts from basic sports gear reinforced with scrap protection.",
+      "it": "Le armature della Legione seguono i principi militari dell'antica Roma e partono da equipaggiamento sportivo rinforzato con rottami protettivi."
+    }
+  },
+  "armorLegionaryRecruitHelmet": {
+    "en": "Legionary Recruit Helmet",
+    "it": "Elmo Recluta Legionario",
+    "_description": {
+      "en": "Legion armor follows the military principles of ancient Rome and starts from basic sports gear reinforced with scrap protection.",
+      "it": "Le armature della Legione seguono i principi militari dell'antica Roma e partono da equipaggiamento sportivo rinforzato con rottami protettivi."
+    }
+  },
+  "armorLegionaryRecruitLeg": {
+    "en": "Legionary Recruit Leg",
+    "it": "Gambale Recluta Legionario",
+    "_description": {
+      "en": "Legion armor follows the military principles of ancient Rome and starts from basic sports gear reinforced with scrap protection.",
+      "it": "Le armature della Legione seguono i principi militari dell'antica Roma e partono da equipaggiamento sportivo rinforzato con rottami protettivi."
+    }
+  },
+  "armorMarineArm": {
+    "en": "Marine Arm",
+    "it": "Braccio Marine",
+    "_description": {
+      "en": "A specialized form of combat armor favored by the United States Marine Corps, providing considerable protection at the cost of great weight.",
+      "it": "Una forma specializzata di armatura da combattimento preferita dal Corpo dei Marines degli Stati Uniti, con alta protezione ma peso elevato."
+    }
+  },
+  "armorMarineChest": {
+    "en": "Marine Chest Piece",
+    "it": "Pettorale Marine",
+    "_description": {
+      "en": "A specialized form of combat armor favored by the United States Marine Corps, providing considerable protection at the cost of great weight.",
+      "it": "Una forma specializzata di armatura da combattimento preferita dal Corpo dei Marines degli Stati Uniti, con alta protezione ma peso elevato."
+    }
+  },
+  "armorMarineHelmet": {
+    "en": "Marine Helmet",
+    "it": "Elmo Marine",
+    "_description": {
+      "en": "A specialized form of combat armor favored by the United States Marine Corps, providing considerable protection at the cost of great weight.",
+      "it": "Una forma specializzata di armatura da combattimento preferita dal Corpo dei Marines degli Stati Uniti, con alta protezione ma peso elevato."
+    }
+  },
+  "armorMarineLeg": {
+    "en": "Marine Leg",
+    "it": "Gambale Marine",
+    "_description": {
+      "en": "A specialized form of combat armor favored by the United States Marine Corps, providing considerable protection at the cost of great weight.",
+      "it": "Una forma specializzata di armatura da combattimento preferita dal Corpo dei Marines degli Stati Uniti, con alta protezione ma peso elevato."
+    }
+  },
+  "armorMetalArm": {
+    "en": "Metal Arm",
+    "it": "Braccio di Metallo",
+    "_description": {
+      "en": "Shaped metal plating held together—and held on—with leather or cloth straps, which provide decent protection from physical impacts such as melee attacks and gunshots, but less protection against energy attacks, as the metal plating conducts heat.",
+      "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
+    }
+  },
+  "armorMetalChest": {
+    "en": "Metal Chest Piece",
+    "it": "Pettorale di Metallo",
+    "_description": {
+      "en": "Shaped metal plating held together—and held on—with leather or cloth straps, which provide decent protection from physical impacts such as melee attacks and gunshots, but less protection against energy attacks, as the metal plating conducts heat.",
+      "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
+    }
+  },
+  "armorMetalHeavyArm": {
+    "en": "Heavy Metal Arm",
+    "it": "Braccio di Metallo Pesante",
+    "_description": {
+      "en": "Shaped metal plating held together—and held on—with leather or cloth straps, which provide decent protection from physical impacts such as melee attacks and gunshots, but less protection against energy attacks, as the metal plating conducts heat.",
+      "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
+    }
+  },
+  "armorMetalHeavyChest": {
+    "en": "Heavy Metal Chest Piece",
+    "it": "Pettorale di Metallo Pesante",
+    "_description": {
+      "en": "Shaped metal plating held together—and held on—with leather or cloth straps, which provide decent protection from physical impacts such as melee attacks and gunshots, but less protection against energy attacks, as the metal plating conducts heat.",
+      "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
+    }
+  },
+  "armorMetalHeavyHelmet": {
+    "en": "Heavy Metal Helmet",
+    "it": "Elmo di Metallo Pesante",
+    "_description": {
+      "en": "Shaped metal plating held together—and held on—with leather or cloth straps, which provide decent protection from physical impacts such as melee attacks and gunshots, but less protection against energy attacks, as the metal plating conducts heat.",
+      "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
+    }
+  },
+  "armorMetalHeavyLeg": {
+    "en": "Heavy Metal Leg",
+    "it": "Gambale di Metallo Pesante",
+    "_description": {
+      "en": "Shaped metal plating held together—and held on—with leather or cloth straps, which provide decent protection from physical impacts such as melee attacks and gunshots, but less protection against energy attacks, as the metal plating conducts heat.",
+      "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
+    }
+  },
+  "armorMetalHelmet": {
+    "en": "Metal Helmet",
+    "it": "Elmo di Metallo",
+    "_description": {
+      "en": "Shaped metal plating held together—and held on—with leather or cloth straps, which provide decent protection from physical impacts such as melee attacks and gunshots, but less protection against energy attacks, as the metal plating conducts heat.",
+      "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
+    }
+  },
+  "armorMetalLeg": {
+    "en": "Metal Leg",
+    "it": "Gambale di Metallo",
+    "_description": {
+      "en": "Shaped metal plating held together—and held on—with leather or cloth straps, which provide decent protection from physical impacts such as melee attacks and gunshots, but less protection against energy attacks, as the metal plating conducts heat.",
+      "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
+    }
+  },
+  "armorMetalSturdyArm": {
+    "en": "Sturdy Metal Arm",
+    "it": "Braccio di Metallo Rinforzato",
+    "_description": {
+      "en": "Shaped metal plating held together—and held on—with leather or cloth straps, which provide decent protection from physical impacts such as melee attacks and gunshots, but less protection against energy attacks, as the metal plating conducts heat.",
+      "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
+    }
+  },
+  "armorMetalSturdyChest": {
+    "en": "Sturdy Metal Chest Piece",
+    "it": "Pettorale di Metallo Rinforzato",
+    "_description": {
+      "en": "Shaped metal plating held together—and held on—with leather or cloth straps, which provide decent protection from physical impacts such as melee attacks and gunshots, but less protection against energy attacks, as the metal plating conducts heat.",
+      "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
+    }
+  },
+  "armorMetalSturdyHelmet": {
+    "en": "Sturdy Metal Helmet",
+    "it": "Elmo di Metallo Rinforzato",
+    "_description": {
+      "en": "Shaped metal plating held together—and held on—with leather or cloth straps, which provide decent protection from physical impacts such as melee attacks and gunshots, but less protection against energy attacks, as the metal plating conducts heat.",
+      "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
+    }
+  },
+  "armorMetalSturdyLeg": {
+    "en": "Sturdy Metal Leg",
+    "it": "Gambale di Metallo Rinforzato",
+    "_description": {
+      "en": "Shaped metal plating held together—and held on—with leather or cloth straps, which provide decent protection from physical impacts such as melee attacks and gunshots, but less protection against energy attacks, as the metal plating conducts heat.",
+      "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
+    }
+  },
+  "armorRaiderArm": {
+    "en": "Raider Arm",
+    "it": "Braccio da Predone",
+    "_description": {
+      "en": "Makeshift armor employed by raiders and other cutthroat types across the wastes. It varies considerably in quality and appearance but tends to be made of scrap metal rudely battered into shape, reinforced by metal bars, wire, and leather straps. This barbaric appearance is often bolstered by grisly trophies such as skulls or other body parts.",
+      "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
+    }
+  },
+  "armorRaiderChest": {
+    "en": "Raider Chest Piece",
+    "it": "Pettorale da Predone",
+    "_description": {
+      "en": "Makeshift armor employed by raiders and other cutthroat types across the wastes. It varies considerably in quality and appearance but tends to be made of scrap metal rudely battered into shape, reinforced by metal bars, wire, and leather straps. This barbaric appearance is often bolstered by grisly trophies such as skulls or other body parts.",
+      "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
+    }
+  },
+  "armorRaiderHeavyArm": {
+    "en": "Heavy Raider Arm",
+    "it": "Braccio da Predone Pesante",
+    "_description": {
+      "en": "Makeshift armor employed by raiders and other cutthroat types across the wastes. It varies considerably in quality and appearance but tends to be made of scrap metal rudely battered into shape, reinforced by metal bars, wire, and leather straps. This barbaric appearance is often bolstered by grisly trophies such as skulls or other body parts.",
+      "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
+    }
+  },
+  "armorRaiderHeavyChest": {
+    "en": "Heavy Raider Chest Piece",
+    "it": "Pettorale da Predone Pesante",
+    "_description": {
+      "en": "Makeshift armor employed by raiders and other cutthroat types across the wastes. It varies considerably in quality and appearance but tends to be made of scrap metal rudely battered into shape, reinforced by metal bars, wire, and leather straps. This barbaric appearance is often bolstered by grisly trophies such as skulls or other body parts.",
+      "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
+    }
+  },
+  "armorRaiderHeavyLeg": {
+    "en": "Heavy Raider Leg",
+    "it": "Gambale da Predone Pesante",
+    "_description": {
+      "en": "Makeshift armor employed by raiders and other cutthroat types across the wastes. It varies considerably in quality and appearance but tends to be made of scrap metal rudely battered into shape, reinforced by metal bars, wire, and leather straps. This barbaric appearance is often bolstered by grisly trophies such as skulls or other body parts.",
+      "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
+    }
+  },
+  "armorRaiderLeg": {
+    "en": "Raider Leg",
+    "it": "Gambale da Predone",
+    "_description": {
+      "en": "Makeshift armor employed by raiders and other cutthroat types across the wastes. It varies considerably in quality and appearance but tends to be made of scrap metal rudely battered into shape, reinforced by metal bars, wire, and leather straps. This barbaric appearance is often bolstered by grisly trophies such as skulls or other body parts.",
+      "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
+    }
+  },
+  "armorRaiderSturdyArm": {
+    "en": "Sturdy Raider Arm",
+    "it": "Braccio da Predone Rinforzato",
+    "_description": {
+      "en": "Makeshift armor employed by raiders and other cutthroat types across the wastes. It varies considerably in quality and appearance but tends to be made of scrap metal rudely battered into shape, reinforced by metal bars, wire, and leather straps. This barbaric appearance is often bolstered by grisly trophies such as skulls or other body parts.",
+      "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
+    }
+  },
+  "armorRaiderSturdyChest": {
+    "en": "Sturdy Raider Chest Piece",
+    "it": "Pettorale da Predone Rinforzato",
+    "_description": {
+      "en": "Makeshift armor employed by raiders and other cutthroat types across the wastes. It varies considerably in quality and appearance but tends to be made of scrap metal rudely battered into shape, reinforced by metal bars, wire, and leather straps. This barbaric appearance is often bolstered by grisly trophies such as skulls or other body parts.",
+      "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
+    }
+  },
+  "armorRaiderSturdyLeg": {
+    "en": "Sturdy Raider Leg",
+    "it": "Gambale da Predone Rinforzato",
+    "_description": {
+      "en": "Makeshift armor employed by raiders and other cutthroat types across the wastes. It varies considerably in quality and appearance but tends to be made of scrap metal rudely battered into shape, reinforced by metal bars, wire, and leather straps. This barbaric appearance is often bolstered by grisly trophies such as skulls or other body parts.",
+      "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
+    }
+  },
+  "armorRecon": {
+    "en": "Recon Armor",
+    "it": "Armatura da Ricognizione",
+    "_description": {
+      "en": "A lightweight, padded, flame-retardant jumpsuit and hood used by the Brotherhood of Steel, designed to be worn under T-45 power armor.",
+      "it": "Una forma leggera di armatura, imbottita e ignifuga, usata dalla Confraternita d'Acciaio e pensata per essere indossata sotto la T-45."
+    }
+  },
+  "armorScoutArm": {
+    "en": "Scout Arm",
+    "it": "Braccio Scout",
+    "_description": {
+      "en": "Scout Armor is a refinement of military combat armor used by Enclave covert forces, designed to be worn over an Underarmor Suit.",
+      "it": "L'Armatura Scout e una versione evoluta dell'armatura da combattimento militare, usata da forze covert dell'Enclave e pensata per essere indossata sopra una Sottoarmatura."
+    }
+  },
+  "armorScoutChest": {
+    "en": "Scout Chest Piece",
+    "it": "Pettorale Scout",
+    "_description": {
+      "en": "Scout Armor is a refinement of military combat armor used by Enclave covert forces, designed to be worn over an Underarmor Suit.",
+      "it": "L'Armatura Scout e una versione evoluta dell'armatura da combattimento militare, usata da forze covert dell'Enclave e pensata per essere indossata sopra una Sottoarmatura."
+    }
+  },
+  "armorScoutLeg": {
+    "en": "Scout Leg",
+    "it": "Gambale Scout",
+    "_description": {
+      "en": "Scout Armor is a refinement of military combat armor used by Enclave covert forces, designed to be worn over an Underarmor Suit.",
+      "it": "L'Armatura Scout e una versione evoluta dell'armatura da combattimento militare, usata da forze covert dell'Enclave e pensata per essere indossata sopra una Sottoarmatura."
+    }
+  },
+  "armorScoutMask": {
+    "en": "Scout Mask",
+    "it": "Maschera Scout",
+    "_description": {
+      "en": "Scout Armor is a refinement of military combat armor used by Enclave covert forces, designed to be worn over an Underarmor Suit.",
+      "it": "L'Armatura Scout e una versione evoluta dell'armatura da combattimento militare, usata da forze covert dell'Enclave e pensata per essere indossata sopra una Sottoarmatura."
+    }
+  },
+  "armorSyntheticArm": {
+    "en": "Synth Arm",
+    "it": "Braccio Sintetico",
+    "_description": {
+      "en": "Developed by The Institute, Synth armor is distinctive and provides excellent protection, especially from energy weapons, but can only really be found within the Commonwealth and other locations where Institute synths travel. The rarity of its manufacture means that it's hard to acquire for anyone not on good terms with the Institute, and expensive even then.",
+      "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei posti in cui i sintetici dell'Istituto viaggiano. La rarità della sua produzione implica che è molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
+    }
+  },
+  "armorSyntheticChest": {
+    "en": "Synth Chest Piece",
+    "it": "Pettorale Sintetico",
+    "_description": {
+      "en": "Developed by The Institute, Synth armor is distinctive and provides excellent protection, especially from energy weapons, but can only really be found within the Commonwealth and other locations where Institute synths travel. The rarity of its manufacture means that it's hard to acquire for anyone not on good terms with the Institute, and expensive even then.",
+      "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei posti in cui i sintetici dell'Istituto viaggiano. La rarità della sua produzione implica che è molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
+    }
+  },
+  "armorSyntheticHeavyArm": {
+    "en": "Heavy Synth Arm",
+    "it": "Braccio Sintetico Pesante",
+    "_description": {
+      "en": "Developed by The Institute, Synth armor is distinctive and provides excellent protection, especially from energy weapons, but can only really be found within the Commonwealth and other locations where Institute synths travel. The rarity of its manufacture means that it's hard to acquire for anyone not on good terms with the Institute, and expensive even then.",
+      "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei posti in cui i sintetici dell'Istituto viaggiano. La rarità della sua produzione implica che è molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
+    }
+  },
+  "armorSyntheticHeavyChest": {
+    "en": "Heavy Synth Chest Piece",
+    "it": "Pettorale Sintetico Pesante",
+    "_description": {
+      "en": "Developed by The Institute, Synth armor is distinctive and provides excellent protection, especially from energy weapons, but can only really be found within the Commonwealth and other locations where Institute synths travel. The rarity of its manufacture means that it's hard to acquire for anyone not on good terms with the Institute, and expensive even then.",
+      "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei posti in cui i sintetici dell'Istituto viaggiano. La rarità della sua produzione implica che è molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
+    }
+  },
+  "armorSyntheticHeavyHelmet": {
+    "en": "Heavy Synth Helmet",
+    "it": "Casco Sintetico Pesante",
+    "_description": {
+      "en": "Developed by The Institute, Synth armor is distinctive and provides excellent protection, especially from energy weapons, but can only really be found within the Commonwealth and other locations where Institute synths travel. The rarity of its manufacture means that it's hard to acquire for anyone not on good terms with the Institute, and expensive even then.",
+      "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei posti in cui i sintetici dell'Istituto viaggiano. La rarità della sua produzione implica che è molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
+    }
+  },
+  "armorSyntheticHeavyLeg": {
+    "en": "Heavy Synth Leg",
+    "it": "Gambale Sintetico Pesante",
+    "_description": {
+      "en": "Developed by The Institute, Synth armor is distinctive and provides excellent protection, especially from energy weapons, but can only really be found within the Commonwealth and other locations where Institute synths travel. The rarity of its manufacture means that it's hard to acquire for anyone not on good terms with the Institute, and expensive even then.",
+      "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei posti in cui i sintetici dell'Istituto viaggiano. La rarità della sua produzione implica che è molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
+    }
+  },
+  "armorSyntheticHelmet": {
+    "en": "Synth Helmet",
+    "it": "Casco Sintetico",
+    "_description": {
+      "en": "Developed by The Institute, Synth armor is distinctive and provides excellent protection, especially from energy weapons, but can only really be found within the Commonwealth and other locations where Institute synths travel. The rarity of its manufacture means that it's hard to acquire for anyone not on good terms with the Institute, and expensive even then.",
+      "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei posti in cui i sintetici dell'Istituto viaggiano. La rarità della sua produzione implica che è molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
+    }
+  },
+  "armorSyntheticLeg": {
+    "en": "Synth Leg",
+    "it": "Gambale Sintetico",
+    "_description": {
+      "en": "Developed by The Institute, Synth armor is distinctive and provides excellent protection, especially from energy weapons, but can only really be found within the Commonwealth and other locations where Institute synths travel. The rarity of its manufacture means that it's hard to acquire for anyone not on good terms with the Institute, and expensive even then.",
+      "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei posti in cui i sintetici dell'Istituto viaggiano. La rarità della sua produzione implica che è molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
+    }
+  },
+  "armorSyntheticSturdyArm": {
+    "en": "Sturdy Synth Arm",
+    "it": "Braccio Sintetico Rinforzato",
+    "_description": {
+      "en": "Developed by The Institute, Synth armor is distinctive and provides excellent protection, especially from energy weapons, but can only really be found within the Commonwealth and other locations where Institute synths travel. The rarity of its manufacture means that it's hard to acquire for anyone not on good terms with the Institute, and expensive even then.",
+      "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei posti in cui i sintetici dell'Istituto viaggiano. La rarità della sua produzione implica che è molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
+    }
+  },
+  "armorSyntheticSturdyChest": {
+    "en": "Sturdy Synth Chest Piece",
+    "it": "Pettorale Sintetico Rinforzato",
+    "_description": {
+      "en": "Developed by The Institute, Synth armor is distinctive and provides excellent protection, especially from energy weapons, but can only really be found within the Commonwealth and other locations where Institute synths travel. The rarity of its manufacture means that it's hard to acquire for anyone not on good terms with the Institute, and expensive even then.",
+      "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei posti in cui i sintetici dell'Istituto viaggiano. La rarità della sua produzione implica che è molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
+    }
+  },
+  "armorSyntheticSturdyHelmet": {
+    "en": "Sturdy Synth Helmet",
+    "it": "Casco Sintetico Rinforzato",
+    "_description": {
+      "en": "Developed by The Institute, Synth armor is distinctive and provides excellent protection, especially from energy weapons, but can only really be found within the Commonwealth and other locations where Institute synths travel. The rarity of its manufacture means that it's hard to acquire for anyone not on good terms with the Institute, and expensive even then.",
+      "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei posti in cui i sintetici dell'Istituto viaggiano. La rarità della sua produzione implica che è molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
+    }
+  },
+  "armorSyntheticSturdyLeg": {
+    "en": "Sturdy Synth Leg",
+    "it": "Gambale Sintetico Rinforzato",
+    "_description": {
+      "en": "Developed by The Institute, Synth armor is distinctive and provides excellent protection, especially from energy weapons, but can only really be found within the Commonwealth and other locations where Institute synths travel. The rarity of its manufacture means that it's hard to acquire for anyone not on good terms with the Institute, and expensive even then.",
+      "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei posti in cui i sintetici dell'Istituto viaggiano. La rarità della sua produzione implica che è molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
+    }
+  },
+  "armorVaultTecSecurityArmor": {
+    "en": "Vault-Tec Security Armor",
+    "it": "Armatura della Sicurezza VaultTec",
+    "_description": {
+      "en": "Consisting of a long bulletproof apron and shoulder pads, plus an accompanying shock-resistant helmet, this armor was issued in small quantities to every vault for those vault-dwellers chosen to act as security personnel. It provides modest protection and isn't especially bulky, but it is unlikely to stand up to heavy combat, simply because vaults were expected to be controlled environments, lacking in the heavy armaments found outside.",
+      "it": "Formate da un grembiule, delle spalline e un casco antiurto, queste armature vengono distribuite in piccole quantità a ogni Vault per gli abitanti scelti come personale di sicurezza. Fornisce una protezione modesta e non è particolarmente ingombrante, ma molto probabilmente non sarebbe in grado di sostenere un combattimento pesante per il semplice fatto che i Vault avrebbero dovuto essere degli ambienti controllati, privi delle armi pesanti che si possono trovare all'esterno."
+    }
+  },
+  "armorVaultTecSecurityHelmet": {
+    "en": "Vault-Tec Security Helmet",
+    "it": "Casco della Sicurezza VaultTec",
+    "_description": {
+      "en": "Consisting of a long bulletproof apron and shoulder pads, plus an accompanying shock-resistant helmet, this armor was issued in small quantities to every vault for those vault-dwellers chosen to act as security personnel. It provides modest protection and isn't especially bulky, but it is unlikely to stand up to heavy combat, simply because vaults were expected to be controlled environments, lacking in the heavy armaments found outside.",
+      "it": "Formate da un grembiule, delle spalline e un casco antiurto, queste armature vengono distribuite in piccole quantità a ogni Vault per gli abitanti scelti come personale di sicurezza. Fornisce una protezione modesta e non è particolarmente ingombrante, ma molto probabilmente non sarebbe in grado di sostenere un combattimento pesante per il semplice fatto che i Vault avrebbero dovuto essere degli ambienti controllati, privi delle armi pesanti che si possono trovare all'esterno."
+    }
+  }
+}

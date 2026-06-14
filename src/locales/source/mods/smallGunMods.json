@@ -1,0 +1,314 @@
+{
+  "modAdvanced": {
+    "en": "Advanced Receiver",
+    "it": "Castello Avanzato",
+    "_description": {
+      "en": "+3 damage DC, +1 Fire Rate",
+      "it": "+3 danno DC, +1 Cadenza di Fuoco"
+    }
+  },
+  "modAutomatic": {
+    "en": "Automatic Receiver",
+    "it": "Castello Automatico",
+    "_description": {
+      "en": "-1 damage DC, +2 Fire Rate, gains Burst, gains Inaccurate",
+      "it": "-1 danno DC, +2 Cadenza di Fuoco, ottiene Raffica, ottiene Impreciso"
+    }
+  },
+  "modAutomaticPistonReceiver": {
+    "en": "Automatic Piston Receiver",
+    "it": "Castello Automatico a Pistone",
+    "_description": {
+      "en": "+2 Fire Rate, reduces Range by 1 grade",
+      "it": "+2 Cadenza di Fuoco, riduce la Gittata di 1 grado"
+    }
+  },
+  "modBayonet": {
+    "en": "Bayonet",
+    "it": "Baionetta",
+    "_description": {
+      "en": "Melee Weapon, deals 4 DC Physical Piercing 1 damage",
+      "it": "Arma da Mischia, infligge 4 DC danni Fisici Penetranti 1"
+    }
+  },
+  "modBoostedCoilCapacitor": {
+    "en": "Boosted Coil Capacitor",
+    "it": "Condensatore con Bobina Potenziata",
+    "_description": {
+      "en": "+1 damage DC, gains Vicious",
+      "it": "+1 danno DC, ottiene Violento"
+    }
+  },
+  "modCalibrated": {
+    "en": "Calibrated Receiver",
+    "it": "Castello Calibrato",
+    "_description": {
+      "en": "Gains Vicious",
+      "it": "Ottiene Violento"
+    }
+  },
+  "modCompensator": {
+    "en": "Compensator",
+    "it": "Compensatore",
+    "_description": {
+      "en": "Loses Inaccurate",
+      "it": "Perde Impreciso"
+    }
+  },
+  "modErgonomicGrip": {
+    "en": "Ergonomic Grip",
+    "it": "Impugnatura Ergonomica",
+    "_description": {
+      "en": "Loses Inaccurate",
+      "it": "Perde Impreciso"
+    }
+  },
+  "modFinnedBarrel": {
+    "en": "Finned Barrel",
+    "it": "Canna Alettata",
+    "_description": {
+      "en": "+1 damage DC, increases Range by 1 grade",
+      "it": "+1 danno DC, aumenta la Gittata di 1 grado"
+    }
+  },
+  "modFlashHider": {
+    "en": "Flash Hider",
+    "it": "Rompifiamma",
+    "_description": {
+      "en": "Loses Inaccurate, +1 Fire Rate",
+      "it": "Perde Impreciso, +1 Cadenza di Fuoco"
+    }
+  },
+  "modFullCapacitor": {
+    "en": "Full Capacitor",
+    "it": "Condensatore Completo",
+    "_description": {
+      "en": "Gains Vicious",
+      "it": "Ottiene Violento"
+    }
+  },
+  "modFullStock": {
+    "en": "Full Stock",
+    "it": "Calcio Completo",
+    "_description": {
+      "en": "Gains Two-Handed, loses Inaccurate",
+      "it": "Ottiene A Due Mani, perde Impreciso"
+    }
+  },
+  "modHairTrigger": {
+    "en": "Hair Trigger",
+    "it": "Grilletto Sensibile",
+    "_description": {
+      "en": "+1 Fire Rate",
+      "it": "+1 Cadenza di Fuoco"
+    }
+  },
+  "modLargeMagazine": {
+    "en": "Large Magazine",
+    "it": "Caricatore Grande",
+    "_description": {
+      "en": "+1 Fire Rate, Unreliable",
+      "it": "+1 Cadenza di Fuoco, Inaffidabile"
+    }
+  },
+  "modLargeQuickMagazine": {
+    "en": "Large Quick Magazine",
+    "it": "Caricatore Grande Rapido",
+    "_description": {
+      "en": "+1 Fire Rate",
+      "it": "+1 Cadenza di Fuoco"
+    }
+  },
+  "modLongBarrel": {
+    "en": "Long Barrel",
+    "it": "Canna Lunga",
+    "_description": {
+      "en": "Increases Range by 1 grade",
+      "it": "Aumenta la Gittata di 1 grado"
+    }
+  },
+  "modLongNightVisionScope": {
+    "en": "Long Night Vision Scope",
+    "it": "Mirino Lungo Visione Notturna",
+    "_description": {
+      "en": "Gains Precision, gains Night Vision, increases Range by 1",
+      "it": "Ottiene Di Precisione, ottiene Visione Notturna, aumenta la Gittata di 1"
+    }
+  },
+  "modLongScope": {
+    "en": "Long Scope",
+    "it": "Mirino Lungo",
+    "_description": {
+      "en": "Increases Range by 1, gains Precision",
+      "it": "Aumenta la Gittata di 1, ottiene Di Precisione"
+    }
+  },
+  "modMarksmanGrip": {
+    "en": "Marksman Grip",
+    "it": "Impugnatura da Tiratore Esperto",
+    "_description": {
+      "en": "Loses Inaccurate, gains Piercing 1",
+      "it": "Perde Impreciso, ottiene Penetrante 1"
+    }
+  },
+  "modMarksmanStock": {
+    "en": "Marksman Stock",
+    "it": "Calcio da Tiratore Scelto",
+    "_description": {
+      "en": "Gains Two-Handed, loses Inaccurate, gains Precision",
+      "it": "Ottiene A Due Mani, perde Impreciso, ottiene Di Precisione"
+    }
+  },
+  "modPortedBarrel": {
+    "en": "Ported Barrel",
+    "it": "Canna Forata",
+    "_description": {
+      "en": "Increases Range by 1 grade, +1 Fire Rate",
+      "it": "Aumenta la Gittata di 1 grado, +1 Cadenza di Fuoco"
+    }
+  },
+  "modPowerful": {
+    "en": "Powerful Receiver",
+    "it": "Castello Potente",
+    "_description": {
+      "en": "+2 damage DC",
+      "it": "+2 danno DC"
+    }
+  },
+  "modQuickMagazine": {
+    "en": "Quick Magazine",
+    "it": "Caricatore Rapido",
+    "_description": {
+      "en": "Gains Reliable",
+      "it": "Ottiene Affidabile"
+    }
+  },
+  "modReceiver308": {
+    "en": ".308 Receiver",
+    "it": "Castello .308",
+    "_description": {
+      "en": "Damage becomes 7 DC, Ammo becomes .308",
+      "it": "I danni diventano 7 DC, le Munizioni diventano .308"
+    }
+  },
+  "modReceiver38": {
+    "en": ".38 Receiver",
+    "it": "Castello .38",
+    "_description": {
+      "en": "Damage becomes 4 DC, Ammo becomes .38",
+      "it": "I danni diventano 4 DC, le Munizioni diventano .38"
+    }
+  },
+  "modReceiver45": {
+    "en": ".45 Receiver",
+    "it": "Castello .45",
+    "_description": {
+      "en": "Damage becomes 4 DC, +1 Fire Rate, Ammo becomes .45",
+      "it": "I danni diventano 4 DC, +1 Cadenza di Fuoco, le Munizioni diventano .45"
+    }
+  },
+  "modReceiver50": {
+    "en": ".50 Receiver",
+    "it": "Castello .50",
+    "_description": {
+      "en": "Damage becomes 8 DC, gains Vicious, Ammo becomes .50",
+      "it": "I danni diventano 8 DC, ottiene Violento, le Munizioni diventano .50"
+    }
+  },
+  "modRecoilCompensatingStock": {
+    "en": "Recoil Compensating Stock",
+    "it": "Calcio per Compensazione del Rinculo",
+    "_description": {
+      "en": "Gains Two-Handed, loses Inaccurate, +1 Fire Rate",
+      "it": "Ottiene A Due Mani, perde Impreciso, +1 Cadenza di Fuoco"
+    }
+  },
+  "modReconScope": {
+    "en": "Recon Scope",
+    "it": "Mirino da Ricognizione",
+    "_description": {
+      "en": "Gains Precision, gains Recon",
+      "it": "Ottiene Di Precisione, ottiene Da Ricognizione"
+    }
+  },
+  "modReflexSight": {
+    "en": "Reflex Sight",
+    "it": "Mirino Reflex",
+    "_description": {
+      "en": "Can reroll the Hit Location die",
+      "it": "Può ritirare il dado del Punto di Impatto"
+    }
+  },
+  "modSawedOffBarrel": {
+    "en": "Sawed-Off Barrel",
+    "it": "Canna Mozza",
+    "_description": {
+      "en": "Loses Two-Handed, gains Close Quarters",
+      "it": "Perde A Due Mani, ottiene Corpo a Corpo"
+    }
+  },
+  "modShieldedBarrel": {
+    "en": "Shielded Barrel",
+    "it": "Canna Schermata",
+    "_description": {
+      "en": "+1 damage DC",
+      "it": "+1 danno DC"
+    }
+  },
+  "modShortBarrel": {
+    "en": "Short Barrel",
+    "it": "Canna Ridotta",
+    "_description": {
+      "en": "Gains Inaccurate",
+      "it": "Ottiene Imprecisa"
+    }
+  },
+  "modShortNightVisionScope": {
+    "en": "Short Night Vision Scope",
+    "it": "Mirino Corto Visione Notturna",
+    "_description": {
+      "en": "Gains Precision, gains Night Vision",
+      "it": "Ottiene Di Precisione, ottiene Visione Notturna"
+    }
+  },
+  "modShortScope": {
+    "en": "Short Scope",
+    "it": "Mirino Corto",
+    "_description": {
+      "en": "Gains Precision",
+      "it": "Ottiene Di Precisione"
+    }
+  },
+  "modStableBarrel": {
+    "en": "Stable Barrel",
+    "it": "Canna Stabile",
+    "_description": {
+      "en": "Gains Reliable",
+      "it": "Ottiene Affidabile"
+    }
+  },
+  "modSuppressor": {
+    "en": "Suppressor",
+    "it": "Silenziatore",
+    "_description": {
+      "en": "Gains Silenced",
+      "it": "Ottiene Silenziata"
+    }
+  },
+  "modVentedBarrel": {
+    "en": "Vented Barrel",
+    "it": "Canna Ventilata",
+    "_description": {
+      "en": "Increases Range by 1 grade, +1 Fire Rate, gains Reliable",
+      "it": "Aumenta la Gittata di 1 grado, +1 Cadenza di Fuoco, ottiene Affidabile"
+    }
+  },
+  "modWeaponHardened": {
+    "en": "Hardened",
+    "it": "Temprato",
+    "_description": {
+      "en": "+1 damage DC",
+      "it": "+1 danno DC"
+    }
+  }
+}

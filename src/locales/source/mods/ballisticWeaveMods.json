@@ -1,0 +1,42 @@
+{
+  "modBallisticWeave": {
+    "en": "Ballistic Weave",
+    "it": "Trama Balistica",
+    "_description": {
+      "en": "+2 Physical Resistance, +2 Energy Resistance",
+      "it": "+2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia"
+    }
+  },
+  "modBallisticWeave2": {
+    "en": "Ballistic Weave Mk2",
+    "it": "Trama Balistica Mk2",
+    "_description": {
+      "en": "+3 Physical Resistance, +3 Energy Resistance",
+      "it": "+3 Resistenza ai Danni Fisici, +3 Resistenza ai Danni da Energia"
+    }
+  },
+  "modBallisticWeave3": {
+    "en": "Ballistic Weave Mk3",
+    "it": "Trama Balistica Mk3",
+    "_description": {
+      "en": "+4 Physical Resistance, +4 Energy Resistance",
+      "it": "+4 Resistenza ai Danni Fisici, +4 Resistenza ai Danni da Energia"
+    }
+  },
+  "modBallisticWeave4": {
+    "en": "Ballistic Weave Mk4",
+    "it": "Trama Balistica Mk4",
+    "_description": {
+      "en": "+5 Physical Resistance, +5 Energy Resistance",
+      "it": "+5 Resistenza ai Danni Fisici, +5 Resistenza ai Danni da Energia"
+    }
+  },
+  "modBallisticWeave5": {
+    "en": "Ballistic Weave Mk5",
+    "it": "Trama Balistica Mk5",
+    "_description": {
+      "en": "+6 Physical Resistance, +6 Energy Resistance",
+      "it": "+6 Resistenza ai Danni Fisici, +6 Resistenza ai Danni da Energia"
+    }
+  }
+}

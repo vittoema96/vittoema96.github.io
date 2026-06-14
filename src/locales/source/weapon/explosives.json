@@ -1,0 +1,170 @@
+{
+  "weaponAtomicMine": {
+    "en": "Atomic Mine",
+    "it": "Mina Atomica",
+    "_description": {
+      "en": "A nuclear landmine. Functions like any other mine, but its explosion resembles that of a MiniNuke.",
+      "it": "Una mina nucleare. Funziona come qualsiasi altra mina, ma la sua esplosione assomiglia a quella di una MiniNuke."
+    }
+  },
+  "weaponBottlecapMine": {
+    "en": "Bottlecap Mine",
+    "it": "Mina a Tappi",
+    "_description": {
+      "en": "A crudely assembled mine packed with bottlecaps and a rough explosive mixture.",
+      "it": "Una mina assemblata in modo rozzo e riempita di tappi di bottiglia con un grezzo miscuglio esplosivo."
+    }
+  },
+  "weaponCryoMine": {
+    "en": "Cryo Mine",
+    "it": "Mina Criogenica",
+    "_description": {
+      "en": "Cryo mines function similarly to cryogenic grenades, spraying the vicinity in freezing chemicals when the mine is triggered.",
+      "it": "Le mine criogeniche funzionano in modo simile alle granate criogeniche, spruzzando i dintorni con sostanze chimiche congelanti quando la mina viene attivata."
+    }
+  },
+  "weaponCryogenicGrenade": {
+    "en": "Cryogenic Grenade",
+    "it": "Granata Criogenica",
+    "_description": {
+      "en": "Cryogenic grenades release a spray of aerosolized chemicals of extremely low temperature—liquid nitrogen is a common ingredient—which rapidly saps the heat from the surrounding area, often leaving enemies and objects in the blast frozen.",
+      "it": "Le granate criogeniche rilasciano uno spruzzo di sostanze chimiche aerosolizzate a temperatura estremamente bassa (l'azoto liquido è un ingrediente comune) che sottrae rapidamente calore dall'area circostante, lasciando spesso congelati nemici e oggetti nell'esplosione."
+    }
+  },
+  "weaponDetonator": {
+    "en": "Detonator",
+    "it": "Detonatore",
+    "_description": {
+      "en": "Appearing as something like a pistol grip with a trigger and a short antenna, a detonator allows placed explosives to be triggered remotely. It removes the Delay (X) Trait and allows detonation as a minor action within Long range.",
+      "it": "Con l'aspetto di un'impugnatura a pistola con grilletto e una corta antenna, un detonatore consente di attivare a distanza gli esplosivi piazzati. Rimuove la qualità Ritardo (X) e permette la detonazione come azione minore entro gittata Lunga."
+    }
+  },
+  "weaponDynamite": {
+    "en": "Dynamite",
+    "it": "Dinamite",
+    "_description": {
+      "en": "A simple explosive, dynamite is a pressed stick of absorbent clay or similar material soaked in nitroglycerine. Sticks of dynamite are a compact and relatively cheap and stable form of explosive that isn’t too difficult to make.",
+      "it": "Un semplice esplosivo, la dinamite è un bastoncino pressato di argilla assorbente o materiale simile imbevuto di nitroglicerina. I candelotti di dinamite sono una forma di esplosivo compatta, relativamente economica e stabile."
+    }
+  },
+  "weaponDynamiteBundle": {
+    "en": "Dynamite Bundle",
+    "it": "Pacchetto Di Dinamite",
+    "_description": {
+      "en": "A collection of dynamite sticks bundled together with a timer as a placed bomb. Dynamite bundles have the Delay (X) quality, with the rating set when the bomb is placed.",
+      "it": "Una collezione di candelotti di dinamite legati insieme con un timer come bomba piazzata. I pacchetti di dinamite hanno la qualità Ritardo (X), con il valore impostato quando la bomba viene piazzata."
+    }
+  },
+  "weaponExplosiveBaseball": {
+    "en": "Explosive Baseball",
+    "it": "Palla da Baseball Esplosiva",
+    "_description": {
+      "en": "A hollowed baseball packed with improvised explosives. Crude, old-fashioned, and effective.",
+      "it": "Una palla da baseball svuotata e riempita di esplosivi improvvisati. Rozza, antiquata ed efficace."
+    }
+  },
+  "weaponFlashBang": {
+    "en": "Flash Bang",
+    "it": "Flashbang",
+    "_description": {
+      "en": "These non-lethal grenades are designed to disorient enemies rather than inflict direct harm: when they detonate, they produce a blinding flash and a deafening bang which leaves enemies reeling and vulnerable (Stunned).",
+      "it": "Queste granate non letali sono progettate per disorientare i nemici invece di infliggere danni diretti: quando esplodono, producono un lampo accecante e un botto assordante che lascia i nemici barcollanti e vulnerabili (Storditi)."
+    }
+  },
+  "weaponFragGrenadeMirv": {
+    "en": "Frag Grenade MIRV",
+    "it": "Granata A Frammentazione MIRV",
+    "_description": {
+      "en": "Fragmentation grenade MIRVs are explosive grenades that release a collection of smaller bomblets, scattering them over a wide area before they explode.",
+      "it": "Le granate a frammentazione MIRV sono granate esplosive che rilasciano una collezione di sottomunizioni più piccole, disperdendole su un'ampia area prima che esplodano."
+    }
+  },
+  "weaponFragmentationGrenade": {
+    "en": "Fragmentation Grenade",
+    "it": "Granata a Frammentazione",
+    "_description": {
+      "en": "A standard fragmentation grenade, designed to shatter into deadly shards on detonation.",
+      "it": "Una granata a frammentazione standard, progettata per frantumarsi in schegge mortali al momento della detonazione."
+    }
+  },
+  "weaponFragmentationMine": {
+    "en": "Fragmentation Mine",
+    "it": "Mina a Frammentazione",
+    "_description": {
+      "en": "A pressure-plate mine similar in design and construction to a fragmentation grenade.",
+      "it": "Una mina a piastra di pressione simile per progetto e costruzione a una granata a frammentazione."
+    }
+  },
+  "weaponMolotovCocktail": {
+    "en": "Molotov Cocktail",
+    "it": "Bottiglia Molotov",
+    "_description": {
+      "en": "A glass bottle filled with flammable liquid and a cloth wick. Light and throw at an enemy to create a burst of fire.",
+      "it": "Una bottiglia di vetro riempita di liquido infiammabile con uno stoppino di stoffa. Si accende e si lancia verso un nemico per creare un'esplosione di fuoco."
+    }
+  },
+  "weaponNukaGrenade": {
+    "en": "Nuka Grenade",
+    "it": "Granata Nuka",
+    "_description": {
+      "en": "A makeshift nuclear grenade crafted from a Nuka-Cola bottle. Small but devastatingly radioactive.",
+      "it": "Una granata nucleare artigianale ricavata da una bottiglia di Nuka-Cola. Piccola ma devastantemente radioattiva."
+    }
+  },
+  "weaponPlasmaGrenade": {
+    "en": "Plasma Grenade",
+    "it": "Granata al Plasma",
+    "_description": {
+      "en": "A grenade filled with chemicals that rapidly transform into superheated plasma on detonation.",
+      "it": "Una granata piena di sostanze chimiche che si trasformano rapidamente in plasma surriscaldato al momento della detonazione."
+    }
+  },
+  "weaponPlasmaMine": {
+    "en": "Plasma Mine",
+    "it": "Mina al Plasma",
+    "_description": {
+      "en": "A magnetically-sealed mine that releases an energized wave of plasma when triggered.",
+      "it": "Una mina sigillata magneticamente che rilascia un'onda energetica di plasma quando viene attivata."
+    }
+  },
+  "weaponPlasticExplosives": {
+    "en": "Plastic Explosives",
+    "it": "Esplosivo Plastico",
+    "_description": {
+      "en": "A very stable and malleable compound. Plastic explosives can be rigged to explode with either remote or timer detonators and can be detonated with other high explosives. Very useful for removing inconvenient nature.",
+      "it": "Un composto molto stabile e malleabile. L'esplosivo plastico può essere attrezzato per esplodere con detonatori remoti o a timer e può essere innescato con altri esplosivi ad alto potenziale."
+    }
+  },
+  "weaponPowderCharge": {
+    "en": "Powder Charge",
+    "it": "Carica Di Polvere Da Sparo",
+    "_description": {
+      "en": "The powder charge is a crude improvised explosive consisting of a sealed tin can packed with dynamite, with a sensor module duct-taped to the side.",
+      "it": "La carica di polvere è un rozzo esplosivo improvvisato composto da una latta sigillata piena di dinamite, con un modulo sensore fissato sul lato con del nastro adesivo."
+    }
+  },
+  "weaponPulseGrenade": {
+    "en": "Pulse Grenade",
+    "it": "Granata a Impulsi",
+    "_description": {
+      "en": "An electromagnetic pulse grenade that deals damage to robots, synths, and power armor.",
+      "it": "Una granata a impulso elettromagnetico che infligge danni a robot, sintetici e armature atomiche."
+    }
+  },
+  "weaponPulseMine": {
+    "en": "Pulse Mine",
+    "it": "Mina a Impulsi",
+    "_description": {
+      "en": "A proximity-fused EMP mine that deals heavy damage to robots, synths, and power armor.",
+      "it": "Una mina EMP a prossimita che infligge danni pesanti a robot, sintetici e armature atomiche."
+    }
+  },
+  "weaponSmokeGrenade": {
+    "en": "Smoke Grenade",
+    "it": "Granata Fumogena",
+    "_description": {
+      "en": "Smoke grenades produce a dense cloud of chemical smoke to screen for concealment. It adds +2 difficulty to all attacks and PER-based tests made by or against anyone within the cloud.",
+      "it": "Le granate fumogene producono una densa nuvola di fumo chimico per fornire occultamento. Aggiunge +2 alla difficoltà di tutti gli attacchi e delle prove basate su PER effettuate da o contro chiunque si trovi all'interno della nuvola."
+    }
+  }
+}

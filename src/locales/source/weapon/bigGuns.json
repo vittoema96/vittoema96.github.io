@@ -1,0 +1,130 @@
+{
+  "weapon50CalMachineGun": {
+    "en": ".50 Cal Machine Gun",
+    "it": "Mitragliatrice Calibro .50",
+    "_description": {
+      "en": "These machine guns, chambered for the powerful .50 round, are extremely effective against infantry, materiel, lightly armored vehicles, and a wide range of other targets. This design has been in use since long before the Great War but finds a new lease of life when carried by Power Armored fighters.",
+      "it": "Queste mitragliatrici, camerate per il potente proiettile calibro .50, sono estremamente efficaci contro la fanteria, i materiali, i veicoli leggeri e una vasta gamma di altri bersagli. Questo design è in uso da molto prima della Grande Guerra, ma trova nuova vita se impugnato da combattenti in Armatura Atomica."
+    }
+  },
+  "weaponAutoGrenadeLauncher": {
+    "en": "Auto Grenade Launcher",
+    "it": "Lanciagranate Automatico",
+    "_description": {
+      "en": "Sometimes referred to as a grenade machine gun, this is a belt-fed automatic weapon designed to lay down a heavy volume of explosive ordnance. Since the advent of Power Armor, many units were converted for use on foot rather than from a tripod.",
+      "it": "A volte indicato come mitragliatrice a granate, è un'arma automatica alimentata a nastro progettata per lanciare un pesante volume di ordigni esplosivi. Dall'avvento dell'Armatura Atomica, molte unità sono state convertite per l'uso a piedi anziché su treppiede."
+    }
+  },
+  "weaponDroneCannon": {
+    "en": "Drone Cannon",
+    "it": "Cannone Drone",
+    "_description": {
+      "en": "Found on the arms of alien guardian drones, these strange energy weapons fire a ball of energy that acts a little like a grenade, bouncing for a few seconds before exploding.",
+      "it": "Trovate sulle braccia dei droni guardiani alieni, queste strane armi a energia sparano una sfera di energia che agisce un po' come una granata, rimbalzando per alcuni secondi prima di esplodere."
+    }
+  },
+  "weaponFatMan": {
+    "en": "Fat Man",
+    "it": "Fat Man",
+    "_description": {
+      "en": "The M42 Nuclear Catapult is a shoulder-fired infantry support weapon which launches compact tactical nuclear warheads—mini-nukes, each about the size of a football—over a moderate distance to inflict massive destruction upon the target location.",
+      "it": "La Catapulta Nucleare M42 è un’arma a spalla di supporto alla fanteria che lancia a breve distanza testate nucleari tattiche compatte per infliggere danni pesanti all’interno della posizione bersagliata."
+    }
+  },
+  "weaponFlamethrower": {
+    "en": "Flamethrower",
+    "it": "Lanciafiamme",
+    "_description": {
+      "en": "A flamethrower, or flamer, is a weapon which sprays an ignited fuel mixture over an area, essentially creating a jet of flame that can burn or ignite targets at a distance. Ideal for clearing dead foliage, irritating vermin, and fortified bunkers!",
+      "it": "Spruzza una miscela di carburante incendiato, creando un getto di fiamme che può bruciare o appiccare il fuoco al bersaglio a distanza."
+    }
+  },
+  "weaponGatlingGun": {
+    "en": "Gatling Gun",
+    "it": "Mitragliatrice Gatling",
+    "_description": {
+      "en": "Resembling an old-fashioned version of a minigun, the rotating barrels are operated by a hand-crank rather than an electric motor. It has a slower rate of fire than its advanced counterpart, but is no less functional.",
+      "it": "Simile a una versione vecchio stile di un minigun, le canne rotanti sono azionate da una manovella manuale piuttosto che da un motore elettrico. Ha una cadenza di fuoco più lenta rispetto alla sua controparte moderna, ma non è meno funzionale."
+    }
+  },
+  "weaponGatlingLaser": {
+    "en": "Gatling Laser",
+    "it": "Laser Gatling",
+    "_description": {
+      "en": "A high rate-of-fire laser weapon, the Gatling laser uses several rotating barrels fired in quick succession to produce a devastating fusillade of laser pulses. While the individual laser pulses lack in stopping power, the sheer mass of them can wear down almost any target.",
+      "it": "Arma a laser con enorme cadenza di fuoco, usa una serie di canne rotanti per produrre una pioggia di impulsi laser. Richiede fonti di energia potenti come nuclei di fusione."
+    }
+  },
+  "weaponGatlingPlasma": {
+    "en": "Gatling Plasma",
+    "it": "Plasma Gatling",
+    "_description": {
+      "en": "An evolution of plasma technology, it inflicts damage through a combination of physical impact and thermal transfer. It consumes ammunition at a rapid rate, making supply a full-time job. Note: Inflicts both Physical and Energy damage (use the lower resistance).",
+      "it": "Un'evoluzione della tecnologia al plasma, infligge danni attraverso una combinazione di impatto fisico e trasferimento termico. Consuma munizioni a un ritmo rapido. Nota: Infligge sia danni Fisici che Energetici (si usa la resistenza più bassa)."
+    }
+  },
+  "weaponGaussMinigun": {
+    "en": "Gauss Minigun",
+    "it": "Minigun Gauss",
+    "_description": {
+      "en": "A powerful, automatic ballistic weapon that rapidly fires hypervelocity 2mm rounds. It is a prestigious weapon that demands a wealthy owner due to its rare ammunition and sheer rate of fire.",
+      "it": "Una potente arma balistica automatica che spara rapidamente proiettili da 2 mm a velocità iper-elevata. È un'arma prestigiosa che richiede un proprietario facoltoso a causa delle munizioni rare e dell'elevata cadenza di fuoco."
+    }
+  },
+  "weaponIncinerator": {
+    "en": "Incinerator",
+    "it": "Inceneritore",
+    "_description": {
+      "en": "A heavy incinerator sprays an ignited fuel mixture over the target to burn them, launching a series of fireballs that explode on impact and ignite as the fuel splashes the target.",
+      "it": "Riversa una miscela incendiata sul bersaglio per bruciarlo, lancia una serie di palle di fuoco che esplodono sul colpo e appiccano il fuoco non appena il combustibile spruzza il bersaglio."
+    }
+  },
+  "weaponJunkJet": {
+    "en": "Junk Jet",
+    "it": "Junk Jet",
+    "_description": {
+      "en": "The Junk Jet is a makeshift heavy weapon which fires anything. Any items loaded into the weapon's hopper are hurled with deadly force from the business end of the gun. Naturally, this makes it quite useful in situations where random junk is abundant but actual ammunition is scarce.",
+      "it": "Spara qualsiasi cosa caricata nella tramoggia con potenza letale, utile in situazioni con abbondanza di cianfrusaglie inutili."
+    }
+  },
+  "weaponMinigun": {
+    "en": "Minigun",
+    "it": "Mitragliatore a Canne Rotanti",
+    "_description": {
+      "en": "The minigun is a motorized Gatling-style rapid fire weapon. Miniguns can be found as mounted door guns on Vertibirds or as a handheld heavy assault and support weapon. The high rate-of-fire of the weapon means that it can produce devastating results, but at a cost of consuming ammunition at a prodigious rate.",
+      "it": "Arma motorizzata per il fuoco rapido, consuma molte munizioni, usato da esercito e fazioni minori."
+    }
+  },
+  "weaponMissileLauncher": {
+    "en": "Missile Launcher",
+    "it": "Lanciamissili",
+    "_description": {
+      "en": "A refined, highly adaptable multipurpose missile launcher. This modular launcher is smaller and more maneuverable than earlier models, consisting of a two-part launch tube, firing mechanism, mounting brackets, and sighting apparatus.",
+      "it": "Lancia missili a corto raggio. Un’arma polivalente molto sofisticata ed estremamente adattabile che è entrata a far parte dell’arsenale americano"
+    }
+  },
+  "weaponMrHandyFlamethrower": {
+    "en": "Flamethrower Arm",
+    "it": "Arto Lanciafiamme",
+    "_description": {
+      "en": "Flamethrower integrated into a Mr. Handy's body. Sprays an ignited fuel mixture over an area, essentially creating a jet of flame that can burn or ignite targets at a distance. Only Mr. Handy can use this weapon.",
+      "it": "Lanciafiamme integrato nel corpo di un Mr. Handy. Spruzza una miscela di carburante incendiato, creando un getto di fiamme che può bruciare o appiccare il fuoco al bersaglio a distanza. Solo Mr. Handy può utilizzare quest'arma."
+    }
+  },
+  "weaponPlasmaCaster": {
+    "en": "Plasma Caster",
+    "it": "Lanciatore Plasma",
+    "_description": {
+      "en": "An older, bulkier plasma weapon rediscovered after the Great War. It is more damaging and has a superior fire rate to a typical plasma rifle, but is far less accurate and much heavier. Note: Inflicts both Physical and Energy damage (use the lower resistance).",
+      "it": "Un'arma al plasma più vecchia e ingombrante riscoperta dopo la Grande Guerra. Infligge più danni e ha una cadenza di fuoco superiore a un tipico fucile al plasma, ma è molto meno precisa e molto più pesante. Nota: Infligge sia danni Fisici che Energetici (si usa la resistenza più bassa)."
+    }
+  },
+  "weaponTeslaCannon": {
+    "en": "Tesla Cannon",
+    "it": "Cannone Tesla",
+    "_description": {
+      "en": "A shoulder-mounted directed energy weapon based on designs by Nikola Tesla. It is a rare sight in the Wastelands, though some branches of the Brotherhood of Steel have attempted to recreate the technology.",
+      "it": "Un'arma a energia diretta montata a spalla basata sui progetti di Nikola Tesla. È una vista rara nelle Zone Contaminate, sebbene alcuni rami della Confraternita d'Acciaio abbiano cercato di ricreare questa tecnologia."
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "modInsulatedLining": {
+    "en": "Insulated Lining",
+    "it": "Rivestimento Isolante",
+    "_description": {
+      "en": "+1 Energy Resistance",
+      "it": "+1 Resistenza ai Danni da Energia"
+    }
+  },
+  "modProtectiveLining": {
+    "en": "Protective Lining",
+    "it": "Rivestimento Protettivo",
+    "_description": {
+      "en": "+2 Energy Resistance, +2 Radiation Resistance",
+      "it": "+2 Resistenza ai Danni da Energia, +2 Resistenza ai Danni da Radiazioni"
+    }
+  },
+  "modResistantLining": {
+    "en": "Resistant Lining",
+    "it": "Rivestimento Resistente",
+    "_description": {
+      "en": "+2 Energy Resistance, +1 Radiation Resistance",
+      "it": "+2 Resistenza ai Danni da Energia, +1 Resistenza ai Danni da Radiazioni"
+    }
+  },
+  "modShieldedLining": {
+    "en": "Shielded Lining",
+    "it": "Rivestimento Schermato",
+    "_description": {
+      "en": "+3 Energy Resistance, +3 Radiation Resistance",
+      "it": "+3 Resistenza ai Danni da Energia, +3 Resistenza ai Danni da Radiazioni"
+    }
+  },
+  "modTreatedLining": {
+    "en": "Treated Lining",
+    "it": "Rivestimento Trattato",
+    "_description": {
+      "en": "+1 Energy Resistance, +1 Radiation Resistance",
+      "it": "+1 Resistenza ai Danni da Energia, +1 Resistenza ai Danni da Radiazioni"
+    }
+  }
+}

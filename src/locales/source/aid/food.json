@@ -1,0 +1,602 @@
+{
+  "foodBerry": {
+    "en": "Berry",
+    "it": "Bacca",
+    "_description": {
+      "en": "Small purple berries of the Tarberry plant, a water-grown crop similar to pre-War cranberries. A useful ingredient in several recipes, but difficult to cultivate in any location without a decent supply of reasonably clean water. Communities able to grow tarberries often need to protect their crop from raiders.",
+      "it": "Sono piccole bacche di una cultura idroponica molto simile ai mirtilli che esistevano prima della guerra. È un ingrediente utile in diverse ricette, ma è difficile da coltivare ovunque non ci sia una riserva adeguata di acqua abbastanza pulita. Le comunità che riescono a coltivarle spesso devono difendere i loro campi dai predoni."
+    }
+  },
+  "foodBlamCoMacAndCheese": {
+    "en": "BlamCo Mac and Cheese",
+    "it": "Mac and Cheese di BlamCo",
+    "_description": {
+      "en": "A pre-War fast food product, still found in the wastelands many years later. Normally found in brightly colored boxes with an illustration of instant mac and cheese on the front. Sometimes, preserved boxes of BlamCo Brand Mac and Cheese can be found. These are identical to the listed version, but are not irradiated, and increase their rarity by +1.",
+      "it": "Un prodotto alimentare veloce dell'anteguerra, ancora trovato nella Zona Contaminata molti anni dopo. Normalmente trovato in scatole dai colori vivaci con un'illustrazione di mac and cheese istantaneo sul davanti. A volte, si possono trovare scatole conservate di Mac and Cheese di BlamCo. Queste sono identiche alla versione elencata, ma non sono radioattive, e aumentano la loro rarità di +1."
+    }
+  },
+  "foodBloatflyMeat": {
+    "en": "Bloatfly Meat",
+    "it": "Carne di Mosca Mutante",
+    "_description": {
+      "en": "A rough chunk of meat cut from the body of a dead Bloatfly. Filling and nutritious, but unappetizing even when cooked. Bloatfly meat can be cooked to produce Baked Bloatfly.",
+      "it": "Un tocco di carne tagliato dal corpo di una notonetta morta. È saziante e nutriente, ma resta disgustoso anche una volta cotto. La carne di mosca mutante può essere cotta per ottenere una Mosca Mutante Arrosto."
+    }
+  },
+  "foodBloodbugMeat": {
+    "en": "Bloodbug Meat",
+    "it": "Carne di Succhiasangue",
+    "_description": {
+      "en": "A chunk of bloody meat from a Bloodbug, a large and aggressive mutant mosquito that normally preys on livestock and other large animals. Bloodbug meat can be cooked to produce Bloodbug steak.",
+      "it": "Un pezzo di carne sanguinolenta di un succhiasangue, una grossa zanzara mutante e aggressiva che normalmente preda il bestiame e altri animali di grossa taglia. La carne di succhiasangue può essere cucinata per ottenere una Bistecca di Succhiasangue."
+    }
+  },
+  "foodBloodbugSteak": {
+    "en": "Bloodbug Steak",
+    "it": "Bistecca di Succhiasangue",
+    "_description": {
+      "en": "A piece of Bloodbug meat cooked over an open flame. If you can stand to eat it, and can ignore the aftertaste, it's reasonably nutritious and even leaves a feeling of renewed vigor and health for a while after eating.",
+      "it": "Un pezzo di carne di succhiasangue cotto a fiamma viva. Se la si riesce a mangiare ignorando il retrogusto, è abbastanza nutriente e lascia persino una sensazione di rinnovato vigore e salute per un certo tempo dopo il pasto."
+    }
+  },
+  "foodBrahminMeat": {
+    "en": "Brahmin Meat",
+    "it": "Carne di Bramino",
+    "_description": {
+      "en": "A slab of meat from the two-headed mutant cattle that roam the wastelands. Not massively dissimilar to beef from before the War, though somewhat radioactive due to coming from a mutant animal. Can be cooked to produce ribeye steak.",
+      "it": "Una fetta di carne proveniente da uno dei buoi mutanti bicefali che si aggirano per la Zona Contaminata. Non è molto differente dalla carne dell'anteguerra, anche se è un po' radioattiva dato che proviene da un mutante. Può essere cotta per ottenere una Bistecca Ribeye."
+    }
+  },
+  "foodCannedDogFood": {
+    "en": "Canned Dog Food",
+    "it": "Cibo per Cani in Scatola",
+    "_description": {
+      "en": "A metal can of processed meat intended to be fed to dogs. Despite being made for dogs, it's entirely edible by humans, and the sealed can keeps the food within preserved and relatively safe to eat for long periods.",
+      "it": "Una lattina di metallo di carne lavorata destinata ad essere data ai cani. Nonostante sia fatta per i cani, è completamente commestibile dagli umani, e la lattina sigillata mantiene il cibo all'interno conservato e relativamente sicuro da mangiare per lunghi periodi."
+    }
+  },
+  "foodCannedMeat": {
+    "en": "Canned Meat",
+    "it": "Carne in Scatola",
+    "_description": {
+      "en": "A small metal tin of mixed processed meat, typically containing mixtures of meat from brahmin, radstags, mole rats, mongrel dogs, and anything else the maker can get their hands on (some of which may not be fit for human consumption). Special: Roll 2 DC when determining if the food inflicts Radiation damage, rather than 1 DC. You suffer 1 Radiation damage, ignoring damage resistance, for each Effect rolled.",
+      "it": "Una piccola lattina di metallo di carne mista lavorata, che tipicamente contiene miscele di carne di bramino, cervi radioattivi, ratti talpa, cani bastardini e qualsiasi altra cosa il produttore riesca a mettere le mani sopra (alcune delle quali potrebbero non essere adatte al consumo umano). Speciale: Tira 2 DC quando determini se il cibo infligge danni da Radiazione, invece di 1 DC. Subisci 1 danno da Radiazione, ignorando la resistenza ai danni, per ogni Effetto tirato."
+    }
+  },
+  "foodCarrot": {
+    "en": "Carrot",
+    "it": "Carota",
+    "_description": {
+      "en": "A slightly mutated form of the common, orange root vegetable. Easy enough to grow in decent quantities, and useful for a variety of recipes, small wasteland farms often include a few carrot patches. Carrot is a component of several different recipes for food items. Carrots grown in non-irradiated conditions (such as within vaults or similar locations) are not irradiated but increase their rarity by +1.",
+      "it": "Una forma leggermente mutata della comune carota arancione. Abbastanza facile da coltivare in discrete quantità, e utile per una varietà di ricette, le piccole fattorie della Zona Contaminata spesso includono qualche campo di carote. La carota è un componente di diverse ricette per cibi. Le carote coltivate in condizioni non radioattive (come all'interno dei Vault o luoghi simili) non sono radioattive ma aumentano la loro rarità di +1."
+    }
+  },
+  "foodCookedSoftshellMirelurkMeat": {
+    "en": "Cooked Softshell Mirelurk Meat",
+    "it": "Carne di Mirelurk a Guscio Morbido Cotta",
+    "_description": {
+      "en": "The softer meat from mirelurks, cooked into a rough steak. A high-energy meal, those who eat cooked softshell meat are often invigorated and eager for action for a while afterwards.",
+      "it": "Si tratta del taglio di carne più morbida dei mirelurk, cotta come fosse una sorta di bistecca. È un pasto molto sostanzioso, per cui chi la mangia solitamente si sente rinvigorito e pronto all'azione per un bel po' di tempo."
+    }
+  },
+  "foodCorn": {
+    "en": "Corn",
+    "it": "Granturco",
+    "_description": {
+      "en": "A highly versatile crop cultivated across the Americas for centuries. Corn remains largely unchanged by the War, and it remains a staple of wasteland agriculture. Corn grown in non-irradiated conditions (such as within vaults or similar locations) is not irradiated but increases its rarity by +1. In addition to its use as food, corn is a main ingredient in vegetable starch, which can be used to make adhesives for crafting.",
+      "it": "Una coltura altamente versatile coltivata nelle Americhe per secoli. Il granturco rimane in gran parte invariato dalla Guerra, e rimane un pilastro dell'agricoltura della Zona Contaminata. Il granturco coltivato in condizioni non radioattive (come all'interno dei Vault o luoghi simili) non è radioattivo ma aumenta la sua rarità di +1. Oltre al suo uso come cibo, il granturco è un ingrediente principale nell'amido vegetale, che può essere usato per fare adesivi per il crafting."
+    }
+  },
+  "foodCram": {
+    "en": "Cram",
+    "it": "Carne Cram",
+    "_description": {
+      "en": "A tin of processed meat produced in vast quantities pre-War to address food shortages and serve as a meat ration for soldiers. The tin, with an easy-open pull tab, helps keep the contents preserved for long periods, making Cram more useful for survivalists and those scavenging for food.",
+      "it": "È una lattina di carne in scatola, prodotta in grandi quantità prima della guerra al fine di far fronte alla carenza di cibo e servire come razione di proteine per i soldati. La lattina, dotata di una linguetta ad apertura facilitata, aiuta a conservare per lunghi periodi il suo contenuto, rendendo il Cram più utile per i survivalisti che per coloro alla ricerca di cibo."
+    }
+  },
+  "foodCrispySquirrelBits": {
+    "en": "Crispy Squirrel Bits",
+    "it": "Bocconcini di Scoiattolo Croccanti",
+    "_description": {
+      "en": "Chunks of squirrel meat, which have been fried until crispy, often found held together on a skewer. An easy way to get a little nutrition, and not so heavy a meal that it weighs you down while you digest it.",
+      "it": "Sono dei pezzetti di carne di scoiattolo, cotti fino a diventare croccanti, che spesso si trovano infilzati insieme su uno spiedo. È un modo semplice per trovare un po' di nutrimento, un pasto non abbastanza pesante da appesantire durante la digestione."
+    }
+  },
+  "foodDandyBoyApples": {
+    "en": "Dandy Boy Apples",
+    "it": "Mele Dandy Boy",
+    "_description": {
+      "en": "Candied apples produced by the Dandy Boy company. An extremely sweet fruit-based snack packaged in a cardboard box. Normally well-preserved due to the high sugar content, boxes of these can still be found in the ruins of convenience stores and groceries across the wasteland, and in the possession of people who've recently raided said ruined convenience stores and groceries.",
+      "it": "Mele candite prodotte dalla compagnia Dandy Boy. Uno snack a base di frutta estremamente dolce confezionato in una scatola di cartone. Normalmente ben conservate grazie all'alto contenuto di zucchero, scatole di queste possono ancora essere trovate nelle rovine di negozi di alimentari e drogherie attraverso la Zona Contaminata, e in possesso di persone che hanno recentemente razziato detti negozi di alimentari e drogherie in rovina."
+    }
+  },
+  "foodDeathclawEgg": {
+    "en": "Deathclaw Egg",
+    "it": "Uovo di Deathclaw",
+    "_description": {
+      "en": "A large egg laid by a deathclaw. Dangerous to obtain, as deathclaws lay them and hatch from them, but potentially valuable as they can be used in a few recipes which produce highly nutritious food. A deathclaw egg is a key ingredient in deathclaw omelettes.",
+      "it": "È un grosso uovo deposto da un deathclaw. È pericoloso da ottenere, dato che i deathclaw, oltre a deporli, ne nascono, ma è potenzialmente importante poiché può essere usato in alcune ricette molto nutrienti. Un uovo di deathclaw è un ingrediente chiave nelle omelette di deathclaw."
+    }
+  },
+  "foodDeathclawMeat": {
+    "en": "Deathclaw Meat",
+    "it": "Carne di Deathclaw",
+    "_description": {
+      "en": "A cut of meat from a deathclaw. Dangerous to obtain, as it can only be taken from a dead deathclaw or someone who killed a deathclaw, but valuable as they can be extremely nutritious, especially when properly prepared. Deathclaw meat can be cooked to produce deathclaw steak.",
+      "it": "Un taglio di carne proveniente da un deathclaw. Pericolosa da procurarsi, poiché può essere ottenuta solo da un deathclaw morto o da qualcosa che lo ha ucciso. Oltre che preziosa, è anche estremamente nutriente, soprattutto se adeguatamente preparata. La carne di deathclaw può essere cucinata per creare una Bistecca di Deathclaw."
+    }
+  },
+  "foodDeathclawOmelette": {
+    "en": "Deathclaw Omelette",
+    "it": "Omelette di Deathclaw",
+    "_description": {
+      "en": "An omelette made from a deathclaw egg. In addition to being highly nutritious, it stimulates the natural healing processes of the body, allowing a person to recover more quickly from harm for a while after eating.",
+      "it": "Si tratta di un'omelette cucinata con un uovo di deathclaw. È abbastanza saziante e nutriente da poter sfamare qualcuno per un giorno intero, facendolo anche sentire più forte e in forma per un po' dopo il pasto."
+    }
+  },
+  "foodDeathclawSteak": {
+    "en": "Deathclaw Steak",
+    "it": "Bistecca di Deathclaw",
+    "_description": {
+      "en": "A slab of cooked deathclaw meat. Sufficiently filling and nutritious that it could easily be your only meal for the day, while also leaving you feeling fitter and stronger for a while after eating.",
+      "it": "Una grossa fetta di carne cotta di deathclaw. Sufficientemente sostanziosa e nutriente da poter facilmente essere un pasto unico per la giornata, permette di sentirsi in forze e pieni di energia per un po'."
+    }
+  },
+  "foodFancyLadsSnacks": {
+    "en": "Fancy Lads Snacks",
+    "it": "Tortine Fancy Lads",
+    "_description": {
+      "en": "Small, frosted cakes, so laden with sugar and other sweeteners than they're essentially preserved forever. Proclaimed in advertising to be 'America's Favorite Snackfood', these cakes can be found across the wastelands, in many teeth-achingly sweet varieties. Sometimes, preserved boxes of Fancy Lads Snack Cakes can be found. These are identical to the listed version, but are not irradiated, and increase their rarity by +1.",
+      "it": "Sono delle piccole tortine glassate ricoperte di uno strato così spesso di zucchero e altri dolcificanti da risultare praticamente eterne. Queste tortine, il cui slogan dichiara essere 'lo snack preferito d'America', si possono trovare attraverso la Zona Contaminata in molte varietà, tutte in grado di cariare i denti. A volte, si possono trovare scatole conservate di Tortine Fancy Lads. Queste sono identiche alla versione elencata, ma non sono radioattive, e aumentano la loro rarità di +1."
+    }
+  },
+  "foodGourd": {
+    "en": "Gourd",
+    "it": "Zucca",
+    "_description": {
+      "en": "A large edible fruit, which is fleshy with a hard skin, like a pumpkin. The pulp inside can be scooped out and eaten or used in cooking, while the outer skin is often carved and used as decoration.",
+      "it": "Si tratta di un grosso frutto edibile dalla polpa carnosa e la buccia dura, simile a un melone. L'interno può essere mangiato direttamente col cucchiaio o usato in cucina, mentre la buccia spesso viene incisa a scopo decorativo."
+    }
+  },
+  "foodGranola": {
+    "en": "Granola",
+    "it": "Granolama",
+    "_description": {
+      "en": "A tall, fast-growing grass similar to wheat, which can be ground down to make flour for making bread and other staple foods. Razorgrain is an ingredient in a few recipes.",
+      "it": "Un'erba alta e a crescita rapida simile al grano, che può essere macinata per fare farina per fare pane e altri alimenti di base. Il granolama è un ingrediente in alcune ricette."
+    }
+  },
+  "foodGrilledRadroach": {
+    "en": "Grilled Radroach",
+    "it": "Scarafaggio Radioattivo Grigliato",
+    "_description": {
+      "en": "A grilled chunk of meat taken from a radroach. Not especially appetizing, especially if you know where it came from, but sufficiently nutritious and filling for those with few other choices.",
+      "it": "È un pezzo di scarafaggio radioattivo grigliato. Non molto appetitoso, specialmente nel caso se ne conosca la provenienza, ma abbastanza nutriente e saziante quando non si hanno molte altre scelte."
+    }
+  },
+  "foodGrilledRadstag": {
+    "en": "Grilled Radstag",
+    "it": "Cervo Radioattivo Grigliato",
+    "_description": {
+      "en": "A grilled rack of ribs from a radstag. Easy enough to make when you've got the main ingredient—radstag meat—but tasty and satisfying enough that your burdens feel a little lighter once you've finished eating.",
+      "it": "Una griglia di costolette di cervo radioattivo. Abbastanza facile da fare quando si ha l'ingrediente principale—carne di cervo radioattivo—ma abbastanza gustosa e soddisfacente da far sentire i propri fardelli un po' più leggeri una volta finito di mangiare."
+    }
+  },
+  "foodGummyCandy": {
+    "en": "Gummy Candy",
+    "it": "Caramelle Gommose",
+    "_description": {
+      "en": "A pre-War confection, gum drops are small drops of congealed gelatin sweetened and flavored with a variety of overpowering flavors. The most common variety to survive the War, ironically, were labelled as radioactive for their powerful sour flavor. Long years sat in cupboards and on shelves has made this more literal, however.",
+      "it": "Le caramelle gommose, dei dolci risalenti all'anteguerra, sono delle piccole gocce di gelatina solidificata, dolcificata e aromatizzata con tutta una serie di sapori travolgenti. Ironicamente, la qualità più comune sopravvissuta alla Guerra fu etichettata come radioattiva per il suo gusto incredibilmente aspro, e i lunghi anni di permanenza nelle credenze e sugli scaffali non hanno fatto che farla diventare realtà."
+    }
+  },
+  "foodIguanaBits": {
+    "en": "Iguana Bits",
+    "it": "Bocconcini di Iguana",
+    "_description": {
+      "en": "Chunks of raw iguana meat, in a small can or another sealed container. At least, you hope that's iguana meat. You don't see many iguanas around. Iguana bits are an ingredient in Iguana on a Stick and Iguana Soup.",
+      "it": "Sono dei pezzettini di carne cruda di iguana racchiusi in una piccola lattina o in un contenitore sigillato... Per lo meno, si spera sia carne d'iguana: non ce ne sono molte in giro. I bocconcini d'iguana sono un ingrediente degli Spiedini di Iguana e della Zuppa di Iguana."
+    }
+  },
+  "foodIguanaOnAStick": {
+    "en": "Iguana on a Stick",
+    "it": "Spiedino di Iguana",
+    "_description": {
+      "en": "Chunks of iguana meat on a wooden skewer, which have then been cooked. Not the best meal, but it'll do the trick if you're desperate or need to secure the loyalty of a canine companion.",
+      "it": "Pezzetti di carne di iguana infilati su uno spiedino di legno e poi cotti. Non è il massimo dei pasti, ma può andare quando si è disperati o si ha bisogno di assicurarsi la lealtà di un compagno a quattro zampe."
+    }
+  },
+  "foodIguanaSoup": {
+    "en": "Iguana Soup",
+    "it": "Zuppa di Iguana",
+    "_description": {
+      "en": "A soup made with carrot and iguana bits. A more satisfying meal than any of the ingredients would have been alone.",
+      "it": "Si tratta di una zuppa fatta con carote e pezzi di iguana: meglio così che mangiare i singoli ingredienti da soli."
+    }
+  },
+  "foodInstaMash": {
+    "en": "InstaMash",
+    "it": "InstaMash",
+    "_description": {
+      "en": "A packet of freeze-dried powdered mashed potato still sealed inside its cardboard box. Just add water! Sometimes, preserved boxes of InstaMash can be found. These are identical to the listed version, but are not irradiated, and increase their rarity by +1.",
+      "it": "Un pacchetto di purè di patate liofilizzato in polvere ancora sigillato all'interno della sua scatola di cartone. Basta aggiungere acqua! A volte, si possono trovare scatole conservate di InstaMash. Queste sono identiche alla versione elencata, ma non sono radioattive, e aumentano la loro rarità di +1."
+    }
+  },
+  "foodInstantRamen": {
+    "en": "Instant Ramen",
+    "it": "Ramen Istantaneo",
+    "_description": {
+      "en": "A simple cup of noodle soup. Moderately filling and thirst-quenching, and simple enough to make if you can find the ingredients.",
+      "it": "Si tratta di una semplice confezione di ramen. È relativamente saziante e dissetante, oltre a essere abbastanza semplice da preparare se si riescono a trovare gli ingredienti."
+    }
+  },
+  "foodInstituteRations": {
+    "en": "Institute Rations",
+    "it": "Razioni dell'Istituto",
+    "_description": {
+      "en": "A small white box of food marked with the symbol of the Institute. Each box contains enriched ration bars filled with essential nutrients. Each ration bar contains your daily requirements of forty different vitamins, minerals, and nutrients, which are listed on the back of the box.",
+      "it": "Una piccola scatola di cibo bianca e contrassegnata con il simbolo dell'Istituto. Ciascuna di esse contiene delle barrette per razioni arricchite, piene di nutrienti essenziali. Ogni barretta apporta la razione giornaliera necessaria di quaranta diverse vitamine, minerali e nutrienti, tutti elencati sul retro."
+    }
+  },
+  "foodMentalFungus": {
+    "en": "Mental Fungus",
+    "it": "Fungo Mentale",
+    "_description": {
+      "en": "An off-white mushroom which resembles a brain, and which tends to be found in clusters growing in dark, dank corners. Slightly irradiated due simply to growing in the wastelands, but otherwise harmless, despite its slightly alarming name and appearance. Brain fungus is an ingredient in Mentats.",
+      "it": "Un fungo biancastro che assomiglia a un cervello, e che tende a essere trovato in gruppi che crescono in angoli bui e umidi. Leggermente radioattivo semplicemente per il fatto di crescere nella Zona Contaminata, ma per il resto innocuo, nonostante il suo nome e aspetto leggermente allarmanti. Il fungo mentale è un ingrediente nei Mentat."
+    }
+  },
+  "foodMinestrone": {
+    "en": "Minestrone",
+    "it": "Minestrone",
+    "_description": {
+      "en": "A simple soup made with carrot and tato. A reasonably filling meal, sating both hunger and thirst, while also helping to fortify the body against radiation poisoning for a while.",
+      "it": "Una semplice zuppa fatta con carote e tatos. Un pasto abbastanza saziante, che placa sia la fame che la sete, aiutando anche a fortificare il corpo contro l'avvelenamento da radiazioni per un po'."
+    }
+  },
+  "foodMirelurkCake": {
+    "en": "Mirelurk Cake",
+    "it": "Tortino di Mirelurk",
+    "_description": {
+      "en": "Flakes and fragments of mirelurk meat, mixed with mirelurk egg to bind it together into a patty and then cooked. In addition to some modest nutritional value, eating mirelurk cake allows you to survive underwater for longer.",
+      "it": "Sono scaglie e frammenti di carne di mirelurk mischiati con un uovo, anch'esso di mirelurk, e compattati in una tortina che viene poi cotta. Oltre a fornire un modesto valore nutrizionale, mangiare un tortino di mirelurk permette di sopravvivere più a lungo sott'acqua."
+    }
+  },
+  "foodMirelurkEgg": {
+    "en": "Mirelurk Egg",
+    "it": "Uovo di Mirelurk",
+    "_description": {
+      "en": "Eggs found in mirelurk nests. Normally found in clutches of 2-3, these eggs hatch into mirelurk hatchlings if left undisturbed. Mirelurk eggs are a key ingredient of both Mirelurk Egg Omelette and Mirelurk Cake.",
+      "it": "Sono le uova che si trovano nei nidi di mirelurk, solitamente a gruppi di due o tre. Se nessuno le tocca, si schiudono dando vita a dei mirelurk. Le uova di mirelurk sono un ingrediente chiave sia dell'Omelette di Uova di Mirelurk che del Tortino di Mirelurk."
+    }
+  },
+  "foodMirelurkEggOmelette": {
+    "en": "Mirelurk Egg Omelette",
+    "it": "Omelette di Uova di Mirelurk",
+    "_description": {
+      "en": "An omelette made from a mirelurk egg. In addition to their nutritional value, when properly prepared, these omelettes can leave you feeling energized and ready for action.",
+      "it": "Si tratta di un'omelette fatta con un uovo di mirelurk. Oltre al suo valore nutrizionale, quando è preparata bene lascia pieni di energie e pronti all'azione."
+    }
+  },
+  "foodMirelurkMeat": {
+    "en": "Mirelurk Meat",
+    "it": "Carne di Mirelurk",
+    "_description": {
+      "en": "The meat from dead mirelurks. This tends to be tougher and of poorer quality than the meat which comes from the weaker softshell mirelurk, but it is still entirely edible. Mirelurk meat is a key ingredient in Mirelurk Cake and can be cooked to produce roasted mirelurk meat.",
+      "it": "È carne di mirelurk morto. Di solito è più dura e di qualità inferiore rispetto a quella proveniente dai più deboli mirelurk a guscio morbido, ma la si può comunque mangiare. La carne di mirelurk è un ingrediente indispensabile per il Tortino di Mirelurk e può essere cotta per ottenere della Carne Arrosto di Mirelurk."
+    }
+  },
+  "foodMirelurkQueenMeat": {
+    "en": "Mirelurk Queen Meat",
+    "it": "Carne di Regina dei Mirelurk",
+    "_description": {
+      "en": "The meat from a dead mirelurk Queen. This meat can make for a great feast, as it is nutrient rich and incredibly filling, leaving a sense of health and wellbeing in any who eat it, even raw. When cooked, these effects are even more pronounced. Queen mirelurk meat can be cooked to produce Mirelurk Queen Steak.",
+      "it": "È carne proveniente da una regina dei mirelurk morta. Può diventare un vero e proprio banchetto, poiché è ricca di sostanze nutritive e incredibilmente saziante, in grado di lasciare un senso di salute e benessere in chiunque se ne cibi, anche da cruda. Se è cotta, gli effetti sono anche più evidenti. La carne di regina dei mirelurk può essere cucinata in una Bistecca di Regina dei Mirelurk."
+    }
+  },
+  "foodMirelurkQueenSteak": {
+    "en": "Mirelurk Queen Steak",
+    "it": "Bistecca di Regina dei Mirelurk",
+    "_description": {
+      "en": "The rare, nutrient-rich meat of a mirelurk Queen, when properly prepared, can fortify the body and provide a surge of health and vitality, making you feel healthier and more resilient for a while after eating.",
+      "it": "La rara carne di una regina dei mirelurk, ricca di nutrienti, quando è cucinata in maniera adeguata può fortificare il corpo ed essere fonte di salute e vitalità, facendo sentire chi la mangia più sano e resistente per un po' dopo il pasto."
+    }
+  },
+  "foodMirelurkRoast": {
+    "en": "Mirelurk Roast",
+    "it": "Arrosto di Mirelurk",
+    "_description": {
+      "en": "A cooked portion of meat from a mirelurk. Though not to the same extent as the softshell meat, roasted mirelurk meat invigorates the body and mind and leaves you ready for action.",
+      "it": "Una porzione di carne cotta di un mirelurk. Anche se non nella stessa misura della carne a guscio morbido, l'arrosto di mirelurk rinvigorisce il corpo e la mente e rende pronti all'azione."
+    }
+  },
+  "foodMoleRatChunks": {
+    "en": "Mole Rat Chunks",
+    "it": "Pezzi di Ratto Talpa",
+    "_description": {
+      "en": "Pieces of mole rat meat which've been cooked over a fire. The meat is somewhat tough and chewy, but leaves a feeling of vigor, as if your reserves of stamina have increased.",
+      "it": "Sono pezzi di ratto talpa cotti sul fuoco. La carne è alquanto dura e gommosa, ma lascia una sensazione di vigoria, come se le riserve di energia fossero aumentate."
+    }
+  },
+  "foodMoleRatMeat": {
+    "en": "Mole Rat Meat",
+    "it": "Carne di Ratto Talpa",
+    "_description": {
+      "en": "A chunk of meat taken from a dead mole rat. Mole rat meat can be cooked to make Mole Rat Chunks.",
+      "it": "Un pezzo di carne proveniente da un ratto talpa morto. Può essere cucinata per avere dei Pezzi di Ratto Talpa."
+    }
+  },
+  "foodMongrelChops": {
+    "en": "Mongrel Chops",
+    "it": "Costolette di Cane",
+    "_description": {
+      "en": "Cuts of mongrel dog meat cooked to make them more nutritious and edible.",
+      "it": "Tagli di carne di cane bastardino cucinati per renderli più nutrienti e commestibili."
+    }
+  },
+  "foodMongrelMeat": {
+    "en": "Mongrel Meat",
+    "it": "Carne di Cane",
+    "_description": {
+      "en": "A chunk of meat taken from a mongrel dog. Mongrel Dog Meat can be cooked to make Mutt Chops.",
+      "it": "Si tratta di un pezzo di carne di cane bastardino. Può essere cucinata per fare delle Costolette di Bastardino."
+    }
+  },
+  "foodMutantHoundChops": {
+    "en": "Mutant Hound Chops",
+    "it": "Costolette di Segugio Mutante",
+    "_description": {
+      "en": "A piece of mutant hound meat cooked to make it safer to eat. For reasons unknown, once cooked, the meat helps absorb radiation already in the body, lessening the effects of radiation poisoning. This effect doesn't compare to proper anti-radiation meds like RadAway, but it can be useful to have a few on hand to soak up the radiation you picked up during an excursion.",
+      "it": "Un pezzo di carne di segugio mutante cucinato per renderlo più sicuro da mangiare. Per ragioni sconosciute, una volta cotta, la carne aiuta ad assorbire le radiazioni già presenti nel corpo, riducendo gli effetti dell'avvelenamento da radiazioni. Questo effetto non si confronta con i veri farmaci anti-radiazioni come il RadAway, ma può essere utile averne alcuni a portata di mano per assorbire le radiazioni raccolte durante un'escursione."
+    }
+  },
+  "foodMutantHoundMeat": {
+    "en": "Mutant Hound Meat",
+    "it": "Carne di Segugio Mutante",
+    "_description": {
+      "en": "A cut of meat taken from a dead mutant hound. This meat's off-green color and lumpy texture suggests that it would be quite unpleasant to eat. Eaten raw, it contains a fair amount of radiation and is unpalatable. Cooked, they're still not the tastiest food, but they're not hazardous. Mutant Hound Meat can be cooked to make Mutant Hound Chops.",
+      "it": "Si tratta di un pezzo di carne di segugio mutante morto. Il suo colore grigio-verde e la consistenza grumosa fanno pensare che sia abbastanza spiacevole da ingerire. Da cruda, è abbastanza radioattiva ed è immangiabile; da cotta continua a non essere il cibo più buono del mondo, ma non è pericolosa. La carne di segugio mutante può essere cucinata per fare delle Costolette di Segugio Mutante."
+    }
+  },
+  "foodMutfruit": {
+    "en": "Mutfruit",
+    "it": "Mutafrutta",
+    "_description": {
+      "en": "Pronounced 'mute-fruit', and short for mutated fruit, mutfruit is a mutated form of apple, which comes in several different varieties depending on where you are. These different varieties are cultivated for their sweet flavor, their use in cooking, and even medicinal properties in some rare cases. Mutfruit is part of a few different recipes, including being turned into Mutfruit Juice. Mutfruits grown in non-irradiated conditions (such as within vaults or similar locations) are not irradiated but increase their rarity by +1.",
+      "it": "Pronunciato 'muta-frutta', e abbreviazione di frutta mutata, la mutafrutta è una forma mutata di mela, che viene in diverse varietà a seconda di dove ti trovi. Queste diverse varietà sono coltivate per il loro sapore dolce, il loro uso in cucina, e persino proprietà medicinali in alcuni rari casi. La mutafrutta fa parte di alcune ricette diverse, incluso essere trasformata in Succo di Mutafrutta. Le mutafrutta coltivate in condizioni non radioattive (come all'interno dei Vault o luoghi simili) non sono radioattive ma aumentano la loro rarità di +1."
+    }
+  },
+  "foodPasta": {
+    "en": "Pasta",
+    "it": "Pasta Alimentare",
+    "_description": {
+      "en": "In the years before the Great War, several charter schools across America entered an experimental program: The Nutritional Alternative Paste Program (NAPP). Developed by Vault-Tec in conjunction with the Federal Government, this supplied participating schools with a supply of food paste, fortified with vitamins, minerals and all the nutrients a growing body needs, and which would remain unspoiled for over a century. The paste is a flavorless mush, garish pink in color, and may have unknown long-term effects on psychology or physiology. It does, however, make the body healthier after consumption.",
+      "it": "Negli anni prima della guerra molte scuole private americane aderirono a un programma sperimentale: il Programma per Pasta Alimentare Alternativa (PPAA). Sviluppato dalla Vault-Tec in collaborazione con il Governo Federale, alle scuole partecipanti veniva inviata una fornitura di pasta alimentare arricchita con vitamine, minerali e tutti i nutrienti di cui ha bisogno un corpo nel pieno della crescita, capace di durare per più di cento anni. La pasta è una poltiglia priva di sapore, di un rosa sgargiante, che potrebbe avere degli effetti sconosciuti a lungo termine sia sulla psiche che sul fisico. Ciò che è certo, a ogni modo, è che rende il corpo più sano dopo averla mangiata."
+    }
+  },
+  "foodPerfectlyPreservedPie": {
+    "en": "Perfectly Preserved Pie",
+    "it": "Crostata Perfettamente Conservata",
+    "_description": {
+      "en": "Contained within the storage of a Port-A-Diner, this slice of fruit pie has been shielded from the radioactive environment since before the Great War, meaning that isn't irradiated at all. Copious quantities of preservatives were used in making the pie, so it's still as edible as it was the day it was made.",
+      "it": "Contenuta all'interno dello stoccaggio di un Port-A-Diner, questa fetta di crostata di frutta è stata schermata dall'ambiente radioattivo fin da prima della Grande Guerra, il che significa che non è affatto radioattiva. Sono state usate copiose quantità di conservanti nella preparazione della crostata, quindi è ancora commestibile come il giorno in cui è stata fatta."
+    }
+  },
+  "foodPorkNBeans": {
+    "en": "Pork n' Beans",
+    "it": "Pork'n'Beans",
+    "_description": {
+      "en": "A can containing a complete meal: beans stewed in a tomato sauce with chunks of cured pork belly. The tin may be slightly rusted, and the label has partly fallen off due to age and water damage, but the contents are still as edible as ever, though moreso if warmed up first.",
+      "it": "Un intero pasto contenuto in una lattina: fagioli stufati in salsa al pomodoro con pezzetti di pancetta di maiale. La lattina potrebbe essere un po' arrugginita e l'etichetta un po' scollata per via del tempo e dell'acqua, ma il contenuto si fa ancora mangiare bene, anche di più una volta scaldato."
+    }
+  },
+  "foodPotatoChips": {
+    "en": "Potato Chips",
+    "it": "Patatine",
+    "_description": {
+      "en": "A can of salted or flavored potato chips, sealed in an inert environment for freshness. A common snack pre-War, you can still find the odd pack of these in most places where people lived or worked.",
+      "it": "È un tubo di patatine salate e sigillate in un ambiente inerte per mantenerne la freschezza. Prima della Guerra era uno spuntino comune, per cui si possono ancora trovare alcuni di questi pacchetti nei posti in cui la gente viveva o lavorava."
+    }
+  },
+  "foodRadroachMeat": {
+    "en": "Radroach Meat",
+    "it": "Carne di Scarafaggio Radioattivo",
+    "_description": {
+      "en": "Meat from the mutated, irradiated cockroaches known commonly as radroaches. The meat is mildly radioactive and offers little in the way of nourishment or satisfaction, and it isn't especially appetizing either. Cooking it provides only a marginal improvement. Radroach meat can be cooked to make Grilled Radroach.",
+      "it": "È carne proveniente dagli scarafaggi mutati e radioattivi comunemente noti come scarafaggi radioattivi. La carne è leggermente radioattiva e offre poco in termini di nutrimento o soddisfazione, e non è nemmeno particolarmente appetitosa. Cucinarla fornisce solo un miglioramento marginale. La carne di scarafaggio radioattivo può essere cucinata per fare uno Scarafaggio Radioattivo Grigliato."
+    }
+  },
+  "foodRadscorpionEgg": {
+    "en": "Radscorpion Egg",
+    "it": "Uovo di Scorpione Radioattivo",
+    "_description": {
+      "en": "The egg of a radscorpion. Not easy to get hold of, as they tend to be found in places where there are radscorpions. Radscorpion Eggs can be used to make Radscorpion Egg Omelette.",
+      "it": "È l'uovo di uno scorpione radioattivo. Non è facile ottenerlo, dato che di solito si trovano in posti in cui ci sono anche i suddetti scorpioni. Le uova di scorpione radioattivo possono essere usate per fare l'Omelette di Uova di Scorpione Radioattivo."
+    }
+  },
+  "foodRadscorpionEggOmelette": {
+    "en": "Radscorpion Egg Omelette",
+    "it": "Omelette di Uova di Scorpione Radioattivo",
+    "_description": {
+      "en": "Made from a radscorpion egg, these omelettes are highly prized by those who make considerable use of combat drugs, as something about the food cleanses the body to remove chemical dependencies and addictions.",
+      "it": "Fatte con uova di scorpione radioattivo, queste omelette sono apprezzate da chi fa uso massiccio di droghe da combattimento, dato che qualcosa in esse ripulisce il corpo, eliminando dipendenze chimiche e assuefazioni."
+    }
+  },
+  "foodRadscorpionMeat": {
+    "en": "Radscorpion Meat",
+    "it": "Carne di Scorpione Radioattivo",
+    "_description": {
+      "en": "Meat taken from inside the carapace of a radscorpion, normally form the tail or one of the legs where it's easier to get to. Difficult to obtain, as it requires killing a radscorpion or taking it from something that killed a radscorpion. Radscorpion meat can be cooked to make Radscorpion Steak.",
+      "it": "Si tratta della carne estratta dall'interno del carapace di uno scorpione radioattivo, di solito dalla coda o da una delle gambe, più facili da raggiungere. È difficile da ottenere, dato che per averla bisogna o uccidere uno scorpione radioattivo o sottrarla a qualcosa che ne ha ucciso uno. La carne di scorpione radioattivo può essere cucinata in una Bistecca di Scorpione Radioattivo."
+    }
+  },
+  "foodRadscorpionSteak": {
+    "en": "Radscorpion Steak",
+    "it": "Bistecca di Scorpione Radioattivo",
+    "_description": {
+      "en": "A cooked slab of radscorpion meat. The process of cooking the meat has reduced the radiation within below dangerous levels and enhanced the nutritional value. Further, eating Radscorpion Steak heightens your resistance to extreme heat for a while.",
+      "it": "È un pezzo cotto di carne di scorpione radioattivo. La cottura abbassa i livelli di radiazione al di sotto della soglia di pericolosità ed aumenta i valori nutrizionali. Inoltre mangiare una bistecca di scorpione radioattivo aumenta la resistenza al calore estremo per un certo lasso di tempo."
+    }
+  },
+  "foodRadstagMeat": {
+    "en": "Radstag Meat",
+    "it": "Carne di Cervo Radioattivo",
+    "_description": {
+      "en": "A piece of meat cut from the body of a dead radstag. It's bulky but can produce nutritious and satisfying meals. Radstag meat can be cooked to make Grilled Radstag or used as an ingredient to make Radstag Stew.",
+      "it": "Si tratta di un pezzo di carne tagliato dal corpo di un cervo radioattivo morto. È pesante, ma può fornire dei pasti nutrienti e soddisfacenti. La carne di cervo radioattivo può essere cucinata per fare del Cervo Radioattivo Grigliato o come ingrediente per uno Stufato di Cervo Radioattivo."
+    }
+  },
+  "foodRadstagStew": {
+    "en": "Radstag Stew",
+    "it": "Stufato di Cervo Radioattivo",
+    "_description": {
+      "en": "Strips of radstag meat, with vegetables and some alcohol, cooked to make a thick, hearty stew. Filling and satisfying, the stew also help fortify the body, making you more resistant to extreme heat for a while.",
+      "it": "Si tratta di fette di carne di cervo radioattivo, cotte assieme a delle verdure e dell'alcol fino ad ottenere uno stufato denso e sostanzioso. Saziante e soddisfacente, fortifica anche il corpo, rendendolo più resistente alle alte temperature per un certo periodo di tempo."
+    }
+  },
+  "foodRibeyeSteak": {
+    "en": "Ribeye Steak",
+    "it": "Bistecca Ribeye",
+    "_description": {
+      "en": "A grilled piece of meat from a brahmin. The closest thing to a pre-War steak you're likely to find, a good piece of grilled brahmin makes for a satisfying meal.",
+      "it": "Questo pezzo grigliato di bramino, simile a una bistecca dell'anteguerra, costituisce un pasto appagante."
+    }
+  },
+  "foodRoastedBloatfly": {
+    "en": "Roasted Bloatfly",
+    "it": "Mosca Mutante Arrosto",
+    "_description": {
+      "en": "A grilled chunk of meat taken from a Bloatfly. The resulting food is revolting, but filling, and for a while after eating it, helps the body absorb radioactive contamination.",
+      "it": "Un pezzo grigliato di carne preso da una notonetta. Il cibo risultante è rivoltante, ma saziante, e per un po' dopo averlo mangiato, aiuta il corpo ad assorbire la contaminazione radioattiva."
+    }
+  },
+  "foodSalisburySteak": {
+    "en": "Salisbury Steak",
+    "it": "Bistecca Salisbury",
+    "_description": {
+      "en": "A ready-to-eat meal of ground beef mixed with breadcrumbs, onion, and egg, served with gravy. The meal is pre-packaged, preserved, and sealed for freshness, and requires only heat to be made properly edible again. Sometimes, preserved boxes of Salisbury Steak can be found. These are identical to the listed version, but are not irradiated, and increase their rarity by +1.",
+      "it": "È un pasto pronto fatto con carne macinata mischiata con briciole di pane, cipolle e uovo, il tutto servito con il suo sughetto. Il pasto è preconfezionato, conservato e sigillato per mantenerlo fresco, per cui basta solo scaldarlo per poterlo mangiare. Talvolta si possono trovare delle scatole incontaminate di Bistecche Salisbury. Sono identiche alla versione descritta, ma non essendo radioattive la loro rarità aumenta di +1."
+    }
+  },
+  "foodSandbean": {
+    "en": "Sandbean",
+    "it": "Fagiolo della Sabbia",
+    "_description": {
+      "en": "Growing from the vine of a silt bean plant, silt beans are red-brown pods of legumes growing in the wilderness. They're not easily cultivated for farming, though many have tried. The beans are an ingredient in a few recipes, such as radstag stew.",
+      "it": "Crescendo dalla vite di una pianta di fagioli della sabbia, i fagioli della sabbia sono baccelli rosso-marroni di legumi che crescono nella natura selvaggia. Non sono facilmente coltivabili per l'agricoltura, anche se molti ci hanno provato. I fagioli sono un ingrediente in alcune ricette, come lo stufato di cervo radioattivo."
+    }
+  },
+  "foodSoftshellMirelurkMeat": {
+    "en": "Softshell Mirelurk Meat",
+    "it": "Carne di Mirelurk a Guscio Morbido",
+    "_description": {
+      "en": "Meat from a softshell mirelurk. Compared to normal mirelurk meat, this is especially tender and flaky, and makes for a much more satisfying food. Softshell Mirelurk meat can be cooked to produce Cooked Softshell Meat.",
+      "it": "Si tratta della carne di un mirelurk a guscio morbido. A confronto con la normale carne di mirelurk questa è incredibilmente tenera e friabile, una pietanza molto più appetitosa. Può essere cotta per ottenere della Carne di Mirelurk a Guscio Morbido Cotta."
+    }
+  },
+  "foodSquirrelBits": {
+    "en": "Squirrel Bits",
+    "it": "Bocconcini di Scoiattolo",
+    "_description": {
+      "en": "A few scraps and chunks of squirrel meat. Squirrels, not being especially large creatures, do not have much meat on them. Squirrel bits can be cooked to make Crispy Squirrel Bits, Squirrel on a Stick, or Squirrel Stew.",
+      "it": "Non è che qualche avanzo e pezzettino di carne di scoiattolo. Dato che non sono creature molto grosse, non hanno molta carne addosso. I bocconcini di scoiattolo possono essere cotti per ottenere dei Bocconcini di Scoiattolo Croccanti, uno Spiedino di Scoiattolo o dello Stufato di Scoiattolo."
+    }
+  },
+  "foodSquirrelOnAStick": {
+    "en": "Squirrel on a Stick",
+    "it": "Spiedino di Scoiattolo",
+    "_description": {
+      "en": "Chunks of squirrel meat skewered on a thin piece of wood for cooking, and then roasted over an open flame. Not enough meat for a decent meal, but certainly enough for a snack.",
+      "it": "Sono dei pezzi di carne di scoiattolo che vengono infilzati su un bastoncino di legno e poi cotti arrostendoli su una fiamma viva. Non c'è abbastanza carne per un pasto come si deve, ma è un discreto spuntino."
+    }
+  },
+  "foodSquirrelStew": {
+    "en": "Squirrel Stew",
+    "it": "Stufato di Scoiattolo",
+    "_description": {
+      "en": "Chunks of squirrel meat, along with carrot, tato, and some bloodleaf, cooked together to create a thick stew. More filling and appetizing than the ingredients individually.",
+      "it": "Si tratta di pezzetti di carne di scoiattolo cotti con carote, tatos e alcune foglie di sangue fino a ottenere uno stufato denso, che è più saziante e gustoso dei singoli ingredienti presi da soli."
+    }
+  },
+  "foodStingwingFilet": {
+    "en": "Stingwing Filet",
+    "it": "Filetto di Stingwing",
+    "_description": {
+      "en": "A cooked piece of stingwing meat. Not the most appetizing of foods, but surprisingly useful for those surviving in the wastelands, as it can sharpen the senses and make you feel more aware of your surroundings.",
+      "it": "Un pezzo cotto di carne di stingwing. Non il cibo più appetitoso, ma sorprendentemente utile per coloro che sopravvivono nella Zona Contaminata, poiché può affinare i sensi e farti sentire più consapevole dell'ambiente circostante."
+    }
+  },
+  "foodStingwingMeat": {
+    "en": "Stingwing Meat",
+    "it": "Carne di Stingwing",
+    "_description": {
+      "en": "Meat taken from the body of a stingwing, a mutated scorpionfly with a nasty sting. Doesn't look especially tasty, but it cooks reasonably well once you've pried the exoskeleton off. Stingwing meat can be cooked to create Stingwing Filet.",
+      "it": "È della carne presa dal corpo di uno stingwing morto, un mecottero mutato le cui punture sono molto fastidiose. Non sembra molto gustosa, ma si fa cuocere abbastanza bene una volta che si è tolto l'esoscheletro. La carne di stingwing può essere cucinata per creare un Filetto di Stingwing."
+    }
+  },
+  "foodSugarBombs": {
+    "en": "Sugar Bombs",
+    "it": "Sugar Bomb",
+    "_description": {
+      "en": "A pre-War breakfast cereal with 'explosive great taste', the box contains little cereal shapes resembling stylized atomic bombs coated in copious amounts of sugar. Some boxes claim to contain a prize inside. Sometimes, preserved boxes of Sugar Bombs can be found. These are identical to the listed version, but are not irradiated, and increase their rarity by +1.",
+      "it": "Un tipo di cereali per la colazione dell'anteguerra con 'un sapore esplosivo', la scatola contiene dei cereali a forma di piccole bombe atomiche stilizzate ricoperte da abbondanti quantità di zucchero. Su alcune scatole c'è scritto che contengono un premio. A volte, si possono trovare scatole conservate di Sugar Bomb. Queste sono identiche alla versione elencata, ma non sono radioattive, e aumentano la loro rarità di +1."
+    }
+  },
+  "foodSweetRoll": {
+    "en": "Sweet Roll",
+    "it": "Dolcetto",
+    "_description": {
+      "en": "A small, sweetened pastry or baked confection normally made as a treat for children or people who need a bit of cheering up.",
+      "it": "Un piccolo dolce o pasticcino dolcificato normalmente fatto come regalo per i bambini o per le persone che hanno bisogno di un po' di conforto."
+    }
+  },
+  "foodTato": {
+    "en": "Tato",
+    "it": "Tato",
+    "_description": {
+      "en": "A mutated hybrid of the pre-War tomato and potato plants, with the stem and reddish skin of the former and the brownish flesh of the latter. Tatos provide decent nutrition, but taste disgusting. However, they're relatively easy to grow and thus are a staple of wasteland agriculture and is an ingredient in a variety of recipes.",
+      "it": "È un ibrido mutante delle piante di pomodori e patate dell'anteguerra, con il picciolo e la buccia rossa dei primi e la polpa marroncina delle seconde. I tatos sono abbastanza nutrienti, ma sono disgustosi. Sono, tuttavia, abbastanza facili da coltivare, per cui sono un caposaldo dell'agricoltura della Zona Contaminata, oltre che un ingrediente per diverse ricette."
+    }
+  },
+  "foodWatermelon": {
+    "en": "Watermelon",
+    "it": "Cocomero",
+    "_description": {
+      "en": "A large, green, juicy fruit with a hard outer rind. Melons are grown in wasteland farms, or found growing wild in the wasteland. Either way, once cut open they're often very satisfying, sating hunger and quenching thirst all in one go. Melons grown in non-irradiated conditions (such as within vaults or similar locations) are not irradiated but increase their rarity by +1.",
+      "it": "Un grosso frutto verde e succoso con una dura scorza esterna. I meloni vengono coltivati nelle fattorie della Zona Contaminata, o trovati crescendo selvatici nella Zona Contaminata. In ogni caso, una volta tagliati sono spesso molto soddisfacenti, saziando la fame e dissetando tutto in una volta. I meloni coltivati in condizioni non radioattive (come all'interno dei Vault o luoghi simili) non sono radioattivi ma aumentano la loro rarità di +1."
+    }
+  },
+  "foodYaoGuaiChops": {
+    "en": "Yao Guai Chops",
+    "it": "Costolette di Yao Guai",
+    "_description": {
+      "en": "A rack of ribs made with Yao Guai meat. Yao Guai ribs are both a satisfying meal and inspire a sense of invincibility, while also boosting your tolerance for pain for a short while.",
+      "it": "Una griglia di costolette fatta con carne di Yao Guai. Le costolette di Yao Guai sono sia un pasto soddisfacente che ispirano un senso di invincibilità, aumentando anche la tolleranza al dolore per un breve periodo."
+    }
+  },
+  "foodYaoGuaiMeat": {
+    "en": "Yao Guai Meat",
+    "it": "Carne di Yao Guai",
+    "_description": {
+      "en": "Another dangerous meat to obtain, Yao Guai meat comes from the bodies of slain Yao Guai, a ferocious mutated form of bear that roams the wastelands. The meat is highly prized and nutritious, though still irradiated if consumed raw. Yao Guai meat can be cooked to make Yao Guai Ribs or Yao Guai Roast.",
+      "it": "Un'altra carne pericolosa da ottenere, la carne di Yao Guai proviene dai corpi degli Yao Guai uccisi, una forma mutata e feroce di orso che si aggira per la Zona Contaminata. La carne è molto apprezzata e nutriente, anche se ancora radioattiva se consumata cruda. La carne di Yao Guai può essere cucinata per fare delle Costolette di Yao Guai o un Arrosto di Yao Guai."
+    }
+  },
+  "foodYaoGuaiRoast": {
+    "en": "Yao Guai Roast",
+    "it": "Arrosto di Yao Guai",
+    "_description": {
+      "en": "A roasted piece of Yao Guai meat cooked with carrot and tato. An extremely filling and satisfying meal, and many have claimed that it heightens their killer instinct and ability to inflict harm for a while after eating.",
+      "it": "Non è che un pezzo di carne di Yao Guai cotto con carote e tatos. Piatto incredibilmente saziante e appetitoso, in molti sostengono che aumenti per un po' di tempo l'istinto omicida e l'abilità di fare del male dopo che lo si è mangiato."
+    }
+  },
+  "foodYumYumDeviledEggs": {
+    "en": "Yum Yum Deviled Eggs",
+    "it": "Uova Ripiene Yum-Yum",
+    "_description": {
+      "en": "Hard-boiled eggs stuffed with a spicy filling, which were preserved and sealed for freshness before the Great War.",
+      "it": "Sono delle uova sode farcite con un ripieno piccante, conservate e sigillate per mantenerne la freschezza prima della Grande Guerra."
+    }
+  }
+}

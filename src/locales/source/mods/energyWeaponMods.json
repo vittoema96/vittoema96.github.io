@@ -1,0 +1,266 @@
+{
+  "modAutomaticBarrel": {
+    "en": "Automatic Barrel",
+    "it": "Canna Automatica",
+    "_description": {
+      "en": "-1 damage DC, loses Close Quarters, increases Range by 1 grade, +1 Fire Rate",
+      "it": "-1 danno DC, perde Corpo a Corpo, aumenta la Gittata di 1 grado, +1 Cadenza di Fuoco"
+    }
+  },
+  "modAutomaticSignalRepeater": {
+    "en": "Automatic Signal Repeater",
+    "it": "Ripetitore Segnale Automatica",
+    "_description": {
+      "en": "+2 Fire Rate, gains Burst, loses Blast",
+      "it": "+2 Cadenza di Fuoco, ottiene Raffica, perde Esplosione"
+    }
+  },
+  "modBeamFocuser": {
+    "en": "Beam Focuser",
+    "it": "Concentratore di Raggio",
+    "_description": {
+      "en": "Increases Range by 1 grade",
+      "it": "Aumenta la Gittata di 1 grado"
+    }
+  },
+  "modBeamSplitter": {
+    "en": "Beam Splitter",
+    "it": "Separatore di Raggio",
+    "_description": {
+      "en": "-1 damage DC, gains Spread, -1 Fire Rate, gains Inaccurate, reduces Range by 1 grade",
+      "it": "-1 danno DC, ottiene Disperso, -1 Cadenza di Fuoco, ottiene Impreciso, riduce la Gittata di 1 grado"
+    }
+  },
+  "modBetaWaveTuner": {
+    "en": "Beta Wave Tuner",
+    "it": "Sintonizzatore di Onde Beta",
+    "_description": {
+      "en": "Gains Persistent",
+      "it": "Ottiene Persistente"
+    }
+  },
+  "modBoostedCapacitor": {
+    "en": "Boosted Capacitor",
+    "it": "Condensatore Potenziato",
+    "_description": {
+      "en": "+1 damage DC, -1 Fire Rate",
+      "it": "+1 danno DC, -1 Cadenza di Fuoco"
+    }
+  },
+  "modCompensatingLens": {
+    "en": "Compensating Lens",
+    "it": "Lenti di Compensazione Circolari",
+    "_description": {
+      "en": "+1 Fire Rate, loses Inaccurate",
+      "it": "+1 Cadenza di Fuoco, perde Impreciso"
+    }
+  },
+  "modDeepDish": {
+    "en": "Deep Dish",
+    "it": "Disco Profondo",
+    "_description": {
+      "en": "+1 damage DC, increases Range by 1 grade",
+      "it": "+1 danno DC, aumenta la Gittata di 1 grado"
+    }
+  },
+  "modElectricSignalAntenna": {
+    "en": "Electric Signal Antenna",
+    "it": "Antenna Segnale Elettrico",
+    "_description": {
+      "en": "Damage becomes 7 DC Energy, gains Radioactive",
+      "it": "I danni diventano 7 DC da Energia, ottiene Radioattivo"
+    }
+  },
+  "modFiveChargeCapacitor": {
+    "en": "Five Charge Capacitor",
+    "it": "Condensatore Cinque Cariche",
+    "_description": {
+      "en": "+3 damage DC, consumes 5 ammo per shot",
+      "it": "+3 danno DC, consuma 5 munizioni per colpo"
+    }
+  },
+  "modFlamerBarrel": {
+    "en": "Flamer Barrel",
+    "it": "Canna Lanciafiamme",
+    "_description": {
+      "en": "-2 damage DC, +2 Fire Rate, gains Burst, reduces Range by 1 grade, gains Inaccurate",
+      "it": "-2 danno DC, +2 Cadenza di Fuoco, ottiene Raffica, riduce la Gittata di 1 grado, ottiene Impreciso"
+    }
+  },
+  "modFourChargeCapacitor": {
+    "en": "Four Charge Capacitor",
+    "it": "Condensatore Quattro Cariche",
+    "_description": {
+      "en": "+2 damage DC, consumes 4 ammo per shot",
+      "it": "+2 danno DC, consuma 4 munizioni per colpo"
+    }
+  },
+  "modFullStockEnergy": {
+    "en": "Full Stock",
+    "it": "Calcio Completo",
+    "_description": {
+      "en": "Gains Two-Handed, gains Piercing 1, loses Close Quarters",
+      "it": "Ottiene A Due Mani, ottiene Penetrante 1, perde Corpo a Corpo"
+    }
+  },
+  "modImprovedBarrel": {
+    "en": "Improved Barrel",
+    "it": "Canna Migliorata",
+    "_description": {
+      "en": "+1 damage DC",
+      "it": "+1 danno DC"
+    }
+  },
+  "modLongBarrelEnergy": {
+    "en": "Long Barrel",
+    "it": "Canna Lunga",
+    "_description": {
+      "en": "Loses Close Quarters, increases Range by 1 grade",
+      "it": "Perde Corpo a Corpo, aumenta la Gittata di 1 grado"
+    }
+  },
+  "modLongNightVisionScopeEnergy": {
+    "en": "Long Night Vision Scope",
+    "it": "Mirino Lungo Visione Notturna",
+    "_description": {
+      "en": "Gains Precision, gains Night Vision, increases Range by 1 grade",
+      "it": "Ottiene Di Precisione, ottiene Visione Notturna, aumenta la Gittata di 1 grado"
+    }
+  },
+  "modLongReinforcedBarrel": {
+    "en": "Long Reinforced Barrel",
+    "it": "Canna Lunga Rinforzata",
+    "_description": {
+      "en": "Loses Close Quarters, increases Range by 1 grade, allows muzzle mod",
+      "it": "Perde Corpo a Corpo, aumenta la Gittata di 1 grado, permette mod alla bocca"
+    }
+  },
+  "modLongScopeEnergy": {
+    "en": "Long Scope",
+    "it": "Mirino Lungo",
+    "_description": {
+      "en": "Gains Precision, increases Range by 1 grade",
+      "it": "Ottiene Di Precisione, aumenta la Gittata di 1 grado"
+    }
+  },
+  "modMarksmanGripEnergy": {
+    "en": "Marksman Grip",
+    "it": "Impugnatura da Tiratore Esperto",
+    "_description": {
+      "en": "Loses Inaccurate, gains Piercing 1",
+      "it": "Perde Impreciso, ottiene Penetrante 1"
+    }
+  },
+  "modMarksmanStockEnergy": {
+    "en": "Marksman Stock",
+    "it": "Calcio da Tiratore Scelto",
+    "_description": {
+      "en": "Gains Two-Handed, loses Inaccurate, gains Precision, loses Close Quarters",
+      "it": "Ottiene A Due Mani, perde Impreciso, ottiene Di Precisione, perde Corpo a Corpo"
+    }
+  },
+  "modPhotonicAgitator": {
+    "en": "Photonic Agitator",
+    "it": "Agitatore Fotonico",
+    "_description": {
+      "en": "+1 damage DC, gains Vicious",
+      "it": "+1 danno DC, ottiene Violento"
+    }
+  },
+  "modPhotonicStimulator": {
+    "en": "Photonic Stimulator",
+    "it": "Stimolatore Fotonico",
+    "_description": {
+      "en": "Gains Vicious",
+      "it": "Ottiene Violento"
+    }
+  },
+  "modRecoilCompensatingStockEnergy": {
+    "en": "Recoil Compensating Stock",
+    "it": "Calcio per Compensazione del Rinculo",
+    "_description": {
+      "en": "Gains Two-Handed, loses Inaccurate, +1 Fire Rate, loses Close Quarters",
+      "it": "Ottiene A Due Mani, perde Impreciso, +1 Cadenza di Fuoco, perde Corpo a Corpo"
+    }
+  },
+  "modReconScopeEnergy": {
+    "en": "Recon Scope",
+    "it": "Mirino da Ricognizione",
+    "_description": {
+      "en": "Gains Precision, gains Recon",
+      "it": "Ottiene Di Precisione, ottiene Da Ricognizione"
+    }
+  },
+  "modReflexSightEnergy": {
+    "en": "Reflex Sight",
+    "it": "Mirino Reflex",
+    "_description": {
+      "en": "Can reroll the Hit Location die",
+      "it": "Può ritirare il dado del Punto di Impatto"
+    }
+  },
+  "modShortNightVisionScopeEnergy": {
+    "en": "Short Night Vision Scope",
+    "it": "Mirino Corto Visione Notturna",
+    "_description": {
+      "en": "Gains Precision, gains Night Vision",
+      "it": "Ottiene Di Precisione, ottiene Visione Notturna"
+    }
+  },
+  "modShortReinforcedBarrel": {
+    "en": "Short Reinforced Barrel",
+    "it": "Canna Corta Rinforzata",
+    "_description": {
+      "en": "Allows muzzle mod",
+      "it": "Permette mod alla bocca"
+    }
+  },
+  "modShortScopeEnergy": {
+    "en": "Short Scope",
+    "it": "Mirino Corto",
+    "_description": {
+      "en": "Gains Precision",
+      "it": "Ottiene Di Precisione"
+    }
+  },
+  "modSixChargeCapacitor": {
+    "en": "Six Charge Capacitor",
+    "it": "Condensatore Sei Cariche",
+    "_description": {
+      "en": "+4 damage DC, consumes 6 ammo per shot",
+      "it": "+4 danno DC, consuma 6 munizioni per colpo"
+    }
+  },
+  "modSniperBarrel": {
+    "en": "Sniper Barrel",
+    "it": "Canna da Cecchino",
+    "_description": {
+      "en": "+2 damage DC, loses Close Quarters, increases Range by 1 grade, -1 Fire Rate",
+      "it": "+2 danno DC, perde Corpo a Corpo, aumenta la Gittata di 1 grado, -1 Cadenza di Fuoco"
+    }
+  },
+  "modSplitter": {
+    "en": "Splitter",
+    "it": "Separatore",
+    "_description": {
+      "en": "-1 damage DC, gains Spread, gains Inaccurate",
+      "it": "-1 danno DC, ottiene Disperso, ottiene Impreciso"
+    }
+  },
+  "modStandardStock": {
+    "en": "Standard Stock",
+    "it": "Calcio Standard",
+    "_description": {
+      "en": "Gains Two-Handed, loses Inaccurate, loses Close Quarters",
+      "it": "Ottiene A Due Mani, perde Impreciso, perde Corpo a Corpo"
+    }
+  },
+  "modThreeChargeCapacitor": {
+    "en": "Three Charge Capacitor",
+    "it": "Condensatore Tre Cariche",
+    "_description": {
+      "en": "+1 damage DC, consumes 3 ammo per shot",
+      "it": "+1 danno DC, consuma 3 munizioni per colpo"
+    }
+  }
+}

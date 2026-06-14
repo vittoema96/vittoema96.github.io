@@ -1,0 +1,26 @@
+{
+  "weaponJavelin": {
+    "en": "Javelin",
+    "it": "Giavellotto",
+    "_description": {
+      "en": "A short throwing spear, not sturdy enough for melee but accurate enough to be thrown at medium range.",
+      "it": "Una corta asta da lancio, non abbastanza robusta per il combattimento ravvicinato, ma sufficientemente precisa da essere lanciata a distanza media."
+    }
+  },
+  "weaponThrowingKnives": {
+    "en": "Throwing Knives",
+    "it": "Coltelli da Lancio",
+    "_description": {
+      "en": "Small, sharp blades designed to be thrown. Light, silent, and quick to use.",
+      "it": "Piccole lame affilate progettate per essere lanciate. Leggere, silenziose e veloci da usare."
+    }
+  },
+  "weaponTomahawk": {
+    "en": "Tomahawk",
+    "it": "Tomahawk",
+    "_description": {
+      "en": "A short-handled throwing axe. More imposing than a throwing knife and equally deadly.",
+      "it": "Un'accetta da lancio con manico corto. Piu imponente di un coltello da lancio e altrettanto letale."
+    }
+  }
+}

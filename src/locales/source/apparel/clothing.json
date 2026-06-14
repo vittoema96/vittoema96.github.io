@@ -1,0 +1,322 @@
+{
+  "armorArmyHelmet": {
+    "en": "Army Helmet",
+    "it": "Casco dell'Esercito",
+    "_description": {
+      "en": "A helmet made of metal, plastic, and light ceramics, designed to protect a soldier's head from shrapnel. The helmet is lined with supportive padding to ensure a secure fit.",
+      "it": "È un casco che può essere di metallo, plastica o ceramica leggera, pensato per proteggere la testa dei soldati da qualsiasi scheggia, foderato con un'imbottitura per assicurarsi che calzi a pennello."
+    }
+  },
+  "armorBeerHat": {
+    "en": "Beer Hat",
+    "it": "Cappello da Birra",
+    "_description": {
+      "en": "An ordinary hat fitted with pipes and either cup-holders or cans connected to a funnel, allowing the wearer to enjoy a refreshing drink with their hands free.",
+      "it": "Un normale cappello dotato di tubi e di portabicchieri o lattine collegati a un imbuto, che permette a chi lo indossa di bere tenendo le mani libere."
+    }
+  },
+  "armorBrotherhoodArmoredBattlecoat": {
+    "en": "Brotherhood Armored Battlecoat",
+    "it": "Cappotto Corazzato della Confraternita",
+    "_description": {
+      "en": "A heavy, padded, reinforced leather coat issued to senior Brotherhood of Steel officers and worn over a Brotherhood uniform.",
+      "it": "Un pesante cappotto di cuoio imbottito e rinforzato, assegnato agli ufficiali anziani della Confraternita d'Acciaio e indossato sopra l'uniforme."
+    }
+  },
+  "armorBrotherhoodBomberJacket": {
+    "en": "Brotherhood Bomber Jacket",
+    "it": "Giacca Bomber della Confraternita",
+    "_description": {
+      "en": "A padded leather jacket with a fur-lined collar, worn over a Brotherhood uniform and favored by lancers and other flight personnel.",
+      "it": "Una giacca di pelle imbottita con colletto in pelliccia, indossata sopra un'uniforme della Confraternita e favorita da lancieri e personale di volo."
+    }
+  },
+  "armorBrotherhoodScribe": {
+    "en": "Brotherhood Scribe's Armor",
+    "it": "Armatura da Scriba della Confraternita",
+    "_description": {
+      "en": "The Scribes of the Brotherhood of Steel are sometimes required to venture out into the field to make observations or perform research up-close. While only providing limited protection, this garb is sufficient to protect the wearer from danger long enough to allow them to withdraw and seek assistance from someone better equipped.",
+      "it": "Talvolta gli Scriba della Confraternita d'Acciaio devono avventurarsi sul campo, sia per vedere in prima persona che per fare attività di ricerca da vicino. Anche se la protezione che offre quest'abito è limitata, basta comunque per proteggere dal pericolo abbastanza a lungo per permettere a chi la indossa di ritirarsi e chiedere aiuto a qualcuno meglio equipaggiato."
+    }
+  },
+  "armorBrotherhoodScribeHat": {
+    "en": "Brotherhood Scribe's Hat",
+    "it": "Copricapo da Scriba della Confraternita",
+    "_description": {
+      "en": "This lightweight leather cap and goggles are provided as an accompaniment to the Brotherhood Scribe's Armor, to protect the head from hazardous conditions.",
+      "it": "Si tratta di un leggero cappello di pelle e di un paio di occhiali che vengono forniti assieme all'Armatura dello Scriba della Confraternita per proteggere la testa da qualsiasi condizione pericolosa."
+    }
+  },
+  "armorBrotherhoodSteelFatigues": {
+    "en": "Brotherhood of Steel Fatigues",
+    "it": "Divisa della Confraternita d’Acciaio",
+    "_description": {
+      "en": "A set of basic, hard-wearing gear for Brotherhood of Steel personnel, consisting of a military sweater, pants, gloves, combat boots, and military webbing, and emblazoned with Brotherhood insignia denoting rank and role. The color of the uniform also denotes certain specializations: medics wear a version with a white sweater, while flight personnel wear navy blue. Though not intended for use in combat, these fatigues are hardwearing and resilient enough to provide a little protection against hazards.",
+      "it": "Sono dei semplici e robusti indumenti pensati per il personale della Confraternita d'Acciaio, che consistono di un maglione, pantaloni e guanti militari, stivali da combattimento e cinghie militari, tutti decorati con gli stemmi della Confraternita del rispettivo grado e ruolo. Anche il colore è caratteristico per alcune mansioni: i medici ne indossano una versione con un maglione bianco, mentre quello del personale di volo è blu. Sebbene non sia pensata per il combattimento, l'uniforme è robusta e abbastanza resistente da fornire una qualche protezione contro i danni."
+    }
+  },
+  "armorBrotherhoodSteelHood": {
+    "en": "Brotherhood of Steel Hood",
+    "it": "Cappuccio della Confraternita d’Acciaio",
+    "_description": {
+      "en": "The matching headpiece for the Brotherhood of Steel uniform, this close-fitting hood was developed before the Great War for wearers of Power Armor. It is designed to plug into the helmet of a suit of Power Armor, providing a closer interface to the armor's systems, as well as containing an earpiece and microphone for the armor's internal radio.",
+      "it": "Si tratta del copricapo abbinato all'uniforme della Confraternita d'Acciaio, un cappuccio attillato sviluppato prima della Grande Guerra per coloro che indossavano un'Armatura Atomica, progettato per connettersi nel casco dell'armatura e poter fornire un'interfaccia più accurata dei suoi sistemi, oltre ad avere un auricolare e un microfono per la radio interna ad essa."
+    }
+  },
+  "armorBrotherhoodSteelUniform": {
+    "en": "Brotherhood of Steel Uniform",
+    "it": "Uniforme della Confraternita d’Acciaio",
+    "_description": {
+      "en": "Originally designed as the underarmor bodysuit for the T-45 Power Armor system. The bodysuit's surface is covered with an assortment of interface ports and connections to connect the wearer with the Power Armor frame, over it. The Brotherhood of Steel employ these as the base of their standard uniforms, ensuring that as many of their personnel as possible are ready to wear full armor. In battle, the uniform is normally worn under other armor if Power Armor is unavailable, while senior Brotherhood officers often wear a bomber jacket or armored battlecoat over their undersuit.",
+      "it": "Originariamente concepita come tuta da indossare sotto le armature modello T-45 Rower. La superficie della tuta è ricoperta con tutta una serie di porte d'interfaccia e connessioni per collegare chi la indossa con la struttura dell'Armatura Atomica. La Confraternita d'Acciaio le usa come base per le uniformi, per fare in modo che quanto più personale possibile sia pronto a indossare un'armatura completa. Generalmente, quando non c'è la possibilità di usare un'Armatura Atomica, in battaglia viene indossata sotto altri tipi di armature, mentre gli ufficiali anziani della Confraternita spesso e volentieri la coprono con un giubbotto o una giacca corazzata."
+    }
+  },
+  "armorCage": {
+    "en": "Cage Armor",
+    "it": "Armatura a Gabbia",
+    "_description": {
+      "en": "Heavy leather clothing, reinforced with rags, metal plates, chains, and bars. Like spike armor, the metalwork creates a rough cage of rebar around the head and torso, providing extra protection. Normally worn with a hood and helmet.",
+      "it": "Si tratta di indumenti di cuoio robusto, rinforzati con stracci, placche, catene e tondini metallici. Come l'Armatura Chiodata, la parte in metallo crea una rozza gabbia protettiva attorno alla testa e al torso, andando a creare una protezione aggiuntiva. Solitamente è indossata assieme a cappuccio e casco."
+    }
+  },
+  "armorCasualClothing": {
+    "en": "Casual Clothing",
+    "it": "Vestiti Informali",
+    "_description": {
+      "en": "Simple, lightweight, and easy to move around in, pre-War casual clothing was intended for leisure and light activity.",
+      "it": "Prima della Grande Guerra, i vestiti informali erano semplici, leggeri e comodi, pensati per il divertimento e un'attività leggera."
+    }
+  },
+  "armorCasualHat": {
+    "en": "Casual Hat",
+    "it": "Cappello Informale",
+    "_description": {
+      "en": "A simple, lightweight hat, normally with a peak or brim to keep the sunlight out of the wearer's eyes.",
+      "it": "Si tratta di un cappello semplice e leggero, solitamente con un qualche tipo di tesa per proteggere gli occhi di chi lo indossa dal sole."
+    }
+  },
+  "armorCleanroom": {
+    "en": "Cleanroom Suit",
+    "it": "Tuta da Camera Sterile",
+    "_description": {
+      "en": "A set of overalls made from plasticized fabric, with rubber gloves, a hood, and a breather mask that filters air in and out of the suit.",
+      "it": "Una tuta in tessuto plasticizzato con guanti in gomma, cappuccio e maschera respiratoria che filtra l'aria in entrata e in uscita."
+    }
+  },
+  "armorDrifter": {
+    "en": "Drifter Outfit",
+    "it": "Completo da Reietto",
+    "_description": {
+      "en": "A leather trenchcoat, sturdy hide gloves and boots, a pair of jeans, and a shirt make for an outfit that's hard wearing but comfortable for long periods of time, and warm enough on the open road to suit those who wander the wastelands.",
+      "it": "Un impermeabile, dei robusti guanti e stivali tutti in pelle, un paio di jeans e una camicia compongono questo completo che è resistente, ma al contempo comodo da indossare anche a lungo, oltre ad essere abbastanza caldo da proteggere coloro che vivono sulla strada, girovagando per la Zona Contaminata."
+    }
+  },
+  "armorEngineer": {
+    "en": "Engineer's Armor",
+    "it": "Armatura da Ingegnere",
+    "_description": {
+      "en": "Worn by Brotherhood engineers and those who style themselves as similar, this outfit consists of a protective jacket, heavy canvas or leather gauntlets, and a vest and toolbelt covered in pouches. It provides protection against the hazards of using power tools in a workshop but isn't really armor fit for the battlefield.",
+      "it": "Indossata sia dagli ingegneri della Confraternita che da coloro che si vestono come loro, questo completo è costituito da una giacca protettiva, pesanti guanti di tela o di pelle, un gilet e una cintura portaoggetti piena di tasche. Fornisce protezione contro i pericoli derivanti dal maneggiare utensili potenti in un laboratorio, ma non è propriamente adatta a un campo di battaglia."
+    }
+  },
+  "armorFormalClothing": {
+    "en": "Formal Clothing",
+    "it": "Abiti Formali",
+    "_description": {
+      "en": "A nice suit, a pretty dress, or some other kind of fancy, tailored clothing. Designed to be more flattering than functional, formal clothing is helpful when you need to impress someone, and is often prized as a sign of status, presenting the appearance of someone who doesn't need to worry about their own safety.",
+      "it": "Può trattarsi di un bel completo, un vestito carino o qualsiasi altro tipo di indumento elegante, fatto su misura. Pensati più per essere belli che utili, i vestiti formali sono d'aiuto quando bisogna impressionare qualcuno e spesso sono visti come un simbolo di status poiché può indossarli solo qualcuno che non ha paura per la propria sicurezza."
+    }
+  },
+  "armorFormalHat": {
+    "en": "Formal Hat",
+    "it": "Cappello Elegante",
+    "_description": {
+      "en": "A smart-looking hat, that'll look the part adorning your head during a business engagement or formal event. Or just because you like how it looks and it keeps the sun off your face. Many examples are somewhat battered and worn from neglect and ill-use, but they're still functional.",
+      "it": "Un cappello ricercato, di quelli con cui ci si adorna il capo durante un incontro di lavoro, un evento formale, o magari solo perché piace e scherma il sole dal viso. Molti sono un po' rovinati e malandati poiché sono stati trascurati o trattati male, ma funzionano ancora."
+    }
+  },
+  "armorGasMask": {
+    "en": "Gas Mask",
+    "it": "Maschera Antigas",
+    "_description": {
+      "en": "A rubber and leather mask with a plastic visor, which fits with an air-tight seal over the face. The front of the mask contains a filter which cleanses the air of contaminants like dust and gas.",
+      "it": "Si tratta di una maschera in gomma e cuoio dotata di una visiera di plastica a tenuta stagna da indossare sul volto. Sul davanti è posto un filtro che depura l'aria da agenti contaminanti come polvere e gas."
+    }
+  },
+  "armorHardHat": {
+    "en": "Hard Hat",
+    "it": "Casco Protettivo",
+    "_description": {
+      "en": "A light metal or plastic hat intended to protect the head from bumps and collisions in a busy industrial workplace or construction site. Not really intended to protect from combat, but if you're lacking a helmet, a hard had is better than nothing.",
+      "it": "È un cappello di plastica o metallo leggero che ha lo scopo di proteggere la testa da colpi e collisioni in un luogo di lavoro industriale o in un cantiere edile. Non è pensato per il combattimento, ma se non si possiede un casco militare, è sempre meglio di niente."
+    }
+  },
+  "armorHarness": {
+    "en": "Harness",
+    "it": "Bardatura",
+    "_description": {
+      "en": "A worker's safety harness repurposed to serve as a mount for pieces of armor. Common amongst raiders, who tend to wear the harness without a shirt underneath.",
+      "it": "Si tratta di un'imbracatura di sicurezza riadattata per fare da base su cui montare pezzi di armatura. È molto comune fra i predoni, che di solito la indossano senza alcuna maglietta sotto."
+    }
+  },
+  "armorHazmatSuit": {
+    "en": "Hazmat Suit",
+    "it": "Tuta Hazmat",
+    "_description": {
+      "en": "A completely enclosed suit for handling hazardous materials. The materials a hazmat suit is made from don't stand up well to violence; but wearing one of these renders you basically immune to radiation.",
+      "it": "È una tuta completamente isolante usata per maneggiare materiali pericolosi. I metalli di cui è fatta non resistono bene ai colpi violenti, ma chi la indossa è praticamente immune alle radiazioni."
+    }
+  },
+  "armorHeavyCoat": {
+    "en": "Heavy Coat",
+    "it": "Cappotto Pesante",
+    "_description": {
+      "en": "A long, heavy-weight coat—a leather duster, a trenchcoat, or similar—ideal for protecting you from the harsh elements. Provides a bit of protection against physical harm, extreme heat, and even covers well enough to keep a little radiation out.",
+      "it": "Un lungo cappotto pesante, come uno spolverino di pelle, un impermeabile o qualcosa di simile, perfetto per proteggere dalla violenza dagli elementi. Fornisce un po' di protezione da danni Fisici, calore estremo e riesce persino a schermare un minimo dalle radiazioni."
+    }
+  },
+  "armorHides": {
+    "en": "Hides",
+    "it": "Pelli",
+    "_description": {
+      "en": "Typically made from the rough hides of a brahmin, radstag, or other large animal, these simple clothes provide a little protection and comfort, but they're no substitute for properly made clothing or armor.",
+      "it": "Solitamente ricavati dalle ruvide pelli di bramino, di cervo o di un qualsiasi altro grosso animale, questi semplici vestiti forniscono un po' di protezione e di comodità, ma non possono in alcun modo sostituire dei vestiti fatti a modo o un'armatura."
+    }
+  },
+  "armorHoodOrCowl": {
+    "en": "Hood or Cowl",
+    "it": "Cappuccio o Cappa",
+    "_description": {
+      "en": "A cloth or leather covering for the head and neck. Provides a little protection from the elements, and easily combined with a mask or kerchief to cover the mouth and nose to keep dust and fumes out. Handy in the wasteland if you're caught outside without better protection.",
+      "it": "Una copertura di stoffa o pelle per testa e collo. Ripara un po' dagli elementi e la si può facilmente combinare con una maschera o un fazzoletto che coprano la bocca e il naso per tenere fuori polvere e fumo. Se non si hanno protezioni migliori, è utile quando si viene colti di sorpresa nella Zona Contaminata."
+    }
+  },
+  "armorHuntersHood": {
+    "en": "Hunter's Hood",
+    "it": "Cappuccio del Cacciatore",
+    "_description": {
+      "en": "A shadowed hood listed with Hunter's gear in the Wanderers apparel tables.",
+      "it": "Un cappuccio Shadowed elencato insieme all'equipaggiamento del Cacciatore nelle tabelle apparel di Wanderers."
+    }
+  },
+  "armorHuntersPelt": {
+    "en": "Hunter's Pelt",
+    "it": "Pelle del Cacciatore",
+    "_description": {
+      "en": "Made from furs, discarded nets, and leathers, this outfit provides warmth and cover in darkness and modest protection against impacts.",
+      "it": "Fatta con pellicce, reti di recupero e cuoio, questa tenuta offre calore e copertura nell'oscurita, oltre a una modesta protezione dagli impatti."
+    }
+  },
+  "armorLabCoat": {
+    "en": "Lab Coat",
+    "it": "Camice",
+    "_description": {
+      "en": "A white coat—though likely stained or dirty—intended for use in a laboratory environment. Normally contains a useful number of pockets, and clock or sensor just below the left lapel, where it can be easily checked without having to reach for it—ideal during delicate scientific work.",
+      "it": "Un camice bianco, anche se molto probabilmente macchiato o sporco, di quelli che si usano in laboratorio. Di solito è munito di molte tasche utili e di un orologio o un sensore posto appena sotto il bavero sinistro, dove è facile da controllare senza doverlo cercare: l'ideale quando si svolge un delicato incarico scientifico."
+    }
+  },
+  "armorMarineTacticalHelmet": {
+    "en": "Marine Tactical Helmet",
+    "it": "Elmo Tattico Marine",
+    "_description": {
+      "en": "A lightweight helmet with an underwater breathing mask built in, designed for nighttime reconnaissance operations.",
+      "it": "Un elmo leggero con maschera respiratoria subacquea integrata, progettato per operazioni di ricognizione notturna."
+    }
+  },
+  "armorMarineWetsuit": {
+    "en": "Marine Wetsuit",
+    "it": "Muta Marine",
+    "_description": {
+      "en": "A neoprene wetsuit designed for nighttime reconnaissance operations, commonly worn with a Marine Tactical Helmet.",
+      "it": "Una muta in neoprene progettata per operazioni di ricognizione notturna, comunemente indossata con un Elmo Tattico Marine."
+    }
+  },
+  "armorMilitaryFatigues": {
+    "en": "Military Fatigues",
+    "it": "Uniforme Militare",
+    "_description": {
+      "en": "A simple, hard-wearing shirt, jacket, pants, and set of combat boots designed to be worn by military personnel before the Great War. These garments are designed to be worn in unpleasant conditions, and have numerous pockets for carrying useful items, so an intact set is a decent find.",
+      "it": "Maglietta, giacchetto, pantaloni e un paio di stivali da combattimento, semplici e robusti, pensati per essere indossati dai militari prima della Grande Guerra. Questi indumenti sono fatti per essere portati in condizioni difficili e sono dotati di innumerevoli tasche in cui riporre oggetti utili, per cui un completo intatto è un discreto ritrovamento."
+    }
+  },
+  "armorRoadLeathers": {
+    "en": "Road Leathers",
+    "it": "Completo da Strada",
+    "_description": {
+      "en": "A leather jacket, leather pants, and a set of motorcycle boots. Often decorated with metallic studs, these soft leather items provide modest protection against physical hazards such as an involuntary dismount from a motorbike, while still being reasonably comfortable in any temperate or cold climate.",
+      "it": "Giubbotto e pantaloni di pelle e un paio di stivali da motociclista, spesso decorati con borchie metalliche: questi morbidi indumenti di pelle forniscono una moderata protezione da rischi fisici, come una caduta dalla moto, ma restano comunque abbastanza comodi in qualsiasi fascia climatica fredda o temperata."
+    }
+  },
+  "armorSackHood": {
+    "en": "Sack Hood",
+    "it": "Cappuccio di Iuta",
+    "_description": {
+      "en": "A tough fabric hood made from a burlap or canvas sack. Provides a little protection from dust and fumes and radiation by covering the whole head. Conveniently, it has eyeholes cut out, and some versions add in some form of makeshift breathing apparatus, though the effectiveness of these is dubious at best.",
+      "it": "Si tratta di un cappuccio di tessuto robusto ricavato da un sacco di iuta o di tela. Fornisce una minima protezione dalla polvere, dal fumo e dalle radiazioni, coprendo tutta la testa. Per comodità solitamente vengono tagliati dei fori per gli occhi e ci sono dei modelli dotati di un qualche tipo di respiratore artigianale, sebbene la loro efficacia sia quantomeno dubbia."
+    }
+  },
+  "armorSpacesuitCostume": {
+    "en": "Spacesuit Costume",
+    "it": "Costume da Tuta Spaziale",
+    "_description": {
+      "en": "Modeled on spacesuits used by real astronauts, this shiny costume is surprisingly functional for what is basically a Halloween costume.",
+      "it": "Ispirato alle tute spaziali usate dai veri astronauti, questo costume lucido e sorprendentemente funzionale per essere, in sostanza, un costume di Halloween."
+    }
+  },
+  "armorSpacesuitHelmet": {
+    "en": "Spacesuit Helmet",
+    "it": "Elmo da Tuta Spaziale",
+    "_description": {
+      "en": "Modeled on spacesuits used by real astronauts, this shiny costume set is surprisingly functional for what is basically a Halloween costume.",
+      "it": "Ispirato alle tute spaziali usate dai veri astronauti, questo set in costume e sorprendentemente funzionale per essere, in sostanza, un costume di Halloween."
+    }
+  },
+  "armorSpike": {
+    "en": "Spike Armor",
+    "it": "Armatura Chiodata",
+    "_description": {
+      "en": "Layers of leather, with rags, metal plates, lengths of chain, and bars sown into the layers or welded together. Many of the bars protrude outwards, creating a spiky appearance that helps fend off melee attacks, while the layers of metal plates and leather padding protect from hazards and attacks. A hood and helmet add to the protection provided.",
+      "it": "È formata da strati di cuoio con imbottiture, placche di metallo, spezzoni di catena e tondini cuciti o saldati. Molti dei tondini sporgono verso l'esterno, dandole l'aspetto spinoso che la aiuta a respingere gli attacchi da mischia, mentre gli strati di placche di metallo e cuoio proteggono da rischi e attacchi. La protezione è aumentata da un cappuccio e un casco."
+    }
+  },
+  "armorToughClothing": {
+    "en": "Tough Clothing",
+    "it": "Vestiti Resistenti",
+    "_description": {
+      "en": "Hard-wearing clothing cobbled together from sufficiently sturdy garments to create an outfit that can withstand a hard life in the wasteland. Normally made from a jacket, a shirt and undershirt, a pair of jeans, and some walking boots, reinforced (or patched) with duct tape, to provide both a little protection against the bumps and scrapes of life and a bit of warmth on those cold nuclear winter nights.",
+      "it": "Si tratta di un abbigliamento robusto formato da indumenti abbastanza resistenti da sopportare la dura vita nella Zona Contaminata. Solitamente si compone di un giubbotto, camicia, canottiera, jeans e un paio di stivali rinforzati (o rattoppati) col nastro adesivo, così da dare sia un po' di protezione dagli urti e dalle contusioni della vita, che un minimo di calore nelle fredde notti dell'inverno nucleare."
+    }
+  },
+  "armorUnderarmor": {
+    "en": "Underarmor Suit",
+    "it": "Sottoarmatura",
+    "_description": {
+      "en": "A hard-wearing outfit with strategic padding, designed to be worn underneath Scout Armor and fitted for ease of motion and comfort.",
+      "it": "Un completo resistente con imbottiture nei punti strategici, progettato per essere indossato sotto l'Armatura Scout e offrire comfort e liberta di movimento."
+    }
+  },
+  "armorUtilityCoveralls": {
+    "en": "Utility Coveralls",
+    "it": "Tuta da Lavoro",
+    "_description": {
+      "en": "A versatile outfit favored by mechanics and other tinkerers; the coveralls are designed to protect both from hard, dirty work with machinery. Comes with heavy gloves to protect the hands, and a utility belt to hold a range of tools and other useful items.",
+      "it": "Indumento versatile apprezzato da meccanici e smanettoni vari, la tuta è pensata per fornire protezione dal duro e sporco lavoro con le macchine. È dotata di guanti pesanti per proteggere le mani, una cintura multiuso in cui tenere tutta una serie di utensili e altri oggetti utili."
+    }
+  },
+  "armorVaultJumpsuit": {
+    "en": "Vault Jumpsuit",
+    "it": "Tuta del Vault",
+    "_description": {
+      "en": "The standard garment for all vault inhabitants, provided by Vault-Tec. A close-fitting blue jumpsuit with a golden-yellow strip running around the neck, down the torso, and along the sleeves. This strip is a metallic foil which aids in heat dissipation and works with the suit's integrated biometric scanners. Each Vault Jumpsuit has a number on the back, signifying which vault it originated from.",
+      "it": "È l'abbigliamento standard di tutti gli abitanti del Vault, fornita dalla Vault-Tec. Si tratta di una tuta aderente con una striscia dorata che contorna il collo e corre lungo torso e maniche, che non è altro che una lamina metallica che aiuta a disperdere il calore e coadiuva gli scanner biometrici integrati nella tuta. Ogni tuta ha un numero sulla schiena, che indica da quale Vault proviene."
+    }
+  },
+  "armorWeldersVisor": {
+    "en": "Welder's Visor",
+    "it": "Visiera da Saldatore",
+    "_description": {
+      "en": "A reinforced cap with a metal faceplate. The faceplate contains a piece of hardened tinted glass, to protect the eyes when operating welding equipment, and it can be raised and lowered as needed. Brotherhood Scribes and engineers are often seen wearing these, simply because they spend a lot of time working with metal.",
+      "it": "Si tratta di un cappello rinforzato con una visiera in metallo, in cui è inserito un pezzo di vetro temperato scuro per proteggere gli occhi quando si usano degli attrezzi da saldatore e che può essere sollevato e abbassato alla bisogna. Spesso si vedono indosso agli Scriba della Confraternita e agli ingegneri, semplicemente perché passano molto tempo a lavorare con il metallo."
+    }
+  }
+}

@@ -1,0 +1,266 @@
+{
+  "medsAddictol": {
+    "en": "Addictol",
+    "it": "Addictol",
+    "_description": {
+      "en": "A powerful and effective pre-War medicine which cleanses the body of the effects of addiction and the withdrawal symptoms that accompany it. It doesn't, however, prevent subsequent addictions, especially in the cases of long-term or habitual drug abuse. It can take some time to work, especially in severe cases, and tends to have a few side-effects, such as nausea and dizziness, while it is taking effect.",
+      "it": "È un potente ed efficace farmaco dell'anteguerra che libera il corpo da tutti gli effetti delle dipendenze e dai corrispettivi sintomi di astinenza, sebbene non possa evitare nuove assuefazioni, specialmente nel caso di un abuso di droghe a lungo termine o abituale. Può metterci del tempo ad agire, soprattutto nei casi gravi, e mentre agisce tende ad avere alcuni effetti collaterali come nausea e intorpidimento."
+    }
+  },
+  "medsAntibiotics": {
+    "en": "Antibiotics",
+    "it": "Antibiotici",
+    "_description": {
+      "en": "A dose of potent, broad-spectrum antibiotics that'll help clear out pretty much any infection or disease. Taking too many can be damaging to health overall, but these are rare enough that taking too many is rarely a problem.",
+      "it": "Una dose di un potente antibiotico ad ampio spettro in grado di eliminare praticamente qualsiasi infezione o malattia. Prenderne troppi può essere dannoso per la salute, ma sono così rari che è difficile che se ne assumano troppi."
+    }
+  },
+  "medsBerryMentats": {
+    "en": "Berry Mentats",
+    "it": "Mentat ai Frutti di Bosco",
+    "_description": {
+      "en": "A portion of Mentats reformulated to promote brain activity and memory. Mentat Addiction: A failed addiction roll renders you addicted to Mentats. You increase the difficulty of all CHA tests by +1 whenever you are not under the effects of a type of Mentat (ordinary Mentats, or the Berry, Grape, or Orange versions).",
+      "it": "Una porzione di Mentat pensata per stimolare l'attività cerebrale e la memoria. Dipendenza da Mentat: Il fallimento di un tiro per la dipendenza rende assuefatti da Mentat. Quando non si è sotto l'effetto di un qualche tipo di Mentat (quelle Normali, ai Frutti di Bosco, all'Uva o all'Arancia), la difficoltà di tutte le prove di CAR aumenta di +1."
+    }
+  },
+  "medsBuffjet": {
+    "en": "Buffjet",
+    "it": "Buffjet",
+    "_description": {
+      "en": "A potent, if highly addictive mixture of Buffout and Jet, providing a boost to physical prowess, heightened reflexes, and a burst of adrenaline. Buffout Addiction: A failed addiction roll renders you addicted to Buffout. You increase the difficulty of all STR and END tests by +1 whenever you are not under the effects of a type of Buffout (Buffout, Buffjet, or Bufftats).",
+      "it": "Una potente miscela di Buffout e Jet, altamente assuefacente, che dà uno slancio alla prestanza fisica, aumenta i riflessi e dà una scarica di adrenalina. Dipendenza da Buffout: Il fallimento di un tiro per la dipendenza rende assuefatti da Buffout. Quando non si è sotto l'effetto di un qualche tipo di Buffout (Buffout, Buffjet o Bufftat), la difficoltà di tutte le prove di FOR e COS aumenta di +1."
+    }
+  },
+  "medsBuffout": {
+    "en": "Buffout",
+    "it": "Buffout",
+    "_description": {
+      "en": "A powerful and quick-acting steroid which gained popularity with athletes prior to the Great War. For a few minutes, it makes one stronger and tougher. Buffout Addiction: A failed addiction roll renders you addicted to Buffout. You increase the difficulty of all STR and END tests by +1 whenever you are not under the effects of a type of Buffout (Buffout, Buffjet, or Bufftats).",
+      "it": "Sono dei forti steroidi ad azione rapida che erano diventati famosi tra gli atleti prima della Grande Guerra. Rende più forti e resistenti per alcuni minuti. Dipendenza da Buffout: Il fallimento di un tiro per la dipendenza rende assuefatti da Buffout. Quando non si è sotto l'effetto di un qualche tipo di Buffout (Buffout, Buffjet o Bufftats), la difficoltà di tutte le prove di FOR e COS aumenta di +1."
+    }
+  },
+  "medsBufftat": {
+    "en": "Bufftat",
+    "it": "Bufftat",
+    "_description": {
+      "en": "An addictive cocktail of Buffout steroids and Mentats, heightening both physical prowess and awareness. Buffout Addiction: A failed addiction roll renders you addicted to Buffout. You increase the difficulty of all STR and END tests by +1 whenever you are not under the effects of a type of Buffout (Buffout, Buffjet, or Bufftats).",
+      "it": "È un cocktail assuefacente di steroidi Buffout e Mentat, in grado di aumentare sia la prestanza fisica che l'attenzione. Dipendenza da Buffout: Il fallimento di un tiro per la dipendenza rende assuefatti da Buffout. Quando non si è sotto l'effetto di un qualche tipo di Buffout (Buffout, Buffjet o Bufftats), la difficoltà di tutte le prove di FOR e COS aumenta di +1."
+    }
+  },
+  "medsCalmex": {
+    "en": "Calmex",
+    "it": "Calmex",
+    "_description": {
+      "en": "A light tranquilizer used to calm the nerves. It isn't potent enough to function as a painkiller, but a dose can quiet anxieties and fears, keeping panic from disturbing delicate activities. Calmex Addiction: A failed addiction roll renders you addicted to Calmex. You suffer complications on AGI tests on all rolls of 18 or higher whenever you are not under the effects of Calmex.",
+      "it": "Un leggero tranquillante utilizzato per calmare i nervi. Non è abbastanza forte da poter essere usato come antidolorifico, ma una dose può calmare ansie e paure, evitando che il panico interferisca in operazioni delicate. Dipendenza da Calmex: Il fallimento di un tiro per la dipendenza rende assuefatti da Calmex. Quando non si è sotto i suoi effetti, si subiscono complicazioni sulle prove di AGI con un risultato di 18 o più."
+    }
+  },
+  "medsDaddyO": {
+    "en": "Daddy-O",
+    "it": "Daddy-O",
+    "_description": {
+      "en": "Popular with beatniks and intellectuals before the Great War, Daddy-O heightens the user's cognitive faculties, making them more alert and more able to process information, but users tend to hyper-focus on the tasks in front of them, making it awkward to interact with them. Daddy-O Addiction: A failed addiction roll renders you addicted to Daddy-O. You increase the difficulty of all PER and INT tests by +1 whenever you are not under the effects of Daddy-O.",
+      "it": "Diffuso fra i capelloni e gli intellettuali prima della Grande Guerra, il Daddy-O amplifica le capacità intellettuali di coloro che lo usano, rendendoli più vigili e rapidi nell'elaborare informazioni, ma questi tendono a concentrarsi troppo sui compiti che hanno di fronte, per cui interagire con loro diventa complicato. Dipendenza da Daddy-O: Il fallimento di un tiro per la dipendenza rende assuefatti da Daddy-O. Quando non si è sotto il suo effetto, la difficoltà di tutte le prove di PER e INT aumenta di +1."
+    }
+  },
+  "medsDaytripper": {
+    "en": "Daytripper",
+    "it": "Daytripper",
+    "_description": {
+      "en": "A mild pre-War relaxant and hallucinogen, Day Tripper was favored by Americans seeking a brief escape from reality. The resulting high made users more laid-back and relaxed, while also making them less inclined to exert themselves physically. It was popular amongst many social groups during the stresses of the Great War, food riots, and general societal problems in the years before the bombs fell. Day Tripper Addiction: A failed addiction roll renders you addicted to Day Tripper. You increase the difficulty of all CHA and LCK tests by +1 whenever you are not under the effects of Day Tripper.",
+      "it": "Un leggero calmante e allucinogeno risalente a prima della Guerra, il Day Tripper era parecchio apprezzato dagli Americani in cerca di una breve fuga dalla realtà. L'estasi che ne derivava rendeva chi lo assumeva più disinvolto e rilassato, ma al contempo meno incline agli sforzi fisici. Durante le difficoltà della Grande Guerra, come le rivolte per il cibo e i problemi sociali generali esistenti prima della caduta delle bombe, era molto diffuso tra molti gruppi sociali. Dipendenza da Daytripper: Il fallimento di un tiro per la dipendenza rende assuefatti da Daytripper. Quando non si è sotto i suoi effetti, la difficoltà di tutte le prove di CAR e FRT aumenta di +1."
+    }
+  },
+  "medsDilutedRadAway": {
+    "en": "Diluted RadAway",
+    "it": "RadAway (diluito)",
+    "_description": {
+      "en": "An intravenous drug which purges radiation from the user's body, absorbing radiation as it circulates through the user's bloodstream. It's also a potent diuretic, expelling the radiation with the user's urine, so it's advisable to drink a lot of (clean) water shortly after taking a dose. Sometimes encountered in a diluted form, reducing its effectiveness as the user is only taking a partial dose. Diluted RadAway is only about half as effective, but it's easier to find. Use: RadAway can be used in one of two ways: it can be applied using the Take Chem minor action, healing 4 Radiation damage immediately, or it can be applied as part of a First Aid action, healing 4 Radiation damage in addition to any other healing done (remove Radiation damage before applying other healing effects). Diluted RadAway works in the same way, but only heals 2 Radiation damage.",
+      "it": "Una droga da iniettare per endovena che ripulisce il corpo di chi la usa dalle radiazioni, assorbendole mentre fluisce nel sistema circolatorio. È anche un potente diuretico: le radiazioni vengono espulse attraverso le urine, per cui è consigliabile bere un sacco di acqua (pulita) subito dopo aver preso una dose. Talvolta si trova in forma diluita, che ne riduce l'efficacia dato che la dose assunta è solo parziale. Il RadAway diluito ha circa metà dell'efficacia, ma è più facile trovarlo. Utilizzo: Il RadAway può essere usato in due modi: può essere applicato con l'azione minore Assumere Sostanze per guarire immediatamente 4 danni da Radiazioni o può essere iniettato come parte di un'azione di Primo Soccorso e guarire 4 danni da Radiazioni in aggiunta a ogni altra cura (rimuovere i danni da Radiazioni prima di applicare altri effetti curativi). Il RadAway diluito funziona allo stesso modo, ma guarisce solo 2 danni da Radiazioni."
+    }
+  },
+  "medsDilutedRadX": {
+    "en": "Diluted Rad-X",
+    "it": "Rad-X (diluito)",
+    "_description": {
+      "en": "A preventative medicine for those intending to enter areas with heightened risk of radiation exposure. A dose can help you resist the effects of radiation, especially when combined with other protective measures. Due to scarcity, it is often found diluted, reducing the effectiveness of a dose but allowing limited supplies to last longer. Diluted Rad-X is about half as effective, but easier to find.",
+      "it": "Un farmaco preventivo per coloro che hanno intenzione di entrare in zone ad alto rischio di esposizione alle radiazioni. Una dose aiuta a resistere agli effetti delle radiazioni, specialmente in combinazione con altre misure protettive. A causa della sua scarsità, solitamente lo si trova diluito, fatto che riduce l'efficacia della dose, ma fa sì che le riserve limitate durino di più. Il Rad-X diluito ha circa metà dell'efficacia, ma è più facile trovarlo."
+    }
+  },
+  "medsDilutedStimpak": {
+    "en": "Diluted Stimpak",
+    "it": "Stimpak (diluito)",
+    "_description": {
+      "en": "A stimulation delivery package, or Stimpak, is a form of fast-acting medication used to bolster the body's own healing and recuperative ability, and countless millions were produced for household and workplace first aid kits, hospitals, clinics, and other places. A wonder of pre-War science, a Stimpak is a single-use syringe filled with a variety of potent healing agents, stimulants, and painkillers, and can be applied in an intravenous or intramuscular fashion: literally stick it anywhere and it'll work. Even so, it a Stimpak is most effective when applied by an Auto-Doc or someone with medical training alongside other treatment. Sometimes encountered in a diluted form, reducing its effectiveness as the user is only taking a partial dose. Diluted Stimpaks are only about half as effective, but they're easier to find. Use: A Stimpak can be used in one of two ways: it can be applied using the Take Chem minor action, healing 4 HP or treating an Injury immediately, or it can be applied as part of a First Aid action, healing 4 HP or treating an Injury in addition to any other healing done. Diluted Stimpaks work in the same way, but only heal 2 HP, though they can still treat Injuries as normal.",
+      "it": "Il pacchetto di stimolanti pronti all'uso Stimpak è un tipo di medicina ad azione rapida utilizzato per potenziare le capacità di guarigione e recupero del corpo. Alle volte se ne può trovare una versione diluita, che ne riduce l'efficacia dato che la dose assunta è solo parziale. Gli Stimpak diluiti hanno circa la metà dell'efficacia, ma è più facile trovarli. Utilizzo: Gli Stimpak possono essere usati in due modi: possono essere iniettati con l'azione minore Assumere Sostanze per ripristinare immediatamente 4 PS o curare una ferita, oppure possono essere iniettati come parte di un'azione di Primo Soccorso e guarire 4 PS o curare una ferita, in aggiunta a ogni altra cura. Gli Stimpak diluiti funzionano allo stesso modo, ma guariscono solo 2 PS, sebbene curino le ferite allo stesso modo."
+    }
+  },
+  "medsFury": {
+    "en": "Fury",
+    "it": "Fury",
+    "_description": {
+      "en": "An extremely powerful combat stimulant, Fury grants users a sense of invincibility, rendering them nearly immune to pain and recklessly dangerous in melee combat, while also rendering them largely oblivious to everything else as well. Fury Addiction: A failed addiction roll renders you addicted to Fury. You increase the difficulty of all STR and PER tests by +1 whenever you are not under the effects of Fury.",
+      "it": "Stimolatore da combattimento estremamente potente, il Fury garantisce a chi lo assume un senso di invincibilità, rendendolo praticamente immune al dolore e sconsideratamente pericoloso nei combattimenti in mischia, oltre a fargli ignorare in buona parte tutto il resto. Dipendenza da Fury: Il fallimento di un tiro per la dipendenza rende assuefatti da Fury. Quando non si è sotto i suoi effetti, la difficoltà di tutte le prove di FOR e PER aumenta di +1."
+    }
+  },
+  "medsGrapeMentats": {
+    "en": "Grape Mentats",
+    "it": "Mentat all'Uva",
+    "_description": {
+      "en": "A tin of Mentats, their formula altered to reduce social anxiety, boost confidence, and make users more aware of body language and other social cues. Mentat Addiction: A failed addiction roll renders you addicted to Mentats. You increase the difficulty of all CHA tests by +1 whenever you are not under the effects of a type of Mentat (ordinary Mentats, or the Berry, Grape, or Orange versions).",
+      "it": "Una scatoletta di Mentat la cui formula è stata modificata per ridurre l'ansia sociale, aumentare l'autostima e rendere più consapevoli del linguaggio del corpo e altri indizi sociali. Dipendenza da Mentat: Il fallimento di un tiro per la dipendenza rende assuefatti da Mentat. Quando non si è sotto l'effetto di un qualche tipo di Mentat (quelle Normali, ai Frutti di Bosco, all'Uva o all'Arancia), la difficoltà di tutte le prove di CAR aumenta di +1."
+    }
+  },
+  "medsHealingSalve": {
+    "en": "Healing Salve",
+    "it": "Balsamo Curativo",
+    "_description": {
+      "en": "A salve or ointment which can be applied to reduce pain and speed recovery from injury, typically made from several natural herbal ingredients. Use: Healing salve can be used in one of two ways: it can be applied using the Take Chem minor action, healing 2 HP immediately, or it can be applied as part of a First Aid action, adding +2 to the number of HP healed overall.",
+      "it": "Si tratta di una pomata o un unguento che si può applicare per alleviare il dolore e velocizzare la guarigione da ferite, solitamente ottenuto con diversi ingredienti erboristici. Utilizzo: Ci sono uno o due modi per servirsi del balsamo curativo: lo si può applicare con l'azione minore Assumere Sostanze e ripristinare immediatamente 2 PS oppure può essere messo spalmato come parte di un'azione di Primo Soccorso e aggiungere +2 PS al totale di quelli guariti."
+    }
+  },
+  "medsJet": {
+    "en": "Jet",
+    "it": "Jet",
+    "_description": {
+      "en": "Jet is an inhaled stimulant which creates an altered state of consciousness where time appears to slow, heightening reflexes and allowing the user to act more quickly during a moment of crisis. Jet Addiction: A failed addiction roll renders you addicted to Jet. You increase the difficulty of all AGI tests by +1 whenever you are not under the effects of a type of Jet (Jet, or Jet Fuel; Ultra Jet has a different addiction effect).",
+      "it": "Il Jet è uno stimolante per via inalatoria che induce uno stato di coscienza alterato in cui il tempo sembra rallentare, aumenta i riflessi e fa sì che chi lo assume agisca più velocemente nei momenti di crisi. Dipendenza da Jet: Il fallimento di un tiro per la dipendenza rende assuefatti da Jet. Quando non si è sotto l'effetto di un qualche tipo di Jet (Jet o Jet Fuel, mentre l'Ultra Jet ha un altro effetto), la difficoltà di tutte le prove di AGI aumenta di +1."
+    }
+  },
+  "medsJetFuel": {
+    "en": "Jet Fuel",
+    "it": "Jet Fuel",
+    "_description": {
+      "en": "A volatile variant of Jet, Jet Fuel provides a massive burst of energy in the user, allowing them to act more swiftly and decisively. Jet Addiction: A failed addiction roll renders you addicted to Jet. You increase the difficulty of all AGI tests by +1 whenever you are not under the effects of a type of Jet (Jet, or Jet Fuel; Ultra jet has a different addiction effect).",
+      "it": "Il Jet Fuel, una variante volatile del Jet, dà un'enorme scarica d'energia a chi lo assume, permettendogli di agire in maniera più tempestiva e decisa. Dipendenza da Jet: Il fallimento di un tiro per la dipendenza rende assuefatti da Jet. Quando non si è sotto l'effetto di un qualche tipo di Jet (Jet o Jet Fuel, mentre l'Ultra Jet ha un altro effetto), la difficoltà di tutte le prove di AGI aumenta di +1."
+    }
+  },
+  "medsMedX": {
+    "en": "Med-X",
+    "it": "Med-X",
+    "_description": {
+      "en": "Med-X is a potent opiate analgesic which significantly reduces both the perception of pain and the natural emotional response to pain. In short, it's a powerful painkiller. Med-X Addiction: A failed addiction roll renders you addicted to Med-X. You increase the difficulty of all AGI tests by +1, and suffer +1 DC additional damage from all physical attacks whenever you are not under the effects of Med-X.",
+      "it": "Il Med-X è un potente analgesico oppioide che riduce in maniera significativa la percezione del dolore e la naturale risposta emotiva a esso. In breve, è un antidolorifico molto forte. Dipendenza da Med-X: Il fallimento di un tiro per la dipendenza rende assuefatti da Med-X. Quando non si è sotto i suoi effetti, la difficoltà di tutte le prove di AGI aumenta di +1 e si soffre 1 danno DC aggiuntivo per ogni attacco fisico."
+    }
+  },
+  "medsMentats": {
+    "en": "Mentats",
+    "it": "Mentat",
+    "_description": {
+      "en": "Mentats were a popular recreational and performance-enhancing drug before the Great War, which enhance memory and speed mental processes. It was popular amongst students studying for exams, and amongst armchair philosophers and those in jobs requiring intensive thought. The effect lasts only a short time, leaving the user feeling tired and unfocused afterwards, and they are addictive by design, with withdrawal causing migraines and irritability. Mentat Addiction: A failed addiction roll renders you addicted to Mentats. You increase the difficulty of all CHA tests by +1 whenever you are not under the effects of a type of Mentat (ordinary Mentats, or the Berry, Grape, or Orange versions).",
+      "it": "Prima della Grande Guerra le Mentat erano una droga ricreativa molto popolare, capace di incrementare le prestazioni aumentando la memoria e velocizzando i processi mentali. Era diffusa fra studenti sotto esame, filosofi e persone addette a lavori che richiedevano di pensare molto. L'effetto dura poco e, successivamente, lascia chi le utilizza stanco e deconcentrato; sono progettate per dare dipendenza e l'astinenza causa emicranie e irritabilità. Dipendenza da Mentat: Il fallimento di un tiro per la dipendenza rende assuefatti da Mentat. Quando non si è sotto l'effetto di un qualche tipo di Mentat (quelle Normali, ai Frutti di bosco, all'Uva o all'Arancia), la difficoltà di tutte le prove di CAR aumenta di +1."
+    }
+  },
+  "medsOrangeMentats": {
+    "en": "Orange Mentats",
+    "it": "Mentat all'Arancia",
+    "_description": {
+      "en": "A variant of Mentats which heighten awareness and sensory acuity. Mentat Addiction: A failed addiction roll renders you addicted to Mentats. You increase the difficulty of all CHA tests by +1 whenever you are not under the effects of a type of Mentat (ordinary Mentats, or the Berry, Grape, or Orange versions).",
+      "it": "Si tratta di una variante di Mentat che acuisce l'attenzione e i sensi. Dipendenza da Mentat: Il fallimento di un tiro per la dipendenza rende assuefatti da Mentat. Quando non si è sotto l'effetto di un qualche tipo di Mentat (quelle Normali, ai Frutti di Bosco, all'Uva o all'Arancia), la difficoltà di tutte le prove di CAR aumenta di +1."
+    }
+  },
+  "medsOverdrive": {
+    "en": "Overdrive",
+    "it": "Overdrive",
+    "_description": {
+      "en": "An enhanced form of Psycho which massively stimulates aggression, making the user more dangerous in combat. Overdrive Addiction: A failed addiction roll renders you addicted to Overdrive. You increase the difficulty of all STR and AGI tests by +1 whenever you are not under the effects of Overdrive.",
+      "it": "Una versione potenziata di Psycho che stimola in maniera massiccia l'aggressività e rende chi lo utilizza più pericoloso in battaglia. Dipendenza da Overdrive: Il fallimento di un tiro per la dipendenza rende assuefatti da Overdrive. Quando non si è sotto i suoi effetti, la difficoltà di tutte le prove di FOR e AGI aumenta di +1."
+    }
+  },
+  "medsPsycho": {
+    "en": "Psycho",
+    "it": "Psycho",
+    "_description": {
+      "en": "A potent combat stimulant created by the U.S. Army to enhance the effectiveness of their soldiers. It's still common in the wasteland, as the post-War plant Hubflower has proven to replicate several of the ingredients of the pre-War version. Psycho stimulates aggression and dulls pain receptors, allowing the user to fight harder with less care for their own safety. Psycho Addiction: A failed addiction roll renders you addicted to Psycho. You increase the difficulty of all STR tests by +1 and suffer +1 DC damage from all physical attacks whenever you are not under the effects of a type of Psycho (ordinary Psycho, Psycho Jet, Psychobuff, or Psychotats).",
+      "it": "Un potente stimolante da combattimento creato dall'esercito americano al fine di aumentare l'efficacia dei propri soldati. È ancora diffuso nella Zona Contaminata, poiché lo stabilimento Girafiore sorto dopo la guerra è riuscito a replicare molti degli ingredienti della versione anteguerra. Lo Psycho stimola l'aggressività e inibisce i recettori del dolore, permettendo a chi lo usa di combattere più duramente curandosi di meno della propria incolumità. Dipendenza da Psycho: Il fallimento di un tiro per la dipendenza rende assuefatti da Psycho. Quando non si è sotto l'effetto di un qualche tipo di Psycho (quello normale, Psycho Jet, Psychobuff o Psychotat), la difficoltà di tutte le prove di FOR aumenta di +1 e si soffre +1 danno DC a tutti gli attacchi Fisici subiti."
+    }
+  },
+  "medsPsychobuff": {
+    "en": "Psychobuff",
+    "it": "Psychobuff",
+    "_description": {
+      "en": "A highly addictive cocktail of Psycho and Buffout steroids, combining the effects of the two drugs to produce a period of extreme strength, durability, and aggression. Psycho Addiction: A failed addiction roll renders you addicted to Psycho. You increase the difficulty of all STR tests by +1 and suffer +1 DC damage from all physical attacks whenever you are not under the effects of a type of Psycho (ordinary Psycho, Psycho Jet, Psychobuff, or Psychotats).",
+      "it": "Un cocktail altamente assuefacente di Psycho e steroidi Buffout, che combina gli effetti delle due droghe per ottenere un periodo di forza, resistenza e aggressività estreme. Dipendenza da Psycho: Il fallimento di un tiro per la dipendenza rende assuefatti da Psycho. Quando non si è sotto l'effetto di un qualche tipo di Psycho (quello normale, Psycho Jet, Psychobuff o Psychotat), la difficoltà di tutte le prove di FOR aumenta di +1 e si soffre +1 danno DC a tutti gli attacchi Fisici subiti."
+    }
+  },
+  "medsPsychojet": {
+    "en": "Psychojet",
+    "it": "Psycho jet",
+    "_description": {
+      "en": "A powerful, addictive cocktail of Psycho and Jet, which enhances aggression, dulls pain, and augment's a target's reflexes and energy levels. The effect lasts only for a short while—under a minute—but the effects are always an explosive burst of extreme violence. Psycho Addiction: A failed addiction roll renders you addicted to Psycho. You increase the difficulty of all STR tests by +1 and suffer +1 DC damage from all physical attacks whenever you are not under the effects of a type of Psycho (ordinary Psycho, Psycho Jet, Psychobuff, or Psychotats).",
+      "it": "Si tratta di un forte cocktail, altamente assuefacente, di Psycho e Jet che aumenta l'aggressività, riduce il dolore e aumenta i riflessi e i livelli di energia di chi lo assume. L'effetto dura poco, meno di un minuto, ma comprende sempre uno scoppio esplosivo di estrema violenza. Dipendenza da Psycho: Il fallimento di un tiro per la dipendenza rende assuefatti da Psycho. Quando non si è sotto l'effetto di un qualche tipo di Psycho (quello normale, Psycho Jet, Psychobuff o Psychotat), la difficoltà di tutte le prove di FOR aumenta di +1 e si soffre +1 danno DC a tutti gli attacchi Fisici subiti."
+    }
+  },
+  "medsPsychotat": {
+    "en": "Psychotat",
+    "it": "Psychotat",
+    "_description": {
+      "en": "A cocktail of Psycho and Mentats. The heightened awareness granted by the Mentats and the aggression and pain insensitivity somewhat cancel one another out, but the resultant effects are a short period of high aggression, enhanced sensory acuity, and boosted pain tolerance. Psycho Addiction: A failed addiction roll renders you addicted to Psycho. You increase the difficulty of all STR tests by +1 and suffer +1 DC damage from all physical attacks whenever you are not under the effects of a type of Psycho (ordinary Psycho, Psycho Jet, Psychobuff, or Psychotats).",
+      "it": "È un cocktail di Psycho e Mentat; In qualche modo, la percezione aumentata garantita dalle prime e l'aggressività e insensibilità al dolore delle seconde, si cancellano l'una con le altre, ma l'effetto risultante è un breve periodo di estrema aggressività, una acutezza dei sensi estremamente elevata e una rafforzata tolleranza al dolore. Dipendenza da Psycho: Il fallimento di un tiro per la dipendenza rende assuefatti da Psycho. Quando non si è sotto l'effetto di un qualche tipo di Psycho (quello normale, Psycho Jet, Psychobuff o Psychotat), la difficoltà di tutte le prove di FOR aumenta di +1 e si soffre +1 danno DC a tutti gli attacchi Fisici subiti."
+    }
+  },
+  "medsRadAway": {
+    "en": "RadAway",
+    "it": "RadAway",
+    "_description": {
+      "en": "An intravenous drug which purges radiation from the user's body, absorbing radiation as it circulates through the user's bloodstream. It's also a potent diuretic, expelling the radiation with the user's urine, so it's advisable to drink a lot of (clean) water shortly after taking a dose. Sometimes encountered in a diluted form, reducing its effectiveness as the user is only taking a partial dose. Diluted RadAway is only about half as effective, but it's easier to find. Use: RadAway can be used in one of two ways: it can be applied using the Take Chem minor action, healing 4 Radiation damage immediately, or it can be applied as part of a First Aid action, healing 4 Radiation damage in addition to any other healing done (remove Radiation damage before applying other healing effects). Diluted RadAway works in the same way, but only heals 2 Radiation damage.",
+      "it": "Una droga da iniettare per endovena che ripulisce il corpo di chi la usa dalle radiazioni, assorbendole mentre fluisce nel sistema circolatorio. È anche un potente diuretico: le radiazioni vengono espulse attraverso le urine, per cui è consigliabile bere un sacco di acqua (pulita) subito dopo aver preso una dose. Talvolta si trova in forma diluita, che ne riduce l'efficacia dato che la dose assunta è solo parziale. Il RadAway diluito ha circa metà dell'efficacia, ma è più facile trovarlo. Utilizzo: Il RadAway può essere usato in due modi: può essere applicato con l'azione minore Assumere Sostanze per guarire immediatamente 4 danni da Radiazioni o può essere iniettato come parte di un'azione di Primo Soccorso e guarire 4 danni da Radiazioni in aggiunta a ogni altra cura (rimuovere i danni da Radiazioni prima di applicare altri effetti curativi). Il RadAway diluito funziona allo stesso modo, ma guarisce solo 2 danni da Radiazioni."
+    }
+  },
+  "medsRadX": {
+    "en": "Rad-X",
+    "it": "Rad-X",
+    "_description": {
+      "en": "A preventative medicine for those intending to enter areas with heightened risk of radiation exposure. A dose can help you resist the effects of radiation, especially when combined with other protective measures. Due to scarcity, it is often found diluted, reducing the effectiveness of a dose but allowing limited supplies to last longer. Diluted Rad-X is about half as effective, but easier to find.",
+      "it": "Un farmaco preventivo per coloro che hanno intenzione di entrare in zone ad alto rischio di esposizione alle radiazioni. Una dose aiuta a resistere agli effetti delle radiazioni, specialmente in combinazione con altre misure protettive. A causa della sua scarsità, solitamente lo si trova diluito, fatto che riduce l'efficacia della dose, ma fa sì che le riserve limitate durino di più. Il Rad-X diluito ha circa metà dell'efficacia, ma è più facile trovarlo."
+    }
+  },
+  "medsSkeetoSpit": {
+    "en": "Skeeto Spit",
+    "it": "Skeeto Spit",
+    "_description": {
+      "en": "Derived from the secretions of a Bloodbug, and the curative properties of some wasteland plants, Skeeto Spit is a wasteland remedy which dulls the user's ability to feel pain. It's effective, lasts a reasonable amount of time, and is non-addictive, but it normally has to be homemade as it isn't generally produced in large quantities.",
+      "it": "Derivato dalle secrezioni di un Succhiasangue e dalle proprietà curative di alcune piante della Zona Contaminata, lo Skeeto Spit è un rimedio della Zona Contaminata che inibisce la percezione del dolore di chi lo assume. Funziona, dura abbastanza e non dà dipendenza, ma normalmente è fatto in casa, dato che di solito non viene prodotto in grandi quantità."
+    }
+  },
+  "medsStimpak": {
+    "en": "Stimpak",
+    "it": "Stimpak",
+    "_description": {
+      "en": "A stimulation delivery package, or Stimpak, is a form of fast-acting medication used to bolster the body's own healing and recuperative ability, and countless millions were produced for household and workplace first aid kits, hospitals, clinics, and other places. A wonder of pre-War science, a Stimpak is a single-use syringe filled with a variety of potent healing agents, stimulants, and painkillers, and can be applied in an intravenous or intramuscular fashion: literally stick it anywhere and it'll work. Even so, it a Stimpak is most effective when applied by an Auto-Doc or someone with medical training alongside other treatment. Sometimes encountered in a diluted form, reducing its effectiveness as the user is only taking a partial dose. Diluted Stimpaks are only about half as effective, but they're easier to find. Use: A Stimpak can be used in one of two ways: it can be applied using the Take Chem minor action, healing 4 HP or treating an Injury immediately, or it can be applied as part of a First Aid action, healing 4 HP or treating an Injury in addition to any other healing done. Diluted Stimpaks work in the same way, but only heal 2 HP, though they can still treat Injuries as normal.",
+      "it": "Il pacchetto di stimolanti pronti all'uso Stimpak è un tipo di medicina ad azione rapida utilizzato per potenziare le capacità di guarigione e recupero del corpo. Ne furono prodotti milioni e milioni per i kit di primo soccorso domestici e sui luoghi di lavoro, ospedali, cliniche e altri posti. Prodigio della scienza dell'anteguerra, lo Stimpak è una siringa monouso piena di una serie di forti agenti curativi, stimolanti e antidolorifici, che può essere iniettata sia intramuscolo che per endovena: la si può infilzare ovunque, funzionerà. Ovviamente raggiunge il massimo dell'efficacia quando è iniettato da un Auto-Doc o da qualcuno con una formazione medica, assieme ad altri trattamenti. Utilizzo: Gli Stimpak possono essere usati in due modi: possono essere iniettati con l'azione minore Assumere Sostanze per ripristinare immediatamente 4 PS o curare una ferita, oppure possono essere iniettati come parte di un'azione di Primo Soccorso e guarire 4 PS o curare una ferita, in aggiunta a ogni altra cura."
+    }
+  },
+  "medsStimpakDiffuser": {
+    "en": "Stimpak Diffuser",
+    "it": "Nebulizzatore di Stimpak",
+    "_description": {
+      "en": "An enhanced version of the standard Stimpak, designed to disperse healing medication to multiple targets within close range. A Stimpak Diffuser can be used to heal 4 HP to all allies within Close range using the Take Chem minor action.",
+      "it": "Questo meccanismo di rilascio fa sì che il contenuto di un super Stimpak venga disperso in una nube di aerosol, inondando una zona ristretta con uno scoppio di vapori medicinali. Utilizzo: Quando viene rilasciato attraverso l'azione minore Interagire produce una nube che ripristina immediatamente 4 PS a chiunque (fatta eccezione per i robot) a distanza Ravvicinata. Ogni volta che si usa un diffusore, si consuma un super Stimpak."
+    }
+  },
+  "medsSuperStimpak": {
+    "en": "Super Stimpak",
+    "it": "Super Stimpak",
+    "_description": {
+      "en": "A super Stimpak is an enhanced version of the standard Stimpak, with an additional vial of medicine and a leather strap to secure the needle to the patient's arm during treatment. A more potent cocktail of medication is used in a super Stimpak, allowing it to heal much more effectively. Use: A super Stimpak can be used in one of two ways: it can be applied using the Take Chem minor action, healing 8 HP or treating up to two Injuries immediately, or it can be applied as part of a First Aid action, healing 8 HP or treating up to two Injuries in addition to any other healing done.",
+      "it": "Il super Stimpak è una versione potenziata di quello standard, con un'ulteriore fiala di medicina e una fettuccia di cuoio per assicurare l'ago al braccio del paziente durante il trattamento. Usa un cocktail di medicine più forte, che fanno guarire in maniera molto più efficace. Utilizzo: I Super Stimpak possono essere usati in due modi: possono essere iniettati con l'azione minore Assumere Sostanze per ripristinare immediatamente 8 PS o curare fino a due Ferite, oppure possono essere iniettati come parte di un'azione di Primo Soccorso e guarire 8 PS o curare fino a due Ferite in aggiunta a ogni altra cura."
+    }
+  },
+  "medsUltraJet": {
+    "en": "Ultra Jet",
+    "it": "Ultra Jet",
+    "_description": {
+      "en": "An extremely concentrated form of Jet, it is significantly more potent, and affects Ghouls as easily as it does humans due to its potency. Ultra Jet Addiction: A failed addiction roll renders you addicted to Ultra Jet. You increase the difficulty of all AGI tests by +1, and you generate one fewer AP whenever you succeed at a skill test (minimum 0) whenever you are not under the effects of Ultra Jet. This addiction is permanent and cannot be cured by any known means.",
+      "it": "Si tratta di una forma di Jet altamente concentrato, che è esponenzialmente più forte e, grazie alla sua potenza, funziona sui ghoul proprio come sugli umani. Dipendenza da Ultra Jet: Il fallimento di un tiro per la dipendenza rende assuefatti da Ultra Jet. Quando non si è sotto i suoi effetti, la difficoltà di tutte le prove di AGI aumenta di +1 e si genera 1 PA in meno ogni volta che si ha successo in una prova di abilità (fino a un minimo di 0). La dipendenza è permanente e non esistono mezzi conosciuti in grado di trattarla."
+    }
+  },
+  "medsXCell": {
+    "en": "X-Cell",
+    "it": "X-Cell",
+    "_description": {
+      "en": "X-cell was a general-purpose performance enhancer still being developed before the Great War. Development was never finished, but prototype versions were distributed through the black market and by scavengers after the War. It enhances all aspects of a user's abilities for a few minutes, but it is extremely addictive.",
+      "it": "L'X-cell era uno stimolatore multiuso che prima della Grande Guerra era ancora in fase di sviluppo. La ricerca non fu mai completata, ma dopo la Guerra alcuni prototipi furono messi in circolazione sul mercato nero e dagli sciacalli. Per alcuni minuti, aumenta tutte le abilità di chi lo assume, ma è estremamente assuefacente e i sintomi da astinenza sono estesi quanto gli effetti. Dipendenza da X-cell: Il fallimento di un tiro per la dipendenza rende assuefatti da X-cell. Quando non si è sotto i suoi effetti, la difficoltà di tutte le prove aumenta di +1."
+    }
+  }
+}

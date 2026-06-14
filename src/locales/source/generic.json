@@ -1,0 +1,1914 @@
+{
+  "activate": {
+    "en": "Activate",
+    "it": "Attiva"
+  },
+  "activeCharacter": {
+    "en": "Active Character",
+    "it": "Personaggio Attivo"
+  },
+  "addItem": {
+    "en": "Add Item",
+    "it": "Aggiungi Oggetto"
+  },
+  "addPerk": {
+    "en": "Add Perk",
+    "it": "Aggiungi Talento"
+  },
+  "addTrait": {
+    "en": "Add Trait",
+    "it": "Aggiungi Tratto"
+  },
+  "agility": {
+    "en": "Agility",
+    "it": "Agilità"
+  },
+  "aid": {
+    "en": "Aid",
+    "it": "Aiuto"
+  },
+  "aim": {
+    "en": "Aim",
+    "it": "Mirare"
+  },
+  "all": {
+    "en": "All",
+    "it": "Tutti"
+  },
+  "ammo": {
+    "en": "Ammo",
+    "it": "Muniz."
+  },
+  "ammoCost": {
+    "en": "Ammo Cost",
+    "it": "Cost Muniz."
+  },
+  "ammoType": {
+    "en": "Ammo Type",
+    "it": "Tipo di Muniz."
+  },
+  "ammoUsedBy": {
+    "en": "Ammo used by",
+    "it": "Muniz. usate da"
+  },
+  "amount": {
+    "en": "Amount",
+    "it": "Quantità"
+  },
+  "anything": {
+    "en": "Anything",
+    "it": "Qualsiasi cosa"
+  },
+  "ap": {
+    "en": "AP",
+    "it": "PA"
+  },
+  "apCost": {
+    "en": "AP Cost",
+    "it": "Costo PA"
+  },
+  "apparel": {
+    "en": "Apparel",
+    "it": "Abbigl."
+  },
+  "applied": {
+    "en": "Applied",
+    "it": "Applicata"
+  },
+  "appliedMods": {
+    "en": "Applied Mods",
+    "it": "Mod Applicate"
+  },
+  "apply": {
+    "en": "Apply",
+    "it": "Applica"
+  },
+  "arm": {
+    "en": "Arm",
+    "it": "Braccio"
+  },
+  "armor": {
+    "en": "Armor",
+    "it": "Armatura"
+  },
+  "arms": {
+    "en": "Arms",
+    "it": "Braccia"
+  },
+  "assaultron": {
+    "en": "Assaultron",
+    "it": "Assaultron"
+  },
+  "athletics": {
+    "en": "Athletics",
+    "it": "Atletica"
+  },
+  "attacks": {
+    "en": "Attacks",
+    "it": "Attacchi"
+  },
+  "availableMods": {
+    "en": "Available Mods",
+    "it": "Mod Disponibili"
+  },
+  "availableSkillPoints": {
+    "en": "Skill Points",
+    "it": "Punti Skill"
+  },
+  "availableSpecial": {
+    "en": "S.P.E.C.I.A.L. Points",
+    "it": "Punti S.P.E.C.I.A.L."
+  },
+  "availableSpecialtyPoints": {
+    "en": "Specialty Pt",
+    "it": "Pt. Specialità"
+  },
+  "backToList": {
+    "en": "List",
+    "it": "Lista"
+  },
+  "backgroundPlaceholder": {
+    "en": "Write your background here...",
+    "it": "Scrivi il tuo background qui..."
+  },
+  "barter": {
+    "en": "Barter",
+    "it": "Commercio"
+  },
+  "benefit": {
+    "en": "Benefit",
+    "it": "Beneficio"
+  },
+  "bigGuns": {
+    "en": "Big Guns",
+    "it": "Armi Pesanti"
+  },
+  "body": {
+    "en": "Body",
+    "it": "Corpo"
+  },
+  "bootWelcome": {
+    "en": "WELCOME, OVERSEER",
+    "it": "BENVENUTO, SOVRINTENDENTE"
+  },
+  "boughtForCaps": {
+    "en": "Bought for {{caps}} caps!",
+    "it": "Comprato per {{caps}} tappi!"
+  },
+  "brotherhoodInitiate": {
+    "en": "Brotherhood Initiate",
+    "it": "Iniziato della CdA"
+  },
+  "brotherhoodOutcast": {
+    "en": "Brotherhood Outcast",
+    "it": "Reietto della CdA"
+  },
+  "buy": {
+    "en": "Buy",
+    "it": "Compra"
+  },
+  "buyMods": {
+    "en": "Buy mods",
+    "it": "Compra mod"
+  },
+  "buying": {
+    "en": "Buying",
+    "it": "Comprare"
+  },
+  "cancel": {
+    "en": "Cancel",
+    "it": "Annulla"
+  },
+  "cannotDeleteItem": {
+    "en": "Cannot delete this item!",
+    "it": "Non puoi eliminare questo oggetto!"
+  },
+  "cannotEquipRobotParts": {
+    "en": "Cannot equip robot parts on non-robots.",
+    "it": "Non puoi equipaggiare parti robot su non-robot."
+  },
+  "cannotSellItem": {
+    "en": "Cannot sell this item!",
+    "it": "Non puoi vendere questo oggetto!"
+  },
+  "caps": {
+    "en": "Caps",
+    "it": "Tappi"
+  },
+  "change": {
+    "en": "Change",
+    "it": "Cambia"
+  },
+  "characterImportSuccess": {
+    "en": "Character imported successfully!",
+    "it": "Personaggio importato con successo!"
+  },
+  "characterSlots": {
+    "en": "Character Slots",
+    "it": "Slot Personaggi"
+  },
+  "characters": {
+    "en": "Characters",
+    "it": "Personaggi"
+  },
+  "charisma": {
+    "en": "Charisma",
+    "it": "Carisma"
+  },
+  "childOfAtom": {
+    "en": "Child of Atom",
+    "it": "Figlio dell'Atomo"
+  },
+  "chooseItem": {
+    "en": "Choose an Item",
+    "it": "Scegli un oggetto"
+  },
+  "close": {
+    "en": "Close",
+    "it": "Chiudi"
+  },
+  "clothing": {
+    "en": "Clothing",
+    "it": "Vestiti"
+  },
+  "combatArmor": {
+    "en": "Combat Armor",
+    "it": "Arm. da Combattimento"
+  },
+  "companion": {
+    "en": "Companion",
+    "it": "Compagno"
+  },
+  "companionNamePlaceholder": {
+    "en": "Companion Name...",
+    "it": "Nome Compagno..."
+  },
+  "companionTypeBodyMind": {
+    "en": "BODY/MIND-based Companion",
+    "it": "Compagno basato su CORPO/MENTE"
+  },
+  "companionTypeSpecial": {
+    "en": "SPECIAL-based Companion",
+    "it": "Compagno basato su SPECIAL"
+  },
+  "confirm": {
+    "en": "Confirm",
+    "it": "Conferma"
+  },
+  "confirmDeleteCharacter": {
+    "en": "Are you really sure you want to DELETE YOUR CHARACTER?",
+    "it": "Sei davvero sicuro di voler ELIMINARE IL TUO PERSONAGGIO?"
+  },
+  "confirmDeleteItem": {
+    "en": "Delete {{quantity}}x {{itemName}}? This action cannot be undone.",
+    "it": "Eliminare {{quantity}}x {{itemName}}? Questa azione non può essere annullata."
+  },
+  "confirmGunFu": {
+    "en": "Use 1 AP and 1 ammo to activate Gun Fu?\n\nA second target at Close range will suffer the same damage.",
+    "it": "Usare 1 PA e 1 munizione per attivare Boom-Fu?\n\nUn secondo bersaglio a distanza ravvicinata subirà lo stesso danno."
+  },
+  "confirmSlayer": {
+    "en": "Spend 1 Luck point to activate Slayer?\n\nYou will immediately deal a critical hit and an injury at the hit location.",
+    "it": "Spendere 1 punto Fortuna per attivare Sterminatore?\n\nInfliggerai immediatamente un colpo critico e una ferita nel punto d’impatto."
+  },
+  "cost": {
+    "en": "Cost",
+    "it": "Costo"
+  },
+  "crit": {
+    "en": "Crit",
+    "it": "Critico"
+  },
+  "crtDisplayEffects": {
+    "en": "Display Effects",
+    "it": "Effetti Schermo"
+  },
+  "currency": {
+    "en": "Currency",
+    "it": "Valuta"
+  },
+  "current": {
+    "en": "Current",
+    "it": "Attuale"
+  },
+  "custom": {
+    "en": "Custom",
+    "it": "Personalizzati"
+  },
+  "customItem": {
+    "en": "Custom",
+    "it": "Personalizzato"
+  },
+  "damage": {
+    "en": "Damage",
+    "it": "Danni"
+  },
+  "damageDice": {
+    "en": "Damage Dice",
+    "it": "Dadi Danno"
+  },
+  "damagePoison": {
+    "en": "Poison",
+    "it": "Veleno"
+  },
+  "damageRating": {
+    "en": "Damage Rating",
+    "it": "Grado di Danno"
+  },
+  "damageReduction": {
+    "en": "DR",
+    "it": "RD"
+  },
+  "damageReductionFull": {
+    "en": "Damage Reduction",
+    "it": "Riduzione Danni"
+  },
+  "damageType": {
+    "en": "Damage Type",
+    "it": "Tipo di Danno"
+  },
+  "dataWipeAlert": {
+    "en": "Local data was wiped",
+    "it": "Dati locali eliminati"
+  },
+  "default_add_item_option": {
+    "en": "Select %s to Add",
+    "it": "Scegli %s da Aggiungere"
+  },
+  "defense": {
+    "en": "Defense",
+    "it": "Difesa"
+  },
+  "delete": {
+    "en": "Delete",
+    "it": "Elimina"
+  },
+  "deleteCharacterAlert": {
+    "en": "Are you really sure you want to DELETE YOUR CHARACTER and EVERY OTHER SAVED DATA?",
+    "it": "Sei davvero sicuro di CANCELLARE IL TUO PERSONAGGIO e OGNI ALTRO DATO SALVATO?"
+  },
+  "deleteMarker": {
+    "en": "Do you really want to delete the marker?",
+    "it": "Vuoi davvero eliminare l'indicatore?"
+  },
+  "derivedStats": {
+    "en": "Derived Stats",
+    "it": "Statistiche Derivate"
+  },
+  "description": {
+    "en": "Description",
+    "it": "Descrizione"
+  },
+  "descriptionOptional": {
+    "en": "Optional description...",
+    "it": "Descrizione opzionale..."
+  },
+  "diceToRoll": {
+    "en": "Dice to roll",
+    "it": "Dadi da lanciare"
+  },
+  "dog": {
+    "en": "Dog",
+    "it": "Cane"
+  },
+  "downloadPG": {
+    "en": "Download PG",
+    "it": "Scarica PG"
+  },
+  "drinks": {
+    "en": "Drinks",
+    "it": "Bevande"
+  },
+  "edit": {
+    "en": "Edit",
+    "it": "Modifica"
+  },
+  "editItemName": {
+    "en": "Edit item name",
+    "it": "Modifica nome oggetto"
+  },
+  "editStats": {
+    "en": "Edit Stats",
+    "it": "Modifica Statistiche"
+  },
+  "effectActivationArms": {
+    "en": "Activation (Arms)",
+    "it": "Attivazione (Braccia)"
+  },
+  "effectActivationArmsDescription": {
+    "en": "Melee attacks made with these arms deal +1 DC damage.",
+    "it": "Gli attacchi da mischia portati con queste braccia infliggono +1 DC danno."
+  },
+  "effectActivationThrusters": {
+    "en": "Activation (Thrusters)",
+    "it": "Attivazione (Propulsori)"
+  },
+  "effectActivationThrustersDescription": {
+    "en": "Can perform both a minor Movement action and a major Sprint action in the same turn.",
+    "it": "Può compiere sia un'azione minore di Movimento che un'azione maggiore di Scatto nello stesso turno."
+  },
+  "effectAimDamageBonus": {
+    "en": "Aim Damage Bonus",
+    "it": "Bonus Danno Mira"
+  },
+  "effectAimDamageBonusDescription": {
+    "en": "When aiming and making a Ranged Attack, damage increases by +1 DC",
+    "it": "Quando il personaggio prende la mira ed effettua un Attacco a Distanza, il danno dell'attacco aumenta di +1 DC"
+  },
+  "effectArc": {
+    "en": "Arc",
+    "it": "Arco"
+  },
+  "effectArcDescription": {
+    "en": "Each Effect rolled automatically hits one additional target within Close range of the primary target. Each additional target suffers half the rolled damage (rounded up). Unlike Burst, this does not cost additional ammunition.",
+    "it": "Ogni Effetto ottenuto colpisce automaticamente un bersaglio aggiuntivo entro distanza Ravvicinata dal bersaglio primario. Ogni bersaglio aggiuntivo subisce la metà del danno ottenuto (arrotondato per eccesso). A differenza di Raffica, questo non costa munizioni aggiuntive."
+  },
+  "effectBreaking": {
+    "en": "Breaking",
+    "it": "Dirompente"
+  },
+  "effectBreakingDescription": {
+    "en": "For each Effect rolled, reduce the number of DC a target's cover provides by 1, permanently. If the target is not in cover, instead reduce the DR of the location struck by 1, according to the damage type of the weapon—physical damage only reduces physical DR, for example.",
+    "it": "Per ogni Effetto ottenuto, riduce permanentemente di 1 il numero di DC forniti al bersaglio da una copertura. Se il bersaglio non ha copertura, allora riduce di 1 la RD del punto colpito in base al tipo di danno dell’arma; ad esempio il danno fisico riduce soltanto la RD fisica."
+  },
+  "effectBurst": {
+    "en": "Burst",
+    "it": "Raffica"
+  },
+  "effectBurstDescription": {
+    "en": "The attack hits one additional target within Close range of the primary target for each Effect rolled. Each additional target spends 1 additional unit of ammunition from the weapon.",
+    "it": "L’attacco colpisce un bersaglio aggiuntivo che si trova a distanza Ravvicinata dal primo bersaglio per ogni Effetto ottenuto. Tutti i bersagli aggiuntivi richiedono l’utilizzo di un’unità di munizioni aggiuntiva dell’arma."
+  },
+  "effectCarryWeight": {
+    "en": "Carry Weight",
+    "it": "Peso Trasportabile"
+  },
+  "effectCarryWeightDescription": {
+    "en": "Increases the maximum carry weight by the specified amount",
+    "it": "Aumenta il peso trasportabile massimo del valore specificato"
+  },
+  "effectChemDuration": {
+    "en": "Chem Duration",
+    "it": "Durata Sostanze"
+  },
+  "effectChemDurationDescription": {
+    "en": "Chems last twice as long",
+    "it": "Le sostanze durano il doppio"
+  },
+  "effectFreeze": {
+    "en": "Freeze",
+    "it": "Congelamento"
+  },
+  "effectFreezeDescription": {
+    "en": "Enemies hit by this attack will be Frozen if the number of Effects rolled are equal to or more than half the target’s END (or half the target’s BODY for Creatures). A Frozen creature cannot take actions on its next turn.",
+    "it": "I nemici colpiti da questo attacco saranno Congelati se il numero di Effetti ottenuti è uguale o superiore alla metà della COS del bersaglio (o metà del CORPO per le Creature). Una creatura Congelata non può compiere azioni nel suo prossimo turno."
+  },
+  "effectGasMask": {
+    "en": "Gas Mask",
+    "it": "Maschera Antigas"
+  },
+  "effectGasMaskDescription": {
+    "en": "+3 to Poison Damage Resistance against any airborne or gaseous poison; Wearer suffers no effects from gas or dust; +1 to difficulty of all Speech checks",
+    "it": "+3 alla Resistenza ai danni da Veleno contro qualsiasi veleno in sospensione nell'aria o in forma gassosa; Chi la indossa non subisce alcun effetto derivante da gas o polvere; +1 alla difficoltà di ogni prova di Oratoria"
+  },
+  "effectHydraulic": {
+    "en": "Hydraulic",
+    "it": "Idraulico"
+  },
+  "effectHydraulicDescription": {
+    "en": "Melee attacks made with these arms deal +1 DC damage and gain the Stun damage effect.",
+    "it": "Gli attacchi da mischia effettuati con queste braccia infliggono +1 DC danno e ottengono l'effetto del danno Stordente."
+  },
+  "effectIgnoreLightPenalty": {
+    "en": "Ignore Light Penalty",
+    "it": "Ignora Penalità Luce"
+  },
+  "effectIgnoreLightPenaltyDescription": {
+    "en": "Ignore any difficulty increase due to excessive light",
+    "it": "Ignorare ogni aumento di difficoltà dovuto alla troppa luce"
+  },
+  "effectKnurled": {
+    "en": "Knurled",
+    "it": "Zigrinato"
+  },
+  "effectKnurledDescription": {
+    "en": "When a melee attack is made against this part and the attacker suffers a complication, they also suffer 2 DC Persistent (Physical) damage. Melee attacks with knurled arms gain the Persistent (Physical) damage effect.",
+    "it": "Quando viene effettuato un attacco da mischia contro questa parte e l'attaccante subisce una complicazione, soffre 2 DC danni Persistenti (Fisici). Gli attacchi da mischia con braccia zigrinate ottengono l'effetto danno Persistente (Fisico)."
+  },
+  "effectMeleeBonusAP": {
+    "en": "Melee Bonus AP",
+    "it": "Bonus PA Mischia"
+  },
+  "effectMeleeBonusAPDescription": {
+    "en": "Can spend up to 4 AP for bonus melee damage",
+    "it": "Si possono spendere fino a 4 PA per danni bonus da attacchi da mischia"
+  },
+  "effectPersistent": {
+    "en": "Persistent",
+    "it": "Persistente"
+  },
+  "effectPersistentDescription": {
+    "en": "If one or more Effects are rolled, the target suffers the weapon's damage again at the end of their next and subsequent turns, for a number of rounds equal to the number of Effects rolled. The target can spend a major action to make a test to stop persistent damage early, with the difficulty equal to the number of Effects rolled, and the attribute + skill chosen by the GM. Some Persistent weapons may inflict a different type of damage to the weapon, and where this is the case, it will be noted in brackets, for example: Persistent (Poison).",
+    "it": "Se si ottengono uno o più Effetti, il bersaglio subisce nuovamente il danno dell’arma alla fine dei turni successivi, per un numero di round pari al numero di Effetti ottenuti. Il bersaglio può utilizzare un’azione maggiore per effettuare una prova in modo da interrompere anticipatamente il danno Persistente, la difficoltà è pari al numero di Effetti ottenuti e l’attributo + abilità vengono scelti dal GM. Alcune armi Persistenti possono infliggere un tipo differente di danno all’arma, in questi casi viene indicato fra parentesi, ad esempio: Persistente (Veleno)."
+  },
+  "effectPersistentImmunity": {
+    "en": "Persistent Immunity",
+    "it": "Immunità Persistente"
+  },
+  "effectPersistentImmunityDescription": {
+    "en": "Ignores Persistent Energy damage",
+    "it": "Ignora i danni da Energia dell'Effetto Persistente"
+  },
+  "effectPiercing": {
+    "en": "Piercing",
+    "it": "Penetrante"
+  },
+  "effectPiercingDescription": {
+    "en": "Ignore X points of the target's DR for each Effect rolled, where X is the rating of this damage effect.",
+    "it": "Ignora X punti della RD del bersaglio per ogni Effetto ottenuto, dove X corrisponde al valore dell’effetto del danno."
+  },
+  "effectPoisonous": {
+    "en": "Poisonous",
+    "it": "Velenoso"
+  },
+  "effectPoisonousDescription": {
+    "en": "When a melee attack is made against this part and the attacker suffers a complication, they suffer 2 DC Persistent (Poison) damage. Melee attacks with poisonous arms gain the Persistent (Poison) damage effect.",
+    "it": "Quando viene effettuato un attacco da mischia contro questa parte e l'attaccante subisce una complicazione, subisce 2 DC danni Persistenti (Veleno). Gli attacchi da mischia con braccia velenose ottengono l'effetto danno Persistente (Veleno)."
+  },
+  "effectRadioactive": {
+    "en": "Radioactive",
+    "it": "Radioattivo"
+  },
+  "effectRadioactiveDescription": {
+    "en": "For every Effect rolled, the target also suffers 1 point of radiation damage. This radiation damage is totalled and applied separately, after a character has suffered the normal damage from the attack.",
+    "it": "Per ogni Effetto ottenuto, il bersaglio subisce anche 1 danno da Radiazioni. Il danno da Radiazioni viene sommato e applicato separatamente, dopo che il personaggio ha subito il danno normale dell’attacco."
+  },
+  "effectShadowed": {
+    "en": "Shadowed",
+    "it": "Ombrata"
+  },
+  "effectShadowedDescription": {
+    "en": "Shadowed Armor: 1+ pieces = ignore first complication on Sneak in darkness; 3+ pieces (Torso=2) = reroll 1d20 on Sneak in darkness 1/scene; 5+ pieces (Torso=2) = reroll 1d20 on every Sneak check in darkness. Does not work with Power Armor.",
+    "it": "Armatura Ombrata: 1+ pezzi = ignori la prima complicazione su Furtività al buio; 3+ pezzi (Torso=2) = ritiro 1d20 su Furtività al buio 1/scena; 5+ pezzi (Torso=2) = ritiro 1d20 su ogni prova di Furtività al buio. Non funziona con Armatura Atomica."
+  },
+  "effectSpecialReroll": {
+    "en": "Reroll",
+    "it": "Rilancia"
+  },
+  "effectSpecialRerollDescription": {
+    "en": "Reroll one d20 per scene on a skill check based on the specified SPECIAL attribute",
+    "it": "Rilanciare un d20 per scena in una prova di abilità basata sull'attributo SPECIAL specificato"
+  },
+  "effectSpread": {
+    "en": "Spread",
+    "it": "Propagato"
+  },
+  "effectSpreadDescription": {
+    "en": "For each Effect rolled, your attack inflicts one additional hit on the target. Each additional hit inflicts half the rolled damage (rounded down) and hits a random location even if a specific location was targeted for the initial attack.",
+    "it": "Per ogni Effetto ottenuto, l’attacco infligge uno o più colpi aggiuntivi al bersaglio. Ogni colpo aggiuntivo infligge la metà del danno tirato (arrotondato per difetto) e colpisce un punto casuale, anche se era stato bersagliato un punto specifico per l’attacco iniziale."
+  },
+  "effectStealthReroll": {
+    "en": "Stealth Reroll",
+    "it": "Ritiro Furtività"
+  },
+  "effectStealthRerollDescription": {
+    "en": "Can reroll one d20 on Sneak checks",
+    "it": "Si può ripetere il tiro di un d20 sulle prove di Furtività"
+  },
+  "effectStun": {
+    "en": "Stun",
+    "it": "Stordente"
+  },
+  "effectStunDescription": {
+    "en": "If one or more Effects are rolled, the target cannot take their normal actions on their next turn. A stunned character or creature can still spend AP to take additional actions as normal.",
+    "it": "Se si ottengono uno o più Effetti, il bersaglio non può effettuare azioni normali nel suo prossimo turno. Un individuo o creatura storditi possono comunque spendere PA per ottenere azioni aggiuntive."
+  },
+  "effectStunResistance": {
+    "en": "Stun Resistance",
+    "it": "Resistenza Stordimento"
+  },
+  "effectStunResistanceDescription": {
+    "en": "Stun damage requires 2+ Effects to affect character",
+    "it": "Affinché i danni stordenti abbiano effetto sul personaggio, occorre ottenere 2+ Effetti"
+  },
+  "effectToxic": {
+    "en": "Toxic",
+    "it": "Tossico"
+  },
+  "effectToxicDescription": {
+    "en": "When a melee attack is made against this part and the attacker suffers a complication, they suffer 2 DC Radiation damage. Melee attacks with toxic arms gain the Radioactive damage effect.",
+    "it": "Quando viene effettuato un attacco da mischia contro questa parte e l'attaccante subisce una complicazione, subisce 2 DC danni da Radiazioni. Gli attacchi da mischia con braccia tossiche ottengono l'effetto danno Radioattivo."
+  },
+  "effectVicious": {
+    "en": "Vicious",
+    "it": "Violento"
+  },
+  "effectViciousDescription": {
+    "en": "The attack inflicts +1 damage for each Effect rolled.",
+    "it": "Per ogni Effetto ottenuto, l’attacco infligge +1 danno."
+  },
+  "effectVoltaic": {
+    "en": "Voltaic",
+    "it": "Voltaico"
+  },
+  "effectVoltaicDescription": {
+    "en": "All attacks that deal Energy damage deal +1 DC. The bonus increases by +1 DC for every two additional parts with Voltaic Frame (+2 DC with 3 pieces or +3 DC with 5 pieces or more).",
+    "it": "Tutti gli attacchi che arrecano danni da Energia infliggono +1 DC. Il bonus aumenta di +1 DC ogni due ulteriori parti dotate di Telaio Voltaico (+2 DC con 3 pezzi o +3 DC con 5 pezzi o più)."
+  },
+  "effects": {
+    "en": "Effects",
+    "it": "Effetti"
+  },
+  "emptySlot": {
+    "en": "Empty Slot",
+    "it": "Slot Vuoto"
+  },
+  "endurance": {
+    "en": "Endurance",
+    "it": "Costituzione"
+  },
+  "energy": {
+    "en": "Energy",
+    "it": "Energia"
+  },
+  "energyRes": {
+    "en": "Energy Res",
+    "it": "Res. Energia"
+  },
+  "energyWeapons": {
+    "en": "Energy Weapons",
+    "it": "Armi a Energia"
+  },
+  "equipped": {
+    "en": "Equipped",
+    "it": "Equipaggiato"
+  },
+  "errorLoadingItems": {
+    "en": "Error loading items",
+    "it": "Errore nel caricamento oggetti"
+  },
+  "explosiveRes": {
+    "en": "Explosive Res",
+    "it": "Res. Esplosivi"
+  },
+  "explosives": {
+    "en": "Explosives",
+    "it": "Esplosivi"
+  },
+  "export": {
+    "en": "Export",
+    "it": "Esporta"
+  },
+  "extraHits": {
+    "en": "Extra Hits",
+    "it": "Colpi Extra"
+  },
+  "eyebot": {
+    "en": "Eyebot",
+    "it": "Eyebot"
+  },
+  "fallDamageRes": {
+    "en": "Fall Damage Res",
+    "it": "Res. Caduta"
+  },
+  "fileReadError": {
+    "en": "Error reading the file.",
+    "it": "Errore nella lettura del file."
+  },
+  "filterByRarity": {
+    "en": "Filter by rarity",
+    "it": "Filtra per rarità"
+  },
+  "filterByType": {
+    "en": "Filter by type",
+    "it": "Filtra per tipo"
+  },
+  "fireRate": {
+    "en": "Fire Rate",
+    "it": "Cadenza di Fuoco"
+  },
+  "food": {
+    "en": "Food",
+    "it": "Cibo"
+  },
+  "ghoul": {
+    "en": "Ghoul",
+    "it": "Ghoul"
+  },
+  "guns": {
+    "en": "Guns",
+    "it": "Proiettile"
+  },
+  "head": {
+    "en": "Head",
+    "it": "Testa"
+  },
+  "headgear": {
+    "en": "Headgear",
+    "it": "Copricapo"
+  },
+  "hitLocation": {
+    "en": "Hit Location",
+    "it": "Posizione Colpo"
+  },
+  "hitTorso": {
+    "en": "Hit Torso?",
+    "it": "Mirare al Torso?"
+  },
+  "hp": {
+    "en": "HP",
+    "it": "PS"
+  },
+  "humanoid": {
+    "en": "Humanoid",
+    "it": "Umanoide"
+  },
+  "immune": {
+    "en": "Immune",
+    "it": "Immune"
+  },
+  "import": {
+    "en": "Import",
+    "it": "Importa"
+  },
+  "importFailed": {
+    "en": "Import failed",
+    "it": "Importazione fallita"
+  },
+  "importPG": {
+    "en": "Import PG",
+    "it": "Importa PG"
+  },
+  "initiative": {
+    "en": "Initiative",
+    "it": "Iniziativa"
+  },
+  "intelligence": {
+    "en": "Intelligence",
+    "it": "Intelligenza"
+  },
+  "invalidCapsAlert": {
+    "en": "CAPS value is invalid!",
+    "it": "TAPPI non validi!"
+  },
+  "invalidCharacterFileError": {
+    "en": "Error: Invalid character file format.",
+    "it": "Errore: Formato file personaggio non valido."
+  },
+  "invalidHpAlert": {
+    "en": "HP value is invalid!",
+    "it": "HP non validi!"
+  },
+  "invalidJsonFileError": {
+    "en": "Error: The selected file is not a valid JSON file.",
+    "it": "Errore: Il file selezionato non è un file JSON valido."
+  },
+  "invalidLuckAlert": {
+    "en": "LUCK value is invalid!",
+    "it": "FORTUNA non valida!"
+  },
+  "itemDeleted": {
+    "en": "Item deleted.",
+    "it": "Oggetto eliminato."
+  },
+  "junk": {
+    "en": "Junk Materials",
+    "it": "Materiali"
+  },
+  "language": {
+    "en": "Language",
+    "it": "Lingua"
+  },
+  "leatherArmor": {
+    "en": "Leather Armor",
+    "it": "Arm. di Pelle"
+  },
+  "left": {
+    "en": "Left",
+    "it": "Sx"
+  },
+  "leftArm": {
+    "en": "Left Arm",
+    "it": "Braccio Sinistro"
+  },
+  "leftLeg": {
+    "en": "Left Leg",
+    "it": "Gamba Sinistra"
+  },
+  "leg": {
+    "en": "Leg",
+    "it": "Gamba"
+  },
+  "legendaryExterminatorArmor": {
+    "en": "Exterminator’s",
+    "it": "Sterminatore"
+  },
+  "legendaryExterminatorArmorDescription": {
+    "en": "+2 Physical and Energy DR against attacks from insect, arachnid, or mirelurk enemies.",
+    "it": "+2 alla RD Fisica ed Energia contro gli attacchi di insetti, aracnidi o mirelurk."
+  },
+  "legendaryExterminatorWeapon": {
+    "en": "Exterminator’s",
+    "it": "Sterminatore"
+  },
+  "legendaryExterminatorWeaponDescription": {
+    "en": "Attacks gain Vicious against insects, arachnids, and mirelurks. If already Vicious, inflict +2 damage per Effect instead of +1.",
+    "it": "Gli attacchi ottengono Letale contro insetti, aracnidi e mirelurk. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+  },
+  "legendaryGhoulSlayerArmor": {
+    "en": "Ghoul Slayer’s",
+    "it": "Sterminatore di Ghoul"
+  },
+  "legendaryGhoulSlayerArmorDescription": {
+    "en": "+2 Physical, Energy, and Radiation DR against attacks from ghoul enemies.",
+    "it": "+2 alla RD Fisica, Energia e Radiazioni contro gli attacchi dei ghoul."
+  },
+  "legendaryGhoulSlayerWeapon": {
+    "en": "Ghoul Slayer’s",
+    "it": "Sterminatore di Ghoul"
+  },
+  "legendaryGhoulSlayerWeaponDescription": {
+    "en": "Attacks gain Vicious against ghouls. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
+    "it": "Gli attacchi ottengono Letale contro i ghoul. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+  },
+  "legendaryHunterArmor": {
+    "en": "Hunter’s",
+    "it": "Cacciatore"
+  },
+  "legendaryHunterArmorDescription": {
+    "en": "Provides +2 Physical and Energy DR against attacks from mammal or lizard enemies.",
+    "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi di mammiferi o lucertole."
+  },
+  "legendaryHunterWeapon": {
+    "en": "Hunter’s",
+    "it": "Cacciatore"
+  },
+  "legendaryHunterWeaponDescription": {
+    "en": "Attacks gain Vicious against mammals and lizards. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
+    "it": "Gli attacchi ottengono Letale contro mammiferi e lucertole. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+  },
+  "legendaryIncendiaryArmor": {
+    "en": "Incendiary",
+    "it": "Incendiario"
+  },
+  "legendaryIncendiaryArmorDescription": {
+    "en": "Enemy melee attacks increase complication range by 1; on complication, attacker suffers X CD Persistent Energy damage (X = damage dice).",
+    "it": "Gli attacchi in mischia nemici aumentano l'intervallo di complicazione di 1; con una complicazione, l'attaccante subisce X DC di danno Persistente (Energia)."
+  },
+  "legendaryIncendiaryWeapon": {
+    "en": "Incendiary",
+    "it": "Incendiario"
+  },
+  "legendaryIncendiaryWeaponDescription": {
+    "en": "This weapon gains the Persistent (Energy) damage effect.",
+    "it": "Quest'arma ottiene l'effetto danno Persistente (Energia)."
+  },
+  "legendaryMutantSlayerArmor": {
+    "en": "Mutant Slayer’s",
+    "it": "Sterminatore di Mutanti"
+  },
+  "legendaryMutantSlayerArmorDescription": {
+    "en": "Provides +2 Physical and Energy DR against attacks from super mutant enemies.",
+    "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi dei supermutanti."
+  },
+  "legendaryMutantSlayerWeapon": {
+    "en": "Mutant Slayer’s",
+    "it": "Sterminatore di Mutanti"
+  },
+  "legendaryMutantSlayerWeaponDescription": {
+    "en": "Attacks gain Vicious against super mutants. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
+    "it": "Gli attacchi ottengono Letale contro i supermutanti. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+  },
+  "legendaryTroubleshooterArmor": {
+    "en": "Troubleshooter’s",
+    "it": "Risolutore"
+  },
+  "legendaryTroubleshooterArmorDescription": {
+    "en": "Provides +2 Physical and Energy DR against attacks from robot enemies.",
+    "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi dei robot."
+  },
+  "legendaryTroubleshooterWeapon": {
+    "en": "Troubleshooter’s",
+    "it": "Risolutore"
+  },
+  "legendaryTroubleshooterWeaponDescription": {
+    "en": "Attacks gain Vicious against robots. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
+    "it": "Gli attacchi ottengono Letale contro i robot. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+  },
+  "legionDenarius": {
+    "en": "Legion Denarius",
+    "it": "Legion Denarius"
+  },
+  "legionaryArmor": {
+    "en": "Legionary Armor",
+    "it": "Arm. da Legionario"
+  },
+  "legs": {
+    "en": "Legs",
+    "it": "Gambe"
+  },
+  "level": {
+    "en": "Level",
+    "it": "Livello"
+  },
+  "loadingItems": {
+    "en": "Loading items...",
+    "it": "Caricamento oggetti..."
+  },
+  "localDataWiped": {
+    "en": "Local data was wiped",
+    "it": "I dati locali sono stati cancellati"
+  },
+  "lockpick": {
+    "en": "Lockpick",
+    "it": "Scassinare"
+  },
+  "luck": {
+    "en": "Luck",
+    "it": "Fortuna"
+  },
+  "luckCost": {
+    "en": "Luck Cost",
+    "it": "Costo Fortuna"
+  },
+  "marineArmor": {
+    "en": "Marine Armor",
+    "it": "Arm. Marine"
+  },
+  "medicine": {
+    "en": "Medicine",
+    "it": "Medicina"
+  },
+  "meds": {
+    "en": "Medicine",
+    "it": "Medicine"
+  },
+  "melee": {
+    "en": "Melee",
+    "it": "Mischia"
+  },
+  "melee-damage": {
+    "en": "Melee Damage",
+    "it": "Danno in Mischia"
+  },
+  "meleeDamage": {
+    "en": "Melee Damage",
+    "it": "Danno Mischia"
+  },
+  "meleeRes": {
+    "en": "Melee Res",
+    "it": "Res. Mischia"
+  },
+  "meleeWeapons": {
+    "en": "Melee Weapons",
+    "it": "Armi da Mischia"
+  },
+  "meltdownResult": {
+    "en": "{{effectCount}} enemies hit for {{effectCount}} Energy damage each!",
+    "it": "{{effectCount}} nemici colpiti per {{effectCount}} danni da Energia ciascuno!"
+  },
+  "meltdownRollDice": {
+    "en": "Roll {{diceCount}} Combat Dice",
+    "it": "Lancia {{diceCount}} Dadi Combattimento"
+  },
+  "meltdownTitle": {
+    "en": "Meltdown - Enemy Explosion",
+    "it": "Meltdown - Esplosione Nemica"
+  },
+  "metalArmor": {
+    "en": "Metal Armor",
+    "it": "Arm. di Metallo"
+  },
+  "mind": {
+    "en": "Mind",
+    "it": "Mente"
+  },
+  "minutemen": {
+    "en": "Minutemen",
+    "it": "Minutemen"
+  },
+  "misc": {
+    "en": "Miscellaneous",
+    "it": "Miscellanea"
+  },
+  "modEffects": {
+    "en": "Mod Effects",
+    "it": "Effetti Mod"
+  },
+  "modHeavyTireIron": {
+    "en": "Heavy Tire Iron",
+    "it": "Leva Pesante"
+  },
+  "modHeavyTireIronDescription": {
+    "en": "+1 damage DC",
+    "it": "+1 danno DC"
+  },
+  "modSlotBallisticWeave": {
+    "en": "Ballistic Weave",
+    "it": "Trama Balistica"
+  },
+  "modSlotBarrel": {
+    "en": "Barrel",
+    "it": "Canna"
+  },
+  "modSlotCapacitor": {
+    "en": "Capacitor",
+    "it": "Condensatore"
+  },
+  "modSlotDish": {
+    "en": "Dish",
+    "it": "Disco"
+  },
+  "modSlotFuel": {
+    "en": "Fuel",
+    "it": "Combustibile"
+  },
+  "modSlotGrip": {
+    "en": "Grip",
+    "it": "Impugnatura"
+  },
+  "modSlotImprovement": {
+    "en": "Improvement",
+    "it": "Miglioramento"
+  },
+  "modSlotLegendary": {
+    "en": "Legendary Eff.",
+    "it": "Eff. Leggendario"
+  },
+  "modSlotLining": {
+    "en": "Lining",
+    "it": "Fodera"
+  },
+  "modSlotMagazine": {
+    "en": "Magazine",
+    "it": "Caricatore"
+  },
+  "modSlotMaterial": {
+    "en": "Material",
+    "it": "Materiale"
+  },
+  "modSlotMelee": {
+    "en": "Melee Mod",
+    "it": "Mod Mischia"
+  },
+  "modSlotMisc": {
+    "en": "Misc",
+    "it": "Varie"
+  },
+  "modSlotMuzzle": {
+    "en": "Muzzle",
+    "it": "Volata"
+  },
+  "modSlotNozzle": {
+    "en": "Nozzle",
+    "it": "Ugello"
+  },
+  "modSlotPropellantTank": {
+    "en": "Propellant Tank",
+    "it": "Serbatoio Propellente"
+  },
+  "modSlotReceiver": {
+    "en": "Receiver",
+    "it": "Castello"
+  },
+  "modSlotRobotArmor": {
+    "en": "Armor",
+    "it": "Armatura"
+  },
+  "modSlotRobotPlating": {
+    "en": "Plating",
+    "it": "Placcatura"
+  },
+  "modSlotSight": {
+    "en": "Sight",
+    "it": "Mirino"
+  },
+  "modSlotStock": {
+    "en": "Stock",
+    "it": "Calcio"
+  },
+  "modSlotVaultSuit": {
+    "en": "Vault Suit Lining",
+    "it": "Fodera Tuta Vault"
+  },
+  "modSlotWeave": {
+    "en": "Weave",
+    "it": "Trama"
+  },
+  "modSpikedTireIron": {
+    "en": "Spiked Tire Iron",
+    "it": "Leva Chiodata"
+  },
+  "modSpikedTireIronDescription": {
+    "en": "+1 damage DC, gains Piercing 1",
+    "it": "+1 danno DC, ottiene Penetrante 1"
+  },
+  "modify": {
+    "en": "Modify",
+    "it": "Modifica"
+  },
+  "modifyItem": {
+    "en": "Modify Item",
+    "it": "Modifica Oggetto"
+  },
+  "mrHandy": {
+    "en": "Mr. Handy",
+    "it": "Mr. Handy"
+  },
+  "mrHandyWeapons": {
+    "en": "Mr Handy Weapons",
+    "it": "Armi Mr Handy"
+  },
+  "na": {
+    "en": "N/A",
+    "it": "N/A"
+  },
+  "name": {
+    "en": "Name",
+    "it": "Nome"
+  },
+  "namePlaceholder": {
+    "en": "Character Name...",
+    "it": "Nome Personaggio..."
+  },
+  "ncr": {
+    "en": "NCR",
+    "it": "NCR"
+  },
+  "ncrDollars": {
+    "en": "NCR Dollars",
+    "it": "Dollari NCR"
+  },
+  "nightkin": {
+    "en": "Nightkin",
+    "it": "Nightkin"
+  },
+  "noCharacterInSlot": {
+    "en": "No character in this slot",
+    "it": "Nessun personaggio in questo slot"
+  },
+  "noDescription": {
+    "en": "No description available",
+    "it": "Nessuna descrizione disponibile"
+  },
+  "noFlicker": {
+    "en": "No Flicker",
+    "it": "Stabile"
+  },
+  "noItems": {
+    "en": "No items",
+    "it": "Nessun oggetto"
+  },
+  "noItemsFound": {
+    "en": "No items found",
+    "it": "Nessun oggetto trovato"
+  },
+  "noModsApplied": {
+    "en": "No mods applied",
+    "it": "Nessuna mod applicata"
+  },
+  "noModsAvailable": {
+    "en": "No compatible mods in inventory",
+    "it": "Nessuna mod compatibile nell'inventario"
+  },
+  "noPerk": {
+    "en": "No Perk",
+    "it": "Nessun Talento"
+  },
+  "noPerksAvailable": {
+    "en": "No perks available",
+    "it": "Nessun perk disponibile"
+  },
+  "noTrait": {
+    "en": "No Trait",
+    "it": "Nessun Tratto"
+  },
+  "noTraitsAvailable": {
+    "en": "No traits available",
+    "it": "Nessun tratto disponibile"
+  },
+  "none": {
+    "en": "-",
+    "it": "-"
+  },
+  "notEnoughAmmoAlert": {
+    "en": "You don't have enough AMMO to do it!",
+    "it": "Non hai abbastanza MUNIZIONI per farlo!"
+  },
+  "notEnoughCaps": {
+    "en": "Not enough caps!",
+    "it": "Tappi insufficienti!"
+  },
+  "notEnoughLuckAlert": {
+    "en": "You don't have enough LUCK to do it!",
+    "it": "Non hai abbastanza FORTUNA per farlo!"
+  },
+  "off": {
+    "en": "Off",
+    "it": "Off"
+  },
+  "on": {
+    "en": "On",
+    "it": "On"
+  },
+  "origin": {
+    "en": "Origin",
+    "it": "Origine"
+  },
+  "originTraits": {
+    "en": "Origin Traits",
+    "it": "Tratti dell'Origine"
+  },
+  "other": {
+    "en": "Other",
+    "it": "Altro"
+  },
+  "outfit": {
+    "en": "Outfit",
+    "it": "Completi"
+  },
+  "penalty": {
+    "en": "Penalty",
+    "it": "Penalità"
+  },
+  "perception": {
+    "en": "Perception",
+    "it": "Percezione"
+  },
+  "perkAttackDog": {
+    "en": "Attack Dog",
+    "it": "Cane da Attacco"
+  },
+  "perkAttackDogDescription": {
+    "en": "Your companion dog is trained for combat. Attacks deal +1 damage.",
+    "it": "Il tuo cane compagno è addestrato per il combattimento. Gli attacchi infliggono +1 danno."
+  },
+  "perkLoyalCompanion": {
+    "en": "Loyal Companion",
+    "it": "Compagno Leale"
+  },
+  "perkLoyalCompanionDescription": {
+    "en": "Your companion will never abandon you. Immune to fear effects.",
+    "it": "Il tuo compagno non ti abbandonerà mai. Immune agli effetti di paura."
+  },
+  "perkPackMule": {
+    "en": "Pack Mule",
+    "it": "Mulo da Soma"
+  },
+  "perkPackMuleDescription": {
+    "en": "Your companion can carry extra weight. Increases carry capacity by 25kg.",
+    "it": "Il tuo compagno può trasportare peso extra. Aumenta la capacità di carico di 25kg."
+  },
+  "perkProtector": {
+    "en": "Protector",
+    "it": "Protettore"
+  },
+  "perkProtectorDescription": {
+    "en": "Your companion shields you from harm. Grants +1 DR to all damage types when nearby.",
+    "it": "Il tuo compagno ti protegge dal pericolo. Garantisce +1 RD a tutti i tipi di danno quando è vicino."
+  },
+  "perkRepairBot": {
+    "en": "Repair Bot",
+    "it": "Robot Riparatore"
+  },
+  "perkRepairBotDescription": {
+    "en": "Your companion can perform basic repairs. Can repair items in the field.",
+    "it": "Il tuo compagno può eseguire riparazioni di base. Può riparare oggetti sul campo."
+  },
+  "perkScout": {
+    "en": "Scout",
+    "it": "Esploratore"
+  },
+  "perkScoutDescription": {
+    "en": "Your companion has keen senses. Grants +2 to Perception checks when scouting.",
+    "it": "Il tuo compagno ha sensi acuti. Garantisce +2 alle prove di Percezione durante l'esplorazione."
+  },
+  "perks": {
+    "en": "Perks",
+    "it": "Talenti"
+  },
+  "physical": {
+    "en": "Physical",
+    "it": "Fisici"
+  },
+  "physicalRes": {
+    "en": "Physical Res",
+    "it": "Res. Fisica"
+  },
+  "pilot": {
+    "en": "Pilot",
+    "it": "Pilotare"
+  },
+  "poison": {
+    "en": "Poison",
+    "it": "Veleno"
+  },
+  "prewarMoney": {
+    "en": "Pre-war Money",
+    "it": "Denaro Prebellico"
+  },
+  "price": {
+    "en": "Price",
+    "it": "Prezzo"
+  },
+  "protectron": {
+    "en": "Protectron",
+    "it": "Protectron"
+  },
+  "protects": {
+    "en": "Protects",
+    "it": "Protegge"
+  },
+  "qualities": {
+    "en": "Quality",
+    "it": "Qualità"
+  },
+  "qualityAccurate": {
+    "en": "Accurate",
+    "it": "Di Precisione"
+  },
+  "qualityAccurateDescription": {
+    "en": "If you take the Aim minor action before attacking with an Accurate weapon, you may spend up to 3 AP to add +1 DC per AP spent to the attack's damage. If you gain damage in this way, you may not spend ammunition for extra damage. A weapon cannot be both Accurate and Inaccurate.",
+    "it": "Se un PG compie l’azione minore di Mirare prima di attaccare con un’arma Di Precisione, può spendere fino a 3 PA per aggiungere +1 DC ogni PA speso così per aumentare il danno dell’attacco. Se guadagna DC in questo modo, non può spendere munizioni per infliggere danni aggiuntivi. Un’arma non può essere contemporaneamente Di Precisione e Imprecisa."
+  },
+  "qualityAmmoHungry": {
+    "en": "Ammo-Hungry",
+    "it": "Consumo Elevato"
+  },
+  "qualityAmmoHungryDescription": {
+    "en": "The weapon consumes ammo at a much higher rate than other weapons. Each time the weapon is fired, it spends X ammo, rather than 1. In addition, extra damage requires spending X ammo per +1 DC , with a maximum number of DC equal to the weapon’s Fire Rate. Additional uses of ammunition, such as the Burst damage effect, also spend X ammo for every 1 ammo that would normally be spent.",
+    "it": "L’arma consuma munizioni a un ritmo molto più elevato rispetto ad altre armi. Ogni volta che l’arma spara, consuma X munizioni invece di 1. Inoltre, il danno extra richiede la spesa di X munizioni per ogni +1 DC , con un numero massimo di DC pari alla Cadenza di Fuoco dell'arma. Utilizzi aggiuntivi di munizioni, come l’effetto di danno Raffica, richiedono inoltre X munizioni per ogni unità che verrebbe normalmente spesa."
+  },
+  "qualityBlast": {
+    "en": "Blast",
+    "it": "Esplosiva"
+  },
+  "qualityBlastDescription": {
+    "en": "When you make an attack with a Blast weapon, you do not target a single opponent. Instead, select a single zone you can see, and make the appropriate skill test to attack, with a basic difficulty of 2 (adjusted for range as normal). If you succeed, every creature (and other damageable target) in that zone suffers the weapon's damage. If you fail, your misplaced attack is less effective: roll only half the weapon's DC to determine the damage inflicted to creatures in the target zone and ignore the weapon's normal damage effects.",
+    "it": "Quando il PG effettua un’attacco con un’arma Esplosiva, non bersaglia un singolo avversario, ma seleziona una zona entro il proprio raggio visivo ed effettua la debita prova per attaccare, con una difficoltà base di 2 (da aggiustare a seconda della distanza). Se ha successo, ogni creatura (e qualsiasi altro obiettivo danneggiabile) in quella zona subisce i danni dell’arma. Se fallisce, l’attacco mal calibrato è meno efficace: il giocatore tira solo la metà dei DC dell’arma per determinare il danno inflitto alle creature nella zona bersagliata e queste ignorano i normali effetti dei danni dell’arma."
+  },
+  "qualityBombard": {
+    "en": "Bombard",
+    "it": "Bombardamento"
+  },
+  "qualityBombardDescription": {
+    "en": "The weapon can deliver a series of explosions over a wide area. This functions identically to the Blast quality, with one addition: When an attack is made with the weapon, you may spend additional ammunition to target additional zones. Each additional zone requires that 2 ammunition be spent, and additional zones must be adjacent to the initial target zone. Ammunition spent to target additional zones is limited by the weapon’s Fire Rate.",
+    "it": "L’arma può infliggere una serie di esplosioni su un’ampia area. Funziona in modo identico alla qualità Esplosione, con un’aggiunta: quando viene effettuato un attacco con l’arma, è possibile spendere munizioni aggiuntive per colpire zone extra. Ogni zona aggiuntiva richiede la spesa di 2 munizioni e le zone extra devono essere adiacenti alla zona bersaglio iniziale. Le munizioni spese per colpire zone aggiuntive sono limitate dalla Cadenza di Fuoco dell’arma."
+  },
+  "qualityCloseQuarters": {
+    "en": "Close Quarters",
+    "it": "Corpo a Corpo"
+  },
+  "qualityCloseQuartersDescription": {
+    "en": "A Close Quarters weapon is easy to use up-close, and suffers no difficulty increase for being used when within Reach of an enemy.",
+    "it": "Un’arma da Corpo a Corpo è facile da utilizzare a distanza Ravvicinata e la difficoltà non aumenta quando viene usata entro la Portata del nemico."
+  },
+  "qualityConcealed": {
+    "en": "Concealed",
+    "it": "Occultata"
+  },
+  "qualityConcealedDescription": {
+    "en": "A Concealed weapon is small, or otherwise easy to hide on your person. Enemies do not spot a Concealed weapon unless you're wielding it, or if they make a thorough search and succeed at a PER + Survival test with a difficulty of 2.",
+    "it": "Le armi Occultate sono piccole o comunque facili da nascondersi addosso. I nemici non si accorgono delle armi Occultate a meno che non si stiano impugnando o dopo aver fatto un’attenta prequisizione e aver avuto successo in un tiro di PER + Sopravvivenza difficoltà 2."
+  },
+  "qualityCrippling": {
+    "en": "Crippling",
+    "it": "Invalidante"
+  },
+  "qualityCripplingDescription": {
+    "en": "The difficulty of any test to heal injuries caused by a Crippling weapon is increased by 1.",
+    "it": "La difficoltà di ogni prova per curare le ferite causate da un'arma Invalidante è aumentata di 1."
+  },
+  "qualityDebilitating": {
+    "en": "Debilitating",
+    "it": "Invalidante"
+  },
+  "qualityDebilitatingDescription": {
+    "en": "The difficulty of any skill test to treat injuries inflicted by a Debilitating weapon increase by +1.",
+    "it": "La difficoltà di ogni prova per curare le ferite causate da un’arma Invalidante è aumentata di 1."
+  },
+  "qualityDelay": {
+    "en": "Delay",
+    "it": "Ritardo"
+  },
+  "qualityDelayDescription": {
+    "en": "The weapon operates on a timer or fuse, and will not detonate immediately. A Thrown Delay weapon can be thrown normally to the target location, while other Delay weapons may be placed in their desired location. A Delay (1) weapon detonates at the start of the first round after it is thrown or otherwise triggered. A Delay (2) weapon detonates at the start of the round after that, and so on.",
+    "it": "L’arma funziona con un timer o una miccia e non detona immediatamente. Un’arma a Ritardo lanciata può essere lanciata normalmente verso la posizione bersaglio, mentre altre armi a Ritardo possono essere piazzate nella posizione desiderata. Un’arma a Ritardo (1) detona all’inizio del primo round dopo essere stata lanciata o altrimenti attivata. Un’arma a Ritardo (2) detona all’inizio del round successivo, e così via."
+  },
+  "qualityGatling": {
+    "en": "Gatling",
+    "it": "Gatling"
+  },
+  "qualityGatlingDescription": {
+    "en": "Ammunition is spent at ten times the normal rate by Gatling weapons: whenever you would spend one shot of ammunition, a Gatling weapon instead spends a burst of 10 shots. Whenever you spend ammunition to increase this weapon's damage, add +2 DC per ten-shot burst (to a maximum number of bursts equal to the weapon's Fire Rate), rather than +1 DC per shot.",
+    "it": "Le armi Gatling spendono munizioni a una velocità dieci volte superiore rispetto alla norma: invece di spendere una carica di munizioni, ne spende una raffica da 10. Quando si spendono munizioni per aumentarne il danno, si aggiungono 2 DC ogni raffica da 10 (fino a un massimo pari alla Cadenza di Fuoco dell’arma) invece di 1 DC per sparo."
+  },
+  "qualityInaccurate": {
+    "en": "Inaccurate",
+    "it": "Imprecisa"
+  },
+  "qualityInaccurateDescription": {
+    "en": "When making an attack with an Inaccurate weapon, you gain no benefit from the Aim minor action. A weapon may not be both Accurate and Inaccurate.",
+    "it": "Quando il PG attacca con un’arma Imprecisa non ottiene alcun beneficio dall’azione minore di Mirare. Un’arma non può essere contemporaneamente Di Precisione ed Imprecisa."
+  },
+  "qualityMelee": {
+    "en": "Melee",
+    "it": "Arma da Mischia"
+  },
+  "qualityMeleeDescription": {
+    "en": "Can be used as a melee weapon, inflicting 4 DC Physical Piercing damage",
+    "it": "Può essere usata come arma da mischia, infliggendo 4 DC di danni Fisici Penetranti"
+  },
+  "qualityMine": {
+    "en": "Mine",
+    "it": "Mina"
+  },
+  "qualityMineDescription": {
+    "en": "When a Mine is placed onto a surface and primed, it becomes a dangerous object, inflicting its damage upon anyone who comes within Reach of it (and upon additional characters, if it has the Blast quality).",
+    "it": "Quando una Mina è piazzata su una superficie e innescata, diventa un oggetto pericoloso, che infligge danni a chiunque si trovi nel proprio raggio d’azione (e anche su altri individui, se possiede la caratteristica Esplosiva)"
+  },
+  "qualityMrHandyOnly": {
+    "en": "Mr Handy Only",
+    "it": "Solo Mr Handy"
+  },
+  "qualityMrHandyOnlyDescription": {
+    "en": "This weapon is integrated into a Mr Handy robot's body and can only be used by Mr Handy units. It cannot be equipped by other character types.",
+    "it": "Quest'arma è integrata nel corpo di un robot Mr Handy e può essere utilizzata solo da unità Mr Handy. Non può essere equipaggiata da altri tipi di personaggi."
+  },
+  "qualityNightVision": {
+    "en": "Night Vision",
+    "it": "Visione Notturna"
+  },
+  "qualityNightVisionDescription": {
+    "en": "The sights of a weapon with Night Vision have been made to allow you to see more clearly in the dark. When you Aim with a Night Vision weapon, you ignore any increase in the difficulty of an attack due to darkness.",
+    "it": "Il design di un’arma con Visione Notturna è fatto per permettere di vedere meglio al buio. Quando si effettua l’azione Mirare con un’arma con Visione Notturna, si ignora qualsiasi aumento della difficoltà dell’attacco dovuto all’oscurità."
+  },
+  "qualityParry": {
+    "en": "Parry",
+    "it": "Parata"
+  },
+  "qualityParryDescription": {
+    "en": "When an enemy attempts a melee attack against you, and you are wielding a Parry weapon, you may spend 1 AP to add +1 to your Defense against that attack.",
+    "it": "Durante un attacco in mischia contro un individuo, se questi imbraccia un’arma da Parata, può spendere 1 PA per aggiungere 1 alla sua Difesa contro quell’attacco."
+  },
+  "qualityPlaced": {
+    "en": "Placed",
+    "it": "Piazzata"
+  },
+  "qualityPlacedDescription": {
+    "en": "The explosive device is placed in a specific location and set to detonate, often either with the Delay quality or the Remote quality. Placing the explosive requires a PER + Explosives test with a difficulty of 1; this increases to 2 if you’ve been attacked since your last turn. Failure means the bomb hasn’t been set properly and will not detonate (or, if a complication is rolled, may have been set improperly, and may detonate unexpectedly). Success means the bomb has been set up properly.",
+    "it": "Il dispositivo esplosivo viene piazzato in un luogo specifico e impostato per detonare, spesso con la qualità Ritardo o la qualità Remoto. Piazzare l’esplosivo richiede una prova di PER + Esplosivi con una difficoltà di 1; questa aumenta a 2 se sei stato attaccato dal tuo ultimo turno. Il fallimento significa che la bomba non è stata impostata correttamente e non detonerà (o, se viene ottenuta una complicazione, potrebbe essere stata impostata male e detonare inaspettatamente). Il successo significa che la bomba è stata installata correttamente."
+  },
+  "qualityRecoil": {
+    "en": "Recoil",
+    "it": "Rinculo"
+  },
+  "qualityRecoilDescription": {
+    "en": "This weapon has a particularly ferocious ‘kick’ when it fires, which might be too much for weaker users. If the user’s STR score is less than X, then all attacks with the weapon increase in difficulty by 1. You may ignore this effect if you wield the weapon two-handed, or if the weapon is already two-handed, by bracing it against a solid object or a bipod.",
+    "it": "Quest'arma ha un ‘contraccolpo’ particolarmente feroce quando spara, che potrebbe essere eccessivo per gli utenti più deboli. Se il punteggio di FOR dell'utilizzatore è inferiore a X, tutti gli attacchi con l'arma aumentano di 1 la difficoltà. È possibile ignorare questo effetto se si impugna l'arma a due mani o, se l'arma è già a due mani, appoggiandola su un oggetto solido o un bipiede."
+  },
+  "qualityRecon": {
+    "en": "Recon",
+    "it": "Da Ricognizione"
+  },
+  "qualityReconDescription": {
+    "en": "When you Aim with a Recon weapon, you may mark the target you aimed at. The next ally to attack that target may re-roll one d20 on their attack.",
+    "it": "Quando si prende la mira con un’arma Da Ricognizione, si può marchiare il bersaglio a cui si è mirato. Il prossimo alleato che attaccherà quel bersaglio può ritirare un d20 in attacco."
+  },
+  "qualityReliable": {
+    "en": "Reliable",
+    "it": "Affidabile"
+  },
+  "qualityReliableDescription": {
+    "en": "During each combat encounter, a Reliable weapon ignores the first complication you roll on a test to use that weapon. A weapon may not be both Reliable and Unreliable.",
+    "it": "Un’arma Affidabile ignora la prima complicazione tirata durante l’utilizzo in ogni scontro. Un’arma non può essere contemporaneamente Affidabile ed Inaffidabile."
+  },
+  "qualitySlowLoad": {
+    "en": "Slow Load",
+    "it": "Ricarica Lenta"
+  },
+  "qualitySlowLoadDescription": {
+    "en": "The weapon loads especially slowly. After this weapon has been fired, you must spend a minor action to reload the weapon before it can be fired again.",
+    "it": "L'arma si carica in modo particolarmente lento. Dopo che quest'arma è stata sparata, è necessario spendere un'azione minore per ricaricarla prima che possa essere sparata di nuovo."
+  },
+  "qualitySuppressed": {
+    "en": "Suppressed",
+    "it": "Silenziata"
+  },
+  "qualitySuppressedDescription": {
+    "en": "If an enemy is not aware of you when you attack with a Suppressed weapon, they do not notice the attack unless they are the target or they pass a PER + Survival test with a difficulty of 2.",
+    "it": "Se un nemico non è conscio che il personaggio sta attaccando con un’arma Silenziata, non si accorge dell’attacco a meno che non ne sia il bersaglio o che superi una prova di PER + Sopravvivenza difficoltà 2."
+  },
+  "qualitySurge": {
+    "en": "Surge",
+    "it": "Scarica"
+  },
+  "qualitySurgeDescription": {
+    "en": "The weapon is especially damaging to machines like robots and powered Armor. The weapon gains the Vicious damage effect against Robots, enemies in Power Armor, and other mechanical or electronic targets (like turrets).",
+    "it": "L'arma è particolarmente dannosa per macchine come robot e armature potenziate. L'arma ottiene l'effetto di danno Violento contro Robot, nemici in Armatura Atomica e altri bersagli meccanici o elettronici (come le torrette)."
+  },
+  "qualityThrown": {
+    "en": "Thrown",
+    "it": "Da Lancio"
+  },
+  "qualityThrownDescription": {
+    "en": "A Thrown (C) weapon can be thrown, as a ranged attack with an ideal range of Close. A Thrown (M) weapon can be thrown, as a ranged attack with an ideal range of Medium. You make an AGI + Throwing test to attack with the weapon.",
+    "it": "Un’arma Da Lancio (R) può essere lanciata come attacco a distanza Ravvicinata. Un’arma Da Lancio (M) può essere lanciata come attacco a Media distanza. A seconda del tipo di arma, per attaccare, il personaggio effettua una prova di AGI+Lanciare o PER+Esplosivi."
+  },
+  "qualityTwoHanded": {
+    "en": "Two-Handed",
+    "it": "A Due Mani"
+  },
+  "qualityTwoHandedDescription": {
+    "en": "A Two-Handed weapon must be held in two hands to be used effectively; attempting to attack with a Two-Handed weapon in one hand increases the difficulty by +2.",
+    "it": "Un’arma A Due Mani deve essere impugnata con entrambe le mani per poter essere usata efficacemente: se si prova ad attaccare con una mano sola, la difficoltà aumenta di 2."
+  },
+  "qualityUnreliable": {
+    "en": "Unreliable",
+    "it": "Inaffidabile"
+  },
+  "qualityUnreliableDescription": {
+    "en": "When you make an attack with an Unreliable weapon, increase the complication range of the attack by 1. A weapon may not be both Reliable and Unreliable.",
+    "it": "Quando si attacca con un’arma Inaffidabile, il livello di complicazione dell’attacco aumenta di 1. Un’arma non può essere contemporaneamente Affidabile ed Inaffidabile."
+  },
+  "quantity": {
+    "en": "Quantity",
+    "it": "Quantità"
+  },
+  "radiation": {
+    "en": "Rads",
+    "it": "Rads"
+  },
+  "radiationRes": {
+    "en": "Radiation Res",
+    "it": "Res. Radiazioni"
+  },
+  "raiderArmor": {
+    "en": "Raider Armor",
+    "it": "Arm. da Predone"
+  },
+  "range": {
+    "en": "Range",
+    "it": "Gittata"
+  },
+  "rangeC": {
+    "en": "C",
+    "it": "R"
+  },
+  "rangeCFull": {
+    "en": "Close",
+    "it": "Ravvicinata"
+  },
+  "rangeE": {
+    "en": "E",
+    "it": "E"
+  },
+  "rangeEFull": {
+    "en": "Extreme",
+    "it": "Estrema"
+  },
+  "rangeL": {
+    "en": "L",
+    "it": "L"
+  },
+  "rangeLFull": {
+    "en": "Long",
+    "it": "Lunga"
+  },
+  "rangeM": {
+    "en": "M",
+    "it": "M"
+  },
+  "rangeMFull": {
+    "en": "Medium",
+    "it": "Media"
+  },
+  "rangeR": {
+    "en": "R",
+    "it": "P"
+  },
+  "rangeRFull": {
+    "en": "Reach",
+    "it": "Portata"
+  },
+  "rarity": {
+    "en": "Rarity",
+    "it": "Rarità"
+  },
+  "rarity0": {
+    "en": "Very Common (0)",
+    "it": "Molto Comune (0)"
+  },
+  "rarity1": {
+    "en": "Common (1)",
+    "it": "Comune (1)"
+  },
+  "rarity2": {
+    "en": "Uncommon (2)",
+    "it": "Non Comune (2)"
+  },
+  "rarity3": {
+    "en": "Rare (3)",
+    "it": "Raro (3)"
+  },
+  "rarity4": {
+    "en": "Very Rare (4)",
+    "it": "Molto Raro (4)"
+  },
+  "rarity5": {
+    "en": "Legendary (5)",
+    "it": "Leggendario (5)"
+  },
+  "rarity6": {
+    "en": "Mythical (6)",
+    "it": "Mitico (6)"
+  },
+  "rate": {
+    "en": "Rate",
+    "it": "Tasso"
+  },
+  "remove": {
+    "en": "Remove",
+    "it": "Rimuovi"
+  },
+  "repair": {
+    "en": "Repair",
+    "it": "Riparare"
+  },
+  "replenishLuckAlert": {
+    "en": "Do you really want to replenish luck?",
+    "it": "Vuoi davvero ripristinare la tua fortuna?"
+  },
+  "replenishLuckConfirm": {
+    "en": "Replenish luck to maximum?",
+    "it": "Ripristinare la fortuna al massimo?"
+  },
+  "reroll": {
+    "en": "Reroll",
+    "it": "Rilancia"
+  },
+  "rerollHitLocation": {
+    "en": "Reroll Hit Location",
+    "it": "Rilancia Posizione Colpo"
+  },
+  "resetMemory": {
+    "en": "RESET MEMORY",
+    "it": "RESET MEMORIA"
+  },
+  "right": {
+    "en": "Right",
+    "it": "Dx"
+  },
+  "rightArm": {
+    "en": "Right Arm",
+    "it": "Braccio Destro"
+  },
+  "rightLeg": {
+    "en": "Right Leg",
+    "it": "Gamba Destra"
+  },
+  "robobrain": {
+    "en": "Robobrain",
+    "it": "Robobrain"
+  },
+  "robotPart": {
+    "en": "Robot Parts",
+    "it": "Parti Robot"
+  },
+  "robotPartArm1": {
+    "en": "Arm 1",
+    "it": "Braccio 1"
+  },
+  "robotPartArm2": {
+    "en": "Arm 2",
+    "it": "Braccio 2"
+  },
+  "robotPartArm3": {
+    "en": "Arm 3",
+    "it": "Braccio 3"
+  },
+  "robotsCannotEquipApparel": {
+    "en": "Robots cannot equip/unequip apparel.",
+    "it": "I robot non possono equipaggiare/rimuovere abbigliamento."
+  },
+  "roll": {
+    "en": "Roll",
+    "it": "Lancia"
+  },
+  "science": {
+    "en": "Science",
+    "it": "Scienza"
+  },
+  "scoutArmor": {
+    "en": "Scout Armor",
+    "it": "Arm. Scout"
+  },
+  "searchItems": {
+    "en": "Search items...",
+    "it": "Cerca oggetti..."
+  },
+  "securitron": {
+    "en": "Securitron",
+    "it": "Securitron"
+  },
+  "selectDiceAlert": {
+    "en": "Select some dice to (re)roll!",
+    "it": "Seleziona dei dadi da (ri)lanciare!"
+  },
+  "selectPerk": {
+    "en": "Select Perk",
+    "it": "Seleziona Talento"
+  },
+  "selectTrait": {
+    "en": "Select Trait",
+    "it": "Seleziona Tratto"
+  },
+  "selectableTraits": {
+    "en": "Selectable Traits",
+    "it": "Tratti Selezionabili"
+  },
+  "selling": {
+    "en": "Selling",
+    "it": "Vendere"
+  },
+  "settings": {
+    "en": "Settings",
+    "it": "Impostazioni"
+  },
+  "showDescription": {
+    "en": "Show Description",
+    "it": "Mostra Descrizione"
+  },
+  "showUnavailable": {
+    "en": "Show unavailable perks",
+    "it": "Mostra talenti non disponibili"
+  },
+  "skill": {
+    "en": "Ability",
+    "it": "Abilità"
+  },
+  "skills": {
+    "en": "Skills",
+    "it": "Abilità"
+  },
+  "smallGuns": {
+    "en": "Small Guns",
+    "it": "Armi Leggere"
+  },
+  "sneak": {
+    "en": "Sneak",
+    "it": "Furtività"
+  },
+  "soldForCaps": {
+    "en": "Sold for {{caps}} caps!",
+    "it": "Venduto per {{caps}} tappi!"
+  },
+  "sortByLevel": {
+    "en": "Sort by Level",
+    "it": "Ordina per Livello"
+  },
+  "sortByName": {
+    "en": "Sort by name",
+    "it": "Ordina per nome"
+  },
+  "sortByNumber": {
+    "en": "Sort by damage/DR/HP",
+    "it": "Ordina per danno/RD/HP"
+  },
+  "sortByRarity": {
+    "en": "Sort by rarity",
+    "it": "Ordina per rarità"
+  },
+  "sortByTotal": {
+    "en": "Sort by Total Requirements",
+    "it": "Ordina per Requisiti Totali"
+  },
+  "special": {
+    "en": "S.P.E.C.I.A.L.",
+    "it": "S.P.E.C.I.A.L."
+  },
+  "speech": {
+    "en": "Speech",
+    "it": "Oratoria"
+  },
+  "stopEditing": {
+    "en": "Stop Editing",
+    "it": "Smetti di Modificare"
+  },
+  "strength": {
+    "en": "Strength",
+    "it": "Forza"
+  },
+  "successes": {
+    "en": "Successes",
+    "it": "Successi"
+  },
+  "summonStranger": {
+    "en": "Summon Stranger (Luck)",
+    "it": "Evoca Alleato (Fortuna)"
+  },
+  "superMutant": {
+    "en": "Super Mutant",
+    "it": "Supermutante"
+  },
+  "survival": {
+    "en": "Survival",
+    "it": "Sopravvivenza"
+  },
+  "survivor": {
+    "en": "Survivor",
+    "it": "Sopravvissuto"
+  },
+  "synth": {
+    "en": "Gen 3 Synth",
+    "it": "Gen 3 Synth"
+  },
+  "syntheticArmor": {
+    "en": "Synthetic Armor",
+    "it": "Armatura da Sintentico"
+  },
+  "target": {
+    "en": "Target",
+    "it": "Target"
+  },
+  "theme": {
+    "en": "Theme",
+    "it": "Tema"
+  },
+  "throwing": {
+    "en": "Throwing",
+    "it": "Lanciare"
+  },
+  "torso": {
+    "en": "Torso",
+    "it": "Torso"
+  },
+  "total": {
+    "en": "Total",
+    "it": "Totale"
+  },
+  "totalCost": {
+    "en": "Total Cost",
+    "it": "Costo Totale"
+  },
+  "totalDamage": {
+    "en": "Total Damage",
+    "it": "Danno Totale"
+  },
+  "totalEffects": {
+    "en": "Total Effects",
+    "it": "Effetti Totali"
+  },
+  "traits": {
+    "en": "Traits",
+    "it": "Tratti"
+  },
+  "tribal": {
+    "en": "Tribal",
+    "it": "Tribale"
+  },
+  "type": {
+    "en": "Type",
+    "it": "Tipo"
+  },
+  "unarmed": {
+    "en": "Unarmed",
+    "it": "Senza Armi"
+  },
+  "unarmedDamage": {
+    "en": "Unarmed Damage",
+    "it": "Danno Senz'Armi"
+  },
+  "unlock": {
+    "en": "Unlock",
+    "it": "Sblocca"
+  },
+  "useFunctionalityComingSoon": {
+    "en": "Use functionality coming soon!",
+    "it": "Funzionalità di utilizzo in arrivo!"
+  },
+  "vaultDweller": {
+    "en": "Vault Dweller",
+    "it": "Abitante del Vault"
+  },
+  "vaultTecSecurity": {
+    "en": "Vault-Tec Security Armor",
+    "it": "Arm. Sicurezza VaultTec"
+  },
+  "warning": {
+    "en": "Warning",
+    "it": "Attenzione"
+  },
+  "weapon": {
+    "en": "Weapons",
+    "it": "Armi"
+  },
+  "weaponId": {
+    "en": "Weapon",
+    "it": "Arma"
+  },
+  "weight": {
+    "en": "Weight",
+    "it": "Peso"
+  }
+}

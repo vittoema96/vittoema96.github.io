@@ -1,0 +1,34 @@
+{
+  "robotPartArms": {
+    "en": "Arms",
+    "it": "Braccia",
+    "_description": {
+      "en": "The robot's arms are the manipulator limbs that allow it to interact with the environment, carry objects, and use tools or weapons. They can be equipped with various modifications to improve performance.",
+      "it": "Le braccia del robot sono gli arti manipolatori che permettono di interagire con l'ambiente, trasportare oggetti e utilizzare strumenti o armi. Possono essere equipaggiate con varie modifiche per migliorare le prestazioni."
+    }
+  },
+  "robotPartBody": {
+    "en": "Body",
+    "it": "Corpo",
+    "_description": {
+      "en": "The body is the robot's central structure, containing the main systems and providing structural support. It can be modified with different plating to increase resistance or storage capacity.",
+      "it": "Il corpo è la struttura centrale del robot, che contiene i sistemi principali e fornisce supporto strutturale. Può essere modificato con diverse placcature per aumentare la resistenza o la capacità di stoccaggio."
+    }
+  },
+  "robotPartSensors": {
+    "en": "Sensors",
+    "it": "Sensori",
+    "_description": {
+      "en": "The sensors are the robot's optical and perceptual system, allowing it to see, hear, and detect the surrounding environment. They can be equipped with various types of plating and modifications to improve detection capabilities.",
+      "it": "I sensori sono il sistema ottico e percettivo del robot, che gli permettono di vedere, sentire e rilevare l'ambiente circostante. Possono essere equipaggiati con vari tipi di placcature e modifiche per migliorare le capacità di rilevamento."
+    }
+  },
+  "robotPartThrusters": {
+    "en": "Thrusters",
+    "it": "Propulsori",
+    "_description": {
+      "en": "The thrusters are the robot's aerial locomotion system, allowing it to fly and move quickly. They can be modified with different plating to improve speed or resistance.",
+      "it": "I propulsori sono il sistema di locomozione aerea del robot, che gli permettono di volare e muoversi rapidamente. Possono essere modificati con diverse placcature per migliorare la velocità o la resistenza."
+    }
+  }
+}

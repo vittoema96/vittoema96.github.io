@@ -1,0 +1,138 @@
+{
+  "modAsbestosLining": {
+    "en": "Asbestos Lining",
+    "it": "Rivestimento d'Amianto",
+    "_description": {
+      "en": "+3 Energy Resistance, Ignores Persistent Energy damage",
+      "it": "+3 Resistenza ai Danni da Energia, Ignora i danni da Energia dell'Effetto Persistente"
+    }
+  },
+  "modBalanced": {
+    "en": "Balanced",
+    "it": "Bilanciata",
+    "_description": {
+      "en": "Melee and unarmed attacks gain Piercing 1",
+      "it": "Gli attacchi da Mischia e senza armi guadagnano Penetrante 1"
+    }
+  },
+  "modBioCommMesh": {
+    "en": "BioCommMesh",
+    "it": "BioCommMesh",
+    "_description": {
+      "en": "Chems last twice as long",
+      "it": "Le sostanze durano il doppio"
+    }
+  },
+  "modBrawling": {
+    "en": "Brawling",
+    "it": "Picchiatore",
+    "_description": {
+      "en": "Unarmed attacks deal +1 DC damage",
+      "it": "Gli attacchi senza armi infliggono +1 DC danno"
+    }
+  },
+  "modCrafted": {
+    "en": "Crafted",
+    "it": "Lavorata",
+    "_description": {
+      "en": "+2 Melee Resistance",
+      "it": "+2 alla Resistenza ai Danni da Armi da Mischia"
+    }
+  },
+  "modCushioned": {
+    "en": "Cushioned",
+    "it": "Imbottito",
+    "_description": {
+      "en": "+2 Explosive Resistance",
+      "it": "+2 alla Resistenza ai Danni da Armi Esplosive"
+    }
+  },
+  "modDeepPocketed": {
+    "en": "Deep Pocketed",
+    "it": "Molto Capiente",
+    "_description": {
+      "en": "+10 Carry Weight",
+      "it": "+10 al Peso Trasportabile"
+    }
+  },
+  "modDensity": {
+    "en": "Density",
+    "it": "Alta Densità",
+    "_description": {
+      "en": "+4 Explosive Resistance",
+      "it": "+4 alla Resistenza ai Danni da Armi Esplosive"
+    }
+  },
+  "modLeaded": {
+    "en": "Leaded",
+    "it": "Piombata",
+    "_description": {
+      "en": "+3 Radiation Resistance",
+      "it": "+3 Resistenza ai Danni da Radiazioni"
+    }
+  },
+  "modLightweight": {
+    "en": "Lightweight",
+    "it": "Leggera",
+    "_description": {
+      "en": "Reduces armor weight",
+      "it": "Riduce il peso dell'armatura"
+    }
+  },
+  "modMuffled": {
+    "en": "Muffled",
+    "it": "Attenuata",
+    "_description": {
+      "en": "Can reroll one d20 on Sneak checks",
+      "it": "Si può ripetere il tiro di un d20 sulle prove di Furtività"
+    }
+  },
+  "modPneumatic": {
+    "en": "Pneumatic",
+    "it": "Pneumatico",
+    "_description": {
+      "en": "Stun damage requires 2+ Effects to affect character",
+      "it": "Affinché i danni stordenti abbiano effetto sul personaggio, occorre ottenere 2+ Effetti"
+    }
+  },
+  "modPocketed": {
+    "en": "Pocketed",
+    "it": "Capiente",
+    "_description": {
+      "en": "+5 Carry Weight",
+      "it": "+5 al Peso Trasportabile"
+    }
+  },
+  "modShockAbsorbing": {
+    "en": "Shock Absorbing",
+    "it": "Ammortizzata",
+    "_description": {
+      "en": "+2 Physical Resistance against fall damage",
+      "it": "+2 alla Resistenza ai Danni Fisici contro danni da caduta"
+    }
+  },
+  "modStabilized": {
+    "en": "Stabilized",
+    "it": "Stabilizzata",
+    "_description": {
+      "en": "When aiming and making a Ranged Attack, damage increases by +1 DC",
+      "it": "Quando il personaggio prende la mira ed effettua un Attacco a Distanza, il danno dell'attacco aumenta di +1 DC"
+    }
+  },
+  "modStreamlined": {
+    "en": "Streamlined",
+    "it": "Aerodinamica",
+    "_description": {
+      "en": "Can spend up to 4 AP for bonus melee damage",
+      "it": "Si possono spendere fino a 4 PA per danni bonus da attacchi da mischia"
+    }
+  },
+  "modUltralight": {
+    "en": "Ultralight",
+    "it": "Ultraleggera",
+    "_description": {
+      "en": "Significantly reduces armor weight",
+      "it": "Riduce significativamente il peso dell'armatura"
+    }
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "modRobotActivationFrameArms": {
+    "en": "Activation Frame",
+    "it": "Telaio ad Attivazione",
+    "_description": {
+      "en": "Armor equipped with actuators and motor systems for arms. Melee attacks deal +1 DC damage.",
+      "it": "Armatura dotata di attuatori e sistemi motori per le braccia. Gli attacchi da mischia infliggono +1 DC danno."
+    }
+  },
+  "modRobotActivationFrameBody": {
+    "en": "Activation Frame",
+    "it": "Telaio ad Attivazione",
+    "_description": {
+      "en": "Armor equipped with actuators and motor systems for the body.",
+      "it": "Armatura dotata di attuatori e sistemi motori per il corpo."
+    }
+  },
+  "modRobotActivationFrameOptics": {
+    "en": "Activation Frame",
+    "it": "Telaio ad Attivazione",
+    "_description": {
+      "en": "Armor equipped with actuators and motor systems for optics.",
+      "it": "Armatura dotata di attuatori e sistemi motori per le ottiche."
+    }
+  },
+  "modRobotActivationFrameThrusters": {
+    "en": "Activation Frame",
+    "it": "Telaio ad Attivazione",
+    "_description": {
+      "en": "Armor equipped with actuators and motor systems for thrusters. Allows both a minor Movement action and a major Sprint action in the same turn.",
+      "it": "Armatura dotata di attuatori e sistemi motori per i propulsori. Permette azione minore di Movimento e azione maggiore di Scatto nello stesso turno."
+    }
+  },
+  "modRobotBasePlatingArms": {
+    "en": "Base Plating",
+    "it": "Placcatura Base",
+    "_description": {
+      "en": "Supplemental handcrafted armor for arms that provides protection from physical hazards.",
+      "it": "Armatura supplementare artigianale per le braccia che fornisce protezione dai pericoli fisici."
+    }
+  },
+  "modRobotBasePlatingBody": {
+    "en": "Base Plating",
+    "it": "Placcatura Base",
+    "_description": {
+      "en": "Supplemental handcrafted armor for the body that provides protection from physical hazards.",
+      "it": "Armatura supplementare artigianale per il corpo che fornisce protezione dai pericoli fisici."
+    }
+  },
+  "modRobotBasePlatingOptics": {
+    "en": "Base Plating",
+    "it": "Placcatura Base",
+    "_description": {
+      "en": "Supplemental handcrafted armor for optics that provides protection from physical hazards.",
+      "it": "Armatura supplementare artigianale per le ottiche che fornisce protezione dai pericoli fisici."
+    }
+  },
+  "modRobotBasePlatingThrusters": {
+    "en": "Base Plating",
+    "it": "Placcatura Base",
+    "_description": {
+      "en": "Supplemental handcrafted armor for thrusters that provides protection from physical hazards.",
+      "it": "Armatura supplementare artigianale per i propulsori che fornisce protezione dai pericoli fisici."
+    }
+  },
+  "modRobotFactoryArmorArms": {
+    "en": "Factory Armor",
+    "it": "Armatura di Fabbrica",
+    "_description": {
+      "en": "Mass-produced armor that provides additional storage compartments for arms.",
+      "it": "Armatura prodotta in serie che fornisce ulteriori vani portaoggetti per le braccia."
+    }
+  },
+  "modRobotFactoryArmorBody": {
+    "en": "Factory Armor",
+    "it": "Armatura di Fabbrica",
+    "_description": {
+      "en": "Mass-produced armor that provides additional storage compartments for the main body.",
+      "it": "Armatura prodotta in serie che fornisce ulteriori vani portaoggetti per il corpo principale."
+    }
+  },
+  "modRobotFactoryArmorOptics": {
+    "en": "Factory Armor",
+    "it": "Armatura di Fabbrica",
+    "_description": {
+      "en": "Mass-produced armor that provides additional storage compartments for optics.",
+      "it": "Armatura prodotta in serie che fornisce ulteriori vani portaoggetti per le ottiche."
+    }
+  },
+  "modRobotFactoryArmorThrusters": {
+    "en": "Factory Armor",
+    "it": "Armatura di Fabbrica",
+    "_description": {
+      "en": "Mass-produced armor that provides additional storage compartments for thrusters.",
+      "it": "Armatura prodotta in serie che fornisce ulteriori vani portaoggetti per i propulsori."
+    }
+  },
+  "modRobotFactoryStorageBody": {
+    "en": "Factory Storage Armor",
+    "it": "Armatura di Stoccaggio di Fabbrica",
+    "_description": {
+      "en": "Factory armor with additional storage compartments to increase carrying capacity.",
+      "it": "Armatura di fabbrica con vani di stoccaggio aggiuntivi per aumentare il peso trasportabile."
+    }
+  },
+  "modRobotHydraulicFrameArms": {
+    "en": "Hydraulic Frame",
+    "it": "Telaio Idraulico",
+    "_description": {
+      "en": "Armor concealing a powerful hydraulic system for arms. Melee attacks deal +1 DC damage and gain the Stun effect.",
+      "it": "Armatura che cela un potente sistema idraulico per le braccia. Gli attacchi da mischia infliggono +1 DC danno e ottengono l'effetto Stordente."
+    }
+  },
+  "modRobotHydraulicFrameBody": {
+    "en": "Hydraulic Frame",
+    "it": "Telaio Idraulico",
+    "_description": {
+      "en": "Armor concealing a powerful hydraulic system for the body.",
+      "it": "Armatura che cela un potente sistema idraulico per il corpo."
+    }
+  },
+  "modRobotHydraulicFrameOptics": {
+    "en": "Hydraulic Frame",
+    "it": "Telaio Idraulico",
+    "_description": {
+      "en": "Armor concealing a powerful hydraulic system for optics.",
+      "it": "Armatura che cela un potente sistema idraulico per le ottiche."
+    }
+  },
+  "modRobotHydraulicFrameThrusters": {
+    "en": "Hydraulic Frame",
+    "it": "Telaio Idraulico",
+    "_description": {
+      "en": "Armor concealing a powerful hydraulic system for thrusters.",
+      "it": "Armatura che cela un potente sistema idraulico per i propulsori."
+    }
+  },
+  "modRobotKnurledPlatingArms": {
+    "en": "Knurled Plating",
+    "it": "Placcatura Zigrinata",
+    "_description": {
+      "en": "Coating with jagged and serrated edges for arms. Sharp points can injure attackers.",
+      "it": "Rivestimento con bordi dentellati e frastagliati per le braccia. Le punte acuminate possono ferire gli attaccanti."
+    }
+  },
+  "modRobotKnurledPlatingBody": {
+    "en": "Knurled Plating",
+    "it": "Placcatura Zigrinata",
+    "_description": {
+      "en": "Coating with jagged and serrated edges for the body. Sharp points can injure attackers.",
+      "it": "Rivestimento con bordi dentellati e frastagliati per il corpo. Le punte acuminate possono ferire gli attaccanti."
+    }
+  },
+  "modRobotKnurledPlatingOptics": {
+    "en": "Knurled Plating",
+    "it": "Placcatura Zigrinata",
+    "_description": {
+      "en": "Coating with jagged and serrated edges for optics. Sharp points can injure attackers.",
+      "it": "Rivestimento con bordi dentellati e frastagliati per le ottiche. Le punte acuminate possono ferire gli attaccanti."
+    }
+  },
+  "modRobotKnurledPlatingThrusters": {
+    "en": "Knurled Plating",
+    "it": "Placcatura Zigrinata",
+    "_description": {
+      "en": "Coating with jagged and serrated edges for thrusters. Sharp points can injure attackers.",
+      "it": "Rivestimento con bordi dentellati e frastagliati per i propulsori. Le punte acuminate possono ferire gli attaccanti."
+    }
+  },
+  "modRobotPlatingMisterGutsy": {
+    "en": "Mister Gutsy Plating",
+    "it": "Placcatura di Mister Gutsy",
+    "_description": {
+      "en": "Mister Gutsy base plating with better thermal absorption capabilities, more resistant against Energy weapons.",
+      "it": "Placcatura base Mister Gutsy con migliori capacità di assorbimento termico, più resistente contro le armi a Energia."
+    }
+  },
+  "modRobotPlatingStandard": {
+    "en": "Standard Plating",
+    "it": "Placcatura Standard",
+    "_description": {
+      "en": "Standard factory plating that all new Mister Handy models come with.",
+      "it": "Placcatura standard di fabbrica di cui sono dotati tutti i nuovi modelli di Mister Handy."
+    }
+  },
+  "modRobotPoisonousPlatingArms": {
+    "en": "Poisonous Plating",
+    "it": "Placcatura Velenosa",
+    "_description": {
+      "en": "Handcrafted armor coated with dangerous toxic materials for arms.",
+      "it": "Armatura artigianale rivestita di materiali tossici pericolosi per le braccia."
+    }
+  },
+  "modRobotPoisonousPlatingBody": {
+    "en": "Poisonous Plating",
+    "it": "Placcatura Velenosa",
+    "_description": {
+      "en": "Handcrafted armor coated with dangerous toxic materials for the body.",
+      "it": "Armatura artigianale rivestita di materiali tossici pericolosi per il corpo."
+    }
+  },
+  "modRobotPoisonousPlatingOptics": {
+    "en": "Poisonous Plating",
+    "it": "Placcatura Velenosa",
+    "_description": {
+      "en": "Handcrafted armor coated with dangerous toxic materials for optics.",
+      "it": "Armatura artigianale rivestita di materiali tossici pericolosi per le ottiche."
+    }
+  },
+  "modRobotPoisonousPlatingThrusters": {
+    "en": "Poisonous Plating",
+    "it": "Placcatura Velenosa",
+    "_description": {
+      "en": "Handcrafted armor coated with dangerous toxic materials for thrusters.",
+      "it": "Armatura artigianale rivestita di materiali tossici pericolosi per i propulsori."
+    }
+  },
+  "modRobotToxicPlatingArms": {
+    "en": "Toxic Plating",
+    "it": "Placcatura Tossica",
+    "_description": {
+      "en": "Armor with dangerous radioactive metal coating for arms.",
+      "it": "Armatura con rivestimento metallico radioattivo pericoloso per le braccia."
+    }
+  },
+  "modRobotToxicPlatingBody": {
+    "en": "Toxic Plating",
+    "it": "Placcatura Tossica",
+    "_description": {
+      "en": "Armor with dangerous radioactive metal coating for the body.",
+      "it": "Armatura con rivestimento metallico radioattivo pericoloso per il corpo."
+    }
+  },
+  "modRobotToxicPlatingOptics": {
+    "en": "Toxic Plating",
+    "it": "Placcatura Tossica",
+    "_description": {
+      "en": "Armor with dangerous radioactive metal coating for optics.",
+      "it": "Armatura con rivestimento metallico radioattivo pericoloso per le ottiche."
+    }
+  },
+  "modRobotToxicPlatingThrusters": {
+    "en": "Toxic Plating",
+    "it": "Placcatura Tossica",
+    "_description": {
+      "en": "Armor with dangerous radioactive metal coating for thrusters.",
+      "it": "Armatura con rivestimento metallico radioattivo pericoloso per i propulsori."
+    }
+  },
+  "modRobotVoltaicFrameArms": {
+    "en": "Voltaic Frame",
+    "it": "Telaio Voltaico",
+    "_description": {
+      "en": "Armor equipped with additional conductors and capacitors for arms.",
+      "it": "Armatura dotata di conduttori e condensatori aggiuntivi per le braccia."
+    }
+  },
+  "modRobotVoltaicFrameBody": {
+    "en": "Voltaic Frame",
+    "it": "Telaio Voltaico",
+    "_description": {
+      "en": "Armor equipped with additional conductors and capacitors for the body.",
+      "it": "Armatura dotata di conduttori e condensatori aggiuntivi per il corpo."
+    }
+  },
+  "modRobotVoltaicFrameOptics": {
+    "en": "Voltaic Frame",
+    "it": "Telaio Voltaico",
+    "_description": {
+      "en": "Armor equipped with additional conductors and capacitors for optics.",
+      "it": "Armatura dotata di conduttori e condensatori aggiuntivi per le ottiche."
+    }
+  },
+  "modRobotVoltaicFrameThrusters": {
+    "en": "Voltaic Frame",
+    "it": "Telaio Voltaico",
+    "_description": {
+      "en": "Armor equipped with additional conductors and capacitors for thrusters.",
+      "it": "Armatura dotata di conduttori e condensatori aggiuntivi per i propulsori."
+    }
+  }
+}

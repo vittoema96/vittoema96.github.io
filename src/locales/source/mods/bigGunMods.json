@@ -1,0 +1,234 @@
+{
+  "modAcceleratedBarrel": {
+    "en": "Accelerated Barrel",
+    "it": "Canna Accelerata",
+    "_description": {
+      "en": "+1 Fire Rate",
+      "it": "+1 Cadenza di Fuoco"
+    }
+  },
+  "modBayonetMissileLauncher": {
+    "en": "Bayonet",
+    "it": "Baionetta",
+    "_description": {
+      "en": "Melee Weapon, deals 4 DC Physical Piercing 1 damage",
+      "it": "Arma da Mischia, infligge 4 DC danni Fisici Penetranti 1"
+    }
+  },
+  "modBeamFocuserGatling": {
+    "en": "Beam Focuser",
+    "it": "Concentratore di Raggio",
+    "_description": {
+      "en": "Increases Range by 1 grade",
+      "it": "Aumenta la Gittata di 1 grado"
+    }
+  },
+  "modBetaWaveTunerGatling": {
+    "en": "Beta Wave Tuner",
+    "it": "Sintonizzatore di Onde Beta",
+    "_description": {
+      "en": "Gains Persistent",
+      "it": "Ottiene Persistente"
+    }
+  },
+  "modBoostedCapacitorGatling": {
+    "en": "Boosted Capacitor",
+    "it": "Condensatore Potenziato",
+    "_description": {
+      "en": "+1 damage DC, -1 Fire Rate",
+      "it": "+1 danno DC, -1 Cadenza di Fuoco"
+    }
+  },
+  "modChargingBarrels": {
+    "en": "Charging Barrels",
+    "it": "Canne a Caricamento",
+    "_description": {
+      "en": "+2 damage DC, -1 Fire Rate",
+      "it": "+2 danno DC, -1 Cadenza di Fuoco"
+    }
+  },
+  "modCombustionModule": {
+    "en": "Combustion Module",
+    "it": "Modulo di Combustione",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modCompressionNozzle": {
+    "en": "Compression Nozzle",
+    "it": "Ugello di Compressione",
+    "_description": {
+      "en": "+1 damage DC, increases Range by 1 grade",
+      "it": "+1 danno DC, aumenta la Gittata di 1 grado"
+    }
+  },
+  "modElectrificationModule": {
+    "en": "Electrification Module",
+    "it": "Modulo di Elettrificazione",
+    "_description": {
+      "en": "Damage type becomes Energy, gains Radioactive",
+      "it": "Il tipo di danno diventa Energia, ottiene Radioattivo"
+    }
+  },
+  "modGunnerSight": {
+    "en": "Gunner Sight",
+    "it": "Mirino Gunner",
+    "_description": {
+      "en": "Gains Precision",
+      "it": "Ottiene Di Precisione"
+    }
+  },
+  "modGunnerSightMinigun": {
+    "en": "Gunner Sight",
+    "it": "Mirino Gunner",
+    "_description": {
+      "en": "Gains Precision",
+      "it": "Ottiene Di Precisione"
+    }
+  },
+  "modHugeTank": {
+    "en": "Huge Tank",
+    "it": "Serbatoio Enorme",
+    "_description": {
+      "en": "+2 Fire Rate",
+      "it": "+2 Cadenza di Fuoco"
+    }
+  },
+  "modLargeTank": {
+    "en": "Large Tank",
+    "it": "Serbatoio Grande",
+    "_description": {
+      "en": "+1 Fire Rate",
+      "it": "+1 Cadenza di Fuoco"
+    }
+  },
+  "modLongBarrelFlamethrower": {
+    "en": "Long Barrel",
+    "it": "Canna Lunga",
+    "_description": {
+      "en": "Increases Range by 1 grade",
+      "it": "Aumenta la Gittata di 1 grado"
+    }
+  },
+  "modLongBarrelJunkJet": {
+    "en": "Long Barrel",
+    "it": "Canna Lunga",
+    "_description": {
+      "en": "Increases Range by 1 grade",
+      "it": "Aumenta la Gittata di 1 grado"
+    }
+  },
+  "modNapalm": {
+    "en": "Napalm",
+    "it": "Napalm",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modNightVisionScopeMissileLauncher": {
+    "en": "Night Vision Scope",
+    "it": "Mirino Visione Notturna",
+    "_description": {
+      "en": "Gains Precision, gains Night Vision",
+      "it": "Ottiene Di Precisione, ottiene Visione Notturna"
+    }
+  },
+  "modPhotonicAgitatorGatling": {
+    "en": "Photonic Agitator",
+    "it": "Agitatore Fotonico",
+    "_description": {
+      "en": "+1 damage DC, gains Vicious",
+      "it": "+1 danno DC, ottiene Violento"
+    }
+  },
+  "modPhotonicStimulatorGatling": {
+    "en": "Photonic Stimulator",
+    "it": "Stimolatore Fotonico",
+    "_description": {
+      "en": "Gains Vicious",
+      "it": "Ottiene Violento"
+    }
+  },
+  "modQuadBarrel": {
+    "en": "Quad Barrel",
+    "it": "Canna Quadrupla",
+    "_description": {
+      "en": "+2 Fire Rate",
+      "it": "+2 Cadenza di Fuoco"
+    }
+  },
+  "modRecoilCompensatingStockJunkJet": {
+    "en": "Recoil Compensating Stock",
+    "it": "Calcio per Compensazione del Rinculo",
+    "_description": {
+      "en": "Loses Inaccurate, +1 Fire Rate",
+      "it": "Perde Impreciso, +1 Cadenza di Fuoco"
+    }
+  },
+  "modReflexSightGatling": {
+    "en": "Reflex Sight",
+    "it": "Mirino Reflex",
+    "_description": {
+      "en": "Can reroll the Hit Location die",
+      "it": "Può ritirare il dado del Punto di Impatto"
+    }
+  },
+  "modScopeMissileLauncher": {
+    "en": "Scope",
+    "it": "Mirino",
+    "_description": {
+      "en": "Gains Precision",
+      "it": "Ottiene Di Precisione"
+    }
+  },
+  "modShredder": {
+    "en": "Shredder",
+    "it": "Trituratore",
+    "_description": {
+      "en": "Melee Weapon, deals 6 DC Physical Piercing 2 damage",
+      "it": "Arma da Mischia, infligge 6 DC danni Fisici Penetranti 2"
+    }
+  },
+  "modStabilizer": {
+    "en": "Stabilizer",
+    "it": "Stabilizzatore",
+    "_description": {
+      "en": "Loses Inaccurate",
+      "it": "Perde Impreciso"
+    }
+  },
+  "modTargetingComputer": {
+    "en": "Targeting Computer",
+    "it": "Computer di Puntamento",
+    "_description": {
+      "en": "Gains Precision, gains Recon",
+      "it": "Ottiene Di Precisione, ottiene Da Ricognizione"
+    }
+  },
+  "modTripleBarrel": {
+    "en": "Triple Barrel",
+    "it": "Canna Tripla",
+    "_description": {
+      "en": "+1 Fire Rate",
+      "it": "+1 Cadenza di Fuoco"
+    }
+  },
+  "modTripleBarrelMinigun": {
+    "en": "Triple Barrel",
+    "it": "Canna Tripla",
+    "_description": {
+      "en": "+1 damage DC, +1 Fire Rate",
+      "it": "+1 danno DC, +1 Cadenza di Fuoco"
+    }
+  },
+  "modVaporizerNozzle": {
+    "en": "Vaporizer Nozzle",
+    "it": "Ugello Vaporizzatore",
+    "_description": {
+      "en": "+2 damage DC, increases Range by 1 grade, -1 Fire Rate",
+      "it": "+2 danno DC, aumenta la Gittata di 1 grado, -1 Cadenza di Fuoco"
+    }
+  }
+}

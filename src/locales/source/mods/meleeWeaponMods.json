@@ -1,0 +1,386 @@
+{
+  "modBarbedBaseballBat": {
+    "en": "Barbed Baseball Bat",
+    "it": "Mazza Spinata",
+    "_description": {
+      "en": "Gains Piercing 1",
+      "it": "Ottiene Penetrante 1"
+    }
+  },
+  "modBarbedCane": {
+    "en": "Barbed Cane",
+    "it": "Bastone Spinato",
+    "_description": {
+      "en": "+1 damage DC, gains Piercing 1",
+      "it": "+1 danno DC, ottiene Penetrante 1"
+    }
+  },
+  "modBarbedPoolCue": {
+    "en": "Barbed Pool Cue",
+    "it": "Stecca Spinata",
+    "_description": {
+      "en": "+1 damage DC, gains Piercing 1",
+      "it": "+1 danno DC, ottiene Penetrante 1"
+    }
+  },
+  "modBladeBaseballBat": {
+    "en": "Blade Baseball Bat",
+    "it": "Mazza con Lama",
+    "_description": {
+      "en": "+2 damage DC, gains Persistent",
+      "it": "+2 danno DC, ottiene Persistente"
+    }
+  },
+  "modBladeKnuckles": {
+    "en": "Blade Knuckles",
+    "it": "Tirapugni con Lama",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modChainBaseballBat": {
+    "en": "Chain Baseball Bat",
+    "it": "Mazza con Catena",
+    "_description": {
+      "en": "+2 damage DC",
+      "it": "+2 danno DC"
+    }
+  },
+  "modCurvedRipper": {
+    "en": "Curved Ripper",
+    "it": "Ripper Curva",
+    "_description": {
+      "en": "+1 damage DC",
+      "it": "+1 danno DC"
+    }
+  },
+  "modElectrifiedBaton": {
+    "en": "Electrified Baton",
+    "it": "Manganello Elettrico",
+    "_description": {
+      "en": "+2 damage DC, damage type becomes Energy",
+      "it": "+2 danno DC, il tipo di danno diventa Energia"
+    }
+  },
+  "modElectrifiedSerratedSword": {
+    "en": "Electrified Serrated Sword",
+    "it": "Spada Seghettata Elettrificata",
+    "_description": {
+      "en": "+1 damage DC, damage type becomes Energy, gains Persistent (Physical)",
+      "it": "+1 danno DC, il tipo di danno diventa Energia, ottiene Persistente (Fisico)"
+    }
+  },
+  "modElectrifiedSword": {
+    "en": "Electrified Sword",
+    "it": "Spada Elettrificata",
+    "_description": {
+      "en": "+1 damage DC, damage type becomes Energy",
+      "it": "+1 danno DC, il tipo di danno diventa Energia"
+    }
+  },
+  "modExtendedRipper": {
+    "en": "Extended Ripper",
+    "it": "Ripper Estesa",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modExtraClawDeathclaw": {
+    "en": "Extra Claw",
+    "it": "Artiglio Extra Grande",
+    "_description": {
+      "en": "+1 damage DC",
+      "it": "+1 danno DC"
+    }
+  },
+  "modExtraFlamesShishkebab": {
+    "en": "Extra Flames",
+    "it": "Getti di Fiamme Ulteriori",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modHeatingPowerFist": {
+    "en": "Heating Power Fist",
+    "it": "Pugno Potenziato Riscaldante",
+    "_description": {
+      "en": "+2 damage DC, damage type becomes Energy",
+      "it": "+2 danno DC, il tipo di danno diventa Energia"
+    }
+  },
+  "modHeatingSuperSledge": {
+    "en": "Heating Super Sledge",
+    "it": "Super Martello Riscaldante",
+    "_description": {
+      "en": "+1 damage DC, damage type becomes Energy",
+      "it": "+1 danno DC, il tipo di danno diventa Energia"
+    }
+  },
+  "modHeavyLeadPipe": {
+    "en": "Heavy Lead Pipe",
+    "it": "Tubo Pesante",
+    "_description": {
+      "en": "+2 damage DC",
+      "it": "+2 danno DC"
+    }
+  },
+  "modHeavySledgehammer": {
+    "en": "Heavy Sledgehammer",
+    "it": "Martello Pesante",
+    "_description": {
+      "en": "+2 damage DC",
+      "it": "+2 danno DC"
+    }
+  },
+  "modHeavyWrench": {
+    "en": "Heavy Wrench",
+    "it": "Chiave Pesante",
+    "_description": {
+      "en": "+2 damage DC",
+      "it": "+2 danno DC"
+    }
+  },
+  "modHookedWrench": {
+    "en": "Hooked Wrench",
+    "it": "Chiave Uncinata",
+    "_description": {
+      "en": "+1 damage DC",
+      "it": "+1 danno DC"
+    }
+  },
+  "modLeadedBoxingGlove": {
+    "en": "Leaded Boxing Glove",
+    "it": "Guantone Piombato",
+    "_description": {
+      "en": "+2 damage DC",
+      "it": "+2 danno DC"
+    }
+  },
+  "modPuncturedBoard": {
+    "en": "Punctured Board",
+    "it": "Asse Pungente",
+    "_description": {
+      "en": "+2 damage DC",
+      "it": "+2 danno DC"
+    }
+  },
+  "modPuncturedBoxingGlove": {
+    "en": "Punctured Boxing Glove",
+    "it": "Guantone Pungente",
+    "_description": {
+      "en": "+1 damage DC, gains Piercing 1",
+      "it": "+1 danno DC, ottiene Penetrante 1"
+    }
+  },
+  "modPuncturedKnuckles": {
+    "en": "Punctured Knuckles",
+    "it": "Tirapugni Pungente",
+    "_description": {
+      "en": "+1 damage DC, gains Piercing 1",
+      "it": "+1 danno DC, ottiene Penetrante 1"
+    }
+  },
+  "modPuncturedPowerFist": {
+    "en": "Punctured Power Fist",
+    "it": "Pugno Potenziato Pungente",
+    "_description": {
+      "en": "+2 damage DC, gains Piercing 1",
+      "it": "+2 danno DC, ottiene Penetrante 1"
+    }
+  },
+  "modPuncturedSledgehammer": {
+    "en": "Punctured Sledgehammer",
+    "it": "Martello Pungente",
+    "_description": {
+      "en": "+1 damage DC, gains Piercing 1",
+      "it": "+1 danno DC, ottiene Penetrante 1"
+    }
+  },
+  "modPuncturedWrench": {
+    "en": "Punctured Wrench",
+    "it": "Chiave Pungente",
+    "_description": {
+      "en": "+2 damage DC, gains Piercing 1",
+      "it": "+2 danno DC, ottiene Penetrante 1"
+    }
+  },
+  "modSerratedCombatKnife": {
+    "en": "Serrated Combat Knife",
+    "it": "Coltello da Combattimento Seghettato",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modSerratedMachete": {
+    "en": "Serrated Machete",
+    "it": "Machete Seghettato",
+    "_description": {
+      "en": "+2 damage DC, gains Persistent",
+      "it": "+2 danno DC, ottiene Persistente"
+    }
+  },
+  "modSerratedSwitchblade": {
+    "en": "Serrated Switchblade",
+    "it": "Coltello a Serramanico Seghettato",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modSerratedSword": {
+    "en": "Serrated Sword",
+    "it": "Spada Seghettata",
+    "_description": {
+      "en": "Gains Persistent",
+      "it": "Ottiene Persistente"
+    }
+  },
+  "modSharpBaseballBat": {
+    "en": "Sharp Baseball Bat",
+    "it": "Mazza Affilata",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modSharpBoard": {
+    "en": "Sharp Board",
+    "it": "Asse Tagliente",
+    "_description": {
+      "en": "+2 damage DC, gains Persistent",
+      "it": "+2 danno DC, ottiene Persistente"
+    }
+  },
+  "modSharpKnuckles": {
+    "en": "Sharp Knuckles",
+    "it": "Tirapugni Affilato",
+    "_description": {
+      "en": "Gains Persistent",
+      "it": "Ottiene Persistente"
+    }
+  },
+  "modSharpPoolCue": {
+    "en": "Sharp Pool Cue",
+    "it": "Stecca Affilata",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modSharpRollingPin": {
+    "en": "Sharp Rolling Pin",
+    "it": "Mattarello Affilato",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modSharpTireIron": {
+    "en": "Sharp Tire Iron",
+    "it": "Leva Tagliente",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modSpikedBaseballBat": {
+    "en": "Spiked Baseball Bat",
+    "it": "Mazza Chiodata",
+    "_description": {
+      "en": "+1 damage DC, gains Piercing 1",
+      "it": "+1 danno DC, ottiene Penetrante 1"
+    }
+  },
+  "modSpikedBoard": {
+    "en": "Spiked Board",
+    "it": "Asse Chiodata",
+    "_description": {
+      "en": "+1 damage DC, gains Piercing 1",
+      "it": "+1 danno DC, ottiene Penetrante 1"
+    }
+  },
+  "modSpikedBoxingGlove": {
+    "en": "Spiked Boxing Glove",
+    "it": "Guantone Chiodato",
+    "_description": {
+      "en": "Gains Piercing 1",
+      "it": "Ottiene Penetrante 1"
+    }
+  },
+  "modSpikedCane": {
+    "en": "Spiked Cane",
+    "it": "Bastone Chiodato",
+    "_description": {
+      "en": "+1 damage DC, gains Piercing 1",
+      "it": "+1 danno DC, ottiene Penetrante 1"
+    }
+  },
+  "modSpikedKnuckles": {
+    "en": "Spiked Knuckles",
+    "it": "Tirapugni Chiodato",
+    "_description": {
+      "en": "Gains Piercing 1",
+      "it": "Ottiene Penetrante 1"
+    }
+  },
+  "modSpikedLeadPipe": {
+    "en": "Spiked Lead Pipe",
+    "it": "Tubo Chiodato",
+    "_description": {
+      "en": "+1 damage DC, gains Piercing 1",
+      "it": "+1 danno DC, ottiene Penetrante 1"
+    }
+  },
+  "modSpikedRollingPin": {
+    "en": "Spiked Rolling Pin",
+    "it": "Mattarello Chiodato",
+    "_description": {
+      "en": "+1 damage DC, gains Piercing 1",
+      "it": "+1 danno DC, ottiene Penetrante 1"
+    }
+  },
+  "modStealthCombatKnife": {
+    "en": "Stealth Combat Knife",
+    "it": "Coltello da Combattimento Stealth",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modStunningBaton": {
+    "en": "Stunning Baton",
+    "it": "Manganello Stordente",
+    "_description": {
+      "en": "+3 damage DC, damage type becomes Energy, gains Stun",
+      "it": "+3 danno DC, il tipo di danno diventa Energia, ottiene Stordente"
+    }
+  },
+  "modStunningSuperSledge": {
+    "en": "Stunning Super Sledge",
+    "it": "Super Martello Stordente",
+    "_description": {
+      "en": "+2 damage DC, damage type becomes Energy, gains Stun",
+      "it": "+2 danno DC, il tipo di danno diventa Energia, ottiene Stordente"
+    }
+  },
+  "modStunningSword": {
+    "en": "Stunning Sword",
+    "it": "Spada Stordente",
+    "_description": {
+      "en": "+2 damage DC, damage type becomes Energy, gains Stun",
+      "it": "+2 danno DC, il tipo di danno diventa Energia, ottiene Stordente"
+    }
+  },
+  "modVeryHeavyWrench": {
+    "en": "Very Heavy Wrench",
+    "it": "Chiave Molto Pesante",
+    "_description": {
+      "en": "+3 damage DC",
+      "it": "+3 danno DC"
+    }
+  }
+}

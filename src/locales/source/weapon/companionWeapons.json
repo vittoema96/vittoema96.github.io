@@ -1,0 +1,10 @@
+{
+  "weaponCompanionLaser": {
+    "en": "Eyebot Laser",
+    "it": "Laser Eyebot",
+    "_description": {
+      "en": "An energy weapon used by robotic companions.",
+      "it": "Un'arma a energia usata dai compagni robotici."
+    }
+  }
+}

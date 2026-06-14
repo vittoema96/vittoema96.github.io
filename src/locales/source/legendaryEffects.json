@@ -1,0 +1,570 @@
+{
+  "legendaryAcrobat": {
+    "en": "Acrobat’s",
+    "it": "Acrobata",
+    "_description": {
+      "en": "Halve damage caused by falling. If wearing two pieces, you no longer suffer falling damage.",
+      "it": "Dimezza i danni da caduta. Se indossi due pezzi, non subisci più danni da caduta."
+    }
+  },
+  "legendaryAssassinArmor": {
+    "en": "Assassin’s",
+    "it": "Assassino",
+    "_description": {
+      "en": "Provides +2 Physical and Energy DR against attacks from human enemies.",
+      "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi di nemici umani."
+    }
+  },
+  "legendaryAssassinWeapon": {
+    "en": "Assassin’s",
+    "it": "Assassino",
+    "_description": {
+      "en": "Attacks gain the Vicious damage effect against humans. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
+      "it": "Gli attacchi ottengono l'effetto danno Violento contro gli umani. Se l'arma è già Violenta, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+    }
+  },
+  "legendaryAutoStim": {
+    "en": "Auto Stim",
+    "it": "Auto-Stim",
+    "_description": {
+      "en": "Once per scene, if HP < 1/4, automatically use a Stimpak (requires carrying one). Does not take an action.",
+      "it": "Una volta per scena, se PS < 1/4, usa automaticamente uno Stimpak (se ne possiedi uno). Non richiede un'azione."
+    }
+  },
+  "legendaryBerserker": {
+    "en": "Berserker’s",
+    "it": "Berserker",
+    "_description": {
+      "en": "If Torso Physical DR is below 6, the weapon inflicts +1 CD damage for every point of Physical DR below 6.",
+      "it": "Se la RD Fisica del torso è inferiore a 6, l'arma infligge +1 DC di danno per ogni punto di RD Fisica inferiore a 6."
+    }
+  },
+  "legendaryBlazing": {
+    "en": "Blazing",
+    "it": "Fiammeggiante",
+    "_description": {
+      "en": "When using the Defend action and missed by a melee attack, the attacker suffers 4 CD Persistent Energy damage.",
+      "it": "Quando usi l'azione Difesa e vieni mancato da un attacco in mischia, l'attaccante subisce immediatamente 4 DC di danno da Energia Persistente."
+    }
+  },
+  "legendaryBloodied": {
+    "en": "Bloodied",
+    "it": "Sanguinario",
+    "_description": {
+      "en": "Inflicts +1 CD damage if current HP < Max HP, increasing to +2 CD (<3/4 HP), +3 CD (<1/2 HP), and +4 CD (<1/4 HP).",
+      "it": "Infligge +1 DC di danno se i PS attuali sono < PS Max, aumentando a +2 DC (<3/4 PS), +3 DC (<1/2 PS) e +4 DC (<1/4 PS)."
+    }
+  },
+  "legendaryBolstering": {
+    "en": "Bolstering",
+    "it": "Rinvigorente",
+    "_description": {
+      "en": "Gain +2 Physical and Energy DR when HP < 1/2. Increases to +3 DR when HP < 1/4.",
+      "it": "Ottieni +2 alla RD Fisica ed Energia quando i PS < 1/2. Aumenta a +3 RD quando i PS < 1/4."
+    }
+  },
+  "legendaryCavalierArmor": {
+    "en": "Cavalier’s",
+    "it": "Cavaliere",
+    "_description": {
+      "en": "When taking Defend or Sprint actions, gain +2 Physical DR to all locations until next turn.",
+      "it": "Quando esegui l'azione Difesa o Scatto, ottieni +2 alla RD Fisica in tutte le locazioni fino al turno successivo."
+    }
+  },
+  "legendaryCavalierWeapon": {
+    "en": "Cavalier’s",
+    "it": "Cavaliere",
+    "_description": {
+      "en": "When taking the Defend or Sprint actions, gain +2 Physical DR until the start of your next turn.",
+      "it": "Quando esegui l'azione Difesa o Scatto, ottieni +2 alla RD Fisica fino all'inizio del tuo prossimo turno."
+    }
+  },
+  "legendaryChameleon": {
+    "en": "Chameleon",
+    "it": "Camaleonte",
+    "_description": {
+      "en": "When hidden and not moving, enemies add +1 to the difficulty of tests to find you.",
+      "it": "Mentre sei nascosto e immobile, i nemici aumentano di +1 la difficoltà dei test per individuarti."
+    }
+  },
+  "legendaryChampion": {
+    "en": "Champion",
+    "it": "Campione",
+    "_description": {
+      "en": "Once per scene, you may set 1 die to a 1 on any STR or END test before rolling.",
+      "it": "Una volta per scena, puoi impostare un dado su 1 in qualsiasi test di FOR o COS prima di tirare."
+    }
+  },
+  "legendaryCharged": {
+    "en": "Charged",
+    "it": "Caricato",
+    "_description": {
+      "en": "When using the Defend action and missed by a melee attack, the attacker suffers 4 CD Stun Energy damage.",
+      "it": "Quando usi l'azione Difesa e vieni mancato da un attacco in mischia, l'attaccante subisce 4 DC di danno da Energia Stordente."
+    }
+  },
+  "legendaryCloaking": {
+    "en": "Cloaking",
+    "it": "Occultante",
+    "_description": {
+      "en": "Once per scene, when hit by a melee attack, you become invisible (as a Stealth Boy).",
+      "it": "Una volta per scena, quando vieni colpito da un attacco in mischia, diventi invisibile (come con uno Stealth Boy)."
+    }
+  },
+  "legendaryCrippling": {
+    "en": "Crippling",
+    "it": "Menomante",
+    "_description": {
+      "en": "When attacking an arm or leg, causes an injury if it inflicts four or more damage in one hit after reductions.",
+      "it": "Quando attacchi un braccio o una gamba, causi una menomazione se infliggi 4 o più danni in un colpo solo (dopo le riduzioni)."
+    }
+  },
+  "legendaryCryogenic": {
+    "en": "Cryogenic",
+    "it": "Criogenico",
+    "_description": {
+      "en": "Enemy melee attacks increase complication range by 1; on complication, attacker suffers X CD Freeze damage (X = their damage dice).",
+      "it": "Gli attacchi in mischia nemici aumentano l'intervallo di complicazione di 1; con una complicazione, l'attaccante subisce X DC di danno da Freddo (X = i loro dadi danno)."
+    }
+  },
+  "legendaryCunning": {
+    "en": "Cunning",
+    "it": "Astuto",
+    "_description": {
+      "en": "Once per scene, you may set 1 die to a 1 on any AGI or PER test before rolling.",
+      "it": "Una volta per scena, puoi impostare un dado su 1 in qualsiasi test di AGIL o PER prima di tirare."
+    }
+  },
+  "legendaryDeadeye": {
+    "en": "Deadeye",
+    "it": "Occhio di Falco",
+    "_description": {
+      "en": "When taking the Aim action, additional minor and major actions cost 1 AP less for the rest of the turn (does not stack with Jet).",
+      "it": "Quando esegui l'azione Mirare, le azioni minori e maggiori aggiuntive costano 1 PA in meno per il resto del turno (non cumulabile con il Jet)."
+    }
+  },
+  "legendaryDefiant": {
+    "en": "Defiant",
+    "it": "Sfidante",
+    "_description": {
+      "en": "Once per scene, when spending max ammo for Fire Rate, declare weapon Empty to inflict +2 CD damage; requires minor action to reload.",
+      "it": "Una volta per scena, spendendo il massimo delle munizioni per la Cadenza di Fuoco, puoi dichiarare l'arma Vuota per infliggere +2 DC di danno; richiede un'azione minore per ricaricare."
+    }
+  },
+  "legendaryDuelistArmor": {
+    "en": "Duelist’s",
+    "it": "Duelista",
+    "_description": {
+      "en": "Enemy melee attacks increase complication range by 1; on complication, attacker's weapon is knocked from their hand.",
+      "it": "Gli attacchi in mischia nemici aumentano l'intervallo di complicazione di 1; con una complicazione, l'arma dell'attaccante cade a terra."
+    }
+  },
+  "legendaryDuelistWeapon": {
+    "en": "Duelist’s",
+    "it": "Duelista",
+    "_description": {
+      "en": "When using Defend and missed by a melee attack, roll 1 CD; on an Effect, the attacker is disarmed.",
+      "it": "Quando usi Difesa e vieni mancato da un attacco in mischia, tira 1 DC; con un Effetto, l'attaccante viene disarmato."
+    }
+  },
+  "legendaryEnraging": {
+    "en": "Enraging",
+    "it": "Infuriante",
+    "_description": {
+      "en": "When inflicting damage, spend 1 Luck to enrage the enemy, forcing them to attack the nearest enemy for the rest of the scene.",
+      "it": "Quando infliggi danni, spendi 1 punto Fortuna per infuriare il nemico, costringendolo ad attaccare il bersaglio più vicino per il resto della scena."
+    }
+  },
+  "legendaryExplosive": {
+    "en": "Explosive",
+    "it": "Esplosivo",
+    "_description": {
+      "en": "Each Effect rolled hits a secondary target within Close range for half damage. Does not stack with Arc or Burst.",
+      "it": "Ogni Effetto ottenuto colpisce un bersaglio secondario entro gittata Corta per metà del danno. Non cumulabile con Arco o Raffica."
+    }
+  },
+  "legendaryExterminatorArmor": {
+    "en": "Exterminator's",
+    "it": "Sterminatore",
+    "_description": {
+      "en": "Provides +2 Physical and Energy DR against insects and mirelurks.",
+      "it": "Fornisce +2 alla RD Fisica ed Energia contro insetti e mirelurk."
+    }
+  },
+  "legendaryExterminatorWeapon": {
+    "en": "Exterminator's",
+    "it": "Sterminatore",
+    "_description": {
+      "en": "Attacks gain the Vicious damage effect against insects and mirelurks.",
+      "it": "Gli attacchi ottengono l'effetto danno Violento contro insetti e mirelurk."
+    }
+  },
+  "legendaryFreezing": {
+    "en": "Freezing",
+    "it": "Congelante",
+    "_description": {
+      "en": "When making an attack, you may spend a Luck point to add the Freeze damage effect.",
+      "it": "Quando effettui un attacco, puoi spendere 1 punto Fortuna per aggiungere l'effetto danno Congelamento."
+    }
+  },
+  "legendaryFrigid": {
+    "en": "Frigid",
+    "it": "Frigido",
+    "_description": {
+      "en": "When using the Defend action and missed by a melee attack, the attacker immediately suffers 4 CD Freeze Energy damage.",
+      "it": "Quando usi l'azione Difesa e vieni mancato da un attacco in mischia, l'attaccante subisce immediatamente 4 DC di danno da Energia da Freddo."
+    }
+  },
+  "legendaryFurious": {
+    "en": "Furious",
+    "it": "Furioso",
+    "_description": {
+      "en": "Each consecutive hit against an enemy already struck by this weapon in this scene adds +1 CD to the damage (cumulative).",
+      "it": "Ogni colpo consecutivo contro un nemico già colpito da quest'arma nella stessa scena aggiunge +1 DC al danno (cumulativo)."
+    }
+  },
+  "legendaryGhoulSlayerArmor": {
+    "en": "Ghoul Slayer's",
+    "it": "Ammazza-Ghoul",
+    "_description": {
+      "en": "Provides +2 Physical and Energy DR against ghouls.",
+      "it": "Fornisce +2 alla RD Fisica ed Energia contro i ghoul."
+    }
+  },
+  "legendaryGhoulSlayerWeapon": {
+    "en": "Ghoul Slayer's",
+    "it": "Ammazza-Ghoul",
+    "_description": {
+      "en": "Attacks gain the Vicious damage effect against ghouls.",
+      "it": "Gli attacchi ottengono l'effetto danno Violento contro i ghoul."
+    }
+  },
+  "legendaryHitman": {
+    "en": "Hitman’s",
+    "it": "Sicario",
+    "_description": {
+      "en": "When taking the Aim action, the weapon inflicts +1 CD damage. Stacks with the Accurate quality.",
+      "it": "Quando esegui l'azione Mirare, l'arma infligge +1 DC di danno. Cumulabile con la qualità Precisa."
+    }
+  },
+  "legendaryHunterArmor": {
+    "en": "Hunter's",
+    "it": "Cacciatore",
+    "_description": {
+      "en": "Provides +2 Physical and Energy DR against animals and creatures.",
+      "it": "Fornisce +2 alla RD Fisica ed Energia contro animali e creature."
+    }
+  },
+  "legendaryHunterWeapon": {
+    "en": "Hunter's",
+    "it": "Cacciatore",
+    "_description": {
+      "en": "Attacks gain the Vicious damage effect against animals and creatures.",
+      "it": "Gli attacchi ottengono l'effetto danno Violento contro animali e creature."
+    }
+  },
+  "legendaryIncendiaryArmor": {
+    "en": "Incendiary",
+    "it": "Incendiario",
+    "_description": {
+      "en": "Melee attackers suffer 2 CD Persistent Energy damage when they hit you.",
+      "it": "Gli attaccanti in mischia subiscono 2 DC di danno Energia Persistente quando ti colpiscono."
+    }
+  },
+  "legendaryIncendiaryWeapon": {
+    "en": "Incendiary",
+    "it": "Incendiario",
+    "_description": {
+      "en": "Attacks gain the Persistent damage effect.",
+      "it": "Gli attacchi ottengono l'effetto danno Persistente."
+    }
+  },
+  "legendaryInstigating": {
+    "en": "Instigating",
+    "it": "Provocatore",
+    "_description": {
+      "en": "If the target is at maximum HP, the weapon inflicts +3 CD damage.",
+      "it": "Se il bersaglio ha tutti i PS al massimo, l'arma infligge +3 DC di danno."
+    }
+  },
+  "legendaryIrradiated": {
+    "en": "Irradiated",
+    "it": "Irradiato",
+    "_description": {
+      "en": "The weapon gains the Radioactive damage effect.",
+      "it": "L'arma ottiene l'effetto danno Radioattivo."
+    }
+  },
+  "legendaryJunkie": {
+    "en": "Junkie’s",
+    "it": "Drogato",
+    "_description": {
+      "en": "Inflicts +1 CD damage for each addiction you are currently suffering from.",
+      "it": "Infligge +1 DC di danno per ogni dipendenza da cui sei attualmente affetto."
+    }
+  },
+  "legendaryKneecapper": {
+    "en": "Kneecapper",
+    "it": "Gambizzatore",
+    "_description": {
+      "en": "Attacks against a leg cause a critical hit if they inflict 3 or more damage after reductions.",
+      "it": "Gli attacchi contro una gamba causano un colpo critico se infliggono 3 o più danni dopo le riduzioni."
+    }
+  },
+  "legendaryLuckyArmor": {
+    "en": "Lucky",
+    "it": "Fortunato",
+    "_description": {
+      "en": "Once per day, when spending Luck to reroll, you may set a d20 to a 1 or all CD to Effects instead.",
+      "it": "Una volta al giorno, spendendo Fortuna per ripetere un tiro, puoi impostare un d20 su 1 o tutti i DC come Effetti."
+    }
+  },
+  "legendaryLuckyWeapon": {
+    "en": "Lucky",
+    "it": "Fortunato",
+    "_description": {
+      "en": "After an attack where Luck was spent to reroll, roll 1 CD; on an Effect, regain one spent Luck point.",
+      "it": "Dopo un attacco in cui è stata spesa Fortuna per ripetere i dadi, tira 1 DC; con un Effetto, recuperi un punto Fortuna speso."
+    }
+  },
+  "legendaryMartyr": {
+    "en": "Martyr’s",
+    "it": "Martire",
+    "_description": {
+      "en": "If HP < 1/4, reduce the AP cost to take additional actions in combat by 1.",
+      "it": "Se i PS < 1/4, riduce di 1 il costo in PA per eseguire azioni aggiuntive in combattimento."
+    }
+  },
+  "legendaryMutantSlayerArmor": {
+    "en": "Mutant Slayer's",
+    "it": "Ammazza-Mutanti",
+    "_description": {
+      "en": "Provides +2 Physical and Energy DR against super mutants.",
+      "it": "Fornisce +2 alla RD Fisica ed Energia contro i supermutanti."
+    }
+  },
+  "legendaryMutantSlayerWeapon": {
+    "en": "Mutant Slayer's",
+    "it": "Ammazza-Mutanti",
+    "_description": {
+      "en": "Attacks gain the Vicious damage effect against super mutants.",
+      "it": "Gli attacchi ottengono l'effetto danno Violento contro i supermutanti."
+    }
+  },
+  "legendaryNimble": {
+    "en": "Nimble",
+    "it": "Agile",
+    "_description": {
+      "en": "When taking the Aim action, you may also take a Move minor action for free.",
+      "it": "Quando usi l'azione Mirare, puoi anche eseguire un'azione minore di Movimento gratuitamente."
+    }
+  },
+  "legendaryNocturnal": {
+    "en": "Nocturnal",
+    "it": "Notturno",
+    "_description": {
+      "en": "Between sunset and sunrise, attacks gain Vicious. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
+      "it": "Tra il tramonto e l'alba, gli attacchi ottengono Letale. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+    }
+  },
+  "legendaryPenetrating": {
+    "en": "Penetrating",
+    "it": "Penetrante",
+    "_description": {
+      "en": "Attacks gain Piercing 2. If already Piercing, increase the rating by +2.",
+      "it": "Gli attacchi ottengono Perforante 2. Se già Perforante, aumenta il valore di +2."
+    }
+  },
+  "legendaryPlasmaInfused": {
+    "en": "Plasma Infused",
+    "it": "Infuso di Plasma",
+    "_description": {
+      "en": "+2 CD damage and deals both Energy and Physical damage (uses target's lower resistance).",
+      "it": "+2 DC di danno e infligge sia danni Fisici che da Energia (usa la resistenza più bassa del bersaglio)."
+    }
+  },
+  "legendaryPoisonerArmor": {
+    "en": "Poisoner’s",
+    "it": "Avvelenato",
+    "_description": {
+      "en": "Provides +4 Poison damage resistance.",
+      "it": "Fornisce +4 alla resistenza ai danni da Veleno."
+    }
+  },
+  "legendaryPoisonerWeapon": {
+    "en": "Poisoner’s",
+    "it": "Avvelenato",
+    "_description": {
+      "en": "Attacks gain the Persistent (Poison) damage effect.",
+      "it": "Gli attacchi ottengono l'effetto danno Persistente (Veleno)."
+    }
+  },
+  "legendaryPowered": {
+    "en": "Powered",
+    "it": "Alimentato",
+    "_description": {
+      "en": "Add 1 AP to the group pool at the start of each of your turns in combat.",
+      "it": "Aggiunge 1 PA alla riserva di gruppo all'inizio di ogni tuo turno in combattimento."
+    }
+  },
+  "legendaryPowerfulMighty": {
+    "en": "Powerful / Mighty",
+    "it": "Potente / Possente",
+    "_description": {
+      "en": "Attacks with this weapon inflict +2 CD damage.",
+      "it": "Gli attacchi con quest'arma infliggono +2 DC di danno."
+    }
+  },
+  "legendaryPunishing": {
+    "en": "Punishing",
+    "it": "Punitivo",
+    "_description": {
+      "en": "When hit by a melee attack, each Effect rolled on the damage roll inflicts 1 damage (same type) to the attacker.",
+      "it": "Quando vieni colpito in mischia, ogni Effetto ottenuto nel tiro dei danni infligge 1 danno (dello stesso tipo) all'attaccante."
+    }
+  },
+  "legendaryQuickdraw": {
+    "en": "Quickdraw",
+    "it": "Lesto",
+    "_description": {
+      "en": "Drawing this weapon does not count as a minor action and does not cost AP.",
+      "it": "Estrarre quest'arma non conta come azione minore e non costa PA."
+    }
+  },
+  "legendaryRadPowered": {
+    "en": "Rad Powered",
+    "it": "Rad-Potenziato",
+    "_description": {
+      "en": "Once per scene, if you have Rad damage, set 1d20 to 1 on a STR test. +1 use per 5 Rad damage.",
+      "it": "Una volta per scena, se hai danni da radiazioni, imposta 1d20 su 1 in un test di FOR. +1 uso ogni 5 danni da radiazioni."
+    }
+  },
+  "legendaryRapid": {
+    "en": "Rapid",
+    "it": "Rapido",
+    "_description": {
+      "en": "Gains +3 Fire Rate (can exceed 6).",
+      "it": "Aumenta la Cadenza di Fuoco di +3 (può superare 6)."
+    }
+  },
+  "legendaryRelentless": {
+    "en": "Relentless",
+    "it": "Senza Sosta",
+    "_description": {
+      "en": "On a critical hit, spend 1 Luck point to immediately regain any AP spent on that attack.",
+      "it": "Con un colpo critico, spendi 1 punto Fortuna per recuperare immediatamente tutti i PA spesi per quell'attacco."
+    }
+  },
+  "legendarySafecracker": {
+    "en": "Safecracker’s",
+    "it": "Scassinatore",
+    "_description": {
+      "en": "Once per scene, you may set 1d20 to a 1 on any Lockpick test before rolling.",
+      "it": "Una volta per scena, puoi impostare 1d20 su 1 in qualsiasi test di Scassinare prima di tirare."
+    }
+  },
+  "legendarySentinelArmor": {
+    "en": "Sentinel’s",
+    "it": "Sentinella",
+    "_description": {
+      "en": "Gain +3 Physical and Energy DR so long as you did not move in your previous turn.",
+      "it": "Ottieni +3 alla RD Fisica ed Energia se non ti sei mosso nel tuo turno precedente."
+    }
+  },
+  "legendarySentinelWeapon": {
+    "en": "Sentinel’s",
+    "it": "Sentinella",
+    "_description": {
+      "en": "Gain +2 Physical and Energy DR if you did not move in your previous turn. Increases to +3 if weapon has Parry.",
+      "it": "Ottieni +2 alla RD Fisica ed Energia se non ti sei mosso nel turno precedente. Aumenta a +3 se l'arma ha Parata."
+    }
+  },
+  "legendarySharp": {
+    "en": "Sharp",
+    "it": "Accuminato",
+    "_description": {
+      "en": "Once per scene, you may set 1d20 to a 1 on any INT or CHA test before rolling.",
+      "it": "Una volta per scena, puoi impostare 1d20 su 1 in qualsiasi test di INT o CAR prima di tirare."
+    }
+  },
+  "legendarySprinter": {
+    "en": "Sprinter’s",
+    "it": "Scattante",
+    "_description": {
+      "en": "Reduce the AP cost to cross difficult terrain or obstacles by 1 (minimum 0).",
+      "it": "Riduce di 1 il costo in PA per attraversare terreni difficili o ostacoli (minimo 0)."
+    }
+  },
+  "legendaryStaggering": {
+    "en": "Staggering",
+    "it": "Vacillante",
+    "_description": {
+      "en": "This weapon gains the Stun damage effect.",
+      "it": "Quest'arma ottiene l'effetto danno Stordente."
+    }
+  },
+  "legendaryStalker": {
+    "en": "Stalker’s",
+    "it": "Appostato",
+    "_description": {
+      "en": "On a sneak attack with Aim and no other actions, replace 1d20 with a die that counts as a pre-rolled 1.",
+      "it": "In un attacco furtivo con Mirare e nessun'altra azione, sostituisci 1d20 con uno che conta come un 1 pre-tirato."
+    }
+  },
+  "legendarySteadfast": {
+    "en": "Steadfast",
+    "it": "Saldo",
+    "_description": {
+      "en": "Taking the Aim action increases Physical DR by +2 until the start of your next turn.",
+      "it": "L'azione Mirare aumenta la RD Fisica di +2 fino all'inizio del tuo prossimo turno."
+    }
+  },
+  "legendaryTroubleshooterArmor": {
+    "en": "Troubleshooter's",
+    "it": "Risolutore",
+    "_description": {
+      "en": "Provides +2 Physical and Energy DR against robots.",
+      "it": "Fornisce +2 alla RD Fisica ed Energia contro i robot."
+    }
+  },
+  "legendaryTroubleshooterWeapon": {
+    "en": "Troubleshooter's",
+    "it": "Risolutore",
+    "_description": {
+      "en": "Attacks gain the Vicious damage effect against robots.",
+      "it": "Gli attacchi ottengono l'effetto danno Violento contro i robot."
+    }
+  },
+  "legendaryTwoShot": {
+    "en": "Two-Shot",
+    "it": "Doppio Colpo",
+    "_description": {
+      "en": "Gains Vicious, +2 CD damage, and Ammo-Hungry (2) quality.",
+      "it": "Ottiene Letale, +2 DC di danno e la qualità Affamata di Munizioni (2)."
+    }
+  },
+  "legendaryUnyielding": {
+    "en": "Unyielding",
+    "it": "Tenace",
+    "_description": {
+      "en": "While HP are below 1/4, you may re-roll 1d20 on any test you attempt.",
+      "it": "Mentre i PS sono inferiori a 1/4, puoi ripetere 1d20 in qualsiasi test effettuato."
+    }
+  },
+  "legendaryViolent": {
+    "en": "Violent",
+    "it": "Violento",
+    "_description": {
+      "en": "+2 CD damage and causes injury on 4+ damage; gains Recoil (7) or adds +1 to existing Recoil.",
+      "it": "+2 DC di danno e causa menomazioni con 4+ danni; ottiene Rinculo (7) o aumenta il Rinculo esistente di +1."
+    }
+  },
+  "legendaryWounding": {
+    "en": "Wounding",
+    "it": "Feritore",
+    "_description": {
+      "en": "This weapon gains the Persistent (Physical) damage effect.",
+      "it": "Quest'arma ottiene l'effetto danno Persistente (Fisico)."
+    }
+  }
+}

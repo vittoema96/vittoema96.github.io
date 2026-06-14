@@ -1,0 +1,1410 @@
+{
+  "perkAccuracy": {
+    "en": "Accuracy",
+    "it": "Accuratezza",
+    "_description": {
+      "en": "Once per combat, you can reroll all Combat Dice on a single damage roll without spending Luck points.",
+      "it": "Una volta per combattimento, è possibile tirare nuovamente tutti i DC su un singolo tiro di danno senza spendere punti Fortuna."
+    }
+  },
+  "perkActionBoyGirl": {
+    "en": "Action Boy/Girl",
+    "it": "Uomo/Donna D’azione",
+    "_description": {
+      "en": "When spending AP to perform an additional major action, the character does not suffer the increased skill check difficulty during the second action.",
+      "it": "Quando spende PA per compiere un’azione principale aggiuntiva, il personaggio non subisce l’aumento della difficoltà della prova di abilità durante la seconda azione."
+    }
+  },
+  "perkAdamantiumSkeleton": {
+    "en": "Adamantium Skeleton",
+    "it": "Scheletro Di Adamantio",
+    "_description": {
+      "en": "When the character suffers damage, the amount of damage required for it to become a critical hit increases based on the rank in this perk. For example, possessing one rank in this perk, you suffer a critical hit from 6 or more damage, rather than 5 or more. Each time this perk is selected, the level requirements increase by 3.",
+      "it": "Quando il personaggio subisce un danno, la quantità di danno necessaria perché questo diventi un colpo critico aumenta in base al grado in questo talento. Per esemplio, possedendo un grado in questo talento, si subisce un colpo critico da 6 o più danni, piuttosto che da 5 o più. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 3."
+    }
+  },
+  "perkAdrenalineRush": {
+    "en": "Adrenaline Rush",
+    "it": "Scarica Di Adrenalina",
+    "_description": {
+      "en": "When the character's health is below the maximum value, consider the STR score as 10 for all skill checks based on STR or melee attacks.",
+      "it": "Quando la salute del personaggio è al di sotto del valore massimo, considerare il punteggio di FOR pari a 10 per tutte le prove di abilità basate su FOR o sugli attacchi in mischia."
+    }
+  },
+  "perkAllNightLong": {
+    "en": "All Night Long",
+    "it": "Tutta la Notte",
+    "_description": {
+      "en": "During nighttime hours—after sunset and before sunrise—your hunger and thirst states do not deteriorate. Every two days you are starving, you gain 1 Fatigue instead of every day.",
+      "it": "Durante le ore notturne—dopo il tramonto e prima dell'alba—i tuoi stati di fame e sete non si deteriorano. Ogni due giorni in cui stai morendo di fame, guadagni 1 Fatica invece che ogni giorno."
+    }
+  },
+  "perkAmmosmith": {
+    "en": "Ammosmith",
+    "it": "Fabbricante di Munizioni",
+    "_description": {
+      "en": "You can craft ammunition at a weapons workbench. At rank 1, you can craft ammo up to rarity 1. At rank 2, you can also dismantle ammo, regaining half the required materials. At rank 3, roll DC equal to 6 minus the ammo's rarity when crafting: each hit adds +1 ammo, each Effect doubles the quantity. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Puoi produrre munizioni al banco degli armaioli. Al grado 1, puoi produrre munizioni fino a rarità 1. Al grado 2, puoi anche smontare munizioni recuperando metà dei materiali. Al grado 3, tira CD pari a 6 meno la rarità quando produci: ogni successo aggiunge +1 munizione, ogni Effetto raddoppia la quantità. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkAnimalFriend": {
+    "en": "Animal Friend",
+    "it": "Amico Degli Animali",
+    "_description": {
+      "en": "At rank 1, whenever a Mammal, Lizard, or Insect NPC creature attacks the PC, roll 1 Combat Die: if a result other than an Effect is obtained, the creature chooses not to attack, though it can still attack another character. At rank 2, you can attempt a CHA + Survival check with a difficulty of 2 as a major action. If the check succeeds, the animal treats the character as a friend and will attack anyone who threatens them. Powerful and Legendary animals are not affected by this perk. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Al grado 1, ogni volta che una creatura PNG con la parola chiave Mammifero, Lucertola o Insetto attacca il PG, lanciare 1 DC : se si ottiene un risultato che non sia un Effetto, la creatura sceglie di non attaccare, tuttavia può sempre attaccare un altro personaggio. Al grado 2, è possibile tentare una prova di CAR + Sopravvivenza con una difficoltà di 2 come azione maggiore. Se la prova ha successo, l’animale tratta il personaggio come un amico e attaccherà chiunque lo minacci. Animali Potenti e Leggendari non vengono influenzati da questo talento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkAquaboyGirl": {
+    "en": "Aqua Boy/Girl",
+    "it": "Acquaticità",
+    "_description": {
+      "en": "Water is the character's ally. At rank 1, you no longer take Radiation damage from swimming in irradiated water and can hold your breath for twice the normal time. At rank 2, enemies add +2 to the difficulty of checks to detect the character while submerged underwater. Each time this perk is selected, the level requirements increase by 3.",
+      "it": "L’acqua è un’alleata del personaggio. Al grado 1, non si subiscono più danni da Radiazioni nuotando in acqua irradiata e può trattenere il respiro per il doppio del tempo normale. Al grado 2, i nemici aggiungono +2 alla difficoltà nelle prove per individuare il personaggio mentre è sommerso sott’acqua. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 3."
+    }
+  },
+  "perkArcher": {
+    "en": "Archer",
+    "it": "Arciere",
+    "_description": {
+      "en": "When wielding a bow or crossbow, increase the weapon's damage by +1 DC. At rank 2, this increases to +2 DC. At rank 3, to +3 DC. Each time this perk is selected, the level requirements increase by 7.",
+      "it": "Quando impugni un arco o una balestra, il danno dell'arma aumenta di +1 CD. Al grado 2, +2 CD. Al grado 3, +3 CD. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 7."
+    }
+  },
+  "perkArmorer": {
+    "en": "Armorer",
+    "it": "Armaiolo",
+    "_description": {
+      "en": "You can modify armor with armor mods. Each rank in this perk unlocks an additional level of modifications: rank 1 unlocks level 1 mods, rank 2 unlocks level 2, and so on. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "È possibile modificare l’armatura con le modifiche per l’armatura. Ogni grado in questo talento sblocca un livello aggiuntivo di modifiche: il grado 1 sblocca le modifiche di livello 1, il grado 2 quelle di livello 2, e così via. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkAwareness": {
+    "en": "Awareness",
+    "it": "Consapevolezza",
+    "_description": {
+      "en": "When performing the Aim minor action on a target at Close range, the PC identifies their weak points and can attack more efficiently. The next attack made against that target gains the Piercing 1 effect or improves the rank of any Piercing X damage effect possessed by 1.",
+      "it": "Quando effettua l’azione minore Mirare su un bersaglio a distanza Ravvicinata, il PG individua i suoi punti deboli e può attaccare in modo più efficiente. L’attacco successivo effettuato contro quel bersaglio guadagna l’effetto Penetrante 1 o migliora di 1 il grado di qualsiasi effetto di danno Penetrante X posseduto."
+    }
+  },
+  "perkBarbarian": {
+    "en": "Barbarian",
+    "it": "Barbaro",
+    "_description": {
+      "en": "Physical Damage Resistance increases on all hit locations based on the character's STR. You do not receive the benefits of this perk while wearing Power Armor. STR 7–8: +1 Physical DR, STR 9–10: +2 Physical DR, STR 11+: +3 Physical DR.",
+      "it": "La Resistenza ai Danni Fisici aumenta su tutti i punti d’impatto in base alla FOR del personaggio. Non si ricevono i benefici di questo talento mentre si indossa un’Armatura Atomica. FOR 7–8: +1 RD Fisici, FOR 9–10: +2 RD Fisici, FOR 11+: +3 RD Fisici"
+    }
+  },
+  "perkBasher": {
+    "en": "Basher",
+    "it": "Sfondatore",
+    "_description": {
+      "en": "When making a melee attack with a pistol, the attack gains the Vicious damage effect.",
+      "it": "Quando si effettua un attacco da mischia con la pistola (vedere pag. 111), l’attacco ottiene l’effetto di danno Violento."
+    }
+  },
+  "perkBetterCriticals": {
+    "en": "Better Criticals",
+    "it": "Critici Migliorati",
+    "_description": {
+      "en": "When one or more damage is dealt to an enemy, you can spend 1 Luck point to automatically deal a critical hit, causing an injury.",
+      "it": "Quando si infliggono uno o più danni a un nemico, è possibile spendere 1 Punto Fortuna per infliggere automaticamente un colpo critico, provocando una ferita."
+    }
+  },
+  "perkBigLeaguer": {
+    "en": "Big Leaguer",
+    "it": "Pezzo Grosso",
+    "_description": {
+      "en": "When making a melee attack with a two-handed weapon, the weapon gains the Vicious damage effect.",
+      "it": "Quando si effettua un attacco da mischia con un’arma a due mani, l’arma ottiene l’effetto di danno Violento."
+    }
+  },
+  "perkBlackWidowLadyKiller": {
+    "en": "Black Widow / Lady Killer",
+    "it": "Vedova Nera / Sciupafemmine",
+    "_description": {
+      "en": "The Black Widow perk affects men and male characters, while Lady Killer affects women and female characters; otherwise, they are identical. When attempting a CHA-based skill check to influence a character of the chosen sex, you can reroll 1d20. Additionally, attacks deal +1 additional Combat Die of damage against characters of the chosen sex.",
+      "it": "Il talento Vedova Nera ha effetto sugli uomini e sui personaggi maschili, mentre Sciupafemmine ha effetto sulle donne e sui personaggi femminili, per il resto sono identici. Quando si tenta una prova di abilità basata sul CAR per influenzare un personaggio del sesso scelto, si può tirare di nuovo 1d20. Inoltre, gli attacchi infliggono +1 DC di danno aggiuntivo contro i personaggi del sesso scelto."
+    }
+  },
+  "perkBlacksmith": {
+    "en": "Blacksmith",
+    "it": "Fabbro",
+    "_description": {
+      "en": "You can modify melee weapons with melee weapon mods. Each rank in this perk unlocks an additional level of modifications: rank 1 unlocks level 1 mods, rank 2 unlocks level 2, and so on. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "È possibile modificare le armi da mischia con le modifiche per armi da mischia. Ogni grado in questo talento sblocca un livello aggiuntivo di modifiche: il grado 1 sblocca le modifiche di livello 1, il grado 2 quelle di livello 2, e così via. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkBlitz": {
+    "en": "Blitz",
+    "it": "Blitz",
+    "_description": {
+      "en": "When the character enters the reach of an opponent and makes a melee attack against them in the same turn, they can reroll a d20 for the attack. At rank 2, they also deal +1 Combat Die damage with the attack. Each time this perk is selected, the level requirements increase by 3.",
+      "it": "Quando il personaggio entra a portata di un avversario e compie un attacco in mischia contro di lui nello stesso turno, può tirare di nuovo un d20 per l’attacco. Al grado 2, infligge anche +1 DC danni con l’attacco. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 3."
+    }
+  },
+  "perkBlocker": {
+    "en": "Blocker",
+    "it": "Difensore",
+    "_description": {
+      "en": "When struck by a melee attack, count your Physical or Energy damage resistance (matching the attack type) as +1 higher. At rank 2, this increases to +2. At rank 3, to +3. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Quando sei colpito da un attacco in mischia, conta la tua resistenza ai danni Fisici o Energetici (in base al tipo di danno) come +1 più alta. Al grado 2, +2. Al grado 3, +3. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkBloodsucker": {
+    "en": "Bloodsucker",
+    "it": "Bevitore di Sangue",
+    "_description": {
+      "en": "Consuming a Blood Pack (including Glowing Blood Packs and Irradiated Blood) now heals twice as many HP and moves your Thirst state towards quenched by one step. When consuming Irradiated Blood, you now only roll 1 DC to determine Radiation damage.",
+      "it": "Consumare una Sacca di Sangue (incluse Sacche Luminose e Sangue Irradiato) ora cura il doppio dei PS e risale il tuo stato di sete di un passo verso dissetato. Quando consumi Sangue Irradiato, tiri solo 1 CD per determinare i danni da Radiazioni."
+    }
+  },
+  "perkBloodyMess": {
+    "en": "Bloody Mess",
+    "it": "Carneficina",
+    "_description": {
+      "en": "When the character deals a critical hit, roll 1 Combat Die: if the result is an Effect, deal an additional injury in a random location.",
+      "it": "Quando il personaggio infligge un colpo critico, tira 1 DC : se il risultato è un Effetto, infligge una ferita aggiuntiva in un punto casuale."
+    }
+  },
+  "perkBodyguards": {
+    "en": "Bodyguards",
+    "it": "Guardie del Corpo",
+    "_description": {
+      "en": "Each player character and companion (other than yourself) within Close range increases your Damage Resistance and Energy Resistance by +1.",
+      "it": "Ogni personaggio giocante e compagno (diverso da te) entro gittata Ravvicinata aumenta la tua Resistenza ai Danni Fisici ed Energetici di +1."
+    }
+  },
+  "perkBornSurvivor": {
+    "en": "Born Survivor",
+    "it": "Nato Sopravvissuto",
+    "_description": {
+      "en": "When you suffer damage that would reduce your HP to below one-quarter of your maximum, you may automatically use a Stimpak (once per scene). At rank 2, you may do this 2 times per scene. At rank 3, 3 times per scene. Each time this perk is selected, the level requirements increase by 8.",
+      "it": "Quando subisci danni che ti ridurrebbero a meno di un quarto dei tuoi PS massimi, puoi usare automaticamente uno Stimpak (una volta per scena). Al grado 2, puoi farlo 2 volte per scena. Al grado 3, 3 volte per scena. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 8."
+    }
+  },
+  "perkBowBeforeMe": {
+    "en": "Bow Before Me",
+    "it": "Inchina al Mio Arco",
+    "_description": {
+      "en": "When wielding a bow or crossbow, the weapon gains Piercing 1 (or adds +1 to any existing Piercing X damage effect).",
+      "it": "Quando impugni un arco o una balestra, l'arma ottiene l'effetto danno Perforante 1 (o +1 a qualsiasi Perforante X esistente)."
+    }
+  },
+  "perkBulletShield": {
+    "en": "Bullet Shield",
+    "it": "Scudo di Proiettili",
+    "_description": {
+      "en": "When wielding a big gun, increase your damage resistance by +2. At rank 2, this increases to +3. At rank 3, to +4. Each time this perk is selected, the level requirements increase by 6.",
+      "it": "Quando impugni una grossa arma, la tua resistenza ai danni aumenta di +2. Al grado 2, +3. Al grado 3, +4. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 6."
+    }
+  },
+  "perkButchersBounty": {
+    "en": "Butcher's Bounty",
+    "it": "Bottino del Macellaio",
+    "_description": {
+      "en": "When you successfully butcher a dead animal, roll +1 DC and find additional portions of meat equal to the total rolled. At rank 2, roll +2 DC. At rank 3, +3 DC. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Quando macelli con successo un animale morto, tira +1 CD e trova porzioni di carne aggiuntive pari al totale tirato. Al grado 2, +2 CD. Al grado 3, +3 CD. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkCanDo": {
+    "en": "Can Do!",
+    "it": "Questo Può Andare!",
+    "_description": {
+      "en": "When looting a place where food is found, the character gets 1 additional random food item without spending AP.",
+      "it": "Quando saccheggia in un luogo in cui si trova del cibo, il personaggio ottiene 1 oggetto di cibo casuale in più, senza spendere PA."
+    }
+  },
+  "perkCannibal": {
+    "en": "Cannibal",
+    "it": "Cannibale",
+    "_description": {
+      "en": "You may attempt to butcher a dead human (END + Survival, difficulty 0) to obtain one portion of human flesh, which restores 4 HP and is Irradiated. At rank 2, you may also butcher ghouls. At rank 3, also super mutants. Cannibalism can be addictive. Each time this perk is selected, the level requirements increase by 9.",
+      "it": "Puoi tentare di macellare un umano morto (RES + Sopravvivenza, difficoltà 0) per ottenere una porzione di carne umana, che recupera 4 PS ed è Irradiata. Al grado 2, puoi macellare anche i ghoul. Al grado 3, anche i super mutanti. Il cannibalismo può creare dipendenza. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 9."
+    }
+  },
+  "perkCapCollector": {
+    "en": "Cap Collector",
+    "it": "Collezionista Di Tappi",
+    "_description": {
+      "en": "When buying or selling items, the character can increase or decrease the price of exchanged goods by 10%.",
+      "it": "Quando compra o vende oggetti, il personaggio può aumentare o diminuire il prezzo dei beni scambiati del 10%."
+    }
+  },
+  "perkCenterOfMass": {
+    "en": "Center Of Mass",
+    "it": "Baricentro",
+    "_description": {
+      "en": "When making a ranged attack, you can choose to hit the target's Torso (or equivalent for creatures using a different hit location table) without increasing the attack difficulty. Additionally, you can reroll 1d20 when making the attack check.",
+      "it": "Quando effettua un attacco a distanza, può scegliere di colpire il Torso del bersaglio (o equivalente, per le creature che usano una tabella dei punti d’impatto diversa) senza aumentare la difficoltà dell’attacco. Inoltre, può tirare nuovamente 1d20 quando effettua la prova per l’attacco."
+    }
+  },
+  "perkChemResistant": {
+    "en": "Chem Resistant",
+    "it": "Resistente Alle Droghe",
+    "_description": {
+      "en": "At rank 1, roll one fewer Combat Die to determine if you develop a drug addiction, to a minimum of 0. At rank 2, you cannot develop a drug addiction. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Al grado 1, tira un DC in meno per determinare se sviluppa una dipendenza dalle droghe, fino a un minimo di 0. Al grado 2, non può sviluppare una dipendenza dalle droghe. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkChemSqueezer": {
+    "en": "Chem Squeezer",
+    "it": "Fiuta Farmaci",
+    "_description": {
+      "en": "When looting a place where medicines or substances are found, the character gets 1 additional randomly determined item without spending AP.",
+      "it": "Quando saccheggia un luogo in cui si trovano medicine o sostanze, il personaggio ottiene 1 oggetto aggiuntivo, determinato casualmente, senza spendere PA."
+    }
+  },
+  "perkChemist": {
+    "en": "Chemist",
+    "it": "Chimico",
+    "_description": {
+      "en": "Substances created by the PC last twice as long. Additionally, it unlocks formulas for substances that have this perk as a requirement.",
+      "it": "Le sostanze create dal PG durano il doppio (vedere pag. 164). Inoltre, sblocca le formule per le sostanze che hanno questo talento come requisito."
+    }
+  },
+  "perkClassFreak": {
+    "en": "Class Freak",
+    "it": "Fenomeno di Classe",
+    "_description": {
+      "en": "Whenever a mutated human NPC would attack you, roll 1 DC: on any result other than an Effect, the creature chooses not to attack you. Additionally, you may re-roll 1d20 on any CHA-based skill test to influence a mutated human.",
+      "it": "Ogni volta che un umano mutato NPC sta per attaccarti, tira 1 CD: con qualsiasi risultato diverso da un Effetto, la creatura sceglie di non attaccarti. Puoi inoltre ripetere 1d20 in qualsiasi test di abilità basato su CAR per influenzare un umano mutato."
+    }
+  },
+  "perkColaNut": {
+    "en": "Cola Nut",
+    "it": "Amante della Cola",
+    "_description": {
+      "en": "When you drink a Nuka-Cola beverage, you regain twice as many HP as normal.",
+      "it": "Quando bevi una bevanda Nuka-Cola, recuperi il doppio dei PS normali."
+    }
+  },
+  "perkCommando": {
+    "en": "Commando",
+    "it": "Commando",
+    "_description": {
+      "en": "When making a ranged attack with any weapon with a Fire Rate of 3 or higher (except heavy weapons), add +1 Combat Die per rank to the weapon's damage. Each time this perk is selected, the level requirements increase by 3.",
+      "it": "Quando effettua un attacco a distanza con qualsiasi arma con una Cadenza di Fuoco di 3 o superiore (tranne le armi pesanti), aggiunge +1 DC per grado al danno dell’arma. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 3."
+    }
+  },
+  "perkCommunityOrganizer": {
+    "en": "Community Organizer",
+    "it": "Organizzatore della Comunità",
+    "_description": {
+      "en": "For each rank of this perk, your community gains +1 Food and +1 Defense per day, as long as the resource is maintained. Additionally add +1 DC to the Hunting, Gathering, and Scavenging settlement actions. Each time this perk is selected, the level requirements increase by 3.",
+      "it": "Per ogni grado di questo talento, la tua comunità guadagna +1 Cibo e +1 Difesa al giorno, purché la risorsa sia mantenuta. Aggiungi inoltre +1 CD alle azioni di insediamento Caccia, Raccolta e Saccheggio. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 3."
+    }
+  },
+  "perkComprehension": {
+    "en": "Comprehension",
+    "it": "Comprensione",
+    "_description": {
+      "en": "After using the bonus provided by reading a magazine, roll 1 Combat Die. If the result is an Effect, you can use that bonus one more time.",
+      "it": "Dopo aver utilizzato il bonus fornito dalla lettura di una rivista, tirare 1 DC . Se il risultato è un Effetto, è possibile utilizzare quel bonus una volta in più."
+    }
+  },
+  "perkConcentratedFire": {
+    "en": "Concentrated Fire",
+    "it": "Fuoco Concentrato",
+    "_description": {
+      "en": "When making a ranged attack and spending ammo to increase damage, the character can reroll up to 3 Combat Dice for the damage roll.",
+      "it": "Quando effettua un attacco a distanza e spende munizioni per aumentare il danno, il personaggio può tirare nuovamente fino a 3 DC per il tiro dei danni."
+    }
+  },
+  "perkContractor": {
+    "en": "Contractor",
+    "it": "Appaltatore",
+    "_description": {
+      "en": "At rank 1, you can halve the materials required to construct something (minimum 1 unit per type, -2 Happiness), or double construction time to avoid the penalty. At rank 2, untrained settlers can take construction actions (-1 Happiness unless a skilled worker assists). At rank 3, settlers without the required perk can assist if at least one perk-holder participates. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Al grado 1, puoi dimezzare i materiali di costruzione (minimo 1 per tipo, -2 Felicità), o raddoppiare i tempi per evitare la penalità. Al grado 2, i coloni non addestrati possono svolgere azioni di costruzione (-1 Felicità se nessun lavoratore qualificato assiste). Al grado 3, i coloni senza il talento richiesto possono partecipare se almeno un possessore del talento è presente. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkCovertOperator": {
+    "en": "Covert Operator",
+    "it": "Operatore Coperto",
+    "_description": {
+      "en": "When you make a ranged sneak attack with a small gun or energy weapon, the damage is increased by +2 DC. You cannot gain this benefit while wearing Power Armor.",
+      "it": "Quando effettui un attacco a distanza furtivo con una piccola arma da fuoco o un'arma energetica, il danno è aumentato di +2 CD. Non puoi beneficiarne indossando la Tuta Atomica."
+    }
+  },
+  "perkCrackShot": {
+    "en": "Crack Shot",
+    "it": "Tiratore Preciso",
+    "_description": {
+      "en": "When you make a ranged attack with a one-handed ranged weapon after aiming, the weapon's range increases by one step. At rank 2, the weapon also gains the Accurate quality if it did not already have it. Each time this perk is selected, the level requirements increase by 7.",
+      "it": "Quando effettui un attacco a distanza con un'arma a una mano dopo aver mirato, la gittata dell'arma aumenta di un passo. Al grado 2, l'arma ottiene anche la qualità Accurata se non la possedeva già. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 7."
+    }
+  },
+  "perkDaring": {
+    "en": "Daring",
+    "it": "Ardito",
+    "_description": {
+      "en": "Whenever you make a skill check and purchase one or more d20s by giving Action Points to the gamemaster, the character can reroll 1d20 on that check. You cannot purchase this perk if you already possess Prudent.",
+      "it": "Ogni volta che effettua una prova di abilità e acquista uno o più d20 dando Punti Azione al gamemaster, il personaggio può tirare nuovamente 1d20 in quella prova. Non può acquistare questo talento se già possiede Prudente."
+    }
+  },
+  "perkDeadManSprinting": {
+    "en": "Dead Man Sprinting",
+    "it": "Morto che Corre",
+    "_description": {
+      "en": "When you take the Sprint action and your current HP is below half of your maximum HP, you may spend 1 AP to move one additional zone.",
+      "it": "Quando esegui l'azione Scatto e i tuoi PS attuali sono inferiori alla metà dei tuoi PS massimi, puoi spendere 1 PA per muoverti di una zona aggiuntiva."
+    }
+  },
+  "perkDemolitionExpert": {
+    "en": "Demolition Expert",
+    "it": "Esperto In Demolizione",
+    "_description": {
+      "en": "When making an attack using a weapon with the Blast quality, the attack gains the Vicious damage effect. Additionally, it unlocks formulas for Explosives that have this perk as a requirement.",
+      "it": "Quando effettua un attacco utilizzando un’arma con la qualità Esplosione, l’attacco ottiene l’effetto di danno Violento. Inoltre, sblocca le formule per gli Esplosivi che hanno questo talento come requisito."
+    }
+  },
+  "perkDogmeat": {
+    "en": "Dogmeat",
+    "it": "Dogmeat",
+    "_description": {
+      "en": "You are not alone in the wilderness. You have a companion dog as a friend and ally in times of danger. The dog's profile uses the same as Dogmeat [...] and is treated as an allied NPC creature under the PC's control.",
+      "it": "Non sei solo nelle terre selvagge. Hai un cane da compagnia come amico e alleato nei momenti di pericolo. Il profilo del cane usa lo stesso di Dogmeat [...] e viene trattato come una creatura PNG alleata sotto il controllo del PG."
+    }
+  },
+  "perkDromedary": {
+    "en": "Dromedary",
+    "it": "Dromedario",
+    "_description": {
+      "en": "When you drink a beverage, it moves your Thirst state back up towards quenched by one more step than normal.",
+      "it": "Quando bevi una bevanda, il tuo stato di sete risale verso dissetato di un passo in più rispetto al normale."
+    }
+  },
+  "perkDryNurse": {
+    "en": "Dry Nurse",
+    "it": "Balia Asciutta",
+    "_description": {
+      "en": "When you succeed at a First Aid action in combat to stabilize a dying ally and you used a Stimpak as part of that action, roll 1 DC. If you roll an Effect, the Stimpak is not used up and can be used again.",
+      "it": "Quando hai successo in un'azione di Pronto Soccorso per stabilizzare un alleato morente usando uno Stimpak, tira 1 CD. Con un Effetto, lo Stimpak non viene consumato e può essere usato di nuovo."
+    }
+  },
+  "perkEnforcer": {
+    "en": "Enforcer",
+    "it": "Esecutore",
+    "_description": {
+      "en": "When you make a ranged attack with a shotgun and target a specific location, your attack gains the Debilitating quality.",
+      "it": "Quando effettui un attacco a distanza con un fucile a pompa mirando a una posizione specifica, il tuo attacco ottiene la qualità Debilitante."
+    }
+  },
+  "perkEntomologist": {
+    "en": "Entomologist",
+    "it": "Entomologo",
+    "_description": {
+      "en": "When making an attack against an NPC with the Insect keyword, the character's attack gains the Piercing 1 damage effect or improves the degree of any Piercing X effect of the weapon by +1.",
+      "it": "Quando effettua un attacco contro un PNG con la parola chiave Insetto, l’attacco del personaggio ottiene l’effetto di danno Penetrante 1 o migliora di +1 il grado di qualsiasi effetto Penetrante X dell’arma."
+    }
+  },
+  "perkEscapeArtist": {
+    "en": "Escape Artist",
+    "it": "Artista della Fuga",
+    "_description": {
+      "en": "During combat, if no enemy can see you at the start of your turn, you may attempt an AGI + Sneak test (difficulty = number of enemies within Medium range) to hide. Once hidden, enemies no longer know your location. Enemies also do not gain bonuses to detect you if you take the Sprint action.",
+      "it": "Durante il combattimento, se nessun nemico ti vede all'inizio del tuo turno, puoi tentare un test AGI + Furtività (difficoltà = numero di nemici entro gittata Media) per nasconderti. Una volta nascosto, i nemici non sanno dove sei. I nemici non ottengono bonus per individuarti se esegui l'azione Scatto."
+    }
+  },
+  "perkEvasive": {
+    "en": "Evasive",
+    "it": "Evasivo",
+    "_description": {
+      "en": "At rank 1, when performing the Defend major action, the character reduces the skill check difficulty by 1. At rank 2, the AP cost to further increase Defense is reduced to 1 AP. Each time this perk is selected, the level requirements increase by 6.",
+      "it": "Al grado 1, quando effettua l’azione maggiore Difendere, il personaggio riduce di 1 la difficoltà della prova di abilità. Al grado 2, il costo in PA per aumentare ulteriormente la Difesa è ridotto a 1 PA. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 6."
+    }
+  },
+  "perkFastMetabolism": {
+    "en": "Fast Metabolism",
+    "it": "Metabolismo Veloce",
+    "_description": {
+      "en": "When recovering one or more HP from a source other than rest, increase the total HP recovered by +1 per rank in this perk. Each time this perk is selected, the level requirements increase by 3.",
+      "it": "Quando recupera uno o più PS da una fonte diversa dal riposo, aumenta i PS totali recuperati di +1 per grado in questo talento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 3."
+    }
+  },
+  "perkFieldSurgeon": {
+    "en": "Field Surgeon",
+    "it": "Chirurgo sul Campo",
+    "_description": {
+      "en": "When you use a Stimpak as part of a First Aid action, you may heal 3 HP per AP spent. When you use RadAway as part of a First Aid action, you may remove one additional Radiation damage per AP spent.",
+      "it": "Quando usi uno Stimpak come parte di un'azione di Pronto Soccorso, puoi curare 3 PS per PA speso. Quando usi un RadAway come parte di un'azione di Pronto Soccorso, puoi rimuovere 1 danno da Radiazioni aggiuntivo per PA speso."
+    }
+  },
+  "perkFireInTheHole": {
+    "en": "Fire in the Hole",
+    "it": "Al Riparo!",
+    "_description": {
+      "en": "When you make a ranged attack with a thrown weapon with the Blast quality, the base difficulty of the attack is 1 rather than 2.",
+      "it": "Quando effettui un attacco a distanza con un'arma da lancio con la qualità Esplosione, la difficoltà base dell'attacco è 1 invece di 2."
+    }
+  },
+  "perkFireproof": {
+    "en": "Fireproof",
+    "it": "Ignifugo",
+    "_description": {
+      "en": "Gain +1 Energy damage resistance against fire-based weapons and weapons with the Blast quality. At rank 2, this increases to +2. At rank 3, to +3. Each time this perk is selected, the level requirements increase by 7.",
+      "it": "Ottieni +1 resistenza ai danni energetici contro armi a fuoco e armi con la qualità Esplosione. Al grado 2, +2. Al grado 3, +3. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 7."
+    }
+  },
+  "perkFortuneFinder": {
+    "en": "Fortune Finder",
+    "it": "Cercatore Fortunato",
+    "_description": {
+      "en": "Whenever you roll to determine the amount of money found, you get a larger amount. At rank 1, find +3 Combat Dice additional caps. At rank 2, find +6 Combat Dice additional caps. At rank 3, find +10 Combat Dice additional caps. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Ogni volta che tira per determinare la quantità di soldi trovata, ne ottiene una quantità maggiore. Al grado 1, trova +3 DC tappi aggiuntivi. Al grado 2, trova +6 DC tappi aggiuntivi. Al grado 3, trova +10 DC tappi aggiuntivi. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkGhost": {
+    "en": "Ghost",
+    "it": "Spettro",
+    "_description": {
+      "en": "Whenever making an AGI + Stealth check in shadows or darkness, the first purchased additional d20 is free. The maximum limit of 5d20 still applies.",
+      "it": "Ogni volta che effettua una prova di AGI + Furtività fra le ombre o nell’oscurità, il primo d20 aggiuntivo acquistato è gratuito. Il limite massimo di 5d20 si applica comunque."
+    }
+  },
+  "perkGhoulish": {
+    "en": "Ghoulish",
+    "it": "Ghoulesco",
+    "_description": {
+      "en": "Like a ghoul, your body heals when exposed to radiation. You regain 1 HP for every 4 Radiation damage suffered. At rank 2, 1 HP per 3 Radiation damage. At rank 3, 1 HP per 2 Radiation damage. Your maximum HP is still reduced by Radiation damage. Each time this perk is selected, the level requirements increase by 8.",
+      "it": "Come un ghoul, il tuo corpo guarisce quando sei esposto alle radiazioni. Recuperi 1 PS ogni 4 danni da Radiazioni subiti. Al grado 2, 1 PS ogni 3 danni. Al grado 3, 1 PS ogni 2 danni. I tuoi PS massimi sono comunque ridotti dai danni da Radiazioni. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 8."
+    }
+  },
+  "perkGladiator": {
+    "en": "Gladiator",
+    "it": "Gladiatore",
+    "_description": {
+      "en": "When wielding a one-handed melee weapon, increase the weapon's damage by +1 DC. At rank 2, this increases to +2 DC. At rank 3, to +3 DC. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Quando impugni un'arma da mischia a una mano, il danno dell'arma aumenta di +1 CD. Al grado 2, +2 CD. Al grado 3, +3 CD. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkGlowSight": {
+    "en": "Glow Sight",
+    "it": "Visuale Luminosa",
+    "_description": {
+      "en": "When you make an attack against a Glowing enemy, you inflict +1 DC damage. At rank 2, this increases to +2 DC. At rank 3, to +3 DC. Each time this perk is selected, the level requirements increase by 8.",
+      "it": "Quando effettui un attacco contro un nemico Luminoso, infliggi +1 CD di danno. Al grado 2, +2 CD. Al grado 3, +3 CD. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 8."
+    }
+  },
+  "perkGoatLegs": {
+    "en": "Goat Legs",
+    "it": "Zampe di Capra",
+    "_description": {
+      "en": "You have +2 Physical damage resistance against falling damage. At rank 2, this increases to +4. At rank 3, to +6. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Hai +2 resistenza ai danni Fisici contro i danni da caduta. Al grado 2, +4. Al grado 3, +6. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkGreenThumb": {
+    "en": "Green Thumb",
+    "it": "Pollice Verde",
+    "_description": {
+      "en": "When you spend time foraging and roll on the Foraging table, you gather 2 items, plus an additional 2 for every AP spent.",
+      "it": "Quando cerchi cibo e tiri sulla tabella di Foraggiamento, raccogli 2 oggetti più altri 2 per ogni PA speso."
+    }
+  },
+  "perkGrimReaper": {
+    "en": "Grim Reaper's Sprint",
+    "it": "Tristo Mietitore",
+    "_description": {
+      "en": "When you kill one or more enemies with an attack, roll 1 Combat Die. If the result is an Effect, add 2 AP to the group pool.",
+      "it": "Quando uccide uno o più nemici con un attacco, tirare 1 DC . Se il risultato è un Effetto, aggiungere 2 PA alla riserva del gruppo."
+    }
+  },
+  "perkGunFu": {
+    "en": "Gun Fu",
+    "it": "Boom-Fu",
+    "_description": {
+      "en": "When making a successful ranged attack, you can spend 1 AP and 1 ammo to hit a second target at Close range from the initial target. The second target suffers the same amount of damage as the initial target. At rank 2, you can spend 2 AP and 2 ammo to hit two additional targets. At rank 3, you can spend 3 AP and 3 ammo to hit three additional targets. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Quando effettua un attacco a distanza con successo, può spendere 1 PA e 1 munizione per colpire un secondo bersaglio a distanza ravvicinata dal bersaglio iniziale. Il secondo bersaglio subisce la stessa quantità di danni del bersaglio iniziale. Al grado 2, è possibile spendere 2 PA e 2 munizioni per colpire due bersagli aggiuntivi. Al grado 3, è possibile spendere 3 PA e 3 munizioni per colpire tre bersagli aggiuntivi. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkGunNut": {
+    "en": "Gun Nut",
+    "it": "Fanatico Delle Armi",
+    "_description": {
+      "en": "You can modify small guns and heavy weapons with weapon mods. Each rank in this perk unlocks an additional level of modifications: rank 1 unlocks level 1 mods, rank 2 unlocks level 2, and so on. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "È possibile modificare le armi leggere e le armi pesanti con le modifiche per armi. Ogni grado in questo talento sblocca un livello aggiuntivo di modifiche: il grado 1 sblocca le modifiche di livello 1, il grado 2 quelle di livello 2, e così via. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkGunRunner": {
+    "en": "Gun Runner",
+    "it": "Corsaro Armato",
+    "_description": {
+      "en": "When you take the Sprint action while holding a one-handed ranged weapon, you may spend 1 AP to move one additional zone.",
+      "it": "Quando esegui l'azione Scatto tenendo in mano un'arma a distanza a una mano, puoi spendere 1 PA per muoverti di una zona aggiuntiva."
+    }
+  },
+  "perkGunslinger": {
+    "en": "Gunslinger",
+    "it": "Pistolero",
+    "_description": {
+      "en": "When making an attack with a one-handed ranged weapon with a Fire Rate of 2 or less, increase the weapon's damage by +1 Combat Die for each rank. Additionally, you can reroll the die to determine the hit location. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Quando effettua un attacco con un’arma a distanza a una mano con una Cadenza di Fuoco di 2 o meno, aumenta il danno dell’arma di +1 DC per ogni grado. Inoltre, può rilanciare il dado per stabilire il punto d’impatto. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkHacker": {
+    "en": "Hacker",
+    "it": "Hacker",
+    "_description": {
+      "en": "The difficulty of skill checks to hack computers is reduced by 1, to a minimum of 0.",
+      "it": "La difficoltà delle prove di abilità per hackerare i computer è ridotta di 1, fino a un minimo di 0."
+    }
+  },
+  "perkHappyCamper": {
+    "en": "Happy Camper",
+    "it": "Campeggiatore Felice",
+    "_description": {
+      "en": "At rank 1, if your hunger state is full or sated and you have set up a camp with a heat source, your hunger does not deteriorate. At rank 2, if your thirst state is quenched or hydrated and you have set up a camp with a heat source, your thirst does not deteriorate.",
+      "it": "Al grado 1, se il tuo stato di fame è pieno o saziato e hai allestito un campo con una fonte di calore, la fame non peggiora. Al grado 2, se il tuo stato di sete è dissetato o idratato e hai allestito un campo con una fonte di calore, la sete non peggiora."
+    }
+  },
+  "perkHappyGoLucky": {
+    "en": "Happy Go Lucky",
+    "it": "Allegro e Senza Pensieri",
+    "_description": {
+      "en": "The first time in a scene when you consume an alcoholic beverage, regain 1 Luck point, up to your normal maximum.",
+      "it": "La prima volta in una scena che consumi una bevanda alcolica, recuperi 1 punto Fortuna, fino al tuo massimo normale."
+    }
+  },
+  "perkHealer": {
+    "en": "Healer",
+    "it": "Guaritore",
+    "_description": {
+      "en": "When healing a patient's HP using the First Aid action, increase the amount of HP healed by +1 for each rank of this perk. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Quando guarisce i PS di un paziente usando l’azione Primo Soccorso, aumenta la quantità di PS curati di +1 per ogni grado di questo talento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkHealingHands": {
+    "en": "Healing Hands",
+    "it": "Mani Curative",
+    "_description": {
+      "en": "When you succeed at a First Aid action in combat to stabilize a dying ally, that ally also removes Radiation damage equal to your Medicine skill rank.",
+      "it": "Quando hai successo in un'azione di Pronto Soccorso in combattimento per stabilizzare un alleato morente, quell'alleato rimuove anche danni da Radiazioni pari al tuo grado nell'abilità Medicina."
+    }
+  },
+  "perkHeaveHo": {
+    "en": "Heave Ho!",
+    "it": "Oh Issa!",
+    "_description": {
+      "en": "When making an attack with a thrown weapon, you can spend 1 AP to increase the weapon's range by one level: from Close to Medium, or from Medium to Long.",
+      "it": "Quando effettua un attacco con un’arma da lancio, è possibile spendere 1 PA per aumentare di un livello la distanza dell’arma: da Ravvicinata a Media, o da Media a Lunga."
+    }
+  },
+  "perkHiredHelp": {
+    "en": "Hired Help",
+    "it": "Aiuto a Pagamento",
+    "_description": {
+      "en": "You gain the ability to recruit a humanoid companion. Your companion can care for their own needs and recovers from injuries as a player character would.",
+      "it": "Ottieni la capacità di reclutare un compagno umanoide. Il tuo compagno può badare ai propri bisogni e si riprende dalle ferite come un personaggio giocante."
+    }
+  },
+  "perkHomeDefense": {
+    "en": "Home Defense",
+    "it": "Difesa Domestica",
+    "_description": {
+      "en": "At rank 1, you can craft traps (complexity 2). If you fail the INT + Repair test, the trap misfires against you. At rank 2, a failed trap test does not misfire—the GM creates a complication instead. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Al grado 1, puoi costruire trappole (complessità 2). Se fallisci il test INT + Riparare, la trappola scatta contro di te. Al grado 2, un test fallito non fa scattare la trappola: il GM crea invece una complicazione. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkHomebody": {
+    "en": "Homebody",
+    "it": "Casalingo",
+    "_description": {
+      "en": "You do not need to sleep in a settlement you belong to in order to recuperate. At rank 1, spending an hour there lets you roll DC equal to your Endurance and regain that many HP. At rank 2, you regain +1 HP per Effect rolled, and injury recovery difficulty is reduced to a maximum of 2. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Non hai bisogno di dormire in un insediamento di cui fai parte per recuperare. Al grado 1, trascorrere un'ora nel tuo insediamento ti permette di tirare CD pari alla tua Resistenza e recuperare quei PS. Al grado 2, recuperi +1 PS per ogni Effetto tirato e la difficoltà del recupero da ferite è ridotta a un massimo di 2. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkHunter": {
+    "en": "Hunter",
+    "it": "Cacciatore",
+    "_description": {
+      "en": "When performed against an NPC with one of the Mammal, Lizard, Insect, or Mutated keywords, the PC's attack receives the Vicious damage effect, if it didn't already have it.",
+      "it": "Quando effettuato contro un PNG con una delle parole chiave Mammifero, Lucertola, Insetto o Mutato, l’attacco del PG riceve l’effetto di danno Violento, se ancora non lo possedeva."
+    }
+  },
+  "perkImprovedHealing": {
+    "en": "Improved Healing",
+    "it": "Guarigione Migliorata",
+    "_description": {
+      "en": "When making a CON + Survival check to heal from injuries, the first additional d20 is free. The maximum limit of 5d20 still applies.",
+      "it": "Quando effettua una prova di COS + Sopravvivenza per guarire dalle ferite, il primo d20 aggiuntivo è gratuito. Si applica comunque il limite massimo di 5d20."
+    }
+  },
+  "perkIncisor": {
+    "en": "Incisor",
+    "it": "Incisore",
+    "_description": {
+      "en": "When wielding a melee weapon, the weapon gains Piercing 1 (or adds +1 to any existing Piercing X). At rank 2, this increases to Piercing 2 (or +2). Each time this perk is selected, the level requirements increase by 9.",
+      "it": "Quando impugni un'arma da mischia, essa ottiene l'effetto danno Perforante 1 (o +1 a qualsiasi Perforante X esistente). Al grado 2, Perforante 2 (o +2). Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 9."
+    }
+  },
+  "perkInfiltrator": {
+    "en": "Infiltrator",
+    "it": "Infiltrato",
+    "_description": {
+      "en": "When making a skill check to pick a lock on a door or container, you can reroll 1d20.",
+      "it": "Quando si effettua una prova di abilità per scassinare una porta o un contenitore, è possibile tirare di nuovo 1d20."
+    }
+  },
+  "perkInspirational": {
+    "en": "Inspirational",
+    "it": "Fonte D’Ispirazione",
+    "_description": {
+      "en": "As an exemplary role model, the maximum number of AP the group can store is increased by 1.",
+      "it": "In quanto modello esemplare, il numero massimo di PA che il gruppo può conservare è aumentato di 1."
+    }
+  },
+  "perkIntenseTraining": {
+    "en": "Intense Training",
+    "it": "Allenamento Intensivo",
+    "_description": {
+      "en": "Increases any S.P.E.C.I.A.L. attribute by 1. As a rule, S.P.E.C.I.A.L. attributes cannot be increased beyond 10 using this method. Each time this perk is selected, the level requirements increase by 2.",
+      "it": "Aumenta un qualsiasi attributo S.P.E.C.I.A.L di 1. Come di regola, gli attributi S.P.E.C.I.A.L non possono essere aumentati oltre il 10 usando questo metodo. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 2."
+    }
+  },
+  "perkIronFist": {
+    "en": "Iron Fist",
+    "it": "Pugno Di Ferro",
+    "_description": {
+      "en": "At rank 1, unarmed attacks deal +1 Combat Die damage. At rank 2, unarmed attacks also gain the Vicious damage effect. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Al grado 1, gli attacchi senza armi infliggono +1 DC . Al grado 2, gli attacchi senza armi ottengono anche l’effetto di danno Violento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkIronclad": {
+    "en": "Ironclad",
+    "it": "Corazzato",
+    "_description": {
+      "en": "While wearing armor (except Power Armor), add +1 to your Physical and Energy damage resistance. At rank 2, this increases to +2. At rank 3, to +3. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Mentre indossi un'armatura (eccetto la Tuta Atomica), aggiungi +1 alla tua resistenza ai danni Fisici ed Energetici. Al grado 2, +2. Al grado 3, +3. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkJunkShield": {
+    "en": "Junk Shield",
+    "it": "Scudo di Spazzatura",
+    "_description": {
+      "en": "For every 5 items of Junk you carry, add +1 to your Physical and Energy damage resistance. The maximum bonus equals your rank in this perk. You do not gain this bonus while wearing Power Armor. Each time this perk is selected, the level requirements increase by 8.",
+      "it": "Per ogni 5 oggetti di Spazzatura che porti, aggiungi +1 alla tua resistenza ai danni Fisici ed Energetici. Il bonus massimo è pari al tuo grado in questo talento. Non guadagni questo bonus indossando la Tuta Atomica. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 8."
+    }
+  },
+  "perkJunktownVendor": {
+    "en": "Junktown Vendor",
+    "it": "Venditore Folle Di Junktown",
+    "_description": {
+      "en": "The difficulty of any CHA + Barter check made to buy or sell goods is reduced by 1, to a minimum of 0.",
+      "it": "La difficoltà di qualsiasi prova di CAR + Commercio effettuata per comprare o vendere beni è ridotta di 1, fino a un minimo di 0."
+    }
+  },
+  "perkLaserCommander": {
+    "en": "Laser Commander",
+    "it": "Comandante Laser",
+    "_description": {
+      "en": "When the PC makes an attack with a ranged energy weapon, damage is increased by +1 Combat Die for each rank in this perk. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Quando il PG effettua un attacco con un’arma a energia a distanza, il danno è aumentato di +1 DC per ogni grado in questo talento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkLeadBelly": {
+    "en": "Lead Belly",
+    "it": "Stomaco Di Piombo",
+    "_description": {
+      "en": "At rank 1, you can reroll Combat Dice to determine if Radiation damage is suffered from irradiated food or drinks. At rank 2, it grants immunity to Radiation damage from consuming irradiated food or drinks. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Al grado 1, è possibile tirare nuovamente gli DC per determinare se vengono subiti danni da Radiazioni provocati da cibo o bevande irradiate. Al grado 2, garantisce l’immunità ai danni da Radiazioni derivanti dal consumo di cibo o bevande irradiate. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkLicensedPlumber": {
+    "en": "Licensed Plumber",
+    "it": "Idraulico Autorizzato",
+    "_description": {
+      "en": "Pipe weapons you use do not have the Unreliable quality.",
+      "it": "Le armi a tubi che usi non hanno la qualità Inaffidabile."
+    }
+  },
+  "perkLifeGiver": {
+    "en": "Life Giver",
+    "it": "Donatore Di Vita",
+    "_description": {
+      "en": "Increases maximum health points by an amount equal to the character's Constitution value. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Aumenta i punti salute massimi di una quantità pari al valore di Costituzione del personaggio. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkLightStep": {
+    "en": "Light Step",
+    "it": "Passo Piumato",
+    "_description": {
+      "en": "When rolling dice to generate complications on an Agility-based skill check, you can ignore one complication for each AP spent. Additionally, you can reroll 1d20 on any AGI + Athletics check to avoid pressure-activated traps or similar mechanisms.",
+      "it": "Quando si lanciano i dadi per generare delle complicazioni su una prova di abilità basata su Agilità, è possibile ignorare una complicazione per ogni PA speso. Inoltre, è possibile tirare di nuovo 1d20 su qualsiasi prova di AGI + Atletica per evitare trappole con attivazione a pressione o meccanismi simili."
+    }
+  },
+  "perkLocalLeader": {
+    "en": "Local Leader",
+    "it": "Leader Locale",
+    "_description": {
+      "en": "At rank 1, you can establish supply lines between settlements where you have at least Friendly reputation. At rank 2, you can request stores and crafting tables in a settlement, unlocking Trading Stores, Armor Stores, Weapon Stores, and various workbenches. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Al grado 1, puoi stabilire linee di rifornimento tra insediamenti con cui hai almeno reputazione Amichevole. Al grado 2, puoi richiedere negozi e tavoli da lavoro nell'insediamento, sbloccando Negozi Commerciali, di Armature, di Armi e vari banchi da lavoro. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkLockAndLoad": {
+    "en": "Lock and Load",
+    "it": "Carica e Spara",
+    "_description": {
+      "en": "When you make attacks with a big gun with a fire rate greater than 0, its fire rate increases by 1 per rank of this perk. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Quando effettui attacchi con una grossa arma con una cadenza di fuoco superiore a 0, la cadenza di fuoco aumenta di 1 per ogni grado di questo talento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkMakeshift": {
+    "en": "Makeshift",
+    "it": "Arrabattare",
+    "_description": {
+      "en": "Allows you to repair an object without needing to use any components. However, the repair is temporary and the object will break again upon the next complication suffered while being used. The complication range for all skill checks to use the object increases by 1, with a result of 19-20.",
+      "it": "Permette di riparare un oggetto senza bisogno di utilizzare alcun componente. Tuttavia, la riparazione è temporanea e l’oggetto si romperà di nuovo alla prossima complicazione subita mentre viene utilizzato. L’intervallo di complicazione di tutte le prove di abilità per usare l’oggetto aumenta di 1, con un risultato di 19-20."
+    }
+  },
+  "perkMartialArtist": {
+    "en": "Martial Artist",
+    "it": "Artista Marziale",
+    "_description": {
+      "en": "When you make a melee attack, you may take an additional major action by spending 1 AP rather than 2, so long as this additional action is also a melee attack with a currently equipped weapon.",
+      "it": "Quando effettui un attacco in mischia, puoi eseguire un'azione principale aggiuntiva spendendo 1 PA invece di 2, a patto che anche questa azione sia un attacco in mischia con un'arma attualmente equipaggiata."
+    }
+  },
+  "perkMasterThief": {
+    "en": "Master Thief",
+    "it": "Ladro Esperto",
+    "_description": {
+      "en": "When attempting to pick a lock or pickpocket someone, the difficulty of the opponent's skill check to detect the character is increased by +1.",
+      "it": "Quando si tenta di scassinare una serratura o di borseggiare qualcuno, la difficoltà della prova di abilità dell’avversario per individuare il personaggio è aumentata di +1."
+    }
+  },
+  "perkMechanicalMenace": {
+    "en": "Mechanical Menace",
+    "it": "Minaccia Meccanica",
+    "_description": {
+      "en": "Whenever a robot NPC would attack you, roll 1 DC: on any result other than an Effect, the robot chooses not to attack you. Additionally, you may re-roll 1d20 on any CHA-based skill test to influence a robot.",
+      "it": "Ogni volta che un robot NPC sta per attaccarti, tira 1 CD: con qualsiasi risultato diverso da un Effetto, il robot sceglie di non attaccarti. Puoi inoltre ripetere 1d20 in qualsiasi test di abilità basato su CAR per influenzare un robot."
+    }
+  },
+  "perkMedic": {
+    "en": "Medic",
+    "it": "Medico",
+    "_description": {
+      "en": "When using the First Aid action to try to treat an injury, the character can reroll 1d20.",
+      "it": "Quando utilizza l’azione Primo Soccorso per cercare di curare una ferita, il personaggio può ripetere il lancio di 1d20."
+    }
+  },
+  "perkMeltdown": {
+    "en": "Meltdown",
+    "it": "Meltdown",
+    "_description": {
+      "en": "When you kill an enemy with an energy weapon, they explode. Roll a number of Combat Dice equal to half the weapon's damage (rounded down). For each Effect obtained, a creature within Close range of the exploded enemy (starting from the nearest) suffers Energy damage equal to the total Combat Dice obtained.",
+      "it": "Quando si uccide un nemico con un’arma a energia, questo esplode. Lanciare un numero di DC pari alla metà del danno dell’arma (arrotondato per difetto). Per ogni Effetto ottenuto, una creatura entro distanza Ravvicinata del nemico esploso (a partire dalla più vicina) subisce un danno da Energia pari al totale di DC ottenuti."
+    }
+  },
+  "perkMisterSandman": {
+    "en": "Mister Sandman",
+    "it": "Signore Dei Sogni",
+    "_description": {
+      "en": "When a sneak attack is made with a silenced or suppressed weapon, damage is increased by +2 Combat Dice. You do not receive the benefits of this perk while wearing Power Armor.",
+      "it": "Quando viene effettuato un attacco furtivo con un’arma silenziata o soppressa, il danno è aumentato di +2 DC . Non si ricevono i benefici di questo talento mentre si indossa un’Armatura Atomica."
+    }
+  },
+  "perkModernRenegade": {
+    "en": "Modern Renegade",
+    "it": "Rinnegato Moderno",
+    "_description": {
+      "en": "When you make an attack with a one-handed ranged weapon without aiming, a successful attack scores one additional AP (which may not be saved). At rank 2, 2 additional AP. At rank 3, 3 additional AP. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Quando effettui un attacco con un'arma a distanza a una mano senza mirare, un attacco riuscito ottiene 1 PA aggiuntivo (non accumulabile). Al grado 2, 2 PA aggiuntivi. Al grado 3, 3 PA aggiuntivi. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkMovingTarget": {
+    "en": "Moving Target",
+    "it": "Bersaglio Mobile",
+    "_description": {
+      "en": "When you perform the Sprint action, the PC's Defense increases by +1 until the start of their next turn.",
+      "it": "Quando si esegue l’azione Scatto, la Difesa del PG aumenta di +1 fino all’inizio del suo turno successivo."
+    }
+  },
+  "perkMysteriousSavior": {
+    "en": "Mysterious Savior",
+    "it": "Salvatore Misterioso",
+    "_description": {
+      "en": "At the start of a combat encounter, you may spend 1 Luck point. If you do, the first time you start dying, the GM may have a Mysterious Savior appear, stabilize you, restore you to consciousness, and grant 4 HP. If the Savior does not appear, the Luck point is refunded.",
+      "it": "All'inizio di uno scontro, puoi spendere 1 punto Fortuna. Se lo fai, la prima volta che inizi a morire, il GM può far apparire un Salvatore Misterioso che ti stabilizza, ti riporta alla coscienza e ti concede 4 PS. Se il Salvatore non appare, il punto Fortuna ti viene rimborsato."
+    }
+  },
+  "perkMysteriousStranger": {
+    "en": "Mysterious Stranger",
+    "it": "Alleato Misterioso",
+    "_description": {
+      "en": "From time to time, a mysterious stranger comes to the character's aid with lethal results. At the start of a combat, the player can spend 1 Luck point. Doing so, at any time during the scene, the GM can have the Mysterious Stranger appear and make a single ranged attack against an enemy the PC has attacked, or was just attacked by, and then vanish. If a Luck point is spent and the Mysterious Stranger does not appear, the GM must return the spent Luck point. The Mysterious Stranger has an AGI 10 and Small Guns 6; Small Guns is considered a tag skill. He always rolls 3d20 for attacks instead of 2d20, and his attack (using a custom .44 Magnum revolver) deals 8 Combat Dice of Vicious and Piercing 1 physical damage. He always appears within the ideal range for his weapon. Any attempt to discover where the Mysterious Stranger went after the attack fails.",
+      "it": "Di tanto in tanto, uno straniero misterioso viene in aiuto del personaggio, con risultati letali. All’inizio di un combattimento, il giocatore può spendere 1 punto Fortuna. Così facendo, in qualsiasi momento della scena il GM può far apparire l’Alleato Misterioso che effettua un singolo attacco a distanza contro un nemico che il PG ha attaccato, o da cui è stato appena attaccato, e poi svanisce. Se si spende un punto Fortuna e l’Alleato Misterioso non appare, il GM deve restituire il punto Fortuna speso. L’Alleato Misterioso ha un punteggio di AGI 10 e Armi Leggere 6; Armi Leggere è considerata come una specialità. Tira sempre 3d20 per gli attacchi, invece di 2d20, e il suo attacco (che utilizza un revolver .44 Magnum personalizzato) infligge 8 DC di danno fisico Violento e Penetrante 1. Appare sempre entro la gittata ideale per la sua arma. Qualsiasi tentativo di scoprire dove sia andato l’Alleato Misterioso dopo l’attacco fallisce."
+    }
+  },
+  "perkNaturalResistance": {
+    "en": "Natural Resistance",
+    "it": "Resistenza Naturale",
+    "_description": {
+      "en": "Breathing in toxic fumes and sleeping rough on the ground no longer poses a risk of catching a disease.",
+      "it": "Respirare fumi tossici e dormire all'aperto non ti espone più al rischio di contrarre malattie."
+    }
+  },
+  "perkNerdRage": {
+    "en": "Nerd Rage!",
+    "it": "Furia Nerd!",
+    "_description": {
+      "en": "When the character's health falls below ¼ of maximum health, add +1 to Physical DR, +1 to Energy DR, and +1 Combat Die to the damage of all attacks. At rank 2, the values increase to +2 DR and +2 Combat Dice damage. At rank 3, the values increase to +3 DR and +3 Combat Dice damage. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Quando la salute del personaggio scende al di sotto di ¼ della salute massima, aggiungere +1 alla RD Fisici, +1 alla RD da Energia e +1 DC al danno di tutti gli attacchi. Al grado 2, i valori aumentano a +2 RD e +2 danni DC . Al grado 3, i valori aumentano a +3 RD e +3 danni DC . Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkNightEyes": {
+    "en": "Night Eyes",
+    "it": "Occhi Notturni",
+    "_description": {
+      "en": "When attempting to avoid attention or hide from an enemy, you may ignore difficulty increases caused by poor lighting or darkness.",
+      "it": "Quando cerchi di evitare di essere notato o ti nascondi da un nemico, puoi ignorare gli aumenti di difficoltà causati da scarsa illuminazione o oscurità."
+    }
+  },
+  "perkNightPerson": {
+    "en": "Night Person",
+    "it": "Creatura Notturna",
+    "_description": {
+      "en": "Allows reducing any difficulty increase due to darkness by 1.",
+      "it": "Consente di ridurre di 1 ogni aumento di difficoltà dovuto all’oscurità."
+    }
+  },
+  "perkNinja": {
+    "en": "Ninja",
+    "it": "Ninja",
+    "_description": {
+      "en": "When a sneak attack is made with a melee weapon or unarmed, damage is increased by +2 Combat Dice. You cannot receive the benefits of this perk while wearing Power Armor.",
+      "it": "Quando viene effettuato un attacco furtivo con un’arma da mischia o senza armi, il danno viene aumentato di +2 DC . Non è possibile ricevere i benefici di questo talento mentre si indossa un’Armatura Atomica."
+    }
+  },
+  "perkNocturnalFortitude": {
+    "en": "Nocturnal Fortitude",
+    "it": "Fortezza Notturna",
+    "_description": {
+      "en": "At night, your maximum HP increases by an amount equal to your Endurance. When your maximum HP increases, you gain the same amount of additional current HP. When the effect ends, your maximum HP returns to normal, but current HP is only reduced if it exceeds the new maximum.",
+      "it": "Di notte, i tuoi PS massimi aumentano di un valore pari alla tua Resistenza. Quando i PS massimi aumentano, guadagni la stessa quantità di PS attuali aggiuntivi. Quando l'effetto termina, i PS massimi tornano al valore normale, ma i PS attuali si riducono solo se superiori al nuovo massimo."
+    }
+  },
+  "perkNuclearPhysicist": {
+    "en": "Nuclear Physicist",
+    "it": "Fisico Nucleare",
+    "_description": {
+      "en": "Whenever using a weapon that deals Radiation damage or has the radioactive damage effect, each Effect obtained deals an additional point of Radiation damage. Additionally, used fusion cores have 3 additional charges.",
+      "it": "Ogni volta che utilizza un’arma che infligge danni da Radiazioni o ha l’effetto di danni radioattivi, ogni Effetto ottenuto infligge un punto aggiuntivo di danno da Radiazioni. Inoltre, i nuclei di fusione utilizzati hanno 3 cariche aggiuntive."
+    }
+  },
+  "perkOverlyGenerous": {
+    "en": "Overly Generous",
+    "it": "Eccessivamente Generoso",
+    "_description": {
+      "en": "When you have Radiation damage equal to or greater than one-quarter of your maximum HP, your melee attacks gain the Radioactive damage effect.",
+      "it": "Quando hai danni da Radiazioni pari o superiori a un quarto dei tuoi PS massimi, i tuoi attacchi in mischia ottengono l'effetto danno Radioattivo."
+    }
+  },
+  "perkPackRat": {
+    "en": "Pack Rat",
+    "it": "Accumulatore",
+    "_description": {
+      "en": "Junk items you carry count as half their listed weight.",
+      "it": "Gli oggetti di Spazzatura che porti contano come metà del loro peso elencato."
+    }
+  },
+  "perkPainTrain": {
+    "en": "Pain Train",
+    "it": "Treno Del Dolore",
+    "_description": {
+      "en": "The character can Charge as a major action if wearing Power Armor or if they are a super mutant. [...] If successful, the enemy suffers damage equal to the character's normal unarmed damage and falls prone. At rank 2, +1 Combat Die is added to the damage dealt and the Stun damage effect. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Il personaggio può Caricare come azione maggiore se indossa un’Armatura Atomica o se è un supermutante. [...] Se ha successo, il nemico subisce un danno pari al normale danno senza armi del personaggio e cade prono. Al grado 2, si aggiunge +1 DC al danno inflitto e l’effetto del danno Stordimento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkPannapictagraphist": {
+    "en": "Pannapictagraphist",
+    "it": "Pannapictagrafista",
+    "_description": {
+      "en": "When you roll randomly to obtain a magazine from the Random Publication or Issues tables, you may re-roll the result if your original result is a magazine or issue you have already found.",
+      "it": "Quando tiri casualmente per ottenere una rivista dalle tabelle delle Pubblicazioni Casuali o delle Uscite, puoi ripetere il risultato se hai già trovato quella rivista."
+    }
+  },
+  "perkParalyzingPalm": {
+    "en": "Paralyzing Palm",
+    "it": "Palmo Paralizzante",
+    "_description": {
+      "en": "When making an unarmed attack and choosing to hit a specific point, the attack gains the Stun damage effect.",
+      "it": "Quando effettua un attacco senza armi e sceglie di colpire un punto specifico, l’attacco ottiene l’effetto del danno Stordimento."
+    }
+  },
+  "perkPartyBoyGirl": {
+    "en": "Party Boy/Girl",
+    "it": "Festaiolo",
+    "_description": {
+      "en": "The character cannot develop an addiction to alcoholic drinks and every time they drink one, they restore +2 HP.",
+      "it": "Il personaggio non può sviluppare dipendenza dalle bevande alcoliche e ogni volta che ne beve una, ripristina +2 PS."
+    }
+  },
+  "perkPathfinder": {
+    "en": "Pathfinder",
+    "it": "Battitore",
+    "_description": {
+      "en": "When traveling long distances through the wilderness, a successful PER + Survival check (difficulty determined by the GM based on terrain) halves the travel time.",
+      "it": "Quando si viaggia su lunghe distanze attraverso le terre selvagge, una prova di PER + Sopravvivenza effettuata con successo (difficoltà determinata dal GM, in base al terreno) dimezza la durata del viaggio."
+    }
+  },
+  "perkPharmacist": {
+    "en": "Pharmacist",
+    "it": "Farmacista",
+    "_description": {
+      "en": "RadAway you administer heals 2 additional Radiation damage. At rank 2, it heals 3 additional Radiation damage. At rank 3, it heals 4 additional Radiation damage. Each time this perk is selected, the level requirements increase by 6.",
+      "it": "I RadAway che somministri curano 2 danni da Radiazioni aggiuntivi. Al grado 2, curano 3 danni da Radiazioni aggiuntivi. Al grado 3, curano 4 danni da Radiazioni aggiuntivi. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 6."
+    }
+  },
+  "perkPhotosynthetic": {
+    "en": "Photosynthetic",
+    "it": "Fotosintetico",
+    "_description": {
+      "en": "When in direct sunlight you regenerate 1 HP every hour. At rank 2, you regenerate 2 HP every hour in direct sunlight. Each time this perk is selected, the level requirements increase by 10.",
+      "it": "Alla luce diretta del sole rigeneri 1 PS ogni ora. Al grado 2, rigeneri 2 PS ogni ora alla luce diretta del sole. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 10."
+    }
+  },
+  "perkPickpocket": {
+    "en": "Pickpocket",
+    "it": "Borseggio",
+    "_description": {
+      "en": "At rank 1, you can ignore the first complication obtained when making an AGI + Stealth check to steal an item from someone or put something in their pocket. At rank 2, you can reroll 1d20 of the character's dice pool when attempting to pickpocket someone. At rank 3, reduce the difficulty of pickpocketing attempts by 1. Each time this perk is selected, the level requirements increase by 3.",
+      "it": "Al grado 1, è possibile ignorare la prima complicazione ottenuta quando si effettua una prova di AGI + Furtività per rubare un oggetto da qualcuno o per mettergli qualcosa in tasca. Al grado 2, è possibile tirare di nuovo 1d20 della riserva di dadi del personaggio quando tenta di borseggiare qualcuno. Al grado 3, riduce di 1 la difficoltà dei tentativi di borseggiare qualcuno. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 3."
+    }
+  },
+  "perkPiercingStrike": {
+    "en": "Piercing Strike",
+    "it": "Colpo Penetrante",
+    "_description": {
+      "en": "The character's unarmed and bladed melee weapon attacks gain the Piercing 1 damage effect, or add +1 to the value of any existing Piercing X damage effect.",
+      "it": "Gli attacchi senza armi e con armi da mischia con lama del personaggio ottengono l’effetto di danno Penetrante 1, oppure aggiungono +1 al valore di qualsiasi effetto di danno Penetrante X già presente."
+    }
+  },
+  "perkPowerPatcher": {
+    "en": "Power Patcher",
+    "it": "Riparatore di Tute",
+    "_description": {
+      "en": "When you repair the HP of a piece of Power Armor, repair an additional 2 HP. At rank 2, 3 additional HP. At rank 3, 4 additional HP. Each time this perk is selected, the level requirements increase by 10.",
+      "it": "Quando ripari i PS di un pezzo di Tuta Atomica, ripara 2 PS aggiuntivi. Al grado 2, 3 PS aggiuntivi. Al grado 3, 4 PS aggiuntivi. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 10."
+    }
+  },
+  "perkPowerUser": {
+    "en": "Power User",
+    "it": "Esperto di Energia",
+    "_description": {
+      "en": "Fusion Cores you use now contain 3 additional charges. At rank 2, 6 additional charges. At rank 3, 10 additional charges. Each time this perk is selected, the level requirements increase by 10.",
+      "it": "Le Celle a Fusione che usi contengono 3 cariche aggiuntive. Al grado 2, 6 cariche aggiuntive. Al grado 3, 10 cariche aggiuntive. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 10."
+    }
+  },
+  "perkPrudent": {
+    "en": "Prudent",
+    "it": "Prudente",
+    "_description": {
+      "en": "Whenever you make a skill check and purchase one or more d20s by spending Action Points, the character can reroll 1d20 on that check. You cannot purchase this perk if you already possess Daring.",
+      "it": "Ogni volta che effettua una prova di abilità e acquista uno o più d20 spendendo Punti Azione, il personaggio può tirare nuovamente 1d20 in quella prova. Non può acquistare questo talento se già possiede Ardito."
+    }
+  },
+  "perkPsychopath": {
+    "en": "Psychopath",
+    "it": "Psicopatico",
+    "_description": {
+      "en": "When you kill an enemy, roll DC equal to your rank in this perk. For each Effect rolled, regain 1 Luck point (up to your maximum). Each time this perk is selected, the level requirements increase by 6.",
+      "it": "Quando uccidi un nemico, tira CD pari al tuo grado in questo talento. Per ogni Effetto tirato, recuperi 1 punto Fortuna (fino al tuo massimo). Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 6."
+    }
+  },
+  "perkPyromaniac": {
+    "en": "Pyromaniac",
+    "it": "Piromane",
+    "_description": {
+      "en": "Damage dealt using fire-based weapons increases by +1 Combat Die per rank. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Il danno inflitto utilizzando armi basate sul fuoco aumenta di +1 DC per grado. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkQuackSurgeon": {
+    "en": "Quack Surgeon",
+    "it": "Cerusico Improvvisato",
+    "_description": {
+      "en": "When you perform a First Aid action on an ally, you may use an alcoholic beverage as part of the action. The patient heals additional HP equal to what the beverage normally heals, and you may heal 2 HP per AP spent. The ally also receives the benefits and drawbacks of consuming the beverage.",
+      "it": "Quando esegui un'azione di Pronto Soccorso su un alleato, puoi usare una bevanda alcolica come parte dell'azione. Il paziente recupera PS aggiuntivi pari a quelli che la bevanda curerebbe normalmente, e puoi curare 2 PS per PA speso. L'alleato riceve anche benefici e svantaggi del consumo della bevanda."
+    }
+  },
+  "perkQuickDraw": {
+    "en": "Quick Draw",
+    "it": "Estrazione Rapida",
+    "_description": {
+      "en": "Each turn, the character can draw a single weapon or an item they are carrying without using a minor action.",
+      "it": "Ad ogni turno, il personaggio può estrarre una singola arma o un oggetto che ha addosso, senza usare un’azione minore."
+    }
+  },
+  "perkQuickHands": {
+    "en": "Quick Hands",
+    "it": "Mani Veloci",
+    "_description": {
+      "en": "The character is able to reload firearms faster. When making a ranged attack, the character can spend 2 AP to increase the Fire Rate of their weapon by +2 for that attack.",
+      "it": "Il personaggio è in grado di ricaricare le armi da fuoco più velocemente. Quando effettua un attacco a distanza, il personaggio può spendere 2 PA per aumentare di +2 la Cadenza di Fuoco della sua arma per quell’attacco."
+    }
+  },
+  "perkRadResistant": {
+    "en": "Rad Resistant",
+    "it": "Resistente Alle Radiazioni",
+    "_description": {
+      "en": "Radiation Damage Resistance in all hit locations increases by +1 for each rank in this perk. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "La Resistenza ai Danni da Radiazioni in tutti i punti d’impatto aumenta di +1 per ogni grado in questo talento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkRadicool": {
+    "en": "Radicool",
+    "it": "Radicoool",
+    "_description": {
+      "en": "When you have Radiation damage equal to one-quarter or more of your maximum HP, add +1 DC to melee attacks and re-roll 1d20 on STR tests. At half your max HP in Radiation, the bonuses increase to +2 DC and re-rolling 2d20. At three-quarters, +3 DC and re-rolling 3d20.",
+      "it": "Quando hai danni da Radiazioni pari a un quarto o più dei tuoi PS massimi, aggiungi +1 CD agli attacchi in mischia e ripeti 1d20 nei test di FOR. Con Radiazioni pari a metà dei PS massimi, i bonus aumentano a +2 CD e ripeti 2d20. Con tre quarti, +3 CD e ripeti 3d20."
+    }
+  },
+  "perkRefractor": {
+    "en": "Refractor",
+    "it": "Rifrattore",
+    "_description": {
+      "en": "Energy Damage Resistance in all hit locations increases by +1 for each rank in this perk. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "La Resistenza ai Danni da Energia in tutti i punti d’impatto aumenta di +1 per ogni grado in questo talento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkRejuvenated": {
+    "en": "Rejuvenated",
+    "it": "Ringiovanito",
+    "_description": {
+      "en": "When you are full (highest hunger state), your maximum HP increases by +2, you may re-roll 1d20 on all STR-based skill tests, and being full lasts twice as long. When you are quenched (highest thirst state), you may re-roll 1d20 on all END-based tests, generate one free AP at the start of each turn in combat, and being quenched lasts twice as long.",
+      "it": "Quando sei sazio (stato di fame massimo), i tuoi PS massimi aumentano di +2, puoi ripetere 1d20 in tutti i test basati su FOR e la sazietà dura il doppio del tempo. Quando sei dissetato (stato di sete massimo), puoi ripetere 1d20 in tutti i test basati su RES, generi 1 PA gratuito all'inizio di ogni tuo turno in combattimento e lo stato di dissetato dura il doppio del tempo."
+    }
+  },
+  "perkResponder": {
+    "en": "Responder",
+    "it": "Soccorritore",
+    "_description": {
+      "en": "When you succeed at a First Aid action in combat to stabilize a dying ally, you no longer need to spend 1 AP to wake them. The patient heals 2 HP at the start of their next turn. At rank 2, they heal 4 HP over their next two turns. At rank 3, 6 HP over their next three turns. Each time this perk is selected, the level requirements increase by 7.",
+      "it": "Quando hai successo in un'azione di Pronto Soccorso per stabilizzare un alleato morente, non devi più spendere 1 PA per svegliarlo. Il paziente recupera 2 PS all'inizio del suo prossimo turno. Al grado 2, 4 PS nei suoi prossimi due turni. Al grado 3, 6 PS nei suoi prossimi tre turni. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 7."
+    }
+  },
+  "perkRetribution": {
+    "en": "Retribution",
+    "it": "Ritorsione",
+    "_description": {
+      "en": "If you do not take damage from an attack due to your Damage Reduction, recover +1 HP and add 1 AP to the group pool. This effect can only trigger once per round of combat per rank in this perk. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Se un attacco non ti causa danni grazie alla tua Riduzione dei Danni, recupera +1 PS e aggiungi 1 PA alla riserva di gruppo. Questo effetto può attivarsi una sola volta per round di combattimento per grado in questo talento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkRevenant": {
+    "en": "Revenant",
+    "it": "Redivivo",
+    "_description": {
+      "en": "When you are revived, the damage of all your attacks increases by +2 DC for the remainder of the scene, or until you are reduced to 0 HP again.",
+      "it": "Quando vieni rianimato, il danno di tutti i tuoi attacchi aumenta di +2 CD per il resto della scena, o finché non vieni ridotto a 0 PS."
+    }
+  },
+  "perkRicochet": {
+    "en": "Ricochet",
+    "it": "Rimbalzo Balistico",
+    "_description": {
+      "en": "If an enemy makes a ranged attack against the character and rolls a complication, you can spend a Luck point to have the ricochet hit them. Then resolve the damage against the attacking enemy.",
+      "it": "Se un nemico effettua un attacco a distanza contro il personaggio e ottiene una complicazione, è possibile spendere un punto Fortuna per far sì che il rimbalzo lo colpisca. Risolvere quindi il danno contro il nemico attaccante."
+    }
+  },
+  "perkRifleman": {
+    "en": "Rifleman",
+    "it": "Fuciliere",
+    "_description": {
+      "en": "When making a ranged attack with any two-handed weapon with a Fire Rate of 2 or higher (except heavy weapons), add +1 Combat Die to the weapon's damage for each rank. At rank 2, also add the Piercing 1 damage effect, or add +1 to any Piercing X damage effect already present on the weapon. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Quando effettua un attacco a distanza con qualsiasi arma a due mani con una Cadenza di Fuoco 2 o superiore (tranne le armi pesanti), aggiungere +1 DC al danno dell’arma per ogni grado. Al grado 2, aggiungere anche l’effetto di danno Penetrante 1, oppure aggiungere +1 a qualsiasi effetto di danno Penetrante X già presente sull’arma. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkRobotWrangler": {
+    "en": "Robot Wrangler",
+    "it": "Domatore Di Robot",
+    "_description": {
+      "en": "You have learned to command and control robotic companions. Unlocks the Companion tab, allowing you to recruit and manage a robot companion.",
+      "it": "Hai imparato a comandare e controllare compagni robotici. Sblocca la scheda Compagno, permettendoti di reclutare e gestire un compagno robot."
+    }
+  },
+  "perkRoboticsExpert": {
+    "en": "Robotics Expert",
+    "it": "Esperto Di Robotica",
+    "_description": {
+      "en": "At rank 1, the PC can modify armor, weapon mounts, and robot modules with level 1 mods. At rank 2, they gain access to level 2 mods and the difficulty of checks to repair robots is permanently reduced by 1. At rank 3, they gain access to level 3 mods and can reprogram robots to perform a different function or alter their behavior at the GM's discretion. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Al grado 1, il PG può modificare l’armatura, i supporti delle armi e i moduli dei robot con modifiche di livello 1. Al grado 2 ottiene l’accesso alle modifiche di livello 2 e la difficoltà delle prove per riparare i robot è permanentemente ridotta di 1. Al grado 3 ottiene l’accesso alle modifiche di livello 3 e può riprogrammare i robot per svolgere una funzione diversa o alterare il loro comportamento a discrezione del GM. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkScattershot": {
+    "en": "Scattershot",
+    "it": "Colpo Sparso",
+    "_description": {
+      "en": "When you make a ranged attack with a shotgun, you may take an additional major action by spending 1 AP rather than 2, so long as this additional action is also a ranged attack with the same shotgun.",
+      "it": "Quando effettui un attacco a distanza con un fucile a pompa, puoi eseguire un'azione principale aggiuntiva spendendo 1 PA invece di 2, a patto che anche questa azione sia un attacco a distanza con lo stesso fucile."
+    }
+  },
+  "perkScience": {
+    "en": "Science!",
+    "it": "Scienza!",
+    "_description": {
+      "en": "You can modify energy weapons with weapon mods and you can also create advanced mods for armor. Each rank in this perk unlocks an additional level of modifications: rank 1 unlocks level 1 mods, rank 2 unlocks level 2, and so on. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Si possono modificare le armi a energia con le mod delle armi e si possono anche creare delle mod avanzate per le armature. Ogni grado in questo talento sblocca un livello aggiuntivo di modifiche: il grado 1 sblocca le modifiche di livello 1, il grado 2 quelle di livello 2, e così via. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkScoundrel": {
+    "en": "Scoundrel",
+    "it": "Furfante",
+    "_description": {
+      "en": "You can ignore the first complication obtained when making a CHA + Speech check to convince someone of a lie.",
+      "it": "È possibile ignorare la prima complicazione ottenuta quando si effettua una prova di CAR + Oratoria per convincere qualcuno di una menzogna."
+    }
+  },
+  "perkScrapper": {
+    "en": "Scrapper",
+    "it": "Riciclatore",
+    "_description": {
+      "en": "When the PC scraps an item, they can recover uncommon component materials in addition to common ones. At rank 2, rare materials can also be recovered. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Quando il PG rottama un oggetto, può recuperare i materiali dei componenti non comuni oltre a quelli comuni (vedere pag. 208). Al grado 2, è possibile recuperare anche i materiali rari. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkScrounger": {
+    "en": "Scrounger",
+    "it": "Scroccone",
+    "_description": {
+      "en": "Whenever you roll to determine the amount of ammunition found, the PC gets a larger amount. [...] Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Ogni volta che tira per determinare la quantità di munizioni trovate, il PG ne ottiene una quantità maggiore. [...] Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkSecretAgent": {
+    "en": "Secret Agent",
+    "it": "Agente Segreto",
+    "_description": {
+      "en": "When you use a Stealth Boy, it lasts for one additional turn. At rank 2, 2 additional turns. At rank 3, 3 additional turns. Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Quando usi un Boy Invisibile, dura un turno aggiuntivo. Al grado 2, 2 turni aggiuntivi. Al grado 3, 3 turni aggiuntivi. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkSerendipity": {
+    "en": "Serendipity",
+    "it": "Serendipità",
+    "_description": {
+      "en": "When your current HP is below one-third of your maximum, whenever you are attacked you may spend 1 Luck point before any dice are rolled to have the attack miss. You may do this a number of times per scene equal to your rank in this perk. Each time this perk is selected, the level requirements increase by 6.",
+      "it": "Quando i tuoi PS attuali sono inferiori a un terzo del massimo, ogni volta che vieni attaccato puoi spendere 1 punto Fortuna (prima di tirare i dadi) per far fallire l'attacco. Puoi farlo un numero di volte per scena pari al tuo grado in questo talento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 6."
+    }
+  },
+  "perkShotgunSurgeon": {
+    "en": "Shotgun Surgeon",
+    "it": "Chirurgo Dei Fucili",
+    "_description": {
+      "en": "Ranged attacks with shotguns gain the Piercing 1 damage effect, or add +1 to the value of any Piercing X damage effect already present on the weapon.",
+      "it": "Gli attacchi a distanza con fucili a pompa ottengono l’effetto di danno Penetrante 1, o aggiungono +1 al valore di qualsiasi effetto di danno Penetrante X già presente sull’arma."
+    }
+  },
+  "perkSizeMatters": {
+    "en": "Size Matters",
+    "it": "Le Dimensioni Contano",
+    "_description": {
+      "en": "When making a ranged attack with a heavy weapon, add +1 Combat Die to the weapon's damage for each rank. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Quando si effettua un attacco a distanza con un’arma pesante, aggiungere +1 DC al danno dell’arma per ogni grado. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkSkilled": {
+    "en": "Skilled",
+    "it": "Abile",
+    "_description": {
+      "en": "Allows you to add +1 rank to two skills, or +2 ranks to one skill. No skill may have more than 6 ranks. Each time this perk is selected, the level requirements increase by 3.",
+      "it": "Consente di aggiungere +1 grado a due abilità, o +2 gradi a un’abilità. Nessuna abilità può avere più di 6 gradi. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 3."
+    }
+  },
+  "perkSlayer": {
+    "en": "Slayer",
+    "it": "Sterminatore",
+    "_description": {
+      "en": "When dealing damage with an unarmed or melee weapon attack, the character can spend 1 Luck point to immediately deal a critical hit, and thus an injury, at the hit location.",
+      "it": "Quando infligge un danno con un attacco senza armi o con un’arma da mischia, il personaggio può spendere 1 punto Fortuna per infliggere immediatamente un colpo critico, e quindi una ferita, nel punto d'impatto."
+    }
+  },
+  "perkSlowMetabolizer": {
+    "en": "Slow Metabolizer",
+    "it": "Metabolismo Lento",
+    "_description": {
+      "en": "When you eat a food item, it moves your Hunger state back up towards full by one more step than normal.",
+      "it": "Quando mangi un alimento, il tuo stato di fame risale verso pieno di un passo in più rispetto al normale."
+    }
+  },
+  "perkSmoothTalker": {
+    "en": "Smooth Talker",
+    "it": "Lingua Sciolta",
+    "_description": {
+      "en": "When making a Barter or Speech check in an opposed check, you can reroll 1d20.",
+      "it": "Quando effettua una prova di Commercio o di Oratoria in una prova contrapposta, è possibile tirare nuovamente 1d20."
+    }
+  },
+  "perkSnakeFancier": {
+    "en": "Snake Fancier",
+    "it": "Mangiaserpi",
+    "_description": {
+      "en": "The character's Poison damage resistance increases by +2.",
+      "it": "La Resistenza del personaggio ai danni da Veleno aumenta di +2."
+    }
+  },
+  "perkSniper": {
+    "en": "Sniper",
+    "it": "Cecchino",
+    "_description": {
+      "en": "When you perform the Aim minor action and then execute a ranged attack with a two-handed weapon equipped with the Accurate quality, the PC can specify a hit location to strike without the attack difficulty increasing.",
+      "it": "Quando effettua l’azione minore Mirare e poi esegue un attacco a distanza con un’arma a due mani dotata della qualità Precisa, il PG può specificare un punto di impatto da colpire senza che la difficoltà dell’attacco aumenti."
+    }
+  },
+  "perkSolarPowered": {
+    "en": "Solar Powered",
+    "it": "Energia Solare",
+    "_description": {
+      "en": "For every hour spent in direct sunlight, the PC heals 1 Radiation damage.",
+      "it": "Per ogni ora passata alla luce diretta del sole, il PG guarisce 1 danno da Radiazioni."
+    }
+  },
+  "perkSpiritualHealer": {
+    "en": "Spiritual Healer",
+    "it": "Guaritore Spirituale",
+    "_description": {
+      "en": "When you succeed at a First Aid action to stabilize a dying ally, you regain 1 HP. At rank 2, you regain 2 HP plus 2 more at the start of your next turn. At rank 3, 3 HP plus 3 HP at the start of each of your next two turns. Each time this perk is selected, the level requirements increase by 9.",
+      "it": "Quando hai successo in un'azione di Pronto Soccorso per stabilizzare un alleato morente, recuperi 1 PS. Al grado 2, recuperi 2 PS più altri 2 PS all'inizio del tuo prossimo turno. Al grado 3, 3 PS più 3 PS all'inizio di ciascuno dei tuoi prossimi due turni. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 9."
+    }
+  },
+  "perkSquadManeuvers": {
+    "en": "Squad Maneuvers",
+    "it": "Manovre di Squadra",
+    "_description": {
+      "en": "At rank 1, when travelling at a hurried pace, you can maintain that pace for one additional hour by passing a CHA + Survival test (difficulty 1), and one further hour by spending 2 AP. At rank 2, when you spend 1 AP for an additional Move action, you can also move an ally to within reach by spending another 1 AP.",
+      "it": "Al grado 1, quando viaggi a ritmo intenso, puoi mantenere il passo per un'ora aggiuntiva superando un test CAR + Sopravvivenza (difficoltà 1), e per un'ulteriore ora spendendo 2 PA. Al grado 2, quando spendi 1 PA per un'azione di Spostamento aggiuntiva, puoi anche spostare un alleato a portata spendendo altri 1 PA."
+    }
+  },
+  "perkStabilized": {
+    "en": "Stabilized",
+    "it": "Stabilizzato",
+    "_description": {
+      "en": "When wearing Power Armor, you may re-roll 1d20 on any attack made with the Big Guns skill, and any big gun you wield gains Piercing 1 (or adds +1 to any existing Piercing X).",
+      "it": "Indossando la Tuta Atomica, puoi ripetere 1d20 in qualsiasi attacco con Grandi Armi, e qualsiasi grossa arma che impugni ottiene Perforante 1 (o +1 a qualsiasi Perforante X esistente)."
+    }
+  },
+  "perkSteadyAim": {
+    "en": "Steady Aim",
+    "it": "Mira Precisa",
+    "_description": {
+      "en": "When performing the Aim minor action, the PC can reroll 2d20 on the first attack made that turn, or reroll 1d20 on attacks made that turn.",
+      "it": "Quando effettua l’azione minore Mirare, il PG può tirare nuovamente 2d20 sul primo attacco effettuato in quel turno, o ritirare 1d20 sugli attacchi effettuati in quel turno."
+    }
+  },
+  "perkStormChaser": {
+    "en": "Storm Chaser",
+    "it": "Cacciatore di Tempeste",
+    "_description": {
+      "en": "When it is raining or during a rad storm, you regain 1 HP at the start of each of your turns in combat. Out of combat, you regain HP equal to half your Luck score (rounded up) every hour of rain.",
+      "it": "Quando piove o durante una tempesta radioattiva, recuperi 1 PS all'inizio di ogni tuo turno in combattimento. Fuori dal combattimento, recuperi PS pari alla metà del tuo punteggio di Fortuna (arrotondato per eccesso) ogni ora di pioggia."
+    }
+  },
+  "perkStrongBack": {
+    "en": "Strong Back",
+    "it": "Schiena Forte",
+    "_description": {
+      "en": "Maximum carry weight is increased by +12.5 kg per rank. Each time this perk is selected, the level requirements increase by 2.",
+      "it": "Il peso trasportabile massimo è aumentato di +12,5 kg per grado. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 2."
+    }
+  },
+  "perkSturdyFrame": {
+    "en": "Sturdy Frame",
+    "it": "Struttura Robusta",
+    "_description": {
+      "en": "Armor you wear—except Power Armor—counts as three-quarters of its listed weight. At rank 2, it counts as half. At rank 3, one-quarter. Each time this perk is selected, the level requirements increase by 8.",
+      "it": "Le armature che indossi—eccetto la Tuta Atomica—contano come tre quarti del loro peso. Al grado 2, come metà. Al grado 3, come un quarto. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 8."
+    }
+  },
+  "perkSuperDuper": {
+    "en": "Super Duper",
+    "it": "Super Duper",
+    "_description": {
+      "en": "Whenever you craft an item, roll 1 DC per rank. If you roll Effects, regain half the components spent for each rarity (rounded down). Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Ogni volta che produci un oggetto, tira 1 CD per grado. Con gli Effetti, recuperi metà dei componenti spesi per ogni rarità (arrotondato per difetto). Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkSuppressor": {
+    "en": "Suppressor",
+    "it": "Soppressore",
+    "_description": {
+      "en": "When you successfully attack an enemy, you may spend 1 AP to suppress them until the end of their next turn. A suppressed enemy reduces their damage by 1 DC. At rank 2, by 2 DC. At rank 3, by 3 DC. Each time this perk is selected, the level requirements increase by 7.",
+      "it": "Quando attacchi con successo un nemico, puoi spendere 1 PA per sopprimerlo fino alla fine del suo prossimo turno. Un nemico soppresso riduce i danni dei suoi attacchi di 1 CD. Al grado 2, 2 CD. Al grado 3, 3 CD. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 7."
+    }
+  },
+  "perkTag": {
+    "en": "Tag!",
+    "it": "Specialista!",
+    "_description": {
+      "en": "The character possesses an additional Tag skill. Increase the skill rank by 2, up to a maximum of 6, and mark it as a Tag skill, which allows for a critical success with a d20 result equal to or lower than the skill rank.",
+      "it": "Il personaggio possiede una Specialità aggiuntiva. Aumentare il grado dell’abilità di 2, fino a un massimo di 6, e segnarla come Specialità, cosa che gli consente di ottenere un successo critico con un risultato sul d20 pari o inferiore al grado dell’abilità."
+    }
+  },
+  "perkTakingOneForTheTeam": {
+    "en": "Taking One for the Team",
+    "it": "Farsi in Quattro",
+    "_description": {
+      "en": "At rank 1, whenever a creature NPC would damage an ally in your zone, roll 1 DC: on any result other than Effect, you take the damage instead (once per round per rank). At rank 2, if you take the damage, add 1 AP per rank to the group pool. At rank 3, after taking the damage, you and the ally may each re-roll 1d20 per rank on the next attack against that enemy. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Al grado 1, ogni volta che un NPC creatura sta per danneggiare un alleato nella tua zona, tira 1 CD: con qualsiasi risultato diverso da Effetto, subisci tu il danno al posto suo (una volta per round per grado). Al grado 2, se subisci il danno, aggiungi 1 PA per grado alla riserva di gruppo. Al grado 3, dopo aver subito il danno, tu e l'alleato potete ripetere 1d20 per grado al prossimo attacco contro quel nemico. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkTenderizer": {
+    "en": "Tenderizer",
+    "it": "Inteneritore",
+    "_description": {
+      "en": "When you hit an enemy with a melee or ranged attack, you may spend 1 AP to make them vulnerable until the end of their next turn. A vulnerable enemy receives +1 DC additional damage. At rank 2, +2 DC. At rank 3, +3 DC. Each time this perk is selected, the level requirements increase by 10.",
+      "it": "Quando colpisci un nemico con un attacco in mischia o a distanza, puoi spendere 1 PA per renderlo vulnerabile fino alla fine del suo prossimo turno. Un nemico vulnerabile subisce +1 CD di danno aggiuntivo. Al grado 2, +2 CD. Al grado 3, +3 CD. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 10."
+    }
+  },
+  "perkTerrifyingPresence": {
+    "en": "Terrifying Presence",
+    "it": "Presenza Terrificante",
+    "_description": {
+      "en": "When making a Speech check to threaten or frighten someone, you can reroll 1d20. At rank 2, you can use a major action in combat to threaten an enemy at Medium range, with a STR + Speech check at difficulty 2. If successful, that enemy must move away from the character during their next turn (although they can perform any other action they wish). Each time this perk is selected, the level requirements increase by 5.",
+      "it": "Quando si effettua una prova di Oratoria per minacciare o spaventare qualcuno, è possibile tirare nuovamente 1d20. Al grado 2, è possibile utilizzare un’azione maggiore in combattimento per minacciare un nemico a distanza Media, con una prova di FOR + Oratoria a difficoltà 2. Se ha successo, quel nemico deve allontanarsi dal personaggio durante il suo prossimo turno (anche se può compiere qualsiasi altra azione desideri). Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 5."
+    }
+  },
+  "perkThirstQuencher": {
+    "en": "Thirst Quencher",
+    "it": "Dissetante",
+    "_description": {
+      "en": "Drinking dirty water no longer poses a risk of catching a disease.",
+      "it": "Bere acqua sporca non ti espone più al rischio di contrarre malattie."
+    }
+  },
+  "perkTinkerer": {
+    "en": "Tinkerer",
+    "it": "Armeggiatore",
+    "_description": {
+      "en": "You reduce the difficulty of repairing a robot via First Aid to the number of injuries it has sustained (+1 if repairing yourself). You can also spend up to an hour tinkering with a robot, increasing its maximum HP by +2 for 24 hours or until it sustains an injury.",
+      "it": "Riduci la difficoltà di riparare un robot tramite il Pronto Soccorso al numero di ferite che ha subito (+1 se stai riparando te stesso). Puoi anche dedicare fino a un'ora a riparare e pulire un robot, aumentando i suoi PS massimi di +2 per 24 ore o finché non subisce una ferita."
+    }
+  },
+  "perkToughness": {
+    "en": "Toughness",
+    "it": "Robustezza",
+    "_description": {
+      "en": "Physical Damage Resistance in all hit locations increases by +1 for each rank in this perk. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "La Resistenza ai Danni Fisici in tutti i punti d’impatto aumenta di +1 per ogni grado in questo talento. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkTrueFriends": {
+    "en": "True Friends",
+    "it": "Veri Amici",
+    "_description": {
+      "en": "At rank 1, when a reputation test would decrease your reputation with a faction or settlement, roll DC equal to your current reputation: on at least one Effect, your reputation does not change. At rank 2, when increasing affinity, roll CHA + Speech (difficulty 3): on success, increase by 2 instead of 1. Each time this perk is selected, the level requirements increase by 4.",
+      "it": "Al grado 1, quando un test di reputazione diminuirebbe la tua reputazione con una fazione o un insediamento, tira CD pari alla tua reputazione attuale: con almeno un Effetto, la reputazione non cambia. Al grado 2, quando aumenti l'affinità, tira CAR + Eloquenza (difficoltà 3): con successo, l'affinità aumenta di 2 invece di 1. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 4."
+    }
+  },
+  "perkVaccinated": {
+    "en": "Vaccinated",
+    "it": "Vaccinato",
+    "_description": {
+      "en": "Taking damage from the claws or bite of a mammal, lizard, or insect no longer poses a risk of catching a disease.",
+      "it": "Subire danni dagli artigli o dai morsi di mammiferi, lucertole o insetti non ti espone più al rischio di contrarre malattie."
+    }
+  }
+}

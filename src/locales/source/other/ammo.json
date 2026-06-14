@@ -1,0 +1,242 @@
+{
+  "ammo10mm": {
+    "en": "10mm",
+    "it": "10mm",
+    "_description": {
+      "en": "One of the easiest pistol ammunition types to find in the Wasteland. It was mass-produced before the Great War to support the many 10mm pistols issued to soldiers and used by civilians for self-defense.",
+      "it": "Si tratta di uno dei tipi di munizioni per pistola piu facili da trovare nella Zona Contaminata, fabbricate su ampia scala prima della Grande Guerra per fare il pari con il gran numero di pistole 10mm date in dotazione ai soldati e usate dai civili per difesa personale."
+    }
+  },
+  "ammo127mm": {
+    "en": "12.7mm",
+    "it": "12,7mm",
+    "_description": {
+      "en": "The Hauer Premium Show Stopper 12.7mm civic defense round is a large pistol round. In essence, these rounds consist of a big flat bullet in a straight case, with a rebated rim. While they have an identical bullet diameter to the .50 caliber rifle round, the much smaller case means it holds less powder and can be safely used in man-portable auto-loading weapons.",
+      "it": "Il proiettile da difesa civile Hauer Premium Show Stopper da 12,7 mm è un proiettile per pistola di grosso calibro. In sostanza, questi colpi consistono in un grosso proiettile piatto in un bossolo dritto, con un fondello scanalato. Sebbene abbiano un diametro del proiettile identico a quello del proiettile per fucile calibro .50, il bossolo molto più piccolo consente di contenere meno polvere e può essere utilizzato in sicurezza in armi a caricamento automatico portatili."
+    }
+  },
+  "ammo25mmGrenade": {
+    "en": "25mm Grenade",
+    "it": "Granata Da 25mm",
+    "_description": {
+      "en": "An unusual form of launched grenade, the 25mm grenade has a smaller yield than the more common 40mm, but its lighter weight allows it to be fired from smaller launchers, or to be fired at a higher rate.",
+      "it": "Un'insolita forma di granata lanciata, la granata da 25mm ha una resa inferiore rispetto alla più comune 40mm, ma il suo peso ridotto le consente di essere lanciata da lanciatori più piccoli o di essere sparata a una cadenza più elevata."
+    }
+  },
+  "ammo2mmec": {
+    "en": "2mm EC",
+    "it": "2mm EC",
+    "_description": {
+      "en": "2mm Electromagnetic Cartridges are self-contained magazines that include both high-velocity ferromagnetic projectiles and the batteries needed to power a Gauss weapon. They are not found loose: they are found as magazines containing a set number of shots and enough charge to fire them.",
+      "it": "Le Cartucce Elettromagnetiche da 2mm sono dei caricatori indipendenti che contengono sia i proiettili ferromagnetici ad alta velocita che le batterie necessarie ad alimentare l'arma gauss per spararli. Non si trovano sfuse, ma all'interno di caricatori che contengono il numero di spari generati e una batteria abbastanza carica da permettere all'arma di spararli."
+    }
+  },
+  "ammo308": {
+    "en": ".308",
+    "it": ".308",
+    "_description": {
+      "en": "A precision-rifle round used by hunting rifles and some handcrafted bolt-action carbines. It is so common in the Wasteland that weapons using .308 are unlikely to run dry for long.",
+      "it": "Si tratta di un tipo di munizioni per fucili di precisione, usate per quelli da caccia e per alcune carabine artigianali bolt-action. E talmente facile trovarle nella Zona Contaminata che e altamente improbabile che un'arma che usa cartucce .308 si trovi a corto di munizioni."
+    }
+  },
+  "ammo357Magnum": {
+    "en": ".357 Magnum",
+    "it": ".357 Magnum",
+    "_description": {
+      "en": "The .357 Magnum round, a Magnum handgun cartridge manufactured by Big Chief, has a significant powder load making it a very powerful cartridge for a pistol round, and acceptable for use in carbine-length lever-action rifles.",
+      "it": "Il proiettile .357 Magnum, una cartuccia per pistola Magnum prodotta da Big Chief, ha una carica di polvere significativa che lo rende una cartuccia molto potente per una pistola e accettabile per l'uso in fucili a leva di lunghezza carabina."
+    }
+  },
+  "ammo38": {
+    "en": ".38",
+    "it": ".38",
+    "_description": {
+      "en": "Small-caliber ammunition originally intended for pre-War double-action revolvers. It is easy to find, works well for improvised firearms, and several more powerful guns can be modified to fire .38 for better availability at the cost of stopping power.",
+      "it": "Sono delle munizioni di piccolo calibro pensate per rivoltelle a doppia azione risalenti a prima della Grande Guerra. Sono talmente facili da trovare che vanno bene per la maggior parte delle armi da fuoco di fortuna, inoltre sono diverse le armi piu potenti che possono essere modificate per sparare con cartucce .38, sacrificando la capacita offensiva per la reperibilita delle munizioni."
+    }
+  },
+  "ammo40mmGrenade": {
+    "en": "40mm Grenade",
+    "it": "Granata Da 40mm",
+    "_description": {
+      "en": "Smaller than a conventional hand grenade, but comparably lethal, a 40mm grenade is designed to be launched from most common grenade launchers, allowing them to be fired with reasonable accuracy over long distances.",
+      "it": "Più piccola di una granata a mano convenzionale, ma comparabilmente letale, una granata da 40mm è progettata per essere lanciata dai più comuni lanciagranate, consentendo di sparare con ragionevole precisione su lunghe distanze."
+    }
+  },
+  "ammo44Magnum": {
+    "en": ".44 Magnum",
+    "it": ".44 Magnum",
+    "_description": {
+      "en": "Powerful .44 Magnum rounds were originally designed for revolvers. Their excellent stopping power makes them ideal against monsters and humans alike, but they are hard to find.",
+      "it": "I potenti proiettili .44 magnum in origine erano stati concepiti per i revolver. Il loro eccellente potere di fuoco li rende quasi perfetti per qualsiasi abitante della Zona Contaminata che abbia bisogno di munizioni in grado di fermare mostri, umani e via di seguito. L'unico problema e la loro difficolta di reperimento."
+    }
+  },
+  "ammo45": {
+    "en": ".45",
+    "it": ".45",
+    "_description": {
+      "en": "A good cartridge balancing respectable stopping power, manageable recoil, and fair accuracy. It is used by several common Wasteland weapons and is not too rare.",
+      "it": "Si tratta di buone cartucce che combinano una ragionevole potenza di fuoco con un rinculo gestibile e una discreta precisione. Possono essere usate da diverse armi facili da trovare nella Zona Contaminata e non sono troppo rare."
+    }
+  },
+  "ammo50Ball": {
+    "en": ".50 Ball",
+    "it": ".50 Palla",
+    "_description": {
+      "en": ".50 caliber ball ammunition is a half-inch lead ball used in muzzleloading weapons such as old-fashioned muskets. A separate charge of black gunpowder must also be loaded, as this old-timey ammunition doesn’t contain its own propellant. Special: In game terms, the need to provide gunpowder alongside .50 ball ammunition is ignored – assume that, whenever you find .50 ball ammunition, you find an appropriate amount of gunpowder too.",
+      "it": "Le munizioni calibro .50 palla sono una palla di piombo da mezzo pollice usata in armi ad avancarica come i vecchi moschetti. In termini di gioco, la necessità di fornire polvere da sparo insieme alle munizioni palla viene ignorata: si presume che, ogni volta che si trovano munizioni calibro .50 palla, si trovi anche un'appropriata quantità di polvere da sparo."
+    }
+  },
+  "ammo556mm": {
+    "en": "5.56mm",
+    "it": "5.56mm",
+    "_description": {
+      "en": "Light ammunition typically used in assault rifles. Developed long ago for U.S. military service rifles, it remained in production through the Great War and can still be found if you know where to look.",
+      "it": "Sono delle munizioni leggere che di solito si utilizzano nei fucili d'assalto. Sviluppate secoli or sono per i fucili in dotazione all'esercito americano, hanno continuato a essere prodotte e usate fino alla fine della Grande Guerra e, se si sa dove cercare, non sono difficili da trovare."
+    }
+  },
+  "ammo5mm": {
+    "en": "5mm",
+    "it": "5mm",
+    "_description": {
+      "en": "Small-caliber rounds usually used by military machine guns. While stockpiles are uncommon, they are often found in large quantities. The downside is that weapons using 5mm consume ammo extremely fast.",
+      "it": "Si tratta di munizioni di piccolo calibro solitamente utilizzate dai militari per le mitragliatrici. Nonostante sia raro imbattersi in delle scorte, quando succede si trovano in gran quantita. Il problema e che le armi che le usano consumano munizioni ad una velocita incredibile, per cui un'intera scatola di 5mm non dura molto."
+    }
+  },
+  "ammo9mm": {
+    "en": "9mm",
+    "it": "9mm",
+    "_description": {
+      "en": "Before the Great War, 9mm was the preferred type of ammunition for small weapons in the American Southwest, while the military and the Eastern and Western Seaboards tended to favor the more powerful 10mm ammunition. 9mm ammunition is lightweight and widely available, but has a reputation for being insufficiently deadly.",
+      "it": "Prima della Grande Guerra, il 9mm era il tipo preferito di munizioni per le armi di piccolo calibro nel sud-ovest americano, mentre i militari e le coste orientali e occidentali tendevano a preferire le più potenti munizioni da 10mm. Le munizioni da 9mm sono leggere e ampiamente disponibili, ma hanno la reputazione di essere insufficientemente letali."
+    }
+  },
+  "ammoAlienPowerCell": {
+    "en": "Alien Power Cells",
+    "it": "Celle Di Energia Aliena",
+    "_description": {
+      "en": "Precision-engineered cylinders of glowing blue crystal that seem to hold some kind of energy. They’re used by a number of alien weapons.",
+      "it": "Cilindri di cristallo blu brillante progettati con precisione che sembrano contenere un qualche tipo di energia. Sono utilizzati da una serie di armi aliene."
+    }
+  },
+  "ammoAlienPowerModule": {
+    "en": "Alien Power Module",
+    "it": "Modulo Di Energia Aliena",
+    "_description": {
+      "en": "A container with an unknown compound that is identified as blue energy. Only alien weaponry is generally capable of harnessing and utilizing this energy similar to how fusion cells operate.",
+      "it": "Un contenitore con un composto sconosciuto identificato come energia blu. Solo le armi aliene sono generalmente in grado di sfruttare e utilizzare questa energia in modo simile al funzionamento delle celle a fusione."
+    }
+  },
+  "ammoArrow": {
+    "en": "Arrow",
+    "it": "Freccia",
+    "_description": {
+      "en": "A long, stiff, straight shaft generally made of wood or other lightweight materials with a sharp and weighted tip, opposite of stabilizers. Unlike most ammunition, arrows have a chance of being recovered once launched.",
+      "it": "Un'asta lunga, rigida e dritta, generalmente fatta di legno o altri materiali leggeri con una punta affilata e appesantita, opposta agli stabilizzatori. A differenza della maggior parte delle munizioni, le frecce hanno la possibilità di essere recuperate una volta lanciate."
+    }
+  },
+  "ammoCrossbowBolt": {
+    "en": "Crossbow Bolt",
+    "it": "Dardo Da Balestra",
+    "_description": {
+      "en": "A bolt is more like a dart in design, having the key arrow elements of having a sharp tip opposite of stabilizers. A bolt designed for use with crossbows. Like arrows, crossbow bolts can usually be recovered from slain enemies.",
+      "it": "Un dardo ha un design più simile a una freccetta, possedendo gli elementi chiave della freccia come la punta affilata opposta agli stabilizzatori. Un dardo progettato per l'uso con le balestre. Come le frecce, i dardi da balestra possono solitamente essere recuperati dai nemici uccisi."
+    }
+  },
+  "ammoFlamerFuel": {
+    "en": "Flamer Fuel",
+    "it": "Combustibile",
+    "_description": {
+      "en": "A highly flammable chemical compound designed for flamers. Fuel quality varies, but it is usually a viscous substance that burns at high temperature for a long time. It is usually found in tanks containing enough fuel for the listed number of shots.",
+      "it": "Si tratta di un composto chimico altamente infiammabile progettato per i lanciafiamme. La qualita del combustibile puo variare, ma di solito e una sostanza vischiosa che continua a bruciare ad alte temperature per molto tempo. Si trova solitamente sotto forma di bombole contenenti abbastanza combustibile per il numero di colpi generati."
+    }
+  },
+  "ammoFlare": {
+    "en": "Flare",
+    "it": "Razzo",
+    "_description": {
+      "en": "A cartridge-like cylinder containing a chemical compound that produces a bright flare once ignited. Fired from a flare gun, it lights the surrounding area and then falls trailing white smoke.",
+      "it": "Si tratta di un cilindretto simile ad una cartuccia da fucile contenente una sostanza chimica che produce una fiammata brillante una volta accesa. Si sparano con una pistola lanciarazzi, che innesca la miccia al momento del lancio: il razzo esplode in aria illuminando l'area circostante, per poi ridiscendere in una scia di fumo bianco."
+    }
+  },
+  "ammoFusionCell": {
+    "en": "Fusion Cell",
+    "it": "Cella di Fusione",
+    "_description": {
+      "en": "A microfusion, or fusion, cell is a miniature fusion reactor used in light energy weapons. Without proper facilities they are hard to recharge, so they are often discarded once depleted. They are typically found as a single cell containing the listed number of shots.",
+      "it": "Una cella di microfusione, o di fusione, e un reattore a fusione in miniatura che viene impiegato nelle armi a energia leggere. Sfrutta gli isotopi di idrogeno, i quali fondono quando sottoposti a un calore e una pressione estremi, e puo esplodere se viene esposto a una fonte di calore esterna considerevole. Senza le giuste strutture, queste celle sono difficili da ricaricare, per cui spesso vengono semplicemente abbandonate una volta esaurite. Si trova solitamente sotto forma di un'unica cella contenente il numero di colpi generati."
+    }
+  },
+  "ammoFusionCore": {
+    "en": "Fusion Core",
+    "it": "Nucleo di Fusione",
+    "_description": {
+      "en": "Long-lasting pre-War nuclear batteries. A single core can power a small building for a long time, or provide a lot of energy quickly. Most power armor runs on fusion cores, and they can also be used as Gatling Laser ammo.",
+      "it": "I nuclei di fusione risalenti all'anteguerra sono delle pile nucleari a lunga durata di prima qualita. Un singolo nucleo puo fornire energia a un piccolo edificio per molto tempo o dare molta energia a qualcosa molto rapidamente. La maggior parte delle armature a energia funzionano con un nucleo di fusione, in grado di farle funzionare per ore. Possono anche essere usati come munizioni per un laser Gatling."
+    }
+  },
+  "ammoGammaRound": {
+    "en": "Gamma Round",
+    "it": "Munizioni Gamma",
+    "_description": {
+      "en": "Large plastic-coated batteries with enough charge to power a Gamma Gun.",
+      "it": "Sono delle grosse batterie ricoperte di plastica con una carica tale da far funzionare una Pistola Gamma."
+    }
+  },
+  "ammoMiniNuke": {
+    "en": "MiniNuke",
+    "it": "MiniNuke",
+    "_description": {
+      "en": "A compact nuclear warhead, roughly football-sized, intended to be launched from a launcher. Extremely rare and found only in very small quantities.",
+      "it": "Una piccola testata nucleare, delle dimensioni di una palla da football, pensata per essere lanciata lontano con un lanciagranate. Sono estremamente rare e si trovano solo in quantita minime."
+    }
+  },
+  "ammoMissile": {
+    "en": "Missile",
+    "it": "Missile",
+    "_description": {
+      "en": "Highly explosive rockets intended for missile launchers. If used with targeting systems, they can be guided onto targets, unlike improvised rockets.",
+      "it": "Sono dei razzi altamente esplosivi pensati per essere utilizzati con un lanciamissili. Se chi li lancia e in possesso di un sistema di controllo, possono essere direzionati su un bersaglio, cosa che un razzo artigianale non e in grado di fare."
+    }
+  },
+  "ammoPlasmaCartridge": {
+    "en": "Plasma Cartridge",
+    "it": "Cartucce al Plasma",
+    "_description": {
+      "en": "Plasma weapons use dedicated cartridges that combine power and fuel: a fusion cell for energy and a capsule containing the stable chemical compound that becomes fired plasma.",
+      "it": "Le armi al plasma sono alimentate da apposite cartucce, che sono una combinazione di celle di fusione che forniscono l'energia necessaria con una capsula contenente una versione stabile del composto chimico che diventera il plasma sparato."
+    }
+  },
+  "ammoPlasmaCore": {
+    "en": "Plasma Core",
+    "it": "Nucleo Di Plasma",
+    "_description": {
+      "en": "Like the smaller plasma cartridges, these devices combine power supply and fuel: each one contains both a compact, specialized fusion core, and a reservoir of the chemical which is transformed into the plasma that the weapon fires. Plasma cores are exclusively used by the Gatling Plasma, and each one contains 500 shots for that weapon. Note that, as a Gatling Plasma is a Gatling weapon, it consumes ammunition at ten times the normal rate. The Scrounger perk cannot increase the number of Plasma Cores found.",
+      "it": "Come le cartucce al plasma più piccole, questi dispositivi combinano alimentazione e carburante: ognuno contiene sia un nucleo a fusione compatto e specializzato, sia un serbatoio del prodotto chimico che viene trasformato nel plasma sparato dall'arma. I nuclei di plasma sono utilizzati esclusivamente dal Plasma Gatling e ognuno contiene 500 colpi per quell'arma. Si noti che, essendo il Plasma Gatling un'arma Gatling, consuma munizioni a una velocità dieci volte superiore a quella normale. Il talento Scroccone non può aumentare il numero di Nuclei di Plasma trovati."
+    }
+  },
+  "ammoRailwaySpike": {
+    "en": "Railway Spike",
+    "it": "Spuntone Sparachiodi",
+    "_description": {
+      "en": "Iron spikes originally designed to fasten railway tracks. They are not as easy to find as you might expect.",
+      "it": "Sono dei chiodi di ferro originariamente pensati per tenere ferme le rotaie. Non sono cosi semplici da trovare come si potrebbe pensare, anche se si trattava di cose ordinarie."
+    }
+  },
+  "ammoShotgunShell": {
+    "en": "Shotgun Shell",
+    "it": "Cartucce per Fucile a Pompa",
+    "_description": {
+      "en": "In the Wasteland, the most common load is 12-gauge 2 3/4 inch buckshot (#0). Relatively easy to find, and considered ideal for close encounters.",
+      "it": "Quelle che di solito si trovano nella Zona Contaminata sono delle cartucce calibro .12 2 3/4 riempite di pallettoni #0. Relativamente facili da trovare, gli abitanti della Zona Contaminata pensano che, nell'evenienza di un incontro ravvicinato, sia utile avere a portata di mano un fucile a pompa."
+    }
+  },
+  "ammoSyringer": {
+    "en": "Syringer Ammo",
+    "it": "Proiettili Syringer",
+    "_description": {
+      "en": "Syringer rounds are often handmade by Wasteland chemists and are found in several different formulations.",
+      "it": "I proiettili Syringer sono spesso fatti a mano da chimici della Zona Contaminata e si trovano in diverse forme."
+    }
+  }
+}
