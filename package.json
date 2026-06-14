@@ -23,6 +23,7 @@
     "npm": ">=9.0.0"
   },
   "scripts": {
+    "predev": "npm run validate:locales:sources && npm run build:locales",
     "dev": "vite",
     "prebuild": "npm run validate:locales:sources && npm run build:locales",
     "build": "vite build",
@@ -32,7 +33,7 @@
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
     "type-check": "tsc --noEmit",
-    "validate:locales:sources": "python3 scripts/validate_locales.py",
+    "validate:locales:sources": "python3 scripts/validate_locales_sources.py",
     "build:locales": "python3 scripts/build_locales_from_source.py",
     "quality": "npm run lint && npm run format:check && npm run type-check",
     "test": "echo \"No tests yet\" && exit 0"

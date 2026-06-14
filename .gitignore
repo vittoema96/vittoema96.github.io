@@ -13,6 +13,8 @@ pnpm-debug.log*
 dist/
 build/
 *.tsbuildinfo
+src/locales/en.json
+src/locales/it.json
 
 # Environment variables
 .env
