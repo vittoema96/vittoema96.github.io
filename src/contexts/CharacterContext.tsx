@@ -162,12 +162,9 @@ function CharacterRootProvider({ onReady, children }: Readonly<{
                     ...(updates.traits ?? []),
                 ];
             }
-            const recalculateCurrentHp = updates.special?.endurance ||
-                updates.special?.luck ||
-                updates.level !== undefined
-            if (recalculateCurrentHp) {
-                updatedCharacter = adjustCurrentHp(prev, updatedCharacter)
-            }
+
+            // Let's do it always, as various things can edit current and max hp (perkLifeGiver for example)
+            updatedCharacter = adjustCurrentHp(prev, updatedCharacter)
 
             // If origin changed from or to one that needs SpecializedArmor, unequip all apparel
             // This needs to be done BEFORE adding/removing robot parts (otherwise after adding them they would be unequipped)
