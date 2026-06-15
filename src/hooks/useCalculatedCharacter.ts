@@ -30,7 +30,8 @@ export const adjustCurrentHp = (prev: RawCharacter, current: RawCharacter) => {
 
 const calculateMaxHp = (character: RawCharacter): number => {
     // TODO duplication of maxHp MEMO...
-    return character.special.endurance + character.special.luck + character.level - 1;
+    const lifeGiverLevel = character.perks.filter(perk => perk === "perkLifeGiver").length
+    return character.special.endurance * (1 + lifeGiverLevel) + character.special.luck + character.level - 1;
 };
 
 function useCalculatedCharacter(raw: RawCharacter): Character {

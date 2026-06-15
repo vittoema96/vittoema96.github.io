@@ -1,0 +1,232 @@
+{
+  "effects": {
+    "en": "Effects",
+    "it": "Effetti"
+  },
+
+
+  "effectActivationArms": {
+    "en": "Activation (Arms)",
+    "it": "Attivazione (Braccia)",
+    "_description": {
+      "en": "Melee attacks made with these arms deal +1 DC damage.",
+      "it": "Gli attacchi da mischia portati con queste braccia infliggono +1 DC danno."
+    }
+  },
+  "effectActivationThrusters": {
+    "en": "Activation (Thrusters)",
+    "it": "Attivazione (Propulsori)",
+    "_description": {
+      "en": "Can perform both a minor Movement action and a major Sprint action in the same turn.",
+      "it": "Può compiere sia un'azione minore di Movimento che un'azione maggiore di Scatto nello stesso turno."
+    }
+  },
+  "effectAimDamageBonus": {
+    "en": "Aim Damage Bonus",
+    "it": "Bonus Danno Mira",
+    "_description": {
+      "en": "When aiming and making a Ranged Attack, damage increases by +1 DC",
+      "it": "Quando il personaggio prende la mira ed effettua un Attacco a Distanza, il danno dell'attacco aumenta di +1 DC"
+    }
+  },
+  "effectArc": {
+    "en": "Arc",
+    "it": "Arco",
+    "_description": {
+      "en": "Each Effect rolled automatically hits one additional target within Close range of the primary target. Each additional target suffers half the rolled damage (rounded up). Unlike Burst, this does not cost additional ammunition.",
+      "it": "Ogni Effetto ottenuto colpisce automaticamente un bersaglio aggiuntivo entro distanza Ravvicinata dal bersaglio primario. Ogni bersaglio aggiuntivo subisce la metà del danno ottenuto (arrotondato per eccesso). A differenza di Raffica, questo non costa munizioni aggiuntive."
+    }
+  },
+  "effectBreaking": {
+    "en": "Breaking",
+    "it": "Dirompente",
+    "_description": {
+      "en": "For each Effect rolled, reduce the number of DC a target's cover provides by 1, permanently. If the target is not in cover, instead reduce the DR of the location struck by 1, according to the damage type of the weapon—physical damage only reduces physical DR, for example.",
+      "it": "Per ogni Effetto ottenuto, riduce permanentemente di 1 il numero di DC forniti al bersaglio da una copertura. Se il bersaglio non ha copertura, allora riduce di 1 la RD del punto colpito in base al tipo di danno dell’arma; ad esempio il danno fisico riduce soltanto la RD fisica."
+    }
+  },
+  "effectBurst": {
+    "en": "Burst",
+    "it": "Raffica",
+    "_description": {
+      "en": "The attack hits one additional target within Close range of the primary target for each Effect rolled. Each additional target spends 1 additional unit of ammunition from the weapon.",
+      "it": "L’attacco colpisce un bersaglio aggiuntivo che si trova a distanza Ravvicinata dal primo bersaglio per ogni Effetto ottenuto. Tutti i bersagli aggiuntivi richiedono l’utilizzo di un’unità di munizioni aggiuntiva dell’arma."
+    }
+  },
+  "effectCarryWeight": {
+    "en": "Carry Weight",
+    "it": "Peso Trasportabile",
+    "_description": {
+      "en": "Increases the maximum carry weight by the specified amount",
+      "it": "Aumenta il peso trasportabile massimo del valore specificato"
+    }
+  },
+  "effectChemDuration": {
+    "en": "Chem Duration",
+    "it": "Durata Sostanze",
+    "_description": {
+      "en": "Chems last twice as long",
+      "it": "Le sostanze durano il doppio"
+    }
+  },
+  "effectFreeze": {
+    "en": "Freeze",
+    "it": "Congelamento",
+    "_description": {
+      "en": "Enemies hit by this attack will be Frozen if the number of Effects rolled are equal to or more than half the target’s END (or half the target’s BODY for Creatures). A Frozen creature cannot take actions on its next turn.",
+      "it": "I nemici colpiti da questo attacco saranno Congelati se il numero di Effetti ottenuti è uguale o superiore alla metà della COS del bersaglio (o metà del CORPO per le Creature). Una creatura Congelata non può compiere azioni nel suo prossimo turno."
+    }
+  },
+  "effectGasMask": {
+    "en": "Gas Mask",
+    "it": "Maschera Antigas",
+    "_description": {
+      "en": "+3 to Poison Damage Resistance against any airborne or gaseous poison; Wearer suffers no effects from gas or dust; +1 to difficulty of all Speech checks",
+      "it": "+3 alla Resistenza ai danni da Veleno contro qualsiasi veleno in sospensione nell'aria o in forma gassosa; Chi la indossa non subisce alcun effetto derivante da gas o polvere; +1 alla difficoltà di ogni prova di Oratoria"
+    }
+  },
+  "effectHydraulic": {
+    "en": "Hydraulic",
+    "it": "Idraulico",
+    "_description": {
+      "en": "Melee attacks made with these arms deal +1 DC damage and gain the Stun damage effect.",
+      "it": "Gli attacchi da mischia effettuati con queste braccia infliggono +1 DC danno e ottengono l'effetto del danno Stordente."
+    }
+  },
+  "effectIgnoreLightPenalty": {
+    "en": "Ignore Light Penalty",
+    "it": "Ignora Penalità Luce",
+    "_description": {
+      "en": "Ignore any difficulty increase due to excessive light",
+      "it": "Ignorare ogni aumento di difficoltà dovuto alla troppa luce"
+    }
+  },
+  "effectKnurled": {
+    "en": "Knurled",
+    "it": "Zigrinato",
+    "_description": {
+      "en": "When a melee attack is made against this part and the attacker suffers a complication, they also suffer 2 DC Persistent (Physical) damage. Melee attacks with knurled arms gain the Persistent (Physical) damage effect.",
+      "it": "Quando viene effettuato un attacco da mischia contro questa parte e l'attaccante subisce una complicazione, soffre 2 DC danni Persistenti (Fisici). Gli attacchi da mischia con braccia zigrinate ottengono l'effetto danno Persistente (Fisico)."
+    }
+  },
+  "effectMeleeBonusAP": {
+    "en": "Melee Bonus AP",
+    "it": "Bonus PA Mischia",
+    "_description": {
+      "en": "Can spend up to 4 AP for bonus melee damage",
+      "it": "Si possono spendere fino a 4 PA per danni bonus da attacchi da mischia"
+    }
+  },
+  "effectPersistent": {
+    "en": "Persistent",
+    "it": "Persistente",
+    "_description": {
+      "en": "If one or more Effects are rolled, the target suffers the weapon's damage again at the end of their next and subsequent turns, for a number of rounds equal to the number of Effects rolled. The target can spend a major action to make a test to stop persistent damage early, with the difficulty equal to the number of Effects rolled, and the attribute + skill chosen by the GM. Some Persistent weapons may inflict a different type of damage to the weapon, and where this is the case, it will be noted in brackets, for example: Persistent (Poison).",
+      "it": "Se si ottengono uno o più Effetti, il bersaglio subisce nuovamente il danno dell’arma alla fine dei turni successivi, per un numero di round pari al numero di Effetti ottenuti. Il bersaglio può utilizzare un’azione maggiore per effettuare una prova in modo da interrompere anticipatamente il danno Persistente, la difficoltà è pari al numero di Effetti ottenuti e l’attributo + abilità vengono scelti dal GM. Alcune armi Persistenti possono infliggere un tipo differente di danno all’arma, in questi casi viene indicato fra parentesi, ad esempio: Persistente (Veleno)."
+    }
+  },
+  "effectPersistentImmunity": {
+    "en": "Persistent Immunity",
+    "it": "Immunità Persistente",
+    "_description": {
+      "en": "Ignores Persistent Energy damage",
+      "it": "Ignora i danni da Energia dell'Effetto Persistente"
+    }
+  },
+  "effectPiercing": {
+    "en": "Piercing",
+    "it": "Penetrante",
+    "_description": {
+      "en": "Ignore X points of the target's DR for each Effect rolled, where X is the rating of this damage effect.",
+      "it": "Ignora X punti della RD del bersaglio per ogni Effetto ottenuto, dove X corrisponde al valore dell’effetto del danno."
+    }
+  },
+  "effectPoisonous": {
+    "en": "Poisonous",
+    "it": "Velenoso",
+    "_description": {
+      "en": "When a melee attack is made against this part and the attacker suffers a complication, they suffer 2 DC Persistent (Poison) damage. Melee attacks with poisonous arms gain the Persistent (Poison) damage effect.",
+      "it": "Quando viene effettuato un attacco da mischia contro questa parte e l'attaccante subisce una complicazione, subisce 2 DC danni Persistenti (Veleno). Gli attacchi da mischia con braccia velenose ottengono l'effetto danno Persistente (Veleno)."
+    }
+  },
+  "effectRadioactive": {
+    "en": "Radioactive",
+    "it": "Radioattivo",
+    "_description": {
+      "en": "For every Effect rolled, the target also suffers 1 point of radiation damage. This radiation damage is totalled and applied separately, after a character has suffered the normal damage from the attack.",
+      "it": "Per ogni Effetto ottenuto, il bersaglio subisce anche 1 danno da Radiazioni. Il danno da Radiazioni viene sommato e applicato separatamente, dopo che il personaggio ha subito il danno normale dell’attacco."
+    }
+  },
+  "effectShadowed": {
+    "en": "Shadowed",
+    "it": "Ombrata",
+    "_description": {
+      "en": "Shadowed Armor: 1+ pieces = ignore first complication on Sneak in darkness; 3+ pieces (Torso=2) = reroll 1d20 on Sneak in darkness 1/scene; 5+ pieces (Torso=2) = reroll 1d20 on every Sneak check in darkness. Does not work with Power Armor.",
+      "it": "Armatura Ombrata: 1+ pezzi = ignori la prima complicazione su Furtività al buio; 3+ pezzi (Torso=2) = ritiro 1d20 su Furtività al buio 1/scena; 5+ pezzi (Torso=2) = ritiro 1d20 su ogni prova di Furtività al buio. Non funziona con Armatura Atomica."
+    }
+  },
+  "effectSpecialReroll": {
+    "en": "Reroll",
+    "it": "Rilancia",
+    "_description": {
+      "en": "Reroll one d20 per scene on a skill check based on the specified SPECIAL attribute",
+      "it": "Rilanciare un d20 per scena in una prova di abilità basata sull'attributo SPECIAL specificato"
+    }
+  },
+  "effectSpread": {
+    "en": "Spread",
+    "it": "Propagato",
+    "_description": {
+      "en": "For each Effect rolled, your attack inflicts one additional hit on the target. Each additional hit inflicts half the rolled damage (rounded down) and hits a random location even if a specific location was targeted for the initial attack.",
+      "it": "Per ogni Effetto ottenuto, l’attacco infligge uno o più colpi aggiuntivi al bersaglio. Ogni colpo aggiuntivo infligge la metà del danno tirato (arrotondato per difetto) e colpisce un punto casuale, anche se era stato bersagliato un punto specifico per l’attacco iniziale."
+    }
+  },
+  "effectStealthReroll": {
+    "en": "Stealth Reroll",
+    "it": "Ritiro Furtività",
+    "_description": {
+      "en": "Can reroll one d20 on Sneak checks",
+      "it": "Si può ripetere il tiro di un d20 sulle prove di Furtività"
+    }
+  },
+  "effectStun": {
+    "en": "Stun",
+    "it": "Stordente",
+    "_description": {
+      "en": "If one or more Effects are rolled, the target cannot take their normal actions on their next turn. A stunned character or creature can still spend AP to take additional actions as normal.",
+      "it": "Se si ottengono uno o più Effetti, il bersaglio non può effettuare azioni normali nel suo prossimo turno. Un individuo o creatura storditi possono comunque spendere PA per ottenere azioni aggiuntive."
+    }
+  },
+  "effectStunResistance": {
+    "en": "Stun Resistance",
+    "it": "Resistenza Stordimento",
+    "_description": {
+      "en": "Stun damage requires 2+ Effects to affect character",
+      "it": "Affinché i danni stordenti abbiano effetto sul personaggio, occorre ottenere 2+ Effetti"
+    }
+  },
+  "effectToxic": {
+    "en": "Toxic",
+    "it": "Tossico",
+    "_description": {
+      "en": "When a melee attack is made against this part and the attacker suffers a complication, they suffer 2 DC Radiation damage. Melee attacks with toxic arms gain the Radioactive damage effect.",
+      "it": "Quando viene effettuato un attacco da mischia contro questa parte e l'attaccante subisce una complicazione, subisce 2 DC danni da Radiazioni. Gli attacchi da mischia con braccia tossiche ottengono l'effetto danno Radioattivo."
+    }
+  },
+  "effectVicious": {
+    "en": "Vicious",
+    "it": "Violento",
+    "_description": {
+      "en": "The attack inflicts +1 damage for each Effect rolled.",
+      "it": "Per ogni Effetto ottenuto, l’attacco infligge +1 danno."
+    }
+  },
+  "effectVoltaic": {
+    "en": "Voltaic",
+    "it": "Voltaico",
+    "_description": {
+      "en": "All attacks that deal Energy damage deal +1 DC. The bonus increases by +1 DC for every two additional parts with Voltaic Frame (+2 DC with 3 pieces or +3 DC with 5 pieces or more).",
+      "it": "Tutti gli attacchi che arrecano danni da Energia infliggono +1 DC. Il bonus aumenta di +1 DC ogni due ulteriori parti dotate di Telaio Voltaico (+2 DC con 3 pezzi o +3 DC con 5 pezzi o più)."
+    }
+  }
+}
