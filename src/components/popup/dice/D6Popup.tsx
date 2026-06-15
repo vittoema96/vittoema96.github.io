@@ -80,6 +80,9 @@ function D6Popup({
         if (weaponData.CATEGORY === 'energyWeapons') {
             rating += character.perks.filter(p => p === 'perkLaserCommander').length;
         }
+        if (weaponData.CATEGORY === 'meleeWeapons' && !weaponData.QUALITIES.includes('qualityTwoHanded')) {
+            rating += character.perks.filter(p => p === 'perkGladiator').length;
+        }
         if (
             [
                 'weaponCombatRifle',

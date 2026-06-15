@@ -42,14 +42,16 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
     // TODO should unify logic with D6Popup
     let damageRating = `${itemData.DAMAGE_RATING}`
     const laserCommanderBonus = itemData.CATEGORY === 'energyWeapons' ? character.perks.filter(p => p === 'perkLaserCommander').length : 0
+    const gladiatorBonus = itemData.CATEGORY === 'meleeWeapons' &&
+        !itemData.QUALITIES.includes("qualityTwoHanded") ? character.perks.filter(p => p === 'perkGladiator').length : 0
     const gruntBonus = [
         'weaponCombatRifle', 'weaponAssaultRifle',
         'weaponFragmentationGrenade', 'weaponCombatKnife',
         // TODO all these machine gun types? it says generically "machine guns"
         'weaponMachineGun', 'weaponLightMachineGun', 'weapon50caMachineGun'
     ].includes(itemData.ID) && character.traits.includes("traitGrunt") ? 1 : 0
-    if(laserCommanderBonus+gruntBonus > 0){
-        damageRating = `(${damageRating}+${laserCommanderBonus+gruntBonus})`
+    if(laserCommanderBonus+gruntBonus+gladiatorBonus > 0){
+        damageRating = `(${damageRating}+${laserCommanderBonus+gruntBonus+gladiatorBonus})`
     }
 
     let fireRate = `${itemData.FIRE_RATE}`
