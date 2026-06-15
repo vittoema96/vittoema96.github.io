@@ -86,7 +86,8 @@ function StatTab() {
         });
 
         const totalGenericAllowed = 3 +
-            character.traits.filter(p => p === 'traitEducated').length +
+            character.traits.filter(t => t === 'traitEducated').length +
+            character.perks.filter(p => p === 'perkTag').length +
             (character.origin === ORIGINS.GHOUL ? 1 : 0); // ghouls have survival as extra specialty (and it should not count)
 
         return {
