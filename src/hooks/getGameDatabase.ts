@@ -31,6 +31,7 @@ function createGameDatabase() {
         mod: db.mod,
         other: db.other,
         perks: db.perks,
+        companionPerks: db.companionPerks,
         traits: db.traits,
         legendaryEffects: db.legendaryEffects,
         allItems: db.allItems,

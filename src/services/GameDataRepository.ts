@@ -70,7 +70,7 @@ export const GameDataRepository = {
     },
 
     async loadAllData() {
-        const [weapon, apparel, aid, ammo, other, mod, perks, traits, legendaryEffects] = await Promise.all([
+        const [weapon, apparel, aid, ammo, other, mod, perks, traits, legendaryEffects, companionPerks] = await Promise.all([
             this.mergeCSVs<WeaponItem>([
                 'data/weapon/smallGuns.csv', 'data/weapon/energyWeapons.csv',
                 'data/weapon/bigGuns.csv', 'data/weapon/meleeWeapons.csv',
@@ -95,9 +95,10 @@ export const GameDataRepository = {
             this.parseCSV<any>('data/perks.csv'), // TODO provide Zod schema
             this.parseCSV<TraitData>('data/traits.csv'), // TODO provide Zod schema
             this.parseCSV<LegendaryEffect>('data/legendaryEffects.csv'), // TODO provide Zod schema
+            this.parseCSV<any>('data/companionPerks.csv'), // TODO provide Zod schema
         ]);
 
-        return { weapon, apparel, aid, ammo, other, mod, perks, traits, legendaryEffects };
+        return { weapon, apparel, aid, ammo, other, mod, perks, traits, legendaryEffects, companionPerks };
     },
 };
 

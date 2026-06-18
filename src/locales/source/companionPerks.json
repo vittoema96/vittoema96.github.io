@@ -1,0 +1,139 @@
+{
+  "companionPerkASenseForDanger": {
+    "en": "A Sense For Danger",
+    "it": "Senso del Pericolo",
+    "_description": {
+      "en": "At the start of combat, if any enemies would act before you (because of surprise, higher Initiative, or GM spending Luck), roll a DC: add AP to the group pool from your companion's warning equal to the total rolled on the DC (Effects count as 1).",
+      "it": "All'inizio del combattimento, se un nemico agisce prima del personaggio (per sorpresa, Iniziativa più alta, o Fortuna spesa dal GM), tirare un DC: aggiungere PA alla riserva del gruppo pari al totale ottenuto sui DC (gli Effetti contano come 1)."
+    }
+  },
+  "companionPerkAggressive": {
+    "en": "Aggressive",
+    "it": "Aggressivo",
+    "_description": {
+      "en": "Your companion is quick to action when it senses prey. When the companion enters a scene, immediately generate 1 Action Point for the group pool.",
+      "it": "Il compagno è rapido ad agire quando fiuta una preda. Quando il compagno entra in scena, genera immediatamente 1 Punto Azione per la riserva del gruppo."
+    }
+  },
+  "companionPerkCoordinated": {
+    "en": "Coordinated",
+    "it": "Coordinato",
+    "_description": {
+      "en": "When you take a major action, if the companion does not assist, then you may spend 1 AP to allow the companion to take a major action of your choice, rolling their own skill test as if they were a player character.",
+      "it": "Quando si esegue un'azione principale, se il compagno non assiste, è possibile spendere 1 PA per permettergli di eseguire un'azione principale a scelta, effettuando la propria prova di abilità come se fosse un personaggio giocante."
+    }
+  },
+  "companionPerkFierceLoyalty": {
+    "en": "Fierce Loyalty",
+    "it": "Lealtà Feroce",
+    "_description": {
+      "en": "Your companion adds +1 to your Defense while within the same zone, at the cost of being hit by any attack against you which suffers a complication. If you begin dying, your companion may spend your Luck points, and re-roll 1d20 on any attack made while within close range of you.",
+      "it": "Il compagno aggiunge +1 alla Difesa del personaggio finché si trova nella stessa zona, ma viene colpito da qualsiasi attacco contro il personaggio che subisca una complicazione. Se il personaggio sta morendo, il compagno può spendere i suoi punti Fortuna e ritirare 1d20 su qualsiasi attacco effettuato entro raggio ravvicinato."
+    }
+  },
+  "companionPerkFindTheHiddenPath": {
+    "en": "Find The Hidden Path",
+    "it": "Trova il Sentiero Nascosto",
+    "_description": {
+      "en": "Your companion is used to staying out of sight and can guide you along unseen routes. When your companion assists on a Sneak test, ignore the first complication generated on the skill test.",
+      "it": "Il compagno è abituato a restare nascosto e può guidare lungo percorsi invisibili. Quando il compagno assiste in una prova di Furtività, ignorare la prima complicazione generata nella prova."
+    }
+  },
+  "companionPerkForager": {
+    "en": "Forager",
+    "it": "Raccoglitore",
+    "_description": {
+      "en": "Whenever you scavenge a location and your companion assists, reduce the difficulty of the test by 1, to a minimum of 0. If successful, you gain one bonus AP from your companion, which may only be spent to make an additional roll for an item.",
+      "it": "Ogni volta che si raccolgono risorse in una location e il compagno assiste, la difficoltà della prova è ridotta di 1, fino a un minimo di 0. Se la prova ha successo, si ottiene 1 PA bonus dal compagno, spendibile solo per un tiro aggiuntivo per un oggetto."
+    }
+  },
+  "companionPerkHelpfulAwareness": {
+    "en": "Helpful Awareness",
+    "it": "Consapevolezza Vigile",
+    "_description": {
+      "en": "When the companion assists their owner on any PER-based test, the difficulty of the test is reduced by 1, to a minimum of 0.",
+      "it": "Quando il compagno assiste il proprietario in una qualsiasi prova basata su PER, la difficoltà della prova è ridotta di 1, fino a un minimo di 0."
+    }
+  },
+  "companionPerkIndefatigable": {
+    "en": "Indefatigable",
+    "it": "Instancabile",
+    "_description": {
+      "en": "The first time you or your companion would suffer Fatigue, ignore that instance of Fatigue. You regain the use of this ability once you and your companion have both slept for six or more hours.",
+      "it": "La prima volta che il personaggio o il compagno subirebbero Fatica, ignorare quell'istanza di Fatica. Questa abilità si ripristina dopo che entrambi hanno dormito per sei o più ore."
+    }
+  },
+  "companionPerkJudgeOfCharacter": {
+    "en": "Judge Of Character",
+    "it": "Giudice del Carattere",
+    "_description": {
+      "en": "When your companion meets an NPC, you may spend 1 Luck point to let the companion make a PER + Observation test, opposed by the NPC's CHA + Survival, to judge whether that NPC is a danger to you.",
+      "it": "Quando il compagno incontra un PNG, è possibile spendere 1 punto Fortuna per far effettuare al compagno una prova di PER + Osservazione, contrapposta a CAR + Sopravvivenza del PNG, per giudicare se quel PNG è un pericolo per il proprietario."
+    }
+  },
+  "companionPerkMightyBeast": {
+    "en": "Mighty Beast",
+    "it": "Bestia Possente",
+    "_description": {
+      "en": "When this companion rolls STR or Body as part of a skill test or to assist, they may re-roll one d20. If the companion assists a melee attack, the owner may spend 1 AP to add the Stun effect and knock the target prone if stunned.",
+      "it": "Quando questo compagno tira FOR o Corpo come parte di una prova di abilità o per assistere, può ritirare un d20. Se il compagno assiste un attacco in mischia, il proprietario può spendere 1 PA per aggiungere l'effetto Stordimento e far cadere il bersaglio a terra se stordito."
+    }
+  },
+  "companionPerkPackHunter": {
+    "en": "Pack Hunter",
+    "it": "Cacciatore in Branco",
+    "_description": {
+      "en": "At the start of a scene, you may spend 1 Luck point to declare the companion to be 'prowling'. At any point during the scene—at the start of any of your turns—the companion may appear from hiding, anywhere there is darkness or concealment.",
+      "it": "All'inizio di una scena, è possibile spendere 1 punto Fortuna per dichiarare che il compagno è 'in agguato'. In qualsiasi momento della scena—all'inizio di un proprio turno—il compagno può apparire dal nascondiglio, ovunque ci sia oscurità o copertura."
+    }
+  },
+  "companionPerkReadyToFight": {
+    "en": "Ready To Fight",
+    "it": "Pronto a Combattere",
+    "_description": {
+      "en": "When you succeed at an attack, your companion attacks as well (ranged or melee), hitting automatically but inflicting half the listed damage (round up), minimum 2 DC. At 5th level and every 5 levels beyond, add +1 DC damage to one natural melee attack.",
+      "it": "Quando il personaggio ha successo in un attacco, anche il compagno attacca (a distanza o in mischia), colpendo automaticamente ma infliggendo metà del danno indicato (arrotondato per eccesso), minimo 2 DC. Al 5° livello e ogni 5 livelli successivi, aggiungere +1 DC danno a un attacco naturale in mischia."
+    }
+  },
+  "companionPerkSoulfulEyes": {
+    "en": "Soulful Eyes",
+    "it": "Occhi Espressivi",
+    "_description": {
+      "en": "When you make a CHA + Speech test, the companion may assist, and you may re-roll 1d20 from your dice pool.",
+      "it": "Quando si effettua una prova di CAR + Eloquenza, il compagno può assistere e il personaggio può ritirare 1d20 dalla propria riserva di dadi."
+    }
+  },
+  "companionPerkSwiftRunner": {
+    "en": "Swift Runner",
+    "it": "Corridore Veloce",
+    "_description": {
+      "en": "When this companion rolls AGI as part of a skill test or to assist, a successful test generates one bonus AP (cannot be saved). The companion may move up to two zones as a minor action, or three zones as a sprint major action.",
+      "it": "Quando questo compagno tira AGI come parte di una prova di abilità o per assistere, una prova riuscita genera 1 PA bonus (non accumulabile). Il compagno può muoversi fino a due zone come azione minore, o tre zone come azione principale di Scatto."
+    }
+  },
+  "companionPerkTeamwork": {
+    "en": "Teamwork",
+    "it": "Lavoro di Squadra",
+    "_description": {
+      "en": "Each turn in combat, you may select a different ally within medium range; the companion assists that ally as if they were the companion's owner during that turn. No character can be assisted by more than one companion per turn.",
+      "it": "Ogni turno in combattimento, è possibile selezionare un alleato diverso entro raggio medio; il compagno assiste quell'alleato come se fosse il proprietario del compagno durante quel turno. Nessun personaggio può essere assistito da più di un compagno per turno."
+    }
+  },
+  "companionPerkToughOldBeast": {
+    "en": "Tough Old Beast",
+    "it": "Bestia Coriacea",
+    "_description": {
+      "en": "The companion's maximum HP is increased by an amount equal to your LUC. At 5th level and every 5 levels afterwards, add +1 to either Physical or Energy Damage Resistance.",
+      "it": "I PS massimi del compagno aumentano di un valore pari alla FOR del proprietario. Al 5° livello e ogni 5 livelli successivi, aggiungere +1 alla Resistenza ai Danni Fisici o Energetici."
+    }
+  },
+  "companionPerkTracker": {
+    "en": "Tracker",
+    "it": "Segugio",
+    "_description": {
+      "en": "Whenever the companion makes or assists a skill test to track another creature, the difficulty is reduced by 1 (minimum 0). The companion may also re-roll its dice when assisting on tracking tests.",
+      "it": "Ogni volta che il compagno effettua o assiste una prova di abilità per seguire le tracce di un'altra creatura, la difficoltà è ridotta di 1 (minimo 0). Il compagno può anche ritirare i propri dadi quando assiste nelle prove di inseguimento."
+    }
+  }
+}
+

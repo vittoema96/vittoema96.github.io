@@ -13,6 +13,7 @@ interface DatabaseCollections {
     other: Record<string, BaseItem>;
     mod: Record<string, ModItem>;
     perks: Record<string, any>;
+    companionPerks: Record<string, any>;
     traits: Record<string, TraitData>;
     legendaryEffects: Record<string, LegendaryEffect>;
     allItems: Record<string, Item>; // Pre-calculated lookup for speed

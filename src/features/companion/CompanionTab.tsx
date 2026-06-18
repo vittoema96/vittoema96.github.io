@@ -10,15 +10,7 @@ import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { FitText } from '@/components/FitText.tsx';
 import { COMPANION_SKILLS, CompanionSkillType } from '@/services/character/utils.ts';
 
-// Companion-specific perks (different from character perks)
-const COMPANION_PERKS = [
-    'perkAttackDog',
-    'perkPackMule',
-    'perkScout',
-    'perkRepairBot',
-    'perkLoyalCompanion',
-    'perkProtector'
-]
+// Companion-specific perks are loaded from companionPerks.csv via GameDatabase
 
 const COMPANION_MAP: Record<string, CompanionId[]> = {
     "perkDogmeat": ["dog"],
@@ -75,7 +67,8 @@ function CompanionTab() {
     }
 
     const getAvailablePerksForSlot = (currentSlotIndex: number): string[] => {
-        return COMPANION_PERKS.filter(perk => {
+        const allCompanionPerks = Object.keys(dataManager.companionPerks)
+        return allCompanionPerks.filter(perk => {
             if (companion.perks[currentSlotIndex] === perk) {
                 return true
             }
