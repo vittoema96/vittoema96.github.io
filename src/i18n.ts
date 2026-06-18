@@ -3,67 +3,38 @@ import {initReactI18next} from 'react-i18next'
 
 import enTranslations from '@/locales/en.json'
 import itTranslations from '@/locales/it.json'
+import { UISettingsManager, DEFAULT_LANGUAGE, type Language } from '@/styles/UISettingsManager'
 
 
-export const LANGUAGES = {
-    'it': "Italiano",
-    'en': "English"
-} as const
-export type Language = keyof typeof LANGUAGES
-export const DEFAULT_LANGUAGE: Language = 'en'
-
-
+/**
+ * i18next post-processor that appends a "(variation)" suffix to translated strings.
+ *
+ * When a translation call includes `{ variation: "some text" }` in its options,
+ * the output becomes `"Translated value (some text)"`.
+ * Used for item/perk variants where the base name is shared but a qualifier is needed
+ * (e.g. "Laser Rifle (Scoped)", "Stimpak (Super)").
+ */
 const variationProcessor: PostProcessorModule = {
     type: 'postProcessor',
     name: 'variationAppend',
     process: (value, _, options) => {
-        // Handle variation appending
         const variation = options["variation"]
-        return variation && typeof variation  === "string" ?
-            `${value} (${variation})`
-            : value;
-    }
-};
-
-
-/** Checks if a string is a valid Language */
-export const isLanguage = (value: string | null): value is Language => {
-    return !!value && Object.keys(LANGUAGES).includes(value);
+        return variation && typeof variation === "string"
+            ? `${value} (${variation})`
+            : value
+    },
 }
 
-/**
- * Get the current Language from localStorage or default
- */
-export const getCurrentLanguage = (): Language => {
-    const saved = localStorage.getItem('language');
-    if (isLanguage(saved)) { return saved }
+const initialLanguage = UISettingsManager.getCurrentLanguage()
 
-    const browserLanguages = navigator.languages || [navigator.language];
-    for (const lang of browserLanguages) {
-        // convert 'en-US' to 'en'
-        const shortLang = lang.split('-')[0] ?? DEFAULT_LANGUAGE;
-        if (isLanguage(shortLang)) { return shortLang }
-    }
-
-    return DEFAULT_LANGUAGE;
-};
-
-/*
-CHECKS THAT en.json and it.json have the same keys
-
-const enKeys = Object.keys(enTranslations)
-const itKeys = Object.keys(itTranslations)
-const missingInIt = enKeys.filter(key => !itKeys.includes(key));
-const missingInEn = itKeys.filter(key => !enKeys.includes(key));
-console.log("Missing keys from it: ", missingInIt);
-console.log("Missing keys from it: ", missingInEn);
-*/
+// Set <html lang="…"> early so screen-readers / crawlers see the right locale
+document.documentElement.lang = initialLanguage
 
 i18next
     .use(variationProcessor)
     .use(initReactI18next)
     .init({
-        lng: getCurrentLanguage(),
+        lng: initialLanguage,
         fallbackLng: DEFAULT_LANGUAGE,
         debug: false,
 
@@ -75,25 +46,16 @@ i18next
         interpolation: {
             escapeValue: false,
         },
-        postProcess: variationProcessor.name
+        postProcess: variationProcessor.name,
     })
 
 
 export const changeLanguage = async (newLanguage: Language | null = null) => {
-    const language = newLanguage || getCurrentLanguage()
+    const language = newLanguage || UISettingsManager.getCurrentLanguage()
 
-    // Update document language
-    document.documentElement.lang = language;
-
-    // Use the i18n system to change language
-    // TODO not sure it should be handled like this...
-    //       more likely that i18n-react has a different way
+    document.documentElement.lang = language
     await i18next.changeLanguage(language)
-
-    // Update localStorage
-    localStorage.setItem('language', language)
-
-    console.log(`Language changed to: ${language}`);
+    UISettingsManager.saveLanguage(language)
 
     return language
 }

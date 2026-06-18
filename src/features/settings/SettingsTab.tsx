@@ -1,49 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next'
-import { getCurrentTheme, applyTheme, Theme, THEMES } from '@/styles/theme/themeUtils'
+import { UISettingsManager, Theme, THEMES, DISPLAY_EFFECTS, type DisplayEffect, type Language, LANGUAGES } from '@/styles/UISettingsManager'
 import { usePopup } from '@/contexts/popup/PopupContext'
 import { useCharacter } from '@/contexts/CharacterContext'
-import {changeLanguage, getCurrentLanguage, Language, LANGUAGES} from "@/i18n"
+import { changeLanguage } from '@/i18n'
 import { SaveSlotManager, CharacterSlotInfo } from '@/services/SaveSlotManager.ts'
 
-const DISPLAY_EFFECTS = ['on', 'noFlicker', 'off'] as const
-type DisplayEffect = (typeof DISPLAY_EFFECTS)[number]
-type Settings = {
-    CRT_effect?: DisplayEffect
-}
-
-const SETTINGS_KEY = 'PB3K_settings'
-const loadSettings = (): Settings => JSON.parse(localStorage.getItem(SETTINGS_KEY) ?? '{}')
-
-export const applyDisplayEffect = (val?: DisplayEffect) => {
-    val ??= loadSettings().CRT_effect ?? 'on'
-    document.body.dataset['crt'] = val
-};
-
-const useSettings = () => {
-    const [ settings, setSettings ] = useState<Settings>(() => loadSettings())
-
-    useEffect(() => {
-        localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings))
-    }, [settings])
-
-    return [settings, setSettings] as const
-}
-
 const useDisplayEffectsState = () => {
-
-    const [settings, setSettings ] = useSettings()
-
-    const [ displayEffects, setDisplayEffects ] = useState<DisplayEffect>(() => {
-        return settings.CRT_effect ?? 'on'
-    })
+    const [ displayEffects, setDisplayEffects ] = useState<DisplayEffect>(() => UISettingsManager.getCurrentDisplayEffect())
 
     useEffect(() => {
-        setSettings({
-            ...settings,
-            CRT_effect: displayEffects
-        })
-        applyDisplayEffect(displayEffects)
+        UISettingsManager.setDisplayEffect(displayEffects)
     }, [displayEffects])
 
     return [displayEffects, setDisplayEffects] as const
@@ -52,8 +19,8 @@ const useDisplayEffectsState = () => {
 function SettingsTab() {
     const { t } = useTranslation()
 
-    const [ currentTheme, setCurrentTheme ] = useState(getCurrentTheme)
-    const [ currentLanguage, setCurrentLanguage ] = useState(getCurrentLanguage)
+    const [ currentTheme, setCurrentTheme ] = useState(UISettingsManager.getCurrentTheme)
+    const [ currentLanguage, setCurrentLanguage ] = useState(UISettingsManager.getCurrentLanguage)
     const [ displayEffects, setDisplayEffects ] = useDisplayEffectsState()
     const [ characterSlots, setCharacterSlots ] = useState<(CharacterSlotInfo | null)[]>(() => SaveSlotManager.getAllSlots())
 
@@ -70,8 +37,7 @@ function SettingsTab() {
     /** Fired when user changes Theme in selector */
     const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newTheme = e.target.value as Theme
-        applyTheme(newTheme)
-        setCurrentTheme(newTheme)
+        setCurrentTheme(UISettingsManager.setTheme(newTheme))
     }
 
     /** Refresh character slots list */
@@ -157,7 +123,7 @@ function SettingsTab() {
             }, 500)
 
             // Re-apply theme and language after reset
-            setCurrentTheme(applyTheme())
+            setCurrentTheme(UISettingsManager.applyTheme())
             changeLanguage().then(r => setCurrentLanguage(r))
             refreshSlots()
         }

@@ -1,3 +1,19 @@
+/**
+ * CharacterContext — global state for the active player character.
+ *
+ * Provides:
+ * - `rawCharacter`  – the persisted, user-editable data (SPECIAL, skills, items, …)
+ * - `character`     – a read-only, fully-calculated view (derived stats, equipped bonuses, …)
+ * - `updateCharacter` – partial-update function with side-effects (HP adjust, origin-change logic)
+ * - Slot management  – switch / reset character save slots
+ * - Luck helpers     – spend / replenish luck points
+ *
+ * Architecture:
+ * - `CharacterRootProvider`     – owns state, persistence (SaveSlotManager) and derived calc
+ * - `CharacterOverrideProvider` – lightweight wrapper that swaps `character` (used for companions)
+ * - `CharacterProvider`         – public API; auto-selects Root vs Override based on context nesting
+ */
+
 import React, {createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState} from 'react'
 import {
     BODY_PARTS,
@@ -15,9 +31,12 @@ import useCalculatedCharacter, {
 } from "@/hooks/useCalculatedCharacter";
 import { getOriginById, ORIGINS } from '@/services/character/Origin.ts';
 import { RawCharacterSchema } from '@/schemas/characterSchemas.ts';
+import { z } from 'zod';
 
 /**
- * Helper function to create Mysterious Stranger character
+ * Pre-built "Mysterious Stranger" companion character.
+ * TODO: Move to a dedicated presets/characters module. maybe we could also define a
+ *      "default" character and take defaults from that
  */
 export const MYSTERIOUS_44_MAGNUM = {
     id: 'weaponFortyFourPistol', // Mysterious Stranger's signature weapon
@@ -38,19 +57,14 @@ export const MYSTERIOUS_STRANGER: RawCharacter = RawCharacterSchema.parse({
     maxHp: 9999,
 })
 
-type DeepPartial<T> = {
-    [P in keyof T]?: T[P] extends (infer U)[]
-        ? U[] : T[P] extends object
-            ? DeepPartial<T[P]> : T[P];
-};
-
-// React component prop types
+/** Shape of the value exposed by CharacterContext to consumers. */
 export interface CharacterContextValue {
     character: Character;
     rawCharacter: RawCharacter | null;
-    updateCharacter: (updates: DeepPartial<RawCharacter>) => void;
+    updateCharacter: (updates: z.input<typeof RawCharacterSchema>) => void;
     replenishLuck: () => void;
     spendLuck: () => void;
+
     resetCharacter: () => void;
     switchToSlot: (slotIndex: number) => void;
     activeSlot: number;
@@ -59,20 +73,22 @@ const CharacterContext = createContext<CharacterContextValue | undefined>(undefi
 
 
 // Default plating mod for robot parts (slot 0)
+// TODO this should not be handled here (? or does it?)
 const DEFAULT_PLATING_MOD = 'modRobotPlatingStandard'
 
 
-/**
- * Custom hook for accessing character context
- */
+/** Convenience hook — throws if used outside a `CharacterProvider`. */
 export const useCharacter = (): CharacterContextValue => {
     const context = useContext(CharacterContext)
-    if (!context) {
-        throw new Error('useCharacter must be used within a CharacterProvider')
-    }
+    if (!context) { throw new Error('useCharacter must be used within a CharacterProvider') }
     return context
 }
 
+/**
+ * Lightweight provider that overrides only `character` while keeping the parent
+ * context's updaters intact. Used to render companion stats in the companion tab
+ * without affecting the main character state.
+ */
 function CharacterOverrideProvider({ overrideCharacter, parentContext, children}: Readonly<{
     overrideCharacter: Character,
     parentContext: CharacterContextValue,
@@ -90,12 +106,14 @@ function CharacterOverrideProvider({ overrideCharacter, parentContext, children}
     )
 }
 
-function CharacterRootProvider({ onReady, children }: Readonly<{
-    onReady: (() => void) | undefined,
+/**
+ * Core provider — owns character state, handles persistence via SaveSlotManager,
+ * and computes the derived `Character` via `useCalculatedCharacter`.
+ */
+function CharacterRootProvider({ children }: Readonly<{
     children: ReactNode
 }>) {
 
-    const [isReady, setIsReady] = useState(false)
     const dataManager = getGameDatabase()
 
     useEffect(() => {
@@ -112,40 +130,42 @@ function CharacterRootProvider({ onReady, children }: Readonly<{
         return res
     });
 
-    const saveAndSetRawCharacter = (data: RawCharacter) => {
-        SaveSlotManager.save(data)
-        setRawCharacter(data)
-    }
     // Switch to a different character slot
     const switchToSlot = useCallback((slotIndex: number) => {
         SaveSlotManager.setActiveSlot(slotIndex)
         setActiveSlot(slotIndex)
         let loadedCharacter = SaveSlotManager.loadFromSlot(slotIndex)
         loadedCharacter ??= RawCharacterSchema.parse({});
-        saveAndSetRawCharacter(loadedCharacter)
+        SaveSlotManager.save(loadedCharacter)
+        setRawCharacter(loadedCharacter)
     }, [])
 
     // Reset to default character
     const resetCharacter = useCallback(() => {
         const character = RawCharacterSchema.parse({})
-        saveAndSetRawCharacter(character)
+        SaveSlotManager.save(character)
+        setRawCharacter(character)
     }, [])
 
     const calculatedCharacter = useCalculatedCharacter(rawCharacter)
 
-    useEffect(() => {
-        setIsReady(true)
-        onReady?.()
-    }, [onReady])
 
     /**
-     * Function used to update character state.
-     * Also checks for:
-     * - SPECIAL stat changes: adjust HP accordingly
-     * - LEVEL changes: adjust HP accordingly
-     * - ORIGIN changes: add/remove robot parts
+     * Partial-update function for character state.
+     *
+     * Beyond merging fields, it handles domain side-effects:
+     * 1. Merges SPECIAL / skills shallowly
+     * 2. Filters traits incompatible with the new origin
+     * 3. Adjusts currentHp when maxHp changes
+     * 4. Unequips apparel when switching to/from origins with specialized armor
+     * 5. Adds/removes robot body parts on origin change
+     *
+     * WARNING: this function mutates `item.equipped` in-place for robot parts —
+     *          a known issue (see audit P0).
      */
-    const updateCharacter = useCallback((updates: DeepPartial<RawCharacter>): void => {
+    const updateCharacter = useCallback((
+        updates: z.input<typeof RawCharacterSchema>
+    ): void => {
         setRawCharacter(prev => {
             let updatedCharacter: RawCharacter = RawCharacterSchema.parse({
                 ...prev, ...updates,
@@ -199,7 +219,7 @@ function CharacterRootProvider({ onReady, children }: Readonly<{
 
             const items = updatedCharacter.items
             // TODO Only mrHandy parts checked currently
-            const hasRobotParts = items.some(i => currentOrigin.bodyParts.has(i.id as MrHandyPart))
+            const hasRobotParts = items.some(i => currentOrigin.bodyParts.has(i.id as MrHandyPart | BodyPart))
             if (currentOrigin.isRobot) {
                 let newParts: CharacterItem[] = []
                 if (hasRobotParts) {
@@ -260,14 +280,20 @@ function CharacterRootProvider({ onReady, children }: Readonly<{
 
     return (
         <CharacterContext.Provider value={contextValue}>
-            {isReady ? children : null}
+            {children}
         </CharacterContext.Provider>
     );
 }
 
-export function CharacterProvider({ onReady, children, overrideCharacter }:
+/**
+ * Public entry-point provider.
+ *
+ * - First mount (no parent context): renders `CharacterRootProvider` with full state.
+ * - Nested mount with `overrideCharacter`: renders `CharacterOverrideProvider` to
+ *   swap the read-only character while inheriting parent updaters.
+ */
+export function CharacterProvider({ children, overrideCharacter }:
                                   Readonly<{
-                                      onReady?: () => void;
                                       children: React.ReactNode;
                                       overrideCharacter?: Character;
                                   }>) {
@@ -286,7 +312,7 @@ export function CharacterProvider({ onReady, children, overrideCharacter }:
         );
     }
     return (
-        <CharacterRootProvider onReady={onReady}>
+        <CharacterRootProvider>
             {children}
         </CharacterRootProvider>
     );
