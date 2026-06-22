@@ -15,6 +15,7 @@ export interface AddItemPopupProps extends GenericPopupProps {
 }
 
 type SelectableItem = BaseItem & { variation?: Side }
+type RarityOperator = '=' | '>=' | '<='
 
 const BUY_MAX_QUANTITY = 99
 
@@ -111,6 +112,7 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
     const [quantity, setQuantity] = useInputNumberState(1)
     const [categoryFilter, setCategoryFilter] = useState<ItemCategory>()
     const [rarityFilter, setRarityFilter] = useState<number>()
+    const [rarityOperator, setRarityOperator] = useState<RarityOperator>('=')
 
     const availableItems = useMemo(() => {
         const allItems = Object.values(dataManager[itemType])
@@ -119,7 +121,11 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                 if(dataManager.isUnacquirable(item.ID)) { return false }
                 // If rarity or category filters, filter out what doesn't adhere
                 if(categoryFilter && item.CATEGORY !== categoryFilter) { return false }
-                if(rarityFilter !== undefined && item.RARITY !== rarityFilter) { return false }
+                if(rarityFilter !== undefined) {
+                    if(rarityOperator === '=' && item.RARITY !== rarityFilter) { return false }
+                    if(rarityOperator === '>=' && item.RARITY < rarityFilter) { return false }
+                    if(rarityOperator === '<=' && item.RARITY > rarityFilter) { return false }
+                }
 
                 // Filter out mrHandyOnly and companionWeapons
                 const isWeapon = dataManager.isType(item, 'weapon')
@@ -157,7 +163,7 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
 
             return nameA.localeCompare(nameB)
         })
-    }, [dataManager, itemType, categoryFilter, rarityFilter, t])
+    }, [dataManager, itemType, categoryFilter, rarityFilter, rarityOperator, t])
 
     useEffect(() => {
         setSelectedItem(availableItems[0])
@@ -166,7 +172,16 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
     useEffect(() => {
         setCategoryFilter(undefined)
         setRarityFilter(undefined)
+        setRarityOperator('=')
     }, [itemType])
+
+    const toggleRarityOperator = useCallback(() => {
+        setRarityOperator(current => {
+            if (current === '=') { return '>=' }
+            if (current === '>=') { return '<=' }
+            return '='
+        })
+    }, [])
 
     useEffect(() => {
         setIsFormValid(Boolean(selectedItem && quantity))
@@ -251,7 +266,15 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
 
             {/* Rarity Filter */}
             <div className="row" style={{ marginBottom: '1rem', alignItems: 'center' }}>
-                <label style={{ marginRight: '0.5rem' }}>{t('rarity')}:</label>
+                <label style={{ marginRight: '0.5rem' }}>{t('rarity')}</label>
+                <button
+                    type="button"
+                    onClick={toggleRarityOperator}
+                    aria-label="Rarity comparison operator"
+                    style={{ marginRight: '0.5rem', minWidth: '2.5rem' }}
+                >
+                    {rarityOperator}
+                </button>
                 <select
                     value={rarityFilter ?? 'all'}
                     onChange={(e) => {

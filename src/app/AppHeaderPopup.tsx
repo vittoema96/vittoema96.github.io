@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { DEFAULT_EXCHANGE_RATES } from '@/types'
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
+import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 
 /**
  * StatAdjustmentPopup - Allows editing HP, Luck, and currencies with exchange rates
@@ -11,6 +12,7 @@ import useInputNumberState from '@/hooks/useInputNumberState.ts';
 function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
     const { t } = useTranslation();
     const { character, updateCharacter } = useCharacter();
+    const { showToast } = usePopup();
 
     // Local state for form inputs
     const [currentHp, setCurrentHp] = useInputNumberState(character.currentHp);
@@ -54,6 +56,8 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
             return;
         }
 
+        const hpRemoved = character.currentHp - Number(currentHp);
+
         updateCharacter({
             currentHp,
             rads: typeof rads === 'number' ? rads : 0,
@@ -68,6 +72,11 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
             },
             currentLuck,
         });
+
+        if (hpRemoved >= 5) {
+            showToast(t('hpDamageWarningToast'), 3200);
+        }
+
         onClose();
     };
 

@@ -1,4 +1,41 @@
 /* Popups (dialog) */
+.popup-toast {
+    position: fixed;
+    left: 50%;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
+    z-index: 1200;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid var(--failure-color);
+    background-color: color-mix(in srgb, var(--failure-color) 18%, var(--secondary-color));
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    text-align: center;
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--shadow-color) 70%, transparent);
+    pointer-events: none;
+    opacity: 0;
+    animation: popup-toast-in-out 3.2s ease-in-out forwards;
+}
+
+@keyframes popup-toast-in-out {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(8px);
+    }
+    12% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    82% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(6px);
+    }
+}
+
 dialog {
     color: var(--primary-color);
     background-color: var(--secondary-color);

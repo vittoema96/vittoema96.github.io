@@ -491,6 +491,10 @@
     "en": "HP",
     "it": "PS"
   },
+  "hpDamageWarningToast": {
+    "en": "You suffered ≥5 points of damage. You may have suffered an injury.",
+    "it": "Hai subito ≥5 danni. Potresti aver riportato una ferita."
+  },
   "humanoid": {
     "en": "Humanoid",
     "it": "Umanoide"
