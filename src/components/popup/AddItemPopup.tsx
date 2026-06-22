@@ -3,12 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/contexts/CharacterContext';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
-import { CustomItem, GenericPopupProps, Side } from '@/types';
+import { CustomItem, GenericPopupProps, Side, CharacterItem } from '@/types';
 import { addItem } from '@/utils/itemUtils.ts';
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { BaseItem } from '@/schemas/items/baseItemSchemas.ts';
 import { ItemCategory, ItemType } from '@/types/item.ts';
+import ItemBaseCard from '@/features/inv/cards/BaseCard.tsx';
+import WeaponContent from '@/features/inv/cards/weapon/WeaponContent.tsx';
+import ApparelContent from '@/features/inv/cards/apparel/ApparelContent.tsx';
+import AidContent from '@/features/inv/cards/aid/AidContent.tsx';
+import OtherContent from '@/features/inv/cards/ammo/OtherContent.tsx';
 
 export interface AddItemPopupProps extends GenericPopupProps {
     itemType: ItemType;
@@ -122,9 +127,11 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                 // If rarity or category filters, filter out what doesn't adhere
                 if(categoryFilter && item.CATEGORY !== categoryFilter) { return false }
                 if(rarityFilter !== undefined) {
-                    if(rarityOperator === '=' && item.RARITY !== rarityFilter) { return false }
-                    if(rarityOperator === '>=' && item.RARITY < rarityFilter) { return false }
-                    if(rarityOperator === '<=' && item.RARITY > rarityFilter) { return false }
+                    const itemRarity = Number(item.RARITY)
+                    if (Number.isNaN(itemRarity)) { return false }
+                    if(rarityOperator === '=' && itemRarity !== rarityFilter) { return false }
+                    if(rarityOperator === '>=' && itemRarity < rarityFilter) { return false }
+                    if(rarityOperator === '<=' && itemRarity > rarityFilter) { return false }
                 }
 
                 // Filter out mrHandyOnly and companionWeapons
@@ -245,6 +252,37 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
         })
     }
 
+    const previewCharacterItem = useMemo<CharacterItem | undefined>(() => {
+        if (!selectedItem || quantity === '') {
+            return undefined
+        }
+
+        return {
+            id: selectedItem.ID,
+            quantity,
+            equipped: false,
+            mods: [],
+            ...(selectedItem.variation ? { variation: selectedItem.variation } : {}),
+        }
+    }, [quantity, selectedItem])
+
+    const previewContentRenderer = useMemo(() => {
+        if (!selectedItem) {
+            return null
+        }
+
+        if (dataManager.isType(selectedItem, 'weapon')) {
+            return WeaponContent
+        }
+        if (dataManager.isType(selectedItem, 'apparel')) {
+            return ApparelContent
+        }
+        if (dataManager.isType(selectedItem, 'aid')) {
+            return AidContent
+        }
+        return OtherContent
+    }, [dataManager, selectedItem])
+
     return (<>
             {/* Category Filter */}
             <div className="row" style={{ marginBottom: '1rem', alignItems: 'center' }}>
@@ -329,6 +367,17 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                     style={{ width: '5rem' }}
                 />
             </div>
+
+            {previewCharacterItem && previewContentRenderer && (
+                <div style={{ marginTop: '0.75rem', marginBottom: '0.5rem' }}>
+                    <ItemBaseCard
+                        characterItem={previewCharacterItem}
+                        action={undefined}
+                        contentRenderer={previewContentRenderer}
+                        className="preview-card"
+                    />
+                </div>
+            )}
         </>)
 }
 
