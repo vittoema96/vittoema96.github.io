@@ -96,6 +96,10 @@ dialog::backdrop {
 .header-info-popup__stat-input {
     max-width: 3.5rem;
     min-width: 2.5rem;
+    /* Keep text inputs visually consistent with previous number-input look */
+    text-align: center;
+    font-size: 1rem;
+    padding: var(--space-s);
 }
 
 .header-info-popup__currency-input {

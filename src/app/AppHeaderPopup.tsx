@@ -1,9 +1,8 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useCharacter } from '@/contexts/CharacterContext.tsx'
 import { useTranslation } from 'react-i18next'
 import { DEFAULT_EXCHANGE_RATES } from '@/types'
 import BasePopup from '@/components/popup/common/BasePopup.tsx';
-import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 
 /**
@@ -14,41 +13,127 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
     const { character, updateCharacter } = useCharacter();
     const { showToast } = usePopup();
 
-    // Local state for form inputs
-    const [currentHp, setCurrentHp] = useInputNumberState(character.currentHp);
-    const [rads, setRads] = useInputNumberState(character.rads);
-    const [currentLuck, setCurrentLuck] = useInputNumberState(character.currentLuck);
+    const [currentHpInput, setCurrentHpInput] = useState(`${character.currentHp}`);
+    const [radsInput, setRadsInput] = useState(`${character.rads}`);
+    const [currentLuckInput, setCurrentLuckInput] = useState(`${character.currentLuck}`);
 
-    const [caps, setCaps] = useInputNumberState(character.caps);
-    const [ncrDollars, setNcrDollars] = useInputNumberState(character.ncrDollars);
-    const [legionDenarius, setLegionDenarius] = useInputNumberState(character.legionDenarius);
-    const [prewarMoney, setPrewarMoney] = useInputNumberState(character.prewarMoney);
-
-    // Effective max HP is reduced by rads
-    const effectiveMaxHp = character.maxHp - Number(rads);
+    const [capsInput, setCapsInput] = useState(`${character.caps}`);
+    const [ncrDollarsInput, setNcrDollarsInput] = useState(`${character.ncrDollars}`);
+    const [legionDenariusInput, setLegionDenariusInput] = useState(`${character.legionDenarius}`);
+    const [prewarMoneyInput, setPrewarMoneyInput] = useState(`${character.prewarMoney}`);
 
     // Exchange rates state (user-configurable)
-    const [rateNcr, setRateNcr] = useInputNumberState(character.exchangeRates.ncrDollars);
-    const [rateLegion, setRateLegion] = useInputNumberState(character.exchangeRates.legionDenarius);
-    const [ratePrewar, setRatePrewar] = useInputNumberState(character.exchangeRates.prewarMoney);
+    const [rateNcrInput, setRateNcrInput] = useState(`${character.exchangeRates.ncrDollars}`);
+    const [rateLegionInput, setRateLegionInput] = useState(`${character.exchangeRates.legionDenarius}`);
+    const [ratePrewarInput, setRatePrewarInput] = useState(`${character.exchangeRates.prewarMoney}`);
 
+    const clamp = (value: number, min: number, max?: number) => {
+        let next = Math.max(min, value);
+        if (max !== undefined) {
+            next = Math.min(next, max);
+        }
+        return next;
+    };
 
-    const getVal =
-        (val: number | '', fallback = 0) => (val === '' ? fallback : val);
+    const parseResolvedNumber = (
+        input: string,
+        baseValue: number,
+        options?: {
+            min?: number,
+            max?: number,
+            allowRelative?: boolean,
+            integer?: boolean,
+        },
+    ): number | null => {
+        const trimmed = input.trim();
+        if (!trimmed) {
+            return null;
+        }
+
+        const parsed = options?.integer
+            ? Number.parseInt(trimmed, 10)
+            : Number.parseFloat(trimmed);
+        if (Number.isNaN(parsed)) {
+            return null;
+        }
+
+        const allowRelative = options?.allowRelative ?? true;
+        const resolved = allowRelative && /^[+-]/.test(trimmed)
+            ? baseValue + parsed
+            : parsed;
+
+        return clamp(resolved, options?.min ?? Number.NEGATIVE_INFINITY, options?.max);
+    };
+
+    const parsedRads = parseResolvedNumber(radsInput, character.rads, {
+        min: 0,
+        max: character.maxHp,
+        integer: true,
+    });
+    const effectiveMaxHp = Math.max(0, character.maxHp - (parsedRads ?? 0));
+
+    const resolvedValues = {
+        currentHp: parseResolvedNumber(currentHpInput, character.currentHp, {
+            min: 0,
+            max: effectiveMaxHp,
+            integer: true,
+        }),
+        rads: parseResolvedNumber(radsInput, character.rads, {
+            min: 0,
+            max: character.maxHp,
+            integer: true,
+        }),
+        currentLuck: parseResolvedNumber(currentLuckInput, character.currentLuck, {
+            min: 0,
+            max: character.maxLuck,
+            integer: true,
+        }),
+        caps: parseResolvedNumber(capsInput, character.caps, { min: 0, integer: true }),
+        ncrDollars: parseResolvedNumber(ncrDollarsInput, character.ncrDollars, { min: 0, integer: true }),
+        legionDenarius: parseResolvedNumber(legionDenariusInput, character.legionDenarius, { min: 0, integer: true }),
+        prewarMoney: parseResolvedNumber(prewarMoneyInput, character.prewarMoney, { min: 0, integer: true }),
+        rateNcr: parseResolvedNumber(
+            rateNcrInput,
+            character.exchangeRates.ncrDollars,
+            { min: 0.1, allowRelative: false },
+        ),
+        rateLegion: parseResolvedNumber(
+            rateLegionInput,
+            character.exchangeRates.legionDenarius,
+            { min: 0.1, allowRelative: false },
+        ),
+        ratePrewar: parseResolvedNumber(
+            ratePrewarInput,
+            character.exchangeRates.prewarMoney,
+            { min: 0.1, allowRelative: false },
+        ),
+    };
 
     // Calculate total wealth in caps equivalent
     const totalCapsEquivalent = useMemo(() => {
-        const ncrRate = getVal(rateNcr, DEFAULT_EXCHANGE_RATES.ncrDollars);
-        const legRate = getVal(rateLegion, DEFAULT_EXCHANGE_RATES.legionDenarius);
-        const preRate = getVal(ratePrewar, DEFAULT_EXCHANGE_RATES.prewarMoney);
+        const ncrRate = resolvedValues.rateNcr ?? DEFAULT_EXCHANGE_RATES.ncrDollars;
+        const legRate = resolvedValues.rateLegion ?? DEFAULT_EXCHANGE_RATES.legionDenarius;
+        const preRate = resolvedValues.ratePrewar ?? DEFAULT_EXCHANGE_RATES.prewarMoney;
 
         return (
-            getVal(caps) +
-            Math.floor(getVal(ncrDollars) / ncrRate) +
-            Math.floor(getVal(legionDenarius) / legRate) +
-            Math.floor(getVal(prewarMoney) / preRate)
+            (resolvedValues.caps ?? character.caps) +
+            Math.floor((resolvedValues.ncrDollars ?? character.ncrDollars) / ncrRate) +
+            Math.floor((resolvedValues.legionDenarius ?? character.legionDenarius) / legRate) +
+            Math.floor((resolvedValues.prewarMoney ?? character.prewarMoney) / preRate)
         );
-    }, [rateNcr, rateLegion, ratePrewar, caps, ncrDollars, legionDenarius, prewarMoney]);
+    }, [
+        character.caps,
+        character.legionDenarius,
+        character.ncrDollars,
+        character.prewarMoney,
+        resolvedValues.caps,
+        resolvedValues.legionDenarius,
+        resolvedValues.ncrDollars,
+        resolvedValues.prewarMoney,
+        resolvedValues.rateLegion,
+        resolvedValues.rateNcr,
+        resolvedValues.ratePrewar,
+    ]);
 
 
     const onConfirm = () => {
@@ -56,21 +141,32 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
             return;
         }
 
-        const hpRemoved = character.currentHp - Number(currentHp);
+        const nextCurrentHp = resolvedValues.currentHp!;
+        const nextRads = resolvedValues.rads!;
+        const nextCurrentLuck = resolvedValues.currentLuck!;
+        const nextCaps = resolvedValues.caps!;
+        const nextNcrDollars = resolvedValues.ncrDollars!;
+        const nextLegionDenarius = resolvedValues.legionDenarius!;
+        const nextPrewarMoney = resolvedValues.prewarMoney!;
+        const nextRateNcr = resolvedValues.rateNcr!;
+        const nextRateLegion = resolvedValues.rateLegion!;
+        const nextRatePrewar = resolvedValues.ratePrewar!;
+
+        const hpRemoved = character.currentHp - nextCurrentHp;
 
         updateCharacter({
-            currentHp,
-            rads: typeof rads === 'number' ? rads : 0,
-            caps,
-            ncrDollars,
-            legionDenarius,
-            prewarMoney,
+            currentHp: nextCurrentHp,
+            rads: nextRads,
+            caps: nextCaps,
+            ncrDollars: nextNcrDollars,
+            legionDenarius: nextLegionDenarius,
+            prewarMoney: nextPrewarMoney,
             exchangeRates: {
-                ncrDollars: getVal(rateNcr, DEFAULT_EXCHANGE_RATES.ncrDollars),
-                legionDenarius: getVal(rateLegion, DEFAULT_EXCHANGE_RATES.legionDenarius),
-                prewarMoney: getVal(ratePrewar, DEFAULT_EXCHANGE_RATES.prewarMoney),
+                ncrDollars: nextRateNcr,
+                legionDenarius: nextRateLegion,
+                prewarMoney: nextRatePrewar,
             },
-            currentLuck,
+            currentLuck: nextCurrentLuck,
         });
 
         if (hpRemoved >= 5) {
@@ -80,38 +176,22 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
         onClose();
     };
 
-    // Generic number input handler
-    const handleNumberChange = (
-        setter: (val: number | '') => void,
-        min = 0,
-        max?: number
-    ) => (e: { target: { value: any } }) => {
-            const val = e.target.value;
-            if (val === '') {
-                setter('');
-            } else {
-                const num = Number.parseFloat(val);
-                if (!Number.isNaN(num)) {
-                    let clamped = Math.max(min, num);
-                    if (max !== undefined) {
-                        clamped = Math.min(clamped, max);
-                    }
-                    setter(clamped);
-                }
-            }
+    const handleTextNumberChange =
+        (setter: (val: string) => void) => (e: { target: { value: string } }) => {
+            setter(e.target.value);
         };
 
     const isFormValid =
-        currentHp !== '' &&
-        rads !== '' &&
-        currentLuck !== '' &&
-        caps !== '' &&
-        ncrDollars !== '' &&
-        legionDenarius !== '' &&
-        prewarMoney !== '' &&
-        rateNcr !== '' &&
-        rateLegion !== '' &&
-        ratePrewar !== '';
+        resolvedValues.currentHp !== null &&
+        resolvedValues.rads !== null &&
+        resolvedValues.currentLuck !== null &&
+        resolvedValues.caps !== null &&
+        resolvedValues.ncrDollars !== null &&
+        resolvedValues.legionDenarius !== null &&
+        resolvedValues.prewarMoney !== null &&
+        resolvedValues.rateNcr !== null &&
+        resolvedValues.rateLegion !== null &&
+        resolvedValues.ratePrewar !== null;
 
     if (!character) {
         return null;
@@ -119,30 +199,30 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
 
     // Currency data for table rendering
     const currencies = [
-        { id: 'caps', icon: 'caps', value: caps, setter: setCaps, rate: null, rateSetter: null },
+        { id: 'caps', icon: 'caps', value: capsInput, setter: setCapsInput, rate: null, rateSetter: null },
         {
             id: 'ncrDollars',
             icon: 'ncrDollars',
-            value: ncrDollars,
-            setter: setNcrDollars,
-            rate: rateNcr,
-            rateSetter: setRateNcr,
+            value: ncrDollarsInput,
+            setter: setNcrDollarsInput,
+            rate: rateNcrInput,
+            rateSetter: setRateNcrInput,
         },
         {
             id: 'legionDenarius',
             icon: 'legionDenarius',
-            value: legionDenarius,
-            setter: setLegionDenarius,
-            rate: rateLegion,
-            rateSetter: setRateLegion,
+            value: legionDenariusInput,
+            setter: setLegionDenariusInput,
+            rate: rateLegionInput,
+            rateSetter: setRateLegionInput,
         },
         {
             id: 'prewarMoney',
             icon: 'prewarMoney',
-            value: prewarMoney,
-            setter: setPrewarMoney,
-            rate: ratePrewar,
-            rateSetter: setRatePrewar,
+            value: prewarMoneyInput,
+            setter: setPrewarMoneyInput,
+            rate: ratePrewarInput,
+            rateSetter: setRatePrewarInput,
         },
     ];
 
@@ -171,14 +251,11 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                         </th>
                         <td>
                             <input
-                                type="number"
+                                type="text"
+                                inputMode="decimal"
                                 className="header-info-popup__stat-input"
-                                value={currentHp}
-                                onChange={handleNumberChange(
-                                    setCurrentHp,
-                                    0,
-                                    effectiveMaxHp,
-                                )}
+                                value={currentHpInput}
+                                onChange={handleTextNumberChange(setCurrentHpInput)}
                                 min="0"
                                 max={effectiveMaxHp}
                             />
@@ -192,14 +269,11 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                                 title={t('radiation')}
                             />
                             <input
-                                type="number"
+                                type="text"
+                                inputMode="decimal"
                                 className="header-info-popup__stat-input border-warning"
-                                value={rads}
-                                onChange={handleNumberChange(
-                                    setRads,
-                                    0,
-                                    character.maxHp,
-                                )}
+                                value={radsInput}
+                                onChange={handleTextNumberChange(setRadsInput)}
                                 min="0"
                                 max={character.maxHp}
                                 title={t('radiation')}
@@ -219,14 +293,11 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                         </th>
                         <td>
                             <input
-                                type="number"
+                                type="text"
+                                inputMode="decimal"
                                 className="header-info-popup__stat-input"
-                                value={currentLuck}
-                                onChange={handleNumberChange(
-                                    setCurrentLuck,
-                                    0,
-                                    character.maxLuck,
-                                )}
+                                value={currentLuckInput}
+                                onChange={handleTextNumberChange(setCurrentLuckInput)}
                                 min="0"
                                 max={character.maxLuck}
                             />
@@ -268,10 +339,11 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                             </td>
                             <td>
                                 <input
-                                    type="number"
+                                    type="text"
+                                    inputMode="decimal"
                                     className="header-info-popup__stat-input"
                                     value={currency.value}
-                                    onChange={handleNumberChange(currency.setter, 0)}
+                                    onChange={handleTextNumberChange(currency.setter)}
                                     min="0"
                                 />
                             </td>
@@ -287,10 +359,7 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                                                     fontSize: '0.75rem',
                                                     width: '2rem',
                                                 }}
-                                                onChange={handleNumberChange(
-                                                    currency.rateSetter,
-                                                    0.1,
-                                                )}
+                                                onChange={handleTextNumberChange(currency.rateSetter)}
                                                 min="0.1"
                                                 step="0.1"
                                             />
