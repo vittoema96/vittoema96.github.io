@@ -143,6 +143,10 @@
     "en": "Big Guns",
     "it": "Armi Pesanti"
   },
+  "bows": {
+    "en": "Bows",
+    "it": "Archi"
+  },
   "body": {
     "en": "Body",
     "it": "Corpo"

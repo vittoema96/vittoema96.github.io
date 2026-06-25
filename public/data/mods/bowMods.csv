@@ -1,0 +1,9 @@
+ID,TYPE,SLOT_TYPE,DESCRIPTOR,EFFECTS,WEIGHT,COST,SKILL,PERKS,RARITY,WEAPON_TYPES
+modBowCompoundFrame,mod,modSlotFrame,Compound,"[""damageAdd:1"",""fireRateAdd:-1"",""qualityRemove:qualityRecoil:6""]",0.5,30,survival,"[""gunNut:1""]",2,"[""weaponBow""]"
+modBowIronSights,mod,modSlotSight,-,"[""rangeAdd:1""]",0.5,10,survival,"[""gunNut:1""]",2,"[""weaponBow""]"
+modBowGlowSights,mod,modSlotSight,Glow-Sighted,"[""rangeAdd:1"",""qualityAdd:qualityAccurate""]",0.5,15,survival,"[""gunNut:2""]",2,"[""weaponBow""]"
+modCrossbowIronSights,mod,modSlotSight,-,"[""rangeAdd:1""]",0.5,10,repair,"[""gunNut:1""]",2,"[""weaponCrossbow""]"
+modCrossbowGlowSights,mod,modSlotSight,Glow-Sighted,"[""rangeAdd:1"",""qualityAdd:qualityAccurate""]",0.5,15,repair,"[""gunNut:2""]",2,"[""weaponCrossbow""]"
+modCrossbowHeavyFrame,mod,modSlotFrame,Heavy,"[""damageAdd:1""]",0.5,30,repair,"[""gunNut:1""]",2,"[""weaponCrossbow""]"
+modCrossbowRepeatingFrame,mod,modSlotFrame,Repeating,"[""fireRateAdd:1"",""qualityRemove:qualitySlowLoad""]",1,75,repair,"[""gunNut:3""]",3,"[""weaponCrossbow""]"
+modCrossbowMultipleLaunchFrame,mod,modSlotFrame,Peppered,"[""damageAdd:-1"",""qualityAdd:qualityAmmoHungry:3"",""effectAdd:effectSpread""]",2,60,repair,"[""gunNut:2""]",2,"[""weaponCrossbow""]"

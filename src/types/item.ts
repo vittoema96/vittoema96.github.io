@@ -15,6 +15,7 @@ export const WEAPON_CATEGORIES = [
     'explosives',
     'throwing',
     'unarmed',
+    'bows',
 ] as const;
 export const APPAREL_CATEGORIES = [
     'clothing',

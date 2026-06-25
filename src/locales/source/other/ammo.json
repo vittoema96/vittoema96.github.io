@@ -238,5 +238,69 @@
       "en": "Syringer rounds are often handmade by Wasteland chemists and are found in several different formulations.",
       "it": "I proiettili Syringer sono spesso fatti a mano da chimici della Zona Contaminata e si trovano in diverse forme."
     }
+  },
+  "ammoAcidConcentrate": {
+    "en": "Acid Concentrate",
+    "it": "Acido Concentrato",
+    "_description": {
+      "en": "Acid concentrate is a concentrated solution resulting in a highly corrosive chemical compound that must be contained in a glass container to prevent corrosion of the weapon.",
+      "it": "L'acido concentrato è una soluzione concentrata che risulta in un composto chimico altamente corrosivo che deve essere contenuto in un contenitore di vetro per prevenire la corrosione dell'arma."
+    }
+  },
+  "ammoArrowCryo": {
+    "en": "Cryo Arrow/Bolt",
+    "it": "Freccia/Dardo Criogenica",
+    "_description": {
+      "en": "With a special container of liquid nitrogen, the weapon spreads this cold element on impact. The weapon gains the Freeze damage effect.",
+      "it": "Con uno speciale contenitore di azoto liquido, l'arma diffonde questo elemento freddo all'impatto. L'arma ottiene l'effetto danno Congelamento."
+    }
+  },
+  "ammoArrowExplosive": {
+    "en": "Explosive Arrow/Bolt",
+    "it": "Freccia/Dardo Esplosiva",
+    "_description": {
+      "en": "Tipped with explosive materials, this arrow detonates on impact. The weapon loses the Suppressed weapon quality and gains the Blast weapon quality.",
+      "it": "Con la punta di materiali esplosivi, questa freccia detona all'impatto. L'arma perde la qualità Silenziata e ottiene la qualità Esplosione."
+    }
+  },
+  "ammoArrowFlaming": {
+    "en": "Flaming Arrow/Bolt",
+    "it": "Freccia/Dardo Incendiaria",
+    "_description": {
+      "en": "With flammable materials, this arrow ignites on impact. The weapon gains the Persistent (Energy) damage effect.",
+      "it": "Con materiali infiammabili, questa freccia si incendia all'impatto. L'arma ottiene l'effetto danno Persistente (Energia)."
+    }
+  },
+  "ammoArrowSerrated": {
+    "en": "Serrated Arrow/Bolt",
+    "it": "Freccia/Dardo Seghettata",
+    "_description": {
+      "en": "Carefully shaped tip increases the penetration force of the arrow and leaves serious wounds. The weapon gains the Persistent (Physical) and Piercing 1 damage effects.",
+      "it": "La punta sagomata con cura aumenta la forza di penetrazione della freccia e lascia ferite gravi. L'arma ottiene gli effetti danno Persistente (Fisico) e Perforante 1."
+    }
+  },
+  "ammoArrowPlasma": {
+    "en": "Plasma Arrow/Bolt",
+    "it": "Freccia/Dardo al Plasma",
+    "_description": {
+      "en": "Rigged with a modified fusion cell, the energy is released on impact. The weapon inflicts +2 CD damage and inflicts both Physical and Energy damage; the damage is reduced by whichever of Physical or Energy damage resistance the target has less of.",
+      "it": "Dotata di una cella a fusione modificata, l'energia viene rilasciata all'impatto. L'arma infligge +2 CD di danno e infligge sia danni Fisici che Energetici; il danno è ridotto dalla minore tra le resistenze ai danni Fisici o Energetici del bersaglio."
+    }
+  },
+  "ammoArrowPoison": {
+    "en": "Poison Arrow/Bolt",
+    "it": "Freccia/Dardo Avvelenata",
+    "_description": {
+      "en": "Dipped in poison, the tip of the arrow infects organic material. The weapon gains the Persistent (Poison) damage effect.",
+      "it": "Immersa nel veleno, la punta della freccia infetta il materiale organico. L'arma ottiene l'effetto danno Persistente (Veleno)."
+    }
+  },
+  "ammoSyringerCazadoresSting": {
+    "en": "Cazadores Sting",
+    "it": "Puntura di Cazador",
+    "_description": {
+      "en": "The weapon adds +2 CD damage and gains the Persistent (poison) damage effect.",
+      "it": "L'arma aggiunge +2 CD di danno e ottiene l'effetto danno Persistente (veleno)."
+    }
   }
 }

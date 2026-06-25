@@ -75,7 +75,7 @@ export const GameDataRepository = {
                 'data/weapon/smallGuns.csv', 'data/weapon/energyWeapons.csv',
                 'data/weapon/bigGuns.csv', 'data/weapon/meleeWeapons.csv',
                 'data/weapon/throwing.csv', 'data/weapon/explosives.csv',
-                'data/weapon/companionWeapons.csv'
+                'data/weapon/bows.csv', 'data/weapon/companionWeapons.csv'
             ], WeaponSchema),
             this.mergeCSVs<ApparelItem>([
                 'data/apparel/armor.csv', 'data/apparel/clothing.csv', 'data/apparel/robotParts.csv'
@@ -88,6 +88,7 @@ export const GameDataRepository = {
             this.mergeCSVs<ModItem>([
                 'data/mods/smallGunMods.csv', 'data/mods/bigGunMods.csv',
                 'data/mods/energyWeaponMods.csv', 'data/mods/meleeWeaponMods.csv',
+                'data/mods/bowMods.csv',
                 'data/mods/armorMaterialMods.csv', 'data/mods/armorImprovementMods.csv',
                 'data/mods/ballisticWeaveMods.csv', 'data/mods/vaultSuitMods.csv',
                 'data/mods/robotArmorMods.csv'

@@ -43,6 +43,7 @@ type RollerStats = PlayerRollerStats | CompanionRollerStats | StrangerRollerStat
 
 export interface D20PopupProps {
     skillId: SkillType | CompanionSkillType;
+    specialOverride?: SpecialType;
     roller?: RollerType;
     usingItem?: CharacterItem | undefined;
     onClose: () => void;
@@ -50,6 +51,7 @@ export interface D20PopupProps {
 
 function D20Popup({
     skillId,
+    specialOverride,
     usingItem,
     roller,
     onClose,
@@ -136,9 +138,8 @@ function D20Popup({
     const [initialApCost, setInitialApCost] = useState(0);
 
     // Derive default specials without 'as' — use existing type guards
-    const defaultPlayerSpecial: SpecialType = isCharacterSkill(skillId)
-        ? getSpecialFromSkill(skillId)
-        : 'strength';
+    const defaultPlayerSpecial: SpecialType = specialOverride
+        ?? (isCharacterSkill(skillId) ? getSpecialFromSkill(skillId) : 'strength');
     const defaultCompanionSpecial: CompanionSpecialType = isCompanionSkill(skillId)
         ? getSpecialFromSkillCompanion(skillId)
         : 'body';

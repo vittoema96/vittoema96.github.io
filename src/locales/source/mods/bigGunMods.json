@@ -3,8 +3,8 @@
     "en": "Accelerated Barrel",
     "it": "Canna Accelerata",
     "_description": {
-      "en": "+1 Fire Rate",
-      "it": "+1 Cadenza di Fuoco"
+      "en": "+1 damage DC, +1 Fire Rate, reduces Range by 1 grade",
+      "it": "+1 danno DC, +1 Cadenza di Fuoco, riduce la Gittata di 1 grado"
     }
   },
   "modBayonetMissileLauncher": {
@@ -19,8 +19,8 @@
     "en": "Beam Focuser",
     "it": "Concentratore di Raggio",
     "_description": {
-      "en": "Increases Range by 1 grade",
-      "it": "Aumenta la Gittata di 1 grado"
+      "en": "Gains Piercing 1, increases Range by 1 grade",
+      "it": "Ottiene Penetrante 1, aumenta la Gittata di 1 grado"
     }
   },
   "modBetaWaveTunerGatling": {
@@ -35,56 +35,56 @@
     "en": "Boosted Capacitor",
     "it": "Condensatore Potenziato",
     "_description": {
-      "en": "+1 damage DC, -1 Fire Rate",
-      "it": "+1 danno DC, -1 Cadenza di Fuoco"
+      "en": "+1 damage DC",
+      "it": "+1 danno DC"
     }
   },
   "modChargingBarrels": {
     "en": "Charging Barrels",
     "it": "Canne a Caricamento",
     "_description": {
-      "en": "+2 damage DC, -1 Fire Rate",
-      "it": "+2 danno DC, -1 Cadenza di Fuoco"
+      "en": "+4 damage DC, -3 Fire Rate, increases Range by 1 grade",
+      "it": "+4 danno DC, -3 Cadenza di Fuoco, aumenta la Gittata di 1 grado"
     }
   },
   "modCombustionModule": {
     "en": "Combustion Module",
     "it": "Modulo di Combustione",
     "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+      "en": "Gains Persistent",
+      "it": "Ottiene Persistente"
     }
   },
   "modCompressionNozzle": {
     "en": "Compression Nozzle",
     "it": "Ugello di Compressione",
     "_description": {
-      "en": "+1 damage DC, increases Range by 1 grade",
-      "it": "+1 danno DC, aumenta la Gittata di 1 grado"
+      "en": "+1 damage DC",
+      "it": "+1 danno DC"
     }
   },
   "modElectrificationModule": {
     "en": "Electrification Module",
     "it": "Modulo di Elettrificazione",
     "_description": {
-      "en": "Damage type becomes Energy, gains Radioactive",
-      "it": "Il tipo di danno diventa Energia, ottiene Radioattivo"
+      "en": "Damage type becomes Energy, gains Vicious",
+      "it": "Il tipo di danno diventa Energia, ottiene Violento"
     }
   },
   "modGunnerSight": {
     "en": "Gunner Sight",
     "it": "Mirino Gunner",
     "_description": {
-      "en": "Gains Precision",
-      "it": "Ottiene Di Precisione"
+      "en": "Can reroll the Hit Location die",
+      "it": "Può ritirare il dado del Punto di Impatto"
     }
   },
   "modGunnerSightMinigun": {
     "en": "Gunner Sight",
     "it": "Mirino Gunner",
     "_description": {
-      "en": "Gains Precision",
-      "it": "Ottiene Di Precisione"
+      "en": "Loses Inaccurate",
+      "it": "Perde Impreciso"
     }
   },
   "modHugeTank": {
@@ -107,8 +107,8 @@
     "en": "Long Barrel",
     "it": "Canna Lunga",
     "_description": {
-      "en": "Increases Range by 1 grade",
-      "it": "Aumenta la Gittata di 1 grado"
+      "en": "Loses Inaccurate",
+      "it": "Perde Impreciso"
     }
   },
   "modLongBarrelJunkJet": {
@@ -123,8 +123,8 @@
     "en": "Napalm",
     "it": "Napalm",
     "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+      "en": "+1 damage DC",
+      "it": "+1 danno DC"
     }
   },
   "modNightVisionScopeMissileLauncher": {
@@ -163,16 +163,16 @@
     "en": "Recoil Compensating Stock",
     "it": "Calcio per Compensazione del Rinculo",
     "_description": {
-      "en": "Loses Inaccurate, +1 Fire Rate",
-      "it": "Perde Impreciso, +1 Cadenza di Fuoco"
+      "en": "+1 Fire Rate",
+      "it": "+1 Cadenza di Fuoco"
     }
   },
   "modReflexSightGatling": {
     "en": "Reflex Sight",
     "it": "Mirino Reflex",
     "_description": {
-      "en": "Can reroll the Hit Location die",
-      "it": "Può ritirare il dado del Punto di Impatto"
+      "en": "Loses Inaccurate",
+      "it": "Perde Impreciso"
     }
   },
   "modScopeMissileLauncher": {
@@ -187,16 +187,16 @@
     "en": "Shredder",
     "it": "Trituratore",
     "_description": {
-      "en": "Melee Weapon, deals 6 DC Physical Piercing 2 damage",
-      "it": "Arma da Mischia, infligge 6 DC danni Fisici Penetranti 2"
+      "en": "Melee Weapon, deals damage DC equal to Fire Rate, Piercing 2",
+      "it": "Arma da Mischia, infligge un Numero di DC danni Fisici pari alla Cadenza di Fuoco, Penetrante 2"
     }
   },
   "modStabilizer": {
     "en": "Stabilizer",
     "it": "Stabilizzatore",
     "_description": {
-      "en": "Loses Inaccurate",
-      "it": "Perde Impreciso"
+      "en": "Gains Piercing 1",
+      "it": "Ottiene Penetrante 1"
     }
   },
   "modTargetingComputer": {
@@ -219,16 +219,56 @@
     "en": "Triple Barrel",
     "it": "Canna Tripla",
     "_description": {
-      "en": "+1 damage DC, +1 Fire Rate",
-      "it": "+1 danno DC, +1 Cadenza di Fuoco"
+      "en": "+2 damage DC, -2 Fire Rate",
+      "it": "+2 danno DC, -2 Cadenza di Fuoco"
     }
   },
   "modVaporizerNozzle": {
     "en": "Vaporizer Nozzle",
     "it": "Ugello Vaporizzatore",
     "_description": {
-      "en": "+2 damage DC, increases Range by 1 grade, -1 Fire Rate",
-      "it": "+2 danno DC, aumenta la Gittata di 1 grado, -1 Cadenza di Fuoco"
+      "en": "+1 damage DC, gains Vicious",
+      "it": "+1 danno DC, ottiene Violento"
+    }
+  },
+  "modGammaWaveEmitterGatling": {
+    "en": "Gamma Wave Emitter",
+    "it": "Emettitore di Onde Gamma",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modMaximizedCapacitorGatling": {
+    "en": "Maximized Capacitor",
+    "it": "Condensatore Massimizzato",
+    "_description": {
+      "en": "+2 damage DC",
+      "it": "+2 danno DC"
+    }
+  },
+  "modBoostedPhotonAgitatorGatling": {
+    "en": "Boosted Photon Agitator",
+    "it": "Agitatore Fotonico Potenziato",
+    "_description": {
+      "en": "+2 damage DC, gains Vicious",
+      "it": "+2 danno DC, ottiene Violento"
+    }
+  },
+  "modBoostedGammaWaveEmitterGatling": {
+    "en": "Boosted Gamma Wave Emitter",
+    "it": "Emettitore di Onde Gamma Potenziato",
+    "_description": {
+      "en": "+2 damage DC, gains Persistent",
+      "it": "+2 danno DC, ottiene Persistente"
+    }
+  },
+  "modOverchargedCapacitorGatling": {
+    "en": "Overcharged Capacitor",
+    "it": "Condensatore Sovraccaricato",
+    "_description": {
+      "en": "+3 damage DC",
+      "it": "+3 danno DC"
     }
   }
 }

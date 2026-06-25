@@ -28,4 +28,12 @@ ammoAlienPowerCell,ammo,ammo,0,5,5
 ammoAlienPowerModule,ammo,ammo,0,10,6
 ammoArrow,ammo,ammo,0,2,1
 ammoCrossbowBolt,ammo,ammo,0,3,2
-ammoPlasmaCore,ammo,ammo,4,200,5
+ammoPlasmaCore,ammo,ammo,2,200,5
+ammoAcidConcentrate,ammo,ammo,0,2,3
+ammoArrowCryo,ammo,arrowType,0,8,3
+ammoArrowExplosive,ammo,arrowType,0,6,2
+ammoArrowFlaming,ammo,arrowType,0,2,1
+ammoArrowSerrated,ammo,arrowType,0,4,1
+ammoArrowPlasma,ammo,arrowType,0,9,4
+ammoArrowPoison,ammo,arrowType,0,3,1
+ammoSyringerCazadoresSting,ammo,syringerAmmo,0,75,0

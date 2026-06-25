@@ -1,0 +1,67 @@
+{
+  "modBowCompoundFrame": {
+    "en": "Compound Frame",
+    "it": "Telaio Compound",
+    "_description": {
+      "en": "+1 damage DC, -1 Fire Rate, removes Recoil (6)",
+      "it": "+1 danno DC, -1 Cadenza di Fuoco, rimuove Rinculo (6)"
+    }
+  },
+  "modBowIronSights": {
+    "en": "Iron Sights",
+    "it": "Mirino Metallico",
+    "_description": {
+      "en": "Increases Range by 1 grade",
+      "it": "Aumenta la Gittata di 1 grado"
+    }
+  },
+  "modBowGlowSights": {
+    "en": "Glow Sights",
+    "it": "Mirino Luminoso",
+    "_description": {
+      "en": "Increases Range by 1 grade, gains Accurate",
+      "it": "Aumenta la Gittata di 1 grado, ottiene Di Precisione"
+    }
+  },
+  "modCrossbowIronSights": {
+    "en": "Iron Sights",
+    "it": "Mirino Metallico",
+    "_description": {
+      "en": "Increases Range by 1 grade",
+      "it": "Aumenta la Gittata di 1 grado"
+    }
+  },
+  "modCrossbowGlowSights": {
+    "en": "Glow Sights",
+    "it": "Mirino Luminoso",
+    "_description": {
+      "en": "Increases Range by 1 grade, gains Accurate",
+      "it": "Aumenta la Gittata di 1 grado, ottiene Di Precisione"
+    }
+  },
+  "modCrossbowHeavyFrame": {
+    "en": "Heavy Frame",
+    "it": "Telaio Pesante",
+    "_description": {
+      "en": "+1 damage DC",
+      "it": "+1 danno DC"
+    }
+  },
+  "modCrossbowRepeatingFrame": {
+    "en": "Repeating Frame",
+    "it": "Telaio a Ripetizione",
+    "_description": {
+      "en": "+1 Fire Rate, removes Slow Load",
+      "it": "+1 Cadenza di Fuoco, rimuove Caricamento Lento"
+    }
+  },
+  "modCrossbowMultipleLaunchFrame": {
+    "en": "Multiple Launch Frame",
+    "it": "Telaio a Lancio Multiplo",
+    "_description": {
+      "en": "-1 damage DC, gains Ammo-Hungry (3) and Spread",
+      "it": "-1 danno DC, ottiene Consuma Munizioni (3) e Propagato"
+    }
+  }
+}
+

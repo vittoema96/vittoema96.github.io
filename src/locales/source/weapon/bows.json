@@ -1,0 +1,19 @@
+{
+  "weaponBow": {
+    "en": "Bow",
+    "it": "Arco",
+    "_description": {
+      "en": "A simple recurve bow, with a modest draw weight. While primitive, a bow has numerous advantages: the weapon is lightweight, ammunition can be made more easily than bullets, and shooting a bow is almost silent. Arrows can be produced with a variety of different effects as well, which makes for a versatile weapon.",
+      "it": "Un semplice arco ricurvo, con una forza di trazione modesta. Sebbene primitivo, un arco ha numerosi vantaggi: l'arma è leggera, le munizioni possono essere prodotte più facilmente dei proiettili, e tirare con un arco è quasi silenzioso. Le frecce possono essere prodotte con una varietà di effetti diversi, il che lo rende un'arma versatile."
+    }
+  },
+  "weaponCrossbow": {
+    "en": "Crossbow",
+    "it": "Balestra",
+    "_description": {
+      "en": "A bow with the typical assembly mounted on a sturdy frame with a stock, wielded more similarly to a firearm than a traditional bow. Despite the mechanical engineering compared to a traditional bow, it still can only house and launch a single bolt at a time.",
+      "it": "Un arco con il tipico assemblaggio montato su un telaio robusto con un calcio, impugnato più come un'arma da fuoco che come un arco tradizionale. Nonostante l'ingegneria meccanica rispetto a un arco tradizionale, può comunque ospitare e lanciare un solo dardo alla volta."
+    }
+  }
+}
+

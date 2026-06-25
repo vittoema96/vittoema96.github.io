@@ -262,5 +262,101 @@
       "en": "+1 damage DC, consumes 3 ammo per shot",
       "it": "+1 danno DC, consuma 3 munizioni per colpo"
     }
+  },
+  "modGammaWaveEmitter": {
+    "en": "Gamma Wave Emitter",
+    "it": "Emettitore di Onde Gamma",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent",
+      "it": "+1 danno DC, ottiene Persistente"
+    }
+  },
+  "modMaximizedCapacitor": {
+    "en": "Maximized Capacitor",
+    "it": "Condensatore Massimizzato",
+    "_description": {
+      "en": "+2 damage DC",
+      "it": "+2 danno DC"
+    }
+  },
+  "modBoostedPhotonAgitator": {
+    "en": "Boosted Photon Agitator",
+    "it": "Agitatore Fotonico Potenziato",
+    "_description": {
+      "en": "+2 damage DC, gains Vicious",
+      "it": "+2 danno DC, ottiene Violento"
+    }
+  },
+  "modBoostedGammaWaveEmitter": {
+    "en": "Boosted Gamma Wave Emitter",
+    "it": "Emettitore di Onde Gamma Potenziato",
+    "_description": {
+      "en": "+2 damage DC, gains Persistent",
+      "it": "+2 danno DC, ottiene Persistente"
+    }
+  },
+  "modOverchargedCapacitor": {
+    "en": "Overcharged Capacitor",
+    "it": "Condensatore Sovraccaricato",
+    "_description": {
+      "en": "+3 damage DC",
+      "it": "+3 danno DC"
+    }
+  },
+  "modImprovedLongBarrel": {
+    "en": "Improved Long Barrel",
+    "it": "Canna Lunga Migliorata",
+    "_description": {
+      "en": "+1 damage DC, loses Close Quarters, increases Range by 1 grade",
+      "it": "+1 danno DC, perde Corpo a Corpo, aumenta la Gittata di 1 grado"
+    }
+  },
+  "modImprovedAutomaticBarrel": {
+    "en": "Improved Automatic Barrel",
+    "it": "Canna Automatica Migliorata",
+    "_description": {
+      "en": "Gains Burst, gains Inaccurate, loses Close Quarters, increases Range by 1 grade, +1 Fire Rate",
+      "it": "Ottiene Raffica, ottiene Impreciso, perde Corpo a Corpo, aumenta la Gittata di 1 grado, +1 Cadenza di Fuoco"
+    }
+  },
+  "modImprovedSniperBarrel": {
+    "en": "Improved Sniper Barrel",
+    "it": "Canna da Cecchino Migliorata",
+    "_description": {
+      "en": "+3 damage DC, loses Close Quarters, increases Range by 1 grade, -1 Fire Rate",
+      "it": "+3 danno DC, perde Corpo a Corpo, aumenta la Gittata di 1 grado, -1 Cadenza di Fuoco"
+    }
+  },
+  "modImprovedSplitter": {
+    "en": "Improved Splitter",
+    "it": "Separatore Migliorato",
+    "_description": {
+      "en": "Gains Spread, gains Inaccurate",
+      "it": "Ottiene Propagato, ottiene Impreciso"
+    }
+  },
+  "modAmplifiedBeamSplitter": {
+    "en": "Amplified Beam Splitter",
+    "it": "Separatore di Raggio Amplificato",
+    "_description": {
+      "en": "Gains Spread, -1 Fire Rate, reduces Range by 1 grade",
+      "it": "Ottiene Propagato, -1 Cadenza di Fuoco, riduce la Gittata di 1 grado"
+    }
+  },
+  "modFineTunedBeamFocuser": {
+    "en": "Fine-Tuned Beam Focuser",
+    "it": "Concentratore di Raggio Calibrato",
+    "_description": {
+      "en": "Increases Range by 1 grade, gains Accurate",
+      "it": "Aumenta la Gittata di 1 grado, ottiene Di Precisione"
+    }
+  },
+  "modQuantumGyroCompensatingLens": {
+    "en": "Quantum Gyro-Compensating Lens",
+    "it": "Lenti Giroscopiche Quantistiche di Compensazione",
+    "_description": {
+      "en": "+2 Fire Rate, loses Inaccurate",
+      "it": "+2 Cadenza di Fuoco, perde Impreciso"
+    }
   }
 }

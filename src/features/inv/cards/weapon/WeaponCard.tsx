@@ -5,6 +5,7 @@ import { usePopup } from '@/contexts/popup/PopupContext.tsx'
 import { hasEnoughAmmo as checkHasEnoughAmmo } from '@/features/inv/utils/weaponUtils.ts'
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem } from '@/types';
+import { getSkillForWeaponCategory, getSpecialForWeaponCategory } from '@/utils/itemUtils.ts';
 
 /**
  * Weapon card component with weapon-specific stats and actions
@@ -34,7 +35,11 @@ function WeaponCard({ characterItem }: Readonly<WeaponCardProps>) {
         }
 
         // Open D20 popup for weapon attack, passing characterItem
-        showD20Popup({skillId: itemData.CATEGORY, usingItem: characterItem});
+        showD20Popup({
+            skillId: getSkillForWeaponCategory(itemData.CATEGORY),
+            specialOverride: getSpecialForWeaponCategory(itemData.CATEGORY),
+            usingItem: characterItem,
+        });
     };
 
     return (

@@ -46,6 +46,7 @@
 }
 .themed-svg[data-icon='attack'] { --image-url: url('/img/svg/attack.svg'); }
 .themed-svg[data-icon='bigGuns'] { --image-url: url('/img/svg/bigGuns.svg'); }
+.themed-svg[data-icon='bows'] { --image-url: url('/img/svg/smallGuns.svg'); } /* TODO: replace with dedicated bow icon */
 .themed-svg[data-icon='caps'] { --image-url: url('/img/svg/caps.svg'); }
 .themed-svg[data-icon='energyWeapons'] { --image-url: url('/img/svg/energyWeapons.svg'); }
 .themed-svg[data-icon='explosives'] { --image-url: url('/img/svg/explosives.svg'); }

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo } from '@/features/inv/utils/weaponUtils.ts'
 import {getGameDatabase, getModifiedItemData } from "@/hooks/getGameDatabase.ts";
 import { CharacterItem } from '@/types';
-import { getSpecialFromSkill } from '@/services/character/utils.ts';
+import { getSkillForWeaponCategory, getSpecialForWeaponCategory } from '@/utils/itemUtils.ts';
 import React from 'react';
 import { Icon } from '@iconify/react';
 
@@ -28,11 +28,12 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
         return null;
     }
 
-    const skillValue = character.skills[itemData.CATEGORY]
-    const targetNumber = character.special[getSpecialFromSkill(itemData.CATEGORY)] + skillValue
+    const weaponSkill = getSkillForWeaponCategory(itemData.CATEGORY)
+    const skillValue = character.skills[weaponSkill]
+    const targetNumber = character.special[getSpecialForWeaponCategory(itemData.CATEGORY)] + skillValue
     const legendaryMods = characterItem.mods.filter(mod => mod.startsWith('legendary'))
 
-    const critThreshold = character.specialties.includes(itemData.CATEGORY) ? Math.max(skillValue, 1) : 1
+    const critThreshold = character.specialties.includes(weaponSkill) ? Math.max(skillValue, 1) : 1
 
     // Use weapon utilities
     const ammoPerShot = getWeaponAmmoPerShot(itemData)

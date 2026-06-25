@@ -1,0 +1,3 @@
+ID,TYPE,CATEGORY,DAMAGE_RATING,EFFECTS,DAMAGE_TYPES,FIRE_RATE,RANGE,QUALITIES,WEIGHT,COST,RARITY,AMMO_TYPE,AVAILABLE_MODS
+weaponBow,weapon,bows,3,[],"[""physical""]",2,rangeM,"[""qualitySuppressed"",""qualityRecoil:6"",""qualityTwoHanded""]",1.5,44,1,ammoArrow,"[""modBowCompoundFrame"",""modBowIronSights"",""modBowGlowSights""]"
+weaponCrossbow,weapon,bows,5,[],"[""physical""]",0,rangeM,"[""qualitySuppressed"",""qualityTwoHanded"",""qualitySlowLoad""]",1.5,44,2,ammoCrossbowBolt,"[""modCrossbowIronSights"",""modCrossbowGlowSights"",""modCrossbowHeavyFrame"",""modCrossbowRepeatingFrame"",""modCrossbowMultipleLaunchFrame""]"

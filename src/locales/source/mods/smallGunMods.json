@@ -310,5 +310,77 @@
       "en": "+1 damage DC",
       "it": "+1 danno DC"
     }
+  },
+  "modArmorPiercing": {
+    "en": "Armor Piercing Receiver",
+    "it": "Castello Perforante",
+    "_description": {
+      "en": "Gains Piercing 1",
+      "it": "Ottiene Penetrante 1"
+    }
+  },
+  "modArmorPiercingAutomatic": {
+    "en": "Armor Piercing Automatic Receiver",
+    "it": "Castello Automatico Perforante",
+    "_description": {
+      "en": "-1 damage DC, +2 Fire Rate, gains Piercing 1, gains Inaccurate",
+      "it": "-1 danno DC, +2 Cadenza di Fuoco, ottiene Penetrante 1, ottiene Impreciso"
+    }
+  },
+  "modHardenedAutomatic": {
+    "en": "Hardened Automatic Receiver",
+    "it": "Castello Automatico Temprato",
+    "_description": {
+      "en": "+2 Fire Rate, gains Inaccurate",
+      "it": "+2 Cadenza di Fuoco, ottiene Impreciso"
+    }
+  },
+  "modRapidAutomatic": {
+    "en": "Rapid Automatic Receiver",
+    "it": "Castello Automatico Rapido",
+    "_description": {
+      "en": "-1 damage DC, +3 Fire Rate, gains Inaccurate",
+      "it": "-1 danno DC, +3 Cadenza di Fuoco, ottiene Impreciso"
+    }
+  },
+  "modCalibratedPowerful": {
+    "en": "Calibrated Powerful Receiver",
+    "it": "Castello Calibrato Potente",
+    "_description": {
+      "en": "+2 damage DC, gains Vicious",
+      "it": "+2 danno DC, ottiene Violento"
+    }
+  },
+  "modPowerfulAutomatic": {
+    "en": "Powerful Automatic Receiver",
+    "it": "Castello Automatico Potente",
+    "_description": {
+      "en": "+1 damage DC, +2 Fire Rate, gains Inaccurate",
+      "it": "+1 danno DC, +2 Cadenza di Fuoco, ottiene Impreciso"
+    }
+  },
+  "modHardenedPiercingAuto": {
+    "en": "Hardened Piercing Auto Receiver",
+    "it": "Castello Automatico Temprato Perforante",
+    "_description": {
+      "en": "+2 Fire Rate, gains Piercing 1, gains Inaccurate",
+      "it": "+2 Cadenza di Fuoco, ottiene Penetrante 1, ottiene Impreciso"
+    }
+  },
+  "modReceiver9mm": {
+    "en": "9mm Receiver",
+    "it": "Castello 9mm",
+    "_description": {
+      "en": "Damage becomes 3 DC, Ammo becomes 9mm, +1 Fire Rate",
+      "it": "I danni diventano 3 DC, le Munizioni diventano 9mm, +1 Cadenza di Fuoco"
+    }
+  },
+  "modReceiver357": {
+    "en": ".357 Receiver",
+    "it": "Castello .357",
+    "_description": {
+      "en": "Damage becomes 5 DC, Ammo becomes .357, gains Vicious",
+      "it": "I danni diventano 5 DC, le Munizioni diventano .357, ottiene Violento"
+    }
   }
 }

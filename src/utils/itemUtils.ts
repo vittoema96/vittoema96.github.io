@@ -8,7 +8,29 @@ import { getGameDatabase } from '@/hooks/getGameDatabase';
 import type { TFunction } from 'i18next';
 import { WeaponItem, Range } from '@/schemas/items/weaponSchemas.ts';
 import { ApparelItem } from '@/schemas/items/apparelSchemas.ts';
-import { ItemCategory } from '@/types/item.ts';
+import { ItemCategory, WeaponCategory } from '@/types/item.ts';
+import { SkillType, SpecialType, getSpecialFromSkill } from '@/services/character/utils.ts';
+
+
+/**
+ * Maps a weapon category to its corresponding skill.
+ * Most categories map 1:1 to a skill of the same name,
+ * but Bows use the Athletics skill (AGI + Athletics per DLC rules).
+ */
+export function getSkillForWeaponCategory(category: WeaponCategory): SkillType {
+    if (category === 'bows') { return 'athletics'; }
+    return category as SkillType;
+}
+
+/**
+ * Maps a weapon category to its corresponding SPECIAL attribute.
+ * Most categories use the default SPECIAL for their skill,
+ * but Bows use Agility (instead of Strength, which is athletics' default).
+ */
+export function getSpecialForWeaponCategory(category: WeaponCategory): SpecialType {
+    if (category === 'bows') { return 'agility'; }
+    return getSpecialFromSkill(getSkillForWeaponCategory(category));
+}
 
 
 export function removeItem(items: CharacterItem[], itemToRemove: CharacterItem) {
