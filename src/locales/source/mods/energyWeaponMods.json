@@ -32,7 +32,7 @@
     },
     "_descriptor": {
       "en": "Focused {{name}}",
-      "it": "{{name}} Focalizzato"
+      "it": "{{name}} Concentrato"
     }
   },
   "modBeamSplitter": {
@@ -80,7 +80,7 @@
     },
     "_descriptor": {
       "en": "Aiming {{name}}",
-      "it": "{{name}} da Mira"
+      "it": "{{name}} Di Puntamento"
     }
   },
   "modDeepDish": {
@@ -212,7 +212,7 @@
     },
     "_descriptor": {
       "en": "{{name}} with Scope",
-      "it": "{{name}} con Ottica"
+      "it": "{{name}} Con Mirino"
     }
   },
   "modMarksmanGripEnergy": {
@@ -224,7 +224,7 @@
     },
     "_descriptor": {
       "en": "Marksman {{name}}",
-      "it": "{{name}} da Tiratore"
+      "it": "{{name}} Da Tiratore Esperto"
     }
   },
   "modMarksmanStockEnergy": {
@@ -236,7 +236,7 @@
     },
     "_descriptor": {
       "en": "Marksman {{name}}",
-      "it": "{{name}} da Tiratore"
+      "it": "{{name}} Da Tiratore Scelto"
     }
   },
   "modPhotonicAgitator": {
@@ -272,7 +272,7 @@
     },
     "_descriptor": {
       "en": "Recoil Compensating {{name}}",
-      "it": "{{name}} Compensazione Rinculo"
+      "it": "{{name}} A Rinculo Compensato"
     }
   },
   "modReconScopeEnergy": {
@@ -284,7 +284,7 @@
     },
     "_descriptor": {
       "en": "Recon {{name}}",
-      "it": "{{name}} Ricognizione"
+      "it": "{{name}} Da Ricognizione"
     }
   },
   "modReflexSightEnergy": {
@@ -332,7 +332,7 @@
     },
     "_descriptor": {
       "en": "{{name}} with Scope",
-      "it": "{{name}} con Ottica"
+      "it": "{{name}} Con Mirino"
     }
   },
   "modSixChargeCapacitor": {
@@ -368,7 +368,7 @@
     },
     "_descriptor": {
       "en": "Dispersed {{name}}",
-      "it": "{{name}} Disperso"
+      "it": "{{name}} A Dispersione"
     }
   },
   "modStandardStock": {

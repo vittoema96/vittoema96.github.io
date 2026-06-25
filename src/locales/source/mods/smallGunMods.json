@@ -20,7 +20,7 @@
     },
     "_descriptor": {
       "en": "Auto {{name}}",
-      "it": "{{name}} Automatico"
+      "it": "{{name}} Auto"
     }
   },
   "modAutomaticPistonReceiver": {
@@ -104,7 +104,7 @@
     },
     "_descriptor": {
       "en": "Finned {{name}}",
-      "it": "{{name}} Pinnato"
+      "it": "{{name}} Alettato"
     }
   },
   "modFlashHider": {
@@ -212,7 +212,7 @@
     },
     "_descriptor": {
       "en": "{{name}} with Scope",
-      "it": "{{name}} con Ottica"
+      "it": "{{name}} Con Mirino"
     }
   },
   "modMarksmanGrip": {
@@ -224,7 +224,7 @@
     },
     "_descriptor": {
       "en": "Marksman {{name}}",
-      "it": "{{name}} da Tiratore"
+      "it": "{{name}} Da Tiratore Esperto"
     }
   },
   "modMarksmanStock": {
@@ -236,7 +236,7 @@
     },
     "_descriptor": {
       "en": "Marksman {{name}}",
-      "it": "{{name}} da Tiratore"
+      "it": "{{name}} Da Tiratore Scelto"
     }
   },
   "modPortedBarrel": {
@@ -248,7 +248,7 @@
     },
     "_descriptor": {
       "en": "Ported {{name}}",
-      "it": "{{name}} Ventilato"
+      "it": "{{name}} Forato"
     }
   },
   "modPowerful": {
@@ -332,7 +332,7 @@
     },
     "_descriptor": {
       "en": "Recoil Compensating {{name}}",
-      "it": "{{name}} Compensazione Rinculo"
+      "it": "{{name}} A Rinculo Compensato"
     }
   },
   "modReconScope": {
@@ -344,7 +344,7 @@
     },
     "_descriptor": {
       "en": "Recon {{name}}",
-      "it": "{{name}} Ricognizione"
+      "it": "{{name}} Da Ricognizione"
     }
   },
   "modReflexSight": {
@@ -368,7 +368,7 @@
     },
     "_descriptor": {
       "en": "Sawed-Off {{name}}",
-      "it": "{{name}} a Canne Mozze"
+      "it": "{{name}} Mozza"
     }
   },
   "modShieldedBarrel": {
@@ -392,7 +392,7 @@
     },
     "_descriptor": {
       "en": "Short {{name}}",
-      "it": "{{name}} Corto"
+      "it": "{{name}} Ridotto"
     }
   },
   "modShortNightVisionScope": {
@@ -416,7 +416,7 @@
     },
     "_descriptor": {
       "en": "{{name}} with Scope",
-      "it": "{{name}} con Ottica"
+      "it": "{{name}} Con Mirino"
     }
   },
   "modStableBarrel": {

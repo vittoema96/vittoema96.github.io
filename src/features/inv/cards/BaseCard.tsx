@@ -5,6 +5,7 @@ import { CharacterItem, CustomItem } from '@/types';
 import { FitText } from '@/components/FitText.tsx';
 import { usePopup } from '@/contexts/popup/PopupContext.tsx';
 import { useCharacter } from '@/contexts/CharacterContext.tsx';
+import { getCanonicalDisplayName } from '@/utils/itemUtils.ts';
 
 /**
  * Base card component - provides common card structure and functionality
@@ -91,9 +92,7 @@ function BaseCard({
                 <div className="card-header__title">
                     {quantity > 1 && <span className="card-quantity">{quantity}x</span>}
                     <FitText wrap={true} minSize={10} maxSize={14}>
-                        {item.customName || t(itemData.ID ?? '', {
-                            variation: t(item.variation!)
-                        })}
+                        {getCanonicalDisplayName(characterItem, t)}
                     </FitText>
                 </div>
                 <div className="card-header__stats">

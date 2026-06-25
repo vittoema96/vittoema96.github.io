@@ -8,7 +8,7 @@
     },
     "_descriptor": {
       "en": "Accelerated {{name}}",
-      "it": "{{name}} Accelerato"
+      "it": "{{name}} Ad Alta Velocità"
     }
   },
   "modBayonetMissileLauncher": {
@@ -20,7 +20,7 @@
     },
     "_descriptor": {
       "en": "{{name}} with Bayonet",
-      "it": "{{name}} con Baionetta"
+      "it": "{{name}} Con Baionetta Triturante"
     }
   },
   "modBeamFocuserGatling": {
@@ -32,7 +32,7 @@
     },
     "_descriptor": {
       "en": "Focused {{name}}",
-      "it": "{{name}} Focalizzato"
+      "it": "{{name}} Concentrato"
     }
   },
   "modBetaWaveTunerGatling": {
@@ -68,7 +68,7 @@
     },
     "_descriptor": {
       "en": "Charging {{name}}",
-      "it": "{{name}} a Carica"
+      "it": "{{name}} A Caricamento"
     }
   },
   "modCombustionModule": {
@@ -80,7 +80,7 @@
     },
     "_descriptor": {
       "en": "Combustion {{name}}",
-      "it": "{{name}} a Combustione"
+      "it": "{{name}} Infuocato"
     }
   },
   "modCompressionNozzle": {
@@ -92,7 +92,7 @@
     },
     "_descriptor": {
       "en": "Compression {{name}}",
-      "it": "{{name}} a Compressione"
+      "it": "{{name}} Compresso"
     }
   },
   "modElectrificationModule": {
@@ -116,7 +116,7 @@
     },
     "_descriptor": {
       "en": "Gunner {{name}}",
-      "it": "{{name}} da Mitragliere"
+      "it": "{{name}} Tattico"
     }
   },
   "modGunnerSightMinigun": {
@@ -128,7 +128,7 @@
     },
     "_descriptor": {
       "en": "Gunner {{name}}",
-      "it": "{{name}} da Mitragliere"
+      "it": "{{name}} Tattico"
     }
   },
   "modHugeTank": {
@@ -140,7 +140,7 @@
     },
     "_descriptor": {
       "en": "Huge {{name}}",
-      "it": "{{name}} Enorme"
+      "it": "{{name}} Massima Capacità"
     }
   },
   "modLargeTank": {
@@ -152,7 +152,7 @@
     },
     "_descriptor": {
       "en": "Large {{name}}",
-      "it": "{{name}} Grande"
+      "it": "{{name}} Alta Capacità"
     }
   },
   "modLongBarrelFlamethrower": {
@@ -224,7 +224,7 @@
     },
     "_descriptor": {
       "en": "Stimulated {{name}}",
-      "it": "{{name}} Stimolato"
+      "it": "{{name}} Eccitato"
     }
   },
   "modQuadBarrel": {
@@ -236,7 +236,7 @@
     },
     "_descriptor": {
       "en": "Quad {{name}}",
-      "it": "{{name}} Quadruplo"
+      "it": "{{name}} A Canna Quadrupla"
     }
   },
   "modRecoilCompensatingStockJunkJet": {
@@ -248,7 +248,7 @@
     },
     "_descriptor": {
       "en": "Recoil Compensating {{name}}",
-      "it": "{{name}} Compensazione Rinculo"
+      "it": "{{name}} A Rinculo Compensato"
     }
   },
   "modReflexSightGatling": {
@@ -272,7 +272,7 @@
     },
     "_descriptor": {
       "en": "{{name}} with Scope",
-      "it": "{{name}} con Ottica"
+      "it": "{{name}} Con Mirino"
     }
   },
   "modShredder": {
@@ -284,7 +284,7 @@
     },
     "_descriptor": {
       "en": "Shredder {{name}}",
-      "it": "{{name}} Trituratore"
+      "it": "{{name}} Con Baionetta Triturante"
     }
   },
   "modStabilizer": {
@@ -296,7 +296,7 @@
     },
     "_descriptor": {
       "en": "{{name}} with Flash Hider",
-      "it": "{{name}} con Rompifiamma"
+      "it": "{{name}} Con Rompifiamma"
     }
   },
   "modTargetingComputer": {
@@ -308,7 +308,7 @@
     },
     "_descriptor": {
       "en": "Targeting {{name}}",
-      "it": "{{name}} Mirante"
+      "it": "{{name}} Di Puntamento"
     }
   },
   "modTripleBarrel": {
@@ -320,7 +320,7 @@
     },
     "_descriptor": {
       "en": "Triple {{name}}",
-      "it": "{{name}} Triplo"
+      "it": "{{name}} A Canna Tripla"
     }
   },
   "modTripleBarrelMinigun": {
@@ -332,7 +332,7 @@
     },
     "_descriptor": {
       "en": "Triple {{name}}",
-      "it": "{{name}} Triplo"
+      "it": "{{name}} Ad Alta Potenza"
     }
   },
   "modVaporizerNozzle": {
@@ -344,7 +344,7 @@
     },
     "_descriptor": {
       "en": "Vaporizer {{name}}",
-      "it": "{{name}} Vaporizzatore"
+      "it": "{{name}} Vaporizzante"
     }
   },
   "modGammaWaveEmitterGatling": {

@@ -25,14 +25,14 @@
   },
   "modArmorHardened": {
     "en": "Hardened",
-    "it": "Temprato",
+    "it": "Indurita",
     "_description": {
       "en": "+4 Physical Resistance, +4 Energy Resistance",
       "it": "+4 Resistenza ai Danni Fisici, +4 Resistenza ai Danni da Energia"
     },
     "_descriptor": {
       "en": "Hardened {{name}}",
-      "it": "{{name}} Temprato"
+      "it": "{{name}} Indurita"
     }
   },
   "modBandedLeather": {

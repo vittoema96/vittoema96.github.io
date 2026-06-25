@@ -44,7 +44,7 @@
     },
     "_descriptor": {
       "en": "Blade {{name}}",
-      "it": "{{name}} a Lama"
+      "it": "{{name}} Tagliente"
     }
   },
   "modBladeKnuckles": {
@@ -56,7 +56,7 @@
     },
     "_descriptor": {
       "en": "Blade {{name}}",
-      "it": "{{name}} a Lama"
+      "it": "{{name}} Tagliente"
     }
   },
   "modChainBaseballBat": {
@@ -68,7 +68,7 @@
     },
     "_descriptor": {
       "en": "Chain {{name}}",
-      "it": "{{name}} a Catena"
+      "it": "{{name}} Con Catena"
     }
   },
   "modCurvedRipper": {
@@ -80,7 +80,7 @@
     },
     "_descriptor": {
       "en": "Curved {{name}}",
-      "it": "{{name}} Curvo"
+      "it": "{{name}} Ricurva"
     }
   },
   "modElectrifiedBaton": {
@@ -92,7 +92,7 @@
     },
     "_descriptor": {
       "en": "Electrified {{name}}",
-      "it": "{{name}} Elettrificato"
+      "it": "{{name}} Fulminante"
     }
   },
   "modElectrifiedSerratedSword": {
@@ -104,7 +104,7 @@
     },
     "_descriptor": {
       "en": "Electrified Serrated {{name}}",
-      "it": "{{name}} Elettrificato Dentellato"
+      "it": "{{name}} Elettrificata Seghettata"
     }
   },
   "modElectrifiedSword": {
@@ -116,7 +116,7 @@
     },
     "_descriptor": {
       "en": "Electrified {{name}}",
-      "it": "{{name}} Elettrificato"
+      "it": "{{name}} Elettrificata"
     }
   },
   "modExtendedRipper": {
@@ -128,7 +128,7 @@
     },
     "_descriptor": {
       "en": "Extended {{name}}",
-      "it": "{{name}} Allungato"
+      "it": "{{name}} Estesa"
     }
   },
   "modExtraClawDeathclaw": {
@@ -152,7 +152,7 @@
     },
     "_descriptor": {
       "en": "Extra Flames {{name}}",
-      "it": "{{name}} Fiamme Extra"
+      "it": "{{name}} Rovente"
     }
   },
   "modHeatingPowerFist": {
@@ -164,7 +164,7 @@
     },
     "_descriptor": {
       "en": "Heating {{name}}",
-      "it": "{{name}} Riscaldante"
+      "it": "{{name}} Bruciante"
     }
   },
   "modHeatingSuperSledge": {
@@ -176,7 +176,7 @@
     },
     "_descriptor": {
       "en": "Heating {{name}}",
-      "it": "{{name}} Riscaldante"
+      "it": "{{name}} Bruciante"
     }
   },
   "modHeavyLeadPipe": {
@@ -212,7 +212,7 @@
     },
     "_descriptor": {
       "en": "Balanced {{name}}",
-      "it": "{{name}} Bilanciato"
+      "it": "{{name}} Bilanciata"
     }
   },
   "modHookedWrench": {
@@ -248,7 +248,7 @@
     },
     "_descriptor": {
       "en": "Punctured {{name}}",
-      "it": "{{name}} Perforato"
+      "it": "{{name}} Pungente"
     }
   },
   "modPuncturedBoxingGlove": {
@@ -260,7 +260,7 @@
     },
     "_descriptor": {
       "en": "Punctured {{name}}",
-      "it": "{{name}} Perforato"
+      "it": "{{name}} Puntuto"
     }
   },
   "modPuncturedKnuckles": {
@@ -272,7 +272,7 @@
     },
     "_descriptor": {
       "en": "Punctured {{name}}",
-      "it": "{{name}} Perforato"
+      "it": "{{name}} Puntuto"
     }
   },
   "modPuncturedPowerFist": {
@@ -284,7 +284,7 @@
     },
     "_descriptor": {
       "en": "Punctured {{name}}",
-      "it": "{{name}} Perforato"
+      "it": "{{name}} Puntuto"
     }
   },
   "modPuncturedSledgehammer": {
@@ -296,7 +296,7 @@
     },
     "_descriptor": {
       "en": "Punctured {{name}}",
-      "it": "{{name}} Perforato"
+      "it": "{{name}} Pungente"
     }
   },
   "modPuncturedWrench": {
@@ -308,7 +308,7 @@
     },
     "_descriptor": {
       "en": "Punctured {{name}}",
-      "it": "{{name}} Perforato"
+      "it": "{{name}} Pungente"
     }
   },
   "modSerratedCombatKnife": {
@@ -320,7 +320,7 @@
     },
     "_descriptor": {
       "en": "Serrated {{name}}",
-      "it": "{{name}} Dentellato"
+      "it": "{{name}} Seghettato"
     }
   },
   "modSerratedMachete": {
@@ -332,7 +332,7 @@
     },
     "_descriptor": {
       "en": "Serrated {{name}}",
-      "it": "{{name}} Dentellato"
+      "it": "{{name}} Seghettato"
     }
   },
   "modSerratedSwitchblade": {
@@ -344,7 +344,7 @@
     },
     "_descriptor": {
       "en": "Serrated {{name}}",
-      "it": "{{name}} Dentellato"
+      "it": "{{name}} Seghettato"
     }
   },
   "modSerratedSword": {
@@ -356,7 +356,7 @@
     },
     "_descriptor": {
       "en": "Serrated {{name}}",
-      "it": "{{name}} Dentellato"
+      "it": "{{name}} Seghettata"
     }
   },
   "modSharpBaseballBat": {
@@ -380,7 +380,7 @@
     },
     "_descriptor": {
       "en": "Sharp {{name}}",
-      "it": "{{name}} Affilato"
+      "it": "{{name}} Tagliente"
     }
   },
   "modSharpKnuckles": {
@@ -428,7 +428,7 @@
     },
     "_descriptor": {
       "en": "Sharp {{name}}",
-      "it": "{{name}} Affilato"
+      "it": "{{name}} Tagliente"
     }
   },
   "modSpikedBaseballBat": {
@@ -464,7 +464,7 @@
     },
     "_descriptor": {
       "en": "Spiked {{name}}",
-      "it": "{{name}} Chiodata"
+      "it": "{{name}} Chiodato"
     }
   },
   "modSpikedCane": {
@@ -476,7 +476,7 @@
     },
     "_descriptor": {
       "en": "Spiked {{name}}",
-      "it": "{{name}} Chiodata"
+      "it": "{{name}} Chiodato"
     }
   },
   "modSpikedKnuckles": {
@@ -488,7 +488,7 @@
     },
     "_descriptor": {
       "en": "Spiked {{name}}",
-      "it": "{{name}} Chiodata"
+      "it": "{{name}} Chiodato"
     }
   },
   "modSpikedLeadPipe": {
@@ -500,7 +500,7 @@
     },
     "_descriptor": {
       "en": "Spiked {{name}}",
-      "it": "{{name}} Chiodata"
+      "it": "{{name}} Chiodato"
     }
   },
   "modSpikedRollingPin": {
@@ -512,7 +512,7 @@
     },
     "_descriptor": {
       "en": "Spiked {{name}}",
-      "it": "{{name}} Chiodata"
+      "it": "{{name}} Chiodato"
     }
   },
   "modStealthCombatKnife": {
@@ -524,7 +524,7 @@
     },
     "_descriptor": {
       "en": "Stealth {{name}}",
-      "it": "{{name}} Furtivo"
+      "it": "{{name}} Stealth"
     }
   },
   "modStunningBaton": {

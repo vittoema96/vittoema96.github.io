@@ -234,7 +234,6 @@ export type AidItem = MedItem | FoodItem;
 
 export interface ModItem extends ItemWithEffects {
     SLOT_TYPE: string;
-    DESCRIPTOR?: string; // TODO implement descriptors
     SKILL: SkillType;
     PERKS: string[]; // JSON array // TODO should be perk type
     WEAPON_TYPES?: string[]; // TODO might not be needed anymore

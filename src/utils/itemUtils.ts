@@ -239,18 +239,72 @@ export function applyEffect(modifiedData: WeaponItem | ApparelItem, effect: stri
 const DESCRIPTOR_MISSING = '__NO_DESCRIPTOR__'
 
 /**
+ * Core logic for building a display name with stock rename + mod descriptors.
+ * @param baseName - Starting name (already resolved)
+ * @param mods - Array of mod IDs
+ * @param variation - Optional variation key
+ * @param applyVariation - Whether to append variation suffix
+ * @param t - Translation function
+ */
+function buildModdedDisplayName(
+    baseName: string,
+    id: string,
+    mods: string[],
+    variation: string | undefined,
+    applyVariation: boolean,
+    t: TFunction
+): string {
+    let name = baseName
+
+    // Stock mod rename
+    const hasStockMod = mods.some(m => {
+        const modData = GameDatabase.getItem(m)
+        return modData && 'SLOT_TYPE' in modData && modData.SLOT_TYPE === 'modSlotStock'
+    })
+    if (hasStockMod && id) {
+        const stockNameKey = `${id}StockName`
+        const stockName = t(stockNameKey, { defaultValue: DESCRIPTOR_MISSING, postProcess: false } as any) as string
+        if (stockName !== DESCRIPTOR_MISSING) {
+            name = stockName
+        }
+    }
+
+    if (variation && applyVariation) {
+        name = `${name} (${t(variation)})`
+    }
+
+    // Apply mod descriptors
+    let displayName = name
+    let modsWithoutDescriptor = 0
+
+    for (const modId of mods) {
+        if (modId === 'modRobotPlatingStandard') { continue }
+
+        const descriptorKey = `${modId}Descriptor`
+        const descriptor = t(descriptorKey, {
+            name: displayName,
+            defaultValue: DESCRIPTOR_MISSING,
+            postProcess: false,
+        } as any) as string
+
+        if (descriptor === DESCRIPTOR_MISSING) {
+            modsWithoutDescriptor++
+        } else {
+            displayName = descriptor
+        }
+    }
+
+    if (modsWithoutDescriptor > 0) {
+        return `${displayName} [+${modsWithoutDescriptor}]`
+    }
+
+    return displayName
+}
+
+/**
  * Get display name for item, applying mod descriptor templates.
- *
- * Mod descriptors are i18next templates with `{{name}}` interpolation
- * (e.g. EN: "Advanced {{name}}", IT: "{{name}} Avanzato").
- * Descriptors are applied sequentially — each mod's template receives
- * the result of the previous one as `{{name}}`.
- *
- * Mods without a descriptor (key missing in locale) are counted and
- * shown as `[+N]` suffix.
- *
- * @param item - Character item
- * @param t - Translation function from useTranslation hook
+ * Uses custom name if set — in that case descriptors are NOT applied,
+ * only a `[+N]` suffix for equipped mods.
  */
 export function getDisplayName(item: CharacterItem | CustomItem, t: TFunction) {
     if (!item) {return ''}
@@ -261,61 +315,47 @@ export function getDisplayName(item: CharacterItem | CustomItem, t: TFunction) {
         ...item
     }
 
-    // Use custom name if set, otherwise use translated name
-    let baseName = filledItem.customName || t(filledItem.id)
-
-    // Stock mod rename: certain pistols change name when a stock mod is applied
-    // (e.g. "Laser Pistol" → "Laser Rifle" when a mod with SLOT_TYPE "modSlotStock" is equipped)
-    if (!filledItem.customName) {
-        const hasStockMod = filledItem.mods.some(m => {
-            const modData = GameDatabase.getItem(m)
-            return modData && 'SLOT_TYPE' in modData && modData.SLOT_TYPE === 'modSlotStock'
-        })
-        if (hasStockMod) {
-            const stockNameKey = `${filledItem.id}StockName`
-            const stockName = t(stockNameKey, { defaultValue: DESCRIPTOR_MISSING, postProcess: false } as any) as string
-            if (stockName !== DESCRIPTOR_MISSING) {
-                baseName = stockName
-            }
-        }
+    // Custom name: show as-is with [+N] for mods
+    if (filledItem.customName) {
+        return filledItem.customName
     }
 
-    if (filledItem.variation && !filledItem.customName) {
-        baseName = `${baseName} (${t(filledItem.variation)})`
+    return buildModdedDisplayName(
+        t(filledItem.id),
+        filledItem.id,
+        filledItem.mods,
+        filledItem.variation,
+        true,
+        t
+    )
+}
+
+/**
+ * Returns the canonical display name of an item, ignoring any custom name.
+ * Always applies stock rename + mod descriptors.
+ * For pure custom items (no database id), returns the i18n key "customItem".
+ */
+export function getCanonicalDisplayName(item: CharacterItem | CustomItem, t: TFunction) {
+    if (!item) {return ''}
+
+    if (!('id' in item) || !item.id) {
+        return t('customItem')
     }
 
-    // Apply mod descriptors to progressively build the display name.
-    // Descriptors are skipped when the item has a custom name — the user
-    // chose that name explicitly and it should not be altered by mods.
-    let displayName = baseName
-    let modsWithoutDescriptor = 0
-
-    if (!filledItem.customName) {
-        for (const modId of filledItem.mods) {
-            if (modId === 'modRobotPlatingStandard') {
-                continue;
-            }
-
-            const descriptorKey = `${modId}Descriptor`;
-            const descriptor = t(descriptorKey, {
-                name: displayName,
-                defaultValue: DESCRIPTOR_MISSING,
-                postProcess: false,
-            } as any) as string;
-
-            if (descriptor === DESCRIPTOR_MISSING) {
-                modsWithoutDescriptor++;
-            } else {
-                displayName = descriptor;
-            }
-        }
+    const filledItem = {
+        variation: undefined,
+        mods: [] as string[],
+        ...item
     }
 
-    if (modsWithoutDescriptor > 0) {
-        return `${displayName} [+${modsWithoutDescriptor}]`
-    }
-
-    return displayName
+    return buildModdedDisplayName(
+        t(filledItem.id),
+        filledItem.id,
+        filledItem.mods,
+        filledItem.variation,
+        true,
+        t
+    )
 }
 
 export function isCloseCombat(category: ItemCategory) {
