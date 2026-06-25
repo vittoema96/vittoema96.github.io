@@ -5,6 +5,10 @@
     "_description": {
       "en": "+1 Energy Resistance",
       "it": "+1 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Insulated Lining {{name}}",
+      "it": "{{name}} Rivestimento Isolante"
     }
   },
   "modProtectiveLining": {
@@ -13,6 +17,10 @@
     "_description": {
       "en": "+2 Energy Resistance, +2 Radiation Resistance",
       "it": "+2 Resistenza ai Danni da Energia, +2 Resistenza ai Danni da Radiazioni"
+    },
+    "_descriptor": {
+      "en": "Protective Lining {{name}}",
+      "it": "{{name}} Rivestimento Protettivo"
     }
   },
   "modResistantLining": {
@@ -21,6 +29,10 @@
     "_description": {
       "en": "+2 Energy Resistance, +1 Radiation Resistance",
       "it": "+2 Resistenza ai Danni da Energia, +1 Resistenza ai Danni da Radiazioni"
+    },
+    "_descriptor": {
+      "en": "Resistant Lining {{name}}",
+      "it": "{{name}} Rivestimento Resistente"
     }
   },
   "modShieldedLining": {
@@ -29,6 +41,10 @@
     "_description": {
       "en": "+3 Energy Resistance, +3 Radiation Resistance",
       "it": "+3 Resistenza ai Danni da Energia, +3 Resistenza ai Danni da Radiazioni"
+    },
+    "_descriptor": {
+      "en": "Shielded Lining {{name}}",
+      "it": "{{name}} Rivestimento Schermato"
     }
   },
   "modTreatedLining": {
@@ -37,6 +53,10 @@
     "_description": {
       "en": "+1 Energy Resistance, +1 Radiation Resistance",
       "it": "+1 Resistenza ai Danni da Energia, +1 Resistenza ai Danni da Radiazioni"
+    },
+    "_descriptor": {
+      "en": "Treated Lining {{name}}",
+      "it": "{{name}} Rivestimento Trattato"
     }
   }
 }

@@ -5,11 +5,12 @@
 
 import { CharacterItem, CustomItem, DamageType } from '@/types';
 import { getGameDatabase } from '@/hooks/getGameDatabase';
+import { GameDatabase } from '@/services/GameDatabase';
 import type { TFunction } from 'i18next';
-import { WeaponItem, Range } from '@/schemas/items/weaponSchemas.ts';
+import { Range, WeaponItem } from '@/schemas/items/weaponSchemas.ts';
 import { ApparelItem } from '@/schemas/items/apparelSchemas.ts';
 import { ItemCategory, WeaponCategory } from '@/types/item.ts';
-import { SkillType, SpecialType, getSpecialFromSkill } from '@/services/character/utils.ts';
+import { getSpecialFromSkill, SkillType, SpecialType } from '@/services/character/utils.ts';
 
 
 /**
@@ -19,7 +20,7 @@ import { SkillType, SpecialType, getSpecialFromSkill } from '@/services/characte
  */
 export function getSkillForWeaponCategory(category: WeaponCategory): SkillType {
     if (category === 'bows') { return 'athletics'; }
-    return category as SkillType;
+    return category;
 }
 
 /**
@@ -200,18 +201,21 @@ export function applyEffect(modifiedData: WeaponItem | ApparelItem, effect: stri
             case 'effectAdd': {
                 // Check if the effect carries a numeric rating (e.g. effectPiercing:2)
                 const colonIdx = value.lastIndexOf(':')
-                const numericPart = colonIdx !== -1 ? Number(value.slice(colonIdx + 1)) : NaN
+                const numericPart = colonIdx === -1 ? NaN : Number(value.slice(colonIdx + 1));
                 if (!Number.isNaN(numericPart) && colonIdx !== -1) {
                     // Numeric effect: stack with any existing effect that shares the same prefix
                     const effectPrefix = value.slice(0, colonIdx + 1) // e.g. "effectPiercing:"
                     const existingIdx = modifiedData.EFFECTS.findIndex(e => e.startsWith(effectPrefix))
-                    if (existingIdx !== -1) {
-                        const existingNum = Number(modifiedData.EFFECTS[existingIdx]!.slice(effectPrefix.length)) || 0
-                        const newEffects = [...modifiedData.EFFECTS]
-                        newEffects[existingIdx] = `${value.slice(0, colonIdx)}:${existingNum + numericPart}`
-                        modifiedData.EFFECTS = newEffects
+                    if (existingIdx === -1) {
+                        modifiedData.EFFECTS = [...modifiedData.EFFECTS, value];
                     } else {
-                        modifiedData.EFFECTS = [...modifiedData.EFFECTS, value]
+                        const existingNum =
+                            Number(modifiedData.EFFECTS[existingIdx]!.slice(effectPrefix.length)) ||
+                            0;
+                        const newEffects = [...modifiedData.EFFECTS];
+                        newEffects[existingIdx] =
+                            `${value.slice(0, colonIdx)}:${existingNum + numericPart}`;
+                        modifiedData.EFFECTS = newEffects;
                     }
                 } else {
                     // Non-numeric effect: add if not already present
@@ -231,8 +235,20 @@ export function applyEffect(modifiedData: WeaponItem | ApparelItem, effect: stri
     return modifiedData
 }
 
+/** Sentinel returned by t() when a descriptor key doesn't exist */
+const DESCRIPTOR_MISSING = '__NO_DESCRIPTOR__'
+
 /**
- * Get display name for item
+ * Get display name for item, applying mod descriptor templates.
+ *
+ * Mod descriptors are i18next templates with `{{name}}` interpolation
+ * (e.g. EN: "Advanced {{name}}", IT: "{{name}} Avanzato").
+ * Descriptors are applied sequentially — each mod's template receives
+ * the result of the previous one as `{{name}}`.
+ *
+ * Mods without a descriptor (key missing in locale) are counted and
+ * shown as `[+N]` suffix.
+ *
  * @param item - Character item
  * @param t - Translation function from useTranslation hook
  */
@@ -248,17 +264,58 @@ export function getDisplayName(item: CharacterItem | CustomItem, t: TFunction) {
     // Use custom name if set, otherwise use translated name
     let baseName = filledItem.customName || t(filledItem.id)
 
+    // Stock mod rename: certain pistols change name when a stock mod is applied
+    // (e.g. "Laser Pistol" → "Laser Rifle" when a mod with SLOT_TYPE "modSlotStock" is equipped)
+    if (!filledItem.customName) {
+        const hasStockMod = filledItem.mods.some(m => {
+            const modData = GameDatabase.getItem(m)
+            return modData && 'SLOT_TYPE' in modData && modData.SLOT_TYPE === 'modSlotStock'
+        })
+        if (hasStockMod) {
+            const stockNameKey = `${filledItem.id}StockName`
+            const stockName = t(stockNameKey, { defaultValue: DESCRIPTOR_MISSING, postProcess: false } as any) as string
+            if (stockName !== DESCRIPTOR_MISSING) {
+                baseName = stockName
+            }
+        }
+    }
+
     if (filledItem.variation && !filledItem.customName) {
         baseName = `${baseName} (${t(filledItem.variation)})`
     }
 
-    // No mods, return base name
-    const modsLength = filledItem.mods.length - (filledItem.mods.includes('modRobotPlatingStandard') ? 1 : 0)
-    if (modsLength > 0) {
-        return `${baseName} [+${modsLength}]`
+    // Apply mod descriptors to progressively build the display name.
+    // Descriptors are skipped when the item has a custom name — the user
+    // chose that name explicitly and it should not be altered by mods.
+    let displayName = baseName
+    let modsWithoutDescriptor = 0
+
+    if (!filledItem.customName) {
+        for (const modId of filledItem.mods) {
+            if (modId === 'modRobotPlatingStandard') {
+                continue;
+            }
+
+            const descriptorKey = `${modId}Descriptor`;
+            const descriptor = t(descriptorKey, {
+                name: displayName,
+                defaultValue: DESCRIPTOR_MISSING,
+                postProcess: false,
+            } as any) as string;
+
+            if (descriptor === DESCRIPTOR_MISSING) {
+                modsWithoutDescriptor++;
+            } else {
+                displayName = descriptor;
+            }
+        }
     }
 
-    return baseName
+    if (modsWithoutDescriptor > 0) {
+        return `${displayName} [+${modsWithoutDescriptor}]`
+    }
+
+    return displayName
 }
 
 export function isCloseCombat(category: ItemCategory) {

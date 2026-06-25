@@ -49,6 +49,11 @@ def has_metadata_block(entry: dict) -> bool:
     return False
 
 
+def has_specific_metadata(entry: dict, meta_key: str) -> bool:
+    """Check if entry has a specific metadata key (e.g. '_descriptor') with a valid bilingual block."""
+    return meta_key in entry and has_non_empty_bilingual_block(entry[meta_key])
+
+
 def validate_translation_keys(entry: dict, rel_file: str, line_no: int, key: str) -> list[Issue]:
     issues: list[Issue] = []
 
@@ -278,6 +283,18 @@ def validate_one_csv(csv_path: Path) -> list[Issue]:
                     line=line_no,
                     key=key,
                     detail="missing metadata bilingual block (any _* key)",
+                )
+            )
+
+        # Mod entries (CSVs under mods/) must have a _descriptor bilingual block
+        if rel.parts[0] == "mods" and not has_specific_metadata(entry, "_descriptor"):
+            issues.append(
+                Issue(
+                    kind="MISSING_DESCRIPTOR",
+                    file=rel.as_posix(),
+                    line=line_no,
+                    key=key,
+                    detail="mod entry missing _descriptor bilingual block",
                 )
             )
 

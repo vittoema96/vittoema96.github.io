@@ -45,6 +45,10 @@
     "_description": {
       "en": "Developed by The Institute after the Great War, Institute lasers differ in design and function from the pre-War lasers used by other factions such as the Brotherhood of Steel. Eschewing raw power for a rapid succession of beams, these lasers can lay down a searing volley of suppressive fire.",
       "it": "Sviluppati dall’Istituto dopo la Grande Guerra, i laser dell’istituto sono diversi sia nell’aspetto che nella funzione rispetto a quelli dell’anteguerra che vengono utilizzati da altre fazioni, come la Confraternita d’Acciaio. Rinunciando alla potenza di fuoco in favore di una rapida successione di raggi, possono riversare una pioggia incandescente di fuoco di sbarramento. La configurazione di base si riferisce a una pistola laser dell’Istituto, che può montare una per tipo delle seguenti modifiche. Ogni mod Calcio trasforma l’arma in un fucile laser dell’Istituto."
+    },
+    "_stock_name": {
+      "en": "Institute Laser Rifle",
+      "it": "Fucile Laser dell'Istituto"
     }
   },
   "weaponLaserMusket": {
@@ -61,6 +65,10 @@
     "_description": {
       "en": "Laser guns are high-tech weapons which emit a concentrated beam of coherent, directional light, intense enough to inflict serious damage. They were a relatively new development in the years before the Great War, and thus are not an especially common sight in the wasteland, outside of those groups who've secured old military weapons caches. Most surviving models of laser gun—such as the dependable AER9, widely used by the U. S. Army—use an internal capacitor charged by a microfusion power cell.",
       "it": "Le pistole laser sono armi tecnologiche in grado di emettere un raggio di luce direzionale coeso e abbastanza intenso da causare gravi danni. Negli anni prima della Grande Guerra erano un’evoluzione relativamente nuova, per cui è difficile trovarle nella Zona Contaminata, al di fuori dei gruppi che sono riusciti ad accaparrarsi i vecchi depositi delle armi dell’esercito. La maggior parte dei modelli sopravvissuti di pistole laser, come l’affidabile AER9, ampiamente usata dall’esercito americano, si serve di un condensatore interno caricato da una batteria a microfusione. La configurazione di base si riferisce a una pistola laser che può montare una per tipo delle seguenti modifiche. Ogni mod Calcio la trasforma in un fucile laser."
+    },
+    "_stock_name": {
+      "en": "Laser Rifle",
+      "it": "Fucile Laser"
     }
   },
   "weaponMicrowaveEmitter": {
@@ -85,6 +93,10 @@
     "_description": {
       "en": "Plasma guns, or plasma casters, are high-tech weapons firing superheated ionized gas, or plasma. These weapons are rare and potent, delivering damage through the high-speed impact of the plasma bolt and then thermal transfer as the heat from the plasma bolt is transferred into the target at the moment of impact.",
       "it": "Le armi al plasma, dette anche plasmacaster, sono delle armi altamente tecnologiche che sparano gas ionizzato ad altissime temperature, o plasma. Queste armi, che funzionano con cartucce al plasma, sono rare e molto potenti, in grado come sono di arrecare danno attraverso l’impatto ad alta velocità del raggio al plasma e, successivamente, con il trasferimento termico del calore che viene riversato sul bersaglio al momento dell’impatto."
+    },
+    "_stock_name": {
+      "en": "Plasma Rifle",
+      "it": "Fucile al Plasma"
     }
   },
   "weaponTeslaRifle": {

@@ -5,6 +5,10 @@
     "_description": {
       "en": "+3 Physical Resistance, +3 Energy Resistance",
       "it": "+3 Resistenza ai Danni Fisici, +3 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Alloyed Metal {{name}}",
+      "it": "{{name}} Metallo In Lega"
     }
   },
   "modAnnealed": {
@@ -13,6 +17,10 @@
     "_description": {
       "en": "+2 Physical Resistance, +2 Energy Resistance",
       "it": "+2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Annealed {{name}}",
+      "it": "{{name}} Rinvenuta"
     }
   },
   "modArmorHardened": {
@@ -21,6 +29,10 @@
     "_description": {
       "en": "+4 Physical Resistance, +4 Energy Resistance",
       "it": "+4 Resistenza ai Danni Fisici, +4 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Hardened {{name}}",
+      "it": "{{name}} Temprato"
     }
   },
   "modBandedLeather": {
@@ -29,6 +41,10 @@
     "_description": {
       "en": "+2 Physical Resistance, +2 Energy Resistance",
       "it": "+2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Banded Leather {{name}}",
+      "it": "{{name}} Cuoio Fasciato"
     }
   },
   "modBoiledLeather": {
@@ -37,6 +53,10 @@
     "_description": {
       "en": "+1 Physical Resistance, +1 Energy Resistance",
       "it": "+1 Resistenza ai Danni Fisici, +1 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Boiled Leather {{name}}",
+      "it": "{{name}} Cuoio Bollito"
     }
   },
   "modEnamelledMetal": {
@@ -45,6 +65,10 @@
     "_description": {
       "en": "+2 Physical Resistance, +2 Energy Resistance",
       "it": "+2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Enamelled Metal {{name}}",
+      "it": "{{name}} Metallo Smaltato"
     }
   },
   "modFiberglass": {
@@ -53,6 +77,10 @@
     "_description": {
       "en": "+2 Physical Resistance, +2 Energy Resistance",
       "it": "+2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Fiberglass {{name}}",
+      "it": "{{name}} Fibra di Vetro"
     }
   },
   "modLaminated": {
@@ -61,6 +89,10 @@
     "_description": {
       "en": "+1 Physical Resistance, +1 Energy Resistance",
       "it": "+1 Resistenza ai Danni Fisici, +1 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Laminated {{name}}",
+      "it": "{{name}} Laminato"
     }
   },
   "modMicrocarbon": {
@@ -69,6 +101,10 @@
     "_description": {
       "en": "+3 Physical Resistance, +3 Energy Resistance",
       "it": "+3 Resistenza ai Danni Fisici, +3 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Microcarbon {{name}}",
+      "it": "{{name}} Microcarbonio"
     }
   },
   "modNanofilament": {
@@ -77,6 +113,10 @@
     "_description": {
       "en": "+4 Physical Resistance, +4 Energy Resistance",
       "it": "+4 Resistenza ai Danni Fisici, +4 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Nanofilament {{name}}",
+      "it": "{{name}} Nanofilamenti"
     }
   },
   "modPaintedMetal": {
@@ -85,6 +125,10 @@
     "_description": {
       "en": "+1 Physical Resistance, +1 Energy Resistance",
       "it": "+1 Resistenza ai Danni Fisici, +1 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Painted Metal {{name}}",
+      "it": "{{name}} Metallo Verniciato"
     }
   },
   "modPolishedMetal": {
@@ -93,6 +137,10 @@
     "_description": {
       "en": "+4 Physical Resistance, +4 Energy Resistance",
       "it": "+4 Resistenza ai Danni Fisici, +4 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Polished Metal {{name}}",
+      "it": "{{name}} Metallo Lucidato"
     }
   },
   "modPolymer": {
@@ -101,6 +149,10 @@
     "_description": {
       "en": "+3 Physical Resistance, +3 Energy Resistance",
       "it": "+3 Resistenza ai Danni Fisici, +3 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Polymer {{name}}",
+      "it": "{{name}} In Polimeri"
     }
   },
   "modReinforced": {
@@ -109,6 +161,10 @@
     "_description": {
       "en": "+1 Physical Resistance, +1 Energy Resistance",
       "it": "+1 Resistenza ai Danni Fisici, +1 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Reinforced {{name}}",
+      "it": "{{name}} Rinforzato"
     }
   },
   "modResin": {
@@ -117,6 +173,10 @@
     "_description": {
       "en": "+2 Physical Resistance, +2 Energy Resistance",
       "it": "+2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Resin {{name}}",
+      "it": "{{name}} Resina"
     }
   },
   "modShadowed": {
@@ -125,6 +185,10 @@
     "_description": {
       "en": "+1 Physical Resistance, +1 Energy Resistance, Shadowed",
       "it": "+1 Resistenza ai Danni Fisici, +1 Resistenza ai Danni da Energia, Ombrata"
+    },
+    "_descriptor": {
+      "en": "Shadowed {{name}}",
+      "it": "{{name}} Ombrato"
     }
   },
   "modShadowedLeather": {
@@ -133,6 +197,10 @@
     "_description": {
       "en": "+3 Physical Resistance, +3 Energy Resistance, Shadowed",
       "it": "+3 Resistenza ai Danni Fisici, +3 Resistenza ai Danni da Energia, Ombrata"
+    },
+    "_descriptor": {
+      "en": "Shadowed Leather {{name}}",
+      "it": "{{name}} Cuoio Ombrato"
     }
   },
   "modShadowedMetal": {
@@ -141,6 +209,10 @@
     "_description": {
       "en": "+2 Physical Resistance, +2 Energy Resistance, Shadowed",
       "it": "+2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia, Ombrata"
+    },
+    "_descriptor": {
+      "en": "Shadowed Metal {{name}}",
+      "it": "{{name}} Metallo Ombrato"
     }
   },
   "modStuddedLeather": {
@@ -149,6 +221,10 @@
     "_description": {
       "en": "+4 Physical Resistance, +4 Energy Resistance",
       "it": "+4 Resistenza ai Danni Fisici, +4 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Studded Leather {{name}}",
+      "it": "{{name}} Cuoio Borchiato"
     }
   },
   "modTempered": {
@@ -157,6 +233,10 @@
     "_description": {
       "en": "+3 Physical Resistance, +3 Energy Resistance",
       "it": "+3 Resistenza ai Danni Fisici, +3 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Tempered {{name}}",
+      "it": "{{name}} Temprata"
     }
   },
   "modTreatedLeather": {
@@ -165,6 +245,10 @@
     "_description": {
       "en": "+3 Physical Resistance, +3 Energy Resistance",
       "it": "+3 Resistenza ai Danni Fisici, +3 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Treated Leather {{name}}",
+      "it": "{{name}} Cuoio Trattato"
     }
   },
   "modWelded": {
@@ -173,6 +257,10 @@
     "_description": {
       "en": "+1 Physical Resistance, +1 Energy Resistance",
       "it": "+1 Resistenza ai Danni Fisici, +1 Resistenza ai Danni da Energia"
+    },
+    "_descriptor": {
+      "en": "Welded {{name}}",
+      "it": "{{name}} Saldata"
     }
   }
 }

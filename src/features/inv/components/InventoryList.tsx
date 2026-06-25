@@ -10,6 +10,7 @@ import { CharacterItem, CustomItem } from '@/types';
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
 import { useCharacter } from '@/contexts/CharacterContext.tsx';
 import { ItemCategory, ItemType } from '@/types/item.ts';
+import { getDisplayName } from '@/utils/itemUtils.ts';
 
 type SortBy = 'name' | 'number' | 'rarity'
 
@@ -136,7 +137,7 @@ function InventoryList({
 
             switch (sortBy) {
                 case 'name':
-                    comparison = t(aData.ID).localeCompare(t(bData.ID))
+                    comparison = getDisplayName(a, t).localeCompare(getDisplayName(b, t))
                     break
                 case 'number':
 

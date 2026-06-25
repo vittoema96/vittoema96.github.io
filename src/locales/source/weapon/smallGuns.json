@@ -165,6 +165,10 @@
     "_description": {
       "en": "Primitive, homemade, normally wielded by those who can't build, buy, or scavenge anything better, pipe pistols are crude and somewhat unreliable, but effective enough. The most common resemble small semi-automatic pistols, made to take common .38 rounds… though there are known to be those bold (or desperate) enough to modify them for automatic or precision fire.",
       "it": "Primitive, fatte in casa, normalmente impiegate da chi non può costruire, comprare o razziare nulla di meglio, le pistole artigianali sono rozze e alquanto inaffidabili, ma efficaci quanto basta. Quelle più comuni assomigliano a delle piccole semiautomatiche, fatte per ospitare delle comuni munizioni .38... ma si sa che ci sono stati degli ardimentosi (o disperati) che le hanno modificate per farle diventare automatiche o di precisione. Una pistola artigianale può montare una per tipo delle seguenti modifiche. Ogni mod al Calcio cambia la parola “Pistola” nel nome dell’arma in “Fucile”."
+    },
+    "_stock_name": {
+      "en": "Handmade Rifle",
+      "it": "Fucile Artigianale"
     }
   },
   "weaponHandmadeRevolver": {
@@ -173,6 +177,10 @@
     "_description": {
       "en": "Like other pipe weapons, these are makeshift or homemade pistols, in this case based on a revolver. They're a middle ground between the firepower of a bolt-action and the rate-of-fire of a pistol, and being a pipe weapon, they're similarly easy to modify.",
       "it": "Proprio come le altre armi artigianali, anche queste sono delle pistole di fortuna o fatte in casa, in questo caso sulla base di un revolver. Si tratta di un punto d’incontro tra la potenza di fuoco del bolt-action e la rapidità di fuoco delle pistole, inoltre essendo anch’esso un’arma “Improvvisata” è parimenti facile da modificare. Un revolver artigianale può montare una per tipo delle seguenti modifiche. Ogni mod al Calcio aggiunge la parola “Fucile” nel nome dell’arma."
+    },
+    "_stock_name": {
+      "en": "Handmade Rifle Revolver",
+      "it": "Fucile Revolver Artigianale"
     }
   },
   "weaponHuntingRifle": {

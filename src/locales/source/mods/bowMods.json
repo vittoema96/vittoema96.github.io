@@ -5,6 +5,10 @@
     "_description": {
       "en": "+1 damage DC, -1 Fire Rate, removes Recoil (6)",
       "it": "+1 danno DC, -1 Cadenza di Fuoco, rimuove Rinculo (6)"
+    },
+    "_descriptor": {
+      "en": "Compound {{name}}",
+      "it": "{{name}} Compound"
     }
   },
   "modBowIronSights": {
@@ -13,6 +17,10 @@
     "_description": {
       "en": "Increases Range by 1 grade",
       "it": "Aumenta la Gittata di 1 grado"
+    },
+    "_descriptor": {
+      "en": "{{name}}",
+      "it": "{{name}}"
     }
   },
   "modBowGlowSights": {
@@ -21,6 +29,10 @@
     "_description": {
       "en": "Increases Range by 1 grade, gains Accurate",
       "it": "Aumenta la Gittata di 1 grado, ottiene Di Precisione"
+    },
+    "_descriptor": {
+      "en": "Glow-Sighted {{name}}",
+      "it": "{{name}} Mirino Luminoso"
     }
   },
   "modCrossbowIronSights": {
@@ -29,6 +41,10 @@
     "_description": {
       "en": "Increases Range by 1 grade",
       "it": "Aumenta la Gittata di 1 grado"
+    },
+    "_descriptor": {
+      "en": "{{name}}",
+      "it": "{{name}}"
     }
   },
   "modCrossbowGlowSights": {
@@ -37,6 +53,10 @@
     "_description": {
       "en": "Increases Range by 1 grade, gains Accurate",
       "it": "Aumenta la Gittata di 1 grado, ottiene Di Precisione"
+    },
+    "_descriptor": {
+      "en": "Glow-Sighted {{name}}",
+      "it": "{{name}} Mirino Luminoso"
     }
   },
   "modCrossbowHeavyFrame": {
@@ -45,6 +65,10 @@
     "_description": {
       "en": "+1 damage DC",
       "it": "+1 danno DC"
+    },
+    "_descriptor": {
+      "en": "Heavy {{name}}",
+      "it": "{{name}} Pesante"
     }
   },
   "modCrossbowRepeatingFrame": {
@@ -53,6 +77,10 @@
     "_description": {
       "en": "+1 Fire Rate, removes Slow Load",
       "it": "+1 Cadenza di Fuoco, rimuove Caricamento Lento"
+    },
+    "_descriptor": {
+      "en": "Repeating {{name}}",
+      "it": "{{name}} a Ripetizione"
     }
   },
   "modCrossbowMultipleLaunchFrame": {
@@ -61,7 +89,10 @@
     "_description": {
       "en": "-1 damage DC, gains Ammo-Hungry (3) and Spread",
       "it": "-1 danno DC, ottiene Consuma Munizioni (3) e Propagato"
+    },
+    "_descriptor": {
+      "en": "Peppered {{name}}",
+      "it": "{{name}} a Raffica"
     }
   }
 }
-
