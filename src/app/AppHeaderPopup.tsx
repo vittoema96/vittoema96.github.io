@@ -45,7 +45,9 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
             integer?: boolean,
         },
     ): number | null => {
-        const trimmed = input.trim();
+        // Treat leading space as "+" (mobile keyboard shortcut for relative add)
+        const normalized = input.replace(/^ /, '+');
+        const trimmed = normalized.trim();
         if (!trimmed) {
             return null;
         }
@@ -178,7 +180,12 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
 
     const handleTextNumberChange =
         (setter: (val: string) => void) => (e: { target: { value: string } }) => {
-            setter(e.target.value);
+            const raw = e.target.value.replace(/^ /, '+');
+            // Allow only: optional leading sign (+ - or space) followed by digits
+            if (raw !== '' && !/^[+-]?\d*$/.test(raw)) {
+                return; // reject invalid characters
+            }
+            setter(raw);
         };
 
     const isFormValid =
