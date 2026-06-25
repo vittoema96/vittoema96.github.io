@@ -1478,5 +1478,17 @@
   "weight": {
     "en": "Weight",
     "it": "Peso"
+  },
+  "updateAvailable": {
+    "en": "New version available!",
+    "it": "Nuova versione disponibile!"
+  },
+  "updateNow": {
+    "en": "Update",
+    "it": "Aggiorna"
+  },
+  "dismiss": {
+    "en": "Dismiss",
+    "it": "Chiudi"
   }
 }

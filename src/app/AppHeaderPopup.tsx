@@ -170,7 +170,7 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
         });
 
         if (hpRemoved >= 5) {
-            showToast(t('hpDamageWarningToast'), 3200);
+            showToast(t('hpDamageWarningToast'));
         }
 
         onClose();

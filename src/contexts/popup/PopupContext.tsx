@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 import AlertPopup from '@/components/popup/AlertPopup';
 import D20Popup, { D20PopupProps } from '@/components/popup/dice/D20Popup.tsx';
@@ -8,6 +8,7 @@ import Nd20Popup, { Nd20PopupProps } from '@/components/popup/dice/Nd20Popup.tsx
 import AddItemPopup, { AddItemPopupProps } from '@/components/popup/AddItemPopup';
 import TradeItemPopup, { TradeItemPopupProps } from '@/components/popup/TradeItemPopup.tsx';
 import ModifyItemPopup, { ModifyItemPopupProps } from '@/components/popup/ModifyItemPopup';
+import Toast, { type ToastVariant } from '@/components/Toast';
 
 export type RollerType = 'companion' | 'mysteriousStranger' | undefined;
 
@@ -25,7 +26,7 @@ export interface PopupContextValue {
     close: (identifier?: string | React.ComponentType<any>) => void;
 
     showAlert: (content: string) => void;
-    showToast: (content: string, durationMs?: number) => void;
+    showToast: (content: string, variant?: ToastVariant) => void;
     showConfirm: (content: string, onConfirm: () => void) => void;
     showD20Popup: (props: OmitOnClose<D20PopupProps>) => void;
     showD6Popup: (props: OmitOnClose<D6PopupProps>) => void;
@@ -48,13 +49,10 @@ export const usePopup = () => {
 
 export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
     const [stack, setStack] = useState<ActivePopup[]>([]);
-    const [toastMessage, setToastMessage] = useState<string | null>(null);
-    const toastTimeoutRef = useRef<number | null>(null);
+    const [toastState, setToastState] = useState<{ message: string; variant: ToastVariant } | null>(null);
 
-    useEffect(() => () => {
-        if (toastTimeoutRef.current !== null) {
-            window.clearTimeout(toastTimeoutRef.current);
-        }
+    const showToast: PopupContextValue["showToast"] = useCallback((content, variant: ToastVariant = 'danger') => {
+        setToastState({ message: content, variant });
     }, []);
 
     const close = useCallback((identifier?: string | React.ComponentType<any>) => {
@@ -90,18 +88,6 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
         [open],
     );
 
-    const showToast: PopupContextValue["showToast"] = useCallback((content, durationMs = 2000) => {
-        setToastMessage(content);
-
-        if (toastTimeoutRef.current !== null) {
-            window.clearTimeout(toastTimeoutRef.current);
-        }
-
-        toastTimeoutRef.current = window.setTimeout(() => {
-            setToastMessage(null);
-            toastTimeoutRef.current = null;
-        }, durationMs);
-    }, []);
 
     const showConfirm: PopupContextValue["showConfirm"] = useCallback(
         (content, onConfirm) =>
@@ -190,7 +176,13 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
         <PopupContext.Provider value={contextValue as any}>
             {children}
 
-            {toastMessage && <div className="popup-toast">{toastMessage}</div>}
+            {toastState && (
+                <Toast
+                    message={toastState.message}
+                    variant={toastState.variant}
+                    onDismiss={() => setToastState(null)}
+                />
+            )}
 
             {stack.map(popup => (
                 <popup.Component key={popup.id} {...popup.props} onClose={() => close(popup.id)} />

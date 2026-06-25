@@ -20,6 +20,7 @@ import { PopupProvider } from '@/contexts/popup/PopupContext';
 import BootScreen, { useBootScreen } from '@/BootScreen';
 import App from '@/app/App';
 import { GameDatabase } from '@/services/GameDatabase';
+import UpdatePrompt from '@/components/UpdatePrompt';
 
 // Apply appearance settings as early as possible to avoid flicker.
 UISettingsManager.applyAll();
@@ -58,6 +59,7 @@ function Main() {
                     </TooltipProvider>
                 </CharacterProvider>
             )}
+            <UpdatePrompt />
         </ErrorBoundary>
     );
 }

@@ -94,7 +94,7 @@ dialog::backdrop {
 /* Stats table for HP/Rads/Luck */
 
 .header-info-popup__stat-input {
-    max-width: 3.5rem;
+    max-width: 3.15rem;
     min-width: 2.5rem;
     /* Keep text inputs visually consistent with previous number-input look */
     text-align: center;

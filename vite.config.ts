@@ -49,11 +49,9 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate', // TODO investigate 'prompt' register type
+      registerType: 'prompt',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,csv,woff,woff2,ttf,eot}'],
-        skipWaiting: true,
-        clientsClaim: true,
         cleanupOutdatedCaches: true,
         // Ignore dev-only resources to reduce console warnings
         navigateFallbackDenylist: [/^\/@vite/, /^\/@react-refresh/, /^\/node_modules/]
