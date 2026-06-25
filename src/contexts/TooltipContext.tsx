@@ -13,14 +13,16 @@ import { useTranslation } from 'react-i18next'
 
 /** --- TYPES & CONTEXT --- **/
 
+type TooltipContent = string | React.ReactNode;
+
 interface TooltipState {
     isVisible: boolean;
-    content: string;
+    content: TooltipContent;
     targetElement?: HTMLElement | undefined;
 }
 
 interface TooltipContextValue {
-    showTooltip: (content: string, targetElement: HTMLElement) => void;
+    showTooltip: (content: TooltipContent, targetElement: HTMLElement) => void;
     hideTooltip: () => void;
 }
 
@@ -49,7 +51,7 @@ export function TooltipProvider({ children }: Readonly<React.PropsWithChildren>)
     const stateRef = useRef(tooltipState);
     stateRef.current = tooltipState;
 
-    const showTooltip = useCallback((content: string, targetElement: HTMLElement) => {
+    const showTooltip = useCallback((content: TooltipContent, targetElement: HTMLElement) => {
         setTooltipState({
             isVisible: true,
             content,
@@ -190,11 +192,14 @@ function TooltipPortal({ isVisible, content, targetElement, onHide }: TooltipPor
     return isVisible && content ?
         createPortal(
             <div ref={tooltipRef} className="tooltip-panel" onClick={onHide}>
-                {content.split('\n').map((line, i) => (
-                    <React.Fragment key={i}>
-                        {line}{i !== content.split('\n').length - 1 && <br />}
-                    </React.Fragment>
-                ))}
+                {typeof content === 'string'
+                    ? content.split('\n').map((line, i) => (
+                        <React.Fragment key={i}>
+                            {line}{i !== content.split('\n').length - 1 && <br />}
+                        </React.Fragment>
+                    ))
+                    : content
+                }
                 <div ref={arrowRef} className="tooltip-arrow" />
             </div>,
             portalTarget

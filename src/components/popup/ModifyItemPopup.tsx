@@ -3,10 +3,12 @@ import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/contexts/CharacterContext'
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase';
 import { useTooltip } from '@/contexts/TooltipContext'
-import { CharacterItem, MrHandyPart } from '@/types';
+import { CharacterItem, ModItem, MrHandyPart } from '@/types';
 import { addItem, removeItem } from '@/utils/itemUtils.ts';
 import BasePopup from './common/BasePopup';
+import ModTooltipContent from './ModTooltipContent';
 import Skill from '@/features/stat/components/Skill.tsx';
+import { isCharacterSkill, SkillType } from '@/services/character/utils.ts';
 
 /**
  * Popup for modifying weapons and armor with mods
@@ -21,6 +23,9 @@ interface SlotOption {
     id: string;
     effects: string[];
     cost: number;
+    rarity: number | '-';
+    skill: string;
+    perks: string[];
 }
 
 interface SlotData {
@@ -52,10 +57,13 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                     selectedMod: undefined,
                     buy: false
                 }
-                const data = {
+                const data: SlotOption = {
                     id: modData.ID,
                     effects: modData.EFFECTS,
                     cost: Number(modData.COST) || 0,
+                    rarity: modData.RARITY,
+                    skill: modData.SKILL,
+                    perks: modData.PERKS,
                 }
                 slot.availableMods.push(data)
                 if(characterItem.mods.includes(data.id)) {
@@ -80,10 +88,13 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                 selectedMod: undefined,
                 buy: undefined
             }
-            const data = {
+            const data: SlotOption = {
                 id: effect.ID,
                 effects: effect.EFFECTS,
-                cost: 0
+                cost: 0,
+                rarity: '-',
+                skill: '',
+                perks: [],
             }
             slot.availableMods.push(data)
             if(characterItem.mods.includes(data.id)) {
@@ -161,44 +172,20 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
         updateCharacter({ items: newItems, caps: character.caps - totalCost })
     }
 
-    // Format effect string for display in tooltip
-    const formatEffect = (effectStr: string) => {
-        const [effectType, ...valueParts] = effectStr.split(':')
-        const value = valueParts.join(':')
-        if(!effectType) {return effectStr}
-
-        const signed = (value: string) =>
-            Number.parseInt(value).toLocaleString(undefined, { signDisplay: "exceptZero" })
-
-        if(effectType.startsWith('effect') || effectType.startsWith('quality')){
-            if(effectType.endsWith('Add')){
-                return `+ ${valueParts.map(val => t(val)).join(' ')}`
-            } else if(effectType.endsWith('Remove')){
-                return `- ${t(valueParts.map(val => t(val)).join(' '))}`
-            }
-        } else if(effectType.endsWith('Add')){
-            return `${signed(value)} ${t(effectType.replace('Add', ''))}`
-        } else if(effectType.endsWith('Set')){
-            return `${t(effectType.replace('Set', ''))}: ${t(value)}`
-        }
-        console.error(`${effectType} was not handled correctly`)
-        return effectStr
-    }
-
     // Show mod info tooltip
     const onModInfoClick = (e: React.MouseEvent<HTMLButtonElement>, modData: SlotOption) => {
         e.stopPropagation()
 
-        if (modData.effects.length === 0) {
-            return
-        }
-
-        // Format as: Title + list of effects
-        const modName = t(modData.id)
-        const effectsList = modData.effects.map(effect => `• ${formatEffect(effect)}`).join('\n')
-        const content = `${modName}\n\n${effectsList}`
-
-        showTooltip(content, e.currentTarget)
+        showTooltip(
+            <ModTooltipContent
+                modId={modData.id}
+                effects={modData.effects}
+                complexity={modData.rarity}
+                skill={modData.skill}
+                perks={modData.perks}
+            />,
+            e.currentTarget,
+        )
     }
 
     const previewData = getPreviewData()
@@ -207,6 +194,16 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
     const hasModChanges = Object.values(slotsData).some(
         data => data.selectedMod?.id !== data.appliedMod?.id,
     )
+
+    const requiredSkills: SkillType[] = Array.from(new Set(
+        Object.values(slotsData)
+            .filter(data => data.selectedMod?.id !== data.appliedMod?.id)
+            .map(data => data.selectedMod?.skill)
+            .filter((skill): skill is SkillType => Boolean(skill) && isCharacterSkill(skill)),
+    )).sort((a, b) => t(a).localeCompare(t(b)))
+
+    // TODO (CRITICAL): for mod crafting, "survival" checks should use INT instead of END.
+    // Current Skill component maps survival -> endurance via getSpecialFromSkill().
 
     return (
         <BasePopup
@@ -392,12 +389,16 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                                 const newMod = dataManager.getItem(e.target.value)
                                     ?? dataManager.legendaryEffects[e.target.value]
                                     ?? undefined
-                                let resolved = undefined
+                                let resolved: SlotOption | undefined = undefined
                                 if(newMod){
+                                    const isMod = 'SKILL' in newMod
                                     resolved = {
                                         id: newMod.ID,
                                         effects: { EFFECTS: [], ...newMod }.EFFECTS,
                                         cost: Number({ COST: 0, ...newMod }.COST) || 0,
+                                        rarity: isMod ? (newMod as ModItem).RARITY : '-',
+                                        skill: isMod ? (newMod as ModItem).SKILL : '',
+                                        perks: isMod ? (newMod as ModItem).PERKS : [],
                                     };
                                 }
                                 setSlotsData({
@@ -428,7 +429,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                 <>
                     <hr />
 
-                    <div className="row l-firstSmall" style={{ alignItems: 'stretch' }}>
+                    <div className="row" style={{ alignItems: 'stretch' }}>
                         <div className="mod-total-section" style={{ flex: 1 }}>
                             <span className="mod-total-label">{t('totalCost') || 'Total Cost'}:</span>
                             <span className="mod-total-value">
@@ -437,9 +438,13 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                             </span>
                         </div>
 
-                        <div style={{ flex: 1 }}>
-                            <Skill skillId="repair" isEditing={false} />
-                        </div>
+                        {requiredSkills.length > 0 && (
+                            <div style={{ flex: 1 }} className="stack no-gap">
+                                {requiredSkills.map(skillId => (
+                                    <Skill key={skillId} skillId={skillId} isEditing={false} />
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </>
             )}
