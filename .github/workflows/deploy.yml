@@ -25,13 +25,13 @@ jobs:
     steps:
       # 1. Checkout repository
       - name: Checkout Repository 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       # 2. Setup Node.js
       - name: Setup Node.js 🟢
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.4.0
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       # 3. Install dependencies
@@ -66,11 +66,11 @@ jobs:
 
       # 7. Setup GitHub Pages
       - name: Setup GitHub Pages 📄
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v5.0.0
 
       # 8. Upload build artifacts
       - name: Upload Build Artifacts 📤
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: './dist'
 
@@ -84,4 +84,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4.0.5
