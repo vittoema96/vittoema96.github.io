@@ -1,5 +1,6 @@
 import {getGameDatabase} from "@/hooks/getGameDatabase.ts";
 import { CharacterItem } from '@/types';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Aid-specific content renderer
@@ -10,6 +11,7 @@ interface AidContentProps {
 }
 function AidContent({ characterItem }: Readonly<AidContentProps>) {
 
+    const { t } = useTranslation();
     const dataManager = getGameDatabase()
     const itemData = dataManager.getItem(characterItem.id)
     if(!dataManager.isType(itemData, "aid"))
@@ -27,7 +29,7 @@ function AidContent({ characterItem }: Readonly<AidContentProps>) {
         if (itemData.DURATION !== undefined) {
             return {
                 label: 'Duration',
-                value: itemData.DURATION,
+                value: t(itemData.DURATION),
                 key: 'DURATION'
             }
         }

@@ -231,14 +231,6 @@
       "it": "Il pacchetto di stimolanti pronti all'uso Stimpak è un tipo di medicina ad azione rapida utilizzato per potenziare le capacità di guarigione e recupero del corpo. Ne furono prodotti milioni e milioni per i kit di primo soccorso domestici e sui luoghi di lavoro, ospedali, cliniche e altri posti. Prodigio della scienza dell'anteguerra, lo Stimpak è una siringa monouso piena di una serie di forti agenti curativi, stimolanti e antidolorifici, che può essere iniettata sia intramuscolo che per endovena: la si può infilzare ovunque, funzionerà. Ovviamente raggiunge il massimo dell'efficacia quando è iniettato da un Auto-Doc o da qualcuno con una formazione medica, assieme ad altri trattamenti. Utilizzo: Gli Stimpak possono essere usati in due modi: possono essere iniettati con l'azione minore Assumere Sostanze per ripristinare immediatamente 4 PS o curare una ferita, oppure possono essere iniettati come parte di un'azione di Primo Soccorso e guarire 4 PS o curare una ferita, in aggiunta a ogni altra cura."
     }
   },
-  "medsStimpakDiffuser": {
-    "en": "Stimpak Diffuser",
-    "it": "Nebulizzatore di Stimpak",
-    "_description": {
-      "en": "An enhanced version of the standard Stimpak, designed to disperse healing medication to multiple targets within close range. A Stimpak Diffuser can be used to heal 4 HP to all allies within Close range using the Take Chem minor action.",
-      "it": "Questo meccanismo di rilascio fa sì che il contenuto di un super Stimpak venga disperso in una nube di aerosol, inondando una zona ristretta con uno scoppio di vapori medicinali. Utilizzo: Quando viene rilasciato attraverso l'azione minore Interagire produce una nube che ripristina immediatamente 4 PS a chiunque (fatta eccezione per i robot) a distanza Ravvicinata. Ogni volta che si usa un diffusore, si consuma un super Stimpak."
-    }
-  },
   "medsSuperStimpak": {
     "en": "Super Stimpak",
     "it": "Super Stimpak",

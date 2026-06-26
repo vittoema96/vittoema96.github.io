@@ -215,7 +215,6 @@ export interface ItemWithEffects extends BaseItem {
 
 interface AidItemBase extends BaseItem {
     EFFECT: string;
-    DESCRIPTION?: string;
     CATEGORY: AidCategory;
 }
 

@@ -387,6 +387,18 @@
     "en": "Drinks",
     "it": "Bevande"
   },
+  "durationInstant": {
+    "en": "Instant",
+    "it": "Istantaneo"
+  },
+  "durationLasting": {
+    "en": "Lasting",
+    "it": "Durevole"
+  },
+  "durationShort": {
+    "en": "Short",
+    "it": "Breve"
+  },
   "edit": {
     "en": "Edit",
     "it": "Modifica"
