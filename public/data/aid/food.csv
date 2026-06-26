@@ -1,76 +1,76 @@
-ID,TYPE,CATEGORY,EFFECT,HP_GAIN,RADIOACTIVE,WEIGHT,COST,RARITY
-foodMirelurkRoast,aid,food,+1 PA all'inizio della scena successiva,8,0,0,40,2
-foodYaoGuaiRoast,aid,food,+2 agli attacchi da mischia fino alla fine della scena successiva,14,0,0.5,110,4
-foodBerry,aid,food,,3,1,0,5,3
-foodDeathclawSteak,aid,food,Permette di ritirare 1d20 su tutte le prove di FOR fino alla fine della scena successiva,14,0,0.5,130,4
-foodMirelurkQueenSteak,aid,food,Riduce di 1 la difficoltà di tutte le prove di COS fino alla fine della scena successiva,14,0,0.5,130,5
-foodRadscorpionSteak,aid,food,+2 alla Resistenza ai Danni da Energia fino alla fine della scena successiva,12,0,0.5,65,3
-foodBloodbugSteak,aid,food,+3 al massimale dei PS fino al termine della scena successiva,10,0,0,18,2
-foodRibeyeSteak,aid,food,,10,0,0.5,40,2
-foodSalisburySteak,aid,food,,5,1,0,20,0
-foodIguanaBits,aid,food,,4,1,0,8,1
-foodSquirrelBits,aid,food,,4,1,0,4,1
-foodCrispySquirrelBits,aid,food,,6,0,0,6,2
-foodGummyCandy,aid,food,,3,1,0,5,0
-foodCookedSoftshellMirelurkMeat,aid,food,+1 PA all'inizio della scena successiva,9,0,0,40,3
-foodCram,aid,food,,5,1,0,25,1
-foodMongrelMeat,aid,food,,4,1,0,8,0
-foodBrahminMeat,aid,food,,3,1,0.5,28,1
-foodRadstagMeat,aid,food,,8,1,0.5,50,1
-foodDeathclawMeat,aid,food,,9,1,0.5,110,3
-foodMirelurkMeat,aid,food,,6,1,0,18,1
-foodSoftshellMirelurkMeat,aid,food,,6,1,0,22,2
-foodBloatflyMeat,aid,food,,2,1,0,8,0
-foodMoleRatMeat,aid,food,,5,1,0,5,0
-foodMirelurkQueenMeat,aid,food,Permette di ritirare 1d20 su tutte le prove di COS fino alla fine della scena successiva,10,1,0,22,4
-foodRadroachMeat,aid,food,,4,1,0,3,0
-foodRadscorpionMeat,aid,food,,9,1,0.5,55,2
-foodMutantHoundMeat,aid,food,,5,1,0,8,2
-foodStingwingMeat,aid,food,,8,1,0,30,1
-foodBloodbugMeat,aid,food,,7,1,0,8,1
-foodYaoGuaiMeat,aid,food,,9,1,0.5,85,3
-foodCannedMeat,aid,food,,6,1,0.5,25,0
-foodCarrot,aid,food,,3,1,0,3,1
-foodGrilledRadstag,aid,food,Il peso trasportabile aumenta di +25 fino alla fine della scena successiva,11,0,0.5,60,2
-foodCannedDogFood,aid,food,,3,1,0,6,0
-foodWatermelon,aid,food,,3,1,0.5,6,1
-foodMongrelChops,aid,food,,6,0,0,12,1
-foodMutantHoundChops,aid,food,Guarisce 2 danni Radioattivi,8,0,0,12,3
-foodYaoGuaiChops,aid,food,+2 alla Resistenza ai Danni Fisici fino alla fine della scena successiva,13,0,0.5,90,4
-foodPerfectlyPreservedPie,aid,food,,5,0,0,20,3
-foodSweetRoll,aid,food,,4,1,0,9,1
-foodSandbean,aid,food,,3,1,0,6,1
-foodStingwingFilet,aid,food,Permette di ritirare 1d20 su tutte le prove di PER fino alla fine della scena successiva,11,0,0,35,2
-foodMentalFungus,aid,food,,3,1,0,6,1
-foodGranola,aid,food,,3,1,0,6,1
-foodCorn,aid,food,,3,1,0,5,1
-foodInstaMash,aid,food,,4,1,0,20,0
-foodBlamCoMacAndCheese,aid,food,,4,1,0,10,1
-foodDandyBoyApples,aid,food,,3,1,0,7,0
-foodMinestrone,aid,food,+2 alla Resistenza ai Danni da Radiazione fino alla fine della scena successiva,7,0,0.5,13,2
-foodRoastedBloatfly,aid,food,+2 alla Resistenza ai Danni da Radiazione,6,0,0,15,1
-foodMutfruit,aid,food,,3,1,0,8,0
-foodDeathclawOmelette,aid,food,"Se la scena successiva è di combattimento , il PG recupera 1 PS all'inizio di ogni turno",11,0,0,80,4
-foodMirelurkEggOmelette,aid,food,Aggiungere immediatamente 2 PA alla riserva del gruppo,7,0,0,30,3
-foodRadscorpionEggOmelette,aid,food,Tutte le dipendenze vengono curate,9,0,0,65,4
-foodPasta,aid,food,Permette di ritirare 1d20 su tutte le prove di COS fino alla fine della scena successiva,7,0,0,0,2
-foodPotatoChips,aid,food,,3,1,0,7,0
-foodMoleRatChunks,aid,food,+1 al massimale dei PA nella riserva di gruppo fino alla fine della scena corrente,7,0,0,8,1
-foodPorkNBeans,aid,food,,4,1,0,10,0
-foodInstantRamen,aid,food,,6,0,0,20,2
-foodInstituteRations,aid,food,,5,0,0,10,2
-foodGrilledRadroach,aid,food,,5,0,0,7,1
-foodIguanaOnAStick,aid,food,,6,0,0,33,2
-foodSquirrelOnAStick,aid,food,,7,0,0,15,2
-foodRadstagStew,aid,food,+3 alla Resistenza ai Danni da Energia fino alla fine della prossima scena,12,0,0.5,60,3
-foodSquirrelStew,aid,food,,10,0,0.5,24,2
-foodSugarBombs,aid,food,+1 PA all'inizio della scena successiva,4,1,0,11,0
-foodTato,aid,food,,3,1,0,7,1
-foodFancyLadsSnacks,aid,food,,3,1,0,18,0
-foodMirelurkCake,aid,food,Permette di respirare sott'acqua fino alla fine della scena successiva,12,0,0,35,3
-foodYumYumDeviledEggs,aid,food,,4,0,0,20,0
-foodDeathclawEgg,aid,food,,7,1,0,69,3
-foodMirelurkEgg,aid,food,,3,1,0.5,0,2
-foodRadscorpionEgg,aid,food,,6,1,0,48,3
-foodGourd,aid,food,,3,1,0.5,6,1
-foodIguanaSoup,aid,food,,10,0,0.5,21,3
+ID,TYPE,CATEGORY,HP_GAIN,RADIOACTIVE,WEIGHT,COST,RARITY
+foodMirelurkRoast,aid,food,8,0,0,40,2
+foodYaoGuaiRoast,aid,food,14,0,0.5,110,4
+foodBerry,aid,food,3,1,0,5,3
+foodDeathclawSteak,aid,food,14,0,0.5,130,4
+foodMirelurkQueenSteak,aid,food,14,0,0.5,130,5
+foodRadscorpionSteak,aid,food,12,0,0.5,65,3
+foodBloodbugSteak,aid,food,10,0,0,18,2
+foodRibeyeSteak,aid,food,10,0,0.5,40,2
+foodSalisburySteak,aid,food,5,1,0,20,0
+foodIguanaBits,aid,food,4,1,0,8,1
+foodSquirrelBits,aid,food,4,1,0,4,1
+foodCrispySquirrelBits,aid,food,6,0,0,6,2
+foodGummyCandy,aid,food,3,1,0,5,0
+foodCookedSoftshellMirelurkMeat,aid,food,9,0,0,40,3
+foodCram,aid,food,5,1,0,25,1
+foodMongrelMeat,aid,food,4,1,0,8,0
+foodBrahminMeat,aid,food,3,1,0.5,28,1
+foodRadstagMeat,aid,food,8,1,0.5,50,1
+foodDeathclawMeat,aid,food,9,1,0.5,110,3
+foodMirelurkMeat,aid,food,6,1,0,18,1
+foodSoftshellMirelurkMeat,aid,food,6,1,0,22,2
+foodBloatflyMeat,aid,food,2,1,0,8,0
+foodMoleRatMeat,aid,food,5,1,0,5,0
+foodMirelurkQueenMeat,aid,food,10,1,0,22,4
+foodRadroachMeat,aid,food,4,1,0,3,0
+foodRadscorpionMeat,aid,food,9,1,0.5,55,2
+foodMutantHoundMeat,aid,food,5,1,0,8,2
+foodStingwingMeat,aid,food,8,1,0,30,1
+foodBloodbugMeat,aid,food,7,1,0,8,1
+foodYaoGuaiMeat,aid,food,9,1,0.5,85,3
+foodCannedMeat,aid,food,6,1,0.5,25,0
+foodCarrot,aid,food,3,1,0,3,1
+foodGrilledRadstag,aid,food,11,0,0.5,60,2
+foodCannedDogFood,aid,food,3,1,0,6,0
+foodWatermelon,aid,food,3,1,0.5,6,1
+foodMongrelChops,aid,food,6,0,0,12,1
+foodMutantHoundChops,aid,food,8,0,0,12,3
+foodYaoGuaiChops,aid,food,13,0,0.5,90,4
+foodPerfectlyPreservedPie,aid,food,5,0,0,20,3
+foodSweetRoll,aid,food,4,1,0,9,1
+foodSandbean,aid,food,3,1,0,6,1
+foodStingwingFilet,aid,food,11,0,0,35,2
+foodMentalFungus,aid,food,3,1,0,6,1
+foodGranola,aid,food,3,1,0,6,1
+foodCorn,aid,food,3,1,0,5,1
+foodInstaMash,aid,food,4,1,0,20,0
+foodBlamCoMacAndCheese,aid,food,4,1,0,10,1
+foodDandyBoyApples,aid,food,3,1,0,7,0
+foodMinestrone,aid,food,7,0,0.5,13,2
+foodRoastedBloatfly,aid,food,6,0,0,15,1
+foodMutfruit,aid,food,3,1,0,8,0
+foodDeathclawOmelette,aid,food,11,0,0,80,4
+foodMirelurkEggOmelette,aid,food,7,0,0,30,3
+foodRadscorpionEggOmelette,aid,food,9,0,0,65,4
+foodPasta,aid,food,7,0,0,0,2
+foodPotatoChips,aid,food,3,1,0,7,0
+foodMoleRatChunks,aid,food,7,0,0,8,1
+foodPorkNBeans,aid,food,4,1,0,10,0
+foodInstantRamen,aid,food,6,0,0,20,2
+foodInstituteRations,aid,food,5,0,0,10,2
+foodGrilledRadroach,aid,food,5,0,0,7,1
+foodIguanaOnAStick,aid,food,6,0,0,33,2
+foodSquirrelOnAStick,aid,food,7,0,0,15,2
+foodRadstagStew,aid,food,12,0,0.5,60,3
+foodSquirrelStew,aid,food,10,0,0.5,24,2
+foodSugarBombs,aid,food,4,1,0,11,0
+foodTato,aid,food,3,1,0,7,1
+foodFancyLadsSnacks,aid,food,3,1,0,18,0
+foodMirelurkCake,aid,food,12,0,0,35,3
+foodYumYumDeviledEggs,aid,food,4,0,0,20,0
+foodDeathclawEgg,aid,food,7,1,0,69,3
+foodMirelurkEgg,aid,food,3,1,0.5,0,2
+foodRadscorpionEgg,aid,food,6,1,0,48,3
+foodGourd,aid,food,3,1,0.5,6,1
+foodIguanaSoup,aid,food,10,0,0.5,21,3

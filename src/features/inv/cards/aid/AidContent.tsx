@@ -62,7 +62,7 @@ function AidContent({ characterItem }: Readonly<AidContentProps>) {
             <div className="row l-spaceBetween">
                 <div className="card-aid-image themed-svg" data-icon={itemData.CATEGORY}></div>
 
-                <span className="h5 js-cardAid-effect">{itemData.EFFECT}</span>
+                <span className="h5 js-cardAid-effect">{t(`${itemData.ID}Effect`, {defaultValue: ''})}</span>
 
                 <section>
                     {specificEffect && (

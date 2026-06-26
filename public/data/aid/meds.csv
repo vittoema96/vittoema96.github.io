@@ -1,33 +1,33 @@
-ID,TYPE,CATEGORY,EFFECT,DURATION,ADDICTIVE,WEIGHT,COST,RARITY
-medsAddictol,aid,meds,Elimina tutte le dipendenze,durationInstant,0,0,125,3
-medsAntibiotics,aid,meds,Curano tutte le malattie,durationInstant,0,0,75,3
-medsHealingSalve,aid,meds,Ripristina 2 PS (vedi descrizione),durationInstant,0,0,20,1
-medsBuffjet,aid,meds,"Riduce la difficoltà di tutte le prove di FOR e COS di 1 (fino a un minimo di 0) . Concede immediatamente 3 PA (che vanno persi se non vengono spesi) , ogni azione extra costa 1 PA in meno , +4 al massimale dei PS",durationShort,1,0,75,4
-medsBuffout,aid,meds,"Permette di ripetere il tiro di 1d20 su tutte le prove di FOR e COS , +3 al massimale dei PS",durationLasting,2,0,45,2
-medsBufftat,aid,meds,"Riduce la difficoltà di tutte le prove di FOR , PER e COS di 1 (fino a un minimo di 0) , +4 al massimale dei PS",durationLasting,1,0,75,4
-medsCalmex,aid,meds,"Permette di ripetere il tiro di 1d20 su tutte le prove di PER e AGI , +2 ai danni su attacchi furtivi",durationLasting,1,0,100,4
-medsDaddyO,aid,meds,"Riduce la difficoltà di tutte le prove di PER e INT di 1 (fino a un minimo di 0) , +1 alla difficoltà delle prove di CAR",durationLasting,1,0,50,2
-medsDaytripper,aid,meds,"Riduce la difficoltà delle prove di CAR e FRT di 1 (fino a un minimo di 0) , la difficoltà delle prove su FOR aumenta di +1",durationLasting,1,0,40,3
-medsFury,aid,meds,"+3 alla Resistenza ai Danni Fisici . +3 ai danni in mischia , la difficoltà delle prove su PER aumenta di +2 .",durationLasting,1,0,30,4
-medsJet,aid,meds,Le azioni extra costano 1 PA in meno,durationShort,2,0,50,2
-medsJetFuel,aid,meds,Si ottiene 1 PA gratis all'inizio di ogni turno,durationLasting,1,0,60,3
-medsMedX,aid,meds,+ 3 alla Resistenza ai Danni Fisici,durationLasting,2,0,50,2
-medsMentats,aid,meds,Permette di ripetere il tiro di 1d20 su tutte le prove di PER e INT,durationLasting,3,0,50,2
-medsBerryMentats,aid,meds,Riduce la difficoltà di tutte le prove di INT di 2 (fino a un minimo di 0),durationLasting,2,0,60,3
-medsOrangeMentats,aid,meds,"Riduce la difficoltà delle prove di PER di 2 (fino a un minimo di 0) , l'azione minore Mirare fa ripetere il tiro di un ulteriore d20",durationLasting,2,0,60,3
-medsGrapeMentats,aid,meds,"Riduce la difficoltà delle prove di CAR di 2 (fino a un minimo di 0) , permette di ripetere il tiro di 1d20 sulle prove di Commercio",durationLasting,2,0,60,3
-medsOverdrive,aid,meds,"+3 danni su tutti gli attacchi , si può ripetere il tiro di un massimo di 3 per ogni tiro sui danni",durationLasting,1,0,55,3
-medsPsycho,aid,meds,"+2 danni a tutti gli attacchi , +3 alla Resistenza ai Danni Fisici",durationLasting,2,0,50,2
-medsPsychojet,aid,meds,"+ 2 danni a tutti gli attacchi , +4 alla Resistenza ai Danni Fisici . Si ottengono immediatamente 4 PA (che vanno persi se non vengono spesi)",durationShort,1,0,70,4
-medsPsychobuff,aid,meds,"+2 danni a tutti gli attacchi , +4 al massimale dei PS . Riduce la difficoltà di tutte le prove su FOR e COS di 1 (fino a un minimo di 0)",durationLasting,1,0,70,4
-medsPsychotat,aid,meds,"+2 danni a tutti gli attacchi , +2 alla Resistenza ai Danni Fisici , riduce la difficoltà delle prove su PER di 1 (fino a un minimo di 0)",durationLasting,1,0,70,4
-medsRadX,aid,meds,+6 alla Resistenza ai Danni da Radiazione,durationLasting,0,0,40,2
-medsDilutedRadX,aid,meds,+3 alla Resistenza ai Danni da Radiazione,durationLasting,0,0,25,1
-medsRadAway,aid,meds,Guarisce 4 danni da Radiazioni (vedere descrizione),durationInstant,0,0,80,2
-medsDilutedRadAway,aid,meds,Guarisce 2 danni da Radiazioni (vedere descrizione),durationInstant,0,0,50,1
-medsSkeetoSpit,aid,meds,+2 al massimale dei PS,durationLasting,0,0,40,2
-medsStimpak,aid,meds,Ripristina 4 PS (vedere descrizione),durationInstant,0,0,50,2
-medsDilutedStimpak,aid,meds,Ripristina 2 PS (vedere descrizione),durationInstant,0,0,30,1
-medsSuperStimpak,aid,meds,Ripristina 8 PS (vedere descrizione),durationInstant,0,0,90,4
-medsUltraJet,aid,meds,"Si ottengono immediatamente 6 PA (che vanno persi se non vengono spesi ) , le azioni extra costano 1 PA in meno",durationShort,3,0,67,2
-medsXCell,aid,meds,Il primo d20 comprato per qualsiasi prova è gratis,durationLasting,1,0,60,4
+ID,TYPE,CATEGORY,DURATION,ADDICTIVE,WEIGHT,COST,RARITY
+medsAddictol,aid,meds,durationInstant,0,0,125,3
+medsAntibiotics,aid,meds,durationInstant,0,0,75,3
+medsHealingSalve,aid,meds,durationInstant,0,0,20,1
+medsBuffjet,aid,meds,durationShort,1,0,75,4
+medsBuffout,aid,meds,durationLasting,2,0,45,2
+medsBufftat,aid,meds,durationLasting,1,0,75,4
+medsCalmex,aid,meds,durationLasting,1,0,100,4
+medsDaddyO,aid,meds,durationLasting,1,0,50,2
+medsDaytripper,aid,meds,durationLasting,1,0,40,3
+medsFury,aid,meds,durationLasting,1,0,30,4
+medsJet,aid,meds,durationShort,2,0,50,2
+medsJetFuel,aid,meds,durationLasting,1,0,60,3
+medsMedX,aid,meds,durationLasting,2,0,50,2
+medsMentats,aid,meds,durationLasting,3,0,50,2
+medsBerryMentats,aid,meds,durationLasting,2,0,60,3
+medsOrangeMentats,aid,meds,durationLasting,2,0,60,3
+medsGrapeMentats,aid,meds,durationLasting,2,0,60,3
+medsOverdrive,aid,meds,durationLasting,1,0,55,3
+medsPsycho,aid,meds,durationLasting,2,0,50,2
+medsPsychojet,aid,meds,durationShort,1,0,70,4
+medsPsychobuff,aid,meds,durationLasting,1,0,70,4
+medsPsychotat,aid,meds,durationLasting,1,0,70,4
+medsRadX,aid,meds,durationLasting,0,0,40,2
+medsDilutedRadX,aid,meds,durationLasting,0,0,25,1
+medsRadAway,aid,meds,durationInstant,0,0,80,2
+medsDilutedRadAway,aid,meds,durationInstant,0,0,50,1
+medsSkeetoSpit,aid,meds,durationLasting,0,0,40,2
+medsStimpak,aid,meds,durationInstant,0,0,50,2
+medsDilutedStimpak,aid,meds,durationInstant,0,0,30,1
+medsSuperStimpak,aid,meds,durationInstant,0,0,90,4
+medsUltraJet,aid,meds,durationShort,3,0,67,2
+medsXCell,aid,meds,durationLasting,1,0,60,4

@@ -127,13 +127,13 @@
     "en": "Specialty Pt",
     "it": "Pt. Specialità"
   },
-  "backToList": {
-    "en": "List",
-    "it": "Lista"
-  },
   "backgroundPlaceholder": {
     "en": "Write your background here...",
     "it": "Scrivi il tuo background qui..."
+  },
+  "backToList": {
+    "en": "List",
+    "it": "Lista"
   },
   "barter": {
     "en": "Barter",
@@ -147,10 +147,6 @@
     "en": "Big Guns",
     "it": "Armi Pesanti"
   },
-  "bows": {
-    "en": "Bows",
-    "it": "Archi"
-  },
   "body": {
     "en": "Body",
     "it": "Corpo"
@@ -162,6 +158,10 @@
   "boughtForCaps": {
     "en": "Bought for {{caps}} caps!",
     "it": "Comprato per {{caps}} tappi!"
+  },
+  "bows": {
+    "en": "Bows",
+    "it": "Archi"
   },
   "brotherhoodInitiate": {
     "en": "Brotherhood Initiate",
@@ -175,13 +175,13 @@
     "en": "Buy",
     "it": "Compra"
   },
-  "buyMods": {
-    "en": "Buy mods",
-    "it": "Compra mod"
-  },
   "buying": {
     "en": "Buying",
     "it": "Comprare"
+  },
+  "buyMods": {
+    "en": "Buy mods",
+    "it": "Compra mod"
   },
   "cancel": {
     "en": "Cancel",
@@ -211,13 +211,13 @@
     "en": "Character imported successfully!",
     "it": "Personaggio importato con successo!"
   },
-  "characterSlots": {
-    "en": "Character Slots",
-    "it": "Slot Personaggi"
-  },
   "characters": {
     "en": "Characters",
     "it": "Personaggi"
+  },
+  "characterSlots": {
+    "en": "Character Slots",
+    "it": "Slot Personaggi"
   },
   "charisma": {
     "en": "Charisma",
@@ -258,6 +258,10 @@
   "companionTypeSpecial": {
     "en": "SPECIAL-based Companion",
     "it": "Compagno basato su SPECIAL"
+  },
+  "complexity": {
+    "en": "Complexity",
+    "it": "Complessità"
   },
   "confirm": {
     "en": "Confirm",
@@ -374,6 +378,10 @@
   "diceToRoll": {
     "en": "Dice to roll",
     "it": "Dadi da lanciare"
+  },
+  "dismiss": {
+    "en": "Dismiss",
+    "it": "Chiudi"
   },
   "dog": {
     "en": "Dog",
@@ -691,13 +699,13 @@
     "en": "Attacks gain Vicious against robots. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
     "it": "Gli attacchi ottengono Letale contro i robot. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
   },
-  "legionDenarius": {
-    "en": "Legion Denarius",
-    "it": "Legion Denarius"
-  },
   "legionaryArmor": {
     "en": "Legionary Armor",
     "it": "Arm. da Legionario"
+  },
+  "legionDenarius": {
+    "en": "Legion Denarius",
+    "it": "Legion Denarius"
   },
   "legs": {
     "en": "Legs",
@@ -799,6 +807,14 @@
     "en": "+1 damage DC",
     "it": "+1 danno DC"
   },
+  "modify": {
+    "en": "Modify",
+    "it": "Modifica"
+  },
+  "modifyItem": {
+    "en": "Modify Item",
+    "it": "Modifica Oggetto"
+  },
   "modSlotBallisticWeave": {
     "en": "Ballistic Weave",
     "it": "Trama Balistica"
@@ -899,14 +915,6 @@
     "en": "+1 damage DC, gains Piercing 1",
     "it": "+1 danno DC, ottiene Penetrante 1"
   },
-  "modify": {
-    "en": "Modify",
-    "it": "Modifica"
-  },
-  "modifyItem": {
-    "en": "Modify Item",
-    "it": "Modifica Oggetto"
-  },
   "mrHandy": {
     "en": "Mr. Handy",
     "it": "Mr. Handy"
@@ -967,6 +975,10 @@
     "en": "No compatible mods in inventory",
     "it": "Nessuna mod compatibile nell'inventario"
   },
+  "none": {
+    "en": "-",
+    "it": "-"
+  },
   "noPerk": {
     "en": "No Perk",
     "it": "Nessun Talento"
@@ -974,18 +986,6 @@
   "noPerksAvailable": {
     "en": "No perks available",
     "it": "Nessun perk disponibile"
-  },
-  "noTrait": {
-    "en": "No Trait",
-    "it": "Nessun Tratto"
-  },
-  "noTraitsAvailable": {
-    "en": "No traits available",
-    "it": "Nessun tratto disponibile"
-  },
-  "none": {
-    "en": "-",
-    "it": "-"
   },
   "notEnoughAmmoAlert": {
     "en": "You don't have enough AMMO to do it!",
@@ -998,6 +998,14 @@
   "notEnoughLuckAlert": {
     "en": "You don't have enough LUCK to do it!",
     "it": "Non hai abbastanza FORTUNA per farlo!"
+  },
+  "noTrait": {
+    "en": "No Trait",
+    "it": "Nessun Tratto"
+  },
+  "noTraitsAvailable": {
+    "en": "No traits available",
+    "it": "Nessun tratto disponibile"
   },
   "off": {
     "en": "Off",
@@ -1071,6 +1079,10 @@
     "en": "Your companion can perform basic repairs. Can repair items in the field.",
     "it": "Il tuo compagno può eseguire riparazioni di base. Può riparare oggetti sul campo."
   },
+  "perks": {
+    "en": "Perks",
+    "it": "Talenti"
+  },
   "perkScout": {
     "en": "Scout",
     "it": "Esploratore"
@@ -1078,10 +1090,6 @@
   "perkScoutDescription": {
     "en": "Your companion has keen senses. Grants +2 to Perception checks when scouting.",
     "it": "Il tuo compagno ha sensi acuti. Garantisce +2 alle prove di Percezione durante l'esplorazione."
-  },
-  "perks": {
-    "en": "Perks",
-    "it": "Talenti"
   },
   "physical": {
     "en": "Physical",
@@ -1178,10 +1186,6 @@
   "rarity": {
     "en": "Rarity",
     "it": "Rarità"
-  },
-  "complexity": {
-    "en": "Complexity",
-    "it": "Complessità"
   },
   "rarity0": {
     "en": "Very Common (0)",
@@ -1303,6 +1307,10 @@
     "en": "Securitron",
     "it": "Securitron"
   },
+  "selectableTraits": {
+    "en": "Selectable Traits",
+    "it": "Tratti Selezionabili"
+  },
   "selectDiceAlert": {
     "en": "Select some dice to (re)roll!",
     "it": "Seleziona dei dadi da (ri)lanciare!"
@@ -1314,10 +1322,6 @@
   "selectTrait": {
     "en": "Select Trait",
     "it": "Seleziona Tratto"
-  },
-  "selectableTraits": {
-    "en": "Selectable Traits",
-    "it": "Tratti Selezionabili"
   },
   "selling": {
     "en": "Selling",
@@ -1475,6 +1479,14 @@
     "en": "Unlock",
     "it": "Sblocca"
   },
+  "updateAvailable": {
+    "en": "New version available!",
+    "it": "Nuova versione disponibile!"
+  },
+  "updateNow": {
+    "en": "Update",
+    "it": "Aggiorna"
+  },
   "useFunctionalityComingSoon": {
     "en": "Use functionality coming soon!",
     "it": "Funzionalità di utilizzo in arrivo!"
@@ -1502,17 +1514,5 @@
   "weight": {
     "en": "Weight",
     "it": "Peso"
-  },
-  "updateAvailable": {
-    "en": "New version available!",
-    "it": "Nuova versione disponibile!"
-  },
-  "updateNow": {
-    "en": "Update",
-    "it": "Aggiorna"
-  },
-  "dismiss": {
-    "en": "Dismiss",
-    "it": "Chiudi"
   }
 }

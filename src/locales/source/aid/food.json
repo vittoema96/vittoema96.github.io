@@ -37,6 +37,10 @@
     "_description": {
       "en": "A piece of Bloodbug meat cooked over an open flame. If you can stand to eat it, and can ignore the aftertaste, it's reasonably nutritious and even leaves a feeling of renewed vigor and health for a while after eating.",
       "it": "Un pezzo di carne di succhiasangue cotto a fiamma viva. Se la si riesce a mangiare ignorando il retrogusto, è abbastanza nutriente e lascia persino una sensazione di rinnovato vigore e salute per un certo tempo dopo il pasto."
+    },
+    "_effect": {
+      "en": "+3 to maximum HP until the end of the next scene",
+      "it": "+3 al massimale dei PS fino al termine della scena successiva"
     }
   },
   "foodBrahminMeat": {
@@ -77,6 +81,10 @@
     "_description": {
       "en": "The softer meat from mirelurks, cooked into a rough steak. A high-energy meal, those who eat cooked softshell meat are often invigorated and eager for action for a while afterwards.",
       "it": "Si tratta del taglio di carne più morbida dei mirelurk, cotta come fosse una sorta di bistecca. È un pasto molto sostanzioso, per cui chi la mangia solitamente si sente rinvigorito e pronto all'azione per un bel po' di tempo."
+    },
+    "_effect": {
+      "en": "+1 AP at the start of the next scene",
+      "it": "+1 PA all'inizio della scena successiva"
     }
   },
   "foodCorn": {
@@ -133,6 +141,10 @@
     "_description": {
       "en": "An omelette made from a deathclaw egg. In addition to being highly nutritious, it stimulates the natural healing processes of the body, allowing a person to recover more quickly from harm for a while after eating.",
       "it": "Si tratta di un'omelette cucinata con un uovo di deathclaw. È abbastanza saziante e nutriente da poter sfamare qualcuno per un giorno intero, facendolo anche sentire più forte e in forma per un po' dopo il pasto."
+    },
+    "_effect": {
+      "en": "If the next scene is combat, the PC recovers 1 HP at the start of each turn",
+      "it": "Se la scena successiva è di combattimento , il PG recupera 1 PS all'inizio di ogni turno"
     }
   },
   "foodDeathclawSteak": {
@@ -141,6 +153,10 @@
     "_description": {
       "en": "A slab of cooked deathclaw meat. Sufficiently filling and nutritious that it could easily be your only meal for the day, while also leaving you feeling fitter and stronger for a while after eating.",
       "it": "Una grossa fetta di carne cotta di deathclaw. Sufficientemente sostanziosa e nutriente da poter facilmente essere un pasto unico per la giornata, permette di sentirsi in forze e pieni di energia per un po'."
+    },
+    "_effect": {
+      "en": "Allows re-rolling 1d20 on all STR tests until the end of the next scene",
+      "it": "Permette di ritirare 1d20 su tutte le prove di FOR fino alla fine della scena successiva"
     }
   },
   "foodFancyLadsSnacks": {
@@ -181,6 +197,10 @@
     "_description": {
       "en": "A grilled rack of ribs from a radstag. Easy enough to make when you've got the main ingredient—radstag meat—but tasty and satisfying enough that your burdens feel a little lighter once you've finished eating.",
       "it": "Una griglia di costolette di cervo radioattivo. Abbastanza facile da fare quando si ha l'ingrediente principale—carne di cervo radioattivo—ma abbastanza gustosa e soddisfacente da far sentire i propri fardelli un po' più leggeri una volta finito di mangiare."
+    },
+    "_effect": {
+      "en": "Carry weight increases by +25 until the end of the next scene",
+      "it": "Il peso trasportabile aumenta di +25 fino alla fine della scena successiva"
     }
   },
   "foodGummyCandy": {
@@ -253,6 +273,10 @@
     "_description": {
       "en": "A simple soup made with carrot and tato. A reasonably filling meal, sating both hunger and thirst, while also helping to fortify the body against radiation poisoning for a while.",
       "it": "Una semplice zuppa fatta con carote e tatos. Un pasto abbastanza saziante, che placa sia la fame che la sete, aiutando anche a fortificare il corpo contro l'avvelenamento da radiazioni per un po'."
+    },
+    "_effect": {
+      "en": "+2 to Radiation Damage Resistance until the end of the next scene",
+      "it": "+2 alla Resistenza ai Danni da Radiazione fino alla fine della scena successiva"
     }
   },
   "foodMirelurkCake": {
@@ -261,6 +285,10 @@
     "_description": {
       "en": "Flakes and fragments of mirelurk meat, mixed with mirelurk egg to bind it together into a patty and then cooked. In addition to some modest nutritional value, eating mirelurk cake allows you to survive underwater for longer.",
       "it": "Sono scaglie e frammenti di carne di mirelurk mischiati con un uovo, anch'esso di mirelurk, e compattati in una tortina che viene poi cotta. Oltre a fornire un modesto valore nutrizionale, mangiare un tortino di mirelurk permette di sopravvivere più a lungo sott'acqua."
+    },
+    "_effect": {
+      "en": "Allows breathing underwater until the end of the next scene",
+      "it": "Permette di respirare sott'acqua fino alla fine della scena successiva"
     }
   },
   "foodMirelurkEgg": {
@@ -277,6 +305,10 @@
     "_description": {
       "en": "An omelette made from a mirelurk egg. In addition to their nutritional value, when properly prepared, these omelettes can leave you feeling energized and ready for action.",
       "it": "Si tratta di un'omelette fatta con un uovo di mirelurk. Oltre al suo valore nutrizionale, quando è preparata bene lascia pieni di energie e pronti all'azione."
+    },
+    "_effect": {
+      "en": "Immediately add 2 AP to the group's pool",
+      "it": "Aggiungere immediatamente 2 PA alla riserva del gruppo"
     }
   },
   "foodMirelurkMeat": {
@@ -293,6 +325,10 @@
     "_description": {
       "en": "The meat from a dead mirelurk Queen. This meat can make for a great feast, as it is nutrient rich and incredibly filling, leaving a sense of health and wellbeing in any who eat it, even raw. When cooked, these effects are even more pronounced. Queen mirelurk meat can be cooked to produce Mirelurk Queen Steak.",
       "it": "È carne proveniente da una regina dei mirelurk morta. Può diventare un vero e proprio banchetto, poiché è ricca di sostanze nutritive e incredibilmente saziante, in grado di lasciare un senso di salute e benessere in chiunque se ne cibi, anche da cruda. Se è cotta, gli effetti sono anche più evidenti. La carne di regina dei mirelurk può essere cucinata in una Bistecca di Regina dei Mirelurk."
+    },
+    "_effect": {
+      "en": "Allows re-rolling 1d20 on all END tests until the end of the next scene",
+      "it": "Permette di ritirare 1d20 su tutte le prove di COS fino alla fine della scena successiva"
     }
   },
   "foodMirelurkQueenSteak": {
@@ -301,6 +337,10 @@
     "_description": {
       "en": "The rare, nutrient-rich meat of a mirelurk Queen, when properly prepared, can fortify the body and provide a surge of health and vitality, making you feel healthier and more resilient for a while after eating.",
       "it": "La rara carne di una regina dei mirelurk, ricca di nutrienti, quando è cucinata in maniera adeguata può fortificare il corpo ed essere fonte di salute e vitalità, facendo sentire chi la mangia più sano e resistente per un po' dopo il pasto."
+    },
+    "_effect": {
+      "en": "Reduces the difficulty of all END tests by 1 until the end of the next scene",
+      "it": "Riduce di 1 la difficoltà di tutte le prove di COS fino alla fine della scena successiva"
     }
   },
   "foodMirelurkRoast": {
@@ -309,6 +349,10 @@
     "_description": {
       "en": "A cooked portion of meat from a mirelurk. Though not to the same extent as the softshell meat, roasted mirelurk meat invigorates the body and mind and leaves you ready for action.",
       "it": "Una porzione di carne cotta di un mirelurk. Anche se non nella stessa misura della carne a guscio morbido, l'arrosto di mirelurk rinvigorisce il corpo e la mente e rende pronti all'azione."
+    },
+    "_effect": {
+      "en": "+1 AP at the start of the next scene",
+      "it": "+1 PA all'inizio della scena successiva"
     }
   },
   "foodMoleRatChunks": {
@@ -317,6 +361,10 @@
     "_description": {
       "en": "Pieces of mole rat meat which've been cooked over a fire. The meat is somewhat tough and chewy, but leaves a feeling of vigor, as if your reserves of stamina have increased.",
       "it": "Sono pezzi di ratto talpa cotti sul fuoco. La carne è alquanto dura e gommosa, ma lascia una sensazione di vigoria, come se le riserve di energia fossero aumentate."
+    },
+    "_effect": {
+      "en": "+1 to maximum AP in the group's pool until the end of the current scene",
+      "it": "+1 al massimale dei PA nella riserva di gruppo fino alla fine della scena corrente"
     }
   },
   "foodMoleRatMeat": {
@@ -349,6 +397,10 @@
     "_description": {
       "en": "A piece of mutant hound meat cooked to make it safer to eat. For reasons unknown, once cooked, the meat helps absorb radiation already in the body, lessening the effects of radiation poisoning. This effect doesn't compare to proper anti-radiation meds like RadAway, but it can be useful to have a few on hand to soak up the radiation you picked up during an excursion.",
       "it": "Un pezzo di carne di segugio mutante cucinato per renderlo più sicuro da mangiare. Per ragioni sconosciute, una volta cotta, la carne aiuta ad assorbire le radiazioni già presenti nel corpo, riducendo gli effetti dell'avvelenamento da radiazioni. Questo effetto non si confronta con i veri farmaci anti-radiazioni come il RadAway, ma può essere utile averne alcuni a portata di mano per assorbire le radiazioni raccolte durante un'escursione."
+    },
+    "_effect": {
+      "en": "Heals 2 Radiation damage",
+      "it": "Guarisce 2 danni Radioattivi"
     }
   },
   "foodMutantHoundMeat": {
@@ -373,6 +425,10 @@
     "_description": {
       "en": "In the years before the Great War, several charter schools across America entered an experimental program: The Nutritional Alternative Paste Program (NAPP). Developed by Vault-Tec in conjunction with the Federal Government, this supplied participating schools with a supply of food paste, fortified with vitamins, minerals and all the nutrients a growing body needs, and which would remain unspoiled for over a century. The paste is a flavorless mush, garish pink in color, and may have unknown long-term effects on psychology or physiology. It does, however, make the body healthier after consumption.",
       "it": "Negli anni prima della guerra molte scuole private americane aderirono a un programma sperimentale: il Programma per Pasta Alimentare Alternativa (PPAA). Sviluppato dalla Vault-Tec in collaborazione con il Governo Federale, alle scuole partecipanti veniva inviata una fornitura di pasta alimentare arricchita con vitamine, minerali e tutti i nutrienti di cui ha bisogno un corpo nel pieno della crescita, capace di durare per più di cento anni. La pasta è una poltiglia priva di sapore, di un rosa sgargiante, che potrebbe avere degli effetti sconosciuti a lungo termine sia sulla psiche che sul fisico. Ciò che è certo, a ogni modo, è che rende il corpo più sano dopo averla mangiata."
+    },
+    "_effect": {
+      "en": "Allows re-rolling 1d20 on all END tests until the end of the next scene",
+      "it": "Permette di ritirare 1d20 su tutte le prove di COS fino alla fine della scena successiva"
     }
   },
   "foodPerfectlyPreservedPie": {
@@ -421,6 +477,10 @@
     "_description": {
       "en": "Made from a radscorpion egg, these omelettes are highly prized by those who make considerable use of combat drugs, as something about the food cleanses the body to remove chemical dependencies and addictions.",
       "it": "Fatte con uova di scorpione radioattivo, queste omelette sono apprezzate da chi fa uso massiccio di droghe da combattimento, dato che qualcosa in esse ripulisce il corpo, eliminando dipendenze chimiche e assuefazioni."
+    },
+    "_effect": {
+      "en": "All addictions are cured",
+      "it": "Tutte le dipendenze vengono curate"
     }
   },
   "foodRadscorpionMeat": {
@@ -437,6 +497,10 @@
     "_description": {
       "en": "A cooked slab of radscorpion meat. The process of cooking the meat has reduced the radiation within below dangerous levels and enhanced the nutritional value. Further, eating Radscorpion Steak heightens your resistance to extreme heat for a while.",
       "it": "È un pezzo cotto di carne di scorpione radioattivo. La cottura abbassa i livelli di radiazione al di sotto della soglia di pericolosità ed aumenta i valori nutrizionali. Inoltre mangiare una bistecca di scorpione radioattivo aumenta la resistenza al calore estremo per un certo lasso di tempo."
+    },
+    "_effect": {
+      "en": "+2 to Energy Damage Resistance until the end of the next scene",
+      "it": "+2 alla Resistenza ai Danni da Energia fino alla fine della scena successiva"
     }
   },
   "foodRadstagMeat": {
@@ -453,6 +517,10 @@
     "_description": {
       "en": "Strips of radstag meat, with vegetables and some alcohol, cooked to make a thick, hearty stew. Filling and satisfying, the stew also help fortify the body, making you more resistant to extreme heat for a while.",
       "it": "Si tratta di fette di carne di cervo radioattivo, cotte assieme a delle verdure e dell'alcol fino ad ottenere uno stufato denso e sostanzioso. Saziante e soddisfacente, fortifica anche il corpo, rendendolo più resistente alle alte temperature per un certo periodo di tempo."
+    },
+    "_effect": {
+      "en": "+3 to Energy Damage Resistance until the end of the next scene",
+      "it": "+3 alla Resistenza ai Danni da Energia fino alla fine della prossima scena"
     }
   },
   "foodRibeyeSteak": {
@@ -469,6 +537,10 @@
     "_description": {
       "en": "A grilled chunk of meat taken from a Bloatfly. The resulting food is revolting, but filling, and for a while after eating it, helps the body absorb radioactive contamination.",
       "it": "Un pezzo grigliato di carne preso da una notonetta. Il cibo risultante è rivoltante, ma saziante, e per un po' dopo averlo mangiato, aiuta il corpo ad assorbire la contaminazione radioattiva."
+    },
+    "_effect": {
+      "en": "+2 to Radiation Damage Resistance",
+      "it": "+2 alla Resistenza ai Danni da Radiazione"
     }
   },
   "foodSalisburySteak": {
@@ -525,6 +597,10 @@
     "_description": {
       "en": "A cooked piece of stingwing meat. Not the most appetizing of foods, but surprisingly useful for those surviving in the wastelands, as it can sharpen the senses and make you feel more aware of your surroundings.",
       "it": "Un pezzo cotto di carne di stingwing. Non il cibo più appetitoso, ma sorprendentemente utile per coloro che sopravvivono nella Zona Contaminata, poiché può affinare i sensi e farti sentire più consapevole dell'ambiente circostante."
+    },
+    "_effect": {
+      "en": "Allows re-rolling 1d20 on all PER tests until the end of the next scene",
+      "it": "Permette di ritirare 1d20 su tutte le prove di PER fino alla fine della scena successiva"
     }
   },
   "foodStingwingMeat": {
@@ -541,6 +617,10 @@
     "_description": {
       "en": "A pre-War breakfast cereal with 'explosive great taste', the box contains little cereal shapes resembling stylized atomic bombs coated in copious amounts of sugar. Some boxes claim to contain a prize inside. Sometimes, preserved boxes of Sugar Bombs can be found. These are identical to the listed version, but are not irradiated, and increase their rarity by +1.",
       "it": "Un tipo di cereali per la colazione dell'anteguerra con 'un sapore esplosivo', la scatola contiene dei cereali a forma di piccole bombe atomiche stilizzate ricoperte da abbondanti quantità di zucchero. Su alcune scatole c'è scritto che contengono un premio. A volte, si possono trovare scatole conservate di Sugar Bomb. Queste sono identiche alla versione elencata, ma non sono radioattive, e aumentano la loro rarità di +1."
+    },
+    "_effect": {
+      "en": "+1 AP at the start of the next scene",
+      "it": "+1 PA all'inizio della scena successiva"
     }
   },
   "foodSweetRoll": {
@@ -573,6 +653,10 @@
     "_description": {
       "en": "A rack of ribs made with Yao Guai meat. Yao Guai ribs are both a satisfying meal and inspire a sense of invincibility, while also boosting your tolerance for pain for a short while.",
       "it": "Una griglia di costolette fatta con carne di Yao Guai. Le costolette di Yao Guai sono sia un pasto soddisfacente che ispirano un senso di invincibilità, aumentando anche la tolleranza al dolore per un breve periodo."
+    },
+    "_effect": {
+      "en": "+2 to Physical Damage Resistance until the end of the next scene",
+      "it": "+2 alla Resistenza ai Danni Fisici fino alla fine della scena successiva"
     }
   },
   "foodYaoGuaiMeat": {
@@ -589,6 +673,10 @@
     "_description": {
       "en": "A roasted piece of Yao Guai meat cooked with carrot and tato. An extremely filling and satisfying meal, and many have claimed that it heightens their killer instinct and ability to inflict harm for a while after eating.",
       "it": "Non è che un pezzo di carne di Yao Guai cotto con carote e tatos. Piatto incredibilmente saziante e appetitoso, in molti sostengono che aumenti per un po' di tempo l'istinto omicida e l'abilità di fare del male dopo che lo si è mangiato."
+    },
+    "_effect": {
+      "en": "+2 to melee attacks until the end of the next scene",
+      "it": "+2 agli attacchi da mischia fino alla fine della scena successiva"
     }
   },
   "foodYumYumDeviledEggs": {

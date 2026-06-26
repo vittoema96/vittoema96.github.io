@@ -115,7 +115,7 @@ function InventoryRow({
 
             // TODO improve subinfo
             if (dataManager.isType(itemData, 'aid')) {
-                return t(itemData.EFFECT) || t(itemData.CATEGORY);
+                return t(`${itemData.ID}Effect`, {defaultValue: ''}) || t(itemData.CATEGORY);
             }
         }
         return t(itemData.CATEGORY || "ERROR")

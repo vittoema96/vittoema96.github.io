@@ -5,6 +5,10 @@
     "_description": {
       "en": "Available in multiple sizes, backpacks are invaluable items for carrying more gear. A proper backpack allows for easier and more efficient transport of items.",
       "it": "Disponibili in più taglie, gli zaini sono degli oggetti di inestimabile valore per portarsi appresso più cose. Un vero e proprio zaino permette di farlo più facilmente e in maniera più efficiente."
+    },
+    "_effect": {
+      "en": "The wearer increases maximum carry weight by 5 x STR",
+      "it": "Chi lo indossa aumenta il massimo peso Trasportabile di 5 x FOR"
     }
   },
   "miscBackpackSmall": {
@@ -13,6 +17,10 @@
     "_description": {
       "en": "Available in multiple sizes, backpacks are invaluable items for carrying more gear. A proper backpack allows for easier and more efficient transport of items.",
       "it": "Disponibili in più taglie, gli zaini sono degli oggetti di inestimabile valore per portarsi appresso più cose. Un vero e proprio zaino permette di farlo più facilmente e in maniera più efficiente."
+    },
+    "_effect": {
+      "en": "The wearer increases maximum carry weight by 2.5 x STR",
+      "it": "Chi lo indossa aumenta il massimo peso Trasportabile di 2,5 x FOR"
     }
   },
   "miscBobbyPin": {
@@ -21,6 +29,10 @@
     "_description": {
       "en": "Flexible two-pronged clips made of metal or plastic. Before the Great War, they were used to keep hair in place, but they are equally useful for picking locks.",
       "it": "Sono delle mollette a due punte molto flessibili, fatte di metallo o di plastica, che prima della Grande Guerra venivano usate per tenere i capelli a posto. Se si sa come fare, sono utili anche per aprire le serrature."
+    },
+    "_effect": {
+      "en": "Reduces the difficulty of Lockpick tests by 1 (to a minimum of 1). One bobby pin breaks for each complication rolled.",
+      "it": "Riduce la difficoltà delle prove di Scassinare di 1 (fino a un minimo di 1). Si rompe una forcina per ogni complicazione tirata."
     }
   },
   "miscCommonJunk": {
@@ -29,6 +41,10 @@
     "_description": {
       "en": "Common materials include wood, steel, plastic, rubber, cloth, concrete, bone, and ceramic: substances that are easy to find and recover. A single unit of common materials costs 1 cap and weighs 1 lb.",
       "it": "I materiali comuni comprendono legno, acciaio, plastica, gomma, pelli, cemento, osso e ceramica: tutte sostanze che è facile trovare e recuperare. Una singola unità di materiali comuni costa 1 tappo e pesa mezzo chilo."
+    },
+    "_effect": {
+      "en": "Used to craft or repair simple items",
+      "it": "Utilizzati per creare o riparare oggetti semplici"
     }
   },
   "miscDeluxeToolbox": {
@@ -37,6 +53,10 @@
     "_description": {
       "en": "A heavy but technically portable metal box containing a wide range of tools for repairing various electronic and mechanical devices. With the right tool, most routine repairs become much simpler.",
       "it": "Si tratta di una scatola di metallo con manico, pesante ma ancora tecnicamente trasportabile, contenente tutta una serie di utensili di forme, grandezze e usi differenti, utili per aprire e riparare svariati apparecchi elettronici e meccanici. Con l’attrezzo giusto, la maggior parte delle riparazioni di routine diventa molto più semplice."
+    },
+    "_effect": {
+      "en": "Reduces the difficulty of Repair tests by 1 (to a minimum of 0). Repair tests that normally require a workbench can be attempted by increasing difficulty by +1",
+      "it": "Riduce la difficoltà delle prove di Riparare di 1 (fino a un minimo di 0). Si possono tentare delle prove di Riparare che solitamente richiederebbero un tavolo da lavoro aumentando la difficoltà di +1"
     }
   },
   "miscDoctorBag": {
@@ -45,6 +65,10 @@
     "_description": {
       "en": "A bag well-stocked with medicines and tools for the science of healing. While bulky to carry, those you save will be grateful. It can also hold disposable medical supplies like Stimpaks and RadAway, which are tracked separately.",
       "it": "Una borsa ben fornita di medicinali e attrezzi utili per la scienza della guarigione. È un po’ ingombrante da trasportare, ma le persone salvate saranno riconoscenti. Una borsa da medico può contenere anche forniture mediche usa e getta come Stimpak, acqua purificata e RadAway, che vengono conteggiati e usati a parte."
+    },
+    "_effect": {
+      "en": "Reduces the difficulty of Medicine tests by 1 (to a minimum of 0). When providing long-term care, it is consumed if two or more complications are rolled together.",
+      "it": "Riduce la difficoltà delle prove di Medicina di 1 (fino a un minimo di 0). Quando si prestano cure a lungo termine, si consuma se si ottengono due o più complicazioni insieme."
     }
   },
   "miscElectronicLockpick": {
@@ -53,6 +77,10 @@
     "_description": {
       "en": "Hard to find in the Wasteland, the Wattz Electronics Micromanipulator is a powerful tool capable of opening mechanical and electronic locks better than a human. However, it is delicate and can break if misused.",
       "it": "Difficile da reperire nella Zona Contaminata, il grimaldello elettronico Micromanipolatore Wattz Electronics è uno strumento potente, in grado di aprire serrature meccaniche ed elettroniche meglio di un essere umano. Cionondimeno, è delicato e può rompersi se viene usato male."
+    },
+    "_effect": {
+      "en": "Reduces the difficulty of Lockpick tests by 2 (to a minimum of 0). Ignores the first complication rolled, breaks if two or more complications are rolled together.",
+      "it": "Riduce la difficoltà delle prove di Scassinare di 2 (fino a un minimo di 0). Ignora la prima complicazione tirata, si rompe se vengono tirate due o più complicazioni insieme."
     }
   },
   "miscFirstAidKit": {
@@ -61,6 +89,10 @@
     "_description": {
       "en": "A package full of bandages, antiseptic spray, and other tools for cleaning and dressing wounds in the field. It often contains Stimpaks and RadAway, though these are tracked separately.",
       "it": "Un pacchetto pieno di bende, spray antisettico e altri strumenti utili per pulire e medicare ferite sul campo. Spesso comprende degli Stimpak e del RadAway, ma vengono conteggiati e usati a parte."
+    },
+    "_effect": {
+      "en": "On a successful First Aid action, heals +2 HP",
+      "it": "Con un’azione di Primo Soccorso che ha avuto successo, guarisce +2 PS"
     }
   },
   "miscFlare": {
@@ -69,6 +101,10 @@
     "_description": {
       "en": "A small pyrotechnic tool that burns with a brilliant flame, generating bright light for a short period. They are extremely hot and can be used to ignite flammable substances.",
       "it": "Un piccolo strumento pirotecnico che brucia con una fiamma brillante, generando una forte luce per un breve periodo di tempo. Sono anche estremamente caldi e si possono usare per dare fuoco a sostanze infiammabili."
+    },
+    "_effect": {
+      "en": "Generates a strong light at Close range until the end of the current scene. Single use.",
+      "it": "Genera una forte luce a distanza Ravvicinata fino alla fine della scena in corso. Ha un unico utilizzo."
     }
   },
   "miscFlashlight": {
@@ -77,6 +113,10 @@
     "_description": {
       "en": "A durable battery-powered energy source that is easily pointed where needed. With powerful, long-lasting batteries, the light can last a long time.",
       "it": "Una durevole fonte di energia a batterie che si punta facilmente nella direzione in cui si vuole. Con delle batterie potenti e a lunga durata, la luce può durare molto tempo."
+    },
+    "_effect": {
+      "en": "Generates a strong light on a single zone at Medium range. The holder decides which zone is illuminated",
+      "it": "Genera una forte luce su una singola zona a distanza Media. Chi la tiene decide quale zona è illuminata"
     }
   },
   "miscGeigerCounter": {
@@ -85,6 +125,10 @@
     "_description": {
       "en": "Relatively simple instruments used to detect ionizing radiation. The level is shown on a small gauge and signaled by a characteristic clicking sound used to easily monitor radiation.",
       "it": "I contatori geiger sono degli strumenti relativamente semplici, che vengono utilizzati per rilevare le radiazioni ionizzanti. Il livello è mostrato su un piccolo calibro e segnalato dal caratteristico ticchettio, tipico di tutti i geiger, che serve per individuare e monitorare facilmente le radiazioni."
+    },
+    "_effect": {
+      "en": "Allows making a PER + Survival test at difficulty 1 to determine if an area is radioactive and how much",
+      "it": "Permette di effettuare una prova di PER + Sopravvivenza a difficoltà 1 per determinare se un’area è radioattiva e quanto"
     }
   },
   "miscHolotag": {
@@ -93,6 +137,10 @@
     "_description": {
       "en": "A small, durable identification tool used by the Brotherhood of Steel. They contain information to identify the wearer upon death and function as a 'black box' for Power Armor data.",
       "it": "È uno strumento di identificazione piccolo e durevole impiegato dalla Confraternita d’Acciaio. Le olomedagliette contengono le informazioni necessarie per identificare il portatore in caso di morte, oltre a funzionare come una “scatola nera” per la registrazione dei dati delle Armature Atomiche."
+    },
+    "_effect": {
+      "en": "Identifies the fallen.",
+      "it": "Identifica i caduti."
     }
   },
   "miscHolotapePlayer": {
@@ -101,6 +149,10 @@
     "_description": {
       "en": "A small device for playing audio recorded on holotapes. Sound is played through a small speaker or attached headphones. It cannot play video or data tapes as it lacks a screen.",
       "it": "Si tratta di un piccolo apparecchio per leggere gli audio registrati su olonastri, in cui il suono è riprodotto da un piccolo altoparlante o in delle cuffie attaccate (non comprese). Non può riprodurre olonastri contenenti video o dati, perché non è dotato di schermo."
+    },
+    "_effect": {
+      "en": "Allows playing holotape audio recordings",
+      "it": "Permette di leggere gli audio degli olonastri"
     }
   },
   "miscLantern": {
@@ -109,6 +161,10 @@
     "_description": {
       "en": "A simple oil or gas lamp containing a flame fed by a fuel reservoir. It illuminates the surrounding area and has seen a resurgence in use due to the lack of reliable electrical power.",
       "it": "È una semplice lampada a olio o gas, solitamente contenente una fiamma alimentata da un serbatoio di uno dei due combustibili. Illumina l’area circostante e, a causa della mancanza di una fonte affidabile di energia elettrica, è tornata in auge dopo la Grande Guerra."
+    },
+    "_effect": {
+      "en": "Generates a strong light at Close range, which becomes dim at Medium range",
+      "it": "Genera una forte luce a distanza Ravvicinata, che diventa fioca a Media distanza"
     }
   },
   "miscLocksmithTools": {
@@ -117,6 +173,10 @@
     "_description": {
       "en": "A rolled leather case containing a variety of lockpicks and tension wrenches for opening mechanical locks. It is more durable than improvised counterparts but can become useless if too many components break.",
       "it": "Si tratta di una custodia di pelle arrotolata che contiene tutta una serie di grimaldelli e chiavi di tensione per aprire serrature meccaniche, un’alternativa al rozzo metodo del “cacciavite e forcine”. È più resistente della controparte improvvisata, ma può diventare inutile se si rompono troppi componenti."
+    },
+    "_effect": {
+      "en": "Reduces the difficulty of Lockpick tests by 1 (to a minimum of 0). After 3 complications, the tools break.",
+      "it": "Riduce la difficoltà delle prove di Scassinare di 1 (fino a un minimo di 0). Dopo 3 complicazioni, gli attrezzi si rompono."
     }
   },
   "miscMultitool": {
@@ -125,6 +185,10 @@
     "_description": {
       "en": "A very useful small tool containing pliers, wire cutters, hex keys, and screwdrivers all in one. Ideal for those who need basic tools but want to travel light.",
       "it": "È un piccolo attrezzo molto utile che contiene un paio di pinze, alcune tronchesi, una serie di piccole brugole e cacciaviti e altri piccoli utensili, tutti racchiusi in un unico strumento. È l’ideale per chi vuole viaggiare leggero."
+    },
+    "_effect": {
+      "en": "Reduces the difficulty of Repair tests by 1 (to a minimum of 0)",
+      "it": "Riduce la difficoltà delle prove di Riparare di 1(fino a un minimo di 0)"
     }
   },
   "miscPackBrahmin": {
@@ -133,6 +197,10 @@
     "_description": {
       "en": "A large, two-headed mutant cow used as a beast of burden. It can carry up to 250 kg. It can be milked once a day and also produces units of fertilizer (unusual material) daily.",
       "it": "È una grossa femmina di mucca mutante bicefala usata come animale da soma. Può portare fino a 250 kg di peso. Lo si può anche mungere una volta al giorno: se si ha successo, il bramino produce latte e può produrre anche unità di fertilizzante (materiale inusuale) al giorno."
+    },
+    "_effect": {
+      "en": "A mutant cow capable of carrying heavy loads, as well as producing milk and fertilizer",
+      "it": "Una mucca mutante capace di portare carichi pesanti, oltre che produrre latte e fertilizzante"
     }
   },
   "miscPipBoy": {
@@ -141,6 +209,10 @@
     "_description": {
       "en": "A Personal Information Processor made by RobCo and Vault-Tec. Features include a status indicator, logbook, compass, radio, Geiger counter, and holotape player. Provides V.A.T.S. assistance in combat.",
       "it": "Processore di Informazioni Personali realizzato dalla RobCo e Vault-Tec. Funziona come indicatore di status, diario, bussola, radio, contatore Geiger e lettore di olonastri. In combattimento fornisce assistenza tramite il sistema S.P.A.V."
+    },
+    "_effect": {
+      "en": "See description",
+      "it": "Vedere descrizione"
     }
   },
   "miscRadio": {
@@ -149,6 +221,10 @@
     "_description": {
       "en": "A device capable of picking up radio signals and translating them into intelligible sound. Useful for recreation or emergency messages, provided it receives a signal.",
       "it": "Un apparecchio in grado di captare i segnali radio e di tradurli in suoni intelligibili. Usata prima e dopo la Grande Guerra sia per scopi ricreativi che per mandare messaggi d’emergenza, una radio è utile solo se riceve un segnale."
+    },
+    "_effect": {
+      "en": "Receives and transmits radio broadcasts",
+      "it": "Capta e trasmette trasmissioni radio"
     }
   },
   "miscRareJunk": {
@@ -157,6 +233,10 @@
     "_description": {
       "en": "Rare materials are the most elusive and difficult to recover. Asbestos, ballistic fiber, circuitry, fiber optics, corrosive and antiseptic chemicals, and even nuclear material can be found in many items but are difficult to salvage. A single unit of rare materials costs 5 caps and weighs 1 lb.",
       "it": "I materiali rari sono i più introvabili e difficili da recuperare. Amianto, trama balistica, circuiti, fibra ottica, sostanze chimiche corrosive e antisettiche, persino materiali nucleari si possono trovare in molti oggetti, ma sono difficili da recuperare. Una singola unità di materiali rari costa 5 tappi e pesa mezzo chilo."
+    },
+    "_effect": {
+      "en": "Used to craft or repair complex items",
+      "it": "Utilizzati per creare o riparare oggetti complessi"
     }
   },
   "miscTorch": {
@@ -165,6 +245,10 @@
     "_description": {
       "en": "A long branch or piece of scrap metal with one end wrapped in cloth soaked in flammable liquid. A valid improvised light source that can be reused a few times.",
       "it": "Un lungo ramo o un pezzo di ferraglia con un’estremità avvolta in un tessuto imbevuto di liquido infiammabile come alcol o benzina. È una fonte di luce improvvisata abbastanza valida, che può anche essere riutilizzata per qualche volta."
+    },
+    "_effect": {
+      "en": "Generates a strong light at Close range until the end of the current scene. Requires an INT + Survival test at difficulty 1, increased by +1 for each previous use",
+      "it": "Genera una forte luce a distanza Ravvicinata fino alla fine della scena corrente. Bisogna effettuare una prova di INT+ Sopravvivenza per accenderla con difficoltà 1, aumentata di +1 per ogni utilizzo precedente"
     }
   },
   "miscUncommonJunk": {
@@ -173,6 +257,10 @@
     "_description": {
       "en": "Uncommon materials are rarer and harder to recover, including copper, aluminum, leather, and silver, as well as cork, glass, fertilizer, fiberglass, and small components like gears, springs, and screws. A single unit of uncommon materials costs 3 caps and weighs 1 lb.",
       "it": "I materiali inusuali sono più rari e difficili da recuperare e includono rame, alluminio, cuoio e argento, così come sughero, vetro, fertilizzante, vetroresina e piccoli componenti come ingranaggi, molle e viti.\nUna singola unità di materiali inusuali costa 3 tappi e pesa mezzo chilo."
+    },
+    "_effect": {
+      "en": "Used to craft or repair advanced items",
+      "it": "Utilizzati per creare o riparare oggetti avanzati"
     }
   }
 }
