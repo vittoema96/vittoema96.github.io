@@ -239,6 +239,30 @@
       "it": "I proiettili Syringer sono spesso fatti a mano da chimici della Zona Contaminata e si trovano in diverse forme."
     }
   },
+  "ammoCannonball": {
+    "en": "Cannonball",
+    "it": "Palla di Cannone",
+    "_description": {
+      "en": "Heavy iron spheres fired by the Broadsider. They are rare and expensive, but deliver tremendous kinetic energy on impact. Originally used in naval warfare, they have found new purpose in the post-War Wasteland.",
+      "it": "Pesanti sfere di ferro sparate dal Broadsider. Sono rare e costose, ma trasmettono un'enorme energia cinetica all'impatto. Originariamente usate nella guerra navale, hanno trovato un nuovo scopo nel Mondo Contaminato post-bellico."
+    }
+  },
+  "ammoCryoCell": {
+    "en": "Cryo Cell",
+    "it": "Cryo Cell",
+    "_description": {
+      "en": "Cryogenic coolant cells used exclusively by the Cryolator. Each cell contains a pressurized compound that vaporizes on release, rapidly lowering the temperature of anything it contacts. Extremely rare, as they were never mass-produced.",
+      "it": "Celle criogeniche usate esclusivamente dal Crioiniettore. Ogni cella contiene un composto in pressione che si vaporizza al rilascio, abbassando rapidamente la temperatura di tutto ciò che tocca. Estremamente rare, poiché non sono mai state prodotte in serie."
+    }
+  },
+  "ammoHarpoon": {
+    "en": "Harpoon",
+    "it": "Arpione",
+    "_description": {
+      "en": "Large metal shafts fired from a Harpoon Gun. Designed to pierce tough hides and armor alike, they are heavy and slow but capable of pinning targets in place. Rarely found pre-made; skilled survivors often craft their own.",
+      "it": "Grandi aste metalliche sparate da un Fucile Arpione. Progettati per perforare sia spesse pelli che armature, sono pesanti e lenti ma capaci di bloccare i bersagli sul posto. Raramente trovati già pronti; sopravvissuti esperti spesso li costruiscono da soli."
+    }
+  },
   "ammoAcidConcentrate": {
     "en": "Acid Concentrate",
     "it": "Acido Concentrato",

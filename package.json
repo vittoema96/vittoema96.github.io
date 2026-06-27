@@ -36,6 +36,9 @@
     "validate:locales:sources": "python3 scripts/validate_locales_sources.py",
     "build:locales": "python3 scripts/build_locales_from_source.py",
     "quality": "npm run lint && npm run format:check && npm run type-check",
+    "guidebooks:stable:tables": "python3 guidebooks/stable_pipeline/run_guidebooks_tables_pipeline.py --skip-convert",
+    "guidebooks:stable:tables:full": "python3 guidebooks/stable_pipeline/run_guidebooks_tables_pipeline.py",
+    "guidebooks:validate:source-truth": "python3 guidebooks/validation/source_truth_csv_check.py",
     "test": "echo \"No tests yet\" && exit 0"
   },
   "dependencies": {

@@ -280,7 +280,7 @@
     }
   },
   "weaponStone": {
-    "en": "Stone",
+    "en": "Handy Rock",
     "it": "Pietra",
     "_description": {
       "en": "A strike with a rock, a brick, etc.",
@@ -344,7 +344,7 @@
     }
   },
   "weaponWeaponStock": {
-    "en": "Weapon Stock",
+    "en": "Gun Bash",
     "it": "Calcio dell'Arma",
     "_description": {
       "en": "A strike with the stock of a two-handed weapon.",
@@ -352,7 +352,7 @@
     }
   },
   "weaponWeaponStockOneHanded": {
-    "en": "One-Handed Weapon Stock",
+    "en": "Gun Bash (1H)",
     "it": "Calcio dell'Arma (1 mano)",
     "_description": {
       "en": "A strike with the stock of a one-handed weapon.",

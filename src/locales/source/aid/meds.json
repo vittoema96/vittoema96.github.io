@@ -109,7 +109,7 @@
   },
   "medsDilutedRadAway": {
     "en": "Diluted RadAway",
-    "it": "RadAway (diluito)",
+    "it": "RadAway (Diluito)",
     "_description": {
       "en": "An intravenous drug which purges radiation from the user's body, absorbing radiation as it circulates through the user's bloodstream. It's also a potent diuretic, expelling the radiation with the user's urine, so it's advisable to drink a lot of (clean) water shortly after taking a dose. Sometimes encountered in a diluted form, reducing its effectiveness as the user is only taking a partial dose. Diluted RadAway is only about half as effective, but it's easier to find. Use: RadAway can be used in one of two ways: it can be applied using the Take Chem minor action, healing 4 Radiation damage immediately, or it can be applied as part of a First Aid action, healing 4 Radiation damage in addition to any other healing done (remove Radiation damage before applying other healing effects). Diluted RadAway works in the same way, but only heals 2 Radiation damage.",
       "it": "Una droga da iniettare per endovena che ripulisce il corpo di chi la usa dalle radiazioni, assorbendole mentre fluisce nel sistema circolatorio. È anche un potente diuretico: le radiazioni vengono espulse attraverso le urine, per cui è consigliabile bere un sacco di acqua (pulita) subito dopo aver preso una dose. Talvolta si trova in forma diluita, che ne riduce l'efficacia dato che la dose assunta è solo parziale. Il RadAway diluito ha circa metà dell'efficacia, ma è più facile trovarlo. Utilizzo: Il RadAway può essere usato in due modi: può essere applicato con l'azione minore Assumere Sostanze per guarire immediatamente 4 danni da Radiazioni o può essere iniettato come parte di un'azione di Primo Soccorso e guarire 4 danni da Radiazioni in aggiunta a ogni altra cura (rimuovere i danni da Radiazioni prima di applicare altri effetti curativi). Il RadAway diluito funziona allo stesso modo, ma guarisce solo 2 danni da Radiazioni."
@@ -120,8 +120,8 @@
     }
   },
   "medsDilutedRadX": {
-    "en": "Diluted Rad-X",
-    "it": "Rad-X (diluito)",
+    "en": "Rad-X (Diluted)",
+    "it": "Rad-X (Diluito)",
     "_description": {
       "en": "A preventative medicine for those intending to enter areas with heightened risk of radiation exposure. A dose can help you resist the effects of radiation, especially when combined with other protective measures. Due to scarcity, it is often found diluted, reducing the effectiveness of a dose but allowing limited supplies to last longer. Diluted Rad-X is about half as effective, but easier to find.",
       "it": "Un farmaco preventivo per coloro che hanno intenzione di entrare in zone ad alto rischio di esposizione alle radiazioni. Una dose aiuta a resistere agli effetti delle radiazioni, specialmente in combinazione con altre misure protettive. A causa della sua scarsità, solitamente lo si trova diluito, fatto che riduce l'efficacia della dose, ma fa sì che le riserve limitate durino di più. Il Rad-X diluito ha circa metà dell'efficacia, ma è più facile trovarlo."
@@ -132,8 +132,8 @@
     }
   },
   "medsDilutedStimpak": {
-    "en": "Diluted Stimpak",
-    "it": "Stimpak (diluito)",
+    "en": "Stimpak (Diluted)",
+    "it": "Stimpak (Diluito)",
     "_description": {
       "en": "A stimulation delivery package, or Stimpak, is a form of fast-acting medication used to bolster the body's own healing and recuperative ability, and countless millions were produced for household and workplace first aid kits, hospitals, clinics, and other places. A wonder of pre-War science, a Stimpak is a single-use syringe filled with a variety of potent healing agents, stimulants, and painkillers, and can be applied in an intravenous or intramuscular fashion: literally stick it anywhere and it'll work. Even so, it a Stimpak is most effective when applied by an Auto-Doc or someone with medical training alongside other treatment. Sometimes encountered in a diluted form, reducing its effectiveness as the user is only taking a partial dose. Diluted Stimpaks are only about half as effective, but they're easier to find. Use: A Stimpak can be used in one of two ways: it can be applied using the Take Chem minor action, healing 4 HP or treating an Injury immediately, or it can be applied as part of a First Aid action, healing 4 HP or treating an Injury in addition to any other healing done. Diluted Stimpaks work in the same way, but only heal 2 HP, though they can still treat Injuries as normal.",
       "it": "Il pacchetto di stimolanti pronti all'uso Stimpak è un tipo di medicina ad azione rapida utilizzato per potenziare le capacità di guarigione e recupero del corpo. Alle volte se ne può trovare una versione diluita, che ne riduce l'efficacia dato che la dose assunta è solo parziale. Gli Stimpak diluiti hanno circa la metà dell'efficacia, ma è più facile trovarli. Utilizzo: Gli Stimpak possono essere usati in due modi: possono essere iniettati con l'azione minore Assumere Sostanze per ripristinare immediatamente 4 PS o curare una ferita, oppure possono essere iniettati come parte di un'azione di Primo Soccorso e guarire 4 PS o curare una ferita, in aggiunta a ogni altra cura. Gli Stimpak diluiti funzionano allo stesso modo, ma guariscono solo 2 PS, sebbene curino le ferite allo stesso modo."

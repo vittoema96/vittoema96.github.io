@@ -152,7 +152,7 @@
     }
   },
   "weaponHandmadeBoltAction": {
-    "en": "Handmade Bolt Action Rifle",
+    "en": "Pipe Bolt-Action",
     "it": "Bolt-Action Artigianale",
     "_description": {
       "en": "A makeshift weapon, easily spotted in the hands of those who can't build, buy, or scavenge anything better. Pipe weapons are crude and somewhat unreliable, but effective enough; bolt-action pipe rifles are normally made to fire rifle rounds, sacrificing fire rate for power and simplicity.",
@@ -160,7 +160,7 @@
     }
   },
   "weaponHandmadePistol": {
-    "en": "Handmade Pistol",
+    "en": "Pipe Gun",
     "it": "Pistola Artigianale",
     "_description": {
       "en": "Primitive, homemade, normally wielded by those who can't build, buy, or scavenge anything better, pipe pistols are crude and somewhat unreliable, but effective enough. The most common resemble small semi-automatic pistols, made to take common .38 rounds… though there are known to be those bold (or desperate) enough to modify them for automatic or precision fire.",
@@ -172,7 +172,7 @@
     }
   },
   "weaponHandmadeRevolver": {
-    "en": "Handmade Revolver",
+    "en": "Pipe Revolver",
     "it": "Revolver Artigianale",
     "_description": {
       "en": "Like other pipe weapons, these are makeshift or homemade pistols, in this case based on a revolver. They're a middle ground between the firepower of a bolt-action and the rate-of-fire of a pistol, and being a pipe weapon, they're similarly easy to modify.",
@@ -208,7 +208,7 @@
     }
   },
   "weaponMachineGun": {
-    "en": "Machine Gun",
+    "en": "Submachine Gun",
     "it": "Mitragliatrice",
     "_description": {
       "en": "Submachine guns were an old design, even before the War, and while they're hideously inaccurate, their rate-of-fire means you don't need to be accurate.",
@@ -223,8 +223,8 @@
       "it": "Pistola automatica 10mm integrata nel corpo di un Mr. Handy. Equivalente a una pistola 10mm con mod castello automatico. Solo Mr. Handy può utilizzare quest'arma."
     }
   },
-  "weaponNailGun": {
-    "en": "Nail Gun",
+  "weaponRailwayRifle": {
+    "en": "Railway Rifle",
     "it": "Fucile Sparachiodi",
     "_description": {
       "en": "A makeshift weapon created by enterprising wasteland engineers, the nail gun uses high-pressure steam to fire railroad spikes at a velocity sufficient to pierce and impale most targets.",

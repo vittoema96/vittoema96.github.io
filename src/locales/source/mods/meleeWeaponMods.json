@@ -574,5 +574,113 @@
       "en": "Heavy {{name}}",
       "it": "{{name}} Pesante"
     }
+  },
+  "modElectrifiedBlade": {
+    "en": "Electrified Blade",
+    "it": "Lama Elettrificata",
+    "_description": {
+      "en": "+1 damage DC, damage type becomes Energy",
+      "it": "+1 danno DC, il tipo di danno diventa Energia"
+    },
+    "_descriptor": {
+      "en": "Electrified {{name}}",
+      "it": "{{name}} Elettrificata"
+    }
+  },
+  "modElectrified": {
+    "en": "Electrified",
+    "it": "Elettrificato",
+    "_description": {
+      "en": "+1 damage DC, damage type becomes Energy",
+      "it": "+1 danno DC, il tipo di danno diventa Energia"
+    },
+    "_descriptor": {
+      "en": "Electrified {{name}}",
+      "it": "{{name}} Elettrificato"
+    }
+  },
+  "modBurning": {
+    "en": "Burning",
+    "it": "Ardente",
+    "_description": {
+      "en": "Damage type becomes Energy, gains Persistent",
+      "it": "Il tipo di danno diventa Energia, ottiene Persistente"
+    },
+    "_descriptor": {
+      "en": "Burning {{name}}",
+      "it": "{{name}} Ardente"
+    }
+  },
+  "modPoisoned": {
+    "en": "Poisoned",
+    "it": "Avvelenato",
+    "_description": {
+      "en": "Gains Persistent (Poison)",
+      "it": "Ottiene Persistente (Veleno)"
+    },
+    "_descriptor": {
+      "en": "Toxic {{name}}",
+      "it": "{{name}} Tossico"
+    }
+  },
+  "modTurbo": {
+    "en": "Turbo",
+    "it": "Turbo",
+    "_description": {
+      "en": "Each AP spent for extra damage adds +2 DC instead of +1 DC",
+      "it": "Ogni PA speso per danno extra aggiunge +2 DC invece di +1 DC"
+    },
+    "_descriptor": {
+      "en": "Turbo {{name}}",
+      "it": "{{name}} Turbo"
+    }
+  },
+  "modDualBar": {
+    "en": "Dual Bar",
+    "it": "Doppia Barra",
+    "_description": {
+      "en": "+2 damage DC",
+      "it": "+2 danno DC"
+    },
+    "_descriptor": {
+      "en": "Dual {{name}}",
+      "it": "{{name}} Doppia"
+    }
+  },
+  "modBowBar": {
+    "en": "Bow Bar",
+    "it": "Barra ad Arco",
+    "_description": {
+      "en": "Gains Piercing 1",
+      "it": "Ottiene Penetrante 1"
+    },
+    "_descriptor": {
+      "en": "Bow bar {{name}}",
+      "it": "{{name}} Ad Arco"
+    }
+  },
+  "modLongBowBar": {
+    "en": "Long Bow Bar",
+    "it": "Barra ad Arco Lungo",
+    "_description": {
+      "en": "Gains Persistent",
+      "it": "Ottiene Persistente"
+    },
+    "_descriptor": {
+      "en": "Long bow bar {{name}}",
+      "it": "{{name}} Ad Arco Lungo"
+    }
+  },
+  "modFlaming": {
+    "en": "Flamer",
+    "it": "Lanciafiamme",
+    "_description": {
+      "en": "+1 damage DC, damage type changes to Energy. Can be installed in addition to other mods.",
+      "it": "+1 danno DC, il tipo di danno diventa Energia. Può essere installato in aggiunta ad altre mod."
+    },
+    "_descriptor": {
+      "en": "Flaming {{name}}",
+      "it": "{{name}} Fiammeggiante"
+    }
   }
 }

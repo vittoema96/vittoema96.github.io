@@ -30,6 +30,9 @@ ammoArrow,ammo,ammo,0,2,1
 ammoCrossbowBolt,ammo,ammo,0,3,2
 ammoPlasmaCore,ammo,ammo,2,200,5
 ammoAcidConcentrate,ammo,ammo,0,2,3
+ammoCannonball,ammo,ammo,2,8,5
+ammoCryoCell,ammo,ammo,0,10,5
+ammoHarpoon,ammo,ammo,0,3,4
 ammoArrowCryo,ammo,arrowType,0,8,3
 ammoArrowExplosive,ammo,arrowType,0,6,2
 ammoArrowFlaming,ammo,arrowType,0,2,1

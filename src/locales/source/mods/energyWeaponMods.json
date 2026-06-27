@@ -538,5 +538,53 @@
       "en": "Improved Targeting {{name}}",
       "it": "{{name}} Mirante Migliorato"
     }
+  },
+  "modCapacitorMk3": {
+    "en": "Capacitor Mk III",
+    "it": "Condensatore Mk III",
+    "_description": {
+      "en": "+1 damage DC, consumes 3 shots per attack",
+      "it": "+1 danno DC, consuma 3 colpi per attacco"
+    },
+    "_descriptor": {
+      "en": "Mk III {{name}}",
+      "it": "{{name}} Mk III"
+    }
+  },
+  "modCapacitorMk4": {
+    "en": "Capacitor Mk IV",
+    "it": "Condensatore Mk IV",
+    "_description": {
+      "en": "+2 damage DC, consumes 4 shots per attack",
+      "it": "+2 danno DC, consuma 4 colpi per attacco"
+    },
+    "_descriptor": {
+      "en": "Mk IV {{name}}",
+      "it": "{{name}} Mk IV"
+    }
+  },
+  "modCapacitorMk5": {
+    "en": "Capacitor Mk V",
+    "it": "Condensatore Mk V",
+    "_description": {
+      "en": "+3 damage DC, consumes 5 shots per attack",
+      "it": "+3 danno DC, consuma 5 colpi per attacco"
+    },
+    "_descriptor": {
+      "en": "Mk V {{name}}",
+      "it": "{{name}} Mk V"
+    }
+  },
+  "modCapacitorMk6": {
+    "en": "Capacitor Mk VI",
+    "it": "Condensatore Mk VI",
+    "_description": {
+      "en": "+4 damage DC, consumes 6 shots per attack",
+      "it": "+4 danno DC, consuma 6 colpi per attacco"
+    },
+    "_descriptor": {
+      "en": "MK VI {{name}}",
+      "it": "{{name}} MK VI"
+    }
   }
 }

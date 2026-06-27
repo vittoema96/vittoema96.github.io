@@ -71,9 +71,33 @@
       "it": "Una potente arma balistica automatica che spara rapidamente proiettili da 2 mm a velocità iper-elevata. È un'arma prestigiosa che richiede un proprietario facoltoso a causa delle munizioni rare e dell'elevata cadenza di fuoco."
     }
   },
+  "weaponBroadsider": {
+    "en": "Broadsider",
+    "it": "Broadsider",
+    "_description": {
+      "en": "A portable naval cannon repurposed as a heavy weapon. It fires cannonballs with tremendous force, dealing explosive splash damage at the cost of an extremely slow rate of fire. Rare and unwieldy, it is nonetheless a show-stopping weapon in the right hands.",
+      "it": "Un cannone navale portatile riconvertito in arma pesante. Spara palle di cannone con una forza tremenda, infliggendo danni a zona esplosiva a costo di una cadenza di fuoco estremamente lenta. Raro e scomodo, è comunque un'arma d'impatto nelle mani giuste."
+    }
+  },
+  "weaponCryolator": {
+    "en": "Cryolator",
+    "it": "Crioiniettore",
+    "_description": {
+      "en": "A custom-built cryogenic weapon that sprays a stream of Cryo Cell coolant, freezing targets solid. Built by the Vault 111 overseer before the war, it remained locked away for over 200 years. It is one of the few weapons capable of inflicting the Freeze effect.",
+      "it": "Un'arma criogenica costruita su misura che spruzza un getto di refrigerante della Cryo Cell, congelando i bersagli. Costruita dal supervisore del Vault 111 prima della guerra, è rimasta chiusa a chiave per oltre 200 anni. È una delle poche armi capaci di infliggere l'effetto Congelamento."
+    }
+  },
+  "weaponHarpoonGun": {
+    "en": "Harpoon Gun",
+    "it": "Fucile Arpione",
+    "_description": {
+      "en": "A powerful single-shot weapon that fires a large metal harpoon with great force. Capable of impaling targets and pinning them in place, it is particularly effective against large creatures and armored foes. Slow to reload and awkward to carry, but devastating when it connects.",
+      "it": "Un'arma potente a colpo singolo che spara un grande arpione metallico con grande forza. Capace di impalare i bersagli e bloccarli sul posto, è particolarmente efficace contro creature grandi e nemici corazzati. Lenta da ricaricare e scomoda da portare, ma devastante quando colpisce."
+    }
+  },
   "weaponIncinerator": {
-    "en": "Incinerator",
-    "it": "Inceneritore",
+    "en": "Heavy Incinerator",
+    "it": "Inceneritore Pesante",
     "_description": {
       "en": "A heavy incinerator sprays an ignited fuel mixture over the target to burn them, launching a series of fireballs that explode on impact and ignite as the fuel splashes the target.",
       "it": "Riversa una miscela incendiata sul bersaglio per bruciarlo, lancia una serie di palle di fuoco che esplodono sul colpo e appiccano il fuoco non appena il combustibile spruzza il bersaglio."

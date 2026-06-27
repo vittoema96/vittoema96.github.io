@@ -406,5 +406,281 @@
       "en": "Overcharged {{name}}",
       "it": "{{name}} Sovraccaricato"
     }
+  },
+  "modHeavyBarrel": {
+    "en": "Heavy Barrel",
+    "it": "Canna Pesante",
+    "_description": {
+      "en": "+1 damage DC, gains Vicious",
+      "it": "+1 danno DC, ottiene Brutale"
+    },
+    "_descriptor": {
+      "en": "Heavy {{name}}",
+      "it": "{{name}} Pesante"
+    }
+  },
+  "modHeavyBarrelAutoGrenade": {
+    "en": "Heavy Barrel",
+    "it": "Canna Pesante",
+    "_description": {
+      "en": "+1 damage DC, gains Vicious",
+      "it": "+1 danno DC, ottiene Brutale"
+    },
+    "_descriptor": {
+      "en": "Heavy {{name}}",
+      "it": "{{name}} Pesante"
+    }
+  },
+  "modLongBarrelAutoGrenade": {
+    "en": "Long Barrel",
+    "it": "Canna Lunga",
+    "_description": {
+      "en": "Increases Range by 1 step",
+      "it": "Aumenta la Gittata di 1 grado"
+    },
+    "_descriptor": {
+      "en": "Long {{name}}",
+      "it": "{{name}} a Canna Lunga"
+    }
+  },
+  "mod25mmGrenadeReceiver": {
+    "en": "25mm Grenade Receiver",
+    "it": "Ricevitore Granata 25mm",
+    "_description": {
+      "en": "Changes damage to 4 DC, +2 Fire Rate, ammo changes to 25mm grenade",
+      "it": "Cambia il danno a 4 DC, +2 Cadenza di Fuoco, le munizioni cambiano a granata 25mm"
+    },
+    "_descriptor": {
+      "en": "{{name}} with 25mm Grenade Receiver",
+      "it": "{{name}} con Ricevitore Granata 25mm"
+    }
+  },
+  "modSpeedyReceiver": {
+    "en": "Speedy Receiver",
+    "it": "Ricevitore Rapido",
+    "_description": {
+      "en": "+2 Fire Rate",
+      "it": "+2 Cadenza di Fuoco"
+    },
+    "_descriptor": {
+      "en": "Speedy {{name}}",
+      "it": "{{name}} Rapido"
+    }
+  },
+  "modLongBarrelGatlingGun": {
+    "en": "Long Barrel",
+    "it": "Canna Lunga",
+    "_description": {
+      "en": "Increases Range by 1 step",
+      "it": "Aumenta la Gittata di 1 grado"
+    },
+    "_descriptor": {
+      "en": "Long {{name}}",
+      "it": "{{name}} a Canna Lunga"
+    }
+  },
+  "modComfortGripGatlingGun": {
+    "en": "Comfort Grip",
+    "it": "Impugnatura Ergonomica",
+    "_description": {
+      "en": "Removes Recoil (6)",
+      "it": "Rimuove Rinculo (6)"
+    },
+    "_descriptor": {
+      "en": "Comfort Grip {{name}}",
+      "it": "{{name}} Impugnatura Ergonomica"
+    }
+  },
+  "modExtraLargeMagazine": {
+    "en": "Extra-Large Magazine",
+    "it": "Caricatore Extra-Large",
+    "_description": {
+      "en": "+1 Fire Rate, gains Unreliable",
+      "it": "+1 Cadenza di Fuoco, ottiene Inaffidabile"
+    },
+    "_descriptor": {
+      "en": "{{name}} with Extra-Large Magazine",
+      "it": "{{name}} con Caricatore Extra-Large"
+    }
+  },
+  "modFrontSightRing": {
+    "en": "Front Sight Ring",
+    "it": "Mirino Anteriore",
+    "_description": {
+      "en": "Removes Inaccurate",
+      "it": "Rimuove Imprecisa"
+    },
+    "_descriptor": {
+      "en": "Sighted {{name}}",
+      "it": "{{name}} con Mirino"
+    }
+  },
+  "modLargeBayonet": {
+    "en": "Large Bayonet",
+    "it": "Baionetta Grande",
+    "_description": {
+      "en": "Melee weapon, deals 5 DC Piercing 1 physical damage",
+      "it": "Arma da Mischia, infligge 5 DC danni Fisici Penetranti 1"
+    },
+    "_descriptor": {
+      "en": "Bayoneted {{name}}",
+      "it": "{{name}} con Baionetta"
+    }
+  },
+  "modPortedBarrelGatlingPlasma": {
+    "en": "Ported Barrel",
+    "it": "Canna Sfogata",
+    "_description": {
+      "en": "Removes Inaccurate",
+      "it": "Rimuove Imprecisa"
+    },
+    "_descriptor": {
+      "en": "Ported {{name}}",
+      "it": "{{name}} Sfogato"
+    }
+  },
+  "modComfortGripGatlingPlasma": {
+    "en": "Comfort Grip",
+    "it": "Impugnatura Ergonomica",
+    "_description": {
+      "en": "Removes Recoil (6)",
+      "it": "Rimuove Rinculo (6)"
+    },
+    "_descriptor": {
+      "en": "Comfort Grip {{name}}",
+      "it": "{{name}} Impugnatura Ergonomica"
+    }
+  },
+  "modReflexSightGatlingPlasma": {
+    "en": "Reflex Sight",
+    "it": "Mirino Reflex",
+    "_description": {
+      "en": "May re-roll hit location die",
+      "it": "Può ripetere il tiro del dado localizzazione"
+    },
+    "_descriptor": {
+      "en": "Sighted {{name}}",
+      "it": "{{name}} con Mirino"
+    }
+  },
+  "modBeamSplitterGatlingPlasma": {
+    "en": "Beam Splitter",
+    "it": "Separatore di Fascio",
+    "_description": {
+      "en": "Gains Spread",
+      "it": "Ottiene Dispersione"
+    },
+    "_descriptor": {
+      "en": "Scattered {{name}}",
+      "it": "{{name}} Disperso"
+    }
+  },
+  "modBeamFocuserGatlingPlasma": {
+    "en": "Beam Focuser",
+    "it": "Focalizzatore di Fascio",
+    "_description": {
+      "en": "Increases Range by 1 step",
+      "it": "Aumenta la Gittata di 1 grado"
+    },
+    "_descriptor": {
+      "en": "Focused {{name}}",
+      "it": "{{name}} Focalizzato"
+    }
+  },
+  "modTriBarrel": {
+    "en": "Tri-Barrel",
+    "it": "Tripla Canna",
+    "_description": {
+      "en": "+1 Fire Rate",
+      "it": "+1 Cadenza di Fuoco"
+    },
+    "_descriptor": {
+      "en": "Triple Barrel {{name}}",
+      "it": "{{name}} a Tripla Canna"
+    }
+  },
+  "modPentaBarrel": {
+    "en": "Penta-Barrel",
+    "it": "Penta Canna",
+    "_description": {
+      "en": "-1 damage DC, reduces Range by 1 step, +2 Fire Rate",
+      "it": "-1 danno DC, riduce la Gittata di 1 grado, +2 Cadenza di Fuoco"
+    },
+    "_descriptor": {
+      "en": "Penta Barrel {{name}}",
+      "it": "{{name}} a Penta Canna"
+    }
+  },
+  "modTeslaCoilCapacitor": {
+    "en": "Tesla Coil Capacitor",
+    "it": "Condensatore Bobina Tesla",
+    "_description": {
+      "en": "Changes damage type to Energy",
+      "it": "Cambia il tipo di danno a Energia"
+    },
+    "_descriptor": {
+      "en": "Tesla Capacitor {{name}}",
+      "it": "{{name}} Condensatore Tesla"
+    }
+  },
+  "modTeslaCoilDynamo": {
+    "en": "Tesla Coil Dynamo",
+    "it": "Dinamo Bobina Tesla",
+    "_description": {
+      "en": "Changes damage type to Energy, +1 Fire Rate",
+      "it": "Cambia il tipo di danno a Energia, +1 Cadenza di Fuoco"
+    },
+    "_descriptor": {
+      "en": "Tesla Dynamo {{name}}",
+      "it": "{{name}} Dinamo Tesla"
+    }
+  },
+  "modCalibratedCapacitor": {
+    "en": "Calibrated Capacitor",
+    "it": "Condensatore Calibrato",
+    "_description": {
+      "en": "Gains Vicious",
+      "it": "Ottiene Brutale"
+    },
+    "_descriptor": {
+      "en": "Calibrated {{name}}",
+      "it": "{{name}} Calibrato"
+    }
+  },
+  "modPulseCapacitor": {
+    "en": "Pulse Capacitor",
+    "it": "Condensatore a Impulso",
+    "_description": {
+      "en": "Gains Surge",
+      "it": "Ottiene Sovraccarica"
+    },
+    "_descriptor": {
+      "en": "Pulse {{name}}",
+      "it": "{{name}} a Impulso"
+    }
+  },
+  "modHighSpeedElectrode": {
+    "en": "High Speed Electrode",
+    "it": "Elettrodo ad Alta Velocità",
+    "_description": {
+      "en": "+1 Fire Rate",
+      "it": "+1 Cadenza di Fuoco"
+    },
+    "_descriptor": {
+      "en": "Rapid {{name}}",
+      "it": "{{name}} Rapido"
+    }
+  },
+  "modLongBarrelPlasmaCaster": {
+    "en": "Long Barrel",
+    "it": "Canna Lunga",
+    "_description": {
+      "en": "Increases Range by 1 step",
+      "it": "Aumenta la Gittata di 1 grado"
+    },
+    "_descriptor": {
+      "en": "Long {{name}}",
+      "it": "{{name}} a Canna Lunga"
+    }
   }
 }

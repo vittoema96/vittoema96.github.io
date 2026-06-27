@@ -215,6 +215,18 @@
       "it": "{{name}} Metallo Ombrato"
     }
   },
+  "modShadowedMetalRobot": {
+    "en": "Shadowed Metal",
+    "it": "Metallo Ombrato",
+    "_description": {
+      "en": "+1 Physical Resistance, +1 Energy Resistance, Shadowed",
+      "it": "+1 Resistenza ai Danni Fisici, +1 Resistenza ai Danni da Energia, Ombrata"
+    },
+    "_descriptor": {
+      "en": "Shadowed Metal {{name}}",
+      "it": "{{name}} Metallo Ombrato"
+    }
+  },
   "modStuddedLeather": {
     "en": "Studded Leather",
     "it": "Cuoio Borchiato",

@@ -32,7 +32,7 @@
     }
   },
   "weaponGammaPistol": {
-    "en": "Gamma Pistol",
+    "en": "Gamma Gun",
     "it": "Pistola Gamma",
     "_description": {
       "en": "A crude-looking weapon, the gamma gun emits directed blasts of high-intensity ionizing radiation which can be devastating to any creature not immune nor massively resistant to radiation, while leaving other targets largely unharmed.",
@@ -60,7 +60,7 @@
     }
   },
   "weaponLaserPistol": {
-    "en": "Laser Pistol",
+    "en": "Laser Gun",
     "it": "Pistola Laser",
     "_description": {
       "en": "Laser guns are high-tech weapons which emit a concentrated beam of coherent, directional light, intense enough to inflict serious damage. They were a relatively new development in the years before the Great War, and thus are not an especially common sight in the wasteland, outside of those groups who've secured old military weapons caches. Most surviving models of laser gun—such as the dependable AER9, widely used by the U. S. Army—use an internal capacitor charged by a microfusion power cell.",
@@ -88,7 +88,7 @@
     }
   },
   "weaponPlasmaPistol": {
-    "en": "Plasma Pistol",
+    "en": "Plasma Gun",
     "it": "Pistola al Plasma",
     "_description": {
       "en": "Plasma guns, or plasma casters, are high-tech weapons firing superheated ionized gas, or plasma. These weapons are rare and potent, delivering damage through the high-speed impact of the plasma bolt and then thermal transfer as the heat from the plasma bolt is transferred into the target at the moment of impact.",
