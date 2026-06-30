@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
 import { useInventoryActions } from '@/features/inv/hooks/useInventoryActions.ts'
 import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase.ts';
-import { getDisplayName } from '@/utils/itemUtils.ts';
+import { getDisplayName, isCloseCombat } from '@/utils/itemUtils.ts';
 import {CharacterItem, CustomItem} from '@/types'
 import { FitText } from '@/components/FitText.tsx';
 import { useCharacter } from '@/contexts/CharacterContext.tsx';
@@ -102,7 +102,16 @@ function InventoryRow({
         // Weapon - show damage and type
         if(itemData.ID){
             if (dataManager.isType(itemData, 'weapon')) {
-                return `${t(itemData.CATEGORY)} • ${itemData.DAMAGE_RATING} ${itemData.DAMAGE_TYPES.map(dt => t(dt)).join(', ')}`;
+                const meleeDamageBonus = isCloseCombat(itemData.CATEGORY) ? character.meleeDamage : 0;
+                const gladiatorBonus = itemData.CATEGORY === 'meleeWeapons' &&
+                    !itemData.QUALITIES.includes('qualityTwoHanded') ? character.perks.filter(p => p === 'perkGladiator').length : 0;
+                const laserCommanderBonus = itemData.CATEGORY === 'energyWeapons' ? character.perks.filter(p => p === 'perkLaserCommander').length : 0;
+                const gruntBonus = [
+                    'weaponCombatRifle', 'weaponAssaultRifle', 'weaponFragmentationGrenade', 'weaponCombatKnife',
+                    'weaponMachineGun', 'weaponLightMachineGun', 'weapon50caMachineGun'
+                ].includes(itemData.ID) && character.traits.includes('traitGrunt') ? 1 : 0;
+                const totalDamage = itemData.DAMAGE_RATING + meleeDamageBonus + gladiatorBonus + laserCommanderBonus + gruntBonus;
+                return `${t(itemData.CATEGORY)} • ${totalDamage} ${itemData.DAMAGE_TYPES.map(dt => t(dt)).join(', ')}`;
             }
 
             if (dataManager.isType(itemData, 'apparel')) {

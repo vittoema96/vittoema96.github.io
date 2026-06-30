@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo } from '@/features/inv/utils/weaponUtils.ts'
 import {getGameDatabase, getModifiedItemData } from "@/hooks/getGameDatabase.ts";
 import { CharacterItem } from '@/types';
-import { getSkillForWeaponCategory, getSpecialForWeaponCategory } from '@/utils/itemUtils.ts';
+import { getSkillForWeaponCategory, getSpecialForWeaponCategory, isCloseCombat } from '@/utils/itemUtils.ts';
 import React from 'react';
 import { Icon } from '@iconify/react';
 
@@ -51,8 +51,10 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
         // TODO all these machine gun types? it says generically "machine guns"
         'weaponMachineGun', 'weaponLightMachineGun', 'weapon50caMachineGun'
     ].includes(itemData.ID) && character.traits.includes("traitGrunt") ? 1 : 0
-    if(laserCommanderBonus+gruntBonus+gladiatorBonus > 0){
-        damageRating = `(${damageRating}+${laserCommanderBonus+gruntBonus+gladiatorBonus})`
+    const meleeDamageBonus = isCloseCombat(itemData.CATEGORY) ? character.meleeDamage : 0
+    const totalBonus = laserCommanderBonus + gruntBonus + gladiatorBonus + meleeDamageBonus
+    if(totalBonus > 0){
+        damageRating = `(${itemData.DAMAGE_RATING}+${totalBonus})`
     }
 
     let fireRate = `${itemData.FIRE_RATE}`
