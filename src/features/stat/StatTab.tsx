@@ -101,8 +101,7 @@ function StatTab() {
     let pointsClasses = 'row l-distributed';
     pointsClasses += remainingSpecialties.brotherhoodInitiate + remainingSpecialties.goodNatured <= 0 ? ' l-lastSmall' : '';
 
-    const meleeDamageBonus =
-        character.meleeDamage + character.traits.filter(p => p === 'traitHeavyHanded').length;
+    const meleeDamageBonus = character.meleeDamage;
 
     return (
         <section className="tabContent">

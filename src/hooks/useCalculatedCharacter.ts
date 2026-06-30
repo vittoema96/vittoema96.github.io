@@ -151,11 +151,13 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
     }, [raw.special.agility, raw.special.perception])
 
     const meleeDamage = useMemo(() => {
-        if (raw.special.strength < 7) {return 0;}
-        if (raw.special.strength < 9) {return 1;}
-        if (raw.special.strength < 11) {return 2;}
-        return 3;
-    }, [raw.special.strength])
+        let base = 0;
+        if (raw.special.strength >= 7) { base = 1; }
+        if (raw.special.strength >= 9) { base = 2; }
+        if (raw.special.strength >= 11) { base = 3; }
+        if (traits.includes('traitHeavyHanded')) { base += 1; }
+        return base;
+    }, [raw.special.strength, traits])
 
     const locationsDR = useMemo(() => {
         const locationsDR = Object.fromEntries(
