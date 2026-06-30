@@ -75,6 +75,14 @@ const applyPerks = (
         itemData = applyEffect(itemData, `effectAdd:effectPiercing:${Math.min(incisorRank, 2)}`)
     }
 
+    const hasPiercingStrike = perks.includes('perkPiercingStrike')
+    const canUsePiercingStrike =
+        itemData.CATEGORY === 'unarmed' ||
+        (itemData.CATEGORY === 'meleeWeapons' && itemData.IS_BLADED === true)
+    if (hasPiercingStrike && canUsePiercingStrike) {
+        itemData = applyEffect(itemData, 'effectAdd:effectPiercing:1')
+    }
+
     return itemData
 }
 

@@ -469,19 +469,19 @@
   },
   "modArmorPiercing": {
     "en": "Armor Piercing Receiver",
-    "it": "Castello Perforante",
+    "it": "Castello Penetrante",
     "_description": {
       "en": "Gains Piercing 1",
       "it": "Ottiene Penetrante 1"
     },
     "_descriptor": {
       "en": "Armor Piercing {{name}}",
-      "it": "{{name}} Perforante"
+      "it": "{{name}} Penetrante"
     }
   },
   "modArmorPiercingAutomatic": {
     "en": "Armor Piercing Automatic Receiver",
-    "it": "Castello Automatico Perforante",
+    "it": "Castello Automatico Penetrante",
     "_description": {
       "en": "-1 damage DC, +2 Fire Rate, gains Piercing 1, gains Inaccurate",
       "it": "-1 danno DC, +2 Cadenza di Fuoco, ottiene Penetrante 1, ottiene Impreciso"
@@ -541,7 +541,7 @@
   },
   "modHardenedPiercingAuto": {
     "en": "Hardened Piercing Auto Receiver",
-    "it": "Castello Automatico Temprato Perforante",
+    "it": "Castello Automatico Temprato Penetrante",
     "_description": {
       "en": "+2 Fire Rate, gains Piercing 1, gains Inaccurate",
       "it": "+2 Cadenza di Fuoco, ottiene Penetrante 1, ottiene Impreciso"

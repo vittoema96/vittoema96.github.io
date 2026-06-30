@@ -372,7 +372,7 @@
     "it": "Penetrante",
     "_description": {
       "en": "Attacks gain Piercing 2. If already Piercing, increase the rating by +2.",
-      "it": "Gli attacchi ottengono Perforante 2. Se già Perforante, aumenta il valore di +2."
+      "it": "Gli attacchi ottengono Penetrante 2. Se già Penetrante, aumenta il valore di +2."
     }
   },
   "legendaryPlasmaInfused": {

@@ -300,7 +300,7 @@
     "it": "Freccia/Dardo Seghettata",
     "_description": {
       "en": "Carefully shaped tip increases the penetration force of the arrow and leaves serious wounds. The weapon gains the Persistent (Physical) and Piercing 1 damage effects.",
-      "it": "La punta sagomata con cura aumenta la forza di penetrazione della freccia e lascia ferite gravi. L'arma ottiene gli effetti danno Persistente (Fisico) e Perforante 1."
+      "it": "La punta sagomata con cura aumenta la forza di penetrazione della freccia e lascia ferite gravi. L'arma ottiene gli effetti danno Persistente (Fisico) e Penetrante 1."
     }
   },
   "ammoArrowPlasma": {

@@ -188,7 +188,7 @@
     "it": "Inchina al Mio Arco",
     "_description": {
       "en": "When wielding a bow or crossbow, the weapon gains Piercing 1 (or adds +1 to any existing Piercing X damage effect).",
-      "it": "Quando impugni un arco o una balestra, l'arma ottiene l'effetto danno Perforante 1 (o +1 a qualsiasi Perforante X esistente)."
+      "it": "Quando impugni un arco o una balestra, l'arma ottiene l'effetto danno Penetrante 1 (o +1 a qualsiasi Penetrante X esistente)."
     }
   },
   "perkBulletShield": {
@@ -636,7 +636,7 @@
     "it": "Incisore",
     "_description": {
       "en": "When wielding a melee weapon, the weapon gains Piercing 1 (or adds +1 to any existing Piercing X). At rank 2, this increases to Piercing 2 (or +2). Each time this perk is selected, the level requirements increase by 9.",
-      "it": "Quando impugni un'arma da mischia, essa ottiene l'effetto danno Perforante 1 (o +1 a qualsiasi Perforante X esistente). Al grado 2, Perforante 2 (o +2). Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 9."
+      "it": "Quando impugni un'arma da mischia, essa ottiene l'effetto danno Penetrante 1 (o +1 a qualsiasi Penetrante X esistente). Al grado 2, Penetrante 2 (o +2). Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 9."
     }
   },
   "perkInfiltrator": {
@@ -1284,7 +1284,7 @@
     "it": "Stabilizzato",
     "_description": {
       "en": "When wearing Power Armor, you may re-roll 1d20 on any attack made with the Big Guns skill, and any big gun you wield gains Piercing 1 (or adds +1 to any existing Piercing X).",
-      "it": "Indossando la Tuta Atomica, puoi ripetere 1d20 in qualsiasi attacco con Grandi Armi, e qualsiasi grossa arma che impugni ottiene Perforante 1 (o +1 a qualsiasi Perforante X esistente)."
+      "it": "Indossando la Tuta Atomica, puoi ripetere 1d20 in qualsiasi attacco con Grandi Armi, e qualsiasi grossa arma che impugni ottiene Penetrante 1 (o +1 a qualsiasi Penetrante X esistente)."
     }
   },
   "perkSteadyAim": {

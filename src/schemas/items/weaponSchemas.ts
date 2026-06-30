@@ -9,6 +9,7 @@ export type Range = (typeof RANGES)[number];
 export interface WeaponItem extends BaseItem {
     TYPE: 'weapon';
     CATEGORY: WeaponCategory;
+    IS_BLADED?: boolean;
 
     DAMAGE_RATING: number;
     DAMAGE_TYPES: DamageType[];
@@ -34,6 +35,10 @@ export const WeaponSchema: z.ZodType<WeaponItem> = BaseItemSchema.extend({
     FIRE_RATE: z.number().or(z.literal("-")),
     RANGE: z.enum(RANGES).or(z.literal("-")),
     AMMO_TYPE: z.string(),
+    IS_BLADED: z.preprocess(
+        (val) => (val === null ? undefined : val),
+        z.boolean().optional(),
+    ).default(false),
 
     EFFECTS: z.array(z.string()).default([]),
     QUALITIES: z.array(z.string()).default([]),
