@@ -27,7 +27,7 @@ function TraitPerkItem({ id, isFixed = false, onChangeClick, onDeleteClick, acti
     const toggleExpanded = () => setIsExpanded(!isExpanded);
 
     // Long press handling
-    const longPressTimerRef = useRef<NodeJS.Timeout | null>(null);
+    const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const handlePressStart = () => {
         if (!isFixed && (onChangeClick || onDeleteClick)) {

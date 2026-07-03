@@ -371,3 +371,37 @@ body[data-crt="off"]::before {
 .description-toggle-button--icon i {
     font-size: 1rem;
 }
+
+/******************************
+ *  Desktop split layout      *
+ *  (attivo via JS hook)      *
+ ******************************/
+
+/* Wrapper a due colonne che sostituisce nav+main su schermi larghi */
+.l-desktop-layout {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-m);
+}
+
+/* Pannello sinistro + destro: struttura verticale condivisa */
+.l-desktop-stat-panel,
+.l-desktop-right-panel {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    min-width: 0; /* permette shrink orizzontale in flex-row, evita che contenuto lungo sfondi */
+}
+
+/* Pannello sinistro — StatTab fisso */
+.l-desktop-stat-panel {
+    width: 45%;
+    flex-shrink: 0;
+}
+
+/* Pannello destro — navigatore + tab attiva */
+.l-desktop-right-panel {
+    flex: 1;
+}

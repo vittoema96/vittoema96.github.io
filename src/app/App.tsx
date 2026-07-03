@@ -9,6 +9,7 @@ import TabButton, { TabType } from '@/features/TabButton';
 import { useCharacter } from '@/contexts/CharacterContext';
 import { FitText } from '@/components/FitText.tsx';
 import AppHeaderData from '@/app/AppHeaderData.tsx';
+import useIsDesktop from '@/hooks/useIsDesktop';
 
 const TABS: Record<TabType, React.ComponentType<any>> = {
     companion: CompanionTab,
@@ -23,6 +24,7 @@ const getKeys = <T extends object>(obj: T) => Object.keys(obj) as Array<keyof T>
 function App() {
     const { character } = useCharacter();
     const [activeTab, setActiveTab] = useState<TabType>('stat');
+    const isDesktop = useIsDesktop();
 
     // Check if player has Robot Wrangler perk
     const hasRobotWrangler = character.perks.includes('perkRobotWrangler');
@@ -37,16 +39,65 @@ function App() {
         });
     }, [hasDogmeat, hasRobotWrangler]);
 
-    // Get active tab component (only render the active one for better performance)
-    const ActiveTabComponent = TABS[activeTab];
+    // Desktop: right panel shows all tabs except 'stat' (stat is always on the left)
+    const rightPanelTabs = useMemo(
+        () => visibleTabs.filter(t => t !== 'stat'),
+        [visibleTabs]
+    );
 
+    // Desktop: if the user had 'stat' selected, default to the first right-panel tab
+    const desktopRightActiveTab: TabType =
+        activeTab === 'stat' ? (rightPanelTabs[0] ?? 'inv') : activeTab;
+
+    const ActiveTabComponent = TABS[activeTab];
+    const DesktopRightComponent = TABS[desktopRightActiveTab];
+
+    const appHeader = (
+        <header className="l-lastSmall">
+            <FitText maxSize={35}>Pip-Boy 3000</FitText>
+            <AppHeaderData />
+        </header>
+    );
+
+    /* ── Desktop layout: split screen ── */
+    if (isDesktop) {
+        return (
+            <>
+                {appHeader}
+                <hr />
+                <div className="l-desktop-layout">
+                    {/* Left panel: StatTab sempre visibile — stesso <main> delle altre tab */}
+                    <div className="l-desktop-stat-panel">
+                        <main>
+                            <StatTab />
+                        </main>
+                    </div>
+
+                    {/* Right panel: navigator + tab attiva */}
+                    <div className="l-desktop-right-panel">
+                        <nav>
+                            {rightPanelTabs.map(tabType => (
+                                <TabButton
+                                    key={tabType}
+                                    onClick={() => setActiveTab(tabType)}
+                                    tabType={tabType}
+                                    active={desktopRightActiveTab === tabType}
+                                />
+                            ))}
+                        </nav>
+                        <main>
+                            <DesktopRightComponent />
+                        </main>
+                    </div>
+                </div>
+            </>
+        );
+    }
+
+    /* ── Mobile layout (default) ── */
     return (
         <>
-            <header className="l-lastSmall">
-                <FitText maxSize={35}>Pip-Boy 3000</FitText>
-                <AppHeaderData />
-            </header>
-
+            {appHeader}
             <hr />
 
             {/* Tab Navigation */}

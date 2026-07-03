@@ -1,4 +1,3 @@
-
 /*****************
  *  STAT SCREEN  *
  *****************/
@@ -25,6 +24,17 @@
     .special__name {
         font-size: calc(100cqw / (18 * 0.5)) !important; /* 100% width - 12 letters of size .5em */
     }
+}
+
+/* Nel layout desktop split il viewport e' largo ma il pannello STAT e' stretto:
+   usiamo regole container-aware per mantenere 4 SPECIAL sopra e 3 sotto. */
+.l-desktop-stat-panel #c-special {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.l-desktop-stat-panel .special {
+    flex: 0 0 calc((100% - 3 * 0.5rem) / 4);
 }
 
 .special::before,
@@ -88,6 +98,11 @@
     align-self: stretch;
     text-align: center;
     font-size: clamp(10px, 3vw, 32px);
+}
+
+/* Evita numeri giganteschi in split view: niente sizing su viewport globale */
+.l-desktop-stat-panel .derived-stat {
+    font-size: clamp(10px, 1.1rem, 18px);
 }
 .derived-stat > * {
     padding: 0.5rem;

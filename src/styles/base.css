@@ -54,7 +54,7 @@ body {
             --app-text-shadow:
                 0 0 2px color-mix(in srgb, var(--animation-glow-color) 75%, transparent),
                 0 0 5px color-mix(in srgb, var(--animation-glow-color) 45%, transparent);
-            -webkit-font-smoothing: auto;
+            -webkit-font-smoothing: antialiased;
         }
     }
 }
@@ -89,6 +89,31 @@ main {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+}
+
+/* Scrollbar theming: sottile e appena visibile, come su mobile.
+   Applicato globalmente cosi ogni contenitore scrollabile e' coerente. */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color-very-translucent) transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--primary-color-very-translucent);
+    border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color-translucent);
 }
 
 /* 3) Structural blocks */

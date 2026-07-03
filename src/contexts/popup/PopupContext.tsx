@@ -63,9 +63,9 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
                 }
                 const index = prev.findLastIndex(p => p.Component === identifier);
                 if (index === -1) {
-                    throw new Error(`Could not close popup because no "${identifier}" was found.`);
+                    return prev;
                 }
-                return prev.splice(index, 1);
+                return [...prev.slice(0, index), ...prev.slice(index + 1)];
             }
             return prev.slice(0, -1); // Close last opened popup
         });

@@ -13,7 +13,8 @@ import './i18n';
 
 import { UISettingsManager } from '@/styles/UISettingsManager';
 
-import ErrorBoundary from './ErrorBoundary';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorFallback } from './ErrorBoundary';
 import { CharacterProvider } from '@/contexts/CharacterContext';
 import { TooltipProvider } from '@/contexts/TooltipContext';
 import { PopupProvider } from '@/contexts/popup/PopupContext';
@@ -24,8 +25,6 @@ import UpdatePrompt from '@/components/UpdatePrompt';
 
 // Apply appearance settings as early as possible to avoid flicker.
 UISettingsManager.applyAll();
-
-// ─── Boot Screen ──────────────────────────────────────────────────────────────
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
@@ -48,7 +47,7 @@ function Main() {
     }, []);
 
     return (
-        <ErrorBoundary> {/* Handles errors in the entire app */}
+        <ErrorBoundary fallbackRender={ErrorFallback}> {/* Handles errors in the entire app */}
             {(!isDbReady || showBootScreen) && <BootScreen />}
             {isDbReady && (
                 <CharacterProvider> {/* Handles Character, used almost everywhere */}
