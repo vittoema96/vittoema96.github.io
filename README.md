@@ -152,6 +152,11 @@ Players can unlock markers on the New Vegas map by entering specific codes found
 | Camp Forlorn Hope | `c4fh` | Atomic Wrangler | `at0m` |
 | Vault 22 | `vt22` | Ranger Station Charlie | `rsc3` |
 | Vault 3 | `vt03` | Ranger Station Foxtrot | `rsfx` |
+| Abandoned BoS Bunker | `ab0s` | Mojave Drive-In | `m0d1` |
+| Canyon Wreckage | `cnwr` | Cassidy Caravan Wreckage | `ccwr` |
+| Northern Passage | `nrps` | Grub n Gulp Rest Stop | `gngp` |
+| New Vegas Medical Clinic | `nvmc` | Gun Runners | `gunr` |
+| H&H Tools Factory | `hhtf` | Sunset Sarsaparilla HQ | `sshq` |
 
 </details>
 

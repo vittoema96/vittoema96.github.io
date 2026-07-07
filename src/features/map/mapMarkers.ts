@@ -57,5 +57,16 @@ export const markers = [
 
     { id: 'Silver Rush', code: 'slvr', x: 50, y: 24.5, category: 'store' },
     { id: 'Atomic Wrangler', code: 'at0m', x: 50.7, y: 24.3, category: 'store' },
+
+    { id: 'Abandoned BoS Bunker', code: 'ab0s', x: 77, y: 64.5, category: 'vault' },
+    { id: 'Mojave Drive-In', code: 'm0d1', x: 44.7, y: 91.5, category: 'settlement' },
+    { id: 'Canyon Wreckage', code: 'cnwr', x: 32, y: 73, category: 'canyon' },
+    { id: 'Cassidy Caravan Wreckage', code: 'ccwr', x: 54, y: 41, category: 'hazard' },
+    { id: 'Northern Passage', code: 'nrps', x: 49.3, y: 16.3, category: 'canyon' },
+    { id: 'Grub n Gulp Rest Stop', code: 'gngp', x: 58.2, y: 39.3, category: 'store' },
+    { id: 'New Vegas Medical Clinic', code: 'nvmc', x: 56.8, y: 23.5, category: 'medical' },
+    { id: 'Gun Runners', code: 'gunr', x: 51.5, y: 26, category: 'store' },
+    { id: 'H&H Tools Factory', code: 'hhtf', x: 49.7, y: 22, category: 'industrial' },
+    { id: 'Sunset Sarsaparilla HQ', code: 'sshq', x: 44.3, y: 31, category: 'industrial' },
 ] satisfies ReadonlyArray<MapMarker>;
 

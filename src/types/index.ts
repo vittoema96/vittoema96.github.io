@@ -63,7 +63,6 @@ export interface TraitData {
     ID: TraitId;
     EFFECTS: string[];
     ORIGINS: OriginId[];
-    IMPLEMENTED: boolean;
     FIXED: boolean;
 }
 
