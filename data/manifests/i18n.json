@@ -1,0 +1,134 @@
+{
+  "_what_is_this": "Manifest for locale source validation/build: maps CSV files to source JSON files and lists standalone source JSON files.",
+  "csvToJsonPairs": [
+    {
+      "csv": "weapon/smallGuns.csv",
+      "json": "weapon/smallGuns.json"
+    },
+    {
+      "csv": "weapon/energyWeapons.csv",
+      "json": "weapon/energyWeapons.json"
+    },
+    {
+      "csv": "weapon/bigGuns.csv",
+      "json": "weapon/bigGuns.json"
+    },
+    {
+      "csv": "weapon/meleeWeapons.csv",
+      "json": "weapon/meleeWeapons.json"
+    },
+    {
+      "csv": "weapon/throwing.csv",
+      "json": "weapon/throwing.json"
+    },
+    {
+      "csv": "weapon/explosives.csv",
+      "json": "weapon/explosives.json"
+    },
+    {
+      "csv": "weapon/bows.csv",
+      "json": "weapon/bows.json"
+    },
+    {
+      "csv": "weapon/companionWeapons.csv",
+      "json": "weapon/companionWeapons.json"
+    },
+    {
+      "csv": "apparel/armor.csv",
+      "json": "apparel/armor.json"
+    },
+    {
+      "csv": "apparel/clothing.csv",
+      "json": "apparel/clothing.json"
+    },
+    {
+      "csv": "apparel/robotParts.csv",
+      "json": "apparel/robotParts.json"
+    },
+    {
+      "csv": "aid/food.csv",
+      "json": "aid/food.json"
+    },
+    {
+      "csv": "aid/drinks.csv",
+      "json": "aid/drinks.json"
+    },
+    {
+      "csv": "aid/meds.csv",
+      "json": "aid/meds.json"
+    },
+    {
+      "csv": "aid/misc.csv",
+      "json": "aid/misc.json"
+    },
+    {
+      "csv": "other/ammo.csv",
+      "json": "other/ammo.json"
+    },
+    {
+      "csv": "other/misc.csv",
+      "json": "other/misc.json"
+    },
+    {
+      "csv": "mods/smallGunMods.csv",
+      "json": "mods/smallGunMods.json"
+    },
+    {
+      "csv": "mods/bigGunMods.csv",
+      "json": "mods/bigGunMods.json"
+    },
+    {
+      "csv": "mods/energyWeaponMods.csv",
+      "json": "mods/energyWeaponMods.json"
+    },
+    {
+      "csv": "mods/meleeWeaponMods.csv",
+      "json": "mods/meleeWeaponMods.json"
+    },
+    {
+      "csv": "mods/bowMods.csv",
+      "json": "mods/bowMods.json"
+    },
+    {
+      "csv": "mods/armorMaterialMods.csv",
+      "json": "mods/armorMaterialMods.json"
+    },
+    {
+      "csv": "mods/armorImprovementMods.csv",
+      "json": "mods/armorImprovementMods.json"
+    },
+    {
+      "csv": "mods/ballisticWeaveMods.csv",
+      "json": "mods/ballisticWeaveMods.json"
+    },
+    {
+      "csv": "mods/vaultSuitMods.csv",
+      "json": "mods/vaultSuitMods.json"
+    },
+    {
+      "csv": "mods/robotArmorMods.csv",
+      "json": "mods/robotArmorMods.json"
+    },
+    {
+      "csv": "character-features/perks.csv",
+      "json": "character-features/perks.json"
+    },
+    {
+      "csv": "character-features/traits.csv",
+      "json": "character-features/traits.json"
+    },
+    {
+      "csv": "item-features/legendaryEffects.csv",
+      "json": "item-features/legendaryEffects.json"
+    },
+    {
+      "csv": "character-features/companionPerks.csv",
+      "json": "character-features/companionPerks.json"
+    }
+  ],
+  "standaloneJson": [
+    "generic.json",
+    "item-features/effects.json",
+    "item-features/qualities.json"
+  ]
+}

@@ -5,6 +5,7 @@ Things to fix:
 - FIRE_RATE is number | - ... can we do at least number | undefined?
 - Don't allow same customName for 2 different CustomItems (customName is object ID)
 ## 🔥 High Priority
+- [ ] Leg and Arm armor pieces DO NOT need to be Right or Left, they can be applied to either (use a popup asking left or right on equip?)
 
 ### Game Features
 - [ ] **qualityAccurate effect** - Implement accurate weapon quality

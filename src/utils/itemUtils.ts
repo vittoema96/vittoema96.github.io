@@ -4,13 +4,14 @@
  */
 
 import { CharacterItem, CustomItem, DamageType } from '@/types';
-import { getGameDatabase } from '@/hooks/getGameDatabase';
-import { GameDatabase } from '@/services/GameDatabase';
+import { getGameDatabase, isType } from '@/hooks/getGameDatabase';
+import { GameDatabase } from '@/services/data/GameDatabase.ts';
 import type { TFunction } from 'i18next';
-import { Range, WeaponItem } from '@/schemas/items/weaponSchemas.ts';
-import { ApparelItem } from '@/schemas/items/apparelSchemas.ts';
 import { ItemCategory, WeaponCategory } from '@/types/item.ts';
-import { getSpecialFromSkill, SkillType, SpecialType } from '@/services/character/utils.ts';
+import { ApparelItem } from '@/data/item/apparel.schemas.ts';
+import { Range, WeaponItem } from '@/data/item/weapon.schemas.ts';
+import { SpecialType } from '@/features/character/special/special.ts';
+import { getSpecialFromSkill, SkillType } from '@/features/character/skills/skills.ts';
 
 
 /**
@@ -188,12 +189,12 @@ export function applyEffect(modifiedData: WeaponItem | ApparelItem, effect: stri
     const value = valueParts.join(':') // Rejoin in case value contains ':'
     if(!effectType) {return modifiedData}
 
-    if(dataManager.isType(modifiedData, "weapon")){
+    if(isType(modifiedData, "weapon")){
         modifiedData = applyWeaponEffect(modifiedData, effectType, value)
-    } else if(dataManager.isType(modifiedData, "apparel")){
+    } else if(isType(modifiedData, "apparel")){
         modifiedData = applyApparelEffect(modifiedData, effectType, value)
     }
-    if(dataManager.isType(modifiedData, "apparel") || dataManager.isType(modifiedData, "weapon")){
+    if(isType(modifiedData, "apparel") || isType(modifiedData, "weapon")){
         // TODO adding and removing effects should be handled in a proper order, not how it comes
         //      there could be conflicts with mods adding and others removing effects
         switch (effectType) {

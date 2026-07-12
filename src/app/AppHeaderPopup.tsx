@@ -1,9 +1,9 @@
-import { useMemo, useState } from 'react'
-import { useCharacter } from '@/contexts/CharacterContext.tsx'
-import { useTranslation } from 'react-i18next'
-import { DEFAULT_EXCHANGE_RATES } from '@/types'
-import BasePopup from '@/components/popup/common/BasePopup.tsx';
-import { usePopup } from '@/contexts/popup/PopupContext.tsx';
+import React, { useMemo, useState } from 'react';
+import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
+import { useTranslation } from 'react-i18next';
+import { DEFAULT_EXCHANGE_RATES } from '@/types';
+import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
+import { usePopup } from '@/app/contexts/PopupContext.tsx';
 
 /**
  * StatAdjustmentPopup - Allows editing HP, Luck, and currencies with exchange rates
@@ -27,115 +27,55 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
     const [rateLegionInput, setRateLegionInput] = useState(`${character.exchangeRates.legionDenarius}`);
     const [ratePrewarInput, setRatePrewarInput] = useState(`${character.exchangeRates.prewarMoney}`);
 
-    const clamp = (value: number, min: number, max?: number) => {
-        let next = Math.max(min, value);
-        if (max !== undefined) {
-            next = Math.min(next, max);
+    const resolve = (val: string, currentVal: number, maxVal: number = Infinity) => {
+        let value;
+        if(['', '+', '-', '.'].includes(val)){
+            value = 0
+        } else if (new RegExp(/^\d/).exec(val)) {
+            value = Number(val)
+        } else {
+            value = currentVal + Number(val)
         }
-        return next;
-    };
+        return Math.max(0, Math.min(value, maxVal))
+    }
 
-    const parseResolvedNumber = (
-        input: string,
-        baseValue: number,
-        options?: {
-            min?: number,
-            max?: number,
-            allowRelative?: boolean,
-            integer?: boolean,
+    const resolvedValues = useMemo(
+        () => {
+            const rads = resolve(radsInput, character.rads, character.maxHp)
+            const maxHp = character.maxHp-rads
+            return {
+                hp: resolve(currentHpInput, character.currentHp, maxHp),
+                maxHp,
+                rads,
+                luck: resolve(currentLuckInput, character.currentLuck, character.maxLuck),
+
+                caps: resolve(capsInput, character.caps),
+                ncrDollars: resolve(ncrDollarsInput, character.ncrDollars),
+                legionDenarius: resolve(legionDenariusInput, character.legionDenarius),
+                prewarMoney: resolve(prewarMoneyInput, character.prewarMoney),
+
+                rateNcr: resolve(rateNcrInput, character.exchangeRates.ncrDollars),
+                rateLegion: resolve(rateLegionInput, character.exchangeRates.legionDenarius),
+                ratePrewar: resolve(ratePrewarInput, character.exchangeRates.prewarMoney),
+            }
         },
-    ): number | null => {
-        // Treat leading space as "+" (mobile keyboard shortcut for relative add)
-        const normalized = input.replace(/^ /, '+');
-        const trimmed = normalized.trim();
-        if (!trimmed) {
-            return null;
-        }
+        [currentHpInput, character.currentHp, character.rads, character.maxHp, character.currentLuck, character.maxLuck, character.caps, character.ncrDollars, character.legionDenarius, character.prewarMoney, character.exchangeRates.ncrDollars, character.exchangeRates.legionDenarius, character.exchangeRates.prewarMoney, radsInput, currentLuckInput, capsInput, ncrDollarsInput, legionDenariusInput, prewarMoneyInput, rateNcrInput, rateLegionInput, ratePrewarInput]
+    );
 
-        const parsed = options?.integer
-            ? Number.parseInt(trimmed, 10)
-            : Number.parseFloat(trimmed);
-        if (Number.isNaN(parsed)) {
-            return null;
-        }
-
-        const allowRelative = options?.allowRelative ?? true;
-        const resolved = allowRelative && /^[+-]/.test(trimmed)
-            ? baseValue + parsed
-            : parsed;
-
-        return clamp(resolved, options?.min ?? Number.NEGATIVE_INFINITY, options?.max);
-    };
-
-    const parsedRads = parseResolvedNumber(radsInput, character.rads, {
-        min: 0,
-        max: character.maxHp,
-        integer: true,
-    });
-    const effectiveMaxHp = Math.max(0, character.maxHp - (parsedRads ?? 0));
-
-    const resolvedValues = {
-        currentHp: parseResolvedNumber(currentHpInput, character.currentHp, {
-            min: 0,
-            max: effectiveMaxHp,
-            integer: true,
-        }),
-        rads: parseResolvedNumber(radsInput, character.rads, {
-            min: 0,
-            max: character.maxHp,
-            integer: true,
-        }),
-        currentLuck: parseResolvedNumber(currentLuckInput, character.currentLuck, {
-            min: 0,
-            max: character.maxLuck,
-            integer: true,
-        }),
-        caps: parseResolvedNumber(capsInput, character.caps, { min: 0, integer: true }),
-        ncrDollars: parseResolvedNumber(ncrDollarsInput, character.ncrDollars, { min: 0, integer: true }),
-        legionDenarius: parseResolvedNumber(legionDenariusInput, character.legionDenarius, { min: 0, integer: true }),
-        prewarMoney: parseResolvedNumber(prewarMoneyInput, character.prewarMoney, { min: 0, integer: true }),
-        rateNcr: parseResolvedNumber(
-            rateNcrInput,
-            character.exchangeRates.ncrDollars,
-            { min: 0.1, allowRelative: false },
-        ),
-        rateLegion: parseResolvedNumber(
-            rateLegionInput,
-            character.exchangeRates.legionDenarius,
-            { min: 0.1, allowRelative: false },
-        ),
-        ratePrewar: parseResolvedNumber(
-            ratePrewarInput,
-            character.exchangeRates.prewarMoney,
-            { min: 0.1, allowRelative: false },
-        ),
-    };
 
     // Calculate total wealth in caps equivalent
     const totalCapsEquivalent = useMemo(() => {
-        const ncrRate = resolvedValues.rateNcr ?? DEFAULT_EXCHANGE_RATES.ncrDollars;
-        const legRate = resolvedValues.rateLegion ?? DEFAULT_EXCHANGE_RATES.legionDenarius;
-        const preRate = resolvedValues.ratePrewar ?? DEFAULT_EXCHANGE_RATES.prewarMoney;
+        const ncrRate = resolvedValues.rateNcr || DEFAULT_EXCHANGE_RATES.ncrDollars;
+        const legRate = resolvedValues.rateLegion || DEFAULT_EXCHANGE_RATES.legionDenarius;
+        const preRate = resolvedValues.ratePrewar || DEFAULT_EXCHANGE_RATES.prewarMoney;
 
         return (
-            (resolvedValues.caps ?? character.caps) +
-            Math.floor((resolvedValues.ncrDollars ?? character.ncrDollars) / ncrRate) +
-            Math.floor((resolvedValues.legionDenarius ?? character.legionDenarius) / legRate) +
-            Math.floor((resolvedValues.prewarMoney ?? character.prewarMoney) / preRate)
+            resolvedValues.caps +
+            Math.floor(resolvedValues.ncrDollars / ncrRate) +
+            Math.floor(resolvedValues.legionDenarius / legRate) +
+            Math.floor(resolvedValues.prewarMoney / preRate)
         );
-    }, [
-        character.caps,
-        character.legionDenarius,
-        character.ncrDollars,
-        character.prewarMoney,
-        resolvedValues.caps,
-        resolvedValues.legionDenarius,
-        resolvedValues.ncrDollars,
-        resolvedValues.prewarMoney,
-        resolvedValues.rateLegion,
-        resolvedValues.rateNcr,
-        resolvedValues.ratePrewar,
-    ]);
+    }, [resolvedValues.caps, resolvedValues.legionDenarius, resolvedValues.ncrDollars, resolvedValues.prewarMoney, resolvedValues.rateLegion, resolvedValues.rateNcr, resolvedValues.ratePrewar]);
 
 
     const onConfirm = () => {
@@ -143,9 +83,9 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
             return;
         }
 
-        const nextCurrentHp = resolvedValues.currentHp!;
+        const nextCurrentHp = resolvedValues.hp!;
         const nextRads = resolvedValues.rads!;
-        const nextCurrentLuck = resolvedValues.currentLuck!;
+        const nextCurrentLuck = resolvedValues.luck!;
         const nextCaps = resolvedValues.caps!;
         const nextNcrDollars = resolvedValues.ncrDollars!;
         const nextLegionDenarius = resolvedValues.legionDenarius!;
@@ -178,60 +118,121 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
         onClose();
     };
 
-    const handleTextNumberChange =
-        (setter: (val: string) => void) => (e: { target: { value: string } }) => {
-            const raw = e.target.value.replace(/^ /, '+');
-            // Allow only: optional leading sign (+ - or space) followed by digits
-            if (raw !== '' && !/^[+-]?\d*$/.test(raw)) {
-                return; // reject invalid characters
-            }
-            setter(raw);
-        };
+    const isCompleteSignedInteger = (value: string) => /^[+-]?[\d.]+$/.test(value);
 
-    const isFormValid =
-        resolvedValues.currentHp !== null &&
-        resolvedValues.rads !== null &&
-        resolvedValues.currentLuck !== null &&
-        resolvedValues.caps !== null &&
-        resolvedValues.ncrDollars !== null &&
-        resolvedValues.legionDenarius !== null &&
-        resolvedValues.prewarMoney !== null &&
-        resolvedValues.rateNcr !== null &&
-        resolvedValues.rateLegion !== null &&
-        resolvedValues.ratePrewar !== null;
+    const isFormValid = useMemo(
+        () => {
+            return [
+                currentHpInput,
+                radsInput,
+                currentLuckInput,
+                capsInput,
+                ncrDollarsInput,
+                legionDenariusInput,
+                prewarMoneyInput,
+                rateNcrInput,
+                rateLegionInput,
+                ratePrewarInput,
+            ].every(isCompleteSignedInteger);
+        },
+        [currentHpInput, radsInput, currentLuckInput, capsInput, ncrDollarsInput, legionDenariusInput, prewarMoneyInput, rateNcrInput, rateLegionInput, ratePrewarInput]
+    )
 
-    if (!character) {
-        return null;
-    }
 
     // Currency data for table rendering
     const currencies = [
-        { id: 'caps', icon: 'caps', value: capsInput, setter: setCapsInput, rate: null, rateSetter: null },
+        {
+            id: 'caps',
+            icon: 'caps',
+            currentValue: character.caps,
+            value: capsInput,
+            setter: setCapsInput,
+            currentRate: 1,
+            rate: null,
+            rateSetter: null },
         {
             id: 'ncrDollars',
             icon: 'ncrDollars',
+            currentValue: character.ncrDollars,
             value: ncrDollarsInput,
             setter: setNcrDollarsInput,
+            currentRate: character.exchangeRates.ncrDollars,
             rate: rateNcrInput,
             rateSetter: setRateNcrInput,
         },
         {
             id: 'legionDenarius',
             icon: 'legionDenarius',
+            currentValue: character.legionDenarius,
             value: legionDenariusInput,
             setter: setLegionDenariusInput,
+            currentRate: character.exchangeRates.legionDenarius,
             rate: rateLegionInput,
             rateSetter: setRateLegionInput,
         },
         {
             id: 'prewarMoney',
             icon: 'prewarMoney',
+            currentValue: character.prewarMoney,
             value: prewarMoneyInput,
             setter: setPrewarMoneyInput,
+            currentRate: character.exchangeRates.prewarMoney,
             rate: ratePrewarInput,
             rateSetter: setRatePrewarInput,
         },
     ];
+
+    const onChange =
+        (e: React.ChangeEvent<HTMLInputElement>, setter: (val: string) => void) => {
+            const raw = e.target.value;
+            const normalized = raw.replace(/^ /, '+');
+            const filtered = normalized.replace(/(?!^[+-])\D/g, '');
+            setter(filtered);
+        };
+
+    const onRateChange =
+        (e: React.ChangeEvent<HTMLInputElement>, setter: (val: string) => void) => {
+            const raw = e.target.value;
+            // Filter unwanted characters
+            let filtered = raw.replace(/[^\d.]/g, '');
+
+            // Ensure only the FIRST dot is kept, strip any subsequent dots
+            const parts = filtered.split('.');
+            if (parts.length >= 2) {
+                filtered = parts[0] + '.' + parts.slice(1).join('').slice(0, 1);
+            }
+            setter(filtered);
+        };
+
+    const onBlur =
+        (
+            e: React.FocusEvent<HTMLInputElement>,
+            setter: (val: string) => void,
+            currentVal: number,
+            options?: {maxVal?: number, minVal?: number}
+        ) => {
+            const minVal = options?.minVal ?? 0;
+            const maxVal = options?.maxVal ?? Infinity;
+            const raw = e.target.value;
+            const val = ['', '+', '-'].includes(raw) ? `${currentVal}` : raw
+
+            // Timeout so a click on "disabled" confirm doesn't go through
+            setTimeout(() => {
+                setter(`${Math.max(minVal, resolve(val, currentVal, maxVal))}`);
+            }, 50);
+        };
+
+    const onFocus =
+        (e: React.FocusEvent<HTMLInputElement>, setter: (val: string) => void, currentVal: number) => {
+            const newVal = Number(e.target.value);
+            const delta = newVal - currentVal;
+            if(delta){
+                setter(`${delta > 0 ? '+' : ''}${delta}`);
+            } else {
+                setter(`${currentVal}`);
+            }
+        };
+
 
     return (
         <BasePopup
@@ -262,12 +263,14 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                                 inputMode="decimal"
                                 className="header-info-popup__stat-input"
                                 value={currentHpInput}
-                                onChange={handleTextNumberChange(setCurrentHpInput)}
+                                onChange={e => onChange(e, setCurrentHpInput)}
+                                onBlur={e => onBlur(e, setCurrentHpInput, character.currentHp, {maxVal: resolvedValues.maxHp})}
+                                onFocus={e => onFocus(e, setCurrentHpInput, character.currentHp)}
                                 min="0"
-                                max={effectiveMaxHp}
+                                max={resolvedValues.maxHp}
                             />
                             <span className="header-info-popup__stat-max">
-                                &nbsp;/ {effectiveMaxHp}
+                                &nbsp;/ {resolvedValues.maxHp}
                             </span>
                         </td>
                         <td>
@@ -280,7 +283,9 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                                 inputMode="decimal"
                                 className="header-info-popup__stat-input border-warning"
                                 value={radsInput}
-                                onChange={handleTextNumberChange(setRadsInput)}
+                                onChange={e => onChange(e, setRadsInput)}
+                                onBlur={e => onBlur(e, setRadsInput, character.rads, {maxVal: character.maxHp})}
+                                onFocus={e => onFocus(e, setRadsInput, character.rads)}
                                 min="0"
                                 max={character.maxHp}
                                 title={t('radiation')}
@@ -304,7 +309,9 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                                 inputMode="decimal"
                                 className="header-info-popup__stat-input"
                                 value={currentLuckInput}
-                                onChange={handleTextNumberChange(setCurrentLuckInput)}
+                                onChange={e => onChange(e, setCurrentLuckInput)}
+                                onBlur={e => onBlur(e, setCurrentLuckInput, character.currentLuck, {maxVal: character.maxLuck})}
+                                onFocus={e => onFocus(e, setCurrentLuckInput, character.currentLuck)}
                                 min="0"
                                 max={character.maxLuck}
                             />
@@ -350,7 +357,10 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                                     inputMode="decimal"
                                     className="header-info-popup__stat-input"
                                     value={currency.value}
-                                    onChange={handleTextNumberChange(currency.setter)}
+                                    onChange={e => onChange(e, currency.setter)}
+                                    onBlur={e => onBlur(e, currency.setter, currency.currentValue)}
+                                    onFocus={e => onFocus(e, currency.setter, currency.currentValue)}
+
                                     min="0"
                                 />
                             </td>
@@ -359,14 +369,16 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                                     {currency.rateSetter ? (
                                         <>
                                             <input
-                                                type="number"
+                                                type="text"
+                                                inputMode="decimal"
                                                 className="header-info-popup__rate-input"
                                                 value={currency.rate}
                                                 style={{
                                                     fontSize: '0.75rem',
                                                     width: '2rem',
                                                 }}
-                                                onChange={handleTextNumberChange(currency.rateSetter)}
+                                                onChange={e => onRateChange(e, currency.rateSetter)}
+                                                onBlur={e => onBlur(e, currency.rateSetter, currency.currentRate, {minVal: 0.1})}
                                                 min="0.1"
                                                 step="0.1"
                                             />

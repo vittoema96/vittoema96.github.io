@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { useLongPress } from './useLongPress'
 import { CharacterItem, CustomItem } from '@/types';
-import { useInventoryActions } from '@/features/inv/hooks/useInventoryActions.ts';
+import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts';
 
 export const useOverlay = (
     characterItem: CharacterItem | CustomItem,

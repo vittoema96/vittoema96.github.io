@@ -24,7 +24,7 @@ The app displays text to users. That text needs to be in English and Italian. Th
 
 4. **React app uses the strings via i18next**
    - `i18next.t("perkAcrobat")` → shows the right language
-   - No hardcoded strings in components
+   - No hardcoded strings in app.components
 
 ## The Folders
 

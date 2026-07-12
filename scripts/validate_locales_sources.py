@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate CSV entries coverage inside src/locales/source before locale build."""
+"""Validate CSV/JSON locale sources inside data/sources using data/manifests/i18n.json."""
 
 from __future__ import annotations
 
@@ -10,8 +10,8 @@ from pathlib import Path
 from typing import Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
-CSV_ROOT = ROOT / "public" / "data"
-SOURCE_ROOT = ROOT / "src" / "locales" / "source"
+SOURCES_ROOT = ROOT / "data" / "sources"
+I18N_MANIFEST_PATH = ROOT / "data" / "manifests" / "i18n.json"
 SUPPORTED_LANGUAGES = ("it", "en")
 
 
@@ -26,6 +26,34 @@ class Issue:
 
 def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_i18n_manifest() -> tuple[list[tuple[str, str]], list[str]]:
+    data = read_json(I18N_MANIFEST_PATH)
+    if not isinstance(data, dict):
+        raise ValueError("i18n manifest root must be an object")
+
+    raw_pairs = data.get("csvToJsonPairs")
+    if not isinstance(raw_pairs, list):
+        raise ValueError("i18n manifest key 'csvToJsonPairs' must be an array")
+
+    pairs: list[tuple[str, str]] = []
+    for entry in raw_pairs:
+        if not isinstance(entry, dict):
+            raise ValueError("every csvToJsonPairs entry must be an object")
+        csv_rel = entry.get("csv")
+        json_rel = entry.get("json")
+        if not isinstance(csv_rel, str) or not csv_rel.strip():
+            raise ValueError("every csvToJsonPairs entry must have non-empty 'csv'")
+        if not isinstance(json_rel, str) or not json_rel.strip():
+            raise ValueError("every csvToJsonPairs entry must have non-empty 'json'")
+        pairs.append((csv_rel, json_rel))
+
+    raw_standalone = data.get("standaloneJson", [])
+    if not isinstance(raw_standalone, list) or not all(isinstance(path, str) and path.strip() for path in raw_standalone):
+        raise ValueError("i18n manifest key 'standaloneJson' must be an array of non-empty strings")
+
+    return pairs, raw_standalone
 
 
 def read_csv_rows(path: Path) -> tuple[list[str], list[tuple[int, dict[str, str]]]]:
@@ -170,7 +198,7 @@ def scan_json_values(rel_file: str, node: object, path: str = "$") -> list[Issue
 
 def validate_all_source_json_files() -> list[Issue]:
     issues: list[Issue] = []
-    for json_file in sorted(SOURCE_ROOT.rglob("*.json")):
+    for json_file in sorted(SOURCES_ROOT.rglob("*.json")):
         rel = json_file.relative_to(ROOT).as_posix()
         try:
             data = read_json(json_file)
@@ -203,16 +231,28 @@ def validate_all_source_json_files() -> list[Issue]:
     return issues
 
 
-def validate_one_csv(csv_path: Path) -> list[Issue]:
-    rel = csv_path.relative_to(CSV_ROOT)
-    source_path = SOURCE_ROOT / rel.with_suffix(".json")
+def validate_one_pair(csv_rel: str, json_rel: str) -> list[Issue]:
+    csv_path = SOURCES_ROOT / csv_rel
+    source_path = SOURCES_ROOT / json_rel
     issues: list[Issue] = []
+
+    if not csv_path.exists():
+        issues.append(
+            Issue(
+                kind="MISSING_CSV_FILE",
+                file=csv_rel,
+                line=1,
+                key="-",
+                detail=f"missing CSV file: {csv_path.relative_to(ROOT).as_posix()}",
+            )
+        )
+        return issues
 
     if not source_path.exists():
         issues.append(
             Issue(
                 kind="MISSING_SOURCE_FILE",
-                file=rel.as_posix(),
+                file=csv_rel,
                 line=1,
                 key="-",
                 detail=f"missing source file: {source_path.relative_to(ROOT).as_posix()}",
@@ -225,7 +265,7 @@ def validate_one_csv(csv_path: Path) -> list[Issue]:
         issues.append(
             Issue(
                 kind="MISSING_ID_COLUMN",
-                file=rel.as_posix(),
+                file=csv_rel,
                 line=1,
                 key="-",
                 detail="CSV must contain an ID column",
@@ -238,7 +278,7 @@ def validate_one_csv(csv_path: Path) -> list[Issue]:
         issues.append(
             Issue(
                 kind="INVALID_SOURCE_JSON",
-                file=rel.as_posix(),
+                file=csv_rel,
                 line=1,
                 key="-",
                 detail="source JSON root must be an object",
@@ -252,7 +292,7 @@ def validate_one_csv(csv_path: Path) -> list[Issue]:
             issues.append(
                 Issue(
                     kind="EMPTY_ID",
-                    file=rel.as_posix(),
+                    file=csv_rel,
                     line=line_no,
                     key="-",
                     detail="empty ID",
@@ -265,7 +305,7 @@ def validate_one_csv(csv_path: Path) -> list[Issue]:
             issues.append(
                 Issue(
                     kind="MISSING_ENTRY",
-                    file=rel.as_posix(),
+                    file=csv_rel,
                     line=line_no,
                     key=key,
                     detail="entry not found in source JSON",
@@ -273,13 +313,13 @@ def validate_one_csv(csv_path: Path) -> list[Issue]:
             )
             continue
 
-        issues.extend(validate_translation_keys(entry, rel.as_posix(), line_no, key))
+        issues.extend(validate_translation_keys(entry, csv_rel, line_no, key))
 
         if not has_metadata_block(entry):
             issues.append(
                 Issue(
                     kind="MISSING_DESCRIPTION",
-                    file=rel.as_posix(),
+                    file=csv_rel,
                     line=line_no,
                     key=key,
                     detail="missing metadata bilingual block (any _* key)",
@@ -287,11 +327,11 @@ def validate_one_csv(csv_path: Path) -> list[Issue]:
             )
 
         # Mod entries (CSVs under mods/) must have a _descriptor bilingual block
-        if rel.parts[0] == "mods" and not has_specific_metadata(entry, "_descriptor"):
+        if Path(csv_rel).parts[0] == "mods" and not has_specific_metadata(entry, "_descriptor"):
             issues.append(
                 Issue(
                     kind="MISSING_DESCRIPTOR",
-                    file=rel.as_posix(),
+                    file=csv_rel,
                     line=line_no,
                     key=key,
                     detail="mod entry missing _descriptor bilingual block",
@@ -314,15 +354,19 @@ def summarize(issues: Iterable[Issue]) -> tuple[dict[str, int], list[Issue]]:
 
 
 def main() -> None:
-    if not CSV_ROOT.exists():
-        raise SystemExit(f"Missing CSV root: {CSV_ROOT}")
-    if not SOURCE_ROOT.exists():
-        raise SystemExit(f"Missing source root: {SOURCE_ROOT}")
+    if not SOURCES_ROOT.exists():
+        raise SystemExit(f"Missing sources root: {SOURCES_ROOT}")
+    if not I18N_MANIFEST_PATH.exists():
+        raise SystemExit(f"Missing i18n manifest: {I18N_MANIFEST_PATH}")
 
-    csv_files = sorted(CSV_ROOT.rglob("*.csv"))
+    try:
+        pairs, _standalone = load_i18n_manifest()
+    except ValueError as exc:
+        raise SystemExit(f"Invalid i18n manifest: {exc}")
+
     all_issues: list[Issue] = []
-    for csv_file in csv_files:
-        all_issues.extend(validate_one_csv(csv_file))
+    for csv_rel, json_rel in pairs:
+        all_issues.extend(validate_one_pair(csv_rel, json_rel))
 
     all_issues.extend(validate_all_source_json_files())
 
@@ -330,8 +374,8 @@ def main() -> None:
 
     print("=== VALIDATE LOCALES SOURCES ===")
     print(f"Supported languages: {', '.join(SUPPORTED_LANGUAGES)}")
-    print(f"CSV files scanned: {len(csv_files)}")
-    print(f"Source JSON files scanned: {len(list(SOURCE_ROOT.rglob('*.json')))}")
+    print(f"CSV files scanned: {len(pairs)}")
+    print(f"Source JSON files scanned: {len(list(SOURCES_ROOT.rglob('*.json')))}")
     print(f"Total issues: {len(issues)}")
 
     if issues:

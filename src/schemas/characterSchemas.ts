@@ -1,25 +1,28 @@
 import { z } from 'zod';
-import { COMPANION_IDS, LEFT, RIGHT, TraitId, TRAITS } from '@/types';
-import { ORIGIN_IDS } from '@/services/character/Origin.ts';
+import { COMPANION_IDS, LEFT, RIGHT } from '@/types';
+import { ORIGIN_IDS } from '@/features/character/origin.ts';
+import { ITEM_CATEGORIES, ITEM_TYPES } from '@/types/item.ts';
 import {
-    COMPANION_SKILLS,
     COMPANION_SPECIAL,
-    CompanionSkillType,
     CompanionSpecialType,
-    SKILLS,
-    SkillType,
     SPECIAL,
     SpecialType,
-} from '@/services/character/utils.ts';
-import { ITEM_CATEGORIES, ITEM_TYPES } from '@/types/item.ts';
+} from '@/features/character/special/special.ts';
+import {
+    COMPANION_SKILLS,
+    CompanionSkillType,
+    SKILLS,
+    SkillType,
+} from '@/features/character/skills/skills.ts';
+import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import { traits, perks } from '@/data';
 
 // Fills all missing special with value 4. Validates 4 <= SPECIAL <= 12
 const SpecialMapSchema = z.object(
     SPECIAL.reduce(
         (map, key) => {
-            map[key] = z.number().int()
-                .min(4).max(12)
-                .default(4);
+            map[key] = z.number().int().min(4).max(12).default(4);
             return map;
         },
         {} as Record<SpecialType, z.ZodDefault<z.ZodNumber>>,
@@ -141,8 +144,8 @@ export const RawCharacterSchema = z.object({
     special: SpecialMapSchema.default(() => SpecialMapSchema.parse({})),
     skills: SkillMapSchema.default(() => SkillMapSchema.parse({})),
     specialties: z.array(z.enum(SKILLS)).default([] as SkillType[]),
-    traits: z.array(z.enum(TRAITS)).default([] as TraitId[]),
-    perks: z.array(z.string()).default([]),
+    traits: z.array(z.enum(Object.keys(traits) as TraitId[])).default([] as TraitId[]),
+    perks: z.array(z.enum(Object.keys(perks) as PerkId[])).default([] as PerkId[]),
 
     currentHp: z.number().optional(),
     currentLuck: z.number().optional(),

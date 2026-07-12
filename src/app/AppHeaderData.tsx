@@ -1,4 +1,4 @@
-import { useCharacter } from '@/contexts/CharacterContext';
+import { useCharacter } from '@/app/contexts/CharacterContext';
 import { useState } from 'react';
 import AppHeaderPopup from '@/app/AppHeaderPopup.tsx';
 

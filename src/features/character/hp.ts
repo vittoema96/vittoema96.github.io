@@ -1,0 +1,41 @@
+import { RawCharacter } from '@/types';
+import { useMemo } from 'react';
+import { SpecialType } from '@/features/character/special/special.ts';
+import { PerkId } from '@/features/character/feats/perks/perks.ts';
+
+export const adjustCurrentHp = (prev: RawCharacter, current: RawCharacter) => {
+    const result: RawCharacter = { ...current };
+    const prevMaxHp = calculateMaxHp(prev.special, prev.level, prev.perks);
+    const currentMaxHp = calculateMaxHp(current.special, current.level, current.perks);
+    const currentHp = prev.currentHp ?? currentMaxHp;
+    const hpDelta = currentMaxHp - prevMaxHp;
+    // TODO per ora se maxHp aumenta, currentHp aumenta di pari passo
+    //      se maxHp diminuisce currentHp rimane tale (o scende a maxHp se superiore)
+    if (hpDelta > 0) {
+        result.currentHp = currentHp + hpDelta;
+    }
+    result.currentHp = Math.min(result.currentHp ?? currentHp, currentMaxHp);
+    return result;
+};
+
+export const calculateMaxHp = (
+    special: Record<SpecialType, number>,
+    level: number,
+    perks: PerkId[]
+): number => {
+    const lifeGiverLevel = perks.filter(perk => perk === 'perkLifeGiver').length;
+    return (
+        special.endurance * (1 + lifeGiverLevel) +
+        special.luck +
+        level -
+        1
+    );
+};
+
+export function useMaxHp(raw: RawCharacter, special: Record<SpecialType, number>, perks: PerkId[]) {
+    // TODO maxHp should NOT depend on the raw special
+    return useMemo(
+        () => calculateMaxHp(special, raw.level, perks),
+        [special, raw.level, perks]
+    )
+}

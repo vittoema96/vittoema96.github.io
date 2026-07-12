@@ -1,0 +1,3774 @@
+{
+  "weapon127mmPistol": {
+    "ID": "weapon127mmPistol",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityCloseQuarters",
+      "qualityRecoil:7"
+    ],
+    "WEIGHT": 2.0,
+    "COST": 400,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammo127mm",
+    "AVAILABLE_MODS": [
+      "modCalibrated",
+      "modWeaponHardened",
+      "modHairTrigger",
+      "modPowerful",
+      "modAdvanced",
+      "modArmorPiercing",
+      "modCalibratedPowerful",
+      "modLongBarrel",
+      "modPortedBarrel",
+      "modErgonomicGrip",
+      "modMarksmanGrip",
+      "modLargeMagazine",
+      "modQuickMagazine",
+      "modReflexSight",
+      "modSuppressor"
+    ]
+  },
+  "weapon127mmSmg": {
+    "ID": "weapon127mmSmg",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectBurst"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 3,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityInaccurate",
+      "qualityRecoil:7",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 2.5,
+    "COST": 510,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammo127mm",
+    "AVAILABLE_MODS": [
+      "modWeaponHardened",
+      "modPowerful",
+      "modArmorPiercing",
+      "modFullStock",
+      "modRecoilCompensatingStock",
+      "modLargeMagazine",
+      "modReflexSight",
+      "modSuppressor"
+    ]
+  },
+  "weapon25mmGrenadeApw": {
+    "ID": "weapon25mmGrenadeApw",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeL",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 4.0,
+    "COST": 420,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammo25mmGrenade",
+    "AVAILABLE_MODS": [
+      "modHairTrigger",
+      "modLongBarrel",
+      "modLargeMagazine"
+    ]
+  },
+  "weapon357Revolver": {
+    "ID": "weapon357Revolver",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityCloseQuarters",
+      "qualityReliable"
+    ],
+    "WEIGHT": 1.0,
+    "COST": 110,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammo357Magnum",
+    "AVAILABLE_MODS": [
+      "modHairTrigger",
+      "modLongBarrel",
+      "modLargeMagazine"
+    ]
+  },
+  "weapon50CalMachineGun": {
+    "ID": "weapon50CalMachineGun",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 7,
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 3,
+    "RANGE": "rangeM",
+    "EFFECTS": [
+      "effectBurst"
+    ],
+    "QUALITIES": [
+      "qualityTwoHanded",
+      "qualityRecoil:9"
+    ],
+    "WEIGHT": 15.5,
+    "COST": 350,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammo50Ball",
+    "AVAILABLE_MODS": [
+      "modHeavyBarrel"
+    ]
+  },
+  "weapon9mmPistol": {
+    "ID": "weapon9mmPistol",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 2,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityCloseQuarters",
+      "qualityConcealed",
+      "qualityReliable"
+    ],
+    "WEIGHT": 1.0,
+    "COST": 50,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammo9mm",
+    "AVAILABLE_MODS": []
+  },
+  "weaponAlienAtomizer": {
+    "ID": "weaponAlienAtomizer",
+    "TYPE": "weapon",
+    "CATEGORY": "energyWeapons",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 3,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityCloseQuarters",
+      "qualityReliable"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 1536,
+    "RARITY": 5,
+    "AMMO_TYPE": "ammoAlienPowerCell",
+    "AVAILABLE_MODS": []
+  },
+  "weaponAlienDisintegrator": {
+    "ID": "weaponAlienDisintegrator",
+    "TYPE": "weapon",
+    "CATEGORY": "energyWeapons",
+    "DAMAGE_RATING": 8,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 2,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityTwoHanded",
+      "qualityReliable"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 921,
+    "RARITY": 5,
+    "AMMO_TYPE": "ammoAlienPowerCell",
+    "AVAILABLE_MODS": []
+  },
+  "weaponAluminumBaseballBat": {
+    "ID": "weaponAluminumBaseballBat",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 1,
+    "COST": 32,
+    "RARITY": 2,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSharpBaseballBat",
+      "modChainBaseballBat",
+      "modSpikedBaseballBat",
+      "modBarbedBaseballBat",
+      "modBladeBaseballBat"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponAntiMaterielRifle": {
+    "ID": "weaponAntiMaterielRifle",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 8,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeL",
+    "QUALITIES": [
+      "qualityReliable",
+      "qualityTwoHanded",
+      "qualityRecoil:8"
+    ],
+    "WEIGHT": 10.0,
+    "COST": 560,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammo50Ball",
+    "AVAILABLE_MODS": [
+      "modWeaponHardened",
+      "modPowerful",
+      "modHairTrigger",
+      "modLongBarrel",
+      "modReflexSight",
+      "modShortScope",
+      "modBayonet"
+    ]
+  },
+  "weaponArcWelder": {
+    "ID": "weaponArcWelder",
+    "TYPE": "weapon",
+    "CATEGORY": "energyWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [
+      "effectStun"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 4,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualitySurge",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 7.5,
+    "COST": 370,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammoFusionCell",
+    "AVAILABLE_MODS": []
+  },
+  "weaponAssaultRifle": {
+    "ID": "weaponAssaultRifle",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectBurst"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 2,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 6.5,
+    "COST": 144,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammo556mm",
+    "AVAILABLE_MODS": [
+      "modCompensator",
+      "modSuppressor",
+      "modFullStock",
+      "modMarksmanStock",
+      "modRecoilCompensatingStock",
+      "modPortedBarrel",
+      "modLongBarrel",
+      "modVentedBarrel",
+      "modLargeMagazine",
+      "modLargeQuickMagazine",
+      "modQuickMagazine",
+      "modAutomatic",
+      "modAdvanced",
+      "modCalibrated",
+      "modHairTrigger",
+      "modWeaponHardened",
+      "modShortScope",
+      "modShortNightVisionScope",
+      "modReconScope",
+      "modLongScope",
+      "modLongNightVisionScope",
+      "modReflexSight",
+      "modArmorPiercing",
+      "modArmorPiercingAutomatic",
+      "modHardenedAutomatic",
+      "modRapidAutomatic",
+      "modCalibratedPowerful",
+      "modPowerfulAutomatic",
+      "modHardenedPiercingAuto"
+    ]
+  },
+  "weaponAssaultronBlade": {
+    "ID": "weaponAssaultronBlade",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 1.5,
+    "COST": 50,
+    "RARITY": 3,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modElectrifiedBlade"
+    ],
+    "IS_BLADED": true
+  },
+  "weaponAssaultronHead": {
+    "ID": "weaponAssaultronHead",
+    "TYPE": "weapon",
+    "CATEGORY": "energyWeapons",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeC",
+    "QUALITIES": [],
+    "WEIGHT": 4.0,
+    "COST": 500,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammoFusionCell",
+    "AVAILABLE_MODS": [
+      "modCapacitorMk3",
+      "modCapacitorMk4",
+      "modCapacitorMk5",
+      "modCapacitorMk6"
+    ]
+  },
+  "weaponAtomicMine": {
+    "ID": "weaponAtomicMine",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 9,
+    "EFFECTS": [
+      "effectVicious",
+      "effectBreaking",
+      "effectRadioactive"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "-",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityMine"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 100,
+    "RARITY": 4,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponAutoAxe": {
+    "ID": "weaponAutoAxe",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 10.0,
+    "COST": 100,
+    "RARITY": 3,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modElectrified",
+      "modBurning",
+      "modPoisoned",
+      "modTurbo"
+    ],
+    "IS_BLADED": true
+  },
+  "weaponAutoGrenadeLauncher": {
+    "ID": "weaponAutoGrenadeLauncher",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 6,
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 2,
+    "RANGE": "rangeL",
+    "EFFECTS": [
+      "effectBreaking"
+    ],
+    "QUALITIES": [
+      "qualityBombard",
+      "qualityInaccurate"
+    ],
+    "WEIGHT": 15.0,
+    "COST": 450,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammo40mmGrenade",
+    "AVAILABLE_MODS": [
+      "modHeavyBarrelAutoGrenade",
+      "modLongBarrelAutoGrenade",
+      "mod25mmGrenadeReceiver"
+    ]
+  },
+  "weaponBallisticFist": {
+    "ID": "weaponBallisticFist",
+    "TYPE": "weapon",
+    "CATEGORY": "unarmed",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectStun",
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualitySlowLoad"
+    ],
+    "WEIGHT": 3.0,
+    "COST": 150,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammoShotgunShell",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": false
+  },
+  "weaponBaseballBat": {
+    "ID": "weaponBaseballBat",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 25,
+    "RARITY": 1,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSharpBaseballBat",
+      "modChainBaseballBat",
+      "modSpikedBaseballBat",
+      "modBarbedBaseballBat",
+      "modBladeBaseballBat"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponBaton": {
+    "ID": "weaponBaton",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 1,
+    "COST": 15,
+    "RARITY": 1,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modElectrifiedBaton",
+      "modStunningBaton"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponBattleRifle": {
+    "ID": "weaponBattleRifle",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 7,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityReliable",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 5.0,
+    "COST": 150,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammo308",
+    "AVAILABLE_MODS": []
+  },
+  "weaponBayonet": {
+    "ID": "weaponBayonet",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityMelee"
+    ],
+    "WEIGHT": "-",
+    "COST": "-",
+    "RARITY": "-",
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": true
+  },
+  "weaponBlackPowderBlunderbuss": {
+    "ID": "weaponBlackPowderBlunderbuss",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 7,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityCloseQuarters",
+      "qualityInaccurate",
+      "qualityRecoil:7",
+      "qualitySlowLoad"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 90,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammo50Ball",
+    "AVAILABLE_MODS": []
+  },
+  "weaponBlackPowderPistol": {
+    "ID": "weaponBlackPowderPistol",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 7,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityRecoil:7",
+      "qualitySlowLoad"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 60,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammo50Ball",
+    "AVAILABLE_MODS": [
+      "modWeaponHardened",
+      "modPowerful",
+      "modHairTrigger",
+      "modLargeMagazine",
+      "modShortScope",
+      "modLongScope",
+      "modShortNightVisionScope",
+      "modLongNightVisionScope",
+      "modReconScope",
+      "modSuppressor"
+    ]
+  },
+  "weaponBlackPowderRifle": {
+    "ID": "weaponBlackPowderRifle",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 8,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityRecoil:7",
+      "qualitySlowLoad"
+    ],
+    "WEIGHT": 3.0,
+    "COST": 60,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammo50Ball",
+    "AVAILABLE_MODS": [
+      "modBayonet"
+    ]
+  },
+  "weaponBoard": {
+    "ID": "weaponBoard",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 20,
+    "RARITY": 0,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSpikedBoard",
+      "modPuncturedBoard",
+      "modSharpBoard"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponBottlecapMine": {
+    "ID": "weaponBottlecapMine",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "-",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityMine"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 75,
+    "RARITY": 2,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponBow": {
+    "ID": "weaponBow",
+    "TYPE": "weapon",
+    "CATEGORY": "bows",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 2,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualitySuppressed",
+      "qualityRecoil:6",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 44,
+    "RARITY": 1,
+    "AMMO_TYPE": "ammoArrow",
+    "AVAILABLE_MODS": [
+      "modBowCompoundFrame",
+      "modBowIronSights",
+      "modBowGlowSights"
+    ]
+  },
+  "weaponBoxingGlove": {
+    "ID": "weaponBoxingGlove",
+    "TYPE": "weapon",
+    "CATEGORY": "unarmed",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [
+      "effectStun"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 0.5,
+    "COST": 10,
+    "RARITY": 1,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSpikedBoxingGlove",
+      "modPuncturedBoxingGlove",
+      "modLeadedBoxingGlove"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponBroadsider": {
+    "ID": "weaponBroadsider",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 10,
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "EFFECTS": [
+      "effectBreaking"
+    ],
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 8,
+    "COST": 140,
+    "RARITY": 5,
+    "AMMO_TYPE": "ammoCannonball",
+    "AVAILABLE_MODS": []
+  },
+  "weaponBumperSword": {
+    "ID": "weaponBumperSword",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityRecoil:7",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 6.0,
+    "COST": 125,
+    "RARITY": 2,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": true
+  },
+  "weaponCattleProd": {
+    "ID": "weaponCattleProd",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 7,
+    "EFFECTS": [
+      "effectStun"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 1.5,
+    "COST": 90,
+    "RARITY": 4,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": false
+  },
+  "weaponChainsaw": {
+    "ID": "weaponChainsaw",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 6.0,
+    "COST": 140,
+    "RARITY": 3,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modDualBar",
+      "modBowBar",
+      "modLongBowBar",
+      "modFlaming"
+    ],
+    "IS_BLADED": true
+  },
+  "weaponCombatKnife": {
+    "ID": "weaponCombatKnife",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 0.5,
+    "COST": 25,
+    "RARITY": 1,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSerratedCombatKnife",
+      "modStealthCombatKnife"
+    ],
+    "IS_BLADED": true
+  },
+  "weaponCombatRifle": {
+    "ID": "weaponCombatRifle",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 2,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 5.5,
+    "COST": 117,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammo45",
+    "AVAILABLE_MODS": [
+      "modBayonet",
+      "modCompensator",
+      "modSuppressor",
+      "modFullStock",
+      "modMarksmanStock",
+      "modRecoilCompensatingStock",
+      "modPortedBarrel",
+      "modLongBarrel",
+      "modVentedBarrel",
+      "modLargeMagazine",
+      "modLargeQuickMagazine",
+      "modQuickMagazine",
+      "modAutomatic",
+      "modAdvanced",
+      "modCalibrated",
+      "modReceiver38",
+      "modReceiver308",
+      "modHairTrigger",
+      "modPowerful",
+      "modWeaponHardened",
+      "modShortScope",
+      "modShortNightVisionScope",
+      "modReconScope",
+      "modLongScope",
+      "modLongNightVisionScope",
+      "modReflexSight",
+      "modArmorPiercing",
+      "modArmorPiercingAutomatic",
+      "modHardenedAutomatic",
+      "modRapidAutomatic",
+      "modCalibratedPowerful",
+      "modPowerfulAutomatic",
+      "modHardenedPiercingAuto"
+    ]
+  },
+  "weaponCombatShotgun": {
+    "ID": "weaponCombatShotgun",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectSpread"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 2,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityTwoHanded",
+      "qualityInaccurate"
+    ],
+    "WEIGHT": 5.5,
+    "COST": 87,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammoShotgunShell",
+    "AVAILABLE_MODS": [
+      "modBayonet",
+      "modCompensator",
+      "modFlashHider",
+      "modSuppressor",
+      "modFullStock",
+      "modMarksmanStock",
+      "modRecoilCompensatingStock",
+      "modPortedBarrel",
+      "modLongBarrel",
+      "modLargeMagazine",
+      "modLargeQuickMagazine",
+      "modQuickMagazine",
+      "modAutomatic",
+      "modAdvanced",
+      "modCalibrated",
+      "modHairTrigger",
+      "modPowerful",
+      "modWeaponHardened",
+      "modShortScope",
+      "modShortNightVisionScope",
+      "modReconScope",
+      "modLongScope",
+      "modLongNightVisionScope",
+      "modReflexSight",
+      "modHardenedAutomatic",
+      "modRapidAutomatic",
+      "modCalibratedPowerful",
+      "modPowerfulAutomatic"
+    ]
+  },
+  "weaponCompanionLaser": {
+    "ID": "weaponCompanionLaser",
+    "TYPE": "weapon",
+    "CATEGORY": "guns",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "RANGE": "rangeC",
+    "QUALITIES": [],
+    "WEIGHT": "-",
+    "COST": "-",
+    "RARITY": "-",
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "FIRE_RATE": 0
+  },
+  "weaponCrossbow": {
+    "ID": "weaponCrossbow",
+    "TYPE": "weapon",
+    "CATEGORY": "bows",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualitySuppressed",
+      "qualityTwoHanded",
+      "qualitySlowLoad"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 44,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammoCrossbowBolt",
+    "AVAILABLE_MODS": [
+      "modCrossbowIronSights",
+      "modCrossbowGlowSights",
+      "modCrossbowHeavyFrame",
+      "modCrossbowRepeatingFrame",
+      "modCrossbowMultipleLaunchFrame"
+    ]
+  },
+  "weaponCryoMine": {
+    "ID": "weaponCryoMine",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectFreeze"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "-",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityMine"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 50,
+    "RARITY": 3,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponCryogenicGrenade": {
+    "ID": "weaponCryogenicGrenade",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectFreeze"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityThrown"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 50,
+    "RARITY": 3,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponCryolator": {
+    "ID": "weaponCryolator",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 4,
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 4,
+    "RANGE": "rangeC",
+    "EFFECTS": [
+      "effectBurst",
+      "effectFreeze",
+      "effectSpread"
+    ],
+    "QUALITIES": [
+      "qualityInaccurate",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 7,
+    "COST": 300,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammoCryoCell",
+    "AVAILABLE_MODS": []
+  },
+  "weaponDeathTambo": {
+    "ID": "weaponDeathTambo",
+    "TYPE": "weapon",
+    "CATEGORY": "unarmed",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 0.5,
+    "COST": 40,
+    "RARITY": 2,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": true
+  },
+  "weaponDeathclawGauntlet": {
+    "ID": "weaponDeathclawGauntlet",
+    "TYPE": "weapon",
+    "CATEGORY": "unarmed",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 5,
+    "COST": 75,
+    "RARITY": 3,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modExtraClawDeathclaw"
+    ],
+    "IS_BLADED": true
+  },
+  "weaponDetonator": {
+    "ID": "weaponDetonator",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 0,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeL",
+    "QUALITIES": [],
+    "WEIGHT": 0.5,
+    "COST": 75,
+    "RARITY": 3,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponDisplacerGlove": {
+    "ID": "weaponDisplacerGlove",
+    "TYPE": "weapon",
+    "CATEGORY": "unarmed",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectPiercing:1",
+      "effectStun"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 3.0,
+    "COST": 175,
+    "RARITY": 4,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": false
+  },
+  "weaponDoubleBarrelShotgun": {
+    "ID": "weaponDoubleBarrelShotgun",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectSpread",
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityTwoHanded",
+      "qualityInaccurate"
+    ],
+    "WEIGHT": 4.5,
+    "COST": 39,
+    "RARITY": 1,
+    "AMMO_TYPE": "ammoShotgunShell",
+    "AVAILABLE_MODS": [
+      "modFlashHider",
+      "modFullStock",
+      "modLongBarrel",
+      "modSawedOffBarrel",
+      "modAdvanced",
+      "modHairTrigger",
+      "modPowerful",
+      "modWeaponHardened",
+      "modReflexSight"
+    ]
+  },
+  "weaponDroneCannon": {
+    "ID": "weaponDroneCannon",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 8,
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "EFFECTS": [
+      "effectBreaking"
+    ],
+    "QUALITIES": [
+      "qualityAmmoHungry:20",
+      "qualityBlast",
+      "qualityInaccurate",
+      "qualitySlowLoad"
+    ],
+    "WEIGHT": 9.0,
+    "COST": 600,
+    "RARITY": 5,
+    "AMMO_TYPE": "ammoAlienPowerModule",
+    "AVAILABLE_MODS": []
+  },
+  "weaponDynamite": {
+    "ID": "weaponDynamite",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityThrown"
+    ],
+    "WEIGHT": 0.25,
+    "COST": 25,
+    "RARITY": 2,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponDynamiteBundle": {
+    "ID": "weaponDynamiteBundle",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 9,
+    "EFFECTS": [
+      "effectBreaking"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "-",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityDelay:X",
+      "qualityPlaced"
+    ],
+    "WEIGHT": 1.0,
+    "COST": 150,
+    "RARITY": 3,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponExplosiveBaseball": {
+    "ID": "weaponExplosiveBaseball",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityThrown",
+      "qualityBlast"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 40,
+    "RARITY": 1,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponFatMan": {
+    "ID": "weaponFatMan",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 21,
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "EFFECTS": [
+      "effectBreaking",
+      "effectRadioactive",
+      "effectVicious"
+    ],
+    "QUALITIES": [
+      "qualityTwoHanded",
+      "qualityBlast",
+      "qualityInaccurate"
+    ],
+    "WEIGHT": 15.5,
+    "COST": 512,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammoMiniNuke",
+    "AVAILABLE_MODS": []
+  },
+  "weaponFlamethrower": {
+    "ID": "weaponFlamethrower",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 3,
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 4,
+    "RANGE": "rangeC",
+    "EFFECTS": [
+      "effectPersistent",
+      "effectSpread",
+      "effectBurst"
+    ],
+    "QUALITIES": [
+      "qualityTwoHanded",
+      "qualityInaccurate",
+      "qualityDebilitating"
+    ],
+    "WEIGHT": 8,
+    "COST": 137,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammoFlamerFuel",
+    "AVAILABLE_MODS": [
+      "modLongBarrelFlamethrower",
+      "modNapalm",
+      "modLargeTank",
+      "modHugeTank",
+      "modCompressionNozzle",
+      "modVaporizerNozzle"
+    ]
+  },
+  "weaponFlareGun": {
+    "ID": "weaponFlareGun",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityReliable"
+    ],
+    "WEIGHT": 1,
+    "COST": 50,
+    "RARITY": 1,
+    "AMMO_TYPE": "ammoFlare",
+    "AVAILABLE_MODS": []
+  },
+  "weaponFlashBang": {
+    "ID": "weaponFlashBang",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 0,
+    "EFFECTS": [
+      "effectStun"
+    ],
+    "DAMAGE_TYPES": [],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityThrown"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 40,
+    "RARITY": 2,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponFortyFourPistol": {
+    "ID": "weaponFortyFourPistol",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityCloseQuarters"
+    ],
+    "WEIGHT": 2,
+    "COST": 99,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammo44Magnum",
+    "AVAILABLE_MODS": [
+      "modShortBarrel",
+      "modStableBarrel",
+      "modAdvanced",
+      "modPowerful",
+      "modWeaponHardened",
+      "modErgonomicGrip",
+      "modShortScope",
+      "modReconScope",
+      "modReflexSight"
+    ]
+  },
+  "weaponFragGrenadeMirv": {
+    "ID": "weaponFragGrenadeMirv",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectSpread"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityThrown"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 75,
+    "RARITY": 4,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponFragmentationGrenade": {
+    "ID": "weaponFragmentationGrenade",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityThrown",
+      "qualityBlast"
+    ],
+    "WEIGHT": 0,
+    "COST": 50,
+    "RARITY": 2,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponFragmentationMine": {
+    "ID": "weaponFragmentationMine",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "-",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityMine"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 50,
+    "RARITY": 2,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponGammaPistol": {
+    "ID": "weaponGammaPistol",
+    "TYPE": "weapon",
+    "CATEGORY": "energyWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [
+      "effectPiercing:1",
+      "effectStun"
+    ],
+    "DAMAGE_TYPES": [
+      "radiation"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityInaccurate"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 156,
+    "RARITY": 5,
+    "AMMO_TYPE": "ammoGammaRound",
+    "AVAILABLE_MODS": [
+      "modElectricSignalAntenna",
+      "modAutomaticSignalRepeater",
+      "modDeepDish"
+    ]
+  },
+  "weaponGatlingGun": {
+    "ID": "weaponGatlingGun",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 3,
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 3,
+    "RANGE": "rangeM",
+    "EFFECTS": [
+      "effectBurst",
+      "effectSpread"
+    ],
+    "QUALITIES": [
+      "qualityGatling",
+      "qualityInaccurate",
+      "qualityRecoil:6",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 10.0,
+    "COST": 350,
+    "RARITY": 1,
+    "AMMO_TYPE": "ammo5mm",
+    "AVAILABLE_MODS": [
+      "modSpeedyReceiver",
+      "modLongBarrelGatlingGun",
+      "modComfortGripGatlingGun",
+      "modExtraLargeMagazine",
+      "modFrontSightRing",
+      "modLargeBayonet"
+    ]
+  },
+  "weaponGatlingLaser": {
+    "ID": "weaponGatlingLaser",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 3,
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 6,
+    "RANGE": "rangeM",
+    "EFFECTS": [
+      "effectPiercing:1",
+      "effectBurst"
+    ],
+    "QUALITIES": [
+      "qualityTwoHanded",
+      "qualityGatling",
+      "qualityInaccurate"
+    ],
+    "WEIGHT": 9.5,
+    "COST": 804,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammoFusionCell,ammoFusionCore",
+    "AVAILABLE_MODS": [
+      "modChargingBarrels",
+      "modPhotonicAgitatorGatling",
+      "modBoostedCapacitorGatling",
+      "modBetaWaveTunerGatling",
+      "modPhotonicStimulatorGatling",
+      "modReflexSightGatling",
+      "modBeamFocuserGatling",
+      "modGammaWaveEmitterGatling",
+      "modMaximizedCapacitorGatling",
+      "modBoostedPhotonAgitatorGatling",
+      "modBoostedGammaWaveEmitterGatling",
+      "modOverchargedCapacitorGatling",
+      "modImprovedLongBarrel",
+      "modImprovedAutomaticBarrel",
+      "modImprovedSniperBarrel",
+      "modImprovedSplitter",
+      "modAmplifiedBeamSplitter",
+      "modFineTunedBeamFocuser",
+      "modQuantumGyroCompensatingLens"
+    ]
+  },
+  "weaponGatlingPlasma": {
+    "ID": "weaponGatlingPlasma",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 4,
+    "DAMAGE_TYPES": [
+      "physical",
+      "energy"
+    ],
+    "FIRE_RATE": 4,
+    "RANGE": "rangeM",
+    "EFFECTS": [
+      "effectBurst"
+    ],
+    "QUALITIES": [
+      "qualityGatling",
+      "qualityInaccurate",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 12.0,
+    "COST": 1000,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammoPlasmaCartridge",
+    "AVAILABLE_MODS": [
+      "modPortedBarrelGatlingPlasma",
+      "modComfortGripGatlingPlasma",
+      "modReflexSightGatlingPlasma",
+      "modBeamSplitterGatlingPlasma",
+      "modBeamFocuserGatlingPlasma"
+    ]
+  },
+  "weaponGaussMinigun": {
+    "ID": "weaponGaussMinigun",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 6,
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 3,
+    "RANGE": "rangeL",
+    "EFFECTS": [
+      "effectBurst",
+      "effectPiercing:1"
+    ],
+    "QUALITIES": [
+      "qualityGatling",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 19.0,
+    "COST": 912,
+    "RARITY": 6,
+    "AMMO_TYPE": "ammo2mmec",
+    "AVAILABLE_MODS": [
+      "modTriBarrel",
+      "modPentaBarrel",
+      "modTeslaCoilCapacitor",
+      "modTeslaCoilDynamo",
+      "modGunnerSight"
+    ]
+  },
+  "weaponGaussPistol": {
+    "ID": "weaponGaussPistol",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 8,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeM",
+    "QUALITIES": [],
+    "WEIGHT": 3.0,
+    "COST": 334,
+    "RARITY": 5,
+    "AMMO_TYPE": "ammo2mmec",
+    "AVAILABLE_MODS": [
+      "modShieldedBarrel",
+      "modFullCapacitor",
+      "modBoostedCoilCapacitor",
+      "modReflexSight"
+    ]
+  },
+  "weaponGaussRifle": {
+    "ID": "weaponGaussRifle",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 10,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeL",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 8,
+    "COST": 228,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammo2mmec",
+    "AVAILABLE_MODS": [
+      "modSuppressor",
+      "modRecoilCompensatingStock",
+      "modShieldedBarrel",
+      "modFullCapacitor",
+      "modBoostedCoilCapacitor",
+      "modShortScope",
+      "modShortNightVisionScope",
+      "modReconScope",
+      "modLongScope",
+      "modLongNightVisionScope",
+      "modReflexSight"
+    ]
+  },
+  "weaponGaussShotgun": {
+    "ID": "weaponGaussShotgun",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 7,
+    "EFFECTS": [
+      "effectPiercing:1",
+      "effectSpread"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityAmmoHungry:10",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 7.0,
+    "COST": 400,
+    "RARITY": 5,
+    "AMMO_TYPE": "ammo2mmec",
+    "AVAILABLE_MODS": [
+      "modShieldedBarrel",
+      "modFullCapacitor",
+      "modBoostedCoilCapacitor"
+    ]
+  },
+  "weaponGuitarSword": {
+    "ID": "weaponGuitarSword",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityParry"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 45,
+    "RARITY": 3,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": true
+  },
+  "weaponHandmadeBoltAction": {
+    "ID": "weaponHandmadeBoltAction",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityInaccurate"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 30,
+    "RARITY": 0,
+    "AMMO_TYPE": "ammo308",
+    "AVAILABLE_MODS": [
+      "modBayonet",
+      "modCompensator",
+      "modFlashHider",
+      "modSuppressor",
+      "modFullStock",
+      "modMarksmanStock",
+      "modRecoilCompensatingStock",
+      "modFinnedBarrel",
+      "modPortedBarrel",
+      "modLongBarrel",
+      "modLargeMagazine",
+      "modLargeQuickMagazine",
+      "modQuickMagazine",
+      "modAutomatic",
+      "modCalibrated",
+      "modReceiver38",
+      "modReceiver50",
+      "modPowerful",
+      "modWeaponHardened",
+      "modMarksmanGrip",
+      "modShortScope",
+      "modShortNightVisionScope",
+      "modReconScope",
+      "modLongScope",
+      "modLongNightVisionScope",
+      "modReflexSight",
+      "modCalibratedPowerful"
+    ]
+  },
+  "weaponHandmadePistol": {
+    "ID": "weaponHandmadePistol",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 2,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityCloseQuarters",
+      "qualityUnreliable"
+    ],
+    "WEIGHT": 1,
+    "COST": 30,
+    "RARITY": 0,
+    "AMMO_TYPE": "ammo38",
+    "AVAILABLE_MODS": [
+      "modBayonet",
+      "modCompensator",
+      "modFlashHider",
+      "modSuppressor",
+      "modFullStock",
+      "modMarksmanStock",
+      "modRecoilCompensatingStock",
+      "modFinnedBarrel",
+      "modPortedBarrel",
+      "modLongBarrel",
+      "modLargeMagazine",
+      "modLargeQuickMagazine",
+      "modQuickMagazine",
+      "modAutomatic",
+      "modCalibrated",
+      "modReceiver45",
+      "modHairTrigger",
+      "modWeaponHardened",
+      "modShortScope",
+      "modShortNightVisionScope",
+      "modReconScope",
+      "modLongScope",
+      "modLongNightVisionScope",
+      "modReflexSight",
+      "modArmorPiercing",
+      "modArmorPiercingAutomatic",
+      "modHardenedAutomatic",
+      "modRapidAutomatic",
+      "modCalibratedPowerful",
+      "modPowerfulAutomatic",
+      "modHardenedPiercingAuto",
+      "modReceiver9mm"
+    ]
+  },
+  "weaponHandmadeRevolver": {
+    "ID": "weaponHandmadeRevolver",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityCloseQuarters",
+      "qualityUnreliable"
+    ],
+    "WEIGHT": 2,
+    "COST": 25,
+    "RARITY": 0,
+    "AMMO_TYPE": "ammo45",
+    "AVAILABLE_MODS": [
+      "modBayonet",
+      "modCompensator",
+      "modFlashHider",
+      "modSuppressor",
+      "modFullStock",
+      "modMarksmanStock",
+      "modRecoilCompensatingStock",
+      "modFinnedBarrel",
+      "modPortedBarrel",
+      "modLongBarrel",
+      "modCalibrated",
+      "modReceiver38",
+      "modReceiver308",
+      "modPowerful",
+      "modWeaponHardened",
+      "modMarksmanGrip",
+      "modShortScope",
+      "modShortNightVisionScope",
+      "modReconScope",
+      "modLongScope",
+      "modLongNightVisionScope",
+      "modReflexSight",
+      "modCalibratedPowerful",
+      "modReceiver357"
+    ]
+  },
+  "weaponHarpoonGun": {
+    "ID": "weaponHarpoonGun",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 12,
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "QUALITIES": [
+      "qualityDebilitating",
+      "qualityInaccurate",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 8,
+    "COST": 120,
+    "RARITY": 5,
+    "AMMO_TYPE": "ammoHarpoon",
+    "AVAILABLE_MODS": []
+  },
+  "weaponHuntingRifle": {
+    "ID": "weaponHuntingRifle",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 5,
+    "COST": 55,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammo308",
+    "AVAILABLE_MODS": [
+      "modBayonet",
+      "modSuppressor",
+      "modFullStock",
+      "modMarksmanStock",
+      "modPortedBarrel",
+      "modLongBarrel",
+      "modVentedBarrel",
+      "modLargeMagazine",
+      "modLargeQuickMagazine",
+      "modQuickMagazine",
+      "modCalibrated",
+      "modReceiver38",
+      "modReceiver50",
+      "modHairTrigger",
+      "modPowerful",
+      "modWeaponHardened",
+      "modShortScope",
+      "modShortNightVisionScope",
+      "modReconScope",
+      "modLongScope",
+      "modLongNightVisionScope",
+      "modReflexSight",
+      "modArmorPiercing",
+      "modCalibratedPowerful"
+    ]
+  },
+  "weaponIncinerator": {
+    "ID": "weaponIncinerator",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 5,
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 3,
+    "RANGE": "rangeM",
+    "EFFECTS": [
+      "effectPersistent",
+      "effectSpread",
+      "effectBurst"
+    ],
+    "QUALITIES": [
+      "qualityTwoHanded",
+      "qualityDebilitating"
+    ],
+    "WEIGHT": 10,
+    "COST": 350,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammoFlamerFuel",
+    "AVAILABLE_MODS": []
+  },
+  "weaponInstituteLaser": {
+    "ID": "weaponInstituteLaser",
+    "TYPE": "weapon",
+    "CATEGORY": "energyWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [
+      "effectBurst"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 3,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityCloseQuarters",
+      "qualityInaccurate"
+    ],
+    "WEIGHT": 2,
+    "COST": 50,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammoFusionCell",
+    "AVAILABLE_MODS": [
+      "modBeamFocuser",
+      "modCompensatingLens",
+      "modBeamSplitter",
+      "modStandardStock",
+      "modAutomaticBarrel",
+      "modLongBarrelEnergy",
+      "modImprovedBarrel",
+      "modPhotonicAgitator",
+      "modBoostedCapacitor",
+      "modBetaWaveTuner",
+      "modPhotonicStimulator",
+      "modShortScopeEnergy",
+      "modShortNightVisionScopeEnergy",
+      "modReconScopeEnergy",
+      "modLongScopeEnergy",
+      "modLongNightVisionScopeEnergy",
+      "modReflexSightEnergy",
+      "modBoostedPhotonAgitator",
+      "modBoostedGammaWaveEmitter",
+      "modGammaWaveEmitter",
+      "modOverchargedCapacitor",
+      "modMaximizedCapacitor",
+      "modImprovedLongBarrel",
+      "modAmplifiedBeamSplitter",
+      "modImprovedAutomaticBarrel",
+      "modFineTunedBeamFocuser",
+      "modQuantumGyroCompensatingLens"
+    ]
+  },
+  "weaponIronFist": {
+    "ID": "weaponIronFist",
+    "TYPE": "weapon",
+    "CATEGORY": "unarmed",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": "-",
+    "COST": "-",
+    "RARITY": "-",
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": false
+  },
+  "weaponJavelin": {
+    "ID": "weaponJavelin",
+    "TYPE": "weapon",
+    "CATEGORY": "throwing",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityThrown",
+      "qualitySuppressed"
+    ],
+    "WEIGHT": 2,
+    "COST": 10,
+    "RARITY": 1,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponJunkJet": {
+    "ID": "weaponJunkJet",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 6,
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeM",
+    "EFFECTS": [],
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 15,
+    "COST": 285,
+    "RARITY": 3,
+    "AMMO_TYPE": "anything",
+    "AVAILABLE_MODS": [
+      "modCombustionModule",
+      "modElectrificationModule",
+      "modRecoilCompensatingStockJunkJet",
+      "modLongBarrelJunkJet",
+      "modGunnerSight"
+    ]
+  },
+  "weaponKnuckles": {
+    "ID": "weaponKnuckles",
+    "TYPE": "weapon",
+    "CATEGORY": "unarmed",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityConcealed"
+    ],
+    "WEIGHT": 0,
+    "COST": 10,
+    "RARITY": 1,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSharpKnuckles",
+      "modSpikedKnuckles",
+      "modPuncturedKnuckles",
+      "modBladeKnuckles"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponLaserMusket": {
+    "ID": "weaponLaserMusket",
+    "TYPE": "weapon",
+    "CATEGORY": "energyWeapons",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 6.5,
+    "COST": 57,
+    "RARITY": 1,
+    "AMMO_TYPE": "ammoFusionCell",
+    "AVAILABLE_MODS": [
+      "modBeamFocuser",
+      "modCompensatingLens",
+      "modBeamSplitter",
+      "modFullStockEnergy",
+      "modShortReinforcedBarrel",
+      "modLongBarrelEnergy",
+      "modLongReinforcedBarrel",
+      "modThreeChargeCapacitor",
+      "modFourChargeCapacitor",
+      "modFiveChargeCapacitor",
+      "modSixChargeCapacitor",
+      "modShortScopeEnergy",
+      "modShortNightVisionScopeEnergy",
+      "modReconScopeEnergy",
+      "modLongScopeEnergy",
+      "modLongNightVisionScopeEnergy",
+      "modReflexSightEnergy"
+    ]
+  },
+  "weaponLaserPistol": {
+    "ID": "weaponLaserPistol",
+    "TYPE": "weapon",
+    "CATEGORY": "energyWeapons",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 2,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityCloseQuarters"
+    ],
+    "WEIGHT": 2,
+    "COST": 69,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammoFusionCell",
+    "AVAILABLE_MODS": [
+      "modBeamFocuser",
+      "modCompensatingLens",
+      "modBeamSplitter",
+      "modMarksmanStockEnergy",
+      "modRecoilCompensatingStockEnergy",
+      "modStandardStock",
+      "modLongBarrelEnergy",
+      "modAutomaticBarrel",
+      "modSniperBarrel",
+      "modImprovedBarrel",
+      "modPhotonicStimulator",
+      "modBetaWaveTuner",
+      "modBoostedCapacitor",
+      "modPhotonicAgitator",
+      "modMarksmanGripEnergy",
+      "modReflexSightEnergy",
+      "modShortScopeEnergy",
+      "modLongScopeEnergy",
+      "modShortNightVisionScopeEnergy",
+      "modLongNightVisionScopeEnergy",
+      "modReconScopeEnergy",
+      "modBoostedPhotonAgitator",
+      "modBoostedGammaWaveEmitter",
+      "modGammaWaveEmitter",
+      "modOverchargedCapacitor",
+      "modMaximizedCapacitor",
+      "modImprovedLongBarrel",
+      "modAmplifiedBeamSplitter",
+      "modImprovedAutomaticBarrel",
+      "modFineTunedBeamFocuser",
+      "modImprovedSniperBarrel",
+      "modQuantumGyroCompensatingLens"
+    ]
+  },
+  "weaponLeadPipe": {
+    "ID": "weaponLeadPipe",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 1.5,
+    "COST": 15,
+    "RARITY": 0,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSpikedLeadPipe",
+      "modHeavyLeadPipe"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponLeverActionRifle": {
+    "ID": "weaponLeverActionRifle",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 7,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 4.5,
+    "COST": 201,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammo308",
+    "AVAILABLE_MODS": [
+      "modCalibrated",
+      "modWeaponHardened",
+      "modPowerful",
+      "modAdvanced",
+      "modCalibratedPowerful",
+      "modReceiver357",
+      "modLongBarrel",
+      "modPortedBarrel",
+      "modFullStock",
+      "modMarksmanStock",
+      "modReflexSight",
+      "modShortScope",
+      "modLongScope",
+      "modShortNightVisionScope",
+      "modLongNightVisionScope",
+      "modSuppressor"
+    ]
+  },
+  "weaponLightMachineGun": {
+    "ID": "weaponLightMachineGun",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectBurst"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 4,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityInaccurate",
+      "qualityRecoil:8",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 7.5,
+    "COST": 150,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammo556mm",
+    "AVAILABLE_MODS": [
+      "modCalibrated",
+      "modWeaponHardened",
+      "modPowerful",
+      "modReceiver308",
+      "modCalibratedPowerful",
+      "modLongBarrel",
+      "modPortedBarrel",
+      "modVentedBarrel",
+      "modLargeMagazine",
+      "modQuickMagazine",
+      "modLargeQuickMagazine",
+      "modFullStock",
+      "modRecoilCompensatingStock",
+      "modReflexSight",
+      "modCompensator",
+      "modMuzzleBreak"
+    ]
+  },
+  "weaponMachete": {
+    "ID": "weaponMachete",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 1,
+    "COST": 25,
+    "RARITY": 1,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSerratedMachete"
+    ],
+    "IS_BLADED": true
+  },
+  "weaponMachineGun": {
+    "ID": "weaponMachineGun",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [
+      "effectBurst"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 3,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityTwoHanded",
+      "qualityInaccurate"
+    ],
+    "WEIGHT": 6,
+    "COST": 109,
+    "RARITY": 1,
+    "AMMO_TYPE": "ammo45",
+    "AVAILABLE_MODS": [
+      "modCompensator",
+      "modFlashHider",
+      "modSuppressor",
+      "modFullStock",
+      "modRecoilCompensatingStock",
+      "modLargeMagazine",
+      "modLargeQuickMagazine",
+      "modQuickMagazine",
+      "modHairTrigger",
+      "modPowerful",
+      "modWeaponHardened",
+      "modReflexSight",
+      "modArmorPiercing",
+      "modReceiver9mm"
+    ]
+  },
+  "weaponMicrowaveEmitter": {
+    "ID": "weaponMicrowaveEmitter",
+    "TYPE": "weapon",
+    "CATEGORY": "energyWeapons",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectPersistent",
+      "effectPiercing:3"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 4.0,
+    "COST": 500,
+    "RARITY": 5,
+    "AMMO_TYPE": "ammoFusionCell",
+    "AVAILABLE_MODS": []
+  },
+  "weaponMinigun": {
+    "ID": "weaponMinigun",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 3,
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 5,
+    "RANGE": "rangeM",
+    "EFFECTS": [
+      "effectSpread",
+      "effectBurst"
+    ],
+    "QUALITIES": [
+      "qualityTwoHanded",
+      "qualityGatling",
+      "qualityInaccurate"
+    ],
+    "WEIGHT": 13.5,
+    "COST": 382,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammo5mm",
+    "AVAILABLE_MODS": [
+      "modShredder",
+      "modAcceleratedBarrel",
+      "modTripleBarrelMinigun",
+      "modGunnerSightMinigun"
+    ]
+  },
+  "weaponMissileLauncher": {
+    "ID": "weaponMissileLauncher",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 11,
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeL",
+    "EFFECTS": [],
+    "QUALITIES": [
+      "qualityTwoHanded",
+      "qualityBlast"
+    ],
+    "WEIGHT": 10.5,
+    "COST": 314,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammoMissile",
+    "AVAILABLE_MODS": [
+      "modBayonetMissileLauncher",
+      "modStabilizer",
+      "modTripleBarrel",
+      "modQuadBarrel",
+      "modTargetingComputer",
+      "modScopeMissileLauncher",
+      "modNightVisionScopeMissileLauncher"
+    ]
+  },
+  "weaponMissileLauncherBayonet": {
+    "ID": "weaponMissileLauncherBayonet",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityMelee"
+    ],
+    "WEIGHT": "-",
+    "COST": "-",
+    "RARITY": "-",
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": true
+  },
+  "weaponMolotovCocktail": {
+    "ID": "weaponMolotovCocktail",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectPersistent"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityThrown",
+      "qualityBlast"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 20,
+    "RARITY": 1,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponMrHandyAutomaticPistol": {
+    "ID": "weaponMrHandyAutomaticPistol",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectBurst"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 3,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityReliable",
+      "qualityCloseQuarters",
+      "qualityMrHandyOnly"
+    ],
+    "WEIGHT": 0,
+    "COST": 50,
+    "RARITY": 1,
+    "AMMO_TYPE": "ammo10mm",
+    "AVAILABLE_MODS": []
+  },
+  "weaponMrHandyBuzzBlade": {
+    "ID": "weaponMrHandyBuzzBlade",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 5.0,
+    "COST": 50,
+    "RARITY": 2,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": true
+  },
+  "weaponMrHandyCircularSaw": {
+    "ID": "weaponMrHandyCircularSaw",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityMrHandyOnly"
+    ],
+    "WEIGHT": 0,
+    "COST": 50,
+    "RARITY": 2,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": true
+  },
+  "weaponMrHandyFlamethrower": {
+    "ID": "weaponMrHandyFlamethrower",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 3,
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 4,
+    "RANGE": "rangeC",
+    "EFFECTS": [
+      "effectPersistent",
+      "effectSpread",
+      "effectBurst"
+    ],
+    "QUALITIES": [
+      "qualityInaccurate",
+      "qualityDebilitating",
+      "qualityMrHandyOnly"
+    ],
+    "WEIGHT": 0,
+    "COST": 137,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammoFlamerFuel",
+    "AVAILABLE_MODS": []
+  },
+  "weaponMrHandyLaserEmitter": {
+    "ID": "weaponMrHandyLaserEmitter",
+    "TYPE": "weapon",
+    "CATEGORY": "energyWeapons",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 2,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityCloseQuarters",
+      "qualityMrHandyOnly"
+    ],
+    "WEIGHT": 0,
+    "COST": 69,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammoFusionCell",
+    "AVAILABLE_MODS": []
+  },
+  "weaponMrHandyPliers": {
+    "ID": "weaponMrHandyPliers",
+    "TYPE": "weapon",
+    "CATEGORY": "unarmed",
+    "DAMAGE_RATING": 2,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityMrHandyOnly"
+    ],
+    "WEIGHT": 0,
+    "COST": 10,
+    "RARITY": 1,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": false
+  },
+  "weaponMultiPurposeAxe": {
+    "ID": "weaponMultiPurposeAxe",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 2.0,
+    "COST": 40,
+    "RARITY": 2,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": true
+  },
+  "weaponNukaGrenade": {
+    "ID": "weaponNukaGrenade",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 9,
+    "EFFECTS": [
+      "effectVicious",
+      "effectBreaking",
+      "effectRadioactive"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityThrown",
+      "qualityBlast"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 100,
+    "RARITY": 4,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponPipeWrench": {
+    "ID": "weaponPipeWrench",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 1,
+    "COST": 30,
+    "RARITY": 1,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modVeryHeavyWrench",
+      "modHeavyWrench",
+      "modPuncturedWrench",
+      "modHookedWrench"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponPlasmaCaster": {
+    "ID": "weaponPlasmaCaster",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 8,
+    "DAMAGE_TYPES": [
+      "physical",
+      "energy"
+    ],
+    "FIRE_RATE": 3,
+    "RANGE": "rangeM",
+    "EFFECTS": [
+      "effectBurst"
+    ],
+    "QUALITIES": [
+      "qualityInaccurate",
+      "qualityRecoil:8",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 15.0,
+    "COST": 700,
+    "RARITY": 5,
+    "AMMO_TYPE": "ammoPlasmaCartridge",
+    "AVAILABLE_MODS": [
+      "modCalibratedCapacitor",
+      "modPulseCapacitor",
+      "modHighSpeedElectrode",
+      "modLongBarrelPlasmaCaster"
+    ]
+  },
+  "weaponPlasmaGrenade": {
+    "ID": "weaponPlasmaGrenade",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 9,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityThrown",
+      "qualityBlast"
+    ],
+    "WEIGHT": 0,
+    "COST": 135,
+    "RARITY": 3,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponPlasmaMine": {
+    "ID": "weaponPlasmaMine",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 9,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "-",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityMine"
+    ],
+    "WEIGHT": 0,
+    "COST": 135,
+    "RARITY": 3,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponPlasmaPistol": {
+    "ID": "weaponPlasmaPistol",
+    "TYPE": "weapon",
+    "CATEGORY": "energyWeapons",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical",
+      "energy"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityCloseQuarters"
+    ],
+    "WEIGHT": 2,
+    "COST": 123,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammoPlasmaCartridge",
+    "AVAILABLE_MODS": [
+      "modMarksmanStockEnergy",
+      "modRecoilCompensatingStockEnergy",
+      "modStandardStock",
+      "modAutomaticBarrel",
+      "modSniperBarrel",
+      "modFlamerBarrel",
+      "modImprovedBarrel",
+      "modSplitter",
+      "modPhotonicAgitator",
+      "modBoostedCapacitor",
+      "modBetaWaveTuner",
+      "modPhotonicStimulator",
+      "modShortScopeEnergy",
+      "modShortNightVisionScopeEnergy",
+      "modReconScopeEnergy",
+      "modLongScopeEnergy",
+      "modLongNightVisionScopeEnergy",
+      "modReflexSightEnergy",
+      "modBoostedPhotonAgitator",
+      "modBoostedGammaWaveEmitter",
+      "modGammaWaveEmitter",
+      "modOverchargedCapacitor",
+      "modMaximizedCapacitor",
+      "modImprovedLongBarrel",
+      "modImprovedAutomaticBarrel",
+      "modImprovedSniperBarrel",
+      "modImprovedSplitter"
+    ]
+  },
+  "weaponPlasticExplosives": {
+    "ID": "weaponPlasticExplosives",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 10,
+    "EFFECTS": [
+      "effectBreaking",
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "-",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityDelay:X",
+      "qualityPlaced"
+    ],
+    "WEIGHT": 1.0,
+    "COST": 200,
+    "RARITY": 4,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponPoolCue": {
+    "ID": "weaponPoolCue",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 10,
+    "RARITY": 0,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSharpPoolCue",
+      "modBarbedPoolCue"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponPowderCharge": {
+    "ID": "weaponPowderCharge",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "-",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityMine"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 25,
+    "RARITY": 1,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponPowerFist": {
+    "ID": "weaponPowerFist",
+    "TYPE": "weapon",
+    "CATEGORY": "unarmed",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectStun"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 2,
+    "COST": 100,
+    "RARITY": 2,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modPuncturedPowerFist",
+      "modHeatingPowerFist"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponProtonAxe": {
+    "ID": "weaponProtonAxe",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualitySurge"
+    ],
+    "WEIGHT": 4.0,
+    "COST": 175,
+    "RARITY": 5,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": true
+  },
+  "weaponPulseGrenade": {
+    "ID": "weaponPulseGrenade",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectStun"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityThrown",
+      "qualityBlast"
+    ],
+    "WEIGHT": 0,
+    "COST": 100,
+    "RARITY": 3,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponPulseMine": {
+    "ID": "weaponPulseMine",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectStun"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "-",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityMine"
+    ],
+    "WEIGHT": 0,
+    "COST": 100,
+    "RARITY": 3,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponPumpActionShotgun": {
+    "ID": "weaponPumpActionShotgun",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectSpread"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 1,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityInaccurate",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 5.5,
+    "COST": 70,
+    "RARITY": 1,
+    "AMMO_TYPE": "ammoShotgunShell",
+    "AVAILABLE_MODS": [
+      "modCalibrated",
+      "modHairTrigger",
+      "modWeaponHardened",
+      "modPowerful",
+      "modAdvanced",
+      "modCalibratedPowerful",
+      "modLongBarrel",
+      "modPortedBarrel",
+      "modFullStock",
+      "modRecoilCompensatingStock",
+      "modReflexSight",
+      "modBayonet",
+      "modCompensator",
+      "modMuzzleBreak",
+      "modSuppressor"
+    ]
+  },
+  "weaponRadiumRifle": {
+    "ID": "weaponRadiumRifle",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectRadioactive"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 3,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 5.5,
+    "COST": 110,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammo45",
+    "AVAILABLE_MODS": [
+      "modCalibrated",
+      "modWeaponHardened",
+      "modAutomatic",
+      "modHairTrigger",
+      "modPowerful",
+      "modHardenedAutomatic",
+      "modRapidAutomatic",
+      "modCalibratedPowerful",
+      "modLongBarrel",
+      "modPortedBarrel",
+      "modFullStock",
+      "modMarksmanStock",
+      "modRecoilCompensatingStock",
+      "modLargeMagazine",
+      "modQuickMagazine",
+      "modLargeQuickMagazine",
+      "modReflexSight",
+      "modShortScope",
+      "modLongScope",
+      "modShortNightVisionScope",
+      "modLongNightVisionScope",
+      "modCompensator",
+      "modMuzzleBreak",
+      "modSuppressor"
+    ]
+  },
+  "weaponRailwayRifle": {
+    "ID": "weaponRailwayRifle",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 10,
+    "EFFECTS": [
+      "effectBreaking"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityTwoHanded",
+      "qualityUnreliable",
+      "qualityCrippling"
+    ],
+    "WEIGHT": 7,
+    "COST": 290,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammoRailwaySpike",
+    "AVAILABLE_MODS": [
+      "modBayonet",
+      "modRecoilCompensatingStock",
+      "modLongBarrel",
+      "modAutomaticPistonReceiver",
+      "modShortScope",
+      "modShortNightVisionScope",
+      "modReconScope",
+      "modLongScope",
+      "modLongNightVisionScope",
+      "modReflexSight"
+    ]
+  },
+  "weaponRipper": {
+    "ID": "weaponRipper",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 3,
+    "COST": 50,
+    "RARITY": 2,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modCurvedRipper",
+      "modExtendedRipper"
+    ],
+    "IS_BLADED": true
+  },
+  "weaponRollingPin": {
+    "ID": "weaponRollingPin",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 0.5,
+    "COST": 10,
+    "RARITY": 0,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSharpRollingPin",
+      "modSpikedRollingPin"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponShishkebab": {
+    "ID": "weaponShishkebab",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityParry"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 200,
+    "RARITY": 3,
+    "AMMO_TYPE": "ammoFlamerFuel",
+    "AVAILABLE_MODS": [
+      "modExtraFlamesShishkebab"
+    ],
+    "IS_BLADED": true
+  },
+  "weaponShredder": {
+    "ID": "weaponShredder",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectPiercing:2"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityMelee"
+    ],
+    "WEIGHT": "-",
+    "COST": "-",
+    "RARITY": "-",
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": true
+  },
+  "weaponSledgehammer": {
+    "ID": "weaponSledgehammer",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 6,
+    "COST": 40,
+    "RARITY": 2,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modHeavySledgehammer",
+      "modPuncturedSledgehammer"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponSmokeGrenade": {
+    "ID": "weaponSmokeGrenade",
+    "TYPE": "weapon",
+    "CATEGORY": "explosives",
+    "DAMAGE_RATING": 0,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityBlast",
+      "qualityThrown"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 40,
+    "RARITY": 2,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponSniperRifle": {
+    "ID": "weaponSniperRifle",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 7,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeL",
+    "QUALITIES": [
+      "qualityAccurate",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 5.0,
+    "COST": 300,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammo308",
+    "AVAILABLE_MODS": [
+      "modCalibrated",
+      "modWeaponHardened",
+      "modPowerful",
+      "modCalibratedPowerful",
+      "modLongScope",
+      "modShortNightVisionScope",
+      "modLongNightVisionScope",
+      "modSuppressor"
+    ]
+  },
+  "weaponStone": {
+    "ID": "weaponStone",
+    "TYPE": "weapon",
+    "CATEGORY": "unarmed",
+    "DAMAGE_RATING": 2,
+    "EFFECTS": [
+      "effectVicious"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityThrown"
+    ],
+    "WEIGHT": 0.5,
+    "COST": "-",
+    "RARITY": "-",
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": false
+  },
+  "weaponSuperSledge": {
+    "ID": "weaponSuperSledge",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 6,
+    "EFFECTS": [
+      "effectBreaking"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 10,
+    "COST": 180,
+    "RARITY": 3,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modHeatingSuperSledge",
+      "modStunningSuperSledge"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponSwitchblade": {
+    "ID": "weaponSwitchblade",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 2,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityConcealed"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 20,
+    "RARITY": 0,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSerratedSwitchblade"
+    ],
+    "IS_BLADED": true
+  },
+  "weaponSword": {
+    "ID": "weaponSword",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityParry"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 50,
+    "RARITY": 2,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modStunningSword",
+      "modElectrifiedSword",
+      "modSerratedSword",
+      "modElectrifiedSerratedSword"
+    ],
+    "IS_BLADED": true
+  },
+  "weaponSyringer": {
+    "ID": "weaponSyringer",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 3,
+    "COST": 132,
+    "RARITY": 2,
+    "AMMO_TYPE": "ammoSyringer",
+    "AVAILABLE_MODS": [
+      "modMarksmanStock",
+      "modRecoilCompensatingStock",
+      "modLongBarrel",
+      "modShortScope",
+      "modShortNightVisionScope",
+      "modReconScope",
+      "modLongScope",
+      "modLongNightVisionScope",
+      "modReflexSight"
+    ]
+  },
+  "weaponTenMillimeterPistol": {
+    "ID": "weaponTenMillimeterPistol",
+    "TYPE": "weapon",
+    "CATEGORY": "smallGuns",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 2,
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityReliable",
+      "qualityCloseQuarters"
+    ],
+    "WEIGHT": 2,
+    "COST": 50,
+    "RARITY": 1,
+    "AMMO_TYPE": "ammo10mm",
+    "AVAILABLE_MODS": [
+      "modCompensator",
+      "modSuppressor",
+      "modPortedBarrel",
+      "modLongBarrel",
+      "modLargeMagazine",
+      "modLargeQuickMagazine",
+      "modQuickMagazine",
+      "modAutomatic",
+      "modAdvanced",
+      "modCalibrated",
+      "modHairTrigger",
+      "modPowerful",
+      "modWeaponHardened",
+      "modErgonomicGrip",
+      "modMarksmanGrip",
+      "modReconScope",
+      "modReflexSight",
+      "modArmorPiercing",
+      "modArmorPiercingAutomatic",
+      "modHardenedAutomatic",
+      "modRapidAutomatic",
+      "modCalibratedPowerful",
+      "modPowerfulAutomatic",
+      "modHardenedPiercingAuto"
+    ]
+  },
+  "weaponTeslaCannon": {
+    "ID": "weaponTeslaCannon",
+    "TYPE": "weapon",
+    "CATEGORY": "bigGuns",
+    "DAMAGE_RATING": 8,
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeL",
+    "EFFECTS": [
+      "effectArc",
+      "effectPiercing:2"
+    ],
+    "QUALITIES": [
+      "qualityAccurate",
+      "qualityAmmoHungry:5",
+      "qualitySurge",
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 12.0,
+    "COST": 870,
+    "RARITY": 5,
+    "AMMO_TYPE": "ammoFusionCell",
+    "AVAILABLE_MODS": []
+  },
+  "weaponTeslaRifle": {
+    "ID": "weaponTeslaRifle",
+    "TYPE": "weapon",
+    "CATEGORY": "energyWeapons",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectArc"
+    ],
+    "DAMAGE_TYPES": [
+      "energy"
+    ],
+    "FIRE_RATE": 2,
+    "RANGE": "rangeM",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 4.0,
+    "COST": 180,
+    "RARITY": 4,
+    "AMMO_TYPE": "ammoFusionCell",
+    "AVAILABLE_MODS": [
+      "modAutomaticBarrel",
+      "modSplitter",
+      "modImprovedBarrel",
+      "modAmplifiedBeamSplitter",
+      "modFineTunedBeamFocuser",
+      "modQuantumGyroCompensatingLens",
+      "modReflexSight"
+    ]
+  },
+  "weaponThrowingKnives": {
+    "ID": "weaponThrowingKnives",
+    "TYPE": "weapon",
+    "CATEGORY": "throwing",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityThrown",
+      "qualityConcealed",
+      "qualitySuppressed"
+    ],
+    "WEIGHT": 0,
+    "COST": 10,
+    "RARITY": 1,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponTireIron": {
+    "ID": "weaponTireIron",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 1,
+    "COST": 25,
+    "RARITY": 1,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSharpTireIron"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponTomahawk": {
+    "ID": "weaponTomahawk",
+    "TYPE": "weapon",
+    "CATEGORY": "throwing",
+    "DAMAGE_RATING": 4,
+    "EFFECTS": [
+      "effectPiercing:1"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeC",
+    "QUALITIES": [
+      "qualityThrown",
+      "qualitySuppressed"
+    ],
+    "WEIGHT": 0,
+    "COST": 15,
+    "RARITY": 2,
+    "AMMO_TYPE": "self",
+    "AVAILABLE_MODS": []
+  },
+  "weaponUnarmedStrike": {
+    "ID": "weaponUnarmedStrike",
+    "TYPE": "weapon",
+    "CATEGORY": "unarmed",
+    "DAMAGE_RATING": 2,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": "-",
+    "COST": "-",
+    "RARITY": "-",
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": false
+  },
+  "weaponWalkingStick": {
+    "ID": "weaponWalkingStick",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": 1,
+    "COST": 10,
+    "RARITY": 0,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [
+      "modSpikedCane",
+      "modBarbedCane"
+    ],
+    "IS_BLADED": false
+  },
+  "weaponWarDrum": {
+    "ID": "weaponWarDrum",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 5,
+    "EFFECTS": [
+      "effectStun"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": 0,
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": 10.0,
+    "COST": 115,
+    "RARITY": 3,
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": false
+  },
+  "weaponWeaponStock": {
+    "ID": "weaponWeaponStock",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 3,
+    "EFFECTS": [
+      "effectStun"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [
+      "qualityTwoHanded"
+    ],
+    "WEIGHT": "-",
+    "COST": "-",
+    "RARITY": "-",
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": false
+  },
+  "weaponWeaponStockOneHanded": {
+    "ID": "weaponWeaponStockOneHanded",
+    "TYPE": "weapon",
+    "CATEGORY": "meleeWeapons",
+    "DAMAGE_RATING": 2,
+    "EFFECTS": [
+      "effectStun"
+    ],
+    "DAMAGE_TYPES": [
+      "physical"
+    ],
+    "FIRE_RATE": "-",
+    "RANGE": "rangeR",
+    "QUALITIES": [],
+    "WEIGHT": "-",
+    "COST": "-",
+    "RARITY": "-",
+    "AMMO_TYPE": "na",
+    "AVAILABLE_MODS": [],
+    "IS_BLADED": false
+  }
+}

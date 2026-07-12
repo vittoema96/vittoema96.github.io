@@ -15,13 +15,13 @@ import { UISettingsManager } from '@/styles/UISettingsManager';
 
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from './ErrorBoundary';
-import { CharacterProvider } from '@/contexts/CharacterContext';
-import { TooltipProvider } from '@/contexts/TooltipContext';
-import { PopupProvider } from '@/contexts/popup/PopupContext';
+import { CharacterProvider } from '@/app/contexts/CharacterContext';
+import { TooltipProvider } from '@/app/contexts/TooltipContext';
+import { PopupProvider } from '@/app/contexts/PopupContext.tsx';
 import BootScreen, { useBootScreen } from '@/BootScreen';
 import App from '@/app/App';
-import { GameDatabase } from '@/services/GameDatabase';
-import UpdatePrompt from '@/components/UpdatePrompt';
+import { GameDatabase } from '@/services/data/GameDatabase.ts';
+import UpdatePrompt from '@/app/components/UpdatePrompt';
 
 // Apply appearance settings as early as possible to avoid flicker.
 UISettingsManager.applyAll();

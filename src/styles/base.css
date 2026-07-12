@@ -195,7 +195,6 @@ input[type='number'] {
     -moz-appearance: textfield;
     font-size: 1rem;
     text-align: center;
-    padding: var(--space-s);
 }
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
@@ -236,10 +235,6 @@ input[type='radio']:hover {
 input[type='radio']:focus {
     outline: var(--border-primary-thick);
     outline-offset: 2px;
-}
-
-select {
-    padding-right: var(--space-xl);
 }
 
 

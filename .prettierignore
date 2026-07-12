@@ -10,7 +10,7 @@ node_modules/
 *.min.css
 
 # Data files (CSV formatting should be preserved)
-public/data/**/*.csv
+data/sources/**/*.csv
 
 # Lock files
 package-lock.json

@@ -635,9 +635,9 @@
 }
 /* Ammo rows now use inventory-row styles */
 
-/* Buttons moved to src/styles/components.css */
+/* Buttons moved to src/styles/app.components.css */
 
-/* Dice styles moved to src/styles/components.css */
+/* Dice styles moved to src/styles/app.components.css */
 
 /*** Custom templates - common ***/
 .stats {

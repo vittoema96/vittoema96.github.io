@@ -1,0 +1,55 @@
+{
+  "_what_is_this": "Manifest for runtime data build: maps each dataset key to CSV source files under data/sources.",
+  "weapon": [
+    "weapon/smallGuns.csv",
+    "weapon/energyWeapons.csv",
+    "weapon/bigGuns.csv",
+    "weapon/meleeWeapons.csv",
+    "weapon/throwing.csv",
+    "weapon/explosives.csv",
+    "weapon/bows.csv",
+    "weapon/companionWeapons.csv"
+  ],
+  "apparel": [
+    "apparel/armor.csv",
+    "apparel/clothing.csv",
+    "apparel/robotParts.csv"
+  ],
+  "aid": [
+    "aid/food.csv",
+    "aid/drinks.csv",
+    "aid/meds.csv",
+    "aid/misc.csv"
+  ],
+  "ammo": [
+    "other/ammo.csv"
+  ],
+  "other": [
+    "other/misc.csv"
+  ],
+  "mod": [
+    "mods/smallGunMods.csv",
+    "mods/bigGunMods.csv",
+    "mods/energyWeaponMods.csv",
+    "mods/meleeWeaponMods.csv",
+    "mods/bowMods.csv",
+    "mods/armorMaterialMods.csv",
+    "mods/armorImprovementMods.csv",
+    "mods/ballisticWeaveMods.csv",
+    "mods/vaultSuitMods.csv",
+    "mods/robotArmorMods.csv"
+  ],
+  "perks": [
+    "character-features/perks.csv"
+  ],
+  "companionPerks": [
+    "character-features/companionPerks.csv"
+  ],
+  "traits": [
+    "character-features/traits.csv"
+  ],
+  "legendaryEffects": [
+    "item-features/legendaryEffects.csv"
+  ]
+}
+

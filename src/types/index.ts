@@ -1,14 +1,12 @@
-import { Origin, OriginId } from '@/services/character/Origin.ts';
-import {
-    CompanionSkillType,
-    CompanionSpecialType,
-    SkillType,
-    SpecialType,
-} from '@/services/character/utils.ts';
-import { WeaponItem } from '@/schemas/items/weaponSchemas.ts';
-import { BaseItem } from '@/schemas/items/baseItemSchemas.ts';
-import { ApparelItem } from '@/schemas/items/apparelSchemas.ts';
+import { Origin, OriginId } from '@/features/character/origin.ts';
 import { AidCategory, AmmoCategory, ItemCategory, ItemType } from '@/types/item.ts';
+import { BaseItem } from '@/data/types.ts';
+import { ApparelItem } from '@/data/item/apparel.schemas.ts';
+import { WeaponItem } from '@/data/item/weapon.schemas.ts';
+import { CompanionSpecialType, SpecialType } from '@/features/character/special/special.ts';
+import { CompanionSkillType, SkillType } from '@/features/character/skills/skills.ts';
+import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import { PerkId } from '@/features/character/feats/perks/perks.ts';
 
 // **---- Currency related ----**
 export const CURRENCIES = ['caps', 'ncrDollars', 'legionDenarius', 'prewarMoney'] as const;
@@ -25,46 +23,6 @@ export const DEFAULT_EXCHANGE_RATES: Record<CurrencyType, number> = {
 
 // Type for user-configurable exchange rates (excludes caps which is always 1:1)
 export type ExchangeRates = Record<Exclude<CurrencyType, 'caps'>, number>;
-
-export const TRAITS = [
-    'traitFastShot',
-    'traitGifted',
-    'traitEducated',
-    'traitHeavyHanded',
-    'traitSmallFrame',
-    'traitExtraPerk',
-    'traitGoodNatured',
-    'traitGrunt',
-    'traitHomeOnTheRange',
-    'traitTriggerDiscipline',
-    'traitBrahminBaron',
-    'traitMotherWasteland',
-    'traitNomad',
-    'traitRiteOfPassage',
-    'traitToolsOfTheOldWorld',
-    'traitTheChosenOne',
-    'traitMrHandyLaserEmitter',
-    'traitMrHandyFlamethrower',
-    'traitMrHandyAutomaticPistol',
-    'traitMrHandyCircularSaw',
-    'traitMrHandyPliers',
-    'traitGhoulRadiationHealing',
-    'traitGhoulRadiationRest',
-    'traitGhoulAgeless',
-    'traitGhoulDiscrimination',
-    'traitBrotherhoodChain',
-    'traitVaultKid',
-    'traitMrHandy',
-] as const;
-export type TraitId = (typeof TRAITS)[number];
-
-// Trait data from CSV
-export interface TraitData {
-    ID: TraitId;
-    EFFECTS: string[];
-    ORIGINS: OriginId[];
-    FIXED: boolean;
-}
 
 const _BODY_PARTS = ['head', 'leftArm', 'rightArm', 'torso', 'leftLeg', 'rightLeg'] as const;
 export type BodyPart = (typeof _BODY_PARTS)[number];
@@ -184,7 +142,7 @@ export interface RawCharacter {
     skills: Record<SkillType, number>;
     specialties: SkillType[];
     traits: TraitId[];
-    perks: string[];
+    perks: PerkId[];
 
     currentLuck?: number | undefined;
     currentHp?: number | undefined;

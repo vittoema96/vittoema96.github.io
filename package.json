@@ -23,18 +23,26 @@
     "npm": ">=9.0.0"
   },
   "scripts": {
-    "predev": "npm run validate:locales:sources && npm run build:locales",
+
+    "prebuild:locales": "python3 scripts/validate_locales_sources.py",
+    "build:locales": "python3 scripts/build_locales_from_source.py",
+
+    "prebuild:data": "python3 scripts/validate_data_sources.py",
+    "build:data": "python3 scripts/build_data_from_csv.py",
+
+    "predev": "npm run build:locales && npm run build:data",
     "dev": "vite",
-    "prebuild": "npm run validate:locales:sources && npm run build:locales",
+
+    "prebuild": "npm run build:locales && npm run build:data",
     "build": "vite build",
+
     "preview": "vite preview",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
     "type-check": "tsc --noEmit",
-    "validate:locales:sources": "python3 scripts/validate_locales_sources.py",
-    "build:locales": "python3 scripts/build_locales_from_source.py",
+
     "quality": "npm run lint && npm run format:check && npm run type-check",
     "guidebooks:stable:tables": "python3 guidebooks/stable_pipeline/run_guidebooks_tables_pipeline.py --skip-convert",
     "guidebooks:stable:tables:full": "python3 guidebooks/stable_pipeline/run_guidebooks_tables_pipeline.py",
@@ -50,7 +58,6 @@
     "@panzoom/panzoom": "^4.6.0",
     "fitty": "^2.4.2",
     "i18next": "^25.7.3",
-    "papaparse": "^5.4.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-error-boundary": "^6.1.2",
@@ -61,7 +68,6 @@
     "@iconify-json/game-icons": "^1.2.4",
     "@iconify-json/mdi": "^1.2.3",
     "@types/node": "^24.3.0",
-    "@types/papaparse": "^5.5.2",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
     "@typescript-eslint/eslint-plugin": "^8.50.0",
@@ -74,7 +80,7 @@
     "globals": "^16.5.0",
     "prettier": "^3.6.2",
     "typescript": "^5.9.2",
-    "vite": "^7.1.12",
+    "vite": "^8.0.5",
     "vite-plugin-pwa": "^1.0.3"
   }
 }

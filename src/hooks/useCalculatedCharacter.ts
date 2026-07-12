@@ -1,230 +1,81 @@
-import {
-    Character,
-    DamageResistanceMap,
-    GenericBodyPart,
-    RawCharacter,
-
-
-} from '@/types';
-import {useMemo} from 'react'
-import {mapItemLocations} from "@/utils/bodyLocations";
-import { getGameDatabase, getModifiedItemData } from '@/hooks/getGameDatabase';
-import {createDefaultCompanion} from '@/utils/companionTypes';
-import { getOriginById } from '@/services/character/Origin.ts';
-import { SKILLS, SkillType } from '@/services/character/utils.ts';
-
-export const adjustCurrentHp = (prev: RawCharacter, current: RawCharacter) => {
-    const result: RawCharacter = { ...current };
-    const prevMaxHp = calculateMaxHp(prev);
-    const currentMaxHp = calculateMaxHp(current);
-    const currentHp = prev.currentHp ?? currentMaxHp;
-    const hpDelta = currentMaxHp - prevMaxHp;
-    // TODO per ora se maxHp aumenta, currentHp aumenta di pari passo
-    //      se maxHp diminuisce currentHp rimane tale (o scende a maxHp se superiore)
-    if (hpDelta > 0) {
-        result.currentHp = currentHp + hpDelta;
-    }
-    result.currentHp = Math.min(result.currentHp ?? currentHp, currentMaxHp);
-    return result;
-};
-
-const calculateMaxHp = (character: RawCharacter): number => {
-    // TODO duplication of maxHp MEMO...
-    const lifeGiverLevel = character.perks.filter(perk => perk === "perkLifeGiver").length
-    return character.special.endurance * (1 + lifeGiverLevel) + character.special.luck + character.level - 1;
-};
+import { Character, RawCharacter } from '@/types';
+import { useMemo } from 'react';
+import { createDefaultCompanion } from '@/utils/companionTypes';
+import { getOriginById } from '@/features/character/origin.ts';
+import { SkillType, useSkills } from '@/features/character/skills/skills.ts';
+import { useSpecial } from '@/features/character/special/special.ts';
+import { TraitId, useTraits } from '@/features/character/feats/traits/traits.ts';
+import { PerkId, usePerks } from '@/features/character/feats/perks/perks.ts';
+import { useSpecialties } from '@/features/character/specialties.ts';
+import { useMaxHp } from '@/features/character/hp.ts';
+import { useCurrentWeight, useMaxWeight } from '@/features/character/weight.ts';
+import { useDamageResistances } from '@/features/character/damageResistances.ts';
 
 function useCalculatedCharacter(raw: RawCharacter): Character {
-
-    const dataManager = getGameDatabase()
     // TODO init exchange rates
-    const exchangeRates = raw.exchangeRates
+    const exchangeRates = raw.exchangeRates;
 
-    const origin = useMemo(
-        () => getOriginById(raw.origin),
-        [raw.origin]
-    )
-    const specialties: SkillType[] = useMemo(
-        () => {
-            // Ghoul origin adds Survival as specialty
-            let result = raw.specialties
-            const isGhoul = origin.id === 'ghoul';
-            if (isGhoul && !result.includes('survival')) {
-                result = [...result, 'survival'];
-            }
-            if(raw.traits.includes("traitNomad")){
-                result = result.filter(r => r !== 'science')
-            }
-            return result;
-        }, [raw.specialties, raw.traits, origin.id]
-    )
-    const traits = useMemo(
-        () => {
-            // Get fixed traits from database where FIXED === true AND ORIGINS includes current origin
-            const fixedTraits = Object.values(dataManager.traits)
-                .filter(trait => trait.FIXED && trait.ORIGINS.includes(origin.id))
-                .map(trait => trait.ID);
+    const origin = useMemo(() => getOriginById(raw.origin), [raw.origin]);
+    const traits: TraitId[] = useTraits(raw, origin);
+    const perks: PerkId[] = usePerks(raw);
 
-            // Filter user-selected traits to only include those valid for this origin
-            const userTraits = (raw.traits).filter(trait => {
-                const traitData = dataManager.traits[trait];
-                return traitData?.ORIGINS.includes(origin.id);
-            });
+    const specialties: SkillType[] = useSpecialties(raw, origin, traits);
 
-            // Combine and deduplicate
-            return [...new Set([...fixedTraits, ...userTraits])];
-        },
-        [raw.traits, origin.id, dataManager.traits]
-    )
+    const special = useSpecial(raw);
+    const skills = useSkills(raw, specialties, origin);
 
-    const skills = useMemo(
-        () => SKILLS.reduce((skills, skillId) => {
+    const maxHp = useMaxHp(raw, special, perks);
+    const rads = Math.min(raw.rads, maxHp);
+    const effectiveMaxHp = maxHp - rads;
+    const currentHp = Math.min(raw.currentHp ?? effectiveMaxHp, effectiveMaxHp);
 
-            const baseValue = raw.skills[skillId];
-            const hasSpecialty = specialties.includes(skillId);
-            const skillValue = baseValue + (hasSpecialty ? 2 : 0);
-            skills[skillId] = Math.min(skillValue, origin.skillMaxValue);
-            return skills
-        }, {} as Record<SkillType, number>),
-        [origin.skillMaxValue, raw.skills, specialties]
-    )
-
-    const maxHp = useMemo(
-        () => calculateMaxHp(raw),
-        [raw]
-    )
-    const rads = Math.min(raw.rads, maxHp)
-    const effectiveMaxHp = maxHp - rads
-    const currentHp = Math.min(raw.currentHp ?? effectiveMaxHp, effectiveMaxHp)
-
-    const maxWeight = useMemo(
-        () => {
-            let result = origin?.calcMaxCarryWeight(raw.special.strength)
-            if(traits.includes('traitSmallFrame')) {
-                result = 75 + (raw.special.strength * 2.5)
-            }
-            // Add carry weight bonuses from equipped items with mods
-            raw.items.forEach(item => {
-                if (!item.equipped) {return;}
-                // TODO Carry weight bonus not currently fully implemented
-                const itemData = getModifiedItemData(item, raw.perks);
-                const carryWeightBonus = dataManager.isType(itemData, 'apparel')
-                    ? (itemData as typeof itemData & { CARRY_WEIGHT_BONUS?: number }).CARRY_WEIGHT_BONUS
-                    : undefined
-                if (carryWeightBonus) {
-                    result += Number(carryWeightBonus) || 0;
-                }
-            });
-            return result
-        },
-        [dataManager, origin, raw.special.strength, raw.items, raw.perks, traits]
-    )
-
-    const currentWeight = useMemo(() => {
-        let total = 0
-        total += raw.items.reduce((total, item) => {
-            const itemData = getModifiedItemData(item, raw.perks);
-            const weight = Number(itemData?.WEIGHT) || 0;
-            return total + weight * item.quantity;
-        }, 0);
-        total += raw.customItems.reduce((total, item) => {
-            return total + item.WEIGHT * item.quantity;
-        }, 0)
-        return total
-    }, [raw.items, raw.customItems, raw.perks]);
+    const maxWeight = useMaxWeight(raw, origin, perks, traits)
+    const currentWeight = useCurrentWeight(raw, perks)
 
     const maxLuck = useMemo(() => {
-        let result = raw.special.luck
+        let result = raw.special.luck;
         if (traits.includes('traitGifted')) {
-            result -= 1
+            result -= 1;
         }
-        return result
-    }, [raw.special.luck, traits])
-    const currentLuck = Math.min(raw.currentLuck ?? maxLuck, maxLuck)
+        return result;
+    }, [raw.special.luck, traits]);
+    const currentLuck = Math.min(raw.currentLuck ?? maxLuck, maxLuck);
 
     const defense = useMemo(() => {
-        return raw.special.agility < 9 ? 1 : 2
-    }, [raw.special.agility])
+        return raw.special.agility < 9 ? 1 : 2;
+    }, [raw.special.agility]);
 
     const initiative = useMemo(() => {
-        return raw.special.agility + raw.special.perception
-    }, [raw.special.agility, raw.special.perception])
+        return raw.special.agility + raw.special.perception;
+    }, [raw.special.agility, raw.special.perception]);
 
     const meleeDamage = useMemo(() => {
         let base = 0;
-        if (raw.special.strength >= 7) { base = 1; }
-        if (raw.special.strength >= 9) { base = 2; }
-        if (raw.special.strength >= 11) { base = 3; }
-        if (traits.includes('traitHeavyHanded')) { base += 1; }
+        if (raw.special.strength >= 7) {
+            base = 1;
+        }
+        if (raw.special.strength >= 9) {
+            base = 2;
+        }
+        if (raw.special.strength >= 11) {
+            base = 3;
+        }
+        if (traits.includes('traitHeavyHanded')) {
+            base += 1;
+        }
         return base;
-    }, [raw.special.strength, traits])
+    }, [raw.special.strength, traits]);
 
-    const locationsDR = useMemo(() => {
-        const locationsDR = Object.fromEntries(
-            Array.from(origin.bodyParts, location => [
-                location,
-                { physical: 0, energy: 0, radiation: 0 }
-            ])
-        ) as Record<GenericBodyPart, DamageResistanceMap>;
-
-        // Calculate DR from equipped items only (with mods applied)
-        // Use MAX value between under and over layers for each damage type
-        raw.items.forEach(item => {
-            // Only count equipped items
-            if (!item.equipped) {
-                return;
-            }
-
-            const itemData = getModifiedItemData(item, raw.perks);
-            // Skip robot parts if origin is not Mr. Handy
-            // TODO might not need the below check
-            if (!itemData || (itemData?.CATEGORY === 'robotPart' && !origin.isRobot)) {return;}
-            if (!dataManager.isType(itemData, "apparel")) {return;}
-
-            // Get locations this item covers
-            const locations = mapItemLocations(itemData.LOCATIONS_COVERED, item.variation);
-
-            // Use MAX between current DR and item DR for each damage type
-            locations.forEach(location => {
-                if (locationsDR[location]) {
-                    locationsDR[location].physical = Math.max(locationsDR[location].physical, itemData.PHYSICAL_RES);
-                    locationsDR[location].energy = Math.max(locationsDR[location].energy, itemData.ENERGY_RES);
-                    locationsDR[location].radiation = Math.max(locationsDR[location].radiation, itemData.RADIATION_RES);
-                }
-            });
-        });
-
-        if (raw.perks.includes('perkBarbarian')) {
-            const isWearingPowerArmor = raw.items.some(item => {
-                if (!item.equipped) { return false }
-                const data = dataManager.getItem(item.id);
-                return dataManager.isType(data, 'apparel') && data.CATEGORY === 'powerArmor'; // TODO fix it when powerArmor is implemented
-            });
-            if (!isWearingPowerArmor) {
-                const barbarianBonus = raw.special.strength >= 11 ? 3 : raw.special.strength >= 9 ? 2 : raw.special.strength >= 7 ? 1 : 0;
-                Object.values(locationsDR).forEach(dr => { dr.physical += barbarianBonus; });
-            }
-        }
-
-        // Mr Handy and Ghoul have infinite radiation resistance
-        if (origin.hasRadiationImmunity) {
-            origin.bodyParts.forEach(location => {
-                locationsDR[location].radiation = Infinity;
-            });
-        }
-
-        return locationsDR;
-    }, [dataManager, raw.items, raw.perks, origin.bodyParts, origin.hasRadiationImmunity, origin.isRobot])
-
+    const locationsDR = useDamageResistances(raw, origin)
 
     // Default companion (Eyebot)
     const companion = useMemo(() => {
         if (raw.companion) {
-            return raw.companion
+            return raw.companion;
         }
         // Return default eyebot companion
-        return createDefaultCompanion('eyebot')
-    }, [raw.companion])
+        return createDefaultCompanion('eyebot');
+    }, [raw.companion]);
 
     return {
         // Passthrough (with defaults) values
@@ -243,7 +94,7 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
         level: raw.level,
         specialties,
         traits,
-        perks: raw.perks,
+        perks,
         mapCodes: raw.mapCodes,
         companion,
 
@@ -253,13 +104,13 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
         maxLuck,
         maxWeight,
         currentWeight,
-        special: raw.special,
+        special,
         skills,
         defense,
         initiative,
         meleeDamage,
-        locationsDR
-    }
+        locationsDR,
+    };
 }
 
-export default useCalculatedCharacter
+export default useCalculatedCharacter;

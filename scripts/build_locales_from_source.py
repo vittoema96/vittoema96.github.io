@@ -2,7 +2,7 @@
 """
 Build runtime locale files from authoring sources.
 
-Source of truth: src/locales/source/**
+Source of truth: data/sources/**
 Output: src/locales/en.json and src/locales/it.json
 
 Authoring file format (bilingual):
@@ -21,7 +21,7 @@ from pathlib import Path
 LANGUAGES = ["it", "en"]
 
 ROOT = Path(__file__).resolve().parents[1]
-AUTHORING_DATA = ROOT / "src" / "locales" / "source"
+AUTHORING_DATA = ROOT / "data" / "sources"
 OUT = ROOT / "src" / "locales"
 
 
@@ -73,7 +73,7 @@ def main() -> None:
     if not AUTHORING_DATA.exists():
         raise FileNotFoundError(f"Authoring source folder not found: {AUTHORING_DATA}")
 
-    # Merge all bilingual source files from src/locales/source/**
+    # Merge all bilingual source files from data/sources/**
     for p in sorted(AUTHORING_DATA.rglob("*.json")):
 
         data = read_json(p)

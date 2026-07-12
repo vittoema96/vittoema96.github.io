@@ -1,0 +1,2860 @@
+{
+  "armorArmyHelmet": {
+    "ID": "armorArmyHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 20,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorBeerHat": {
+    "ID": "armorBeerHat",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 15,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorBrotherhoodArmoredBattlecoat": {
+    "ID": "armorBrotherhoodArmoredBattlecoat",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 1,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 10,
+    "COST": 400,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorBrotherhoodBomberJacket": {
+    "ID": "armorBrotherhoodBomberJacket",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 5,
+    "RADIATION_RES": 1,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 2,
+    "COST": 40,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorBrotherhoodScribe": {
+    "ID": "armorBrotherhoodScribe",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 2,
+    "COST": 20,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorBrotherhoodScribeHat": {
+    "ID": "armorBrotherhoodScribeHat",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 8,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorBrotherhoodSteelFatigues": {
+    "ID": "armorBrotherhoodSteelFatigues",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 2,
+    "COST": 20,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorBrotherhoodSteelHood": {
+    "ID": "armorBrotherhoodSteelHood",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 12,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorBrotherhoodSteelUniform": {
+    "ID": "armorBrotherhoodSteelUniform",
+    "TYPE": "apparel",
+    "CATEGORY": "clothing",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 1,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 1,
+    "COST": 20,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorCage": {
+    "ID": "armorCage",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head",
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 16.5,
+    "COST": 110,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorCasualClothing": {
+    "ID": "armorCasualClothing",
+    "TYPE": "apparel",
+    "CATEGORY": "clothing",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 1,
+    "COST": 20,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modBallisticWeave",
+      "modBallisticWeave2",
+      "modBallisticWeave3",
+      "modBallisticWeave4",
+      "modBallisticWeave5"
+    ],
+    "EFFECTS": [
+      "effectSpecialReroll:strength",
+      "effectSpecialReroll:agility"
+    ]
+  },
+  "armorCasualHat": {
+    "ID": "armorCasualHat",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 15,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": [
+      "effectIgnoreLightPenalty"
+    ]
+  },
+  "armorChineseStealth": {
+    "ID": "armorChineseStealth",
+    "TYPE": "apparel",
+    "CATEGORY": "armor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 6,
+    "LOCATIONS_COVERED": [
+      "head",
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 2.5,
+    "COST": 750,
+    "RARITY": 6,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorCleanroom": {
+    "ID": "armorCleanroom",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 6,
+    "LOCATIONS_COVERED": [
+      "head",
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 2.5,
+    "COST": 65,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorCombatArm": {
+    "ID": "armorCombatArm",
+    "TYPE": "apparel",
+    "CATEGORY": "combatArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 1,
+    "COST": 25,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modFiberglass",
+      "modShadowed",
+      "modPolymer",
+      "modReinforced",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorCombatChest": {
+    "ID": "armorCombatChest",
+    "TYPE": "apparel",
+    "CATEGORY": "combatArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 4,
+    "COST": 60,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modFiberglass",
+      "modShadowed",
+      "modPolymer",
+      "modReinforced",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorCombatHeavyArm": {
+    "ID": "armorCombatHeavyArm",
+    "TYPE": "apparel",
+    "CATEGORY": "combatArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 145,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [
+      "modFiberglass",
+      "modShadowed",
+      "modPolymer",
+      "modReinforced",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorCombatHeavyChest": {
+    "ID": "armorCombatHeavyChest",
+    "TYPE": "apparel",
+    "CATEGORY": "combatArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 8,
+    "COST": 220,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [
+      "modFiberglass",
+      "modShadowed",
+      "modPolymer",
+      "modReinforced",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorCombatHeavyHelmet": {
+    "ID": "armorCombatHeavyHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "combatArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 185,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [
+      "modFiberglass",
+      "modShadowed",
+      "modPolymer",
+      "modReinforced"
+    ],
+    "EFFECTS": []
+  },
+  "armorCombatHeavyLeg": {
+    "ID": "armorCombatHeavyLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "combatArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 185,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [
+      "modFiberglass",
+      "modShadowed",
+      "modPolymer",
+      "modReinforced",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorCombatHelmet": {
+    "ID": "armorCombatHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "combatArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 2,
+    "COST": 25,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modFiberglass",
+      "modShadowed",
+      "modPolymer",
+      "modReinforced"
+    ],
+    "EFFECTS": []
+  },
+  "armorCombatLeg": {
+    "ID": "armorCombatLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "combatArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 1,
+    "COST": 25,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modFiberglass",
+      "modShadowed",
+      "modPolymer",
+      "modReinforced",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorCombatSturdyArm": {
+    "ID": "armorCombatSturdyArm",
+    "TYPE": "apparel",
+    "CATEGORY": "combatArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 2.5,
+    "COST": 105,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modFiberglass",
+      "modShadowed",
+      "modPolymer",
+      "modReinforced",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorCombatSturdyChest": {
+    "ID": "armorCombatSturdyChest",
+    "TYPE": "apparel",
+    "CATEGORY": "combatArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 6,
+    "COST": 140,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modFiberglass",
+      "modShadowed",
+      "modPolymer",
+      "modReinforced",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorCombatSturdyHelmet": {
+    "ID": "armorCombatSturdyHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "combatArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 2.5,
+    "COST": 105,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modFiberglass",
+      "modShadowed",
+      "modPolymer",
+      "modReinforced"
+    ],
+    "EFFECTS": []
+  },
+  "armorCombatSturdyLeg": {
+    "ID": "armorCombatSturdyLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "combatArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 2.5,
+    "COST": 105,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modFiberglass",
+      "modShadowed",
+      "modPolymer",
+      "modReinforced",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorDivingSuit": {
+    "ID": "armorDivingSuit",
+    "TYPE": "apparel",
+    "CATEGORY": "armor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 9,
+    "LOCATIONS_COVERED": [
+      "head",
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 4,
+    "COST": 350,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorDrifter": {
+    "ID": "armorDrifter",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 5,
+    "COST": 35,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorEngineer": {
+    "ID": "armorEngineer",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 1,
+    "COST": 15,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorFormalClothing": {
+    "ID": "armorFormalClothing",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 1,
+    "COST": 30,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modBallisticWeave",
+      "modBallisticWeave2",
+      "modBallisticWeave3",
+      "modBallisticWeave4",
+      "modBallisticWeave5"
+    ],
+    "EFFECTS": [
+      "effectSpecialReroll:charisma"
+    ]
+  },
+  "armorFormalHat": {
+    "ID": "armorFormalHat",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 15,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modBallisticWeave",
+      "modBallisticWeave2",
+      "modBallisticWeave3",
+      "modBallisticWeave4",
+      "modBallisticWeave5"
+    ],
+    "EFFECTS": [
+      "effectSpecialReroll:charisma"
+    ]
+  },
+  "armorGasMask": {
+    "ID": "armorGasMask",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 3,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 10,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": [
+      "effectGasMask"
+    ]
+  },
+  "armorHardHat": {
+    "ID": "armorHardHat",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 15,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorHarness": {
+    "ID": "armorHarness",
+    "TYPE": "apparel",
+    "CATEGORY": "clothing",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 5,
+    "RARITY": 0,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorHazmatSuit": {
+    "ID": "armorHazmatSuit",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 1e1000,
+    "LOCATIONS_COVERED": [
+      "head",
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 2.5,
+    "COST": 85,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorHeavyCoat": {
+    "ID": "armorHeavyCoat",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 1,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 1,
+    "COST": 20,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modBallisticWeave",
+      "modBallisticWeave2",
+      "modBallisticWeave3",
+      "modBallisticWeave4",
+      "modBallisticWeave5"
+    ],
+    "EFFECTS": [
+      "effectSpecialReroll:endurance"
+    ]
+  },
+  "armorHides": {
+    "ID": "armorHides",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 2,
+    "COST": 13,
+    "RARITY": 0,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorHoodOrCowl": {
+    "ID": "armorHoodOrCowl",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 1,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 1,
+    "COST": 5,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorHuntersHood": {
+    "ID": "armorHuntersHood",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 1,
+    "COST": 15,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorHuntersPelt": {
+    "ID": "armorHuntersPelt",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso",
+      "arms",
+      "legs"
+    ],
+    "WEIGHT": 7.5,
+    "COST": 50,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLabCoat": {
+    "ID": "armorLabCoat",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 1,
+    "COST": 10,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modBallisticWeave",
+      "modBallisticWeave2",
+      "modBallisticWeave3",
+      "modBallisticWeave4",
+      "modBallisticWeave5"
+    ],
+    "EFFECTS": [
+      "effectSpecialReroll:intelligence"
+    ]
+  },
+  "armorLeatherArm": {
+    "ID": "armorLeatherArm",
+    "TYPE": "apparel",
+    "CATEGORY": "leatherArmor",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 1,
+    "COST": 8,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modBoiledLeather",
+      "modStuddedLeather",
+      "modBandedLeather",
+      "modShadowedLeather",
+      "modTreatedLeather",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorLeatherChest": {
+    "ID": "armorLeatherChest",
+    "TYPE": "apparel",
+    "CATEGORY": "leatherArmor",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 2.5,
+    "COST": 25,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modBoiledLeather",
+      "modStuddedLeather",
+      "modBandedLeather",
+      "modShadowedLeather",
+      "modTreatedLeather",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorLeatherHeavyArm": {
+    "ID": "armorLeatherHeavyArm",
+    "TYPE": "apparel",
+    "CATEGORY": "leatherArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 28,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modBoiledLeather",
+      "modStuddedLeather",
+      "modBandedLeather",
+      "modShadowedLeather",
+      "modTreatedLeather",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorLeatherHeavyChest": {
+    "ID": "armorLeatherHeavyChest",
+    "TYPE": "apparel",
+    "CATEGORY": "leatherArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 7.5,
+    "COST": 75,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modBoiledLeather",
+      "modStuddedLeather",
+      "modBandedLeather",
+      "modShadowedLeather",
+      "modTreatedLeather",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorLeatherHeavyLeg": {
+    "ID": "armorLeatherHeavyLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "leatherArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 30,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modBoiledLeather",
+      "modStuddedLeather",
+      "modBandedLeather",
+      "modShadowedLeather",
+      "modTreatedLeather",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorLeatherLeg": {
+    "ID": "armorLeatherLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "leatherArmor",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 1,
+    "COST": 10,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modBoiledLeather",
+      "modStuddedLeather",
+      "modBandedLeather",
+      "modShadowedLeather",
+      "modTreatedLeather",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorLeatherSturdyArm": {
+    "ID": "armorLeatherSturdyArm",
+    "TYPE": "apparel",
+    "CATEGORY": "leatherArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 2.5,
+    "COST": 18,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modBoiledLeather",
+      "modStuddedLeather",
+      "modBandedLeather",
+      "modShadowedLeather",
+      "modTreatedLeather",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorLeatherSturdyChest": {
+    "ID": "armorLeatherSturdyChest",
+    "TYPE": "apparel",
+    "CATEGORY": "leatherArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 5,
+    "COST": 50,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modBoiledLeather",
+      "modStuddedLeather",
+      "modBandedLeather",
+      "modShadowedLeather",
+      "modTreatedLeather",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorLeatherSturdyLeg": {
+    "ID": "armorLeatherSturdyLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "leatherArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 2.5,
+    "COST": 20,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modBoiledLeather",
+      "modStuddedLeather",
+      "modBandedLeather",
+      "modShadowedLeather",
+      "modTreatedLeather",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorLegatusHelmet": {
+    "ID": "armorLegatusHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 5,
+    "ENERGY_RES": 5,
+    "RADIATION_RES": 3,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 8,
+    "COST": 250,
+    "RARITY": 5,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLegionaryArm": {
+    "ID": "armorLegionaryArm",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 2,
+    "COST": 50,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLegionaryCenturionArm": {
+    "ID": "armorLegionaryCenturionArm",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 6,
+    "COST": 140,
+    "RARITY": 5,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLegionaryCenturionChest": {
+    "ID": "armorLegionaryCenturionChest",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 5,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 8,
+    "COST": 200,
+    "RARITY": 5,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLegionaryCenturionHelmet": {
+    "ID": "armorLegionaryCenturionHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 5,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 5,
+    "COST": 175,
+    "RARITY": 5,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLegionaryCenturionLeg": {
+    "ID": "armorLegionaryCenturionLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 3,
+    "COST": 100,
+    "RARITY": 5,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLegionaryChest": {
+    "ID": "armorLegionaryChest",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 5.5,
+    "COST": 100,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLegionaryHelmet": {
+    "ID": "armorLegionaryHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 2.5,
+    "COST": 75,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLegionaryLeg": {
+    "ID": "armorLegionaryLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 2,
+    "COST": 70,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLegionaryRecruitArm": {
+    "ID": "armorLegionaryRecruitArm",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 1,
+    "COST": 30,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLegionaryRecruitChest": {
+    "ID": "armorLegionaryRecruitChest",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 3,
+    "COST": 75,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLegionaryRecruitHelmet": {
+    "ID": "armorLegionaryRecruitHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 1,
+    "COST": 50,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorLegionaryRecruitLeg": {
+    "ID": "armorLegionaryRecruitLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "legionaryArmor",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 1,
+    "COST": 40,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorMarineArm": {
+    "ID": "armorMarineArm",
+    "TYPE": "apparel",
+    "CATEGORY": "marineArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 5,
+    "COST": 115,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorMarineChest": {
+    "ID": "armorMarineChest",
+    "TYPE": "apparel",
+    "CATEGORY": "marineArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 9.5,
+    "COST": 150,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorMarineHelmet": {
+    "ID": "armorMarineHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "marineArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 5,
+    "COST": 65,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorMarineLeg": {
+    "ID": "armorMarineLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "marineArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 5,
+    "COST": 100,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorMarineTacticalHelmet": {
+    "ID": "armorMarineTacticalHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 1,
+    "COST": 25,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorMarineWetsuit": {
+    "ID": "armorMarineWetsuit",
+    "TYPE": "apparel",
+    "CATEGORY": "clothing",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 1,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 1,
+    "COST": 25,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorMetalArm": {
+    "ID": "armorMetalArm",
+    "TYPE": "apparel",
+    "CATEGORY": "metalArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 15,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modAlloyedMetal",
+      "modPolishedMetal",
+      "modShadowedMetal",
+      "modEnamelledMetal",
+      "modPaintedMetal",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorMetalChest": {
+    "ID": "armorMetalChest",
+    "TYPE": "apparel",
+    "CATEGORY": "metalArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 3,
+    "COST": 40,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modAlloyedMetal",
+      "modPolishedMetal",
+      "modShadowedMetal",
+      "modEnamelledMetal",
+      "modPaintedMetal",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorMetalHeavyArm": {
+    "ID": "armorMetalHeavyArm",
+    "TYPE": "apparel",
+    "CATEGORY": "metalArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 6,
+    "COST": 115,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modAlloyedMetal",
+      "modPolishedMetal",
+      "modShadowedMetal",
+      "modEnamelledMetal",
+      "modPaintedMetal",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorMetalHeavyChest": {
+    "ID": "armorMetalHeavyChest",
+    "TYPE": "apparel",
+    "CATEGORY": "metalArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 11.5,
+    "COST": 190,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modAlloyedMetal",
+      "modPolishedMetal",
+      "modShadowedMetal",
+      "modEnamelledMetal",
+      "modPaintedMetal",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorMetalHeavyHelmet": {
+    "ID": "armorMetalHeavyHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "metalArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 6,
+    "COST": 115,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modAlloyedMetal",
+      "modPolishedMetal",
+      "modShadowedMetal",
+      "modEnamelledMetal",
+      "modPaintedMetal"
+    ],
+    "EFFECTS": []
+  },
+  "armorMetalHeavyLeg": {
+    "ID": "armorMetalHeavyLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "metalArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 6,
+    "COST": 115,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modAlloyedMetal",
+      "modPolishedMetal",
+      "modShadowedMetal",
+      "modEnamelledMetal",
+      "modPaintedMetal",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorMetalHelmet": {
+    "ID": "armorMetalHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "metalArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 15,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modAlloyedMetal",
+      "modPolishedMetal",
+      "modShadowedMetal",
+      "modEnamelledMetal",
+      "modPaintedMetal"
+    ],
+    "EFFECTS": []
+  },
+  "armorMetalLeg": {
+    "ID": "armorMetalLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "metalArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 15,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modAlloyedMetal",
+      "modPolishedMetal",
+      "modShadowedMetal",
+      "modEnamelledMetal",
+      "modPaintedMetal",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorMetalSturdyArm": {
+    "ID": "armorMetalSturdyArm",
+    "TYPE": "apparel",
+    "CATEGORY": "metalArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 4,
+    "COST": 65,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modAlloyedMetal",
+      "modPolishedMetal",
+      "modShadowedMetal",
+      "modEnamelledMetal",
+      "modPaintedMetal",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorMetalSturdyChest": {
+    "ID": "armorMetalSturdyChest",
+    "TYPE": "apparel",
+    "CATEGORY": "metalArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 8,
+    "COST": 115,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modAlloyedMetal",
+      "modPolishedMetal",
+      "modShadowedMetal",
+      "modEnamelledMetal",
+      "modPaintedMetal",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorMetalSturdyHelmet": {
+    "ID": "armorMetalSturdyHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "metalArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 4,
+    "COST": 65,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modAlloyedMetal",
+      "modPolishedMetal",
+      "modShadowedMetal",
+      "modEnamelledMetal",
+      "modPaintedMetal"
+    ],
+    "EFFECTS": []
+  },
+  "armorMetalSturdyLeg": {
+    "ID": "armorMetalSturdyLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "metalArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 4,
+    "COST": 65,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modAlloyedMetal",
+      "modPolishedMetal",
+      "modShadowedMetal",
+      "modEnamelledMetal",
+      "modPaintedMetal",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorMilitaryFatigues": {
+    "ID": "armorMilitaryFatigues",
+    "TYPE": "apparel",
+    "CATEGORY": "clothing",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 12,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modBallisticWeave",
+      "modBallisticWeave2",
+      "modBallisticWeave3",
+      "modBallisticWeave4",
+      "modBallisticWeave5"
+    ],
+    "EFFECTS": [
+      "effectSpecialReroll:strength",
+      "effectSpecialReroll:agility"
+    ]
+  },
+  "armorRaiderArm": {
+    "ID": "armorRaiderArm",
+    "TYPE": "apparel",
+    "CATEGORY": "raiderArmor",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 6,
+    "RARITY": 0,
+    "AVAILABLE_MODS": [
+      "modArmorHardened",
+      "modAnnealed",
+      "modWelded",
+      "modTempered",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorRaiderChest": {
+    "ID": "armorRaiderChest",
+    "TYPE": "apparel",
+    "CATEGORY": "raiderArmor",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 18,
+    "RARITY": 0,
+    "AVAILABLE_MODS": [
+      "modArmorHardened",
+      "modAnnealed",
+      "modWelded",
+      "modTempered",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorRaiderHeavyArm": {
+    "ID": "armorRaiderHeavyArm",
+    "TYPE": "apparel",
+    "CATEGORY": "raiderArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 5,
+    "COST": 15,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modArmorHardened",
+      "modAnnealed",
+      "modWelded",
+      "modTempered",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorRaiderHeavyChest": {
+    "ID": "armorRaiderHeavyChest",
+    "TYPE": "apparel",
+    "CATEGORY": "raiderArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 8.5,
+    "COST": 48,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modArmorHardened",
+      "modAnnealed",
+      "modWelded",
+      "modTempered",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorRaiderHeavyLeg": {
+    "ID": "armorRaiderHeavyLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "raiderArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 5,
+    "COST": 18,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modArmorHardened",
+      "modAnnealed",
+      "modWelded",
+      "modTempered",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorRaiderLeg": {
+    "ID": "armorRaiderLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "raiderArmor",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 8,
+    "RARITY": 0,
+    "AVAILABLE_MODS": [
+      "modArmorHardened",
+      "modAnnealed",
+      "modWelded",
+      "modTempered",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorRaiderSturdyArm": {
+    "ID": "armorRaiderSturdyArm",
+    "TYPE": "apparel",
+    "CATEGORY": "raiderArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 8,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modArmorHardened",
+      "modAnnealed",
+      "modWelded",
+      "modTempered",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorRaiderSturdyChest": {
+    "ID": "armorRaiderSturdyChest",
+    "TYPE": "apparel",
+    "CATEGORY": "raiderArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 6,
+    "COST": 33,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modArmorHardened",
+      "modAnnealed",
+      "modWelded",
+      "modTempered",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorRaiderSturdyLeg": {
+    "ID": "armorRaiderSturdyLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "raiderArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 13,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [
+      "modArmorHardened",
+      "modAnnealed",
+      "modWelded",
+      "modTempered",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorRecon": {
+    "ID": "armorRecon",
+    "TYPE": "apparel",
+    "CATEGORY": "armor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "head",
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 360,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorRoadLeathers": {
+    "ID": "armorRoadLeathers",
+    "TYPE": "apparel",
+    "CATEGORY": "clothing",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 5,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorSackHood": {
+    "ID": "armorSackHood",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 5,
+    "RARITY": 0,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorScoutArm": {
+    "ID": "armorScoutArm",
+    "TYPE": "apparel",
+    "CATEGORY": "scoutArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 60,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorScoutChest": {
+    "ID": "armorScoutChest",
+    "TYPE": "apparel",
+    "CATEGORY": "scoutArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 90,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorScoutLeg": {
+    "ID": "armorScoutLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "scoutArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 60,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorScoutMask": {
+    "ID": "armorScoutMask",
+    "TYPE": "apparel",
+    "CATEGORY": "scoutArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 50,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorSpacesuitCostume": {
+    "ID": "armorSpacesuitCostume",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 4,
+    "COST": 100,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorSpacesuitHelmet": {
+    "ID": "armorSpacesuitHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 2.5,
+    "COST": 85,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorSpike": {
+    "ID": "armorSpike",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head",
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 8.5,
+    "COST": 65,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorSyntheticArm": {
+    "ID": "armorSyntheticArm",
+    "TYPE": "apparel",
+    "CATEGORY": "syntheticArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 30,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [
+      "modLaminated",
+      "modMicrocarbon",
+      "modNanofilament",
+      "modResin",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorSyntheticChest": {
+    "ID": "armorSyntheticChest",
+    "TYPE": "apparel",
+    "CATEGORY": "syntheticArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 75,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modLaminated",
+      "modMicrocarbon",
+      "modNanofilament",
+      "modResin",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorSyntheticHeavyArm": {
+    "ID": "armorSyntheticHeavyArm",
+    "TYPE": "apparel",
+    "CATEGORY": "syntheticArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 5,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 5,
+    "COST": 110,
+    "RARITY": 5,
+    "AVAILABLE_MODS": [
+      "modLaminated",
+      "modMicrocarbon",
+      "modNanofilament",
+      "modResin",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorSyntheticHeavyChest": {
+    "ID": "armorSyntheticHeavyChest",
+    "TYPE": "apparel",
+    "CATEGORY": "syntheticArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 5,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 8.5,
+    "COST": 175,
+    "RARITY": 5,
+    "AVAILABLE_MODS": [
+      "modLaminated",
+      "modMicrocarbon",
+      "modNanofilament",
+      "modResin",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorSyntheticHeavyHelmet": {
+    "ID": "armorSyntheticHeavyHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "syntheticArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 5,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 5,
+    "COST": 110,
+    "RARITY": 5,
+    "AVAILABLE_MODS": [
+      "modLaminated",
+      "modMicrocarbon",
+      "modNanofilament",
+      "modResin"
+    ],
+    "EFFECTS": []
+  },
+  "armorSyntheticHeavyLeg": {
+    "ID": "armorSyntheticHeavyLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "syntheticArmor",
+    "PHYSICAL_RES": 4,
+    "ENERGY_RES": 5,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 5,
+    "COST": 130,
+    "RARITY": 5,
+    "AVAILABLE_MODS": [
+      "modLaminated",
+      "modMicrocarbon",
+      "modNanofilament",
+      "modResin",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorSyntheticHelmet": {
+    "ID": "armorSyntheticHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "syntheticArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 33,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modLaminated",
+      "modMicrocarbon",
+      "modNanofilament",
+      "modResin"
+    ],
+    "EFFECTS": []
+  },
+  "armorSyntheticLeg": {
+    "ID": "armorSyntheticLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "syntheticArmor",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 3,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 30,
+    "RARITY": 3,
+    "AVAILABLE_MODS": [
+      "modLaminated",
+      "modMicrocarbon",
+      "modNanofilament",
+      "modResin",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorSyntheticSturdyArm": {
+    "ID": "armorSyntheticSturdyArm",
+    "TYPE": "apparel",
+    "CATEGORY": "syntheticArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arm"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 70,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [
+      "modLaminated",
+      "modMicrocarbon",
+      "modNanofilament",
+      "modResin",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modStreamlined",
+      "modBalanced",
+      "modCrafted",
+      "modBrawling",
+      "modStabilized"
+    ],
+    "EFFECTS": []
+  },
+  "armorSyntheticSturdyChest": {
+    "ID": "armorSyntheticSturdyChest",
+    "TYPE": "apparel",
+    "CATEGORY": "syntheticArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "torso"
+    ],
+    "WEIGHT": 6,
+    "COST": 125,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [
+      "modLaminated",
+      "modMicrocarbon",
+      "modNanofilament",
+      "modResin",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modDensity",
+      "modBioCommMesh",
+      "modCushioned",
+      "modPneumatic",
+      "modAsbestosLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorSyntheticSturdyHelmet": {
+    "ID": "armorSyntheticSturdyHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "syntheticArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 70,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [
+      "modLaminated",
+      "modMicrocarbon",
+      "modNanofilament",
+      "modResin"
+    ],
+    "EFFECTS": []
+  },
+  "armorSyntheticSturdyLeg": {
+    "ID": "armorSyntheticSturdyLeg",
+    "TYPE": "apparel",
+    "CATEGORY": "syntheticArmor",
+    "PHYSICAL_RES": 3,
+    "ENERGY_RES": 4,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "leg"
+    ],
+    "WEIGHT": 3.5,
+    "COST": 80,
+    "RARITY": 4,
+    "AVAILABLE_MODS": [
+      "modLaminated",
+      "modMicrocarbon",
+      "modNanofilament",
+      "modResin",
+      "modLightweight",
+      "modPocketed",
+      "modDeepPocketed",
+      "modLeaded",
+      "modUltralight",
+      "modShockAbsorbing",
+      "modMuffled"
+    ],
+    "EFFECTS": []
+  },
+  "armorToughClothing": {
+    "ID": "armorToughClothing",
+    "TYPE": "apparel",
+    "CATEGORY": "clothing",
+    "PHYSICAL_RES": 1,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 1.5,
+    "COST": 20,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorUnderarmor": {
+    "ID": "armorUnderarmor",
+    "TYPE": "apparel",
+    "CATEGORY": "clothing",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 30,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorUtilityCoveralls": {
+    "ID": "armorUtilityCoveralls",
+    "TYPE": "apparel",
+    "CATEGORY": "outfit",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 1,
+    "COST": 12,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": [
+      "effectCarryWeight:5"
+    ]
+  },
+  "armorVaultJumpsuit": {
+    "ID": "armorVaultJumpsuit",
+    "TYPE": "apparel",
+    "CATEGORY": "clothing",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 1,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 0.5,
+    "COST": 20,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [
+      "modInsulatedLining",
+      "modTreatedLining",
+      "modResistantLining",
+      "modProtectiveLining",
+      "modShieldedLining"
+    ],
+    "EFFECTS": []
+  },
+  "armorVaultTecSecurityArmor": {
+    "ID": "armorVaultTecSecurityArmor",
+    "TYPE": "apparel",
+    "CATEGORY": "vaultTecSecurity",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 2,
+    "LOCATIONS_COVERED": [
+      "arms",
+      "legs",
+      "torso"
+    ],
+    "WEIGHT": 4,
+    "COST": 16,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorVaultTecSecurityHelmet": {
+    "ID": "armorVaultTecSecurityHelmet",
+    "TYPE": "apparel",
+    "CATEGORY": "vaultTecSecurity",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 1,
+    "COST": 20,
+    "RARITY": 1,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "armorWeldersVisor": {
+    "ID": "armorWeldersVisor",
+    "TYPE": "apparel",
+    "CATEGORY": "headgear",
+    "PHYSICAL_RES": 2,
+    "ENERGY_RES": 2,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "head"
+    ],
+    "WEIGHT": 2,
+    "COST": 20,
+    "RARITY": 2,
+    "AVAILABLE_MODS": [],
+    "EFFECTS": []
+  },
+  "robotPartArms": {
+    "ID": "robotPartArms",
+    "TYPE": "apparel",
+    "CATEGORY": "robotPart",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "robotPartArms"
+    ],
+    "EFFECTS": [],
+    "QUALITIES": [],
+    "WEIGHT": "-",
+    "COST": "-",
+    "RARITY": "-",
+    "AVAILABLE_MODS": [
+      "modRobotPlatingStandard",
+      "modRobotPlatingMisterGutsy",
+      "modRobotFactoryArmorArms",
+      "modRobotBasePlatingArms",
+      "modRobotKnurledPlatingArms",
+      "modRobotPoisonousPlatingArms",
+      "modRobotToxicPlatingArms",
+      "modRobotActivationFrameArms",
+      "modRobotVoltaicFrameArms",
+      "modRobotHydraulicFrameArms"
+    ]
+  },
+  "robotPartBody": {
+    "ID": "robotPartBody",
+    "TYPE": "apparel",
+    "CATEGORY": "robotPart",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "robotPartBody"
+    ],
+    "EFFECTS": [],
+    "QUALITIES": [],
+    "WEIGHT": "-",
+    "COST": "-",
+    "RARITY": "-",
+    "AVAILABLE_MODS": [
+      "modRobotPlatingStandard",
+      "modRobotPlatingMisterGutsy",
+      "modRobotFactoryArmorBody",
+      "modRobotFactoryStorageBody",
+      "modRobotBasePlatingBody",
+      "modRobotKnurledPlatingBody",
+      "modRobotPoisonousPlatingBody",
+      "modRobotToxicPlatingBody",
+      "modRobotActivationFrameBody",
+      "modRobotVoltaicFrameBody",
+      "modRobotHydraulicFrameBody"
+    ]
+  },
+  "robotPartSensors": {
+    "ID": "robotPartSensors",
+    "TYPE": "apparel",
+    "CATEGORY": "robotPart",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "robotPartSensors"
+    ],
+    "EFFECTS": [],
+    "QUALITIES": [],
+    "WEIGHT": "-",
+    "COST": "-",
+    "RARITY": "-",
+    "AVAILABLE_MODS": [
+      "modRobotPlatingStandard",
+      "modRobotPlatingMisterGutsy",
+      "modRobotFactoryArmorOptics",
+      "modRobotBasePlatingOptics",
+      "modRobotKnurledPlatingOptics",
+      "modRobotPoisonousPlatingOptics",
+      "modRobotToxicPlatingOptics",
+      "modRobotActivationFrameOptics",
+      "modRobotVoltaicFrameOptics",
+      "modRobotHydraulicFrameOptics"
+    ]
+  },
+  "robotPartThrusters": {
+    "ID": "robotPartThrusters",
+    "TYPE": "apparel",
+    "CATEGORY": "robotPart",
+    "PHYSICAL_RES": 0,
+    "ENERGY_RES": 0,
+    "RADIATION_RES": 0,
+    "LOCATIONS_COVERED": [
+      "robotPartThrusters"
+    ],
+    "EFFECTS": [],
+    "QUALITIES": [],
+    "WEIGHT": "-",
+    "COST": "-",
+    "RARITY": "-",
+    "AVAILABLE_MODS": [
+      "modRobotPlatingStandard",
+      "modRobotPlatingMisterGutsy",
+      "modRobotFactoryArmorThrusters",
+      "modRobotBasePlatingThrusters",
+      "modRobotKnurledPlatingThrusters",
+      "modRobotPoisonousPlatingThrusters",
+      "modRobotToxicPlatingThrusters",
+      "modRobotActivationFrameThrusters",
+      "modRobotVoltaicFrameThrusters",
+      "modRobotHydraulicFrameThrusters"
+    ]
+  }
+}

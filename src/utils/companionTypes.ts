@@ -1,5 +1,6 @@
 import { CompanionData, CompanionId } from '@/types';
-import { CompanionSkillType, CompanionSpecialType } from '@/services/character/utils.ts';
+import { CompanionSpecialType } from '@/features/character/special/special.ts';
+import { CompanionSkillType } from '@/features/character/skills/skills.ts';
 
 /**
  * Companion type definition with base stats and configuration

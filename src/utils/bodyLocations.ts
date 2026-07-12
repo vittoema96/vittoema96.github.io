@@ -1,5 +1,5 @@
 import type { CharacterItem, GenericBodyPart } from '@/types';
-import { getGameDatabase } from '@/hooks/getGameDatabase';
+import { getGameDatabase, isType } from '@/hooks/getGameDatabase';
 import { ApparelCategory } from '@/types/item.ts';
 
 /**
@@ -42,7 +42,7 @@ export function hasApparelConflict(item1: CharacterItem, item2: CharacterItem) {
     const dataManager = getGameDatabase()
     const itemData1 = dataManager.getItem(item1.id)
     const itemData2 = dataManager.getItem(item2.id)
-    if(!dataManager.isType(itemData1, 'apparel') || !dataManager.isType(itemData2, 'apparel')) {
+    if(!isType(itemData1, 'apparel') || !isType(itemData2, 'apparel')) {
         return false
     }
 
