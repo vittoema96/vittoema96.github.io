@@ -2,6 +2,7 @@ import { RawCharacter } from '@/types';
 import { useMemo } from 'react';
 import { perks } from '@/data'
 import { SPECIAL, SpecialType } from '@/features/character/special/special.ts';
+import { featCount, hasFeat } from '@/features/character/feats/utils.ts';
 
 export type PerkId = keyof typeof perks
 
@@ -33,4 +34,12 @@ export function usePerks(raw: RawCharacter){
         () => filterPerks(raw.perks, raw.level, raw.special),
         [raw.perks, raw.special, raw.level]
     )
+}
+
+export function hasPerk(perks: PerkId[], perk: PerkId){
+    return hasFeat(perks, perk)
+}
+
+export function perkRank(perks: PerkId[], perk: PerkId){
+    return featCount(perks, perk)
 }

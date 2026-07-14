@@ -2,6 +2,7 @@ import { RawCharacter } from '@/types';
 import { Origin, OriginId } from '@/features/character/origin.ts';
 import { useMemo } from 'react';
 import { traits } from '@/data';
+import { hasFeat } from '@/features/character/feats/utils.ts';
 
 // Trait data from CSV
 export interface TraitData {
@@ -43,4 +44,9 @@ export function useTraits(raw: RawCharacter, origin: Origin){
             return [...new Set([...fixedTraits, ...userTraits])];
         },
         [raw.traits, origin.id])
+}
+
+
+export function hasTrait(traits: TraitId[], trait: TraitId){
+    return hasFeat(traits, trait);
 }

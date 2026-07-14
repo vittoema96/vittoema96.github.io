@@ -1,8 +1,9 @@
 // SKILLS
 import { CompanionSpecialType, SpecialType } from '@/features/character/special/special.ts';
-import { RawCharacter } from '@/types';
+import { Character, RawCharacter } from '@/types';
 import { useMemo } from 'react';
 import { Origin } from '@/features/character/origin.ts';
+import { perkRank } from '@/features/character/feats/perks/perks.ts';
 
 export const SKILLS = [
     'athletics',
@@ -83,4 +84,20 @@ export function useSkills(raw: RawCharacter, specialties: SkillType[], origin: O
         }, {} as Record<SkillType, number>),
         [origin.skillMaxValue, raw.skills, specialties]
     )
+}
+
+export function useSkillPoints(character: Character) {
+    return useMemo(() => {
+        const skillSum =
+            Object.values(character.skills).reduce((total, value) => total + value, 0) -
+            character.specialties.length * 2;
+        const skilledBonus = perkRank(character.perks, 'perkSkilled') * 2;
+        return 9 + character.special.intelligence + (character.level - 1) + skilledBonus - skillSum;
+    }, [
+        character.skills,
+        character.specialties.length,
+        character.perks,
+        character.special.intelligence,
+        character.level,
+    ]);
 }

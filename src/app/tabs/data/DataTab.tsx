@@ -28,10 +28,6 @@ export default function DataTab() {
             backgroundDialogRef.current.close();
         }
     }, [isBackgroundOpen]);
-    // Update levelInput when character.level changes (e.g., when loading a character)
-    useEffect(() => {
-        setLevelInput(character.level);
-    }, [character.level]);
 
     const handleLevelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -149,6 +145,7 @@ export default function DataTab() {
                             style={{ flex: 1, fontSize: "1rem" }}
                             placeholder={t('backgroundPlaceholder')}
                             value={background || ''}
+                            onFocus={() => setIsBackgroundOpen(true)}
                             onClick={() => setIsBackgroundOpen(true)}
                             onChange={e => setBackground(e.target.value)}
                         />
@@ -156,9 +153,9 @@ export default function DataTab() {
                             <button
                                     className="confirmButton"
                                     onClick={() => closeWithAnimation(() => updateCharacter({ background }))}
-                                    disabled={ character.background === background }
+                                    disabled={ (character.background || '') === (background || '')}
                                 >
-                                Save
+                                {t("save")}
                             </button>
                             <button
                                 className="closeButton"
