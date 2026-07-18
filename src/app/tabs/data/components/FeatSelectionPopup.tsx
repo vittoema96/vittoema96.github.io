@@ -5,7 +5,7 @@ import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import './FeatSelectionPopup.css';
 import { SPECIAL, SpecialType } from '@/features/character/special/special.ts';
 import { perks, traits } from '@/data';
-import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
+import { hasPerk, PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
 import { hasTrait, TraitId } from '@/features/character/feats/traits/traits.ts';
 
 type SortMode = 'none' | 'level' | SpecialType | 'total';
@@ -110,6 +110,14 @@ export function PerkSelectionPopup({
     // Check if character meets requirements for a perk
     const meetsRequirements = useCallback((id: PerkId) => {
 
+        const PERK_EXCLUSIONS: Partial<Record<PerkId, PerkId>> = {
+            perkCautiousNature: 'perkDaringNature',
+            perkDaringNature: 'perkCautiousNature',
+        };
+        const conflictingPerk = PERK_EXCLUSIONS[id];
+        if (conflictingPerk && conflictingPerk !== prev && hasPerk(character, conflictingPerk)) {
+            return false;
+        }
         const reqs = getRequirements(id);
 
         // Check level

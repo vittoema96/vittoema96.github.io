@@ -238,13 +238,14 @@ function D20Popup({
             if (isAiming) { discount += 1; }
             if (hasTriggerDiscipline) { discount += 1; }
             if (hasCenterOfMassDiscount) { discount += 1; }
+            if (hasPerk(character, 'perkCautiousNature') && diceValues.filter(v => v !== '?').length > 2) { discount += 1; }
             discount -= Math.min(discount, rerolledCount);
             cost -= discount;
 
             return Math.max(0, cost);
         }
         return isUsingLuck ? 1 : 0;
-    }, [diceActive, diceRerolled, isAiming, isUsingLuck, hasRolled, roller, isMysteriousStranger, hasTriggerDiscipline, hasCenterOfMassDiscount]);
+    }, [roller, hasRolled, isUsingLuck, isMysteriousStranger, diceActive, diceRerolled, isAiming, hasTriggerDiscipline, hasCenterOfMassDiscount, character, diceValues]);
 
     // Success calculation
     const getSuccesses = () => {
