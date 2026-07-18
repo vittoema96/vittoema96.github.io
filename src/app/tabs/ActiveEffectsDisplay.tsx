@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import Tag from '@/app/components/Tag.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
 import { useMemo } from 'react';
 import { CharacterItem } from '@/types';
+import { allItems } from '@/data';
+import { isType } from '@/utils/itemUtils.ts';
 
 /**
  * Component to display active effects from equipped armor
@@ -13,7 +14,6 @@ import { CharacterItem } from '@/types';
 export default function ActiveEffectsDisplay() {
     const { t } = useTranslation()
     const { character } = useCharacter()
-    const dataManager = getGameDatabase()
 
     // Whitelist of global countedEffects to show in Active Effects
     // TODO find a better way to distinguish countedEffects that are directly applied and countedEffects that need to be shown to player
@@ -31,7 +31,7 @@ export default function ActiveEffectsDisplay() {
 
     const getItemEffects = (item: CharacterItem) => {
         return item.mods.flatMap(mod => {
-            const modData = dataManager.getItem(mod)
+            const modData = allItems[mod]
             if(!isType(modData, "mod")) {return []}
             return modData.EFFECTS.flatMap(effect => {
                 const [effectType, ...valueParts] = effect.split(':');

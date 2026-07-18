@@ -4,7 +4,7 @@ import { UISettingsManager, Theme, THEMES, DISPLAY_EFFECTS, type DisplayEffect, 
 import { usePopup } from '@/app/contexts/PopupContext.tsx'
 import { useCharacter } from '@/app/contexts/CharacterContext'
 import { changeLanguage } from '@/i18n'
-import { SaveSlotManager, CharacterSlotInfo } from '@/services/character/SaveSlotManager.ts'
+import { SaveSlotManager, CharacterSlotInfo } from '@/services/SaveSlotManager.ts'
 
 const useDisplayEffectsState = () => {
     const [ displayEffects, setDisplayEffects ] = useState<DisplayEffect>(() => UISettingsManager.getCurrentDisplayEffect())

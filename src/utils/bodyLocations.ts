@@ -1,6 +1,7 @@
 import type { CharacterItem, GenericBodyPart } from '@/types';
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase';
 import { ApparelCategory } from '@/types/item.ts';
+import { allItems } from '@/data';
+import { isType } from '@/utils/itemUtils.ts';
 
 /**
  * Body location utilities
@@ -39,9 +40,8 @@ export const mapItemLocations = (locationsCovered: (GenericBodyPart | 'arm' | 'a
  */
 
 export function hasApparelConflict(item1: CharacterItem, item2: CharacterItem) {
-    const dataManager = getGameDatabase()
-    const itemData1 = dataManager.getItem(item1.id)
-    const itemData2 = dataManager.getItem(item2.id)
+    const itemData1 = allItems[item1.id]
+    const itemData2 = allItems[item2.id]
     if(!isType(itemData1, 'apparel') || !isType(itemData2, 'apparel')) {
         return false
     }

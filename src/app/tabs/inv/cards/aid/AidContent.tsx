@@ -1,6 +1,7 @@
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem } from '@/types';
 import { useTranslation } from 'react-i18next';
+import { allItems } from '@/data';
+import { isType } from '@/utils/itemUtils.ts';
 
 /**
  * Aid-specific content renderer
@@ -12,8 +13,7 @@ interface AidContentProps {
 function AidContent({ characterItem }: Readonly<AidContentProps>) {
 
     const { t } = useTranslation();
-    const dataManager = getGameDatabase()
-    const itemData = dataManager.getItem(characterItem.id)
+    const itemData = allItems[characterItem.id]
     if(!isType(itemData, "aid"))
     { return null }
 

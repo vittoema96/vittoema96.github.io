@@ -1,5 +1,3 @@
-import type { GameDatabaseType } from '@/services/data/GameDatabase.ts';
-
 import weaponJson from './item/weapon.json';
 import apparelJson from './item/apparel.json';
 import aidJson from './item/aid.json';
@@ -10,6 +8,7 @@ import perksJson from './perks.json';
 import companionPerksJson from './companionPerks.json';
 import traitsJson from './traits.json';
 import legendaryEffectsJson from './legendaryEffects.json';
+import { GameDatabaseType } from '@/data/types.ts';
 
 export const weapon = weaponJson as GameDatabaseType['weapon'];
 export const apparel = apparelJson as GameDatabaseType['apparel'];
@@ -21,6 +20,8 @@ export const perks = perksJson as GameDatabaseType['perks'];
 export const companionPerks = companionPerksJson as GameDatabaseType['companionPerks'];
 export const traits = traitsJson as GameDatabaseType['traits'];
 export const legendaryEffects = legendaryEffectsJson as GameDatabaseType['legendaryEffects'];
+
+export const allItems = { ...weapon, ...apparel, ...aid, ...ammo, ...other, ...mod };
 
 export const compiledData: GameDatabaseType = {
     weapon,
@@ -34,5 +35,3 @@ export const compiledData: GameDatabaseType = {
     traits,
     legendaryEffects,
 };
-
-export default compiledData;

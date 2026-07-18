@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next'
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import { CharacterItem, CustomItem } from '@/types';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
-import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
@@ -10,6 +9,7 @@ import Skill from '@/app/tabs/stat/components/Skill.tsx';
 import { addItem } from '@/utils/itemUtils.ts';
 import { ChangeEventHandler, useMemo, useState } from 'react';
 import { getModifiedItemData } from '@/features/item/utils.ts';
+import { allItems } from '@/data';
 
 type TradeMode = 'sell' | 'buy'
 
@@ -32,12 +32,11 @@ function TradeItemPopup({
     const { showAlert } = usePopup()
     const { removeItem } = useInventoryActions()
     const { character, updateCharacter } = useCharacter()
-    const dataManager = getGameDatabase()
     const isBuying = tradeMode === 'buy'
 
     let itemData
     if("id" in characterItem) {
-        itemData = getModifiedItemData(characterItem, character.perks) ?? dataManager.getItem(characterItem.id)!
+        itemData = getModifiedItemData(characterItem, character.perks) ?? allItems[characterItem.id]!
     } else {
         itemData = characterItem
     }

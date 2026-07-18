@@ -1,35 +1,35 @@
 import {useMemo} from 'react'
 import {useCharacter} from '@/app/contexts/CharacterContext.tsx'
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem } from '@/types';
 import { ORIGINS } from '@/features/character/origin.ts';
 import { ItemType } from '@/types/item.ts';
 import { perkRank } from '@/features/character/feats/perks/perks.ts';
+import { allItems } from '@/data';
+import { isType } from '@/utils/itemUtils.ts';
 
 /**
  * Custom hook for filtering and organizing inventory items
  */
 export const useInventoryFilter = (itemType: ItemType) => {
     const { character } = useCharacter()
-    const dataManager = getGameDatabase()
     const ironFistTier = perkRank(character, 'perkIronFist')
 
     return useMemo(() => {
-        if (!character.items || !dataManager.getItemTypeMap) {return []}
+        if (!character.items) {return []}
 
         let items = character.items.filter(item => {
             // Filter by item type
-            const itemData = dataManager.getItem(item.id)
+            const itemData = allItems[item.id]
             if (itemData?.TYPE !== itemType) {return false}
 
             // TODO should we "hide" robot parts? aren't they dynamic?
             return itemData?.CATEGORY !== 'robotPart' || character.origin === ORIGINS.MR_HANDY;
         })
 
-        items = addSpecialWeaponItems(items, character.origin.isRobot, ironFistTier, dataManager)
+        items = addSpecialWeaponItems(items, character.origin.isRobot, ironFistTier)
 
         return items
-    }, [character.items, character.origin, ironFistTier, itemType, dataManager])
+    }, [character.items, character.origin, ironFistTier, itemType])
 }
 
 /**
@@ -38,8 +38,7 @@ export const useInventoryFilter = (itemType: ItemType) => {
 const addSpecialWeaponItems = (
     items: CharacterItem[],
     isRobot: boolean,
-    ironFistTier: number,
-    dataManager: ReturnType<typeof getGameDatabase>,
+    ironFistTier: number
 ) => {
     const resultItems: CharacterItem[] = [...items]
 
@@ -65,7 +64,7 @@ const addSpecialWeaponItems = (
      */
     const gunBashCondition = (twoHandedCondition: boolean) => {
         return (item: CharacterItem) => {
-            const itemData = dataManager.getItem(item.id)
+            const itemData = allItems[item.id]
             if(!itemData) {
                 return false
             }

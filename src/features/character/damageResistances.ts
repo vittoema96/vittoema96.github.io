@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 import { DamageResistanceMap, GenericBodyPart, RawCharacter } from '@/types';
 import { getModifiedItemData } from '@/features/item/utils.ts';
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
 import { mapItemLocations } from '@/utils/bodyLocations.ts';
 import { Origin } from '@/features/character/origin.ts';
 import { hasPerk } from '@/features/character/feats/perks/perks.ts';
+import { allItems } from '@/data';
+import { isType } from '@/utils/itemUtils.ts';
 
 export function useDamageResistances(raw: RawCharacter, origin: Origin){
     return useMemo(() => {
-        const dataManager = getGameDatabase();
 
         // Init bodyParts with values = 0
         const locationsDR = Object.fromEntries(
@@ -63,7 +63,7 @@ export function useDamageResistances(raw: RawCharacter, origin: Origin){
                 if (!item.equipped) {
                     return false;
                 }
-                const data = dataManager.getItem(item.id);
+                const data = allItems[item.id];
                 return isType(data, 'apparel') && data.CATEGORY === 'powerArmor'; // TODO fix it when powerArmor is implemented
             });
             if (!isWearingPowerArmor) {

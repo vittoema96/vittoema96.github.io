@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { getModifiedItemData } from '@/features/item/utils.ts';
-import { isType } from '@/hooks/getGameDatabase.ts';
 import { RawCharacter } from '@/types';
 import { Origin } from '@/features/character/origin.ts';
 
 import { PerkId } from '@/features/character/feats/perks/perks.ts';
 import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import { isType } from '@/utils/itemUtils.ts';
 
 
 export function useMaxWeight(raw: RawCharacter, origin: Origin, perks: PerkId[], traits: TraitId[]) {

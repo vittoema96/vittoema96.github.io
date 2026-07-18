@@ -1,18 +1,17 @@
 import { useTranslation } from 'react-i18next'
 import { CharacterItem, CustomItem } from '@/types';
-import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
+import { allItems, weapon } from '@/data';
 
 
 function OtherContent({ characterItem }: Readonly<{
     characterItem: CharacterItem | CustomItem;
 }>) {
     const { t } = useTranslation()
-    const dataManager = getGameDatabase()
 
     let itemData
     let description
     if("id" in characterItem) {
-        itemData = dataManager.getItem(characterItem.id)
+        itemData = allItems[characterItem.id]
         description = t(characterItem.id+"Description")
     } else {
         itemData = characterItem
@@ -20,7 +19,7 @@ function OtherContent({ characterItem }: Readonly<{
     }
 
     if (itemData?.TYPE === "ammo") {
-        const weapons = Object.values(dataManager.weapon).filter(w => w.AMMO_TYPE === itemData.ID)
+        const weapons = Object.values(weapon).filter(w => w.AMMO_TYPE === itemData.ID)
         description = t("ammoUsedBy") + ":\n" + weapons.map(w => t(w.ID)).join(', ')
     }
 

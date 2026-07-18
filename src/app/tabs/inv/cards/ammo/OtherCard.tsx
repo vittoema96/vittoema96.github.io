@@ -1,7 +1,8 @@
 import BaseCard from '../BaseCard.tsx'
 import OtherContent from '@/app/tabs/inv/cards/ammo/OtherContent.tsx'
 import { CharacterItem, CustomItem } from '@/types';
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
+import { allItems } from '@/data';
+import { isType } from '@/utils/itemUtils.ts';
 
 /**
  * Other/Ammo card component
@@ -13,9 +14,8 @@ interface OtherCardProps {
 
 function OtherCard({ characterItem }: Readonly<OtherCardProps>) {
 
-    const dataManager = getGameDatabase()
     if("id" in characterItem){
-        const itemData = dataManager.getItem(characterItem.id)
+        const itemData = allItems[characterItem.id]
         if (!isType(itemData, 'ammo') && !isType(itemData, 'other')) {
             console.error(`Ammo/Other item data not found for ID: ${characterItem.id}`);
             return null;

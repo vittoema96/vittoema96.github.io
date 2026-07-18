@@ -4,15 +4,17 @@ import { useCharacter } from '@/app/contexts/CharacterContext'
 import { usePopup } from '@/app/contexts/PopupContext.tsx'
 import GenericGear from './components/GenericGear'
 import { CharacterItem, CompanionId } from '@/types'
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase';
 import { COMPANION_TYPES } from '@/utils/companionTypes'
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { FitText } from '@/app/components/FitText.tsx';
 import { COMPANION_SKILLS, CompanionSkillType } from '@/features/character/skills/skills.ts';
+import { allItems, companionPerks } from '@/data';
+import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import { isType } from '@/utils/itemUtils.ts';
 
 // Companion-specific perks are loaded from companionPerks.csv via GameDatabase
 
-const COMPANION_MAP: Record<string, CompanionId[]> = {
+const COMPANION_MAP: Partial<Record<PerkId, CompanionId[]>> = {
     "perkDogmeat": ["dog"],
     "perkRobotWrangler": ["eyebot"] // TODO add more
 }
@@ -26,7 +28,6 @@ function CompanionTab() {
     const { character, updateCharacter } = useCharacter()
     const companion = character.companion! // TODO better check for companion existence
     const { showD20Popup } = usePopup()
-    const dataManager = getGameDatabase()
     const [isEditing, setIsEditing] = useState(false)
 
     // Local state for HP input (to allow empty string for deletion)
@@ -67,7 +68,7 @@ function CompanionTab() {
     }
 
     const getAvailablePerksForSlot = (currentSlotIndex: number): string[] => {
-        const allCompanionPerks = Object.keys(dataManager.companionPerks)
+        const allCompanionPerks = Object.keys(companionPerks)
         return allCompanionPerks.filter(perk => {
             if (companion.perks[currentSlotIndex] === perk) {
                 return true
@@ -300,7 +301,7 @@ function CompanionTab() {
                 <h4 style={{ marginBottom: '0.3rem'}}>{t('attacks')}</h4>
                 <section>
                     {companion.items.map((attack) => {
-                        const weaponData = dataManager.getItem(attack.id);
+                        const weaponData = allItems[attack.id];
                         const displayName =
                             attack.customName || (weaponData ? t(weaponData.ID) : 'Unknown');
 

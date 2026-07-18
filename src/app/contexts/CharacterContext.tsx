@@ -24,13 +24,14 @@ import {
     MrHandyPart,
     RawCharacter,
 } from '@/types';
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase';
-import { SaveSlotManager } from "@/services/character/SaveSlotManager.ts";
+import { SaveSlotManager } from "@/services/SaveSlotManager.ts";
 import useCalculatedCharacter from "@/hooks/useCalculatedCharacter";
 import { getOriginById, ORIGINS } from '@/features/character/origin.ts';
 import { RawCharacterSchema } from '@/schemas/characterSchemas.ts';
 import { z } from 'zod';
 import { adjustCurrentHp } from '@/features/character/hp.ts';
+import { allItems } from '@/data';
+import { isType } from '@/utils/itemUtils.ts';
 
 /**
  * Pre-built "Mysterious Stranger" companion character.
@@ -113,8 +114,6 @@ function CharacterRootProvider({ children }: Readonly<{
     children: ReactNode
 }>) {
 
-    const dataManager = getGameDatabase()
-
     useEffect(() => {
         SaveSlotManager.migrateLegacyData()
     }, [])
@@ -196,7 +195,7 @@ function CharacterRootProvider({ children }: Readonly<{
                     filterCategories = ['superMutantArmor'] // TODO add this category
                 }
                 updatedCharacter.items = updatedCharacter.items.map(item => {
-                    const itemData = dataManager.getItem(item.id)
+                    const itemData = allItems[item.id]
                     if (isType(itemData, 'apparel')
                         && item.equipped
                         && filterCategories.includes(itemData.CATEGORY) === include) {

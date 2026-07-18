@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next'
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx'
 import {CharacterItem, GenericBodyPart} from "@/types";
 import {mapItemLocations} from "@/utils/bodyLocations.ts";
 
 
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
+import { allItems } from '@/data';
+import { isType } from '@/utils/itemUtils.ts';
 
 /**
  * Component to display equipped apparel items
@@ -13,7 +14,6 @@ import { ApparelItem } from '@/data/item/apparel.schemas.ts';
  */
 function EquippedApparel() {
     const { t } = useTranslation()
-    const dataManager = getGameDatabase()
     const { character } = useCharacter()
     const equippedItems = character.items.filter(item => item.equipped)
 
@@ -25,7 +25,7 @@ function EquippedApparel() {
     })
 
     equippedItems.forEach(item => {
-        const itemData = dataManager.getItem(item.id)
+        const itemData = allItems[item.id]
         if(!isType(itemData, "apparel")){ return }
 
         const locations = mapItemLocations(itemData.LOCATIONS_COVERED, item.variation)

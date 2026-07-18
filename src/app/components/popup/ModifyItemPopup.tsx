@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/app/contexts/CharacterContext'
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase';
 import { useTooltip } from '@/app/contexts/TooltipContext'
 import { CharacterItem, ModItem, MrHandyPart } from '@/types';
-import { addItem, removeItem } from '@/utils/itemUtils.ts';
+import { addItem, isType, isUnacquirable, removeItem } from '@/utils/itemUtils.ts';
 import BasePopup from './common/BasePopup';
 import ModTooltipContent from './ModTooltipContent';
 import Skill from '@/app/tabs/stat/components/Skill.tsx';
 import { isCharacterSkill, SkillType } from '@/features/character/skills/skills.ts';
 import { getModifiedItemData } from '@/features/item/utils.ts';
+import { allItems, legendaryEffects } from '@/data';
 
 /**
  * Popup for modifying weapons and armor with mods
@@ -39,7 +39,6 @@ interface SlotData {
 function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupProps>) {
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
-    const dataManager = getGameDatabase()
     const itemData = getModifiedItemData(characterItem, character.perks)
 
     const { showTooltip } = useTooltip()
@@ -50,7 +49,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
         if(!itemData) { return result }
 
         itemData.AVAILABLE_MODS.forEach((modId) => {
-            const modData = dataManager.getItem(modId)
+            const modData = allItems[modId]
             if (isType(modData, "mod")) {
                 const slot = result[modData.SLOT_TYPE] ??= {
                     availableMods: [],
@@ -74,9 +73,9 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
             }
         })
 
-        Object.values(dataManager.legendaryEffects).filter(
+        Object.values(legendaryEffects).filter(
             effect => (
-                !dataManager.isUnacquirable(itemData)
+                !isUnacquirable(itemData)
                 && effect.FOR_CATEGORY.includes(itemData.CATEGORY)
                 && effect.FOR_TYPE.includes(itemData.TYPE)
             )
@@ -387,8 +386,8 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                             className="mod-slot-select"
                             value={data.selectedMod?.id ?? ''}
                             onChange={(e) => {
-                                const newMod = dataManager.getItem(e.target.value)
-                                    ?? dataManager.legendaryEffects[e.target.value]
+                                const newMod = allItems[e.target.value]
+                                    ?? legendaryEffects[e.target.value]
                                     ?? undefined
                                 let resolved: SlotOption | undefined = undefined
                                 if(newMod){

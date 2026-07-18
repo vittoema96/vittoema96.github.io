@@ -40,41 +40,6 @@ def cleanup_legacy_item_json_files() -> None:
             legacy_path.unlink()
 
 
-def write_index_file() -> None:
-    lines = [
-        "import type { GameDatabaseType } from '@/services/data/GameDatabase.ts';",
-        "",
-    ]
-
-    for key in DATASET_FILES.keys():
-        relative_json_path = f"./item/{key}.json" if key in ITEM_DATASET_KEYS else f"./{key}.json"
-        lines.append(f"import {key}Json from '{relative_json_path}';")
-
-    lines.extend([
-        "",
-    ])
-
-    for key in DATASET_FILES.keys():
-        lines.append(f"export const {key} = {key}Json as GameDatabaseType['{key}'];")
-
-    lines.extend([
-        "",
-        "export const compiledData: GameDatabaseType = {",
-    ])
-
-    for key in DATASET_FILES.keys():
-        lines.append(f"    {key},")
-
-    lines.extend([
-        "};",
-        "",
-        "export default compiledData;",
-        "",
-    ])
-
-    (OUT_ROOT / "index.ts").write_text("\n".join(lines), encoding="utf-8")
-
-
 def main() -> None:
     OUT_ROOT.mkdir(parents=True, exist_ok=True)
 
@@ -104,7 +69,6 @@ def main() -> None:
         write_json_dataset(dataset_key, rows)
 
     cleanup_legacy_item_json_files()
-    write_index_file()
     print(f"Wrote runtime data artifacts to {OUT_ROOT}")
 
 

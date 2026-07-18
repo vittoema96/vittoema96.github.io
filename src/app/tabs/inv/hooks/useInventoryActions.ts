@@ -1,14 +1,12 @@
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx'
 import { usePopup } from '@/app/contexts/PopupContext.tsx'
-import {
-    isSameConfiguration
-} from '@/utils/itemUtils.ts'
+import { isSameConfiguration, isType, isUnacquirable } from '@/utils/itemUtils.ts';
 import {
     hasApparelConflict
 } from '@/utils/bodyLocations.ts'
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem, CustomItem } from '@/types';
 import { useTranslation } from 'react-i18next';
+import { allItems } from '@/data';
 
 /**
  * Custom hook for inventory actions (sell, delete, equip, use, etc.)
@@ -18,7 +16,6 @@ export const useInventoryActions = () => {
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
     const { showConfirm, showAlert, showTradeItemPopup } = usePopup()
-    const dataManager = getGameDatabase()
 
 
 
@@ -68,7 +65,7 @@ export const useInventoryActions = () => {
 
     const sellItem = (characterItem: CharacterItem | CustomItem) => {
         // Validate if item can be sold
-        if("id" in characterItem && dataManager.isUnacquirable(characterItem.id)) {
+        if("id" in characterItem && isUnacquirable(characterItem.id)) {
             showAlert(t('cannotSellItem'))
             return
         }
@@ -77,7 +74,7 @@ export const useInventoryActions = () => {
 
     const deleteItem = (characterItem: CharacterItem | CustomItem) => {
         // Validate if item can be deleted
-        if ("id" in characterItem && dataManager.isUnacquirable(characterItem.id)) {
+        if ("id" in characterItem && isUnacquirable(characterItem.id)) {
             showAlert(t('cannotDeleteItem'))
             return
         }
@@ -96,7 +93,7 @@ export const useInventoryActions = () => {
 
     const equipItem = (characterItem: CharacterItem) => {
         // Robot parts cannot be unequipped
-        const itemData = dataManager.getItem(characterItem.id)
+        const itemData = allItems[characterItem.id]
         if(character.origin.isRobot) {
             showAlert(t('robotsCannotEquipApparel'))
             return
@@ -123,7 +120,7 @@ export const useInventoryActions = () => {
                     return { ...otherItem, equipped: true }
                 }
 
-                const otherItemData = dataManager.getItem(otherItem.id)
+                const otherItemData = allItems[otherItem.id]
                 if (!otherItem.equipped || !isType(otherItemData, 'apparel')) {
                     return otherItem
                 }

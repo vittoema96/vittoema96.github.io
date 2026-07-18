@@ -2,18 +2,18 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/app/contexts/CharacterContext';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase';
-import { CustomItem, GenericPopupProps, Side, CharacterItem } from '@/types';
-import { addItem } from '@/utils/itemUtils.ts';
+import { CharacterItem, CustomItem, GenericPopupProps, Side } from '@/types';
+import { addItem, isType, isUnacquirable } from '@/utils/itemUtils.ts';
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
-import { ItemCategory, ItemType } from '@/types/item.ts';
+import { ITEM_TYPE_MAP, ItemCategory, ItemType } from '@/types/item.ts';
 import ItemBaseCard from '@/app/tabs/inv/cards/BaseCard.tsx';
 import WeaponContent from '@/app/tabs/inv/cards/weapon/WeaponContent.tsx';
 import ApparelContent from '@/app/tabs/inv/cards/apparel/ApparelContent.tsx';
 import AidContent from '@/app/tabs/inv/cards/aid/AidContent.tsx';
 import OtherContent from '@/app/tabs/inv/cards/ammo/OtherContent.tsx';
 import { BaseItem } from '@/data/types.ts';
+import { compiledData } from '@/data';
 
 export interface AddItemPopupProps extends GenericPopupProps {
     itemType: ItemType;
@@ -111,8 +111,6 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
     const { character, updateCharacter } = useCharacter()
     const { showTradeItemPopup } = usePopup()
 
-    const dataManager = getGameDatabase()
-
     const [selectedItem, setSelectedItem] = useState<SelectableItem>()
     const [quantity, setQuantity] = useInputNumberState(1)
     const [categoryFilter, setCategoryFilter] = useState<ItemCategory>()
@@ -120,10 +118,10 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
     const [rarityOperator, setRarityOperator] = useState<RarityOperator>('=')
 
     const availableItems = useMemo(() => {
-        const allItems = Object.values(dataManager[itemType])
+        const allItems = Object.values(compiledData[itemType])
             .filter(item => {
                 // Remove unacquirable
-                if(dataManager.isUnacquirable(item.ID)) { return false }
+                if(isUnacquirable(item.ID)) { return false }
                 // If rarity or category filters, filter out what doesn't adhere
                 if(categoryFilter && item.CATEGORY !== categoryFilter) { return false }
                 if(rarityFilter !== undefined) {
@@ -170,7 +168,7 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
 
             return nameA.localeCompare(nameB)
         })
-    }, [dataManager, itemType, categoryFilter, rarityFilter, rarityOperator, t])
+    }, [itemType, categoryFilter, rarityFilter, rarityOperator, t])
 
     useEffect(() => {
         setSelectedItem(availableItems[0])
@@ -237,8 +235,8 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
     }, [handleConfirm, setOnConfirmCallback])
 
     const getCategories = () => {
-        const typeMap = dataManager.getItemTypeMap()
-        const categories = typeMap[itemType].filter((c: any) => c !== 'companionWeapon')
+
+        const categories = ITEM_TYPE_MAP[itemType].filter((c: any) => c !== 'companionWeapon');
 
         return categories.toSorted((a, b) => {
             if(!a && !b) {return 0}

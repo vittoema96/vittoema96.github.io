@@ -2,7 +2,6 @@ import { useMemo, useState } from 'react';
 import { MYSTERIOUS_STRANGER, useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { useTranslation } from 'react-i18next';
 import { Character, CharacterItem, CompanionData } from '@/types';
-import { isType } from '@/hooks/getGameDatabase.ts';
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import { RollerType, usePopup } from '@/app/contexts/PopupContext.tsx';
 import useDice from '@/utils/useDice.ts';
@@ -27,6 +26,7 @@ import { getModifiedItemData } from '@/features/item/utils.ts';
 import { hasPerk } from '@/features/character/feats/perks/perks.ts';
 
 import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import { isType } from '@/utils/itemUtils.ts';
 
 // Discriminated union — built from actual domain types, no invented duplicates.
 interface PlayerRollerStats

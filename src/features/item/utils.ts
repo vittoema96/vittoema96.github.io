@@ -1,9 +1,9 @@
 import { CharacterItem, LegendaryEffect, ModItem } from '@/types';
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
-import { applyEffect } from '@/utils/itemUtils.ts';
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
+import { applyEffect, isType } from '@/utils/itemUtils.ts';
 import { hasPerk, PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
+import { allItems, legendaryEffects } from '@/data';
 
 const applyMods = (itemData: WeaponItem | ApparelItem, modsData: (ModItem | LegendaryEffect)[]): typeof itemData => {
     for (const handleRemove of [false, true]){
@@ -49,8 +49,7 @@ export function getModifiedItemData(
     perks: PerkId[] = []
 ): WeaponItem | ApparelItem | null {
     if(!characterItem) { return null }
-    const dataManager = getGameDatabase()
-    const itemData = dataManager.getItem(characterItem.id)
+    const itemData = allItems[characterItem.id]
     if (!isType(itemData, "weapon") && !isType(itemData, "apparel")) {return null}
 
     const baseItemData = {
@@ -65,10 +64,10 @@ export function getModifiedItemData(
 
     const modsData = [
         ...characterItem.mods.map(
-                modId => dataManager.getItem(modId)
+                modId => allItems[modId]
             ).filter(mod => isType(mod, "mod")),
         ...characterItem.mods.map(
-                modId => dataManager.legendaryEffects[modId]
+                modId => legendaryEffects[modId]
             ).filter(e => e !== undefined)
     ]
 

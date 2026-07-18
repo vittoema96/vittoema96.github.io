@@ -3,9 +3,12 @@ import WeaponContent from '@/app/tabs/inv/cards/weapon/WeaponContent.tsx'
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx'
 import { usePopup } from '@/app/contexts/PopupContext.tsx'
 import { hasEnoughAmmo as checkHasEnoughAmmo } from '@/app/tabs/inv/utils/weaponUtils.ts'
-import { isType } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem } from '@/types';
-import { getSkillForWeaponCategory, getSpecialForWeaponCategory } from '@/utils/itemUtils.ts';
+import {
+    getSkillForWeaponCategory,
+    getSpecialForWeaponCategory,
+    isType,
+} from '@/utils/itemUtils.ts';
 import { getModifiedItemData } from '@/features/item/utils.ts';
 
 /**

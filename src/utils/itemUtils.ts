@@ -3,15 +3,15 @@
  * Handles item identification, grouping, and modification
  */
 
-import { CharacterItem, CustomItem, DamageType } from '@/types';
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase';
-import { GameDatabase } from '@/services/data/GameDatabase.ts';
+import { AidItem, AmmoItem, CharacterItem, CustomItem, DamageType, Item, ModItem } from '@/types';
 import type { TFunction } from 'i18next';
-import { ItemCategory, WeaponCategory } from '@/types/item.ts';
+import { ItemCategory, ItemType, WeaponCategory } from '@/types/item.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
 import { Range, WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { SpecialType } from '@/features/character/special/special.ts';
 import { getSpecialFromSkill, SkillType } from '@/features/character/skills/skills.ts';
+import { allItems, apparel, weapon } from '@/data';
+import { BaseItem } from '@/data/types.ts';
 
 
 /**
@@ -178,13 +178,30 @@ function applyApparelEffect(modifiedData: ApparelItem, effectType: string, value
     return modifiedData
 }
 
+type ItemMap = {
+    [K in ItemType]: K extends 'weapon'
+        ? WeaponItem
+        : K extends 'apparel'
+          ? ApparelItem
+          : K extends 'aid'
+            ? AidItem
+            : K extends 'ammo'
+              ? AmmoItem
+              : K extends 'mod'
+                ? ModItem
+                : BaseItem;
+};
+
+export function isType<T extends ItemType>(item: Item | null | undefined, type: T): item is ItemMap[T] {
+    return item?.TYPE === type;
+}
+
 /**
  * Parse and apply a single effect from mod EFFECTS array
  * @param {Object} modifiedData - Item data being modified
  * @param {string} effect - Effect string (e.g., "damageAdd:1", "qualityAdd:qualityMelee")
  */
 export function applyEffect(modifiedData: WeaponItem | ApparelItem, effect: string): typeof modifiedData {
-    const dataManager = getGameDatabase()
     const [effectType, ...valueParts] = effect.split(':')
     const value = valueParts.join(':') // Rejoin in case value contains ':'
     if(!effectType) {return modifiedData}
@@ -202,7 +219,8 @@ export function applyEffect(modifiedData: WeaponItem | ApparelItem, effect: stri
             case 'effectAdd': {
                 // Check if the effect carries a numeric rating (e.g. effectPiercing:2)
                 const colonIdx = value.lastIndexOf(':')
-                const numericPart = colonIdx === -1 ? NaN : Number(value.slice(colonIdx + 1));
+                const numericPart =
+                    colonIdx === -1 ? Number.NaN : Number(value.slice(colonIdx + 1));
                 if (!Number.isNaN(numericPart) && colonIdx !== -1) {
                     // Numeric effect: stack with any existing effect that shares the same prefix
                     const effectPrefix = value.slice(0, colonIdx + 1) // e.g. "effectPiercing:"
@@ -259,7 +277,7 @@ function buildModdedDisplayName(
 
     // Stock mod rename
     const hasStockMod = mods.some(m => {
-        const modData = GameDatabase.getItem(m)
+        const modData = allItems[m]
         return modData && 'SLOT_TYPE' in modData && modData.SLOT_TYPE === 'modSlotStock'
     })
     if (hasStockMod && id) {
@@ -361,4 +379,23 @@ export function getCanonicalDisplayName(item: CharacterItem | CustomItem, t: TFu
 
 export function isCloseCombat(category: ItemCategory) {
     return category === 'meleeWeapons' || category === 'unarmed'
+}
+
+export const UNACQUIRABLE_IDS: (keyof typeof weapon | keyof typeof apparel)[] = [
+    'weaponUnarmedStrike',
+    'weaponIronFist',
+    'weaponWeaponStock',
+    'weaponWeaponStockOneHanded',
+    'weaponBayonet',
+    'weaponMissileLauncherBayonet',
+    'weaponShredder',
+    'robotPartSensors',
+    'robotPartBody',
+    'robotPartArms',
+    'robotPartThrusters',
+] as const;
+
+export function isUnacquirable(target: string | { ID: string }): boolean {
+    const id = typeof target === 'string' ? target : target.ID;
+    return UNACQUIRABLE_IDS.includes(id as any);
 }

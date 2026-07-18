@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -20,7 +20,6 @@ import { TooltipProvider } from '@/app/contexts/TooltipContext';
 import { PopupProvider } from '@/app/contexts/PopupContext.tsx';
 import BootScreen, { useBootScreen } from '@/BootScreen';
 import App from '@/app/App';
-import { GameDatabase } from '@/services/data/GameDatabase.ts';
 import UpdatePrompt from '@/app/components/UpdatePrompt';
 
 // Apply appearance settings as early as possible to avoid flicker.
@@ -38,27 +37,21 @@ UISettingsManager.applyAll();
 function Main() {
     const showBootScreen = useBootScreen();
 
-    // Database initialization
-    const [isDbReady, setIsDbReady] = useState(false);
-    useEffect(() => {
-        GameDatabase.init()
-            .then(() => setIsDbReady(true))
-            .catch(err => console.error('FATAL: Failed to load GameDatabase', err));
-    }, []);
-
     return (
         <ErrorBoundary fallbackRender={ErrorFallback}> {/* Handles errors in the entire app */}
-            {(!isDbReady || showBootScreen) && <BootScreen />}
-            {isDbReady && (
-                <CharacterProvider> {/* Handles Character, used almost everywhere */}
-                    <TooltipProvider> {/* Handles tooltips, also needed inside Popups */}
-                        <PopupProvider> {/* Handles Popups, used in the App */}
-                            <App />
-                        </PopupProvider>
-                    </TooltipProvider>
-                </CharacterProvider>
-            )}
+
+            {(showBootScreen) && <BootScreen />}
+
+            <CharacterProvider> {/* Handles Character, used almost everywhere */}
+                <TooltipProvider> {/* Handles tooltips, also needed inside Popups */}
+                    <PopupProvider> {/* Handles Popups, used in the App */}
+                        <App />
+                    </PopupProvider>
+                </TooltipProvider>
+            </CharacterProvider>
+
             <UpdatePrompt />
+
         </ErrorBoundary>
     );
 }

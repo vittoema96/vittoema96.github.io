@@ -2,9 +2,13 @@ import Tag from '@/app/components/Tag.tsx'
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx'
 import { useTranslation } from 'react-i18next'
 import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo } from '@/app/tabs/inv/utils/weaponUtils.ts'
-import { isType } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem } from '@/types';
-import { getSkillForWeaponCategory, getSpecialForWeaponCategory, isCloseCombat } from '@/utils/itemUtils.ts';
+import {
+    getSkillForWeaponCategory,
+    getSpecialForWeaponCategory,
+    isCloseCombat,
+    isType,
+} from '@/utils/itemUtils.ts';
 import React from 'react';
 import { Icon } from '@iconify/react';
 import { getModifiedItemData } from '@/features/item/utils.ts';

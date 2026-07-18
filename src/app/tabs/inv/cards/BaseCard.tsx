@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem, CustomItem } from '@/types';
 import { FitText } from '@/app/components/FitText.tsx';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
-import { getCanonicalDisplayName } from '@/utils/itemUtils.ts';
+import { getCanonicalDisplayName, isType } from '@/utils/itemUtils.ts';
 import { getModifiedItemData } from '@/features/item/utils.ts';
+import { allItems } from '@/data';
 
 /**
  * Base card component - provides common card structure and functionality
@@ -52,11 +52,10 @@ function BaseCard({
         ...characterItem
     }
 
-    const dataManager = getGameDatabase();
     let itemData
     let isModdable = false
     if("id" in item){
-        itemData = getModifiedItemData(item, character.perks) ?? dataManager.getItem(item.id);
+        itemData = getModifiedItemData(item, character.perks) ?? allItems[item.id];
         isModdable = (isType(itemData, "weapon")
             || isType(itemData, "apparel"))
     } else {

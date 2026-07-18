@@ -2,14 +2,14 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
 import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts'
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
-import { getDisplayName, isCloseCombat } from '@/utils/itemUtils.ts';
-import {CharacterItem, CustomItem} from '@/types'
+import { getDisplayName, isCloseCombat, isType, isUnacquirable } from '@/utils/itemUtils.ts';
+import { CharacterItem, CustomItem } from '@/types';
 import { FitText } from '@/app/components/FitText.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { getModifiedItemData } from '@/features/item/utils.ts';
 import { perkRank } from '@/features/character/feats/perks/perks.ts';
 import { hasTrait } from '@/features/character/feats/traits/traits.ts';
+import { allItems } from '@/data';
 
 
 interface InventoryRowProps {
@@ -36,13 +36,12 @@ function InventoryRow({
     const [editedName, setEditedName] = useState(characterItem.customName ?? '')
     const { updateItemCustomName } = useInventoryActions()
     const { character } = useCharacter()
-    const dataManager = getGameDatabase()
     let itemData
-    if("id" in characterItem){ itemData = getModifiedItemData(characterItem, character.perks) ?? dataManager.getItem(characterItem.id)! }
+    if("id" in characterItem){ itemData = getModifiedItemData(characterItem, character.perks) ?? allItems[characterItem.id]! }
     else { itemData = characterItem; }
 
     // Check if item can be sold/deleted (unacquirable items cannot)
-    const canSellDelete = !dataManager.isUnacquirable(itemData.ID || '')
+    const canSellDelete = !isUnacquirable(itemData.ID || '')
     const quantity = characterItem.quantity
 
     // Use overlay hook for sell/delete functionality (only if item can be sold/deleted)

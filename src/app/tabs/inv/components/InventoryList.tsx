@@ -7,11 +7,11 @@ import ApparelCard from '../cards/apparel/ApparelCard.tsx'
 import AidCard from '../cards/aid/AidCard.tsx'
 import OtherCard from '../cards/ammo/OtherCard.tsx'
 import { CharacterItem, CustomItem } from '@/types';
-import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
-import { ItemCategory, ItemType } from '@/types/item.ts';
-import { getDisplayName } from '@/utils/itemUtils.ts';
+import { ITEM_TYPE_MAP, ItemCategory, ItemType } from '@/types/item.ts';
+import { getDisplayName, isType } from '@/utils/itemUtils.ts';
 import { getModifiedItemData } from '@/features/item/utils.ts';
+import { allItems, traits } from '@/data';
 
 type SortBy = 'name' | 'number' | 'rarity'
 
@@ -46,14 +46,13 @@ function InventoryList({
         setShowFilterDropdown(false)
     }, [categoryFilter]);
 
-    const dataManager = getGameDatabase()
     const { character } = useCharacter()
 
     // TODO should we add ORIGIN apparel here too? but both weapons and apparel might be modified, so should be saved on storage...
     const newItems = useMemo(() => {
         // TODO do we need to filter out non-origin traits here?
         const activeTraits = character.traits
-            .map(trait => dataManager.traits[trait]!)
+            .map(trait => traits[trait]!)
             .filter(trait => trait.ORIGINS.includes(character.origin.id));
 
         return activeTraits.flatMap(trait => {
@@ -72,15 +71,14 @@ function InventoryList({
         })
     }, [character.origin.id, character.traits])
 
-    const allItems = useMemo(
+    const allCharacterItems = useMemo(
         () => [...items, ...newItems],
         [items, newItems]
     );
 
     // Get subcategories based on main category (sorted alphabetically by translation)
     const getCategories = () => {
-        const typeMap = dataManager.getItemTypeMap()
-        const categories = [...typeMap[typeFilter]]
+        const categories = [...ITEM_TYPE_MAP[typeFilter]]
 
         // Add 'custom' category if there are custom items of this type
         // TODO we add custom like this? should we make it a valid category?
@@ -99,7 +97,7 @@ function InventoryList({
 
     // Get appropriate card component for item type
     const getCardComponent = (characterItem: CharacterItem) => {
-        const itemData = dataManager.getItem(characterItem.id)
+        const itemData = allItems[characterItem.id]
 
         if(isType(itemData, 'weapon')) {
             return WeaponCard
@@ -119,8 +117,8 @@ function InventoryList({
     // Filter and sort items
     const processedItems = useMemo(() => {
         // Apply type filter
-        const filtered = allItems.filter(item => {
-            const itemData = dataManager.getItem(item.id);
+        const filtered = allCharacterItems.filter(item => {
+            const itemData = allItems[item.id];
             if (!itemData || !isType(itemData, typeFilter)) {
                 return false;
             }
@@ -129,8 +127,8 @@ function InventoryList({
 
         // Apply sorting
         filtered.sort((a, b) => {
-            const aData = getModifiedItemData(a, character.perks) ?? dataManager.getItem(a.id)
-            const bData = getModifiedItemData(b, character.perks) ?? dataManager.getItem(b.id)
+            const aData = getModifiedItemData(a, character.perks) ?? allItems[a.id]
+            const bData = getModifiedItemData(b, character.perks) ?? allItems[b.id]
 
             if (!aData || !bData) {return 0}
 
@@ -195,7 +193,7 @@ function InventoryList({
         })
 
         return filtered
-    }, [allItems, typeFilter, categoryFilter, sortBy, isAscendingDirection, character.perks, dataManager, t])
+    }, [allCharacterItems, typeFilter, categoryFilter, sortBy, isAscendingDirection, character.perks, t])
 
     // Close filter dropdown when clicking outside
     useEffect(() => {
