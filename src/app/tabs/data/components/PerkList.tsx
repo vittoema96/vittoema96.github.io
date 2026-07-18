@@ -1,13 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { MYSTERIOUS_44_MAGNUM, useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { useEffect, useState } from 'react';
-import { getGameDatabase } from '@/hooks/getGameDatabase.ts';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import TraitPerkItem from './TraitPerkItem.tsx';
 import TraitPerkSelector from './TraitPerkSelector.tsx';
-import TraitPerkSelectionPopup from './TraitPerkSelectionPopup.tsx';
+import { PerkSelectionPopup } from './FeatSelectionPopup.tsx';
 
-import { SpecialType } from '@/features/character/special/special.ts';
+import { hasTrait } from '@/features/character/feats/traits/traits.ts';
 import { PerkId } from '@/features/character/feats/perks/perks.ts';
 
 /**
@@ -23,15 +22,13 @@ interface PerkAction {
 
 
 function PerkList() {
-    const dataManager = getGameDatabase()
     const { t } = useTranslation()
     const { showD20Popup, showAlert } = usePopup()
     const { character, updateCharacter } = useCharacter()
-    const numberOfPerks = character.level + (character.traits.includes("traitExtraPerk") ? 1 : 0)
+    const numberOfPerks = character.level + (hasTrait(character, "traitExtraPerk") ? 1 : 0)
 
     // Initialize perks from rawCharacter or create empty slots
     const [selectedPerks, setSelectedPerks] = useState<(PerkId | undefined)[]>([]);
-    const [allPerks, setAllPerks] = useState<PerkId[]>([])
 
     const PERK_ACTIONS: Record<string, PerkAction> = {
 	        'perkMysteriousStranger': {
@@ -48,24 +45,8 @@ function PerkList() {
     };
 
     useEffect(() => {
-        const availablePerks = Object.values(dataManager.perks)
-            .filter(perk => {
-                const req = perk.REQUISITES
-                return Object.entries(req).every(([key, val]) => {
-                    const value = Number(val)
-                    if(key === 'level') {
-                        return character.level >= value
-                    }
-                    if(key in character.special){
-                        return character.special[key as SpecialType] >= value
-                    }
-                    return false
-                })
-            })
-            .map(perk => perk.ID as PerkId).sort((a, b) => t(a).localeCompare(t(b)))
-        setAllPerks(availablePerks)
         setSelectedPerks(character.perks)
-    }, [character.level, character.origin, character.special, character.perks, dataManager.perks, t])
+    }, [character.perks])
 
 
     const handlePerkSelect = (slotIndex: number, perkId: PerkId) => {
@@ -92,25 +73,6 @@ function PerkList() {
 
     const [changingSlotIndex, setChangingSlotIndex] = useState<number | null>(null);
 
-    const getAvailablePerksForSlot = (currentSlotIndex: number): string[] => {
-        // Filter out perks that are already selected in other slots
-        return allPerks.filter(perk => {
-            if (selectedPerks[currentSlotIndex] === perk) {
-                return true;
-            }
-            const isSelectedInOtherSlot = selectedPerks.some(
-                (selected, index) => index !== currentSlotIndex && selected === perk
-            );
-            const alreadySelected = selectedPerks.filter(p => p === perk).length
-            const perkData = dataManager.perks[perk]!
-
-            return !isSelectedInOtherSlot || (
-                perkData.TIER > alreadySelected &&
-                (perkData.REQUISITES.level ?? 0) + (perkData.LEVEL_REQ_INCREASE ?? 0) * alreadySelected <= character.level
-            );
-        });
-    };
-
     // Create array of slots based on numberOfPerks
     const perkSlots = Array.from({ length: numberOfPerks }, (_, index) => selectedPerks[index]);
 
@@ -122,7 +84,6 @@ function PerkList() {
 
             <div style={{ display: 'flex', flexDirection: 'column' }}>
                 {perkSlots.map((selectedPerk, index) => {
-                    const availablePerks = getAvailablePerksForSlot(index);
 
                     // If perk selected, show item with change button
                     if (selectedPerk) {
@@ -146,7 +107,6 @@ function PerkList() {
                         <TraitPerkSelector
                             key={index}
                             type="perk"
-                            availableIds={availablePerks}
                             onSelect={(perkId) => handlePerkSelect(index, perkId as PerkId)}
                         />
                     );
@@ -154,11 +114,10 @@ function PerkList() {
 
                 {/* Popup for changing perk */}
                 {changingSlotIndex !== null && (
-                    <TraitPerkSelectionPopup
-                        type="perk"
-                        availableIds={getAvailablePerksForSlot(changingSlotIndex)}
+                    <PerkSelectionPopup
+                        prev={perkSlots[changingSlotIndex]}
                         onSelect={(perkId) => {
-                            handlePerkSelect(changingSlotIndex, perkId as PerkId);
+                            handlePerkSelect(changingSlotIndex, perkId);
                             setChangingSlotIndex(null);
                         }}
                         onClose={() => setChangingSlotIndex(null)}

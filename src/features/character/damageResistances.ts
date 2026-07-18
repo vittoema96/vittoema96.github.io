@@ -4,6 +4,7 @@ import { getModifiedItemData } from '@/features/item/utils.ts';
 import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
 import { mapItemLocations } from '@/utils/bodyLocations.ts';
 import { Origin } from '@/features/character/origin.ts';
+import { hasPerk } from '@/features/character/feats/perks/perks.ts';
 
 export function useDamageResistances(raw: RawCharacter, origin: Origin){
     return useMemo(() => {
@@ -57,7 +58,7 @@ export function useDamageResistances(raw: RawCharacter, origin: Origin){
             });
         });
 
-        if (raw.perks.includes('perkBarbarian')) {
+        if (hasPerk(raw.perks, 'perkBarbarian')) {
             const isWearingPowerArmor = raw.items.some(item => {
                 if (!item.equipped) {
                     return false;

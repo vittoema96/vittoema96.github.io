@@ -29,8 +29,8 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
     const effectiveMaxHp = maxHp - rads;
     const currentHp = Math.min(raw.currentHp ?? effectiveMaxHp, effectiveMaxHp);
 
-    const maxWeight = useMaxWeight(raw, origin, perks, traits)
-    const currentWeight = useCurrentWeight(raw, perks)
+    const maxWeight = useMaxWeight(raw, origin, perks, traits);
+    const currentWeight = useCurrentWeight(raw, perks);
 
     const maxLuck = useMemo(() => {
         let result = raw.special.luck;
@@ -66,7 +66,7 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
         return base;
     }, [raw.special.strength, traits]);
 
-    const locationsDR = useDamageResistances(raw, origin)
+    const locationsDR = useDamageResistances(raw, origin);
 
     // Default companion (Eyebot)
     const companion = useMemo(() => {

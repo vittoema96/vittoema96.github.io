@@ -2,8 +2,9 @@ import { AidItem, AmmoItem, Item, LegendaryEffect, ModItem } from '@/types';
 import { compiledData, weapon, apparel } from '@/data';
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
-import { BaseItem, CompanionPerkData, PerkData } from '@/data/types.ts';
-import { TraitData } from '@/features/character/feats/traits/traits.ts';
+import { BaseItem, CompanionPerkData } from '@/data/types.ts';
+import { TraitData, TraitId } from '@/features/character/feats/traits/traits.ts';
+import { PerkData, PerkId } from '@/features/character/feats/perks/perks.ts';
 
 export interface GameDatabaseType {
     weapon: Record<string, WeaponItem>;
@@ -12,9 +13,9 @@ export interface GameDatabaseType {
     ammo: Record<string, AmmoItem>;
     other: Record<string, BaseItem>;
     mod: Record<string, ModItem>;
-    perks: Record<string, PerkData>;
+    perks: Record<PerkId, PerkData>;
     companionPerks: Record<string, CompanionPerkData>;
-    traits: Record<string, TraitData>;
+    traits: Record<TraitId, TraitData>;
     legendaryEffects: Record<string, LegendaryEffect>;
 }
 

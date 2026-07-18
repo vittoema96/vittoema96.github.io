@@ -2,12 +2,13 @@ import { useMemo } from 'react';
 import { getModifiedItemData } from '@/features/item/utils.ts';
 import { isType } from '@/hooks/getGameDatabase.ts';
 import { RawCharacter } from '@/types';
-import { TraitId } from '@/features/character/feats/traits/traits.ts';
 import { Origin } from '@/features/character/origin.ts';
+
 import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import { TraitId } from '@/features/character/feats/traits/traits.ts';
 
 
-export function useMaxWeight(raw: RawCharacter, origin: Origin, perks: PerkId[], traits: TraitId[]){
+export function useMaxWeight(raw: RawCharacter, origin: Origin, perks: PerkId[], traits: TraitId[]) {
     return useMemo(() => {
         let maxWeight = origin.calcMaxCarryWeight(raw.special.strength);
 
@@ -30,7 +31,7 @@ export function useMaxWeight(raw: RawCharacter, origin: Origin, perks: PerkId[],
             }
         });
         return maxWeight;
-    }, [origin, raw.special.strength, raw.items, perks, traits])
+    }, [origin, raw.special.strength, raw.items, perks, traits]);
 }
 
 export function useCurrentWeight(raw: RawCharacter, perks: PerkId[]){

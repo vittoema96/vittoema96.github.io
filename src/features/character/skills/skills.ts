@@ -91,7 +91,7 @@ export function useSkillPoints(character: Character) {
         const skillSum =
             Object.values(character.skills).reduce((total, value) => total + value, 0) -
             character.specialties.length * 2;
-        const skilledBonus = perkRank(character.perks, 'perkSkilled') * 2;
+        const skilledBonus = perkRank(character, 'perkSkilled') * 2;
         return 9 + character.special.intelligence + (character.level - 1) + skilledBonus - skillSum;
     }, [
         character.skills,

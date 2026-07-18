@@ -5,8 +5,9 @@ import { ApparelItem } from '@/data/item/apparel.schemas.ts';
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { CompanionSpecialType, SpecialType } from '@/features/character/special/special.ts';
 import { CompanionSkillType, SkillType } from '@/features/character/skills/skills.ts';
-import { TraitId } from '@/features/character/feats/traits/traits.ts';
+
 import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import { TraitId } from '@/features/character/feats/traits/traits.ts';
 
 // **---- Currency related ----**
 export const CURRENCIES = ['caps', 'ncrDollars', 'legionDenarius', 'prewarMoney'] as const;

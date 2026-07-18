@@ -4,6 +4,7 @@ import { usePopup } from '@/app/contexts/PopupContext.tsx'
 import { useCharacter } from "@/app/contexts/CharacterContext"
 import { FitText } from '@/app/components/FitText.tsx';
 import { getSpecialFromSkill, SkillType } from '@/features/character/skills/skills.ts';
+import { hasTrait } from '@/features/character/feats/traits/traits.ts';
 
 interface SkillProps {
     skillId: SkillType;
@@ -19,7 +20,7 @@ function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
     const specialName = getSpecialFromSkill(skillId)
     const hasSpecialty = character.specialties.includes(skillId)
     const specialtyBonus = hasSpecialty ? 2 : 0
-    const skillMax = character.traits.includes('traitGoodNatured')
+    const skillMax = hasTrait(character, 'traitGoodNatured')
                              && !hasSpecialty && [
                                  'speech', 'medicine', 'repair' , 'science', 'barter'
                              ].includes(skillId) ?

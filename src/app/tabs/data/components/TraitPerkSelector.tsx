@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import TraitPerkSelectionPopup from './TraitPerkSelectionPopup.tsx';
+import {
+    PerkSelectionPopup,
+    TraitSelectionPopup,
+} from './FeatSelectionPopup.tsx';
 
 interface TraitPerkSelectorProps {
     type: 'trait' | 'perk';
-    availableIds: string[];
     onSelect: (id: string) => void;
 }
 
@@ -12,7 +14,7 @@ interface TraitPerkSelectorProps {
  * Selector component for choosing a trait or perk
  * Shows as a "+ Add Trait/Perk" button that opens a popup when clicked
  */
-function TraitPerkSelector({ type, availableIds, onSelect }: Readonly<TraitPerkSelectorProps>) {
+function TraitPerkSelector({ type, onSelect }: Readonly<TraitPerkSelectorProps>) {
     const { t } = useTranslation();
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -24,6 +26,8 @@ function TraitPerkSelector({ type, availableIds, onSelect }: Readonly<TraitPerkS
         onSelect(id);
         setIsPopupOpen(false);
     };
+
+    const FeatSelectionPopup = type === 'perk' ? PerkSelectionPopup : TraitSelectionPopup
 
     return (
         <>
@@ -50,9 +54,8 @@ function TraitPerkSelector({ type, availableIds, onSelect }: Readonly<TraitPerkS
             </button>
 
             {isPopupOpen && (
-                <TraitPerkSelectionPopup
-                    type={type}
-                    availableIds={availableIds}
+                <FeatSelectionPopup
+                    prev={undefined}
                     onSelect={handleSelect}
                     onClose={() => setIsPopupOpen(false)}
                 />

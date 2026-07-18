@@ -18,6 +18,8 @@ import { D6Dice, getFaceClass } from '@/app/components/popup/dice/components/dic
 
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { getModifiedItemData } from '@/features/item/utils.ts';
+import { hasTrait } from '@/features/character/feats/traits/traits.ts';
+import { hasPerk, perkRank } from '@/features/character/feats/perks/perks.ts';
 
 export interface D6PopupProps extends GenericPopupProps {
     usingItem: CharacterItem;
@@ -46,7 +48,7 @@ function D6Popup({
     const isGatling = weaponData.QUALITIES.includes('qualityGatling');
     const isAccurate = weaponData.QUALITIES.includes('qualityAccurate');
     const hasBurst = weaponData.EFFECTS.includes('effectBurst');
-    const hasAwareness = character.perks.includes('perkAwareness');
+    const hasAwareness = hasPerk(character, 'perkAwareness');
 
     const fireRateNum = Number(weaponData.FIRE_RATE) || 0;
 
@@ -79,10 +81,10 @@ function D6Popup({
             rating += character.meleeDamage;
         }
         if (weaponData.CATEGORY === 'energyWeapons') {
-            rating += character.perks.filter(p => p === 'perkLaserCommander').length;
+            rating += perkRank(character, 'perkLaserCommander');
         }
         if (weaponData.CATEGORY === 'meleeWeapons' && !weaponData.QUALITIES.includes('qualityTwoHanded')) {
-            rating += character.perks.filter(p => p === 'perkGladiator').length;
+            rating += perkRank(character, 'perkGladiator');
         }
         if (
             [
@@ -95,19 +97,12 @@ function D6Popup({
                 'weaponLightMachineGun',
                 'weapon50caMachineGun',
             ].includes(weaponData.ID) &&
-            character.traits.includes('traitGrunt')
+            hasTrait(character, 'traitGrunt')
         ) {
             rating += 1;
         }
         return rating;
-    }, [
-        character.meleeDamage,
-        character.perks,
-        character.traits,
-        weaponData.CATEGORY,
-        weaponData.DAMAGE_RATING,
-        weaponData.ID,
-    ]);
+    }, [character.meleeDamage, character.perks, character.traits, weaponData.CATEGORY, weaponData.DAMAGE_RATING, weaponData.ID, weaponData.QUALITIES]);
 
     // Number of Extra dice
     const extraDiceCount = useMemo(() => {
@@ -120,7 +115,7 @@ function D6Popup({
         if (extraHitsType === 'ammo') {
             const triggerDisciplineMalus =
                 ['smallGuns', 'energyWeapons'].includes(weaponData.CATEGORY) &&
-                character.traits.includes('traitTriggerDiscipline')
+                hasTrait(character, 'traitTriggerDiscipline')
                     ? 1
                     : 0;
             return Math.max(0, fireRateNum * (isGatling ? 2 : 1) - triggerDisciplineMalus);
@@ -474,7 +469,7 @@ function D6Popup({
                         {!roller &&
                             !isCloseCombat(weaponData.CATEGORY) &&
                             (() => {
-                                const gunFuRank = character.perks.filter(p => p === 'perkGunFu').length;
+                                const gunFuRank = perkRank(character, 'perkGunFu');
                                 return gunFuRank > 0 && gunFuUsed < gunFuRank ? (
                                     <button
                                         className="confirmButton"
@@ -524,7 +519,7 @@ function D6Popup({
                         {/* Slayer button - only for melee/unarmed weapons when player has the perk */}
                         {!roller &&
                             isCloseCombat(weaponData.CATEGORY) &&
-                            character.perks.includes('perkSlayer') &&
+                            hasPerk(character, 'perkSlayer') &&
                             !slayerUsed && (
                                 <button
                                     className="confirmButton"
@@ -551,7 +546,7 @@ function D6Popup({
                         {/* Meltdown button - only for energy weapons when player has the perk */}
                         {!roller &&
                             weaponData.CATEGORY === 'energyWeapons' &&
-                            character.perks.includes('perkMeltdown') &&
+                            hasPerk(character, 'perkMeltdown') &&
                             !meltdownUsed && (
                                 <button
                                     className="confirmButton"

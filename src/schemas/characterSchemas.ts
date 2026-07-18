@@ -14,9 +14,9 @@ import {
     SKILLS,
     SkillType,
 } from '@/features/character/skills/skills.ts';
-import { TraitId } from '@/features/character/feats/traits/traits.ts';
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
 import { traits, perks } from '@/data';
+import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import { TraitId } from '@/features/character/feats/traits/traits.ts';
 
 // Fills all missing special with value 4. Validates 4 <= SPECIAL <= 12
 const SpecialMapSchema = z.object(

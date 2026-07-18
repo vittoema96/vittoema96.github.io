@@ -10,6 +10,7 @@ import { useCharacter } from '@/app/contexts/CharacterContext';
 import { FitText } from '@/app/components/FitText.tsx';
 import AppHeaderData from '@/app/AppHeaderData.tsx';
 import useIsDesktop from '@/hooks/useIsDesktop';
+import { hasPerk } from '@/features/character/feats/perks/perks.ts';
 
 const TABS: Record<TabType, React.ComponentType<any>> = {
     companion: CompanionTab,
@@ -27,8 +28,8 @@ function App() {
     const isDesktop = useIsDesktop();
 
     // Check if player has Robot Wrangler perk
-    const hasRobotWrangler = character.perks.includes('perkRobotWrangler');
-    const hasDogmeat = character.perks.includes('perkDogmeat');
+    const hasRobotWrangler = hasPerk(character, 'perkRobotWrangler');
+    const hasDogmeat = hasPerk(character, 'perkDogmeat');
 
     // Filter visible tabs based on perks
     const visibleTabs = useMemo(() => {

@@ -1,8 +1,11 @@
-import { RawCharacter } from '@/types';
+import { Character, RawCharacter } from '@/types';
 import { Origin, OriginId } from '@/features/character/origin.ts';
 import { useMemo } from 'react';
 import { traits } from '@/data';
 import { hasFeat } from '@/features/character/feats/utils.ts';
+import traitsJson from '@/data/traits.json';
+
+export type TraitId = keyof typeof traitsJson;
 
 // Trait data from CSV
 export interface TraitData {
@@ -11,10 +14,9 @@ export interface TraitData {
     ORIGINS: OriginId[];
     FIXED: boolean;
 }
-export type TraitId = keyof typeof traits
 
-function getFixedTraits(originId: OriginId): TraitId[]{
-    if (originId){
+function getFixedTraits(originId: OriginId): TraitId[] {
+    if (originId) {
         return Object.values(traits)
             .filter(trait => {
                 return trait.FIXED && trait.ORIGINS.includes(originId);
@@ -31,22 +33,22 @@ function filterTraits(traitsList: TraitId[], originId: OriginId) {
     });
 }
 
-export function useTraits(raw: RawCharacter, origin: Origin){
-    return useMemo(
-        () => {
-            // Get fixed traits from database where FIXED === true AND ORIGINS includes current origin
-            const fixedTraits = getFixedTraits(origin.id);
+export function useTraits(raw: RawCharacter, origin: Origin) {
+    return useMemo(() => {
+        // Get fixed traits from database where FIXED === true AND ORIGINS includes current origin
+        const fixedTraits = getFixedTraits(origin.id);
 
-            // Filter user-selected traits to only include those valid for this origin
-            const userTraits = filterTraits(raw.traits, origin.id);
+        // Filter user-selected traits to only include those valid for this origin
+        const userTraits = filterTraits(raw.traits, origin.id);
 
-            // Combine and deduplicate
-            return [...new Set([...fixedTraits, ...userTraits])];
-        },
-        [raw.traits, origin.id])
+        // Combine and deduplicate
+        return [...new Set([...fixedTraits, ...userTraits])];
+    }, [raw.traits, origin.id]);
 }
 
-
-export function hasTrait(traits: TraitId[], trait: TraitId){
-    return hasFeat(traits, trait);
+export function hasTrait(input: TraitId[] | Character, trait: TraitId) {
+    if(!Array.isArray(input)) {
+        input = input.traits
+    }
+    return hasFeat(input, trait);
 }

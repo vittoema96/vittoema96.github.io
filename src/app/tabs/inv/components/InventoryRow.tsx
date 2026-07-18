@@ -8,6 +8,8 @@ import {CharacterItem, CustomItem} from '@/types'
 import { FitText } from '@/app/components/FitText.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { getModifiedItemData } from '@/features/item/utils.ts';
+import { perkRank } from '@/features/character/feats/perks/perks.ts';
+import { hasTrait } from '@/features/character/feats/traits/traits.ts';
 
 
 interface InventoryRowProps {
@@ -105,12 +107,12 @@ function InventoryRow({
             if (isType(itemData, 'weapon')) {
                 const meleeDamageBonus = isCloseCombat(itemData.CATEGORY) ? character.meleeDamage : 0;
                 const gladiatorBonus = itemData.CATEGORY === 'meleeWeapons' &&
-                    !itemData.QUALITIES.includes('qualityTwoHanded') ? character.perks.filter(p => p === 'perkGladiator').length : 0;
-                const laserCommanderBonus = itemData.CATEGORY === 'energyWeapons' ? character.perks.filter(p => p === 'perkLaserCommander').length : 0;
+                    !itemData.QUALITIES.includes('qualityTwoHanded') ? perkRank(character, 'perkGladiator') : 0;
+                const laserCommanderBonus = itemData.CATEGORY === 'energyWeapons' ? perkRank(character, 'perkLaserCommander') : 0;
                 const gruntBonus = [
                     'weaponCombatRifle', 'weaponAssaultRifle', 'weaponFragmentationGrenade', 'weaponCombatKnife',
                     'weaponMachineGun', 'weaponLightMachineGun', 'weapon50caMachineGun'
-                ].includes(itemData.ID) && character.traits.includes('traitGrunt') ? 1 : 0;
+                ].includes(itemData.ID) && hasTrait(character, 'traitGrunt') ? 1 : 0;
                 const totalDamage = itemData.DAMAGE_RATING + meleeDamageBonus + gladiatorBonus + laserCommanderBonus + gruntBonus;
                 return `${t(itemData.CATEGORY)} • ${totalDamage} ${itemData.DAMAGE_TYPES.map(dt => t(dt)).join(', ')}`;
             }

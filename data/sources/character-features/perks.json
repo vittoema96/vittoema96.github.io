@@ -335,11 +335,11 @@
       "it": "Quando effettui un attacco a distanza con un'arma a una mano dopo aver mirato, la gittata dell'arma aumenta di un passo. Al grado 2, l'arma ottiene anche la qualità Accurata se non la possedeva già. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 7."
     }
   },
-  "perkDaring": {
-    "en": "Daring",
+  "perkDaringNature": {
+    "en": "Daring Nature",
     "it": "Ardito",
     "_description": {
-      "en": "Whenever you make a skill check and purchase one or more d20s by giving Action Points to the gamemaster, the character can reroll 1d20 on that check. You cannot purchase this perk if you already possess Prudent.",
+      "en": "Whenever you make a skill check and purchase one or more d20s by giving Action Points to the gamemaster, the character can reroll 1d20 on that check. You cannot purchase this perk if you already possess Cautious Nature.",
       "it": "Ogni volta che effettua una prova di abilità e acquista uno o più d20 dando Punti Azione al gamemaster, il personaggio può tirare nuovamente 1d20 in quella prova. Non può acquistare questo talento se già possiede Prudente."
     }
   },
@@ -999,11 +999,11 @@
       "it": "Le Celle a Fusione che usi contengono 3 cariche aggiuntive. Al grado 2, 6 cariche aggiuntive. Al grado 3, 10 cariche aggiuntive. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 10."
     }
   },
-  "perkPrudent": {
-    "en": "Prudent",
+  "perkCautiousNature": {
+    "en": "Cautious Nature",
     "it": "Prudente",
     "_description": {
-      "en": "Whenever you make a skill check and purchase one or more d20s by spending Action Points, the character can reroll 1d20 on that check. You cannot purchase this perk if you already possess Daring.",
+      "en": "Whenever you make a skill check and purchase one or more d20s by spending Action Points, the character can reroll 1d20 on that check. You cannot purchase this perk if you already possess Daring Nature.",
       "it": "Ogni volta che effettua una prova di abilità e acquista uno o più d20 spendendo Punti Azione, il personaggio può tirare nuovamente 1d20 in quella prova. Non può acquistare questo talento se già possiede Ardito."
     }
   },

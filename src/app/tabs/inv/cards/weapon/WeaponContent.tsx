@@ -8,6 +8,8 @@ import { getSkillForWeaponCategory, getSpecialForWeaponCategory, isCloseCombat }
 import React from 'react';
 import { Icon } from '@iconify/react';
 import { getModifiedItemData } from '@/features/item/utils.ts';
+import { perkRank } from '@/features/character/feats/perks/perks.ts';
+import { hasTrait } from '@/features/character/feats/traits/traits.ts';
 
 /**
  * Weapon-specific content renderer
@@ -42,15 +44,15 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
 
     // TODO should unify logic with D6Popup
     let damageRating = `${itemData.DAMAGE_RATING}`
-    const laserCommanderBonus = itemData.CATEGORY === 'energyWeapons' ? character.perks.filter(p => p === 'perkLaserCommander').length : 0
+    const laserCommanderBonus = itemData.CATEGORY === 'energyWeapons' ? perkRank(character, 'perkLaserCommander') : 0
     const gladiatorBonus = itemData.CATEGORY === 'meleeWeapons' &&
-        !itemData.QUALITIES.includes("qualityTwoHanded") ? character.perks.filter(p => p === 'perkGladiator').length : 0
+        !itemData.QUALITIES.includes("qualityTwoHanded") ? perkRank(character, 'perkGladiator') : 0
     const gruntBonus = [
         'weaponCombatRifle', 'weaponAssaultRifle',
         'weaponFragmentationGrenade', 'weaponCombatKnife',
         // TODO all these machine gun types? it says generically "machine guns"
         'weaponMachineGun', 'weaponLightMachineGun', 'weapon50caMachineGun'
-    ].includes(itemData.ID) && character.traits.includes("traitGrunt") ? 1 : 0
+    ].includes(itemData.ID) && hasTrait(character, "traitGrunt") ? 1 : 0
     const meleeDamageBonus = isCloseCombat(itemData.CATEGORY) ? character.meleeDamage : 0
     const totalBonus = laserCommanderBonus + gruntBonus + gladiatorBonus + meleeDamageBonus
     if(totalBonus > 0){
@@ -59,7 +61,7 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
 
     let fireRate = `${itemData.FIRE_RATE}`
     if(
-        character.traits.includes("traitTriggerDiscipline")
+        hasTrait(character, "traitTriggerDiscipline")
         && ['smallGuns', 'energyWeapons'].includes(itemData.CATEGORY)
         && Number(itemData.FIRE_RATE) > 0
     ) {

@@ -36,7 +36,7 @@ export function useSpecialtyPoints(character: Character){
         }
         const allBonuses: BonusType[] = [
             {
-                condition: hasTrait(character.traits, "traitGoodNatured"),
+                condition: hasTrait(character, "traitGoodNatured"),
                 bonus: 2,
                 skills: ['speech', 'medicine', 'repair', 'science', 'barter']
             },
@@ -72,8 +72,8 @@ export function useSpecialtyPoints(character: Character){
 
         const totalGenericAllowed =
             3 +
-            Number( hasTrait(character.traits, "traitEducated") ) +
-            perkRank(character.perks, 'perkTag') +
+            Number( hasTrait(character, "traitEducated") ) +
+            perkRank(character, 'perkTag') +
             (character.origin === ORIGINS.GHOUL ? 1 : 0); // ghouls have survival as extra specialty (and it should not count)
 
         return {

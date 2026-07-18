@@ -4,6 +4,7 @@ import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
 import { CharacterItem } from '@/types';
 import { ORIGINS } from '@/features/character/origin.ts';
 import { ItemType } from '@/types/item.ts';
+import { perkRank } from '@/features/character/feats/perks/perks.ts';
 
 /**
  * Custom hook for filtering and organizing inventory items
@@ -11,7 +12,7 @@ import { ItemType } from '@/types/item.ts';
 export const useInventoryFilter = (itemType: ItemType) => {
     const { character } = useCharacter()
     const dataManager = getGameDatabase()
-    const ironFistTier = character.perks.filter(p => p === 'perkIronFist').length
+    const ironFistTier = perkRank(character, 'perkIronFist')
 
     return useMemo(() => {
         if (!character.items || !dataManager.getItemTypeMap) {return []}

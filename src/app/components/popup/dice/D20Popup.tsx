@@ -24,6 +24,8 @@ import {
     SkillType,
 } from '@/features/character/skills/skills.ts';
 import { getModifiedItemData } from '@/features/item/utils.ts';
+import { hasPerk } from '@/features/character/feats/perks/perks.ts';
+
 import { TraitId } from '@/features/character/feats/traits/traits.ts';
 
 // Discriminated union — built from actual domain types, no invented duplicates.
@@ -76,7 +78,7 @@ function D20Popup({
     const activePerks = character.perks;
 
     // perkAdrenalineRush: treat STR as 10 when HP < max — immutable copy
-    const hasAdrenalineRush = activePerks.includes('perkAdrenalineRush');
+    const hasAdrenalineRush = hasPerk(character, 'perkAdrenalineRush');
     const effectiveSpecial: Record<SpecialType, number> =
         hasAdrenalineRush && character.currentHp < character.maxHp
             ? { ...character.special, strength: 10 }
@@ -120,7 +122,7 @@ function D20Popup({
     // isCharacterSkill narrows skillId to SkillType, removing the need for any cast
     const isCenterOfMassRanged =
         !roller &&
-        activePerks.includes('perkCenterOfMass') &&
+        hasPerk(activePerks, 'perkCenterOfMass') &&
         isType(itemData, 'weapon') &&
         isCharacterSkill(skillId) &&
         !['meleeWeapons', 'unarmed'].includes(skillId);

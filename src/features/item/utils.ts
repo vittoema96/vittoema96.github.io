@@ -3,6 +3,7 @@ import { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
 import { applyEffect } from '@/utils/itemUtils.ts';
 import { getGameDatabase, isType } from '@/hooks/getGameDatabase.ts';
+import { hasPerk, PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
 
 const applyMods = (itemData: WeaponItem | ApparelItem, modsData: (ModItem | LegendaryEffect)[]): typeof itemData => {
     for (const handleRemove of [false, true]){
@@ -18,18 +19,18 @@ const applyMods = (itemData: WeaponItem | ApparelItem, modsData: (ModItem | Lege
 }
 const applyPerks = (
     itemData: WeaponItem | ApparelItem,
-    perks: string[] = []
+    perks: PerkId[] = []
 ): typeof itemData => {
     if (!isType(itemData, 'weapon')) {
         return itemData
     }
 
-    const incisorRank = perks.filter(perk => perk === 'perkIncisor').length
+    const incisorRank = perkRank(perks, 'perkIncisor')
     if (itemData.CATEGORY === 'meleeWeapons' && incisorRank > 0) {
         itemData = applyEffect(itemData, `effectAdd:effectPiercing:${Math.min(incisorRank, 2)}`)
     }
 
-    const hasPiercingStrike = perks.includes('perkPiercingStrike')
+    const hasPiercingStrike = hasPerk(perks, 'perkPiercingStrike')
     const canUsePiercingStrike =
         itemData.CATEGORY === 'unarmed' ||
         (itemData.CATEGORY === 'meleeWeapons' && itemData.IS_BLADED === true)
@@ -45,7 +46,7 @@ const applyPerks = (
  */
 export function getModifiedItemData(
     characterItem: CharacterItem | null | undefined,
-    perks: string[] = []
+    perks: PerkId[] = []
 ): WeaponItem | ApparelItem | null {
     if(!characterItem) { return null }
     const dataManager = getGameDatabase()

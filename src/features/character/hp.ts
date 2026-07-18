@@ -1,7 +1,8 @@
 import { RawCharacter } from '@/types';
 import { useMemo } from 'react';
 import { SpecialType } from '@/features/character/special/special.ts';
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
+
+import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
 
 export const adjustCurrentHp = (prev: RawCharacter, current: RawCharacter) => {
     const result: RawCharacter = { ...current };
@@ -23,7 +24,7 @@ export const calculateMaxHp = (
     level: number,
     perks: PerkId[]
 ): number => {
-    const lifeGiverLevel = perks.filter(perk => perk === 'perkLifeGiver').length;
+    const lifeGiverLevel = perkRank(perks, 'perkLifeGiver');
     return (
         special.endurance * (1 + lifeGiverLevel) +
         special.luck +
