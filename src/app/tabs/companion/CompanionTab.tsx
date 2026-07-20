@@ -2,22 +2,16 @@ import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/app/contexts/CharacterContext'
 import { usePopup } from '@/app/contexts/PopupContext.tsx'
-import GenericGear from './components/GenericGear'
+import StatGear from '../../components/StatGear.tsx'
 import { CharacterItem, CompanionId } from '@/types'
 import { COMPANION_TYPES } from '@/utils/companionTypes'
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { FitText } from '@/app/components/FitText.tsx';
 import { COMPANION_SKILLS, CompanionSkillType } from '@/features/character/skills/skills.ts';
 import { allItems, companionPerks } from '@/data';
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
-import { isType } from '@/utils/itemUtils.ts';
+import { isType } from '@/features/item/itemUtils.ts';
+import { getFeatureUnlocks } from '@/features/character/feats';
 
-// Companion-specific perks are loaded from companionPerks.csv via GameDatabase
-
-const COMPANION_MAP: Partial<Record<PerkId, CompanionId[]>> = {
-    "perkDogmeat": ["dog"],
-    "perkRobotWrangler": ["eyebot"] // TODO add more
-}
 
 /**
  * Companion Tab - Shows companion stats and info
@@ -108,16 +102,11 @@ function CompanionTab() {
                     }
                     style={{ flex: 1 }}
                 >
-                    {Object.entries(COMPANION_MAP)
-                        .reduce((acc, [perk, types]) => {
-                            if (character.perks?.includes(perk)) {
-                                acc.push(...types);
-                            }
-                            return acc;
-                        }, [] as CompanionId[])
-                        .map(type => (
-                            <option key={type} value={type}>
-                                {t(type)}
+                    {getFeatureUnlocks(character)
+                        .filter(unlock => unlock.type === 'companion')
+                        .map(companion => (
+                            <option key={companion.id} value={companion.id}>
+                                {t(companion.id)}
                             </option>
                         ))}
                 </select>
@@ -181,14 +170,12 @@ function CompanionTab() {
 
             {/* BODY/MIND Stats */}
             <div id="c-special" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
-                <GenericGear
+                <StatGear
                     statType="body"
-                    baseValue={selectedCompanionType.special.body}
                     isEditing={isEditing}
                 />
-                <GenericGear
+                <StatGear
                     statType="mind"
-                    baseValue={selectedCompanionType.special.mind}
                     isEditing={isEditing}
                 />
             </div>

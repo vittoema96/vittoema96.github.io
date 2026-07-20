@@ -3,7 +3,7 @@ import {initReactI18next} from 'react-i18next'
 
 import enTranslations from '@/locales/en.json'
 import itTranslations from '@/locales/it.json'
-import { UISettingsManager, DEFAULT_LANGUAGE, type Language } from '@/styles/UISettingsManager'
+import { UISettingsManager, DEFAULT_LANGUAGE, type Language } from '@/services/UISettingsManager.ts'
 
 
 /**

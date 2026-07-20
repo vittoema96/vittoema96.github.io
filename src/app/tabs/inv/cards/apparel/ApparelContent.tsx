@@ -4,7 +4,7 @@ import { CharacterItem } from '@/types';
 import React from 'react';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { getModifiedItemData } from '@/features/item/utils.ts';
-import { isType } from '@/utils/itemUtils.ts';
+import { isType } from '@/features/item/itemUtils.ts';
 
 /**
  * Apparel-specific content renderer

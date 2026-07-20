@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/app/contexts/CharacterContext';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { CharacterItem, CustomItem, GenericPopupProps, Side } from '@/types';
-import { addItem, isType, isUnacquirable } from '@/utils/itemUtils.ts';
+import { addItem, isType, isUnacquirable } from '@/features/item/itemUtils.ts';
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { ITEM_TYPE_MAP, ItemCategory, ItemType } from '@/types/item.ts';

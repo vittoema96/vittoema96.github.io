@@ -3,8 +3,6 @@ import { COMPANION_IDS, LEFT, RIGHT } from '@/types';
 import { ORIGIN_IDS } from '@/features/character/origin.ts';
 import { ITEM_CATEGORIES, ITEM_TYPES } from '@/types/item.ts';
 import {
-    COMPANION_SPECIAL,
-    CompanionSpecialType,
     SPECIAL,
     SpecialType,
 } from '@/features/character/special/special.ts';
@@ -15,8 +13,10 @@ import {
     SkillType,
 } from '@/features/character/skills/skills.ts';
 import { traits, perks } from '@/data';
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
-import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import {
+    COMPANION_SPECIAL,
+    CompanionSpecialType,
+} from '@/features/character/special/special.companion.ts';
 
 // Fills all missing special with value 4. Validates 4 <= SPECIAL <= 12
 const SpecialMapSchema = z.object(
@@ -144,8 +144,8 @@ export const RawCharacterSchema = z.object({
     special: SpecialMapSchema.default(() => SpecialMapSchema.parse({})),
     skills: SkillMapSchema.default(() => SkillMapSchema.parse({})),
     specialties: z.array(z.enum(SKILLS)).default([] as SkillType[]),
-    traits: z.array(z.enum(Object.keys(traits) as TraitId[])).default([] as TraitId[]),
-    perks: z.array(z.enum(Object.keys(perks) as PerkId[])).default([] as PerkId[]),
+    traits: z.array(z.enum(Object.values(traits).map(t => t.ID))).default([]),
+    perks: z.array(z.enum(Object.values(perks).map(p => p.ID))).default([]),
 
     currentHp: z.number().optional(),
     currentLuck: z.number().optional(),

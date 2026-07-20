@@ -4,7 +4,7 @@ import { CharacterItem, CustomItem } from '@/types';
 import { FitText } from '@/app/components/FitText.tsx';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
-import { getCanonicalDisplayName, isType } from '@/utils/itemUtils.ts';
+import { getCanonicalDisplayName, isType } from '@/features/item/itemUtils.ts';
 import { getModifiedItemData } from '@/features/item/utils.ts';
 import { allItems } from '@/data';
 

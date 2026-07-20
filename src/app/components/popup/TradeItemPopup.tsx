@@ -6,7 +6,7 @@ import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import Skill from '@/app/tabs/stat/components/Skill.tsx';
-import { addItem } from '@/utils/itemUtils.ts';
+import { addItem } from '@/features/item/itemUtils.ts';
 import { ChangeEventHandler, useMemo, useState } from 'react';
 import { getModifiedItemData } from '@/features/item/utils.ts';
 import { allItems } from '@/data';

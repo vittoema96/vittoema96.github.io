@@ -10,7 +10,7 @@ import { useCharacter } from '@/app/contexts/CharacterContext';
 import { FitText } from '@/app/components/FitText.tsx';
 import AppHeaderData from '@/app/AppHeaderData.tsx';
 import useIsDesktop from '@/hooks/useIsDesktop';
-import { hasPerk } from '@/features/character/feats/perks/perks.ts';
+import { getFeatureUnlocks } from '@/features/character/feats';
 
 const TABS: Record<TabType, React.ComponentType<any>> = {
     companion: CompanionTab,
@@ -20,25 +20,27 @@ const TABS: Record<TabType, React.ComponentType<any>> = {
     map: MapTab,
     settings: SettingsTab
 } as const
+const LOCKED_TABS: TabType[] = ['companion']
+
 const getKeys = <T extends object>(obj: T) => Object.keys(obj) as Array<keyof T>;
 
 function App() {
     const { character } = useCharacter();
     const [activeTab, setActiveTab] = useState<TabType>('stat');
-    const isDesktop = useIsDesktop();
+    const isDesktop = useIsDesktop(); // Split screen if width < 900px
 
     // Check if player has Robot Wrangler perk
-    const hasRobotWrangler = hasPerk(character, 'perkRobotWrangler');
-    const hasDogmeat = hasPerk(character, 'perkDogmeat');
+    const featureUnlocks = getFeatureUnlocks(character);
 
     // Filter visible tabs based on perks
     const visibleTabs = useMemo(() => {
         const allTabs = getKeys(TABS);
         return allTabs.filter(tabType => {
             // Hide companion tab if player doesn't have Robot Wrangler perk
-            return !(tabType === 'companion' && !hasRobotWrangler && !hasDogmeat);
+            return !LOCKED_TABS.includes(tabType)
+                || featureUnlocks.some(unlock => unlock.type === 'tab' && unlock.id === tabType)
         });
-    }, [hasDogmeat, hasRobotWrangler]);
+    }, [featureUnlocks]);
 
     // Desktop: right panel shows all tabs except 'stat' (stat is always on the left)
     const rightPanelTabs = useMemo(

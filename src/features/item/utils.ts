@@ -1,7 +1,7 @@
 import { CharacterItem, LegendaryEffect, ModItem } from '@/types';
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
-import { applyEffect, isType } from '@/utils/itemUtils.ts';
+import { applyEffect, isType } from '@/features/item/itemUtils.ts';
 import { hasPerk, PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
 import { allItems, legendaryEffects } from '@/data';
 

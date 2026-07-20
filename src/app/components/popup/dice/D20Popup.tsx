@@ -4,13 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Character, CharacterItem, CompanionData } from '@/types';
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import { RollerType, usePopup } from '@/app/contexts/PopupContext.tsx';
-import useDice from '@/utils/useDice.ts';
+import useDice from '@/hooks/useDice.ts';
 import { D20Dice } from '@/app/components/popup/dice/components/dice.tsx';
 import {
-    COMPANION_SPECIAL,
-    CompanionSpecialType,
     isCharacterSpecial,
-    isCompanionSpecial,
     SPECIAL,
     SpecialType,
 } from '@/features/character/special/special.ts';
@@ -26,7 +23,12 @@ import { getModifiedItemData } from '@/features/item/utils.ts';
 import { hasPerk } from '@/features/character/feats/perks/perks.ts';
 
 import { TraitId } from '@/features/character/feats/traits/traits.ts';
-import { isType } from '@/utils/itemUtils.ts';
+import { isType } from '@/features/item/itemUtils.ts';
+import {
+    COMPANION_SPECIAL,
+    CompanionSpecialType,
+    isCompanionSpecial,
+} from '@/features/character/special/special.companion.ts';
 
 // Discriminated union — built from actual domain types, no invented duplicates.
 interface PlayerRollerStats

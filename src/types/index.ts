@@ -3,11 +3,12 @@ import { AidCategory, AmmoCategory, ItemCategory, ItemType } from '@/types/item.
 import { BaseItem } from '@/data/types.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';
-import { CompanionSpecialType, SpecialType } from '@/features/character/special/special.ts';
+import { SpecialType } from '@/features/character/special/special.ts';
 import { CompanionSkillType, SkillType } from '@/features/character/skills/skills.ts';
 
 import { PerkId } from '@/features/character/feats/perks/perks.ts';
 import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import { CompanionSpecialType } from '@/features/character/special/special.companion.ts';
 
 // **---- Currency related ----**
 export const CURRENCIES = ['caps', 'ncrDollars', 'legionDenarius', 'prewarMoney'] as const;
@@ -188,10 +189,12 @@ interface FoodItem extends AidItemBase {
 // Union type per Aid
 export type AidItem = MedItem | FoodItem;
 
+type PerkWithRank = `${PerkId}:${number}`;
+
 export interface ModItem extends ItemWithEffects {
     SLOT_TYPE: string;
     SKILL: SkillType;
-    PERKS: string[]; // JSON array // TODO should be perk type
+    PERKS: PerkWithRank[]; // JSON array // TODO should be perk type
     WEAPON_TYPES?: string[]; // TODO might not be needed anymore
     ARMOR_TYPES?: string[]; // TODO might not be needed anymore
 }

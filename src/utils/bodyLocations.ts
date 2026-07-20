@@ -1,7 +1,7 @@
 import type { CharacterItem, GenericBodyPart } from '@/types';
 import { ApparelCategory } from '@/types/item.ts';
 import { allItems } from '@/data';
-import { isType } from '@/utils/itemUtils.ts';
+import { isType } from '@/features/item/itemUtils.ts';
 
 /**
  * Body location utilities

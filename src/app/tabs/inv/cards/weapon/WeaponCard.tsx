@@ -8,7 +8,7 @@ import {
     getSkillForWeaponCategory,
     getSpecialForWeaponCategory,
     isType,
-} from '@/utils/itemUtils.ts';
+} from '@/features/item/itemUtils.ts';
 import { getModifiedItemData } from '@/features/item/utils.ts';
 
 /**

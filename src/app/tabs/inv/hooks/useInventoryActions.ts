@@ -1,6 +1,6 @@
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx'
 import { usePopup } from '@/app/contexts/PopupContext.tsx'
-import { isSameConfiguration, isType, isUnacquirable } from '@/utils/itemUtils.ts';
+import { isSameConfiguration, isType, isUnacquirable } from '@/features/item/itemUtils.ts';
 import {
     hasApparelConflict
 } from '@/utils/bodyLocations.ts'

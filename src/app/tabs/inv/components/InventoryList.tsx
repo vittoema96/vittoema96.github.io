@@ -9,7 +9,7 @@ import OtherCard from '../cards/ammo/OtherCard.tsx'
 import { CharacterItem, CustomItem } from '@/types';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { ITEM_TYPE_MAP, ItemCategory, ItemType } from '@/types/item.ts';
-import { getDisplayName, isType } from '@/utils/itemUtils.ts';
+import { getDisplayName, isType } from '@/features/item/itemUtils.ts';
 import { getModifiedItemData } from '@/features/item/utils.ts';
 import { allItems, traits } from '@/data';
 

@@ -4,7 +4,7 @@ import { CharacterItem } from '@/types';
 import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { getModifiedItemData } from '@/features/item/utils.ts';
-import { isType } from '@/utils/itemUtils.ts';
+import { isType } from '@/features/item/itemUtils.ts';
 
 /**
  * Apparel card component with armor stats and equip functionality

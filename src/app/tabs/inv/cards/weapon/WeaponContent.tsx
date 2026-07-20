@@ -8,7 +8,7 @@ import {
     getSpecialForWeaponCategory,
     isCloseCombat,
     isType,
-} from '@/utils/itemUtils.ts';
+} from '@/features/item/itemUtils.ts';
 import React from 'react';
 import { Icon } from '@iconify/react';
 import { getModifiedItemData } from '@/features/item/utils.ts';

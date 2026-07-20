@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/app/contexts/CharacterContext'
 import { useTooltip } from '@/app/contexts/TooltipContext'
 import { CharacterItem, ModItem, MrHandyPart } from '@/types';
-import { addItem, isType, isUnacquirable, removeItem } from '@/utils/itemUtils.ts';
+import { addItem, isType, isUnacquirable, removeItem } from '@/features/item/itemUtils.ts';
 import BasePopup from './common/BasePopup';
 import ModTooltipContent from './ModTooltipContent';
 import Skill from '@/app/tabs/stat/components/Skill.tsx';

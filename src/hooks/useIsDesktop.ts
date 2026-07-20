@@ -10,7 +10,7 @@ export const DESKTOP_MIN_WIDTH = 900;
 function useIsDesktop(): boolean {
     const query = `(min-width: ${DESKTOP_MIN_WIDTH}px)`;
     const [isDesktop, setIsDesktop] = useState<boolean>(
-        () => typeof globalThis.window !== 'undefined' && globalThis.window.matchMedia(query).matches
+        () => globalThis.window?.matchMedia(query).matches
     );
 
     useEffect(() => {

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next'
-import { UISettingsManager, Theme, THEMES, DISPLAY_EFFECTS, type DisplayEffect, type Language, LANGUAGES } from '@/styles/UISettingsManager'
+import { UISettingsManager, Theme, THEMES, DISPLAY_EFFECTS, type DisplayEffect, type Language, LANGUAGES } from '@/services/UISettingsManager.ts'
 import { usePopup } from '@/app/contexts/PopupContext.tsx'
 import { useCharacter } from '@/app/contexts/CharacterContext'
-import { changeLanguage } from '@/i18n'
+import { changeLanguage } from '@/locales/i18n.ts'
 import { SaveSlotManager, CharacterSlotInfo } from '@/services/SaveSlotManager.ts'
 
 const useDisplayEffectsState = () => {

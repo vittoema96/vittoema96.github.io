@@ -6,7 +6,7 @@ import {mapItemLocations} from "@/utils/bodyLocations.ts";
 
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
 import { allItems } from '@/data';
-import { isType } from '@/utils/itemUtils.ts';
+import { isType } from '@/features/item/itemUtils.ts';
 
 /**
  * Component to display equipped apparel items

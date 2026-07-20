@@ -1,4 +1,4 @@
-import { CompanionSpecialType } from '@/features/character/special/special.ts';
+import { CompanionSpecialType } from '@/features/character/special/special.companion.ts';
 
 export const COMPANION_SKILLS = ['melee', 'guns', 'other'] as const;
 export type CompanionSkillType = (typeof COMPANION_SKILLS)[number];

@@ -3,7 +3,7 @@ import { Origin, ORIGINS } from '@/features/character/origin.ts';
 import { useMemo } from 'react';
 import { hasTrait, TraitId } from '@/features/character/feats/traits/traits.ts';
 import { SkillType } from '@/features/character/skills/skills.ts';
-import { perkRank } from '@/features/character/feats/perks/perks.ts';
+import { getSpecialtyPointBonus } from '@/features/character/feats';
 
 
 export function useSpecialties(raw: RawCharacter, origin: Origin, traits: TraitId[]){
@@ -72,13 +72,12 @@ export function useSpecialtyPoints(character: Character){
 
         const totalGenericAllowed =
             3 +
-            Number( hasTrait(character, "traitEducated") ) +
-            perkRank(character, 'perkTag') +
-            (character.origin === ORIGINS.GHOUL ? 1 : 0); // ghouls have survival as extra specialty (and it should not count)
+            getSpecialtyPointBonus(character) +
+            Number(character.origin === ORIGINS.GHOUL); // ghouls have survival as extra specialty (and it should not count)
 
         return {
             generic: totalGenericAllowed - genericPointsUsed,
             bonus: bonuses.map(b => { return {remaining: b.bonus, skills: b.skills} })
         };
-    }, [character.specialties, character.traits, character.perks, character.origin]);
+    }, [character]);
 }

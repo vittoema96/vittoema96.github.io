@@ -1,9 +1,10 @@
 // SKILLS
-import { CompanionSpecialType, SpecialType } from '@/features/character/special/special.ts';
+import { SpecialType } from '@/features/character/special/special.ts';
 import { Character, RawCharacter } from '@/types';
 import { useMemo } from 'react';
 import { Origin } from '@/features/character/origin.ts';
 import { perkRank } from '@/features/character/feats/perks/perks.ts';
+import { CompanionSpecialType } from '@/features/character/special/special.companion.ts';
 
 export const SKILLS = [
     'athletics',

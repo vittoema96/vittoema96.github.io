@@ -1,3 +1,5 @@
+
+// TODO this should be calculated dynamically
 export type TabType = "companion" | "stat" | "inv" | "data" | "map" | "settings"
 
 interface TabButtonProps {

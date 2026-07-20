@@ -9,9 +9,9 @@ import '@fontsource/fira-code';
 
 import './styles/index.css';
 
-import './i18n';
+import './locales/i18n.ts';
 
-import { UISettingsManager } from '@/styles/UISettingsManager';
+import { UISettingsManager } from '@/services/UISettingsManager.ts';
 
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from './ErrorBoundary';

@@ -12,8 +12,8 @@ import { RollerType, usePopup } from '@/app/contexts/PopupContext.tsx';
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import DialogPortal from '@/app/components/popup/common/DialogPortal.tsx';
 import PopupHeader from '@/app/components/popup/common/PopupHeader.tsx';
-import useDice from '@/utils/useDice.ts';
-import { isCloseCombat } from '@/utils/itemUtils.ts';
+import useDice from '@/hooks/useDice.ts';
+import { isCloseCombat } from '@/features/item/itemUtils.ts';
 import { D6Dice, getFaceClass } from '@/app/components/popup/dice/components/dice.tsx';
 
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';

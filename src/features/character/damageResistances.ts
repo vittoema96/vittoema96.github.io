@@ -5,7 +5,7 @@ import { mapItemLocations } from '@/utils/bodyLocations.ts';
 import { Origin } from '@/features/character/origin.ts';
 import { hasPerk } from '@/features/character/feats/perks/perks.ts';
 import { allItems } from '@/data';
-import { isType } from '@/utils/itemUtils.ts';
+import { isType } from '@/features/item/itemUtils.ts';
 
 export function useDamageResistances(raw: RawCharacter, origin: Origin){
     return useMemo(() => {
