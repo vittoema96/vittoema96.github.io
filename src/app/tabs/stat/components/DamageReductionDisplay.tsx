@@ -63,7 +63,7 @@ const DREntry = (
         const damageReduction = character.locationsDR
 
         const toughnessBonus = damageType === "physical"
-            ? perkRank(character, 'perkToughness')
+            ? perkRank(character.perks, 'perkToughness')
             : 0;
         // Helper function to format DR value (show "Immune" for Infinity)
         const formatDR = (value: number) => {

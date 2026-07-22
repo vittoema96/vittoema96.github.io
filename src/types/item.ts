@@ -34,7 +34,7 @@ export const APPAREL_CATEGORIES = [
     'marineArmor',
     'legionaryArmor',
 ] as const;
-export const AID_CATEGORIES = ['food', 'drinks', 'meds'] as const;
+export const AID_CATEGORIES = ['food', 'drinks', 'meds', 'misc'] as const;
 export const AMMO_CATEGORIES = ['ammo'] as const;
 export const OTHER_CATEGORIES = ['misc', 'junk', 'custom'] as const;
 

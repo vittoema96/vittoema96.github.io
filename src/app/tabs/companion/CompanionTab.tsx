@@ -10,7 +10,7 @@ import { FitText } from '@/app/components/FitText.tsx';
 import { COMPANION_SKILLS, CompanionSkillType } from '@/features/character/skills/skills.ts';
 import { allItems, companionPerks } from '@/data';
 import { isType } from '@/features/item/itemUtils.ts';
-import { getFeatureUnlocks } from '@/features/character/feats';
+import { getAvailableCompanions } from '@/features/character/feats';
 
 
 /**
@@ -102,11 +102,10 @@ function CompanionTab() {
                     }
                     style={{ flex: 1 }}
                 >
-                    {getFeatureUnlocks(character)
-                        .filter(unlock => unlock.type === 'companion')
+                    {getAvailableCompanions(character)
                         .map(companion => (
-                            <option key={companion.id} value={companion.id}>
-                                {t(companion.id)}
+                            <option key={companion} value={companion}>
+                                {t(companion)}
                             </option>
                         ))}
                 </select>

@@ -80,7 +80,7 @@ function D20Popup({
     const activePerks = character.perks;
 
     // perkAdrenalineRush: treat STR as 10 when HP < max — immutable copy
-    const hasAdrenalineRush = hasPerk(character, 'perkAdrenalineRush');
+    const hasAdrenalineRush = hasPerk(character.perks, 'perkAdrenalineRush');
     const effectiveSpecial: Record<SpecialType, number> =
         hasAdrenalineRush && character.currentHp < character.maxHp
             ? { ...character.special, strength: 10 }
@@ -240,7 +240,7 @@ function D20Popup({
             if (isAiming) { discount += 1; }
             if (hasTriggerDiscipline) { discount += 1; }
             if (hasCenterOfMassDiscount) { discount += 1; }
-            if (hasPerk(character, 'perkCautiousNature') && diceValues.filter(v => v !== '?').length > 2) { discount += 1; }
+            if (hasPerk(character.perks, 'perkCautiousNature') && diceValues.filter(v => v !== '?').length > 2) { discount += 1; }
             discount -= Math.min(discount, rerolledCount);
             cost -= discount;
 

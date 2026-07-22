@@ -1,7 +1,7 @@
 import { Character, CompanionId } from '@/types';
-import { TabType } from '@/app/tabs/TabButton.tsx';
 import { hasPerk, PerkId } from '@/features/character/feats/perks/perks.ts';
 import { hasTrait, TraitId } from '@/features/character/feats/traits/traits.ts';
+import { WeaponItem } from '@/data/item/weapon.schemas.ts';
 
 const perkModules = import.meta.glob<{
     default: FeatImplementation
@@ -22,10 +22,6 @@ export interface FeatContext {
     // Qui puoi passare utility utili agli effetti (es. funzioni di update, notifiche, ecc.)
 }
 
-type FeatureUnlock =
-    | { type: 'companion'; id: CompanionId }
-    | { type: 'tab'; id: TabType };
-
 export interface FeatImplementation {
     applyPassiveModifiers?: (ctx: FeatContext) => void;
 
@@ -33,53 +29,66 @@ export interface FeatImplementation {
 
     onBeforeRoll?: (ctx: FeatContext, diceContext: any) => void;
 
-    getFeatureUnlocks?: () => FeatureUnlock[]
+    getAvailableCompanions?: () => CompanionId[]
 
     getSpecialtyPointBonus?: (ctx: FeatContext) => number
+
+    getDamageRatingBonus?: (character: Character, itemData: WeaponItem) => number
+}
+
+/**
+ * Cycles over all feats (perks and traits) of a character and applies a function to each.
+ * @param character
+ * @param func
+ */
+function forEachFeat<T>(character: Character, func: (module: {default: FeatImplementation}) => T[]) {
+    return [
+        ...Object.entries(perkModules).flatMap(([path, module]) => {
+            const perkId = path.split('/').pop()?.replace('.ts', '') as PerkId;
+            if (perkId && hasPerk(character.perks, perkId)) {
+                return func(module);
+            }
+            return []
+        }),
+
+        ...Object.entries(traitModules).flatMap(([path, module]) => {
+            const traitId = path.split('/').pop()?.replace('.ts', '') as TraitId;
+            if (traitId && hasTrait(character.traits, traitId)) {
+                return func(module);
+            }
+            return []
+        }),
+    ];
+}
+
+function forEachSum(character: Character, func: (module: {default: FeatImplementation}) => number[]) {
+    return forEachFeat(character, func).reduce((acc, curr) => acc + curr, 0)
 }
 
 export function getSpecialtyPointBonus(character: Character) {
 
-    return Object.entries(perkModules).reduce((sum, [path, module]) => {
-            const perkId = path.split('/').pop()?.replace('.ts', '') as PerkId;
-
-            if (perkId && hasPerk(character, perkId) && module.default.getSpecialtyPointBonus) {
-                return sum + module.default.getSpecialtyPointBonus({character});
-            }
-
-            return sum
-        }, 0)
-        +
-        Object.entries(traitModules).reduce((sum, [path, module]) => {
-            const traitId = path.split('/').pop()?.replace('.ts', '') as TraitId;
-
-            if (traitId && hasTrait(character, traitId) && module.default.getSpecialtyPointBonus) {
-                return sum + module.default.getSpecialtyPointBonus({character});
-            }
-
-            return sum
-        }, 0)
+    return forEachSum(character, module => {
+        if(module.default.getSpecialtyPointBonus){
+            return [module.default.getSpecialtyPointBonus({character})]
+        }
+        return []
+    })
 }
 
-export function getFeatureUnlocks(character: Character){
-    return [
-        ...Object.entries(perkModules).flatMap(([path, module]) => {
-            const perkId = path.split('/').pop()?.replace('.ts', '') as PerkId;
+export function getAvailableCompanions(character: Character){
+    return forEachFeat(character, module => {
+        if(module.default.getAvailableCompanions){
+            return module.default.getAvailableCompanions()
+        }
+        return []
+    })
+}
 
-            if (perkId && hasPerk(character, perkId) && module.default.getFeatureUnlocks) {
-                return module.default.getFeatureUnlocks();
-            }
-
-            return []
-        }),
-        ...Object.entries(traitModules).flatMap(([path, module]) => {
-            const traitId = path.split('/').pop()?.replace('.ts', '') as TraitId;
-
-            if (traitId && hasTrait(character, traitId) && module.default.getFeatureUnlocks) {
-                return module.default.getFeatureUnlocks();
-            }
-
-            return []
-        })
-    ]
+export function getDamageRatingBonus(character: Character, itemData: WeaponItem) {
+    return forEachSum(character, module => {
+        if(module.default.getDamageRatingBonus) {
+            return [module.default.getDamageRatingBonus(character, itemData)]
+        }
+        return []
+    })
 }

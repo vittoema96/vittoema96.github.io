@@ -36,7 +36,7 @@ export function useSpecialtyPoints(character: Character){
         }
         const allBonuses: BonusType[] = [
             {
-                condition: hasTrait(character, "traitGoodNatured"),
+                condition: hasTrait(character.traits, "traitGoodNatured"),
                 bonus: 2,
                 skills: ['speech', 'medicine', 'repair', 'science', 'barter']
             },

@@ -20,6 +20,7 @@ import { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { getModifiedItemData } from '@/features/item/utils.ts';
 import { hasTrait } from '@/features/character/feats/traits/traits.ts';
 import { hasPerk, perkRank } from '@/features/character/feats/perks/perks.ts';
+import { getDamageRatingBonus } from '@/features/character/feats';
 
 export interface D6PopupProps extends GenericPopupProps {
     usingItem: CharacterItem;
@@ -48,7 +49,7 @@ function D6Popup({
     const isGatling = weaponData.QUALITIES.includes('qualityGatling');
     const isAccurate = weaponData.QUALITIES.includes('qualityAccurate');
     const hasBurst = weaponData.EFFECTS.includes('effectBurst');
-    const hasAwareness = hasPerk(character, 'perkAwareness');
+    const hasAwareness = hasPerk(character.perks, 'perkAwareness');
 
     const fireRateNum = Number(weaponData.FIRE_RATE) || 0;
 
@@ -77,32 +78,11 @@ function D6Popup({
     const diceCount = useMemo(() => {
         // TODO should unify logic with WeaponContent
         let rating = weaponData.DAMAGE_RATING;
-        if (isCloseCombat(weaponData.CATEGORY)) {
-            rating += character.meleeDamage;
-        }
-        if (weaponData.CATEGORY === 'energyWeapons') {
-            rating += perkRank(character, 'perkLaserCommander');
-        }
-        if (weaponData.CATEGORY === 'meleeWeapons' && !weaponData.QUALITIES.includes('qualityTwoHanded')) {
-            rating += perkRank(character, 'perkGladiator');
-        }
-        if (
-            [
-                'weaponCombatRifle',
-                'weaponAssaultRifle',
-                'weaponFragmentationGrenade',
-                'weaponCombatKnife',
-                // TODO all these machine gun types? it says generically "machine guns"
-                'weaponMachineGun',
-                'weaponLightMachineGun',
-                'weapon50caMachineGun',
-            ].includes(weaponData.ID) &&
-            hasTrait(character, 'traitGrunt')
-        ) {
-            rating += 1;
-        }
-        return rating;
-    }, [character.meleeDamage, character.perks, character.traits, weaponData.CATEGORY, weaponData.DAMAGE_RATING, weaponData.ID, weaponData.QUALITIES]);
+        const meleeDamageBonus = isCloseCombat(weaponData.CATEGORY) ? character.meleeDamage : 0
+        const damageRatingBonus = getDamageRatingBonus(character, weaponData) + meleeDamageBonus
+
+        return rating + damageRatingBonus;
+    }, [character, weaponData]);
 
     // Number of Extra dice
     const extraDiceCount = useMemo(() => {
@@ -115,7 +95,7 @@ function D6Popup({
         if (extraHitsType === 'ammo') {
             const triggerDisciplineMalus =
                 ['smallGuns', 'energyWeapons'].includes(weaponData.CATEGORY) &&
-                hasTrait(character, 'traitTriggerDiscipline')
+                hasTrait(character.traits, 'traitTriggerDiscipline')
                     ? 1
                     : 0;
             return Math.max(0, fireRateNum * (isGatling ? 2 : 1) - triggerDisciplineMalus);
@@ -469,7 +449,7 @@ function D6Popup({
                         {!roller &&
                             !isCloseCombat(weaponData.CATEGORY) &&
                             (() => {
-                                const gunFuRank = perkRank(character, 'perkGunFu');
+                                const gunFuRank = perkRank(character.perks, 'perkGunFu');
                                 return gunFuRank > 0 && gunFuUsed < gunFuRank ? (
                                     <button
                                         className="confirmButton"
@@ -519,7 +499,7 @@ function D6Popup({
                         {/* Slayer button - only for melee/unarmed weapons when player has the perk */}
                         {!roller &&
                             isCloseCombat(weaponData.CATEGORY) &&
-                            hasPerk(character, 'perkSlayer') &&
+                            hasPerk(character.perks, 'perkSlayer') &&
                             !slayerUsed && (
                                 <button
                                     className="confirmButton"
@@ -546,7 +526,7 @@ function D6Popup({
                         {/* Meltdown button - only for energy weapons when player has the perk */}
                         {!roller &&
                             weaponData.CATEGORY === 'energyWeapons' &&
-                            hasPerk(character, 'perkMeltdown') &&
+                            hasPerk(character.perks, 'perkMeltdown') &&
                             !meltdownUsed && (
                                 <button
                                     className="confirmButton"

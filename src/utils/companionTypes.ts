@@ -33,6 +33,7 @@ export interface CompanionTypeDefinition {
 /**
  * All companion type definitions
  */
+// TODO move these definitions in their respective perk*.ts file
 export const COMPANION_TYPES: Record<CompanionId, CompanionTypeDefinition> = {
     eyebot: {
         id: 'eyebot',

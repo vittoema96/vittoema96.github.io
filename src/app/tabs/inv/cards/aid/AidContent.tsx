@@ -1,6 +1,6 @@
 import { CharacterItem } from '@/types';
 import { useTranslation } from 'react-i18next';
-import { allItems } from '@/data';
+import { aid } from '@/data';
 import { isType } from '@/features/item/itemUtils.ts';
 
 /**
@@ -13,20 +13,22 @@ interface AidContentProps {
 function AidContent({ characterItem }: Readonly<AidContentProps>) {
 
     const { t } = useTranslation();
-    const itemData = allItems[characterItem.id]
+
+    // TODO no need for isType once characterItem.id becomes the correct type (i guess)
+    const itemData = aid[characterItem.id]
     if(!isType(itemData, "aid"))
     { return null }
 
     // Determine specific effect stats
     const getSpecificEffectStat = () => {
-        if (itemData.HP_GAIN !== undefined) {
+        if (itemData.HP_GAIN) {
             return {
                 label: 'HP',
                 value: `+${itemData.HP_GAIN}`,
                 key: 'HP_GAIN'
             }
         }
-        if (itemData.DURATION !== undefined) {
+        if (itemData.DURATION) {
             return {
                 label: 'Duration',
                 value: t(itemData.DURATION),
@@ -37,14 +39,14 @@ function AidContent({ characterItem }: Readonly<AidContentProps>) {
     }
 
     const getSecondaryEffectStat = () => {
-        if (itemData.RADIOACTIVE !== undefined) {
+        if (itemData.RADIOACTIVE) {
             return {
                 label: 'Radioactive',
                 value: itemData.RADIOACTIVE,
                 key: 'RADIOACTIVE'
             }
         }
-        if (itemData.ADDICTIVE !== undefined) {
+        if (itemData.ADDICTIVE) {
             return {
                 label: 'Addictive',
                 value: itemData.ADDICTIVE,

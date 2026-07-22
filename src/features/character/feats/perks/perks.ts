@@ -1,4 +1,4 @@
-import { Character, RawCharacter } from '@/types';
+import { RawCharacter } from '@/types';
 import { useMemo } from 'react';
 import { perks } from '@/data';
 import { SPECIAL, SpecialType } from '@/features/character/special/special.ts';
@@ -60,16 +60,10 @@ export function usePerks(raw: RawCharacter) {
     );
 }
 
-export function hasPerk(input: PerkId[] | Character, perk: PerkId) {
-    if(!Array.isArray(input)) {
-        input = input.perks
-    }
+export function hasPerk(input: PerkId[], perk: PerkId) {
     return hasFeat(input, perk);
 }
 
-export function perkRank(input: PerkId[] | Character, perk: PerkId) {
-    if(!Array.isArray(input)) {
-        input = input.perks
-    }
+export function perkRank(input: PerkId[], perk: PerkId) {
     return featCount(input, perk);
 }

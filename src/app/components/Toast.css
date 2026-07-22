@@ -25,6 +25,7 @@
 }
 
 /* Variant: danger (HP warning etc.) */
+/* ACTUALLY USED dynamically */
 .toast--danger {
     border-color: var(--failure-color);
     box-shadow: 0 0 12px color-mix(in srgb, var(--failure-color) 40%, transparent);

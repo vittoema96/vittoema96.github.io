@@ -39,8 +39,8 @@ export function useSpecialPoints(character: Character){
             0,
         );
         const usedPoints = specialSum - baseSpecialSum;
-        const giftedBonus = hasTrait(character,'traitGifted') ? 2 : 0;
-        const intenseTrainingBonus = perkRank(character, 'perkIntenseTraining');
+        const giftedBonus = hasTrait(character.traits,'traitGifted') ? 2 : 0;
+        const intenseTrainingBonus = perkRank(character.perks, 'perkIntenseTraining');
         return 12 + giftedBonus + intenseTrainingBonus - usedPoints;
     }, [character.origin, character.perks, character.special, character.traits]);
 }

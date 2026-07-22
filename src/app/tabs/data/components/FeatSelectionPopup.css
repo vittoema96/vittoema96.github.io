@@ -231,25 +231,6 @@
     text-shadow: 0 0 6px color-mix(in srgb, var(--primary-color) 60%, transparent);
 }
 
-/* Item Preview (for future use) */
-.trait-perk-popup__item-preview {
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
-    border-top: var(--border-primary-thin);
-    font-size: 0.85rem;
-    line-height: 1.4;
-    opacity: 0.8;
-}
-
-/* Footer (for future use) */
-.trait-perk-popup__footer {
-    padding: 1rem;
-    border-top: var(--border-primary-thin);
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-}
-
 /* Scrollbar Styling */
 .trait-perk-popup__list::-webkit-scrollbar {
     width: 8px;

@@ -74,18 +74,17 @@ export function D20Dice({
 
 
 export const getFaceClass = (value: number | '?') => {
-    const classBase = 'd6-face-';
     switch (value) {
         case 1:
-            return classBase + 'damage1';
+            return 'd6-face-damage1';
         case 2:
-            return classBase + 'damage2';
+            return 'd6-face-damage2';
         case 3:
         case 4:
-            return classBase + 'effect';
+            return 'd6-face-effect';
         case 5:
         case 6:
-            return classBase + 'blank';
+            return 'd6-face-blank';
         default:
             return '';
     }

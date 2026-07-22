@@ -25,7 +25,7 @@ function PerkList() {
     const { t } = useTranslation()
     const { showD20Popup, showAlert } = usePopup()
     const { character, updateCharacter } = useCharacter()
-    const numberOfPerks = character.level + (hasTrait(character, "traitExtraPerk") ? 1 : 0)
+    const numberOfPerks = character.level + (hasTrait(character.traits, "traitExtraPerk") ? 1 : 0)
 
     // Initialize perks from rawCharacter or create empty slots
     const [selectedPerks, setSelectedPerks] = useState<(PerkId | undefined)[]>([]);

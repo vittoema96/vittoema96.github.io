@@ -89,7 +89,7 @@ export function PerkSelectionPopup({
 
         const perkData = perks[id];
 
-        const tier = perkRank(character, perkData.ID) + 1 - (id === prev ? 1 : 0)
+        const tier = perkRank(character.perks, perkData.ID) + 1 - (id === prev ? 1 : 0)
         const reqs = perkData.REQUISITES;
         const level = (reqs.level || 0) + (tier - 1) * (perkData.LEVEL_REQ_INCREASE ?? 0);
         const strength = reqs.strength || 0;
@@ -115,7 +115,7 @@ export function PerkSelectionPopup({
             perkDaringNature: 'perkCautiousNature',
         };
         const conflictingPerk = PERK_EXCLUSIONS[id];
-        if (conflictingPerk && conflictingPerk !== prev && hasPerk(character, conflictingPerk)) {
+        if (conflictingPerk && conflictingPerk !== prev && hasPerk(character.perks, conflictingPerk)) {
             return false;
         }
         const reqs = getRequirements(id);
@@ -127,13 +127,13 @@ export function PerkSelectionPopup({
             key => reqs[key] > 0 && character.special[key] < reqs[key]
         )
         return !failsSpecialReq
-    }, [character, getRequirements]);
+    }, [character.level, character.special, character.perks, getRequirements, prev]);
 
     const ids = useMemo(() => {
         const allIds = Object.values(perks).map(p => p.ID)
         // Remove perks already taken (except prev or multitier ones)
         const filteredIds = allIds.filter(id => {
-            return perkRank(character, id) - (prev === id ? 1 : 0) < perks[id].TIER
+            return perkRank(character.perks, id) - (prev === id ? 1 : 0) < perks[id].TIER
         })
 
         let resultIds = filteredIds
@@ -358,7 +358,7 @@ export function TraitSelectionPopup({
                     && trait.ORIGINS.includes(character.origin.id)
                     && (
                         prev === trait.ID
-                        || !hasTrait(character, trait.ID)
+                        || !hasTrait(character.traits, trait.ID)
                     )
             }
         ).map(trait => trait.ID)

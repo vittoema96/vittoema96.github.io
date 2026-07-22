@@ -67,6 +67,7 @@
 }
 
 /* D6 dice faces - use ::before pseudo-element for the icon with mask */
+/* ACTUALLY USED dynamically */
 .d6-face-damage1::before,
 .d6-face-damage2::before,
 .d6-face-effect::before {

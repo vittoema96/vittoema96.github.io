@@ -41,9 +41,40 @@ const SkillMapSchema = z.object(
         {} as Record<SkillType, z.ZodDefault<z.ZodNumber>>,
     ),
 )
-// Validates CharacterItems
-const CharacterItemSchema = z.object({
-    id: z.string(),
+
+// TODO migration code, remove after some time.   2026-07-21
+import aidJson from '@/data/item/aid.json'
+const ITEM_ID_MIGRATION_MAP: Record<string, keyof typeof aidJson> = {
+    // Foods
+    foodMirelurkRoast: "foodRoastedMirelurkMeat",
+    foodBerry: "foodTarberry",
+    foodCookedSoftshellMirelurkMeat: "foodCookedSoftshellMeat",
+    foodMongrelMeat: "foodMongrelDogMeat",
+    foodMirelurkQueenMeat: "foodQueenMirelurkMeat",
+    foodWatermelon: "foodMelon",
+    foodMongrelChops: "foodMuttChops",
+    foodYaoGuaiChops: "foodYaoGuaiRibs",
+    foodSandbean: "foodSiltBean",
+    foodGranola: "foodRazorgrain",
+    foodMinestrone: "foodVegetableSoup",
+    foodRoastedBloatfly: "foodBakedBloatfly",
+    foodPasta: "foodPaste",
+    foodPotatoChips: "foodPotatoCrisps",
+    foodInstantRamen: "foodNoodleCup",
+    foodInstituteRations: "foodInstituteFoodPacket",
+
+    // Drinks
+    drinkBerryJuice: "drinkTarberryJuice",
+    drinkWatermelonJuice: "drinkMelonJuice",
+
+    // Meds
+    medsBufftat: "medsBufftats",
+    medsDaytripper: "medsDayTripper",
+    medsPsychojet: "medsPsychoJet",
+};
+
+export const CharacterItemSchema = z.object({
+    id: z.string().transform((id) => ITEM_ID_MIGRATION_MAP[id] ?? id),
     customName: z.string().optional(),
     quantity: z.number().default(1),
     equipped: z.boolean().default(false),

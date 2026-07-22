@@ -12,7 +12,7 @@ import { isType } from '@/features/item/itemUtils.ts';
  */
 export const useInventoryFilter = (itemType: ItemType) => {
     const { character } = useCharacter()
-    const ironFistTier = perkRank(character, 'perkIronFist')
+    const ironFistTier = perkRank(character.perks, 'perkIronFist')
 
     return useMemo(() => {
         if (!character.items) {return []}

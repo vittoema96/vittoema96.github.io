@@ -172,24 +172,15 @@ export interface ItemWithEffects extends BaseItem {
     EFFECTS: string[]; // JSON array
 }
 
-interface AidItemBase extends BaseItem {
-    CATEGORY: AidCategory;
+export interface AidItem extends BaseItem {
+    CATEGORY: AidCategory
+    DURATION: 'durationInstant' | 'durationShort' | 'durationLasting';
+    ADDICTIVE: number | null;
+    HP_GAIN: number | null;
+    RADIOACTIVE: number | null;
 }
 
-interface MedItem extends AidItemBase {
-    DURATION: string;
-    ADDICTIVE: number; // 0 o 1
-}
-
-interface FoodItem extends AidItemBase {
-    HP_GAIN: number;
-    RADIOACTIVE: number; // 0 o 1
-}
-
-// Union type per Aid
-export type AidItem = MedItem | FoodItem;
-
-type PerkWithRank = `${PerkId}:${number}`;
+export type PerkWithRank = `${PerkId}:${number}`;
 
 export interface ModItem extends ItemWithEffects {
     SLOT_TYPE: string;

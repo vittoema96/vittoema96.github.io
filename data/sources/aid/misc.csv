@@ -1,4 +1,4 @@
-ID,TYPE,CATEGORY,WEIGHT,COST,RARITY
-aidStimpakDiffuser,aid,misc,0,100,5
-aidRobotRepairKit,aid,misc,0.5,48,2
-aidStealthBoy,aid,misc,0.5,100,3
+ID,TYPE,CATEGORY,DURATION,HP_GAIN,RADIOACTIVE,ADDICTIVE,WEIGHT,COST,RARITY
+aidStimpakDiffuser,aid,misc,durationInstant,4,,,0.5,100,5
+aidRobotRepairKit,aid,misc,durationInstant,4,,,0,48,2
+aidStealthBoy,aid,misc,durationInstant,,,,0.5,100,3

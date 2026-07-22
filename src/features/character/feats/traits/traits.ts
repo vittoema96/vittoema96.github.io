@@ -1,4 +1,4 @@
-import { Character, RawCharacter } from '@/types';
+import { RawCharacter } from '@/types';
 import { Origin, OriginId } from '@/features/character/origin.ts';
 import { useMemo } from 'react';
 import { traits } from '@/data';
@@ -46,9 +46,6 @@ export function useTraits(raw: RawCharacter, origin: Origin) {
     }, [raw.traits, origin.id]);
 }
 
-export function hasTrait(input: TraitId[] | Character, trait: TraitId) {
-    if(!Array.isArray(input)) {
-        input = input.traits
-    }
+export function hasTrait(input: TraitId[], trait: TraitId) {
     return hasFeat(input, trait);
 }

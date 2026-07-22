@@ -20,7 +20,7 @@ function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
     const specialName = getSpecialFromSkill(skillId)
     const hasSpecialty = character.specialties.includes(skillId)
     const specialtyBonus = hasSpecialty ? 2 : 0
-    const skillMax = hasTrait(character, 'traitGoodNatured')
+    const skillMax = hasTrait(character.traits, 'traitGoodNatured')
                              && !hasSpecialty && [
                                  'speech', 'medicine', 'repair' , 'science', 'barter'
                              ].includes(skillId) ?

@@ -9,6 +9,7 @@ import { isType } from '@/features/item/itemUtils.ts';
  */
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
 const getLocations = (bodyPart: GenericBodyPart | 'arm' | 'arms' | 'leg' | 'legs', side?: string) => {
     if(['arm', 'arms', 'leg', 'legs'].includes(bodyPart)) {
         const part = capitalize(bodyPart.substring(0, 3))

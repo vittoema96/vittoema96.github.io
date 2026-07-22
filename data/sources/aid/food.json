@@ -1,6 +1,6 @@
 {
-  "foodBerry": {
-    "en": "Berry",
+  "foodTarberry": {
+    "en": "Tarberry",
     "it": "Bacca",
     "_description": {
       "en": "Small purple berries of the Tarberry plant, a water-grown crop similar to pre-War cranberries. A useful ingredient in several recipes, but difficult to cultivate in any location without a decent supply of reasonably clean water. Communities able to grow tarberries often need to protect their crop from raiders.",
@@ -39,7 +39,7 @@
       "it": "Un pezzo di carne di succhiasangue cotto a fiamma viva. Se la si riesce a mangiare ignorando il retrogusto, è abbastanza nutriente e lascia persino una sensazione di rinnovato vigore e salute per un certo tempo dopo il pasto."
     },
     "_effect": {
-      "en": "+3 to maximum HP until the end of the next scene",
+      "en": "Max HP +3 until end of following scene",
       "it": "+3 al massimale dei PS fino al termine della scena successiva"
     }
   },
@@ -59,8 +59,8 @@
       "it": "Una lattina di metallo di carne lavorata destinata ad essere data ai cani. Nonostante sia fatta per i cani, è completamente commestibile dagli umani, e la lattina sigillata mantiene il cibo all'interno conservato e relativamente sicuro da mangiare per lunghi periodi."
     }
   },
-  "foodCannedMeat": {
-    "en": "Canned Meat",
+  "foodPottedMeat": {
+    "en": "Potted Meat",
     "it": "Carne in Scatola",
     "_description": {
       "en": "A small metal tin of mixed processed meat, typically containing mixtures of meat from brahmin, radstags, mole rats, mongrel dogs, and anything else the maker can get their hands on (some of which may not be fit for human consumption). Special: Roll 2 DC when determining if the food inflicts Radiation damage, rather than 1 DC. You suffer 1 Radiation damage, ignoring damage resistance, for each Effect rolled.",
@@ -75,15 +75,15 @@
       "it": "Una forma leggermente mutata della comune carota arancione. Abbastanza facile da coltivare in discrete quantità, e utile per una varietà di ricette, le piccole fattorie della Zona Contaminata spesso includono qualche campo di carote. La carota è un componente di diverse ricette per cibi. Le carote coltivate in condizioni non radioattive (come all'interno dei Vault o luoghi simili) non sono radioattive ma aumentano la loro rarità di +1."
     }
   },
-  "foodCookedSoftshellMirelurkMeat": {
-    "en": "Cooked Softshell Mirelurk Meat",
+  "foodCookedSoftshellMeat": {
+    "en": "Cooked Softshell Meat",
     "it": "Carne di Mirelurk a Guscio Morbido Cotta",
     "_description": {
       "en": "The softer meat from mirelurks, cooked into a rough steak. A high-energy meal, those who eat cooked softshell meat are often invigorated and eager for action for a while afterwards.",
       "it": "Si tratta del taglio di carne più morbida dei mirelurk, cotta come fosse una sorta di bistecca. È un pasto molto sostanzioso, per cui chi la mangia solitamente si sente rinvigorito e pronto all'azione per un bel po' di tempo."
     },
     "_effect": {
-      "en": "+1 AP at the start of the next scene",
+      "en": "Gain +1 AP at the start of the next scene",
       "it": "+1 PA all'inizio della scena successiva"
     }
   },
@@ -143,8 +143,8 @@
       "it": "Si tratta di un'omelette cucinata con un uovo di deathclaw. È abbastanza saziante e nutriente da poter sfamare qualcuno per un giorno intero, facendolo anche sentire più forte e in forma per un po' dopo il pasto."
     },
     "_effect": {
-      "en": "If the next scene is combat, the PC recovers 1 HP at the start of each turn",
-      "it": "Se la scena successiva è di combattimento , il PG recupera 1 PS all'inizio di ogni turno"
+      "en": "If the next scene is combat, regain 1HP at the start of each turn",
+      "it": "Se la scena successiva è di combattimento, il PG recupera 1 PS all'inizio di ogni turno"
     }
   },
   "foodDeathclawSteak": {
@@ -155,7 +155,7 @@
       "it": "Una grossa fetta di carne cotta di deathclaw. Sufficientemente sostanziosa e nutriente da poter facilmente essere un pasto unico per la giornata, permette di sentirsi in forze e pieni di energia per un po'."
     },
     "_effect": {
-      "en": "Allows re-rolling 1d20 on all STR tests until the end of the next scene",
+      "en": "May re-roll 1d20 on all STR tests until end of next scene",
       "it": "Permette di ritirare 1d20 su tutte le prove di FOR fino alla fine della scena successiva"
     }
   },
@@ -175,8 +175,8 @@
       "it": "Si tratta di un grosso frutto edibile dalla polpa carnosa e la buccia dura, simile a un melone. L'interno può essere mangiato direttamente col cucchiaio o usato in cucina, mentre la buccia spesso viene incisa a scopo decorativo."
     }
   },
-  "foodGranola": {
-    "en": "Granola",
+  "foodRazorgrain": {
+    "en": "Razorgrain",
     "it": "Granolama",
     "_description": {
       "en": "A tall, fast-growing grass similar to wheat, which can be ground down to make flour for making bread and other staple foods. Razorgrain is an ingredient in a few recipes.",
@@ -203,8 +203,8 @@
       "it": "Il peso trasportabile aumenta di +25 fino alla fine della scena successiva"
     }
   },
-  "foodGummyCandy": {
-    "en": "Gummy Candy",
+  "foodGumDrops": {
+    "en": "Gum Drops",
     "it": "Caramelle Gommose",
     "_description": {
       "en": "A pre-War confection, gum drops are small drops of congealed gelatin sweetened and flavored with a variety of overpowering flavors. The most common variety to survive the War, ironically, were labelled as radioactive for their powerful sour flavor. Long years sat in cupboards and on shelves has made this more literal, however.",
@@ -243,39 +243,39 @@
       "it": "Un pacchetto di purè di patate liofilizzato in polvere ancora sigillato all'interno della sua scatola di cartone. Basta aggiungere acqua! A volte, si possono trovare scatole conservate di InstaMash. Queste sono identiche alla versione elencata, ma non sono radioattive, e aumentano la loro rarità di +1."
     }
   },
-  "foodInstantRamen": {
-    "en": "Instant Ramen",
+  "foodNoodleCup": {
+    "en": "Noodle Cup",
     "it": "Ramen Istantaneo",
     "_description": {
       "en": "A simple cup of noodle soup. Moderately filling and thirst-quenching, and simple enough to make if you can find the ingredients.",
       "it": "Si tratta di una semplice confezione di ramen. È relativamente saziante e dissetante, oltre a essere abbastanza semplice da preparare se si riescono a trovare gli ingredienti."
     }
   },
-  "foodInstituteRations": {
-    "en": "Institute Rations",
+  "foodInstituteFoodPacket": {
+    "en": "Institute Food Packet",
     "it": "Razioni dell'Istituto",
     "_description": {
       "en": "A small white box of food marked with the symbol of the Institute. Each box contains enriched ration bars filled with essential nutrients. Each ration bar contains your daily requirements of forty different vitamins, minerals, and nutrients, which are listed on the back of the box.",
       "it": "Una piccola scatola di cibo bianca e contrassegnata con il simbolo dell'Istituto. Ciascuna di esse contiene delle barrette per razioni arricchite, piene di nutrienti essenziali. Ogni barretta apporta la razione giornaliera necessaria di quaranta diverse vitamine, minerali e nutrienti, tutti elencati sul retro."
     }
   },
-  "foodMentalFungus": {
-    "en": "Mental Fungus",
+  "foodBrainFungus": {
+    "en": "Brain Fungus",
     "it": "Fungo Mentale",
     "_description": {
       "en": "An off-white mushroom which resembles a brain, and which tends to be found in clusters growing in dark, dank corners. Slightly irradiated due simply to growing in the wastelands, but otherwise harmless, despite its slightly alarming name and appearance. Brain fungus is an ingredient in Mentats.",
       "it": "Un fungo biancastro che assomiglia a un cervello, e che tende a essere trovato in gruppi che crescono in angoli bui e umidi. Leggermente radioattivo semplicemente per il fatto di crescere nella Zona Contaminata, ma per il resto innocuo, nonostante il suo nome e aspetto leggermente allarmanti. Il fungo mentale è un ingrediente nei Mentat."
     }
   },
-  "foodMinestrone": {
-    "en": "Minestrone",
+  "foodVegetableSoup": {
+    "en": "Vegetable Soup",
     "it": "Minestrone",
     "_description": {
       "en": "A simple soup made with carrot and tato. A reasonably filling meal, sating both hunger and thirst, while also helping to fortify the body against radiation poisoning for a while.",
       "it": "Una semplice zuppa fatta con carote e tatos. Un pasto abbastanza saziante, che placa sia la fame che la sete, aiutando anche a fortificare il corpo contro l'avvelenamento da radiazioni per un po'."
     },
     "_effect": {
-      "en": "+2 to Radiation Damage Resistance until the end of the next scene",
+      "en": "+2 to Radiation damage resistance until end of next scene",
       "it": "+2 alla Resistenza ai Danni da Radiazione fino alla fine della scena successiva"
     }
   },
@@ -287,7 +287,7 @@
       "it": "Sono scaglie e frammenti di carne di mirelurk mischiati con un uovo, anch'esso di mirelurk, e compattati in una tortina che viene poi cotta. Oltre a fornire un modesto valore nutrizionale, mangiare un tortino di mirelurk permette di sopravvivere più a lungo sott'acqua."
     },
     "_effect": {
-      "en": "Allows breathing underwater until the end of the next scene",
+      "en": "Can breathe underwater until end of next scene",
       "it": "Permette di respirare sott'acqua fino alla fine della scena successiva"
     }
   },
@@ -307,7 +307,7 @@
       "it": "Si tratta di un'omelette fatta con un uovo di mirelurk. Oltre al suo valore nutrizionale, quando è preparata bene lascia pieni di energie e pronti all'azione."
     },
     "_effect": {
-      "en": "Immediately add 2 AP to the group's pool",
+      "en": "Immediately add 2 AP to the group pool",
       "it": "Aggiungere immediatamente 2 PA alla riserva del gruppo"
     }
   },
@@ -319,15 +319,15 @@
       "it": "È carne di mirelurk morto. Di solito è più dura e di qualità inferiore rispetto a quella proveniente dai più deboli mirelurk a guscio morbido, ma la si può comunque mangiare. La carne di mirelurk è un ingrediente indispensabile per il Tortino di Mirelurk e può essere cotta per ottenere della Carne Arrosto di Mirelurk."
     }
   },
-  "foodMirelurkQueenMeat": {
-    "en": "Mirelurk Queen Meat",
+  "foodQueenMirelurkMeat": {
+    "en": "Queen Mirelurk Meat",
     "it": "Carne di Regina dei Mirelurk",
     "_description": {
       "en": "The meat from a dead mirelurk Queen. This meat can make for a great feast, as it is nutrient rich and incredibly filling, leaving a sense of health and wellbeing in any who eat it, even raw. When cooked, these effects are even more pronounced. Queen mirelurk meat can be cooked to produce Mirelurk Queen Steak.",
       "it": "È carne proveniente da una regina dei mirelurk morta. Può diventare un vero e proprio banchetto, poiché è ricca di sostanze nutritive e incredibilmente saziante, in grado di lasciare un senso di salute e benessere in chiunque se ne cibi, anche da cruda. Se è cotta, gli effetti sono anche più evidenti. La carne di regina dei mirelurk può essere cucinata in una Bistecca di Regina dei Mirelurk."
     },
     "_effect": {
-      "en": "Allows re-rolling 1d20 on all END tests until the end of the next scene",
+      "en": "May re-roll 1d20 on all END tests until end of next scene",
       "it": "Permette di ritirare 1d20 su tutte le prove di COS fino alla fine della scena successiva"
     }
   },
@@ -339,19 +339,19 @@
       "it": "La rara carne di una regina dei mirelurk, ricca di nutrienti, quando è cucinata in maniera adeguata può fortificare il corpo ed essere fonte di salute e vitalità, facendo sentire chi la mangia più sano e resistente per un po' dopo il pasto."
     },
     "_effect": {
-      "en": "Reduces the difficulty of all END tests by 1 until the end of the next scene",
+      "en": "Reduce the difficulty of all END tests by 1 until the end of the next scene",
       "it": "Riduce di 1 la difficoltà di tutte le prove di COS fino alla fine della scena successiva"
     }
   },
-  "foodMirelurkRoast": {
-    "en": "Mirelurk Roast",
+  "foodRoastedMirelurkMeat": {
+    "en": "Roasted Mirelurk Meat",
     "it": "Arrosto di Mirelurk",
     "_description": {
       "en": "A cooked portion of meat from a mirelurk. Though not to the same extent as the softshell meat, roasted mirelurk meat invigorates the body and mind and leaves you ready for action.",
       "it": "Una porzione di carne cotta di un mirelurk. Anche se non nella stessa misura della carne a guscio morbido, l'arrosto di mirelurk rinvigorisce il corpo e la mente e rende pronti all'azione."
     },
     "_effect": {
-      "en": "+1 AP at the start of the next scene",
+      "en": "Gain +1 AP at start of next scene",
       "it": "+1 PA all'inizio della scena successiva"
     }
   },
@@ -363,7 +363,7 @@
       "it": "Sono pezzi di ratto talpa cotti sul fuoco. La carne è alquanto dura e gommosa, ma lascia una sensazione di vigoria, come se le riserve di energia fossero aumentate."
     },
     "_effect": {
-      "en": "+1 to maximum AP in the group's pool until the end of the current scene",
+      "en": "+1 Maximum AP in group pool until the end of the current scene",
       "it": "+1 al massimale dei PA nella riserva di gruppo fino alla fine della scena corrente"
     }
   },
@@ -375,16 +375,16 @@
       "it": "Un pezzo di carne proveniente da un ratto talpa morto. Può essere cucinata per avere dei Pezzi di Ratto Talpa."
     }
   },
-  "foodMongrelChops": {
-    "en": "Mongrel Chops",
+  "foodMuttChops": {
+    "en": "Mutt Chops",
     "it": "Costolette di Cane",
     "_description": {
       "en": "Cuts of mongrel dog meat cooked to make them more nutritious and edible.",
       "it": "Tagli di carne di cane bastardino cucinati per renderli più nutrienti e commestibili."
     }
   },
-  "foodMongrelMeat": {
-    "en": "Mongrel Meat",
+  "foodMongrelDogMeat": {
+    "en": "Mongrel Dog Meat",
     "it": "Carne di Cane",
     "_description": {
       "en": "A chunk of meat taken from a mongrel dog. Mongrel Dog Meat can be cooked to make Mutt Chops.",
@@ -419,15 +419,15 @@
       "it": "Pronunciato 'muta-frutta', e abbreviazione di frutta mutata, la mutafrutta è una forma mutata di mela, che viene in diverse varietà a seconda di dove ti trovi. Queste diverse varietà sono coltivate per il loro sapore dolce, il loro uso in cucina, e persino proprietà medicinali in alcuni rari casi. La mutafrutta fa parte di alcune ricette diverse, incluso essere trasformata in Succo di Mutafrutta. Le mutafrutta coltivate in condizioni non radioattive (come all'interno dei Vault o luoghi simili) non sono radioattive ma aumentano la loro rarità di +1."
     }
   },
-  "foodPasta": {
-    "en": "Pasta",
+  "foodPaste": {
+    "en": "Food Paste",
     "it": "Pasta Alimentare",
     "_description": {
       "en": "In the years before the Great War, several charter schools across America entered an experimental program: The Nutritional Alternative Paste Program (NAPP). Developed by Vault-Tec in conjunction with the Federal Government, this supplied participating schools with a supply of food paste, fortified with vitamins, minerals and all the nutrients a growing body needs, and which would remain unspoiled for over a century. The paste is a flavorless mush, garish pink in color, and may have unknown long-term effects on psychology or physiology. It does, however, make the body healthier after consumption.",
       "it": "Negli anni prima della guerra molte scuole private americane aderirono a un programma sperimentale: il Programma per Pasta Alimentare Alternativa (PPAA). Sviluppato dalla Vault-Tec in collaborazione con il Governo Federale, alle scuole partecipanti veniva inviata una fornitura di pasta alimentare arricchita con vitamine, minerali e tutti i nutrienti di cui ha bisogno un corpo nel pieno della crescita, capace di durare per più di cento anni. La pasta è una poltiglia priva di sapore, di un rosa sgargiante, che potrebbe avere degli effetti sconosciuti a lungo termine sia sulla psiche che sul fisico. Ciò che è certo, a ogni modo, è che rende il corpo più sano dopo averla mangiata."
     },
     "_effect": {
-      "en": "Allows re-rolling 1d20 on all END tests until the end of the next scene",
+      "en": "May re-roll 1d20 on all END tests until end of next scene",
       "it": "Permette di ritirare 1d20 su tutte le prove di COS fino alla fine della scena successiva"
     }
   },
@@ -440,15 +440,15 @@
     }
   },
   "foodPorkNBeans": {
-    "en": "Pork n' Beans",
+    "en": "Pork 'n' Beans",
     "it": "Pork'n'Beans",
     "_description": {
       "en": "A can containing a complete meal: beans stewed in a tomato sauce with chunks of cured pork belly. The tin may be slightly rusted, and the label has partly fallen off due to age and water damage, but the contents are still as edible as ever, though moreso if warmed up first.",
       "it": "Un intero pasto contenuto in una lattina: fagioli stufati in salsa al pomodoro con pezzetti di pancetta di maiale. La lattina potrebbe essere un po' arrugginita e l'etichetta un po' scollata per via del tempo e dell'acqua, ma il contenuto si fa ancora mangiare bene, anche di più una volta scaldato."
     }
   },
-  "foodPotatoChips": {
-    "en": "Potato Chips",
+  "foodPotatoCrisps": {
+    "en": "Potato Crisps",
     "it": "Patatine",
     "_description": {
       "en": "A can of salted or flavored potato chips, sealed in an inert environment for freshness. A common snack pre-War, you can still find the odd pack of these in most places where people lived or worked.",
@@ -479,7 +479,7 @@
       "it": "Fatte con uova di scorpione radioattivo, queste omelette sono apprezzate da chi fa uso massiccio di droghe da combattimento, dato che qualcosa in esse ripulisce il corpo, eliminando dipendenze chimiche e assuefazioni."
     },
     "_effect": {
-      "en": "All addictions are cured",
+      "en": "Cure all addictions",
       "it": "Tutte le dipendenze vengono curate"
     }
   },
@@ -499,7 +499,7 @@
       "it": "È un pezzo cotto di carne di scorpione radioattivo. La cottura abbassa i livelli di radiazione al di sotto della soglia di pericolosità ed aumenta i valori nutrizionali. Inoltre mangiare una bistecca di scorpione radioattivo aumenta la resistenza al calore estremo per un certo lasso di tempo."
     },
     "_effect": {
-      "en": "+2 to Energy Damage Resistance until the end of the next scene",
+      "en": "+2 Energy damage resistance until end of next scene",
       "it": "+2 alla Resistenza ai Danni da Energia fino alla fine della scena successiva"
     }
   },
@@ -519,7 +519,7 @@
       "it": "Si tratta di fette di carne di cervo radioattivo, cotte assieme a delle verdure e dell'alcol fino ad ottenere uno stufato denso e sostanzioso. Saziante e soddisfacente, fortifica anche il corpo, rendendolo più resistente alle alte temperature per un certo periodo di tempo."
     },
     "_effect": {
-      "en": "+3 to Energy Damage Resistance until the end of the next scene",
+      "en": "+3 Energy damage resistance until end of next scene",
       "it": "+3 alla Resistenza ai Danni da Energia fino alla fine della prossima scena"
     }
   },
@@ -531,15 +531,15 @@
       "it": "Questo pezzo grigliato di bramino, simile a una bistecca dell'anteguerra, costituisce un pasto appagante."
     }
   },
-  "foodRoastedBloatfly": {
-    "en": "Roasted Bloatfly",
+  "foodBakedBloatfly": {
+    "en": "Baked Bloatfly",
     "it": "Mosca Mutante Arrosto",
     "_description": {
       "en": "A grilled chunk of meat taken from a Bloatfly. The resulting food is revolting, but filling, and for a while after eating it, helps the body absorb radioactive contamination.",
       "it": "Un pezzo grigliato di carne preso da una notonetta. Il cibo risultante è rivoltante, ma saziante, e per un po' dopo averlo mangiato, aiuta il corpo ad assorbire la contaminazione radioattiva."
     },
     "_effect": {
-      "en": "+2 to Radiation Damage Resistance",
+      "en": "+2 Radiation damage resistance",
       "it": "+2 alla Resistenza ai Danni da Radiazione"
     }
   },
@@ -551,8 +551,8 @@
       "it": "È un pasto pronto fatto con carne macinata mischiata con briciole di pane, cipolle e uovo, il tutto servito con il suo sughetto. Il pasto è preconfezionato, conservato e sigillato per mantenerlo fresco, per cui basta solo scaldarlo per poterlo mangiare. Talvolta si possono trovare delle scatole incontaminate di Bistecche Salisbury. Sono identiche alla versione descritta, ma non essendo radioattive la loro rarità aumenta di +1."
     }
   },
-  "foodSandbean": {
-    "en": "Sandbean",
+  "foodSiltBean": {
+    "en": "Silt Bean",
     "it": "Fagiolo della Sabbia",
     "_description": {
       "en": "Growing from the vine of a silt bean plant, silt beans are red-brown pods of legumes growing in the wilderness. They're not easily cultivated for farming, though many have tried. The beans are an ingredient in a few recipes, such as radstag stew.",
@@ -599,7 +599,7 @@
       "it": "Un pezzo cotto di carne di stingwing. Non il cibo più appetitoso, ma sorprendentemente utile per coloro che sopravvivono nella Zona Contaminata, poiché può affinare i sensi e farti sentire più consapevole dell'ambiente circostante."
     },
     "_effect": {
-      "en": "Allows re-rolling 1d20 on all PER tests until the end of the next scene",
+      "en": "May re-roll 1d20 on all PER tests until end of next scene",
       "it": "Permette di ritirare 1d20 su tutte le prove di PER fino alla fine della scena successiva"
     }
   },
@@ -619,7 +619,7 @@
       "it": "Un tipo di cereali per la colazione dell'anteguerra con 'un sapore esplosivo', la scatola contiene dei cereali a forma di piccole bombe atomiche stilizzate ricoperte da abbondanti quantità di zucchero. Su alcune scatole c'è scritto che contengono un premio. A volte, si possono trovare scatole conservate di Sugar Bomb. Queste sono identiche alla versione elencata, ma non sono radioattive, e aumentano la loro rarità di +1."
     },
     "_effect": {
-      "en": "+1 AP at the start of the next scene",
+      "en": "Gain +1 AP at start of next scene",
       "it": "+1 PA all'inizio della scena successiva"
     }
   },
@@ -639,23 +639,23 @@
       "it": "È un ibrido mutante delle piante di pomodori e patate dell'anteguerra, con il picciolo e la buccia rossa dei primi e la polpa marroncina delle seconde. I tatos sono abbastanza nutrienti, ma sono disgustosi. Sono, tuttavia, abbastanza facili da coltivare, per cui sono un caposaldo dell'agricoltura della Zona Contaminata, oltre che un ingrediente per diverse ricette."
     }
   },
-  "foodWatermelon": {
-    "en": "Watermelon",
+  "foodMelon": {
+    "en": "Melon",
     "it": "Cocomero",
     "_description": {
       "en": "A large, green, juicy fruit with a hard outer rind. Melons are grown in wasteland farms, or found growing wild in the wasteland. Either way, once cut open they're often very satisfying, sating hunger and quenching thirst all in one go. Melons grown in non-irradiated conditions (such as within vaults or similar locations) are not irradiated but increase their rarity by +1.",
-      "it": "Un grosso frutto verde e succoso con una dura scorza esterna. I meloni vengono coltivati nelle fattorie della Zona Contaminata, o trovati crescendo selvatici nella Zona Contaminata. In ogni caso, una volta tagliati sono spesso molto soddisfacenti, saziando la fame e dissetando tutto in una volta. I meloni coltivati in condizioni non radioattive (come all'interno dei Vault o luoghi simili) non sono radioattivi ma aumentano la loro rarità di +1."
+      "it": "Un grosso frutto verde e succoso con una dura scorza esterna. I meloni vengono coltivati nelle fattorie della Zona Contaminata, o trovati crescendo selvatici nella Zona Contaminata. In ogni caso, una volta tagliati sono spesso molto soddisfacenti, saziando la fame e dissetando tutto in una volta. I meloni coltivati in condizioni non radioattive (come all'interno dei Vault o luoghi simili) non sono radioattive ma aumentano la loro rarità di +1."
     }
   },
-  "foodYaoGuaiChops": {
-    "en": "Yao Guai Chops",
+  "foodYaoGuaiRibs": {
+    "en": "Yao Guai Ribs",
     "it": "Costolette di Yao Guai",
     "_description": {
       "en": "A rack of ribs made with Yao Guai meat. Yao Guai ribs are both a satisfying meal and inspire a sense of invincibility, while also boosting your tolerance for pain for a short while.",
       "it": "Una griglia di costolette fatta con carne di Yao Guai. Le costolette di Yao Guai sono sia un pasto soddisfacente che ispirano un senso di invincibilità, aumentando anche la tolleranza al dolore per un breve periodo."
     },
     "_effect": {
-      "en": "+2 to Physical Damage Resistance until the end of the next scene",
+      "en": "+2 Physical damage resistance until end of next scene",
       "it": "+2 alla Resistenza ai Danni Fisici fino alla fine della scena successiva"
     }
   },
@@ -675,8 +675,8 @@
       "it": "Non è che un pezzo di carne di Yao Guai cotto con carote e tatos. Piatto incredibilmente saziante e appetitoso, in molti sostengono che aumenti per un po' di tempo l'istinto omicida e l'abilità di fare del male dopo che lo si è mangiato."
     },
     "_effect": {
-      "en": "+2 to melee attacks until the end of the next scene",
-      "it": "+2 agli attacchi da mischia fino alla fine della scena successiva"
+      "en": "+2 DC to melee attacks until end of next scene",
+      "it": "+2 DC agli attacchi da mischia fino alla fine della scena successiva"
     }
   },
   "foodYumYumDeviledEggs": {

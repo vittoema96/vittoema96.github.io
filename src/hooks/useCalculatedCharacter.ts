@@ -69,6 +69,7 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
     const locationsDR = useDamageResistances(raw, origin);
 
     // Default companion (Eyebot)
+    // TODO CRITICAL: This should check the current companion, not default to eyebot!
     const companion = useMemo(() => {
         if (raw.companion) {
             return raw.companion;
