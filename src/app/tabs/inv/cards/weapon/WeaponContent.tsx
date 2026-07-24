@@ -3,15 +3,15 @@ import { useCharacter } from '@/app/contexts/CharacterContext.tsx'
 import { useTranslation } from 'react-i18next'
 import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo } from '@/app/tabs/inv/utils/weaponUtils.ts'
 import { CharacterItem } from '@/types';
+import React from 'react';
+import { Icon } from '@iconify/react';
 import {
+    getModifiedItemData,
     getSkillForWeaponCategory,
     getSpecialForWeaponCategory,
     isCloseCombat,
     isType,
-} from '@/features/item/itemUtils.ts';
-import React from 'react';
-import { Icon } from '@iconify/react';
-import { getModifiedItemData } from '@/features/item/utils.ts';
+} from '@/features/item/utils.ts';
 import { hasTrait } from '@/features/character/feats/traits/traits.ts';
 import { getDamageRatingBonus } from '@/features/character/feats';
 

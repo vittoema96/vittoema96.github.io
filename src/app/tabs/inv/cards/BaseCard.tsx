@@ -4,8 +4,7 @@ import { CharacterItem, CustomItem } from '@/types';
 import { FitText } from '@/app/components/FitText.tsx';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
-import { getCanonicalDisplayName, isType } from '@/features/item/itemUtils.ts';
-import { getModifiedItemData } from '@/features/item/utils.ts';
+import { getCanonicalDisplayName, getModifiedItemData, isType } from '@/features/item/utils.ts';
 import { allItems } from '@/data';
 
 /**
@@ -48,7 +47,7 @@ function BaseCard({
     const { character } = useCharacter()
 
     const item = {
-        variation: undefined,
+        side: undefined,
         ...characterItem
     }
 
@@ -158,7 +157,7 @@ function BaseCard({
                         onClick={e => e.stopPropagation()}
                     >
                         <div className="card-description-overlay__header">
-                            <h3>{t(itemData.ID ?? '', {variation: t(item.variation!)})}</h3>
+                            <h3>{t(itemData.ID ?? '', {variation: t(item.side!)})}</h3>
                             <button
                                 className="card-description-overlay__close"
                                 onClick={toggleDescription}

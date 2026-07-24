@@ -6,12 +6,11 @@ import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import Skill from '@/app/tabs/stat/components/Skill.tsx';
-import { addItem } from '@/features/item/itemUtils.ts';
 import { ChangeEventHandler, useMemo, useState } from 'react';
-import { getModifiedItemData } from '@/features/item/utils.ts';
+import { addItem, getModifiedItemData } from '@/features/item/utils.ts';
 import { allItems } from '@/data';
 
-type TradeMode = 'sell' | 'buy'
+type TradeMode = 'sell' | 'buy';
 
 export interface TradeItemPopupProps {
     onClose: () => void;
@@ -70,7 +69,6 @@ function TradeItemPopup({
                     quantity,
                     equipped: false,
                     mods: [],
-                    ...(characterItem.variation ? { variation: characterItem.variation } : {}),
                 })
 
                 updateCharacter({
@@ -134,7 +132,7 @@ function TradeItemPopup({
     const canAfford = !isBuying || character.caps >= total
     const isFormValid = isQuantityValid && isPriceValid && canAfford
 
-    const side = {variation: undefined, ...characterItem}.variation
+    const side = {side: undefined, ...characterItem}.side
 
     return (
         <BasePopup
@@ -151,7 +149,7 @@ function TradeItemPopup({
 
             {/* Item name × quantity */}
             <div className="row l-distributed">
-                <span>{t(itemData.ID ?? '', side ? { side } : {})}</span>
+                <span>{t(itemData.ID ?? '', {variation: t(side!)})}</span>
                 <div className="row l-centered">
                     <span className="h3">×</span>
                     <input

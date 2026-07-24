@@ -6,7 +6,8 @@ import {mapItemLocations} from "@/utils/bodyLocations.ts";
 
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
 import { allItems } from '@/data';
-import { isType } from '@/features/item/itemUtils.ts';
+
+import { isType } from '@/features/item/utils.ts';
 
 /**
  * Component to display equipped apparel items
@@ -28,7 +29,7 @@ function EquippedApparel() {
         const itemData = allItems[item.id]
         if(!isType(itemData, "apparel")){ return }
 
-        const locations = mapItemLocations(itemData.LOCATIONS_COVERED, item.variation)
+        const locations = mapItemLocations(itemData.LOCATIONS_COVERED, item.side)
 
         // Add item to each location it covers
         locations.forEach(loc => {
@@ -57,13 +58,10 @@ function EquippedApparel() {
                             <span className="equipped-apparel__slot-label">{t(bodyPart)}</span>
                             <div className="equipped-apparel__slot-items">
                                 {items.map(({ item, itemData }) => {
-                                    let displayName = t(itemData.ID)
-                                    if (item.variation) {
-                                        displayName += ` (${t(item.variation)})`
-                                    }
                                     return (
-                                        <div key={`${itemData.ID}_${item.variation}`} className="equipped-apparel__item">
-                                            {displayName}
+                                        // TODO key should be thought about more
+                                        <div key={`${itemData.ID}_${item.side}`} className="equipped-apparel__item">
+                                            {t(itemData.ID, {variation: t(item.side!)})}
                                         </div>
                                     )
                                 })}

@@ -2,11 +2,16 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
 import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts'
-import { getDisplayName, isCloseCombat, isType, isUnacquirable } from '@/features/item/itemUtils.ts';
 import { CharacterItem, CustomItem } from '@/types';
 import { FitText } from '@/app/components/FitText.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
-import { getModifiedItemData } from '@/features/item/utils.ts';
+import {
+    getDisplayName,
+    getModifiedItemData,
+    isCloseCombat,
+    isType,
+    isUnacquirable,
+} from '@/features/item/utils.ts';
 import { allItems } from '@/data';
 import { getDamageRatingBonus } from '@/features/character/feats';
 

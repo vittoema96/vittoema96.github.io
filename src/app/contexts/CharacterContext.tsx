@@ -31,7 +31,8 @@ import { RawCharacterSchema } from '@/schemas/characterSchemas.ts';
 import { z } from 'zod';
 import { adjustCurrentHp } from '@/features/character/hp.ts';
 import { allItems } from '@/data';
-import { isType } from '@/features/item/itemUtils.ts';
+
+import { isType } from '@/features/item/utils.ts';
 
 /**
  * Pre-built "Mysterious Stranger" companion character.

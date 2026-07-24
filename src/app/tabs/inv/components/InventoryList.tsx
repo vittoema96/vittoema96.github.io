@@ -6,14 +6,18 @@ import WeaponCard from '../cards/weapon/WeaponCard.tsx'
 import ApparelCard from '../cards/apparel/ApparelCard.tsx'
 import AidCard from '../cards/aid/AidCard.tsx'
 import OtherCard from '../cards/ammo/OtherCard.tsx'
-import { CharacterItem, CustomItem } from '@/types';
+import { CharacterItem } from '@/types';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { ITEM_TYPE_MAP, ItemCategory, ItemType } from '@/types/item.ts';
-import { getDisplayName, isType } from '@/features/item/itemUtils.ts';
-import { getModifiedItemData } from '@/features/item/utils.ts';
+import {
+    getDisplayName,
+    getModifiedItemData,
+    getUniqueKey,
+    isType,
+} from '@/features/item/utils.ts';
 import { allItems, traits } from '@/data';
 
-type SortBy = 'name' | 'number' | 'rarity'
+type SortBy = 'name' | 'number' | 'rarity';
 
 /**
  * Inventory list with selection-based card display
@@ -221,21 +225,6 @@ function InventoryList({
         }
         // Clear selection when sorting
         setSelectedItemId(undefined)
-    }
-
-    const getUniqueKey = (i: CharacterItem | CustomItem) => {
-        const item = {
-            id: 'customItem',
-            variation: undefined,
-            mods: [],
-            ...i
-        }
-        return [
-            item.id,
-            item.variation,
-            item.customName,
-            item.mods.sort()
-        ].filter(v => v!== undefined).join("_")
     }
 
     const renderItems = (itemsList: CharacterItem[]) => {

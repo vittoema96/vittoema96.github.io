@@ -3,12 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/app/contexts/CharacterContext'
 import { useTooltip } from '@/app/contexts/TooltipContext'
 import { CharacterItem, ModItem, MrHandyPart } from '@/types';
-import { addItem, isType, isUnacquirable, removeItem } from '@/features/item/itemUtils.ts';
 import BasePopup from './common/BasePopup';
 import ModTooltipContent from './ModTooltipContent';
 import Skill from '@/app/tabs/stat/components/Skill.tsx';
 import { isCharacterSkill, SkillType } from '@/features/character/skills/skills.ts';
-import { getModifiedItemData } from '@/features/item/utils.ts';
+import { addItem, getModifiedItemData, isType, isUnacquirable, removeItem } from '@/features/item/utils.ts';
 import { allItems, legendaryEffects } from '@/data';
 
 /**

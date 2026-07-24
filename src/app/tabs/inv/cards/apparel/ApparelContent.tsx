@@ -3,8 +3,7 @@ import Tag from '@/app/components/Tag.tsx'
 import { CharacterItem } from '@/types';
 import React from 'react';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
-import { getModifiedItemData } from '@/features/item/utils.ts';
-import { isType } from '@/features/item/itemUtils.ts';
+import { getModifiedItemData, isType } from '@/features/item/utils.ts';
 
 /**
  * Apparel-specific content renderer
@@ -57,7 +56,7 @@ function ApparelContent({ characterItem, actionButtons }: Readonly<ApparelConten
                         <div className="card-apparel-stats__locations-list">
                             {itemData.LOCATIONS_COVERED?.map(location => {
                                 const locationText = t(location, {
-                                    variation: t(characterItem.variation!),
+                                    variation: t(characterItem.side!),
                                 });
                                 return <span key={locationText}>{locationText}</span>;
                             })}

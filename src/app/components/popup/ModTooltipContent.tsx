@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/app/contexts/CharacterContext'
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
 
 interface ModTooltipProps {
     /** Mod locale ID (e.g. "modCompensator") */
@@ -100,11 +100,12 @@ function parsePerkRequirement(
     t: (key: string) => string,
 ) {
     const [rawId, rawRank] = perkEntry.split(':')
+    const perkId = rawId as PerkId
     const rank = Number(rawRank) || 1
     // CSV stores "perkGunNut", locale key is "perkGunNut"
-    const name = t(rawId as PerkId)
+    const name = t(perkId)
     // Character has rank N if the perk appears N times in the array
-    const characterRank = characterPerks.filter(p => p === rawId).length
+    const characterRank = perkRank(characterPerks, perkId)
     const met = characterRank >= rank
     return { name, rank, met }
 }

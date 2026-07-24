@@ -267,6 +267,14 @@
     "en": "Confirm",
     "it": "Conferma"
   },
+  "choose": {
+    "en": "Choose",
+    "it": "Scelta"
+  },
+  "equipSide": {
+    "en": "On which side do you want to equip?",
+    "it": "Su che lato vuoi equipaggiarlo?"
+  },
   "confirmDeleteCharacter": {
     "en": "Are you really sure you want to DELETE YOUR CHARACTER?",
     "it": "Sei davvero sicuro di voler ELIMINARE IL TUO PERSONAGGIO?"

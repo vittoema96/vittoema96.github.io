@@ -73,14 +73,27 @@ const ITEM_ID_MIGRATION_MAP: Record<string, keyof typeof aidJson> = {
     medsPsychojet: "medsPsychoJet",
 };
 
-export const CharacterItemSchema = z.object({
+export const CharacterItemSchema = z.preprocess((input: any) => {
+    // MIGRATION FOR OLDER 'VARIATION' TODO remove this once everyone migrated
+
+    // TODO aggregate same type items
+    if (input && typeof input === 'object' && input.variation){
+        const { variation, ...item} = input;
+        if(input.equipped && !input.side){
+            return { ...item, side: variation };
+        }
+        return item
+    }
+    return input;
+}, z.object({
     id: z.string().transform((id) => ITEM_ID_MIGRATION_MAP[id] ?? id),
     customName: z.string().optional(),
     quantity: z.number().default(1),
     equipped: z.boolean().default(false),
     mods: z.array(z.string()).default([]),
-    variation: z.enum([LEFT, RIGHT]).optional(),
-})
+    side: z.enum([LEFT, RIGHT]).optional(),
+}))
+
 // Validates CustomItems
 const CustomItemSchema = z.preprocess((input: any) => {
         // MIGRATION FOR OLDER NAME TODO remove this once everyone migrated
@@ -159,6 +172,57 @@ const CompanionDataSchema = z.preprocess((input: any) => {
 }))
 
 
+export const ItemsSchema = z
+    .array(CharacterItemSchema)
+    .transform((items) => {
+
+        // Split equipped items (only 1 item equipped at a time)
+        const unrolledItems = [];
+        for (const item of items) {
+            if (item.equipped && item.quantity > 1) {
+                // 1 equipped item
+                unrolledItems.push({
+                    ...item, quantity: 1
+                }, {
+                    ...item,
+                    quantity: item.quantity - 1,
+                    equipped: false,
+                    side: undefined,
+                });
+            } else {
+                unrolledItems.push(item);
+            }
+        }
+
+        // Aggregate same time items
+        const unequippedMap = new Map<string, z.infer<typeof CharacterItemSchema>>();
+        const result: z.infer<typeof CharacterItemSchema>[] = [];
+
+        for (const item of unrolledItems) {
+            if (item.equipped) {
+                // Equipped items stay as individual single-quantity entries
+                result.push(item);
+            } else {
+                const modsKey = [...item.mods].sort().join(",");
+                const key = [
+                    item.id,
+                    item.customName ?? "",
+                    modsKey,
+                ].join("|");
+
+                const existing = unequippedMap.get(key);
+                if (existing) {
+                    existing.quantity += item.quantity;
+                } else {
+                    const copy = { ...item };
+                    unequippedMap.set(key, copy);
+                    result.push(copy);
+                }
+            }
+        }
+
+        return result;
+    })
 export const RawCharacterSchema = z.object({
     name: z.string().optional(),
     level: z.number().int().min(1).default(1),
@@ -182,7 +246,7 @@ export const RawCharacterSchema = z.object({
     currentLuck: z.number().optional(),
     rads: z.number().default(0),
 
-    items: z.array(CharacterItemSchema).default([]),
+    items: ItemsSchema.default([]),
     customItems: z.array(CustomItemSchema).default([]),
 
     mapCodes: z.array(z.string()).default([]),

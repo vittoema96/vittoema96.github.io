@@ -1,12 +1,12 @@
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx'
 import { usePopup } from '@/app/contexts/PopupContext.tsx'
-import { isSameConfiguration, isType, isUnacquirable } from '@/features/item/itemUtils.ts';
 import {
     hasApparelConflict
 } from '@/utils/bodyLocations.ts'
-import { CharacterItem, CustomItem } from '@/types';
+import { CharacterItem, CustomItem, Side } from '@/types';
 import { useTranslation } from 'react-i18next';
 import { allItems } from '@/data';
+import { getUniqueKey, isSameConfiguration, isType, isUnacquirable } from '@/features/item/utils.ts';
 
 /**
  * Custom hook for inventory actions (sell, delete, equip, use, etc.)
@@ -15,9 +15,7 @@ import { allItems } from '@/data';
 export const useInventoryActions = () => {
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
-    const { showConfirm, showAlert, showTradeItemPopup } = usePopup()
-
-
+    const { showConfirm, showAlert, showChoice, showTradeItemPopup } = usePopup()
 
     const removeItem = (
         characterItem: CharacterItem | CustomItem,
@@ -106,32 +104,74 @@ export const useInventoryActions = () => {
         if (isCurrentlyEquipped) {
             // Unequip the item
             const updatedItems = character.items.map(item => {
-                if (item.id === characterItem.id) {
-                    return { ...item, equipped: false }
+                // TODO create and use a getId function to check ALL fields
+                if (getUniqueKey(item) === getUniqueKey(characterItem)) {
+                    return {
+                        ...item,
+                        equipped: false,
+                        side: undefined,
+                    }
                 }
                 return item
             })
             updateCharacter({ items: updatedItems })
         } else {
             // Equip the item - first unequip any items in the same locations
-            const updatedItems = character.items.map(otherItem => {
-                // Skip the item we're equipping
-                if (otherItem.id === characterItem.id && otherItem.variation === characterItem.variation) {
-                    return { ...otherItem, equipped: true }
-                }
 
-                const otherItemData = allItems[otherItem.id]
-                if (!otherItem.equipped || !isType(otherItemData, 'apparel')) {
-                    return otherItem
-                }
+            const updateItems = (side?: Side | undefined) => {
+                const updatedItems = character.items.flatMap(otherItem => {
+                    // Skip the item we're equipping
+                    if (getUniqueKey(otherItem) === getUniqueKey(characterItem)) {
+                        if (otherItem.quantity > 1) {
+                            const equippedItem = {
+                                ...otherItem,
+                                quantity: 1,
+                                equipped: true,
+                                side: side,
+                            };
 
-                if(hasApparelConflict(characterItem, otherItem)){
-                    return {...otherItem, equipped: false}
-                }
-                return otherItem
-            })
+                            const remainingItem = {
+                                ...otherItem,
+                                quantity: otherItem.quantity - 1,
+                                equipped: false,
+                                side: undefined,
+                            };
 
-            updateCharacter({ items: updatedItems })
+                            return [equippedItem, remainingItem];
+                        }
+
+                        // Single item, equip normally
+                        return [{ ...otherItem, equipped: true, side: side }];
+                    }
+
+                    const otherItemData = allItems[otherItem.id]
+                    if (!otherItem.equipped || !isType(otherItemData, 'apparel')) {
+                        return [otherItem]
+                    }
+
+                    if(hasApparelConflict(characterItem, otherItem)){
+                        return [{ ...otherItem, equipped: false, side: undefined }]
+                    }
+                    return [otherItem]
+                })
+
+                updateCharacter({ items: updatedItems })
+            }
+
+            if(isType(itemData, 'apparel')
+                && (itemData.LOCATIONS_COVERED.includes('arm')
+                    || itemData.LOCATIONS_COVERED.includes('leg'))
+            ){
+                showChoice(
+                    t("equipSide"),
+                    ['left', 'right'],
+                    (side) => updateItems(side)
+                )
+            } else {
+                updateItems()
+            }
+
+
         }
     }
 

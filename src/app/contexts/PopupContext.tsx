@@ -9,6 +9,7 @@ import AddItemPopup, { AddItemPopupProps } from '@/app/components/popup/AddItemP
 import TradeItemPopup, { TradeItemPopupProps } from '@/app/components/popup/TradeItemPopup.tsx';
 import ModifyItemPopup, { ModifyItemPopupProps } from '@/app/components/popup/ModifyItemPopup.tsx';
 import Toast, { type ToastVariant } from '@/app/components/Toast.tsx';
+import ChoicePopup from '@/app/components/popup/ChoicePopup.tsx';
 
 export type RollerType = 'companion' | 'mysteriousStranger' | undefined;
 
@@ -22,12 +23,16 @@ interface ActivePopup {
 type OmitOnClose<T> = Omit<T, 'onClose'>
 
 export interface PopupContextValue {
-    open: <T>(Component: React.ComponentType<T>, props: OmitOnClose<T>) => void;
+    open: <T extends object>(
+        Component: React.ComponentType<T & {onClose: () => void}>,
+        props: T
+    ) => void;
     close: (identifier?: string | React.ComponentType<any>) => void;
 
     showAlert: (content: string) => void;
     showToast: (content: string, variant?: ToastVariant) => void;
     showConfirm: (content: string, onConfirm: () => void) => void;
+    showChoice: <S extends string>(content: string, choices: S[], onConfirm: (s: S) => void) => void;
     showD20Popup: (props: OmitOnClose<D20PopupProps>) => void;
     showD6Popup: (props: OmitOnClose<D6PopupProps>) => void;
     showNd20Popup: (props: OmitOnClose<Nd20PopupProps>) => void;
@@ -71,7 +76,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
         });
     }, []);
 
-    const open = useCallback(<T,>(Component: React.ComponentType<T>, props: Omit<T, 'onClose'>) => {
+    const open: PopupContextValue["open"] = useCallback((Component, props) => {
         const id = crypto.randomUUID();
         setStack(prev => [...prev, { id, Component, props }]);
     }, []);
@@ -94,6 +99,16 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             open(AlertPopup, {
                 content,
                 showConfirm: true,
+                onConfirm,
+            }),
+        [open],
+    );
+
+    const showChoice: PopupContextValue["showChoice"] = useCallback(
+        (content, choices, onConfirm) =>
+            open(ChoicePopup, {
+                content,
+                confirm: choices,
                 onConfirm,
             }),
         [open],
@@ -148,6 +163,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             showAlert,
             showToast,
             showConfirm,
+            showChoice,
             showD20Popup,
             showD6Popup,
             showNd20Popup,
@@ -162,6 +178,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             showAlert,
             showToast,
             showConfirm,
+            showChoice,
             showD20Popup,
             showD6Popup,
             showNd20Popup,

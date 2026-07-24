@@ -1,7 +1,8 @@
 import type { CharacterItem, GenericBodyPart } from '@/types';
 import { ApparelCategory } from '@/types/item.ts';
 import { allItems } from '@/data';
-import { isType } from '@/features/item/itemUtils.ts';
+
+import { isType } from '@/features/item/utils.ts';
 
 /**
  * Body location utilities
@@ -48,8 +49,8 @@ export function hasApparelConflict(item1: CharacterItem, item2: CharacterItem) {
     }
 
     // Has location conflict
-    const locations1 = mapItemLocations(itemData1.LOCATIONS_COVERED, item1.variation);
-    const locations2 = mapItemLocations(itemData2.LOCATIONS_COVERED, item2.variation);
+    const locations1 = mapItemLocations(itemData1.LOCATIONS_COVERED, item1.side);
+    const locations2 = mapItemLocations(itemData2.LOCATIONS_COVERED, item2.side);
     const hasLocationOverlap = locations1.some(loc => locations2.includes(loc));
     if(!hasLocationOverlap) { return false }
 

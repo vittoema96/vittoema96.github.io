@@ -13,11 +13,10 @@ import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import DialogPortal from '@/app/components/popup/common/DialogPortal.tsx';
 import PopupHeader from '@/app/components/popup/common/PopupHeader.tsx';
 import useDice from '@/hooks/useDice.ts';
-import { isCloseCombat } from '@/features/item/itemUtils.ts';
 import { D6Dice, getFaceClass } from '@/app/components/popup/dice/components/dice.tsx';
 
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';
-import { getModifiedItemData } from '@/features/item/utils.ts';
+import { getModifiedItemData, isCloseCombat } from '@/features/item/utils.ts';
 import { hasTrait } from '@/features/character/feats/traits/traits.ts';
 import { hasPerk, perkRank } from '@/features/character/feats/perks/perks.ts';
 import { getDamageRatingBonus } from '@/features/character/feats';

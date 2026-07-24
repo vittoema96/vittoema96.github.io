@@ -3,7 +3,8 @@ import AidContent from '@/app/tabs/inv/cards/aid/AidContent.tsx'
 import { CharacterItem } from '@/types';
 import { useInventoryActions } from '../../hooks/useInventoryActions.ts';
 import { allItems } from '@/data';
-import { isType } from '@/features/item/itemUtils.ts';
+
+import { isType } from '@/features/item/utils.ts';
 
 /**
  * Aid card component for consumable items (food, drinks, meds)

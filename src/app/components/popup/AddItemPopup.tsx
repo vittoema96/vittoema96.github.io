@@ -2,8 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/app/contexts/CharacterContext';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
-import { CharacterItem, CustomItem, GenericPopupProps, Side } from '@/types';
-import { addItem, isType, isUnacquirable } from '@/features/item/itemUtils.ts';
+import { CharacterItem, CustomItem, GenericPopupProps } from '@/types';
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { ITEM_TYPE_MAP, ItemCategory, ItemType } from '@/types/item.ts';
@@ -14,12 +13,12 @@ import AidContent from '@/app/tabs/inv/cards/aid/AidContent.tsx';
 import OtherContent from '@/app/tabs/inv/cards/ammo/OtherContent.tsx';
 import { BaseItem } from '@/data/types.ts';
 import { compiledData } from '@/data';
+import { addItem, isType, isUnacquirable } from '@/features/item/utils.ts';
 
 export interface AddItemPopupProps extends GenericPopupProps {
     itemType: ItemType;
 }
 
-type SelectableItem = BaseItem & { variation?: Side }
 type RarityOperator = '=' | '>=' | '<='
 
 const BUY_MAX_QUANTITY = 99
@@ -111,7 +110,7 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
     const { character, updateCharacter } = useCharacter()
     const { showTradeItemPopup } = usePopup()
 
-    const [selectedItem, setSelectedItem] = useState<SelectableItem>()
+    const [selectedItem, setSelectedItem] = useState<BaseItem>()
     const [quantity, setQuantity] = useInputNumberState(1)
     const [categoryFilter, setCategoryFilter] = useState<ItemCategory>()
     const [rarityFilter, setRarityFilter] = useState<number>()
@@ -140,34 +139,7 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                 ))
             })
 
-        const itemsWithVariants: SelectableItem[] = []
-        allItems.forEach(item => {
-            let variants: (Side|undefined)[] = [undefined]
-            if(isType(item, "apparel") &&
-                (item.LOCATIONS_COVERED.includes("arm")
-                    || item.LOCATIONS_COVERED.includes("leg"))) {
-                variants = ['left', 'right']
-            }
-
-            variants.forEach(variation => {
-                itemsWithVariants.push({
-                    ...item,
-                    ...(variation ? {variation} : {})
-                })
-            })
-        })
-
-        return itemsWithVariants.toSorted((a, b) => {
-
-            const getName = (item: SelectableItem) => {
-                if(!item) {return ''}
-                return t(item.ID, { variation: t(item.variation!) });
-            }
-            const nameA = getName(a)
-            const nameB = getName(b)
-
-            return nameA.localeCompare(nameB)
-        })
+        return allItems.toSorted((a, b) => t(a.ID).localeCompare(t(b.ID)))
     }, [itemType, categoryFilter, rarityFilter, rarityOperator, t])
 
     useEffect(() => {
@@ -205,7 +177,6 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                     quantity,
                     equipped: false,
                     mods: [],
-                    ...(selectedItem.variation ? { variation: selectedItem.variation } : {}),
                 },
                 tradeMode: 'buy',
                 initialQuantity: quantity,
@@ -221,7 +192,6 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                 quantity: quantity,
                 equipped: false,
                 mods: [],
-                ...(selectedItem.variation ? { variation: selectedItem.variation } : {}),
             });
             updateCharacter({
                 items: newItems,
@@ -260,7 +230,6 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
             quantity,
             equipped: false,
             mods: [],
-            ...(selectedItem.variation ? { variation: selectedItem.variation } : {}),
         }
     }, [quantity, selectedItem])
 
@@ -335,20 +304,16 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
             <div className="row" style={{ alignItems: 'center' }}>
                 <select
                     onChange={(e) => {
-                        const item = availableItems.find(i => {
-                            const id = `${i.ID}_${i?.variation ?? ''}`
-                            return id === e.target.value
-                        })
+                        const item = availableItems.find(i => i.ID === e.target.value)
                         setSelectedItem(item)
                     }}
                     aria-label="Object picker"
                     style={{ flex: 1, minWidth: 0 }}
                 >
                     {availableItems.map(item => {
-                        const id = `${item.ID}_${item?.variation ?? ''}`
                         return (
-                            <option key={id} value={id}>
-                                {t(item.ID, { variation: t(item.variation!) })}
+                            <option key={item.ID} value={item.ID}>
+                                {t(item.ID)}
                             </option>
                         )
                     })}

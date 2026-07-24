@@ -1,11 +1,10 @@
 import { useMemo } from 'react';
 import { DamageResistanceMap, GenericBodyPart, RawCharacter } from '@/types';
-import { getModifiedItemData } from '@/features/item/utils.ts';
+import { getModifiedItemData, isType } from '@/features/item/utils.ts';
 import { mapItemLocations } from '@/utils/bodyLocations.ts';
 import { Origin } from '@/features/character/origin.ts';
 import { hasPerk } from '@/features/character/feats/perks/perks.ts';
 import { allItems } from '@/data';
-import { isType } from '@/features/item/itemUtils.ts';
 
 export function useDamageResistances(raw: RawCharacter, origin: Origin){
     return useMemo(() => {
@@ -37,7 +36,7 @@ export function useDamageResistances(raw: RawCharacter, origin: Origin){
             }
 
             // Get locations this item covers
-            const locations = mapItemLocations(itemData.LOCATIONS_COVERED, item.variation);
+            const locations = mapItemLocations(itemData.LOCATIONS_COVERED, item.side);
 
             // Use MAX between current DR and item DR for each damage type
             locations.forEach(location => {

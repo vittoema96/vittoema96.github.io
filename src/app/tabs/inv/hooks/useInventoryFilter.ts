@@ -5,7 +5,8 @@ import { ORIGINS } from '@/features/character/origin.ts';
 import { ItemType } from '@/types/item.ts';
 import { perkRank } from '@/features/character/feats/perks/perks.ts';
 import { allItems } from '@/data';
-import { isType } from '@/features/item/itemUtils.ts';
+
+import { isType } from '@/features/item/utils.ts';
 
 /**
  * Custom hook for filtering and organizing inventory items

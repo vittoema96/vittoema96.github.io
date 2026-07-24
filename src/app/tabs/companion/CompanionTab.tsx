@@ -9,8 +9,8 @@ import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { FitText } from '@/app/components/FitText.tsx';
 import { COMPANION_SKILLS, CompanionSkillType } from '@/features/character/skills/skills.ts';
 import { allItems, companionPerks } from '@/data';
-import { isType } from '@/features/item/itemUtils.ts';
 import { getAvailableCompanions } from '@/features/character/feats';
+import { isType } from '@/features/item/utils.ts';
 
 
 /**

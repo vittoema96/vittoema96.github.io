@@ -6,7 +6,6 @@ Things to fix:
 - Don't allow same customName for 2 different CustomItems (customName is object ID)
 ## 🔥 High Priority
 - [ ] **BUG** - Importing a character DOESN'T update loaded character, the user needs to "reload" changing selected character and back (investigate the problem)
-- [ ] **FEATURE CHANGE** - Leg and Arm armor pieces DO NOT need to be Right or Left, they can be applied to either (use a popup asking left or right on equip?)
 
 ### Game Features
 - [ ] **qualityAccurate effect** - Implement accurate weapon quality

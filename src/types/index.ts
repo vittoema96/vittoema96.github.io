@@ -61,7 +61,7 @@ export type Side = typeof LEFT | typeof RIGHT;
 
 export interface CharacterItem {
     id: string;
-    variation?: Side | undefined;
+    side?: Side | undefined;
     quantity: number;
     equipped?: boolean;
     mods: string[];

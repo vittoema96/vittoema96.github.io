@@ -19,11 +19,10 @@ import {
     isCompanionSkill,
     SkillType,
 } from '@/features/character/skills/skills.ts';
-import { getModifiedItemData } from '@/features/item/utils.ts';
+import { getModifiedItemData, isType } from '@/features/item/utils.ts';
 import { hasPerk } from '@/features/character/feats/perks/perks.ts';
 
 import { TraitId } from '@/features/character/feats/traits/traits.ts';
-import { isType } from '@/features/item/itemUtils.ts';
 import {
     COMPANION_SPECIAL,
     CompanionSpecialType,

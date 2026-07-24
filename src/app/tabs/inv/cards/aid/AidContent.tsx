@@ -1,7 +1,8 @@
 import { CharacterItem } from '@/types';
 import { useTranslation } from 'react-i18next';
 import { aid } from '@/data';
-import { isType } from '@/features/item/itemUtils.ts';
+
+import { isType } from '@/features/item/utils.ts';
 
 /**
  * Aid-specific content renderer

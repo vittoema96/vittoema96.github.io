@@ -2,7 +2,8 @@ import BaseCard from '../BaseCard.tsx'
 import OtherContent from '@/app/tabs/inv/cards/ammo/OtherContent.tsx'
 import { CharacterItem, CustomItem } from '@/types';
 import { allItems } from '@/data';
-import { isType } from '@/features/item/itemUtils.ts';
+
+import { isType } from '@/features/item/utils.ts';
 
 /**
  * Other/Ammo card component

@@ -4,7 +4,8 @@ import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { useMemo } from 'react';
 import { CharacterItem } from '@/types';
 import { allItems } from '@/data';
-import { isType } from '@/features/item/itemUtils.ts';
+
+import { isType } from '@/features/item/utils.ts';
 
 /**
  * Component to display active effects from equipped armor
