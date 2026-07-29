@@ -167,6 +167,18 @@
       "it": "Riduce la difficoltà delle prove di CAR di 2, a un minimo di 0, ripetere il tiro di 1d20 sulle prove di Commercio"
     }
   },
+  "medsHealingPowder": {
+    "en": "Healing Powder",
+    "it": "Polvere Curativa",
+    "_description": {
+      "en": "A primitive consumable crafted from Broc Flower and Xander Root that gradually restores health over time. It serves as a cheap alternative to Stimpaks, though it temporarily reduces Perception by 1.",
+      "it": "Un consumabile primitivo creato con Fiore di Broc e Radice di Xander che ripristina gradualmente la salute nel tempo. È un'alternativa economica ai Stimpak, anche se riduce temporaneamente la Percezione di -1."
+    },
+    "_effect": {
+      "en": "Raise the difficulty of PER tests by +1.",
+      "it": "La difficoltà delle prove di PER aumenta di +1."
+    }
+  },
   "medsHealingSalve": {
     "en": "Healing Salve",
     "it": "Balsamo Curativo",

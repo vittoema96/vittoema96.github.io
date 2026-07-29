@@ -31,3 +31,4 @@ medsDilutedStimpak,aid,meds,durationInstant,2,,0,0,30,1
 medsSuperStimpak,aid,meds,durationInstant,8,,0,0,90,4
 medsUltraJet,aid,meds,durationShort,,,3,0,67,2
 medsXCell,aid,meds,durationLasting,,,1,0,60,4
+medsHealingPowder,aid,meds,durationLasting,2,,0,0.5,5,1
