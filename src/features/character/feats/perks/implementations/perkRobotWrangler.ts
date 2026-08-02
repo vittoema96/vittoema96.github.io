@@ -1,4 +1,4 @@
-import { FeatImplementation } from '@/features/character/feats';
+import { PerkImplementation } from '@/features/character/feats';
 import { CompanionTypeDefinition } from '@/utils/companionTypes.ts';
 
 // TODO implement
@@ -30,7 +30,8 @@ export const defaultEyebot: CompanionTypeDefinition = {
     ]
 }
 
-const perkRobotWrangler: FeatImplementation = {
+const perkRobotWrangler: PerkImplementation = {
+    id: 'perkRobotWrangler',
     getAvailableCompanions: () => ['eyebot']
 };
 

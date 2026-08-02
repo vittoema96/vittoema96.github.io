@@ -1,7 +1,8 @@
-import { FeatImplementation } from '@/features/character/feats';
+import { TraitImplementation } from '@/features/character/feats';
 
 
-const traitEducated: FeatImplementation = {
+const traitEducated: TraitImplementation = {
+    id: 'traitEducated',
     getSpecialtyPointBonus: () => 1
 }
 

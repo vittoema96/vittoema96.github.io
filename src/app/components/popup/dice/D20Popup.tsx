@@ -28,6 +28,7 @@ import {
     CompanionSpecialType,
     isCompanionSpecial,
 } from '@/features/character/special/special.companion.ts';
+import { getFreeRerolls } from '@/features/character/feats';
 
 // Discriminated union — built from actual domain types, no invented duplicates.
 interface PlayerRollerStats
@@ -113,11 +114,6 @@ function D20Popup({
     const [isUsingLuck, setIsUsingLuck] = useState(false);
     const [isAiming, setIsAiming] = useState(false);
     const [hasRolled, setHasRolled] = useState(false);
-
-    // hasTriggerDiscipline is a cheap boolean derivation — no useMemo needed
-    const hasTriggerDiscipline =
-        rollerTraits.includes('traitTriggerDiscipline') &&
-        ['smallGuns', 'energyWeapons'].includes(skillId);
 
     // perkCenterOfMass: applies only to ranged attacks by the player (not melee/unarmed, not companion/stranger)
     // isCharacterSkill narrows skillId to SkillType, removing the need for any cast
@@ -237,7 +233,7 @@ function D20Popup({
             let cost = rerollingCount;
             let discount = 0;
             if (isAiming) { discount += 1; }
-            if (hasTriggerDiscipline) { discount += 1; }
+            if(isType(itemData, 'weapon')){ discount += getFreeRerolls(character, itemData) }
             if (hasCenterOfMassDiscount) { discount += 1; }
             if (hasPerk(character.perks, 'perkCautiousNature') && diceValues.filter(v => v !== '?').length > 2) { discount += 1; }
             discount -= Math.min(discount, rerolledCount);
@@ -246,7 +242,7 @@ function D20Popup({
             return Math.max(0, cost);
         }
         return isUsingLuck ? 1 : 0;
-    }, [roller, hasRolled, isUsingLuck, isMysteriousStranger, diceActive, diceRerolled, isAiming, hasTriggerDiscipline, hasCenterOfMassDiscount, character, diceValues]);
+    }, [roller, hasRolled, isUsingLuck, isMysteriousStranger, diceActive, diceRerolled, isAiming, itemData, hasCenterOfMassDiscount, character, diceValues]);
 
     // Success calculation
     const getSuccesses = () => {

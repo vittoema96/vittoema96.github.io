@@ -1,19 +1,14 @@
 import Tag from '@/app/components/Tag.tsx'
-import { useCharacter } from '@/app/contexts/CharacterContext.tsx'
 import { useTranslation } from 'react-i18next'
-import { getWeaponAmmoCount, getWeaponAmmoPerShot, hasEnoughAmmo } from '@/app/tabs/inv/utils/weaponUtils.ts'
 import { CharacterItem } from '@/types';
 import React from 'react';
 import { Icon } from '@iconify/react';
-import {
-    getModifiedItemData,
-    getSkillForWeaponCategory,
-    getSpecialForWeaponCategory,
-    isCloseCombat,
-    isType,
-} from '@/features/item/utils.ts';
-import { hasTrait } from '@/features/character/feats/traits/traits.ts';
-import { getDamageRatingBonus } from '@/features/character/feats';
+import { useWeaponStats } from '@/features/character/hooks/useWeaponStats.ts';
+
+/** Returns signed number */
+const formatSignedNumber = (val: number): string => {
+    return val > 0 ? `+${val}` : `${val}`;
+};
 
 /**
  * Weapon-specific content renderer
@@ -25,44 +20,32 @@ interface WeaponContentProps {
 }
 function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentProps>) {
     const { t } = useTranslation()
-    const { character } = useCharacter()
 
-    const itemData = getModifiedItemData(characterItem, character.perks)
-
-    if (!isType(itemData, 'weapon')) {
-        console.error(`Weapon data not found for ID: ${characterItem.id}`)
+    const weaponStats = useWeaponStats(characterItem)
+    if (!weaponStats) {
         return null;
     }
 
-    const weaponSkill = getSkillForWeaponCategory(itemData.CATEGORY)
-    const skillValue = character.skills[weaponSkill]
-    const targetNumber = character.special[getSpecialForWeaponCategory(itemData.CATEGORY)] + skillValue
-    const legendaryMods = characterItem.mods.filter(mod => mod.startsWith('legendary'))
+    const {
+        itemData,
+        targetNumber,
+        critThreshold,
+        damageBonus,
+        fireRateBonus,
+        ammoCount,
+        hasAmmo,
+        ammoPerShot,
+        legendaryMods
+    } = weaponStats;
 
-    const critThreshold = character.specialties.includes(weaponSkill) ? Math.max(skillValue, 1) : 1
 
-    // Use weapon utilities
-    const ammoPerShot = getWeaponAmmoPerShot(itemData)
-    const getAmmoCount = () => getWeaponAmmoCount(itemData, character)
-    const checkHasEnoughAmmo = () => hasEnoughAmmo(itemData, character)
+    const damageDisplay = damageBonus !== 0
+        ? `(${itemData.DAMAGE_RATING}${formatSignedNumber(damageBonus)})`
+        : `${itemData.DAMAGE_RATING}`;
 
-    // TODO should unify logic with D6Popup
-    let damageRating = `${itemData.DAMAGE_RATING}`
-
-    const meleeDamageBonus = isCloseCombat(itemData.CATEGORY) ? character.meleeDamage : 0
-    const damageRatingBonus = getDamageRatingBonus(character, itemData) + meleeDamageBonus
-    if(damageRatingBonus > 0){
-        damageRating = `(${itemData.DAMAGE_RATING}+${damageRatingBonus})`
-    }
-
-    let fireRate = `${itemData.FIRE_RATE}`
-    if(
-        hasTrait(character.traits, "traitTriggerDiscipline")
-        && ['smallGuns', 'energyWeapons'].includes(itemData.CATEGORY)
-        && Number(itemData.FIRE_RATE) > 0
-    ) {
-        fireRate = `(${fireRate}-1)`
-    }
+    const fireRateDisplay = fireRateBonus !== 0
+        ? `(${itemData.FIRE_RATE}${formatSignedNumber(fireRateBonus)})`
+        : `${itemData.FIRE_RATE}`;
 
     return (
         <>
@@ -97,10 +80,10 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
                             <div
                                 className="card-stat-compact__value"
                                 style={{
-                                    color: checkHasEnoughAmmo() ? 'var(--primary-color)' : 'var(--failure-color)'
+                                    color: hasAmmo ? 'var(--primary-color)' : 'var(--failure-color)'
                                 }}
                             >
-                                {itemData.AMMO_TYPE === 'na' ? '-' : getAmmoCount()}
+                                {itemData.AMMO_TYPE === 'na' ? '-' : ammoCount}
                                 {itemData.AMMO_TYPE !== 'na' && ammoPerShot > 1 && (
                                     <span style={{ fontSize: '0.7em', opacity: 0.7 }}>
                                         {' '}(-{ammoPerShot})
@@ -119,7 +102,7 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
                     <div className="card-stat-compact">
                         <i className="fas fa-burst" title={t('damage')}></i>
                         <div className="card-stat-compact__values">
-                            <div>{damageRating}d6</div>
+                            <div>{damageDisplay}d6</div>
                             <div style={{ fontSize: '0.7em' }}>{itemData.DAMAGE_TYPES.map(dt => t(dt)).join(', ')}</div> {/* TODO check the formatting when multiple */}
                         </div>
                     </div>
@@ -128,7 +111,7 @@ function WeaponContent({ characterItem, actionButtons }: Readonly<WeaponContentP
                             <Icon icon="mdi:bullet" className="card-stat-compact__iconify card-stat-compact__iconify--group" />
                             <i className="fas fa-plus"></i>
                         </div>
-                        <div className="card-stat-compact__value">{fireRate}</div>
+                        <div className="card-stat-compact__value">{fireRateDisplay}</div>
                     </div>
                     <div className="card-stat-compact">
                         <i className="fas fa-arrows-left-right" title={t('range')}></i>

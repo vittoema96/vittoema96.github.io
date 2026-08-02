@@ -2,9 +2,9 @@ import BaseCard from '../BaseCard.tsx'
 import WeaponContent from '@/app/tabs/inv/cards/weapon/WeaponContent.tsx'
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx'
 import { usePopup } from '@/app/contexts/PopupContext.tsx'
-import { hasEnoughAmmo as checkHasEnoughAmmo } from '@/app/tabs/inv/utils/weaponUtils.ts'
 import { CharacterItem } from '@/types';
 import { getModifiedItemData, getSkillForWeaponCategory, getSpecialForWeaponCategory, isType } from '@/features/item/utils.ts';
+import { hasEnoughAmmo as checkHasEnoughAmmo } from '@/features/character/hooks/useWeaponStats.ts';
 
 /**
  * Weapon card component with weapon-specific stats and actions

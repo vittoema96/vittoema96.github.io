@@ -1,7 +1,8 @@
-import { FeatImplementation } from '@/features/character/feats';
+import { PerkImplementation } from '@/features/character/feats';
 
 
-const perkDogmeat: FeatImplementation = {
+const perkDogmeat: PerkImplementation = {
+    id: "perkDogmeat",
     getAvailableCompanions: () => ['dog']
 };
 

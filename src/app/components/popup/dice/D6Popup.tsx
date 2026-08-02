@@ -15,11 +15,9 @@ import PopupHeader from '@/app/components/popup/common/PopupHeader.tsx';
 import useDice from '@/hooks/useDice.ts';
 import { D6Dice, getFaceClass } from '@/app/components/popup/dice/components/dice.tsx';
 
-import { WeaponItem } from '@/data/item/weapon.schemas.ts';
-import { getModifiedItemData, isCloseCombat } from '@/features/item/utils.ts';
-import { hasTrait } from '@/features/character/feats/traits/traits.ts';
-import { hasPerk, perkRank } from '@/features/character/feats/perks/perks.ts';
-import { getDamageRatingBonus } from '@/features/character/feats';
+import { isCloseCombat } from '@/features/item/utils.ts';
+import { useWeaponStats } from '@/features/character/hooks/useWeaponStats.ts';
+import { FeatRollAction, getRollActions, getWeaponEffects } from '@/features/character/feats';
 
 export interface D6PopupProps extends GenericPopupProps {
     usingItem: CharacterItem;
@@ -36,37 +34,48 @@ function D6Popup({
     hitTorso = false,
 }: Readonly<D6PopupProps>) {
     const { t } = useTranslation();
-    const meltdownDialogRef = useRef<HTMLDialogElement>(null);
+    const dialogRef = useRef<HTMLDialogElement>(null);
     const { character, updateCharacter } = useCharacter();
     const { showConfirm } = usePopup();
 
+
     // Get weapon data with mods applied
-    const weaponData = getModifiedItemData(usingItem, character.perks) as WeaponItem;
-    const legendaryMods = usingItem.mods.filter(mod => mod.startsWith('legendary'));
+    // TODO result is forced to not be null, decide how to handle it better
+    const weaponStats = useWeaponStats(usingItem)!;
+
+    const {
+        itemData,
+        damageBonus,
+        fireRateBonus,
+        ammoCount,
+        ammoPerShot,
+        legendaryMods
+    } = weaponStats
+
+    const fireRateNum = Number(itemData.FIRE_RATE) || 0;
+    const ammoStep = roller ? 0 : ammoPerShot
 
     // Checks on EFFECTS and QUALITIES
-    const isGatling = weaponData.QUALITIES.includes('qualityGatling');
-    const isAccurate = weaponData.QUALITIES.includes('qualityAccurate');
-    const hasBurst = weaponData.EFFECTS.includes('effectBurst');
-    const hasAwareness = hasPerk(character.perks, 'perkAwareness');
-
-    const fireRateNum = Number(weaponData.FIRE_RATE) || 0;
+    const weaponEffects = getWeaponEffects(character, itemData, hasAimed)
+    const hasBurst = weaponEffects.some(e => e.effect === 'effectBurst');
+    const isGatling = itemData.QUALITIES.includes('qualityGatling');
+    const isAccurate = itemData.QUALITIES.includes('qualityAccurate');
 
     // User-selectable extra hits type for Accurate + Aimed
     const canChooseExtraHitsType =
-        !isCloseCombat(weaponData.CATEGORY) && //
+        !isCloseCombat(itemData.CATEGORY) && //
         hasAimed &&
         isAccurate && // aiming + accurate allows to roll more damage (PA)
         fireRateNum > 0;
 
     // Extra dice: AP or AMMO cost?
-    const defaultExtraHitType = isCloseCombat(weaponData.CATEGORY)
+    const defaultExtraHitType = isCloseCombat(itemData.CATEGORY)
         ? 'ap'
         : fireRateNum > 0
-          ? 'ammo'
-          : hasAimed && isAccurate
-            ? 'ap'
-            : null;
+            ? 'ammo'
+            : hasAimed && isAccurate
+                ? 'ap'
+                : null;
 
     const [extraHitTypeChoice, setExtraHitTypeChoice] = useState<'ap' | 'ammo' | null>(null);
     const extraHitsType = canChooseExtraHitsType
@@ -74,36 +83,24 @@ function D6Popup({
         : defaultExtraHitType;
 
     // Number of Damage dice
-    const diceCount = useMemo(() => {
-        // TODO should unify logic with WeaponContent
-        let rating = weaponData.DAMAGE_RATING;
-        const meleeDamageBonus = isCloseCombat(weaponData.CATEGORY) ? character.meleeDamage : 0
-        const damageRatingBonus = getDamageRatingBonus(character, weaponData) + meleeDamageBonus
-
-        return rating + damageRatingBonus;
-    }, [character, weaponData]);
+    const diceCount = itemData.DAMAGE_RATING + damageBonus;
 
     // Number of Extra dice
     const extraDiceCount = useMemo(() => {
         if (roller) {
             return 0;
         }
-        if (isCloseCombat(weaponData.CATEGORY)) {
+        if (isCloseCombat(itemData.CATEGORY)) {
             return 3; // Melee always has 3 extra dice (AP)
         }
         if (extraHitsType === 'ammo') {
-            const triggerDisciplineMalus =
-                ['smallGuns', 'energyWeapons'].includes(weaponData.CATEGORY) &&
-                hasTrait(character.traits, 'traitTriggerDiscipline')
-                    ? 1
-                    : 0;
-            return Math.max(0, fireRateNum * (isGatling ? 2 : 1) - triggerDisciplineMalus);
+            return Math.max(0, (fireRateNum + fireRateBonus) * (isGatling ? 2 : 1));
         }
         if (extraHitsType === 'ap') {
             return 3;
         }
         return 0;
-    }, [character.traits, extraHitsType, fireRateNum, isGatling, roller, weaponData.CATEGORY]);
+    }, [roller, itemData.CATEGORY, extraHitsType, fireRateNum, fireRateBonus, isGatling]);
 
     // State
     const [hasRolled, setHasRolled] = useState(false);
@@ -122,57 +119,30 @@ function D6Popup({
         roller ? extraDiceCount : 0, // just in case, not actually needed
     );
 
-    const ammoStep = useMemo(() => {
-        // TODO should companion consume ammo?
-        if (roller || ['na', undefined, '-'].includes(weaponData.AMMO_TYPE)) {
-            return 0;
-        }
-        if (isGatling) {
-            return 10;
-        }
-        const ammoHungryQuality = weaponData.QUALITIES.find(q => q.startsWith('qualityAmmoHungry'));
-        if (ammoHungryQuality) {
-            const [_, qualityOpt] = ammoHungryQuality.split(':');
-            return Number(qualityOpt) || 1;
-        }
-        return 1;
-    }, [isGatling, roller, weaponData.AMMO_TYPE, weaponData.QUALITIES]);
 
     // Reinitialize extra dice arrays when count changes
     useEffect(() => {
         // If switching mode before rolling, reset ammo cost appropriately
-        if (!hasRolled && !isCloseCombat(weaponData.CATEGORY)) {
-            if (extraHitsType === 'ap') {
-                setAmmoCost(ammoStep); // only base shot cost
-            } else if (extraHitsType === 'ammo') {
-                const activeExtra = 0;
-                setAmmoCost(ammoStep + activeExtra * ammoStep);
-            }
+        if (!hasRolled && !isCloseCombat(itemData.CATEGORY)) {
+            setAmmoCost(ammoStep)
+            setExtraDiceActive(new Array(extraDiceCount).fill(false))
         }
-    }, [ammoStep, extraHitsType, hasRolled, weaponData.CATEGORY]);
+    }, [ammoStep, extraDiceCount, extraHitsType, hasRolled, itemData.CATEGORY, setExtraDiceActive]);
 
     const [ammoCost, setAmmoCost] = useState(ammoStep);
     const [targetCreatureType, setTargetCreatureType] = useState<CreatureType>('humanoid');
-    const [hitLocationRoll, setHitLocationRoll] = useState(hitTorso ? 3 : rollD20()); // d20 roll for hit location (1-20); 3 = torso for both humanoid and mrHandy
+    const [hitLocationRoll, setHitLocationRoll] = useState(() => hitTorso ? 3 : rollD20()); // d20 roll for hit location (1-20); 3 = torso for both humanoid and mrHandy
     const hitLocation = getHitLocationFromRoll(hitLocationRoll, targetCreatureType);
 
     // States relative to PERKS
     const [burstEffectsUsed, setBurstEffectsUsed] = useState(0); // Number of burst effects activated
-    const [gunFuUsed, setGunFuUsed] = useState(0); // Track how many times Gun Fu has been used
-    const [slayerUsed, setSlayerUsed] = useState(false); // Track if Slayer has been used
 
-    const [meltdownUsed, setMeltdownUsed] = useState(false); // Track if Meltdown has been used
-    const [meltdownPopupOpen, setMeltdownPopupOpen] = useState(false); // Track if Meltdown popup is open
+
+
+
     const [meltdownDiceValues, setMeltdownDiceValues] = useState<number[]>([]); // Meltdown dice results
 
     // Meltdown functions
-    useEffect(() => {
-        if (meltdownPopupOpen && meltdownDialogRef.current) {
-            meltdownDialogRef.current.showModal();
-        } else if (!meltdownPopupOpen && meltdownDialogRef.current) {
-            meltdownDialogRef.current.close();
-        }
-    }, [meltdownPopupOpen]);
     const getMeltdownDiceCount = () => {
         return Math.floor(diceCount / 2);
     };
@@ -185,24 +155,13 @@ function D6Popup({
         return meltdownDiceValues.filter(roll => roll === 3 || roll === 4).length;
     };
     const closeMeltdownPopup = () => {
-        setMeltdownPopupOpen(false);
-        setMeltdownUsed(true);
+        setActiveModalId(null);
         setMeltdownDiceValues([]);
     };
-
-    // Get current ammo count
-    const getCurrentAmmo = () => {
-        let ammoId = weaponData.AMMO_TYPE;
-        if (ammoId === 'self') {
-            ammoId = weaponData.ID;
-        }
-        if (ammoId === 'na') {
-            return 0;
-        }
-
-        const ammoItem = character.items.find(item => item.id === ammoId);
-        return ammoItem ? ammoItem.quantity : 0;
-    };
+    const confirmMeltdown = () => {
+        setActionUsages(prev => ({ ...prev, perkMeltdown: 1}));
+        closeMeltdownPopup();
+    }
 
     // Count functions
     const getActiveDiceCount = () => diceActive.filter(Boolean).length;
@@ -248,8 +207,8 @@ function D6Popup({
         const baseDamage = effects + damage1 + damage2 * 2;
         let result = baseDamage;
         let extra = '';
-        const hasVicious = weaponData.EFFECTS.includes('effectVicious');
-        const hasRadioactive = weaponData.EFFECTS.includes('effectRadioactive');
+        const hasVicious = weaponEffects.some(e => e.effect === 'effectVicious');
+        const hasRadioactive = weaponEffects.some(e => e.effect === 'effectRadioactive');
         if (hasVicious) {
             result += effects;
             extra += ` (${baseDamage}+${effects})`;
@@ -285,18 +244,19 @@ function D6Popup({
             // Before rolling: activate/deactivate extra dice (costs ammo)
             const isActivating = !extraDiceActive[index];
 
+
+            // TODO this part can be improved
             // Check ammo availability
-            let ammoId: string | undefined = weaponData.AMMO_TYPE;
+            let ammoId: string | undefined = itemData.AMMO_TYPE;
             if (ammoId === 'self') {
-                ammoId = weaponData.ID;
+                ammoId = itemData.ID;
             }
             if (ammoId === 'na') {
                 ammoId = undefined;
             }
 
             if (extraHitsType === 'ammo' && isActivating && ammoId) {
-                const currentAmmo = character.items.find(item => item.id === ammoId)?.quantity ?? 0;
-                if (currentAmmo < ammoCost + ammoStep) {
+                if (ammoCount < ammoCost + ammoStep) {
                     alert(t('notEnoughAmmoAlert'));
                     return;
                 }
@@ -373,9 +333,9 @@ function D6Popup({
 
         // First roll: consume ammo
         if (!hasRolled) {
-            let ammoId = weaponData.AMMO_TYPE;
+            let ammoId = itemData.AMMO_TYPE;
             if (ammoId === 'self') {
-                ammoId = weaponData.ID;
+                ammoId = itemData.ID;
             }
             if (ammoId && ammoId !== 'na') {
                 // Only consume base ammo cost on first roll
@@ -403,10 +363,10 @@ function D6Popup({
 
     const handleClose = () => {
         // Consume burst ammo if any were selected
-        if (burstEffectsUsed > 0 && weaponData && !isCloseCombat(weaponData.CATEGORY)) {
-            let ammoId = weaponData.AMMO_TYPE;
+        if (burstEffectsUsed > 0 && itemData && !isCloseCombat(itemData.CATEGORY)) {
+            let ammoId = itemData.AMMO_TYPE;
             if (ammoId === 'self') {
-                ammoId = weaponData.ID;
+                ammoId = itemData.ID;
             }
             if (ammoId && ammoId !== 'na') {
                 updateCharacter({
@@ -423,10 +383,68 @@ function D6Popup({
         onClose();
     };
 
+
+    const [actionUsages, setActionUsages] = useState<Record<string, number>>({})
+    const [activeModalId, setActiveModalId] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (activeModalId && dialogRef.current) {
+            dialogRef.current.showModal();
+        } else if (!activeModalId && dialogRef.current) {
+            dialogRef.current.close();
+        }
+    }, [activeModalId]);
+
+    // Get applicable actions for this character & weapon
+    const rollActions = useMemo(() => {
+        if (roller) {return []} // Popups used by "roller" mode never show perk buttons
+        return getRollActions(character).filter(action =>
+            action.isApplicable(character, itemData)
+        );
+    }, [character, itemData, roller]);
+
+    // 2. Action execution handler
+    const handleActionClick = (action: FeatRollAction) => {
+        // If action opens a modal (like Meltdown)
+        if (action.modalId) {
+            setActiveModalId(action.modalId);
+            return;
+        }
+
+        // Otherwise show standard confirm dialog
+        const maxUses = action.getMaxUses?.(character) ?? 1;
+        const currentUsed = actionUsages[action.id] ?? 0;
+        const rankSuffix = maxUses > 1 ? ` (${currentUsed + 1}/${maxUses})` : '';
+
+        showConfirm(
+            `${t(action.id)}${rankSuffix}\n\n${action.getContent(t, getTotalDamage())}`,
+            () => {
+                // Deduct Luck if required
+                if (action.cost?.luck) {
+                    updateCharacter({ currentLuck: character.currentLuck - action.cost.luck });
+                }
+                // Deduct Ammo if required
+                if (action.cost?.ammo) {
+                    const amount = action.cost.ammo
+                    const ammoId = itemData.AMMO_TYPE === 'self' ? itemData.ID : itemData.AMMO_TYPE;
+                    if (ammoId && ammoId !== 'na') {
+                        updateCharacter({
+                            items: character.items
+                                .map(item => item.id === ammoId ? { ...item, quantity: item.quantity - amount } : item)
+                                .filter(item => item.quantity > 0),
+                        });
+                    }
+                }
+                // Increment usage count
+                setActionUsages(prev => ({ ...prev, [action.id]: (prev[action.id] ?? 0) + 1 }));
+            }
+        );
+    };
+
     return (
         <>
             <BasePopup
-                title={weaponData.ID}
+                title={itemData.ID}
                 onClose={handleClose}
                 footerChildren={
                     <>
@@ -436,144 +454,75 @@ function D6Popup({
                                 className="confirmButton"
                                 onClick={handleRoll}
                                 disabled={
-                                    !isCloseCombat(weaponData.CATEGORY) &&
-                                    getCurrentAmmo() < ammoCost
+                                    !isCloseCombat(itemData.CATEGORY) &&
+                                    ammoCount < ammoCost
                                 }
                             >
                                 {hasRolled ? t('reroll') : t('roll')}
                             </button>
                         )}
 
-                        {/* Gun Fu button - only for ranged weapons when player has the perk */}
-                        {!roller &&
-                            !isCloseCombat(weaponData.CATEGORY) &&
-                            (() => {
-                                const gunFuRank = perkRank(character.perks, 'perkGunFu');
-                                return gunFuRank > 0 && gunFuUsed < gunFuRank ? (
-                                    <button
-                                        className="confirmButton"
-                                        onClick={() => {
-                                            const totalDamage = getTotalDamage();
+                        {rollActions.map((action) => {
+                            const maxUses = action.getMaxUses?.(character) ?? 1;
+                            const usedCount = actionUsages[action.id] ?? 0;
 
-                                            showConfirm(
-                                                `${t('perkGunFu')}${gunFuRank > 1 ? ` (${gunFuUsed + 1}/${gunFuRank})` : ''}\n\n` +
-                                                    `${t('damage')}: ${totalDamage}\n\n` +
-                                                    `${t('confirmGunFu')} (1 ${t('ammo')})`,
-                                                () => {
-                                                    // Consume 1 ammo per use
-                                                    let ammoId = weaponData.AMMO_TYPE;
-                                                    if (ammoId === 'self') {
-                                                        ammoId = weaponData.ID;
-                                                    } // TODO should "SELF" ammo types use Gun Fu?
-                                                    if (ammoId && ammoId !== 'na') {
-                                                        updateCharacter({
-                                                            items: character.items
-                                                                .map(item =>
-                                                                    item.id === ammoId
-                                                                        ? {
-                                                                              ...item,
-                                                                              quantity:
-                                                                                  item.quantity - 1,
-                                                                          }
-                                                                        : item,
-                                                                )
-                                                                .filter(item => item.quantity > 0),
-                                                        });
-                                                    }
-                                                    // Increment Gun Fu use count
-                                                    setGunFuUsed(prev => prev + 1);
-                                                },
-                                            );
-                                        }}
-                                        disabled={!hasRolled || getCurrentAmmo() < 1}
-                                        title={t('perkGunFuDescription')}
-                                    >
-                                        {t('perkGunFu')}
-                                        {gunFuRank > 1 ? ` (${gunFuUsed + 1}/${gunFuRank})` : ''}
-                                    </button>
-                                ) : null;
-                            })()
-                        }
+                            const isMaxedOut = usedCount >= maxUses;
+                            const lacksLuck = (action.cost?.luck ?? 0) > character.currentLuck;
+                            const lacksAmmo = (action.cost?.ammo ?? 0) > ammoCount;
+                            const isDisabled = !hasRolled || isMaxedOut || lacksLuck || lacksAmmo;
 
-                        {/* Slayer button - only for melee/unarmed weapons when player has the perk */}
-                        {!roller &&
-                            isCloseCombat(weaponData.CATEGORY) &&
-                            hasPerk(character.perks, 'perkSlayer') &&
-                            !slayerUsed && (
+                            const rankSuffix = maxUses > 1 ? ` (${usedCount + 1}/${maxUses})` : '';
+
+                            return (
                                 <button
+                                    key={action.id}
                                     className="confirmButton"
-                                    onClick={() => {
-                                        showConfirm(
-                                            `${t('perkSlayer')}\n\n` + `${t('confirmSlayer')}`,
-                                            () => {
-                                                // Spend 1 Luck point
-                                                updateCharacter({
-                                                    currentLuck: character.currentLuck - 1,
-                                                });
-                                                // Mark Slayer as used
-                                                setSlayerUsed(true);
-                                            },
-                                        );
-                                    }}
-                                    disabled={!hasRolled || character.currentLuck < 1}
-                                    title={t('perkSlayerDescription')}
+                                    onClick={() => handleActionClick(action)}
+                                    disabled={isDisabled}
+                                    title={t(`${action.id}Description`)}
                                 >
-                                    {t('perkSlayer')}
+                                    {t(action.id)}{rankSuffix}
                                 </button>
-                            )}
-
-                        {/* Meltdown button - only for energy weapons when player has the perk */}
-                        {!roller &&
-                            weaponData.CATEGORY === 'energyWeapons' &&
-                            hasPerk(character.perks, 'perkMeltdown') &&
-                            !meltdownUsed && (
-                                <button
-                                    className="confirmButton"
-                                    onClick={() => {
-                                        setMeltdownPopupOpen(true);
-                                    }}
-                                    disabled={!hasRolled}
-                                    title={t('perkMeltdownDescription')}
-                                >
-                                    {t('perkMeltdown')}
-                                </button>
-                            )}
+                            );
+                        })}
                     </>
                 }
             >
                 <div className="stack no-gap">
                     {/* Damage Type */}
                     <div className="h4">
-                        {t('damage')}: {weaponData.DAMAGE_TYPES.map(dt => t(dt)).join(', ')}
+                        {t('damage')}: {itemData.DAMAGE_TYPES.map(dt => t(dt)).join(', ')}
                     </div>
 
                     {/* Effects and Qualities Tags */}
-                    {(weaponData.EFFECTS.length > 0 || weaponData.QUALITIES.length > 0 || legendaryMods.length > 0) && (
+                    {(weaponEffects.length > 0 || itemData.QUALITIES.length > 0 || legendaryMods.length > 0) && (
                         <div
                             className="row l-centered"
                             style={{ flexWrap: 'wrap', gap: '0.25rem' }}
                         >
-                            {weaponData.EFFECTS.map(effect => {
-                                const [effectType, effectOpt] = effect.split(':');
-                                let displayValue = t(effectOpt!);
-                                if (displayValue) {
-                                    displayValue = ` ${displayValue}`;
+                            {weaponEffects.map(e => {
+                                const values = [];
+                                let other = {}
+                                if (e.level) { values.push(e.level) }
+                                if(e.bonus){
+                                    values.push(e.bonus)
+                                    other = {
+                                        color: "var(--warning-color)"
+                                    }
                                 }
-                                const displayText = `${t(effectType!)}${displayValue}`;
+                                const label = [t(e.effect), values.join('+')].filter(Boolean).join(' ')
                                 return (
-                                    <Tag key={effect} tooltipId={`${effectType}Description`}>
-                                        {displayText}
+                                    <Tag
+                                        key={e.effect}
+                                        tooltipId={`${e.effect}Description`}
+                                        {...other}
+                                    >
+                                        {label}
                                     </Tag>
-                                );
+                                )
                             })}
 
-                            {hasAwareness && hasAimed && (
-                                <Tag key={"awareness"} color={"var(--warning-color)"} tooltipId={`perkAwarenessDescription`}>
-                                    {t("perkAwareness")}
-                                </Tag>
-                            )}
-
-                            {weaponData.QUALITIES.map(effect => {
+                            {itemData.QUALITIES.map(effect => {
                                 const [qualityType, qualityOpt] = effect.split(':');
                                 let displayValue = t(qualityOpt!);
                                 if (displayValue) {
@@ -780,7 +729,7 @@ function D6Popup({
                         <div
                             style={{
                                 display: 'grid',
-                                gridTemplateColumns: isCloseCombat(weaponData.CATEGORY)
+                                gridTemplateColumns: isCloseCombat(itemData.CATEGORY)
                                     ? '1fr'
                                     : '1fr 1fr',
                                 gap: '0.5rem',
@@ -788,7 +737,7 @@ function D6Popup({
                                 marginBottom: '0.25rem',
                             }}
                         >
-                            {!isCloseCombat(weaponData.CATEGORY) && (
+                            {!isCloseCombat(itemData.CATEGORY) && (
                                 <div className="row" style={{ justifyContent: 'space-between' }}>
                                     <span>{t('ammo')}:</span>
                                     <span
@@ -801,7 +750,7 @@ function D6Popup({
                                     >
                                         {!hasRolled ? (
                                             <span>
-                                                {ammoCost} / {getCurrentAmmo()}
+                                                {ammoCost} / {ammoCount}
                                             </span>
                                         ) : hasBurst ? (
                                             <>
@@ -825,7 +774,7 @@ function D6Popup({
                                                             length:
                                                                 Math.min(
                                                                     getEffectCount(),
-                                                                    getCurrentAmmo(),
+                                                                    ammoCount,
                                                                 ) + 1,
                                                         },
                                                         (_, i) => (
@@ -835,10 +784,10 @@ function D6Popup({
                                                         ),
                                                     )}
                                                 </select>
-                                                <span>/ {getCurrentAmmo()}</span>
+                                                <span>/ {ammoCount}</span>
                                             </>
                                         ) : (
-                                            <span>0 / {getCurrentAmmo()}</span>
+                                            <span>0 / {ammoCount}</span>
                                         )}
                                     </span>
                                 </div>
@@ -856,9 +805,10 @@ function D6Popup({
             </BasePopup>
 
             {/* Meltdown Popup - inline dialog for rolling explosion dice */}
+            {/* TODO standardize modal actions like Meltdown (include definition in perk*.ts file) */}
             <DialogPortal>
                 <dialog
-                    ref={meltdownDialogRef}
+                    ref={dialogRef}
                     style={{
                         padding: '1rem',
                         borderRadius: '8px',
@@ -912,7 +862,7 @@ function D6Popup({
                             onClick={
                                 meltdownDiceValues.length === 0
                                     ? rollMeltdownDice
-                                    : closeMeltdownPopup
+                                    : confirmMeltdown
                             }
                         >
                             {meltdownDiceValues.length === 0 ? t('roll') : t('confirm')}

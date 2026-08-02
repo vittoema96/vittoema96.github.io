@@ -1,7 +1,8 @@
-import { FeatImplementation } from '@/features/character/feats';
+import { TraitImplementation } from '@/features/character/feats';
 
 
-export const traitGrunt: FeatImplementation = {
+export const traitGrunt: TraitImplementation = {
+    id: 'traitGrunt',
     getDamageRatingBonus: (_, itemData) => {
         // TODO check id consistencies and eventually add actual validation
         if([

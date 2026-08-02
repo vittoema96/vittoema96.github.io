@@ -1,9 +1,10 @@
-import { FeatImplementation } from '@/features/character/feats';
+import { PerkImplementation } from '@/features/character/feats';
 import { perkRank } from '@/features/character/feats/perks/perks.ts';
 
 
-const perkTag: FeatImplementation = {
-    getSpecialtyPointBonus: (ctx) => perkRank(ctx.character.perks, 'perkTag')
+const perkTag: PerkImplementation = {
+    id: 'perkTag',
+    getSpecialtyPointBonus: (character) => perkRank(character.perks, 'perkTag')
 };
 
 export default perkTag;
