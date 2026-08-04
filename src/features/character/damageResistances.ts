@@ -3,8 +3,7 @@ import { DamageResistanceMap, GenericBodyPart, RawCharacter } from '@/types';
 import { getModifiedItemData, isType } from '@/features/item/utils.ts';
 import { mapItemLocations } from '@/utils/bodyLocations.ts';
 import { Origin } from '@/features/character/origin.ts';
-import { hasPerk } from '@/features/character/feats/perks/perks.ts';
-import { allItems } from '@/data';
+import { getLocationDRBonus } from '@/features/character/feats';
 
 export function useDamageResistances(raw: RawCharacter, origin: Origin){
     return useMemo(() => {
@@ -57,28 +56,12 @@ export function useDamageResistances(raw: RawCharacter, origin: Origin){
             });
         });
 
-        if (hasPerk(raw.perks, 'perkBarbarian')) {
-            const isWearingPowerArmor = raw.items.some(item => {
-                if (!item.equipped) {
-                    return false;
-                }
-                const data = allItems[item.id];
-                return isType(data, 'apparel') && data.CATEGORY === 'powerArmor'; // TODO fix it when powerArmor is implemented
-            });
-            if (!isWearingPowerArmor) {
-                const barbarianBonus =
-                    raw.special.strength >= 11
-                        ? 3
-                        : raw.special.strength >= 9
-                          ? 2
-                          : raw.special.strength >= 7
-                            ? 1
-                            : 0;
-                Object.values(locationsDR).forEach(dr => {
-                    dr.physical += barbarianBonus;
-                });
-            }
-        }
+        const drBonus = getLocationDRBonus(raw)
+        Object.values(locationsDR).forEach(dr => {
+            dr.physical += drBonus.physical;
+            dr.energy += drBonus.energy;
+            dr.radiation += drBonus.radiation;
+        });
 
         // Mr Handy and Ghoul have infinite radiation resistance
         if (origin.hasRadiationImmunity) {
@@ -88,12 +71,5 @@ export function useDamageResistances(raw: RawCharacter, origin: Origin){
         }
 
         return locationsDR;
-    }, [
-        origin.bodyParts,
-        origin.hasRadiationImmunity,
-        origin.isRobot,
-        raw.items,
-        raw.perks,
-        raw.special.strength,
-    ]);
+    }, [origin.bodyParts, origin.hasRadiationImmunity, origin.isRobot, raw]);
 }

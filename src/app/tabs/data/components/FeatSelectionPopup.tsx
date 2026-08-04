@@ -5,8 +5,9 @@ import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import './FeatSelectionPopup.css';
 import { SPECIAL, SpecialType } from '@/features/character/special/special.ts';
 import { perks, traits } from '@/data';
-import { hasPerk, PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
+import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
 import { hasTrait, TraitId } from '@/features/character/feats/traits/traits.ts';
+import { getPerkBlacklist } from '@/features/character/feats';
 
 type SortMode = 'none' | 'level' | SpecialType | 'total';
 
@@ -110,12 +111,11 @@ export function PerkSelectionPopup({
     // Check if character meets requirements for a perk
     const meetsRequirements = useCallback((id: PerkId) => {
 
-        const PERK_EXCLUSIONS: Partial<Record<PerkId, PerkId>> = {
-            perkCautiousNature: 'perkDaringNature',
-            perkDaringNature: 'perkCautiousNature',
-        };
-        const conflictingPerk = PERK_EXCLUSIONS[id];
-        if (conflictingPerk && conflictingPerk !== prev && hasPerk(character.perks, conflictingPerk)) {
+        const activePerks = character.perks.filter(perk => perk !== prev);
+        const tempCharacter = {...character, perks: activePerks};
+        const blacklist = getPerkBlacklist(tempCharacter);
+
+        if (blacklist.includes(id)) {
             return false;
         }
         const reqs = getRequirements(id);
@@ -127,7 +127,7 @@ export function PerkSelectionPopup({
             key => reqs[key] > 0 && character.special[key] < reqs[key]
         )
         return !failsSpecialReq
-    }, [character.level, character.special, character.perks, getRequirements, prev]);
+    }, [character, getRequirements, prev]);
 
     const ids = useMemo(() => {
         const allIds = Object.values(perks).map(p => p.ID)

@@ -11,7 +11,7 @@ interface ModTooltipProps {
     complexity: number | '-'
     /** Skill ID used for the crafting roll (e.g. "repair", "science") */
     skill: string
-    /** Perk requirements as "perkId:rank" (e.g. ["perkGunNut:1", "scrapper:2"]) */
+    /** Perk requirements as "perkId:rank" */
     perks: string[]
 }
 
@@ -102,7 +102,6 @@ function parsePerkRequirement(
     const [rawId, rawRank] = perkEntry.split(':')
     const perkId = rawId as PerkId
     const rank = Number(rawRank) || 1
-    // CSV stores "perkGunNut", locale key is "perkGunNut"
     const name = t(perkId)
     // Character has rank N if the perk appears N times in the array
     const characterRank = perkRank(characterPerks, perkId)

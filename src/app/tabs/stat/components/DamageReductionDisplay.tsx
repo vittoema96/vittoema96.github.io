@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/app/contexts/CharacterContext'
 import { DamageType, GenericBodyPart } from '@/types';
 import { ORIGINS } from '@/features/character/origin.ts';
-import { perkRank } from '@/features/character/feats/perks/perks.ts';
 
 /**
  * Component to display damage reduction stats by body part
@@ -62,13 +61,10 @@ const DREntry = (
         const { character } = useCharacter()
         const damageReduction = character.locationsDR
 
-        const toughnessBonus = damageType === "physical"
-            ? perkRank(character.perks, 'perkToughness')
-            : 0;
         // Helper function to format DR value (show "Immune" for Infinity)
         const formatDR = (value: number) => {
             if (value === Infinity) {return t('immune')}
-            return value + toughnessBonus
+            return value
         }
 
         const getIcon = (damageType: DamageType) => {

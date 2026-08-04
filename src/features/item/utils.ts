@@ -369,7 +369,7 @@ export function getCanonicalDisplayName(item: CharacterItem | CustomItem, t: TFu
 }
 
 export function isCloseCombat(category: ItemCategory) {
-    return category === 'meleeWeapons' || category === 'unarmed'
+    return ['meleeWeapons', 'unarmed'].includes(category)
 }
 
 export const UNACQUIRABLE_IDS: (keyof typeof weapon | keyof typeof apparel)[] = [

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { MYSTERIOUS_STRANGER, useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { useTranslation } from 'react-i18next';
-import { Character, CharacterItem, CompanionData } from '@/types';
+import { BodyPart, Character, CharacterItem, CompanionData } from '@/types';
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import { RollerType, usePopup } from '@/app/contexts/PopupContext.tsx';
 import useDice from '@/hooks/useDice.ts';
@@ -20,7 +20,6 @@ import {
     SkillType,
 } from '@/features/character/skills/skills.ts';
 import { getModifiedItemData, isType } from '@/features/item/utils.ts';
-import { hasPerk } from '@/features/character/feats/perks/perks.ts';
 
 import { TraitId } from '@/features/character/feats/traits/traits.ts';
 import {
@@ -28,7 +27,8 @@ import {
     CompanionSpecialType,
     isCompanionSpecial,
 } from '@/features/character/special/special.companion.ts';
-import { getFreeRerolls } from '@/features/character/feats';
+import { getRollSpecial, getFreeRerolls, getRollToggleables } from '@/features/character/feats';
+import { capitalize } from '@/utils/bodyLocations.ts';
 
 // Discriminated union — built from actual domain types, no invented duplicates.
 interface PlayerRollerStats
@@ -79,12 +79,20 @@ function D20Popup({
 
     const activePerks = character.perks;
 
-    // perkAdrenalineRush: treat STR as 10 when HP < max — immutable copy
-    const hasAdrenalineRush = hasPerk(character.perks, 'perkAdrenalineRush');
-    const effectiveSpecial: Record<SpecialType, number> =
-        hasAdrenalineRush && character.currentHp < character.maxHp
-            ? { ...character.special, strength: 10 }
-            : character.special;
+    // Get weapon data with mods applied
+    const itemData = getModifiedItemData(usingItem, activePerks);
+
+    // Centralized feat pipeline for SPECIAL modifiers (perks/traits/context-aware)
+    // TODO when fixing companions review this part (check not sufficient for humanoid companions)
+    const specialModifierContext = {
+        ...(isCharacterSkill(skillId) ? { skillId } : {}),
+        ...(isType(itemData, 'weapon') ? { usingItem: itemData } : {}),
+    } as const;
+    const effectiveSpecial = getRollSpecial(character, specialModifierContext);
+
+    const rollToggleables = isType(itemData, 'weapon') && !roller
+        ? getRollToggleables(character, itemData)
+        : {};
 
     const currentLuck = character.currentLuck;
     const isCompanion = roller === 'companion';
@@ -107,28 +115,14 @@ function D20Popup({
     // Traits are only available on player / stranger rollers — use the roller's own traits, not always the player's
     const rollerTraits: TraitId[] = rollerStats.kind !== 'companion' ? rollerStats.traits : [];
 
-    // Get weapon data with mods applied
-    const itemData = getModifiedItemData(usingItem, activePerks);
 
     // State
     const [isUsingLuck, setIsUsingLuck] = useState(false);
     const [isAiming, setIsAiming] = useState(false);
     const [hasRolled, setHasRolled] = useState(false);
 
-    // perkCenterOfMass: applies only to ranged attacks by the player (not melee/unarmed, not companion/stranger)
-    // isCharacterSkill narrows skillId to SkillType, removing the need for any cast
-    const isCenterOfMassRanged =
-        !roller &&
-        hasPerk(activePerks, 'perkCenterOfMass') &&
-        isType(itemData, 'weapon') &&
-        isCharacterSkill(skillId) &&
-        !['meleeWeapons', 'unarmed'].includes(skillId);
-
     // "Hit Torso?" checkbox for perkCenterOfMass: starts checked, locked after rolling.
-    const [hitTorso, setHitTorso] = useState(true);
-
-    // Free reroll: the perk grants +1 reroll discount whenever Torso is targeted.
-    const hasCenterOfMassDiscount = isCenterOfMassRanged && hitTorso;
+    const [hitLocation, setHitLocation] = useState<BodyPart | null>(null);
 
     let diceNumber: number;
     if (isMysteriousStranger) {
@@ -233,16 +227,23 @@ function D20Popup({
             let cost = rerollingCount;
             let discount = 0;
             if (isAiming) { discount += 1; }
-            if(isType(itemData, 'weapon')){ discount += getFreeRerolls(character, itemData) }
-            if (hasCenterOfMassDiscount) { discount += 1; }
-            if (hasPerk(character.perks, 'perkCautiousNature') && diceValues.filter(v => v !== '?').length > 2) { discount += 1; }
+            if (!roller && !isType(itemData, 'apparel')){
+                discount += getFreeRerolls(
+                    character,
+                    itemData ?? undefined,
+                    {
+                        bought: diceValues.filter(v => v !== '?').length - 2,
+                        ...(hitLocation ? {hitLocation} : {}),
+                    }
+                )
+            }
             discount -= Math.min(discount, rerolledCount);
             cost -= discount;
 
             return Math.max(0, cost);
         }
         return isUsingLuck ? 1 : 0;
-    }, [roller, hasRolled, isUsingLuck, isMysteriousStranger, diceActive, diceRerolled, isAiming, itemData, hasCenterOfMassDiscount, character, diceValues]);
+    }, [roller, hasRolled, isUsingLuck, isMysteriousStranger, diceActive, diceRerolled, isAiming, itemData, character, diceValues, hitLocation]);
 
     // Success calculation
     const getSuccesses = () => {
@@ -360,7 +361,7 @@ function D20Popup({
                                     equipped: false,
                                     mods: [],
                                 };
-                                showD6Popup({usingItem: damageItem, hasAimed: isAiming, roller: roller, hitTorso: isCenterOfMassRanged && hitTorso});
+                                showD6Popup({usingItem: damageItem, hasAimed: isAiming, roller: roller, hitTorso: hitLocation === 'torso'});
                             }}
                             /* TODO Companions SHOULD use ammo too */
                             disabled={!hasRolled}
@@ -457,20 +458,21 @@ function D20Popup({
                 )}
 
             {/* Center of Mass: Hit Torso? checkbox – visible only for ranged weapons */}
-            {isCenterOfMassRanged && (
-                <div className="row l-distributed l-lastSmall">
-                    <span>{t('hitTorso')}</span>
-                    <input
-                        type="checkbox"
-                        className="themed-svg"
-                        data-icon="attack"
-                        checked={hitTorso}
-                        onChange={e => setHitTorso(e.target.checked)}
-                        disabled={hasRolled}
-                        aria-label={t('hitTorso')}
-                    />
-                </div>
-            )}
+            {Object.entries(rollToggleables).map(([k, v]) => {
+                return (
+                    <div key={k} className="row l-distributed l-lastSmall">
+                        <span>{t(`hit${capitalize(v[0]!)}`)}</span>{/* TODO Find a better way */}
+                        <input
+                            type="checkbox"
+                            className="themed-svg"
+                            data-icon="attack"
+                            checked={hitLocation===v[0]}
+                            onChange={e => setHitLocation(e.target.checked ? v[0]! : null)}
+                            disabled={hasRolled}
+                        />{/* TODO use selector if v.length>1 */}
+                    </div>
+                )
+            })}
             {!isCompanion && (
                 <div className="row l-distributed l-lastSmall">
                     <span>{t('luckCost')}</span>

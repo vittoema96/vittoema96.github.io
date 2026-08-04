@@ -1,8 +1,10 @@
-import { Character, CompanionId } from '@/types';
+import { BodyPart, Character, CharacterItem, CompanionId } from '@/types';
 import { PerkId } from '@/features/character/feats/perks/perks.ts';
 import { TraitId } from '@/features/character/feats/traits/traits.ts';
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { TFunction } from 'i18next';
+import { SkillType } from '@/features/character/skills/skills.ts';
+import { SpecialType } from '@/features/character/special/special.ts';
 
 /* Load all trait*.ts and perk*.ts in implementation and put them in registry */
 const perkRegistry: Partial<Record<PerkId, PerkImplementation>> = {};
@@ -28,6 +30,13 @@ Object.values(traitModules).forEach((module) => {
     }
 });
 
+interface CharacterLike {
+    special: Record<SpecialType, number>,
+    items: CharacterItem[],
+    perks: PerkId[],
+    traits: TraitId[]
+}
+
 export interface FeatRollAction {
     id: PerkId | TraitId,
     isApplicable: (char: Character, item: WeaponItem) => boolean,
@@ -37,6 +46,24 @@ export interface FeatRollAction {
     modalId?: string
 }
 
+export interface SpecialModifierContext {
+    skillId?: SkillType;
+    usingItem?: WeaponItem;
+}
+
+export interface SpecialModifier {
+    special: SpecialType;
+    apply: (currentValue: number, baseValue: number) => number;
+}
+interface RollContext {
+    hitLocation?: BodyPart,
+    bought?: number
+}
+
+interface Toggleables {
+    hitLocation?: BodyPart[],
+}
+
 interface FeatImplementation {
     applyPassiveModifiers?: (character: Character) => void;
 
@@ -44,26 +71,45 @@ interface FeatImplementation {
 
     onBeforeRoll?: (character: Character, diceContext: any) => void;
 
-    getAvailableCompanions?: () => CompanionId[]
+    getAvailableCompanions?: () => CompanionId[];
 
-    getSpecialtyPointBonus?: (character: Character) => number
+    getSpecialtyPointBonus?: (character: Character) => number;
 
-    getDamageRatingBonus?: (character: Character, itemData: WeaponItem) => number
+    getDamageRatingBonus?: (character: Character, itemData: WeaponItem) => number;
 
-    getFireRateBonus?: (character: Character, itemData: WeaponItem) => number
+    getFireRateBonus?: (character: Character, itemData: WeaponItem) => number;
 
-    getWeaponEffects?: (character: Character, itemData: WeaponItem, isAiming: boolean) => `${string}:${number}`[]
+    getWeaponEffects?: (
+        character: Character,
+        itemData: WeaponItem,
+        isAiming: boolean,
+    ) => `${string}:${number}`[];
 
-    getRollActions?: (character: Character) => FeatRollAction[]
+    getRollActions?: (character: Character) => FeatRollAction[];
 
-    getFreeRerolls?: (character: Character, itemData: WeaponItem) => number
+    getFreeRerolls?: (
+        character: Character,
+        itemData?: WeaponItem,
+        ctx?: RollContext,
+    ) => number;
+
+    getBlacklistedPerks?: () => PerkId[]
+
+    getRollSpecialModifiers?: (
+        character: Character,
+        context: SpecialModifierContext,
+    ) => SpecialModifier[];
+
+    getRollToggleables?: (character: Character, itemData: WeaponItem) => Toggleables;
+
+    getLocationDRBonus?: ({special, items}: CharacterLike) => Partial<Record<'physical' | 'energy' | 'radiation', number>>
 }
 
 export type PerkImplementation = FeatImplementation & { id: PerkId }
 export type TraitImplementation = FeatImplementation & { id: TraitId }
 
 
-function getActiveFeats(character: Character): FeatImplementation[] {
+function getActiveFeats(character: {perks: PerkId[], traits: TraitId[]}): FeatImplementation[] {
     const active: FeatImplementation[] = [];
 
     // Perk ranks are stored as duplicated IDs, but implementation hooks must run once per feat ID.
@@ -168,9 +214,71 @@ export function getRollActions(character: Character){
     )
 }
 
-export function getFreeRerolls(character: Character, itemData: WeaponItem){
+export function getFreeRerolls(
+    character: Character,
+    itemData?: WeaponItem,
+    ctx?: RollContext
+){
     return getActiveFeats(character).reduce(
-        (acc, feat) => acc + (feat.getFreeRerolls?.(character, itemData) ?? 0),
+        (acc, feat) => acc + (feat.getFreeRerolls?.(character, itemData, ctx) ?? 0),
         0
     );
+}
+
+export function getRollSpecial(
+    character: Character,
+    context: SpecialModifierContext = {}
+): Record<SpecialType, number> {
+    const effectiveSpecial: Record<SpecialType, number> = { ...character.special };
+
+    const modifiers = getActiveFeats(character).flatMap(
+        (feat) => feat.getRollSpecialModifiers?.(character, context) ?? []
+    );
+
+    // TODO Might want to give priority to set / modify apply()
+    for (const modifier of modifiers) {
+        const baseValue = character.special[modifier.special];
+        const currentValue = effectiveSpecial[modifier.special];
+        effectiveSpecial[modifier.special] = modifier.apply(currentValue, baseValue);
+    }
+
+    return effectiveSpecial;
+}
+
+export function getRollToggleables(
+    character: Character,
+    itemData: WeaponItem
+) {
+    // TODO implementation still needs improvements, now currently tailored to perkCenterOfMass
+    return getActiveFeats(character).reduce((acc, feat) => {
+        const incoming = feat.getRollToggleables?.(character, itemData);
+        if (!incoming) {return acc}
+
+        for (const k in incoming) {
+            const key = (k as keyof Toggleables)!;
+            acc[key] = acc[key]
+                ? [...acc[key], ...incoming[key] ?? []]
+                : incoming[key] ?? [];
+        }
+
+        return acc;
+    }, {} as Toggleables);
+}
+
+export function getPerkBlacklist(character: Character) {
+    return getActiveFeats(character).flatMap(
+        (feat) => feat.getBlacklistedPerks?.() ?? []
+    );
+}
+
+export function getLocationDRBonus(character: CharacterLike) {
+    return getActiveFeats(character).reduce((acc, feat) => {
+        const bonus = feat.getLocationDRBonus?.(character);
+
+        return {
+            physical: acc.physical + (bonus?.physical ?? 0),
+            energy: acc.energy + (bonus?.energy ?? 0),
+            radiation: acc.radiation + (bonus?.radiation ?? 0)
+        }
+    }, {physical: 0, energy: 0, radiation: 0});
 }
