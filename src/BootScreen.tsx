@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 const FORCE_BOOT_SCREEN = false;
 /** Show boot screen only in production builds (where BUILD_VERSION is replaced by Vite). */
 const IS_PRODUCTION = !__APP_VERSION__.includes('BUILD_VERSION');
+
+/**  Hook for using the BootScreen. Appears only if is production or FORCE_BOOT_SCREEN is set. */
 export const useBootScreen = () => {
     const [showBootScreen, setShowBootScreen] = useState(IS_PRODUCTION || FORCE_BOOT_SCREEN);
     useEffect(() => {

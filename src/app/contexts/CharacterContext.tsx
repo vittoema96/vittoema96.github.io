@@ -7,14 +7,9 @@
  * - `updateCharacter` – partial-update function with side-effects (HP adjust, origin-change logic)
  * - Slot management  – switch / reset character save slots
  * - Luck helpers     – spend / replenish luck points
- *
- * Architecture:
- * - `CharacterRootProvider`     – owns state, persistence (SaveSlotManager) and derived calc
- * - `CharacterOverrideProvider` – lightweight wrapper that swaps `character` (used for companions)
- * - `CharacterProvider`         – public API; auto-selects Root vs Override based on context nesting
  */
 
-import React, {createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState} from 'react'
+import {createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState} from 'react'
 import {
     BODY_PARTS,
     BodyPart,
@@ -86,34 +81,10 @@ export const useCharacter = (): CharacterContextValue => {
 }
 
 /**
- * Lightweight provider that overrides only `character` while keeping the parent
- * context's updaters intact. Used to render companion stats in the companion tab
- * without affecting the main character state.
- */
-function CharacterOverrideProvider({ overrideCharacter, parentContext, children}: Readonly<{
-    overrideCharacter: Character,
-    parentContext: CharacterContextValue,
-    children: ReactNode
-}>){
-    const contextValue = useMemo(() => ({
-        ...parentContext,
-        character: overrideCharacter
-    }), [parentContext, overrideCharacter])
-
-    return (
-        <CharacterContext.Provider value={contextValue}>
-            {children}
-        </CharacterContext.Provider>
-    )
-}
-
-/**
  * Core provider — owns character state, handles persistence via SaveSlotManager,
  * and computes the derived `Character` via `useCalculatedCharacter`.
  */
-function CharacterRootProvider({ children }: Readonly<{
-    children: ReactNode
-}>) {
+export function CharacterProvider({ children }: Readonly<{ children: ReactNode }>) {
 
     useEffect(() => {
         SaveSlotManager.migrateLegacyData()
@@ -271,38 +242,5 @@ function CharacterRootProvider({ children }: Readonly<{
         <CharacterContext.Provider value={contextValue}>
             {children}
         </CharacterContext.Provider>
-    );
-}
-
-/**
- * Public entry-point provider.
- *
- * - First mount (no parent context): renders `CharacterRootProvider` with full state.
- * - Nested mount with `overrideCharacter`: renders `CharacterOverrideProvider` to
- *   swap the read-only character while inheriting parent updaters.
- */
-export function CharacterProvider({ children, overrideCharacter }:
-                                  Readonly<{
-                                      children: React.ReactNode;
-                                      overrideCharacter?: Character;
-                                  }>) {
-
-    const parentContext = useContext(CharacterContext);
-
-    // If override is provided and we are inside a context, branch to the Override component
-    if (overrideCharacter && parentContext) {
-        return (
-            <CharacterOverrideProvider
-                overrideCharacter={overrideCharacter}
-                parentContext={parentContext}
-            >
-                {children}
-            </CharacterOverrideProvider>
-        );
-    }
-    return (
-        <CharacterRootProvider>
-            {children}
-        </CharacterRootProvider>
     );
 }
