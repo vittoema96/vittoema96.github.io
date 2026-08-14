@@ -9,18 +9,9 @@
  * - Luck helpers     – spend / replenish luck points
  */
 
-import {createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState} from 'react'
-import {
-    BODY_PARTS,
-    BodyPart,
-    Character,
-    CharacterItem,
-    MR_HANDY_PARTS,
-    MrHandyPart,
-    RawCharacter,
-} from '@/types';
-import { SaveSlotManager } from "@/services/SaveSlotManager.ts";
-import useCalculatedCharacter from "@/hooks/useCalculatedCharacter";
+import { createContext, ReactNode, useCallback, useContext, useMemo } from 'react';
+import { BODY_PARTS, BodyPart, Character, CharacterItem, MR_HANDY_PARTS, MrHandyPart, RawCharacter } from '@/types';
+import useCalculatedCharacter from '@/hooks/useCalculatedCharacter';
 import { getOriginById, ORIGINS } from '@/features/character/origin.ts';
 import { RawCharacterSchema } from '@/schemas/characterSchemas.ts';
 import { z } from 'zod';
@@ -28,30 +19,7 @@ import { adjustCurrentHp } from '@/features/character/hp.ts';
 import { allItems } from '@/data';
 
 import { isType } from '@/features/item/utils.ts';
-
-/**
- * Pre-built "Mysterious Stranger" companion character.
- * TODO: Move to a dedicated presets/characters module. maybe we could also define a
- *      "default" character and take defaults from that
- */
-export const MYSTERIOUS_44_MAGNUM = {
-    id: 'weaponFortyFourPistol', // Mysterious Stranger's signature weapon
-    quantity: 1,
-    equipped: true,
-    mods: ['modMarksmanGrip', 'modPowerful'],
-}
-export const MYSTERIOUS_STRANGER: RawCharacter = RawCharacterSchema.parse({
-    name: 'Mysterious Stranger',
-    special: {
-        agility: 10,
-    },
-    skills: {
-        smallGuns: 6,
-    },
-    specialties: ['smallGuns'],
-    items: [ MYSTERIOUS_44_MAGNUM ],
-    maxHp: 9999,
-})
+import { useSaveSlots } from '@/hooks/useSaveSlots.ts';
 
 /** Shape of the value exposed by CharacterContext to consumers. */
 export interface CharacterContextValue {
@@ -62,7 +30,7 @@ export interface CharacterContextValue {
     spendLuck: () => void;
 
     resetCharacter: () => void;
-    switchToSlot: (slotIndex: number) => void;
+    setActiveSlot: (slotIndex: number) => void;
     activeSlot: number;
 }
 const CharacterContext = createContext<CharacterContextValue | undefined>(undefined)
@@ -86,36 +54,10 @@ export const useCharacter = (): CharacterContextValue => {
  */
 export function CharacterProvider({ children }: Readonly<{ children: ReactNode }>) {
 
-    useEffect(() => {
-        SaveSlotManager.migrateLegacyData()
-    }, [])
-
-    const [activeSlot, setActiveSlot] = useState(() => SaveSlotManager.getActiveSlot());
-    const [rawCharacter, setRawCharacter] = useState(() => {
-        let res = SaveSlotManager.load()
-        if(!res){
-            res = RawCharacterSchema.parse({})
-            SaveSlotManager.save(res)
-        }
-        return res
-    });
-
-    // Switch to a different character slot
-    const switchToSlot = useCallback((slotIndex: number) => {
-        SaveSlotManager.setActiveSlot(slotIndex)
-        setActiveSlot(slotIndex)
-        let loadedCharacter = SaveSlotManager.loadFromSlot(slotIndex)
-        loadedCharacter ??= RawCharacterSchema.parse({});
-        SaveSlotManager.save(loadedCharacter)
-        setRawCharacter(loadedCharacter)
-    }, [])
-
-    // Reset to default character
-    const resetCharacter = useCallback(() => {
-        const character = RawCharacterSchema.parse({})
-        SaveSlotManager.save(character)
-        setRawCharacter(character)
-    }, [])
+    const {
+        activeSlot, setActiveSlot,
+        rawCharacter, setRawCharacter, resetCharacter,
+    } = useSaveSlots()
 
     const calculatedCharacter = useCalculatedCharacter(rawCharacter)
 
@@ -202,11 +144,9 @@ export function CharacterProvider({ children }: Readonly<{ children: ReactNode }
                 // TODO CRITICAL ITEMS GET REMOVE (LOOSING MODS IF ACCIDENTALLY SWAPPING ORIGIN)
                 updatedCharacter.items = items.filter(i => MR_HANDY_PARTS.has(i.id as MrHandyPart) || BODY_PARTS.has(i.id as BodyPart))
             }
-
-            SaveSlotManager.save(updatedCharacter)
             return updatedCharacter
         })
-    }, [])
+    }, [setRawCharacter])
 
     /**
      * Replenish current luck to max ("luck" value)
@@ -232,10 +172,10 @@ export function CharacterProvider({ children }: Readonly<{ children: ReactNode }
             replenishLuck,
             spendLuck,
             resetCharacter,
-            switchToSlot,
+            setActiveSlot,
             activeSlot
         }),
-        [rawCharacter, calculatedCharacter, updateCharacter, replenishLuck, spendLuck, resetCharacter, switchToSlot, activeSlot]
+        [rawCharacter, calculatedCharacter, updateCharacter, replenishLuck, spendLuck, resetCharacter, setActiveSlot, activeSlot]
     )
 
     return (

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { MYSTERIOUS_44_MAGNUM, useCharacter } from '@/app/contexts/CharacterContext.tsx';
+import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { useEffect, useState } from 'react';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import TraitPerkItem from './TraitPerkItem.tsx';
@@ -8,6 +8,7 @@ import { PerkSelectionPopup } from './FeatSelectionPopup.tsx';
 
 import { hasTrait } from '@/features/character/feats/traits/traits.ts';
 import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import { MYSTERIOUS_44_MAGNUM } from '@/features/character/feats/perks/implementations/_perkMysteriousStranger.ts';
 
 /**
  * Configuration for perk-specific actions.

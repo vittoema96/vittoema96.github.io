@@ -4,7 +4,13 @@ import { UISettingsManager, Theme, THEMES, DISPLAY_EFFECTS, type DisplayEffect, 
 import { usePopup } from '@/app/contexts/PopupContext.tsx'
 import { useCharacter } from '@/app/contexts/CharacterContext'
 import { changeLanguage } from '@/locales/i18n.ts'
-import { SaveSlotManager, CharacterSlotInfo } from '@/services/SaveSlotManager.ts'
+import {
+    CharacterSlotInfo,
+    clearSlot,
+    getAllSlots,
+    loadFromSlot,
+    saveToSlot,
+} from '@/hooks/useSaveSlots.ts';
 
 const useDisplayEffectsState = () => {
     const [ displayEffects, setDisplayEffects ] = useState<DisplayEffect>(() => UISettingsManager.getCurrentDisplayEffect())
@@ -22,10 +28,10 @@ function SettingsTab() {
     const [ currentTheme, setCurrentTheme ] = useState(UISettingsManager.getCurrentTheme)
     const [ currentLanguage, setCurrentLanguage ] = useState(UISettingsManager.getCurrentLanguage)
     const [ displayEffects, setDisplayEffects ] = useDisplayEffectsState()
-    const [ characterSlots, setCharacterSlots ] = useState<(CharacterSlotInfo | null)[]>(() => SaveSlotManager.getAllSlots())
+    const [ characterSlots, setCharacterSlots ] = useState<(CharacterSlotInfo | null | undefined)[]>(() => getAllSlots())
 
     const { showAlert, showConfirm } = usePopup()
-    const { rawCharacter, resetCharacter, switchToSlot, activeSlot } = useCharacter()
+    const { rawCharacter, resetCharacter, setActiveSlot, activeSlot} = useCharacter()
 
     /** Fired when user changes Language in selector */
     const handleLanguageChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -42,17 +48,12 @@ function SettingsTab() {
 
     /** Refresh character slots list */
     const refreshSlots = () => {
-        setCharacterSlots(SaveSlotManager.getAllSlots())
+        setCharacterSlots(getAllSlots())
     }
 
     useEffect(() => {
         refreshSlots()
     }, [rawCharacter])
-
-    /** Switch to a different character slot */
-    const handleSwitchSlot = (slotIndex: number) => {
-        switchToSlot(slotIndex)
-    }
 
     /** Delete a character from a slot */
     const handleDeleteSlot = (slotIndex: number) => {
@@ -62,20 +63,18 @@ function SettingsTab() {
         showConfirm(
             `${t('confirmDeleteCharacter')}\n${t("name")}: ${characterName}`,
             () => {
-                SaveSlotManager.clearSlot(slotIndex)
-                refreshSlots()
-                // If we deleted the active slot, switch to slot 0
-                // TODO why? we can stay on the current slot...
+                clearSlot(slotIndex)
                 if (slotIndex === activeSlot) {
-                    handleSwitchSlot(0)
+                    setActiveSlot(slotIndex)
                 }
+                refreshSlots()
             }
         )
     }
 
     /** Export a character from a specific slot */
     const handleExportSlot = (slotIndex: number) => {
-        const character = SaveSlotManager.loadFromSlot(slotIndex)
+        const character = loadFromSlot(slotIndex)
         if (!character) {
             showAlert(t('noCharacterInSlot'))
             return
@@ -99,7 +98,9 @@ function SettingsTab() {
         file.text()
             .then(text => {
                 const rawData = JSON.parse(text)
-                SaveSlotManager.saveToSlot(slotIndex, rawData)
+                // TODO add validation of data
+                saveToSlot(slotIndex, rawData)
+                if(slotIndex === activeSlot) { setActiveSlot(slotIndex) }
                 refreshSlots()
                 showAlert(t('characterImportSuccess'))
             })
@@ -205,12 +206,17 @@ function SettingsTab() {
                             type="radio"
                             name="activeCharacter"
                             checked={activeSlot === index}
-                            onChange={() => handleSwitchSlot(index)}
+                            onChange={() => setActiveSlot(index)}
+                            disabled={slot === null}
                         />
 
                         <div className={'stack no-gap'} style={{ flex: 1, minWidth: '130px' }}>
                             <span className="h4">
-                                {slot ? slot.name : `--- ${t('emptySlot')} ---`}
+                                {
+                                    (slot === null) ? '--- CORRUPTED DATA ---'
+                                        : (!slot ? `--- ${t('emptySlot')} ---`
+                                            : slot.name)
+                                }
                             </span>
                             {slot && (
                                 <>
