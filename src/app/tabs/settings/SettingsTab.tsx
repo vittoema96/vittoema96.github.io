@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next'
-import { UISettingsManager, Theme, THEMES, DISPLAY_EFFECTS, type DisplayEffect, type Language, LANGUAGES } from '@/services/UISettingsManager.ts'
-import { usePopup } from '@/app/contexts/PopupContext.tsx'
-import { useCharacter } from '@/app/contexts/CharacterContext'
-import { changeLanguage } from '@/locales/i18n.ts'
-import {
-    CharacterSlotInfo,
-    clearSlot,
-    getAllSlots,
-    loadFromSlot,
-    saveToSlot,
-} from '@/hooks/useSaveSlots.ts';
+import { useTranslation } from 'react-i18next';
+import { UISettingsManager, Theme, THEMES, DISPLAY_EFFECTS, type DisplayEffect, type Language, LANGUAGES } from '@/services/UISettingsManager.ts';
+import { usePopup } from '@/app/contexts/PopupContext.tsx';
+import { useCharacter } from '@/app/contexts/CharacterContext';
+import { changeLanguage } from '@/locales/i18n.ts';
 
 const useDisplayEffectsState = () => {
     const [ displayEffects, setDisplayEffects ] = useState<DisplayEffect>(() => UISettingsManager.getCurrentDisplayEffect())
@@ -25,13 +18,20 @@ const useDisplayEffectsState = () => {
 function SettingsTab() {
     const { t } = useTranslation()
 
-    const [ currentTheme, setCurrentTheme ] = useState(UISettingsManager.getCurrentTheme)
-    const [ currentLanguage, setCurrentLanguage ] = useState(UISettingsManager.getCurrentLanguage)
-    const [ displayEffects, setDisplayEffects ] = useDisplayEffectsState()
-    const [ characterSlots, setCharacterSlots ] = useState<(CharacterSlotInfo | null | undefined)[]>(() => getAllSlots())
+    const [currentTheme, setCurrentTheme] = useState(UISettingsManager.getCurrentTheme);
+    const [currentLanguage, setCurrentLanguage] = useState(UISettingsManager.getCurrentLanguage);
+    const [displayEffects, setDisplayEffects] = useDisplayEffectsState();
 
-    const { showAlert, showConfirm } = usePopup()
-    const { rawCharacter, resetCharacter, setActiveSlot, activeSlot} = useCharacter()
+    const { showAlert, showConfirm } = usePopup();
+
+    // Read clean store actions and state from Context
+    const {
+        setActiveSlot,
+        activeSlot,
+        slots,
+        deleteSlot,
+        importSlot
+    } = useCharacter();
 
     /** Fired when user changes Language in selector */
     const handleLanguageChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -42,103 +42,79 @@ function SettingsTab() {
 
     /** Fired when user changes Theme in selector */
     const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newTheme = e.target.value as Theme
-        setCurrentTheme(UISettingsManager.setTheme(newTheme))
-    }
+        const newTheme = e.target.value as Theme;
+        setCurrentTheme(UISettingsManager.setTheme(newTheme));
+    };
 
-    /** Refresh character slots list */
-    const refreshSlots = () => {
-        setCharacterSlots(getAllSlots())
-    }
-
-    useEffect(() => {
-        refreshSlots()
-    }, [rawCharacter])
-
-    /** Delete a character from a slot */
+    /** Delete a character from a slot using Zustand store action */
     const handleDeleteSlot = (slotIndex: number) => {
-        const slot = characterSlots[slotIndex]
-        const characterName = slot?.name || `Slot ${slotIndex + 1}`
+        const slot = slots[slotIndex];
+        const characterName = slot?.name || `Slot ${slotIndex + 1}`;
 
         showConfirm(
-            `${t('confirmDeleteCharacter')}\n${t("name")}: ${characterName}`,
+            `${t('confirmDeleteCharacter')}\n${t('name')}: ${characterName}`,
             () => {
-                clearSlot(slotIndex)
-                if (slotIndex === activeSlot) {
-                    setActiveSlot(slotIndex)
-                }
-                refreshSlots()
+                deleteSlot(slotIndex);
             }
-        )
-    }
+        );
+    };
 
     /** Export a character from a specific slot */
     const handleExportSlot = (slotIndex: number) => {
-        const character = loadFromSlot(slotIndex)
+        const character = slots[slotIndex];
         if (!character) {
-            showAlert(t('noCharacterInSlot'))
-            return
+            showAlert(t('noCharacterInSlot'));
+            return;
         }
 
-        const dataStr = JSON.stringify(character, null, 2)
-        const dataBlob = new Blob([dataStr], { type: 'application/json' })
-        const url = URL.createObjectURL(dataBlob)
+        const dataStr = JSON.stringify(character, null, 2);
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(dataBlob);
 
-        const link = document.createElement('a')
-        link.href = url
-        link.download = `character_${character.name || 'unnamed'}_${new Date().toISOString().split('T')[0]}.json`
-        document.body.appendChild(link)
-        link.click()
-        link.remove()
-        URL.revokeObjectURL(url)
-    }
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `character_${character.name || 'unnamed'}_${new Date().toISOString().split('T')[0]}.json`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+    };
 
-    /** Import a character to a specific slot */
+    /** Import a character to a specific slot using Zustand store action */
     const handleImportToSlot = (slotIndex: number, file: File) => {
         file.text()
-            .then(text => {
-                const rawData = JSON.parse(text)
-                // TODO add validation of data
-                saveToSlot(slotIndex, rawData)
-                if(slotIndex === activeSlot) { setActiveSlot(slotIndex) }
-                refreshSlots()
-                showAlert(t('characterImportSuccess'))
+            .then((text) => {
+                const rawData = JSON.parse(text);
+                importSlot(slotIndex, rawData);
+                showAlert(t('characterImportSuccess'));
             })
-            .catch(err => {
-                const errorMsg = `${t('importFailed')}: ${err.message}`
-                showAlert(errorMsg)
-            })
-    }
+            .catch((err) => {
+                const errorMsg = `${t('importFailed')}: ${err.message}`;
+                showAlert(errorMsg);
+            });
+    };
 
     /** Fired when user clicks Reset Memory */
     const handleResetMemory = () => {
-        // Use global confirmPopup if available, otherwise use confirm
         const confirmAction = () => {
-            resetCharacter()
-            // Clear all localStorage (like original)
-            localStorage.clear()
+            for(const key in localStorage){
+                if(key.startsWith('PB3K')){
+                    localStorage.removeItem(key);
+                }
+            }
+            // Reload page to re-initialize clean default application state
+            window.location.reload();
+        };
 
-            // Add a small delay to ensure the confirm dialog has fully closed
-            setTimeout(() => {
-                showAlert(t('localDataWiped'))
-            }, 500)
-
-            // Re-apply theme and language after reset
-            setCurrentTheme(UISettingsManager.applyTheme())
-            changeLanguage().then(r => setCurrentLanguage(r))
-            refreshSlots()
-        }
-
-        showConfirm(t('confirmDeleteCharacter'), confirmAction)
-    }
+        showConfirm(t('confirmDeleteCharacter'), confirmAction);
+    };
 
     return (
         <section className="tabContent">
             <span className="h3">{t('settings')}</span>
 
-            <div className={"row l-distributed"}>
-                <div className={"stack"}>
-                    {/* Language Selection */}
+            <div className="row l-distributed">
+                <div className="stack">
                     <label htmlFor="language-select">{t('language')}:</label>
                     <select id="language-select" value={currentLanguage} onChange={handleLanguageChange}>
                         {Object.entries(LANGUAGES).map(([lang, label]) => (
@@ -148,8 +124,7 @@ function SettingsTab() {
                         ))}
                     </select>
                 </div>
-                <div className={"stack"}>
-                    {/* Theme Selection */}
+                <div className="stack">
                     <label htmlFor="theme-select">{t('theme')}:</label>
                     <select id="theme-select" value={currentTheme} onChange={handleThemeChange}>
                         {Object.entries(THEMES).map(([lang, label]) => (
@@ -161,12 +136,11 @@ function SettingsTab() {
                 </div>
             </div>
 
-
             <fieldset>
                 <legend>{t('crtDisplayEffects')}</legend>
-                <div className={'row l-spaceAround'}>
-                    {DISPLAY_EFFECTS.map(val => (
-                        <div className={"row"} key={val} style={{width: 'unset'}}>
+                <div className="row l-spaceAround">
+                    {DISPLAY_EFFECTS.map((val) => (
+                        <div className="row" key={val} style={{ width: 'unset' }}>
                             <input
                                 type="radio"
                                 id={`crtDisplayEffects_${val}`}
@@ -186,7 +160,7 @@ function SettingsTab() {
             {/* Character Slots Management */}
             <span className="h4">{t('characters')}</span>
             <div className="stack">
-                {characterSlots.map((slot, index) => (
+                {slots.map((slot, index) => (
                     <div
                         key={index}
                         className="row"
@@ -201,22 +175,17 @@ function SettingsTab() {
                                 activeSlot === index ? 'var(--secondary-color)' : 'transparent',
                         }}
                     >
-                        {/* Radio button for active selection */}
+                        {/* Radio button for active selection (always enabled) */}
                         <input
                             type="radio"
                             name="activeCharacter"
                             checked={activeSlot === index}
                             onChange={() => setActiveSlot(index)}
-                            disabled={slot === null}
                         />
 
-                        <div className={'stack no-gap'} style={{ flex: 1, minWidth: '130px' }}>
+                        <div className="stack no-gap" style={{ flex: 1, minWidth: '130px' }}>
                             <span className="h4">
-                                {
-                                    (slot === null) ? '--- CORRUPTED DATA ---'
-                                        : (!slot ? `--- ${t('emptySlot')} ---`
-                                            : slot.name)
-                                }
+                                {!slot ? `--- ${t('emptySlot')} ---` : slot.name ?? 'Unnamed'}
                             </span>
                             {slot && (
                                 <>
@@ -231,7 +200,7 @@ function SettingsTab() {
                                 {/* Export icon button */}
                                 <button
                                     onClick={() => handleExportSlot(index)}
-                                    className={'icon-m'}
+                                    className="icon-m"
                                     style={{
                                         justifyContent: 'center',
                                         alignItems: 'center',
@@ -267,7 +236,6 @@ function SettingsTab() {
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 display: 'inline-flex',
-
                                 cursor: 'pointer',
                                 border: 'var(--border-primary-thin)',
                                 borderRadius: '4px',
@@ -282,7 +250,7 @@ function SettingsTab() {
                             type="file"
                             accept=".json,application/json"
                             className="hidden"
-                            onChange={e => {
+                            onChange={(e) => {
                                 const file = e.target.files?.[0];
                                 if (file) {
                                     handleImportToSlot(index, file);
@@ -302,4 +270,4 @@ function SettingsTab() {
     );
 }
 
-export default SettingsTab
+export default SettingsTab;

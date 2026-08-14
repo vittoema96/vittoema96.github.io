@@ -23,26 +23,20 @@
     "npm": ">=9.0.0"
   },
   "scripts": {
-
     "prebuild:locales": "python3 scripts/validate_locales_sources.py",
     "build:locales": "python3 scripts/build_locales_from_source.py",
-
     "prebuild:data": "python3 scripts/validate_data_sources.py",
     "build:data": "python3 scripts/build_data_from_csv.py",
-
     "predev": "npm run build:locales && npm run build:data",
     "dev": "vite",
-
     "prebuild": "npm run build:locales && npm run build:data",
     "build": "vite build",
-
     "preview": "vite preview",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
     "type-check": "tsc --noEmit",
-
     "quality": "npm run lint && npm run format:check && npm run type-check",
     "guidebooks:stable:tables": "python3 guidebooks/stable_pipeline/run_guidebooks_tables_pipeline.py --skip-convert",
     "guidebooks:stable:tables:full": "python3 guidebooks/stable_pipeline/run_guidebooks_tables_pipeline.py",
@@ -61,7 +55,8 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-error-boundary": "^6.1.2",
-    "react-i18next": "^16.5.0"
+    "react-i18next": "^16.5.0",
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
     "@iconify-json/fa6-solid": "^1.2.4",

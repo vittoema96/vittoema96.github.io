@@ -1,14 +1,3 @@
-/**
- * CharacterContext — global state for the active player character.
- *
- * Provides:
- * - `rawCharacter`  – the persisted, user-editable data (SPECIAL, skills, items, …)
- * - `character`     – a read-only, fully-calculated view (derived stats, equipped bonuses, …)
- * - `updateCharacter` – partial-update function with side-effects (HP adjust, origin-change logic)
- * - Slot management  – switch / reset character save slots
- * - Luck helpers     – spend / replenish luck points
- */
-
 import { createContext, ReactNode, useCallback, useContext, useMemo } from 'react';
 import { BODY_PARTS, BodyPart, Character, CharacterItem, MR_HANDY_PARTS, MrHandyPart, RawCharacter } from '@/types';
 import useCalculatedCharacter from '@/hooks/useCalculatedCharacter';
@@ -17,11 +6,9 @@ import { RawCharacterSchema } from '@/schemas/characterSchemas.ts';
 import { z } from 'zod';
 import { adjustCurrentHp } from '@/features/character/hp.ts';
 import { allItems } from '@/data';
-
 import { isType } from '@/features/item/utils.ts';
-import { useSaveSlots } from '@/hooks/useSaveSlots.ts';
+import { useActiveCharacter, useSaveStore } from '@/hooks/useSaveStore.ts';
 
-/** Shape of the value exposed by CharacterContext to consumers. */
 export interface CharacterContextValue {
     character: Character;
     rawCharacter: RawCharacter | null;
@@ -29,12 +16,15 @@ export interface CharacterContextValue {
     replenishLuck: () => void;
     spendLuck: () => void;
 
-    resetCharacter: () => void;
     setActiveSlot: (slotIndex: number) => void;
     activeSlot: number;
+    slots: (RawCharacter | null)[];
+    deleteSlot: (slotIndex: number) => void;
+    importSlot: (slotIndex: number, rawData: unknown) => void;
+    resetActiveCharacter: () => void;
 }
-const CharacterContext = createContext<CharacterContextValue | undefined>(undefined)
 
+const CharacterContext = createContext<CharacterContextValue | undefined>(undefined);
 
 // Default plating mod for robot parts (slot 0)
 // TODO this should not be handled here (? or does it?)
@@ -43,47 +33,35 @@ const DEFAULT_PLATING_MOD = 'modRobotPlatingStandard'
 
 /** Convenience hook — throws if used outside a `CharacterProvider`. */
 export const useCharacter = (): CharacterContextValue => {
-    const context = useContext(CharacterContext)
-    if (!context) { throw new Error('useCharacter must be used within a CharacterProvider') }
-    return context
-}
+    const context = useContext(CharacterContext);
+    if (!context) {
+        throw new Error('useCharacter must be used within a CharacterProvider');
+    }
+    return context;
+};
 
-/**
- * Core provider — owns character state, handles persistence via SaveSlotManager,
- * and computes the derived `Character` via `useCalculatedCharacter`.
- */
 export function CharacterProvider({ children }: Readonly<{ children: ReactNode }>) {
-
     const {
-        activeSlot, setActiveSlot,
-        rawCharacter, setRawCharacter, resetCharacter,
-    } = useSaveSlots()
+        activeSlot,
+        setActiveSlot,
+        slots,
+        updateActiveCharacter,
+        deleteSlot,
+        importSlot,
+        resetActiveCharacter,
+    } = useSaveStore();
 
-    const calculatedCharacter = useCalculatedCharacter(rawCharacter)
+    const activeCharacter = useActiveCharacter();
+    const calculatedCharacter = useCalculatedCharacter(activeCharacter);
 
-
-    /**
-     * Partial-update function for character state.
-     *
-     * Beyond merging fields, it handles domain side-effects:
-     * 1. Merges SPECIAL / skills shallowly
-     * 2. Filters traits incompatible with the new origin
-     * 3. Adjusts currentHp when maxHp changes
-     * 4. Unequips apparel when switching to/from origins with specialized armor
-     * 5. Adds/removes robot body parts on origin change
-     *
-     * WARNING: this function mutates `item.equipped` in-place for robot parts —
-     *          a known issue (see audit P0).
-     */
-    const updateCharacter = useCallback((
-        updates: z.input<typeof RawCharacterSchema>
-    ): void => {
-        setRawCharacter(prev => {
+    const updateCharacter = useCallback((updates: z.input<typeof RawCharacterSchema>): void => {
+        updateActiveCharacter((prev) => {
             let updatedCharacter: RawCharacter = RawCharacterSchema.parse({
-                ...prev, ...updates,
-                special: {...prev?.special, ...updates.special},
-                skills: {...prev?.skills, ...updates.skills},
-            })
+                ...prev,
+                ...updates,
+                special: { ...prev?.special, ...updates.special },
+                skills: { ...prev?.skills, ...updates.skills },
+            });
 
             // Let's do it always, as various things can edit current and max hp (perkLifeGiver for example)
             updatedCharacter = adjustCurrentHp(prev, updatedCharacter)
@@ -144,9 +122,9 @@ export function CharacterProvider({ children }: Readonly<{ children: ReactNode }
                 // TODO CRITICAL ITEMS GET REMOVE (LOOSING MODS IF ACCIDENTALLY SWAPPING ORIGIN)
                 updatedCharacter.items = items.filter(i => MR_HANDY_PARTS.has(i.id as MrHandyPart) || BODY_PARTS.has(i.id as BodyPart))
             }
-            return updatedCharacter
-        })
-    }, [setRawCharacter])
+            return updatedCharacter;
+        });
+    }, [updateActiveCharacter]);
 
     /**
      * Replenish current luck to max ("luck" value)
@@ -166,17 +144,32 @@ export function CharacterProvider({ children }: Readonly<{ children: ReactNode }
     // Memoize context value to prevent unnecessary re-renders
     const contextValue = useMemo(
         () => ({
-            rawCharacter,
+            rawCharacter: activeCharacter,
             character: calculatedCharacter,
             updateCharacter,
             replenishLuck,
             spendLuck,
-            resetCharacter,
             setActiveSlot,
-            activeSlot
+            activeSlot,
+            slots,
+            deleteSlot,
+            importSlot,
+            resetActiveCharacter,
         }),
-        [rawCharacter, calculatedCharacter, updateCharacter, replenishLuck, spendLuck, resetCharacter, setActiveSlot, activeSlot]
-    )
+        [
+            activeCharacter,
+            calculatedCharacter,
+            updateCharacter,
+            replenishLuck,
+            spendLuck,
+            setActiveSlot,
+            activeSlot,
+            slots,
+            deleteSlot,
+            importSlot,
+            resetActiveCharacter,
+        ]
+    );
 
     return (
         <CharacterContext.Provider value={contextValue}>
