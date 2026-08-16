@@ -137,6 +137,10 @@ function InventoryList({
             if (!aData || !bData) {return 0}
 
             let comparison
+            // Show equipped first (always)
+            if(a.equipped !== b.equipped) {
+                return a.equipped ? -1 : 1;
+            }
 
             switch (sortBy) {
                 case 'name':

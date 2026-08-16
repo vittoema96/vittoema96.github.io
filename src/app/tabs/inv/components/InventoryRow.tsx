@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
-import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts'
 import { CharacterItem, CustomItem } from '@/types';
 import { FitText } from '@/app/components/FitText.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
@@ -14,6 +13,7 @@ import {
 } from '@/features/item/utils.ts';
 import { allItems } from '@/data';
 import { getDamageRatingBonus } from '@/features/character/feats';
+import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 
 
 interface InventoryRowProps {
@@ -38,7 +38,7 @@ function InventoryRow({
     const nameInputRef = useRef<HTMLInputElement>(null)
     const [isEditingName, setIsEditingName] = useState(false)
     const [editedName, setEditedName] = useState(characterItem.customName ?? '')
-    const { updateItemCustomName } = useInventoryActions()
+    const { updateItemCustomName } = useItemManagement()
     const { character } = useCharacter()
     let itemData
     if("id" in characterItem){ itemData = getModifiedItemData(characterItem, character.perks) ?? allItems[characterItem.id]! }

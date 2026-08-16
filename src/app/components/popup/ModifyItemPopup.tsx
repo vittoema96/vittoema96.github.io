@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useCharacter } from '@/app/contexts/CharacterContext'
+import { useCharacter } from '@/app/contexts/CharacterContext';
 import { useTooltip } from '@/app/contexts/TooltipContext'
-import { CharacterItem, ModItem, MrHandyPart } from '@/types';
+import { CharacterItem, ModItem } from '@/types';
 import BasePopup from './common/BasePopup';
 import ModTooltipContent from './ModTooltipContent';
 import Skill from '@/app/tabs/stat/components/Skill.tsx';
 import { isCharacterSkill, SkillType } from '@/features/character/skills/skills.ts';
-import { addItem, getModifiedItemData, isType, isUnacquirable, removeItem } from '@/features/item/utils.ts';
+import { getModifiedItemData, isType, isUnacquirable } from '@/features/item/utils.ts';
 import { allItems, legendaryEffects } from '@/data';
+import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 
 /**
  * Popup for modifying weapons and armor with mods
@@ -37,7 +38,8 @@ interface SlotData {
 
 function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupProps>) {
     const { t } = useTranslation()
-    const { character, updateCharacter } = useCharacter()
+    const { rawCharacter, character, updateCharacter } = useCharacter()
+    const { editItem } = useItemManagement()
     const itemData = getModifiedItemData(characterItem, character.perks)
 
     const { showTooltip } = useTooltip()
@@ -135,40 +137,35 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
             return
         }
 
-        const editItems = (oldItem: CharacterItem, newItem: CharacterItem, items: CharacterItem[]) => {
-            let newItems = removeItem(items, { ...oldItem, quantity: 1 })
-            newItems = addItem(newItems, { ...newItem, quantity: 1 })
-            return newItems
-        }
-
-        let newItems = character.items
-
         // If editing robot plating, edit all OTHER parts (not this one)
+        // TODO could improve this instead of resorting to updateCharacter
         if(itemData.CATEGORY === 'robotPart'){
             const data = slotsData['modSlotRobotPlating']
-            if(data && data.selectedMod?.id !== data.appliedMod?.id){
-                character.items.forEach(item => {
-                    if(item.id !== characterItem.id
-                        && character.origin.bodyParts.has(item.id as MrHandyPart)){
-                        newItems = editItems(item, {
+            if(data?.selectedMod?.id !== data?.appliedMod?.id){
+                const newItems = rawCharacter.items.map(item => {
+                    if(character.origin.bodyParts.has(item.id as any)){
+                        return {
                             ...item,
                             mods: [
-                                ...item.mods.filter(m => m !== data.appliedMod?.id),
-                                ...(data.selectedMod?.id ? [data.selectedMod.id] : [])
+                                ...item.mods.filter(m => m !== data?.appliedMod?.id),
+                                ...(data?.selectedMod?.id ? [data.selectedMod.id] : [])
                             ]
-                        }, newItems)
+                        }
                     }
+                    return item
+                })
+                updateCharacter({
+                    items: newItems,
+                    caps: character.caps - totalCost
                 })
             }
+        } else {
+            editItem(
+                { ...characterItem, quantity: 1},
+                { ...characterItem, mods: newMods, quantity: 1 },
+                { caps: totalCost }
+            )
         }
-
-        newItems = editItems(
-            { ...characterItem, quantity: 1 },
-            { ...characterItem, mods: newMods, quantity: 1 },
-            newItems
-        )
-
-        updateCharacter({ items: newItems, caps: character.caps - totalCost })
     }
 
     // Show mod info tooltip

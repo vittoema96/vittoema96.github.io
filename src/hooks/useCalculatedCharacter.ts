@@ -10,6 +10,7 @@ import { useSpecialties } from '@/features/character/specialties.ts';
 import { useMaxHp } from '@/features/character/hp.ts';
 import { useCurrentWeight, useMaxWeight } from '@/features/character/weight.ts';
 import { useDamageResistances } from '@/features/character/damageResistances.ts';
+import { apparel } from '@/data';
 
 function useCalculatedCharacter(raw: RawCharacter): Character {
     // TODO init exchange rates
@@ -78,6 +79,24 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
         return createDefaultCompanion('eyebot');
     }, [raw.companion]);
 
+    const items = useMemo(() => {
+        return raw.items.flatMap(item => {
+            // If it's a robot part, remove it if you should not have it,
+            // equip it if you should have it
+            if(apparel[item.id]?.CATEGORY === 'robotPart'){
+                if (!origin.isRobot || !origin.bodyParts.has(item.id as any)) {
+                    return [];
+                } else {
+                    return {
+                        ...item,
+                        equipped: true
+                    }
+                }
+            }
+            return item
+        })
+    }, [origin, raw.items])
+
     return {
         // Passthrough (with defaults) values
         name: raw.name,
@@ -90,7 +109,7 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
         legionDenarius: raw.legionDenarius,
         prewarMoney: raw.prewarMoney,
         exchangeRates,
-        items: raw.items,
+        items,
         customItems: raw.customItems,
         level: raw.level,
         specialties,

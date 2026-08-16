@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useCharacter } from '@/app/contexts/CharacterContext';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
-import { CharacterItem, CustomItem, GenericPopupProps } from '@/types';
+import { CharacterItem, GenericPopupProps } from '@/types';
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { ITEM_TYPE_MAP, ItemCategory, ItemType } from '@/types/item.ts';
@@ -13,7 +12,8 @@ import AidContent from '@/app/tabs/inv/cards/aid/AidContent.tsx';
 import OtherContent from '@/app/tabs/inv/cards/ammo/OtherContent.tsx';
 import { BaseItem } from '@/data/types.ts';
 import { compiledData } from '@/data';
-import { addItem, isType, isUnacquirable } from '@/features/item/utils.ts';
+import { isType, isUnacquirable } from '@/features/item/utils.ts';
+import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 
 export interface AddItemPopupProps extends GenericPopupProps {
     itemType: ItemType;
@@ -107,7 +107,7 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
 }>) {
 
     const { t } = useTranslation()
-    const { character, updateCharacter } = useCharacter()
+    const { addItem } = useItemManagement()
     const { showTradeItemPopup } = usePopup()
 
     const [selectedItem, setSelectedItem] = useState<BaseItem>()
@@ -187,17 +187,14 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
 
     const handleConfirm = useCallback(() => {
         if(selectedItem && quantity){
-            const newItems = addItem(character.items, {
+            addItem({
                 id: selectedItem.ID,
                 quantity: quantity,
                 equipped: false,
                 mods: [],
             });
-            updateCharacter({
-                items: newItems,
-            });
         }
-    }, [character.items, quantity, selectedItem, updateCharacter])
+    }, [selectedItem, quantity, addItem])
 
     // Registra la callback quando cambia
     useEffect(() => {
@@ -350,7 +347,7 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
     setOnConfirmCallback: (callback: () => void) => void
 }>) {
     const { t } = useTranslation()
-    const { character, updateCharacter } = useCharacter()
+    const { addItem } = useItemManagement()
 
     // Custom item mode
     const [customName, setCustomName] = useState('')
@@ -367,7 +364,7 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
 
     const handleConfirm = useCallback(() => {
         // Create custom item (separate from database items)
-        const newCustomItem: CustomItem = {
+        addItem({
             customName: customName.trim(),
             quantity: Math.max(1, customQuantity || 1),
 
@@ -378,18 +375,8 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
             CATEGORY: 'custom',
 
             description: customDescription.trim() || undefined
-        }
-
-        // Add to character's custom items array
-        const updatedCustomItems = [
-            ...(character.customItems),
-            newCustomItem
-        ]
-
-        updateCharacter({
-            customItems: updatedCustomItems
         })
-    }, [character.customItems, customDescription, customName, customQuantity, customRarity, customValue, customWeight, itemType, updateCharacter])
+    }, [addItem, customDescription, customName, customQuantity, customRarity, customValue, customWeight, itemType])
 
     // Registra la callback quando cambia
     useEffect(() => {

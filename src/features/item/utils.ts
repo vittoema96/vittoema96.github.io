@@ -1,13 +1,4 @@
-import {
-    AidItem,
-    AmmoItem,
-    CharacterItem,
-    CustomItem,
-    DamageType,
-    Item,
-    LegendaryEffect,
-    ModItem,
-} from '@/types';
+import { AidItem, AmmoItem, CharacterItem, CustomItem, DamageType, Item, LegendaryEffect, ModItem } from '@/types';
 import { Range, WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
 import { hasPerk, PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
@@ -38,41 +29,13 @@ export function getSpecialForWeaponCategory(category: WeaponCategory): SpecialTy
     return getSpecialFromSkill(getSkillForWeaponCategory(category));
 }
 
-export function removeItem(items: CharacterItem[], itemToRemove: CharacterItem) {
-    return items.reduce<CharacterItem[]>((acc, item) => {
-        if (isSameConfiguration(item, itemToRemove)) {
-            if (item.quantity > itemToRemove.quantity) {
-                acc.push({ ...item, quantity: item.quantity - itemToRemove.quantity });
-            }
-        } else {
-            acc.push(item);
-        }
-        return acc;
-    }, []);
-}
-
-export function addItem(items: CharacterItem[], itemToAdd: CharacterItem) {
-    let foundItem = false
-    const newItems = items.reduce<CharacterItem[]>((acc, item) => {
-        if(isSameConfiguration(item, itemToAdd)) {
-            foundItem = true
-            acc.push({...item, quantity: item.quantity + itemToAdd.quantity})
-        } else {
-            acc.push(item);
-        }
-        return acc
-    }, [])
-
-    if(!foundItem) {
-        newItems.push({...itemToAdd, quantity: itemToAdd.quantity})
-    }
-    return newItems
-}
-
 /**
  * Check if two items have the same configuration (id + mods)
  */
-export function isSameConfiguration(item1: CharacterItem, item2: CharacterItem) {
+export function isSameConfiguration<T extends CharacterItem | CustomItem>(
+    item1: T,
+    item2: T
+) {
     return getUniqueKey(item1) === getUniqueKey(item2);
 }
 
@@ -486,19 +449,30 @@ export function getModifiedItemData(
     }, modsData), perks)
 }
 
-export function getUniqueKey(i: CharacterItem | CustomItem){
-    const item = {
+export function getUniqueKey(item: CharacterItem | CustomItem){
+    const itemData = {
         id: 'customItem',
         side: undefined,
         equipped: undefined,
         mods: [],
-        ...i
+        COST: undefined,
+        WEIGHT: undefined,
+        RARITY: undefined,
+        CATEGORY: undefined,
+        TYPE: undefined,
+        ...item
     }
     return [
-        item.id,
-        item.side,
-        item.customName,
-        item.mods.sort()
+        itemData.id,
+        itemData.side,
+        itemData.equipped,
+        itemData.customName,
+        itemData.mods.toSorted(),
+        itemData.COST,
+        itemData.WEIGHT,
+        itemData.RARITY,
+        itemData.CATEGORY,
+        itemData.TYPE,
     ].filter(v => v!== undefined).join("|")
 
 }

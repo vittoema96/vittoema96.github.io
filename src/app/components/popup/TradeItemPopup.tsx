@@ -3,12 +3,12 @@ import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import { CharacterItem, CustomItem } from '@/types';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
-import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import Skill from '@/app/tabs/stat/components/Skill.tsx';
 import { ChangeEventHandler, useMemo, useState } from 'react';
-import { addItem, getModifiedItemData } from '@/features/item/utils.ts';
+import { getModifiedItemData } from '@/features/item/utils.ts';
 import { allItems } from '@/data';
+import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 
 type TradeMode = 'sell' | 'buy';
 
@@ -29,8 +29,8 @@ function TradeItemPopup({
 } : Readonly<TradeItemPopupProps>) {
     const { t } = useTranslation()
     const { showAlert } = usePopup()
-    const { removeItem } = useInventoryActions()
-    const { character, updateCharacter } = useCharacter()
+    const { character } = useCharacter()
+    const { addItem, removeItem } = useItemManagement()
     const isBuying = tradeMode === 'buy'
 
     let itemData
@@ -64,22 +64,20 @@ function TradeItemPopup({
                     return
                 }
 
-                const newItems = addItem(character.items, {
+                addItem({
                     id: characterItem.id,
                     quantity,
                     equipped: false,
                     mods: [],
-                })
-
-                updateCharacter({
-                    items: newItems,
-                    caps: character.caps - total,
-                })
+                }, { caps: total})
                 showAlert(t('boughtForCaps', { caps: total }))
                 return
             }
 
-            removeItem(characterItem, quantity, price)
+            removeItem({
+                ...characterItem,
+                quantity,
+            }, { caps: total })
             showAlert(t('soldForCaps', { caps: total }))
         }
     }
