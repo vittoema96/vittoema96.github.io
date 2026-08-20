@@ -52,8 +52,14 @@ export const markers = [
     { id: '188 Trading Post', code: '188t', x: 65, y: 48, category: 'store' },
     { id: 'Aerotech Office Park', code: '4r0t', x: 55.8, y: 34, category: 'military' },
     { id: 'NCR Sharecropper Farms', code: 'ncrs', x: 53, y: 31, category: 'settlement' },
+
+    { id: 'Ranger Station Alpha', code: 'rs4l', x: 72, y: 45.5, category: 'military' },
+    { id: 'Ranger Station Bravo', code: 'rs8r', x: 83, y: 28, category: 'military' },
     { id: 'Ranger Station Charlie', code: 'rsc3', x: 57, y: 74, category: 'military' },
+    { id: 'Ranger Station Delta', code: 'rsd3', x: 76, y: 56.5, category: 'military' },
+    { id: 'Ranger Station Echo', code: 'rs3c', x: 73, y: 80, category: 'military' },
     { id: 'Ranger Station Foxtrot', code: 'rsfx', x: 34.5, y: 29, category: 'military' },
+
 
     { id: 'Silver Rush', code: 'slvr', x: 50, y: 24.5, category: 'store' },
     { id: 'Atomic Wrangler', code: 'at0m', x: 50.7, y: 24.3, category: 'store' },
