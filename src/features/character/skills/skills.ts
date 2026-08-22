@@ -1,9 +1,8 @@
 // SKILLS
-import { SpecialType } from '@/features/character/special/special.ts';
-import { Character, RawCharacter } from '@/types';
-import { useMemo } from 'react';
+import { SpecialMap, SpecialType } from '@/features/character/special/special.ts';
+import { RawCharacter } from '@/types';
 import { Origin } from '@/features/character/origin.ts';
-import { perkRank } from '@/features/character/feats/perks/perks.ts';
+import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
 import { CompanionSpecialType } from '@/features/character/special/special.companion.ts';
 
 export const SKILLS = [
@@ -73,32 +72,29 @@ export function getSpecialFromSkillCompanion(skill: CompanionSkillType): Compani
     return _COMPANION_SKILL_TO_SPECIAL_MAP[skill];
 }
 
-export function useSkills(raw: RawCharacter, specialties: SkillType[], origin: Origin) {
-    return useMemo(
-        () => SKILLS.reduce((skills, skillId) => {
-
-            const baseValue = raw.skills[skillId];
-            const hasSpecialty = specialties.includes(skillId);
-            const skillValue = baseValue + (hasSpecialty ? 2 : 0);
-            skills[skillId] = Math.min(skillValue, origin.skillMaxValue);
-            return skills
-        }, {} as Record<SkillType, number>),
-        [origin.skillMaxValue, raw.skills, specialties]
-    )
+export function calculateSkills(raw: RawCharacter, specialties: SkillType[], origin: Origin) {
+    return SKILLS.reduce((
+        skills,
+        skillId
+    ) => {
+        const baseValue = raw.skills[skillId];
+        const hasSpecialty = specialties.includes(skillId);
+        const skillValue = baseValue + (hasSpecialty ? 2 : 0);
+        skills[skillId] = Math.min(skillValue, origin.skillMaxValue);
+        return skills
+    }, {} as Record<SkillType, number>)
 }
 
-export function useSkillPoints(character: Character) {
-    return useMemo(() => {
-        const skillSum =
-            Object.values(character.skills).reduce((total, value) => total + value, 0) -
-            character.specialties.length * 2;
-        const skilledBonus = perkRank(character.perks, 'perkSkilled') * 2;
-        return 9 + character.special.intelligence + (character.level - 1) + skilledBonus - skillSum;
-    }, [
-        character.skills,
-        character.specialties.length,
-        character.perks,
-        character.special.intelligence,
-        character.level,
-    ]);
+export function calculateSkillPoints(
+    special: SpecialMap,
+    skills: Record<SkillType, number>,
+    specialties: SkillType[],
+    level: number,
+    perks: PerkId[],
+) {
+    const skillSum =
+            Object.values(skills).reduce((total, value) => total + value, 0) -
+            specialties.length * 2;
+    const skilledBonus = perkRank(perks, 'perkSkilled') * 2;
+    return 9 + special.intelligence + (level - 1) + skilledBonus - skillSum;
 }

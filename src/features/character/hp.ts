@@ -1,6 +1,5 @@
 import { RawCharacter } from '@/types';
-import { useMemo } from 'react';
-import { SpecialType } from '@/features/character/special/special.ts';
+import { SpecialMap } from '@/features/character/special/special.ts';
 
 import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
 
@@ -20,7 +19,7 @@ export const adjustCurrentHp = (prev: RawCharacter, current: RawCharacter) => {
 };
 
 export const calculateMaxHp = (
-    special: Record<SpecialType, number>,
+    special: SpecialMap,
     level: number,
     perks: PerkId[]
 ): number => {
@@ -32,11 +31,3 @@ export const calculateMaxHp = (
         1
     );
 };
-
-export function useMaxHp(raw: RawCharacter, special: Record<SpecialType, number>, perks: PerkId[]) {
-    // TODO maxHp should NOT depend on the raw special
-    return useMemo(
-        () => calculateMaxHp(special, raw.level, perks),
-        [special, raw.level, perks]
-    )
-}

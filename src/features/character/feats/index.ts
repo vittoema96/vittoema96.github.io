@@ -4,7 +4,7 @@ import { TraitId } from '@/features/character/feats/traits/traits.ts';
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { TFunction } from 'i18next';
 import { SkillType } from '@/features/character/skills/skills.ts';
-import { SpecialType } from '@/features/character/special/special.ts';
+import { SpecialMap, SpecialType } from '@/features/character/special/special.ts';
 
 /* Load all trait*.ts and perk*.ts in implementation and put them in registry */
 const perkRegistry: Partial<Record<PerkId, PerkImplementation>> = {};
@@ -29,13 +29,6 @@ Object.values(traitModules).forEach((module) => {
         traitRegistry[module.default.id] = module.default;
     }
 });
-
-interface CharacterLike {
-    special: Record<SpecialType, number>,
-    items: CharacterItem[],
-    perks: PerkId[],
-    traits: TraitId[]
-}
 
 export interface FeatRollAction {
     id: PerkId | TraitId,
@@ -102,7 +95,10 @@ interface FeatImplementation {
 
     getRollToggleables?: (character: Character, itemData: WeaponItem) => Toggleables;
 
-    getLocationDRBonus?: ({special, items}: CharacterLike) => Partial<Record<'physical' | 'energy' | 'radiation', number>>
+    getLocationDRBonus?: (
+        special: SpecialMap, items: CharacterItem[],
+        perks: PerkId[], traits: TraitId[]
+    ) => Partial<Record<'physical' | 'energy' | 'radiation', number>>
 }
 
 export type PerkImplementation = FeatImplementation & { id: PerkId }
@@ -150,8 +146,8 @@ export function getFireRateBonus(character: Character, itemData: WeaponItem): nu
     );
 }
 
-export function getAvailableCompanions(character: Character): CompanionId[] {
-    return getActiveFeats(character).flatMap(
+export function getAvailableCompanions(perks: PerkId[], traits: TraitId[]): CompanionId[] {
+    return getActiveFeats({perks, traits}).flatMap(
         (feat) => feat.getAvailableCompanions?.() ?? []
     );
 }
@@ -228,8 +224,8 @@ export function getFreeRerolls(
 export function getRollSpecial(
     character: Character,
     context: SpecialModifierContext = {}
-): Record<SpecialType, number> {
-    const effectiveSpecial: Record<SpecialType, number> = { ...character.special };
+): SpecialMap {
+    const effectiveSpecial: SpecialMap = { ...character.special };
 
     const modifiers = getActiveFeats(character).flatMap(
         (feat) => feat.getRollSpecialModifiers?.(character, context) ?? []
@@ -271,9 +267,12 @@ export function getPerkBlacklist(character: Character) {
     );
 }
 
-export function getLocationDRBonus(character: CharacterLike) {
-    return getActiveFeats(character).reduce((acc, feat) => {
-        const bonus = feat.getLocationDRBonus?.(character);
+export function getLocationDRBonus(
+    special: SpecialMap, items: CharacterItem[],
+    perks: PerkId[], traits: TraitId[]
+) {
+    return getActiveFeats({perks, traits}).reduce((acc, feat) => {
+        const bonus = feat.getLocationDRBonus?.(special, items, perks, traits);
 
         return {
             physical: acc.physical + (bonus?.physical ?? 0),

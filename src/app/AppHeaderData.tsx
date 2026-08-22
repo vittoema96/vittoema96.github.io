@@ -12,7 +12,8 @@ function AppHeaderData() {
     const hasRads = character.rads > 0;
     return (
         <>
-            <div onClick={() => setIsPopupOpen(true)} style={{ cursor: 'pointer' }}>
+            <div onClick={() => setIsPopupOpen(true)}
+                 style={{ cursor: 'pointer' }}>
                 <HeaderInfoRow
                     icon="hp"
                     value={character.currentHp}

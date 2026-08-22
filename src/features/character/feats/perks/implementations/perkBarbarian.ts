@@ -5,8 +5,8 @@ import { isType } from '@/features/item/utils.ts';
 
 const perkBarbarian: PerkImplementation = {
     id: 'perkBarbarian',
-    getLocationDRBonus: (character) => {
-        const isWearingPowerArmor = character.items.some(item => {
+    getLocationDRBonus: (special, items) => {
+        const isWearingPowerArmor = items.some(item => {
             if (!item.equipped) {
                 return false;
             }
@@ -15,9 +15,9 @@ const perkBarbarian: PerkImplementation = {
         });
         let bonus = 0
         if(!isWearingPowerArmor) {
-            if (character.special.strength >= 11) {bonus = 3}
-            if (character.special.strength >= 9) {bonus = 2}
-            if (character.special.strength >= 7) {bonus = 1}
+            if (special.strength >= 11) {bonus = 3}
+            if (special.strength >= 9) {bonus = 2}
+            if (special.strength >= 7) {bonus = 1}
         }
         if(bonus) { return {physical: bonus}}
         return {}

@@ -1,6 +1,6 @@
 import { BODY_PARTS, GenericBodyPart, MR_HANDY_PARTS } from '@/types';
 
-import { SpecialType } from '@/features/character/special/special.ts';
+import { SpecialMap } from '@/features/character/special/special.ts';
 
 // ORIGIN ENUM
 export const ORIGIN_IDS = [
@@ -34,7 +34,7 @@ export interface Origin {
     bodyParts: Set<GenericBodyPart>;
     numberOfTraits: number;
     isRobot: boolean;
-    specialMaxValues: Record<SpecialType, number>;
+    specialMaxValues: SpecialMap;
     skillMaxValue: number;
     needsSpecializedArmor: boolean;
     needsSpecializedWeapons: boolean;
@@ -42,11 +42,11 @@ export interface Origin {
 }
 
 type OriginOverrides = Partial<Omit<Origin, 'id' | 'specialMaxValues' | 'bodyParts'>> & {
-    specialMaxValues?: Partial<Record<SpecialType, number>>;
+    specialMaxValues?: Partial<SpecialMap>;
     bodyParts?: Iterable<GenericBodyPart>;
 };
 
-const DEFAULT_SPECIAL_MAX_VALUES: Record<SpecialType, number> = {
+const DEFAULT_SPECIAL_MAX_VALUES: SpecialMap = {
     strength: 10,
     perception: 10,
     endurance: 10,

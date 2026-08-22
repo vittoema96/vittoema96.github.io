@@ -1,90 +1,50 @@
-import { CompanionData, CompanionId } from '@/types';
+import { CharacterItem, CompanionId } from '@/types';
 import { CompanionSkillType } from '@/features/character/skills/skills.ts';
 import { CompanionSpecialType } from '@/features/character/special/special.companion.ts';
+import { defaultEyebot } from '@/features/character/feats/perks/implementations/perkRobotWrangler.ts';
+import { defaultDog } from '@/features/character/feats/perks/implementations/perkDogmeat.ts';
 
 /**
  * Companion type definition with base stats and configuration
  * Structure mirrors Character but with companion-specific stat names
  */
 export interface CompanionTypeDefinition {
-    id: CompanionId
+    type: CompanionId
     // Base SPECIAL (body/mind)
     special: Record<CompanionSpecialType, number>
     // Base skills (melee/guns/other)
     skills: Record<CompanionSkillType, number>
     // Derived stats
-    baseHp: number
-    baseDefense: number
+    maxHp: number
+    defense: number
     // Damage Reduction by type
-    baseDR: {
+    dr: {
         physical: number
         energy: number
         radiation: number
         poison: number
     }
     // Default weapons
-    weapons: {
-        id: string
-        customName: string
-        skill: CompanionSkillType
-    }[]
+    items: (CharacterItem & {skill: CompanionSkillType})[];
+}
+
+export interface CompanionData extends CompanionTypeDefinition {
+    name?: string | undefined;
+    // Current HP
+    currentHp: number;
+    // Perks
+    perks: string[];
 }
 
 /**
  * All companion type definitions
  */
-// TODO move these definitions in their respective perk*.ts file
 export const COMPANION_TYPES: Record<CompanionId, CompanionTypeDefinition> = {
-    eyebot: {
-        id: 'eyebot',
-        special: {
-            body: 4,
-            mind: 4
-        },
-        skills: {
-            melee: 0,
-            guns: 3,
-            other: 1
-        },
-        baseHp: 5,
-        baseDefense: 2,
-        baseDR: {
-            physical: 2,
-            energy: 2,
-            radiation: Infinity, // Immune
-            poison: Infinity     // Immune
-        },
-        weapons: [
-            {
-                id: 'weaponCompanionLaser',
-                customName: 'LASER',
-                skill: 'guns'
-            }
-        ]
-    },
-    dog: {
-        id: 'dog',
-        special: {
-            body: 5,
-            mind: 3
-        },
-        skills: {
-            melee: 4,
-            guns: 0,
-            other: 0
-        },
-        baseHp: 8,
-        baseDefense: 3,
-        baseDR: {
-            physical: 0,
-            energy: 0,
-            radiation: 0,
-            poison: 0
-        },
-        weapons: []
-    },
+    eyebot: defaultEyebot,
+    dog: defaultDog,
+    // TODO move these definitions in their respective perk*.ts file
     mrHandy: {
-        id: 'mrHandy',
+        type: 'mrHandy',
         special: {
             body: 5,
             mind: 5
@@ -94,18 +54,18 @@ export const COMPANION_TYPES: Record<CompanionId, CompanionTypeDefinition> = {
             guns: 2,
             other: 2
         },
-        baseHp: 10,
-        baseDefense: 2,
-        baseDR: {
+        maxHp: 10,
+        defense: 2,
+        dr: {
             physical: 3,
             energy: 3,
             radiation: Infinity,
             poison: Infinity
         },
-        weapons: []
+        items: []
     },
     humanoid: {
-        id: 'humanoid',
+        type: 'humanoid',
         special: {
             body: 5,
             mind: 5
@@ -115,15 +75,15 @@ export const COMPANION_TYPES: Record<CompanionId, CompanionTypeDefinition> = {
             guns: 3,
             other: 2
         },
-        baseHp: 10,
-        baseDefense: 2,
-        baseDR: {
+        maxHp: 10,
+        defense: 2,
+        dr: {
             physical: 0,
             energy: 0,
             radiation: 0,
             poison: 0
         },
-        weapons: []
+        items: []
     }
 }
 
@@ -131,23 +91,11 @@ export const COMPANION_TYPES: Record<CompanionId, CompanionTypeDefinition> = {
  * Create a default companion data object from a companion type
  */
 export function createDefaultCompanion(companionId: CompanionId): CompanionData {
-    const type = COMPANION_TYPES[companionId]
-
+    const data = COMPANION_TYPES[companionId]
     return {
-        type: companionId,
-        // Default to empty custom name; UI will display t(type) where needed
-        name: '',
-        special: { ...type.special },
-        skills: { ...type.skills },
-        currentHp: type.baseHp,
+        ...data,
+        currentHp: data.maxHp,
         perks: [],
-        items: type.weapons.map(w => ({
-            id: w.id,
-            quantity: 1,
-            equipped: false,
-            mods: [],
-            customName: w.customName
-        }))
     }
 }
 

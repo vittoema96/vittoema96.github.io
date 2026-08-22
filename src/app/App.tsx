@@ -10,7 +10,6 @@ import { useCharacter } from '@/app/contexts/CharacterContext';
 import { FitText } from '@/app/components/FitText.tsx';
 import AppHeaderData from '@/app/AppHeaderData.tsx';
 import useIsDesktop from '@/hooks/useIsDesktop';
-import { getAvailableCompanions } from '@/features/character/feats';
 import { Character } from '@/types';
 
 const TABS: Record<TabType, React.ComponentType<any>> = {
@@ -24,7 +23,7 @@ const TABS: Record<TabType, React.ComponentType<any>> = {
 
 // Condition = true means SHOW the locked tab
 const LOCKED_TABS: Partial<Record<TabType, (c: Character) => boolean>> = {
-    companion: (c: Character) => getAvailableCompanions(c).length !== 0
+    companion: (c: Character) => Object.keys(c.companions).length !== 0
 }
 
 const getKeys = <T extends object>(obj: T) => Object.keys(obj) as Array<keyof T>;

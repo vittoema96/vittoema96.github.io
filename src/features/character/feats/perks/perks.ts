@@ -1,7 +1,6 @@
 import { RawCharacter } from '@/types';
-import { useMemo } from 'react';
 import { perks } from '@/data';
-import { SPECIAL, SpecialType } from '@/features/character/special/special.ts';
+import { SPECIAL, SpecialMap, SpecialType } from '@/features/character/special/special.ts';
 import { featCount, hasFeat } from '@/features/character/feats/utils.ts';
 import perksJson from '@/data/perks.json';
 
@@ -25,7 +24,7 @@ export type PerkData = {
 );
 
 
-function filterPerks(perkList: PerkId[], level: number, special: Record<SpecialType, number>) {
+function filterPerks(perkList: PerkId[], level: number, special: SpecialMap) {
     const map = perkList.reduce(
         (acc, perk) => {
             acc[perk] = (acc[perk] ?? 0) + 1;
@@ -53,11 +52,8 @@ function filterPerks(perkList: PerkId[], level: number, special: Record<SpecialT
     });
 }
 
-export function usePerks(raw: RawCharacter) {
-    return useMemo(
-        () => filterPerks(raw.perks, raw.level, raw.special),
-        [raw.perks, raw.special, raw.level],
-    );
+export function calculatePerks(raw: RawCharacter) {
+    return filterPerks(raw.perks, raw.level, raw.special);
 }
 
 export function hasPerk(input: PerkId[], perk: PerkId) {

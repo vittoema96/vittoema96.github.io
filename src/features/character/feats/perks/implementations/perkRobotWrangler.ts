@@ -3,7 +3,7 @@ import { CompanionTypeDefinition } from '@/utils/companionTypes.ts';
 
 // TODO implement
 export const defaultEyebot: CompanionTypeDefinition = {
-    id: 'eyebot',
+    type: 'eyebot',
     special: {
         body: 4,
         mind: 4
@@ -13,19 +13,21 @@ export const defaultEyebot: CompanionTypeDefinition = {
         guns: 3,
         other: 1
     },
-    baseHp: 5,
-    baseDefense: 2,
-    baseDR: {
+    maxHp: 5,
+    defense: 2,
+    dr: {
         physical: 2,
         energy: 2,
         radiation: Infinity, // Immune
         poison: Infinity     // Immune
     },
-    weapons: [
+    items: [
         {
             id: 'weaponCompanionLaser',
             customName: 'LASER',
-            skill: 'guns'
+            skill: 'guns',
+            quantity: 1,
+            mods: []
         }
     ]
 }

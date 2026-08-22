@@ -1,5 +1,5 @@
 // SPECIAL
-import { Character, RawCharacter } from '@/types';
+import { Character } from '@/types';
 import { useMemo } from 'react';
 import { ORIGINS } from '@/features/character/origin.ts';
 import { hasTrait } from '@/features/character/feats/traits/traits.ts';
@@ -15,17 +15,11 @@ export const SPECIAL = [
     'luck',
 ] as const;
 export type SpecialType = (typeof SPECIAL)[number];
+export type SpecialMap = Record<SpecialType, number>;
 
 
 export function isCharacterSpecial(special: any): special is SpecialType {
     return SPECIAL.includes(special);
-}
-
-
-export function useSpecial(raw: RawCharacter) {
-    return useMemo(() => {
-        return raw.special;
-    }, [raw.special]);
 }
 
 export function useSpecialPoints(character: Character){

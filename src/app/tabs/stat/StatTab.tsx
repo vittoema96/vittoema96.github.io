@@ -6,7 +6,7 @@ import Skill from './components/Skill';
 import DamageReductionDisplay from './components/DamageReductionDisplay';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { SPECIAL, useSpecialPoints } from '@/features/character/special/special.ts';
-import { SKILLS, useSkillPoints } from '@/features/character/skills/skills.ts';
+import { SKILLS } from '@/features/character/skills/skills.ts';
 import { useSpecialtyPoints } from '@/features/character/specialties.ts';
 import StatGear from '@/app/components/StatGear.tsx';
 
@@ -22,7 +22,7 @@ function StatTab() {
         [t],
     );
     const specialPoints = useSpecialPoints(character);
-    const skillPoints = useSkillPoints(character);
+    const skillPoints = character.skillPoints;
     const specialtyPoints = useSpecialtyPoints(character);
 
     const bonusSpecialtyPoints = specialtyPoints.bonus.reduce(

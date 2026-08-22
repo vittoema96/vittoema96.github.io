@@ -9,7 +9,6 @@ import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { FitText } from '@/app/components/FitText.tsx';
 import { COMPANION_SKILLS, CompanionSkillType } from '@/features/character/skills/skills.ts';
 import { allItems, companionPerks } from '@/data';
-import { getAvailableCompanions } from '@/features/character/feats';
 import { isType } from '@/features/item/utils.ts';
 
 
@@ -32,8 +31,8 @@ function CompanionTab() {
         setHpInput(companion.currentHp)
     }, [companion.currentHp])
 
-    // Memoize selectedCompanionType
-    const selectedCompanionType = useMemo(
+    // Memoize companionDefault
+    const companionDefault = useMemo(
         () => COMPANION_TYPES[companion.type],
         [companion.type]
     )
@@ -41,8 +40,8 @@ function CompanionTab() {
     // Calculate perk slots: 1 every 5 levels
     const perkSlots = Math.floor(character.level / 5)
 
-    const bodyBonus = companion.special.body - selectedCompanionType.special.body
-    const maxHp = selectedCompanionType.baseHp + (character.level - 1) + bodyBonus
+    const bodyBonus = companion.special.body - companionDefault.special.body
+    const maxHp = companionDefault.maxHp + (character.level - 1) + bodyBonus
 
     const [ selectedPerks, setSelectedPerks ] = useState<(string | undefined)[]>(() => { // TODO CompanionPerkType
         return [
@@ -75,7 +74,7 @@ function CompanionTab() {
     // Handle attack click - opens D20 popup with companion weapon (no ammo consumption)
     const handleAttackClick = (attackItem: CharacterItem) => {
         // Find the weapon definition in companion type to get the correct skill
-        const companionWeapon = selectedCompanionType.weapons.find(w => w.id === attackItem.id)
+        const companionWeapon = companionDefault.items.find(w => w.id === attackItem.id)
         if (companionWeapon) {
             // Use the skill defined in companion type (melee/guns/other)
             showD20Popup({skillId: companionWeapon.skill, usingItem: attackItem, roller: 'companion'});
@@ -84,7 +83,7 @@ function CompanionTab() {
 
     // Calculate available companion SPECIAL points
     const companionSpecialPoints = Math.floor((character.level - 1) / 2)
-    const baseSpecialSum = selectedCompanionType.special.body + selectedCompanionType.special.mind
+    const baseSpecialSum = companionDefault.special.body + companionDefault.special.mind
     const currentSpecialSum = companion.special.body + companion.special.mind
     const usedSpecialPoints = currentSpecialSum - baseSpecialSum
     const remainingSpecialPoints = companionSpecialPoints - usedSpecialPoints
@@ -102,7 +101,7 @@ function CompanionTab() {
                     }
                     style={{ flex: 1 }}
                 >
-                    {getAvailableCompanions(character)
+                    {Object.keys(character.companions)
                         .map(companion => (
                             <option key={companion} value={companion}>
                                 {t(companion)}
@@ -194,25 +193,13 @@ function CompanionTab() {
                     {
                         columnLabel: 'skills',
                         children: COMPANION_SKILLS.map((skillType: CompanionSkillType) => {
-                            const baseValue = selectedCompanionType.skills[skillType];
+                            // TODO only non "creature" companions can increase skill points
                             return (
                                 <button
                                     key={skillType}
                                     className="row l-distributed l-lastSmall skill"
                                     onClick={() => {
-                                        if (isEditing) {
-                                            const current = companion.skills[skillType];
-                                            const next = current < 6 ? current + 1 : baseValue;
-                                            updateCharacter({
-                                                companion: {
-                                                    ...companion,
-                                                    skills: {
-                                                        ...companion.skills,
-                                                        [skillType]: next,
-                                                    },
-                                                },
-                                            });
-                                        } else {
+                                        if (!isEditing) {
                                             // Roll a d20 using the companion's sheet for this skill
                                             showD20Popup({skillId: skillType, roller: 'companion'});
                                         }
@@ -229,7 +216,7 @@ function CompanionTab() {
                         children: [
                             { label: 'level', value: character.level },
                             { label: 'initiative', value: character.initiative },
-                            { label: 'defense', value: selectedCompanionType.baseDefense }
+                            { label: 'defense', value: companionDefault.defense }
                         ].map( ({label, value}) => (
                             <div
                                 key={label}
@@ -261,23 +248,23 @@ function CompanionTab() {
                         <span>
                             <i className="fas fa-shield-halved" title={t('physical')}></i>
                         </span>
-                        <DRValue value={selectedCompanionType.baseDR.physical} />
+                        <DRValue value={companionDefault.dr.physical} />
                     </div>
                     <div className="derived-stat">
                         <span>
                             <i className="fas fa-bolt" title={t('energy')}></i>
                         </span>
-                        <DRValue value={selectedCompanionType.baseDR.energy} />
+                        <DRValue value={companionDefault.dr.energy} />
                     </div>
                     <div className="derived-stat">
                         <span>
                             <i className="fas fa-radiation" title={t('radiation')}></i>
                         </span>
-                        <DRValue value={selectedCompanionType.baseDR.radiation} />
+                        <DRValue value={companionDefault.dr.radiation} />
                     </div>
                     <div className="derived-stat">
                         <span>{t('poison')}</span>
-                        <DRValue value={selectedCompanionType.baseDR.poison} />
+                        <DRValue value={companionDefault.dr.poison} />
                     </div>
                 </div>
             </div>

@@ -44,6 +44,7 @@ const SkillMapSchema = z.object(
 
 // TODO migration code, remove after some time.   2026-07-21
 import aidJson from '@/data/item/aid.json'
+import { CompanionData } from '@/utils/companionTypes.ts';
 const ITEM_ID_MIGRATION_MAP: Record<string, keyof typeof aidJson> = {
     // Foods
     foodMirelurkRoast: "foodRoastedMirelurkMeat",
@@ -131,6 +132,7 @@ const ExchangeRatesSchema = z.object({
     prewarMoney: z.number().int().min(0.001).default(10),
 })
 
+
 // Validates companion data TODO to review
 const CompanionDataSchema = z.preprocess((input: any) => {
     // MIGRATION FOR OLDER COMPANIONS TODO remove this once everyone migrated
@@ -171,6 +173,13 @@ const CompanionDataSchema = z.preprocess((input: any) => {
     items: z.array(CharacterItemSchema).default([]),
 }))
 
+export const CompanionsMapSchema = z.record(
+    z.string().refine(
+        (key) => (COMPANION_IDS as readonly string[]).includes(key),
+        { message: 'Invalid companion ID' }
+    ),
+    CompanionDataSchema
+) as z.ZodType<Partial<Record<typeof COMPANION_IDS[number], CompanionData>>>;
 
 export const ItemsSchema = z
     .array(CharacterItemSchema)
@@ -203,7 +212,7 @@ export const ItemsSchema = z
                 // Equipped items stay as individual single-quantity entries
                 result.push(item);
             } else {
-                const modsKey = [...item.mods].sort().join(",");
+                const modsKey = item.mods.toSorted().join(",");
                 const key = [
                     item.id,
                     item.customName ?? "",
@@ -223,7 +232,23 @@ export const ItemsSchema = z
 
         return result;
     })
-export const RawCharacterSchema = z.object({
+export const RawCharacterSchema = z.preprocess((input: any) => {
+    if (input && typeof input === 'object') {
+        // MIGRATION: Migrate single companion to companions map and activeCompanionId
+        // TODO remove once everyone migrated 2026-08-22
+        if (input.companion && !input.companions) {
+            const { companion, ...rest } = input;
+            return {
+                ...rest,
+                companions: {
+                    [companion.type]: companion,
+                },
+                activeCompanionId: companion.type,
+            };
+        }
+    }
+    return input;
+}, z.object({
     name: z.string().optional(),
     level: z.number().int().min(1).default(1),
     origin: z.enum(ORIGIN_IDS).optional(),
@@ -251,5 +276,6 @@ export const RawCharacterSchema = z.object({
 
     mapCodes: z.array(z.string()).default([]),
 
-    companion: CompanionDataSchema.optional(),
-});
+    activeCompanionId: z.enum(COMPANION_IDS).optional(),
+    companions: CompanionsMapSchema.default({}),
+}));

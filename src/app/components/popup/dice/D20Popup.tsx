@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { useTranslation } from 'react-i18next';
-import { BodyPart, Character, CharacterItem, CompanionData } from '@/types';
+import { BodyPart, Character, CharacterItem } from '@/types';
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import { RollerType, usePopup } from '@/app/contexts/PopupContext.tsx';
 import useDice from '@/hooks/useDice.ts';
@@ -9,6 +9,7 @@ import { D20Dice } from '@/app/components/popup/dice/components/dice.tsx';
 import {
     isCharacterSpecial,
     SPECIAL,
+    SpecialMap,
     SpecialType,
 } from '@/features/character/special/special.ts';
 import {
@@ -30,6 +31,7 @@ import {
 import { getRollSpecial, getFreeRerolls, getRollToggleables } from '@/features/character/feats';
 import { capitalize } from '@/utils/bodyLocations.ts';
 import { MYSTERIOUS_STRANGER } from '@/features/character/feats/perks/implementations/_perkMysteriousStranger.ts';
+import { CompanionData } from '@/utils/companionTypes.ts';
 
 // Discriminated union — built from actual domain types, no invented duplicates.
 interface PlayerRollerStats
@@ -51,7 +53,7 @@ interface CompanionRollerStats extends Pick<CompanionData, 'special' | 'skills' 
 }
 interface StrangerRollerStats {
     kind: 'stranger';
-    special: Record<SpecialType, number>;
+    special: SpecialMap;
     skills: Record<SkillType, number>;
     specialties: SkillType[];
     traits: TraitId[];

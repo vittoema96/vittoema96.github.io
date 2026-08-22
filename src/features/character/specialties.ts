@@ -6,22 +6,18 @@ import { SkillType } from '@/features/character/skills/skills.ts';
 import { getSpecialtyPointBonus } from '@/features/character/feats';
 
 
-export function useSpecialties(raw: RawCharacter, origin: Origin, traits: TraitId[]){
-    return useMemo(
-        () => {
-            // Ghoul origin adds Survival as specialty
-            const specialtiesSet = new Set(raw.specialties)
+export function calculateSpecialties(raw: RawCharacter, origin: Origin, traits: TraitId[]){
+    // Ghoul origin adds Survival as specialty
+    const specialtiesSet = new Set(raw.specialties)
 
-            if (origin === ORIGINS.GHOUL) {
-                specialtiesSet.add('survival');
-            }
+    if (origin === ORIGINS.GHOUL) {
+        specialtiesSet.add('survival');
+    }
 
-            if(hasTrait(traits, "traitNomad")){
-                specialtiesSet.delete('science')
-            }
-            return [...specialtiesSet];
-        }, [raw.specialties, traits, origin]
-    )
+    if(hasTrait(traits, "traitNomad")){
+        specialtiesSet.delete('science')
+    }
+    return [...specialtiesSet];
 }
 
 export function useSpecialtyPoints(character: Character){
@@ -59,7 +55,7 @@ export function useSpecialtyPoints(character: Character){
                     const index = b.skills.indexOf(skill)
                     if(index > -1){
                         coveredByBonus = true;
-                        b.skills.splice(index, 1)
+                        b.skills = b.skills.filter((_, i) => i !== index);
                         b.bonus -= 1
                     }
                 }

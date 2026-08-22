@@ -93,6 +93,7 @@ function useCharacterProviderValue() {
                     ...updates,
                     special: { ...prev?.special, ...updates.special },
                     skills: { ...prev?.skills, ...updates.skills },
+                    companions: { ...prev.companions, ...updates.companions}
                 });
 
                 // Let's do it always, as various things can edit current and max hp (perkLifeGiver for example)

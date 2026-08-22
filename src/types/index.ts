@@ -3,12 +3,12 @@ import { AidCategory, AmmoCategory, ItemCategory, ItemType } from '@/types/item.
 import { BaseItem } from '@/data/types.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';
-import { SpecialType } from '@/features/character/special/special.ts';
-import { CompanionSkillType, SkillType } from '@/features/character/skills/skills.ts';
+import { SpecialMap } from '@/features/character/special/special.ts';
+import { SkillType } from '@/features/character/skills/skills.ts';
 
 import { PerkId } from '@/features/character/feats/perks/perks.ts';
 import { TraitId } from '@/features/character/feats/traits/traits.ts';
-import { CompanionSpecialType } from '@/features/character/special/special.companion.ts';
+import { CompanionData } from '@/utils/companionTypes.ts';
 
 // **---- Currency related ----**
 export const CURRENCIES = ['caps', 'ncrDollars', 'legionDenarius', 'prewarMoney'] as const;
@@ -90,44 +90,6 @@ export interface CustomItem {
 export const COMPANION_IDS = ['eyebot', 'dog', 'mrHandy', 'humanoid'] as const;
 export type CompanionId = (typeof COMPANION_IDS)[number];
 
-export interface CompanionData {
-    type: CompanionId;
-    name?: string | undefined;
-    // SPECIAL equivalent (body/mind instead of strength/perception/etc)
-    special: Record<CompanionSpecialType, number>;
-    // Skills (melee/guns/other instead of meleeWeapons/smallGuns/etc)
-    skills: Record<CompanionSkillType, number>;
-    // Current HP
-    currentHp: number;
-    // Perks
-    perks: string[];
-    // Weapons (stored as CharacterItem for compatibility)
-    items: CharacterItem[];
-}
-
-export interface Character extends Omit<RawCharacter, 'origin'> {
-    origin: Origin;
-
-    exchangeRates: ExchangeRates;
-
-    items: CharacterItem[];
-    customItems: CustomItem[]; // Custom items created by user (separate from database items)
-    mapCodes: string[];
-    companion?: CompanionData | undefined; // Optional companion data
-
-    maxHp: number;
-    currentHp: number;
-    rads: number;
-    maxLuck: number;
-    currentLuck: number;
-    maxWeight: number;
-    currentWeight: number;
-    defense: number;
-    initiative: number;
-    meleeDamage: number;
-    locationsDR: Record<GenericBodyPart, Record<DamageType, number>>;
-}
-
 export interface RawCharacter {
     name?: string | undefined;
     level: number;
@@ -140,7 +102,7 @@ export interface RawCharacter {
     prewarMoney: number;
     exchangeRates: ExchangeRates;
 
-    special: Record<SpecialType, number>;
+    special: SpecialMap;
     skills: Record<SkillType, number>;
     specialties: SkillType[];
     traits: TraitId[];
@@ -154,7 +116,30 @@ export interface RawCharacter {
     customItems: CustomItem[];
 
     mapCodes: string[];
+    activeCompanionId?: CompanionId | undefined;
+    companions: Partial<Record<CompanionId, CompanionData>>; // Optional companion data
+}
+
+export interface Character extends Omit<RawCharacter, 'origin' | 'activeCompanionId'> {
+    origin: Origin;
+
+    skillPoints: number;
+
+    maxHp: number;
+    currentHp: number;
+    maxLuck: number;
+    currentLuck: number;
+
     companion?: CompanionData | undefined; // Optional companion data
+
+    maxWeight: number;
+    currentWeight: number;
+
+    defense: number;
+    initiative: number;
+    meleeDamage: number;
+
+    locationsDR: Record<GenericBodyPart, Record<DamageType, number>>;
 }
 
 export interface GenericPopupProps {
@@ -173,7 +158,7 @@ export interface ItemWithEffects extends BaseItem {
 }
 
 export interface AidItem extends BaseItem {
-    CATEGORY: AidCategory
+    CATEGORY: AidCategory;
     DURATION: 'durationInstant' | 'durationShort' | 'durationLasting';
     ADDICTIVE: number | null;
     HP_GAIN: number | null;

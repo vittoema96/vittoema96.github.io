@@ -1,6 +1,5 @@
 import { RawCharacter } from '@/types';
 import { Origin, OriginId } from '@/features/character/origin.ts';
-import { useMemo } from 'react';
 import { traits } from '@/data';
 import { hasFeat } from '@/features/character/feats/utils.ts';
 import traitsJson from '@/data/traits.json';
@@ -33,17 +32,15 @@ function filterTraits(traitsList: TraitId[], originId: OriginId) {
     });
 }
 
-export function useTraits(raw: RawCharacter, origin: Origin) {
-    return useMemo(() => {
-        // Get fixed traits from database where FIXED === true AND ORIGINS includes current origin
-        const fixedTraits = getFixedTraits(origin.id);
+export function calculateTraits(raw: RawCharacter, origin: Origin) {
+    // Get fixed traits from database where FIXED === true AND ORIGINS includes current origin
+    const fixedTraits = getFixedTraits(origin.id);
 
-        // Filter user-selected traits to only include those valid for this origin
-        const userTraits = filterTraits(raw.traits, origin.id);
+    // Filter user-selected traits to only include those valid for this origin
+    const userTraits = filterTraits(raw.traits, origin.id);
 
-        // Combine and deduplicate
-        return [...new Set([...fixedTraits, ...userTraits])];
-    }, [raw.traits, origin.id]);
+    // Combine and deduplicate
+    return [...new Set([...fixedTraits, ...userTraits])];
 }
 
 export function hasTrait(input: TraitId[], trait: TraitId) {

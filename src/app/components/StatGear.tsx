@@ -61,14 +61,16 @@ function StatGear({ statType, isEditing = false, children }: Readonly<StatGearPr
             })
         } else {
             updateCharacter({
-                companion: {
-                    ...companion,
-                    special: {
-                        ...companion.special,
-                        [statType]: next
-                    }
+                companions: {
+                    [character.companion?.type!]: {
+                        ...companion,
+                        special: {
+                            ...companion.special,
+                            [statType]: next,
+                        },
+                    },
                 }
-            })
+            });
         }
     }
 
