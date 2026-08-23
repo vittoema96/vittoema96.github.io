@@ -32,17 +32,16 @@ export function migrateLegacyStorage(): void {
     // 2. Read individual legacy slot entries
     let hasFoundAnyLegacyData = false;
     const slots: (RawCharacter | null)[] = Array.from({ length: MAX_SLOTS }, (_, i) => {
-        const key = `${LEGACY_PREFIX}${i}`
+        const key = `${LEGACY_PREFIX}${i}`;
         const savedChar = localStorage.getItem(key);
-        localStorage.removeItem(key)
-        if (!savedChar) { return null }
+        localStorage.removeItem(key);
+        if (!savedChar) { return null; }
         try {
             hasFoundAnyLegacyData = true;
             return RawCharacterSchema.parse(JSON.parse(savedChar));
-        } catch { return null } // Corrupted slot fallback
+        } catch { return null; }
     });
 
-    // If no legacy data is present (new user), abort migration
     if (!hasFoundAnyLegacyData && !legacyActive) {
         return;
     }
@@ -60,7 +59,6 @@ export function migrateLegacyStorage(): void {
     };
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(migratedState));
-    console.log('✅ Legacy save slots successfully migrated to Zustand storage!');
 }
 
 // TODO Remove after some time... 2026-05-14
@@ -87,7 +85,7 @@ export const useSaveStore = create<SaveStoreState>()(
         (set) => ({
             activeSlot: 0,
             setActiveSlot: (index) => {
-                if (index < 0 || index >= MAX_SLOTS) { return }
+                if (index < 0 || index >= MAX_SLOTS) { return; }
                 set((state) => {
                     const nextSlots = [...state.slots];
                     nextSlots[index] ??= getDefaultCharacter();
@@ -96,8 +94,9 @@ export const useSaveStore = create<SaveStoreState>()(
             },
 
             slots: Array.from({ length: MAX_SLOTS }, (_, i) => (i === 0 ? getDefaultCharacter() : null)),
+
             deleteSlot: (index) => {
-                if (index < 0 || index >= MAX_SLOTS) { return }
+                if (index < 0 || index >= MAX_SLOTS) { return; }
                 set((state) => {
                     const nextSlots = [...state.slots];
                     nextSlots[index] = null;
@@ -107,8 +106,9 @@ export const useSaveStore = create<SaveStoreState>()(
                     return { slots: nextSlots };
                 });
             },
+
             importSlot: (index, rawData) => {
-                if (index < 0 || index >= MAX_SLOTS) { return }
+                if (index < 0 || index >= MAX_SLOTS) { return; }
                 const validated = RawCharacterSchema.parse(rawData);
                 set((state) => {
                     const nextSlots = [...state.slots];
@@ -121,8 +121,10 @@ export const useSaveStore = create<SaveStoreState>()(
                 set((state) => {
                     const current = state.slots[state.activeSlot] ?? getDefaultCharacter();
                     const updated = updater(current);
+                    // Garantisce che anche gli aggiornamenti passino per la validazione/migrazione Zod
+                    const validated = RawCharacterSchema.parse(updated);
                     const nextSlots = [...state.slots];
-                    nextSlots[state.activeSlot] = updated;
+                    nextSlots[state.activeSlot] = validated;
                     return { slots: nextSlots };
                 });
             },
@@ -137,13 +139,33 @@ export const useSaveStore = create<SaveStoreState>()(
         }),
         {
             name: STORAGE_KEY,
+            // Forces Zod parsing on every save on disk
+            merge: (persistedState, currentState) => {
+                const typedPersisted = persistedState as Partial<SaveStoreState> | undefined;
+                if (!typedPersisted || !Array.isArray(typedPersisted.slots)) {
+                    return currentState;
+                }
+
+                const validatedSlots = typedPersisted.slots.map((slot) => {
+                    if (!slot) { return null; }
+                    try {
+                        // Converte automaticamente vecchi formati (es. companion singolo) nel nuovo formato
+                        return RawCharacterSchema.parse(slot);
+                    } catch (error) {
+                        console.error('Error during parsing of the rehydrated slot:', error);
+                        return null;
+                    }
+                });
+
+                return {
+                    ...currentState,
+                    ...typedPersisted,
+                    slots: validatedSlots,
+                };
+            },
         }
     )
 );
 
-/**
- * Custom hook to get the active character dynamically.
- * Always guarantees activeCharacter equals slots[activeSlot].
- */
 export const useActiveCharacter = (): RawCharacter =>
     useSaveStore((state) => state.slots[state.activeSlot] ?? getDefaultCharacter());
