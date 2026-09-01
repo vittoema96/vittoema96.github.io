@@ -186,8 +186,10 @@ Players can unlock markers on the New Vegas map by entering specific codes found
 
 ## Fixes on Manual Rules
 - weaponArcWelder uses ammoFusionCell, as ammoElectronChargePack is nowhere to be found on manuals.  
-- NOT FINAL: Musket has damage 4 and fire rate 1 (instead of 5 and 0). This works as the special rule, 
+- NOT FINAL: Musket and Assaultron Head have damage 4 and fire rate 1 (instead of 5 and 0). This works as the special rule, 
 but mods can bring fire rate to 0 (and this should not happen, I need to find a better solution)
+- Tesla Rifle uses stats and mods from Wanderer's Guide and not Settler's guide (more mods available and DR of 5 instead of 4)
+- Cazador Sting ammo has a rarity of 3 and weight of 0 (not specified in manuals)
 
 ## 🛠️ Development
 

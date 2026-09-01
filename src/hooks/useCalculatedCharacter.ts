@@ -4,7 +4,7 @@ import { getOriginById } from '@/features/character/origin.ts';
 import { SkillType, calculateSkills, calculateSkillPoints } from '@/features/character/skills/skills.ts';
 import { TraitId, calculateTraits } from '@/features/character/feats/traits/traits.ts';
 import { PerkId, calculatePerks } from '@/features/character/feats/perks/perks.ts';
-import { calculateSpecialties } from '@/features/character/specialties.ts';
+import { calculateSpecialties, calculateSpecialtyPoints } from '@/features/character/specialties.ts';
 import { calculateCurrentWeight, calculateMaxWeight } from '@/features/character/weight.ts';
 import { calculateDamageResistances } from '@/features/character/damageResistances.ts';
 import { apparel } from '@/data';
@@ -13,6 +13,7 @@ import { calculateMaxLuck } from '@/features/character/luck.ts';
 import { calculateMeleeDamage } from '@/features/character/meleeDamage.ts';
 import { getAvailableCompanions } from '@/features/character/feats';
 import { createDefaultCompanion } from '@/utils/companionTypes.ts';
+import { calculateSpecialPoints } from '@/features/character/special/special.ts';
 
 function useCalculatedCharacter(raw: RawCharacter): Character {
     return useMemo(() => {
@@ -29,6 +30,8 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
         const special = raw.special;
         const skills = calculateSkills(raw, specialties, origin);
         const skillPoints = calculateSkillPoints(special, skills, specialties, level, perks)
+        const specialPoints = calculateSpecialPoints(special, origin, perks, traits)
+        const specialtyPoints = calculateSpecialtyPoints(specialties, origin, perks, traits)
 
         const maxHp = calculateMaxHp(special, level, perks);
         const rads = Math.min(raw.rads, maxHp);
@@ -99,7 +102,6 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
             items,
             customItems: raw.customItems,
             level,
-            specialties,
             traits,
             perks,
             mapCodes: raw.mapCodes,
@@ -112,9 +114,14 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
             maxLuck,
             maxWeight,
             currentWeight,
+
             special,
+            specialPoints,
             skills,
             skillPoints,
+            specialties,
+            specialtyPoints,
+
             defense,
             initiative,
             meleeDamage,

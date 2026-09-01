@@ -1,9 +1,9 @@
-import { Character, RawCharacter } from '@/types';
+import { RawCharacter } from '@/types';
 import { Origin, ORIGINS } from '@/features/character/origin.ts';
-import { useMemo } from 'react';
 import { hasTrait, TraitId } from '@/features/character/feats/traits/traits.ts';
 import { SkillType } from '@/features/character/skills/skills.ts';
 import { getSpecialtyPointBonus } from '@/features/character/feats';
+import { PerkId } from '@/features/character/feats/perks/perks.ts';
 
 
 export function calculateSpecialties(raw: RawCharacter, origin: Origin, traits: TraitId[]){
@@ -20,60 +20,57 @@ export function calculateSpecialties(raw: RawCharacter, origin: Origin, traits: 
     return [...specialtiesSet];
 }
 
-export function useSpecialtyPoints(character: Character){
-    return useMemo(() => {
+export function calculateSpecialtyPoints(specialties: SkillType[], origin: Origin, perks: PerkId[], traits: TraitId[]){
+   let genericPointsUsed = 0;
 
-        let genericPointsUsed = 0;
+    type BonusType = {
+        condition: boolean,
+        bonus: number,
+        skills: SkillType[]
+    }
+    const allBonuses: BonusType[] = [
+        {
+            condition: hasTrait(traits, "traitGoodNatured"),
+            bonus: 2,
+            skills: ['speech', 'medicine', 'repair', 'science', 'barter']
+        },
+        {
+            condition: origin === ORIGINS.BROTHERHOOD_INITIATE,
+            bonus: 1,
+            skills: ['energyWeapons', 'science', 'repair']
+        },
+    ]
+    const bonuses = allBonuses.filter(b => b.condition);
 
-        type BonusType = {
-            condition: boolean,
-            bonus: number,
-            skills: SkillType[]
-        }
-        const allBonuses: BonusType[] = [
-            {
-                condition: hasTrait(character.traits, "traitGoodNatured"),
-                bonus: 2,
-                skills: ['speech', 'medicine', 'repair', 'science', 'barter']
-            },
-            {
-                condition: character.origin === ORIGINS.BROTHERHOOD_INITIATE,
-                bonus: 1,
-                skills: ['energyWeapons', 'science', 'repair']
-            },
-        ]
-        const bonuses = allBonuses.filter(b => b.condition);
+    specialties.forEach(skill => {
+        let coveredByBonus = false;
 
-        character.specialties.forEach(skill => {
-            let coveredByBonus = false;
-
-            // TODO we need to handle where to remove points first if both contain the skill
-            //      ie repair and science are in both brotherhoodInitiate and in goodNatured
-            // CURRENTLY not a problem as one can't have both goodNatured and brotherhoodInitiate
-            for (const b of bonuses.toSorted((a, b) => (a.skills.length - b.skills.length) || (a.bonus - b.bonus))) {
-                if(b.bonus > 0){
-                    const index = b.skills.indexOf(skill)
-                    if(index > -1){
-                        coveredByBonus = true;
-                        b.skills = b.skills.filter((_, i) => i !== index);
-                        b.bonus -= 1
-                    }
+        // TODO we need to handle where to remove points first if both contain the skill
+        //      ie repair and science are in both brotherhoodInitiate and in goodNatured
+        // CURRENTLY not a problem as one can't have both goodNatured and brotherhoodInitiate
+        for (const b of bonuses.toSorted((a, b) => (a.skills.length - b.skills.length) || (a.bonus - b.bonus))) {
+            if(b.bonus > 0){
+                const index = b.skills.indexOf(skill)
+                if(index > -1){
+                    coveredByBonus = true;
+                    b.skills = b.skills.filter((_, i) => i !== index);
+                    b.bonus -= 1
                 }
             }
+        }
 
-            if(!coveredByBonus){
-                genericPointsUsed++;
-            }
-        });
+        if(!coveredByBonus){
+            genericPointsUsed++;
+        }
+    });
 
-        const totalGenericAllowed =
-            3 +
-            getSpecialtyPointBonus(character) +
-            Number(character.origin === ORIGINS.GHOUL); // ghouls have survival as extra specialty (and it should not count)
+    const totalGenericAllowed =
+        3 +
+        getSpecialtyPointBonus(perks, traits) +
+        Number(origin === ORIGINS.GHOUL); // ghouls have survival as extra specialty (and it should not count)
 
-        return {
-            generic: totalGenericAllowed - genericPointsUsed,
-            bonus: bonuses.map(b => { return {remaining: b.bonus, skills: b.skills} })
-        };
-    }, [character]);
+    return {
+        generic: totalGenericAllowed - genericPointsUsed,
+        bonus: bonuses.map(b => { return {remaining: b.bonus, skills: b.skills} })
+    };
 }

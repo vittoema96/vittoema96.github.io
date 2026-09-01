@@ -682,5 +682,83 @@
       "en": "Long {{name}}",
       "it": "{{name}} a Canna Lunga"
     }
+  },
+  "modLongBarrelBroadsider": {
+    "en": "Long Barrel",
+    "it": "Canna Lunga",
+    "_description": { "en": "Increases Range by 1 Step", "it": "Aumenta la Gittata di 1 Grado" },
+    "_descriptor": { "en": "Long {{name}}", "it": "{{name}} Lungo" }
+  },
+  "modLightBarrelBroadsider": {
+    "en": "Light Barrel",
+    "it": "Canna Leggera",
+    "_description": { "en": "+2 damage DC, removes Blast", "it": "+2 danno DC, rimuove Esplosione" },
+    "_descriptor": { "en": "Fluted {{name}}", "it": "{{name}} Scanalato" }
+  },
+  "modMultiShotCanister": {
+    "en": "Multi Shot Canister",
+    "it": "Bombola Multicolpo",
+    "_description": { "en": "+1 Fire Rate, gains Inaccurate", "it": "+1 Cadenza di Fuoco, ottiene Impreciso" },
+    "_descriptor": { "en": "Repeating {{name}}", "it": "{{name}} a Ripetizione" }
+  },
+  "modM79LauncherBroadsider": {
+    "en": "M79 Launcher",
+    "it": "Lanciagranate M79",
+    "_description": { "en": "Increases Range by 1 Step, changes ammo to 40mm Grenades", "it": "Aumenta la Gittata di 1 Grado, cambia le munizioni in granate da 40mm" },
+    "_descriptor": { "en": "Converted {{name}}", "it": "{{name}} Convertito" }
+  },
+  "modCrystallizingBarrel": {
+    "en": "Crystallizing Barrel",
+    "it": "Canna Cristallizzante",
+    "_description": { "en": "+2 damage DC, increases Range by 1 step, -1 Fire Rate, removes Stun and Unreliable", "it": "+2 danno DC, aumenta la Gittata di 1 grado, -1 Cadenza di Fuoco, rimuove Stordente e Inaffidabile" },
+    "_descriptor": { "en": "Crystallized {{name}}", "it": "{{name}} Cristallizzato" }
+  },
+  "modFusionMagCryolator": {
+    "en": "Fusion Mag",
+    "it": "Caricatore a Fusione",
+    "_description": { "en": "Changes damage to 2 DC, -1 Fire Rate, changes ammo to Fusion Cell", "it": "Cambia il danno a 2 DC, -1 Cadenza di Fuoco, cambia le munizioni in Cella di Fusione" },
+    "_descriptor": { "en": "Converted {{name}}", "it": "{{name}} Convertito" }
+  },
+  "modRecoilCompensatingStockCryolator": {
+    "en": "Recoil Compensating Stock",
+    "it": "Calcio Compensatore di Rinculo",
+    "_description": { "en": "+1 Fire Rate", "it": "+1 Cadenza di Fuoco" },
+    "_descriptor": { "en": "Recoil Compensating {{name}}", "it": "{{name}} con Rinculo Compensato" }
+  },
+  "modReflexTacticalCryolator": {
+    "en": "Reflex Tactical",
+    "it": "Mirino Tattico Reflex",
+    "_description": { "en": "May re-roll hit location die", "it": "Può ripetere il tiro del dado della locazione del colpo" },
+    "_descriptor": { "en": "Tactical {{name}}", "it": "{{name}} Tattico" }
+  },
+  "modBarbedHarpoon": {
+    "en": "Barbed Harpoon",
+    "it": "Arpione Uncinato",
+    "_description": { "en": "Gains Vicious, gains Persistent", "it": "Ottiene Violento, ottiene Persistente" },
+    "_descriptor": { "en": "Barbed {{name}}", "it": "{{name}} Uncinato" }
+  },
+  "modFlechetteDarts": {
+    "en": "Flechette Darts",
+    "it": "Dardi Flechette",
+    "_description": { "en": "Gains Spread, reduces Range by 1 Step", "it": "Ottiene Diffusione, riduce la Gittata di 1 Grado" },
+    "_descriptor": { "en": "Tiny {{name}}", "it": "{{name}} Minuscolo" }
+  },
+  "modRecoilCompensatingStockHarpoon": {
+    "en": "Recoil Compensating Stock",
+    "it": "Calcio Compensatore di Rinculo",
+    "_description": { "en": "+1 Fire Rate", "it": "+1 Cadenza di Fuoco" },
+    "_descriptor": { "en": "Recoil Compensating {{name}}", "it": "{{name}} con Rinculo Compensato" }
+  },
+  "modGunnerSightHarpoon": {
+    "en": "Gunner Sight",
+    "it": "Mirino da Artigliere",
+    "_description": { "en": "May re-roll hit location die", "it": "Può ripetere il tiro del dado della locazione del colpo" },
+    "_descriptor": { "en": "Tactical {{name}}", "it": "{{name}} Tattico" }
+  },
+  "modShortScopeHarpoon": {
+    "en": "Short Scope",
+    "it": "Mirino Corto",
+    "_description": { "en": "Gains Accurate", "it": "Ottiene Preciso" },
+    "_descriptor": { "en": "Scoped {{name}}", "it": "{{name}} con Mirino" }
   }
 }

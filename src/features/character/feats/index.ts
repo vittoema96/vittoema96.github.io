@@ -66,7 +66,7 @@ interface FeatImplementation {
 
     getAvailableCompanions?: () => CompanionId[];
 
-    getSpecialtyPointBonus?: (character: Character) => number;
+    getSpecialtyPointBonus?: (perks: PerkId[], traits: TraitId[]) => number;
 
     getDamageRatingBonus?: (character: Character, itemData: WeaponItem) => number;
 
@@ -125,9 +125,9 @@ function getActiveFeats(character: {perks: PerkId[], traits: TraitId[]}): FeatIm
 }
 
 
-export function getSpecialtyPointBonus(character: Character): number {
-    return getActiveFeats(character).reduce(
-        (acc, feat) => acc + (feat.getSpecialtyPointBonus?.(character) ?? 0),
+export function getSpecialtyPointBonus(perks: PerkId[], traits: TraitId[]): number {
+    return getActiveFeats({ perks, traits }).reduce(
+        (acc, feat) => acc + (feat.getSpecialtyPointBonus?.(perks, traits) ?? 0),
         0
     );
 }

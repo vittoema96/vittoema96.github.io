@@ -124,6 +124,8 @@ export interface Character extends Omit<RawCharacter, 'origin' | 'activeCompanio
     origin: Origin;
 
     skillPoints: number;
+    specialPoints: number;
+    specialtyPoints: { generic: number, bonus: { remaining: number, skills: SkillType[] } []; };
 
     maxHp: number;
     currentHp: number;
@@ -171,8 +173,6 @@ export interface ModItem extends ItemWithEffects {
     SLOT_TYPE: string;
     SKILL: SkillType;
     PERKS: PerkWithRank[]; // JSON array // TODO should be perk type
-    WEAPON_TYPES?: string[]; // TODO might not be needed anymore
-    ARMOR_TYPES?: string[]; // TODO might not be needed anymore
 }
 
 export interface AmmoItem extends BaseItem {

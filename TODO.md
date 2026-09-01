@@ -4,8 +4,22 @@
 Things to fix:
 - FIRE_RATE is number | - ... can we do at least number | undefined?
 - Don't allow same customName for 2 different CustomItems (customName is object ID)
+
+## To check
+- [ ] modFullStock == modFullStockEnergy? cost and effects seem to differ
+- [ ] modFullStock == modFullStockM79?
+- [ ] modMarksmanGrip == modMarksmanGripEnergy?
+- [ ] modShortScope == modShortScopeEnergy?
+- [ ] modShortNightVisionScope == modShortNightVisionScopeEnergy?
+- [ ] modReconScope == modReconScopeEnergy?
+- [ ] modLongScope == modLongScopeEnergy?
+- [ ] modLongNightVisionScope == modLongNightVisionScopeEnergy?
+- [ ] modReflexSight == modReflexSightEnergy?
+- [ ] modSpikedCane == modBarbedCane?
+- [ ] modElectrified == modElectrifiedBlade?
+
 ## 🔥 High Priority
-- [ ] **BUG** - Importing a character DOESN'T update loaded character, the user needs to "reload" changing selected character and back (investigate the problem)
+- [ ] **CryoJet** - Cryojet is a robot only weapon, should not be visible to normal users
 
 ### Game Features
 - [ ] **qualityAccurate effect** - Implement accurate weapon quality

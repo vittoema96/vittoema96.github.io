@@ -191,6 +191,18 @@
       "it": "{{name}} Lungo"
     }
   },
+  "modLongBarrelM79": {
+    "en": "Long Barrel",
+    "it": "Canna Lunga",
+    "_description": {
+      "en": "Increases Range by 1 Step",
+      "it": "Aumenta la Gittata di 1 Grado"
+    },
+    "_descriptor": {
+      "en": "Long {{name}}",
+      "it": "{{name}} Lungo"
+    }
+  },
   "modLongNightVisionScope": {
     "en": "Long Night Vision Scope",
     "it": "Mirino Lungo Visione Notturna",

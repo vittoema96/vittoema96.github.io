@@ -3,6 +3,10 @@ import { SpecialMap } from '@/features/character/special/special.ts';
 
 import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
 
+/**
+ * Method used on CharacterContextValue.updateCharacter()
+ * to update currentHp when maxHp changes
+ */
 export const adjustCurrentHp = (prev: RawCharacter, current: RawCharacter) => {
     const result: RawCharacter = { ...current };
     const prevMaxHp = calculateMaxHp(prev.special, prev.level, prev.perks);
@@ -27,7 +31,6 @@ export const calculateMaxHp = (
     return (
         special.endurance * (1 + lifeGiverLevel) +
         special.luck +
-        level -
-        1
+        level - 1
     );
 };

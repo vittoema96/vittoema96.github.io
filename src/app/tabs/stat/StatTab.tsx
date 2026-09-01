@@ -5,9 +5,8 @@ import ActiveEffectsDisplay from '@/app/tabs/ActiveEffectsDisplay.tsx';
 import Skill from './components/Skill';
 import DamageReductionDisplay from './components/DamageReductionDisplay';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
-import { SPECIAL, useSpecialPoints } from '@/features/character/special/special.ts';
+import { SPECIAL } from '@/features/character/special/special.ts';
 import { SKILLS } from '@/features/character/skills/skills.ts';
-import { useSpecialtyPoints } from '@/features/character/specialties.ts';
 import StatGear from '@/app/components/StatGear.tsx';
 
 function StatTab() {
@@ -21,9 +20,9 @@ function StatTab() {
         () => Object.values(SKILLS).sort((a, b) => t(a).localeCompare(t(b))),
         [t],
     );
-    const specialPoints = useSpecialPoints(character);
+    const specialPoints = character.specialPoints;
     const skillPoints = character.skillPoints;
-    const specialtyPoints = useSpecialtyPoints(character);
+    const specialtyPoints = character.specialtyPoints;
 
     const bonusSpecialtyPoints = specialtyPoints.bonus.reduce(
         (acc, b) => {

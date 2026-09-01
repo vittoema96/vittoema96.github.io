@@ -1,42 +1,45 @@
-ID,TYPE,CATEGORY,WEIGHT,COST,RARITY
-ammoFusionCell,ammo,ammo,0,3,2
-ammoPlasmaCartridge,ammo,ammo,0,5,4
-ammoGammaRound,ammo,ammo,0,10,2
-ammoMiniNuke,ammo,ammo,6,100,6
-ammoFlamerFuel,ammo,ammo,0,1,2
-ammoMissile,ammo,ammo,3.5,25,3
-ammo5mm,ammo,ammo,0,1,3
-ammo308,ammo,ammo,0,3,1
-ammoShotgunShell,ammo,ammo,0,3,1
-ammo556mm,ammo,ammo,0,2,3
-ammo45,ammo,ammo,0,3,2
-ammo2mmec,ammo,ammo,0,10,5
-ammoRailwaySpike,ammo,ammo,0,1,2
-ammo44Magnum,ammo,ammo,0,3,2
-ammo10mm,ammo,ammo,0,2,0
-ammo38,ammo,ammo,0,1,0
-ammoFlare,ammo,ammo,0,1,1
-ammoSyringer,ammo,ammo,0,?,2
-ammoFusionCore,ammo,ammo,2,200,3
-ammo357Magnum,ammo,ammo,0,2,1
-ammo127mm,ammo,ammo,0,2,2
-ammo9mm,ammo,ammo,0,1,0
-ammo50Ball,ammo,ammo,0,1,3
-ammo25mmGrenade,ammo,ammo,0,8,4
-ammo40mmGrenade,ammo,ammo,0,20,4
-ammoAlienPowerCell,ammo,ammo,0,5,5
-ammoAlienPowerModule,ammo,ammo,0,10,6
-ammoArrow,ammo,ammo,0,2,1
-ammoCrossbowBolt,ammo,ammo,0,3,2
-ammoPlasmaCore,ammo,ammo,2,200,5
-ammoAcidConcentrate,ammo,ammo,0,2,3
-ammoCannonball,ammo,ammo,2,8,5
-ammoCryoCell,ammo,ammo,0,10,5
-ammoHarpoon,ammo,ammo,0,3,4
-ammoArrowCryo,ammo,arrowType,0,8,3
-ammoArrowExplosive,ammo,arrowType,0,6,2
-ammoArrowFlaming,ammo,arrowType,0,2,1
-ammoArrowSerrated,ammo,arrowType,0,4,1
-ammoArrowPlasma,ammo,arrowType,0,9,4
-ammoArrowPoison,ammo,arrowType,0,3,1
-ammoSyringerCazadoresSting,ammo,syringerAmmo,0,75,0
+ID,TYPE,CATEGORY,WEIGHT,COST,RARITY,SOURCE,FOUND
+ammoFusionCell,ammo,ammo,0,3,2,Corebook,14+7CD
+ammoPlasmaCartridge,ammo,ammo,0,5,4,Corebook,10+5CD
+ammoGammaRound,ammo,ammo,0,10,2,Corebook,4+2CD
+ammoMiniNuke,ammo,ammo,6,100,6,Corebook,1+1CD
+ammoFlamerFuel,ammo,ammo,0,1,2,Corebook,12+6CD
+ammoMissile,ammo,ammo,3.5,25,3,Corebook,2+1CD
+ammo5mm,ammo,ammo,0,1,3,Corebook,10+5CD
+ammo308,ammo,ammo,0,3,1,Corebook,6+3CD
+ammoShotgunShell,ammo,ammo,0,3,1,Corebook,6+3CD
+ammo556mm,ammo,ammo,0,2,3,Corebook,8+4CD
+ammo45,ammo,ammo,0,3,2,Corebook,8+4CD
+ammo50,ammo,ammo,0,4,3,Corebook,4+2CD
+ammo2mmec,ammo,ammo,0,10,5,Corebook,6+3CD
+ammoRailwaySpike,ammo,ammo,0,1,2,Corebook,6+3CD
+ammo44Magnum,ammo,ammo,0,3,2,Corebook,4+2CD
+ammo10mm,ammo,ammo,0,2,0,Corebook,8+4CD
+ammo38,ammo,ammo,0,1,0,Corebook,10+5CD
+ammoFlare,ammo,ammo,0,1,1,Corebook,2+1CD
+ammoSyringer,ammo,ammo,0,?,2,Corebook,4+2CD
+ammoFusionCore,ammo,ammo,2,200,3,Corebook,1
+ammo357Magnum,ammo,ammo,0,2,1,Wanderers DLC,6+3CD
+ammo127mm,ammo,ammo,0,2,2,Wanderers DLC,6+3CD
+ammo9mm,ammo,ammo,0,1,0,Wanderers DLC,10+5CD
+ammo50Ball,ammo,ammo,0,1,3,Wanderers DLC,4+2CD
+ammo25mmGrenade,ammo,ammo,0,8,4,Wanderers DLC,2+1CD
+ammo40mmGrenade,ammo,ammo,0,2,4,Settlers DLC,2+1CD
+ammoAlienPowerCell,ammo,ammo,0,5,5,Wanderers DLC,4+2CD
+ammoAlienPowerModule,ammo,ammo,0,10,6,Wanderers DLC,3+1CD
+ammoAlienBlasterRound,ammo,ammo,0,1,6,Settlers DLC,3+1CD
+ammoArrow,ammo,ammo,0,2,1,Wanderers DLC,6+4CD
+ammoCrossbowBolt,ammo,ammo,0,3,2,Wanderers DLC,4+4CD
+ammoPlasmaCore,ammo,ammo,2,200,5,Wanderers DLC,1
+ammoAcidConcentrate,ammo,ammo,0,2,3,Settlers DLC,2+3CD
+ammoCannonball,ammo,ammo,2,8,5,Settlers DLC,1+2CD
+ammoCryoCell,ammo,ammo,0,10,5,Settlers DLC,4+3CD
+ammoGasGrenade,ammo,ammo,0,2,4,Settlers DLC,2+1CD
+ammoHarpoon,ammo,ammo,0,3,4,Settlers DLC,2+1CD
+ammoArrowCryo,ammo,arrowType,0,8,3,Wanderers DLC,
+ammoArrowExplosive,ammo,arrowType,0,6,2,Wanderers DLC,
+ammoArrowFlaming,ammo,arrowType,0,2,1,Wanderers DLC,
+ammoArrowSerrated,ammo,arrowType,0,4,1,Wanderers DLC,
+ammoArrowPlasma,ammo,arrowType,0,9,4,Wanderers DLC,
+ammoArrowPoison,ammo,arrowType,0,3,1,Wanderers DLC,
+ammoSyringerCazadoresSting,ammo,syringerAmmo,0,75,3,Wanderers DLC,

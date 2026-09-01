@@ -11,18 +11,6 @@
       "it": "{{name}} Spinato"
     }
   },
-  "modBarbedCane": {
-    "en": "Barbed Cane",
-    "it": "Bastone Spinato",
-    "_description": {
-      "en": "+1 damage DC, gains Piercing 1",
-      "it": "+1 danno DC, ottiene Penetrante 1"
-    },
-    "_descriptor": {
-      "en": "Barbed {{name}}",
-      "it": "{{name}} Spinato"
-    }
-  },
   "modBarbedPoolCue": {
     "en": "Barbed Pool Cue",
     "it": "Stecca Spinata",
@@ -251,9 +239,9 @@
       "it": "{{name}} Pungente"
     }
   },
-  "modPuncturedBoxingGlove": {
-    "en": "Punctured Boxing Glove",
-    "it": "Guantone Pungente",
+  "modPuncturedKnuckles": {
+    "en": "Punctured Knuckles",
+    "it": "Tirapugni Pungente",
     "_description": {
       "en": "+1 damage DC, gains Piercing 1",
       "it": "+1 danno DC, ottiene Penetrante 1"
@@ -263,9 +251,9 @@
       "it": "{{name}} Puntuto"
     }
   },
-  "modPuncturedKnuckles": {
-    "en": "Punctured Knuckles",
-    "it": "Tirapugni Pungente",
+  "modPuncturedBoxingGlove": {
+    "en": "Punctured Boxing Glove",
+    "it": "Guantone Pungente",
     "_description": {
       "en": "+1 damage DC, gains Piercing 1",
       "it": "+1 danno DC, ottiene Penetrante 1"
@@ -573,18 +561,6 @@
     "_descriptor": {
       "en": "Heavy {{name}}",
       "it": "{{name}} Pesante"
-    }
-  },
-  "modElectrifiedBlade": {
-    "en": "Electrified Blade",
-    "it": "Lama Elettrificata",
-    "_description": {
-      "en": "+1 damage DC, damage type becomes Energy",
-      "it": "+1 danno DC, il tipo di danno diventa Energia"
-    },
-    "_descriptor": {
-      "en": "Electrified {{name}}",
-      "it": "{{name}} Elettrificata"
     }
   },
   "modElectrified": {

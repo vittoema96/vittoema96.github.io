@@ -11,6 +11,54 @@
       "it": "{{name}} Automatico"
     }
   },
+  "modCausticAcidSoaker": {
+    "en": "Caustic",
+    "it": "Caustico",
+    "_description": {
+      "en": "+1 damage DC",
+      "it": "+1 danno DC"
+    },
+    "_descriptor": {
+      "en": "Caustic {{name}}",
+      "it": "{{name}} Caustico"
+    }
+  },
+  "modLargeAmpoule": {
+    "en": "Large Ampoule",
+    "it": "Ampolla Grande",
+    "_description": {
+      "en": "+1 Fire Rate",
+      "it": "+1 Cadenza di Fuoco"
+    },
+    "_descriptor": {
+      "en": "High Capacity {{name}}",
+      "it": "{{name}} ad Alta Capacità"
+    }
+  },
+  "modLargeVial": {
+    "en": "Large Vial",
+    "it": "Fiala Grande",
+    "_description": {
+      "en": "+3 Fire Rate",
+      "it": "+3 Cadenza di Fuoco"
+    },
+    "_descriptor": {
+      "en": "Maximum Capacity {{name}}",
+      "it": "{{name}} a Capacità Massima"
+    }
+  },
+  "modMagFusionAlienBlaster": {
+    "en": "Mag Fusion",
+    "it": "Conversione a Fusione",
+    "_description": {
+      "en": "Changes damage to 3 DC, -1 Fire Rate, changes ammo to Fusion Cell",
+      "it": "Cambia il danno a 3 DC, -1 Cadenza di Fuoco, cambia le munizioni in Cella di Fusione"
+    },
+    "_descriptor": {
+      "en": "Mag Fusion {{name}}",
+      "it": "{{name}} a Fusione"
+    }
+  },
   "modAutomaticSignalRepeater": {
     "en": "Automatic Signal Repeater",
     "it": "Ripetitore Segnale Automatica",
@@ -179,18 +227,6 @@
       "it": "{{name}} Lungo"
     }
   },
-  "modLongNightVisionScopeEnergy": {
-    "en": "Long Night Vision Scope",
-    "it": "Mirino Lungo Visione Notturna",
-    "_description": {
-      "en": "Gains Precision, gains Night Vision, increases Range by 1 grade",
-      "it": "Ottiene Di Precisione, ottiene Visione Notturna, aumenta la Gittata di 1 grado"
-    },
-    "_descriptor": {
-      "en": "Night Vision {{name}}",
-      "it": "{{name}} Visione Notturna"
-    }
-  },
   "modLongReinforcedBarrel": {
     "en": "Long Reinforced Barrel",
     "it": "Canna Lunga Rinforzata",
@@ -201,30 +237,6 @@
     "_descriptor": {
       "en": "{{name}}",
       "it": "{{name}}"
-    }
-  },
-  "modLongScopeEnergy": {
-    "en": "Long Scope",
-    "it": "Mirino Lungo",
-    "_description": {
-      "en": "Gains Precision, increases Range by 1 grade",
-      "it": "Ottiene Di Precisione, aumenta la Gittata di 1 grado"
-    },
-    "_descriptor": {
-      "en": "{{name}} with Scope",
-      "it": "{{name}} Con Mirino"
-    }
-  },
-  "modMarksmanGripEnergy": {
-    "en": "Marksman Grip",
-    "it": "Impugnatura da Tiratore Esperto",
-    "_description": {
-      "en": "Loses Inaccurate, gains Piercing 1",
-      "it": "Perde Impreciso, ottiene Penetrante 1"
-    },
-    "_descriptor": {
-      "en": "Marksman {{name}}",
-      "it": "{{name}} Da Tiratore Esperto"
     }
   },
   "modMarksmanStockEnergy": {
@@ -275,42 +287,6 @@
       "it": "{{name}} A Rinculo Compensato"
     }
   },
-  "modReconScopeEnergy": {
-    "en": "Recon Scope",
-    "it": "Mirino da Ricognizione",
-    "_description": {
-      "en": "Gains Precision, gains Recon",
-      "it": "Ottiene Di Precisione, ottiene Da Ricognizione"
-    },
-    "_descriptor": {
-      "en": "Recon {{name}}",
-      "it": "{{name}} Da Ricognizione"
-    }
-  },
-  "modReflexSightEnergy": {
-    "en": "Reflex Sight",
-    "it": "Mirino Reflex",
-    "_description": {
-      "en": "Can reroll the Hit Location die",
-      "it": "Può ritirare il dado del Punto di Impatto"
-    },
-    "_descriptor": {
-      "en": "Tactical {{name}}",
-      "it": "{{name}} Tattico"
-    }
-  },
-  "modShortNightVisionScopeEnergy": {
-    "en": "Short Night Vision Scope",
-    "it": "Mirino Corto Visione Notturna",
-    "_description": {
-      "en": "Gains Precision, gains Night Vision",
-      "it": "Ottiene Di Precisione, ottiene Visione Notturna"
-    },
-    "_descriptor": {
-      "en": "Night Vision {{name}}",
-      "it": "{{name}} Visione Notturna"
-    }
-  },
   "modShortReinforcedBarrel": {
     "en": "Short Reinforced Barrel",
     "it": "Canna Corta Rinforzata",
@@ -321,18 +297,6 @@
     "_descriptor": {
       "en": "{{name}}",
       "it": "{{name}}"
-    }
-  },
-  "modShortScopeEnergy": {
-    "en": "Short Scope",
-    "it": "Mirino Corto",
-    "_description": {
-      "en": "Gains Precision",
-      "it": "Ottiene Di Precisione"
-    },
-    "_descriptor": {
-      "en": "{{name}} with Scope",
-      "it": "{{name}} Con Mirino"
     }
   },
   "modSixChargeCapacitor": {

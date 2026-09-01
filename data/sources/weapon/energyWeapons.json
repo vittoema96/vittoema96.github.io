@@ -17,18 +17,34 @@
   },
   "weaponArcWelder": {
     "en": "Arc Welder",
-    "it": "Saldatrice Ad Arco",
+    "it": "Saldatrice ad arco",
     "_description": {
       "en": "This odd weapon can discharge a constant, high-voltage stream of electricity. While painful and damaging to living creatures, it is especially effective against robots and enemies in Power Armor, as electricity discharges into delicate components.",
       "it": "Quest'arma bizzarra può scaricare un flusso costante di elettricità ad alta tensione. Sebbene sia dolorosa e dannosa per le creature viventi, è particolarmente efficace contro i robot e i nemici in Armatura Atomica, poiché l'elettricità si scarica nei componenti delicati."
     }
   },
+  "weaponAcidSoaker": {
+    "en": "Acid Soaker",
+    "it": "Spruzza Acido",
+    "_description": {
+      "en": "The acid soaker is a small gun, similar to the 10mm pistol, that has been modified to receive the corrosive compound of an acid concentrate instead of the traditional ballistic chamber. The modifications match the design components of a common squirt gun designed to shoot jets of water.",
+      "it": "Lo spruzza acido è una pistola di piccole dimensioni, simile alla pistola 10mm, modificata per utilizzare il composto corrosivo di un concentrato di acido al posto della tradizionale camera balistica. Le modifiche riprendono i componenti di una comune pistola ad acqua progettata per sparare getti d’acqua."
+    }
+  },
+  "weaponAlienBlaster": {
+    "en": "Alien Blaster",
+    "it": "Blaster Alieno",
+    "_description": {
+      "en": "The alien blaster is sometimes referred to as an alien blaster pistol based on its physical appearance mimicking the small firearms designed on Earth. Meant to be held in one hand where the index or middle finger could fit around the trigger, this weapon is capable of using the unique alien energy like a laser gun uses fusion cells. Special: Alien blasters inflict both Energy and Radiation damage. Roll damage as normal, and then reduce the total by whichever of the target’s damage resistances is lower out of Energy or Radiation. A creature that is killed by an alien blaster is instead vaporized and reduced to ash.",
+      "it": "Il blaster alieno viene talvolta chiamato pistola blaster aliena per il suo aspetto fisico, che imita le piccole armi da fuoco progettate sulla Terra. Progettata per essere impugnata con una mano, con l’indice o il medio intorno al grilletto, quest’arma è in grado di utilizzare l’esclusiva energia aliena, proprio come una pistola laser usa le celle di fusione. Speciale: i blaster alieni infliggono danni sia Energetici sia da Radiazione. Tira i danni normalmente, poi riduci il totale usando la resistenza del bersaglio più bassa tra Energia e Radiazione. Una creatura uccisa da un blaster alieno viene invece vaporizzata e ridotta in cenere."
+    }
+  },
   "weaponAssaultronHead": {
     "en": "Assaultron Head",
-    "it": "Testa Di Assaultron",
+    "it": "Testa di Assaultron",
     "_description": {
-      "en": "The head of an Assaultron contains a high-yield laser emitter, shielded behind sturdy Armor plating. Assaultrons use this laser to blast the enemy as they close into melee. The laser itself uses a capacitor that can build up an extremely powerful charge, but which requires considerable energy for each fully charged blast.",
-      "it": "La testa di un Assaultron contiene un emettitore laser ad alto rendimento, schermato dietro una robusta corazza. Gli Assaultron usano questo laser per colpire il nemico mentre si avvicinano per il corpo a corpo. Il laser stesso utilizza un condensatore che può accumulare una carica estremamente potente, ma che richiede una notevole energia per ogni scarica completa."
+      "en": "The head of an Assaultron contains a high-yield laser emitter, shielded behind sturdy Armor plating. Assaultrons use this laser to blast the enemy as they close into melee. The laser itself uses a capacitor that can build up an extremely powerful charge, but which requires considerable energy for each fully charged blast. Due to the solid design, destroyed Assaultrons sometimes have an intact head that can be used as an impromptu hand-held laser. Special: Firing an Assaultron Head consumes two shots of ammunition each time it fires. Each capacitor mod for the Assaultron head increases both damage and number of shots consumed. You may reduce the number of shots consumed, reducing the damage by -1 DC for each shot consumed fewer than normal (for a minimum of 4 damage and 1 shot consumed).",
+      "it": "La testa di un Assaultron contiene un emettitore laser ad alto rendimento, schermato dietro una robusta corazza. Gli Assaultron usano questo laser per colpire il nemico mentre si avvicinano per il corpo a corpo. Il laser stesso utilizza un condensatore che può accumulare una carica estremamente potente, ma che richiede una notevole energia per ogni scarica completa. Grazie alla sua struttura solida, a volte le teste degli Assaultron distrutti rimangono intatte e possono essere usate come laser portatili improvvisati. Speciale: ogni sparo di una Testa di Assaultron consuma due colpi di munizioni. Ogni mod condensatore per la testa di Assaultron aumenta sia il danno sia il numero di colpi consumati. Puoi ridurre il numero di colpi consumati, riducendo il danno di -1 DC per ogni colpo consumato in meno del normale (fino a un minimo di 4 danni e 1 colpo consumato)."
     }
   },
   "weaponGammaPistol": {
@@ -37,6 +53,14 @@
     "_description": {
       "en": "A crude-looking weapon, the gamma gun emits directed blasts of high-intensity ionizing radiation which can be devastating to any creature not immune nor massively resistant to radiation, while leaving other targets largely unharmed.",
       "it": "La pistola gamma, col suo aspetto apparentemente rozzo, emette dei raggi direzionali di radiazioni ionizzanti ad alta intensità, che possono essere devastanti per qualsiasi creatura non sia immune o incredibilmente resistente alle radiazioni ma, al contempo, non fanno quasi alcun danno sugli altri bersagli."
+    }
+  },
+  "weaponCryojet": {
+    "en": "Cryojet",
+    "it": "Criojet",
+    "_description": {
+      "en": "This firefighting tool installed on firefighter Protectrons fires cryogenic spray that rapidly cools any fires the Protectron is trying to put out, or in another emergency be used as a self-defense mechanism. Prolonged exposure to its jets can result in freezing of organic materials—even living creatures! Special: Cryojets are integrated into the arms of robots and therefore can’t be used as a handheld weapon.",
+      "it": "Questo strumento antincendio, installato sui Protectron pompieri, emette uno spruzzo criogenico che raffredda rapidamente gli incendi che il Protectron sta cercando di spegnere, oppure può essere usato come meccanismo di autodifesa in caso di emergenza. L’esposizione prolungata ai suoi getti può congelare i materiali organici, persino le creature viventi! Speciale: i Criojet sono integrati nelle braccia dei robot e non possono quindi essere usati come armi portatili."
     }
   },
   "weaponInstituteLaser": {
@@ -73,10 +97,18 @@
   },
   "weaponMicrowaveEmitter": {
     "en": "Microwave Emitter",
-    "it": "Emettitore Di Microonde",
+    "it": "Emettitore di microonde",
     "_description": {
-      "en": "This advanced energy weapon generates intense blasts of microwave radiation. While it won’t irradiate you—microwaves are non-ionizing radiation—it can cause intense burns as whatever is hit by the blast is heated up from the inside, boiling the water in your cells. Metal is little protection: the microwave blast can’t effectively be dispersed by metallic objects.",
-      "it": "Questa avanzata arma a energia genera intensi lampi di radiazioni a microonde. Anche se non ti irradierà (le microonde sono radiazioni non ionizzanti), può causare intense ustioni poiché qualunque cosa venga colpita dal raggio viene riscaldata dall'interno, facendo bollire l'acqua nelle cellule. Il metallo offre poca protezione: il raggio di microonde non può essere disperso efficacemente da oggetti metallici."
+      "en": "This advanced energy weapon generates intense blasts of microwave radiation. While it won’t irradiate you—microwaves are non-ionizing radiation—it can cause intense burns as whatever is hit by the blast is heated up from the inside, boiling the water in your cells. And metal is little protection: the microwave blast can’t effectively be dispersed by metallic objects, which heat up, produce electrical sparks, and damage delicate circuitry. While extremely rare, these weapons provide a serious advantage when used against heavily armored targets.",
+      "it": "Questa avanzata arma a energia genera intensi lampi di radiazioni a microonde. Anche se non ti irradierà (le microonde sono radiazioni non ionizzanti), può causare ustioni intense perché ciò che viene colpito dal raggio si riscalda dall'interno, facendo bollire l'acqua nelle cellule. E il metallo offre poca protezione: il raggio a microonde non può essere disperso efficacemente dagli oggetti metallici, che si scaldano, producono scintille elettriche e danneggiano la circuiteria delicata. Pur essendo estremamente rare, queste armi offrono un vantaggio notevole contro bersagli pesantemente corazzati."
+    }
+  },
+  "weaponMesmetron": {
+    "en": "Mesmetron",
+    "it": "Mesmetron",
+    "_description": {
+      "en": "A weapon similar to the gamma gun with the ability to create blasts of high intense energy. This approach creates variable waves that, when received by the brain of a sentient creature, overwhelms the senses and distorts perception making individuals confused and more susceptible.",
+      "it": "Un’arma simile alla pistola gamma, capace di creare esplosioni di energia ad alta intensità. Questo metodo genera onde variabili che, quando vengono ricevute dal cervello di una creatura senziente, sovraccaricano i sensi e distorcono la percezione, rendendo gli individui confusi e più vulnerabili."
     }
   },
   "weaponMrHandyLaserEmitter": {
