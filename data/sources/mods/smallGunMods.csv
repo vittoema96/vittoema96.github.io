@@ -11,12 +11,12 @@ modPortedBarrel,mod,modSlotBarrel,"[""rangeAdd:1"",""fireRateAdd:1""]",0.5,35,re
 modLongBarrel,mod,modSlotBarrel,"[""rangeAdd:1""]",0.5,20,repair,"[""perkGunNut:1""]",3,Corebook
 modSawedOffBarrel,mod,modSlotBarrel,"[""qualityRemove:qualityTwoHanded"",""qualityAdd:qualityCloseQuarters""]",-1,3,repair,[],2,Corebook
 modShortBarrel,mod,modSlotBarrel,"[""qualityAdd:qualityInaccurate""]",-0.5,0,repair,[],2,Corebook
-modShieldedBarrel,mod,modSlotBarrel,"[""damageAdd:1""]",0,37,repair,"[""perkGunNut:3""]",3,
+modShieldedBarrel,mod,modSlotBarrel,"[""damageAdd:1""]",0,37,repair,"[""perkGunNut:3""]",3,Corebook
 modStableBarrel,mod,modSlotBarrel,"[""qualityAdd:qualityReliable""]",0,10,repair,"[""perkGunNut:3""]",5,Corebook
 modVentedBarrel,mod,modSlotBarrel,"[""rangeAdd:1"",""fireRateAdd:1"",""qualityAdd:qualityReliable""]",0.5,36,repair,"[""perkGunNut:4""]",6,Corebook
-modLargeMagazine,mod,modSlotMagazine,"[""fireRateAdd:1"",""qualityAdd:qualityUnreliable""]",0.5,8,repair,"[""perkGunNut:1""]",2,
-modLargeQuickMagazine,mod,modSlotMagazine,"[""fireRateAdd:1""]",0.5,23,repair,"[""perkGunNut:2""]",2,
-modQuickMagazine,mod,modSlotMagazine,"[""qualityAdd:qualityReliable""]",0,8,repair,"[""perkGunNut:1""]",1,
+modLargeMagazine,mod,modSlotMagazine,"[""fireRateAdd:1"",""qualityAdd:qualityUnreliable""]",0.5,8,repair,"[""perkGunNut:2""]",2,Corebook
+modLargeQuickMagazine,mod,modSlotMagazine,"[""fireRateAdd:1""]",0.5,23,repair,"[""perkGunNut:2""]",2,Corebook
+modQuickMagazine,mod,modSlotMagazine,"[""qualityAdd:qualityReliable""]",0,8,repair,"[""perkGunNut:1""]",1,Corebook
 modAutomatic,mod,modSlotReceiver,"[""damageAdd:-1"",""fireRateAdd:2"",""effectAdd:effectBurst"",""qualityAdd:qualityInaccurate""]",0.5,30,repair,"[""perkGunNut:1""]",3,Corebook
 modAdvanced,mod,modSlotReceiver,"[""damageAdd:3"",""fireRateAdd:1""]",1,35,repair,"[""perkGunNut:2""]",5,Corebook
 modCalibrated,mod,modSlotReceiver,"[""effectAdd:effectVicious""]",0,25,repair,[],2,Corebook

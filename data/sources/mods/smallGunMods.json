@@ -43,7 +43,7 @@
       "it": "Arma da Mischia, infligge 4 DC danni Fisici Penetranti 1"
     },
     "_descriptor": {
-      "en": "{{name}} with Bayonet",
+      "en": "Bayoneted {{name}}",
       "it": "{{name}} con Baionetta"
     }
   },
@@ -79,7 +79,7 @@
       "it": "Perde Impreciso"
     },
     "_descriptor": {
-      "en": "{{name}} with Compensator",
+      "en": "Compensated {{name}}",
       "it": "{{name}} con Compensatore"
     }
   },
@@ -115,7 +115,7 @@
       "it": "Perde Impreciso, +1 Cadenza di Fuoco"
     },
     "_descriptor": {
-      "en": "{{name}} with Muzzle Break",
+      "en": "Muzzled {{name}}",
       "it": "{{name}} con Rompifiamma"
     }
   },
@@ -175,7 +175,7 @@
       "it": "+1 Cadenza di Fuoco"
     },
     "_descriptor": {
-      "en": "High Capacity Quick {{name}}",
+      "en": "Quick high capacity {{name}}",
       "it": "{{name}} Alta Capacità Rapido"
     }
   },
@@ -223,7 +223,7 @@
       "it": "Aumenta la Gittata di 1, ottiene Di Precisione"
     },
     "_descriptor": {
-      "en": "{{name}} with Scope",
+      "en": "Scoped {{name}}",
       "it": "{{name}} Con Mirino"
     }
   },
@@ -343,7 +343,7 @@
       "it": "Ottiene A Due Mani, perde Impreciso, +1 Cadenza di Fuoco"
     },
     "_descriptor": {
-      "en": "Recoil Compensating {{name}}",
+      "en": "Recoil Compensated {{name}}",
       "it": "{{name}} A Rinculo Compensato"
     }
   },
@@ -379,7 +379,7 @@
       "it": "Perde A Due Mani, ottiene Corpo a Corpo"
     },
     "_descriptor": {
-      "en": "Sawed-Off {{name}}",
+      "en": "Sawed Off {{name}}",
       "it": "{{name}} Mozza"
     }
   },
@@ -427,7 +427,7 @@
       "it": "Ottiene Di Precisione"
     },
     "_descriptor": {
-      "en": "{{name}} with Scope",
+      "en": "Scoped {{name}}",
       "it": "{{name}} Con Mirino"
     }
   },
@@ -439,7 +439,7 @@
       "it": "Ottiene Affidabile"
     },
     "_descriptor": {
-      "en": "Bull {{name}}",
+      "en": "Bull Barrel {{name}}",
       "it": "{{name}} Stabile"
     }
   },
@@ -451,7 +451,7 @@
       "it": "Ottiene Silenziata"
     },
     "_descriptor": {
-      "en": "{{name}} with Suppressor",
+      "en": "Suppressed {{name}}",
       "it": "{{name}} con Silenziatore"
     }
   },
