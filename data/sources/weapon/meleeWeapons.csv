@@ -1,6 +1,6 @@
 ID,TYPE,CATEGORY,DAMAGE_RATING,EFFECTS,DAMAGE_TYPES,FIRE_RATE,RANGE,QUALITIES,WEIGHT,COST,RARITY,AMMO_TYPE,AVAILABLE_MODS,IS_BLADED,SOURCE
 weaponBoard,weapon,meleeWeapons,4,[],"[""physical""]",-,rangeR,"[""qualityTwoHanded""]",1.5,20,0,na,"[""modSpikedBoard"", ""modPuncturedBoard"", ""modSharpBoard""]",false,
-weaponWalkingStick,weapon,meleeWeapons,3,[],"[""physical""]",-,rangeR,[],1,10,0,na,"[""modSpikedCane""]",false,
+weaponWalkingStick,weapon,meleeWeapons,3,[],"[""physical""]",-,rangeR,[],1,10,0,na,"[""modSpikedCane"", ""modBarbedCane""]",false,
 weaponWeaponStockOneHanded,weapon,meleeWeapons,2,"[""effectStun""]","[""physical""]",-,rangeR,[],-,-,-,na,[],false,
 weaponWeaponStock,weapon,meleeWeapons,3,"[""effectStun""]","[""physical""]",-,rangeR,"[""qualityTwoHanded""]",-,-,-,na,[],false,
 weaponBayonet,weapon,meleeWeapons,4,"[""effectPiercing:1""]","[""physical""]",-,rangeR,"[""qualityMelee""]",-,-,-,na,[],true,

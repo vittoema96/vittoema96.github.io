@@ -72,14 +72,14 @@
     }
   },
   "modCombustionModule": {
-    "en": "Combustion Module",
+    "en": "Ignition Module",
     "it": "Modulo di Combustione",
     "_description": {
       "en": "Gains Persistent",
       "it": "Ottiene Persistente"
     },
     "_descriptor": {
-      "en": "Combustion {{name}}",
+      "en": "Ignition {{name}}",
       "it": "{{name}} Infuocato"
     }
   },
@@ -180,14 +180,14 @@
     }
   },
   "modNapalm": {
-    "en": "Napalm",
+    "en": "Napalm Fuel",
     "it": "Napalm",
     "_description": {
       "en": "+1 damage DC",
       "it": "+1 danno DC"
     },
     "_descriptor": {
-      "en": "Napalm {{name}}",
+      "en": "Napalm Fuel {{name}}",
       "it": "{{name}} al Napalm"
     }
   },
@@ -216,14 +216,14 @@
     }
   },
   "modPhotonicStimulatorGatling": {
-    "en": "Photonic Stimulator",
+    "en": "Photon Exciter",
     "it": "Stimolatore Fotonico",
     "_description": {
       "en": "Gains Vicious",
       "it": "Ottiene Violento"
     },
     "_descriptor": {
-      "en": "Stimulated {{name}}",
+      "en": "Exciter {{name}}",
       "it": "{{name}} Eccitato"
     }
   },
@@ -324,26 +324,26 @@
     }
   },
   "modTripleBarrelMinigun": {
-    "en": "Triple Barrel",
+    "en": "Tri-Barrel",
     "it": "Canna Tripla",
     "_description": {
       "en": "+2 damage DC, -2 Fire Rate",
       "it": "+2 danno DC, -2 Cadenza di Fuoco"
     },
     "_descriptor": {
-      "en": "Triple {{name}}",
+      "en": "Tri-Barrel {{name}}",
       "it": "{{name}} Ad Alta Potenza"
     }
   },
   "modVaporizerNozzle": {
-    "en": "Vaporizer Nozzle",
+    "en": "Vaporization Nozzle",
     "it": "Ugello Vaporizzatore",
     "_description": {
       "en": "+1 damage DC, gains Vicious",
       "it": "+1 danno DC, ottiene Violento"
     },
     "_descriptor": {
-      "en": "Vaporizer {{name}}",
+      "en": "Vaporization {{name}}",
       "it": "{{name}} Vaporizzante"
     }
   },

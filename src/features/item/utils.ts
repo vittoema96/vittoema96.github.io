@@ -347,6 +347,7 @@ export const UNACQUIRABLE_IDS: (keyof typeof weapon | keyof typeof apparel)[] = 
     'robotPartBody',
     'robotPartArms',
     'robotPartThrusters',
+    'weaponCryojet'
 ] as const;
 
 export function isUnacquirable(target: string | { ID: string }): boolean {

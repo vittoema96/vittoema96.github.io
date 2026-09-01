@@ -60,14 +60,14 @@
     }
   },
   "modAutomaticSignalRepeater": {
-    "en": "Automatic Signal Repeater",
+    "en": "Signal Repeater",
     "it": "Ripetitore Segnale Automatica",
     "_description": {
       "en": "+2 Fire Rate, gains Burst, loses Blast",
       "it": "+2 Cadenza di Fuoco, ottiene Raffica, perde Esplosione"
     },
     "_descriptor": {
-      "en": "Automatic {{name}}",
+      "en": "Signal {{name}}",
       "it": "{{name}} Automatico"
     }
   },
@@ -144,14 +144,14 @@
     }
   },
   "modElectricSignalAntenna": {
-    "en": "Electric Signal Antenna",
+    "en": "Electric Signal Carrier Antennae",
     "it": "Antenna Segnale Elettrico",
     "_description": {
       "en": "Damage becomes 7 DC Energy, gains Radioactive",
       "it": "I danni diventano 7 DC da Energia, ottiene Radioattivo"
     },
     "_descriptor": {
-      "en": "Electrified {{name}}",
+      "en": "Signal Carrier {{name}}",
       "it": "{{name}} Elettrificato"
     }
   },

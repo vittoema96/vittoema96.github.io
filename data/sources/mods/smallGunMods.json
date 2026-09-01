@@ -84,14 +84,14 @@
     }
   },
   "modErgonomicGrip": {
-    "en": "Ergonomic Grip",
+    "en": "Comfort Grip",
     "it": "Impugnatura Ergonomica",
     "_description": {
       "en": "Loses Inaccurate",
       "it": "Perde Impreciso"
     },
     "_descriptor": {
-      "en": "Ergonomic {{name}}",
+      "en": "Comfort {{name}}",
       "it": "{{name}} Ergonomico"
     }
   },
@@ -108,14 +108,14 @@
     }
   },
   "modFlashHider": {
-    "en": "Flash Hider",
+    "en": "Muzzle Break",
     "it": "Rompifiamma",
     "_description": {
       "en": "Loses Inaccurate, +1 Fire Rate",
       "it": "Perde Impreciso, +1 Cadenza di Fuoco"
     },
     "_descriptor": {
-      "en": "{{name}} with Flash Hider",
+      "en": "{{name}} with Muzzle Break",
       "it": "{{name}} con Rompifiamma"
     }
   },
@@ -180,7 +180,7 @@
     }
   },
   "modLongBarrel": {
-    "en": "Long Barrel",
+    "en": "Long",
     "it": "Canna Lunga",
     "_description": {
       "en": "Increases Range by 1 grade",
@@ -228,26 +228,26 @@
     }
   },
   "modMarksmanGrip": {
-    "en": "Marksman Grip",
+    "en": "Sharpshooter's Grip",
     "it": "Impugnatura da Tiratore Esperto",
     "_description": {
       "en": "Loses Inaccurate, gains Piercing 1",
       "it": "Perde Impreciso, ottiene Penetrante 1"
     },
     "_descriptor": {
-      "en": "Marksman {{name}}",
+      "en": "Sharpshooter's {{name}}",
       "it": "{{name}} Da Tiratore Esperto"
     }
   },
   "modMarksmanStock": {
-    "en": "Marksman Stock",
+    "en": "Marksman's Stock",
     "it": "Calcio da Tiratore Scelto",
     "_description": {
       "en": "Gains Two-Handed, loses Inaccurate, gains Precision",
       "it": "Ottiene A Due Mani, perde Impreciso, ottiene Di Precisione"
     },
     "_descriptor": {
-      "en": "Marksman {{name}}",
+      "en": "Marksman's {{name}}",
       "it": "{{name}} Da Tiratore Scelto"
     }
   },
@@ -396,14 +396,14 @@
     }
   },
   "modShortBarrel": {
-    "en": "Short Barrel",
+    "en": "Snubnose",
     "it": "Canna Ridotta",
     "_description": {
       "en": "Gains Inaccurate",
       "it": "Ottiene Imprecisa"
     },
     "_descriptor": {
-      "en": "Short {{name}}",
+      "en": "Snubnose {{name}}",
       "it": "{{name}} Ridotto"
     }
   },
@@ -432,14 +432,14 @@
     }
   },
   "modStableBarrel": {
-    "en": "Stable Barrel",
+    "en": "Bull Barrel",
     "it": "Canna Stabile",
     "_description": {
       "en": "Gains Reliable",
       "it": "Ottiene Affidabile"
     },
     "_descriptor": {
-      "en": "Stable {{name}}",
+      "en": "Bull {{name}}",
       "it": "{{name}} Stabile"
     }
   },
