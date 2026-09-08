@@ -119,6 +119,18 @@
       "it": "{{name}} Tattico"
     }
   },
+  "modGunnerSightGaussMinigun": {
+    "en": "Gunner Sight",
+    "it": "Mirino Gunner",
+    "_description": {
+      "en": "Can reroll the Hit Location die",
+      "it": "Può ritirare il dado del Punto di Impatto"
+    },
+    "_descriptor": {
+      "en": "Gunner {{name}}",
+      "it": "{{name}} Tattico"
+    }
+  },
   "modGunnerSightMinigun": {
     "en": "Gunner Sight",
     "it": "Mirino Gunner",

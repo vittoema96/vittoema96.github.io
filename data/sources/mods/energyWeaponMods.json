@@ -8,7 +8,7 @@
     },
     "_descriptor": {
       "en": "Automatic {{name}}",
-      "it": "{{name}} Automatico"
+      "it": "{{name}} Automatica"
     }
   },
   "modCausticAcidSoaker": {
@@ -61,7 +61,7 @@
   },
   "modAutomaticSignalRepeater": {
     "en": "Signal Repeater",
-    "it": "Ripetitore Segnale Automatica",
+    "it": "Ripetitore di Segnale",
     "_description": {
       "en": "+2 Fire Rate, gains Burst, loses Blast",
       "it": "+2 Cadenza di Fuoco, ottiene Raffica, perde Esplosione"
@@ -157,7 +157,7 @@
   },
   "modFiveChargeCapacitor": {
     "en": "Five Charge Capacitor",
-    "it": "Condensatore Cinque Cariche",
+    "it": "Condensatore a Cinque Cariche",
     "_description": {
       "en": "+3 damage DC, consumes 5 ammo per shot",
       "it": "+3 danno DC, consuma 5 munizioni per colpo"
@@ -181,7 +181,7 @@
   },
   "modFourChargeCapacitor": {
     "en": "Four Charge Capacitor",
-    "it": "Condensatore Quattro Cariche",
+    "it": "Condensatore a Quattro Cariche",
     "_description": {
       "en": "+2 damage DC, consumes 4 ammo per shot",
       "it": "+2 danno DC, consuma 4 munizioni per colpo"
@@ -212,7 +212,7 @@
     },
     "_descriptor": {
       "en": "Improved {{name}}",
-      "it": "{{name}} Migliorato"
+      "it": "{{name}} Migliorata"
     }
   },
   "modLongBarrelEnergy": {
@@ -224,7 +224,7 @@
     },
     "_descriptor": {
       "en": "Long {{name}}",
-      "it": "{{name}} Lungo"
+      "it": "{{name}} Lunga"
     }
   },
   "modLongReinforcedBarrel": {
@@ -301,7 +301,7 @@
   },
   "modSixChargeCapacitor": {
     "en": "Six Charge Capacitor",
-    "it": "Condensatore Sei Cariche",
+    "it": "Condensatore a Sei Cariche",
     "_description": {
       "en": "+4 damage DC, consumes 6 ammo per shot",
       "it": "+4 danno DC, consuma 6 munizioni per colpo"
@@ -349,7 +349,7 @@
   },
   "modThreeChargeCapacitor": {
     "en": "Three Charge Capacitor",
-    "it": "Condensatore Tre Cariche",
+    "it": "Condensatore a Tre Cariche",
     "_description": {
       "en": "+1 damage DC, consumes 3 ammo per shot",
       "it": "+1 danno DC, consuma 3 munizioni per colpo"

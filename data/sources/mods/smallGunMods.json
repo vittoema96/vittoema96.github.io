@@ -104,7 +104,7 @@
     },
     "_descriptor": {
       "en": "Finned {{name}}",
-      "it": "{{name}} Alettato"
+      "it": "{{name}} Alettata"
     }
   },
   "modFlashHider": {
@@ -188,7 +188,7 @@
     },
     "_descriptor": {
       "en": "Long {{name}}",
-      "it": "{{name}} Lungo"
+      "it": "{{name}} Lunga"
     }
   },
   "modLongBarrelM79": {
@@ -260,7 +260,7 @@
     },
     "_descriptor": {
       "en": "Ported {{name}}",
-      "it": "{{name}} Forato"
+      "it": "{{name}} Forata"
     }
   },
   "modPowerful": {
@@ -392,7 +392,7 @@
     },
     "_descriptor": {
       "en": "Shielded {{name}}",
-      "it": "{{name}} Schermato"
+      "it": "{{name}} Schermata"
     }
   },
   "modShortBarrel": {
@@ -464,7 +464,7 @@
     },
     "_descriptor": {
       "en": "Vented {{name}}",
-      "it": "{{name}} Ventilato"
+      "it": "{{name}} Ventilata"
     }
   },
   "modWeaponHardened": {
@@ -495,8 +495,8 @@
     "en": "Armor Piercing Automatic Receiver",
     "it": "Castello Automatico Penetrante",
     "_description": {
-      "en": "-1 damage DC, +2 Fire Rate, gains Piercing 1, gains Inaccurate",
-      "it": "-1 danno DC, +2 Cadenza di Fuoco, ottiene Penetrante 1, ottiene Impreciso"
+      "en": "-1 damage DC, +2 Fire Rate, gains Piercing 1, gains Burst, gains Inaccurate",
+      "it": "-1 danno DC, +2 Cadenza di Fuoco, ottiene Penetrante 1, ottiene Raffica, ottiene Impreciso"
     },
     "_descriptor": {
       "en": "AP Auto {{name}}",
@@ -507,8 +507,8 @@
     "en": "Hardened Automatic Receiver",
     "it": "Castello Automatico Temprato",
     "_description": {
-      "en": "+2 Fire Rate, gains Inaccurate",
-      "it": "+2 Cadenza di Fuoco, ottiene Impreciso"
+      "en": "+2 Fire Rate, gains Burst, gains Inaccurate",
+      "it": "+2 Cadenza di Fuoco, ottiene Raffica, ottiene Impreciso"
     },
     "_descriptor": {
       "en": "Hardened Auto {{name}}",
@@ -519,8 +519,8 @@
     "en": "Rapid Automatic Receiver",
     "it": "Castello Automatico Rapido",
     "_description": {
-      "en": "-1 damage DC, +3 Fire Rate, gains Inaccurate",
-      "it": "-1 danno DC, +3 Cadenza di Fuoco, ottiene Impreciso"
+      "en": "-1 damage DC, +3 Fire Rate, gains Burst, gains Inaccurate",
+      "it": "-1 danno DC, +3 Cadenza di Fuoco, ottiene Raffica, ottiene Impreciso"
     },
     "_descriptor": {
       "en": "Rapid {{name}}",
@@ -543,8 +543,8 @@
     "en": "Powerful Automatic Receiver",
     "it": "Castello Automatico Potente",
     "_description": {
-      "en": "+1 damage DC, +2 Fire Rate, gains Inaccurate",
-      "it": "+1 danno DC, +2 Cadenza di Fuoco, ottiene Impreciso"
+      "en": "+1 damage DC, +2 Fire Rate, gains Burst, gains Inaccurate",
+      "it": "+1 danno DC, +2 Cadenza di Fuoco, ottiene Raffica, ottiene Impreciso"
     },
     "_descriptor": {
       "en": "Powerful Auto {{name}}",
@@ -555,8 +555,8 @@
     "en": "Hardened Piercing Auto Receiver",
     "it": "Castello Automatico Temprato Penetrante",
     "_description": {
-      "en": "+2 Fire Rate, gains Piercing 1, gains Inaccurate",
-      "it": "+2 Cadenza di Fuoco, ottiene Penetrante 1, ottiene Impreciso"
+      "en": "+2 Fire Rate, gains Piercing 1, gains Burst, gains Inaccurate",
+      "it": "+2 Cadenza di Fuoco, ottiene Penetrante 1, ottiene Raffica, ottiene Impreciso"
     },
     "_descriptor": {
       "en": "Hardened AP Auto {{name}}",

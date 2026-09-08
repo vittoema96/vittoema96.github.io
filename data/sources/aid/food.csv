@@ -1,4 +1,8 @@
 ID,TYPE,CATEGORY,DURATION,HP_GAIN,RADIOACTIVE,ADDICTIVE,WEIGHT,COST,RARITY
+foodHermitCrabMeat,aid,food,durationInstant,8,1,,0.5,22,3
+foodGrilledHermitCrab,aid,food,durationInstant,10,1,,0.5,130,4
+foodMegaSlothMeat,aid,food,durationInstant,7,1,,0.5,80,3
+foodMegaSlothMushroom,aid,food,durationInstant,4,1,,0,40,2
 foodRoastedMirelurkMeat,aid,food,durationInstant,8,0,,0,40,2
 foodYaoGuaiRoast,aid,food,durationInstant,14,0,,0.5,110,4
 foodTarberry,aid,food,durationInstant,3,1,,0,5,3

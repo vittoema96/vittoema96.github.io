@@ -1,4 +1,20 @@
 {
+  "armorCaesarsOutfit": {
+    "en": "Caesar's Outfit",
+    "it": "Abito di Cesare",
+    "_description": {
+      "en": "A finely made and highly stylized commander outfit.",
+      "it": "Un abito da comandante finemente realizzato e altamente caratteristico."
+    }
+  },
+  "armorNukaGirlRocketsuit": {
+    "en": "Nuka-Girl Rocketsuit",
+    "it": "Tuta Spaziale di Nuka-Girl",
+    "_description": {
+      "en": "A padded costume modeled on the Nuka-Cola mascot.",
+      "it": "Un costume imbottito ispirato alla mascotte della Nuka-Cola."
+    }
+  },
   "armorArmyHelmet": {
     "en": "Army Helmet",
     "it": "Casco dell'Esercito",

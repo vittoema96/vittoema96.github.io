@@ -56,16 +56,17 @@ modComfortGripGatlingGun,mod,modSlotGrip,"[""qualityRemove:qualityRecoil:6""]",1
 modExtraLargeMagazine,mod,modSlotMagazine,"[""fireRateAdd:1"",""qualityAdd:qualityUnreliable""]",1,28,repair,"[""perkGunNut:4""]",2,
 modFrontSightRing,mod,modSlotSight,"[""qualityRemove:qualityInaccurate""]",1,158,repair,"[""perkGunNut:4""]",2,
 modLargeBayonet,mod,modSlotMuzzle,"[""qualityAdd:qualityMelee"",""effectAdd:effectPiercing:1""]",2.5,18,repair,"[""perkGunNut:4""]",2,
-modPortedBarrelGatlingPlasma,mod,modSlotBarrel,"[""qualityRemove:qualityInaccurate""]",3,81,science,"[""perkScience:4""]",2,
-modComfortGripGatlingPlasma,mod,modSlotGrip,"[""qualityRemove:qualityRecoil:6""]",1.5,90,science,"[""perkScience:4""]",2,
-modReflexSightGatlingPlasma,mod,modSlotSight,"[""rerollHitLocation:true""]",1,50,repair,"[""perkGunNut:2""]",2,
-modBeamSplitterGatlingPlasma,mod,modSlotNozzle,"[""effectAdd:effectSpread""]",1.5,20,science,"[""perkScience:4""]",2,
-modBeamFocuserGatlingPlasma,mod,modSlotNozzle,"[""rangeAdd:1""]",2,41,science,"[""perkScience:4""]",2,
-modTriBarrel,mod,modSlotBarrel,"[""fireRateAdd:1""]",2,91,science,"[""perkScience:1""]",2,
-modPentaBarrel,mod,modSlotBarrel,"[""damageAdd:-1"",""rangeAdd:-1"",""fireRateAdd:2""]",6,182,science,"[""perkScience:1""]",2,
-modTeslaCoilCapacitor,mod,modSlotCapacitor,"[""damageTypeSet:energy""]",4,91,science,"[""perkScience:1""]",2,
-modTeslaCoilDynamo,mod,modSlotCapacitor,"[""damageTypeSet:energy"",""fireRateAdd:1""]",6,136,science,"[""perkScience:2""]",2,
+modPortedBarrelGatlingPlasma,mod,modSlotBarrel,"[""qualityRemove:qualityInaccurate""]",3,81,repair,"[""perkScience:4""]",5,Wanderers DLC
+modComfortGripGatlingPlasma,mod,modSlotGrip,"[""qualityRemove:qualityRecoil:6""]",1.5,90,repair,"[""perkScience:4""]",3,Wanderers DLC
+modReflexSightGatlingPlasma,mod,modSlotSight,"[""rerollHitLocation:true""]",1,50,repair,"[""perkGunNut:2""]",4,Wanderers DLC
+modBeamSplitterGatlingPlasma,mod,modSlotNozzle,"[""effectAdd:effectSpread""]",1.5,20,repair,"[""perkScience:4""]",5,Wanderers DLC
+modBeamFocuserGatlingPlasma,mod,modSlotNozzle,"[""rangeAdd:1""]",2,41,repair,"[""perkScience:4""]",4,Wanderers DLC
+modTriBarrel,mod,modSlotBarrel,"[""fireRateAdd:1""]",2,91,science,"[""perkScience:1""]",5,Wanderers DLC
+modPentaBarrel,mod,modSlotBarrel,"[""damageAdd:-1"",""rangeAdd:-1"",""fireRateAdd:2""]",6,182,science,"[""perkScience:1""]",5,Wanderers DLC
+modTeslaCoilCapacitor,mod,modSlotCapacitor,"[""damageTypeSet:energy""]",4,91,science,"[""perkScience:1""]",6,Wanderers DLC
+modTeslaCoilDynamo,mod,modSlotCapacitor,"[""damageTypeSet:energy"",""fireRateAdd:1""]",6,136,science,"[""perkScience:2""]",6,Wanderers DLC
 modCalibratedCapacitor,mod,modSlotCapacitor,"[""effectAdd:effectVicious""]",1.5,140,science,"[""perkScience:4""]",2,
 modPulseCapacitor,mod,modSlotCapacitor,"[""qualityAdd:qualitySurge""]",1.5,70,science,"[""perkScience:3""]",2,
 modHighSpeedElectrode,mod,modSlotCapacitor,"[""fireRateAdd:1""]",1.5,105,science,"[""perkScience:3""]",2,
+modGunnerSightGaussMinigun,mod,modSlotSight,"[""rerollHitLocation:true""]",0.5,5,repair,[],4,Wanderers DLC
 modLongBarrelPlasmaCaster,mod,modSlotBarrel,"[""rangeAdd:1""]",2.5,128,science,"[""perkScience:4""]",2,

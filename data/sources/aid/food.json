@@ -1,4 +1,36 @@
 {
+  "foodHermitCrabMeat": {
+    "en": "Hermit Crab Meat",
+    "it": "Carne di Granchio Eremita",
+    "_description": {
+      "en": "Meat harvested from a hermit crab.",
+      "it": "Carne ottenuta da un granchio eremita."
+    }
+  },
+  "foodGrilledHermitCrab": {
+    "en": "Grilled Hermit Crab",
+    "it": "Granchio Eremita Grigliato",
+    "_description": {
+      "en": "A grilled hermit crab steak.",
+      "it": "Una bistecca di granchio eremita grigliata."
+    }
+  },
+  "foodMegaSlothMeat": {
+    "en": "Mega Sloth Meat",
+    "it": "Carne di Mega Bradipo",
+    "_description": {
+      "en": "Meat harvested from a mega sloth.",
+      "it": "Carne ottenuta da un mega bradipo."
+    }
+  },
+  "foodMegaSlothMushroom": {
+    "en": "Mega Sloth Mushroom",
+    "it": "Fungo di Mega Bradipo",
+    "_description": {
+      "en": "A mushroom harvested from a mega sloth.",
+      "it": "Un fungo ottenuto da un mega bradipo."
+    }
+  },
   "foodTarberry": {
     "en": "Tarberry",
     "it": "Bacca",

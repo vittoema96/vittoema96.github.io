@@ -39,3 +39,5 @@ armorCleanroom,apparel,outfit,0,0,6,"[""head"", ""arms"", ""legs"", ""torso""]",
 armorHuntersPelt,apparel,outfit,2,2,0,"[""torso"", ""arms"", ""legs""]",7.5,50,2,[],[]
 armorHuntersHood,apparel,headgear,1,1,0,"[""head""]",1,15,2,[],[]
 armorSpacesuitCostume,apparel,outfit,1,4,2,"[""arms"", ""legs"", ""torso""]",4,100,4,[],[]
+armorCaesarsOutfit,apparel,outfit,2,2,0,"[""torso"", ""arms"", ""legs""]",1.5,350,5,[],[]
+armorNukaGirlRocketsuit,apparel,outfit,1,4,4,"[""head"", ""arms"", ""legs"", ""torso""]",4,165,4,[],[]
