@@ -22,6 +22,7 @@ import { FeatRollAction, getRollActions, getWeaponEffects } from '@/features/cha
 export interface D6PopupProps extends GenericPopupProps {
     usingItem: CharacterItem;
     hasAimed?: boolean;
+    hasSneakAttack?: boolean;
     roller?: RollerType;
     hitTorso?: boolean;
 }
@@ -30,6 +31,7 @@ function D6Popup({
     onClose,
     usingItem,
     hasAimed = false,
+    hasSneakAttack = false,
     roller = undefined,
     hitTorso = false,
 }: Readonly<D6PopupProps>) {
@@ -41,7 +43,7 @@ function D6Popup({
 
     // Get weapon data with mods applied
     // TODO result is forced to not be null, decide how to handle it better
-    const weaponStats = useWeaponStats(usingItem)!;
+    const weaponStats = useWeaponStats(usingItem, hasSneakAttack)!;
 
     const {
         itemData,
@@ -57,6 +59,7 @@ function D6Popup({
 
     // Checks on EFFECTS and QUALITIES
     const weaponEffects = getWeaponEffects(character, itemData, hasAimed)
+    const hasWeaponVicious = weaponEffects.some(e => e.effect === 'effectVicious');
     const hasBurst = weaponEffects.some(e => e.effect === 'effectBurst');
     const isGatling = itemData.QUALITIES.includes('qualityGatling');
     const isAccurate = itemData.QUALITIES.includes('qualityAccurate');
@@ -207,11 +210,13 @@ function D6Popup({
         const baseDamage = effects + damage1 + damage2 * 2;
         let result = baseDamage;
         let extra = '';
-        const hasVicious = weaponEffects.some(e => e.effect === 'effectVicious');
+        const hasVicious = hasWeaponVicious || hasSneakAttack;
+        const sneakAttackBonus = hasSneakAttack && hasWeaponVicious ? 2 : 0;
+        const sneakAttackSuffix = sneakAttackBonus > 0 ? `+${sneakAttackBonus}` : '';
         const hasRadioactive = weaponEffects.some(e => e.effect === 'effectRadioactive');
         if (hasVicious) {
-            result += effects;
-            extra += ` (${baseDamage}+${effects})`;
+            result += effects + sneakAttackBonus;
+            extra += ` (${baseDamage}+${effects}${sneakAttackSuffix})`;
         }
         if (hasRadioactive) {
             extra += ` +${effects}rads`; // TODO ugly UI, improve (ie with FatMan)
@@ -495,7 +500,7 @@ function D6Popup({
                     </div>
 
                     {/* Effects and Qualities Tags */}
-                    {(weaponEffects.length > 0 || itemData.QUALITIES.length > 0 || legendaryMods.length > 0) && (
+                    {(weaponEffects.length > 0 || itemData.QUALITIES.length > 0 || legendaryMods.length > 0 || hasSneakAttack) && (
                         <div
                             className="row l-centered"
                             style={{ flexWrap: 'wrap', gap: '0.25rem' }}
@@ -521,6 +526,16 @@ function D6Popup({
                                     </Tag>
                                 )
                             })}
+
+                            {hasSneakAttack && !hasWeaponVicious && (
+                                <Tag
+                                    key="sneakAttackVicious"
+                                    tooltipId="effectViciousDescription"
+                                    color={'var(--warning-color)'}
+                                >
+                                    {t('effectVicious')}
+                                </Tag>
+                            )}
 
                             {itemData.QUALITIES.map(effect => {
                                 const [qualityType, qualityOpt] = effect.split(':');

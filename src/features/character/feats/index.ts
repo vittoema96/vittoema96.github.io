@@ -68,7 +68,7 @@ interface FeatImplementation {
 
     getSpecialtyPointBonus?: (perks: PerkId[], traits: TraitId[]) => number;
 
-    getDamageRatingBonus?: (character: Character, itemData: WeaponItem) => number;
+    getDamageRatingBonus?: (character: Character, itemData: CharacterItem, isSneakAttack?: boolean) => number;
 
     getFireRateBonus?: (character: Character, itemData: WeaponItem) => number;
 
@@ -132,9 +132,9 @@ export function getSpecialtyPointBonus(perks: PerkId[], traits: TraitId[]): numb
     );
 }
 
-export function getDamageRatingBonus(character: Character, itemData: WeaponItem): number {
+export function getDamageRatingBonus(character: Character, itemData: CharacterItem, isSneakAttack?: boolean): number {
     return getActiveFeats(character).reduce(
-        (acc, feat) => acc + (feat.getDamageRatingBonus?.(character, itemData) ?? 0),
+        (acc, feat) => acc + (feat.getDamageRatingBonus?.(character, itemData, isSneakAttack) ?? 0),
         0
     );
 }

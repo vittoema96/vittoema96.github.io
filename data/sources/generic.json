@@ -1367,6 +1367,10 @@
     "en": "Sneak",
     "it": "Furtività"
   },
+  "sneakAttack": {
+    "en": "Sneak Attack",
+    "it": "Attacco Furtivo"
+  },
   "soldForCaps": {
     "en": "Sold for {{caps}} caps!",
     "it": "Venduto per {{caps}} tappi!"

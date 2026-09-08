@@ -109,7 +109,7 @@ function InventoryRow({
         if(itemData.ID){
             if (isType(itemData, 'weapon')) {
                 const meleeDamageBonus = isCloseCombat(itemData.CATEGORY) ? character.meleeDamage : 0;
-                const damageRatingBonus = getDamageRatingBonus(character, itemData) + meleeDamageBonus
+                const damageRatingBonus = getDamageRatingBonus(character, characterItem as CharacterItem) + meleeDamageBonus
                 const totalDamage = itemData.DAMAGE_RATING + damageRatingBonus
                 return `${t(itemData.CATEGORY)} • ${totalDamage} ${itemData.DAMAGE_TYPES.map(dt => t(dt)).join(', ')}`;
             }

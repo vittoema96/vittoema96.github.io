@@ -51,7 +51,7 @@ export const hasEnoughAmmo = (weapon: WeaponItem, character: Character) => {
 }
 
 // TODO might want to provide dataItem and not CharacterItem
-export function useWeaponStats(characterItem: CharacterItem) {
+export function useWeaponStats(characterItem: CharacterItem, isSneakAttack?: boolean) {
     const { character } = useCharacter();
 
     return useMemo(() => {
@@ -73,7 +73,7 @@ export function useWeaponStats(characterItem: CharacterItem) {
 
         // Damage
         const meleeDamageBonus = isCloseCombat(itemData.CATEGORY) ? character.meleeDamage : 0;
-        const damageBonus = getDamageRatingBonus(character, itemData) + meleeDamageBonus;
+        const damageBonus = getDamageRatingBonus(character, characterItem, isSneakAttack) + meleeDamageBonus;
 
         // Fire Rate
         const fireRateBonus = getFireRateBonus(character, itemData);

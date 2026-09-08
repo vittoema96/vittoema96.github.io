@@ -122,6 +122,7 @@ function D20Popup({
     // State
     const [isUsingLuck, setIsUsingLuck] = useState(false);
     const [isAiming, setIsAiming] = useState(false);
+    const [isSneakAttacking, setIsSneakAttacking] = useState(false);
     const [hasRolled, setHasRolled] = useState(false);
 
     // "Hit Torso?" checkbox for perkCenterOfMass: starts checked, locked after rolling.
@@ -364,7 +365,13 @@ function D20Popup({
                                     equipped: false,
                                     mods: [],
                                 };
-                                showD6Popup({usingItem: damageItem, hasAimed: isAiming, roller: roller, hitTorso: hitLocation === 'torso'});
+                                showD6Popup({
+                                    usingItem: damageItem,
+                                    hasAimed: isAiming,
+                                    hasSneakAttack: isSneakAttacking,
+                                    roller,
+                                    hitTorso: hitLocation === 'torso',
+                                });
                             }}
                             /* TODO Companions SHOULD use ammo too */
                             disabled={!hasRolled}
@@ -443,21 +450,38 @@ function D20Popup({
 
             {!isMysteriousStranger &&
                 !isCompanion &&
-                isType(itemData, 'weapon') && ( // Show Aim only when rolling for a weapon
-                    <div className="row l-distributed l-lastSmall">
-                        <span>{t('aim')}?</span>
-                        <div>
-                            <input
-                                type="checkbox"
-                                className="themed-svg"
-                                data-icon="attack"
-                                checked={isAiming}
-                                disabled={hasRolled}
-                                onChange={e => toggleAiming(e.target.checked)}
-                                aria-label="Aim"
-                            />
+                isType(itemData, 'weapon') && ( // Show attack options only when rolling for a weapon
+                    <>
+                        <div className="row l-distributed l-lastSmall">
+                            <span>{t('aim')}?</span>
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    className="themed-svg"
+                                    data-icon="attack"
+                                    checked={isAiming}
+                                    disabled={hasRolled}
+                                    onChange={e => toggleAiming(e.target.checked)}
+                                    aria-label={t('aim')}
+                                />
+                            </div>
                         </div>
-                    </div>
+
+                        <div className="row l-distributed l-lastSmall">
+                            <span>{t('sneakAttack')}?</span>
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    className="themed-svg"
+                                    data-icon="attack"
+                                    checked={isSneakAttacking}
+                                    disabled={hasRolled}
+                                    onChange={e => setIsSneakAttacking(e.target.checked)}
+                                    aria-label={t('sneakAttack')}
+                                />
+                            </div>
+                        </div>
+                    </>
                 )}
 
             {/* Center of Mass: Hit Torso? checkbox – visible only for ranged weapons */}

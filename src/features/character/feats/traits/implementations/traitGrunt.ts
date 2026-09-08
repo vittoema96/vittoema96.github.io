@@ -3,14 +3,14 @@ import { TraitImplementation } from '@/features/character/feats';
 
 export const traitGrunt: TraitImplementation = {
     id: 'traitGrunt',
-    getDamageRatingBonus: (_, itemData) => {
+    getDamageRatingBonus: (_, item) => {
         // TODO check id consistencies and eventually add actual validation
         if([
             'weaponCombatRifle', 'weaponAssaultRifle',
             'weaponFragmentationGrenade', 'weaponCombatKnife',
             // TODO all these machine gun types? it says generically "machine guns"
             'weaponMachineGun', 'weaponLightMachineGun', 'weapon50caMachineGun'
-        ].includes(itemData.ID)){
+        ].includes(item.id)){
             return 1;
         }
         return 0
