@@ -18,6 +18,50 @@ Things to fix:
 - [ ] modSpikedCane == modBarbedCane?
 - [ ] modElectrified == modElectrifiedBlade?
 
+# Data Validation
+Data was imported using AI tools, actual values must be manually checked.
+### Small Guns
+- [x] Corebook
+- [x] Wanderer DLC
+- [x] Settlers DLC 
+- [ ] TODO decide what to do about Smoke Claw
+- [ ] TODO decide what to do with MrHandy's Automatic 10mm
+### Big Guns
+- [x] Corebook
+- [x] Wanderer DLC
+- [x] Settlers DLC
+- [ ] TODO decide what to do with MrHandy's Flamethrower
+### Energy Weapons
+- [x] Corebook
+- [x] Wanderer DLC
+- [x] Settlers DLC
+- [ ] TODO decide what to do with MrHandy's Laser Emitter
+- [ ] TODO decide what to do with Assaultron Head (present in 2 manuals, currently -1DC, +1FR)
+- [ ] TODO decide what to do with Tesla Rifle (present in 2 manuals)
+### Melee Weapons
+- [x] Corebook
+- [x] Wanderer DLC
+- [x] Settlers DLC (No weapons except for Automatron's)
+- [ ] TODO aluminum bat should install mods only with Blacksmith 1
+- [ ] TODO decide what to do with MrHandy's Pliers and Circular Saw
+- [ ] TODO decide what to do with Automatron's Weapons (Settlers DLC)
+- [ ] TODO decide what to do with mod and unacquirable weapons
+### Throwing Weapons
+- [x] Corebook
+- [x] Wanderer DLC (No weapons)
+- [x] Settlers DLC (No weapons)
+### Explosives
+- [x] Corebook
+- [x] Wanderer DLC
+- [x] Settlers DLC (No weapons)
+- [ ] TODO Detonator, Flash Bang and Smoke Granade should be Special DC and not 0
+- [ ] TODO Flash bang wrong effect, detonator wrong range
+- [ ] TODO check ammo type for detonator
+### Bows
+- [x] Corebook (No weapons)
+- [x] Wanderer DLC
+- [x] Settlers DLC (No weapons)
+
 ## 🔥 High Priority
 - [ ] **CryoJet** - Cryojet is a robot only weapon, should not be visible to normal users
 

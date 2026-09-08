@@ -33,6 +33,8 @@ export const APPAREL_CATEGORIES = [
     'scoutArmor',
     'marineArmor',
     'legionaryArmor',
+
+    'powerArmor' // TODO check, unsure how to handle it
 ] as const;
 export const AID_CATEGORIES = ['food', 'drinks', 'meds', 'misc'] as const;
 export const AMMO_CATEGORIES = ['ammo'] as const;

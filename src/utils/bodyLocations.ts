@@ -69,6 +69,7 @@ const getItemLayer = (itemCategory: ApparelCategory): ItemLayer => {
         case 'outfit':
         case 'robotPart':
         case 'headgear':
+        case 'powerArmor': // TODO check this
             return 'both';
         case 'armor':
         case 'raiderArmor':

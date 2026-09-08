@@ -1,4 +1,4 @@
 ID,TYPE,CATEGORY,DAMAGE_RATING,EFFECTS,DAMAGE_TYPES,FIRE_RATE,RANGE,QUALITIES,WEIGHT,COST,RARITY,AMMO_TYPE,AVAILABLE_MODS,SOURCE
-weaponThrowingKnives,weapon,throwing,3,"[""effectPiercing:1""]","[""physical""]",-,rangeC,"[""qualityThrown"", ""qualityConcealed"", ""qualitySuppressed""]",0,10,1,self,[],
-weaponJavelin,weapon,throwing,4,"[""effectPiercing:1""]","[""physical""]",-,rangeM,"[""qualityThrown"", ""qualitySuppressed""]",2,10,1,self,[],
-weaponTomahawk,weapon,throwing,4,"[""effectPiercing:1""]","[""physical""]",-,rangeC,"[""qualityThrown"", ""qualitySuppressed""]",0,15,2,self,[],
+weaponThrowingKnives,weapon,throwing,3,"[""effectPiercing:1""]","[""physical""]",-,rangeC,"[""qualityThrown"", ""qualityConcealed"", ""qualitySuppressed""]",0,10,1,self,[],Corebook
+weaponJavelin,weapon,throwing,4,"[""effectPiercing:1""]","[""physical""]",-,rangeM,"[""qualityThrown"", ""qualitySuppressed""]",2,10,1,self,[],Corebook
+weaponTomahawk,weapon,throwing,4,"[""effectPiercing:1""]","[""physical""]",-,rangeC,"[""qualityThrown"", ""qualitySuppressed""]",0,15,2,self,[],Corebook
