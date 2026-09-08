@@ -63,6 +63,9 @@ Data was imported using AI tools, actual values must be manually checked.
 - [x] Wanderer DLC
 - [x] Settlers DLC (No weapons)
 
+## Mods
+Corebook mods were checked for smallGuns, energyWeapons and meleeWeapons
+
 ## 🔥 High Priority
 - [ ] **CryoJet** - Cryojet is a robot only weapon, should not be visible to normal users
 
