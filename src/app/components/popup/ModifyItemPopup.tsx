@@ -8,7 +8,7 @@ import ModTooltipContent from './ModTooltipContent';
 import Skill from '@/app/tabs/stat/components/Skill.tsx';
 import { isCharacterSkill, SkillType } from '@/features/character/skills/skills.ts';
 import { getModifiedItemData, isType, isUnacquirable } from '@/features/item/utils.ts';
-import { allItems, legendaryEffects } from '@/data';
+import { allItems, legendaryEffects, mod } from '@/data';
 import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 
 /**
@@ -52,25 +52,51 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
         itemData.AVAILABLE_MODS.forEach((modId) => {
             const modData = allItems[modId]
             if (isType(modData, "mod")) {
-                const slot = result[modData.SLOT_TYPE] ??= {
-                    availableMods: [],
-                    appliedMod: undefined,
-                    selectedMod: undefined,
-                    buy: false
-                }
                 const data: SlotOption = {
                     id: modData.ID,
                     effects: modData.EFFECTS,
                     cost: Number(modData.COST) || 0,
                     rarity: modData.RARITY,
                     skill: modData.SKILL,
-                    perks: modData.PERKS,
+                    perks: modData.PERKS ?? [],
                 }
-                slot.availableMods.push(data)
-                if(characterItem.mods.includes(data.id)) {
-                    slot.appliedMod = data
-                    slot.selectedMod = data
+
+                if (modData.SLOT_TYPE === 'modSlotRobotModule') {
+                    for (let index = 0; index < 3; index++) {
+                        const slot = result[`modSlotRobotModule#${index}`] ??= {
+                            availableMods: [],
+                            appliedMod: undefined,
+                            selectedMod: undefined,
+                            buy: false
+                        }
+                        slot.availableMods.push(data)
+                    }
+                } else {
+                    const slot = result[modData.SLOT_TYPE] ??= {
+                        availableMods: [],
+                        appliedMod: undefined,
+                        selectedMod: undefined,
+                        buy: false
+                    }
+                    slot.availableMods.push(data)
+                    if(characterItem.mods.includes(data.id)) {
+                        slot.appliedMod = data
+                        slot.selectedMod = data
+                    }
                 }
+            }
+        })
+
+        const appliedRobotModules = characterItem.mods.filter((modId) => {
+            const modData = allItems[modId]
+            return isType(modData, 'mod') && modData.SLOT_TYPE === 'modSlotRobotModule'
+        })
+        appliedRobotModules.slice(0, 3).forEach((modId, index) => {
+            const slot = result[`modSlotRobotModule#${index}`]
+            const appliedMod = slot?.availableMods.find((mod) => mod.id === modId)
+            if (slot && appliedMod) {
+                slot.appliedMod = appliedMod
+                slot.selectedMod = appliedMod
             }
         })
 
@@ -139,26 +165,41 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
 
         // If editing robot plating, edit all OTHER parts (not this one)
         // TODO could improve this instead of resorting to updateCharacter
-        if(itemData.CATEGORY === 'robotPart'){
-            const data = slotsData['modSlotRobotPlating']
-            if(data?.selectedMod?.id !== data?.appliedMod?.id){
-                const newItems = rawCharacter.items.map(item => {
-                    if(character.origin.bodyParts.has(item.id as any)){
-                        return {
-                            ...item,
-                            mods: [
-                                ...item.mods.filter(m => m !== data?.appliedMod?.id),
-                                ...(data?.selectedMod?.id ? [data.selectedMod.id] : [])
-                            ]
-                        }
-                    }
+
+        const platingData = slotsData['modSlotRobotPlating']
+        const platingChanged = platingData?.selectedMod?.id !== platingData?.appliedMod?.id
+        if(itemData.CATEGORY === 'robotPart' && platingChanged){
+            const selectedPlating = platingData?.selectedMod?.id
+            const newItems = rawCharacter.items.map(item => {
+                if(!character.origin.bodyParts.has(item.id as any)){
                     return item
+                }
+
+                const isEditedPart = item.id === characterItem.id
+                if(isEditedPart) {
+                    return {
+                        ...item,
+                        mods: newMods
+                    }
+                }
+
+                const preservedMods = item.mods.filter(modId => {
+                    const modData = mod[modId]
+                    return !(
+                        isType(modData, "mod") &&
+                            modData.SLOT_TYPE === 'modSlotRobotPlating'
+                    )
                 })
-                updateCharacter({
-                    items: newItems,
-                    caps: character.caps - totalCost
-                })
-            }
+
+                return {
+                    ...item,
+                    mods: selectedPlating ? [...preservedMods, selectedPlating] : preservedMods
+                }
+            })
+            updateCharacter({
+                items: newItems,
+                caps: character.caps - totalCost
+            })
         } else {
             editItem(
                 { ...characterItem, quantity: 1},
@@ -339,12 +380,29 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                     const needsToBuy = data.selectedMod !== undefined
                         && data.buy !== undefined
                         && !characterItem.mods.includes(data.selectedMod.id)
+                    const robotModuleIndex = slot.match(/^modSlotRobotModule#(\d+)$/)?.[1]
+                    const slotLabel = robotModuleIndex !== undefined
+                        ? t('modSlotRobotModule', { number: Number(robotModuleIndex) + 1 })
+                        : t(slot)
+                    const selectedByOtherRobotModule = new Set(
+                        Object.entries(slotsData)
+                            .filter(([otherSlot]) => (
+                                otherSlot.startsWith('modSlotRobotModule#')
+                                && otherSlot !== slot
+                            ))
+                            .map(([, otherData]) => otherData.selectedMod?.id)
+                            .filter((id): id is string => Boolean(id)),
+                    )
+                    const availableMods = data.availableMods.filter((mod) => (
+                        mod.id === data.selectedMod?.id
+                        || !selectedByOtherRobotModule.has(mod.id)
+                    ))
 
                     return <div key={slot}>
                         {/* Header: slot label + info button */}
                         <div className="row l-spaceBetween" style={{padding: "0 var(--space-s)"}}>
                             <label style={{fontSize: "0.8rem", textAlign: "start", padding: "var(--space-xs) 0" }}>
-                                {t(slot)}
+                                {slotLabel}
                             </label>
                             <div className="row" style={{ width: "auto" }}>
                                 {data.selectedMod && (
@@ -382,6 +440,12 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                             className="mod-slot-select"
                             value={data.selectedMod?.id ?? ''}
                             onChange={(e) => {
+                                if (
+                                    slot.startsWith('modSlotRobotModule#')
+                                    && selectedByOtherRobotModule.has(e.target.value)
+                                ) {
+                                    return
+                                }
                                 const newMod = allItems[e.target.value]
                                     ?? legendaryEffects[e.target.value]
                                     ?? undefined
@@ -413,7 +477,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                             }}
                         >
                             {slot !== "modSlotRobotPlating" && <option value="">{t('none')}</option>}
-                            {slotsData[slot]!.availableMods.map((mod) => (
+                            {availableMods.map((mod) => (
                                 <option key={mod.id} value={mod.id}>{t(mod.id)}</option>
                             ))}
                         </select>

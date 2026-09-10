@@ -418,5 +418,161 @@
       "en": "Voltaic Frame {{name}}",
       "it": "{{name}} Telaio Voltaico"
     }
+  },
+  "modRobotRadioactiveCoils": {
+    "en": "Radioactive Coils",
+    "it": "Bobine Radioattive",
+    "_description": {
+      "en": "Can be switched on or off at the start of the turn. While on, all creatures in range suffer 3 DC Radiation damage at the end of the robot's turn.",
+      "it": "Si possono accendere o spegnere all’inizio del turno. Mentre sono accese, tutte le creature a portata soffrono 3 DC danni da Radiazioni alla fine del turno del robot."
+    },
+    "_descriptor": {
+      "en": "Radioactive Coils {{name}}",
+      "it": "{{name}} con Bobine Radioattive"
+    }
+  },
+  "modRobotTeslaCoils": {
+    "en": "Tesla Coils",
+    "it": "Bobine Tesla",
+    "_description": {
+      "en": "Can be switched on or off at the start of the turn. While on, all creatures in range suffer 4 DC Energy damage with Piercing 1 and Stun at the end of the robot's turn.",
+      "it": "Si possono accendere o spegnere all’inizio del turno. Mentre sono accese, alla fine del turno del robot, tutte le creature a portata soffrono 4 DC danni da Energia con Penetrante 1 e Stordente."
+    },
+    "_descriptor": {
+      "en": "Tesla Coils {{name}}",
+      "it": "{{name}} con Bobine Tesla"
+    }
+  },
+  "modRobotIntegratedBoiler": {
+    "en": "Integrated Boiler",
+    "it": "Bollitore Integrato",
+    "_description": {
+      "en": "Once per scene, outside combat, converts 2 units of dirty water into 1 unit of purified water in ten minutes.",
+      "it": "Una volta per scena, fuori dal combattimento, tramuta 2 unità di acqua sporca in 1 unità di acqua purificata in dieci minuti."
+    },
+    "_descriptor": {
+      "en": "Integrated Boiler {{name}}",
+      "it": "{{name}} con Bollitore Integrato"
+    }
+  },
+  "modRobotResistanceField": {
+    "en": "Resistance Field",
+    "it": "Campo di Resistenza",
+    "_description": {
+      "en": "Allies at Close range increase their Physical Damage Resistance by 2.",
+      "it": "Gli alleati a distanza Ravvicinata aumentano la Resistenza ai Danni Fisici di +2."
+    },
+    "_descriptor": {
+      "en": "Resistance Field {{name}}",
+      "it": "{{name}} con Campo di Resistenza"
+    }
+  },
+  "modRobotRegenerationField": {
+    "en": "Regeneration Field",
+    "it": "Campo di Rigenerazione",
+    "_description": {
+      "en": "Outside combat, allies gain 2 Health Points at the start of each scene in which the robot is present.",
+      "it": "Al di fuori del combattimento, gli alleati ottengono 2 PS all’inizio di ogni scena in cui il robot è presente."
+    },
+    "_descriptor": {
+      "en": "Regeneration Field {{name}}",
+      "it": "{{name}} con Campo di Rigenerazione"
+    }
+  },
+  "modRobotStealthField": {
+    "en": "Stealth Field",
+    "it": "Campo Stealth",
+    "_description": {
+      "en": "Allies at Close range can reroll one d20 on Sneak checks.",
+      "it": "Gli alleati a distanza Ravvicinata possono ripetere il tiro di 1d20 nelle prove di Furtività."
+    },
+    "_descriptor": {
+      "en": "Stealth Field {{name}}",
+      "it": "{{name}} con Campo Stealth"
+    }
+  },
+  "modRobotBehavioralAnalysisModule": {
+    "en": "Behavioral Analysis Module",
+    "it": "Modulo di Analisi Comportamentale",
+    "_description": {
+      "en": "Reduces the difficulty of Speech checks by 1, to a minimum of 0.",
+      "it": "Riduce la difficoltà delle prove di Oratoria di 1, fino a un minimo di 0."
+    },
+    "_descriptor": {
+      "en": "Behavioral Analysis Module {{name}}",
+      "it": "{{name}} con Modulo di Analisi Comportamentale"
+    }
+  },
+  "modRobotDiagnosticModule": {
+    "en": "Diagnostic Module",
+    "it": "Modulo di Diagnostica",
+    "_description": {
+      "en": "Reduces the difficulty of Medicine checks by 1, to a minimum of 0.",
+      "it": "Riduce la difficoltà delle prove di Medicina di 1, fino a un minimo di 0."
+    },
+    "_descriptor": {
+      "en": "Diagnostic Module {{name}}",
+      "it": "{{name}} con Modulo di Diagnostica"
+    }
+  },
+  "modRobotHazardDetectionModule": {
+    "en": "Hazard Detection Module",
+    "it": "Modulo di Rilevamento Pericoli",
+    "_description": {
+      "en": "Reduces the difficulty of Survival checks to find and disarm traps and similar hazards by 1, to a minimum of 0.",
+      "it": "Riduce la difficoltà delle prove di Sopravvivenza per individuare e disinnescare trappole e pericoli simili di 1, fino a un minimo di 0."
+    },
+    "_descriptor": {
+      "en": "Hazard Detection Module {{name}}",
+      "it": "{{name}} con Modulo di Rilevamento Pericoli"
+    }
+  },
+  "modRobotHackingModule": {
+    "en": "Hacking Module",
+    "it": "Modulo di Hackeraggio",
+    "_description": {
+      "en": "Reduces the difficulty of Science checks to enter a computer system by 1, to a minimum of 0.",
+      "it": "Riduce la difficoltà delle prove di Scienza per entrare in un sistema informatico di 1, fino a un minimo di 0."
+    },
+    "_descriptor": {
+      "en": "Hacking Module {{name}}",
+      "it": "{{name}} con Modulo di Hackeraggio"
+    }
+  },
+  "modRobotLockpickingModule": {
+    "en": "Lockpicking Module",
+    "it": "Modulo da Scassinatore",
+    "_description": {
+      "en": "Reduces the difficulty of Lockpick checks by 1, to a minimum of 0. No lockpicks or other lockpicking tools are required.",
+      "it": "Riduce la difficoltà delle prove di Scassinare di 1, fino a un minimo di 0. Non c’è bisogno di forcine o altri attrezzi da scassinatore."
+    },
+    "_descriptor": {
+      "en": "Lockpicking Module {{name}}",
+      "it": "{{name}} con Modulo da Scassinatore"
+    }
+  },
+  "modRobotSensors": {
+    "en": "Sensors",
+    "it": "Sensori",
+    "_description": {
+      "en": "Can reroll one d20 on all PER checks. The robot can attempt a PER check to detect things that are normally invisible to the naked eye, such as radiation.",
+      "it": "Permettono di ripetere il tiro di 1d20 su tutte le prove di PER. Si può tentare una prova di PER per individuare cose che normalmente non sono visibili a occhio nudo, come le radiazioni."
+    },
+    "_descriptor": {
+      "en": "Sensors {{name}}",
+      "it": "{{name}} con Sensori"
+    }
+  },
+  "modRobotReconnaissanceSensors": {
+    "en": "Reconnaissance Sensors",
+    "it": "Sensori di Ricognizione",
+    "_description": {
+      "en": "Reduces the difficulty of checks to detect hidden opponents by 1, to a minimum of 0. Visible enemies attempting to hide increase the difficulty of their Sneak checks by 1.",
+      "it": "Riducono la difficoltà delle prove per individuare avversari nascosti di 1, fino a un minimo di 0. I nemici visibili che provano a nascondersi aumentano di +1 la difficoltà delle loro prove di Furtività."
+    },
+    "_descriptor": {
+      "en": "Reconnaissance Sensors {{name}}",
+      "it": "{{name}} con Sensori di Ricognizione"
+    }
   }
 }
