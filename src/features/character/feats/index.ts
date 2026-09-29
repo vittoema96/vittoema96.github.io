@@ -48,6 +48,22 @@ export interface SpecialModifier {
     special: SpecialType;
     apply: (currentValue: number, baseValue: number) => number;
 }
+export interface RollComplicationContext {
+    itemData?: WeaponItem;
+    skillId?: SkillType;
+    traits?: TraitId[];
+}
+
+export interface RollComplicationModifier {
+    thresholdDelta?: number;
+    additionalThresholds?: number[];
+}
+
+export interface SpecialtySkillBonus {
+    bonus: number;
+    skills: SkillType[];
+}
+
 interface RollContext {
     hitLocation?: BodyPart,
     bought?: number
@@ -66,7 +82,37 @@ interface FeatImplementation {
 
     getAvailableCompanions?: () => CompanionId[];
 
-    getSpecialtyPointBonus?: (perks: PerkId[], traits: TraitId[]) => number;
+    getSpecialtyPointsBonus?: (perks: PerkId[], traits: TraitId[]) => number;
+
+    getSpecialtySkillBonuses?: (
+        perks: PerkId[],
+        traits: TraitId[],
+    ) => SpecialtySkillBonus[];
+
+    getSkillMaxModifier?: (
+        skillId: SkillType,
+        isSpecialty: boolean,
+        perks: PerkId[],
+        traits: TraitId[],
+    ) => number;
+
+    getSkillPointsBonus?: (perks: PerkId[], traits: TraitId[]) => number;
+
+    getPerkSlotsBonus?: (perks: PerkId[], traits: TraitId[]) => number;
+
+    getBlacklistedSpecialties?: () => SkillType[];
+
+    getSpecialAllocationPointsBonus?: (perks: PerkId[], traits: TraitId[]) => number;
+
+    getMaxLuckBonus?: (perks: PerkId[], traits: TraitId[]) => number;
+
+    getMaxHpBonus?: (special: SpecialMap, perks: PerkId[], traits: TraitId[]) => number;
+
+    getMaxWeightOverride?: (special: SpecialMap, perks: PerkId[], traits: TraitId[]) => number | undefined;
+
+    getMeleeDamageBonus?: (perks: PerkId[], traits: TraitId[]) => number;
+
+    getWeaponItemEffects?: (itemData: WeaponItem, perks: PerkId[]) => string[];
 
     getDamageRatingBonus?: (character: Character, itemData: CharacterItem, isSneakAttack?: boolean) => number;
 
@@ -92,6 +138,11 @@ interface FeatImplementation {
         character: Character,
         context: SpecialModifierContext,
     ) => SpecialModifier[];
+
+    getRollComplicationModifiers?: (
+        character: Character,
+        context: RollComplicationContext,
+    ) => RollComplicationModifier;
 
     getRollToggleables?: (character: Character, itemData: WeaponItem) => Toggleables;
 
@@ -124,11 +175,142 @@ function getActiveFeats(character: {perks: PerkId[], traits: TraitId[]}): FeatIm
     return active;
 }
 
-
-export function getSpecialtyPointBonus(perks: PerkId[], traits: TraitId[]): number {
+function sumActiveFeatModifiers(
+    perks: PerkId[],
+    traits: TraitId[],
+    getModifier: (feat: FeatImplementation) => number | undefined,
+): number {
     return getActiveFeats({ perks, traits }).reduce(
-        (acc, feat) => acc + (feat.getSpecialtyPointBonus?.(perks, traits) ?? 0),
-        0
+        (total, feat) => total + (getModifier(feat) ?? 0),
+        0,
+    );
+}
+
+export function getSpecialtyPointsBonus(perks: PerkId[], traits: TraitId[]): number {
+    return sumActiveFeatModifiers(
+        perks,
+        traits,
+        feat => feat.getSpecialtyPointsBonus?.(perks, traits),
+    );
+}
+
+export function getSpecialtySkillBonuses(
+    perks: PerkId[],
+    traits: TraitId[],
+): SpecialtySkillBonus[] {
+    return getActiveFeats({ perks, traits }).flatMap(
+        feat => feat.getSpecialtySkillBonuses?.(perks, traits) ?? [],
+    );
+}
+
+export function getSkillMaxModifier(
+    skillId: SkillType,
+    isSpecialty: boolean,
+    perks: PerkId[],
+    traits: TraitId[],
+): number {
+    return getActiveFeats({ perks, traits }).reduce(
+        (total, feat) => total + (feat.getSkillMaxModifier?.(
+            skillId,
+            isSpecialty,
+            perks,
+            traits,
+        ) ?? 0),
+        0,
+    );
+}
+
+export function getSkillPointsBonus(perks: PerkId[], traits: TraitId[]): number {
+    return sumActiveFeatModifiers(
+        perks,
+        traits,
+        feat => feat.getSkillPointsBonus?.(perks, traits),
+    );
+}
+
+export function getPerkSlotsBonus(perks: PerkId[], traits: TraitId[]): number {
+    return sumActiveFeatModifiers(
+        perks,
+        traits,
+        feat => feat.getPerkSlotsBonus?.(perks, traits),
+    );
+}
+
+export function getPerkSlotCount(
+    level: number,
+    perks: PerkId[],
+    traits: TraitId[],
+): number {
+    return level + getPerkSlotsBonus(perks, traits);
+}
+
+export function getBlacklistedSpecialties(
+    perks: PerkId[],
+    traits: TraitId[],
+): SkillType[] {
+    return getActiveFeats({ perks, traits }).flatMap(
+        feat => feat.getBlacklistedSpecialties?.() ?? [],
+    );
+}
+
+export function getSpecialAllocationPointsBonus(perks: PerkId[], traits: TraitId[]): number {
+    return sumActiveFeatModifiers(
+        perks,
+        traits,
+        feat => feat.getSpecialAllocationPointsBonus?.(perks, traits),
+    );
+}
+
+export function getMaxLuckBonus(
+    perks: PerkId[],
+    traits: TraitId[],
+): number {
+    return sumActiveFeatModifiers(
+        perks,
+        traits,
+        feat => feat.getMaxLuckBonus?.(perks, traits),
+    );
+}
+
+export function getMaxHpBonus(
+    special: SpecialMap,
+    perks: PerkId[],
+    traits: TraitId[] = [],
+): number {
+    return sumActiveFeatModifiers(
+        perks,
+        traits,
+        feat => feat.getMaxHpBonus?.(special, perks, traits),
+    );
+}
+
+export function getMaxWeightOverride(
+    special: SpecialMap,
+    perks: PerkId[],
+    traits: TraitId[],
+): number | undefined {
+    return getActiveFeats({ perks, traits })
+        .map(feat => feat.getMaxWeightOverride?.(special, perks, traits))
+        .find((value): value is number => value !== undefined);
+}
+
+export function getWeaponItemEffects(
+    itemData: WeaponItem,
+    perks: PerkId[],
+): string[] {
+    return getActiveFeats({ perks, traits: [] }).flatMap(
+        feat => feat.getWeaponItemEffects?.(itemData, perks) ?? [],
+    );
+}
+
+export function getMeleeDamageBonus(
+    perks: PerkId[],
+    traits: TraitId[],
+): number {
+    return sumActiveFeatModifiers(
+        perks,
+        traits,
+        feat => feat.getMeleeDamageBonus?.(perks, traits),
     );
 }
 
@@ -239,6 +421,34 @@ export function getRollSpecial(
     }
 
     return effectiveSpecial;
+}
+
+export function getRollComplicationModifiers(
+    character: Character,
+    context: RollComplicationContext = {},
+): Required<RollComplicationModifier> {
+    const activeFeats = getActiveFeats({
+        ...character,
+        traits: context.traits ?? character.traits,
+    });
+    // TODO maybe we could merge thresholdDelta e additionalThresholds if it makes sense rule-wise
+    //  The problem arises as some perks mention increase in complication range, while other specifically
+    //  say that the complication happens at 20 AND 19 for example
+    return activeFeats.reduce<Required<RollComplicationModifier>>(
+        (acc, feat) => {
+            const modifier = feat.getRollComplicationModifiers?.(character, context);
+            if (!modifier) { return acc; }
+
+            return {
+                thresholdDelta: acc.thresholdDelta + (modifier.thresholdDelta ?? 0),
+                additionalThresholds: [
+                    ...acc.additionalThresholds,
+                    ...(modifier.additionalThresholds ?? []),
+                ],
+            };
+        },
+        { thresholdDelta: 0, additionalThresholds: [] },
+    );
 }
 
 export function getRollToggleables(

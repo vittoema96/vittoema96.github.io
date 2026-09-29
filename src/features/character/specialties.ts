@@ -1,8 +1,12 @@
 import { RawCharacter } from '@/types';
 import { Origin, ORIGINS } from '@/features/character/origin.ts';
-import { hasTrait, TraitId } from '@/features/character/feats/traits/traits.ts';
+import { TraitId } from '@/features/character/feats/traits/traits.ts';
 import { SkillType } from '@/features/character/skills/skills.ts';
-import { getSpecialtyPointBonus } from '@/features/character/feats';
+import {
+    getBlacklistedSpecialties,
+    getSpecialtySkillBonuses,
+    getSpecialtyPointsBonus,
+} from '@/features/character/feats';
 import { PerkId } from '@/features/character/feats/perks/perks.ts';
 
 
@@ -14,9 +18,7 @@ export function calculateSpecialties(raw: RawCharacter, origin: Origin, traits: 
         specialtiesSet.add('survival');
     }
 
-    if(hasTrait(traits, "traitNomad")){
-        specialtiesSet.delete('science')
-    }
+    getBlacklistedSpecialties([], traits).forEach(skill => specialtiesSet.delete(skill));
     return [...specialtiesSet];
 }
 
@@ -24,23 +26,19 @@ export function calculateSpecialtyPoints(specialties: SkillType[], origin: Origi
    let genericPointsUsed = 0;
 
     type BonusType = {
-        condition: boolean,
         bonus: number,
         skills: SkillType[]
     }
-    const allBonuses: BonusType[] = [
-        {
-            condition: hasTrait(traits, "traitGoodNatured"),
-            bonus: 2,
-            skills: ['speech', 'medicine', 'repair', 'science', 'barter']
-        },
-        {
-            condition: origin === ORIGINS.BROTHERHOOD_INITIATE,
+    const bonuses: BonusType[] = [
+        ...getSpecialtySkillBonuses(perks, traits).map(({ bonus, skills }) => ({
+            bonus,
+            skills: [...skills],
+        })),
+        ...(origin === ORIGINS.BROTHERHOOD_INITIATE ? [{
             bonus: 1,
-            skills: ['energyWeapons', 'science', 'repair']
-        },
-    ]
-    const bonuses = allBonuses.filter(b => b.condition);
+            skills: ['energyWeapons', 'science', 'repair'] as SkillType[],
+        }] : []),
+    ];
 
     specialties.forEach(skill => {
         let coveredByBonus = false;
@@ -66,7 +64,7 @@ export function calculateSpecialtyPoints(specialties: SkillType[], origin: Origi
 
     const totalGenericAllowed =
         3 +
-        getSpecialtyPointBonus(perks, traits) +
+        getSpecialtyPointsBonus(perks, traits) +
         Number(origin === ORIGINS.GHOUL); // ghouls have survival as extra specialty (and it should not count)
 
     return {

@@ -7,7 +7,8 @@ export const perkMeltdown: PerkImplementation = {
         isApplicable: (_, item) => item.CATEGORY === 'energyWeapons',
         modalId: 'meltdown',
 
-        getContent: () => '' // TODO not needed
+        // TODO define modal content through the action contract instead of returning an empty string.
+        getContent: () => ''
     }]
 };
 // TODO "modal" actions should be better standardized

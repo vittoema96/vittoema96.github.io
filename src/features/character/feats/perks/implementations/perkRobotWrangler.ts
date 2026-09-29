@@ -1,7 +1,6 @@
 import { PerkImplementation } from '@/features/character/feats';
 import { CompanionTypeDefinition } from '@/utils/companionTypes.ts';
 
-// TODO implement
 export const defaultEyebot: CompanionTypeDefinition = {
     type: 'eyebot',
     special: {

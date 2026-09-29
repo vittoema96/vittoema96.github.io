@@ -4,14 +4,12 @@ import { Origin } from '@/features/character/origin.ts';
 
 import { PerkId } from '@/features/character/feats/perks/perks.ts';
 import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import { getMaxWeightOverride } from '@/features/character/feats';
 
 
 export function calculateMaxWeight(raw: RawCharacter, origin: Origin, perks: PerkId[], traits: TraitId[]) {
-    let maxWeight = origin.calcMaxCarryWeight(raw.special.strength);
-
-    if (traits.includes('traitSmallFrame')) {
-        maxWeight = 75 + raw.special.strength * 2.5;
-    }
+    let maxWeight = getMaxWeightOverride(raw.special, perks, traits)
+        ?? origin.calcMaxCarryWeight(raw.special.strength);
 
     // Add carry weight bonuses from equipped items with mods
     raw.items.forEach(item => {

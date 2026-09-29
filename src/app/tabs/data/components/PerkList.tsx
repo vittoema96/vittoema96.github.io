@@ -6,8 +6,8 @@ import TraitPerkItem from './TraitPerkItem.tsx';
 import TraitPerkSelector from './TraitPerkSelector.tsx';
 import { PerkSelectionPopup } from './FeatSelectionPopup.tsx';
 
-import { hasTrait } from '@/features/character/feats/traits/traits.ts';
 import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import { getPerkSlotCount } from '@/features/character/feats';
 import { MYSTERIOUS_44_MAGNUM } from '@/features/character/feats/perks/implementations/_perkMysteriousStranger.ts';
 
 /**
@@ -26,7 +26,7 @@ function PerkList() {
     const { t } = useTranslation()
     const { showD20Popup, showAlert } = usePopup()
     const { character, updateCharacter } = useCharacter()
-    const numberOfPerks = character.level + (hasTrait(character.traits, "traitExtraPerk") ? 1 : 0)
+    const numberOfPerks = getPerkSlotCount(character.level, character.perks, character.traits);
 
     // Initialize perks from rawCharacter or create empty slots
     const [selectedPerks, setSelectedPerks] = useState<(PerkId | undefined)[]>([]);

@@ -1,7 +1,8 @@
 // SPECIAL
 import { Origin, ORIGINS } from '@/features/character/origin.ts';
-import { hasTrait, TraitId } from '@/features/character/feats/traits/traits.ts';
-import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
+import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import { getSpecialAllocationPointsBonus } from '@/features/character/feats';
 
 export const SPECIAL = [
     'strength',
@@ -30,7 +31,5 @@ export function calculateSpecialPoints(special: SpecialMap, origin: Origin, perk
         0,
     );
     const usedPoints = specialSum - baseSpecialSum;
-    const giftedBonus = hasTrait(traits,'traitGifted') ? 2 : 0;
-    const intenseTrainingBonus = perkRank(perks, 'perkIntenseTraining');
-    return 12 + giftedBonus + intenseTrainingBonus - usedPoints;
+    return 12 + getSpecialAllocationPointsBonus(perks, traits) - usedPoints;
 }

@@ -1,7 +1,8 @@
 import { AidItem, AmmoItem, CharacterItem, CustomItem, DamageType, Item, LegendaryEffect, ModItem } from '@/types';
 import { Range, WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
-import { hasPerk, PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
+import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import { getWeaponItemEffects } from '@/features/character/feats';
 import { allItems, apparel, legendaryEffects, weapon } from '@/data';
 import type { TFunction } from 'i18next';
 import { ItemCategory, ItemType, WeaponCategory } from '@/types/item.ts';
@@ -160,7 +161,13 @@ export function isType<T extends ItemType>(item: Item | null | undefined, type: 
  * @param {Object} modifiedData - Item data being modified
  * @param {string} effect - Effect string (e.g., "damageAdd:1", "qualityAdd:qualityMelee")
  */
-export function applyEffect(modifiedData: WeaponItem | ApparelItem, effect: string): typeof modifiedData {
+export function applyEffect(modifiedData: WeaponItem, effect: string): WeaponItem;
+export function applyEffect(modifiedData: ApparelItem, effect: string): ApparelItem;
+export function applyEffect(modifiedData: WeaponItem | ApparelItem, effect: string): WeaponItem | ApparelItem
+export function applyEffect(
+    modifiedData: WeaponItem | ApparelItem,
+    effect: string,
+): WeaponItem | ApparelItem {
     const [effectType, ...valueParts] = effect.split(':')
     const value = valueParts.join(':') // Rejoin in case value contains ':'
     if(!effectType) {return modifiedData}
@@ -170,45 +177,39 @@ export function applyEffect(modifiedData: WeaponItem | ApparelItem, effect: stri
     } else if(isType(modifiedData, "apparel")){
         modifiedData = applyApparelEffect(modifiedData, effectType, value)
     }
-    if(isType(modifiedData, "apparel") || isType(modifiedData, "weapon")){
-        // TODO adding and removing effects should be handled in a proper order, not how it comes
-        //      there could be conflicts with mods adding and others removing effects
-        switch (effectType) {
-            // Quality/Effect additions
-            case 'effectAdd': {
-                // Check if the effect carries a numeric rating (e.g. effectPiercing:2)
-                const colonIdx = value.lastIndexOf(':')
-                const numericPart =
-                    colonIdx === -1 ? Number.NaN : Number(value.slice(colonIdx + 1));
-                if (!Number.isNaN(numericPart) && colonIdx !== -1) {
-                    // Numeric effect: stack with any existing effect that shares the same prefix
-                    const effectPrefix = value.slice(0, colonIdx + 1) // e.g. "effectPiercing:"
-                    const existingIdx = modifiedData.EFFECTS.findIndex(e => e.startsWith(effectPrefix))
-                    if (existingIdx === -1) {
-                        modifiedData.EFFECTS = [...modifiedData.EFFECTS, value];
-                    } else {
-                        const existingNum =
-                            Number(modifiedData.EFFECTS[existingIdx]!.slice(effectPrefix.length)) ||
-                            0;
-                        const newEffects = [...modifiedData.EFFECTS];
-                        newEffects[existingIdx] =
-                            `${value.slice(0, colonIdx)}:${existingNum + numericPart}`;
-                        modifiedData.EFFECTS = newEffects;
-                    }
+    // TODO adding and removing effects should be handled in a proper order, not how it comes
+    //      there could be conflicts with mods adding and others removing effects
+    switch (effectType) {
+        // Quality/Effect additions
+        case 'effectAdd': {
+            // Check if the effect carries a numeric rating (e.g. effectPiercing:2)
+            const colonIdx = value.lastIndexOf(':')
+            const numericPart =
+                colonIdx === -1 ? Number.NaN : Number(value.slice(colonIdx + 1));
+            if (!Number.isNaN(numericPart) && colonIdx !== -1) {
+                // Numeric effect: stack with any existing effect that shares the same prefix
+                const effectPrefix = value.slice(0, colonIdx + 1) // e.g. "effectPiercing:"
+                const existingIdx = modifiedData.EFFECTS.findIndex(e => e.startsWith(effectPrefix))
+                if (existingIdx === -1) {
+                    modifiedData.EFFECTS = [...modifiedData.EFFECTS, value];
                 } else {
-                    // Non-numeric effect: add if not already present
-                    if (!modifiedData.EFFECTS.includes(value)) {
-                        modifiedData.EFFECTS = [...modifiedData.EFFECTS, value]
-                    }
+                    const existingNum =
+                        Number(modifiedData.EFFECTS[existingIdx]!.slice(effectPrefix.length)) ||
+                        0;
+                    const newEffects = [...modifiedData.EFFECTS];
+                    newEffects[existingIdx] =
+                        `${value.slice(0, colonIdx)}:${existingNum + numericPart}`;
+                    modifiedData.EFFECTS = newEffects;
                 }
-                break
+                // Non-numeric effect: add if not already present
+            } else if (!modifiedData.EFFECTS.includes(value)) {
+                modifiedData.EFFECTS = [...modifiedData.EFFECTS, value]
             }
-            case 'effectRemove':
-                if (modifiedData.EFFECTS) {
-                    modifiedData.EFFECTS = modifiedData.EFFECTS.filter(e => e !== value && !e.startsWith(value + ':'))
-                }
-                break
+            break
         }
+        case 'effectRemove':
+            modifiedData.EFFECTS = modifiedData.EFFECTS.filter(e => e !== value && !e.startsWith(value + ':'))
+            break
     }
     return modifiedData
 }
@@ -367,27 +368,19 @@ const applyMods = (itemData: WeaponItem | ApparelItem, modsData: (ModItem | Lege
     }
     return itemData;
 }
-const applyPerks = (
+function applyFeatEffects(itemData: WeaponItem, perks: PerkId[]): WeaponItem;
+function applyFeatEffects(itemData: ApparelItem, perks: PerkId[]): ApparelItem;
+function applyFeatEffects(itemData: WeaponItem | ApparelItem, perks: PerkId[]):  WeaponItem | ApparelItem
+function applyFeatEffects(
     itemData: WeaponItem | ApparelItem,
-    perks: PerkId[] = []
-): typeof itemData => {
-    if (!isType(itemData, 'weapon')) {
-        return itemData
+    perks: PerkId[],
+):  WeaponItem | ApparelItem {
+    if (isType(itemData, 'weapon')) {
+        return getWeaponItemEffects(itemData, perks).reduce(
+            (modifiedData, effect) => applyEffect(modifiedData, effect),
+            itemData,
+        );
     }
-
-    const incisorRank = perkRank(perks, 'perkIncisor')
-    if (itemData.CATEGORY === 'meleeWeapons' && incisorRank > 0) {
-        itemData = applyEffect(itemData, `effectAdd:effectPiercing:${Math.min(incisorRank, 2)}`)
-    }
-
-    const hasPiercingStrike = hasPerk(perks, 'perkPiercingStrike')
-    const canUsePiercingStrike =
-        itemData.CATEGORY === 'unarmed' ||
-        (itemData.CATEGORY === 'meleeWeapons' && itemData.IS_BLADED === true)
-    if (hasPiercingStrike && canUsePiercingStrike) {
-        itemData = applyEffect(itemData, 'effectAdd:effectPiercing:1')
-    }
-
     return itemData
 }
 
@@ -409,7 +402,7 @@ export function getModifiedItemData(
     }
 
     if (characterItem.mods.length === 0) {
-        return applyPerks(baseItemData, perks)
+        return applyFeatEffects(baseItemData, perks)
     }
 
     const modsData = [
@@ -443,7 +436,7 @@ export function getModifiedItemData(
         Number(itemData.WEIGHT) || 0
     )
 
-    return applyPerks(applyMods({
+    return applyFeatEffects(applyMods({
         ...baseItemData,
         COST,
         WEIGHT

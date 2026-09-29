@@ -14,6 +14,12 @@ export const traitGrunt: TraitImplementation = {
             return 1;
         }
         return 0
+    },
+    getRollComplicationModifiers: (_, context) => {
+        if (['energyWeapons', 'bigGuns'].includes(context.itemData?.CATEGORY ?? '')) {
+            return { thresholdDelta: -2 };
+        }
+        return {};
     }
 }
 

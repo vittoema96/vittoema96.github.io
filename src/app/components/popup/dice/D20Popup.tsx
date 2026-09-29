@@ -28,7 +28,12 @@ import {
     CompanionSpecialType,
     isCompanionSpecial,
 } from '@/features/character/special/special.companion.ts';
-import { getRollSpecial, getFreeRerolls, getRollToggleables } from '@/features/character/feats';
+import {
+    getRollSpecial,
+    getFreeRerolls,
+    getRollComplicationModifiers,
+    getRollToggleables,
+} from '@/features/character/feats';
 import { capitalize } from '@/utils/bodyLocations.ts';
 import { MYSTERIOUS_STRANGER } from '@/features/character/feats/perks/implementations/_perkMysteriousStranger.ts';
 import { CompanionData } from '@/utils/companionTypes.ts';
@@ -182,25 +187,24 @@ function D20Popup({
     const targetNumber = skillValue + specialValue;
     const criticalValue = hasSpecialty ? skillValue : 1;
 
-    const extraComplications = [];
+    const extraComplications: number[] = [];
     let baseComplication = 20;
     if (isType(itemData, 'weapon')) {
         if (itemData.QUALITIES.includes('qualityUnreliable')) {
             baseComplication -= 1;
         }
-        if (
-            rollerTraits.includes('traitHeavyHanded') &&
-            ['meleeWeapons', 'unarmed'].includes(skillId)
-        ) {
-            extraComplications.push(19);
-        }
-        if (
-            rollerTraits.includes('traitGrunt') &&
-            ['energyWeapons', 'bigGuns'].includes(skillId)
-        ) {
-            baseComplication -= 2;
-        }
     }
+    // TODO not sure if when more feats affecting threshold are applied, the merged result is correct
+    //  maybe we could merge thresholdDelta e additionalThresholds if it makes sense rule-wise
+    //  The problem arises as some perks mention increase in complication range, while other specifically
+    //  say that the complication happens at 20 AND 19 for example
+    const complicationModifiers = getRollComplicationModifiers(character, {
+        ...(isType(itemData, 'weapon') ? { itemData } : {}),
+        ...(isCharacterSkill(skillId) ? { skillId } : {}),
+        traits: rollerTraits,
+    });
+    baseComplication += complicationModifiers.thresholdDelta;
+    extraComplications.push(...complicationModifiers.additionalThresholds);
     const complicationValue = Math.min(baseComplication, ...extraComplications);
 
     // AP Cost calculation — relevant only for roller = undefined
@@ -290,11 +294,11 @@ function D20Popup({
         if (roller && hasRolled) { return; }
         const activeDiceCount = diceActive.filter(Boolean).length;
         if (activeDiceCount === 0) {
-            alert(t('selectDiceAlert') || 'Select at least one die!');
+            alert(t('selectDiceAlert'));
             return;
         }
         if (currentLuck < luckCost) {
-            alert(t('notEnoughLuckAlert') || 'Not enough luck!');
+            alert(t('notEnoughLuckAlert'));
             return;
         }
 

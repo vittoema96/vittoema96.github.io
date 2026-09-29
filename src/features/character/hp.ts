@@ -1,7 +1,9 @@
 import { RawCharacter } from '@/types';
 import { SpecialMap } from '@/features/character/special/special.ts';
 
-import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
+import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import { getMaxHpBonus } from '@/features/character/feats';
 
 /**
  * Method used on CharacterContextValue.updateCharacter()
@@ -9,8 +11,8 @@ import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
  */
 export const adjustCurrentHp = (prev: RawCharacter, current: RawCharacter) => {
     const result: RawCharacter = { ...current };
-    const prevMaxHp = calculateMaxHp(prev.special, prev.level, prev.perks);
-    const currentMaxHp = calculateMaxHp(current.special, current.level, current.perks);
+    const prevMaxHp = calculateMaxHp(prev.special, prev.level, prev.perks, prev.traits);
+    const currentMaxHp = calculateMaxHp(current.special, current.level, current.perks, current.traits);
     const currentHp = prev.currentHp ?? currentMaxHp;
     const hpDelta = currentMaxHp - prevMaxHp;
     // TODO per ora se maxHp aumenta, currentHp aumenta di pari passo
@@ -25,11 +27,11 @@ export const adjustCurrentHp = (prev: RawCharacter, current: RawCharacter) => {
 export const calculateMaxHp = (
     special: SpecialMap,
     level: number,
-    perks: PerkId[]
+    perks: PerkId[],
+    traits: TraitId[],
 ): number => {
-    const lifeGiverLevel = perkRank(perks, 'perkLifeGiver');
     return (
-        special.endurance * (1 + lifeGiverLevel) +
+        special.endurance + getMaxHpBonus(special, perks, traits) +
         special.luck +
         level - 1
     );

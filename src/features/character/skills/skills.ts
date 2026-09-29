@@ -2,7 +2,8 @@
 import { SpecialMap, SpecialType } from '@/features/character/special/special.ts';
 import { RawCharacter } from '@/types';
 import { Origin } from '@/features/character/origin.ts';
-import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
+import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import { getSkillPointsBonus } from '@/features/character/feats';
 import { CompanionSpecialType } from '@/features/character/special/special.companion.ts';
 
 export const SKILLS = [
@@ -95,6 +96,8 @@ export function calculateSkillPoints(
     const skillSum =
             Object.values(skills).reduce((total, value) => total + value, 0) -
             specialties.length * 2;
-    const skilledBonus = perkRank(perks, 'perkSkilled') * 2;
-    return 9 + special.intelligence + (level - 1) + skilledBonus - skillSum;
+    return 9 + special.intelligence
+        + (level - 1)
+        + getSkillPointsBonus(perks, [])
+        - skillSum;
 }

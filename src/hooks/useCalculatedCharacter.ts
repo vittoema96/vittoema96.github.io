@@ -33,7 +33,7 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
         const specialPoints = calculateSpecialPoints(special, origin, perks, traits)
         const specialtyPoints = calculateSpecialtyPoints(specialties, origin, perks, traits)
 
-        const maxHp = calculateMaxHp(special, level, perks);
+        const maxHp = calculateMaxHp(special, level, perks, traits);
         const rads = Math.min(raw.rads, maxHp);
         const effectiveMaxHp = maxHp - rads;
         const currentHp = Math.min(raw.currentHp ?? effectiveMaxHp, effectiveMaxHp);
@@ -41,13 +41,13 @@ function useCalculatedCharacter(raw: RawCharacter): Character {
         const maxWeight = calculateMaxWeight(raw, origin, perks, traits);
         const currentWeight = calculateCurrentWeight(raw, perks);
 
-        const maxLuck = calculateMaxLuck(special, traits)
+        const maxLuck = calculateMaxLuck(special, perks, traits)
 
         const currentLuck = Math.min(raw.currentLuck ?? maxLuck, maxLuck);
         const defense = special.agility < 9 ? 1 : 2;
         const initiative = special.agility + special.perception;
 
-        const meleeDamage = calculateMeleeDamage(special, traits)
+        const meleeDamage = calculateMeleeDamage(special, traits, perks)
 
         const availableCompanions = getAvailableCompanions(perks, traits)
         const companions = availableCompanions.reduce<typeof raw.companions>((
