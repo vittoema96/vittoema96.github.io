@@ -5,9 +5,11 @@ import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import './FeatSelectionPopup.css';
 import { SPECIAL, SpecialType } from '@/features/character/special/special.ts';
 import { perks, traits } from '@/data';
-import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
-import { hasTrait, TraitId } from '@/features/character/feats/traits/traits.ts';
-import { getPerkBlacklist } from '@/features/character/feats';
+import type { PerkId } from '@/features/character/feats/perks.ts';
+import type { TraitId } from '@/features/character/feats/traits.ts';
+import { hasTrait, perkRank } from '@/features/character/feats/utils.ts';
+import { getPerkBlacklist } from '@/features/character/feats/rules';
+import { hasPerkImplementation, hasTraitImplementation } from '@/features/character/feats/registry';
 
 type SortMode = 'none' | 'level' | SpecialType | 'total';
 
@@ -298,7 +300,14 @@ export function PerkSelectionPopup({
                                     <div className="trait-perk-popup__item-header">
                                         <div className="trait-perk-popup__item-title-row">
                                             {/* Name */}
-                                            <span className="trait-perk-popup__item-name">
+                                            <span
+                                                className="trait-perk-popup__item-name"
+                                                style={{
+                                                    textDecoration: hasPerkImplementation(id)
+                                                        ? undefined
+                                                        : 'line-through',
+                                                }}
+                                            >
                                                 {t(id)}
                                             </span>
 
@@ -404,7 +413,14 @@ export function TraitSelectionPopup({
                                     <div className="trait-perk-popup__item-header">
                                         <div className="trait-perk-popup__item-title-row">
                                             {/* Name */}
-                                            <span className="trait-perk-popup__item-name">
+                                            <span
+                                                className="trait-perk-popup__item-name"
+                                                style={{
+                                                    textDecoration: hasTraitImplementation(id)
+                                                        ? undefined
+                                                        : 'line-through',
+                                                }}
+                                            >
                                                 {t(id)}
                                             </span>
                                         </div>
@@ -429,4 +445,3 @@ export function TraitSelectionPopup({
     // Render in a portal to avoid hooks issues when conditionally rendered
     return ReactDOM.createPortal(popupContent, document.body);
 }
-

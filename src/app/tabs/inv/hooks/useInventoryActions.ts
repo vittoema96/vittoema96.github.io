@@ -17,7 +17,7 @@ import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
  */
 export const useInventoryActions = () => {
     const { t } = useTranslation();
-    const { rawCharacter, character, updateCharacter } = useCharacter();
+    const { character, updateCharacter } = useCharacter();
     const { removeItem, editItem } = useItemManagement()
     const { showConfirm, showAlert, showChoice, showTradeItemPopup } = usePopup();
 
@@ -68,43 +68,43 @@ export const useInventoryActions = () => {
             // Equip the item - first unequip any items in the same locations
 
             const updateItems = (side?: Side | undefined) => {
-                const updatedItems = rawCharacter.items.flatMap(otherItem => {
-                    // Skip the item we're equipping
-                    if (getUniqueKey(otherItem) === getUniqueKey(characterItem)) {
-                        if (otherItem.quantity > 1) {
-                            const equippedItem = {
-                                ...otherItem,
-                                quantity: 1,
-                                equipped: true,
-                                side: side,
-                            };
+                updateCharacter(prev => ({
+                    items: prev.items.flatMap(otherItem => {
+                        // Skip the item we're equipping
+                        if (getUniqueKey(otherItem) === getUniqueKey(characterItem)) {
+                            if (otherItem.quantity > 1) {
+                                const equippedItem = {
+                                    ...otherItem,
+                                    quantity: 1,
+                                    equipped: true,
+                                    side: side,
+                                };
 
-                            const remainingItem = {
-                                ...otherItem,
-                                quantity: otherItem.quantity - 1,
-                                equipped: false,
-                                side: undefined,
-                            };
+                                const remainingItem = {
+                                    ...otherItem,
+                                    quantity: otherItem.quantity - 1,
+                                    equipped: false,
+                                    side: undefined,
+                                };
 
-                            return [equippedItem, remainingItem];
+                                return [equippedItem, remainingItem];
+                            }
+
+                            // Single item, equip normally
+                            return [{ ...otherItem, equipped: true, side: side }];
                         }
 
-                        // Single item, equip normally
-                        return [{ ...otherItem, equipped: true, side: side }];
-                    }
+                        const otherItemData = allItems[otherItem.id];
+                        if (!otherItem.equipped || !isType(otherItemData, 'apparel')) {
+                            return [otherItem];
+                        }
 
-                    const otherItemData = allItems[otherItem.id];
-                    if (!otherItem.equipped || !isType(otherItemData, 'apparel')) {
+                        if (hasApparelConflict({...characterItem, side}, otherItem)) {
+                            return [{ ...otherItem, equipped: false, side: undefined }];
+                        }
                         return [otherItem];
-                    }
-
-                    if (hasApparelConflict({...characterItem, side}, otherItem)) {
-                        return [{ ...otherItem, equipped: false, side: undefined }];
-                    }
-                    return [otherItem];
-                });
-
-                updateCharacter({ items: updatedItems });
+                    }),
+                }));
             };
 
             if (

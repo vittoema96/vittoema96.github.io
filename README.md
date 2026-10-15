@@ -90,9 +90,12 @@ use that trait (click the button) once per scene when luck was used.
     * Long-press to sell/delete items with confirmation dialogs.
     * Smart equipment system with layer conflict detection.
     * Weapons and mods are moddable
+    * Feat-granted items retain their mods and custom names when the feat is disabled. Inactive or replaced grants stay in saves but are excluded from the active inventory and calculations.
+    * Unarmed, gun-bash and mod-derived attacks are calculated views, not extra saved equipment. Ammo spending preserves hidden grants and consumes the total cost once across active stacks. Self-ammo weapons consume only the selected configuration.
 * **Integrated Dice Roller:**
     * **d20 Skill Checks:** Dedicated popup for skill checks with automatic target number calculation.
     * **d6 Damage Rolls:** Weapon damage rolls with support for extra hits and damage effects.
+    * Selected burst effects reserve ammunition until the popup closes; perk actions cannot spend those reserved rounds.
     * Luck point system for rerolls and bonuses.
 * **Interactive Map:**  
     Zoomable and pannable world map, with the ability to unlock markers given a code (codes list provided below).  
@@ -195,6 +198,16 @@ but mods can bring fire rate to 0 (and this should not happen, I need to find a 
 
 ### Want to report a bug?
 Open an issue here on Github.
+
+### Refactoring walkthrough
+See [Refactoring and bug fixes: a maintainer's guide](docs/refactoring-and-bug-fixes.md) for the character/feat refactor, save and inventory flows, bug fixes, and practical extension examples.
+
+### Regression tests
+Run `npm test` for domain/store checks and browser interaction regressions. Browser checks use a temporary, isolated Chrome/Chromium profile, never your saved characters. Set `CHROME_PATH` if the browser is not in a standard location; browser checks are explicitly skipped when no browser is found.
+
+Inventory and companion mutations use functional updates against the latest raw save.
+Pure item operations live in `src/features/character/items.ts`; `updateCompanion` in `src/features/character/update.ts` preserves the selected companion's other fields without generic deep merging.
+Feat rank/membership helpers live in the dependency-light `src/features/character/feats/utils.ts`, separate from selection and calculation.
 
 ### Want to help in translating an unsupported language?
 Translations are located in en.json and it.json

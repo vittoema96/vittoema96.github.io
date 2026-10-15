@@ -1,10 +1,15 @@
+import {
+    getModifiedItemData,
+    getSkillForWeaponCategory,
+    getSpecialForWeaponCategory,
+    hasEnoughAmmo,
+} from '@/features/character/items.ts';
 import BaseCard from '../BaseCard.tsx'
 import WeaponContent from '@/app/tabs/inv/cards/weapon/WeaponContent.tsx'
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx'
 import { usePopup } from '@/app/contexts/PopupContext.tsx'
 import { CharacterItem } from '@/types';
-import { getModifiedItemData, getSkillForWeaponCategory, getSpecialForWeaponCategory, isType } from '@/features/item/utils.ts';
-import { hasEnoughAmmo as checkHasEnoughAmmo } from '@/features/character/hooks/useWeaponStats.ts';
+import { isType } from '@/features/item/utils.ts';
 
 /**
  * Weapon card component with weapon-specific stats and actions
@@ -23,11 +28,8 @@ function WeaponCard({ characterItem }: Readonly<WeaponCardProps>) {
         return null;
     }
 
-    // Use weapon utilities
-    const hasEnoughAmmo = () => checkHasEnoughAmmo(itemData, character);
-
     const handleAttack = () => {
-        if (!hasEnoughAmmo()) {
+        if (!hasEnoughAmmo(itemData, character, characterItem)) {
             console.log('Not enough ammo to attack');
             return;
         }
@@ -45,8 +47,8 @@ function WeaponCard({ characterItem }: Readonly<WeaponCardProps>) {
             action={{
                 icon: "attack",
                 onClick: handleAttack,
-                isChecked: (_) => hasEnoughAmmo(),
-                isDisabled: (_) => !hasEnoughAmmo(),
+                isChecked: (_) => hasEnoughAmmo(itemData, character, characterItem),
+                isDisabled: (_) => !hasEnoughAmmo(itemData, character, characterItem),
                 // TODO isDisabled for non origin compatible weapons
             }}
             characterItem={characterItem}

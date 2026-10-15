@@ -25,6 +25,7 @@ export const WeaponSchema: z.ZodType<WeaponItem> = BaseItemSchema.extend({
     EFFECTS: z.array(z.string()).default([]),
     QUALITIES: z.array(z.string()).default([]),
     AVAILABLE_MODS: z.array(z.string()).default([]),
+    REROLL_HIT_LOCATION: z.boolean().optional(),
 });
 
 export interface WeaponItem extends BaseItem {
@@ -41,4 +42,5 @@ export interface WeaponItem extends BaseItem {
     EFFECTS: string[]; // JSON array
     QUALITIES: string[]; // JSON array
     AVAILABLE_MODS: string[]; // JSON array
+    REROLL_HIT_LOCATION?: boolean | undefined;
 }

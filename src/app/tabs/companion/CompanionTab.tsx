@@ -10,6 +10,7 @@ import { FitText } from '@/app/components/FitText.tsx';
 import { COMPANION_SKILLS, CompanionSkillType } from '@/features/character/skills/skills.ts';
 import { allItems, companionPerks } from '@/data';
 import { isType } from '@/features/item/utils.ts';
+import { updateCompanion } from '@/features/character/update.ts';
 
 
 /**
@@ -43,21 +44,13 @@ function CompanionTab() {
     const bodyBonus = companion.special.body - companionDefault.special.body
     const maxHp = companionDefault.maxHp + (character.level - 1) + bodyBonus
 
-    const [ selectedPerks, setSelectedPerks ] = useState<(string | undefined)[]>(() => { // TODO CompanionPerkType
-        return [
-            ...companion.perks,
-            ...new Array(perkSlots - companion.perks.length).fill(undefined)
-        ]
-    })
-
     // Handle perk selection
     const handlePerkChange = (slotIndex: number, perkId: string) => {
-        const newPerks = [...selectedPerks]
-        newPerks[slotIndex] = perkId === 'none' ? undefined : perkId
-        setSelectedPerks(newPerks)
-        updateCharacter({
-            companion: { ...companion, perks: newPerks.filter(p => p !== undefined) }
-        })
+        updateCharacter(updateCompanion(companion.type, current => {
+            const newPerks: (string | undefined)[] = [...current.perks] // TODO CompanionPerkType
+            newPerks[slotIndex] = perkId === 'none' ? undefined : perkId
+            return { perks: newPerks.filter(p => p !== undefined) }
+        }))
     }
 
     const getAvailablePerksForSlot = (currentSlotIndex: number): string[] => {
@@ -96,7 +89,7 @@ function CompanionTab() {
                     value={companion.type}
                     onChange={e =>
                         updateCharacter({
-                            companion: { ...companion, type: e.target.value as CompanionId },
+                            activeCompanionId: e.target.value as CompanionId,
                         })
                     }
                     style={{ flex: 1 }}
@@ -116,9 +109,7 @@ function CompanionTab() {
                     type="text"
                     value={companion.name}
                     onChange={e =>
-                        updateCharacter({
-                            companion: { ...companion, name: e.target.value },
-                        })
+                        updateCharacter(updateCompanion(companion.type, { name: e.target.value }))
                     }
                     placeholder={t(companion.type)}
                     style={{ flex: 1, marginRight: '0.5rem' }}
@@ -138,9 +129,7 @@ function CompanionTab() {
                             const numValue = Number(value);
                             if (!Number.isNaN(numValue) && numValue >= 0) {
                                 setHpInput(numValue);
-                                updateCharacter({
-                                    companion: { ...companion, currentHp: numValue },
-                                });
+                                updateCharacter(updateCompanion(companion.type, { currentHp: numValue }));
                             }
                         }}
                         onBlur={() => {
@@ -373,4 +362,3 @@ const DRValue = ({ value }: { value: number }) => {
 }
 
 export default CompanionTab
-

@@ -2,8 +2,8 @@ import { ItemCategory, ItemType } from '@/types/item.ts';
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
 import { AidItem, AmmoItem, LegendaryEffect, ModItem } from '@/types';
-import { PerkData, PerkId } from '@/features/character/feats/perks/perks.ts';
-import { TraitData, TraitId } from '@/features/character/feats/traits/traits.ts';
+import { PerkData, PerkId } from '@/features/character/feats/perks.ts';
+import { TraitData, TraitId } from '@/features/character/feats/traits.ts';
 
 export interface CompanionPerkData {
     ID: string;

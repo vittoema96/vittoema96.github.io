@@ -15,6 +15,7 @@ export interface ApparelItem extends BaseItem {
 
     EFFECTS: string[];
     AVAILABLE_MODS: string[]; // JSON array
+    CARRY_WEIGHT_BONUS?: number | undefined;
 }
 
 export const ApparelSchema: z.ZodType<ApparelItem> = BaseItemSchema.extend({
@@ -33,4 +34,5 @@ export const ApparelSchema: z.ZodType<ApparelItem> = BaseItemSchema.extend({
     EFFECTS: z.array(z.string()).default([]),
     //QUALITIES: z.array(z.string()).default([]),
     AVAILABLE_MODS: z.array(z.string()).default([]),
+    CARRY_WEIGHT_BONUS: z.number().default(0),
 });

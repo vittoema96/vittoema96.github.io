@@ -1,3 +1,4 @@
+import { getModifiedItemData } from '@/features/character/items.ts';
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/app/contexts/CharacterContext';
@@ -7,9 +8,10 @@ import BasePopup from './common/BasePopup';
 import ModTooltipContent from './ModTooltipContent';
 import Skill from '@/app/tabs/stat/components/Skill.tsx';
 import { isCharacterSkill, SkillType } from '@/features/character/skills/skills.ts';
-import { getModifiedItemData, isType, isUnacquirable } from '@/features/item/utils.ts';
+import { isType, isUnacquirable } from '@/features/item/utils.ts';
 import { allItems, legendaryEffects, mod } from '@/data';
 import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
+import { getOriginById } from '@/features/character/origins/registry.ts';
 
 /**
  * Popup for modifying weapons and armor with mods
@@ -38,7 +40,7 @@ interface SlotData {
 
 function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupProps>) {
     const { t } = useTranslation()
-    const { rawCharacter, character, updateCharacter } = useCharacter()
+    const { character, updateCharacter } = useCharacter()
     const { editItem } = useItemManagement()
     const itemData = getModifiedItemData(characterItem, character.perks)
 
@@ -170,35 +172,38 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
         const platingChanged = platingData?.selectedMod?.id !== platingData?.appliedMod?.id
         if(itemData.CATEGORY === 'robotPart' && platingChanged){
             const selectedPlating = platingData?.selectedMod?.id
-            const newItems = rawCharacter.items.map(item => {
-                if(!character.origin.bodyParts.has(item.id as any)){
-                    return item
-                }
+            updateCharacter(prev => {
+                const bodyParts = new Set<string>(getOriginById(prev.origin).bodyParts);
+                const newItems = prev.items.map(item => {
+                    if(!bodyParts.has(item.id)){
+                        return item
+                    }
 
-                const isEditedPart = item.id === characterItem.id
-                if(isEditedPart) {
+                    const isEditedPart = item.id === characterItem.id
+                    if(isEditedPart) {
+                        return {
+                            ...item,
+                            mods: newMods
+                        }
+                    }
+
+                    const preservedMods = item.mods.filter(modId => {
+                        const modData = mod[modId]
+                        return !(
+                            isType(modData, "mod") &&
+                                modData.SLOT_TYPE === 'modSlotRobotPlating'
+                        )
+                    })
+
                     return {
                         ...item,
-                        mods: newMods
+                        mods: selectedPlating ? [...preservedMods, selectedPlating] : preservedMods
                     }
-                }
-
-                const preservedMods = item.mods.filter(modId => {
-                    const modData = mod[modId]
-                    return !(
-                        isType(modData, "mod") &&
-                            modData.SLOT_TYPE === 'modSlotRobotPlating'
-                    )
                 })
-
                 return {
-                    ...item,
-                    mods: selectedPlating ? [...preservedMods, selectedPlating] : preservedMods
+                    items: newItems,
+                    caps: prev.caps - totalCost
                 }
-            })
-            updateCharacter({
-                items: newItems,
-                caps: character.caps - totalCost
             })
         } else {
             editItem(

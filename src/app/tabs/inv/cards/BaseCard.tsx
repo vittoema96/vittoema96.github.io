@@ -1,10 +1,11 @@
+import { getModifiedItemData } from '@/features/character/items.ts';
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CharacterItem, CustomItem } from '@/types';
 import { FitText } from '@/app/components/FitText.tsx';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
-import { getCanonicalDisplayName, getModifiedItemData, isType } from '@/features/item/utils.ts';
+import { getCanonicalDisplayName, isType } from '@/features/item/utils.ts';
 import { allItems } from '@/data';
 
 /**

@@ -1,28 +1,30 @@
-import { getModifiedItemData, isType } from '@/features/item/utils.ts';
+import { getModifiedItemData } from '@/features/character/items.ts';
+import { isType } from '@/features/item/utils.ts';
 import { RawCharacter } from '@/types';
-import { Origin } from '@/features/character/origin.ts';
+import type { Origin } from '@/features/character/origins/types';
 
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
-import { TraitId } from '@/features/character/feats/traits/traits.ts';
-import { getMaxWeightOverride } from '@/features/character/feats';
+import { PerkId } from '@/features/character/feats/perks.ts';
+import { TraitId } from '@/features/character/feats/traits.ts';
+import { applyMaxWeightModifiers, getMaxWeightOverride } from '@/features/character/feats/rules';
 
 
 export function calculateMaxWeight(raw: RawCharacter, origin: Origin, perks: PerkId[], traits: TraitId[]) {
-    let maxWeight = getMaxWeightOverride(raw.special, perks, traits)
-        ?? origin.calcMaxCarryWeight(raw.special.strength);
+    const weightPerks = origin.allowsPerkAndTraitWeightModifiers ? perks : [];
+    const weightTraits = origin.allowsPerkAndTraitWeightModifiers ? traits : [];
+    const baseWeight = getMaxWeightOverride(raw.special, weightPerks, weightTraits, origin)
+        ?? origin.getMaxWeightBase(raw.special.strength);
+    let maxWeight = applyMaxWeightModifiers(
+        baseWeight, raw.special, weightPerks, weightTraits, origin,
+    );
 
     // Add carry weight bonuses from equipped items with mods
     raw.items.forEach(item => {
         if (!item.equipped) {
             return;
         }
-        // TODO Carry weight bonus not currently fully implemented
         const itemData = getModifiedItemData(item, perks);
-        const carryWeightBonus = isType(itemData, 'apparel')
-            ? (itemData as typeof itemData & { CARRY_WEIGHT_BONUS?: number }).CARRY_WEIGHT_BONUS
-            : undefined;
-        if (carryWeightBonus) {
-            maxWeight += Number(carryWeightBonus) || 0;
+        if (isType(itemData, 'apparel')) {
+            maxWeight += itemData.CARRY_WEIGHT_BONUS ?? 0;
         }
     });
     return maxWeight;

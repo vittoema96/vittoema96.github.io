@@ -1,3 +1,4 @@
+import { getModifiedItemData } from '@/features/character/items.ts';
 import { useTranslation } from 'react-i18next'
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import { CharacterItem, CustomItem } from '@/types';
@@ -6,7 +7,7 @@ import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import Skill from '@/app/tabs/stat/components/Skill.tsx';
 import { ChangeEventHandler, useMemo, useState } from 'react';
-import { getModifiedItemData } from '@/features/item/utils.ts';
+
 import { allItems } from '@/data';
 import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 

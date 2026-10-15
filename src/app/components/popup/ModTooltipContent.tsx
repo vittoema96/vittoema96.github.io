@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/app/contexts/CharacterContext'
-import { PerkId, perkRank } from '@/features/character/feats/perks/perks.ts';
+import type { PerkId } from '@/features/character/feats/perks.ts';
+import { perkRank } from '@/features/character/feats/utils.ts';
 
 interface ModTooltipProps {
     /** Mod locale ID (e.g. "modCompensator") */
@@ -131,4 +132,3 @@ function formatEffect(effectStr: string, t: (key: string) => string): string {
     }
     return effectStr
 }
-

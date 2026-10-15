@@ -1,0 +1,26 @@
+import type { TraitImplementation } from '@/features/character/feats/types.ts';
+
+
+export const traitGrunt: TraitImplementation = {
+    id: 'traitGrunt',
+    getDamageRatingBonus: (_, item) => {
+        // TODO check id consistencies and eventually add actual validation
+        if([
+            'weaponCombatRifle', 'weaponAssaultRifle',
+            'weaponFragmentationGrenade', 'weaponCombatKnife',
+            // TODO all these machine gun types? it says generically "machine guns"
+            'weaponMachineGun', 'weaponLightMachineGun', 'weapon50caMachineGun'
+        ].includes(item.id)){
+            return 1;
+        }
+        return 0
+    },
+    getRollComplicationModifiers: (_, context) => {
+        if (['energyWeapons', 'bigGuns'].includes(context.itemData?.CATEGORY ?? '')) {
+            return { thresholdDelta: -2 };
+        }
+        return {};
+    }
+}
+
+export default traitGrunt;

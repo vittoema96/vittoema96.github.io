@@ -157,6 +157,14 @@
       "it": "Quando si prende la mira con un’arma Da Ricognizione, si può marchiare il bersaglio a cui si è mirato. Il prossimo alleato che attaccherà quel bersaglio può ritirare un d20 in attacco."
     }
   },
+  "qualityRerollHitLocation": {
+    "en": "Hit Location Reroll",
+    "it": "Rilancio Posizione",
+    "_description": {
+      "en": "When determining hit location, you may reroll the result.",
+      "it": "Quando si determina la posizione del colpo, è possibile effettuare un rilancio."
+    }
+  },
   "qualityReliable": {
     "en": "Reliable",
     "it": "Affidabile",

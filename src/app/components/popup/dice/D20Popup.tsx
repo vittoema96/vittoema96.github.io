@@ -1,3 +1,4 @@
+import { getModifiedItemData } from '@/features/character/items.ts';
 import { useMemo, useState } from 'react';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { useTranslation } from 'react-i18next';
@@ -20,9 +21,9 @@ import {
     isCompanionSkill,
     SkillType,
 } from '@/features/character/skills/skills.ts';
-import { getModifiedItemData, isType } from '@/features/item/utils.ts';
+import { isType } from '@/features/item/utils.ts';
 
-import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import { TraitId } from '@/features/character/feats/traits.ts';
 import {
     COMPANION_SPECIAL,
     CompanionSpecialType,
@@ -33,9 +34,9 @@ import {
     getFreeRerolls,
     getRollComplicationModifiers,
     getRollToggleables,
-} from '@/features/character/feats';
+} from '@/features/character/feats/rules';
 import { capitalize } from '@/utils/bodyLocations.ts';
-import { MYSTERIOUS_STRANGER } from '@/features/character/feats/perks/implementations/_perkMysteriousStranger.ts';
+import { MYSTERIOUS_STRANGER } from '@/features/character/feats/perks/_perkMysteriousStranger.ts';
 import { CompanionData } from '@/utils/companionTypes.ts';
 
 // Discriminated union — built from actual domain types, no invented duplicates.

@@ -1,3 +1,4 @@
+import { getModifiedItemData } from '@/features/character/items.ts';
 import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { usePopup } from '@/app/contexts/PopupContext.tsx'
@@ -9,13 +10,8 @@ import OtherCard from '../cards/ammo/OtherCard.tsx'
 import { CharacterItem } from '@/types';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { ITEM_TYPE_MAP, ItemCategory, ItemType } from '@/types/item.ts';
-import {
-    getDisplayName,
-    getModifiedItemData,
-    getUniqueKey,
-    isType,
-} from '@/features/item/utils.ts';
-import { allItems, traits } from '@/data';
+import { getDisplayName, getUniqueKey, isType } from '@/features/item/utils.ts';
+import { allItems } from '@/data';
 
 type SortBy = 'name' | 'number' | 'rarity';
 
@@ -51,34 +47,6 @@ function InventoryList({
     }, [categoryFilter]);
 
     const { character } = useCharacter()
-
-    // TODO should we add ORIGIN apparel here too? but both weapons and apparel might be modified, so should be saved on storage...
-    const newItems = useMemo(() => {
-        // TODO do we need to filter out non-origin traits here?
-        const activeTraits = character.traits
-            .map(trait => traits[trait]!)
-            .filter(trait => trait.ORIGINS.includes(character.origin.id));
-
-        return activeTraits.flatMap(trait => {
-            return trait.EFFECTS.flatMap((effect) => {
-                const [effectType, item] = effect.split(':')
-                if(effectType === 'weaponAdd'){
-                    return {
-                        id: item,
-                        quantity: 1,
-                        equipped: false,
-                        mods: []
-                    } as CharacterItem
-                }
-                return []
-            })
-        })
-    }, [character.origin.id, character.traits])
-
-    const allCharacterItems = useMemo(
-        () => [...items, ...newItems],
-        [items, newItems]
-    );
 
     // Get subcategories based on main category (sorted alphabetically by translation)
     const getCategories = () => {
@@ -121,7 +89,7 @@ function InventoryList({
     // Filter and sort items
     const processedItems = useMemo(() => {
         // Apply type filter
-        const filtered = allCharacterItems.filter(item => {
+        const filtered = items.filter(item => {
             const itemData = allItems[item.id];
             if (!itemData || !isType(itemData, typeFilter)) {
                 return false;
@@ -201,7 +169,7 @@ function InventoryList({
         })
 
         return filtered
-    }, [allCharacterItems, typeFilter, categoryFilter, sortBy, isAscendingDirection, character.perks, t])
+    }, [items, typeFilter, categoryFilter, sortBy, isAscendingDirection, character.perks, t])
 
     // Close filter dropdown when clicking outside
     useEffect(() => {

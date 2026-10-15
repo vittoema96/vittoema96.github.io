@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { COMPANION_IDS, LEFT, RIGHT } from '@/types';
-import { ORIGIN_IDS } from '@/features/character/origin.ts';
+import { ORIGIN_IDS } from '@/features/character/origins/types';
 import { ITEM_CATEGORIES, ITEM_TYPES } from '@/types/item.ts';
 import {
     SPECIAL,
@@ -93,6 +93,13 @@ export const CharacterItemSchema = z.preprocess((input: any) => {
     equipped: z.boolean().default(false),
     mods: z.array(z.string()).default([]),
     side: z.enum([LEFT, RIGHT]).optional(),
+    grantedBy: z.string().optional(),
+}).transform(item => {
+    // Older grants stored the rank-2 Iron Fist bonus as a permanent receiver mod.
+    if (item.id === 'weaponIronFist' && item.grantedBy === 'perkIronFist') {
+        return { ...item, mods: item.mods.filter(mod => mod !== 'modCalibrated') };
+    }
+    return item;
 }))
 
 // Validates CustomItems
@@ -152,7 +159,8 @@ const CompanionDataSchema = z.preprocess((input: any) => {
     special: z.object(
         COMPANION_SPECIAL.reduce(
             (map, key) => {
-                map[key] = z.number().int().min(4).max(10);
+                // Companion baselines can be below the player minimum (Dogmeat has MIND 1).
+                map[key] = z.number().int().min(1).max(10);
                 return map;
             },
             {} as Record<CompanionSpecialType, z.ZodNumber>,
@@ -217,6 +225,7 @@ export const ItemsSchema = z
                     item.id,
                     item.customName ?? "",
                     modsKey,
+                    item.grantedBy ?? "",
                 ].join("|");
 
                 const existing = unequippedMap.get(key);
@@ -249,6 +258,8 @@ export const RawCharacterSchema = z.preprocess((input: any) => {
     }
     return input;
 }, z.object({
+    // Missing versions identify saves written before grant provenance.
+    saveVersion: z.number().int().min(0).default(0),
     name: z.string().optional(),
     level: z.number().int().min(1).default(1),
     origin: z.enum(ORIGIN_IDS).optional(),
@@ -267,6 +278,7 @@ export const RawCharacterSchema = z.preprocess((input: any) => {
     traits: z.array(z.enum(Object.values(traits).map(t => t.ID))).default([]),
     perks: z.array(z.enum(Object.values(perks).map(p => p.ID))).default([]),
 
+    // TODO: enforce non-negative resource values after the legacy migration window.
     currentHp: z.number().optional(),
     currentLuck: z.number().optional(),
     rads: z.number().default(0),

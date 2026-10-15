@@ -1,9 +1,10 @@
 // SKILLS
 import { SpecialMap, SpecialType } from '@/features/character/special/special.ts';
 import { RawCharacter } from '@/types';
-import { Origin } from '@/features/character/origin.ts';
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
-import { getSkillPointsBonus } from '@/features/character/feats';
+import type { Origin } from '@/features/character/origins/types';
+import { PerkId } from '@/features/character/feats/perks.ts';
+import { getSkillMaxModifier, getSkillPointsBonus } from '@/features/character/feats/rules';
+import { TraitId } from '@/features/character/feats/traits.ts';
 import { CompanionSpecialType } from '@/features/character/special/special.companion.ts';
 
 export const SKILLS = [
@@ -73,7 +74,13 @@ export function getSpecialFromSkillCompanion(skill: CompanionSkillType): Compani
     return _COMPANION_SKILL_TO_SPECIAL_MAP[skill];
 }
 
-export function calculateSkills(raw: RawCharacter, specialties: SkillType[], origin: Origin) {
+export function calculateSkills(
+    raw: RawCharacter,
+    specialties: SkillType[],
+    origin: Origin,
+    perks: PerkId[] = [],
+    traits: TraitId[] = [],
+) {
     return SKILLS.reduce((
         skills,
         skillId
@@ -81,7 +88,14 @@ export function calculateSkills(raw: RawCharacter, specialties: SkillType[], ori
         const baseValue = raw.skills[skillId];
         const hasSpecialty = specialties.includes(skillId);
         const skillValue = baseValue + (hasSpecialty ? 2 : 0);
-        skills[skillId] = Math.min(skillValue, origin.skillMaxValue);
+        const skillMax = origin.skillMaxValue + getSkillMaxModifier(
+            skillId,
+            hasSpecialty,
+            perks,
+            traits,
+            origin,
+        );
+        skills[skillId] = Math.min(skillValue, skillMax);
         return skills
     }, {} as Record<SkillType, number>)
 }
@@ -92,12 +106,14 @@ export function calculateSkillPoints(
     specialties: SkillType[],
     level: number,
     perks: PerkId[],
+    traits: TraitId[] = [],
+    origin?: Origin,
 ) {
     const skillSum =
             Object.values(skills).reduce((total, value) => total + value, 0) -
             specialties.length * 2;
     return 9 + special.intelligence
         + (level - 1)
-        + getSkillPointsBonus(perks, [])
+        + getSkillPointsBonus(perks, traits, origin)
         - skillSum;
 }

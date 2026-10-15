@@ -10,6 +10,7 @@ interface BasePopupProps {
     onConfirm?: (() => void) | undefined;
     confirmDisabled?: boolean;
     onClose: () => void;
+    beforeClose?: () => boolean;
     children: React.ReactNode;
     footerChildren?: React.ReactNode;
     className?: string; // TODO: Remove className later - popups should not need custom styling
@@ -21,6 +22,7 @@ function BasePopup({
        onConfirm,
        confirmDisabled = false,
        onClose,
+       beforeClose,
        children,
        footerChildren,
        className
@@ -28,11 +30,18 @@ function BasePopup({
     const { t } = useTranslation();
 
     const dialogRef = useRef<HTMLDialogElement>(null)
-    const { closeWithAnimation } = useDialog(dialogRef, onClose)
+    const { closeWithAnimation } = useDialog(dialogRef, onClose, beforeClose)
 
     return (
         <DialogPortal>
-            <dialog ref={dialogRef} className={className}>
+            <dialog
+                ref={dialogRef}
+                className={className}
+                onCancel={event => {
+                    event.preventDefault()
+                    closeWithAnimation()
+                }}
+            >
                 <PopupHeader title={title} onClose={() => closeWithAnimation()}/>
 
                 {children}
@@ -65,4 +74,3 @@ function BasePopup({
 }
 
 export default BasePopup
-

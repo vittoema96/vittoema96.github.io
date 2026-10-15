@@ -4,7 +4,7 @@ import { usePopup } from '@/app/contexts/PopupContext.tsx'
 import { useCharacter } from "@/app/contexts/CharacterContext"
 import { FitText } from '@/app/components/FitText.tsx';
 import { getSpecialFromSkill, SkillType } from '@/features/character/skills/skills.ts';
-import { getSkillMaxModifier } from '@/features/character/feats';
+import { getSkillMaxModifier } from '@/features/character/feats/rules';
 
 interface SkillProps {
     skillId: SkillType;
@@ -25,6 +25,7 @@ function Skill({ skillId, isEditing}: Readonly<SkillProps>) {
         hasSpecialty,
         character.perks,
         character.traits,
+        character.origin,
     )
     const skill = character.skills[skillId]
 

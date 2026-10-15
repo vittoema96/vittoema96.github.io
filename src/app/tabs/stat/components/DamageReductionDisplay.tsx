@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/app/contexts/CharacterContext'
 import { DamageType, GenericBodyPart } from '@/types';
-import { ORIGINS } from '@/features/character/origin.ts';
 
 /**
  * Component to display damage reduction stats by body part
@@ -13,7 +12,7 @@ function DamageReductionDisplay() {
     const { character } = useCharacter()
     const characterIcon = character.origin.characterSvg
 
-    const isMrHandy = character.origin === ORIGINS.MR_HANDY
+    const isMrHandy = character.origin.id === 'mrHandy'
 
     // Get body parts to display based on origin
     const getBodyPartsToDisplay = (): { key: GenericBodyPart; className: string }[] => {

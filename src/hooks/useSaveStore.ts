@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { RawCharacterSchema } from '@/schemas/characterSchemas.ts';
 import { RawCharacter } from '@/types';
+import { applyUpdate, loadCharacter, type CharacterUpdate } from '@/features/character/update.ts';
 
 export const MAX_SLOTS = 10;
 const STORAGE_KEY = 'PB3K_character_saves';
@@ -10,7 +10,7 @@ const STORAGE_KEY = 'PB3K_character_saves';
 const LEGACY_PREFIX = 'character_slot_';
 const LEGACY_ACTIVE_KEY = 'character_active_slot';
 
-export const getDefaultCharacter = (): RawCharacter => RawCharacterSchema.parse({});
+export const getDefaultCharacter = (): RawCharacter => loadCharacter({});
 
 /**
  * Migration function: executed once on app startup.
@@ -38,7 +38,7 @@ export function migrateLegacyStorage(): void {
         if (!savedChar) { return null; }
         try {
             hasFoundAnyLegacyData = true;
-            return RawCharacterSchema.parse(JSON.parse(savedChar));
+            return loadCharacter(JSON.parse(savedChar));
         } catch { return null; }
     });
 
@@ -74,7 +74,7 @@ interface SaveStoreState {
     deleteSlot: (index: number) => void;
     importSlot: (index: number, rawData: unknown) => void;
 
-    updateActiveCharacter: (updater: (prev: RawCharacter) => RawCharacter) => void;
+    updateActiveCharacter: (updates: CharacterUpdate | ((prev: RawCharacter) => CharacterUpdate)) => void;
 
     // Actions
     resetActiveCharacter: () => void;
@@ -109,7 +109,7 @@ export const useSaveStore = create<SaveStoreState>()(
 
             importSlot: (index, rawData) => {
                 if (index < 0 || index >= MAX_SLOTS) { return; }
-                const validated = RawCharacterSchema.parse(rawData);
+                const validated = loadCharacter(rawData);
                 set((state) => {
                     const nextSlots = [...state.slots];
                     nextSlots[index] = validated;
@@ -117,12 +117,11 @@ export const useSaveStore = create<SaveStoreState>()(
                 });
             },
 
-            updateActiveCharacter: (updater) => {
+            updateActiveCharacter: (updates) => {
                 set((state) => {
                     const current = state.slots[state.activeSlot] ?? getDefaultCharacter();
-                    const updated = updater(current);
                     // Garantisce che anche gli aggiornamenti passino per la validazione/migrazione Zod
-                    const validated = RawCharacterSchema.parse(updated);
+                    const validated = applyUpdate(current, typeof updates === 'function' ? updates(current) : updates);
                     const nextSlots = [...state.slots];
                     nextSlots[state.activeSlot] = validated;
                     return { slots: nextSlots };
@@ -150,7 +149,7 @@ export const useSaveStore = create<SaveStoreState>()(
                     if (!slot) { return null; }
                     try {
                         // Converte automaticamente vecchi formati (es. companion singolo) nel nuovo formato
-                        return RawCharacterSchema.parse(slot);
+                        return loadCharacter(slot);
                     } catch (error) {
                         console.error('Error during parsing of the rehydrated slot:', error);
                         return null;

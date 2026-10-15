@@ -1,34 +1,10 @@
 import { AidItem, AmmoItem, CharacterItem, CustomItem, DamageType, Item, LegendaryEffect, ModItem } from '@/types';
 import { Range, WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
-import { getWeaponItemEffects } from '@/features/character/feats';
 import { allItems, apparel, legendaryEffects, weapon } from '@/data';
 import type { TFunction } from 'i18next';
-import { ItemCategory, ItemType, WeaponCategory } from '@/types/item.ts';
+import { ItemCategory, ItemType } from '@/types/item.ts';
 import { BaseItem } from '@/data/types.ts';
-import { SpecialType } from '@/features/character/special/special.ts';
-import { getSpecialFromSkill, SkillType } from '@/features/character/skills/skills.ts';
-
-/**
- * Maps a weapon category to its corresponding skill.
- * Most categories map 1:1 to a skill of the same name,
- * but Bows use the Athletics skill (AGI + Athletics per DLC rules).
- */
-export function getSkillForWeaponCategory(category: WeaponCategory): SkillType {
-    if (category === 'bows') { return 'athletics'; }
-    return category;
-}
-
-/**
- * Maps a weapon category to its corresponding SPECIAL attribute.
- * Most categories use the default SPECIAL for their skill,
- * but Bows use Agility (instead of Strength, which is athletics' default).
- */
-export function getSpecialForWeaponCategory(category: WeaponCategory): SpecialType {
-    if (category === 'bows') { return 'agility'; }
-    return getSpecialFromSkill(getSkillForWeaponCategory(category));
-}
 
 /**
  * Check if two items have the same configuration (id + mods)
@@ -99,6 +75,9 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
             break
         case 'rerollHitLocation':
             modifiedData.REROLL_HIT_LOCATION = value === 'true'
+            if (modifiedData.REROLL_HIT_LOCATION && !modifiedData.QUALITIES.includes('qualityRerollHitLocation')) {
+                modifiedData.QUALITIES = [...modifiedData.QUALITIES, 'qualityRerollHitLocation']
+            }
             break
     }
     return modifiedData
@@ -129,7 +108,7 @@ function applyApparelEffect(modifiedData: ApparelItem, effectType: string, value
 
         // Other effects
         case 'carryWeightAdd':
-            modifiedData.CARRY_WEIGHT_BONUS = addValues(modifiedData.CARRY_WEIGHT_BONUS, value)
+            modifiedData.CARRY_WEIGHT_BONUS = addValues(modifiedData.CARRY_WEIGHT_BONUS ?? 0, value)
             break
         case 'unarmedDamageAdd': // TODO This column doesn't exist
             modifiedData.UNARMED_DAMAGE = addValues(modifiedData.UNARMED_DAMAGE, value)
@@ -368,28 +347,11 @@ const applyMods = (itemData: WeaponItem | ApparelItem, modsData: (ModItem | Lege
     }
     return itemData;
 }
-function applyFeatEffects(itemData: WeaponItem, perks: PerkId[]): WeaponItem;
-function applyFeatEffects(itemData: ApparelItem, perks: PerkId[]): ApparelItem;
-function applyFeatEffects(itemData: WeaponItem | ApparelItem, perks: PerkId[]):  WeaponItem | ApparelItem
-function applyFeatEffects(
-    itemData: WeaponItem | ApparelItem,
-    perks: PerkId[],
-):  WeaponItem | ApparelItem {
-    if (isType(itemData, 'weapon')) {
-        return getWeaponItemEffects(itemData, perks).reduce(
-            (modifiedData, effect) => applyEffect(modifiedData, effect),
-            itemData,
-        );
-    }
-    return itemData
-}
-
 /**
  * Get item data with mods applied
  */
-export function getModifiedItemData(
+export function getModdedItemData(
     characterItem: CharacterItem | null | undefined,
-    perks: PerkId[] = []
 ): WeaponItem | ApparelItem | null {
     if(!characterItem) { return null }
     const itemData = allItems[characterItem.id]
@@ -402,7 +364,7 @@ export function getModifiedItemData(
     }
 
     if (characterItem.mods.length === 0) {
-        return applyFeatEffects(baseItemData, perks)
+        return baseItemData
     }
 
     const modsData = [
@@ -436,15 +398,16 @@ export function getModifiedItemData(
         Number(itemData.WEIGHT) || 0
     )
 
-    return applyFeatEffects(applyMods({
+    return applyMods({
         ...baseItemData,
         COST,
         WEIGHT
-    }, modsData), perks)
+    }, modsData)
 }
 
 export function getUniqueKey(item: CharacterItem | CustomItem){
     const itemData = {
+        grantedBy: undefined,
         id: 'customItem',
         side: undefined,
         equipped: undefined,
@@ -467,6 +430,7 @@ export function getUniqueKey(item: CharacterItem | CustomItem){
         itemData.RARITY,
         itemData.CATEGORY,
         itemData.TYPE,
+        itemData.grantedBy,
     ].filter(v => v!== undefined).join("|")
 
 }

@@ -1,4 +1,4 @@
-import { Origin, OriginId } from '@/features/character/origin.ts';
+import type { Origin, OriginId } from '@/features/character/origins/types';
 import { AidCategory, AmmoCategory, ItemCategory, ItemType } from '@/types/item.ts';
 import { BaseItem } from '@/data/types.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
@@ -6,8 +6,8 @@ import { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { SpecialMap } from '@/features/character/special/special.ts';
 import { SkillType } from '@/features/character/skills/skills.ts';
 
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
-import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import { PerkId } from '@/features/character/feats/perks.ts';
+import { TraitId } from '@/features/character/feats/traits.ts';
 import { CompanionData } from '@/utils/companionTypes.ts';
 
 // **---- Currency related ----**
@@ -66,6 +66,7 @@ export interface CharacterItem {
     equipped?: boolean;
     mods: string[];
     customName?: string | undefined;
+    grantedBy?: string | undefined;
 }
 
 /**
@@ -91,6 +92,7 @@ export const COMPANION_IDS = ['eyebot', 'dog', 'mrHandy', 'humanoid'] as const;
 export type CompanionId = (typeof COMPANION_IDS)[number];
 
 export interface RawCharacter {
+    saveVersion: number;
     name?: string | undefined;
     level: number;
     origin?: OriginId;
@@ -120,7 +122,7 @@ export interface RawCharacter {
     companions: Partial<Record<CompanionId, CompanionData>>; // Optional companion data
 }
 
-export interface Character extends Omit<RawCharacter, 'origin' | 'activeCompanionId'> {
+export interface Character extends Omit<RawCharacter, 'origin' | 'activeCompanionId' | 'saveVersion'> {
     origin: Origin;
 
     skillPoints: number;

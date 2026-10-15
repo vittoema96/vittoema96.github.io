@@ -1,9 +1,10 @@
+import { getModifiedItemData } from '@/features/character/items.ts';
 import { useTranslation } from 'react-i18next'
 import Tag from '@/app/components/Tag.tsx'
 import { CharacterItem } from '@/types';
 import React from 'react';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
-import { getModifiedItemData, isType } from '@/features/item/utils.ts';
+import { isType } from '@/features/item/utils.ts';
 
 /**
  * Apparel-specific content renderer

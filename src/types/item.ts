@@ -65,7 +65,7 @@ export type ItemCategory =
 // *---- MAP TYPE -> CATEGORIES ----*
 export const ITEM_TYPE_MAP: Record<ItemType, readonly ItemCategory[]> = {
     weapon: WEAPON_CATEGORIES,
-    apparel: APPAREL_CATEGORIES,
+    apparel: APPAREL_CATEGORIES.filter(category => category !== 'powerArmor'), // TODO fix it once powerArmor gets implemented
     aid: AID_CATEGORIES,
     ammo: AMMO_CATEGORIES,
     mod: ['mods'], // TODO HAVE to decide how to handle mod categories

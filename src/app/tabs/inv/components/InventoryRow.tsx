@@ -1,18 +1,13 @@
+import { getModifiedItemData } from '@/features/character/items.ts';
 import React, { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'
 import { CharacterItem, CustomItem } from '@/types';
 import { FitText } from '@/app/components/FitText.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
-import {
-    getDisplayName,
-    getModifiedItemData,
-    isCloseCombat,
-    isType,
-    isUnacquirable,
-} from '@/features/item/utils.ts';
+import { getDisplayName, isCloseCombat, isType, isUnacquirable } from '@/features/item/utils.ts';
 import { allItems } from '@/data';
-import { getDamageRatingBonus } from '@/features/character/feats';
+import { getDamageRatingBonus } from '@/features/character/feats/rules';
 import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 
 
@@ -109,7 +104,9 @@ function InventoryRow({
         if(itemData.ID){
             if (isType(itemData, 'weapon')) {
                 const meleeDamageBonus = isCloseCombat(itemData.CATEGORY) ? character.meleeDamage : 0;
-                const damageRatingBonus = getDamageRatingBonus(character, characterItem as CharacterItem) + meleeDamageBonus
+                const damageRatingBonus = "id" in characterItem
+                    ? getDamageRatingBonus(character, characterItem, itemData) + meleeDamageBonus
+                    : meleeDamageBonus
                 const totalDamage = itemData.DAMAGE_RATING + damageRatingBonus
                 return `${t(itemData.CATEGORY)} • ${totalDamage} ${itemData.DAMAGE_TYPES.map(dt => t(dt)).join(', ')}`;
             }

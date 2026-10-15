@@ -1,8 +1,11 @@
 // SPECIAL
-import { Origin, ORIGINS } from '@/features/character/origin.ts';
-import { TraitId } from '@/features/character/feats/traits/traits.ts';
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
-import { getSpecialAllocationPointsBonus } from '@/features/character/feats';
+import type { Origin } from '@/features/character/origins/types';
+import { TraitId } from '@/features/character/feats/traits.ts';
+import { PerkId } from '@/features/character/feats/perks.ts';
+import {
+    getMaxSpecialValueModifier,
+    getSpecialAllocationPointsBonus,
+} from '@/features/character/feats/rules';
 
 export const SPECIAL = [
     'strength',
@@ -21,15 +24,30 @@ export function isCharacterSpecial(special: any): special is SpecialType {
     return SPECIAL.includes(special);
 }
 
+export function getMaxSpecialValues(
+    origin: Origin,
+    perks: PerkId[] = [],
+    traits: TraitId[] = [],
+): SpecialMap {
+    return SPECIAL.reduce((values, special) => {
+        values[special] = origin.specialMaxValues[special]
+            + getMaxSpecialValueModifier(special, perks, traits, origin);
+        return values;
+    }, { ...origin.specialMaxValues });
+}
+
+export function getMinSpecialValue(origin: Origin, special: SpecialType): number {
+    return origin.specialMinValues[special];
+}
+
 export function calculateSpecialPoints(special: SpecialMap, origin: Origin, perks: PerkId[], traits: TraitId[]){
     // Points can't go lower than 4 on all 7 special stats
     // Supermutants have 6 minimum in STR and END
-    const baseSpecialSum =
-        7 * 4 + (origin === ORIGINS.SUPER_MUTANT ? 4 : 0);
+    const baseSpecialSum = 7 * 4;
     const specialSum = Object.values(special).reduce(
         (total, value) => total + value,
         0,
     );
     const usedPoints = specialSum - baseSpecialSum;
-    return 12 + getSpecialAllocationPointsBonus(perks, traits) - usedPoints;
+    return 12 + getSpecialAllocationPointsBonus(perks, traits, origin) - usedPoints;
 }

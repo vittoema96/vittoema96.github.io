@@ -17,7 +17,10 @@ import { D6Dice, getFaceClass } from '@/app/components/popup/dice/components/dic
 
 import { isCloseCombat } from '@/features/item/utils.ts';
 import { useWeaponStats } from '@/features/character/hooks/useWeaponStats.ts';
-import { FeatRollAction, getRollActions, getWeaponEffects } from '@/features/character/feats';
+import { consumeAmmo, getWeaponAmmoCount } from '@/features/character/items.ts';
+import { calculateCharacter } from '@/features/character/calculate.ts';
+import type { FeatRollAction } from '@/features/character/feats/types';
+import { getRollActions, getWeaponEffects } from '@/features/character/feats/rules';
 
 export interface D6PopupProps extends GenericPopupProps {
     usingItem: CharacterItem;
@@ -128,9 +131,20 @@ function D6Popup({
         // If switching mode before rolling, reset ammo cost appropriately
         if (!hasRolled && !isCloseCombat(itemData.CATEGORY)) {
             setAmmoCost(ammoStep)
+            setExtraDiceValues(new Array(extraDiceCount).fill('?'))
+            setExtraDiceRerolled(new Array(extraDiceCount).fill(false))
             setExtraDiceActive(new Array(extraDiceCount).fill(false))
         }
-    }, [ammoStep, extraDiceCount, extraHitsType, hasRolled, itemData.CATEGORY, setExtraDiceActive]);
+    }, [
+        ammoStep,
+        extraDiceCount,
+        extraHitsType,
+        hasRolled,
+        itemData.CATEGORY,
+        setExtraDiceActive,
+        setExtraDiceRerolled,
+        setExtraDiceValues,
+    ]);
 
     const [ammoCost, setAmmoCost] = useState(ammoStep);
     const [targetCreatureType, setTargetCreatureType] = useState<CreatureType>('humanoid');
@@ -293,6 +307,28 @@ function D6Popup({
         }
     };
 
+    const spendResources = (ammo: number, luck: number, reservedAmmo = burstEffectsUsed) => {
+        let spent = false;
+        updateCharacter(prev => {
+            const current = calculateCharacter(prev);
+            if (current.currentLuck < luck) {
+                alert(t('notEnoughLuckAlert'));
+                return {};
+            }
+            if (!roller && getWeaponAmmoCount(itemData, current, usingItem) < ammo + reservedAmmo) {
+                alert(t('notEnoughAmmoAlert'));
+                return {};
+            }
+            spent = true;
+            // Update luck
+            return {
+                items: consumeAmmo(prev, itemData, roller ? 0 : ammo, usingItem),
+                currentLuck: current.currentLuck - luck,
+            };
+        });
+        return spent;
+    };
+
     // Handle roll/reroll
     const handleRoll = () => {
         if (getActiveCount() === 0) {
@@ -301,8 +337,11 @@ function D6Popup({
         }
 
         const luckCost = getLuckCost();
-        if (character.currentLuck < luckCost) {
-            alert(t('notEnoughLuckAlert'));
+        // First roll: consume ammo
+        // Only consume base ammo cost on first roll
+        // Historical TODO addressed by consumeAmmo:
+        // TODO this removes from ALL the objects with that id, renamed items at risk
+        if (!spendResources(hasRolled ? 0 : ammoCost, luckCost)) {
             return;
         }
 
@@ -336,56 +375,19 @@ function D6Popup({
         setExtraDiceRerolled(newExtraRerolled);
         setExtraDiceActive(new Array(extraDiceCount).fill(false));
 
-        // First roll: consume ammo
         if (!hasRolled) {
-            let ammoId = itemData.AMMO_TYPE;
-            if (ammoId === 'self') {
-                ammoId = itemData.ID;
-            }
-            if (ammoId && ammoId !== 'na') {
-                // Only consume base ammo cost on first roll
-                // TODO this removes from ALL the objects with that id, renamed items at risk
-                updateCharacter({
-                    items: character.items
-                        .map(item =>
-                            item.id === ammoId
-                                ? { ...item, quantity: item.quantity - ammoCost }
-                                : item,
-                        )
-                        .filter(item => item.quantity > 0),
-                });
-                setAmmoCost(0); // Reset cost after consuming
-            }
-        }
-
-        // Update luck
-        if (luckCost > 0) {
-            updateCharacter({ currentLuck: character.currentLuck - luckCost });
+            setAmmoCost(0); // Reset cost after consuming
         }
 
         setHasRolled(true);
     };
 
-    const handleClose = () => {
+    const payBurstAmmo = () => {
         // Consume burst ammo if any were selected
         if (burstEffectsUsed > 0 && itemData && !isCloseCombat(itemData.CATEGORY)) {
-            let ammoId = itemData.AMMO_TYPE;
-            if (ammoId === 'self') {
-                ammoId = itemData.ID;
-            }
-            if (ammoId && ammoId !== 'na') {
-                updateCharacter({
-                    items: character.items
-                        .map(item =>
-                            item.id === ammoId
-                                ? { ...item, quantity: item.quantity - burstEffectsUsed }
-                                : item,
-                        )
-                        .filter(item => item.quantity > 0),
-                });
-            }
+            return spendResources(burstEffectsUsed, 0, 0);
         }
-        onClose();
+        return true;
     };
 
 
@@ -425,20 +427,9 @@ function D6Popup({
             `${t(action.id)}${rankSuffix}\n\n${action.getContent(t, getTotalDamage())}`,
             () => {
                 // Deduct Luck if required
-                if (action.cost?.luck) {
-                    updateCharacter({ currentLuck: character.currentLuck - action.cost.luck });
-                }
                 // Deduct Ammo if required
-                if (action.cost?.ammo) {
-                    const amount = action.cost.ammo
-                    const ammoId = itemData.AMMO_TYPE === 'self' ? itemData.ID : itemData.AMMO_TYPE;
-                    if (ammoId && ammoId !== 'na') {
-                        updateCharacter({
-                            items: character.items
-                                .map(item => item.id === ammoId ? { ...item, quantity: item.quantity - amount } : item)
-                                .filter(item => item.quantity > 0),
-                        });
-                    }
+                if (!spendResources(action.cost?.ammo ?? 0, action.cost?.luck ?? 0)) {
+                    return;
                 }
                 // Increment usage count
                 setActionUsages(prev => ({ ...prev, [action.id]: (prev[action.id] ?? 0) + 1 }));
@@ -450,7 +441,8 @@ function D6Popup({
         <>
             <BasePopup
                 title={itemData.ID}
-                onClose={handleClose}
+                onClose={onClose}
+                beforeClose={payBurstAmmo}
                 footerChildren={
                     <>
                         {(!hasRolled ||
@@ -460,7 +452,7 @@ function D6Popup({
                                 onClick={handleRoll}
                                 disabled={
                                     !isCloseCombat(itemData.CATEGORY) &&
-                                    ammoCount < ammoCost
+                                    ammoCount < ammoCost + burstEffectsUsed
                                 }
                             >
                                 {hasRolled ? t('reroll') : t('roll')}
@@ -473,7 +465,7 @@ function D6Popup({
 
                             const isMaxedOut = usedCount >= maxUses;
                             const lacksLuck = (action.cost?.luck ?? 0) > character.currentLuck;
-                            const lacksAmmo = (action.cost?.ammo ?? 0) > ammoCount;
+                            const lacksAmmo = (action.cost?.ammo ?? 0) + burstEffectsUsed > ammoCount;
                             const isDisabled = !hasRolled || isMaxedOut || lacksLuck || lacksAmmo;
 
                             const rankSuffix = maxUses > 1 ? ` (${usedCount + 1}/${maxUses})` : '';
@@ -787,13 +779,17 @@ function D6Popup({
                                                     {Array.from(
                                                         {
                                                             length:
-                                                                Math.min(
-                                                                    getEffectCount(),
-                                                                    ammoCount,
+                                                                Math.max(
+                                                                    burstEffectsUsed,
+                                                                    Math.min(getEffectCount(), ammoCount),
                                                                 ) + 1,
                                                         },
                                                         (_, i) => (
-                                                            <option key={i} value={i}>
+                                                            <option
+                                                                key={i}
+                                                                value={i}
+                                                                disabled={i > Math.min(getEffectCount(), ammoCount)}
+                                                            >
                                                                 {i}
                                                             </option>
                                                         ),

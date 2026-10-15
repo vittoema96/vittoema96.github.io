@@ -7,7 +7,8 @@ import { TraitSelectionPopup } from './FeatSelectionPopup.tsx';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 
 import { traits } from '@/data';
-import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import { TraitId } from '@/features/character/feats/traits.ts';
+import { hasTraitImplementation } from '@/features/character/feats/registry';
 
 function TraitList() {
     const { t } = useTranslation()
@@ -109,6 +110,7 @@ function TraitList() {
                         key={traitId}
                         id={traitId}
                         isFixed={true}
+                        isImplemented={hasTraitImplementation(traitId)}
                         actionButton={TRAIT_ACTIONS[traitId] ? {
                             label: TRAIT_ACTIONS[traitId].buttonLabel,
                             onClick: TRAIT_ACTIONS[traitId].onClick
@@ -126,6 +128,7 @@ function TraitList() {
                                 key={index}
                                 id={selectedTrait}
                                 isFixed={false}
+                                isImplemented={hasTraitImplementation(selectedTrait)}
                                 onChangeClick={() => setChangingSlotIndex(index)}
                                 onDeleteClick={() => handleTraitRemove(index)}
                                 actionButton={TRAIT_ACTIONS[selectedTrait] ? {

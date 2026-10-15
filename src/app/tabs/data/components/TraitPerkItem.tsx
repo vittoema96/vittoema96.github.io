@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 interface TraitPerkItemProps {
     id: string;
     isFixed?: boolean;
+    isImplemented?: boolean;
     onChangeClick?: () => void; // Callback when user wants to change selection
     onDeleteClick?: () => void; // Callback when user wants to delete/clear selection
     actionButton?: {
@@ -19,7 +20,14 @@ interface TraitPerkItemProps {
  * - Optional "Change" button for selectable items
  * - Optional action button for perks
  */
-function TraitPerkItem({ id, isFixed = false, onChangeClick, onDeleteClick, actionButton }: Readonly<TraitPerkItemProps>) {
+function TraitPerkItem({
+    id,
+    isFixed = false,
+    isImplemented = true,
+    onChangeClick,
+    onDeleteClick,
+    actionButton,
+}: Readonly<TraitPerkItemProps>) {
     const { t } = useTranslation();
     const [isExpanded, setIsExpanded] = useState(false);
     const [showActionButtons, setShowActionButtons] = useState(false);
@@ -120,7 +128,10 @@ function TraitPerkItem({ id, isFixed = false, onChangeClick, onDeleteClick, acti
                     <div className="inventory-row__info" style={{ flex: 1, minWidth: 0 }}>
                         <div className="inventory-row__name" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             {/* Name */}
-                            <span style={{ fontWeight: 'bold' }}>
+                            <span style={{
+                                fontWeight: 'bold',
+                                textDecoration: isImplemented ? undefined : 'line-through',
+                            }}>
                                 {t(id)}
                             </span>
                         </div>
@@ -247,4 +258,3 @@ function TraitPerkItem({ id, isFixed = false, onChangeClick, onDeleteClick, acti
 }
 
 export default TraitPerkItem;
-

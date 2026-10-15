@@ -1,24 +1,24 @@
 import { RawCharacter } from '@/types';
-import { Origin, ORIGINS } from '@/features/character/origin.ts';
-import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import type { Origin } from '@/features/character/origins/types';
+import { TraitId } from '@/features/character/feats/traits.ts';
 import { SkillType } from '@/features/character/skills/skills.ts';
 import {
     getBlacklistedSpecialties,
+    getWhitelistedSpecialties,
     getSpecialtySkillBonuses,
     getSpecialtyPointsBonus,
-} from '@/features/character/feats';
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
+} from '@/features/character/feats/rules';
+import { PerkId } from '@/features/character/feats/perks.ts';
 
 
 export function calculateSpecialties(raw: RawCharacter, origin: Origin, traits: TraitId[]){
-    // Ghoul origin adds Survival as specialty
     const specialtiesSet = new Set(raw.specialties)
 
-    if (origin === ORIGINS.GHOUL) {
-        specialtiesSet.add('survival');
-    }
+    getWhitelistedSpecialties(raw.perks, traits, origin)
+        .forEach(skill => specialtiesSet.add(skill));
 
-    getBlacklistedSpecialties([], traits).forEach(skill => specialtiesSet.delete(skill));
+    getBlacklistedSpecialties(raw.perks, traits, origin)
+        .forEach(skill => specialtiesSet.delete(skill));
     return [...specialtiesSet];
 }
 
@@ -30,14 +30,10 @@ export function calculateSpecialtyPoints(specialties: SkillType[], origin: Origi
         skills: SkillType[]
     }
     const bonuses: BonusType[] = [
-        ...getSpecialtySkillBonuses(perks, traits).map(({ bonus, skills }) => ({
+        ...getSpecialtySkillBonuses(perks, traits, origin).map(({ bonus, skills }) => ({
             bonus,
             skills: [...skills],
         })),
-        ...(origin === ORIGINS.BROTHERHOOD_INITIATE ? [{
-            bonus: 1,
-            skills: ['energyWeapons', 'science', 'repair'] as SkillType[],
-        }] : []),
     ];
 
     specialties.forEach(skill => {
@@ -64,8 +60,7 @@ export function calculateSpecialtyPoints(specialties: SkillType[], origin: Origi
 
     const totalGenericAllowed =
         3 +
-        getSpecialtyPointsBonus(perks, traits) +
-        Number(origin === ORIGINS.GHOUL); // ghouls have survival as extra specialty (and it should not count)
+        getSpecialtyPointsBonus(perks, traits, origin);
 
     return {
         generic: totalGenericAllowed - genericPointsUsed,

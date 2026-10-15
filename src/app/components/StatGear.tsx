@@ -1,13 +1,18 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx'
-import { isCharacterSpecial, SpecialType } from '@/features/character/special/special.ts';
+import {
+    getMaxSpecialValues,
+    getMinSpecialValue,
+    isCharacterSpecial,
+    SpecialType,
+} from '@/features/character/special/special.ts';
 import {
     CompanionSpecialType,
 } from '@/features/character/special/special.companion.ts';
-import { ORIGINS } from '@/features/character/origin.ts';
 import { COMPANION_TYPES } from '@/utils/companionTypes.ts';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
+import { updateCompanion } from '@/features/character/update.ts';
 
 
 interface StatGearProps {
@@ -32,13 +37,13 @@ function StatGear({ statType, isEditing = false, children }: Readonly<StatGearPr
     let minValue
     if(isCharacterSpecial(statType)){
         value = character.special[statType]
-        maxValue = character.origin.specialMaxValues[statType]
-        if(character.origin === ORIGINS.SUPER_MUTANT
-                && ['strength', 'endurance'].includes(statType)){
-            minValue = 6
-        } else {
-            minValue = 4
-        }
+        const maxSpecialValues = getMaxSpecialValues(
+            character.origin,
+            character.perks,
+            character.traits,
+        )
+        maxValue = maxSpecialValues[statType]
+        minValue = getMinSpecialValue(character.origin, statType)
     } else {
         value = companion.special[statType]
         maxValue = 10
@@ -60,17 +65,14 @@ function StatGear({ statType, isEditing = false, children }: Readonly<StatGearPr
                 currentLuck: statType === "luck" ? Math.min(character.currentLuck, next) : character.currentLuck
             })
         } else {
-            updateCharacter({
-                companions: {
-                    [character.companion?.type!]: {
-                        ...companion,
-                        special: {
-                            ...companion.special,
-                            [statType]: next,
-                        },
-                    },
-                }
-            });
+            updateCharacter(updateCompanion(companion.type, current => ({
+                special: {
+                    ...current.special,
+                    [statType]: current.special[statType] < maxValue
+                        ? current.special[statType] + 1
+                        : minValue,
+                },
+            })));
         }
     }
 
@@ -121,4 +123,3 @@ function StatGear({ statType, isEditing = false, children }: Readonly<StatGearPr
 }
 
 export default StatGear
-

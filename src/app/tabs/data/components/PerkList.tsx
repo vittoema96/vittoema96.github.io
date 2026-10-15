@@ -6,15 +6,17 @@ import TraitPerkItem from './TraitPerkItem.tsx';
 import TraitPerkSelector from './TraitPerkSelector.tsx';
 import { PerkSelectionPopup } from './FeatSelectionPopup.tsx';
 
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
-import { getPerkSlotCount } from '@/features/character/feats';
-import { MYSTERIOUS_44_MAGNUM } from '@/features/character/feats/perks/implementations/_perkMysteriousStranger.ts';
+import { PerkId } from '@/features/character/feats/perks.ts';
+import { getPerkSlotCount } from '@/features/character/feats/rules';
+import { hasPerkImplementation } from '@/features/character/feats/registry';
+import { MYSTERIOUS_44_MAGNUM } from '@/features/character/feats/perks/_perkMysteriousStranger.ts';
 
 /**
  * Configuration for perk-specific actions.
  * Each perk can have an optional action with a button that appears in the perk description.
  * To add a new perk action, add an entry with the perk ID as key.
  */
+// TODO Centralize these actions in the feat registry without coupling the UI to perk IDs.
 interface PerkAction {
     buttonLabel: string;  // i18n key for the button text
     onClick: () => void;  // Handler when button is clicked
@@ -26,7 +28,9 @@ function PerkList() {
     const { t } = useTranslation()
     const { showD20Popup, showAlert } = usePopup()
     const { character, updateCharacter } = useCharacter()
-    const numberOfPerks = getPerkSlotCount(character.level, character.perks, character.traits);
+    const numberOfPerks = getPerkSlotCount(
+        character.level, character.perks, character.traits, character.origin,
+    );
 
     // Initialize perks from rawCharacter or create empty slots
     const [selectedPerks, setSelectedPerks] = useState<(PerkId | undefined)[]>([]);
@@ -93,6 +97,7 @@ function PerkList() {
                                 key={index}
                                 id={selectedPerk}
                                 isFixed={false}
+                                isImplemented={hasPerkImplementation(selectedPerk)}
                                 onChangeClick={() => setChangingSlotIndex(index)}
                                 onDeleteClick={() => handlePerkRemove(index)}
                                 actionButton={PERK_ACTIONS[selectedPerk] ? {

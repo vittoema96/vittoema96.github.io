@@ -1,11 +1,12 @@
+import { getModifiedItemData } from '@/features/character/items.ts';
 import { CharacterItem, DamageResistanceMap, GenericBodyPart } from '@/types';
-import { getModifiedItemData, isType } from '@/features/item/utils.ts';
+import { isType } from '@/features/item/utils.ts';
 import { mapItemLocations } from '@/utils/bodyLocations.ts';
-import { Origin } from '@/features/character/origin.ts';
-import { getLocationDRBonus } from '@/features/character/feats';
-import { PerkId } from '@/features/character/feats/perks/perks.ts';
+import type { Origin } from '@/features/character/origins/types';
+import { getLocationDRBonus } from '@/features/character/feats/rules';
+import { PerkId } from '@/features/character/feats/perks.ts';
 import { SpecialMap } from '@/features/character/special/special.ts';
-import { TraitId } from '@/features/character/feats/traits/traits.ts';
+import { TraitId } from '@/features/character/feats/traits.ts';
 
 export function calculateDamageResistances(
     special: SpecialMap,
@@ -64,7 +65,7 @@ export function calculateDamageResistances(
 
     const drBonus = getLocationDRBonus(
         special, items,
-        perks, traits
+        perks, traits, origin
     )
     Object.values(locationsDR).forEach(dr => {
         dr.physical += drBonus.physical;

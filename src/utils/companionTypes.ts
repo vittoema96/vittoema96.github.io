@@ -1,8 +1,8 @@
 import { CharacterItem, CompanionId } from '@/types';
 import { CompanionSkillType } from '@/features/character/skills/skills.ts';
 import { CompanionSpecialType } from '@/features/character/special/special.companion.ts';
-import { defaultEyebot } from '@/features/character/feats/perks/implementations/perkRobotWrangler.ts';
-import { defaultDog } from '@/features/character/feats/perks/implementations/perkDogmeat.ts';
+import { defaultEyebot } from '@/features/character/feats/perks/perkRobotWrangler.ts';
+import { defaultDog } from '@/features/character/feats/perks/perkDogmeat.ts';
 
 /**
  * Companion type definition with base stats and configuration

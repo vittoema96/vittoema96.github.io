@@ -4,7 +4,8 @@ import { useCharacter } from '@/app/contexts/CharacterContext'
 import TraitList from '@/app/tabs/data/components/TraitList.tsx';
 import PerkList from '@/app/tabs/data/components/PerkList.tsx';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
-import { ORIGINS, OriginId } from '@/features/character/origin.ts';
+import { originDefinitions } from '@/features/character/origins/registry';
+import type { OriginId } from '@/features/character/origins/types';
 import DialogPortal from '@/app/components/popup/common/DialogPortal.tsx';
 import { useDialog } from '@/hooks/useDialog.ts';
 
@@ -105,7 +106,7 @@ export default function DataTab() {
                     <option value="" disabled>
                         -
                     </option>
-                    {Object.values(ORIGINS).map(
+                    {originDefinitions.map(
                         origin =>
                             origin.id && (
                                 <option key={origin.id} value={origin.id}>
