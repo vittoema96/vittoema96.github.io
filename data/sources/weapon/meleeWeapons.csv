@@ -44,3 +44,4 @@ weaponMrHandyBuzzBlade,weapon,meleeWeapons,4,"[""effectVicious""]","[""physical"
 weaponMultiPurposeAxe,weapon,meleeWeapons,5,"[]","[""physical""]",0,rangeR,"[""qualityTwoHanded""]",2.0,40,2,na,"[]",true,Wanderers DLC
 weaponProtonAxe,weapon,meleeWeapons,5,"[""effectPiercing:1""]","[""energy""]",0,rangeR,"[""qualitySurge""]",4.0,175,5,na,"[]",true,Wanderers DLC
 weaponWarDrum,weapon,meleeWeapons,5,"[""effectStun""]","[""physical""]",0,rangeR,"[""qualityTwoHanded""]",10.0,115,3,na,"[]",false,Wanderers DLC
+weaponThermicLance,weapon,meleeWeapons,6,"[""effectPiercing:1"",""effectStun""]","[""energy""]",0,rangeR,"[""qualityRecoil:7"",""qualityTwoHanded"",""qualityParry""]",10,150,4,na,"[]",false,Wanderers DLC
