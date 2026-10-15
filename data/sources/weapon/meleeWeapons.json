@@ -358,5 +358,13 @@
       "en": "A strike with the stock of a one-handed weapon.",
       "it": "Un colpo dato col il calcio di un'arma ad una mano."
     }
+  },
+  "weaponThermicLance": {
+    "en": "Thermic Lance",
+    "it": "Lancia Termica",
+    "_description": {
+      "en": "A weapon capable of melting enemies at the press of a trigger. It deals heavy energy damage with a continuous, piercing thermal rod.",
+      "it": "Un'arma in grado di sciogliere i nemici alla pressione di un grilletto. Infligge gravi danni da energia grazie a un'asta termica a penetrazione continua."
+    }
   }
 }
