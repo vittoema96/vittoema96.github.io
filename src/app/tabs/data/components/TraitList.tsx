@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import TraitPerkItem from './TraitPerkItem.tsx';
 import TraitPerkSelector from './TraitPerkSelector.tsx';
 import { TraitSelectionPopup } from './FeatSelectionPopup.tsx';
-import { usePopup } from '@/app/contexts/PopupContext.tsx';
+import { useFeatManualActions } from '@/hooks/useFeatManualActions.ts';
 
 import { traits } from '@/data';
 import { TraitId } from '@/features/character/feats/traits.ts';
@@ -13,7 +13,7 @@ import { hasTraitImplementation } from '@/features/character/feats/registry';
 function TraitList() {
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
-    const { showNd6Popup, showConfirm, showAlert } = usePopup()
+    const getActionButton = useFeatManualActions();
     const traitSlotsCount = character.origin.numberOfTraits
 
     // Calculate fixed traits from database where FIXED === true AND ORIGINS includes current origin
@@ -31,41 +31,6 @@ function TraitList() {
     useEffect(() => {
         setSelectedTraits(character.traits.filter(trait => !fixedTraits.includes(trait)))
     }, [character.traits, fixedTraits])
-
-    // Trait actions configuration (similar to perk actions)
-    const TRAIT_ACTIONS: Record<string, { buttonLabel: string; onClick: () => void }> = {
-        'traitRiteOfPassage': {
-            buttonLabel: 'traitRiteOfPassage',
-            onClick: () => {
-                showNd6Popup({
-                    diceCount: 1,
-                    title: t('traitRiteOfPassage'),
-                    description: t('traitRiteOfPassageBenefit'),
-                    resultDisplay: 'effects',
-                    onResult: (result) => {
-                        // If rolled an effect (3-4 on d6), gain +1 luck
-                        if (result.totalEffects > 0) {
-                            const newLuck = Math.min(character.currentLuck + 1, character.maxLuck);
-                            updateCharacter({ currentLuck: newLuck });
-                        }
-                    }
-                });
-            }
-        },
-        'traitMotherWasteland': {
-            buttonLabel: 'traitMotherWasteland',
-            onClick: () => {
-                if(character.currentLuck > 0){
-                    showConfirm(t('traitMotherWastelandBenefit'), () => {
-                        updateCharacter({ currentLuck: character.currentLuck - 1 });
-                    });
-                } else {
-                    showAlert(t('notEnoughLuckAlert'))
-                }
-            }
-        }
-    }
-
 
     // Don't render if no trait slots AND no fixed traits
     if (traitSlotsCount === 0 && fixedTraits.length === 0) {
@@ -111,10 +76,7 @@ function TraitList() {
                         id={traitId}
                         isFixed={true}
                         isImplemented={hasTraitImplementation(traitId)}
-                        actionButton={TRAIT_ACTIONS[traitId] ? {
-                            label: TRAIT_ACTIONS[traitId].buttonLabel,
-                            onClick: TRAIT_ACTIONS[traitId].onClick
-                        } : undefined}
+                        actionButton={getActionButton(traitId)}
                     />
                 ))}
 
@@ -131,10 +93,7 @@ function TraitList() {
                                 isImplemented={hasTraitImplementation(selectedTrait)}
                                 onChangeClick={() => setChangingSlotIndex(index)}
                                 onDeleteClick={() => handleTraitRemove(index)}
-                                actionButton={TRAIT_ACTIONS[selectedTrait] ? {
-                                    label: TRAIT_ACTIONS[selectedTrait].buttonLabel,
-                                    onClick: TRAIT_ACTIONS[selectedTrait].onClick
-                                } : undefined}
+                                actionButton={getActionButton(selectedTrait)}
                             />
                         );
                     }

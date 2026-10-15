@@ -9,6 +9,7 @@ import { getActiveFeats } from './registry.ts';
 import { mergeWeaponEffects } from './weaponEffects.ts';
 import type {
     FeatImplementation,
+    FeatManualAction,
     FeatSelection,
     RollContext,
     RollComplicationContext,
@@ -30,6 +31,16 @@ function collectActiveFeatValues<T>(
     getValues: (feat: FeatImplementation) => T[] | undefined,
 ): T[] {
     return getActiveFeats(selection).flatMap(feat => getValues(feat) ?? []);
+}
+
+export function getManualActions(character: Character): Map<string, FeatManualAction> {
+    const actions = new Map<string, FeatManualAction>();
+    for (const feat of getActiveFeats(character)) {
+        if (feat.id && feat.manualAction) {
+            actions.set(feat.id, feat.manualAction);
+        }
+    }
+    return actions;
 }
 
 export function getSpecialtyPointsBonus(

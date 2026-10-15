@@ -36,7 +36,7 @@ import {
     getRollToggleables,
 } from '@/features/character/feats/rules';
 import { capitalize } from '@/utils/bodyLocations.ts';
-import { MYSTERIOUS_STRANGER } from '@/features/character/feats/perks/_perkMysteriousStranger.ts';
+import { MYSTERIOUS_STRANGER } from '@/features/character/feats/perks/perkMysteriousStranger.ts';
 import { CompanionData } from '@/utils/companionTypes.ts';
 
 // Discriminated union — built from actual domain types, no invented duplicates.

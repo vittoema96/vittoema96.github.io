@@ -11,7 +11,7 @@ import ModifyItemPopup, { ModifyItemPopupProps } from '@/app/components/popup/Mo
 import Toast, { type ToastVariant } from '@/app/components/Toast.tsx';
 import ChoicePopup from '@/app/components/popup/ChoicePopup.tsx';
 
-export type RollerType = 'companion' | 'mysteriousStranger' | undefined;
+export type { RollerType } from '@/types';
 
 interface ActivePopup {
     id: string;

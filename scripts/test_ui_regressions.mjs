@@ -30,6 +30,12 @@ const caseNames = [
     'Deferred side selection preserves inventory changes and the opposite armor side',
     'Robot plating confirmation preserves intervening items, currency and other part mods',
     'New companion edits preserve defaults, name, HP and consecutive SPECIAL changes',
+    'Manual feats are implemented in lists and selectors, with actions only while effective',
+    'Mother Wasteland confirms once, preserves latest luck and does not charge on cancel',
+    'Mother Wasteland does not open without enough luck',
+    'Rite of Passage refunds an effect using latest luck and maximum',
+    'Rite of Passage ignores non-effects and cancellation',
+    'Mysterious Stranger preserves its roller stats and pays only once on the first roll',
 ];
 
 const fixture = `
@@ -49,6 +55,9 @@ import D6Popup from '/src/app/components/popup/dice/D6Popup.tsx';
 import ModifyItemPopup from '/src/app/components/popup/ModifyItemPopup.tsx';
 import { useItemManagement } from '/src/app/contexts/useItemManagement.ts';
 import { useInventoryActions } from '/src/app/tabs/inv/hooks/useInventoryActions.ts';
+import PerkList from '/src/app/tabs/data/components/PerkList.tsx';
+import TraitList from '/src/app/tabs/data/components/TraitList.tsx';
+import { PerkSelectionPopup, TraitSelectionPopup } from '/src/app/tabs/data/components/FeatSelectionPopup.tsx';
 
 await i18next.use(initReactI18next).init({
     lng: 'en', resources: { en: { translation: translations } },
@@ -84,6 +93,9 @@ function mount(view, props = {}) {
         {view === 'companion' && <CompanionTab />}
         {view === 'd6' && <D6Popup {...props} onClose={() => { closed++; mount('empty'); }} />}
         {view === 'modify' && <ModifyItemPopup {...props} onClose={() => { closed++; mount('empty'); }} />}
+        {view === 'feats' && <><PerkList /><TraitList /></>}
+        {view === 'perk-selection' && <PerkSelectionPopup prev={undefined} onSelect={() => {}} onClose={() => mount('empty')} />}
+        {view === 'trait-selection' && <TraitSelectionPopup prev={undefined} onSelect={() => {}} onClose={() => mount('empty')} />}
     </PopupProvider></TooltipProvider></CharacterProvider></React.StrictMode>);
 }
 async function reset(raw, view, props) {
@@ -91,6 +103,7 @@ async function reset(raw, view, props) {
     await pause();
     alerts = [];
     closed = 0;
+    Math.random = () => 0.4;
     useSaveStore.getState().importSlot(0, character(raw));
     useSaveStore.getState().setActiveSlot(0);
     mount(view, props);
@@ -123,6 +136,14 @@ async function finishClose(dialog, button = dialog.querySelector('button.closeBu
     button.click();
     dialog.dispatchEvent(new Event('animationend', { bubbles: true }));
     await pause();
+}
+async function activateFeat(label) {
+    const button = [...document.querySelectorAll('.perk-action-button')]
+        .find(b => b.title === i18next.t(label));
+    check(button, 'Missing manual action: ' + label);
+    button.click();
+    await pause();
+    return document.querySelector('dialog:last-of-type');
 }
 async function setupBurst(quantity = 2) {
     await reset({
@@ -339,6 +360,128 @@ const cases = [
         check(raw().companions.dog.special.mind === 3, 'Companion edit lost the default MIND');
         check(raw().companions.dog.name === 'First saved dog' && raw().companions.dog.currentHp === 2, 'SPECIAL editing overwrote companion name or HP');
         check(raw().companions.dog.perks.includes('companionPerkASenseForDanger'), 'Companion edits overwrote saved perks');
+    },
+    async () => {
+        const ids = ['perkMysteriousStranger', 'traitMotherWasteland', 'traitRiteOfPassage'];
+        await reset({
+            origin: 'tribal', perks: [ids[0]], traits: ids.slice(1),
+        }, 'feats');
+        for (const id of ids) {
+            const name = [...document.querySelectorAll('.inventory-row__name span')]
+                .find(n => n.textContent.trim() === i18next.t(id));
+            check(name && name.style.textDecoration !== 'line-through', 'Manual feat is still marked unimplemented: ' + id);
+        }
+        check(document.querySelectorAll('.perk-action-button').length === 3, 'Expected exactly the three owned manual actions');
+        context.updateCharacter({ origin: 'survivor', special: { luck: 6 } });
+        await pause();
+        check(document.querySelectorAll('.perk-action-button').length === 0, 'Invalidated feats kept manual actions');
+        for (const view of ['perk-selection', 'trait-selection']) {
+            await reset({ origin: 'tribal' }, view);
+            for (const id of view === 'perk-selection' ? ids.slice(0, 1) : ids.slice(1)) {
+                const name = [...document.querySelectorAll('.trait-perk-popup__item-name')]
+                    .find(n => n.textContent.trim() === i18next.t(id));
+                check(name && name.style.textDecoration !== 'line-through', 'Selector marks manual feat unimplemented: ' + id);
+            }
+        }
+    },
+    async () => {
+        await reset({ origin: 'tribal', traits: ['traitMotherWasteland'], currentLuck: 5 }, 'feats');
+        let dialog = await activateFeat('traitMotherWasteland');
+        check(raw().currentLuck === 5, 'Opening Mother Wasteland spent luck');
+        await finishClose(dialog);
+        check(raw().currentLuck === 5, 'Cancelling Mother Wasteland spent luck');
+        dialog = await activateFeat('traitMotherWasteland');
+        context.updateCharacter({ currentLuck: 4 });
+        await pause();
+        const confirm = dialog.querySelector('button.confirmButton');
+        confirm.click();
+        confirm.click();
+        context.updateCharacter({ currentLuck: 3, caps: 87 });
+        await pause();
+        dialog.dispatchEvent(new Event('animationend', { bubbles: true }));
+        await pause();
+        check(raw().currentLuck === 2, 'Confirmation did not deduct exactly once from the latest luck');
+        check(raw().caps === 87, 'Manual action overwrote an intervening character update');
+    },
+    async () => {
+        await reset({ origin: 'tribal', traits: ['traitMotherWasteland'], currentLuck: 0 }, 'feats');
+        const dialog = await activateFeat('traitMotherWasteland');
+        check(dialog.textContent.includes(i18next.t('notEnoughLuckAlert')), 'Zero luck did not show the resource alert');
+        check(!dialog.querySelector('button.confirmButton') && raw().currentLuck === 0, 'Zero luck still opened a payable confirmation');
+    },
+    async () => {
+        for (const random of [0.4, 0.6]) {
+            await reset({ origin: 'tribal', traits: ['traitRiteOfPassage'], currentLuck: 0 }, 'feats');
+            Math.random = () => random;
+            let dialog = await activateFeat('traitRiteOfPassage');
+            check(dialog.querySelectorAll('.d6-dice').length === 1, 'Rite of Passage must roll exactly one combat die');
+            dialog.querySelector('button.confirmButton').click();
+            await pause();
+            check(dialog.querySelector('.d6-face-effect'), 'Expected a combat die effect');
+            check(raw().currentLuck === 0, 'Luck was refunded before confirming the result');
+            context.updateCharacter({ currentLuck: 5, special: { luck: 6 } });
+            await pause();
+            await finishClose(dialog, dialog.querySelector('button.confirmButton'));
+            check(context.character.maxLuck === 6 && raw().currentLuck === 6, 'Refund did not use latest luck and maximum');
+            dialog = await activateFeat('traitRiteOfPassage');
+            dialog.querySelector('button.confirmButton').click();
+            await pause();
+            context.updateCharacter({ special: { luck: 4 } });
+            await pause();
+            await finishClose(dialog, dialog.querySelector('button.confirmButton'));
+            check(raw().currentLuck === 4, 'Rite of Passage exceeded the newly reduced maximum');
+        }
+    },
+    async () => {
+        const fixture = { origin: 'tribal', traits: ['traitRiteOfPassage'], currentLuck: 2 };
+        let dialog;
+        for (const random of [0, 0.2, 0.7, 0.99]) {
+            await reset(fixture, 'feats');
+            dialog = await activateFeat('traitRiteOfPassage');
+            Math.random = () => random;
+            dialog.querySelector('button.confirmButton').click();
+            await pause();
+            check(!dialog.querySelector('.d6-face-effect'), 'Expected a non-effect combat die');
+            await finishClose(dialog, dialog.querySelector('button.confirmButton'));
+            check(raw().currentLuck === 2, 'A non-effect die refunded luck');
+        }
+        for (const rolled of [false, true]) {
+            await reset(fixture, 'feats');
+            dialog = await activateFeat('traitRiteOfPassage');
+            if (rolled) {
+                dialog.querySelector('button.confirmButton').click();
+                await pause();
+            }
+            await finishClose(dialog);
+            check(raw().currentLuck === 2, 'Cancelling the combat die refunded luck');
+        }
+    },
+    async () => {
+        await reset({ perks: ['perkMysteriousStranger'], currentLuck: 8 }, 'feats');
+        let dialog = await activateFeat('summonStranger');
+        check(raw().currentLuck === 8, 'Summoning charged luck before the first roll');
+        check(dialog.querySelectorAll('.d20-dice').length === 3, 'Stranger must use three d20s');
+        check(dialog.textContent.includes('Target: 16') && dialog.textContent.includes('Critical Hit: Roll \u2264 6'), 'Stranger did not use AGI 10 and tagged Small Guns 6');
+        check(dialog.querySelector('select').disabled && dialog.querySelector('select').value === 'agility', 'Stranger SPECIAL selection changed');
+        await finishClose(dialog);
+        check(raw().currentLuck === 8, 'Cancelling the stranger roll spent luck');
+        dialog = await activateFeat('summonStranger');
+        const roll = dialog.querySelector('button.confirmButton');
+        roll.click();
+        roll.click();
+        await pause();
+        check(raw().currentLuck === 7, 'Stranger first roll must cost exactly one luck');
+        check([...dialog.querySelectorAll('.d20-dice')].every(d => d.textContent === '9'), 'Stranger did not roll all three dice');
+        check(![...dialog.querySelectorAll('button')].some(b => b.textContent.trim() === i18next.t('roll')), 'Stranger allowed another skill roll');
+        dialog.querySelector('button.confirmButton').click();
+        await pause();
+        const damage = document.querySelector('dialog:last-of-type');
+        check(damage !== dialog && damage.querySelector('.d6-dice'), 'Stranger did not continue to its damage popup');
+        check(raw().currentLuck === 7, 'Opening stranger damage charged luck again');
+        await finishClose(damage);
+        await finishClose(dialog);
+        check(raw().currentLuck === 7, 'Closing after the stranger roll charged again');
+        check(!raw().items.some(i => i.id === 'weaponFortyFourPistol'), 'Stranger weapon leaked into the player inventory');
     },
 ];
 const results = [];

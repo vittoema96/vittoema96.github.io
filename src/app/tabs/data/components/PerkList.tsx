@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { useEffect, useState } from 'react';
-import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import TraitPerkItem from './TraitPerkItem.tsx';
 import TraitPerkSelector from './TraitPerkSelector.tsx';
 import { PerkSelectionPopup } from './FeatSelectionPopup.tsx';
@@ -9,45 +8,18 @@ import { PerkSelectionPopup } from './FeatSelectionPopup.tsx';
 import { PerkId } from '@/features/character/feats/perks.ts';
 import { getPerkSlotCount } from '@/features/character/feats/rules';
 import { hasPerkImplementation } from '@/features/character/feats/registry';
-import { MYSTERIOUS_44_MAGNUM } from '@/features/character/feats/perks/_perkMysteriousStranger.ts';
-
-/**
- * Configuration for perk-specific actions.
- * Each perk can have an optional action with a button that appears in the perk description.
- * To add a new perk action, add an entry with the perk ID as key.
- */
-// TODO Centralize these actions in the feat registry without coupling the UI to perk IDs.
-interface PerkAction {
-    buttonLabel: string;  // i18n key for the button text
-    onClick: () => void;  // Handler when button is clicked
-}
-
-
+import { useFeatManualActions } from '@/hooks/useFeatManualActions.ts';
 
 function PerkList() {
     const { t } = useTranslation()
-    const { showD20Popup, showAlert } = usePopup()
     const { character, updateCharacter } = useCharacter()
+    const getActionButton = useFeatManualActions();
     const numberOfPerks = getPerkSlotCount(
         character.level, character.perks, character.traits, character.origin,
     );
 
     // Initialize perks from rawCharacter or create empty slots
     const [selectedPerks, setSelectedPerks] = useState<(PerkId | undefined)[]>([]);
-
-    const PERK_ACTIONS: Record<string, PerkAction> = {
-	        'perkMysteriousStranger': {
-            buttonLabel: 'summonStranger',
-            onClick: () => {
-                // Check if player has at least 1 luck
-                if(character.currentLuck > 0){
-                    showD20Popup({skillId: 'smallGuns', usingItem: MYSTERIOUS_44_MAGNUM, roller: 'mysteriousStranger'})
-                } else {
-                    showAlert(t('notEnoughLuckAlert'));
-                }
-            }
-        }
-    };
 
     useEffect(() => {
         setSelectedPerks(character.perks)
@@ -100,10 +72,7 @@ function PerkList() {
                                 isImplemented={hasPerkImplementation(selectedPerk)}
                                 onChangeClick={() => setChangingSlotIndex(index)}
                                 onDeleteClick={() => handlePerkRemove(index)}
-                                actionButton={PERK_ACTIONS[selectedPerk] ? {
-                                    label: PERK_ACTIONS[selectedPerk].buttonLabel,
-                                    onClick: PERK_ACTIONS[selectedPerk].onClick
-                                } : undefined}
+                                actionButton={getActionButton(selectedPerk)}
                             />
                         );
                     }

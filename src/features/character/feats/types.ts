@@ -1,4 +1,4 @@
-import type { BodyPart, Character, CharacterItem, CompanionId } from '@/types';
+import type { BodyPart, Character, CharacterItem, CompanionId, RollerType } from '@/types';
 import type { PerkId } from '@/features/character/feats/perks.ts';
 import type { TraitId } from '@/features/character/feats/traits.ts';
 import type { WeaponItem } from '@/data/item/weapon.schemas.ts';
@@ -15,6 +15,27 @@ export interface FeatRollAction {
     getContent: (t: TFunction, totalDamage: string) => string;
     modalId?: string;
 }
+
+export type FeatManualAction = { label: string } & (
+    | {
+        type: 'confirm';
+        message: string;
+        luckCost: number;
+    }
+    | {
+        type: 'combatDice';
+        diceCount: number;
+        description: string;
+        luckOnEffect: number;
+    }
+    | {
+        type: 'skillRoll';
+        skillId: SkillType;
+        usingItem: CharacterItem;
+        roller: Exclude<RollerType, undefined>;
+        requiredLuck: number;
+    }
+);
 
 export interface SpecialModifierContext {
     skillId?: SkillType;
@@ -64,6 +85,8 @@ export type GrantedItem = CharacterItem & {
 
 /** Common behavior implemented by origins, perks and traits. */
 export interface FeatImplementation {
+    manualAction?: FeatManualAction;
+
     getGrantedItems?: (selection: FeatSelection) => GrantedItem[];
 
     getAvailableCompanions?: () => CompanionId[];

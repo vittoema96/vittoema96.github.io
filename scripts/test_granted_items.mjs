@@ -914,12 +914,77 @@ test('Registry discovers moved modules once, in family order, without losing ran
         active.map(feat => feat.id),
         [origin.id, ...perks, ...traits],
     );
-    assert.ok(!active.some(feat => feat.id === 'perkMysteriousStranger'));
+    for (const id of ['perkMysteriousStranger', 'traitMotherWasteland', 'traitRiteOfPassage']) {
+        assert.equal(active.filter(feat => feat.id === id).length, 1);
+    }
     const raw = character({ origin: 'survivor', perks: ['perkLifeGiver', 'perkLifeGiver'] });
     assert.equal(
         calculate(raw).maxHp - calculate({ ...raw, perks: [] }).maxHp,
         raw.special.endurance * 2,
     );
+});
+
+test('Manual actions come from effective registered feats, not raw selections', () => {
+    const raw = character({
+        origin: 'tribal',
+        perks: ['perkMysteriousStranger'],
+        traits: ['traitMotherWasteland', 'traitRiteOfPassage'],
+    });
+    const snapshot = structuredClone(raw);
+    assert.deepEqual(
+        feats.getManualActions(calculate(raw)),
+        new Map([
+            ['perkMysteriousStranger', {
+                type: 'skillRoll',
+                label: 'summonStranger',
+                skillId: 'smallGuns',
+                usingItem: item('weaponFortyFourPistol', {
+                    equipped: true, mods: ['modMarksmanGrip', 'modPowerful'],
+                }),
+                roller: 'mysteriousStranger',
+                requiredLuck: 1,
+            }],
+            ['traitMotherWasteland', {
+                type: 'confirm',
+                label: 'traitMotherWasteland',
+                message: 'traitMotherWastelandBenefit',
+                luckCost: 1,
+            }],
+            ['traitRiteOfPassage', {
+                type: 'combatDice',
+                label: 'traitRiteOfPassage',
+                diceCount: 1,
+                description: 'traitRiteOfPassageBenefit',
+                luckOnEffect: 1,
+            }],
+        ]),
+    );
+    assert.deepEqual(raw, snapshot);
+    assert.equal(feats.getManualActions(calculate(character({ origin: 'tribal' }))).size, 0);
+    assert.equal(feats.getManualActions(calculate({
+        ...raw, origin: 'survivor', special: { ...raw.special, luck: 6 },
+    })).size, 0, 'Invalid perk prerequisites and traits from another origin must not grant actions');
+});
+
+test('Registered stranger profile preserves the previous schema-derived combat stats', async () => {
+    const { MYSTERIOUS_STRANGER, MYSTERIOUS_44_MAGNUM } = await server.ssrLoadModule(
+        '/src/features/character/feats/perks/perkMysteriousStranger.ts',
+    );
+    const weapon = item('weaponFortyFourPistol', {
+        equipped: true, mods: ['modMarksmanGrip', 'modPowerful'],
+    });
+    const previous = schema.RawCharacterSchema.parse({
+        name: 'Mysterious Stranger',
+        special: { agility: 10 },
+        skills: { smallGuns: 6 },
+        specialties: ['smallGuns'],
+        items: [weapon],
+        maxHp: 9999,
+    });
+    assert.deepEqual(MYSTERIOUS_44_MAGNUM, weapon);
+    assert.deepEqual(MYSTERIOUS_STRANGER, Object.fromEntries(
+        ['special', 'skills', 'specialties', 'traits', 'items'].map(key => [key, previous[key]]),
+    ));
 });
 
 const ammoFixture = () =>

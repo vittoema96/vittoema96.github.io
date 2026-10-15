@@ -150,6 +150,8 @@ export interface GenericPopupProps {
     onClose: () => void;
 }
 
+export type RollerType = 'companion' | 'mysteriousStranger' | undefined;
+
 // **---- Item related----**
 
 export const DAMAGE_TYPES = ['physical', 'energy', 'radiation'] as const;
