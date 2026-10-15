@@ -98,7 +98,7 @@ export const useInventoryActions = () => {
                         return [otherItem];
                     }
 
-                    if (hasApparelConflict(characterItem, otherItem)) {
+                    if (hasApparelConflict({...characterItem, side}, otherItem)) {
                         return [{ ...otherItem, equipped: false, side: undefined }];
                     }
                     return [otherItem];
