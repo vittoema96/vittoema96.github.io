@@ -43,29 +43,23 @@ function D6Popup({
     const { character, updateCharacter } = useCharacter();
     const { showConfirm } = usePopup();
 
-
     // Get weapon data with mods applied
     // TODO result is forced to not be null, decide how to handle it better
     const weaponStats = useWeaponStats(usingItem, hasSneakAttack)!;
 
-    const {
-        itemData,
-        damageBonus,
-        fireRateBonus,
-        ammoCount,
-        ammoPerShot,
-        legendaryMods
-    } = weaponStats
+    const { itemData, damageBonus, fireRateBonus, ammoCount, ammoPerShot, legendaryMods } =
+        weaponStats;
 
     const fireRateNum = Number(itemData.FIRE_RATE) || 0;
-    const ammoStep = roller ? 0 : ammoPerShot
+    const ammoStep = roller ? 0 : ammoPerShot;
 
     // Checks on EFFECTS and QUALITIES
-    const weaponEffects = getWeaponEffects(character, itemData, hasAimed)
+    const weaponEffects = getWeaponEffects(character, itemData, hasAimed);
     const hasWeaponVicious = weaponEffects.some(e => e.effect === 'effectVicious');
     const hasBurst = weaponEffects.some(e => e.effect === 'effectBurst');
     const isGatling = itemData.QUALITIES.includes('qualityGatling');
     const isAccurate = itemData.QUALITIES.includes('qualityAccurate');
+    const canRerollHitLocation = itemData.REROLL_HIT_LOCATION === true;
 
     // User-selectable extra hits type for Accurate + Aimed
     const canChooseExtraHitsType =
@@ -78,10 +72,10 @@ function D6Popup({
     const defaultExtraHitType = isCloseCombat(itemData.CATEGORY)
         ? 'ap'
         : fireRateNum > 0
-            ? 'ammo'
-            : hasAimed && isAccurate
-                ? 'ap'
-                : null;
+          ? 'ammo'
+          : hasAimed && isAccurate
+            ? 'ap'
+            : null;
 
     const [extraHitTypeChoice, setExtraHitTypeChoice] = useState<'ap' | 'ammo' | null>(null);
     const extraHitsType = canChooseExtraHitsType
@@ -125,15 +119,14 @@ function D6Popup({
         roller ? extraDiceCount : 0, // just in case, not actually needed
     );
 
-
     // Reinitialize extra dice arrays when count changes
     useEffect(() => {
         // If switching mode before rolling, reset ammo cost appropriately
         if (!hasRolled && !isCloseCombat(itemData.CATEGORY)) {
-            setAmmoCost(ammoStep)
-            setExtraDiceValues(new Array(extraDiceCount).fill('?'))
-            setExtraDiceRerolled(new Array(extraDiceCount).fill(false))
-            setExtraDiceActive(new Array(extraDiceCount).fill(false))
+            setAmmoCost(ammoStep);
+            setExtraDiceValues(new Array(extraDiceCount).fill('?'));
+            setExtraDiceRerolled(new Array(extraDiceCount).fill(false));
+            setExtraDiceActive(new Array(extraDiceCount).fill(false));
         }
     }, [
         ammoStep,
@@ -148,14 +141,11 @@ function D6Popup({
 
     const [ammoCost, setAmmoCost] = useState(ammoStep);
     const [targetCreatureType, setTargetCreatureType] = useState<CreatureType>('humanoid');
-    const [hitLocationRoll, setHitLocationRoll] = useState(() => hitTorso ? 3 : rollD20()); // d20 roll for hit location (1-20); 3 = torso for both humanoid and mrHandy
+    const [hitLocationRoll, setHitLocationRoll] = useState(() => (hitTorso ? 3 : rollD20())); // d20 roll for hit location (1-20); 3 = torso for both humanoid and mrHandy
     const hitLocation = getHitLocationFromRoll(hitLocationRoll, targetCreatureType);
 
     // States relative to PERKS
     const [burstEffectsUsed, setBurstEffectsUsed] = useState(0); // Number of burst effects activated
-
-
-
 
     const [meltdownDiceValues, setMeltdownDiceValues] = useState<number[]>([]); // Meltdown dice results
 
@@ -176,9 +166,9 @@ function D6Popup({
         setMeltdownDiceValues([]);
     };
     const confirmMeltdown = () => {
-        setActionUsages(prev => ({ ...prev, perkMeltdown: 1}));
+        setActionUsages(prev => ({ ...prev, perkMeltdown: 1 }));
         closeMeltdownPopup();
-    }
+    };
 
     // Count functions
     const getActiveDiceCount = () => diceActive.filter(Boolean).length;
@@ -262,7 +252,6 @@ function D6Popup({
         if (!hasRolled) {
             // Before rolling: activate/deactivate extra dice (costs ammo)
             const isActivating = !extraDiceActive[index];
-
 
             // TODO this part can be improved
             // Check ammo availability
@@ -390,8 +379,7 @@ function D6Popup({
         return true;
     };
 
-
-    const [actionUsages, setActionUsages] = useState<Record<string, number>>({})
+    const [actionUsages, setActionUsages] = useState<Record<string, number>>({});
     const [activeModalId, setActiveModalId] = useState<string | null>(null);
 
     useEffect(() => {
@@ -404,10 +392,10 @@ function D6Popup({
 
     // Get applicable actions for this character & weapon
     const rollActions = useMemo(() => {
-        if (roller) {return []} // Popups used by "roller" mode never show perk buttons
-        return getRollActions(character).filter(action =>
-            action.isApplicable(character, itemData)
-        );
+        if (roller) {
+            return [];
+        } // Popups used by "roller" mode never show perk buttons
+        return getRollActions(character).filter(action => action.isApplicable(character, itemData));
     }, [character, itemData, roller]);
 
     // 2. Action execution handler
@@ -433,7 +421,7 @@ function D6Popup({
                 }
                 // Increment usage count
                 setActionUsages(prev => ({ ...prev, [action.id]: (prev[action.id] ?? 0) + 1 }));
-            }
+            },
         );
     };
 
@@ -459,13 +447,14 @@ function D6Popup({
                             </button>
                         )}
 
-                        {rollActions.map((action) => {
+                        {rollActions.map(action => {
                             const maxUses = action.getMaxUses?.(character) ?? 1;
                             const usedCount = actionUsages[action.id] ?? 0;
 
                             const isMaxedOut = usedCount >= maxUses;
                             const lacksLuck = (action.cost?.luck ?? 0) > character.currentLuck;
-                            const lacksAmmo = (action.cost?.ammo ?? 0) + burstEffectsUsed > ammoCount;
+                            const lacksAmmo =
+                                (action.cost?.ammo ?? 0) + burstEffectsUsed > ammoCount;
                             const isDisabled = !hasRolled || isMaxedOut || lacksLuck || lacksAmmo;
 
                             const rankSuffix = maxUses > 1 ? ` (${usedCount + 1}/${maxUses})` : '';
@@ -478,7 +467,8 @@ function D6Popup({
                                     disabled={isDisabled}
                                     title={t(`${action.id}Description`)}
                                 >
-                                    {t(action.id)}{rankSuffix}
+                                    {t(action.id)}
+                                    {rankSuffix}
                                 </button>
                             );
                         })}
@@ -492,22 +482,29 @@ function D6Popup({
                     </div>
 
                     {/* Effects and Qualities Tags */}
-                    {(weaponEffects.length > 0 || itemData.QUALITIES.length > 0 || legendaryMods.length > 0 || hasSneakAttack) && (
+                    {(weaponEffects.length > 0 ||
+                        itemData.QUALITIES.length > 0 ||
+                        legendaryMods.length > 0 ||
+                        hasSneakAttack) && (
                         <div
                             className="row l-centered"
                             style={{ flexWrap: 'wrap', gap: '0.25rem' }}
                         >
                             {weaponEffects.map(e => {
                                 const values = [];
-                                let other = {}
-                                if (e.level) { values.push(e.level) }
-                                if(e.bonus){
-                                    values.push(e.bonus)
-                                    other = {
-                                        color: "var(--warning-color)"
-                                    }
+                                let other = {};
+                                if (e.level) {
+                                    values.push(e.level);
                                 }
-                                const label = [t(e.effect), values.join('+')].filter(Boolean).join(' ')
+                                if (e.bonus) {
+                                    values.push(e.bonus);
+                                    other = {
+                                        color: 'var(--warning-color)',
+                                    };
+                                }
+                                const label = [t(e.effect), values.join('+')]
+                                    .filter(Boolean)
+                                    .join(' ');
                                 return (
                                     <Tag
                                         key={e.effect}
@@ -516,7 +513,7 @@ function D6Popup({
                                     >
                                         {label}
                                     </Tag>
-                                )
+                                );
                             })}
 
                             {hasSneakAttack && !hasWeaponVicious && (
@@ -549,9 +546,10 @@ function D6Popup({
 
                             {legendaryMods.map(effect => {
                                 return (
-                                    <Tag key={effect}
-                                         tooltipId={`${effect}Description`}
-                                         color={'var(--warning-color)'}
+                                    <Tag
+                                        key={effect}
+                                        tooltipId={`${effect}Description`}
+                                        color={'var(--warning-color)'}
                                     >
                                         {t(effect)}
                                     </Tag>
@@ -599,24 +597,26 @@ function D6Popup({
                     >
                         {t(hitLocation)}
                     </span>
-                    <button
-                        onClick={() => setHitLocationRoll(rollD20())}
-                        style={{
-                            padding: '0.125rem 0.375rem',
-                            backgroundColor: 'var(--secondary-color)',
-                            color: 'var(--primary-color)',
-                            border: 'var(--border-primary-thin)',
-                            borderRadius: '0.25rem',
-                            cursor: 'pointer',
-                            fontSize: '0.9rem',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}
-                        title={t('rerollHitLocation')}
-                    >
-                        <i className="fas fa-dice"></i>
-                    </button>
+                    {canRerollHitLocation && (
+                        <button
+                            onClick={() => setHitLocationRoll(rollD20())}
+                            style={{
+                                padding: '0.125rem 0.375rem',
+                                backgroundColor: 'var(--secondary-color)',
+                                color: 'var(--primary-color)',
+                                border: 'var(--border-primary-thin)',
+                                borderRadius: '0.25rem',
+                                cursor: 'pointer',
+                                fontSize: '0.9rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                            title={t('rerollHitLocation')}
+                        >
+                            <i className="fas fa-dice"></i>
+                        </button>
+                    )}
                 </div>
 
                 <hr style={{ margin: '0.25rem 0' }} />
@@ -781,14 +781,23 @@ function D6Popup({
                                                             length:
                                                                 Math.max(
                                                                     burstEffectsUsed,
-                                                                    Math.min(getEffectCount(), ammoCount),
+                                                                    Math.min(
+                                                                        getEffectCount(),
+                                                                        ammoCount,
+                                                                    ),
                                                                 ) + 1,
                                                         },
                                                         (_, i) => (
                                                             <option
                                                                 key={i}
                                                                 value={i}
-                                                                disabled={i > Math.min(getEffectCount(), ammoCount)}
+                                                                disabled={
+                                                                    i >
+                                                                    Math.min(
+                                                                        getEffectCount(),
+                                                                        ammoCount,
+                                                                    )
+                                                                }
                                                             >
                                                                 {i}
                                                             </option>
@@ -871,9 +880,7 @@ function D6Popup({
                         <button
                             className="confirmButton"
                             onClick={
-                                meltdownDiceValues.length === 0
-                                    ? rollMeltdownDice
-                                    : confirmMeltdown
+                                meltdownDiceValues.length === 0 ? rollMeltdownDice : confirmMeltdown
                             }
                         >
                             {meltdownDiceValues.length === 0 ? t('roll') : t('confirm')}

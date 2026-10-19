@@ -78,7 +78,7 @@ export function calculateCharacter(raw: RawCharacter): Character {
 
     const activeCharacter = { ...raw, items };
     const maxWeight = calculateMaxWeight(activeCharacter, origin, perks, traits);
-    const currentWeight = calculateCurrentWeight(activeCharacter, perks);
+    const currentWeight = calculateCurrentWeight(activeCharacter, origin, perks, traits);
     const locationsDR = calculateDamageResistances(special, items, origin, perks, traits);
 
     return {

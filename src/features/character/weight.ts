@@ -5,16 +5,29 @@ import type { Origin } from '@/features/character/origins/types';
 
 import { PerkId } from '@/features/character/feats/perks.ts';
 import { TraitId } from '@/features/character/feats/traits.ts';
-import { applyMaxWeightModifiers, getMaxWeightOverride } from '@/features/character/feats/rules';
+import {
+    applyMaxWeightModifiers,
+    getItemWeightMultiplier,
+    getMaxWeightOverride,
+} from '@/features/character/feats/rules';
 
-
-export function calculateMaxWeight(raw: RawCharacter, origin: Origin, perks: PerkId[], traits: TraitId[]) {
+export function calculateMaxWeight(
+    raw: RawCharacter,
+    origin: Origin,
+    perks: PerkId[],
+    traits: TraitId[],
+) {
     const weightPerks = origin.allowsPerkAndTraitWeightModifiers ? perks : [];
     const weightTraits = origin.allowsPerkAndTraitWeightModifiers ? traits : [];
-    const baseWeight = getMaxWeightOverride(raw.special, weightPerks, weightTraits, origin)
-        ?? origin.getMaxWeightBase(raw.special.strength);
+    const baseWeight =
+        getMaxWeightOverride(raw.special, weightPerks, weightTraits, origin) ??
+        origin.getMaxWeightBase(raw.special.strength);
     let maxWeight = applyMaxWeightModifiers(
-        baseWeight, raw.special, weightPerks, weightTraits, origin,
+        baseWeight,
+        raw.special,
+        weightPerks,
+        weightTraits,
+        origin,
     );
 
     // Add carry weight bonuses from equipped items with mods
@@ -30,15 +43,26 @@ export function calculateMaxWeight(raw: RawCharacter, origin: Origin, perks: Per
     return maxWeight;
 }
 
-export function calculateCurrentWeight(raw: RawCharacter, perks: PerkId[]){
+export function calculateCurrentWeight(
+    raw: RawCharacter,
+    origin: Origin,
+    perks: PerkId[],
+    traits: TraitId[],
+) {
+    const weightPerks = origin.allowsPerkAndTraitWeightModifiers ? perks : [];
+    const weightTraits = origin.allowsPerkAndTraitWeightModifiers ? traits : [];
     let total = 0;
     total += raw.items.reduce((total, item) => {
         const itemData = getModifiedItemData(item, perks);
         const weight = Number(itemData?.WEIGHT) || 0;
-        return total + weight * item.quantity;
+        const multiplier = itemData
+            ? getItemWeightMultiplier(itemData, weightPerks, weightTraits, origin)
+            : 1;
+        return total + weight * multiplier * item.quantity;
     }, 0);
     total += raw.customItems.reduce((total, item) => {
-        return total + item.WEIGHT * item.quantity;
+        const multiplier = getItemWeightMultiplier(item, weightPerks, weightTraits, origin);
+        return total + item.WEIGHT * multiplier * item.quantity;
     }, 0);
     return total;
 }

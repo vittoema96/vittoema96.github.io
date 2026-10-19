@@ -5,6 +5,7 @@ import type { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import type { SkillType } from '@/features/character/skills/skills.ts';
 import type { SpecialMap, SpecialType } from '@/features/character/special/special.ts';
 import type { Origin } from '@/features/character/origins/types.ts';
+import type { BaseItem } from '@/data/types.ts';
 import { getActiveFeats } from './registry.ts';
 import { mergeWeaponEffects } from './weaponEffects.ts';
 import type {
@@ -182,6 +183,19 @@ export function applyMaxWeightModifiers(
     );
 }
 
+export function getItemWeightMultiplier(
+    itemData: Pick<BaseItem, 'TYPE' | 'CATEGORY'>,
+    perks: PerkId[],
+    traits: TraitId[],
+    origin?: Origin,
+): number {
+    return getActiveFeats({ perks, traits, origin }).reduce(
+        (multiplier, feat) =>
+            multiplier * (feat.getItemWeightMultiplier?.(itemData, perks, traits) ?? 1),
+        1,
+    );
+}
+
 export function getWeaponItemEffects(itemData: WeaponItem, perks: PerkId[]): string[] {
     return collectActiveFeatValues({ perks, traits: [] }, feat =>
         feat.getWeaponItemEffects?.(itemData, perks),
@@ -221,9 +235,7 @@ export function getAvailableCompanions(
 
 export function getGrantedItems(selection: FeatSelection) {
     const activeItems = new Set(
-        (selection.items ?? [])
-            .filter(item => !item.grantedBy)
-            .map(item => item.id),
+        (selection.items ?? []).filter(item => !item.grantedBy).map(item => item.id),
     );
     const grantedItems = getActiveFeats(selection).flatMap(feat => {
         const id = feat.id;

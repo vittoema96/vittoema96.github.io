@@ -128,7 +128,7 @@
     },
     "_penalty": {
       "en": "The complication range of tests while making an attack with big guns or energy weapons is increased by 2.",
-      "it": "L'intervallo di complicazione dei test durante un attacco con armi pesanti o armi a energia è aumentato di 2."
+      "it": "L'intervallo di complicazione dei test durante un attacco con armi pesanti o armi a energia aumenta di 2."
     }
   },
   "traitHeavyHanded": {

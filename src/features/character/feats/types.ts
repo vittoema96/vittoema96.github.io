@@ -6,6 +6,7 @@ import type { TFunction } from 'i18next';
 import type { SkillType } from '@/features/character/skills/skills.ts';
 import type { SpecialMap, SpecialType } from '@/features/character/special/special.ts';
 import type { Origin } from '@/features/character/origins/types.ts';
+import type { BaseItem } from '@/data/types.ts';
 
 export interface FeatRollAction {
     id: PerkId | TraitId;
@@ -18,23 +19,23 @@ export interface FeatRollAction {
 
 export type FeatManualAction = { label: string } & (
     | {
-        type: 'confirm';
-        message: string;
-        luckCost: number;
-    }
+          type: 'confirm';
+          message: string;
+          luckCost: number;
+      }
     | {
-        type: 'combatDice';
-        diceCount: number;
-        description: string;
-        luckOnEffect: number;
-    }
+          type: 'combatDice';
+          diceCount: number;
+          description: string;
+          luckOnEffect: number;
+      }
     | {
-        type: 'skillRoll';
-        skillId: SkillType;
-        usingItem: CharacterItem;
-        roller: Exclude<RollerType, undefined>;
-        requiredLuck: number;
-    }
+          type: 'skillRoll';
+          skillId: SkillType;
+          usingItem: CharacterItem;
+          roller: Exclude<RollerType, undefined>;
+          requiredLuck: number;
+      }
 );
 
 export interface SpecialModifierContext {
@@ -95,10 +96,7 @@ export interface FeatImplementation {
     getBlacklistedSpecialties?: () => SkillType[];
 
     getSpecialtyPointsBonus?: (perks: PerkId[], traits: TraitId[]) => number;
-    getSpecialtySkillBonuses?: (
-        perks: PerkId[],
-        traits: TraitId[],
-    ) => SpecialtySkillBonus[];
+    getSpecialtySkillBonuses?: (perks: PerkId[], traits: TraitId[]) => SpecialtySkillBonus[];
     getSkillMaxModifier?: (
         skillId: SkillType,
         isSpecialty: boolean,
@@ -126,6 +124,11 @@ export interface FeatImplementation {
         perks: PerkId[],
         traits: TraitId[],
     ) => number;
+    getItemWeightMultiplier?: (
+        itemData: Pick<BaseItem, 'TYPE' | 'CATEGORY'>,
+        perks: PerkId[],
+        traits: TraitId[],
+    ) => number;
     getMeleeDamageBonus?: (perks: PerkId[], traits: TraitId[]) => number;
 
     getWeaponItemEffects?: (itemData: WeaponItem, perks: PerkId[]) => string[];
@@ -143,11 +146,7 @@ export interface FeatImplementation {
     ) => `${string}:${number}`[];
 
     getRollActions?: (character: Character) => FeatRollAction[];
-    getFreeRerolls?: (
-        character: Character,
-        itemData?: WeaponItem,
-        context?: RollContext,
-    ) => number;
+    getFreeRerolls?: (character: Character, itemData?: WeaponItem, context?: RollContext) => number;
     getBlacklistedPerks?: () => PerkId[];
     getRollSpecialModifiers?: (
         character: Character,
@@ -164,7 +163,6 @@ export interface FeatImplementation {
         perks: PerkId[],
         traits: TraitId[],
     ) => Partial<Record<'physical' | 'energy' | 'radiation', number>>;
-
 }
 
 export type PerkImplementation = FeatImplementation & { id: PerkId };

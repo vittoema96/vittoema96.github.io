@@ -1,177 +1,177 @@
-ID,TIER,REQUISITES,LEVEL_REQ_INCREASE
-perkSkilled,10,"{""level"": 3}",3
-perkAccuracy,1,"{""agility"": 9}",
-perkAquaboyGirl,2,"{""endurance"": 5, ""level"": 1}",3
-perkMysteriousStranger,1,"{""luck"": 7}",
-perkIntenseTraining,10,"{""level"": 2}",2
-perkAnimalFriend,2,"{""charisma"": 6, ""level"": 1}",5
-perkDaringNature,1,"{""luck"": 7}",
-perkArmorer,4,"{""strength"": 5, ""intelligence"": 6}",4
-perkMakeshift,1,{},
-perkBarbarian,1,"{""strength"": 7, ""level"": 4}",
-perkMovingTarget,1,"{""agility"": 6}",
-perkBlitz,2,"{""agility"": 9, ""level"": 1}",3
-perkCenterOfMass,1,"{""agility"": 7}",
-perkPathfinder,1,"{""perception"": 6, ""endurance"": 6}",
-perkGunFu,3,"{""agility"": 10, ""level"": 1}",5
-perkPickpocket,3,"{""perception"": 8, ""agility"": 8, ""level"": 1}",3
-perkHunter,1,"{""endurance"": 6}",
-perkBloodyMess,1,"{""luck"": 6}",
-perkSniper,1,"{""perception"": 8, ""agility"": 6}",
-perkFortuneFinder,3,"{""luck"": 5, ""level"": 2}",4
-perkChemist,1,"{""intelligence"": 7}",
-perkShotgunSurgeon,1,"{""strength"": 5, ""agility"": 7}",
-perkCapCollector,1,"{""charisma"": 5}",
-perkLaserCommander,2,"{""perception"": 8, ""level"": 2}",4
-perkCommando,2,"{""agility"": 8, ""level"": 2}",3
-perkComprehension,1,"{""intelligence"": 6}",
-perkPiercingStrike,1,"{""strength"": 7}",
-perkAwareness,1,"{""perception"": 7}",
-perkNightPerson,1,"{""perception"": 7}",
-perkBetterCriticals,1,"{""luck"": 9}",
-perkDogmeat,1,"{""charisma"": 5}",
-perkLifeGiver,5,"{""level"": 5}",5
-perkSolarPowered,1,"{""endurance"": 7}",
-perkEntomologist,1,"{""intelligence"": 7}",
-perkQuickDraw,1,"{""agility"": 6}",
-perkRoboticsExpert,3,"{""intelligence"": 8, ""level"": 2}",4
-perkEvasive,2,"{""agility"": 6, ""level"": 4}",6
-perkDemolitionExpert,1,"{""perception"": 6, ""luck"": 6}",
-perkBlacksmith,3,"{""strength"": 6, ""level"": 2}",4
-perkGunNut,4,"{""intelligence"": 6, ""level"": 2}",4
-perkInspirational,1,"{""charisma"": 8}",
-perkPartyBoyGirl,1,"{""endurance"": 6, ""charisma"": 7}",
-perkRifleman,2,"{""agility"": 7, ""level"": 2}",4
-perkNuclearPhysicist,1,"{""intelligence"": 9}",
-perkConcentratedFire,1,"{""perception"": 8, ""agility"": 6}",
-perkChemSqueezer,1,"{""luck"": 6}",
-perkScoundrel,1,"{""charisma"": 7}",
-perkHacker,1,"{""intelligence"": 8}",
-perkNerdRage,3,"{""intelligence"": 8, ""level"": 2}",5
-perkInfiltrator,1,"{""perception"": 8}",
-perkImprovedHealing,1,"{""endurance"": 6}",
-perkMasterThief,1,"{""perception"": 8, ""agility"": 9}",
-perkHealer,3,"{""intelligence"": 7, ""level"": 1}",5
-perkSizeMatters,3,"{""endurance"": 7, ""agility"": 6}",4
-perkMedic,1,"{""intelligence"": 8}",
-perkSmoothTalker,1,"{""charisma"": 6}",
-perkMeltdown,1,"{""perception"": 10}",
-perkSnakeFancier,1,"{""endurance"": 7}",
-perkQuickHands,1,"{""agility"": 8}",
-perkFastMetabolism,3,"{""endurance"": 6, ""level"": 1}",3
-perkSteadyAim,1,"{""strength"": 8, ""agility"": 7}",
-perkNinja,1,"{""agility"": 8}",
-perkHeaveHo,1,"{""strength"": 8}",
-perkParalyzingPalm,1,"{""strength"": 8}",
-perkLightStep,1,{},
-perkBigLeaguer,1,"{""strength"": 8}",
-perkPyromaniac,3,"{""endurance"": 6, ""level"": 2}",4
-perkGunslinger,2,"{""agility"": 7, ""level"": 2}",4
-perkTerrifyingPresence,2,"{""strength"": 6, ""charisma"": 8, ""level"": 3}",5
-perkChemResistant,2,"{""endurance"": 7, ""level"": 1}",4
-perkCautiousNature,1,"{""perception"": 7}",
-perkRadResistant,2,"{""endurance"": 8, ""level"": 1}",4
-perkIronFist,2,"{""strength"": 6, ""level"": 1}",5
-perkCanDo,1,"{""luck"": 5}",
-perkScrapper,2,"{""level"": 3}",5
-perkRefractor,2,"{""perception"": 6, ""luck"": 7, ""level"": 1}",4
-perkRicochet,1,"{""luck"": 10, ""level"": 5}",
-perkAdamantiumSkeleton,3,"{""endurance"": 7, ""level"": 1}",3
-perkToughness,2,"{""endurance"": 6, ""luck"": 6, ""level"": 1}",4
-perkAdrenalineRush,1,"{""strength"": 7}",
-perkStrongBack,3,"{""strength"": 5, ""level"": 1}",2
-perkScience,4,"{""intelligence"": 6, ""level"": 2}",4
-perkScrounger,3,"{""luck"": 6, ""level"": 1}",5
-perkBasher,1,"{""strength"": 6}",
-perkMisterSandman,1,"{""agility"": 9}",
-perkTag,1,"{""level"": 5}",
-perkGhost,1,"{""perception"": 5, ""agility"": 6}",
-perkSlayer,1,"{""strength"": 8}",
-perkLeadBelly,2,"{""endurance"": 6, ""level"": 1}",4
-perkPainTrain,2,"{""strength"": 9, ""endurance"": 7, ""level"": 1}",5
-perkBlackWidowLadyKiller,1,"{""charisma"": 6}",
-perkGrimReaper,1,"{""luck"": 8}",
-perkJunktownVendor,1,"{""charisma"": 8}",
-perkActionBoyGirl,1,{},
-perkRobotWrangler,1,"{""intelligence"": 5}",
-perkAmmosmith,3,"{""intelligence"": 7, ""level"": 2}",4
-perkAllNightLong,1,"{""level"": 16}",
-perkBodyguards,1,"{""charisma"": 8, ""level"": 5}",
-perkCommunityOrganizer,3,"{""charisma"": 5, ""endurance"": 5, ""level"": 1}",3
-perkContractor,3,"{""charisma"": 5, ""intelligence"": 5, ""level"": 2}",4
-perkCovertOperator,1,"{""agility"": 8}",
-perkEnforcer,1,"{""agility"": 9, ""level"": 12}",
-perkGreenThumb,1,"{""perception"": 4, ""level"": 4}",
-perkGunRunner,1,"{""agility"": 6, ""level"": 4}",
-perkHappyCamper,2,"{""charisma"": 7, ""endurance"": 6, ""level"": 3}",
-perkHiredHelp,1,"{""charisma"": 7}",
-perkHomeDefense,2,"{""intelligence"": 6, ""level"": 5}",5
-perkHomebody,2,"{""endurance"": 6, ""level"": 5}",5
-perkLocalLeader,2,"{""charisma"": 6, ""level"": 2}",5
-perkLockAndLoad,3,"{""strength"": 7, ""level"": 2}",4
-perkMechanicalMenace,1,"{""charisma"": 6, ""intelligence"": 5}",
-perkClassFreak,1,"{""charisma"": 6, ""intelligence"": 5}",
-perkNocturnalFortitude,1,"{""endurance"": 6, ""level"": 12}",
-perkPannapictagraphist,1,"{""luck"": 5}",
-perkPharmacist,3,"{""intelligence"": 8, ""level"": 2}",6
-perkPhotosynthetic,2,"{""endurance"": 7, ""level"": 5}",10
-perkQuackSurgeon,1,"{""charisma"": 7, ""level"": 12}",
-perkRejuvenated,1,"{""endurance"": 7, ""level"": 12}",
-perkRetribution,3,"{""endurance"": 8, ""luck"": 8, ""level"": 2}",5
-perkSquadManeuvers,2,"{""charisma"": 7}",
-perkSuperDuper,3,"{""luck"": 6, ""level"": 3}",4
-perkTakingOneForTheTeam,3,"{""endurance"": 7, ""charisma"": 6, ""level"": 1}",4
-perkTinkerer,1,"{""endurance"": 5, ""intelligence"": 5}",
-perkTrueFriends,2,"{""perception"": 6, ""charisma"": 6}",4
-perkBlocker,3,"{""strength"": 6, ""level"": 1}",5
-perkGladiator,3,"{""strength"": 6, ""level"": 2}",5
-perkBulletShield,3,"{""strength"": 8, ""level"": 8}",6
-perkIncisor,2,"{""strength"": 6, ""level"": 2}",9
-perkMartialArtist,1,"{""strength"": 6, ""level"": 8}",
-perkPackRat,1,"{""strength"": 6, ""level"": 4}",
-perkScattershot,1,"{""strength"": 7, ""level"": 10}",
-perkSturdyFrame,3,"{""strength"": 8, ""level"": 5}",8
-perkArcher,3,"{""perception"": 6, ""level"": 1}",7
-perkBowBeforeMe,1,"{""perception"": 8, ""level"": 4}",
-perkButchersBounty,3,"{""perception"": 8, ""level"": 3}",5
-perkCrackShot,2,"{""perception"": 7, ""level"": 7}",7
-perkFireInTheHole,1,"{""perception"": 8, ""level"": 8}",
-perkGlowSight,3,"{""perception"": 8, ""level"": 3}",8
-perkNightEyes,1,"{""perception"": 8, ""level"": 7}",
-perkDromedary,1,"{""endurance"": 7, ""level"": 3}",
-perkCannibal,3,"{""endurance"": 8, ""level"": 10}",9
-perkColaNut,1,"{""endurance"": 6, ""level"": 14}",
-perkFireproof,3,"{""endurance"": 6, ""level"": 7}",7
-perkGhoulish,3,"{""endurance"": 9, ""level"": 7}",8
-perkIronclad,3,"{""endurance"": 7, ""level"": 5}",5
-perkNaturalResistance,1,"{""endurance"": 7, ""level"": 10}",
-perkRadicool,1,"{""endurance"": 6, ""level"": 12}",
-perkRevenant,1,"{""endurance"": 8, ""level"": 12}",
-perkSlowMetabolizer,1,"{""endurance"": 7, ""level"": 5}",
-perkThirstQuencher,1,"{""endurance"": 7, ""level"": 6}",
-perkVaccinated,1,"{""endurance"": 7, ""level"": 16}",
-perkBloodsucker,1,"{""charisma"": 6, ""level"": 11}",
-perkFieldSurgeon,1,"{""charisma"": 8, ""intelligence"": 8, ""level"": 15}",
-perkHappyGoLucky,1,"{""charisma"": 9, ""level"": 17}",
-perkHealingHands,1,"{""charisma"": 8, ""intelligence"": 7, ""level"": 18}",
-perkOverlyGenerous,1,"{""charisma"": 7, ""level"": 12}",
-perkResponder,3,"{""charisma"": 8, ""intelligence"": 7, ""level"": 9}",7
-perkSpiritualHealer,3,"{""charisma"": 7, ""level"": 6}",9
-perkSuppressor,3,"{""charisma"": 6, ""level"": 10}",7
-perkTenderizer,3,"{""charisma"": 7, ""level"": 8}",10
-perkLicensedPlumber,1,"{""intelligence"": 6, ""level"": 5}",
-perkPowerPatcher,3,"{""intelligence"": 6, ""level"": 5}",10
-perkPowerUser,3,"{""intelligence"": 9, ""level"": 10}",10
-perkStabilized,1,"{""intelligence"": 7, ""level"": 16}",
-perkBornSurvivor,3,"{""agility"": 8, ""level"": 3}",8
-perkDeadManSprinting,1,"{""agility"": 7, ""level"": 8}",
-perkEscapeArtist,1,"{""agility"": 8, ""level"": 15}",
-perkGoatLegs,3,"{""agility"": 7, ""level"": 7}",5
-perkModernRenegade,3,"{""agility"": 7, ""level"": 8}",5
-perkSecretAgent,3,"{""agility"": 9, ""level"": 7}",5
-perkDryNurse,1,"{""luck"": 8, ""level"": 13}",
-perkJunkShield,3,"{""luck"": 7, ""level"": 1}",8
-perkMysteriousSavior,1,"{""luck"": 7, ""level"": 1}",
-perkPsychopath,3,"{""luck"": 8, ""level"": 11}",6
-perkSerendipity,3,"{""luck"": 7, ""level"": 5}",6
-perkStormChaser,1,"{""luck"": 6, ""level"": 15}",
+ID,TIER,REQUISITES,LEVEL_REQ_INCREASE,SOURCE
+perkSkilled,10,"{""level"": 3}",3,Corebook
+perkAccuracy,1,"{""agility"": 9}",,Corebook
+perkAquaboyGirl,2,"{""endurance"": 5, ""level"": 1}",3,Corebook
+perkMysteriousStranger,1,"{""luck"": 7}",,Corebook
+perkIntenseTraining,10,"{""level"": 2}",2,Corebook
+perkAnimalFriend,2,"{""charisma"": 6, ""level"": 1}",5,Corebook
+perkDaringNature,1,"{""luck"": 7}",,Corebook
+perkArmorer,4,"{""strength"": 5, ""intelligence"": 6}",4,Corebook
+perkMakeshift,1,{},,Corebook
+perkBarbarian,1,"{""strength"": 7, ""level"": 4}",,Corebook
+perkMovingTarget,1,"{""agility"": 6}",,Corebook
+perkBlitz,2,"{""agility"": 9, ""level"": 1}",3,Corebook
+perkCenterOfMass,1,"{""agility"": 7}",,Corebook
+perkPathfinder,1,"{""perception"": 6, ""endurance"": 6}",,Corebook
+perkGunFu,3,"{""agility"": 10, ""level"": 1}",5,Corebook
+perkPickpocket,3,"{""perception"": 8, ""agility"": 8, ""level"": 1}",3,Corebook
+perkHunter,1,"{""endurance"": 6}",,Corebook
+perkBloodyMess,1,"{""luck"": 6}",,Corebook
+perkSniper,1,"{""perception"": 8, ""agility"": 6}",,Corebook
+perkFortuneFinder,3,"{""luck"": 5, ""level"": 2}",4,Corebook
+perkChemist,1,"{""intelligence"": 7}",,Corebook
+perkShotgunSurgeon,1,"{""strength"": 5, ""agility"": 7}",,Corebook
+perkCapCollector,1,"{""charisma"": 5}",,Corebook
+perkLaserCommander,2,"{""perception"": 8, ""level"": 2}",4,Corebook
+perkCommando,2,"{""agility"": 8, ""level"": 2}",3,Corebook
+perkComprehension,1,"{""intelligence"": 6}",,Corebook
+perkPiercingStrike,1,"{""strength"": 7}",,Corebook
+perkAwareness,1,"{""perception"": 7}",,Corebook
+perkNightPerson,1,"{""perception"": 7}",,Corebook
+perkBetterCriticals,1,"{""luck"": 9}",,Corebook
+perkDogmeat,1,"{""charisma"": 5}",,Corebook
+perkLifeGiver,5,"{""level"": 5}",5,Corebook
+perkSolarPowered,1,"{""endurance"": 7}",,Corebook
+perkEntomologist,1,"{""intelligence"": 7}",,Corebook
+perkQuickDraw,1,"{""agility"": 6}",,Corebook
+perkRoboticsExpert,3,"{""intelligence"": 8, ""level"": 2}",4,Corebook
+perkEvasive,2,"{""agility"": 6, ""level"": 4}",6,Wanderers DLC
+perkDemolitionExpert,1,"{""perception"": 6, ""luck"": 6}",,Corebook
+perkBlacksmith,3,"{""strength"": 6, ""level"": 2}",4,Corebook
+perkGunNut,4,"{""intelligence"": 6, ""level"": 2}",4,Corebook
+perkInspirational,1,"{""charisma"": 8}",,Corebook
+perkPartyBoyGirl,1,"{""endurance"": 6, ""charisma"": 7}",,Corebook
+perkRifleman,2,"{""agility"": 7, ""level"": 2}",4,Corebook
+perkNuclearPhysicist,1,"{""intelligence"": 9}",,Corebook
+perkConcentratedFire,1,"{""perception"": 8, ""agility"": 6}",,Corebook
+perkChemSqueezer,1,"{""luck"": 6}",,Corebook
+perkScoundrel,1,"{""charisma"": 7}",,Corebook
+perkHacker,1,"{""intelligence"": 8}",,Corebook
+perkNerdRage,3,"{""intelligence"": 8, ""level"": 2}",5,Corebook
+perkInfiltrator,1,"{""perception"": 8}",,Corebook
+perkImprovedHealing,1,"{""endurance"": 6}",,Corebook
+perkMasterThief,1,"{""perception"": 8, ""agility"": 9}",,Corebook
+perkHealer,3,"{""intelligence"": 7, ""level"": 1}",5,Corebook
+perkSizeMatters,3,"{""endurance"": 7, ""agility"": 6}",4,Corebook
+perkMedic,1,"{""intelligence"": 8}",,Corebook
+perkSmoothTalker,1,"{""charisma"": 6}",,Corebook
+perkMeltdown,1,"{""perception"": 10}",,Corebook
+perkSnakeFancier,1,"{""endurance"": 7}",,Corebook
+perkQuickHands,1,"{""agility"": 8}",,Corebook
+perkFastMetabolism,3,"{""endurance"": 6, ""level"": 1}",3,Corebook
+perkSteadyAim,1,"{""strength"": 8, ""agility"": 7}",,Corebook
+perkNinja,1,"{""agility"": 8}",,Corebook
+perkHeaveHo,1,"{""strength"": 8}",,Corebook
+perkParalyzingPalm,1,"{""strength"": 8}",,Corebook
+perkLightStep,1,{},,Corebook
+perkBigLeaguer,1,"{""strength"": 8}",,Corebook
+perkPyromaniac,3,"{""endurance"": 6, ""level"": 2}",4,Corebook
+perkGunslinger,2,"{""agility"": 7, ""level"": 2}",4,Corebook
+perkTerrifyingPresence,2,"{""strength"": 6, ""charisma"": 8, ""level"": 3}",5,Corebook
+perkChemResistant,2,"{""endurance"": 7, ""level"": 1}",4,Corebook
+perkCautiousNature,1,"{""perception"": 7}",,Corebook
+perkRadResistant,2,"{""endurance"": 8, ""level"": 1}",4,Corebook
+perkIronFist,2,"{""strength"": 6, ""level"": 1}",5,Corebook
+perkCanDo,1,"{""luck"": 5}",,Corebook
+perkScrapper,2,"{""level"": 3}",5,Corebook
+perkRefractor,2,"{""perception"": 6, ""luck"": 7, ""level"": 1}",4,Corebook
+perkRicochet,1,"{""luck"": 10, ""level"": 5}",,Corebook
+perkAdamantiumSkeleton,3,"{""endurance"": 7, ""level"": 1}",3,Corebook
+perkToughness,2,"{""endurance"": 6, ""luck"": 6, ""level"": 1}",4,Corebook
+perkAdrenalineRush,1,"{""strength"": 7}",,Corebook
+perkStrongBack,3,"{""strength"": 5, ""level"": 1}",2,Corebook
+perkScience,4,"{""intelligence"": 6, ""level"": 2}",4,Corebook
+perkScrounger,3,"{""luck"": 6, ""level"": 1}",5,Corebook
+perkBasher,1,"{""strength"": 6}",,Corebook
+perkMisterSandman,1,"{""agility"": 9}",,Corebook
+perkTag,1,"{""level"": 5}",,Corebook
+perkGhost,1,"{""perception"": 5, ""agility"": 6}",,Corebook
+perkSlayer,1,"{""strength"": 8}",,Corebook
+perkLeadBelly,2,"{""endurance"": 6, ""level"": 1}",4,Corebook
+perkPainTrain,2,"{""strength"": 9, ""endurance"": 7, ""level"": 1}",5,Corebook
+perkBlackWidowLadyKiller,1,"{""charisma"": 6}",,Corebook
+perkGrimReaper,1,"{""luck"": 8}",,Corebook
+perkJunktownVendor,1,"{""charisma"": 8}",,Corebook
+perkActionBoyGirl,1,{},,Corebook
+perkRobotWrangler,1,"{""intelligence"": 5}",,Settlers DLC
+perkAmmosmith,3,"{""intelligence"": 7, ""level"": 2}",4,Settlers DLC
+perkAllNightLong,1,"{""level"": 16}",,Settlers DLC
+perkBodyguards,1,"{""charisma"": 8, ""level"": 5}",,Settlers DLC
+perkCommunityOrganizer,3,"{""charisma"": 5, ""endurance"": 5, ""level"": 1}",3,Settlers DLC
+perkContractor,3,"{""charisma"": 5, ""intelligence"": 5, ""level"": 2}",4,Settlers DLC
+perkCovertOperator,1,"{""agility"": 8}",,Settlers DLC
+perkEnforcer,1,"{""agility"": 9, ""level"": 12}",,Settlers DLC
+perkGreenThumb,1,"{""perception"": 4, ""level"": 4}",,Settlers DLC
+perkGunRunner,1,"{""agility"": 6, ""level"": 4}",,Settlers DLC
+perkHappyCamper,2,"{""charisma"": 7, ""endurance"": 6, ""level"": 3}",,Settlers DLC
+perkHiredHelp,1,"{""charisma"": 7}",,Settlers DLC
+perkHomeDefense,2,"{""intelligence"": 6, ""level"": 5}",5,Settlers DLC
+perkHomebody,2,"{""endurance"": 6, ""level"": 5}",5,Settlers DLC
+perkLocalLeader,2,"{""charisma"": 6, ""level"": 2}",5,Settlers DLC
+perkLockAndLoad,3,"{""strength"": 7, ""level"": 2}",4,Settlers DLC
+perkMechanicalMenace,1,"{""charisma"": 6, ""intelligence"": 5}",,Settlers DLC
+perkClassFreak,1,"{""charisma"": 6, ""intelligence"": 5}",,Settlers DLC
+perkNocturnalFortitude,1,"{""endurance"": 6, ""level"": 12}",,Corebook
+perkPannapictagraphist,1,"{""luck"": 5}",,Settlers DLC
+perkPharmacist,3,"{""intelligence"": 8, ""level"": 2}",6,Settlers DLC
+perkPhotosynthetic,2,"{""endurance"": 7, ""level"": 5}",10,Settlers DLC
+perkQuackSurgeon,1,"{""charisma"": 7, ""level"": 12}",,Settlers DLC
+perkRejuvenated,1,"{""endurance"": 7, ""level"": 12}",,Settlers DLC
+perkRetribution,3,"{""endurance"": 8, ""luck"": 8, ""level"": 2}",5,Settlers DLC
+perkSquadManeuvers,2,"{""charisma"": 7}",,Settlers DLC
+perkSuperDuper,3,"{""luck"": 6, ""level"": 3}",4,Settlers DLC
+perkTakingOneForTheTeam,3,"{""endurance"": 7, ""charisma"": 6, ""level"": 1}",4,Settlers DLC
+perkTinkerer,1,"{""endurance"": 5, ""intelligence"": 5}",,Settlers DLC
+perkTrueFriends,2,"{""perception"": 6, ""charisma"": 6}",4,Settlers DLC
+perkBlocker,3,"{""strength"": 6, ""level"": 1}",5,Wanderers DLC
+perkGladiator,3,"{""strength"": 6, ""level"": 2}",5,Wanderers DLC
+perkBulletShield,3,"{""strength"": 8, ""level"": 8}",6,Wanderers DLC
+perkIncisor,2,"{""strength"": 6, ""level"": 2}",9,Wanderers DLC
+perkMartialArtist,1,"{""strength"": 6, ""level"": 8}",,Wanderers DLC
+perkPackRat,1,"{""strength"": 6, ""level"": 4}",,Wanderers DLC
+perkScattershot,1,"{""strength"": 7, ""level"": 10}",,Wanderers DLC
+perkSturdyFrame,3,"{""strength"": 8, ""level"": 5}",8,Wanderers DLC
+perkArcher,3,"{""perception"": 6, ""level"": 1}",7,Wanderers DLC
+perkBowBeforeMe,1,"{""perception"": 8, ""level"": 4}",,Wanderers DLC
+perkButchersBounty,3,"{""perception"": 8, ""level"": 3}",5,Wanderers DLC
+perkCrackShot,2,"{""perception"": 7, ""level"": 7}",7,Wanderers DLC
+perkFireInTheHole,1,"{""perception"": 8, ""level"": 8}",,Wanderers DLC
+perkGlowSight,3,"{""perception"": 8, ""level"": 3}",8,Wanderers DLC
+perkNightEyes,1,"{""perception"": 8, ""level"": 7}",,Wanderers DLC
+perkDromedary,1,"{""endurance"": 7, ""level"": 3}",,Wanderers DLC
+perkCannibal,3,"{""endurance"": 8, ""level"": 10}",9,Wanderers DLC
+perkColaNut,1,"{""endurance"": 6, ""level"": 14}",,Wanderers DLC
+perkFireproof,3,"{""endurance"": 6, ""level"": 7}",7,Wanderers DLC
+perkGhoulish,3,"{""endurance"": 9, ""level"": 7}",8,Wanderers DLC
+perkIronclad,3,"{""endurance"": 7, ""level"": 5}",5,Wanderers DLC
+perkNaturalResistance,1,"{""endurance"": 7, ""level"": 10}",,Wanderers DLC
+perkRadicool,1,"{""endurance"": 6, ""level"": 12}",,Wanderers DLC
+perkRevenant,1,"{""endurance"": 8, ""level"": 12}",,Wanderers DLC
+perkSlowMetabolizer,1,"{""endurance"": 7, ""level"": 5}",,Wanderers DLC
+perkThirstQuencher,1,"{""endurance"": 7, ""level"": 6}",,Wanderers DLC
+perkVaccinated,1,"{""endurance"": 7, ""level"": 16}",,Wanderers DLC
+perkBloodsucker,1,"{""charisma"": 6, ""level"": 11}",,Wanderers DLC
+perkFieldSurgeon,1,"{""charisma"": 8, ""intelligence"": 8, ""level"": 15}",,Wanderers DLC
+perkHappyGoLucky,1,"{""charisma"": 9, ""level"": 17}",,Wanderers DLC
+perkHealingHands,1,"{""charisma"": 8, ""intelligence"": 7, ""level"": 18}",,Wanderers DLC
+perkOverlyGenerous,1,"{""charisma"": 7, ""level"": 12}",,Wanderers DLC
+perkResponder,3,"{""charisma"": 8, ""intelligence"": 7, ""level"": 9}",7,Wanderers DLC
+perkSpiritualHealer,3,"{""charisma"": 7, ""level"": 6}",9,Wanderers DLC
+perkSuppressor,3,"{""charisma"": 6, ""level"": 10}",7,Wanderers DLC
+perkTenderizer,3,"{""charisma"": 7, ""level"": 8}",10,Wanderers DLC
+perkLicensedPlumber,1,"{""intelligence"": 6, ""level"": 5}",,Wanderers DLC
+perkPowerPatcher,3,"{""intelligence"": 6, ""level"": 5}",10,Wanderers DLC
+perkPowerUser,3,"{""intelligence"": 9, ""level"": 10}",10,Wanderers DLC
+perkStabilized,1,"{""intelligence"": 7, ""level"": 16}",,Wanderers DLC
+perkBornSurvivor,3,"{""agility"": 8, ""level"": 3}",8,Wanderers DLC
+perkDeadManSprinting,1,"{""agility"": 7, ""level"": 8}",,Wanderers DLC
+perkEscapeArtist,1,"{""agility"": 8, ""level"": 15}",,Wanderers DLC
+perkGoatLegs,3,"{""agility"": 7, ""level"": 7}",5,Wanderers DLC
+perkModernRenegade,3,"{""agility"": 7, ""level"": 8}",5,Wanderers DLC
+perkSecretAgent,3,"{""agility"": 9, ""level"": 7}",5,Wanderers DLC
+perkDryNurse,1,"{""luck"": 8, ""level"": 13}",,Wanderers DLC
+perkJunkShield,3,"{""luck"": 7, ""level"": 1}",8,Wanderers DLC
+perkMysteriousSavior,1,"{""luck"": 7, ""level"": 1}",,Wanderers DLC
+perkPsychopath,3,"{""luck"": 8, ""level"": 11}",6,Wanderers DLC
+perkSerendipity,3,"{""luck"": 7, ""level"": 5}",6,Wanderers DLC
+perkStormChaser,1,"{""luck"": 6, ""level"": 15}",,Wanderers DLC
