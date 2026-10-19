@@ -49,9 +49,9 @@ For offline use, first load the app **while online** and allow its files to fini
 
 There are no promised completion dates. If you need a particular missing rule, [open an issue](https://github.com/vittoema96/vittoema96.github.io/issues).
 
-### Perk effects (~86% without an implementation)
+### Perk effects (~80% without an implementation)
 
-The catalog includes Core Rulebook and DLC perks, but most effects are not automatically applied. As of **2026-10-15**, **25 of 176 perks (~14.2%)** have a registered implementation, including automatic effects and manual actions; **151 (~85.8%)** do not.
+The catalog includes Core Rulebook and DLC perks, but most effects are not automatically applied. As of **2026-10-19**, **36 of 176 perks (~20.5%)** have a registered implementation, including automatic effects and manual actions; **140 (~79.5%)** do not.
 
 ### DLC origins
 
@@ -59,7 +59,7 @@ Origins can be selectable even when their rules are incomplete, particularly DLC
 
 ### Trait effects (~41% without an implementation)
 
-As of **2026-10-15**, **17 of 29 traits (~58.6%)** have a registered implementation; **12 (~41.4%)** do not. These totals include fixed origin traits. Among the 21 selectable traits, **16 (~76.2%)** have an implementation and **5 (~23.8%)** do not.
+As of **2026-10-19**, **17 of 29 traits (~58.6%)** have a registered implementation; **12 (~41.4%)** do not. These totals include fixed origin traits. Among the 21 selectable traits, **16 (~76.2%)** have an implementation and **5 (~23.8%)** do not.
 
 > **What strikethrough means:** a ~~crossed-out perk or trait~~ **can still be selected**, provided its normal selection requirements are met. Its gameplay effects are **not applied anywhere in the app**: only its description is shown, so you must account for those effects yourself.
 >

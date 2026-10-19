@@ -311,7 +311,8 @@ export function getCanonicalDisplayName(item: CharacterItem | CustomItem, t: TFu
     )
 }
 
-export function isCloseCombat(category: ItemCategory) {
+export function isCloseCombat(category: ItemCategory | undefined) {
+    if(!category) { return false }
     return ['meleeWeapons', 'unarmed'].includes(category)
 }
 

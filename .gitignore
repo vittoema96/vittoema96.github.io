@@ -29,6 +29,8 @@ dev-dist/
 
 # IDE and Editor files
 .vscode/
+!.vscode/
+!.vscode/mcp.json
 .idea/
 backup.idea/
 *.swp
@@ -115,3 +117,4 @@ dev-dist/sw.js
 # AI agent local instructions
 AGENTS.md
 **/AGENTS.md
+.github/copilot-instructions.md
