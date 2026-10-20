@@ -1,4 +1,13 @@
-import { AidItem, AmmoItem, CharacterItem, CustomItem, DamageType, Item, LegendaryEffect, ModItem } from '@/types';
+import {
+    AidItem,
+    AmmoItem,
+    CharacterItem,
+    CustomItem,
+    DamageType,
+    Item,
+    LegendaryEffect,
+    ModItem,
+} from '@/types';
 import { Range, WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
 import { allItems, apparel, legendaryEffects, weapon } from '@/data';
@@ -9,10 +18,7 @@ import { BaseItem } from '@/data/types.ts';
 /**
  * Check if two items have the same configuration (id + mods)
  */
-export function isSameConfiguration<T extends CharacterItem | CustomItem>(
-    item1: T,
-    item2: T
-) {
+export function isSameConfiguration<T extends CharacterItem | CustomItem>(item1: T, item2: T) {
     return getUniqueKey(item1) === getUniqueKey(item2);
 }
 
@@ -26,61 +32,77 @@ const addValues: {
         return '-';
     }
     return baseValue + (Number(addition) || 0);
-}
+};
 
 // TODO should not be string, string, but defined fields
 function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: string) {
     switch (effectType) {
         case 'damageAdd':
-            modifiedData.DAMAGE_RATING = addValues(modifiedData.DAMAGE_RATING, value)
-            break
+            modifiedData.DAMAGE_RATING = addValues(modifiedData.DAMAGE_RATING, value);
+            break;
         case 'damageSet':
-            modifiedData.DAMAGE_RATING = Number(value)
-            break
+            modifiedData.DAMAGE_RATING = Number(value);
+            break;
         case 'fireRateAdd':
-            modifiedData.FIRE_RATE = addValues(modifiedData.FIRE_RATE, value)
-            break
+            modifiedData.FIRE_RATE = addValues(modifiedData.FIRE_RATE, value);
+            break;
         case 'damageTypeSet':
-            modifiedData.DAMAGE_TYPES = [value] as DamageType[]
-            break
+            modifiedData.DAMAGE_TYPES = [value] as DamageType[];
+            break;
         case 'ammoSet':
-            modifiedData.AMMO_TYPE = value
-            break
+            modifiedData.AMMO_TYPE = value;
+            break;
 
         case 'rangeAdd': {
-            const rangeOrder: Range[] = ['rangeR', 'rangeC', 'rangeM', 'rangeL', 'rangeE']
-            const currentIndex = rangeOrder.indexOf(modifiedData.RANGE)
-            const newIndex = Math.max(0, Math.min(currentIndex + Number(value), rangeOrder.length - 1))
+            const rangeOrder: Range[] = ['rangeR', 'rangeC', 'rangeM', 'rangeL', 'rangeE'];
+            const currentIndex = rangeOrder.indexOf(modifiedData.RANGE);
+            const newIndex = Math.max(
+                0,
+                Math.min(currentIndex + Number(value), rangeOrder.length - 1),
+            );
             if (rangeOrder[newIndex]) {
-                modifiedData.RANGE = rangeOrder[newIndex]
+                modifiedData.RANGE = rangeOrder[newIndex];
             }
-            break
+            break;
         }
 
         case 'qualityAdd':
             if (!modifiedData.QUALITIES.includes(value)) {
-                modifiedData.QUALITIES = [...modifiedData.QUALITIES, value]
+                modifiedData.QUALITIES = [...modifiedData.QUALITIES, value];
             }
-            break
+            break;
         case 'qualityRemove':
             if (modifiedData.QUALITIES) {
-                modifiedData.QUALITIES = modifiedData.QUALITIES.filter(q => q !== value && !q.startsWith(value + ':'))
+                modifiedData.QUALITIES = modifiedData.QUALITIES.filter(
+                    q => q !== value && !q.startsWith(value + ':'),
+                );
             }
-            break
+            break;
+        case 'tagAdd':
+            if (!modifiedData.TAGS.includes(value)) {
+                modifiedData.TAGS = [...modifiedData.TAGS, value];
+            }
+            break;
+        case 'tagRemove':
+            modifiedData.TAGS = modifiedData.TAGS.filter(tag => tag !== value);
+            break;
         case 'ammoConsumption':
-            modifiedData.AMMO_CONSUMPTION = Number(value) // TODO could use ammoHungry
-            break
+            modifiedData.AMMO_CONSUMPTION = Number(value); // TODO could use ammoHungry
+            break;
         case 'allowMuzzleMod':
-            modifiedData.ALLOW_MUZZLE_MOD = value === 'true'
-            break
+            modifiedData.ALLOW_MUZZLE_MOD = value === 'true';
+            break;
         case 'rerollHitLocation':
-            modifiedData.REROLL_HIT_LOCATION = value === 'true'
-            if (modifiedData.REROLL_HIT_LOCATION && !modifiedData.QUALITIES.includes('qualityRerollHitLocation')) {
-                modifiedData.QUALITIES = [...modifiedData.QUALITIES, 'qualityRerollHitLocation']
+            modifiedData.REROLL_HIT_LOCATION = value === 'true';
+            if (
+                modifiedData.REROLL_HIT_LOCATION &&
+                !modifiedData.QUALITIES.includes('qualityRerollHitLocation')
+            ) {
+                modifiedData.QUALITIES = [...modifiedData.QUALITIES, 'qualityRerollHitLocation'];
             }
-            break
+            break;
     }
-    return modifiedData
+    return modifiedData;
 }
 
 // TODO should not be string, string, but defined fields
@@ -88,33 +110,36 @@ function applyApparelEffect(modifiedData: ApparelItem, effectType: string, value
     switch (effectType) {
         // Resistances addition
         case 'physicalResAdd':
-            modifiedData.PHYSICAL_RES = addValues(modifiedData.PHYSICAL_RES, value)
-            break
+            modifiedData.PHYSICAL_RES = addValues(modifiedData.PHYSICAL_RES, value);
+            break;
         case 'energyResAdd':
-            modifiedData.ENERGY_RES = addValues(modifiedData.ENERGY_RES, value)
-            break
+            modifiedData.ENERGY_RES = addValues(modifiedData.ENERGY_RES, value);
+            break;
         case 'radiationResAdd':
-            modifiedData.RADIATION_RES = addValues(modifiedData.RADIATION_RES, value)
-            break
+            modifiedData.RADIATION_RES = addValues(modifiedData.RADIATION_RES, value);
+            break;
         case 'meleeResAdd': // TODO This column doesn't exist
-            modifiedData.MELEE_RES = addValues(modifiedData.MELEE_RES, value)
-            break
+            modifiedData.MELEE_RES = addValues(modifiedData.MELEE_RES, value);
+            break;
         case 'explosiveResAdd': // TODO This column doesn't exist
-            modifiedData.EXPLOSIVE_RES = addValues(modifiedData.EXPLOSIVE_RES, value)
-            break
+            modifiedData.EXPLOSIVE_RES = addValues(modifiedData.EXPLOSIVE_RES, value);
+            break;
         case 'fallDamageResAdd': // TODO This column doesn't exist
-            modifiedData.FALL_DAMAGE_RES = addValues(modifiedData.FALL_DAMAGE_RES, value)
-            break
+            modifiedData.FALL_DAMAGE_RES = addValues(modifiedData.FALL_DAMAGE_RES, value);
+            break;
 
         // Other effects
         case 'carryWeightAdd':
-            modifiedData.CARRY_WEIGHT_BONUS = addValues(modifiedData.CARRY_WEIGHT_BONUS ?? 0, value)
-            break
+            modifiedData.CARRY_WEIGHT_BONUS = addValues(
+                modifiedData.CARRY_WEIGHT_BONUS ?? 0,
+                value,
+            );
+            break;
         case 'unarmedDamageAdd': // TODO This column doesn't exist
-            modifiedData.UNARMED_DAMAGE = addValues(modifiedData.UNARMED_DAMAGE, value)
-            break
+            modifiedData.UNARMED_DAMAGE = addValues(modifiedData.UNARMED_DAMAGE, value);
+            break;
     }
-    return modifiedData
+    return modifiedData;
 }
 
 type ItemMap = {
@@ -131,7 +156,10 @@ type ItemMap = {
                 : BaseItem;
 };
 
-export function isType<T extends ItemType>(item: Item | null | undefined, type: T): item is ItemMap[T] {
+export function isType<T extends ItemType>(
+    item: Item | null | undefined,
+    type: T,
+): item is ItemMap[T] {
     return item?.TYPE === type;
 }
 
@@ -142,19 +170,24 @@ export function isType<T extends ItemType>(item: Item | null | undefined, type: 
  */
 export function applyEffect(modifiedData: WeaponItem, effect: string): WeaponItem;
 export function applyEffect(modifiedData: ApparelItem, effect: string): ApparelItem;
-export function applyEffect(modifiedData: WeaponItem | ApparelItem, effect: string): WeaponItem | ApparelItem
+export function applyEffect(
+    modifiedData: WeaponItem | ApparelItem,
+    effect: string,
+): WeaponItem | ApparelItem;
 export function applyEffect(
     modifiedData: WeaponItem | ApparelItem,
     effect: string,
 ): WeaponItem | ApparelItem {
-    const [effectType, ...valueParts] = effect.split(':')
-    const value = valueParts.join(':') // Rejoin in case value contains ':'
-    if(!effectType) {return modifiedData}
+    const [effectType, ...valueParts] = effect.split(':');
+    const value = valueParts.join(':'); // Rejoin in case value contains ':'
+    if (!effectType) {
+        return modifiedData;
+    }
 
-    if(isType(modifiedData, "weapon")){
-        modifiedData = applyWeaponEffect(modifiedData, effectType, value)
-    } else if(isType(modifiedData, "apparel")){
-        modifiedData = applyApparelEffect(modifiedData, effectType, value)
+    if (isType(modifiedData, 'weapon')) {
+        modifiedData = applyWeaponEffect(modifiedData, effectType, value);
+    } else if (isType(modifiedData, 'apparel')) {
+        modifiedData = applyApparelEffect(modifiedData, effectType, value);
     }
     // TODO adding and removing effects should be handled in a proper order, not how it comes
     //      there could be conflicts with mods adding and others removing effects
@@ -162,19 +195,17 @@ export function applyEffect(
         // Quality/Effect additions
         case 'effectAdd': {
             // Check if the effect carries a numeric rating (e.g. effectPiercing:2)
-            const colonIdx = value.lastIndexOf(':')
-            const numericPart =
-                colonIdx === -1 ? Number.NaN : Number(value.slice(colonIdx + 1));
+            const colonIdx = value.lastIndexOf(':');
+            const numericPart = colonIdx === -1 ? Number.NaN : Number(value.slice(colonIdx + 1));
             if (!Number.isNaN(numericPart) && colonIdx !== -1) {
                 // Numeric effect: stack with any existing effect that shares the same prefix
-                const effectPrefix = value.slice(0, colonIdx + 1) // e.g. "effectPiercing:"
-                const existingIdx = modifiedData.EFFECTS.findIndex(e => e.startsWith(effectPrefix))
+                const effectPrefix = value.slice(0, colonIdx + 1); // e.g. "effectPiercing:"
+                const existingIdx = modifiedData.EFFECTS.findIndex(e => e.startsWith(effectPrefix));
                 if (existingIdx === -1) {
                     modifiedData.EFFECTS = [...modifiedData.EFFECTS, value];
                 } else {
                     const existingNum =
-                        Number(modifiedData.EFFECTS[existingIdx]!.slice(effectPrefix.length)) ||
-                        0;
+                        Number(modifiedData.EFFECTS[existingIdx]!.slice(effectPrefix.length)) || 0;
                     const newEffects = [...modifiedData.EFFECTS];
                     newEffects[existingIdx] =
                         `${value.slice(0, colonIdx)}:${existingNum + numericPart}`;
@@ -182,19 +213,21 @@ export function applyEffect(
                 }
                 // Non-numeric effect: add if not already present
             } else if (!modifiedData.EFFECTS.includes(value)) {
-                modifiedData.EFFECTS = [...modifiedData.EFFECTS, value]
+                modifiedData.EFFECTS = [...modifiedData.EFFECTS, value];
             }
-            break
+            break;
         }
         case 'effectRemove':
-            modifiedData.EFFECTS = modifiedData.EFFECTS.filter(e => e !== value && !e.startsWith(value + ':'))
-            break
+            modifiedData.EFFECTS = modifiedData.EFFECTS.filter(
+                e => e !== value && !e.startsWith(value + ':'),
+            );
+            break;
     }
-    return modifiedData
+    return modifiedData;
 }
 
 /** Sentinel returned by t() when a descriptor key doesn't exist */
-const DESCRIPTOR_MISSING = '__NO_DESCRIPTOR__'
+const DESCRIPTOR_MISSING = '__NO_DESCRIPTOR__';
 
 /**
  * Core logic for building a display name with stock rename + mod descriptors.
@@ -208,53 +241,58 @@ function buildModdedDisplayName(
     id: string,
     mods: string[],
     side: string | undefined,
-    t: TFunction
+    t: TFunction,
 ): string {
-    let name = baseName
+    let name = baseName;
 
     // Stock mod rename
     const hasStockMod = mods.some(m => {
-        const modData = allItems[m]
-        return modData && 'SLOT_TYPE' in modData && modData.SLOT_TYPE === 'modSlotStock'
-    })
+        const modData = allItems[m];
+        return modData && 'SLOT_TYPE' in modData && modData.SLOT_TYPE === 'modSlotStock';
+    });
     if (hasStockMod && id) {
-        const stockNameKey = `${id}StockName`
-        const stockName = t(stockNameKey, { defaultValue: DESCRIPTOR_MISSING, postProcess: false } as any) as string
+        const stockNameKey = `${id}StockName`;
+        const stockName = t(stockNameKey, {
+            defaultValue: DESCRIPTOR_MISSING,
+            postProcess: false,
+        } as any) as string;
         if (stockName !== DESCRIPTOR_MISSING) {
-            name = stockName
+            name = stockName;
         }
     }
 
     if (side) {
-        name = `${name} (${t(side)})`
+        name = `${name} (${t(side)})`;
     }
 
     // Apply mod descriptors
-    let displayName = name
-    let modsWithoutDescriptor = 0
+    let displayName = name;
+    let modsWithoutDescriptor = 0;
 
     for (const modId of mods) {
-        if (modId === 'modRobotPlatingStandard') { continue }
+        if (modId === 'modRobotPlatingStandard') {
+            continue;
+        }
 
-        const descriptorKey = `${modId}Descriptor`
+        const descriptorKey = `${modId}Descriptor`;
         const descriptor = t(descriptorKey, {
             name: displayName,
             defaultValue: DESCRIPTOR_MISSING,
             postProcess: false,
-        } as any) as string
+        } as any) as string;
 
         if (descriptor === DESCRIPTOR_MISSING) {
-            modsWithoutDescriptor++
+            modsWithoutDescriptor++;
         } else {
-            displayName = descriptor
+            displayName = descriptor;
         }
     }
 
     if (modsWithoutDescriptor > 0) {
-        return `${displayName} [+${modsWithoutDescriptor}]`
+        return `${displayName} [+${modsWithoutDescriptor}]`;
     }
 
-    return displayName
+    return displayName;
 }
 
 /**
@@ -263,17 +301,19 @@ function buildModdedDisplayName(
  * only a `[+N]` suffix for equipped mods.
  */
 export function getDisplayName(item: CharacterItem | CustomItem, t: TFunction) {
-    if (!item) {return ''}
+    if (!item) {
+        return '';
+    }
     const filledItem = {
         id: '',
         side: undefined,
         mods: [] as string[],
-        ...item
-    }
+        ...item,
+    };
 
     // Custom name: show as-is with [+N] for mods
     if (filledItem.customName) {
-        return filledItem.customName
+        return filledItem.customName;
     }
 
     return buildModdedDisplayName(
@@ -281,8 +321,8 @@ export function getDisplayName(item: CharacterItem | CustomItem, t: TFunction) {
         filledItem.id,
         filledItem.mods,
         filledItem.side,
-        t
-    )
+        t,
+    );
 }
 
 /**
@@ -291,29 +331,33 @@ export function getDisplayName(item: CharacterItem | CustomItem, t: TFunction) {
  * For pure custom items (no database id), returns the i18n key "customItem".
  */
 export function getCanonicalDisplayName(item: CharacterItem | CustomItem, t: TFunction) {
-    if (!item) {return ''}
+    if (!item) {
+        return '';
+    }
 
     if (!('id' in item) || !item.id) {
-        return t('customItem')
+        return t('customItem');
     }
 
     const filledItem = {
         side: undefined,
-        ...item
-    }
+        ...item,
+    };
 
     return buildModdedDisplayName(
         t(filledItem.id),
         filledItem.id,
         filledItem.mods,
         filledItem.side,
-        t
-    )
+        t,
+    );
 }
 
 export function isCloseCombat(category: ItemCategory | undefined) {
-    if(!category) { return false }
-    return ['meleeWeapons', 'unarmed'].includes(category)
+    if (!category) {
+        return false;
+    }
+    return ['meleeWeapons', 'unarmed'].includes(category);
 }
 
 export const UNACQUIRABLE_IDS: (keyof typeof weapon | keyof typeof apparel)[] = [
@@ -328,7 +372,7 @@ export const UNACQUIRABLE_IDS: (keyof typeof weapon | keyof typeof apparel)[] = 
     'robotPartBody',
     'robotPartArms',
     'robotPartThrusters',
-    'weaponCryojet'
+    'weaponCryojet',
 ] as const;
 
 export function isUnacquirable(target: string | { ID: string }): boolean {
@@ -336,77 +380,89 @@ export function isUnacquirable(target: string | { ID: string }): boolean {
     return UNACQUIRABLE_IDS.includes(id as any);
 }
 
-const applyMods = (itemData: WeaponItem | ApparelItem, modsData: (ModItem | LegendaryEffect)[]): typeof itemData => {
-    for (const handleRemove of [false, true]){
-        modsData.forEach((mod) => {
+const applyMods = (
+    itemData: WeaponItem | ApparelItem,
+    modsData: (ModItem | LegendaryEffect)[],
+): typeof itemData => {
+    for (const handleRemove of [false, true]) {
+        modsData.forEach(mod => {
             mod.EFFECTS.forEach(effect => {
-                if(handleRemove === ["effectRemove", "qualityRemove"].includes(effect)) {
+                if (handleRemove === ['effectRemove', 'qualityRemove'].includes(effect)) {
                     itemData = applyEffect(itemData, effect);
                 }
-            })
-        })
+            });
+        });
     }
     return itemData;
-}
+};
 /**
  * Get item data with mods applied
  */
 export function getModdedItemData(
     characterItem: CharacterItem | null | undefined,
 ): WeaponItem | ApparelItem | null {
-    if(!characterItem) { return null }
-    const itemData = allItems[characterItem.id]
-    if (!isType(itemData, "weapon") && !isType(itemData, "apparel")) {return null}
+    if (!characterItem) {
+        return null;
+    }
+    const itemData = allItems[characterItem.id];
+    if (!isType(itemData, 'weapon') && !isType(itemData, 'apparel')) {
+        return null;
+    }
 
     const baseItemData = {
         ...itemData,
         EFFECTS: [...itemData.EFFECTS],
         ...(isType(itemData, 'weapon') ? { QUALITIES: [...itemData.QUALITIES] } : {}),
-    }
+    };
 
     if (characterItem.mods.length === 0) {
-        return baseItemData
+        return baseItemData;
     }
 
     const modsData = [
-        ...characterItem.mods.map(
-                modId => allItems[modId]
-            ).filter(mod => isType(mod, "mod")),
-        ...characterItem.mods.map(
-                modId => legendaryEffects[modId]
-            ).filter(e => e !== undefined)
-    ]
+        ...characterItem.mods.map(modId => allItems[modId]).filter(mod => isType(mod, 'mod')),
+        ...characterItem.mods.map(modId => legendaryEffects[modId]).filter(e => e !== undefined),
+    ];
 
-    const isApparel = isType(itemData, "apparel")
-    let materialMultiplier = 1
-    if(isApparel){
-        const isTorsoArmor = itemData.LOCATIONS_COVERED.includes('torso') &&
-            itemData.LOCATIONS_COVERED.length === 1
-        materialMultiplier = isTorsoArmor ? 2 : 1
+    const isApparel = isType(itemData, 'apparel');
+    let materialMultiplier = 1;
+    if (isApparel) {
+        const isTorsoArmor =
+            itemData.LOCATIONS_COVERED.includes('torso') && itemData.LOCATIONS_COVERED.length === 1;
+        materialMultiplier = isTorsoArmor ? 2 : 1;
     }
     const getValue = (modData: ModItem | LegendaryEffect, value: number | '-') => {
-        const isMaterialMod = {SLOT_TYPE: null, ...modData}.SLOT_TYPE === 'modSlotMaterial'
-        const multiplier = isMaterialMod ? materialMultiplier : 1
-        return (Number(value) || 0) * multiplier
-    }
+        const isMaterialMod = { SLOT_TYPE: null, ...modData }.SLOT_TYPE === 'modSlotMaterial';
+        const multiplier = isMaterialMod ? materialMultiplier : 1;
+        return (Number(value) || 0) * multiplier;
+    };
 
-    const COST = itemData.COST === '-' ? '-' : modsData.reduce(
-        (total, mod) => total + getValue(mod, {COST: 0, ...mod}.COST),
-        Number(itemData.COST) || 0
-    )
-    const WEIGHT = itemData.WEIGHT === '-' ? '-' : modsData.reduce(
-        (total, mod) => total + getValue(mod, {WEIGHT: 0, ...mod}.WEIGHT),
-        Number(itemData.WEIGHT) || 0
-    )
+    const COST =
+        itemData.COST === '-'
+            ? '-'
+            : modsData.reduce(
+                  (total, mod) => total + getValue(mod, { COST: 0, ...mod }.COST),
+                  Number(itemData.COST) || 0,
+              );
+    const WEIGHT =
+        itemData.WEIGHT === '-'
+            ? '-'
+            : modsData.reduce(
+                  (total, mod) => total + getValue(mod, { WEIGHT: 0, ...mod }.WEIGHT),
+                  Number(itemData.WEIGHT) || 0,
+              );
 
-    return applyMods({
-        ...baseItemData,
-        COST,
-        WEIGHT
-    }, modsData)
+    return applyMods(
+        {
+            ...baseItemData,
+            COST,
+            WEIGHT,
+        },
+        modsData,
+    );
 }
 
-export function getUniqueKey(item: CharacterItem | CustomItem){
+export function getUniqueKey(item: CharacterItem | CustomItem) {
     const itemData = {
         grantedBy: undefined,
         id: 'customItem',
@@ -418,8 +474,8 @@ export function getUniqueKey(item: CharacterItem | CustomItem){
         RARITY: undefined,
         CATEGORY: undefined,
         TYPE: undefined,
-        ...item
-    }
+        ...item,
+    };
     return [
         itemData.id,
         itemData.side,
@@ -432,6 +488,7 @@ export function getUniqueKey(item: CharacterItem | CustomItem){
         itemData.CATEGORY,
         itemData.TYPE,
         itemData.grantedBy,
-    ].filter(v => v!== undefined).join("|")
-
+    ]
+        .filter(v => v !== undefined)
+        .join('|');
 }

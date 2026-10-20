@@ -332,7 +332,7 @@
     "it": "Tiratore Preciso",
     "_description": {
       "en": "When you make a ranged attack with a one-handed ranged weapon after aiming, the weapon's range increases by one step. At rank 2, the weapon also gains the Accurate quality if it did not already have it. Each time this perk is selected, the level requirements increase by 7.",
-      "it": "Quando effettui un attacco a distanza con un'arma a una mano dopo aver mirato, la gittata dell'arma aumenta di un passo. Al grado 2, l'arma ottiene anche la qualità Accurata se non la possedeva già. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 7."
+      "it": "Quando effettui un attacco a distanza con un'arma a una mano dopo aver mirato, la gittata dell'arma aumenta di uno. Al grado 2, l'arma ottiene anche la qualità Accurata se non la possedeva già. Ogni volta che questo talento viene selezionato, i requisiti di livello aumentano di 7."
     }
   },
   "perkDaringNature": {

@@ -12,6 +12,7 @@ export interface BaseItem {
     ID: string;
     TYPE: ItemType;
     CATEGORY: ItemCategory;
+    TAGS?: string[];
 
     WEIGHT: number | '-'; // WEIGHT is in Kg!!
     COST: number | '-';

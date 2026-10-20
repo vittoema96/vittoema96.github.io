@@ -11,6 +11,7 @@ export const WeaponSchema: z.ZodType<WeaponItem> = BaseItemSchema.extend({
     ID: z.string().startsWith('weapon'),
     TYPE: z.literal('weapon'),
     CATEGORY: z.enum(WEAPON_CATEGORIES),
+    TAGS: z.array(z.string()).default([]),
 
     // Weapon specific attributes
     DAMAGE_RATING: z.number().min(0),
@@ -18,10 +19,6 @@ export const WeaponSchema: z.ZodType<WeaponItem> = BaseItemSchema.extend({
     FIRE_RATE: z.number().or(z.literal('-')),
     RANGE: z.enum(RANGES).or(z.literal('-')),
     AMMO_TYPE: z.string(),
-    IS_BLADED: z
-        .preprocess(val => (val === null ? undefined : val), z.boolean().optional())
-        .default(false),
-
     EFFECTS: z.array(z.string()).default([]),
     QUALITIES: z.array(z.string()).default([]),
     AVAILABLE_MODS: z.array(z.string()).default([]),
@@ -31,8 +28,8 @@ export const WeaponSchema: z.ZodType<WeaponItem> = BaseItemSchema.extend({
 export interface WeaponItem extends BaseItem {
     TYPE: 'weapon';
     CATEGORY: WeaponCategory;
-    IS_BLADED?: boolean;
 
+    TAGS: string[];
     DAMAGE_RATING: number;
     DAMAGE_TYPES: DamageType[];
     FIRE_RATE: number | '-'; // number o "-" per melee TODO should change type (only number? number + undefined?)

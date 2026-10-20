@@ -5,6 +5,7 @@ export const BaseItemSchema = z.object({
     ID: z.string(),
     TYPE: z.enum(ITEM_TYPES),
     CATEGORY: z.enum(ITEM_CATEGORIES),
+    TAGS: z.array(z.string()).default([]),
 
     WEIGHT: z.number().min(0).or(z.literal('-')),
     COST: z.number().int().min(0).or(z.literal('-')),

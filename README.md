@@ -49,21 +49,246 @@ For offline use, first load the app **while online** and allow its files to fini
 
 There are no promised completion dates. If you need a particular missing rule, [open an issue](https://github.com/vittoema96/vittoema96.github.io/issues).
 
-### Perk effects (~80% without an implementation)
+### Perk effects (~74% without an implementation)
 
-The catalog includes Core Rulebook and DLC perks, but most effects are not automatically applied. As of **2026-10-19**, **36 of 176 perks (~20.5%)** have a registered implementation, including automatic effects and manual actions; **140 (~79.5%)** do not.
+The catalog includes Core Rulebook and DLC perks, but most effects are not automatically applied. As of **2026-10-20**, **45 of 176 perks (~25.6%)** have a registered implementation, including automatic effects and manual actions; **131 (~74.4%)** do not.
 
-### DLC origins
+<details>
+<summary>Perk implementation status</summary>
 
-Origins can be selectable even when their rules are incomplete, particularly DLC origins. Tribal and NCR support also has remaining TODOs; **selection alone is not a promise of full automation**.
+Complete list of perk IDs and their current registered implementation status. “Implemented” means a feat module is registered; it does not imply that every rule detail is automated.
+
+| English name | Italian name | ID | Status |
+|---|---|---|---|
+| Accuracy | Accuratezza | `perkAccuracy` | ❌ |
+| Action Boy/Girl | Uomo/Donna D’azione | `perkActionBoyGirl` | ❌ |
+| Adamantium Skeleton | Scheletro Di Adamantio | `perkAdamantiumSkeleton` | ❌ |
+| Adrenaline Rush | Scarica Di Adrenalina | `perkAdrenalineRush` | ✅ |
+| All Night Long | Tutta la Notte | `perkAllNightLong` | ❌ |
+| Ammosmith | Fabbricante di Munizioni | `perkAmmosmith` | ❌ |
+| Animal Friend | Amico Degli Animali | `perkAnimalFriend` | ❌ |
+| Aqua Boy/Girl | Acquaticità | `perkAquaboyGirl` | ❌ |
+| Archer | Arciere | `perkArcher` | ✅ |
+| Armorer | Armaiolo | `perkArmorer` | ❌ |
+| Awareness | Consapevolezza | `perkAwareness` | ✅ |
+| Barbarian | Barbaro | `perkBarbarian` | ✅ |
+| Basher | Sfondatore | `perkBasher` | ✅ |
+| Better Criticals | Critici Migliorati | `perkBetterCriticals` | ❌ |
+| Big Leaguer | Pezzo Grosso | `perkBigLeaguer` | ✅ |
+| Black Widow / Lady Killer | Vedova Nera / Sciupafemmine | `perkBlackWidowLadyKiller` | ❌ |
+| Blacksmith | Fabbro | `perkBlacksmith` | ❌ |
+| Blitz | Blitz | `perkBlitz` | ❌ |
+| Blocker | Difensore | `perkBlocker` | ❌ |
+| Bloodsucker | Bevitore di Sangue | `perkBloodsucker` | ❌ |
+| Bloody Mess | Carneficina | `perkBloodyMess` | ❌ |
+| Bodyguards | Guardie del Corpo | `perkBodyguards` | ❌ |
+| Born Survivor | Nato Sopravvissuto | `perkBornSurvivor` | ❌ |
+| Bow Before Me | Inchinati al Mio Arco | `perkBowBeforeMe` | ✅ |
+| Bullet Shield | Scudo di Proiettili | `perkBulletShield` | ❌ |
+| Butcher's Bounty | Bottino del Macellaio | `perkButchersBounty` | ❌ |
+| Can Do! | Questo Può Andare! | `perkCanDo` | ❌ |
+| Cannibal | Cannibale | `perkCannibal` | ❌ |
+| Cap Collector | Collezionista Di Tappi | `perkCapCollector` | ❌ |
+| Cautious Nature | Prudente | `perkCautiousNature` | ✅ |
+| Center Of Mass | Baricentro | `perkCenterOfMass` | ✅ |
+| Chem Resistant | Resistente Alle Droghe | `perkChemResistant` | ❌ |
+| Chem Squeezer | Fiuta Farmaci | `perkChemSqueezer` | ❌ |
+| Chemist | Chimico | `perkChemist` | ❌ |
+| Class Freak | Fenomeno di Classe | `perkClassFreak` | ❌ |
+| Cola Nut | Amante della Cola | `perkColaNut` | ❌ |
+| Commando | Commando | `perkCommando` | ✅ |
+| Community Organizer | Organizzatore della Comunità | `perkCommunityOrganizer` | ❌ |
+| Comprehension | Comprensione | `perkComprehension` | ❌ |
+| Concentrated Fire | Fuoco Concentrato | `perkConcentratedFire` | ❌ |
+| Contractor | Appaltatore | `perkContractor` | ❌ |
+| Covert Operator | Operatore Coperto | `perkCovertOperator` | ✅ |
+| Crack Shot | Tiratore Preciso | `perkCrackShot` | ❌ |
+| Daring Nature | Ardito | `perkDaringNature` | ✅ |
+| Dead Man Sprinting | Morto che Corre | `perkDeadManSprinting` | ❌ |
+| Demolition Expert | Esperto In Demolizione | `perkDemolitionExpert` | ✅ |
+| Dogmeat | Dogmeat | `perkDogmeat` | ✅ |
+| Dromedary | Dromedario | `perkDromedary` | ❌ |
+| Dry Nurse | Balia Asciutta | `perkDryNurse` | ❌ |
+| Enforcer | Esecutore | `perkEnforcer` | ❌ |
+| Entomologist | Entomologo | `perkEntomologist` | ❌ |
+| Escape Artist | Artista della Fuga | `perkEscapeArtist` | ❌ |
+| Evasive | Evasivo | `perkEvasive` | ❌ |
+| Fast Metabolism | Metabolismo Veloce | `perkFastMetabolism` | ❌ |
+| Field Surgeon | Chirurgo sul Campo | `perkFieldSurgeon` | ❌ |
+| Fire in the Hole | Al Riparo! | `perkFireInTheHole` | ❌ |
+| Fireproof | Ignifugo | `perkFireproof` | ❌ |
+| Fortune Finder | Cercatore Fortunato | `perkFortuneFinder` | ❌ |
+| Ghost | Spettro | `perkGhost` | ❌ |
+| Ghoulish | Ghoulesco | `perkGhoulish` | ❌ |
+| Gladiator | Gladiatore | `perkGladiator` | ✅ |
+| Glow Sight | Visuale Luminosa | `perkGlowSight` | ❌ |
+| Goat Legs | Zampe di Capra | `perkGoatLegs` | ❌ |
+| Green Thumb | Pollice Verde | `perkGreenThumb` | ❌ |
+| Grim Reaper's Sprint | Tristo Mietitore | `perkGrimReaper` | ❌ |
+| Gun Fu | Boom-Fu | `perkGunFu` | ✅ |
+| Gun Nut | Fanatico Delle Armi | `perkGunNut` | ❌ |
+| Gun Runner | Corsaro Armato | `perkGunRunner` | ❌ |
+| Gunslinger | Pistolero | `perkGunslinger` | ✅ |
+| Hacker | Hacker | `perkHacker` | ❌ |
+| Happy Camper | Campeggiatore Felice | `perkHappyCamper` | ❌ |
+| Happy Go Lucky | Allegro e Senza Pensieri | `perkHappyGoLucky` | ❌ |
+| Healer | Guaritore | `perkHealer` | ❌ |
+| Healing Hands | Mani Curative | `perkHealingHands` | ❌ |
+| Heave Ho! | Oh Issa! | `perkHeaveHo` | ❌ |
+| Hired Help | Aiuto a Pagamento | `perkHiredHelp` | ❌ |
+| Home Defense | Difesa Domestica | `perkHomeDefense` | ❌ |
+| Homebody | Casalingo | `perkHomebody` | ❌ |
+| Hunter | Cacciatore | `perkHunter` | ❌ |
+| Improved Healing | Guarigione Migliorata | `perkImprovedHealing` | ❌ |
+| Incisor | Incisore | `perkIncisor` | ✅ |
+| Infiltrator | Infiltrato | `perkInfiltrator` | ❌ |
+| Inspirational | Fonte D’Ispirazione | `perkInspirational` | ❌ |
+| Intense Training | Allenamento Intensivo | `perkIntenseTraining` | ✅ |
+| Iron Fist | Pugno Di Ferro | `perkIronFist` | ✅ |
+| Ironclad | Corazzato | `perkIronclad` | ✅ |
+| Junk Shield | Scudo di Spazzatura | `perkJunkShield` | ❌ |
+| Junktown Vendor | Venditore Folle Di Junktown | `perkJunktownVendor` | ❌ |
+| Laser Commander | Comandante Laser | `perkLaserCommander` | ✅ |
+| Lead Belly | Stomaco Di Piombo | `perkLeadBelly` | ❌ |
+| Licensed Plumber | Idraulico Autorizzato | `perkLicensedPlumber` | ✅ |
+| Life Giver | Donatore Di Vita | `perkLifeGiver` | ✅ |
+| Light Step | Passo Piumato | `perkLightStep` | ❌ |
+| Local Leader | Leader Locale | `perkLocalLeader` | ❌ |
+| Lock and Load | Carica e Spara | `perkLockAndLoad` | ✅ |
+| Makeshift | Arrabattare | `perkMakeshift` | ❌ |
+| Martial Artist | Artista Marziale | `perkMartialArtist` | ❌ |
+| Master Thief | Ladro Esperto | `perkMasterThief` | ❌ |
+| Mechanical Menace | Minaccia Meccanica | `perkMechanicalMenace` | ❌ |
+| Medic | Medico | `perkMedic` | ❌ |
+| Meltdown | Meltdown | `perkMeltdown` | ✅ |
+| Mister Sandman | Signore Dei Sogni | `perkMisterSandman` | ✅ |
+| Modern Renegade | Rinnegato Moderno | `perkModernRenegade` | ❌ |
+| Moving Target | Bersaglio Mobile | `perkMovingTarget` | ❌ |
+| Mysterious Savior | Salvatore Misterioso | `perkMysteriousSavior` | ❌ |
+| Mysterious Stranger | Alleato Misterioso | `perkMysteriousStranger` | ✅ |
+| Natural Resistance | Resistenza Naturale | `perkNaturalResistance` | ❌ |
+| Nerd Rage! | Furia Nerd! | `perkNerdRage` | ❌ |
+| Night Eyes | Occhi Notturni | `perkNightEyes` | ❌ |
+| Night Person | Creatura Notturna | `perkNightPerson` | ❌ |
+| Ninja | Ninja | `perkNinja` | ✅ |
+| Nocturnal Fortitude | Fortezza Notturna | `perkNocturnalFortitude` | ❌ |
+| Nuclear Physicist | Fisico Nucleare | `perkNuclearPhysicist` | ❌ |
+| Overly Generous | Eccessivamente Generoso | `perkOverlyGenerous` | ✅ |
+| Pack Rat | Accumulatore | `perkPackRat` | ✅ |
+| Pain Train | Treno Del Dolore | `perkPainTrain` | ❌ |
+| Pannapictagraphist | Pannapictagrafista | `perkPannapictagraphist` | ❌ |
+| Paralyzing Palm | Palmo Paralizzante | `perkParalyzingPalm` | ❌ |
+| Party Boy/Girl | Festaiolo | `perkPartyBoyGirl` | ❌ |
+| Pathfinder | Battitore | `perkPathfinder` | ❌ |
+| Pharmacist | Farmacista | `perkPharmacist` | ❌ |
+| Photosynthetic | Fotosintetico | `perkPhotosynthetic` | ❌ |
+| Pickpocket | Borseggio | `perkPickpocket` | ❌ |
+| Piercing Strike | Colpo Penetrante | `perkPiercingStrike` | ✅ |
+| Power Patcher | Riparatore di Tute | `perkPowerPatcher` | ❌ |
+| Power User | Esperto di Energia | `perkPowerUser` | ❌ |
+| Psychopath | Psicopatico | `perkPsychopath` | ❌ |
+| Pyromaniac | Piromane | `perkPyromaniac` | ✅ |
+| Quack Surgeon | Cerusico Improvvisato | `perkQuackSurgeon` | ❌ |
+| Quick Draw | Estrazione Rapida | `perkQuickDraw` | ❌ |
+| Quick Hands | Mani Veloci | `perkQuickHands` | ❌ |
+| Rad Resistant | Resistente Alle Radiazioni | `perkRadResistant` | ✅ |
+| Radicool | Radicoool | `perkRadicool` | ❌ |
+| Refractor | Rifrattore | `perkRefractor` | ✅ |
+| Rejuvenated | Ringiovanito | `perkRejuvenated` | ❌ |
+| Responder | Soccorritore | `perkResponder` | ❌ |
+| Retribution | Ritorsione | `perkRetribution` | ❌ |
+| Revenant | Redivivo | `perkRevenant` | ❌ |
+| Ricochet | Rimbalzo Balistico | `perkRicochet` | ❌ |
+| Rifleman | Fuciliere | `perkRifleman` | ✅ |
+| Robot Wrangler | Domatore Di Robot | `perkRobotWrangler` | ✅ |
+| Robotics Expert | Esperto Di Robotica | `perkRoboticsExpert` | ❌ |
+| Scattershot | Colpo Sparso | `perkScattershot` | ❌ |
+| Science! | Scienza! | `perkScience` | ❌ |
+| Scoundrel | Furfante | `perkScoundrel` | ❌ |
+| Scrapper | Riciclatore | `perkScrapper` | ❌ |
+| Scrounger | Scroccone | `perkScrounger` | ❌ |
+| Secret Agent | Agente Segreto | `perkSecretAgent` | ❌ |
+| Serendipity | Serendipità | `perkSerendipity` | ❌ |
+| Shotgun Surgeon | Chirurgo Dei Fucili | `perkShotgunSurgeon` | ✅ |
+| Size Matters | Le Dimensioni Contano | `perkSizeMatters` | ✅ |
+| Skilled | Abile | `perkSkilled` | ✅ |
+| Slayer | Sterminatore | `perkSlayer` | ✅ |
+| Slow Metabolizer | Metabolismo Lento | `perkSlowMetabolizer` | ❌ |
+| Smooth Talker | Lingua Sciolta | `perkSmoothTalker` | ❌ |
+| Snake Fancier | Mangiaserpi | `perkSnakeFancier` | ❌ |
+| Sniper | Cecchino | `perkSniper` | ❌ |
+| Solar Powered | Energia Solare | `perkSolarPowered` | ❌ |
+| Spiritual Healer | Guaritore Spirituale | `perkSpiritualHealer` | ❌ |
+| Squad Maneuvers | Manovre di Squadra | `perkSquadManeuvers` | ❌ |
+| Stabilized | Stabilizzato | `perkStabilized` | ❌ |
+| Steady Aim | Mira Precisa | `perkSteadyAim` | ❌ |
+| Storm Chaser | Cacciatore di Tempeste | `perkStormChaser` | ❌ |
+| Strong Back | Schiena Forte | `perkStrongBack` | ✅ |
+| Sturdy Frame | Struttura Robusta | `perkSturdyFrame` | ✅ |
+| Super Duper | Super Duper | `perkSuperDuper` | ❌ |
+| Suppressor | Soppressore | `perkSuppressor` | ❌ |
+| Tag! | Specialista! | `perkTag` | ✅ |
+| Taking One for the Team | Farsi in Quattro | `perkTakingOneForTheTeam` | ❌ |
+| Tenderizer | Inteneritore | `perkTenderizer` | ❌ |
+| Terrifying Presence | Presenza Terrificante | `perkTerrifyingPresence` | ❌ |
+| Thirst Quencher | Dissetante | `perkThirstQuencher` | ❌ |
+| Tinkerer | Armeggiatore | `perkTinkerer` | ❌ |
+| Toughness | Robustezza | `perkToughness` | ✅ |
+| True Friends | Veri Amici | `perkTrueFriends` | ❌ |
+| Vaccinated | Vaccinato | `perkVaccinated` | ❌ |
+
+</details>
 
 ### Trait effects (~41% without an implementation)
 
-As of **2026-10-19**, **17 of 29 traits (~58.6%)** have a registered implementation; **12 (~41.4%)** do not. These totals include fixed origin traits. Among the 21 selectable traits, **16 (~76.2%)** have an implementation and **5 (~23.8%)** do not.
+As of **2026-10-20**, **17 of 29 traits (~58.6%)** have a registered implementation; **12 (~41.4%)** do not. These totals include fixed origin traits. Among the 21 selectable traits, **16 (~76.2%)** have an implementation and **5 (~23.8%)** do not.
+
+<details>
+<summary>Trait implementation status</summary>
+
+Complete list of trait IDs and their current registered implementation status. “Implemented” means a feat module is registered; it does not imply that every rule detail is automated.
+
+| English name | Italian name | ID | Status |
+|---|---|---|---|
+| 10mm Automatic Pistol | Pistola Automatica 10mm | `traitMrHandyAutomaticPistol` | ✅ |
+| Ageless | Senza Età | `traitGhoulAgeless` | ❌ |
+| Brahmin Baron | Barone dei Bramini | `traitBrahminBaron` | ❌ |
+| Circular Saw | Sega Circolare | `traitMrHandyCircularSaw` | ✅ |
+| Educated | Educato | `traitEducated` | ✅ |
+| Extra Perk | Talento Extra | `traitExtraPerk` | ✅ |
+| Fast Shot | Colpo Veloce | `traitFastShot` | ❌ |
+| Flamethrower | Lanciafiamme | `traitMrHandyFlamethrower` | ✅ |
+| Forced Evolution | Evoluzione Forzata | `traitForcedEvolution` | ❌ |
+| Gifted | Dotato | `traitGifted` | ✅ |
+| Good Natured | Buona Indole | `traitGoodNatured` | ✅ |
+| Grunt | Fante | `traitGrunt` | ✅ |
+| Heavy Handed | Mano Pesante | `traitHeavyHanded` | ✅ |
+| Home on the Range | Casa nella Prateria | `traitHomeOnTheRange` | ❌ |
+| Irradiated Rest | Riposo Irradiato | `traitGhoulRadiationRest` | ❌ |
+| Laser Emitter | Emettitore Laser | `traitMrHandyLaserEmitter` | ✅ |
+| Mother Wasteland | Madre Wasteland | `traitMotherWasteland` | ✅ |
+| Mr. Handy Robot | Robot Mr. Handy | `traitMrHandy` | ✅ |
+| Nomad | Nomade | `traitNomad` | ✅ |
+| Pliers | Tenaglia | `traitMrHandyPliers` | ✅ |
+| Radiation Healing | Guarigione da Radiazioni | `traitGhoulRadiationHealing` | ❌ |
+| Rite of Passage | Rito di Passaggio | `traitRiteOfPassage` | ✅ |
+| Small Frame | Minuto | `traitSmallFrame` | ✅ |
+| Smoothskin Discrimination | Discriminazione Pelle Liscia | `traitGhoulDiscrimination` | ❌ |
+| The Chain That Binds | La Catena Che Unisce | `traitBrotherhoodChain` | ❌ |
+| The Chosen One | Il Prescelto | `traitTheChosenOne` | ❌ |
+| Tools of the Old World | Strumenti del Vecchio Mondo | `traitToolsOfTheOldWorld` | ❌ |
+| Trigger Discipline | Disciplina del Grilletto | `traitTriggerDiscipline` | ✅ |
+| Vault Kid | Figlio del Vault | `traitVaultKid` | ❌ |
+
+</details>
 
 > **What strikethrough means:** a ~~crossed-out perk or trait~~ **can still be selected**, provided its normal selection requirements are met. Its gameplay effects are **not applied anywhere in the app**: only its description is shown, so you must account for those effects yourself.
 >
 > The percentages above count **distinct IDs with registered modules, not individual ranks or complete rule coverage**. They include automatic effects, manual actions, and partial implementations. A name without strikethrough is **not** a guarantee that every aspect of its rules is automated.
+
+### DLC origins
+
+Origins can be selectable even when their rules are incomplete, particularly DLC origins. Tribal and NCR support also has remaining TODOs; **selection alone is not a promise of full automation**.
 
 ### Aid item consumption
 

@@ -32,7 +32,7 @@ modPuncturedPowerFist,mod,modSlotMelee,"[""damageAdd:2"",""effectAdd:effectPierc
 modHeatingPowerFist,mod,modSlotMelee,"[""damageAdd:2"",""damageTypeSet:energy""]",0,100,repair,"[""perkBlacksmith:3""]",Uncommon,4,Corebook
 modCurvedRipper,mod,modSlotMelee,"[""damageAdd:1""]",0.5,15,repair,[],Common,2,Corebook
 modExtendedRipper,mod,modSlotMelee,"[""damageAdd:1"",""effectAdd:effectPersistent""]",1.5,25,repair,"[""perkBlacksmith:3""]",Uncommon,5,Corebook
-modExtraFlamesShishkebab,mod,modSlotMelee,"[""damageAdd:1"",""effectAdd:effectPersistent""]",0.5,100,repair,"[""perkBlacksmith:3""]",Uncommon,5,Corebook
+modExtraFlamesShishkebab,mod,modSlotMelee,"[""damageAdd:1"",""effectAdd:effectPersistent"",""tagAdd:fire""]",0.5,100,repair,"[""perkBlacksmith:3""]",Uncommon,5,Corebook
 modStunningSword,mod,modSlotMelee,"[""damageAdd:2"",""damageTypeSet:energy"",""effectAdd:effectStun""]",0,100,repair,"[""perkBlacksmith:3"",""perkScience:1""]",Uncommon,5,Corebook
 modElectrifiedSword,mod,modSlotMelee,"[""damageAdd:1"",""damageTypeSet:energy""]",0,50,repair,"[""perkBlacksmith:2"",""perkScience:1""]",Uncommon,4,Corebook
 modSerratedSword,mod,modSlotMelee,"[""effectAdd:effectPersistent""]",0,25,repair,"[""perkBlacksmith:2""]",Uncommon,3,Corebook
@@ -48,10 +48,10 @@ modBladeKnuckles,mod,modSlotMelee,"[""damageAdd:1"",""effectAdd:effectPersistent
 modSpikedLeadPipe,mod,modSlotMelee,"[""damageAdd:1"",""effectAdd:effectPiercing:1""]",0.5,4,repair,[],Common,1,Corebook
 modHeavyLeadPipe,mod,modSlotMelee,"[""damageAdd:2""]",1,11,repair,"[""perkBlacksmith:2""]",Uncommon,3,Corebook
 modElectrified,mod,modSlotMelee,"[""damageAdd:1"",""damageTypeSet:energy""]",0,50,repair,"[""perkBlacksmith:2"",""perkScience:1""]",,2,
-modBurning,mod,modSlotMelee,"[""damageTypeSet:energy"",""effectAdd:effectPersistent""]",0,50,repair,"[""perkBlacksmith:2"",""perkScience:1""]",,2,
+modBurning,mod,modSlotMelee,"[""damageTypeSet:energy"",""effectAdd:effectPersistent"",""tagAdd:fire""]",0,50,repair,"[""perkBlacksmith:2"",""perkScience:1""]",,2,
 modPoisoned,mod,modSlotMelee,"[""effectAdd:effectPersistent""]",0,50,repair,"[""perkBlacksmith:2"",""perkScience:1""]",,2,
 modTurbo,mod,modSlotMelee,"[""effectAdd:effectTurbo""]",1,50,repair,"[""perkBlacksmith:2"",""perkScience:1""]",,2,
 modDualBar,mod,modSlotMelee,"[""damageAdd:2""]",0.5,30,repair,"[""perkBlacksmith:2""]",,2,
 modBowBar,mod,modSlotMelee,"[""effectAdd:effectPiercing:1""]",1,45,repair,"[""perkBlacksmith:3""]",,2,
 modLongBowBar,mod,modSlotMelee,"[""effectAdd:effectPersistent""]",1.5,60,repair,"[""perkBlacksmith:3""]",,2,
-modFlaming,mod,modSlotMelee,"[""damageAdd:1"",""damageTypeSet:energy""]",1,90,repair,"[""perkBlacksmith:3"",""perkGunNut:1""]",,2,
+modFlaming,mod,modSlotMelee,"[""damageAdd:1"",""damageTypeSet:energy"",""tagAdd:fire""]",1,90,repair,"[""perkBlacksmith:3"",""perkGunNut:1""]",,2,
