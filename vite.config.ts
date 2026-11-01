@@ -63,7 +63,7 @@ export default defineConfig({
         description: 'A Pip-Boy 3000 companion app for managing your character stats and inventory.',
         start_url: '/',
         scope: '/',
-        display: 'fullscreen',
+        display: 'standalone',
         orientation: 'portrait',
         background_color: '#000000',
         // Override the plugin default; JSON serialization omits undefined fields.
