@@ -1511,6 +1511,10 @@
         "en": "Unlock",
         "it": "Sblocca"
     },
+    "mapLocationCode": {
+        "en": "Location code",
+        "it": "Codice località"
+    },
     "updateAvailable": {
         "en": "New version available!",
         "it": "Nuova versione disponibile!"

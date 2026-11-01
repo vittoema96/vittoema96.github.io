@@ -19,6 +19,8 @@ const chrome =
 const root = fileURLToPath(new URL('../', import.meta.url));
 const entryPath = '/__ui_regressions__/entry.jsx';
 const entryId = join(root, entryPath);
+const mapLayoutPath = '/__ui_regressions__/map-layout.jsx';
+const mapLayoutId = join(root, mapLayoutPath);
 const caseNames = [
     'Companion edits preserve perks after switching companion and character',
     'D6 self-ammo consumes only the selected instance',
@@ -29,6 +31,7 @@ const caseNames = [
     'Item edits compose with purchases and sales using latest inventory and currencies',
     'Deferred side selection preserves inventory changes and the opposite armor side',
     'Robot plating confirmation preserves intervening items, currency and other part mods',
+    'Robot module edits and renaming preserve one saved part after origin changes',
     'New companion edits preserve defaults, name, HP and consecutive SPECIAL changes',
     'Manual feats are implemented in lists and selectors, with actions only while effective',
     'Mother Wasteland confirms once, preserves latest luck and does not charge on cancel',
@@ -36,7 +39,37 @@ const caseNames = [
     'Rite of Passage refunds an effect using latest luck and maximum',
     'Rite of Passage ignores non-effects and cancellation',
     'Mysterious Stranger preserves its roller stats and pays only once on the first roll',
+    'Mounted maps and region selectors react to persisted settings changes',
+    'Map unlocking and deferred deletion preserve the latest location codes',
+    'Maps and settings fit responsive panels while preserving map interactions and tab scrolling',
+    'Theme metadata follows the selected primary color on changes and startup',
 ];
+
+const mapLayoutFixture = `
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import '/src/styles/index.css';
+import '/src/locales/i18n.ts';
+import App from '/src/app/App.tsx';
+import { CharacterProvider } from '/src/app/contexts/CharacterContext.tsx';
+import { PopupProvider } from '/src/app/contexts/PopupContext.tsx';
+import { TooltipProvider } from '/src/app/contexts/TooltipContext.tsx';
+import { useSaveStore } from '/src/hooks/useSaveStore.ts';
+import { UISettingsManager } from '/src/services/UISettingsManager.ts';
+
+window.mapLayoutErrors = [];
+window.addEventListener('error', event => window.mapLayoutErrors.push(event.error?.stack ?? event.message));
+window.addEventListener('unhandledrejection', event => window.mapLayoutErrors.push(String(event.reason)));
+UISettingsManager.setRegion('mojave');
+UISettingsManager.applyAll();
+useSaveStore.getState().importSlot(0, { origin: 'survivor', mapCodes: ['g00d'] });
+useSaveStore.getState().setActiveSlot(0);
+createRoot(document.getElementById('root')).render(
+    <React.StrictMode><CharacterProvider><TooltipProvider><PopupProvider>
+        <App />
+    </PopupProvider></TooltipProvider></CharacterProvider></React.StrictMode>
+);
+`;
 
 const fixture = `
 import React from 'react';
@@ -49,15 +82,21 @@ import { CharacterProvider, useCharacter } from '/src/app/contexts/CharacterCont
 import { PopupProvider, usePopup } from '/src/app/contexts/PopupContext.tsx';
 import { TooltipProvider } from '/src/app/contexts/TooltipContext.tsx';
 import { useSaveStore } from '/src/hooks/useSaveStore.ts';
+import { mod } from '/src/data/index.ts';
 import { createDefaultCompanion } from '/src/utils/companionTypes.ts';
 import CompanionTab from '/src/app/tabs/companion/CompanionTab.tsx';
 import D6Popup from '/src/app/components/popup/dice/D6Popup.tsx';
 import ModifyItemPopup from '/src/app/components/popup/ModifyItemPopup.tsx';
+import ApparelCard from '/src/app/tabs/inv/cards/apparel/ApparelCard.tsx';
 import { useItemManagement } from '/src/app/contexts/useItemManagement.ts';
 import { useInventoryActions } from '/src/app/tabs/inv/hooks/useInventoryActions.ts';
 import PerkList from '/src/app/tabs/data/components/PerkList.tsx';
 import TraitList from '/src/app/tabs/data/components/TraitList.tsx';
 import { PerkSelectionPopup, TraitSelectionPopup } from '/src/app/tabs/data/components/FeatSelectionPopup.tsx';
+import MapTab from '/src/app/tabs/map/MapTab.tsx';
+import SettingsTab from '/src/app/tabs/settings/SettingsTab.tsx';
+import { commonwealthMarkers } from '/src/app/tabs/map/commonwealthMarkers.ts';
+import { UISettingsManager, THEMES } from '/src/services/UISettingsManager.ts';
 
 await i18next.use(initReactI18next).init({
     lng: 'en', resources: { en: { translation: translations } },
@@ -80,6 +119,13 @@ Math.random = () => 0.4;
 function check(value, message) {
     if (!value) throw new Error(message);
 }
+async function waitFor(predicate, message) {
+    for (let attempt = 0; attempt < 100; attempt++) {
+        if (predicate()) return;
+        await pause();
+    }
+    throw new Error(message);
+}
 function Bridge() {
     context = useCharacter();
     popup = usePopup();
@@ -93,9 +139,14 @@ function mount(view, props = {}) {
         {view === 'companion' && <CompanionTab />}
         {view === 'd6' && <D6Popup {...props} onClose={() => { closed++; mount('empty'); }} />}
         {view === 'modify' && <ModifyItemPopup {...props} onClose={() => { closed++; mount('empty'); }} />}
+        {view === 'apparel' && <ApparelCard {...props} />}
         {view === 'feats' && <><PerkList /><TraitList /></>}
         {view === 'perk-selection' && <PerkSelectionPopup prev={undefined} onSelect={() => {}} onClose={() => mount('empty')} />}
         {view === 'trait-selection' && <TraitSelectionPopup prev={undefined} onSelect={() => {}} onClose={() => mount('empty')} />}
+        {view === 'map-settings' && <>
+            <div hidden><SettingsTab /></div>
+            <main className="map-panel"><MapTab /></main>
+        </>}
     </PopupProvider></TooltipProvider></CharacterProvider></React.StrictMode>);
 }
 async function reset(raw, view, props) {
@@ -340,6 +391,73 @@ const cases = [
             'Plating was not replaced on all current robot parts');
     },
     async () => {
+        await reset({
+            origin: 'mrHandy',
+            items: [item('robotPartBody', {
+                mods: ['modRobotPlatingStandard'],
+                customName: 'Saved body',
+            })],
+            caps: 100,
+        }, 'empty');
+        check(raw().items.find(i => i.id === 'robotPartBody')?.equipped,
+            'Loading did not normalize the saved intrinsic part');
+        context.updateCharacter({ origin: 'survivor' });
+        await pause();
+        check(!context.character.items.some(i => i.id === 'robotPartBody'),
+            'Changing origin did not hide the body');
+        check(raw().items.find(i => i.id === 'robotPartBody')?.equipped,
+            'Changing origin altered the hidden body equipped state');
+        context.updateCharacter({ origin: 'mrHandy' });
+        await pause();
+        const body = context.character.items.find(i => i.id === 'robotPartBody');
+        mount('apparel', { characterItem: body });
+        await pause();
+        const equip = document.querySelector('.card-action-btn--primary');
+        check(equip?.disabled, 'Intrinsic body part can be manually unequipped');
+        const before = JSON.stringify(raw().items);
+        equip.click();
+        inventoryActions.equipItem(body);
+        await pause();
+        check(JSON.stringify(raw().items) === before, 'Equip action changed the body');
+
+        mount('modify', { characterItem: body });
+        await pause();
+        const module = [...document.querySelectorAll('select')].find(s =>
+            [...s.options].some(o => o.value === 'modRobotLockpickingModule'));
+        await select(module, 'modRobotLockpickingModule');
+        context.updateCharacter(prev => ({
+            items: [...prev.items, item('ammo556mm', { quantity: 3 })],
+            caps: 87,
+        }));
+        await pause();
+        const dialog = document.querySelector('dialog');
+        await finishClose(dialog, dialog.querySelector('button.confirmButton'));
+        let bodies = raw().items.filter(i => i.id === 'robotPartBody');
+        check(bodies.length === 1 && bodies[0].quantity === 1,
+            'Editing a module duplicated the body: ' + JSON.stringify(bodies));
+        check(bodies[0].equipped && bodies[0].mods.includes('modRobotLockpickingModule'),
+            'Module edit did not preserve the intrinsic equipped state and selected module');
+        check(raw().caps === 87 - mod.modRobotLockpickingModule.COST,
+            'Module edit did not deduct its cost from the latest caps: ' + raw().caps);
+        check(raw().items.find(i => i.id === 'ammo556mm')?.quantity === 3,
+            'Module edit changed ammo stacks: ' + JSON.stringify(
+                raw().items.filter(i => i.id === 'ammo556mm')));
+
+        itemManagement.updateItemCustomName(
+            context.character.items.find(i => i.id === 'robotPartBody'), 'Renamed body');
+        await pause();
+        context.updateCharacter({ origin: 'survivor' });
+        await pause();
+        context.updateCharacter({ origin: 'mrHandy' });
+        await pause();
+        bodies = raw().items.filter(i => i.id === 'robotPartBody');
+        check(bodies.length === 1 && bodies[0].quantity === 1,
+            'Renaming or restoring the body duplicated it');
+        check(bodies[0].customName === 'Renamed body' &&
+            bodies[0].mods.includes('modRobotLockpickingModule'),
+            'Origin changes lost the saved name or module');
+    },
+    async () => {
         await reset({ perks: ['perkDogmeat'] }, 'companion');
         check(!raw().companions.dog, 'Fixture should start with an unsaved default companion');
         await select(document.querySelectorAll('select')[2], 'companionPerkASenseForDanger');
@@ -483,6 +601,272 @@ const cases = [
         check(raw().currentLuck === 7, 'Closing after the stranger roll charged again');
         check(!raw().items.some(i => i.id === 'weaponFortyFourPistol'), 'Stranger weapon leaked into the player inventory');
     },
+    async () => {
+        UISettingsManager.setRegion('mojave');
+        UISettingsManager.setTheme('theme-fallout-3');
+        UISettingsManager.setDisplayEffect('off');
+        await reset({ mapCodes: ['g00d', commonwealthMarkers[0].code] }, 'map-settings');
+        const surface = () => document.querySelector('.map-surface');
+        const selector = document.querySelector('#region-select');
+        check(surface().style.backgroundImage.includes('/img/png/map.png'),
+            'Initial region did not load from persisted settings');
+        const initialCodes = JSON.stringify(raw().mapCodes);
+        const initialSettings = JSON.parse(localStorage.getItem('PB3K_settings'));
+        const oldSurface = surface();
+        await select(selector, 'commonwealth');
+        check(surface().style.backgroundImage.includes('Commonwealth.webp') && !oldSurface.isConnected,
+            'Changing region did not replace the mounted map view');
+        check(document.getElementById(commonwealthMarkers[0].code) && !document.getElementById('g00d'),
+            'Region markers did not update with the image');
+        const persisted = JSON.parse(localStorage.getItem('PB3K_settings'));
+        check(persisted.REGION === 'commonwealth' &&
+            persisted.THEME === initialSettings.THEME &&
+            persisted.CRT_effect === initialSettings.CRT_effect,
+            'Region change did not persist or overwrote other settings');
+
+        UISettingsManager.setRegion('capitalWasteland');
+        await pause();
+        check(selector.value === 'capitalWasteland' &&
+            surface().style.backgroundImage.includes('CapitalWasteland.webp'),
+            'External region changes did not update both subscribers');
+        await changeInput(document.querySelector('.map-unlock-form input'), 'abcd');
+        const stored = JSON.stringify({ ...persisted, REGION: 'mojave' });
+        localStorage.setItem('PB3K_settings', stored);
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: 'PB3K_settings', storageArea: localStorage, newValue: stored,
+        }));
+        await pause();
+        check(selector.value === 'mojave' && surface().style.backgroundImage.includes('/img/png/map.png'),
+            'Cross-window storage notifications did not update the mounted map');
+        check(document.querySelector('.map-unlock-form input').value === '',
+            'Changing region retained an unfinished unlock code');
+        check(JSON.stringify(raw().mapCodes) === initialCodes, 'Changing region altered saved locations');
+
+        UISettingsManager.setRegion('commonwealth');
+        await pause();
+        localStorage.removeItem('PB3K_settings');
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: 'PB3K_settings', storageArea: localStorage,
+        }));
+        await pause();
+        check(selector.value === 'mojave' && surface().style.backgroundImage.includes('/img/png/map.png'),
+            'Removing settings did not restore the default region');
+        UISettingsManager.setRegion('commonwealth');
+        await reset({}, 'map-settings');
+        check(surface().style.backgroundImage.includes('Commonwealth.webp'),
+            'Remounting the map did not use the persisted region');
+    },
+    async () => {
+        UISettingsManager.setRegion('mojave');
+        await reset({ mapCodes: ['g00d'] }, 'map-settings');
+        const form = document.querySelector('.map-unlock-form');
+        const input = form.querySelector('input');
+        await changeInput(input, 'PR1M');
+        form.requestSubmit();
+        await pause();
+        check(raw().mapCodes.includes('pr1m') && input.value === '',
+            'Submitting the unlock form did not normalize and save the code');
+        await changeInput(input, 'pr1m');
+        form.requestSubmit();
+        await pause();
+        check(raw().mapCodes.filter(code => code === 'pr1m').length === 1,
+            'Repeated unlocking duplicated a saved location');
+        await changeInput(input, 'zzzz');
+        form.requestSubmit();
+        await pause();
+        check(!raw().mapCodes.includes('zzzz'), 'Invalid code unlocked a location');
+
+        const marker = document.getElementById('g00d').closest('.map-marker');
+        marker.dispatchEvent(new PointerEvent('pointerdown', {
+            bubbles: true, button: 0, pointerType: 'touch',
+        }));
+        await waitFor(() => document.querySelector('dialog'), 'Marker long press did not open confirmation');
+        marker.dispatchEvent(new PointerEvent('pointerup', { bubbles: true }));
+        context.updateCharacter(prev => ({ mapCodes: [...prev.mapCodes, 'nv4c'] }));
+        await pause();
+        const dialog = document.querySelector('dialog');
+        await finishClose(dialog, dialog.querySelector('button.confirmButton'));
+        check(!raw().mapCodes.includes('g00d') &&
+            raw().mapCodes.includes('pr1m') && raw().mapCodes.includes('nv4c'),
+            'Deferred deletion overwrote intervening location changes');
+
+        UISettingsManager.setRegion('commonwealth');
+        await pause();
+        const unchanged = JSON.stringify(raw().mapCodes);
+        await changeInput(document.querySelector('.map-unlock-form input'), 'g00d');
+        document.querySelector('.map-unlock-form').requestSubmit();
+        await pause();
+        check(JSON.stringify(raw().mapCodes) === unchanged, 'Non-Mojave unlocking changed unexpectedly');
+    },
+    async () => {
+        await reset({}, 'empty');
+        const frame = document.createElement('iframe');
+        frame.style.cssText = 'position:fixed;left:0;top:0;width:390px;height:844px;border:0';
+        frame.src = '/__ui_regressions__/map-layout';
+        document.body.append(frame);
+        try {
+            await waitFor(() => frame.contentDocument?.querySelector('.tab-button'),
+                'Map layout app did not mount');
+            const doc = frame.contentDocument;
+            const win = frame.contentWindow;
+            const tab = label => [...doc.querySelectorAll('nav .tab-button')]
+                .find(button => button.textContent.trim() === label);
+            tab('MAP').click();
+            await waitFor(() => doc.querySelector('.map-surface'), 'Map tab did not open');
+            const settle = () => new Promise(resolve =>
+                win.requestAnimationFrame(() => win.requestAnimationFrame(resolve)));
+            const assertFits = label => {
+                const panel = doc.querySelector('main.map-panel');
+                const viewport = doc.querySelector('.map-viewport');
+                const form = doc.querySelector('.map-unlock-form');
+                const surface = doc.querySelector('.map-surface');
+                const bounds = viewport.getBoundingClientRect();
+                const formBounds = form.getBoundingClientRect();
+                const panelBounds = panel.getBoundingClientRect();
+                const mapBounds = surface.getBoundingClientRect();
+                const style = win.getComputedStyle(panel);
+                check(bounds.height > 0 && bounds.width > 0, label + ': map has no available space');
+                check(panel.scrollHeight <= panel.clientHeight + 1 &&
+                    panel.scrollWidth <= panel.clientWidth + 1 && panel.scrollTop === 0,
+                    label + ': map panel has scrollable overflow');
+                check(doc.scrollingElement.scrollHeight <= win.innerHeight + 1 &&
+                    doc.scrollingElement.scrollWidth <= win.innerWidth + 1,
+                    label + ': page has scrollable overflow');
+                check(formBounds.bottom <= win.innerHeight &&
+                    formBounds.right <= win.innerWidth && formBounds.left >= 0 &&
+                    bounds.bottom <= formBounds.top,
+                    label + ': unlock controls are clipped or overlap the map');
+                check(Math.abs(formBounds.bottom - (panelBounds.bottom -
+                    parseFloat(style.borderBottomWidth) - parseFloat(style.paddingBottom))) <= 1,
+                    label + ': map and controls do not fill the panel');
+                check(mapBounds.left <= bounds.left + 1 && mapBounds.right >= bounds.right - 1 &&
+                    mapBounds.top <= bounds.top + 1 && mapBounds.bottom >= bounds.bottom - 1,
+                    label + ': map does not cover its viewport');
+                check(Math.abs(surface.offsetWidth - surface.offsetHeight) <= 1,
+                    label + ': map aspect ratio was distorted');
+            };
+
+            for (const [width, height] of [[390, 844], [360, 640], [844, 390], [1280, 900], [1280, 480]]) {
+                frame.style.width = width + 'px';
+                frame.style.height = height + 'px';
+                await waitFor(() => doc.querySelectorAll('main').length === (width >= 900 ? 2 : 1),
+                    'Responsive layout did not switch at ' + width);
+                await settle();
+                const label = width + 'x' + height;
+                assertFits(label);
+                const viewport = doc.querySelector('.map-viewport');
+                const surface = doc.querySelector('.map-surface');
+                const rect = viewport.getBoundingClientRect();
+                const clientX = rect.left + rect.width / 2;
+                const clientY = rect.top + rect.height / 2;
+                const beforeScale = new win.DOMMatrix(surface.style.transform).a;
+                const wheel = new win.WheelEvent('wheel', {
+                    deltaY: -120, clientX, clientY, bubbles: true, cancelable: true,
+                });
+                viewport.dispatchEvent(wheel);
+                await settle();
+                check(wheel.defaultPrevented && Math.abs(
+                    new win.DOMMatrix(surface.style.transform).a - beforeScale * Math.exp(0.6 / 3)
+                ) < 0.001, label + ': wheel zoom did not run exactly once');
+                const beforePan = surface.style.transform;
+                surface.dispatchEvent(new win.PointerEvent('pointerdown', {
+                    pointerId: 1, pointerType: 'mouse', button: 0, buttons: 1,
+                    clientX, clientY, bubbles: true,
+                }));
+                doc.dispatchEvent(new win.PointerEvent('pointermove', {
+                    pointerId: 1, pointerType: 'mouse', buttons: 1,
+                    clientX: clientX - 30, clientY: clientY - 20, bubbles: true,
+                }));
+                doc.dispatchEvent(new win.PointerEvent('pointerup', {
+                    pointerId: 1, pointerType: 'mouse', bubbles: true,
+                }));
+                await settle();
+                check(surface.style.transform !== beforePan, label + ': dragging did not pan the map');
+                assertFits(label + ' after interaction');
+            }
+            UISettingsManager.setRegion('commonwealth');
+            await waitFor(() => doc.querySelector('.map-surface')?.style.backgroundImage.includes('Commonwealth.webp'),
+                'Actual cross-window storage changes did not update the mounted map');
+            await settle();
+            assertFits('Region changed from another window');
+            const settings = doc.querySelector('nav .tab-button.mini');
+            settings.click();
+            await waitFor(() => doc.querySelector('#region-select'), 'Settings tab did not open');
+            const panel = doc.querySelector('.l-desktop-right-panel main');
+            check(!panel.classList.contains('map-panel') &&
+                win.getComputedStyle(panel).overflowY === 'auto' &&
+                panel.scrollHeight > panel.clientHeight,
+                'Non-map tabs lost normal panel scrolling');
+            panel.scrollTop = 50;
+            check(panel.scrollTop > 0, 'Settings content is no longer scrollable');
+            for (const [width, height] of [[320, 640], [360, 640], [390, 844], [844, 390], [900, 600], [1280, 900]]) {
+                frame.style.width = width + 'px';
+                frame.style.height = height + 'px';
+                await waitFor(() => doc.querySelectorAll('main').length === (width >= 900 ? 2 : 1),
+                    'Settings layout did not switch at ' + width);
+                await settle();
+                for (const language of ['en', 'it']) {
+                    const languageSelect = doc.querySelector('#language-select');
+                    languageSelect.value = language;
+                    languageSelect.dispatchEvent(new win.Event('change', { bubbles: true }));
+                    await pause();
+                    await settle();
+                    const regionSelect = doc.querySelector('#region-select');
+                    regionSelect.value = 'capitalWasteland';
+                    regionSelect.dispatchEvent(new win.Event('change', { bubbles: true }));
+                    await pause();
+                    const preferences = regionSelect.parentElement.parentElement;
+                    const bounds = preferences.getBoundingClientRect();
+                    for (const selector of preferences.querySelectorAll('select')) {
+                        const field = selector.getBoundingClientRect();
+                        check(field.left >= bounds.left - 1 && field.right <= bounds.right + 1,
+                            width + ' ' + language + ': preference selector overflows its row');
+                    }
+                    if (width <= 390) {
+                        check(regionSelect.getBoundingClientRect().top >
+                            doc.querySelector('#language-select').getBoundingClientRect().top,
+                            width + ' ' + language + ': region selector did not wrap');
+                    }
+                }
+            }
+            tab('MAP').click();
+            await waitFor(() => doc.querySelector('.map-surface'), 'Map did not reopen');
+            await settle();
+            assertFits('Map reopened after a scrolling tab');
+            check(win.mapLayoutErrors.length === 0, 'Map layout runtime errors: ' + JSON.stringify(win.mapLayoutErrors));
+        } finally {
+            frame.remove();
+        }
+    },
+    async () => {
+        await reset({}, 'empty');
+        const meta = document.querySelector('meta[name="theme-color"]');
+        check(meta, 'Missing theme-color metadata');
+        const originalTheme = UISettingsManager.getCurrentTheme();
+        document.body.classList.add('theme-regression-sentinel');
+        try {
+            for (const theme of Object.keys(THEMES)) {
+                UISettingsManager.setTheme(theme);
+                const style = getComputedStyle(document.body);
+                const primaryColor = style.getPropertyValue('--primary-color');
+                check(primaryColor.trim().length > 0 && meta.content === primaryColor,
+                    theme + ': theme metadata does not match the primary color: ' + meta.content);
+                check(document.body.classList.contains('theme-regression-sentinel'),
+                    'Changing theme removed unrelated body classes');
+                check(UISettingsManager.getCurrentTheme() === theme, 'Theme was not persisted');
+            }
+            UISettingsManager.setTheme('theme-fallout-new-vegas');
+            Object.keys(THEMES).forEach(theme => document.body.classList.remove(theme));
+            meta.content = '#afff03';
+            UISettingsManager.applyAll();
+            check(document.body.classList.contains('theme-fallout-new-vegas') &&
+                meta.content === getComputedStyle(document.body).getPropertyValue('--primary-color'),
+                'Startup did not restore the saved theme and matching primary color');
+        } finally {
+            UISettingsManager.setTheme(originalTheme);
+            document.body.classList.remove('theme-regression-sentinel');
+        }
+    },
 ];
 const results = [];
 for (const run of cases) {
@@ -529,9 +913,9 @@ test(
                             rejectResult(error);
                         }
                     });
-                } else if (req.url === '/') {
+                } else if (req.url === '/' || req.url === '/__ui_regressions__/map-layout') {
                     res.setHeader('Content-Type', 'text/html');
-                    res.end(`<!doctype html><html><body><div id="root"></div>
+                    res.end(`<!doctype html><html><head><meta name="theme-color" content="#afff03"></head><body><div id="root"></div>
                     <script>
                         const report = message => fetch('/__ui_regressions__/results', {
                             method: 'POST', body: JSON.stringify({results: [], runtimeErrors: [message]}),
@@ -541,7 +925,7 @@ test(
                         ), {once: true, capture: true});
                         window.addEventListener('unhandledrejection', event => report(String(event.reason)), {once: true});
                     </script>
-                    <script type="module" src="${entryPath}"></script></body></html>`);
+                    <script type="module" src="${req.url === '/' ? entryPath : mapLayoutPath}"></script></body></html>`);
                 } else {
                     next();
                 }
@@ -580,9 +964,11 @@ test(
                         },
                         resolveId(id) {
                             if (id === entryPath) return entryId;
+                            if (id === mapLayoutPath) return mapLayoutId;
                         },
                         load(id) {
                             if (id === entryId) return fixture;
+                            if (id === mapLayoutId) return mapLayoutFixture;
                         },
                     },
                 ],

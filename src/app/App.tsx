@@ -86,7 +86,7 @@ function App() {
                                 />
                             ))}
                         </nav>
-                        <main>
+                        <main className={desktopRightActiveTab === 'map' ? 'map-panel' : undefined}>
                             <DesktopRightComponent />
                         </main>
                     </div>
@@ -114,7 +114,7 @@ function App() {
             </nav>
 
             {/* Tab Content - Only render active tab for better performance */}
-            <main>
+            <main className={activeTab === 'map' ? 'map-panel' : undefined}>
                 <ActiveTabComponent />
             </main>
         </>

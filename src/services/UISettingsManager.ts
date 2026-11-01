@@ -28,7 +28,7 @@ export const REGIONS = {
     mojave: 'Mojave',
     commonwealth: 'Commonwealth',
     capitalWasteland: 'Capital Wasteland',
-} as const
+} as const;
 
 export type MapRegion = keyof typeof REGIONS;
 export const DEFAULT_REGION: MapRegion = 'mojave';
@@ -48,6 +48,7 @@ type UISettings = {
 };
 
 const SETTINGS_KEY = 'PB3K_settings';
+const settingsListeners = new Set<() => void>();
 
 /**
  * TODO: Remove this migration after a few releases (added 2026-06-18).
@@ -93,11 +94,30 @@ const loadSettings = (): UISettings => {
 
 const saveSettings = (settings: UISettings): void => {
     localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+    settingsListeners.forEach(listener => listener());
 };
 
 // ─── Manager ──────────────────────────────────────────────────────────────────
 
 export class UISettingsManager {
+    /** Subscribes to persisted settings changes in this window and other tabs. */
+    static subscribe(listener: () => void): () => void {
+        settingsListeners.add(listener);
+        const handleStorage = (event: StorageEvent) => {
+            if (
+                event.storageArea === localStorage &&
+                (event.key === SETTINGS_KEY || event.key === null)
+            ) {
+                listener();
+            }
+        };
+        window.addEventListener('storage', handleStorage);
+        return () => {
+            settingsListeners.delete(listener);
+            window.removeEventListener('storage', handleStorage);
+        };
+    }
+
     // ── Language ────────────────────────────────────────────────────────────────
 
     static isLanguage(value: string | null): value is Language {

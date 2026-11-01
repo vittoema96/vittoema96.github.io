@@ -94,7 +94,7 @@ Corebook mods were checked for smallGuns, energyWeapons and meleeWeapons
 ### Map System
 - [ ] **Map markers** - Improve + add all markers
 - [ ] **Non-Mojave locations** - Complete and verify Commonwealth marker coordinates, add Capital Wasteland locations, and enable region-specific location unlocking once those datasets are ready. Non-Mojave unlocking is intentionally unavailable for now.
-- [ ] **Reactive map-region settings** - Replace direct `UISettingsManager` reads with a persisted reactive settings subscription/store so changing region updates an already-mounted map immediately without duplicating settings state.
+- [x] **Reactive map-region settings** - Share persisted settings through `useSyncExternalStore` so mounted maps and region selectors react to same-window and cross-window changes without duplicating settings state. Keep the map and unlock controls within a non-scrolling panel.
 - [ ] **General map improvements** - Polish and features
 
 ## 🔮 Low Priority / Future

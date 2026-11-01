@@ -9,12 +9,13 @@ import {
     type Language,
     LANGUAGES,
     REGIONS,
-    type MapRegion,
 } from '@/services/UISettingsManager.ts';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext';
 import { changeLanguage } from '@/locales/i18n.ts';
 import { sortByLocalizedLabel } from '@/utils/sorting.ts';
+import { useMapRegion } from '@/hooks/useMapRegion';
+import './SettingsTab.css';
 
 const useDisplayEffectsState = () => {
     const [displayEffects, setDisplayEffects] = useState<DisplayEffect>(() =>
@@ -33,7 +34,7 @@ function SettingsTab() {
 
     const [currentTheme, setCurrentTheme] = useState(UISettingsManager.getCurrentTheme);
     const [currentLanguage, setCurrentLanguage] = useState(UISettingsManager.getCurrentLanguage);
-    const [currentRegion, setCurrentRegion] = useState(UISettingsManager.getCurrentRegion);
+    const currentRegion = useMapRegion();
     const [displayEffects, setDisplayEffects] = useDisplayEffectsState();
 
     const { showAlert, showConfirm } = usePopup();
@@ -55,8 +56,10 @@ function SettingsTab() {
     };
 
     const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newRegion = e.target.value as MapRegion;
-        setCurrentRegion(UISettingsManager.setRegion(newRegion));
+        const newRegion = e.target.value;
+        if (UISettingsManager.isRegion(newRegion)) {
+            UISettingsManager.setRegion(newRegion);
+        }
     };
 
     /** Delete a character from a slot using Zustand store action */
@@ -123,7 +126,7 @@ function SettingsTab() {
         <section className="tabContent">
             <span className="h3">{t('settings')}</span>
 
-            <div className="row l-distributed">
+            <div className="row settings-preferences">
                 <div className="stack">
                     <label htmlFor="language-select">{t('language')}:</label>
                     <select

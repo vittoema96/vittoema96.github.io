@@ -1,0 +1,42 @@
+.map-panel {
+    overflow: hidden;
+}
+
+.map-tab {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.map-viewport {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+    overscroll-behavior: contain;
+}
+
+.map-surface {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.map-unlock-form {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--space-m);
+}
+
+.map-unlock-form input {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+}
+
+.map-unlock-form button {
+    flex-shrink: 0;
+}

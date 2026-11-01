@@ -1,6 +1,6 @@
 import { usePanzoom } from '@/app/tabs/map/hooks/usePanzoom';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { PanzoomEventDetail } from '@panzoom/panzoom';
+import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
+import type { PanzoomEventDetail } from '@panzoom/panzoom';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useTranslation } from 'react-i18next';
@@ -8,28 +8,34 @@ import { mojaveMarkers } from '@/app/tabs/map/mapMarkers';
 import { commonwealthMarkers } from '@/app/tabs/map/commonwealthMarkers';
 import { capitalWastelandMarkers } from '@/app/tabs/map/capitalWastelandMarkers';
 import MapMarkerItem, { MARKER_TEXT_THRESHOLD } from '@/app/tabs/map/MapMarkerItem';
-import { UISettingsManager } from '@/services/UISettingsManager';
+import type { MapRegion } from '@/services/UISettingsManager';
+import { useMapRegion } from '@/hooks/useMapRegion';
+import './MapTab.css';
 
 const SHOW_ALL = true; // For debug only – works only when __APP_VERSION__ is not set (dev server)
 
 function MapTab() {
+    const region = useMapRegion();
+    return <RegionMap key={region} region={region} />;
+}
+
+function RegionMap({ region }: Readonly<{ region: MapRegion }>) {
     const { t } = useTranslation();
     const { mapRef } = usePanzoom();
     const { character, updateCharacter } = useCharacter();
-    const region = UISettingsManager.getCurrentRegion();
     const regionMarkers =
         region === 'mojave'
             ? mojaveMarkers
             : region === 'commonwealth'
-                ? commonwealthMarkers
-                : capitalWastelandMarkers;
+              ? commonwealthMarkers
+              : capitalWastelandMarkers;
     const unlockableMarkers = region === 'mojave' ? mojaveMarkers : [];
     const mapImage =
         region === 'mojave'
             ? '/img/png/map.png'
             : region === 'commonwealth'
-                ? '/img/webp/Commonwealth.webp'
-                : '/img/webp/CapitalWasteland.webp';
+              ? '/img/webp/Commonwealth.webp'
+              : '/img/webp/CapitalWasteland.webp';
     const [scale, setScale] = useState<number>(1);
     const [code, setCode] = useState('');
     const [activeMarkerCode, setActiveMarkerCode] = useState<string | null>(null);
@@ -40,23 +46,18 @@ function MapTab() {
     const handleLongPress = useCallback(
         (markerCode: string) => {
             showConfirm(t('deleteMarker'), () => {
-                updateCharacter(
-                    { mapCodes: character.mapCodes.filter(m => m !== markerCode) },
-                );
+                updateCharacter(prev => ({
+                    mapCodes: prev.mapCodes.filter(m => m !== markerCode),
+                }));
             });
         },
-        [
-            showConfirm,
-            t,
-            updateCharacter,
-            character.mapCodes,
-        ],
+        [showConfirm, t, updateCharacter],
     );
 
     const visibleMarkers = useMemo(() => {
         const showAll = SHOW_ALL && __APP_VERSION__.includes('BUILD_VERSION');
         return regionMarkers.filter(m => showAll || character.mapCodes.includes(m.code));
-    }, [regionMarkers, character.mapCodes])
+    }, [regionMarkers, character.mapCodes]);
 
     const updateActiveMarker = useCallback(
         (nextScale = scale) => {
@@ -149,29 +150,27 @@ function MapTab() {
         };
     }, [updateActiveMarker]);
 
-    const handleUnlockLocation = () => {
+    const handleUnlockLocation = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         if (code.length !== 4) {
             return;
         }
         const marker = unlockableMarkers.some(m => m.code === code);
         if (marker) {
-            updateCharacter(
-                { mapCodes: [...character.mapCodes, code] },
-            );
+            updateCharacter(prev => ({
+                mapCodes: prev.mapCodes.includes(code) ? prev.mapCodes : [...prev.mapCodes, code],
+            }));
         }
         setCode('');
     };
 
     return (
-        <section className="tabContent">
-            <div ref={viewportRef} style={{ flex: 1 }}>
+        <section className="tabContent map-tab">
+            <div ref={viewportRef} className="map-viewport">
                 <div
                     ref={mapRef}
-                    style={{
-                        backgroundImage: `url(${mapImage})`,
-                        backgroundSize: 'cover',
-                        aspectRatio: '1 / 1',
-                    }}
+                    className="map-surface"
+                    style={{ backgroundImage: `url(${mapImage})` }}
                 >
                     {visibleMarkers.map(marker => (
                         <MapMarkerItem
@@ -185,17 +184,20 @@ function MapTab() {
                     ))}
                 </div>
             </div>
-            <div className="row" style={{ justifyContent: 'center' }}>
+            <form className="map-unlock-form" onSubmit={handleUnlockLocation}>
                 <input
                     type="text"
-                    style={{ textAlign: 'center' }}
+                    aria-label={t('mapLocationCode')}
+                    autoComplete="off"
+                    autoCapitalize="none"
+                    spellCheck={false}
                     maxLength={4}
                     placeholder="○○○○"
                     value={code}
                     onChange={e => setCode(e.currentTarget.value.toLowerCase())}
                 />
-                <button onClick={handleUnlockLocation}>{t('unlock')}</button>
-            </div>
+                <button type="submit">{t('unlock')}</button>
+            </form>
         </section>
     );
 }

@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import { VitePWA } from 'vite-plugin-pwa'
+import { VitePWA, type ManifestOptions } from 'vite-plugin-pwa'
 import react from '@vitejs/plugin-react'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
@@ -57,7 +57,7 @@ export default defineConfig({
         navigateFallbackDenylist: [/^\/@vite/, /^\/@react-refresh/, /^\/node_modules/]
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
-      manifest: {
+      manifest: ({
         name: 'Pip-Boy 3000',
         short_name: 'PB3K',
         description: 'A Pip-Boy 3000 companion app for managing your character stats and inventory.',
@@ -66,7 +66,8 @@ export default defineConfig({
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#000000',
-        theme_color: '#2c2c2c',
+        // Override the plugin default; JSON serialization omits undefined fields.
+        theme_color: undefined,
         icons: [
           {
             src: 'img/icons/192x192.png',
@@ -149,7 +150,9 @@ export default defineConfig({
             label: 'Old World Blues Theme'
           }
         ]
-      },
+      } satisfies Omit<Partial<ManifestOptions>, 'theme_color'> & {
+        theme_color: undefined
+      }) as Omit<Partial<ManifestOptions>, 'theme_color'>,
       devOptions: {
         enabled: true, // Enable service worker in development to test PWA features
         type: 'module'

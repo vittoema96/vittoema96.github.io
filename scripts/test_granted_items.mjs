@@ -218,6 +218,88 @@ test('Changing origin hides grants without deleting configuration', () => {
     );
 });
 
+test('Changing origin hides intrinsic robot parts without changing their saved configuration', () => {
+    const robot = reconcile(
+        character({
+            items: [
+                item('robotPartBody', {
+                    equipped: true,
+                    mods: ['modRobotPlatingStandard', 'modRobotFactoryStorageBody'],
+                    customName: 'Saved robot body',
+                }),
+            ],
+        }),
+    );
+    const snapshot = structuredClone(robot);
+    const savedBody = robot.items.find(i => i.id === 'robotPartBody');
+    let raw = robot;
+    for (const origin of ['survivor', 'protectron', 'mrHandy', 'survivor', 'mrHandy']) {
+        raw = transitions.applyUpdate(raw, { origin });
+        assert.deepEqual(raw.items.find(i => i.id === savedBody.id), savedBody);
+        assert.equal(raw.items.filter(i => i.id === savedBody.id).length, 1);
+        assert.equal(active(raw).some(i => i.id === savedBody.id), origin === 'mrHandy');
+        if (origin === 'survivor') {
+            const withoutParts = calculate({ ...raw, items: [] });
+            const hiddenParts = calculate(raw);
+            assert.equal(hiddenParts.currentWeight, withoutParts.currentWeight);
+            assert.equal(hiddenParts.maxWeight, withoutParts.maxWeight);
+            assert.deepEqual(hiddenParts.locationsDR, withoutParts.locationsDR);
+        }
+    }
+    assert.deepEqual(robot, snapshot);
+});
+
+test('Loading normalizes active robot parts but preserves inactive parts and existing duplicates', () => {
+    const body = item('robotPartBody', {
+        mods: ['modRobotPlatingStandard', 'modRobotLockpickingModule'],
+        customName: 'Existing body',
+    });
+    const input = character({ items: [body], currentHp: 1 });
+    const snapshot = structuredClone(input);
+    const loaded = transitions.loadCharacter(input);
+    assert.deepEqual(loaded.items.find(i => i.id === body.id), { ...body, equipped: true });
+    assert.equal(loaded.items.filter(i => i.id === body.id).length, 1);
+    assert.equal(loaded.currentHp, 1);
+    assert.deepEqual(transitions.loadCharacter(loaded), loaded);
+    assert.deepEqual(input, snapshot);
+
+    const hidden = transitions.loadCharacter({ ...input, origin: 'survivor' });
+    assert.deepEqual(hidden.items.find(i => i.id === body.id), body);
+    const restored = transitions.applyUpdate(hidden, { origin: 'mrHandy' });
+    assert.deepEqual(restored.items.find(i => i.id === body.id), { ...body, equipped: true });
+
+    const otherBody = { ...body, customName: 'Other saved configuration' };
+    const duplicates = transitions.loadCharacter({ ...input, items: [body, otherBody] });
+    assert.deepEqual(
+        duplicates.items.filter(i => i.id === body.id),
+        [body, otherBody].map(i => ({ ...i, equipped: true })),
+    );
+});
+
+test('Changing origin unequips incompatible ordinary apparel while preserving its configuration', () => {
+    const survivor = reconcile(
+        character({
+            origin: 'survivor',
+            items: [
+                item('armorLeatherChest', {
+                    equipped: true,
+                    mods: ['modBoiledLeather'],
+                    customName: 'Saved leather chest',
+                }),
+            ],
+        }),
+    );
+    const changedToRobot = inventory.reconcileItems(survivor, {
+        ...survivor,
+        origin: 'mrHandy',
+    });
+    const savedApparel = changedToRobot.items.find(i => i.id === 'armorLeatherChest');
+    assert.deepEqual(savedApparel, {
+        ...survivor.items[0],
+        equipped: false,
+    });
+});
+
 test("Manual items and grants do not merge or acquire each other's provenance", async () => {
     const { applyRemoveItem } = inventory;
     const manual = item('weaponMrHandyCircularSaw');

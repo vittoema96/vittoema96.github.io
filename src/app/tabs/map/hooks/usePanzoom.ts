@@ -1,35 +1,52 @@
-import React, {useEffect, useRef} from 'react';
-import Panzoom, {PanzoomObject} from '@panzoom/panzoom';
+import { useEffect, useRef } from 'react';
+import Panzoom, { type PanzoomObject } from '@panzoom/panzoom';
 
 export const usePanzoom = () => {
-    const mapRef: React.RefObject<HTMLImageElement | null> = useRef(null);
-    const panzoomRef: React.RefObject<PanzoomObject | null> = useRef(null);
+    const mapRef = useRef<HTMLDivElement>(null);
+    const panzoomRef = useRef<PanzoomObject | null>(null);
 
     useEffect(() => {
         const el = mapRef.current;
-        if (!el) { return }
+        const parent = el?.parentElement;
+        if (!el || !parent) {
+            return;
+        }
 
-        // Parent container for wheel events
-        const parent = el.parentElement;
-
-        const handleWheel = (e: WheelEvent) => panzoom.zoomWithWheel(e);
-        parent?.addEventListener('wheel', handleWheel);
-
-        // Initialize instance
         const panzoom = Panzoom(el, {
             maxScale: 15,
             contain: 'outside',
             excludeClass: 'map-marker',
-            step: 0.6
+            step: 0.6,
         });
 
         panzoomRef.current = panzoom;
+        const handleWheel = (event: WheelEvent) => panzoom.zoomWithWheel(event);
+        parent.addEventListener('wheel', handleWheel, { passive: false });
+
+        let frame: number | undefined;
+        const resizeObserver = new ResizeObserver(() => {
+            panzoom.zoom(panzoom.getScale(), { animate: false });
+            if (frame !== undefined) {
+                cancelAnimationFrame(frame);
+            }
+            // Constrain the pan after the resized zoom transform has been applied.
+            frame = requestAnimationFrame(() => {
+                const { x, y } = panzoom.getPan();
+                panzoom.pan(x, y, { animate: false });
+            });
+        });
+        resizeObserver.observe(parent);
 
         return () => {
-            parent?.removeEventListener('wheel', handleWheel);
+            resizeObserver.disconnect();
+            if (frame !== undefined) {
+                cancelAnimationFrame(frame);
+            }
+            parent.removeEventListener('wheel', handleWheel);
             panzoom.destroy();
+            panzoomRef.current = null;
         };
     }, []);
 
-    return { mapRef, panzoomRef }; // We only need to return the image ref!
+    return { mapRef, panzoomRef };
 };

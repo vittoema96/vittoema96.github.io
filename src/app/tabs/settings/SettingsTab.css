@@ -1,1 +1,14 @@
-/* Custom radio button styling for character slots */
+.settings-preferences {
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.settings-preferences > .stack {
+    flex: 1 1 10rem;
+    min-width: 0;
+}
+
+.settings-preferences select {
+    width: 100%;
+    min-width: 0;
+}
