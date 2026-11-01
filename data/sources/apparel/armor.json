@@ -415,6 +415,22 @@
       "it": "Si tratta di un rivestimento di metallo modellato tenuto insieme bello stretto da cinghie di cuoio o in tessuto, in grado di fornire una buona protezione dagli impatti fisici come attacchi da mischia e colpi di pistola, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
     }
   },
+  "armorNcrRangerCombatArmor": {
+    "en": "NCR Ranger Combat Armor",
+    "it": "Armatura da combattimento da Ranger dell'RNC",
+    "_description": {
+      "en": "Long before the bombs dropped, NCR Ranger Combat Armor—more colloquially known as 'Black Armor'—served as simple riot gear. Now, however, it has taken up not only a new purpose but a dangerous reputation. Worn solely by the NCR's elite Rangers, this armor has become a sign of both hope and horror—purely dependent on the viewer's allegiance to the NCR.",
+      "it": "Molto prima che cadessero le bombe, l'Armatura da combattimento da Ranger dell'RNC — più colloquialmente nota come 'Armatura Nera' — serviva come semplice equipaggiamento antisommossa. Ora, tuttavia, ha assunto non solo un nuovo scopo ma anche una pericolosa reputazione. Indossata esclusivamente dai Ranger di élite dell'RNC, questa armatura è diventata un simbolo sia di speranza che di terrore, a seconda della lealtà dell'osservatore verso l'RNC."
+    }
+  },
+  "armorNcrRangerHelmet": {
+    "en": "NCR Ranger Helmet",
+    "it": "Elmo da Ranger dell'RNC",
+    "_description": {
+      "en": "Headgear worn by elite NCR Rangers, designed to be paired with the NCR Ranger Combat Armor for environmental and toxic gas protection.",
+      "it": "Copricapo indossato dai Ranger di élite dell'RNC, progettato per essere abbinato all'Armatura da combattimento da Ranger dell'RNC per la protezione da gas tossici e rischi ambientali."
+    }
+  },
   "armorRaiderArm": {
     "en": "Raider Arm",
     "it": "Braccio da Predone",

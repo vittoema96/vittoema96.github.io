@@ -1,10 +1,14 @@
-import type { Character, CharacterItem, CustomItem, RawCharacter } from '@/types';
+import type { Character, CharacterItem, CustomItem, Item, RawCharacter } from '@/types';
 import type { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { allItems, apparel } from '@/data';
 import { applyEffect, getModdedItemData, isSameConfiguration, isType } from '@/features/item/utils.ts';
 import { calculatePerks } from './feats/perks.ts';
 import { calculateTraits } from './feats/traits.ts';
-import { getGrantedItems, getWeaponItemEffects } from './feats/rules.ts';
+import {
+    getAllowedApparelCategories,
+    getGrantedItems,
+    getWeaponItemEffects,
+} from './feats/rules.ts';
 import type { PerkId } from './feats/perks.ts';
 import type { FeatSelection } from './feats/types.ts';
 import { getOriginById } from './origins/registry.ts';
@@ -91,6 +95,35 @@ export function getModifiedItemData(item: CharacterItem | null | undefined, perk
     );
 }
 
+/**
+ * Returns whether the selected origin and feats allow a character to equip an
+ * apparel item. Robot compatibility is handled here so UI actions and save
+ * reconciliation use the same rule.
+ */
+export function canEquipApparel(
+    itemData: Item | null | undefined,
+    selection: FeatSelection,
+): boolean {
+    if (!isType(itemData, 'apparel')) {
+        return true;
+    }
+
+    if (itemData.CATEGORY === 'robotPart') {
+        return selection.origin?.isRobot === true;
+    }
+
+    if (selection.origin?.isRobot) {
+        return false;
+    }
+
+    const allowedCategories = getAllowedApparelCategories(
+        selection.perks,
+        selection.traits,
+        selection.origin,
+    );
+    return allowedCategories === undefined || allowedCategories.has(itemData.CATEGORY);
+}
+
 function getUnarmedStrike(selection: FeatSelection): CharacterItem | undefined {
     // Everyone except robots has an unarmed attack. Iron Fist replaces it.
     return selection.origin?.isRobot
@@ -118,9 +151,7 @@ function getActiveInventory(items: CharacterItem[], selection: FeatSelection) {
                     )),
         )
         .flatMap(item => {
-            // If it's a robot part, remove it if you should not have it,
-            // equip it if you should have it
-            // TODO should we "hide" robot parts? aren't they dynamic?
+            // Intrinsic parts stay saved when hidden for a different origin.
             if (apparel[item.id]?.CATEGORY === 'robotPart') {
                 if (
                     !selection.origin?.isRobot ||
@@ -297,33 +328,33 @@ export function consumeAmmo(
     });
 }
 
-export function reconcileItems(prev: RawCharacter, next: RawCharacter): RawCharacter {
+/**
+ * Normalizes saved equipment when loading or updating a character.
+ *
+ * Incompatible ordinary apparel is unequipped without losing its configuration.
+ * Intrinsic robot parts are equipped in the save while active; when hidden for
+ * another origin, their saved state is preserved.
+ */
+export function reconcileItems(_prev: RawCharacter, next: RawCharacter): RawCharacter {
     const origin = getOriginById(next.origin);
-    const changedArmor =
-        prev.origin !== next.origin &&
-        (getOriginById(prev.origin).needsSpecializedArmor || origin.needsSpecializedArmor);
-    // TODO add the missing superMutantArmor category/data to complete specialized armor support.
-    const categories = origin.isRobot
-        ? ['robotPart']
-        : origin.id === 'superMutant'
-          ? ['superMutantArmor']
-          : ['robotPart', 'superMutantArmor'];
-    const specialized = origin.isRobot || origin.id === 'superMutant';
+    const perks = calculatePerks(next);
+    const traits = calculateTraits(next, origin);
+    const selection = { origin, perks, traits };
+    const intrinsicPartIds = new Set<string>(origin.isRobot ? origin.bodyParts : []);
     const items = next.items.map(item => {
         const data = allItems[item.id];
-        if (changedArmor && item.equipped && isType(data, 'apparel')) {
-            if (categories.includes(data.CATEGORY) !== specialized) {
-                return { ...item, equipped: false };
-            }
+        if (isType(data, 'apparel') && data.CATEGORY === 'robotPart') {
+            return intrinsicPartIds.has(item.id) && !item.equipped
+                ? { ...item, equipped: true }
+                : item;
+        }
+        if (item.equipped && isType(data, 'apparel') && !canEquipApparel(data, selection)) {
+            return { ...item, equipped: false };
         }
         return item;
     });
 
-    const grants = getGrants(items, {
-        origin,
-        perks: calculatePerks(next),
-        traits: calculateTraits(next, origin),
-    });
+    const grants = getGrants(items, selection);
     for (const grant of grants) {
         if (!items.some(item => item.id === grant.id && item.grantedBy === grant.grantedBy)) {
             const savedItem = { ...grant };
@@ -332,11 +363,9 @@ export function reconcileItems(prev: RawCharacter, next: RawCharacter): RawChara
         }
     }
 
-    if (origin.isRobot) {
-        for (const id of origin.bodyParts) {
-            if (!items.some(item => item.id === id)) {
-                items.push({ id, quantity: 1, equipped: true, mods: ['modRobotPlatingStandard'] });
-            }
+    for (const id of intrinsicPartIds) {
+        if (!items.some(item => item.id === id)) {
+            items.push({ id, quantity: 1, equipped: true, mods: ['modRobotPlatingStandard'] });
         }
     }
     return { ...next, items };

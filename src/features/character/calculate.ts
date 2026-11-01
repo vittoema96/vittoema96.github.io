@@ -16,7 +16,7 @@ import { calculateDamageResistances } from '@/features/character/damageResistanc
 import { calculateMaxHp } from '@/features/character/hp.ts';
 import { calculateMaxLuck } from '@/features/character/luck.ts';
 import { calculateMeleeDamage } from '@/features/character/meleeDamage.ts';
-import { getAvailableCompanions } from '@/features/character/feats/rules';
+import { getAvailableCompanions, getPoisonResistance } from '@/features/character/feats/rules';
 import { createDefaultCompanion } from '@/utils/companionTypes.ts';
 import { calculateSpecialPoints } from '@/features/character/special/special.ts';
 import { getInventory } from '@/features/character/items.ts';
@@ -106,6 +106,7 @@ export function calculateCharacter(raw: RawCharacter): Character {
         origin,
         maxHp,
         maxLuck,
+        poisonResistance: getPoisonResistance(level, perks, traits, origin),
         maxWeight,
         currentWeight,
 

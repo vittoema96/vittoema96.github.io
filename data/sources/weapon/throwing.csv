@@ -2,3 +2,4 @@ ID,TYPE,CATEGORY,DAMAGE_RATING,EFFECTS,DAMAGE_TYPES,FIRE_RATE,RANGE,QUALITIES,WE
 weaponThrowingKnives,weapon,throwing,3,"[""effectPiercing:1""]","[""physical""]",-,rangeC,"[""qualityThrown"", ""qualityConcealed"", ""qualitySuppressed""]",0,10,1,self,[],[],Corebook
 weaponJavelin,weapon,throwing,4,"[""effectPiercing:1""]","[""physical""]",-,rangeM,"[""qualityThrown"", ""qualitySuppressed""]",2,10,1,self,[],[],Corebook
 weaponTomahawk,weapon,throwing,4,"[""effectPiercing:1""]","[""physical""]",-,rangeC,"[""qualityThrown"", ""qualitySuppressed""]",0,15,2,self,[],[],Corebook
+weaponJugglingPin,weapon,throwing,3,[],"[""physical""]",-,rangeC,"[""qualityThrown""]",0.25,10,3,self,"[""modBladedSharp"",""modPartyFavor""]",[],RoyalFlush DLC

@@ -1,4 +1,5 @@
 import type { BodyPart, Character, CharacterItem, CompanionId, RollerType } from '@/types';
+import type { ApparelCategory } from '@/types/item.ts';
 import type { PerkId } from '@/features/character/feats/perks.ts';
 import type { TraitId } from '@/features/character/feats/traits.ts';
 import type { WeaponItem } from '@/data/item/weapon.schemas.ts';
@@ -111,8 +112,17 @@ export interface FeatImplementation {
         perks: PerkId[],
         traits: TraitId[],
     ) => number;
+    getMinSpecialValueModifier?: (
+        special: SpecialType,
+        perks: PerkId[],
+        traits: TraitId[],
+    ) => number;
+    getSkillMaxValue?: () => number;
+    isRadiationImmune?: () => boolean;
+    isPoisonImmune?: () => boolean;
     getMaxLuckBonus?: (perks: PerkId[], traits: TraitId[]) => number;
     getMaxHpBonus?: (special: SpecialMap, perks: PerkId[], traits: TraitId[]) => number;
+    getPoisonResistance?: (level: number) => number;
     getMaxWeightOverride?: (
         special: SpecialMap,
         perks: PerkId[],
@@ -148,6 +158,7 @@ export interface FeatImplementation {
     getRollActions?: (character: Character) => FeatRollAction[];
     getFreeRerolls?: (character: Character, itemData?: WeaponItem, context?: RollContext) => number;
     getBlacklistedPerks?: () => PerkId[];
+    getAllowedApparelCategories?: () => ApparelCategory[];
     getRollSpecialModifiers?: (
         character: Character,
         context: SpecialModifierContext,

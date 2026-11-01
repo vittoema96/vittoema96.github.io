@@ -79,3 +79,5 @@ armorLegionaryCenturionArm,apparel,legionaryArmor,4,2,0,"[""arm""]",6,140,5,[],[
 armorLegionaryCenturionLeg,apparel,legionaryArmor,4,3,0,"[""leg""]",3,100,5,[],[]
 armorLegionaryCenturionHelmet,apparel,legionaryArmor,5,4,0,"[""head""]",5,175,5,[],[]
 armorLegatusHelmet,apparel,legionaryArmor,5,5,3,"[""head""]",8,250,5,[],[]
+armorNcrRangerCombatArmor,apparel,combatArmor,4,4,0,"[""arms"", ""legs"", ""torso""]",15.0,750,5,[],[]
+armorNcrRangerHelmet,apparel,headgear,4,4,0,"[""head""]",1.5,250,5,[],"[""effectGasMask""]"

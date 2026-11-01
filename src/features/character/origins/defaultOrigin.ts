@@ -12,12 +12,12 @@ export const DEFAULT_ORIGIN: Origin = Object.freeze({
     bodyParts: Object.freeze(new Set(BODY_PARTS)),
     numberOfTraits: 0,
     isRobot: false,
-    specialMinValues: Object.freeze(Object.fromEntries(
-        SPECIAL.map((key) => [key, 4])
-    ) as Record<SpecialType, number>),
-    specialMaxValues: Object.freeze(Object.fromEntries(
-        SPECIAL.map((key) => [key, 10])
-    ) as Record<SpecialType, number>),
+    specialMinValues: Object.freeze(
+        Object.fromEntries(SPECIAL.map(key => [key, 4])) as Record<SpecialType, number>,
+    ),
+    specialMaxValues: Object.freeze(
+        Object.fromEntries(SPECIAL.map(key => [key, 10])) as Record<SpecialType, number>,
+    ),
     skillMaxValue: 6,
     needsSpecializedArmor: false,
     needsSpecializedWeapons: false,

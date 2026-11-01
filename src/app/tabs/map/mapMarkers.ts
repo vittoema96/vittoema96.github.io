@@ -1,6 +1,6 @@
 import { MapMarker } from '@/app/tabs/map/mapMarkerTypes';
 
-export const markers = [
+export const mojaveMarkers = [
     { id: 'Goodsprings', code: 'g00d', x: 34, y: 57, category: 'settlement' },
     { id: 'Goodsprings Cemetery', code: 'gc3m', x: 36, y: 54, category: 'cemetery' },
     { id: 'Primm', code: 'pr1m', x: 39, y: 74.5, category: 'settlement' },
@@ -48,7 +48,6 @@ export const markers = [
     { id: 'Old Mormon Fort', code: '0mm4', x: 51.7, y: 23.5, category: 'medical' },
     { id: "King's School of Impersonation", code: 'ks01', x: 51, y: 25, category: 'school' },
 
-
     { id: '188 Trading Post', code: '188t', x: 65, y: 48, category: 'store' },
     { id: 'Aerotech Office Park', code: '4r0t', x: 55.8, y: 34, category: 'military' },
     { id: 'NCR Sharecropper Farms', code: 'ncrs', x: 53, y: 31, category: 'settlement' },
@@ -59,7 +58,6 @@ export const markers = [
     { id: 'Ranger Station Delta', code: 'rsd3', x: 76, y: 56.5, category: 'military' },
     { id: 'Ranger Station Echo', code: 'rs3c', x: 73, y: 80, category: 'military' },
     { id: 'Ranger Station Foxtrot', code: 'rsfx', x: 34.5, y: 29, category: 'military' },
-
 
     { id: 'Silver Rush', code: 'slvr', x: 50, y: 24.5, category: 'store' },
     { id: 'Atomic Wrangler', code: 'at0m', x: 50.7, y: 24.3, category: 'store' },
@@ -76,3 +74,4 @@ export const markers = [
     { id: 'Sunset Sarsaparilla HQ', code: 'sshq', x: 44.3, y: 31, category: 'industrial' },
 ] satisfies ReadonlyArray<MapMarker>;
 
+export const markers = mojaveMarkers;

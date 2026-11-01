@@ -8,6 +8,7 @@ import { originDefinitions } from '@/features/character/origins/registry';
 import type { OriginId } from '@/features/character/origins/types';
 import DialogPortal from '@/app/components/popup/common/DialogPortal.tsx';
 import { useDialog } from '@/hooks/useDialog.ts';
+import { sortByLocalizedLabel } from '@/utils/sorting.ts';
 
 
 
@@ -106,7 +107,11 @@ export default function DataTab() {
                     <option value="" disabled>
                         -
                     </option>
-                    {originDefinitions.map(
+                    {sortByLocalizedLabel(
+                        originDefinitions.filter(origin => origin.id),
+                        t,
+                        origin => origin.id!,
+                    ).map(
                         origin =>
                             origin.id && (
                                 <option key={origin.id} value={origin.id}>

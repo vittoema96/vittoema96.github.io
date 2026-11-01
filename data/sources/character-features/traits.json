@@ -1,298 +1,674 @@
 {
-  "traitBrahminBaron": {
-    "en": "Brahmin Baron",
-    "it": "Barone dei Bramini",
-    "_benefit": {
-      "en": "Each Brahmin Feed Trough provides upkeep for 3 Brahmin in each of your settlements. When you perform the Tend Crops settlement action, you gain an additional +1 DC Brahmin milk per feed trough.",
-      "it": "Ogni Mangiatoia per Bramini fornisce sostentamento per 3 Bramini in ciascuno dei tuoi insediamenti. Quando esegui l'azione insediamento Coltivare Raccolti, ottieni +1 DC latte di Bramino aggiuntivo per mangiatoia."
+    "traitDesignedForTheFrontline_immunities": {
+        "en": "Designed for the Frontline: Immunities",
+        "it": "Progettato per il Fronte: Immunità",
+        "_description": {
+            "en": "You are a robot, immune to disease, Radiation damage and Poison damage.",
+            "it": "Sei un robot, immune alle malattie e ai danni da Radiazione e Veleno."
+        }
     },
-    "_penalty": {
-      "en": "Roll +1d20 for determining the risk of attack to your settlement if its Food resource exceeds the settlement's People (see p.39).",
-      "it": "Lancia +1d20 per determinare il rischio di attacco al tuo insediamento se la sua risorsa Cibo supera la Popolazione dell'insediamento (vedi p.39)."
-    }
-  },
-  "traitBrotherhoodChain": {
-    "en": "The Chain That Binds",
-    "it": "La Catena Che Unisce",
-    "_description": {
-      "en": "As a member of the Brotherhood of Steel, you are bound to the chain of command. You must execute the orders of your direct superiors and are responsible for your subordinate brothers. If you fail in your duty, you will be expelled from the Brotherhood and the technology in your possession will be recovered, by any means necessary.",
-      "it": "Come membro della Confraternita d'Acciaio, sei legato alla catena di comando. Devi eseguire gli ordini dei tuoi diretti superiori e sei responsabile dei propri fratelli subordinati. Se non adempi al tuo dovere, verrai espulso dalla Confraternita e la tecnologia in tuo possesso verrà recuperata, con ogni mezzo necessario."
-    }
-  },
-  "traitEducated": {
-    "en": "Educated",
-    "it": "Educato",
-    "_benefit": {
-      "en": "The character has an additional tag skill.",
-      "it": "Il personaggio possiede una specialità aggiuntiva."
+    "traitDesignedForTheFrontline_physiology": {
+        "en": "Designed for the Frontline: Physiology",
+        "it": "Progettato per il Fronte: Fisiologia",
+        "_description": {
+            "en": "You are unable to use chems or benefit from food, drink, or rest. You cannot recover from your injuries or regain health points without receiving repairs.",
+            "it": "Non puoi usare i chems né beneficiare di cibo, bevande o riposo. Non puoi recuperare dalle tue ferite o riguadagnare punti salute senza ricevere riparazioni."
+        }
     },
-    "_penalty": {
-      "en": "When failing a skill test using a skill other than a tag skill, the GM gains 1 AP.",
-      "it": "Quando fallisce una prova di abilità usando un'abilità diversa da una specialità, il GM ottiene 1 PA."
-    }
-  },
-  "traitExtraPerk": {
-    "en": "Extra Perk",
-    "it": "Talento Extra",
-    "_benefit": {
-      "en": "The character gains an additional perk at level 1.",
-      "it": "Il personaggio ottiene un talento aggiuntivo al livello 1."
+    "traitDesignedForTheFrontline_carryWeight": {
+        "en": "Designed for the Frontline: Carry Weight",
+        "it": "Progettato per il Fronte: Peso Trasportabile",
+        "_description": {
+            "en": "Your carry weight is 150 lbs., and cannot be increased by your Strength or perks, but it can be increased by modified armor.",
+            "it": "Il tuo peso trasportabile è di 75 kg e non può essere aumentato dalla tua Forza o dai tuoi talenti, ma può essere aumentato dall'armatura modificata."
+        }
     },
-    "_penalty": {
-      "en": "The character can choose only 1 trait instead of 2.",
-      "it": "Il personaggio può scegliere solo 1 tratto invece di 2."
-    }
-  },
-  "traitFastShot": {
-    "en": "Fast Shot",
-    "it": "Colpo Veloce",
-    "_benefit": {
-      "en": "If performing a second major action in combat to make a ranged attack, the cost of that additional major action will be 1 AP instead of 2.",
-      "it": "Se esegue una seconda azione maggiore in combattimento per effettuare un attacco a distanza, il costo di tale azione maggiore aggiuntiva sarà di 1 PA invece di 2."
+    "traitDesignedForTheFrontline_claws": {
+        "en": "Designed for the Frontline: Claws",
+        "it": "Progettato per il Fronte: Artigli",
+        "_description": {
+            "en": "You move by bipedal motion and can manipulate your environment using your actuated three-fingered claw-like hands. You have chain-powered limbs, built for speed and deadly efficiency in close-quarters fighting, giving you +1 to unarmed attacks in addition to any bonus on melee attacks you receive from your Strength attribute.",
+            "it": "Ti muovi su gambe bipedi e puoi manipolare l'ambiente usando le tue mani attuate simili ad artigli a tre dita. Hai arti alimentati da catene, costruiti per la velocità e l'efficienza letale nel combattimento ravvicinato, che ti danno +1 agli attacchi senz'armi oltre a qualsiasi bonus agli attacchi in mischia ricevuto dal tuo attributo Forza."
+        }
     },
-    "_penalty": {
-      "en": "Cannot benefit from the Aim minor action during this frantic action.",
-      "it": "Non è possibile beneficiare dell'azione minore Mirare in questa azione frenetica."
-    }
-  },
-  "traitForcedEvolution": {
-    "en": "Forced Evolution",
-    "it": "Evoluzione Forzata",
-    "_description": {
-      "en": "Your initial Strength and Endurance attributes are increased by +2 each, and your maximum Strength and Endurance are increased to 12, but your maximum Intelligence and Charisma are both reduced to 6. You may not have more than 4 ranks in any skill. You are completely immune to radiation and poison damage.\nYou stand over seven feet tall, and your body is bulky and muscular. Your skin is green, yellow, or grey, regardless of what color it was when you were human. You do not seem to age, but you are sterile. You can only wear armor which has been made to fit a super mutant.",
-      "it": "Gli attributi iniziali di Forza e Costituzione sono aumentati di +2 ciascuno e il limite massimo degli attributi Forza e Costituzione è aumentato a 12. Il limite massimo di Intelligenza e Carisma è ridotto a 6. Non è possibile avere più di 4 gradi in nessuna abilità. Il personaggio è immune ai danni da Radiazioni e da Veleno. È alto più di due metri e il suo corpo è massiccio e muscoloso. La pelle è verde, gialla o grigia, indipendentemente dal colore che aveva quando era umano. Non sembra invecchiare, ma è sterile. Può indossare solo un’armatura che è stata fatta per essere indossata da un supermutante."
-    }
-  },
-  "traitGhoulAgeless": {
-    "en": "Ageless",
-    "it": "Senza Età",
-    "_description": {
-      "en": "You age at a greatly reduced rate and are likely older than your non-mutated companions (you may have even survived the Great War of 2077), but you are sterile.",
-      "it": "Invecchi a un ritmo molto ridotto e probabilmente sei più vecchio dei compagni non mutati (potresti persino essere sopravvissuto alla Grande Guerra del 2077), ma sei sterile."
-    }
-  },
-  "traitGhoulDiscrimination": {
-    "en": "Smoothskin Discrimination",
-    "it": "Discriminazione Pelle Liscia",
-    "_description": {
-      "en": "You may suffer discrimination from 'smoothskins' (humans who are not ghouls), causing an increase in difficulty or complication range of Charisma tests depending on the opponent's beliefs.",
-      "it": "Puoi subire discriminazioni da parte dei 'pelle liscia' (umani che non sono ghoul), causando un aumento della difficoltà o della gamma di complicazioni delle prove di Carisma a seconda delle credenze dell'avversario."
-    }
-  },
-  "traitGhoulRadiationHealing": {
-    "en": "Radiation Healing",
-    "it": "Guarigione da Radiazioni",
-    "_description": {
-      "en": "You are healed by radiation: recover 1 HP for every 3 points of Radiation damage taken.",
-      "it": "Sei guarito dalle radiazioni: recuperi 1 PS per ogni 3 punti di danno da Radiazioni subiti."
-    }
-  },
-  "traitGhoulRadiationRest": {
-    "en": "Irradiated Rest",
-    "it": "Riposo Irradiato",
-    "_description": {
-      "en": "If you rest in an irradiated location, you can reroll the dice pool when making a test to see if wounds heal.",
-      "it": "Se riposi in un luogo irradiato, puoi rilanciare la riserva di dadi quando effettui una prova per vedere se le ferite guariscono."
-    }
-  },
-  "traitGifted": {
-    "en": "Gifted",
-    "it": "Dotato",
-    "_benefit": {
-      "en": "Choose two S.P.E.C.I.A.L. attributes and increase them by +1 each.",
-      "it": "Scegliere due attributi S.P.E.C.I.A.L. e aumentarli di +1 ciascuno."
+    "traitDesignedForTheFrontline_headLaser": {
+        "en": "Designed for the Frontline: Head Laser",
+        "it": "Progettato per il Fronte: Laser della Testa",
+        "_description": {
+            "en": "A powerful laser is integrated into your armored head, allowing you to target foes at range with a powerful energy weapon.",
+            "it": "Un potente laser è integrato nella tua testa corazzata, permettendoti di bersagliare i nemici a distanza con una potente arma a energia."
+        }
     },
-    "_penalty": {
-      "en": "The maximum number of Luck Points equals the character's Luck attribute, minus one.",
-      "it": "Il numero massimo di Punti Fortuna è pari all'attributo di Fortuna del personaggio, meno uno."
-    }
-  },
-  "traitGoodNatured": {
-    "en": "Good Natured",
-    "it": "Buona Indole",
-    "_benefit": {
-      "en": "Tag two of either Speech, Medicine, Repair, Science, and Barter skills.",
-      "it": "Scegli due abilità tra Oratoria, Medicina, Riparare, Scienza e Commercio come specialità."
+    "traitDesignedForTheFrontline_selfDestruct": {
+        "en": "Designed for the Frontline: Self-Destruct",
+        "it": "Progettato per il Fronte: Autodistruzione",
+        "_description": {
+            "en": "You have the ability to critically overload your fusion core, initiating a devastating self-destructive explosion.",
+            "it": "Hai la capacità di sovraccaricare criticamente il tuo nucleo a fusione, provocando una devastante esplosione autodistruttiva."
+        }
     },
-    "_penalty": {
-      "en": "The maximum rating for the other skills listed is reduced from 6 to 4.",
-      "it": "Il punteggio massimo per le altre abilità elencate è ridotto da 6 a 4."
-    }
-  },
-  "traitGrunt": {
-    "en": "Grunt",
-    "it": "Fante",
-    "_benefit": {
-      "en": "+1 DC damage with submachine guns, combat rifles, assault rifles, frag grenades, and combat knives.",
-      "it": "+1 DC danno con mitra, fucili da combattimento, fucili d'assalto, granate a frammentazione e coltelli da combattimento."
+    "traitBrahminBaron": {
+        "en": "Brahmin Baron",
+        "it": "Barone dei Bramini",
+        "_benefit": {
+            "en": "Each Brahmin Feed Trough provides upkeep for 3 Brahmin in each of your settlements. When you perform the Tend Crops settlement action, you gain an additional +1 DC Brahmin milk per feed trough.",
+            "it": "Ogni Mangiatoia per Bramini fornisce sostentamento per 3 Bramini in ciascuno dei tuoi insediamenti. Quando esegui l'azione insediamento Coltivare Raccolti, ottieni +1 DC latte di Bramino aggiuntivo per mangiatoia."
+        },
+        "_penalty": {
+            "en": "Roll +1d20 for determining the risk of attack to your settlement if its Food resource exceeds the settlement's People (see p.39).",
+            "it": "Lancia +1d20 per determinare il rischio di attacco al tuo insediamento se la sua risorsa Cibo supera la Popolazione dell'insediamento (vedi p.39)."
+        }
     },
-    "_penalty": {
-      "en": "The complication range of tests while making an attack with big guns or energy weapons is increased by 2.",
-      "it": "L'intervallo di complicazione dei test durante un attacco con armi pesanti o armi a energia aumenta di 2."
-    }
-  },
-  "traitHeavyHanded": {
-    "en": "Heavy Handed",
-    "it": "Mano Pesante",
-    "_benefit": {
-      "en": "The Melee Damage bonus increases by +1 DC.",
-      "it": "Il bonus ai Danni in Mischia aumenta di +1 DC."
+    "traitTheChainThatBinds_duty": {
+        "en": "The Chain That Binds: Duty",
+        "it": "La Catena Che Unisce: Dovere",
+        "_description": {
+            "en": "You are bound to the Brotherhood chain of command. You must execute the orders of your direct superiors and are responsible for your subordinate brothers. If you fail in your duty, you may be expelled and your technology recovered.",
+            "it": "Sei legato alla catena di comando della Confraternita. Devi eseguire gli ordini dei tuoi superiori diretti e sei responsabile dei tuoi fratelli subordinati. Se fallisci nel tuo dovere, potresti essere espulso e la tua tecnologia recuperata."
+        }
     },
-    "_penalty": {
-      "en": "Melee and unarmed attacks suffer a complication on a 19 or 20, instead of only on a 20.",
-      "it": "Gli attacchi in mischia e senza armi subiscono una complicazione con un 19 o 20, invece che solo con un 20."
-    }
-  },
-  "traitHomeOnTheRange": {
-    "en": "Home on the Range",
-    "it": "Casa nella Prateria",
-    "_benefit": {
-      "en": "Whenever you sleep by a campfire for at least 6 hours, the difficulty to recover from injuries through rest is decreased by 1.",
-      "it": "Ogni volta che dormi vicino a un falò per almeno 6 ore, la difficoltà per recuperare dalle ferite attraverso il riposo diminuisce di 1."
+    "traitTheChainThatBinds_tagSkill": {
+        "en": "The Chain That Binds: Additional Tag Skill",
+        "it": "La Catena Che Unisce: Specialità Aggiuntiva",
+        "_benefit": {
+            "en": "You gain one additional Tag skill, chosen from Energy Weapons, Science, or Repair.",
+            "it": "Ottieni una specialità aggiuntiva, scelta tra Armi a Energia, Scienza o Riparare."
+        }
     },
-    "_penalty": {
-      "en": "You cannot gain a well rested bonus, as described in Fallout: The Roleplaying Game Core Rulebook p.35.",
-      "it": "Non puoi ottenere il bonus ben riposato, come descritto nel Manuale Base di Fallout: Il Gioco di Ruolo p.35."
-    }
-  },
-  "traitMotherWasteland": {
-    "en": "Mother Wasteland",
-    "it": "Madre Wasteland",
-    "_benefit": {
-      "en": "Spend 1 Luck point to gain insight into the quest, situation, or scene as if you'd spent 3 AP to use Obtain Information 3 times. This information is often cryptic and mystical in nature.",
-      "it": "Spendi 1 punto Fortuna per ottenere informazioni sulla missione, situazione o scena come se avessi speso 3 PA per usare Ottenere Informazioni 3 volte. Queste informazioni sono spesso di natura criptica e mistica."
+    "traitEducated": {
+        "en": "Educated",
+        "it": "Educato",
+        "_benefit": {
+            "en": "The character has an additional tag skill.",
+            "it": "Il personaggio possiede una specialità aggiuntiva."
+        },
+        "_penalty": {
+            "en": "When failing a skill test using a skill other than a tag skill, the GM gains 1 AP.",
+            "it": "Quando fallisce una prova di abilità usando un'abilità diversa da una specialità, il GM ottiene 1 PA."
+        }
     },
-    "_penalty": {
-      "en": "Complications make scenes involving pre-War artifacts harder to understand, limiting your use of them.",
-      "it": "Le complicazioni rendono le scene che coinvolgono artefatti pre-Guerra più difficili da comprendere, limitando il loro utilizzo."
-    }
-  },
-  "traitMrHandy": {
-    "en": "Mr. Handy Robot",
-    "it": "Robot Mr. Handy",
-    "_description": {
-      "en": "You have 360° vision and improved sensory systems that can detect smells, chemicals, and radiation, reducing the difficulty of Perception tests that rely on sight and smell by\n1. You are also immune to radiation and poison damage, but you cannot use chems, nor can you benefit from food, drink, or rest. You move by jet propulsion, hovering above the ground, unaffected by difficult terrain or obstacles. You carry weight is 150 Ibs., and it cannot be increased by your Strength or perks, but it can be increased by modified armor. You cannot recover from your own injuries or heal health points without receiving repairs.",
-      "it": "Il personaggio possiede una visione a 360° e sistemi sensoriali migliorati che possono rilevare odori, sostanze chimiche e radiazioni, riducendo di 1 la difficoltà delle prove di Percezione basate su vista e olfatto. È anche immune ai danni da Radiazioni e da Veleno, ma non può utilizzare sostanze, né può trarre benefici da cibo, bevande o riposo. Utilizza il propulsore per muoversi, librandosi sul terreno, non influenzato da terreni difficili od ostacoli. Il peso trasportabile è di 75 kg e non può essere aumentato dalla Forza o con i talenti, ma può essere aumentato con un’armatura modificata. Non può essere guarito dalle ferite e non può curare i punti salute senza ricevere riparazioni."
-    }
-  },
-  "traitMrHandyAutomaticPistol": {
-    "en": "10mm Automatic Pistol",
-    "it": "Pistola Automatica 10mm",
-    "_benefit": {
-      "en": "Can make ranged attacks using a 10mm automatic pistol (see 10mm Pistol with automatic receiver mod, p. 95).",
-      "it": "Può effettuare attacchi a distanza usando una pistola automatica da 10mm (vedere Pistola da 10mm con mod castello automatico, pag. 95)."
-    }
-  },
-  "traitMrHandyCircularSaw": {
-    "en": "Circular Saw",
-    "it": "Sega Circolare",
-    "_benefit": {
-      "en": "Allows cutting objects and making melee attacks with the circular saw. The circular saw deals 3 DC Physical Piercing 1 damage.",
-      "it": "Permette di tagliare oggetti ed effettuare attacchi in mischia con la sega circolare. La sega circolare infligge 3 DC danni Fisici Penetranti 1."
-    }
-  },
-  "traitMrHandyFlamethrower": {
-    "en": "Flamethrower",
-    "it": "Lanciafiamme",
-    "_benefit": {
-      "en": "Allows igniting objects, cooking food, or making ranged attacks with a short-range flamethrower (see flamethrower, p. 106).",
-      "it": "Permette di incendiare oggetti, cucinare cibo o effettuare attacchi a distanza con un lanciafiamme a corto raggio (vedere lanciafiamme, pag. 106)."
-    }
-  },
-  "traitMrHandyLaserEmitter": {
-    "en": "Laser Emitter",
-    "it": "Emettitore Laser",
-    "_benefit": {
-      "en": "Allows cutting objects or making ranged attacks using a laser (see laser pistol, p. 101).",
-      "it": "Permette di tagliare oggetti o effettuare attacchi a distanza usando un laser (vedere pistola laser, pag. 101)."
-    }
-  },
-  "traitMrHandyPliers": {
-    "en": "Pliers",
-    "it": "Tenaglia",
-    "_benefit": {
-      "en": "Allows picking up and carrying objects weighing no more than 20 kg and manipulating surrounding objects. Can also make unarmed attacks (2 DC Physical damage) with the pliers.",
-      "it": "Permette di raccogliere e trasportare oggetti che non pesino più di 20 kg e manipolare gli oggetti circostanti. È possibile anche effettuare attacchi senza armi (2 DC danni Fisici) con la tenaglia."
-    }
-  },
-  "traitNomad": {
-    "en": "Nomad",
-    "it": "Nomade",
-    "_benefit": {
-      "en": "Re-roll 1d20 on Survival tests to travel, set up camp, and forage for food and water. In addition, ignore the first complication rolled when making these tests.",
-      "it": "Rilancia 1d20 nei test di Sopravvivenza per viaggiare, allestire un campo e cercare cibo e acqua. Inoltre, ignora la prima complicazione ottenuta quando effettui questi test."
+    "traitExtraPerk": {
+        "en": "Extra Perk",
+        "it": "Talento Extra",
+        "_benefit": {
+            "en": "The character gains an additional perk at level 1.",
+            "it": "Il personaggio ottiene un talento aggiuntivo al livello 1."
+        },
+        "_penalty": {
+            "en": "The character can choose only 1 trait instead of 2.",
+            "it": "Il personaggio può scegliere solo 1 tratto invece di 2."
+        }
     },
-    "_penalty": {
-      "en": "Barter and Speech tests increase their difficulty and complication range by 1 when dealing with inhabitants of a static settlement. Science cannot be a Tag skill.",
-      "it": "I test di Commercio e Oratoria aumentano la loro difficoltà e intervallo di complicazione di 1 quando si tratta con abitanti di un insediamento statico. Scienza non può essere un'abilità specialità."
-    }
-  },
-  "traitRiteOfPassage": {
-    "en": "Rite of Passage",
-    "it": "Rito di Passaggio",
-    "_benefit": {
-      "en": "The first time you spend Luck in a scene, roll 1 DC. If you roll an effect you have not spent that Luck point.",
-      "it": "La prima volta che spendi Fortuna in una scena, lancia 1 DC. Se ottieni un effetto non hai speso quel punto Fortuna."
+    "traitFastShot": {
+        "en": "Fast Shot",
+        "it": "Colpo Veloce",
+        "_benefit": {
+            "en": "If performing a second major action in combat to make a ranged attack, the cost of that additional major action will be 1 AP instead of 2.",
+            "it": "Se esegue una seconda azione maggiore in combattimento per effettuare un attacco a distanza, il costo di tale azione maggiore aggiuntiva sarà di 1 PA invece di 2."
+        },
+        "_penalty": {
+            "en": "Cannot benefit from the Aim minor action during this frantic action.",
+            "it": "Non è possibile beneficiare dell'azione minore Mirare in questa azione frenetica."
+        }
     },
-    "_penalty": {
-      "en": "You view everyone who hasn't gone through your rite of passage as lesser. You cannot assist another PC without spending 1 AP first.",
-      "it": "Consideri tutti coloro che non hanno affrontato il tuo rito di passaggio come inferiori. Non puoi assistere un altro PG senza prima spendere 1 PA."
-    }
-  },
-  "traitSmallFrame": {
-    "en": "Small Frame",
-    "it": "Minuto",
-    "_benefit": {
-      "en": "Can reroll 1d20 on all AGI tests based on balance or contortion.",
-      "it": "È possibile lanciare nuovamente 1d20 in tutte le prove di AGI basate su equilibrio o contorsione."
+    "traitForcedEvolution_special": {
+        "en": "Forced Evolution: SPECIAL Limits",
+        "it": "Evoluzione Forzata: Limiti SPECIAL",
+        "_benefit": {
+            "en": "Strength and Endurance start 2 points higher. Their maximum increases to 12, while the maximum Intelligence and Charisma decrease to 6.",
+            "it": "Forza e Costituzione iniziano con 2 punti aggiuntivi. Il loro massimo aumenta a 12, mentre il massimo di Intelligenza e Carisma scende a 6."
+        }
     },
-    "_penalty": {
-      "en": "Carry weight is 75 + (2.5 × STR) kg, instead of 75 + (5 × STR) kg.",
-      "it": "Il peso trasportabile è pari a 75 + (2,5 × FOR) kg, invece che 75 + (5 × FOR) kg."
-    }
-  },
-  "traitTheChosenOne": {
-    "en": "The Chosen One",
-    "it": "Il Prescelto",
-    "_benefit": {
-      "en": "The first d20 you purchase is free on tests relating to your tribe's quest, and you can always succeed at a cost.",
-      "it": "Il primo d20 che acquisti è gratuito nei test relativi alla missione della tua tribù, e puoi sempre avere successo a un costo."
+    "traitForcedEvolution_skillLimit": {
+        "en": "Forced Evolution: Skill Limit",
+        "it": "Evoluzione Forzata: Limite Abilità",
+        "_benefit": {
+            "en": "You cannot have more than 4 ranks in any skill.",
+            "it": "Non puoi avere più di 4 gradi in nessuna abilità."
+        }
     },
-    "_penalty": {
-      "en": "The GM adds 2 AP to their pool when your quest comes up.",
-      "it": "Il GM aggiunge 2 PA alla sua riserva quando si presenta la tua missione."
-    }
-  },
-  "traitToolsOfTheOldWorld": {
-    "en": "Tools of the Old World",
-    "it": "Strumenti del Vecchio Mondo",
-    "_benefit": {
-      "en": "You may use Survival instead of Repair or Science to repair or make use of pre-War tech.",
-      "it": "Puoi usare Sopravvivenza invece di Riparare o Scienza per riparare o utilizzare tecnologia pre-Guerra."
+    "traitForcedEvolution_immunity": {
+        "en": "Forced Evolution: Immunity",
+        "it": "Evoluzione Forzata: Immunità",
+        "_benefit": {
+            "en": "You are completely immune to radiation and poison damage.",
+            "it": "Sei completamente immune ai danni da Radiazioni e Veleno."
+        }
     },
-    "_penalty": {
-      "en": "The complication range of tests involving pre-War technology (not weapons) is increased by 2.",
-      "it": "L'intervallo di complicazione dei test che coinvolgono tecnologia pre-Guerra (non armi) è aumentato di 2."
-    }
-  },
-  "traitTriggerDiscipline": {
-    "en": "Trigger Discipline",
-    "it": "Disciplina del Grilletto",
-    "_benefit": {
-      "en": "When you make ranged attacks using small guns or energy weapons you may re-roll 1d20.",
-      "it": "Quando effettui attacchi a distanza usando armi leggere o armi a energia puoi rilanciare 1d20."
+    "traitForcedEvolution_physiology": {
+        "en": "Forced Evolution: Physiology",
+        "it": "Evoluzione Forzata: Fisiologia",
+        "_description": {
+            "en": "You are over seven feet tall, bulky and muscular, do not seem to age, and are sterile. You can only wear armor made for a super mutant.",
+            "it": "Sei alto più di due metri, massiccio e muscoloso, non sembri invecchiare e sei sterile. Puoi indossare solo armature realizzate per un supermutante."
+        }
     },
-    "_penalty": {
-      "en": "While you wield small guns and energy weapons, reduce their fire rate by 1.",
-      "it": "Mentre impugni armi leggere e armi a energia, riduci la loro cadenza di fuoco di 1."
+    "traitNecroticPostHuman_ageless": {
+        "en": "Necrotic Post-Human: Ageless",
+        "it": "Post-Umano Necrotico: Senza Età",
+        "_description": {
+            "en": "You age at a greatly reduced rate and are likely older than your non-mutated companions (you may have even survived the Great War of 2077), but you are sterile.",
+            "it": "Invecchi a un ritmo molto ridotto e probabilmente sei più vecchio dei compagni non mutati (potresti persino essere sopravvissuto alla Grande Guerra del 2077), ma sei sterile."
+        }
+    },
+    "traitNecroticPostHuman_discrimination": {
+        "en": "Necrotic Post-Human: Smoothskin Discrimination",
+        "it": "Post-Umano Necrotico: Discriminazione Pelle Liscia",
+        "_description": {
+            "en": "You may suffer discrimination from 'smoothskins' (humans who are not ghouls), causing an increase in difficulty or complication range of Charisma tests depending on the opponent's beliefs.",
+            "it": "Puoi subire discriminazioni da parte dei 'pelle liscia' (umani che non sono ghoul), causando un aumento della difficoltà o della gamma di complicazioni delle prove di Carisma a seconda delle credenze dell'avversario."
+        }
+    },
+    "traitNecroticPostHuman_radiationHealing": {
+        "en": "Necrotic Post-Human: Radiation Healing",
+        "it": "Post-Umano Necrotico: Guarigione da Radiazioni",
+        "_description": {
+            "en": "You are healed by radiation: recover 1 HP for every 3 points of Radiation damage taken.",
+            "it": "Sei guarito dalle radiazioni: recuperi 1 PS per ogni 3 punti di danno da Radiazioni subiti."
+        }
+    },
+    "traitNecroticPostHuman_radiationImmunity": {
+        "en": "Necrotic Post-Human: Radiation Immunity",
+        "it": "Post-Umano Necrotico: Immunità alle Radiazioni",
+        "_benefit": {
+            "en": "You are immune to radiation damage.",
+            "it": "Sei immune ai danni da Radiazioni."
+        }
+    },
+    "traitNecroticPostHuman_tagSkill": {
+        "en": "Necrotic Post-Human: Survival",
+        "it": "Post-Umano Necrotico: Sopravvivenza",
+        "_benefit": {
+            "en": "Survival becomes a Tag skill and increases by 2 ranks.",
+            "it": "Sopravvivenza diventa una specialità e aumenta di 2 gradi."
+        }
+    },
+    "traitRobobrainRobot_senses": {
+        "en": "Robobrain Robot: Senses",
+        "it": "Robot Robobrain: Sensi",
+        "_description": {
+            "en": "You have visual sensors that can detect the visual spectrum and infrared, ignoring any difficulty increase to Perception tests in darkness.",
+            "it": "Hai sensori visivi in grado di rilevare lo spettro visibile e gli infrarossi, ignorando qualsiasi aumento della difficoltà alle prove di Percezione nell'oscurità."
+        }
+    },
+    "traitRobobrainRobot_immunities": {
+        "en": "Robobrain Robot: Immunities",
+        "it": "Robot Robobrain: Immunità",
+        "_description": {
+            "en": "You are immune to radiation and poison damage.",
+            "it": "Sei immune ai danni da radiazione e veleno."
+        }
+    },
+    "traitRobobrainRobot_physiology": {
+        "en": "Robobrain Robot: Physiology",
+        "it": "Robot Robobrain: Fisiologia",
+        "_description": {
+            "en": "You cannot use chems, nor can you benefit from food, drink, or rest. You cannot recover your own injuries or heal health points without receiving repairs.",
+            "it": "Non puoi usare i chems né beneficiare di cibo, bevande o riposo. Non puoi recuperare da solo dalle tue ferite o guarire punti salute senza ricevere riparazioni."
+        }
+    },
+    "traitRobobrainRobot_manipulators": {
+        "en": "Robobrain Robot: Manipulators",
+        "it": "Robot Robobrain: Manipolatori",
+        "_description": {
+            "en": "You move on two continuous tracks, and have two tube-like manipulators as arms with opposable claws you can use to control tools and objects designed for humans with precision and make unarmed melee attacks. Your head has a built-in Mesmetron, which you can use to make ranged attacks.",
+            "it": "Ti muovi su due cingoli continui e hai due manipolatori tubolari come braccia, con artigli opponibili che puoi usare per controllare con precisione strumenti e oggetti progettati per gli esseri umani ed effettuare attacchi in mischia senz'armi. La tua testa ha un Mesmetron integrato, che puoi usare per effettuare attacchi a distanza."
+        }
+    },
+    "traitRobobrainRobot_carryWeight": {
+        "en": "Robobrain Robot: Carry Weight",
+        "it": "Robot Robobrain: Peso Trasportabile",
+        "_description": {
+            "en": "Your carry weight is 150 lbs., and it cannot be increased by your Strength or perks, but it can be increased by modified armor.",
+            "it": "Il tuo peso trasportabile è di 75 kg e non può essere aumentato dalla tua Forza o dai tuoi talenti, ma può essere aumentato dall'armatura modificata."
+        }
+    },
+    "traitMarkISecuritron_senses": {
+        "en": "Mark I Securitron: Senses",
+        "it": "Securitron Mark I: Sensi",
+        "_description": {
+            "en": "You have forward-facing visual sensors that can detect the visual spectrum.",
+            "it": "Hai sensori visivi rivolti in avanti in grado di rilevare lo spettro visibile."
+        }
+    },
+    "traitMarkISecuritron_immunities": {
+        "en": "Mark I Securitron: Immunities",
+        "it": "Securitron Mark I: Immunità",
+        "_description": {
+            "en": "You are immune to radiation and poison damage.",
+            "it": "Sei immune ai danni da radiazione e veleno."
+        }
+    },
+    "traitMarkISecuritron_physiology": {
+        "en": "Mark I Securitron: Physiology",
+        "it": "Securitron Mark I: Fisiologia",
+        "_description": {
+            "en": "You cannot use chems, nor can you benefit from food, drink, or rest. You cannot recover your own injuries or heal health points without receiving repairs.",
+            "it": "Non puoi usare i chems né beneficiare di cibo, bevande o riposo. Non puoi recuperare da solo dalle tue ferite o guarire punti salute senza ricevere riparazioni."
+        }
+    },
+    "traitMarkISecuritron_balance": {
+        "en": "Mark I Securitron: Balance",
+        "it": "Securitron Mark I: Equilibrio",
+        "_description": {
+            "en": "You move on a single tire, increasing the difficulty of skill tests to balance or remain upright by 1.",
+            "it": "Ti muovi su un singolo pneumatico, aumentando di 1 la difficoltà delle prove di abilità per mantenere l'equilibrio o restare in piedi."
+        }
+    },
+    "traitMarkISecuritron_armAttachments": {
+        "en": "Mark I Securitron: Arm Attachments",
+        "it": "Securitron Mark I: Accessori delle Braccia",
+        "_description": {
+            "en": "Your arms are fitted with opposable claws, with which you can manipulate your environment rudimentarily and make unarmed melee attacks. The palms of your claws are outfitted with integrated weapons.",
+            "it": "Le tue braccia sono dotate di artigli opponibili, con cui puoi manipolare sommariamente l'ambiente ed effettuare attacchi in mischia senz'armi. I palmi dei tuoi artigli sono dotati di armi integrate."
+        }
+    },
+    "traitMarkISecuritron_mkIIOperatingSystem": {
+        "en": "Mark I Securitron: Mk II Operating System",
+        "it": "Securitron Mark I: Sistema Operativo Mk II",
+        "_description": {
+            "en": "Your shoulders house missile launchers and a grenade launcher is integrated into the left arm, but they are both inoperable unless you are fitted with the Mk II operating system mod.",
+            "it": "Le tue spalle ospitano lanciamissili e un lanciagranate è integrato nel braccio sinistro, ma entrambi sono inoperabili finché non sei dotato della mod del sistema operativo Mk II."
+        }
+    },
+    "traitMarkISecuritron_carryWeight": {
+        "en": "Mark I Securitron: Carry Weight",
+        "it": "Securitron Mark I: Peso Trasportabile",
+        "_description": {
+            "en": "Your carry weight is 150 lbs. It cannot be increased by your Strength or perks, but by modified armor.",
+            "it": "Il tuo peso trasportabile è di 75 kg. Non può essere aumentato dalla tua Forza o dai tuoi talenti, ma può essere aumentato dall'armatura modificata."
+        }
+    },
+    "traitProtectOrDestroy_hazardReroll": {
+        "en": "Protect or Destroy: Hazard Reroll",
+        "it": "Proteggere o Distruggere: Rilancio Pericoli",
+        "_description": {
+            "en": "Once per scene, you may reroll a test to overcome an environmental hazard and use the new result.",
+            "it": "Una volta per scena, puoi ripetere una prova per superare un pericolo ambientale e usare il nuovo risultato."
+        }
+    },
+    "traitProtectOrDestroy_immunities": {
+        "en": "Protect or Destroy: Immunities",
+        "it": "Proteggere o Distruggere: Immunità",
+        "_description": {
+            "en": "You are immune to disease, Radiation and Poison damage.",
+            "it": "Sei immune alle malattie e ai danni da Radiazione e Veleno."
+        }
+    },
+    "traitProtectOrDestroy_physiology": {
+        "en": "Protect or Destroy: Physiology",
+        "it": "Proteggere o Distruggere: Fisiologia",
+        "_description": {
+            "en": "You cannot use chems, nor can you benefit from food, drink, or rest. You cannot recover from your injuries or heal health points without receiving repairs.",
+            "it": "Non puoi usare i chems né beneficiare di cibo, bevande o riposo. Non puoi recuperare dalle tue ferite o guarire punti salute senza ricevere riparazioni."
+        }
+    },
+    "traitProtectOrDestroy_robotModLimit": {
+        "en": "Protect or Destroy: Robot Mod Limit",
+        "it": "Proteggere o Distruggere: Limite Mod Robot",
+        "_description": {
+            "en": "You cannot have more than two robot mods installed simultaneously.",
+            "it": "Non puoi avere più di due mod robot installate contemporaneamente."
+        }
+    },
+    "traitProtectOrDestroy_purposeExpertise": {
+        "en": "Protect or Destroy: Purpose Expertise",
+        "it": "Proteggere o Distruggere: Competenza del Modello",
+        "_description": {
+            "en": "When making a test directly related to your model's purpose, the first d20 you buy using Action Points costs 0.",
+            "it": "Quando effettui una prova direttamente correlata allo scopo del tuo modello, il primo d20 che acquisti usando i Punti Azione costa 0."
+        }
+    },
+    "traitProtectOrDestroy_carryWeight": {
+        "en": "Protect or Destroy: Carry Weight",
+        "it": "Proteggere o Distruggere: Peso Trasportabile",
+        "_description": {
+            "en": "Your carry weight is 225 lbs. and cannot be increased by your Strength or perks, but it can be increased by modified armor.",
+            "it": "Il tuo peso trasportabile è di 112.5 kg e non può essere aumentato dalla tua Forza o dai tuoi talenti, ma può essere aumentato dall'armatura modificata."
+        }
+    },
+    "traitNecroticPostHuman_radiationRest": {
+        "en": "Necrotic Post-Human: Irradiated Rest",
+        "it": "Post-Umano Necrotico: Riposo Irradiato",
+        "_description": {
+            "en": "If you rest in an irradiated location, you can reroll the dice pool when making a test to see if wounds heal.",
+            "it": "Se riposi in un luogo irradiato, puoi rilanciare la riserva di dadi quando effettui una prova per vedere se le ferite guariscono."
+        }
+    },
+    "traitGifted": {
+        "en": "Gifted",
+        "it": "Dotato",
+        "_benefit": {
+            "en": "Choose two S.P.E.C.I.A.L. attributes and increase them by +1 each.",
+            "it": "Scegliere due attributi S.P.E.C.I.A.L. e aumentarli di +1 ciascuno."
+        },
+        "_penalty": {
+            "en": "The maximum number of Luck Points equals the character's Luck attribute, minus one.",
+            "it": "Il numero massimo di Punti Fortuna è pari all'attributo di Fortuna del personaggio, meno uno."
+        }
+    },
+    "traitGoodNatured": {
+        "en": "Good Natured",
+        "it": "Buona Indole",
+        "_benefit": {
+            "en": "Tag two of either Speech, Medicine, Repair, Science, and Barter skills.",
+            "it": "Scegli due abilità tra Oratoria, Medicina, Riparare, Scienza e Commercio come specialità."
+        },
+        "_penalty": {
+            "en": "The maximum rating for the other skills listed is reduced from 6 to 4.",
+            "it": "Il punteggio massimo per le altre abilità elencate è ridotto da 6 a 4."
+        }
+    },
+    "traitGrunt": {
+        "en": "Grunt",
+        "it": "Fante",
+        "_benefit": {
+            "en": "+1 DC damage with submachine guns, combat rifles, assault rifles, frag grenades, and combat knives.",
+            "it": "+1 DC danno con mitra, fucili da combattimento, fucili d'assalto, granate a frammentazione e coltelli da combattimento."
+        },
+        "_penalty": {
+            "en": "The complication range of tests while making an attack with big guns or energy weapons is increased by 2.",
+            "it": "L'intervallo di complicazione dei test durante un attacco con armi pesanti o armi a energia aumenta di 2."
+        }
+    },
+    "traitHeavyHanded": {
+        "en": "Heavy Handed",
+        "it": "Mano Pesante",
+        "_benefit": {
+            "en": "The Melee Damage bonus increases by +1 DC.",
+            "it": "Il bonus ai Danni in Mischia aumenta di +1 DC."
+        },
+        "_penalty": {
+            "en": "Melee and unarmed attacks suffer a complication on a 19 or 20, instead of only on a 20.",
+            "it": "Gli attacchi in mischia e senza armi subiscono una complicazione con un 19 o 20, invece che solo con un 20."
+        }
+    },
+    "traitHomeOnTheRange": {
+        "en": "Home on the Range",
+        "it": "Casa nella Prateria",
+        "_benefit": {
+            "en": "Whenever you sleep by a campfire for at least 6 hours, the difficulty to recover from injuries through rest is decreased by 1.",
+            "it": "Ogni volta che dormi vicino a un falò per almeno 6 ore, la difficoltà per recuperare dalle ferite attraverso il riposo diminuisce di 1."
+        },
+        "_penalty": {
+            "en": "You cannot gain a well rested bonus, as described in Fallout: The Roleplaying Game Core Rulebook p.35.",
+            "it": "Non puoi ottenere il bonus ben riposato, come descritto nel Manuale Base di Fallout: Il Gioco di Ruolo p.35."
+        }
+    },
+    "traitMotherWasteland": {
+        "en": "Mother Wasteland",
+        "it": "Madre Wasteland",
+        "_benefit": {
+            "en": "Spend 1 Luck point to gain insight into the quest, situation, or scene as if you'd spent 3 AP to use Obtain Information 3 times. This information is often cryptic and mystical in nature.",
+            "it": "Spendi 1 punto Fortuna per ottenere informazioni sulla missione, situazione o scena come se avessi speso 3 PA per usare Ottenere Informazioni 3 volte. Queste informazioni sono spesso di natura criptica e mistica."
+        },
+        "_penalty": {
+            "en": "Complications make scenes involving pre-War artifacts harder to understand, limiting your use of them.",
+            "it": "Le complicazioni rendono le scene che coinvolgono artefatti pre-Guerra più difficili da comprendere, limitando il loro utilizzo."
+        }
+    },
+    "traitMisterHandyRobot_senses": {
+        "en": "Mister Handy Robot: Senses",
+        "it": "Robot Mister Handy: Sensi",
+        "_description": {
+            "en": "You have 360° vision and improved sensory systems that can detect smells, chemicals, and radiation, reducing the difficulty of Perception tests that rely on sight and smell by\n1. You are also immune to radiation and poison damage, but you cannot use chems, nor can you benefit from food, drink, or rest. You move by jet propulsion, hovering above the ground, unaffected by difficult terrain or obstacles. You carry weight is 150 Ibs., and it cannot be increased by your Strength or perks, but it can be increased by modified armor. You cannot recover from your own injuries or heal health points without receiving repairs.",
+            "it": "Il personaggio possiede una visione a 360° e sistemi sensoriali migliorati che possono rilevare odori, sostanze chimiche e radiazioni, riducendo di 1 la difficoltà delle prove di Percezione basate su vista e olfatto. È anche immune ai danni da Radiazioni e da Veleno, ma non può utilizzare sostanze, né può trarre benefici da cibo, bevande o riposo. Utilizza il propulsore per muoversi, librandosi sul terreno, non influenzato da terreni difficili od ostacoli. Il peso trasportabile è di 75 kg e non può essere aumentato dalla Forza o con i talenti, ma può essere aumentato con un’armatura modificata. Non può essere guarito dalle ferite e non può curare i punti salute senza ricevere riparazioni."
+        }
+    },
+    "traitMisterHandyRobot_immunities": {
+        "en": "Mister Handy Robot: Immunities",
+        "it": "Robot Mister Handy: Immunità",
+        "_description": {
+            "en": "You are immune to radiation and poison damage.",
+            "it": "Sei immune ai danni da Radiazioni e Veleno."
+        }
+    },
+    "traitMisterHandyRobot_needs": {
+        "en": "Mister Handy Robot: Needs",
+        "it": "Robot Mister Handy: Necessità",
+        "_description": {
+            "en": "You cannot use chems or benefit from food, drink, or rest. You cannot recover from injuries without repairs.",
+            "it": "Non puoi usare sostanze o beneficiare di cibo, bevande o riposo. Non puoi recuperare dalle ferite senza riparazioni."
+        }
+    },
+    "traitMisterHandyRobot_mobility": {
+        "en": "Mister Handy Robot: Mobility",
+        "it": "Robot Mister Handy: Mobilità",
+        "_description": {
+            "en": "You hover by jet propulsion and are unaffected by difficult terrain or obstacles.",
+            "it": "Ti muovi tramite propulsione a getto e non sei influenzato da terreni difficili o ostacoli."
+        }
+    },
+    "traitMisterHandyRobot_carryWeight": {
+        "en": "Mister Handy Robot: Carry Weight",
+        "it": "Robot Mister Handy: Peso Trasportabile",
+        "_description": {
+            "en": "Your carry weight is fixed at 150 lbs. and cannot be increased by Strength or perks, but modified armor can increase it.",
+            "it": "Il tuo peso trasportabile è fissato a 75 kg e non può aumentare tramite Forza o talenti, ma può aumentare tramite armature modificate."
+        }
+    },
+    "traitMrHandyAutomaticPistol": {
+        "en": "10mm Automatic Pistol",
+        "it": "Pistola Automatica 10mm",
+        "_benefit": {
+            "en": "Can make ranged attacks using a 10mm automatic pistol (see 10mm Pistol with automatic receiver mod, p. 95).",
+            "it": "Può effettuare attacchi a distanza usando una pistola automatica da 10mm (vedere Pistola da 10mm con mod castello automatico, pag. 95)."
+        }
+    },
+    "traitMrHandyCircularSaw": {
+        "en": "Circular Saw",
+        "it": "Sega Circolare",
+        "_benefit": {
+            "en": "Allows cutting objects and making melee attacks with the circular saw. The circular saw deals 3 DC Physical Piercing 1 damage.",
+            "it": "Permette di tagliare oggetti ed effettuare attacchi in mischia con la sega circolare. La sega circolare infligge 3 DC danni Fisici Penetranti 1."
+        }
+    },
+    "traitMrHandyFlamethrower": {
+        "en": "Flamethrower",
+        "it": "Lanciafiamme",
+        "_benefit": {
+            "en": "Allows igniting objects, cooking food, or making ranged attacks with a short-range flamethrower (see flamethrower, p. 106).",
+            "it": "Permette di incendiare oggetti, cucinare cibo o effettuare attacchi a distanza con un lanciafiamme a corto raggio (vedere lanciafiamme, pag. 106)."
+        }
+    },
+    "traitMrHandyLaserEmitter": {
+        "en": "Laser Emitter",
+        "it": "Emettitore Laser",
+        "_benefit": {
+            "en": "Allows cutting objects or making ranged attacks using a laser (see laser pistol, p. 101).",
+            "it": "Permette di tagliare oggetti o effettuare attacchi a distanza usando un laser (vedere pistola laser, pag. 101)."
+        }
+    },
+    "traitMrHandyPliers": {
+        "en": "Pliers",
+        "it": "Tenaglia",
+        "_benefit": {
+            "en": "Allows picking up and carrying objects weighing no more than 20 kg and manipulating surrounding objects. Can also make unarmed attacks (2 DC Physical damage) with the pliers.",
+            "it": "Permette di raccogliere e trasportare oggetti che non pesino più di 20 kg e manipolare gli oggetti circostanti. È possibile anche effettuare attacchi senza armi (2 DC danni Fisici) con la tenaglia."
+        }
+    },
+    "traitNomad": {
+        "en": "Nomad",
+        "it": "Nomade",
+        "_benefit": {
+            "en": "Re-roll 1d20 on Survival tests to travel, set up camp, and forage for food and water. In addition, ignore the first complication rolled when making these tests.",
+            "it": "Rilancia 1d20 nei test di Sopravvivenza per viaggiare, allestire un campo e cercare cibo e acqua. Inoltre, ignora la prima complicazione ottenuta quando effettui questi test."
+        },
+        "_penalty": {
+            "en": "Barter and Speech tests increase their difficulty and complication range by 1 when dealing with inhabitants of a static settlement. Science cannot be a Tag skill.",
+            "it": "I test di Commercio e Oratoria aumentano la loro difficoltà e intervallo di complicazione di 1 quando si tratta con abitanti di un insediamento statico. Scienza non può essere un'abilità specialità."
+        }
+    },
+    "traitRiteOfPassage": {
+        "en": "Rite of Passage",
+        "it": "Rito di Passaggio",
+        "_benefit": {
+            "en": "The first time you spend Luck in a scene, roll 1 DC. If you roll an effect you have not spent that Luck point.",
+            "it": "La prima volta che spendi Fortuna in una scena, lancia 1 DC. Se ottieni un effetto non hai speso quel punto Fortuna."
+        },
+        "_penalty": {
+            "en": "You view everyone who hasn't gone through your rite of passage as lesser. You cannot assist another PC without spending 1 AP first.",
+            "it": "Consideri tutti coloro che non hanno affrontato il tuo rito di passaggio come inferiori. Non puoi assistere un altro PG senza prima spendere 1 PA."
+        }
+    },
+    "traitSmallFrame": {
+        "en": "Small Frame",
+        "it": "Minuto",
+        "_benefit": {
+            "en": "Can reroll 1d20 on all AGI tests based on balance or contortion.",
+            "it": "È possibile lanciare nuovamente 1d20 in tutte le prove di AGI basate su equilibrio o contorsione."
+        },
+        "_penalty": {
+            "en": "Carry weight is 75 + (2.5 × STR) kg, instead of 75 + (5 × STR) kg.",
+            "it": "Il peso trasportabile è pari a 75 + (2,5 × FOR) kg, invece che 75 + (5 × FOR) kg."
+        }
+    },
+    "traitTheChosenOne": {
+        "en": "The Chosen One",
+        "it": "Il Prescelto",
+        "_benefit": {
+            "en": "The first d20 you purchase is free on tests relating to your tribe's quest, and you can always succeed at a cost.",
+            "it": "Il primo d20 che acquisti è gratuito nei test relativi alla missione della tua tribù, e puoi sempre avere successo a un costo."
+        },
+        "_penalty": {
+            "en": "The GM adds 2 AP to their pool when your quest comes up.",
+            "it": "Il GM aggiunge 2 PA alla sua riserva quando si presenta la tua missione."
+        }
+    },
+    "traitToolsOfTheOldWorld": {
+        "en": "Tools of the Old World",
+        "it": "Strumenti del Vecchio Mondo",
+        "_benefit": {
+            "en": "You may use Survival instead of Repair or Science to repair or make use of pre-War tech.",
+            "it": "Puoi usare Sopravvivenza invece di Riparare o Scienza per riparare o utilizzare tecnologia pre-Guerra."
+        },
+        "_penalty": {
+            "en": "The complication range of tests involving pre-War technology (not weapons) is increased by 2.",
+            "it": "L'intervallo di complicazione dei test che coinvolgono tecnologia pre-Guerra (non armi) è aumentato di 2."
+        }
+    },
+    "traitTriggerDiscipline": {
+        "en": "Trigger Discipline",
+        "it": "Disciplina del Grilletto",
+        "_benefit": {
+            "en": "When you make ranged attacks using small guns or energy weapons you may re-roll 1d20.",
+            "it": "Quando effettui attacchi a distanza usando armi leggere o armi a energia puoi rilanciare 1d20."
+        },
+        "_penalty": {
+            "en": "While you wield small guns and energy weapons, reduce their fire rate by 1.",
+            "it": "Mentre impugni armi leggere e armi a energia, riduci la loro cadenza di fuoco di 1."
+        }
+    },
+    "traitVaultKid_education": {
+        "en": "Vault Kid: Education",
+        "it": "Figlio del Vault: Educazione",
+        "_benefit": {
+            "en": "You gain one additional Tag skill of your choice.",
+            "it": "Ottieni una specialità aggiuntiva a scelta."
+        }
+    },
+    "traitVaultKid_diseaseResistance": {
+        "en": "Vault Kid: Disease Resistance",
+        "it": "Figlio del Vault: Resistenza alle Malattie",
+        "_benefit": {
+            "en": "Reduce the difficulty of all Endurance tests to resist disease effects.",
+            "it": "Riduci la difficoltà di tutte le prove di Costituzione per resistere agli effetti delle malattie."
+        }
+    },
+    "traitVaultKid_experiment": {
+        "en": "Vault Kid: Experiment",
+        "it": "Figlio del Vault: Esperimento",
+        "_description": {
+            "en": "Once per quest, the GM may introduce a Vault-related complication. If they do, you immediately regain 1 Luck Point.",
+            "it": "Una volta per missione, il GM può introdurre una complicazione legata al Vault. In tal caso recuperi immediatamente 1 Punto Fortuna."
+        }
+    },
+    "traitHiddenHunted_tagSkill": {
+        "en": "Hidden & Hunted: Additional Tag Skill",
+        "it": "Nascosto e Braccato: Specialità Aggiuntiva",
+        "_benefit": {
+            "en": "You gain one additional Tag skill, chosen from Sneak or Survival.",
+            "it": "Ottieni una specialità aggiuntiva, scelta tra Furtività e Sopravvivenza."
+        }
+    },
+    "traitHiddenHunted_hiddenIdentity": {
+        "en": "Hidden & Hunted: Wanted Identity",
+        "it": "Nascosto e Braccato: Identità Ricercata",
+        "_description": {
+            "en": "If your former Enclave identity becomes public, the NCR and Brotherhood of Steel become Hostile to you. Bounty hunters may pursue you.",
+            "it": "Se la tua vecchia identità nell’Enclave diventa pubblica, NCR e Confraternita d’Acciaio diventano Ostili nei tuoi confronti. I cacciatori di taglie potrebbero darti la caccia."
+        }
+    },
+    "traitHiddenHunted_supplyCaches": {
+        "en": "Hidden & Hunted: Supply Caches",
+        "it": "Nascosto e Braccato: Scorte Nascoste",
+        "_description": {
+            "en": "Your hidden supply caches can be used as story elements by the GM.",
+            "it": "Le tue scorte nascoste possono essere usate dal GM come elementi narrativi."
+        }
+    },
+    "traitTryingToMakeADifference_tagSkill": {
+        "en": "Trying to Make a Difference: Additional Tag Skill",
+        "it": "Cercare di Fare la Differenza: Specialità Aggiuntiva",
+        "_benefit": {
+            "en": "You gain one additional Tag skill, chosen from Medicine, Repair, Science, or Speech.",
+            "it": "Ottieni una specialità aggiuntiva, scelta tra Medicina, Riparare, Scienza o Oratoria."
+        }
+    },
+    "traitTryingToMakeADifference_sincereHelp": {
+        "en": "Trying to Make a Difference: Sincere Help",
+        "it": "Cercare di Fare la Differenza: Aiuto Sincero",
+        "_description": {
+            "en": "You may reroll 1d20 on Speech tests to convince someone that you are sincerely offering help. Intimidation and threat tests increase in difficulty by 1.",
+            "it": "Puoi rilanciare 1d20 nelle prove di Oratoria per convincere qualcuno che stai offrendo sinceramente aiuto. La difficoltà delle prove di intimidazione e minaccia aumenta di 1."
+        }
+    },
+    "traitTryingToMakeADifference_nonViolence": {
+        "en": "Trying to Make a Difference: Non-Violence",
+        "it": "Cercare di Fare la Differenza: Non Violenza",
+        "_description": {
+            "en": "You cannot kill a character you reduce to 0 HP. If you aid or indirectly cause another character’s death, lose 1 Luck.",
+            "it": "Non puoi uccidere un personaggio che riduci a 0 PS. Se aiuti o causi indirettamente la morte di un altro personaggio, perdi 1 Fortuna."
+        }
+    },
+    "traitWindingWayOfTheGreatSnake_tagSkill": {
+        "en": "The Winding Way of the Great Snake: Additional Tag Skill",
+        "it": "Il Sentiero Tortuoso del Grande Serpente: Specialità Aggiuntiva",
+        "_benefit": {
+            "en": "You gain one additional Tag skill, chosen from Medicine or Sneak.",
+            "it": "Ottieni una specialità aggiuntiva, scelta tra Medicina o Furtività."
+        }
+    },
+    "traitWindingWayOfTheGreatSnake_poisonResistance": {
+        "en": "The Winding Way of the Great Snake: Poison Resistance",
+        "it": "Il Sentiero Tortuoso del Grande Serpente: Resistenza al Veleno",
+        "_benefit": {
+            "en": "Your starting Poison Resistance is 1 and increases by 1 at 5th level and every 5 levels thereafter.",
+            "it": "La tua Resistenza al Veleno iniziale è 1 e aumenta di 1 al 5° livello e ogni 5 livelli successivi."
+        }
+    },
+    "traitWindingWayOfTheGreatSnake_poisonCrafting": {
+        "en": "The Winding Way of the Great Snake: Improvised Poison",
+        "it": "Il Sentiero Tortuoso del Grande Serpente: Veleno Improvvisato",
+        "_description": {
+            "en": "At a Chemistry or Cooking Station, you can craft an Improvised Poison for a physical melee weapon.",
+            "it": "Presso una stazione di Chimica o di Cucina puoi creare un Veleno Improvvisato per un’arma da mischia fisica."
+        }
+    },
+    "traitComeRainOrShine": {
+        "en": "Come Rain or Shine",
+        "it": "Con la Pioggia o con il Sole",
+        "_description": {
+            "en": "You can travel the Wasteland with greater ease, generating additional Action Points and ignoring some travel complications. These Action Points can only be spent on travel-related rolls. You may also select one additional trait from the Courier's available traits.",
+            "it": "Puoi viaggiare più facilmente nelle Terre Desolate, generando Punti Azione aggiuntivi e ignorando alcune complicazioni di viaggio. Questi Punti Azione possono essere spesi solo per prove legate al viaggio. Puoi inoltre scegliere un tratto aggiuntivo tra quelli disponibili per il Corriere."
+        }
+    },
+    "traitPartOfTheFamily": {
+        "en": "Part of the Family",
+        "it": "Parte della Famiglia",
+        "_description": {
+            "en": "You receive free housing, resources, increased reputation, and support from one of the Three Families while your reputation remains high. Choose the Chairmen, Omertas, or White Glove Society; each family provides its own benefits and obligations.",
+            "it": "Ricevi alloggio e risorse gratuiti, una reputazione iniziale più alta e il supporto di una delle Tre Famiglie finché la tua reputazione rimane alta. Scegli i Chairmen, gli Omerta o la White Glove Society: ogni famiglia offre benefici e obblighi diversi."
+        }
     }
-  },
-  "traitVaultKid": {
-    "en": "Vault Kid",
-    "it": "Figlio del Vault",
-    "_description": {
-      "en": "Your healthier start to life at the hands of trained doctors and sophisticated auto-docs means you reduce the difficulty of all END tests to resist the effects of disease. In addition, your carefully-planned upbringing means you have one additional tag skill of your choice.\nYou may also work with the Gamemaster to determine what sort of experiment took place within your Vault. Once per quest, the GM may introduce a complication which reflects the nature of the experiment you unwittingly took part in, or introduce a complication related to your early life of isolation and confinement within the Vault. If the GM does this, you immediately regain one Luck Point.",
-      "it": "Essendo nato più sano grazie ai medici ben preparati e ai sofisticati auto-doc, il personaggio riduce la difficoltà di tutte le prove su COS per resistere agli effetti delle malattie. Inoltre, la sua educazione accuratamente pianificata gli permette di avere una specialità aggiuntiva a scelta. È possibile stabilire con il gamemaster il tipo di esperimento che ha avuto luogo nel Vault. Una volta per missione, il GM può introdurre una complicazione che rifletta la natura dell’esperimento a cui ha inconsapevolmente preso parte o introdurre una complicazione relativa ai primi anni di vita in isolamento e confinamento all’interno del Vault. Se il GM lo fa, il personaggio recupera immediatamente un Punto Fortuna."
-    }
-  }
 }

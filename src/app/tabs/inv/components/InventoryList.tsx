@@ -12,6 +12,7 @@ import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { ITEM_TYPE_MAP, ItemCategory, ItemType } from '@/types/item.ts';
 import { getDisplayName, getUniqueKey, isType } from '@/features/item/utils.ts';
 import { allItems } from '@/data';
+import { sortByLocalizedLabel } from '@/utils/sorting.ts';
 
 type SortBy = 'name' | 'number' | 'rarity';
 
@@ -62,9 +63,10 @@ function InventoryList({
         }
 
         // Sort alphabetically by translated name
-        return categories.sort((a, b) => {
-            return t(a).localeCompare(t(b))
-        })
+        return sortByLocalizedLabel(
+            categories,
+            t,
+        )
     }
 
     // Get appropriate card component for item type

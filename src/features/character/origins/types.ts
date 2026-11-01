@@ -1,15 +1,30 @@
 import type { GenericBodyPart } from '@/types';
 import type { SpecialMap } from '@/features/character/special/special.ts';
-import type {
-    FeatImplementation,
-    SpecialtySkillBonus,
-} from '@/features/character/feats/types.ts';
+import type { FeatImplementation, SpecialtySkillBonus } from '@/features/character/feats/types.ts';
 
 export const ORIGIN_IDS = [
-    'vaultDweller', 'ghoul', 'survivor', 'mrHandy',
-    'brotherhoodInitiate', 'superMutant', 'minutemen', 'ncr',
-    'protectron', 'robobrain', 'securitron', 'synth', 'assaultron',
-    'brotherhoodOutcast', 'childOfAtom', 'nightkin', 'tribal',
+    'vaultDweller',
+    'ghoul',
+    'survivor',
+    'mrHandy',
+    'brotherhoodInitiate',
+    'superMutant',
+    'minutemen',
+    'ncr',
+    'protectron',
+    'robobrain',
+    'securitron',
+    'synth',
+    'assaultron',
+    'brotherhoodOutcast',
+    'childOfAtom',
+    'nightkin',
+    'tribal',
+    'enclaveRemnant',
+    'followerOfTheApocalypse',
+    'viperInitiate',
+    'courier',
+    'threeFamilies',
 ] as const;
 
 export type OriginId = (typeof ORIGIN_IDS)[number] | undefined;

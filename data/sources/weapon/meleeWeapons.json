@@ -366,5 +366,29 @@
       "en": "A weapon capable of melting enemies at the press of a trigger. It deals heavy energy damage with a continuous, piercing thermal rod.",
       "it": "Un'arma in grado di sciogliere i nemici alla pressione di un grilletto. Infligge gravi danni da energia grazie a un'asta termica a penetrazione continua."
     }
+  },
+  "weaponGolfClub": {
+    "en": "Golf Club",
+    "it": "Mazza da golf",
+    "_description": {
+      "en": "A two-handed sports club repurposed as a heavy melee weapon.",
+      "it": "Una mazza da sport a due mani riutilizzata come pesante arma da mischia."
+    }
+  },
+  "weaponWeightedRubberChicken": {
+    "en": "Weighted Rubber Chicken",
+    "it": "Pollo di gomma zavorrato",
+    "_description": {
+      "en": "A novelty rubber chicken reinforced with internal weighting for use as an improvised melee weapon.",
+      "it": "Un pollo di gomma modificato e rinforzato con una zavorra interna per essere usato come arma da mischia improvvisata."
+    }
+  },
+  "weaponTheSplayer": {
+    "en": "The Splayer",
+    "it": "Lo Sventratore",
+    "_description": {
+      "en": "The Splayer is a Ripper with the Extended modification; GutSplayer has further modified the chain to include several chunks of awkwardly shaped metal that help it leave excessively painful wounds—giving the weapon the Debilitating quality.",
+      "it": "Lo Sventratore è un Ripper con la modifica Esteso; GutSplayer ha ulteriormente modificato la catena per includere diversi pezzi di metallo dalla forma insolita che lo aiutano a causare ferite eccessivamente dolorose, conferendo all'arma la qualità Debilitante."
+    }
   }
 }

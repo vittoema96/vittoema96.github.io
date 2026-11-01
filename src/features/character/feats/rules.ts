@@ -6,6 +6,7 @@ import type { SkillType } from '@/features/character/skills/skills.ts';
 import type { SpecialMap, SpecialType } from '@/features/character/special/special.ts';
 import type { Origin } from '@/features/character/origins/types.ts';
 import type { BaseItem } from '@/data/types.ts';
+import type { ApparelCategory } from '@/types/item.ts';
 import { getActiveFeats } from './registry.ts';
 import { mergeWeaponEffects } from './weaponEffects.ts';
 import type {
@@ -65,6 +66,40 @@ export function getMaxSpecialValueModifier(
     );
 }
 
+export function getMinSpecialValueModifier(
+    special: SpecialType,
+    perks: PerkId[],
+    traits: TraitId[],
+    origin?: Origin,
+): number {
+    return sumActiveFeatModifiers({ perks, traits, origin }, feat =>
+        feat.getMinSpecialValueModifier?.(special, perks, traits),
+    );
+}
+
+export function getSkillMaxValue(perks: PerkId[], traits: TraitId[], origin: Origin): number {
+    return Math.min(
+        origin.skillMaxValue,
+        ...getActiveFeats({ perks, traits, origin })
+            .map(feat => feat.getSkillMaxValue?.())
+            .filter((value): value is number => value !== undefined),
+    );
+}
+
+export function hasRadiationImmunity(perks: PerkId[], traits: TraitId[], origin?: Origin): boolean {
+    return (
+        origin?.hasRadiationImmunity === true ||
+        getActiveFeats({ perks, traits, origin }).some(feat => feat.isRadiationImmune?.())
+    );
+}
+
+export function hasPoisonImmunity(perks: PerkId[], traits: TraitId[], origin?: Origin): boolean {
+    return (
+        origin?.hasPoisonImmunity === true ||
+        getActiveFeats({ perks, traits, origin }).some(feat => feat.isPoisonImmune?.())
+    );
+}
+
 export function getWhitelistedSpecialties(
     perks: PerkId[],
     traits: TraitId[],
@@ -72,6 +107,26 @@ export function getWhitelistedSpecialties(
 ): SkillType[] {
     return collectActiveFeatValues({ perks, traits, origin }, feat =>
         feat.getWhitelistedSpecialties?.(),
+    );
+}
+
+export function getAllowedApparelCategories(
+    perks: PerkId[],
+    traits: TraitId[],
+    origin?: Origin,
+): Set<string> | undefined {
+    const restrictions = getActiveFeats({ perks, traits, origin })
+        .map(feat => feat.getAllowedApparelCategories?.())
+        .filter((categories): categories is ApparelCategory[] => categories !== undefined);
+
+    if (restrictions.length === 0) {
+        return undefined;
+    }
+
+    return restrictions.reduce(
+        (allowed, categories) =>
+            new Set(categories.filter(category => allowed.has(category))),
+        new Set(restrictions[0]),
     );
 }
 
@@ -152,6 +207,17 @@ export function getMaxHpBonus(
 ): number {
     return sumActiveFeatModifiers({ perks, traits, origin }, feat =>
         feat.getMaxHpBonus?.(special, perks, traits),
+    );
+}
+
+export function getPoisonResistance(
+    level: number,
+    perks: PerkId[],
+    traits: TraitId[],
+    origin?: Origin,
+): number {
+    return sumActiveFeatModifiers({ perks, traits, origin }, feat =>
+        feat.getPoisonResistance?.(level),
     );
 }
 

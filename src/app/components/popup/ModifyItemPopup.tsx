@@ -1,6 +1,7 @@
 import { getModifiedItemData } from '@/features/character/items.ts';
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { sortByLocalizedLabel } from '@/utils/sorting.ts';
 import { useCharacter } from '@/app/contexts/CharacterContext';
 import { useTooltip } from '@/app/contexts/TooltipContext'
 import { CharacterItem, ModItem } from '@/types';
@@ -398,10 +399,14 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                             .map(([, otherData]) => otherData.selectedMod?.id)
                             .filter((id): id is string => Boolean(id)),
                     )
-                    const availableMods = data.availableMods.filter((mod) => (
-                        mod.id === data.selectedMod?.id
-                        || !selectedByOtherRobotModule.has(mod.id)
-                    ))
+                    const availableMods = sortByLocalizedLabel(
+                        data.availableMods.filter((mod) => (
+                            mod.id === data.selectedMod?.id
+                            || !selectedByOtherRobotModule.has(mod.id)
+                        )),
+                        t,
+                        mod => mod.id,
+                    )
 
                     return <div key={slot}>
                         {/* Header: slot label + info button */}

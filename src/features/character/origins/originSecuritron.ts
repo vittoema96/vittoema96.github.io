@@ -6,9 +6,7 @@ const originSecuritron: Origin = {
     ...DEFAULT_ORIGIN,
     id: 'securitron' as const,
     // TODO model Securitron's specialized weapons.
-    getMaxWeightBase: () => 150 / 2,
-    hasRadiationImmunity: true,
-    hasPoisonImmunity: true,
+    allowsPerkAndTraitWeightModifiers: false,
     bodyParts: BODY_PARTS,
     // TODO replace the two legs with the single wheel body part.
     isRobot: true,

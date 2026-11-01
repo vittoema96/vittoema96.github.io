@@ -1,15 +1,15 @@
 ID,EFFECTS,ORIGINS,FIXED,SOURCE
-traitFastShot,"[]","[""survivor"",""ncr"", ""tribal""]",false,Corebook
-traitGifted,"[]","[""survivor"",""ncr"", ""tribal""]",false,Corebook
-traitEducated,"[]","[""survivor"",""ncr"", ""tribal""]",false,Corebook
-traitHeavyHanded,"[]","[""survivor"",""ncr"", ""tribal""]",false,Corebook
-traitSmallFrame,"[]","[""survivor"",""ncr"", ""tribal""]",false,Corebook
+traitFastShot,"[]","[""survivor"",""ncr"", ""tribal"", ""courier""]",false,Corebook
+traitGifted,"[]","[""survivor"",""ncr"", ""tribal"", ""courier""]",false,Corebook
+traitEducated,"[]","[""survivor"",""ncr"", ""tribal"", ""courier""]",false,Corebook
+traitHeavyHanded,"[]","[""survivor"",""ncr"", ""tribal"", ""courier""]",false,Corebook
+traitSmallFrame,"[]","[""survivor"",""ncr"", ""tribal"", ""courier""]",false,Corebook
 traitExtraPerk,"[]","[""survivor"",""ncr"", ""tribal""]",false,Wanderers DLC
-traitGoodNatured,"[]","[""survivor"",""ncr"", ""tribal""]",false,Settlers DLC
-traitGrunt,"[]","[""survivor"",""ncr"", ""tribal""]",false,Settlers DLC
-traitHomeOnTheRange,"[]","[""survivor"",""ncr"", ""tribal""]",false,Settlers DLC
-traitTriggerDiscipline,"[]","[""survivor"",""ncr"", ""tribal""]",false,Settlers DLC
-traitBrahminBaron,"[]","[""survivor"",""ncr"", ""tribal""]",false,Settlers DLC
+traitGoodNatured,"[]","[""survivor"",""ncr"", ""tribal"", ""courier""]",false,Settlers DLC
+traitGrunt,"[]","[""survivor"",""ncr"", ""tribal"", ""courier""]",false,Settlers DLC
+traitHomeOnTheRange,"[]","[""survivor"",""ncr"", ""tribal"", ""courier""]",false,Settlers DLC
+traitTriggerDiscipline,"[]","[""survivor"",""ncr"", ""tribal"", ""courier""]",false,Settlers DLC
+traitBrahminBaron,"[]","[""survivor"",""ncr"", ""tribal"", ""courier""]",false,Settlers DLC
 traitMotherWasteland,"[]","[""tribal""]",false,Wanderers DLC
 traitNomad,"[]","[""tribal""]",false,Wanderers DLC
 traitRiteOfPassage,"[]","[""tribal""]",false,Wanderers DLC
@@ -20,11 +20,58 @@ traitMrHandyFlamethrower,"[""weaponAdd:weaponMrHandyFlamethrower""]","[""mrHandy
 traitMrHandyAutomaticPistol,"[""weaponAdd:weaponMrHandyAutomaticPistol""]","[""mrHandy""]",false,Corebook
 traitMrHandyCircularSaw,"[""weaponAdd:weaponMrHandyCircularSaw""]","[""mrHandy""]",false,Corebook
 traitMrHandyPliers,"[""weaponAdd:weaponMrHandyPliers""]","[""mrHandy""]",false,Corebook
-traitGhoulRadiationHealing,"[]","[""ghoul""]",true,Corebook
-traitGhoulRadiationRest,"[]","[""ghoul""]",true,Corebook
-traitGhoulAgeless,"[]","[""ghoul""]",true,Corebook
-traitGhoulDiscrimination,"[]","[""ghoul""]",true,Corebook
-traitBrotherhoodChain,"[]","[""brotherhoodInitiate""]",true,Corebook
-traitVaultKid,"[]","[""vaultDweller""]",true,Corebook
-traitMrHandy,"[]","[""mrHandy""]",true,Corebook
-traitForcedEvolution,"[]","[""superMutant""]",true,Corebook
+traitNecroticPostHuman_radiationHealing,"[]","[""ghoul""]",true,Corebook
+traitNecroticPostHuman_radiationImmunity,"[]","[""ghoul""]",true,Corebook
+traitNecroticPostHuman_radiationRest,"[]","[""ghoul""]",true,Corebook
+traitNecroticPostHuman_tagSkill,"[]","[""ghoul""]",true,Corebook
+traitRobobrainRobot_senses,"[]","[""robobrain""]",true,Settlers DLC
+traitRobobrainRobot_immunities,"[]","[""robobrain""]",true,Settlers DLC
+traitRobobrainRobot_physiology,"[]","[""robobrain""]",true,Settlers DLC
+traitRobobrainRobot_manipulators,"[]","[""robobrain""]",true,Settlers DLC
+traitRobobrainRobot_carryWeight,"[]","[""robobrain""]",true,Settlers DLC
+traitMarkISecuritron_senses,"[]","[""securitron""]",true,Settlers DLC
+traitMarkISecuritron_immunities,"[]","[""securitron""]",true,Settlers DLC
+traitMarkISecuritron_physiology,"[]","[""securitron""]",true,Settlers DLC
+traitMarkISecuritron_balance,"[]","[""securitron""]",true,Settlers DLC
+traitMarkISecuritron_armAttachments,"[]","[""securitron""]",true,Settlers DLC
+traitMarkISecuritron_mkIIOperatingSystem,"[]","[""securitron""]",true,Settlers DLC
+traitMarkISecuritron_carryWeight,"[]","[""securitron""]",true,Settlers DLC
+traitProtectOrDestroy_hazardReroll,"[]","[""protectron""]",true,Settlers DLC
+traitProtectOrDestroy_immunities,"[]","[""protectron""]",true,Settlers DLC
+traitProtectOrDestroy_physiology,"[]","[""protectron""]",true,Settlers DLC
+traitProtectOrDestroy_robotModLimit,"[]","[""protectron""]",true,Settlers DLC
+traitProtectOrDestroy_purposeExpertise,"[]","[""protectron""]",true,Settlers DLC
+traitProtectOrDestroy_carryWeight,"[]","[""protectron""]",true,Settlers DLC
+traitNecroticPostHuman_ageless,"[]","[""ghoul""]",true,Corebook
+traitNecroticPostHuman_discrimination,"[]","[""ghoul""]",true,Corebook
+traitTheChainThatBinds_tagSkill,"[]","[""brotherhoodInitiate""]",true,Corebook
+traitTheChainThatBinds_duty,"[]","[""brotherhoodInitiate""]",true,Corebook
+traitVaultKid_education,"[]","[""vaultDweller""]",true,Corebook
+traitVaultKid_diseaseResistance,"[]","[""vaultDweller""]",true,Corebook
+traitVaultKid_experiment,"[]","[""vaultDweller""]",true,Corebook
+traitMisterHandyRobot_senses,"[]","[""mrHandy""]",true,Corebook
+traitMisterHandyRobot_immunities,"[]","[""mrHandy""]",true,Corebook
+traitMisterHandyRobot_needs,"[]","[""mrHandy""]",true,Corebook
+traitMisterHandyRobot_mobility,"[]","[""mrHandy""]",true,Corebook
+traitMisterHandyRobot_carryWeight,"[]","[""mrHandy""]",true,Corebook
+traitDesignedForTheFrontline_immunities,"[]","[""assaultron""]",true,Wanderers DLC
+traitDesignedForTheFrontline_physiology,"[]","[""assaultron""]",true,Wanderers DLC
+traitDesignedForTheFrontline_carryWeight,"[]","[""assaultron""]",true,Wanderers DLC
+traitDesignedForTheFrontline_claws,"[]","[""assaultron""]",true,Wanderers DLC
+traitDesignedForTheFrontline_headLaser,"[]","[""assaultron""]",true,Wanderers DLC
+traitDesignedForTheFrontline_selfDestruct,"[]","[""assaultron""]",true,Wanderers DLC
+traitForcedEvolution_special,"[]","[""superMutant""]",true,Corebook
+traitForcedEvolution_skillLimit,"[]","[""superMutant""]",true,Corebook
+traitForcedEvolution_immunity,"[]","[""superMutant""]",true,Corebook
+traitForcedEvolution_physiology,"[]","[""superMutant""]",true,Corebook
+traitHiddenHunted_tagSkill,"[]","[""enclaveRemnant""]",true,Royal Flush
+traitHiddenHunted_hiddenIdentity,"[]","[""enclaveRemnant""]",true,Royal Flush
+traitHiddenHunted_supplyCaches,"[]","[""enclaveRemnant""]",true,Royal Flush
+traitTryingToMakeADifference_tagSkill,"[]","[""followerOfTheApocalypse""]",true,Royal Flush
+traitTryingToMakeADifference_sincereHelp,"[]","[""followerOfTheApocalypse""]",true,Royal Flush
+traitTryingToMakeADifference_nonViolence,"[]","[""followerOfTheApocalypse""]",true,Royal Flush
+traitWindingWayOfTheGreatSnake_tagSkill,"[]","[""viperInitiate""]",true,Royal Flush
+traitWindingWayOfTheGreatSnake_poisonResistance,"[]","[""viperInitiate""]",true,Royal Flush
+traitWindingWayOfTheGreatSnake_poisonCrafting,"[]","[""viperInitiate""]",true,Royal Flush
+traitComeRainOrShine,"[]","[""courier""]",true,New Vegas Setting Guide
+traitPartOfTheFamily,"[]","[""threeFamilies""]",true,New Vegas Setting Guide

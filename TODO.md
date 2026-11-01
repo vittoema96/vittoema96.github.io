@@ -66,6 +66,8 @@ Data was imported using AI tools, actual values must be manually checked.
 ## Mods
 Corebook mods were checked for smallGuns, energyWeapons and meleeWeapons
 
+- [ ] **Royal Flush weapon mods** - Add source-backed CSV definitions and bilingual localization for `modSpikedPuncturing` (Golf Club, Weighted Rubber Chicken), `modBladedSharp` (Golf Club, Juggling Pin), `modHeavyClub` (Golf Club), `modExtraWeighty` (Weighted Rubber Chicken), and `modPartyFavor` (Juggling Pin). These IDs are already referenced by `AVAILABLE_MODS` but have no definitions, so the modification popup omits them. Verify statistics and effects against the manuals before implementing.
+
 ## 🔥 High Priority
 - [ ] **CryoJet** - Cryojet is a robot only weapon, should not be visible to normal users
 
@@ -74,20 +76,25 @@ Corebook mods were checked for smallGuns, energyWeapons and meleeWeapons
 - [ ] **Weapon mods** - Finish implementing mods (some effects currently do nothing) 
 - [ ] **Consumable items** - Proper aid item consumption mechanics
 - [ ] **Traits** - Keep adding traits (some traits missing and some need implementation)
+- [ ] **Poison rules integration** - Decide how poison immunity and level-scaled poison resistance should be represented in damage calculations and exposed in the character UI. `hasPoisonImmunity` and `poisonResistance` currently have no complete consumer path.
+- [ ] **Incomplete origin trait mechanics** - Implement the remaining rules for Hidden & Hunted (supply caches, identity exposure, faction hostility, and bounty hunters), Trying to Make a Difference (Speech rerolls, intimidation difficulty, and non-lethal/Luck rules), The Winding Way of the Great Snake (poison crafting), Come Rain or Shine (travel AP and complications), and Part of the Family (family selection and family-specific benefits)
 - [ ] **Perks** - Keep adding perks (some perks missing (dlc) and some need implementation)
 - [ ] **Effects and Qualities** - Check that all Effects and Qualities are implemented (some may not be)
 
 ### UI/UX Fixes
 - [ ] **Remove unrolled dice** - Make the change smooth
+- [ ] **Weight unit setting** - Add a persisted kg/lb setting and format all weight values, inputs, calculations, and localized descriptions consistently. Decide whether to use real conversion (1 kg = 2.20462 lb) or the game's current 2:1 weight scale before implementation.
 
 ## 🎯 Medium Priority
 
 ### Armor System
 - [ ] **Armor dataset** - Complete armor data implementation (names for synthetic pieces + power armor)
+- [ ] **Robot apparel rules audit** - Verify remaining origin-specific anatomy and armor restrictions against the manuals, particularly for robot origins other than Mr. Handy. Intrinsic parts are already non-removable, hidden without clearing their saved configuration after an origin change, and normalized to equipped when active.
 
 ### Map System
 - [ ] **Map markers** - Improve + add all markers
-- [ ] **Multiple map types** - Different map variants
+- [ ] **Non-Mojave locations** - Complete and verify Commonwealth marker coordinates, add Capital Wasteland locations, and enable region-specific location unlocking once those datasets are ready. Non-Mojave unlocking is intentionally unavailable for now.
+- [ ] **Reactive map-region settings** - Replace direct `UISettingsManager` reads with a persisted reactive settings subscription/store so changing region updates an already-mounted map immediately without duplicating settings state.
 - [ ] **General map improvements** - Polish and features
 
 ## 🔮 Low Priority / Future

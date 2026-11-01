@@ -1,6 +1,7 @@
 import { getModifiedItemData } from '@/features/character/items.ts';
 import { isType } from '@/features/item/utils.ts';
 import { RawCharacter } from '@/types';
+import { traits as traitData } from '@/data';
 import type { Origin } from '@/features/character/origins/types';
 
 import { PerkId } from '@/features/character/feats/perks.ts';
@@ -19,8 +20,17 @@ export function calculateMaxWeight(
 ) {
     const weightPerks = origin.allowsPerkAndTraitWeightModifiers ? perks : [];
     const weightTraits = origin.allowsPerkAndTraitWeightModifiers ? traits : [];
+    const fixedTraits = Object.values(traitData)
+        .filter(trait => trait.FIXED && trait.ORIGINS.includes(origin.id))
+        .map(trait => trait.ID);
+    const overrideTraits = origin.allowsPerkAndTraitWeightModifiers ? traits : fixedTraits;
     const baseWeight =
-        getMaxWeightOverride(raw.special, weightPerks, weightTraits, origin) ??
+        getMaxWeightOverride(
+            raw.special,
+            weightPerks,
+            overrideTraits,
+            origin,
+        ) ??
         origin.getMaxWeightBase(raw.special.strength);
     let maxWeight = applyMaxWeightModifiers(
         baseWeight,

@@ -11,6 +11,7 @@ import { COMPANION_SKILLS, CompanionSkillType } from '@/features/character/skill
 import { allItems, companionPerks } from '@/data';
 import { isType } from '@/features/item/utils.ts';
 import { updateCompanion } from '@/features/character/update.ts';
+import { sortByLocalizedLabel } from '@/utils/sorting.ts';
 
 
 /**
@@ -54,7 +55,10 @@ function CompanionTab() {
     }
 
     const getAvailablePerksForSlot = (currentSlotIndex: number): string[] => {
-        const allCompanionPerks = Object.keys(companionPerks)
+        const allCompanionPerks = sortByLocalizedLabel(
+            Object.keys(companionPerks),
+            t,
+        )
         return allCompanionPerks.filter(perk => {
             if (companion.perks[currentSlotIndex] === perk) {
                 return true
@@ -94,8 +98,10 @@ function CompanionTab() {
                     }
                     style={{ flex: 1 }}
                 >
-                    {Object.keys(character.companions)
-                        .map(companion => (
+                    {sortByLocalizedLabel(
+                        Object.keys(character.companions),
+                        t,
+                    ).map(companion => (
                             <option key={companion} value={companion}>
                                 {t(companion)}
                             </option>

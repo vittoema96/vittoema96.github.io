@@ -5,6 +5,7 @@ import { CharacterItem } from '@/types';
 import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { isType } from '@/features/item/utils.ts';
+import { canEquipApparel } from '@/features/character/items.ts';
 
 /**
  * Apparel card component with armor stats and equip functionality
@@ -22,6 +23,7 @@ function ApparelCard({ characterItem }: Readonly<ApparelCardProps>) {
         console.error(`Apparel data not found for ID: ${characterItem.id}`)
         return null
     }
+    const isRobotPart = itemData.CATEGORY === 'robotPart'
 
     return (
         <BaseCard
@@ -33,8 +35,15 @@ function ApparelCard({ characterItem }: Readonly<ApparelCardProps>) {
                         equipped: false,
                         ...item,
                     }.equipped;
-                }
-                // TODO isDisabled for non origin compatible apparel
+                },
+                isDisabled: item =>
+                    (isRobotPart && character.origin.isRobot) ||
+                    (!('equipped' in item && item.equipped) &&
+                        !canEquipApparel(itemData, {
+                            origin: character.origin,
+                            perks: character.perks,
+                            traits: character.traits,
+                        })),
             }}
             characterItem={characterItem}
             contentRenderer={ApparelContent}

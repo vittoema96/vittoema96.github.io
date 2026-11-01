@@ -51,7 +51,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'prompt',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,csv,woff,woff2,ttf,eot}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,webp,svg,json,csv,woff,woff2,ttf,eot}'],
         cleanupOutdatedCaches: true,
         // Ignore dev-only resources to reduce console warnings
         navigateFallbackDenylist: [/^\/@vite/, /^\/@react-refresh/, /^\/node_modules/]

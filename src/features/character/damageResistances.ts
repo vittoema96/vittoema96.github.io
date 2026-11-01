@@ -3,7 +3,7 @@ import { CharacterItem, DamageResistanceMap, GenericBodyPart } from '@/types';
 import { isType } from '@/features/item/utils.ts';
 import { mapItemLocations } from '@/utils/bodyLocations.ts';
 import type { Origin } from '@/features/character/origins/types';
-import { getLocationDRBonus } from '@/features/character/feats/rules';
+import { getLocationDRBonus, hasRadiationImmunity } from '@/features/character/feats/rules';
 import { PerkId } from '@/features/character/feats/perks.ts';
 import { SpecialMap } from '@/features/character/special/special.ts';
 import { TraitId } from '@/features/character/feats/traits.ts';
@@ -13,8 +13,8 @@ export function calculateDamageResistances(
     items: CharacterItem[],
     origin: Origin,
     perks: PerkId[],
-    traits: TraitId[]
-){
+    traits: TraitId[],
+) {
     // Init bodyParts with values = 0
     const locationsDR = Object.fromEntries(
         Array.from(origin.bodyParts, location => [
@@ -63,10 +63,7 @@ export function calculateDamageResistances(
         });
     });
 
-    const drBonus = getLocationDRBonus(
-        special, items,
-        perks, traits, origin
-    )
+    const drBonus = getLocationDRBonus(special, items, perks, traits, origin);
     Object.values(locationsDR).forEach(dr => {
         dr.physical += drBonus.physical;
         dr.energy += drBonus.energy;
@@ -74,7 +71,7 @@ export function calculateDamageResistances(
     });
 
     // Mr Handy and Ghoul have infinite radiation resistance
-    if (origin.hasRadiationImmunity) {
+    if (hasRadiationImmunity(perks, traits, origin)) {
         origin.bodyParts.forEach(location => {
             locationsDR[location].radiation = Infinity;
         });

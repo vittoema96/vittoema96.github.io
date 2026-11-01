@@ -4,6 +4,7 @@ import { TraitId } from '@/features/character/feats/traits.ts';
 import { PerkId } from '@/features/character/feats/perks.ts';
 import {
     getMaxSpecialValueModifier,
+    getMinSpecialValueModifier,
     getSpecialAllocationPointsBonus,
 } from '@/features/character/feats/rules';
 
@@ -19,7 +20,6 @@ export const SPECIAL = [
 export type SpecialType = (typeof SPECIAL)[number];
 export type SpecialMap = Record<SpecialType, number>;
 
-
 export function isCharacterSpecial(special: any): special is SpecialType {
     return SPECIAL.includes(special);
 }
@@ -29,25 +29,39 @@ export function getMaxSpecialValues(
     perks: PerkId[] = [],
     traits: TraitId[] = [],
 ): SpecialMap {
-    return SPECIAL.reduce((values, special) => {
-        values[special] = origin.specialMaxValues[special]
-            + getMaxSpecialValueModifier(special, perks, traits, origin);
-        return values;
-    }, { ...origin.specialMaxValues });
+    return SPECIAL.reduce(
+        (values, special) => {
+            values[special] =
+                origin.specialMaxValues[special] +
+                getMaxSpecialValueModifier(special, perks, traits, origin);
+            return values;
+        },
+        { ...origin.specialMaxValues },
+    );
 }
 
-export function getMinSpecialValue(origin: Origin, special: SpecialType): number {
-    return origin.specialMinValues[special];
+export function getMinSpecialValue(
+    origin: Origin,
+    special: SpecialType,
+    perks: PerkId[] = [],
+    traits: TraitId[] = [],
+): number {
+    return (
+        origin.specialMinValues[special] +
+        getMinSpecialValueModifier(special, perks, traits, origin)
+    );
 }
 
-export function calculateSpecialPoints(special: SpecialMap, origin: Origin, perks: PerkId[], traits: TraitId[]){
+export function calculateSpecialPoints(
+    special: SpecialMap,
+    origin: Origin,
+    perks: PerkId[],
+    traits: TraitId[],
+) {
     // Points can't go lower than 4 on all 7 special stats
     // Supermutants have 6 minimum in STR and END
     const baseSpecialSum = 7 * 4;
-    const specialSum = Object.values(special).reduce(
-        (total, value) => total + value,
-        0,
-    );
+    const specialSum = Object.values(special).reduce((total, value) => total + value, 0);
     const usedPoints = specialSum - baseSpecialSum;
     return 12 + getSpecialAllocationPointsBonus(perks, traits, origin) - usedPoints;
 }

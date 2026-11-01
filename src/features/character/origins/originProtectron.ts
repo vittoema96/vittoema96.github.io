@@ -5,9 +5,7 @@ const originProtectron: Origin = {
     ...DEFAULT_ORIGIN,
     id: 'protectron' as const,
     // TODO model Protectron weapons as origin-provided equipment.
-    getMaxWeightBase: () => 225 / 2,
-    hasRadiationImmunity: true,
-    hasPoisonImmunity: true,
+    allowsPerkAndTraitWeightModifiers: false,
     numberOfTraits: 2,
     // TODO add origin-specific traits and disease immunity.
     isRobot: true,

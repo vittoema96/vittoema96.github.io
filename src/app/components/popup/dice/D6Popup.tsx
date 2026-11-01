@@ -21,6 +21,7 @@ import { consumeAmmo, getWeaponAmmoCount } from '@/features/character/items.ts';
 import { calculateCharacter } from '@/features/character/calculate.ts';
 import type { FeatRollAction } from '@/features/character/feats/types';
 import { getRollActions, getWeaponEffects } from '@/features/character/feats/rules';
+import { sortByLocalizedLabel } from '@/utils/sorting.ts';
 
 export interface D6PopupProps extends GenericPopupProps {
     usingItem: CharacterItem;
@@ -581,8 +582,14 @@ function D6Popup({
                             minWidth: '80px',
                         }}
                     >
-                        <option value="humanoid">{t('humanoid')}</option>
-                        <option value="mrHandy">{t('mrHandy')}</option>
+                        {sortByLocalizedLabel(
+                            ['humanoid', 'mrHandy'] as const,
+                            t,
+                        ).map(creatureType => (
+                            <option key={creatureType} value={creatureType}>
+                                {t(creatureType)}
+                            </option>
+                        ))}
                     </select>
                     <span
                         style={{
@@ -673,8 +680,14 @@ function D6Popup({
                                             borderRadius: '0.25rem',
                                         }}
                                     >
-                                        <option value="ap">[{t('ap')}]</option>
-                                        <option value="ammo">[{t('ammo')}]</option>
+                                        {sortByLocalizedLabel(
+                                            ['ap', 'ammo'] as const,
+                                            t,
+                                        ).map(effectType => (
+                                            <option key={effectType} value={effectType}>
+                                                [{t(effectType)}]
+                                            </option>
+                                        ))}
                                     </select>
                                 ) : (
                                     <span>[{t(extraHitsType ?? '')}]</span>

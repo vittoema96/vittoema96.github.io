@@ -8,6 +8,7 @@ import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { SPECIAL } from '@/features/character/special/special.ts';
 import { SKILLS } from '@/features/character/skills/skills.ts';
 import StatGear from '@/app/components/StatGear.tsx';
+import { sortByLocalizedLabel } from '@/utils/sorting.ts';
 
 function StatTab() {
     const { t } = useTranslation();
@@ -17,7 +18,10 @@ function StatTab() {
 
     // THIS SHOULD BE THE CORRECT WAY TO HANDLE SORTING USING DIFFERENT LANGUAGES
     const sortedSkills = useMemo(
-        () => Object.values(SKILLS).sort((a, b) => t(a).localeCompare(t(b))),
+        () => sortByLocalizedLabel(
+            Object.values(SKILLS),
+            t,
+        ),
         [t],
     );
     const specialPoints = character.specialPoints;

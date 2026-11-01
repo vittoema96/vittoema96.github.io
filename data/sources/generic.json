@@ -1,1538 +1,1554 @@
 {
-  "activate": {
-    "en": "Activate",
-    "it": "Attiva"
-  },
-  "activeCharacter": {
-    "en": "Active Character",
-    "it": "Personaggio Attivo"
-  },
-  "addItem": {
-    "en": "Add Item",
-    "it": "Aggiungi Oggetto"
-  },
-  "addPerk": {
-    "en": "Add Perk",
-    "it": "Aggiungi Talento"
-  },
-  "adds": {
-    "en": "Adds",
-    "it": "Aggiunge"
-  },
-  "addTrait": {
-    "en": "Add Trait",
-    "it": "Aggiungi Tratto"
-  },
-  "agility": {
-    "en": "Agility",
-    "it": "Agilità"
-  },
-  "aid": {
-    "en": "Aid",
-    "it": "Aiuto"
-  },
-  "aim": {
-    "en": "Aim",
-    "it": "Mirare"
-  },
-  "all": {
-    "en": "All",
-    "it": "Tutti"
-  },
-  "ammo": {
-    "en": "Ammo",
-    "it": "Muniz."
-  },
-  "ammoCost": {
-    "en": "Ammo Cost",
-    "it": "Cost Muniz."
-  },
-  "ammoType": {
-    "en": "Ammo Type",
-    "it": "Tipo di Muniz."
-  },
-  "ammoUsedBy": {
-    "en": "Ammo used by",
-    "it": "Muniz. usate da"
-  },
-  "amount": {
-    "en": "Amount",
-    "it": "Quantità"
-  },
-  "anything": {
-    "en": "Anything",
-    "it": "Qualsiasi cosa"
-  },
-  "ap": {
-    "en": "AP",
-    "it": "PA"
-  },
-  "apCost": {
-    "en": "AP Cost",
-    "it": "Costo PA"
-  },
-  "apparel": {
-    "en": "Apparel",
-    "it": "Abbigl."
-  },
-  "applied": {
-    "en": "Applied",
-    "it": "Applicata"
-  },
-  "appliedMods": {
-    "en": "Applied Mods",
-    "it": "Mod Applicate"
-  },
-  "apply": {
-    "en": "Apply",
-    "it": "Applica"
-  },
-  "arm": {
-    "en": "Arm",
-    "it": "Braccio"
-  },
-  "armor": {
-    "en": "Armor",
-    "it": "Armatura"
-  },
-  "arms": {
-    "en": "Arms",
-    "it": "Braccia"
-  },
-  "assaultron": {
-    "en": "Assaultron",
-    "it": "Assaultron"
-  },
-  "athletics": {
-    "en": "Athletics",
-    "it": "Atletica"
-  },
-  "attacks": {
-    "en": "Attacks",
-    "it": "Attacchi"
-  },
-  "availableMods": {
-    "en": "Available Mods",
-    "it": "Mod Disponibili"
-  },
-  "availableSkillPoints": {
-    "en": "Skill Points",
-    "it": "Punti Skill"
-  },
-  "availableSpecial": {
-    "en": "S.P.E.C.I.A.L. Points",
-    "it": "Punti S.P.E.C.I.A.L."
-  },
-  "availableSpecialtyPoints": {
-    "en": "Specialty Pt",
-    "it": "Pt. Specialità"
-  },
-  "backgroundPlaceholder": {
-    "en": "Write your background here...",
-    "it": "Scrivi il tuo background qui..."
-  },
-  "backToList": {
-    "en": "List",
-    "it": "Lista"
-  },
-  "barter": {
-    "en": "Barter",
-    "it": "Commercio"
-  },
-  "benefit": {
-    "en": "Benefit",
-    "it": "Beneficio"
-  },
-  "bigGuns": {
-    "en": "Big Guns",
-    "it": "Armi Pesanti"
-  },
-  "body": {
-    "en": "Body",
-    "it": "Corpo"
-  },
-  "bootWelcome": {
-    "en": "WELCOME, OVERSEER",
-    "it": "BENVENUTO, SOVRINTENDENTE"
-  },
-  "boughtForCaps": {
-    "en": "Bought for {{caps}} caps!",
-    "it": "Comprato per {{caps}} tappi!"
-  },
-  "bows": {
-    "en": "Bows",
-    "it": "Archi"
-  },
-  "brotherhoodInitiate": {
-    "en": "Brotherhood Initiate",
-    "it": "Iniziato della CdA"
-  },
-  "brotherhoodOutcast": {
-    "en": "Brotherhood Outcast",
-    "it": "Reietto della CdA"
-  },
-  "buy": {
-    "en": "Buy",
-    "it": "Compra"
-  },
-  "buying": {
-    "en": "Buying",
-    "it": "Comprare"
-  },
-  "buyMods": {
-    "en": "Buy mods",
-    "it": "Compra mod"
-  },
-  "cancel": {
-    "en": "Cancel",
-    "it": "Annulla"
-  },
-  "cannotDeleteItem": {
-    "en": "Cannot delete this item!",
-    "it": "Non puoi eliminare questo oggetto!"
-  },
-  "cannotEquipRobotParts": {
-    "en": "Cannot equip robot parts on non-robots.",
-    "it": "Non puoi equipaggiare parti robot su non-robot."
-  },
-  "cannotSellItem": {
-    "en": "Cannot sell this item!",
-    "it": "Non puoi vendere questo oggetto!"
-  },
-  "caps": {
-    "en": "Caps",
-    "it": "Tappi"
-  },
-  "change": {
-    "en": "Change",
-    "it": "Cambia"
-  },
-  "characterImportSuccess": {
-    "en": "Character imported successfully!",
-    "it": "Personaggio importato con successo!"
-  },
-  "characters": {
-    "en": "Characters",
-    "it": "Personaggi"
-  },
-  "characterSlots": {
-    "en": "Character Slots",
-    "it": "Slot Personaggi"
-  },
-  "charisma": {
-    "en": "Charisma",
-    "it": "Carisma"
-  },
-  "childOfAtom": {
-    "en": "Child of Atom",
-    "it": "Figlio dell'Atomo"
-  },
-  "chooseItem": {
-    "en": "Choose an Item",
-    "it": "Scegli un oggetto"
-  },
-  "close": {
-    "en": "Close",
-    "it": "Chiudi"
-  },
-  "clothing": {
-    "en": "Clothing",
-    "it": "Vestiti"
-  },
-  "combatArmor": {
-    "en": "Combat Armor",
-    "it": "Arm. da Combattimento"
-  },
-  "companion": {
-    "en": "Companion",
-    "it": "Compagno"
-  },
-  "companionNamePlaceholder": {
-    "en": "Companion Name...",
-    "it": "Nome Compagno..."
-  },
-  "companionTypeBodyMind": {
-    "en": "BODY/MIND-based Companion",
-    "it": "Compagno basato su CORPO/MENTE"
-  },
-  "companionTypeSpecial": {
-    "en": "SPECIAL-based Companion",
-    "it": "Compagno basato su SPECIAL"
-  },
-  "complexity": {
-    "en": "Complexity",
-    "it": "Complessità"
-  },
-  "confirm": {
-    "en": "Confirm",
-    "it": "Conferma"
-  },
-  "choose": {
-    "en": "Choose",
-    "it": "Scelta"
-  },
-  "equipSide": {
-    "en": "On which side do you want to equip?",
-    "it": "Su che lato vuoi equipaggiarlo?"
-  },
-  "confirmDeleteCharacter": {
-    "en": "Are you really sure you want to DELETE YOUR CHARACTER?",
-    "it": "Sei davvero sicuro di voler ELIMINARE IL TUO PERSONAGGIO?"
-  },
-  "confirmDeleteItem": {
-    "en": "Delete {{quantity}}x {{itemName}}? This action cannot be undone.",
-    "it": "Eliminare {{quantity}}x {{itemName}}? Questa azione non può essere annullata."
-  },
-  "confirmGunFu": {
-    "en": "Use 1 AP and 1 ammo to activate Gun Fu?\n\nA second target at Close range will suffer the same damage.",
-    "it": "Usare 1 PA e 1 munizione per attivare Boom-Fu?\n\nUn secondo bersaglio a distanza ravvicinata subirà lo stesso danno."
-  },
-  "confirmSlayer": {
-    "en": "Spend 1 Luck point to activate Slayer?\n\nYou will immediately deal a critical hit and an injury at the hit location.",
-    "it": "Spendere 1 punto Fortuna per attivare Sterminatore?\n\nInfliggerai immediatamente un colpo critico e una ferita nel punto d’impatto."
-  },
-  "cost": {
-    "en": "Cost",
-    "it": "Costo"
-  },
-  "crit": {
-    "en": "Crit",
-    "it": "Critico"
-  },
-  "crtDisplayEffects": {
-    "en": "Display Effects",
-    "it": "Effetti Schermo"
-  },
-  "currency": {
-    "en": "Currency",
-    "it": "Valuta"
-  },
-  "current": {
-    "en": "Current",
-    "it": "Attuale"
-  },
-  "custom": {
-    "en": "Custom",
-    "it": "Personalizzati"
-  },
-  "customItem": {
-    "en": "Custom Item",
-    "it": "Oggetto Custom"
-  },
-  "damage": {
-    "en": "Damage",
-    "it": "Danni"
-  },
-  "damageDice": {
-    "en": "Damage Dice",
-    "it": "Dadi Danno"
-  },
-  "damagePoison": {
-    "en": "Poison",
-    "it": "Veleno"
-  },
-  "damageRating": {
-    "en": "Damage Rating",
-    "it": "Grado di Danno"
-  },
-  "damageReduction": {
-    "en": "DR",
-    "it": "RD"
-  },
-  "damageReductionFull": {
-    "en": "Damage Reduction",
-    "it": "Riduzione Danni"
-  },
-  "damageType": {
-    "en": "Damage Type",
-    "it": "Tipo di Danno"
-  },
-  "dataWipeAlert": {
-    "en": "Local data was wiped",
-    "it": "Dati locali eliminati"
-  },
-  "default_add_item_option": {
-    "en": "Select %s to Add",
-    "it": "Scegli %s da Aggiungere"
-  },
-  "defense": {
-    "en": "Defense",
-    "it": "Difesa"
-  },
-  "delete": {
-    "en": "Delete",
-    "it": "Elimina"
-  },
-  "deleteCharacterAlert": {
-    "en": "Are you really sure you want to DELETE YOUR CHARACTER and EVERY OTHER SAVED DATA?",
-    "it": "Sei davvero sicuro di CANCELLARE IL TUO PERSONAGGIO e OGNI ALTRO DATO SALVATO?"
-  },
-  "deleteMarker": {
-    "en": "Do you really want to delete the marker?",
-    "it": "Vuoi davvero eliminare l'indicatore?"
-  },
-  "derivedStats": {
-    "en": "Derived Stats",
-    "it": "Statistiche Derivate"
-  },
-  "description": {
-    "en": "Description",
-    "it": "Descrizione"
-  },
-  "descriptionOptional": {
-    "en": "Optional description...",
-    "it": "Descrizione opzionale..."
-  },
-  "diceToRoll": {
-    "en": "Dice to roll",
-    "it": "Dadi da lanciare"
-  },
-  "dismiss": {
-    "en": "Dismiss",
-    "it": "Chiudi"
-  },
-  "dog": {
-    "en": "Dog",
-    "it": "Cane"
-  },
-  "downloadPG": {
-    "en": "Download PG",
-    "it": "Scarica PG"
-  },
-  "drinks": {
-    "en": "Drinks",
-    "it": "Bevande"
-  },
-  "durationInstant": {
-    "en": "Instant",
-    "it": "Istantaneo"
-  },
-  "durationLasting": {
-    "en": "Lasting",
-    "it": "Durevole"
-  },
-  "durationShort": {
-    "en": "Short",
-    "it": "Breve"
-  },
-  "edit": {
-    "en": "Edit",
-    "it": "Modifica"
-  },
-  "editItemName": {
-    "en": "Edit item name",
-    "it": "Modifica nome oggetto"
-  },
-  "editStats": {
-    "en": "Edit Stats",
-    "it": "Modifica Statistiche"
-  },
-  "emptySlot": {
-    "en": "Empty Slot",
-    "it": "Slot Vuoto"
-  },
-  "endurance": {
-    "en": "Endurance",
-    "it": "Costituzione"
-  },
-  "energy": {
-    "en": "Energy",
-    "it": "Energia"
-  },
-  "energyRes": {
-    "en": "Energy Res",
-    "it": "Res. Energia"
-  },
-  "energyWeapons": {
-    "en": "Energy Weapons",
-    "it": "Armi a Energia"
-  },
-  "equipped": {
-    "en": "Equipped",
-    "it": "Equipaggiato"
-  },
-  "errorLoadingItems": {
-    "en": "Error loading items",
-    "it": "Errore nel caricamento oggetti"
-  },
-  "explosiveRes": {
-    "en": "Explosive Res",
-    "it": "Res. Esplosivi"
-  },
-  "explosives": {
-    "en": "Explosives",
-    "it": "Esplosivi"
-  },
-  "export": {
-    "en": "Export",
-    "it": "Esporta"
-  },
-  "extraHits": {
-    "en": "Extra Hits",
-    "it": "Colpi Extra"
-  },
-  "eyebot": {
-    "en": "Eyebot",
-    "it": "Eyebot"
-  },
-  "fallDamageRes": {
-    "en": "Fall Damage Res",
-    "it": "Res. Caduta"
-  },
-  "fileReadError": {
-    "en": "Error reading the file.",
-    "it": "Errore nella lettura del file."
-  },
-  "filterByRarity": {
-    "en": "Filter by rarity",
-    "it": "Filtra per rarità"
-  },
-  "filterByType": {
-    "en": "Filter by type",
-    "it": "Filtra per tipo"
-  },
-  "fireRate": {
-    "en": "Fire Rate",
-    "it": "Cadenza di Fuoco"
-  },
-  "food": {
-    "en": "Food",
-    "it": "Cibo"
-  },
-  "ghoul": {
-    "en": "Ghoul",
-    "it": "Ghoul"
-  },
-  "guns": {
-    "en": "Guns",
-    "it": "Proiettile"
-  },
-  "head": {
-    "en": "Head",
-    "it": "Testa"
-  },
-  "headgear": {
-    "en": "Headgear",
-    "it": "Copricapo"
-  },
-  "hitLocation": {
-    "en": "Hit Location",
-    "it": "Posizione Colpo"
-  },
-  "hitTorso": {
-    "en": "Hit Torso?",
-    "it": "Mirare al Torso?"
-  },
-  "hp": {
-    "en": "HP",
-    "it": "PS"
-  },
-  "hpDamageWarningToast": {
-    "en": "You suffered ≥5 points of damage. You may have suffered an injury.",
-    "it": "Hai subito ≥5 danni. Potresti aver riportato una ferita."
-  },
-  "humanoid": {
-    "en": "Humanoid",
-    "it": "Umanoide"
-  },
-  "immune": {
-    "en": "Immune",
-    "it": "Immune"
-  },
-  "import": {
-    "en": "Import",
-    "it": "Importa"
-  },
-  "importFailed": {
-    "en": "Import failed",
-    "it": "Importazione fallita"
-  },
-  "importPG": {
-    "en": "Import PG",
-    "it": "Importa PG"
-  },
-  "initiative": {
-    "en": "Initiative",
-    "it": "Iniziativa"
-  },
-  "intelligence": {
-    "en": "Intelligence",
-    "it": "Intelligenza"
-  },
-  "invalidCapsAlert": {
-    "en": "CAPS value is invalid!",
-    "it": "TAPPI non validi!"
-  },
-  "invalidCharacterFileError": {
-    "en": "Error: Invalid character file format.",
-    "it": "Errore: Formato file personaggio non valido."
-  },
-  "invalidHpAlert": {
-    "en": "HP value is invalid!",
-    "it": "HP non validi!"
-  },
-  "invalidJsonFileError": {
-    "en": "Error: The selected file is not a valid JSON file.",
-    "it": "Errore: Il file selezionato non è un file JSON valido."
-  },
-  "invalidLuckAlert": {
-    "en": "LUCK value is invalid!",
-    "it": "FORTUNA non valida!"
-  },
-  "itemDeleted": {
-    "en": "Item deleted.",
-    "it": "Oggetto eliminato."
-  },
-  "junk": {
-    "en": "Junk Materials",
-    "it": "Materiali"
-  },
-  "language": {
-    "en": "Language",
-    "it": "Lingua"
-  },
-  "leatherArmor": {
-    "en": "Leather Armor",
-    "it": "Arm. di Pelle"
-  },
-  "left": {
-    "en": "Left",
-    "it": "Sx"
-  },
-  "leftArm": {
-    "en": "Left Arm",
-    "it": "Braccio Sinistro"
-  },
-  "leftLeg": {
-    "en": "Left Leg",
-    "it": "Gamba Sinistra"
-  },
-  "leg": {
-    "en": "Leg",
-    "it": "Gamba"
-  },
-  "legendaryExterminatorArmor": {
-    "en": "Exterminator’s",
-    "it": "Sterminatore"
-  },
-  "legendaryExterminatorArmorDescription": {
-    "en": "+2 Physical and Energy DR against attacks from insect, arachnid, or mirelurk enemies.",
-    "it": "+2 alla RD Fisica ed Energia contro gli attacchi di insetti, aracnidi o mirelurk."
-  },
-  "legendaryExterminatorWeapon": {
-    "en": "Exterminator’s",
-    "it": "Sterminatore"
-  },
-  "legendaryExterminatorWeaponDescription": {
-    "en": "Attacks gain Vicious against insects, arachnids, and mirelurks. If already Vicious, inflict +2 damage per Effect instead of +1.",
-    "it": "Gli attacchi ottengono Letale contro insetti, aracnidi e mirelurk. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
-  },
-  "legendaryGhoulSlayerArmor": {
-    "en": "Ghoul Slayer’s",
-    "it": "Sterminatore di Ghoul"
-  },
-  "legendaryGhoulSlayerArmorDescription": {
-    "en": "+2 Physical, Energy, and Radiation DR against attacks from ghoul enemies.",
-    "it": "+2 alla RD Fisica, Energia e Radiazioni contro gli attacchi dei ghoul."
-  },
-  "legendaryGhoulSlayerWeapon": {
-    "en": "Ghoul Slayer’s",
-    "it": "Sterminatore di Ghoul"
-  },
-  "legendaryGhoulSlayerWeaponDescription": {
-    "en": "Attacks gain Vicious against ghouls. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
-    "it": "Gli attacchi ottengono Letale contro i ghoul. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
-  },
-  "legendaryHunterArmor": {
-    "en": "Hunter’s",
-    "it": "Cacciatore"
-  },
-  "legendaryHunterArmorDescription": {
-    "en": "Provides +2 Physical and Energy DR against attacks from mammal or lizard enemies.",
-    "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi di mammiferi o lucertole."
-  },
-  "legendaryHunterWeapon": {
-    "en": "Hunter’s",
-    "it": "Cacciatore"
-  },
-  "legendaryHunterWeaponDescription": {
-    "en": "Attacks gain Vicious against mammals and lizards. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
-    "it": "Gli attacchi ottengono Letale contro mammiferi e lucertole. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
-  },
-  "legendaryIncendiaryArmor": {
-    "en": "Incendiary",
-    "it": "Incendiario"
-  },
-  "legendaryIncendiaryArmorDescription": {
-    "en": "Enemy melee attacks increase complication range by 1; on complication, attacker suffers X CD Persistent Energy damage (X = damage dice).",
-    "it": "Gli attacchi in mischia nemici aumentano l'intervallo di complicazione di 1; con una complicazione, l'attaccante subisce X DC di danno Persistente (Energia)."
-  },
-  "legendaryIncendiaryWeapon": {
-    "en": "Incendiary",
-    "it": "Incendiario"
-  },
-  "legendaryIncendiaryWeaponDescription": {
-    "en": "This weapon gains the Persistent (Energy) damage effect.",
-    "it": "Quest'arma ottiene l'effetto danno Persistente (Energia)."
-  },
-  "legendaryMutantSlayerArmor": {
-    "en": "Mutant Slayer’s",
-    "it": "Sterminatore di Mutanti"
-  },
-  "legendaryMutantSlayerArmorDescription": {
-    "en": "Provides +2 Physical and Energy DR against attacks from super mutant enemies.",
-    "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi dei supermutanti."
-  },
-  "legendaryMutantSlayerWeapon": {
-    "en": "Mutant Slayer’s",
-    "it": "Sterminatore di Mutanti"
-  },
-  "legendaryMutantSlayerWeaponDescription": {
-    "en": "Attacks gain Vicious against super mutants. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
-    "it": "Gli attacchi ottengono Letale contro i supermutanti. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
-  },
-  "legendaryTroubleshooterArmor": {
-    "en": "Troubleshooter’s",
-    "it": "Risolutore"
-  },
-  "legendaryTroubleshooterArmorDescription": {
-    "en": "Provides +2 Physical and Energy DR against attacks from robot enemies.",
-    "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi dei robot."
-  },
-  "legendaryTroubleshooterWeapon": {
-    "en": "Troubleshooter’s",
-    "it": "Risolutore"
-  },
-  "legendaryTroubleshooterWeaponDescription": {
-    "en": "Attacks gain Vicious against robots. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
-    "it": "Gli attacchi ottengono Letale contro i robot. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
-  },
-  "legionaryArmor": {
-    "en": "Legionary Armor",
-    "it": "Arm. da Legionario"
-  },
-  "legionDenarius": {
-    "en": "Legion Denarius",
-    "it": "Legion Denarius"
-  },
-  "legs": {
-    "en": "Legs",
-    "it": "Gambe"
-  },
-  "level": {
-    "en": "Level",
-    "it": "Livello"
-  },
-  "loadingItems": {
-    "en": "Loading items...",
-    "it": "Caricamento oggetti..."
-  },
-  "localDataWiped": {
-    "en": "Local data was wiped",
-    "it": "I dati locali sono stati cancellati"
-  },
-  "lockpick": {
-    "en": "Lockpick",
-    "it": "Scassinare"
-  },
-  "luck": {
-    "en": "Luck",
-    "it": "Fortuna"
-  },
-  "luckCost": {
-    "en": "Luck Cost",
-    "it": "Costo Fortuna"
-  },
-  "marineArmor": {
-    "en": "Marine Armor",
-    "it": "Arm. Marine"
-  },
-  "medicine": {
-    "en": "Medicine",
-    "it": "Medicina"
-  },
-  "meds": {
-    "en": "Medicine",
-    "it": "Medicine"
-  },
-  "melee": {
-    "en": "Melee",
-    "it": "Mischia"
-  },
-  "melee-damage": {
-    "en": "Melee Damage",
-    "it": "Danno in Mischia"
-  },
-  "meleeDamage": {
-    "en": "Melee Damage",
-    "it": "Danno Mischia"
-  },
-  "meleeRes": {
-    "en": "Melee Res",
-    "it": "Res. Mischia"
-  },
-  "meleeWeapons": {
-    "en": "Melee Weapons",
-    "it": "Armi da Mischia"
-  },
-  "meltdownResult": {
-    "en": "{{effectCount}} enemies hit for {{effectCount}} Energy damage each!",
-    "it": "{{effectCount}} nemici colpiti per {{effectCount}} danni da Energia ciascuno!"
-  },
-  "meltdownRollDice": {
-    "en": "Roll {{diceCount}} Combat Dice",
-    "it": "Lancia {{diceCount}} Dadi Combattimento"
-  },
-  "meltdownTitle": {
-    "en": "Meltdown - Enemy Explosion",
-    "it": "Meltdown - Esplosione Nemica"
-  },
-  "metalArmor": {
-    "en": "Metal Armor",
-    "it": "Arm. di Metallo"
-  },
-  "mind": {
-    "en": "Mind",
-    "it": "Mente"
-  },
-  "minutemen": {
-    "en": "Minutemen",
-    "it": "Minutemen"
-  },
-  "misc": {
-    "en": "Miscellaneous",
-    "it": "Miscellanea"
-  },
-  "modEffects": {
-    "en": "Mod Effects",
-    "it": "Effetti Mod"
-  },
-  "modHeavyTireIron": {
-    "en": "Heavy Tire Iron",
-    "it": "Leva Pesante"
-  },
-  "modHeavyTireIronDescription": {
-    "en": "+1 damage DC",
-    "it": "+1 danno DC"
-  },
-  "modify": {
-    "en": "Modify",
-    "it": "Modifica"
-  },
-  "modifyItem": {
-    "en": "Modify Item",
-    "it": "Modifica Oggetto"
-  },
-  "modSlotBallisticWeave": {
-    "en": "Ballistic Weave",
-    "it": "Trama Balistica"
-  },
-  "modSlotBarrel": {
-    "en": "Barrel",
-    "it": "Canna"
-  },
-  "modSlotCapacitor": {
-    "en": "Capacitor",
-    "it": "Condensatore"
-  },
-  "modSlotDish": {
-    "en": "Dish",
-    "it": "Disco"
-  },
-  "modSlotFuel": {
-    "en": "Fuel",
-    "it": "Combustibile"
-  },
-  "modSlotGrip": {
-    "en": "Grip",
-    "it": "Impugnatura"
-  },
-  "modSlotImprovement": {
-    "en": "Improvement",
-    "it": "Miglioramento"
-  },
-  "modSlotLegendary": {
-    "en": "Legendary Eff.",
-    "it": "Eff. Leggendario"
-  },
-  "modSlotLining": {
-    "en": "Lining",
-    "it": "Fodera"
-  },
-  "modSlotMagazine": {
-    "en": "Magazine",
-    "it": "Caricatore"
-  },
-  "modSlotMaterial": {
-    "en": "Material",
-    "it": "Materiale"
-  },
-  "modSlotMelee": {
-    "en": "Melee Mod",
-    "it": "Mod Mischia"
-  },
-  "modSlotMisc": {
-    "en": "Misc",
-    "it": "Varie"
-  },
-  "modSlotMuzzle": {
-    "en": "Muzzle",
-    "it": "Bocca"
-  },
-  "modSlotNozzle": {
-    "en": "Nozzle",
-    "it": "Ugello"
-  },
-  "modSlotPropellantTank": {
-    "en": "Propellant Tank",
-    "it": "Serbatoio Propellente"
-  },
-  "modSlotReceiver": {
-    "en": "Receiver",
-    "it": "Castello"
-  },
-  "modSlotRobotArmor": {
-    "en": "Armor",
-    "it": "Armatura"
-  },
-  "modSlotRobotModule": {
-    "en": "Module {{number}}",
-    "it": "Modulo {{number}}"
-  },
-  "modSlotRobotPlating": {
-    "en": "Plating",
-    "it": "Placcatura"
-  },
-  "modSlotSight": {
-    "en": "Sight",
-    "it": "Mirino"
-  },
-  "modSlotStock": {
-    "en": "Stock",
-    "it": "Calcio"
-  },
-  "modSlotVaultSuit": {
-    "en": "Vault Suit Lining",
-    "it": "Fodera Tuta Vault"
-  },
-  "modSlotWeave": {
-    "en": "Weave",
-    "it": "Trama"
-  },
-  "modSpikedTireIron": {
-    "en": "Spiked Tire Iron",
-    "it": "Leva Chiodata"
-  },
-  "modSpikedTireIronDescription": {
-    "en": "+1 damage DC, gains Piercing 1",
-    "it": "+1 danno DC, ottiene Penetrante 1"
-  },
-  "mrHandy": {
-    "en": "Mr. Handy",
-    "it": "Mr. Handy"
-  },
-  "mrHandyWeapons": {
-    "en": "Mr Handy Weapons",
-    "it": "Armi Mr Handy"
-  },
-  "na": {
-    "en": "N/A",
-    "it": "N/A"
-  },
-  "name": {
-    "en": "Name",
-    "it": "Nome"
-  },
-  "namePlaceholder": {
-    "en": "Character Name...",
-    "it": "Nome Personaggio..."
-  },
-  "ncr": {
-    "en": "NCR",
-    "it": "NCR"
-  },
-  "ncrDollars": {
-    "en": "NCR Dollars",
-    "it": "Dollari NCR"
-  },
-  "nightkin": {
-    "en": "Nightkin",
-    "it": "Nightkin"
-  },
-  "noCharacterInSlot": {
-    "en": "No character in this slot",
-    "it": "Nessun personaggio in questo slot"
-  },
-  "noDescription": {
-    "en": "No description available",
-    "it": "Nessuna descrizione disponibile"
-  },
-  "noFlicker": {
-    "en": "No Flicker",
-    "it": "Stabile"
-  },
-  "noItems": {
-    "en": "No items",
-    "it": "Nessun oggetto"
-  },
-  "noItemsFound": {
-    "en": "No items found",
-    "it": "Nessun oggetto trovato"
-  },
-  "noModsApplied": {
-    "en": "No mods applied",
-    "it": "Nessuna mod applicata"
-  },
-  "noModsAvailable": {
-    "en": "No compatible mods in inventory",
-    "it": "Nessuna mod compatibile nell'inventario"
-  },
-  "none": {
-    "en": "-",
-    "it": "-"
-  },
-  "noPerk": {
-    "en": "No Perk",
-    "it": "Nessun Talento"
-  },
-  "noPerksAvailable": {
-    "en": "No perks available",
-    "it": "Nessun perk disponibile"
-  },
-  "notEnoughAmmoAlert": {
-    "en": "You don't have enough AMMO to do it!",
-    "it": "Non hai abbastanza MUNIZIONI per farlo!"
-  },
-  "notEnoughCaps": {
-    "en": "Not enough caps!",
-    "it": "Tappi insufficienti!"
-  },
-  "notEnoughLuckAlert": {
-    "en": "You don't have enough LUCK to do it!",
-    "it": "Non hai abbastanza FORTUNA per farlo!"
-  },
-  "noTrait": {
-    "en": "No Trait",
-    "it": "Nessun Tratto"
-  },
-  "noTraitsAvailable": {
-    "en": "No traits available",
-    "it": "Nessun tratto disponibile"
-  },
-  "off": {
-    "en": "Off",
-    "it": "Off"
-  },
-  "on": {
-    "en": "On",
-    "it": "On"
-  },
-  "origin": {
-    "en": "Origin",
-    "it": "Origine"
-  },
-  "originTraits": {
-    "en": "Origin Traits",
-    "it": "Tratti dell'Origine"
-  },
-  "other": {
-    "en": "Other",
-    "it": "Altro"
-  },
-  "outfit": {
-    "en": "Outfit",
-    "it": "Completi"
-  },
-  "penalty": {
-    "en": "Penalty",
-    "it": "Penalità"
-  },
-  "perception": {
-    "en": "Perception",
-    "it": "Percezione"
-  },
-  "perkAttackDog": {
-    "en": "Attack Dog",
-    "it": "Cane da Attacco"
-  },
-  "perkAttackDogDescription": {
-    "en": "Your companion dog is trained for combat. Attacks deal +1 damage.",
-    "it": "Il tuo cane compagno è addestrato per il combattimento. Gli attacchi infliggono +1 danno."
-  },
-  "perkLoyalCompanion": {
-    "en": "Loyal Companion",
-    "it": "Compagno Leale"
-  },
-  "perkLoyalCompanionDescription": {
-    "en": "Your companion will never abandon you. Immune to fear effects.",
-    "it": "Il tuo compagno non ti abbandonerà mai. Immune agli effetti di paura."
-  },
-  "perkPackMule": {
-    "en": "Pack Mule",
-    "it": "Mulo da Soma"
-  },
-  "perkPackMuleDescription": {
-    "en": "Your companion can carry extra weight. Increases carry capacity by 25kg.",
-    "it": "Il tuo compagno può trasportare peso extra. Aumenta la capacità di carico di 25kg."
-  },
-  "perkProtector": {
-    "en": "Protector",
-    "it": "Protettore"
-  },
-  "perkProtectorDescription": {
-    "en": "Your companion shields you from harm. Grants +1 DR to all damage types when nearby.",
-    "it": "Il tuo compagno ti protegge dal pericolo. Garantisce +1 RD a tutti i tipi di danno quando è vicino."
-  },
-  "perkRepairBot": {
-    "en": "Repair Bot",
-    "it": "Robot Riparatore"
-  },
-  "perkRepairBotDescription": {
-    "en": "Your companion can perform basic repairs. Can repair items in the field.",
-    "it": "Il tuo compagno può eseguire riparazioni di base. Può riparare oggetti sul campo."
-  },
-  "perks": {
-    "en": "Perks",
-    "it": "Talenti"
-  },
-  "perkScout": {
-    "en": "Scout",
-    "it": "Esploratore"
-  },
-  "perkScoutDescription": {
-    "en": "Your companion has keen senses. Grants +2 to Perception checks when scouting.",
-    "it": "Il tuo compagno ha sensi acuti. Garantisce +2 alle prove di Percezione durante l'esplorazione."
-  },
-  "physical": {
-    "en": "Physical",
-    "it": "Fisici"
-  },
-  "physicalRes": {
-    "en": "Physical Res",
-    "it": "Res. Fisica"
-  },
-  "pilot": {
-    "en": "Pilot",
-    "it": "Pilotare"
-  },
-  "poison": {
-    "en": "Poison",
-    "it": "Veleno"
-  },
-  "prewarMoney": {
-    "en": "Pre-war Money",
-    "it": "Denaro Prebellico"
-  },
-  "price": {
-    "en": "Price",
-    "it": "Prezzo"
-  },
-  "protectron": {
-    "en": "Protectron",
-    "it": "Protectron"
-  },
-  "protects": {
-    "en": "Protects",
-    "it": "Protegge"
-  },
-  "quantity": {
-    "en": "Quantity",
-    "it": "Quantità"
-  },
-  "radiation": {
-    "en": "Rads",
-    "it": "Rads"
-  },
-  "radiationRes": {
-    "en": "Radiation Res",
-    "it": "Res. Radiazioni"
-  },
-  "raiderArmor": {
-    "en": "Raider Armor",
-    "it": "Arm. da Predone"
-  },
-  "range": {
-    "en": "Range",
-    "it": "Gittata"
-  },
-  "rangeC": {
-    "en": "C",
-    "it": "R"
-  },
-  "rangeCFull": {
-    "en": "Close",
-    "it": "Ravvicinata"
-  },
-  "rangeE": {
-    "en": "E",
-    "it": "E"
-  },
-  "rangeEFull": {
-    "en": "Extreme",
-    "it": "Estrema"
-  },
-  "rangeL": {
-    "en": "L",
-    "it": "L"
-  },
-  "rangeLFull": {
-    "en": "Long",
-    "it": "Lunga"
-  },
-  "rangeM": {
-    "en": "M",
-    "it": "M"
-  },
-  "rangeMFull": {
-    "en": "Medium",
-    "it": "Media"
-  },
-  "rangeR": {
-    "en": "R",
-    "it": "P"
-  },
-  "rangeRFull": {
-    "en": "Reach",
-    "it": "Portata"
-  },
-  "rarity": {
-    "en": "Rarity",
-    "it": "Rarità"
-  },
-  "rarity0": {
-    "en": "Very Common (0)",
-    "it": "Molto Comune (0)"
-  },
-  "rarity1": {
-    "en": "Common (1)",
-    "it": "Comune (1)"
-  },
-  "rarity2": {
-    "en": "Uncommon (2)",
-    "it": "Non Comune (2)"
-  },
-  "rarity3": {
-    "en": "Rare (3)",
-    "it": "Raro (3)"
-  },
-  "rarity4": {
-    "en": "Very Rare (4)",
-    "it": "Molto Raro (4)"
-  },
-  "rarity5": {
-    "en": "Legendary (5)",
-    "it": "Leggendario (5)"
-  },
-  "rarity6": {
-    "en": "Mythical (6)",
-    "it": "Mitico (6)"
-  },
-  "rate": {
-    "en": "Rate",
-    "it": "Tasso"
-  },
-  "remove": {
-    "en": "Remove",
-    "it": "Rimuovi"
-  },
-  "removes": {
-    "en": "Removes",
-    "it": "Rimuove"
-  },
-  "repair": {
-    "en": "Repair",
-    "it": "Riparare"
-  },
-  "replenishLuckAlert": {
-    "en": "Do you really want to replenish luck?",
-    "it": "Vuoi davvero ripristinare la tua fortuna?"
-  },
-  "replenishLuckConfirm": {
-    "en": "Replenish luck to maximum?",
-    "it": "Ripristinare la fortuna al massimo?"
-  },
-  "reroll": {
-    "en": "Reroll",
-    "it": "Rilancia"
-  },
-  "rerollHitLocation": {
-    "en": "Reroll Hit Location",
-    "it": "Rilancia Posizione Colpo"
-  },
-  "resetMemory": {
-    "en": "RESET MEMORY",
-    "it": "RESET MEMORIA"
-  },
-  "right": {
-    "en": "Right",
-    "it": "Dx"
-  },
-  "rightArm": {
-    "en": "Right Arm",
-    "it": "Braccio Destro"
-  },
-  "rightLeg": {
-    "en": "Right Leg",
-    "it": "Gamba Destra"
-  },
-  "robobrain": {
-    "en": "Robobrain",
-    "it": "Robobrain"
-  },
-  "robotPart": {
-    "en": "Robot Parts",
-    "it": "Parti Robot"
-  },
-  "robotPartArm1": {
-    "en": "Arm 1",
-    "it": "Braccio 1"
-  },
-  "robotPartArm2": {
-    "en": "Arm 2",
-    "it": "Braccio 2"
-  },
-  "robotPartArm3": {
-    "en": "Arm 3",
-    "it": "Braccio 3"
-  },
-  "robotsCannotEquipApparel": {
-    "en": "Robots cannot equip/unequip apparel.",
-    "it": "I robot non possono equipaggiare/rimuovere abbigliamento."
-  },
-  "roll": {
-    "en": "Roll",
-    "it": "Lancia"
-  },
-  "save": {
-    "en": "Save",
-    "it": "Salva"
-  },
-  "science": {
-    "en": "Science",
-    "it": "Scienza"
-  },
-  "scoutArmor": {
-    "en": "Scout Armor",
-    "it": "Arm. Scout"
-  },
-  "searchItems": {
-    "en": "Search items...",
-    "it": "Cerca oggetti..."
-  },
-  "securitron": {
-    "en": "Securitron",
-    "it": "Securitron"
-  },
-  "selectableTraits": {
-    "en": "Selectable Traits",
-    "it": "Tratti Selezionabili"
-  },
-  "selectDiceAlert": {
-    "en": "Select some dice to (re)roll!",
-    "it": "Seleziona dei dadi da (ri)lanciare!"
-  },
-  "selectPerk": {
-    "en": "Select Perk",
-    "it": "Seleziona Talento"
-  },
-  "selectTrait": {
-    "en": "Select Trait",
-    "it": "Seleziona Tratto"
-  },
-  "selling": {
-    "en": "Selling",
-    "it": "Vendere"
-  },
-  "settings": {
-    "en": "Settings",
-    "it": "Impostazioni"
-  },
-  "showDescription": {
-    "en": "Show Description",
-    "it": "Mostra Descrizione"
-  },
-  "showUnavailable": {
-    "en": "Show unavailable perks",
-    "it": "Mostra talenti non disponibili"
-  },
-  "skill": {
-    "en": "Ability",
-    "it": "Abilità"
-  },
-  "skills": {
-    "en": "Skills",
-    "it": "Abilità"
-  },
-  "smallGuns": {
-    "en": "Small Guns",
-    "it": "Armi Leggere"
-  },
-  "sneak": {
-    "en": "Sneak",
-    "it": "Furtività"
-  },
-  "sneakAttack": {
-    "en": "Sneak Attack",
-    "it": "Attacco Furtivo"
-  },
-  "soldForCaps": {
-    "en": "Sold for {{caps}} caps!",
-    "it": "Venduto per {{caps}} tappi!"
-  },
-  "sortByLevel": {
-    "en": "Sort by Level",
-    "it": "Ordina per Livello"
-  },
-  "sortByName": {
-    "en": "Sort by name",
-    "it": "Ordina per nome"
-  },
-  "sortByNumber": {
-    "en": "Sort by damage/DR/HP",
-    "it": "Ordina per danno/RD/HP"
-  },
-  "sortByRarity": {
-    "en": "Sort by rarity",
-    "it": "Ordina per rarità"
-  },
-  "sortByTotal": {
-    "en": "Sort by Total Requirements",
-    "it": "Ordina per Requisiti Totali"
-  },
-  "special": {
-    "en": "S.P.E.C.I.A.L.",
-    "it": "S.P.E.C.I.A.L."
-  },
-  "speech": {
-    "en": "Speech",
-    "it": "Oratoria"
-  },
-  "stopEditing": {
-    "en": "Stop Editing",
-    "it": "Smetti di Modificare"
-  },
-  "strength": {
-    "en": "Strength",
-    "it": "Forza"
-  },
-  "successes": {
-    "en": "Successes",
-    "it": "Successi"
-  },
-  "summonStranger": {
-    "en": "Summon Stranger (Luck)",
-    "it": "Evoca Alleato (Fortuna)"
-  },
-  "superMutant": {
-    "en": "Super Mutant",
-    "it": "Supermutante"
-  },
-  "survival": {
-    "en": "Survival",
-    "it": "Sopravvivenza"
-  },
-  "survivor": {
-    "en": "Survivor",
-    "it": "Sopravvissuto"
-  },
-  "synth": {
-    "en": "Gen 3 Synth",
-    "it": "Gen 3 Synth"
-  },
-  "syntheticArmor": {
-    "en": "Synthetic Armor",
-    "it": "Armatura da Sintentico"
-  },
-  "target": {
-    "en": "Target",
-    "it": "Target"
-  },
-  "theme": {
-    "en": "Theme",
-    "it": "Tema"
-  },
-  "throwing": {
-    "en": "Throwing",
-    "it": "Lanciare"
-  },
-  "torso": {
-    "en": "Torso",
-    "it": "Torso"
-  },
-  "total": {
-    "en": "Total",
-    "it": "Totale"
-  },
-  "totalCost": {
-    "en": "Total Cost",
-    "it": "Costo Totale"
-  },
-  "totalDamage": {
-    "en": "Total Damage",
-    "it": "Danno Totale"
-  },
-  "totalEffects": {
-    "en": "Total Effects",
-    "it": "Effetti Totali"
-  },
-  "traits": {
-    "en": "Traits",
-    "it": "Tratti"
-  },
-  "tribal": {
-    "en": "Tribal",
-    "it": "Tribale"
-  },
-  "type": {
-    "en": "Type",
-    "it": "Tipo"
-  },
-  "unarmed": {
-    "en": "Unarmed",
-    "it": "Senza Armi"
-  },
-  "unarmedDamage": {
-    "en": "Unarmed Damage",
-    "it": "Danno Senz'Armi"
-  },
-  "unlock": {
-    "en": "Unlock",
-    "it": "Sblocca"
-  },
-  "updateAvailable": {
-    "en": "New version available!",
-    "it": "Nuova versione disponibile!"
-  },
-  "updateNow": {
-    "en": "Update",
-    "it": "Aggiorna"
-  },
-  "useFunctionalityComingSoon": {
-    "en": "Use functionality coming soon!",
-    "it": "Funzionalità di utilizzo in arrivo!"
-  },
-  "vaultDweller": {
-    "en": "Vault Dweller",
-    "it": "Abitante del Vault"
-  },
-  "vaultTecSecurity": {
-    "en": "Vault-Tec Security Armor",
-    "it": "Arm. Sicurezza VaultTec"
-  },
-  "warning": {
-    "en": "Warning",
-    "it": "Attenzione"
-  },
-  "weapon": {
-    "en": "Weapons",
-    "it": "Armi"
-  },
-  "weaponId": {
-    "en": "Weapon",
-    "it": "Arma"
-  },
-  "weight": {
-    "en": "Weight",
-    "it": "Peso"
-  }
+    "activate": {
+        "en": "Activate",
+        "it": "Attiva"
+    },
+    "activeCharacter": {
+        "en": "Active Character",
+        "it": "Personaggio Attivo"
+    },
+    "addItem": {
+        "en": "Add Item",
+        "it": "Aggiungi Oggetto"
+    },
+    "addPerk": {
+        "en": "Add Perk",
+        "it": "Aggiungi Talento"
+    },
+    "adds": {
+        "en": "Adds",
+        "it": "Aggiunge"
+    },
+    "addTrait": {
+        "en": "Add Trait",
+        "it": "Aggiungi Tratto"
+    },
+    "agility": {
+        "en": "Agility",
+        "it": "Agilità"
+    },
+    "aid": {
+        "en": "Aid",
+        "it": "Aiuto"
+    },
+    "aim": {
+        "en": "Aim",
+        "it": "Mirare"
+    },
+    "all": {
+        "en": "All",
+        "it": "Tutti"
+    },
+    "ammo": {
+        "en": "Ammo",
+        "it": "Muniz."
+    },
+    "ammoCost": {
+        "en": "Ammo Cost",
+        "it": "Cost Muniz."
+    },
+    "ammoType": {
+        "en": "Ammo Type",
+        "it": "Tipo di Muniz."
+    },
+    "ammoUsedBy": {
+        "en": "Ammo used by",
+        "it": "Muniz. usate da"
+    },
+    "amount": {
+        "en": "Amount",
+        "it": "Quantità"
+    },
+    "anything": {
+        "en": "Anything",
+        "it": "Qualsiasi cosa"
+    },
+    "ap": {
+        "en": "AP",
+        "it": "PA"
+    },
+    "apCost": {
+        "en": "AP Cost",
+        "it": "Costo PA"
+    },
+    "apparel": {
+        "en": "Apparel",
+        "it": "Abbigl."
+    },
+    "applied": {
+        "en": "Applied",
+        "it": "Applicata"
+    },
+    "appliedMods": {
+        "en": "Applied Mods",
+        "it": "Mod Applicate"
+    },
+    "apply": {
+        "en": "Apply",
+        "it": "Applica"
+    },
+    "arm": {
+        "en": "Arm",
+        "it": "Braccio"
+    },
+    "armor": {
+        "en": "Armor",
+        "it": "Armatura"
+    },
+    "arms": {
+        "en": "Arms",
+        "it": "Braccia"
+    },
+    "assaultron": {
+        "en": "Assaultron",
+        "it": "Assaultron"
+    },
+    "athletics": {
+        "en": "Athletics",
+        "it": "Atletica"
+    },
+    "attacks": {
+        "en": "Attacks",
+        "it": "Attacchi"
+    },
+    "availableMods": {
+        "en": "Available Mods",
+        "it": "Mod Disponibili"
+    },
+    "availableSkillPoints": {
+        "en": "Skill Points",
+        "it": "Punti Skill"
+    },
+    "availableSpecial": {
+        "en": "S.P.E.C.I.A.L. Points",
+        "it": "Punti S.P.E.C.I.A.L."
+    },
+    "availableSpecialtyPoints": {
+        "en": "Specialty Pt",
+        "it": "Pt. Specialità"
+    },
+    "backgroundPlaceholder": {
+        "en": "Write your background here...",
+        "it": "Scrivi il tuo background qui..."
+    },
+    "backToList": {
+        "en": "List",
+        "it": "Lista"
+    },
+    "barter": {
+        "en": "Barter",
+        "it": "Commercio"
+    },
+    "benefit": {
+        "en": "Benefit",
+        "it": "Beneficio"
+    },
+    "bigGuns": {
+        "en": "Big Guns",
+        "it": "Armi Pesanti"
+    },
+    "body": {
+        "en": "Body",
+        "it": "Corpo"
+    },
+    "bootWelcome": {
+        "en": "WELCOME, OVERSEER",
+        "it": "BENVENUTO, SOVRINTENDENTE"
+    },
+    "boughtForCaps": {
+        "en": "Bought for {{caps}} caps!",
+        "it": "Comprato per {{caps}} tappi!"
+    },
+    "bows": {
+        "en": "Bows",
+        "it": "Archi"
+    },
+    "brotherhoodInitiate": {
+        "en": "Brotherhood Initiate",
+        "it": "Iniziato della CdA"
+    },
+    "brotherhoodOutcast": {
+        "en": "Brotherhood Outcast",
+        "it": "Reietto della CdA"
+    },
+    "buy": {
+        "en": "Buy",
+        "it": "Compra"
+    },
+    "buying": {
+        "en": "Buying",
+        "it": "Comprare"
+    },
+    "buyMods": {
+        "en": "Buy mods",
+        "it": "Compra mod"
+    },
+    "cancel": {
+        "en": "Cancel",
+        "it": "Annulla"
+    },
+    "cannotDeleteItem": {
+        "en": "Cannot delete this item!",
+        "it": "Non puoi eliminare questo oggetto!"
+    },
+    "cannotSellItem": {
+        "en": "Cannot sell this item!",
+        "it": "Non puoi vendere questo oggetto!"
+    },
+    "caps": {
+        "en": "Caps",
+        "it": "Tappi"
+    },
+    "change": {
+        "en": "Change",
+        "it": "Cambia"
+    },
+    "characterImportSuccess": {
+        "en": "Character imported successfully!",
+        "it": "Personaggio importato con successo!"
+    },
+    "characters": {
+        "en": "Characters",
+        "it": "Personaggi"
+    },
+    "characterSlots": {
+        "en": "Character Slots",
+        "it": "Slot Personaggi"
+    },
+    "charisma": {
+        "en": "Charisma",
+        "it": "Carisma"
+    },
+    "childOfAtom": {
+        "en": "Child of Atom",
+        "it": "Figlio dell'Atomo"
+    },
+    "chooseItem": {
+        "en": "Choose an Item",
+        "it": "Scegli un oggetto"
+    },
+    "close": {
+        "en": "Close",
+        "it": "Chiudi"
+    },
+    "clothing": {
+        "en": "Clothing",
+        "it": "Vestiti"
+    },
+    "combatArmor": {
+        "en": "Combat Armor",
+        "it": "Arm. da Combattimento"
+    },
+    "companion": {
+        "en": "Companion",
+        "it": "Compagno"
+    },
+    "companionNamePlaceholder": {
+        "en": "Companion Name...",
+        "it": "Nome Compagno..."
+    },
+    "companionTypeBodyMind": {
+        "en": "BODY/MIND-based Companion",
+        "it": "Compagno basato su CORPO/MENTE"
+    },
+    "companionTypeSpecial": {
+        "en": "SPECIAL-based Companion",
+        "it": "Compagno basato su SPECIAL"
+    },
+    "complexity": {
+        "en": "Complexity",
+        "it": "Complessità"
+    },
+    "confirm": {
+        "en": "Confirm",
+        "it": "Conferma"
+    },
+    "choose": {
+        "en": "Choose",
+        "it": "Scelta"
+    },
+    "equipSide": {
+        "en": "On which side do you want to equip?",
+        "it": "Su che lato vuoi equipaggiarlo?"
+    },
+    "confirmDeleteCharacter": {
+        "en": "Are you really sure you want to DELETE YOUR CHARACTER?",
+        "it": "Sei davvero sicuro di voler ELIMINARE IL TUO PERSONAGGIO?"
+    },
+    "confirmDeleteItem": {
+        "en": "Delete {{quantity}}x {{itemName}}? This action cannot be undone.",
+        "it": "Eliminare {{quantity}}x {{itemName}}? Questa azione non può essere annullata."
+    },
+    "confirmGunFu": {
+        "en": "Use 1 AP and 1 ammo to activate Gun Fu?\n\nA second target at Close range will suffer the same damage.",
+        "it": "Usare 1 PA e 1 munizione per attivare Boom-Fu?\n\nUn secondo bersaglio a distanza ravvicinata subirà lo stesso danno."
+    },
+    "confirmSlayer": {
+        "en": "Spend 1 Luck point to activate Slayer?\n\nYou will immediately deal a critical hit and an injury at the hit location.",
+        "it": "Spendere 1 punto Fortuna per attivare Sterminatore?\n\nInfliggerai immediatamente un colpo critico e una ferita nel punto d’impatto."
+    },
+    "cost": {
+        "en": "Cost",
+        "it": "Costo"
+    },
+    "crit": {
+        "en": "Crit",
+        "it": "Critico"
+    },
+    "crtDisplayEffects": {
+        "en": "Display Effects",
+        "it": "Effetti Schermo"
+    },
+    "currency": {
+        "en": "Currency",
+        "it": "Valuta"
+    },
+    "current": {
+        "en": "Current",
+        "it": "Attuale"
+    },
+    "custom": {
+        "en": "Custom",
+        "it": "Personalizzati"
+    },
+    "customItem": {
+        "en": "Custom Item",
+        "it": "Oggetto Custom"
+    },
+    "damage": {
+        "en": "Damage",
+        "it": "Danni"
+    },
+    "damageDice": {
+        "en": "Damage Dice",
+        "it": "Dadi Danno"
+    },
+    "damagePoison": {
+        "en": "Poison",
+        "it": "Veleno"
+    },
+    "damageRating": {
+        "en": "Damage Rating",
+        "it": "Grado di Danno"
+    },
+    "damageReduction": {
+        "en": "DR",
+        "it": "RD"
+    },
+    "damageReductionFull": {
+        "en": "Damage Reduction",
+        "it": "Riduzione Danni"
+    },
+    "damageType": {
+        "en": "Damage Type",
+        "it": "Tipo di Danno"
+    },
+    "dataWipeAlert": {
+        "en": "Local data was wiped",
+        "it": "Dati locali eliminati"
+    },
+    "default_add_item_option": {
+        "en": "Select %s to Add",
+        "it": "Scegli %s da Aggiungere"
+    },
+    "defense": {
+        "en": "Defense",
+        "it": "Difesa"
+    },
+    "delete": {
+        "en": "Delete",
+        "it": "Elimina"
+    },
+    "deleteCharacterAlert": {
+        "en": "Are you really sure you want to DELETE YOUR CHARACTER and EVERY OTHER SAVED DATA?",
+        "it": "Sei davvero sicuro di CANCELLARE IL TUO PERSONAGGIO e OGNI ALTRO DATO SALVATO?"
+    },
+    "deleteMarker": {
+        "en": "Do you really want to delete the marker?",
+        "it": "Vuoi davvero eliminare l'indicatore?"
+    },
+    "derivedStats": {
+        "en": "Derived Stats",
+        "it": "Statistiche Derivate"
+    },
+    "description": {
+        "en": "Description",
+        "it": "Descrizione"
+    },
+    "descriptionOptional": {
+        "en": "Optional description...",
+        "it": "Descrizione opzionale..."
+    },
+    "diceToRoll": {
+        "en": "Dice to roll",
+        "it": "Dadi da lanciare"
+    },
+    "dismiss": {
+        "en": "Dismiss",
+        "it": "Chiudi"
+    },
+    "dog": {
+        "en": "Dog",
+        "it": "Cane"
+    },
+    "downloadPG": {
+        "en": "Download PG",
+        "it": "Scarica PG"
+    },
+    "drinks": {
+        "en": "Drinks",
+        "it": "Bevande"
+    },
+    "durationInstant": {
+        "en": "Instant",
+        "it": "Istantaneo"
+    },
+    "durationLasting": {
+        "en": "Lasting",
+        "it": "Durevole"
+    },
+    "durationShort": {
+        "en": "Short",
+        "it": "Breve"
+    },
+    "edit": {
+        "en": "Edit",
+        "it": "Modifica"
+    },
+    "editItemName": {
+        "en": "Edit item name",
+        "it": "Modifica nome oggetto"
+    },
+    "editStats": {
+        "en": "Edit Stats",
+        "it": "Modifica Statistiche"
+    },
+    "emptySlot": {
+        "en": "Empty Slot",
+        "it": "Slot Vuoto"
+    },
+    "endurance": {
+        "en": "Endurance",
+        "it": "Costituzione"
+    },
+    "energy": {
+        "en": "Energy",
+        "it": "Energia"
+    },
+    "energyRes": {
+        "en": "Energy Res",
+        "it": "Res. Energia"
+    },
+    "energyWeapons": {
+        "en": "Energy Weapons",
+        "it": "Armi a Energia"
+    },
+    "equipped": {
+        "en": "Equipped",
+        "it": "Equipaggiato"
+    },
+    "errorLoadingItems": {
+        "en": "Error loading items",
+        "it": "Errore nel caricamento oggetti"
+    },
+    "explosiveRes": {
+        "en": "Explosive Res",
+        "it": "Res. Esplosivi"
+    },
+    "explosives": {
+        "en": "Explosives",
+        "it": "Esplosivi"
+    },
+    "export": {
+        "en": "Export",
+        "it": "Esporta"
+    },
+    "extraHits": {
+        "en": "Extra Hits",
+        "it": "Colpi Extra"
+    },
+    "eyebot": {
+        "en": "Eyebot",
+        "it": "Eyebot"
+    },
+    "fallDamageRes": {
+        "en": "Fall Damage Res",
+        "it": "Res. Caduta"
+    },
+    "fileReadError": {
+        "en": "Error reading the file.",
+        "it": "Errore nella lettura del file."
+    },
+    "filterByRarity": {
+        "en": "Filter by rarity",
+        "it": "Filtra per rarità"
+    },
+    "filterByType": {
+        "en": "Filter by type",
+        "it": "Filtra per tipo"
+    },
+    "fireRate": {
+        "en": "Fire Rate",
+        "it": "Cadenza di Fuoco"
+    },
+    "food": {
+        "en": "Food",
+        "it": "Cibo"
+    },
+    "ghoul": {
+        "en": "Ghoul",
+        "it": "Ghoul"
+    },
+    "guns": {
+        "en": "Guns",
+        "it": "Proiettile"
+    },
+    "head": {
+        "en": "Head",
+        "it": "Testa"
+    },
+    "headgear": {
+        "en": "Headgear",
+        "it": "Copricapo"
+    },
+    "hitLocation": {
+        "en": "Hit Location",
+        "it": "Posizione Colpo"
+    },
+    "hitTorso": {
+        "en": "Hit Torso?",
+        "it": "Mirare al Torso?"
+    },
+    "hp": {
+        "en": "HP",
+        "it": "PS"
+    },
+    "hpDamageWarningToast": {
+        "en": "You suffered ≥5 points of damage. You may have suffered an injury.",
+        "it": "Hai subito ≥5 danni. Potresti aver riportato una ferita."
+    },
+    "humanoid": {
+        "en": "Humanoid",
+        "it": "Umanoide"
+    },
+    "immune": {
+        "en": "Immune",
+        "it": "Immune"
+    },
+    "import": {
+        "en": "Import",
+        "it": "Importa"
+    },
+    "importFailed": {
+        "en": "Import failed",
+        "it": "Importazione fallita"
+    },
+    "importPG": {
+        "en": "Import PG",
+        "it": "Importa PG"
+    },
+    "initiative": {
+        "en": "Initiative",
+        "it": "Iniziativa"
+    },
+    "intelligence": {
+        "en": "Intelligence",
+        "it": "Intelligenza"
+    },
+    "invalidCapsAlert": {
+        "en": "CAPS value is invalid!",
+        "it": "TAPPI non validi!"
+    },
+    "invalidCharacterFileError": {
+        "en": "Error: Invalid character file format.",
+        "it": "Errore: Formato file personaggio non valido."
+    },
+    "invalidHpAlert": {
+        "en": "HP value is invalid!",
+        "it": "HP non validi!"
+    },
+    "invalidJsonFileError": {
+        "en": "Error: The selected file is not a valid JSON file.",
+        "it": "Errore: Il file selezionato non è un file JSON valido."
+    },
+    "invalidLuckAlert": {
+        "en": "LUCK value is invalid!",
+        "it": "FORTUNA non valida!"
+    },
+    "itemDeleted": {
+        "en": "Item deleted.",
+        "it": "Oggetto eliminato."
+    },
+    "junk": {
+        "en": "Junk Materials",
+        "it": "Materiali"
+    },
+    "language": {
+        "en": "Language",
+        "it": "Lingua"
+    },
+    "leatherArmor": {
+        "en": "Leather Armor",
+        "it": "Arm. di Pelle"
+    },
+    "left": {
+        "en": "Left",
+        "it": "Sx"
+    },
+    "leftArm": {
+        "en": "Left Arm",
+        "it": "Braccio Sinistro"
+    },
+    "leftLeg": {
+        "en": "Left Leg",
+        "it": "Gamba Sinistra"
+    },
+    "leg": {
+        "en": "Leg",
+        "it": "Gamba"
+    },
+    "legendaryExterminatorArmor": {
+        "en": "Exterminator’s",
+        "it": "Sterminatore"
+    },
+    "legendaryExterminatorArmorDescription": {
+        "en": "+2 Physical and Energy DR against attacks from insect, arachnid, or mirelurk enemies.",
+        "it": "+2 alla RD Fisica ed Energia contro gli attacchi di insetti, aracnidi o mirelurk."
+    },
+    "legendaryExterminatorWeapon": {
+        "en": "Exterminator’s",
+        "it": "Sterminatore"
+    },
+    "legendaryExterminatorWeaponDescription": {
+        "en": "Attacks gain Vicious against insects, arachnids, and mirelurks. If already Vicious, inflict +2 damage per Effect instead of +1.",
+        "it": "Gli attacchi ottengono Letale contro insetti, aracnidi e mirelurk. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+    },
+    "legendaryGhoulSlayerArmor": {
+        "en": "Ghoul Slayer’s",
+        "it": "Sterminatore di Ghoul"
+    },
+    "legendaryGhoulSlayerArmorDescription": {
+        "en": "+2 Physical, Energy, and Radiation DR against attacks from ghoul enemies.",
+        "it": "+2 alla RD Fisica, Energia e Radiazioni contro gli attacchi dei ghoul."
+    },
+    "legendaryGhoulSlayerWeapon": {
+        "en": "Ghoul Slayer’s",
+        "it": "Sterminatore di Ghoul"
+    },
+    "legendaryGhoulSlayerWeaponDescription": {
+        "en": "Attacks gain Vicious against ghouls. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
+        "it": "Gli attacchi ottengono Letale contro i ghoul. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+    },
+    "legendaryHunterArmor": {
+        "en": "Hunter’s",
+        "it": "Cacciatore"
+    },
+    "legendaryHunterArmorDescription": {
+        "en": "Provides +2 Physical and Energy DR against attacks from mammal or lizard enemies.",
+        "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi di mammiferi o lucertole."
+    },
+    "legendaryHunterWeapon": {
+        "en": "Hunter’s",
+        "it": "Cacciatore"
+    },
+    "legendaryHunterWeaponDescription": {
+        "en": "Attacks gain Vicious against mammals and lizards. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
+        "it": "Gli attacchi ottengono Letale contro mammiferi e lucertole. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+    },
+    "legendaryIncendiaryArmor": {
+        "en": "Incendiary",
+        "it": "Incendiario"
+    },
+    "legendaryIncendiaryArmorDescription": {
+        "en": "Enemy melee attacks increase complication range by 1; on complication, attacker suffers X CD Persistent Energy damage (X = damage dice).",
+        "it": "Gli attacchi in mischia nemici aumentano l'intervallo di complicazione di 1; con una complicazione, l'attaccante subisce X DC di danno Persistente (Energia)."
+    },
+    "legendaryIncendiaryWeapon": {
+        "en": "Incendiary",
+        "it": "Incendiario"
+    },
+    "legendaryIncendiaryWeaponDescription": {
+        "en": "This weapon gains the Persistent (Energy) damage effect.",
+        "it": "Quest'arma ottiene l'effetto danno Persistente (Energia)."
+    },
+    "legendaryMutantSlayerArmor": {
+        "en": "Mutant Slayer’s",
+        "it": "Sterminatore di Mutanti"
+    },
+    "legendaryMutantSlayerArmorDescription": {
+        "en": "Provides +2 Physical and Energy DR against attacks from super mutant enemies.",
+        "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi dei supermutanti."
+    },
+    "legendaryMutantSlayerWeapon": {
+        "en": "Mutant Slayer’s",
+        "it": "Sterminatore di Mutanti"
+    },
+    "legendaryMutantSlayerWeaponDescription": {
+        "en": "Attacks gain Vicious against super mutants. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
+        "it": "Gli attacchi ottengono Letale contro i supermutanti. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+    },
+    "legendaryTroubleshooterArmor": {
+        "en": "Troubleshooter’s",
+        "it": "Risolutore"
+    },
+    "legendaryTroubleshooterArmorDescription": {
+        "en": "Provides +2 Physical and Energy DR against attacks from robot enemies.",
+        "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi dei robot."
+    },
+    "legendaryTroubleshooterWeapon": {
+        "en": "Troubleshooter’s",
+        "it": "Risolutore"
+    },
+    "legendaryTroubleshooterWeaponDescription": {
+        "en": "Attacks gain Vicious against robots. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
+        "it": "Gli attacchi ottengono Letale contro i robot. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+    },
+    "legionaryArmor": {
+        "en": "Legionary Armor",
+        "it": "Arm. da Legionario"
+    },
+    "legionDenarius": {
+        "en": "Legion Denarius",
+        "it": "Legion Denarius"
+    },
+    "legs": {
+        "en": "Legs",
+        "it": "Gambe"
+    },
+    "level": {
+        "en": "Level",
+        "it": "Livello"
+    },
+    "loadingItems": {
+        "en": "Loading items...",
+        "it": "Caricamento oggetti..."
+    },
+    "localDataWiped": {
+        "en": "Local data was wiped",
+        "it": "I dati locali sono stati cancellati"
+    },
+    "lockpick": {
+        "en": "Lockpick",
+        "it": "Scassinare"
+    },
+    "luck": {
+        "en": "Luck",
+        "it": "Fortuna"
+    },
+    "luckCost": {
+        "en": "Luck Cost",
+        "it": "Costo Fortuna"
+    },
+    "marineArmor": {
+        "en": "Marine Armor",
+        "it": "Arm. Marine"
+    },
+    "medicine": {
+        "en": "Medicine",
+        "it": "Medicina"
+    },
+    "meds": {
+        "en": "Medicine",
+        "it": "Medicine"
+    },
+    "melee": {
+        "en": "Melee",
+        "it": "Mischia"
+    },
+    "melee-damage": {
+        "en": "Melee Damage",
+        "it": "Danno in Mischia"
+    },
+    "meleeDamage": {
+        "en": "Melee Damage",
+        "it": "Danno Mischia"
+    },
+    "meleeRes": {
+        "en": "Melee Res",
+        "it": "Res. Mischia"
+    },
+    "meleeWeapons": {
+        "en": "Melee Weapons",
+        "it": "Armi da Mischia"
+    },
+    "meltdownResult": {
+        "en": "{{effectCount}} enemies hit for {{effectCount}} Energy damage each!",
+        "it": "{{effectCount}} nemici colpiti per {{effectCount}} danni da Energia ciascuno!"
+    },
+    "meltdownRollDice": {
+        "en": "Roll {{diceCount}} Combat Dice",
+        "it": "Lancia {{diceCount}} Dadi Combattimento"
+    },
+    "meltdownTitle": {
+        "en": "Meltdown - Enemy Explosion",
+        "it": "Meltdown - Esplosione Nemica"
+    },
+    "metalArmor": {
+        "en": "Metal Armor",
+        "it": "Arm. di Metallo"
+    },
+    "mind": {
+        "en": "Mind",
+        "it": "Mente"
+    },
+    "minutemen": {
+        "en": "Minutemen",
+        "it": "Minutemen"
+    },
+    "misc": {
+        "en": "Miscellaneous",
+        "it": "Miscellanea"
+    },
+    "modEffects": {
+        "en": "Mod Effects",
+        "it": "Effetti Mod"
+    },
+    "modHeavyTireIron": {
+        "en": "Heavy Tire Iron",
+        "it": "Leva Pesante"
+    },
+    "modHeavyTireIronDescription": {
+        "en": "+1 damage DC",
+        "it": "+1 danno DC"
+    },
+    "modify": {
+        "en": "Modify",
+        "it": "Modifica"
+    },
+    "modifyItem": {
+        "en": "Modify Item",
+        "it": "Modifica Oggetto"
+    },
+    "modSlotBallisticWeave": {
+        "en": "Ballistic Weave",
+        "it": "Trama Balistica"
+    },
+    "modSlotBarrel": {
+        "en": "Barrel",
+        "it": "Canna"
+    },
+    "modSlotCapacitor": {
+        "en": "Capacitor",
+        "it": "Condensatore"
+    },
+    "modSlotDish": {
+        "en": "Dish",
+        "it": "Disco"
+    },
+    "modSlotFuel": {
+        "en": "Fuel",
+        "it": "Combustibile"
+    },
+    "modSlotGrip": {
+        "en": "Grip",
+        "it": "Impugnatura"
+    },
+    "modSlotImprovement": {
+        "en": "Improvement",
+        "it": "Miglioramento"
+    },
+    "modSlotLegendary": {
+        "en": "Legendary Eff.",
+        "it": "Eff. Leggendario"
+    },
+    "modSlotLining": {
+        "en": "Lining",
+        "it": "Fodera"
+    },
+    "modSlotMagazine": {
+        "en": "Magazine",
+        "it": "Caricatore"
+    },
+    "modSlotMaterial": {
+        "en": "Material",
+        "it": "Materiale"
+    },
+    "modSlotMelee": {
+        "en": "Melee Mod",
+        "it": "Mod Mischia"
+    },
+    "modSlotMisc": {
+        "en": "Misc",
+        "it": "Varie"
+    },
+    "modSlotMuzzle": {
+        "en": "Muzzle",
+        "it": "Bocca"
+    },
+    "modSlotNozzle": {
+        "en": "Nozzle",
+        "it": "Ugello"
+    },
+    "modSlotPropellantTank": {
+        "en": "Propellant Tank",
+        "it": "Serbatoio Propellente"
+    },
+    "modSlotReceiver": {
+        "en": "Receiver",
+        "it": "Castello"
+    },
+    "modSlotRobotArmor": {
+        "en": "Armor",
+        "it": "Armatura"
+    },
+    "modSlotRobotModule": {
+        "en": "Module {{number}}",
+        "it": "Modulo {{number}}"
+    },
+    "modSlotRobotPlating": {
+        "en": "Plating",
+        "it": "Placcatura"
+    },
+    "modSlotSight": {
+        "en": "Sight",
+        "it": "Mirino"
+    },
+    "modSlotStock": {
+        "en": "Stock",
+        "it": "Calcio"
+    },
+    "modSlotVaultSuit": {
+        "en": "Vault Suit Lining",
+        "it": "Fodera Tuta Vault"
+    },
+    "modSlotWeave": {
+        "en": "Weave",
+        "it": "Trama"
+    },
+    "modSpikedTireIron": {
+        "en": "Spiked Tire Iron",
+        "it": "Leva Chiodata"
+    },
+    "modSpikedTireIronDescription": {
+        "en": "+1 damage DC, gains Piercing 1",
+        "it": "+1 danno DC, ottiene Penetrante 1"
+    },
+    "mrHandy": {
+        "en": "Mr. Handy",
+        "it": "Mr. Handy"
+    },
+    "mrHandyWeapons": {
+        "en": "Mr Handy Weapons",
+        "it": "Armi Mr Handy"
+    },
+    "na": {
+        "en": "N/A",
+        "it": "N/A"
+    },
+    "name": {
+        "en": "Name",
+        "it": "Nome"
+    },
+    "namePlaceholder": {
+        "en": "Character Name...",
+        "it": "Nome Personaggio..."
+    },
+    "ncr": {
+        "en": "NCR",
+        "it": "NCR"
+    },
+    "ncrDollars": {
+        "en": "NCR Dollars",
+        "it": "Dollari NCR"
+    },
+    "nightkin": {
+        "en": "Nightkin",
+        "it": "Nightkin"
+    },
+    "noCharacterInSlot": {
+        "en": "No character in this slot",
+        "it": "Nessun personaggio in questo slot"
+    },
+    "noDescription": {
+        "en": "No description available",
+        "it": "Nessuna descrizione disponibile"
+    },
+    "noFlicker": {
+        "en": "No Flicker",
+        "it": "Stabile"
+    },
+    "noItems": {
+        "en": "No items",
+        "it": "Nessun oggetto"
+    },
+    "noItemsFound": {
+        "en": "No items found",
+        "it": "Nessun oggetto trovato"
+    },
+    "noModsApplied": {
+        "en": "No mods applied",
+        "it": "Nessuna mod applicata"
+    },
+    "noModsAvailable": {
+        "en": "No compatible mods in inventory",
+        "it": "Nessuna mod compatibile nell'inventario"
+    },
+    "none": {
+        "en": "-",
+        "it": "-"
+    },
+    "noPerk": {
+        "en": "No Perk",
+        "it": "Nessun Talento"
+    },
+    "noPerksAvailable": {
+        "en": "No perks available",
+        "it": "Nessun perk disponibile"
+    },
+    "notEnoughAmmoAlert": {
+        "en": "You don't have enough AMMO to do it!",
+        "it": "Non hai abbastanza MUNIZIONI per farlo!"
+    },
+    "notEnoughCaps": {
+        "en": "Not enough caps!",
+        "it": "Tappi insufficienti!"
+    },
+    "notEnoughLuckAlert": {
+        "en": "You don't have enough LUCK to do it!",
+        "it": "Non hai abbastanza FORTUNA per farlo!"
+    },
+    "noTrait": {
+        "en": "No Trait",
+        "it": "Nessun Tratto"
+    },
+    "noTraitsAvailable": {
+        "en": "No traits available",
+        "it": "Nessun tratto disponibile"
+    },
+    "off": {
+        "en": "Off",
+        "it": "Off"
+    },
+    "on": {
+        "en": "On",
+        "it": "On"
+    },
+    "origin": {
+        "en": "Origin",
+        "it": "Origine"
+    },
+    "originTraits": {
+        "en": "Origin Traits",
+        "it": "Tratti dell'Origine"
+    },
+    "other": {
+        "en": "Other",
+        "it": "Altro"
+    },
+    "outfit": {
+        "en": "Outfit",
+        "it": "Completi"
+    },
+    "penalty": {
+        "en": "Penalty",
+        "it": "Penalità"
+    },
+    "perception": {
+        "en": "Perception",
+        "it": "Percezione"
+    },
+    "perkAttackDog": {
+        "en": "Attack Dog",
+        "it": "Cane da Attacco"
+    },
+    "perkAttackDogDescription": {
+        "en": "Your companion dog is trained for combat. Attacks deal +1 damage.",
+        "it": "Il tuo cane compagno è addestrato per il combattimento. Gli attacchi infliggono +1 danno."
+    },
+    "perkLoyalCompanion": {
+        "en": "Loyal Companion",
+        "it": "Compagno Leale"
+    },
+    "perkLoyalCompanionDescription": {
+        "en": "Your companion will never abandon you. Immune to fear effects.",
+        "it": "Il tuo compagno non ti abbandonerà mai. Immune agli effetti di paura."
+    },
+    "perkPackMule": {
+        "en": "Pack Mule",
+        "it": "Mulo da Soma"
+    },
+    "perkPackMuleDescription": {
+        "en": "Your companion can carry extra weight. Increases carry capacity by 25kg.",
+        "it": "Il tuo compagno può trasportare peso extra. Aumenta la capacità di carico di 25kg."
+    },
+    "perkProtector": {
+        "en": "Protector",
+        "it": "Protettore"
+    },
+    "perkProtectorDescription": {
+        "en": "Your companion shields you from harm. Grants +1 DR to all damage types when nearby.",
+        "it": "Il tuo compagno ti protegge dal pericolo. Garantisce +1 RD a tutti i tipi di danno quando è vicino."
+    },
+    "perkRepairBot": {
+        "en": "Repair Bot",
+        "it": "Robot Riparatore"
+    },
+    "perkRepairBotDescription": {
+        "en": "Your companion can perform basic repairs. Can repair items in the field.",
+        "it": "Il tuo compagno può eseguire riparazioni di base. Può riparare oggetti sul campo."
+    },
+    "perks": {
+        "en": "Perks",
+        "it": "Talenti"
+    },
+    "perkScout": {
+        "en": "Scout",
+        "it": "Esploratore"
+    },
+    "perkScoutDescription": {
+        "en": "Your companion has keen senses. Grants +2 to Perception checks when scouting.",
+        "it": "Il tuo compagno ha sensi acuti. Garantisce +2 alle prove di Percezione durante l'esplorazione."
+    },
+    "physical": {
+        "en": "Physical",
+        "it": "Fisici"
+    },
+    "physicalRes": {
+        "en": "Physical Res",
+        "it": "Res. Fisica"
+    },
+    "pilot": {
+        "en": "Pilot",
+        "it": "Pilotare"
+    },
+    "poison": {
+        "en": "Poison",
+        "it": "Veleno"
+    },
+    "prewarMoney": {
+        "en": "Pre-war Money",
+        "it": "Denaro Prebellico"
+    },
+    "price": {
+        "en": "Price",
+        "it": "Prezzo"
+    },
+    "protectron": {
+        "en": "Protectron",
+        "it": "Protectron"
+    },
+    "protects": {
+        "en": "Protects",
+        "it": "Protegge"
+    },
+    "quantity": {
+        "en": "Quantity",
+        "it": "Quantità"
+    },
+    "radiation": {
+        "en": "Rads",
+        "it": "Rads"
+    },
+    "radiationRes": {
+        "en": "Radiation Res",
+        "it": "Res. Radiazioni"
+    },
+    "raiderArmor": {
+        "en": "Raider Armor",
+        "it": "Arm. da Predone"
+    },
+    "range": {
+        "en": "Range",
+        "it": "Gittata"
+    },
+    "rangeC": {
+        "en": "C",
+        "it": "R"
+    },
+    "rangeCFull": {
+        "en": "Close",
+        "it": "Ravvicinata"
+    },
+    "rangeE": {
+        "en": "E",
+        "it": "E"
+    },
+    "rangeEFull": {
+        "en": "Extreme",
+        "it": "Estrema"
+    },
+    "rangeL": {
+        "en": "L",
+        "it": "L"
+    },
+    "rangeLFull": {
+        "en": "Long",
+        "it": "Lunga"
+    },
+    "rangeM": {
+        "en": "M",
+        "it": "M"
+    },
+    "rangeMFull": {
+        "en": "Medium",
+        "it": "Media"
+    },
+    "rangeR": {
+        "en": "R",
+        "it": "P"
+    },
+    "rangeRFull": {
+        "en": "Reach",
+        "it": "Portata"
+    },
+    "rarity": {
+        "en": "Rarity",
+        "it": "Rarità"
+    },
+    "rarity0": {
+        "en": "Very Common (0)",
+        "it": "Molto Comune (0)"
+    },
+    "rarity1": {
+        "en": "Common (1)",
+        "it": "Comune (1)"
+    },
+    "rarity2": {
+        "en": "Uncommon (2)",
+        "it": "Non Comune (2)"
+    },
+    "rarity3": {
+        "en": "Rare (3)",
+        "it": "Raro (3)"
+    },
+    "rarity4": {
+        "en": "Very Rare (4)",
+        "it": "Molto Raro (4)"
+    },
+    "rarity5": {
+        "en": "Legendary (5)",
+        "it": "Leggendario (5)"
+    },
+    "rarity6": {
+        "en": "Mythical (6)",
+        "it": "Mitico (6)"
+    },
+    "rate": {
+        "en": "Rate",
+        "it": "Tasso"
+    },
+    "remove": {
+        "en": "Remove",
+        "it": "Rimuovi"
+    },
+    "removes": {
+        "en": "Removes",
+        "it": "Rimuove"
+    },
+    "repair": {
+        "en": "Repair",
+        "it": "Riparare"
+    },
+    "replenishLuckAlert": {
+        "en": "Do you really want to replenish luck?",
+        "it": "Vuoi davvero ripristinare la tua fortuna?"
+    },
+    "replenishLuckConfirm": {
+        "en": "Replenish luck to maximum?",
+        "it": "Ripristinare la fortuna al massimo?"
+    },
+    "reroll": {
+        "en": "Reroll",
+        "it": "Rilancia"
+    },
+    "rerollHitLocation": {
+        "en": "Reroll Hit Location",
+        "it": "Rilancia Posizione Colpo"
+    },
+    "resetMemory": {
+        "en": "RESET MEMORY",
+        "it": "RESET MEMORIA"
+    },
+    "right": {
+        "en": "Right",
+        "it": "Dx"
+    },
+    "rightArm": {
+        "en": "Right Arm",
+        "it": "Braccio Destro"
+    },
+    "rightLeg": {
+        "en": "Right Leg",
+        "it": "Gamba Destra"
+    },
+    "robobrain": {
+        "en": "Robobrain",
+        "it": "Robobrain"
+    },
+    "robotPart": {
+        "en": "Robot Parts",
+        "it": "Parti Robot"
+    },
+    "robotPartArm1": {
+        "en": "Arm 1",
+        "it": "Braccio 1"
+    },
+    "robotPartArm2": {
+        "en": "Arm 2",
+        "it": "Braccio 2"
+    },
+    "robotPartArm3": {
+        "en": "Arm 3",
+        "it": "Braccio 3"
+    },
+    "roll": {
+        "en": "Roll",
+        "it": "Lancia"
+    },
+    "save": {
+        "en": "Save",
+        "it": "Salva"
+    },
+    "science": {
+        "en": "Science",
+        "it": "Scienza"
+    },
+    "scoutArmor": {
+        "en": "Scout Armor",
+        "it": "Arm. Scout"
+    },
+    "searchItems": {
+        "en": "Search items...",
+        "it": "Cerca oggetti..."
+    },
+    "securitron": {
+        "en": "Securitron",
+        "it": "Securitron"
+    },
+    "selectableTraits": {
+        "en": "Selectable Traits",
+        "it": "Tratti Selezionabili"
+    },
+    "selectDiceAlert": {
+        "en": "Select some dice to (re)roll!",
+        "it": "Seleziona dei dadi da (ri)lanciare!"
+    },
+    "selectPerk": {
+        "en": "Select Perk",
+        "it": "Seleziona Talento"
+    },
+    "selectTrait": {
+        "en": "Select Trait",
+        "it": "Seleziona Tratto"
+    },
+    "selling": {
+        "en": "Selling",
+        "it": "Vendere"
+    },
+    "settings": {
+        "en": "Settings",
+        "it": "Impostazioni"
+    },
+    "region": {
+        "en": "Region",
+        "it": "Regione"
+    },
+    "showDescription": {
+        "en": "Show Description",
+        "it": "Mostra Descrizione"
+    },
+    "showUnavailable": {
+        "en": "Show unavailable perks",
+        "it": "Mostra talenti non disponibili"
+    },
+    "skill": {
+        "en": "Ability",
+        "it": "Abilità"
+    },
+    "skills": {
+        "en": "Skills",
+        "it": "Abilità"
+    },
+    "smallGuns": {
+        "en": "Small Guns",
+        "it": "Armi Leggere"
+    },
+    "sneak": {
+        "en": "Sneak",
+        "it": "Furtività"
+    },
+    "sneakAttack": {
+        "en": "Sneak Attack",
+        "it": "Attacco Furtivo"
+    },
+    "soldForCaps": {
+        "en": "Sold for {{caps}} caps!",
+        "it": "Venduto per {{caps}} tappi!"
+    },
+    "sortByLevel": {
+        "en": "Sort by Level",
+        "it": "Ordina per Livello"
+    },
+    "sortByName": {
+        "en": "Sort by name",
+        "it": "Ordina per nome"
+    },
+    "sortByNumber": {
+        "en": "Sort by damage/DR/HP",
+        "it": "Ordina per danno/RD/HP"
+    },
+    "sortByRarity": {
+        "en": "Sort by rarity",
+        "it": "Ordina per rarità"
+    },
+    "sortByTotal": {
+        "en": "Sort by Total Requirements",
+        "it": "Ordina per Requisiti Totali"
+    },
+    "special": {
+        "en": "S.P.E.C.I.A.L.",
+        "it": "S.P.E.C.I.A.L."
+    },
+    "speech": {
+        "en": "Speech",
+        "it": "Oratoria"
+    },
+    "stopEditing": {
+        "en": "Stop Editing",
+        "it": "Smetti di Modificare"
+    },
+    "strength": {
+        "en": "Strength",
+        "it": "Forza"
+    },
+    "successes": {
+        "en": "Successes",
+        "it": "Successi"
+    },
+    "summonStranger": {
+        "en": "Summon Stranger (Luck)",
+        "it": "Evoca Alleato (Fortuna)"
+    },
+    "superMutant": {
+        "en": "Super Mutant",
+        "it": "Supermutante"
+    },
+    "survival": {
+        "en": "Survival",
+        "it": "Sopravvivenza"
+    },
+    "survivor": {
+        "en": "Survivor",
+        "it": "Sopravvissuto"
+    },
+    "synth": {
+        "en": "Gen 3 Synth",
+        "it": "Gen 3 Synth"
+    },
+    "syntheticArmor": {
+        "en": "Synthetic Armor",
+        "it": "Armatura da Sintentico"
+    },
+    "target": {
+        "en": "Target",
+        "it": "Target"
+    },
+    "theme": {
+        "en": "Theme",
+        "it": "Tema"
+    },
+    "throwing": {
+        "en": "Throwing",
+        "it": "Lanciare"
+    },
+    "torso": {
+        "en": "Torso",
+        "it": "Torso"
+    },
+    "total": {
+        "en": "Total",
+        "it": "Totale"
+    },
+    "threeFamilies": {
+        "en": "Three Families",
+        "it": "Le Tre Famiglie"
+    },
+    "enclaveRemnant": {
+        "en": "Enclave Remnant",
+        "it": "Superstite dell’Enclave"
+    },
+    "courier": {
+        "en": "Courier",
+        "it": "Corriere"
+    },
+    "followerOfTheApocalypse": {
+        "en": "Follower of the Apocalypse",
+        "it": "Seguace dell’Apocalisse"
+    },
+    "totalCost": {
+        "en": "Total Cost",
+        "it": "Costo Totale"
+    },
+    "totalDamage": {
+        "en": "Total Damage",
+        "it": "Danno Totale"
+    },
+    "totalEffects": {
+        "en": "Total Effects",
+        "it": "Effetti Totali"
+    },
+    "traits": {
+        "en": "Traits",
+        "it": "Tratti"
+    },
+    "tribal": {
+        "en": "Tribal",
+        "it": "Tribale"
+    },
+    "type": {
+        "en": "Type",
+        "it": "Tipo"
+    },
+    "unarmed": {
+        "en": "Unarmed",
+        "it": "Senza Armi"
+    },
+    "unarmedDamage": {
+        "en": "Unarmed Damage",
+        "it": "Danno Senz'Armi"
+    },
+    "unlock": {
+        "en": "Unlock",
+        "it": "Sblocca"
+    },
+    "updateAvailable": {
+        "en": "New version available!",
+        "it": "Nuova versione disponibile!"
+    },
+    "updateNow": {
+        "en": "Update",
+        "it": "Aggiorna"
+    },
+    "useFunctionalityComingSoon": {
+        "en": "Use functionality coming soon!",
+        "it": "Funzionalità di utilizzo in arrivo!"
+    },
+    "vaultDweller": {
+        "en": "Vault Dweller",
+        "it": "Abitante del Vault"
+    },
+    "viperInitiate": {
+        "en": "Viper Initiate",
+        "it": "Iniziato dei Vipers"
+    },
+    "vaultTecSecurity": {
+        "en": "Vault-Tec Security Armor",
+        "it": "Arm. Sicurezza VaultTec"
+    },
+    "warning": {
+        "en": "Warning",
+        "it": "Attenzione"
+    },
+    "weapon": {
+        "en": "Weapons",
+        "it": "Armi"
+    },
+    "weaponId": {
+        "en": "Weapon",
+        "it": "Arma"
+    },
+    "weight": {
+        "en": "Weight",
+        "it": "Peso"
+    }
 }

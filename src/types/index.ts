@@ -122,17 +122,19 @@ export interface RawCharacter {
     companions: Partial<Record<CompanionId, CompanionData>>; // Optional companion data
 }
 
-export interface Character extends Omit<RawCharacter, 'origin' | 'activeCompanionId' | 'saveVersion'> {
+export interface Character
+    extends Omit<RawCharacter, 'origin' | 'activeCompanionId' | 'saveVersion'> {
     origin: Origin;
 
     skillPoints: number;
     specialPoints: number;
-    specialtyPoints: { generic: number, bonus: { remaining: number, skills: SkillType[] } []; };
+    specialtyPoints: { generic: number; bonus: { remaining: number; skills: SkillType[] }[] };
 
     maxHp: number;
     currentHp: number;
     maxLuck: number;
     currentLuck: number;
+    poisonResistance: number;
 
     companion?: CompanionData | undefined; // Optional companion data
 

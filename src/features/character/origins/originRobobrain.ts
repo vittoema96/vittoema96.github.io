@@ -5,9 +5,7 @@ const originRobobrain: Origin = {
     ...DEFAULT_ORIGIN,
     id: 'robobrain' as const,
     // TODO model Mesmetron and whether normal weapons are allowed.
-    getMaxWeightBase: () => 150 / 2,
-    hasRadiationImmunity: true,
-    hasPoisonImmunity: true,
+    allowsPerkAndTraitWeightModifiers: false,
     isRobot: true,
     needsSpecializedArmor: true,
     needsSpecializedWeapons: true,

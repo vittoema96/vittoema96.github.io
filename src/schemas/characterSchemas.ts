@@ -2,10 +2,7 @@ import { z } from 'zod';
 import { COMPANION_IDS, LEFT, RIGHT } from '@/types';
 import { ORIGIN_IDS } from '@/features/character/origins/types';
 import { ITEM_CATEGORIES, ITEM_TYPES } from '@/types/item.ts';
-import {
-    SPECIAL,
-    SpecialType,
-} from '@/features/character/special/special.ts';
+import { SPECIAL, SpecialType } from '@/features/character/special/special.ts';
 import {
     COMPANION_SKILLS,
     CompanionSkillType,
@@ -33,77 +30,81 @@ const SpecialMapSchema = z.object(
 const SkillMapSchema = z.object(
     SKILLS.reduce(
         (map, key) => {
-            map[key] = z.number().int()
-                .min(0).max(6)
-                .default(0);
+            map[key] = z.number().int().min(0).max(6).default(0);
             return map;
         },
         {} as Record<SkillType, z.ZodDefault<z.ZodNumber>>,
     ),
-)
+);
 
 // TODO migration code, remove after some time.   2026-07-21
-import aidJson from '@/data/item/aid.json'
+import aidJson from '@/data/item/aid.json';
 import { CompanionData } from '@/utils/companionTypes.ts';
 const ITEM_ID_MIGRATION_MAP: Record<string, keyof typeof aidJson> = {
     // Foods
-    foodMirelurkRoast: "foodRoastedMirelurkMeat",
-    foodBerry: "foodTarberry",
-    foodCookedSoftshellMirelurkMeat: "foodCookedSoftshellMeat",
-    foodMongrelMeat: "foodMongrelDogMeat",
-    foodMirelurkQueenMeat: "foodQueenMirelurkMeat",
-    foodWatermelon: "foodMelon",
-    foodMongrelChops: "foodMuttChops",
-    foodYaoGuaiChops: "foodYaoGuaiRibs",
-    foodSandbean: "foodSiltBean",
-    foodGranola: "foodRazorgrain",
-    foodMinestrone: "foodVegetableSoup",
-    foodRoastedBloatfly: "foodBakedBloatfly",
-    foodPasta: "foodPaste",
-    foodPotatoChips: "foodPotatoCrisps",
-    foodInstantRamen: "foodNoodleCup",
-    foodInstituteRations: "foodInstituteFoodPacket",
+    foodMirelurkRoast: 'foodRoastedMirelurkMeat',
+    foodBerry: 'foodTarberry',
+    foodCookedSoftshellMirelurkMeat: 'foodCookedSoftshellMeat',
+    foodMongrelMeat: 'foodMongrelDogMeat',
+    foodMirelurkQueenMeat: 'foodQueenMirelurkMeat',
+    foodWatermelon: 'foodMelon',
+    foodMongrelChops: 'foodMuttChops',
+    foodYaoGuaiChops: 'foodYaoGuaiRibs',
+    foodSandbean: 'foodSiltBean',
+    foodGranola: 'foodRazorgrain',
+    foodMinestrone: 'foodVegetableSoup',
+    foodRoastedBloatfly: 'foodBakedBloatfly',
+    foodPasta: 'foodPaste',
+    foodPotatoChips: 'foodPotatoCrisps',
+    foodInstantRamen: 'foodNoodleCup',
+    foodInstituteRations: 'foodInstituteFoodPacket',
 
     // Drinks
-    drinkBerryJuice: "drinkTarberryJuice",
-    drinkWatermelonJuice: "drinkMelonJuice",
+    drinkBerryJuice: 'drinkTarberryJuice',
+    drinkWatermelonJuice: 'drinkMelonJuice',
 
     // Meds
-    medsBufftat: "medsBufftats",
-    medsDaytripper: "medsDayTripper",
-    medsPsychojet: "medsPsychoJet",
+    medsBufftat: 'medsBufftats',
+    medsDaytripper: 'medsDayTripper',
+    medsPsychojet: 'medsPsychoJet',
 };
 
-export const CharacterItemSchema = z.preprocess((input: any) => {
-    // MIGRATION FOR OLDER 'VARIATION' TODO remove this once everyone migrated
+export const CharacterItemSchema = z.preprocess(
+    (input: any) => {
+        // MIGRATION FOR OLDER 'VARIATION' TODO remove this once everyone migrated
 
-    // TODO aggregate same type items
-    if (input && typeof input === 'object' && input.variation){
-        const { variation, ...item} = input;
-        if(input.equipped && !input.side){
-            return { ...item, side: variation };
+        // TODO aggregate same type items
+        if (input && typeof input === 'object' && input.variation) {
+            const { variation, ...item } = input;
+            if (input.equipped && !input.side) {
+                return { ...item, side: variation };
+            }
+            return item;
         }
-        return item
-    }
-    return input;
-}, z.object({
-    id: z.string().transform((id) => ITEM_ID_MIGRATION_MAP[id] ?? id),
-    customName: z.string().optional(),
-    quantity: z.number().default(1),
-    equipped: z.boolean().default(false),
-    mods: z.array(z.string()).default([]),
-    side: z.enum([LEFT, RIGHT]).optional(),
-    grantedBy: z.string().optional(),
-}).transform(item => {
-    // Older grants stored the rank-2 Iron Fist bonus as a permanent receiver mod.
-    if (item.id === 'weaponIronFist' && item.grantedBy === 'perkIronFist') {
-        return { ...item, mods: item.mods.filter(mod => mod !== 'modCalibrated') };
-    }
-    return item;
-}))
+        return input;
+    },
+    z
+        .object({
+            id: z.string().transform(id => ITEM_ID_MIGRATION_MAP[id] ?? id),
+            customName: z.string().optional(),
+            quantity: z.number().default(1),
+            equipped: z.boolean().default(false),
+            mods: z.array(z.string()).default([]),
+            side: z.enum([LEFT, RIGHT]).optional(),
+            grantedBy: z.string().optional(),
+        })
+        .transform(item => {
+            // Older grants stored the rank-2 Iron Fist bonus as a permanent receiver mod.
+            if (item.id === 'weaponIronFist' && item.grantedBy === 'perkIronFist') {
+                return { ...item, mods: item.mods.filter(mod => mod !== 'modCalibrated') };
+            }
+            return item;
+        }),
+);
 
 // Validates CustomItems
-const CustomItemSchema = z.preprocess((input: any) => {
+const CustomItemSchema = z.preprocess(
+    (input: any) => {
         // MIGRATION FOR OLDER NAME TODO remove this once everyone migrated
         // Migrates name to customName
         if (input && typeof input === 'object') {
@@ -116,7 +117,7 @@ const CustomItemSchema = z.preprocess((input: any) => {
                 CATEGORY: input.CATEGORY ?? input.category,
                 TYPE: input.TYPE ?? input.type,
                 description: input.description,
-            }
+            };
         }
         return input;
     },
@@ -130,164 +131,171 @@ const CustomItemSchema = z.preprocess((input: any) => {
         TYPE: z.enum(ITEM_TYPES),
         CATEGORY: z.enum(ITEM_CATEGORIES),
         description: z.string().optional(),
-    })
-)
+    }),
+);
 // Validates exchange rates filling defaults
 const ExchangeRatesSchema = z.object({
     ncrDollars: z.number().min(0.001).default(2.5),
     legionDenarius: z.number().int().min(0.001).default(4),
     prewarMoney: z.number().int().min(0.001).default(10),
-})
-
+});
 
 // Validates companion data TODO to review
-const CompanionDataSchema = z.preprocess((input: any) => {
-    // MIGRATION FOR OLDER COMPANIONS TODO remove this once everyone migrated
-    // Migrates weapons to items
-    if (input && typeof input === 'object' && input.items === undefined && input.weapons !== undefined) {
-        return {
-            ...input,
-            items: input.weapons,
-        };
-    }
-    return input;
-}, z.object({
-    type: z.enum(COMPANION_IDS),
-    name: z.string().optional(),
-    // TODO might want to set defaults for special and skills (or maybe not, we set them all everytime)
-    // TODO when implementing non body/mind companions review this bit
-    special: z.object(
-        COMPANION_SPECIAL.reduce(
-            (map, key) => {
-                // Companion baselines can be below the player minimum (Dogmeat has MIND 1).
-                map[key] = z.number().int().min(1).max(10);
-                return map;
-            },
-            {} as Record<CompanionSpecialType, z.ZodNumber>,
+const CompanionDataSchema = z.preprocess(
+    (input: any) => {
+        // MIGRATION FOR OLDER COMPANIONS TODO remove this once everyone migrated
+        // Migrates weapons to items
+        if (
+            input &&
+            typeof input === 'object' &&
+            input.items === undefined &&
+            input.weapons !== undefined
+        ) {
+            return {
+                ...input,
+                items: input.weapons,
+            };
+        }
+        return input;
+    },
+    z.object({
+        type: z.enum(COMPANION_IDS),
+        name: z.string().optional(),
+        // TODO might want to set defaults for special and skills (or maybe not, we set them all everytime)
+        // TODO when implementing non body/mind companions review this bit
+        special: z.object(
+            COMPANION_SPECIAL.reduce(
+                (map, key) => {
+                    // Companion baselines can be below the player minimum (Dogmeat has MIND 1).
+                    map[key] = z.number().int().min(1).max(10);
+                    return map;
+                },
+                {} as Record<CompanionSpecialType, z.ZodNumber>,
+            ),
         ),
-    ),
-    skills: z.object(
-        COMPANION_SKILLS.reduce(
-            (map, key) => {
-                map[key] = z.number().int().min(0).max(6);
-                return map;
-            },
-            {} as Record<CompanionSkillType, z.ZodNumber>,
+        skills: z.object(
+            COMPANION_SKILLS.reduce(
+                (map, key) => {
+                    map[key] = z.number().int().min(0).max(6);
+                    return map;
+                },
+                {} as Record<CompanionSkillType, z.ZodNumber>,
+            ),
         ),
-    ),
-    // Current HP
-    currentHp: z.number().min(0),
-    perks: z.array(z.string()).default([]),
-    items: z.array(CharacterItemSchema).default([]),
-}))
+        // Current HP
+        currentHp: z.number().min(0),
+        perks: z.array(z.string()).default([]),
+        items: z.array(CharacterItemSchema).default([]),
+    }),
+);
 
 export const CompanionsMapSchema = z.record(
-    z.string().refine(
-        (key) => (COMPANION_IDS as readonly string[]).includes(key),
-        { message: 'Invalid companion ID' }
-    ),
-    CompanionDataSchema
-) as z.ZodType<Partial<Record<typeof COMPANION_IDS[number], CompanionData>>>;
+    z
+        .string()
+        .refine(key => (COMPANION_IDS as readonly string[]).includes(key), {
+            message: 'Invalid companion ID',
+        }),
+    CompanionDataSchema,
+) as z.ZodType<Partial<Record<(typeof COMPANION_IDS)[number], CompanionData>>>;
 
-export const ItemsSchema = z
-    .array(CharacterItemSchema)
-    .transform((items) => {
-
-        // Split equipped items (only 1 item equipped at a time)
-        const unrolledItems = [];
-        for (const item of items) {
-            if (item.equipped && item.quantity > 1) {
-                // 1 equipped item
-                unrolledItems.push({
-                    ...item, quantity: 1
-                }, {
+export const ItemsSchema = z.array(CharacterItemSchema).transform(items => {
+    // Split equipped items (only 1 item equipped at a time)
+    const unrolledItems = [];
+    for (const item of items) {
+        if (item.equipped && item.quantity > 1) {
+            // 1 equipped item
+            unrolledItems.push(
+                {
+                    ...item,
+                    quantity: 1,
+                },
+                {
                     ...item,
                     quantity: item.quantity - 1,
                     equipped: false,
                     side: undefined,
-                });
-            } else {
-                unrolledItems.push(item);
-            }
-        }
-
-        // Aggregate same time items
-        const unequippedMap = new Map<string, z.infer<typeof CharacterItemSchema>>();
-        const result: z.infer<typeof CharacterItemSchema>[] = [];
-
-        for (const item of unrolledItems) {
-            if (item.equipped) {
-                // Equipped items stay as individual single-quantity entries
-                result.push(item);
-            } else {
-                const modsKey = item.mods.toSorted().join(",");
-                const key = [
-                    item.id,
-                    item.customName ?? "",
-                    modsKey,
-                    item.grantedBy ?? "",
-                ].join("|");
-
-                const existing = unequippedMap.get(key);
-                if (existing) {
-                    existing.quantity += item.quantity;
-                } else {
-                    const copy = { ...item };
-                    unequippedMap.set(key, copy);
-                    result.push(copy);
-                }
-            }
-        }
-
-        return result;
-    })
-export const RawCharacterSchema = z.preprocess((input: any) => {
-    if (input && typeof input === 'object') {
-        // MIGRATION: Migrate single companion to companions map and activeCompanionId
-        // TODO remove once everyone migrated 2026-08-22
-        if (input.companion && !input.companions) {
-            const { companion, ...rest } = input;
-            return {
-                ...rest,
-                companions: {
-                    [companion.type]: companion,
                 },
-                activeCompanionId: companion.type,
-            };
+            );
+        } else {
+            unrolledItems.push(item);
         }
     }
-    return input;
-}, z.object({
-    // Missing versions identify saves written before grant provenance.
-    saveVersion: z.number().int().min(0).default(0),
-    name: z.string().optional(),
-    level: z.number().int().min(1).default(1),
-    origin: z.enum(ORIGIN_IDS).optional(),
-    background: z.string().optional(),
 
-    caps: z.number().int().default(0),
-    ncrDollars: z.number().int().default(0),
-    legionDenarius: z.number().int().default(0),
-    prewarMoney: z.number().int().default(0),
+    // Aggregate same time items
+    const unequippedMap = new Map<string, z.infer<typeof CharacterItemSchema>>();
+    const result: z.infer<typeof CharacterItemSchema>[] = [];
 
-    exchangeRates: ExchangeRatesSchema.default(() => ExchangeRatesSchema.parse({})),
+    for (const item of unrolledItems) {
+        if (item.equipped) {
+            // Equipped items stay as individual single-quantity entries
+            result.push(item);
+        } else {
+            const modsKey = item.mods.toSorted().join(',');
+            const key = [item.id, item.customName ?? '', modsKey, item.grantedBy ?? ''].join('|');
 
-    special: SpecialMapSchema.default(() => SpecialMapSchema.parse({})),
-    skills: SkillMapSchema.default(() => SkillMapSchema.parse({})),
-    specialties: z.array(z.enum(SKILLS)).default([] as SkillType[]),
-    traits: z.array(z.enum(Object.values(traits).map(t => t.ID))).default([]),
-    perks: z.array(z.enum(Object.values(perks).map(p => p.ID))).default([]),
+            const existing = unequippedMap.get(key);
+            if (existing) {
+                existing.quantity += item.quantity;
+            } else {
+                const copy = { ...item };
+                unequippedMap.set(key, copy);
+                result.push(copy);
+            }
+        }
+    }
 
-    // TODO: enforce non-negative resource values after the legacy migration window.
-    currentHp: z.number().optional(),
-    currentLuck: z.number().optional(),
-    rads: z.number().default(0),
+    return result;
+});
+export const RawCharacterSchema = z.preprocess(
+    (input: any) => {
+        if (input && typeof input === 'object') {
+            // MIGRATION: Migrate single companion to companions map and activeCompanionId
+            // TODO remove once everyone migrated 2026-08-22
+            if (input.companion && !input.companions) {
+                const { companion, ...rest } = input;
+                return {
+                    ...rest,
+                    companions: {
+                        [companion.type]: companion,
+                    },
+                    activeCompanionId: companion.type,
+                };
+            }
+        }
+        return input;
+    },
+    z.object({
+        // Missing versions identify saves written before grant provenance.
+        saveVersion: z.number().int().min(0).default(0),
+        name: z.string().optional(),
+        level: z.number().int().min(1).default(1),
+        origin: z.enum(ORIGIN_IDS).optional(),
+        background: z.string().optional(),
 
-    items: ItemsSchema.default([]),
-    customItems: z.array(CustomItemSchema).default([]),
+        caps: z.number().int().default(0),
+        ncrDollars: z.number().int().default(0),
+        legionDenarius: z.number().int().default(0),
+        prewarMoney: z.number().int().default(0),
 
-    mapCodes: z.array(z.string()).default([]),
+        exchangeRates: ExchangeRatesSchema.default(() => ExchangeRatesSchema.parse({})),
 
-    activeCompanionId: z.enum(COMPANION_IDS).optional(),
-    companions: CompanionsMapSchema.default({}),
-}));
+        special: SpecialMapSchema.default(() => SpecialMapSchema.parse({})),
+        skills: SkillMapSchema.default(() => SkillMapSchema.parse({})),
+        specialties: z.array(z.enum(SKILLS)).default([] as SkillType[]),
+        traits: z.array(z.enum(Object.values(traits).map(t => t.ID))).default([]),
+        perks: z.array(z.enum(Object.values(perks).map(p => p.ID))).default([]),
+
+        // TODO: enforce non-negative resource values after the legacy migration window.
+        currentHp: z.number().optional(),
+        currentLuck: z.number().optional(),
+        rads: z.number().default(0),
+
+        items: ItemsSchema.default([]),
+        customItems: z.array(CustomItemSchema).default([]),
+
+        mapCodes: z.array(z.string()).default([]),
+
+        activeCompanionId: z.enum(COMPANION_IDS).optional(),
+        companions: CompanionsMapSchema.default({}),
+    }),
+);

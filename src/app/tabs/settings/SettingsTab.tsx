@@ -1,44 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { UISettingsManager, Theme, THEMES, DISPLAY_EFFECTS, type DisplayEffect, type Language, LANGUAGES } from '@/services/UISettingsManager.ts';
+import {
+    UISettingsManager,
+    Theme,
+    THEMES,
+    DISPLAY_EFFECTS,
+    type DisplayEffect,
+    type Language,
+    LANGUAGES,
+    REGIONS,
+    type MapRegion,
+} from '@/services/UISettingsManager.ts';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext';
 import { changeLanguage } from '@/locales/i18n.ts';
+import { sortByLocalizedLabel } from '@/utils/sorting.ts';
 
 const useDisplayEffectsState = () => {
-    const [ displayEffects, setDisplayEffects ] = useState<DisplayEffect>(() => UISettingsManager.getCurrentDisplayEffect())
+    const [displayEffects, setDisplayEffects] = useState<DisplayEffect>(() =>
+        UISettingsManager.getCurrentDisplayEffect(),
+    );
 
     useEffect(() => {
-        UISettingsManager.setDisplayEffect(displayEffects)
-    }, [displayEffects])
+        UISettingsManager.setDisplayEffect(displayEffects);
+    }, [displayEffects]);
 
-    return [displayEffects, setDisplayEffects] as const
-}
+    return [displayEffects, setDisplayEffects] as const;
+};
 
 function SettingsTab() {
-    const { t } = useTranslation()
+    const { t } = useTranslation();
 
     const [currentTheme, setCurrentTheme] = useState(UISettingsManager.getCurrentTheme);
     const [currentLanguage, setCurrentLanguage] = useState(UISettingsManager.getCurrentLanguage);
+    const [currentRegion, setCurrentRegion] = useState(UISettingsManager.getCurrentRegion);
     const [displayEffects, setDisplayEffects] = useDisplayEffectsState();
 
     const { showAlert, showConfirm } = usePopup();
 
     // Read clean store actions and state from Context
-    const {
-        setActiveSlot,
-        activeSlot,
-        slots,
-        deleteSlot,
-        importSlot
-    } = useCharacter();
+    const { setActiveSlot, activeSlot, slots, deleteSlot, importSlot } = useCharacter();
 
     /** Fired when user changes Language in selector */
     const handleLanguageChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newLang = e.target.value as Language
-        await changeLanguage(newLang)
-        setCurrentLanguage(newLang)
-    }
+        const newLang = e.target.value as Language;
+        await changeLanguage(newLang);
+        setCurrentLanguage(newLang);
+    };
 
     /** Fired when user changes Theme in selector */
     const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -46,17 +54,19 @@ function SettingsTab() {
         setCurrentTheme(UISettingsManager.setTheme(newTheme));
     };
 
+    const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const newRegion = e.target.value as MapRegion;
+        setCurrentRegion(UISettingsManager.setRegion(newRegion));
+    };
+
     /** Delete a character from a slot using Zustand store action */
     const handleDeleteSlot = (slotIndex: number) => {
         const slot = slots[slotIndex];
         const characterName = slot?.name || `Slot ${slotIndex + 1}`;
 
-        showConfirm(
-            `${t('confirmDeleteCharacter')}\n${t('name')}: ${characterName}`,
-            () => {
-                deleteSlot(slotIndex);
-            }
-        );
+        showConfirm(`${t('confirmDeleteCharacter')}\n${t('name')}: ${characterName}`, () => {
+            deleteSlot(slotIndex);
+        });
     };
 
     /** Export a character from a specific slot */
@@ -83,12 +93,12 @@ function SettingsTab() {
     /** Import a character to a specific slot using Zustand store action */
     const handleImportToSlot = (slotIndex: number, file: File) => {
         file.text()
-            .then((text) => {
+            .then(text => {
                 const rawData = JSON.parse(text);
                 importSlot(slotIndex, rawData);
                 showAlert(t('characterImportSuccess'));
             })
-            .catch((err) => {
+            .catch(err => {
                 const errorMsg = `${t('importFailed')}: ${err.message}`;
                 showAlert(errorMsg);
             });
@@ -97,8 +107,8 @@ function SettingsTab() {
     /** Fired when user clicks Reset Memory */
     const handleResetMemory = () => {
         const confirmAction = () => {
-            for(const key in localStorage){
-                if(key.startsWith('PB3K')){
+            for (const key in localStorage) {
+                if (key.startsWith('PB3K')) {
                     localStorage.removeItem(key);
                 }
             }
@@ -116,8 +126,12 @@ function SettingsTab() {
             <div className="row l-distributed">
                 <div className="stack">
                     <label htmlFor="language-select">{t('language')}:</label>
-                    <select id="language-select" value={currentLanguage} onChange={handleLanguageChange}>
-                        {Object.entries(LANGUAGES).map(([lang, label]) => (
+                    <select
+                        id="language-select"
+                        value={currentLanguage}
+                        onChange={handleLanguageChange}
+                    >
+                        {sortByLocalizedLabel(Object.entries(LANGUAGES), t, ([, label]) => label).map(([lang, label]) => (
                             <option key={lang} value={lang}>
                                 {label}
                             </option>
@@ -127,8 +141,18 @@ function SettingsTab() {
                 <div className="stack">
                     <label htmlFor="theme-select">{t('theme')}:</label>
                     <select id="theme-select" value={currentTheme} onChange={handleThemeChange}>
-                        {Object.entries(THEMES).map(([lang, label]) => (
+                        {sortByLocalizedLabel(Object.entries(THEMES), t, ([, label]) => label).map(([lang, label]) => (
                             <option key={lang} value={lang}>
+                                {label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="stack">
+                    <label htmlFor="region-select">{t('region')}:</label>
+                    <select id="region-select" value={currentRegion} onChange={handleRegionChange}>
+                        {sortByLocalizedLabel(Object.entries(REGIONS), t, ([, label]) => label).map(([region, label]) => (
+                            <option key={region} value={region}>
                                 {label}
                             </option>
                         ))}
@@ -139,7 +163,7 @@ function SettingsTab() {
             <fieldset>
                 <legend>{t('crtDisplayEffects')}</legend>
                 <div className="row l-spaceAround">
-                    {DISPLAY_EFFECTS.map((val) => (
+                    {DISPLAY_EFFECTS.map(val => (
                         <div className="row" key={val} style={{ width: 'unset' }}>
                             <input
                                 type="radio"
@@ -185,7 +209,7 @@ function SettingsTab() {
 
                         <div className="stack no-gap" style={{ flex: 1, minWidth: '130px' }}>
                             <span className="h4">
-                                {!slot ? `--- ${t('emptySlot')} ---` : slot.name ?? 'Unnamed'}
+                                {!slot ? `--- ${t('emptySlot')} ---` : (slot.name ?? 'Unnamed')}
                             </span>
                             {slot && (
                                 <>
@@ -250,7 +274,7 @@ function SettingsTab() {
                             type="file"
                             accept=".json,application/json"
                             className="hidden"
-                            onChange={(e) => {
+                            onChange={e => {
                                 const file = e.target.files?.[0];
                                 if (file) {
                                     handleImportToSlot(index, file);

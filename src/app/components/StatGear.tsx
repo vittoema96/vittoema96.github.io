@@ -1,24 +1,21 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { useCharacter } from '@/app/contexts/CharacterContext.tsx'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import {
     getMaxSpecialValues,
     getMinSpecialValue,
     isCharacterSpecial,
     SpecialType,
 } from '@/features/character/special/special.ts';
-import {
-    CompanionSpecialType,
-} from '@/features/character/special/special.companion.ts';
+import { CompanionSpecialType } from '@/features/character/special/special.companion.ts';
 import { COMPANION_TYPES } from '@/utils/companionTypes.ts';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { updateCompanion } from '@/features/character/update.ts';
 
-
 interface StatGearProps {
-    statType: CompanionSpecialType | SpecialType
-    isEditing?: boolean
-    children?: React.ReactNode
+    statType: CompanionSpecialType | SpecialType;
+    isEditing?: boolean;
+    children?: React.ReactNode;
 }
 
 /**
@@ -26,62 +23,75 @@ interface StatGearProps {
  * Works exactly like SpecialGear but for companion stats
  */
 function StatGear({ statType, isEditing = false, children }: Readonly<StatGearProps>) {
-    const { t } = useTranslation()
-    const { showConfirm } = usePopup()
+    const { t } = useTranslation();
+    const { showConfirm } = usePopup();
 
-    const { character, updateCharacter, replenishLuck } = useCharacter()
-    const companion = character.companion!
+    const { character, updateCharacter, replenishLuck } = useCharacter();
+    const companion = character.companion!;
 
-    let value
-    let maxValue
-    let minValue
-    if(isCharacterSpecial(statType)){
-        value = character.special[statType]
+    let value;
+    let maxValue;
+    let minValue;
+    if (isCharacterSpecial(statType)) {
+        value = character.special[statType];
         const maxSpecialValues = getMaxSpecialValues(
             character.origin,
             character.perks,
             character.traits,
-        )
-        maxValue = maxSpecialValues[statType]
-        minValue = getMinSpecialValue(character.origin, statType)
+        );
+        maxValue = maxSpecialValues[statType];
+        minValue = getMinSpecialValue(
+            character.origin,
+            statType,
+            character.perks,
+            character.traits,
+        );
     } else {
-        value = companion.special[statType]
-        maxValue = 10
-        minValue = COMPANION_TYPES[companion.type].special[statType]
+        value = companion.special[statType];
+        maxValue = 10;
+        minValue = COMPANION_TYPES[companion.type].special[statType];
     }
 
     // Handle stat changes (click to increment in edit mode)
     const handleClick = () => {
-        if (!isEditing) { return }
+        if (!isEditing) {
+            return;
+        }
 
-        const current = value
-        const next = current < maxValue ? current + 1 : minValue // Cycle back to base if at max
+        const current = value;
+        const next = current < maxValue ? current + 1 : minValue; // Cycle back to base if at max
 
-        if(isCharacterSpecial(statType)) {
+        if (isCharacterSpecial(statType)) {
             updateCharacter({
                 special: {
-                    [statType]: next
+                    [statType]: next,
                 },
-                currentLuck: statType === "luck" ? Math.min(character.currentLuck, next) : character.currentLuck
-            })
+                currentLuck:
+                    statType === 'luck'
+                        ? Math.min(character.currentLuck, next)
+                        : character.currentLuck,
+            });
         } else {
-            updateCharacter(updateCompanion(companion.type, current => ({
-                special: {
-                    ...current.special,
-                    [statType]: current.special[statType] < maxValue
-                        ? current.special[statType] + 1
-                        : minValue,
-                },
-            })));
+            updateCharacter(
+                updateCompanion(companion.type, current => ({
+                    special: {
+                        ...current.special,
+                        [statType]:
+                            current.special[statType] < maxValue
+                                ? current.special[statType] + 1
+                                : minValue,
+                    },
+                })),
+            );
         }
-    }
+    };
 
     // Handle current luck replenish
     const handleLuckReplenish = () => {
         if (!isEditing) {
-            showConfirm(t('replenishLuckConfirm'), replenishLuck)
+            showConfirm(t('replenishLuckConfirm'), replenishLuck);
         }
-    }
+    };
 
     const style = {
         cursor: isEditing ? 'pointer' : 'default',
@@ -89,37 +99,33 @@ function StatGear({ statType, isEditing = false, children }: Readonly<StatGearPr
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        aspectRatio: 1
-    } as const
+        aspectRatio: 1,
+    } as const;
 
-    let valueText = `${value}`
+    let valueText = `${value}`;
     if (isEditing) {
-        valueText += `/${maxValue}`
+        valueText += `/${maxValue}`;
     }
 
     return (
-        <div
-            onClick={() => handleClick()}
-            className="special"
-            style={style}>
+        <div onClick={() => handleClick()} className="special" style={style}>
             <span className="special__name">{t(statType)}</span>
             <span style={{ fontSize: '24cqw' }}>{valueText}</span>
-            {statType === "luck" && (
+            {statType === 'luck' && (
                 <div
                     className="themed-svg sub-special"
-                    onClick={(e) => {
-                        e.stopPropagation()
-                        handleLuckReplenish()
+                    onClick={e => {
+                        e.stopPropagation();
+                        handleLuckReplenish();
                     }}
-                    style={style}>
-                    <span style={{fontSize: '24cqw'}}>
-                        {character.currentLuck}
-                    </span>
+                    style={style}
+                >
+                    <span style={{ fontSize: '24cqw' }}>{character.currentLuck}</span>
                 </div>
             )}
             {children}
         </div>
-    )
+    );
 }
 
-export default StatGear
+export default StatGear;

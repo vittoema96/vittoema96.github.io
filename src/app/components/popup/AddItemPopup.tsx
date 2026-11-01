@@ -14,6 +14,7 @@ import { BaseItem } from '@/data/types.ts';
 import { compiledData } from '@/data';
 import { isType, isUnacquirable } from '@/features/item/utils.ts';
 import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
+import { sortByLocalizedLabel } from '@/utils/sorting.ts';
 
 export interface AddItemPopupProps extends GenericPopupProps {
     itemType: ItemType;
@@ -139,7 +140,11 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                 ))
             })
 
-        return allItems.toSorted((a, b) => t(a.ID).localeCompare(t(b.ID)))
+        return sortByLocalizedLabel(
+            allItems,
+            t,
+            item => item.ID,
+        )
     }, [itemType, categoryFilter, rarityFilter, rarityOperator, t])
 
     useEffect(() => {
@@ -205,12 +210,11 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
 
         const categories = ITEM_TYPE_MAP[itemType].filter((c: any) => c !== 'companionWeapon');
 
-        return categories.toSorted((a, b) => {
-            if(!a && !b) {return 0}
-            if(!a) {return 1}
-            if(!b) {return -1}
-            return t(a).localeCompare(t(b))
-        }).map(categoryFilter => {
+        return sortByLocalizedLabel(
+            categories,
+            t,
+            category => category || 'all',
+        ).map(categoryFilter => {
             return <option key={categoryFilter} value={categoryFilter}>
                 {t(categoryFilter || 'all')}
             </option>

@@ -9,6 +9,7 @@ import {
     isType,
     isUnacquirable,
 } from '@/features/item/utils.ts';
+import { canEquipApparel } from '@/features/character/items.ts';
 import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 
 /**
@@ -50,20 +51,33 @@ export const useInventoryActions = () => {
     };
 
     const equipItem = (characterItem: CharacterItem) => {
-        // Robot parts cannot be unequipped
         const itemData = allItems[characterItem.id];
-        if (character.origin.isRobot) {
-            showAlert(t('robotsCannotEquipApparel'));
-            return;
-        } else if (itemData?.CATEGORY === 'robotPart') {
-            showAlert(t('cannotEquipRobotParts'));
+        const isRobotPart =
+            isType(itemData, 'apparel') && itemData.CATEGORY === 'robotPart';
+        const isCurrentlyEquipped = characterItem.equipped === true;
+
+        // Robot body parts are intrinsic equipment and cannot be unequipped.
+        // The calculated inventory marks them equipped even when the saved
+        // item is not, so handling this before editItem also avoids duplicating
+        // the saved stack.
+        if (isRobotPart && character.origin.isRobot) {
             return;
         }
-        const isCurrentlyEquipped = characterItem.equipped === true;
 
         if (isCurrentlyEquipped) {
             // Unequip the item
             editItem(characterItem, {...characterItem, equipped: false, side: undefined});
+            return;
+        }
+
+        if (
+            !canEquipApparel(itemData, {
+                origin: character.origin,
+                perks: character.perks,
+                traits: character.traits,
+            })
+        ) {
+            return;
         } else {
             // Equip the item - first unequip any items in the same locations
 

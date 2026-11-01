@@ -10,6 +10,7 @@ import type { TraitId } from '@/features/character/feats/traits.ts';
 import { hasTrait, perkRank } from '@/features/character/feats/utils.ts';
 import { getPerkBlacklist } from '@/features/character/feats/rules';
 import { hasPerkImplementation, hasTraitImplementation } from '@/features/character/feats/registry';
+import { sortByLocalizedLabel } from '@/utils/sorting.ts';
 
 type SortMode = 'none' | 'level' | SpecialType | 'total';
 
@@ -144,9 +145,7 @@ export function PerkSelectionPopup({
         }
 
         if (sortMode === 'none') {
-            return resultIds.sort((a, b) => {
-                return t(a).localeCompare(t(b))
-            })
+            return sortByLocalizedLabel(resultIds, t)
         }
         return resultIds.sort((a, b) => {
             const reqsA = getRequirements(a);
@@ -178,7 +177,7 @@ export function PerkSelectionPopup({
             const otherSumA = getSum(reqsA);
             const otherSumB = getSum(reqsB);
 
-            return otherSumB - otherSumA; // Descending (lowest last)
+            return otherSumB - otherSumA || t(a).localeCompare(t(b));
 
         })
     }, [character, getRequirements, meetsRequirements, prev, showUnavailable, sortMode, t])
@@ -361,7 +360,7 @@ export function TraitSelectionPopup({
     const ids = useMemo(() => {
         const allTraits = Object.values(traits)
         // Remove perks already taken (except prev or multitier ones)
-        return allTraits.filter(
+        const ids = allTraits.filter(
             trait => {
                 return !trait.FIXED
                     && trait.ORIGINS.includes(character.origin.id)
@@ -370,8 +369,9 @@ export function TraitSelectionPopup({
                         || !hasTrait(character.traits, trait.ID)
                     )
             }
-        ).map(trait => trait.ID)
-        .sort((a, b) => t(a).localeCompare(t(b)));
+        )        .map(trait => trait.ID);
+
+        return sortByLocalizedLabel(ids, t);
 
     }, [character, prev, t]);
 

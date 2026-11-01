@@ -10,7 +10,7 @@ import {
 } from '@/types';
 import { Range, WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
-import { allItems, apparel, legendaryEffects, weapon } from '@/data';
+import { allItems, legendaryEffects } from '@/data';
 import type { TFunction } from 'i18next';
 import { ItemCategory, ItemType } from '@/types/item.ts';
 import { BaseItem } from '@/data/types.ts';
@@ -360,24 +360,9 @@ export function isCloseCombat(category: ItemCategory | undefined) {
     return ['meleeWeapons', 'unarmed'].includes(category);
 }
 
-export const UNACQUIRABLE_IDS: (keyof typeof weapon | keyof typeof apparel)[] = [
-    'weaponUnarmedStrike',
-    'weaponIronFist',
-    'weaponWeaponStock',
-    'weaponWeaponStockOneHanded',
-    'weaponBayonet',
-    'weaponMissileLauncherBayonet',
-    'weaponShredder',
-    'robotPartSensors',
-    'robotPartBody',
-    'robotPartArms',
-    'robotPartThrusters',
-    'weaponCryojet',
-] as const;
-
-export function isUnacquirable(target: string | { ID: string }): boolean {
-    const id = typeof target === 'string' ? target : target.ID;
-    return UNACQUIRABLE_IDS.includes(id as any);
+export function isUnacquirable(target: string | Pick<BaseItem, 'ID' | 'TAGS'>): boolean {
+    const item = typeof target === 'string' ? allItems[target] : target;
+    return item?.TAGS?.includes('unacquirable') ?? false;
 }
 
 const applyMods = (
