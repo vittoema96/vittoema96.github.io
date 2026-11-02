@@ -431,6 +431,38 @@
       "it": "Copricapo indossato dai Ranger di élite dell'RNC, progettato per essere abbinato all'Armatura da combattimento da Ranger dell'RNC per la protezione da gas tossici e rischi ambientali."
     }
   },
+  "armorWoodChest": {
+    "en": "Wood Armor Chest Piece",
+    "it": "Pettorale dell'Armatura in Legno",
+    "_description": {
+      "en": "A light wood armor chest piece providing basic protection for the torso.",
+      "it": "Un pettorale leggero in legno che offre una protezione di base per il torso."
+    }
+  },
+  "armorWoodArm": {
+    "en": "Wood Armor Arm",
+    "it": "Braccio dell'Armatura in Legno",
+    "_description": {
+      "en": "A light wood armor piece providing basic protection for the arm.",
+      "it": "Un pezzo leggero in legno che offre una protezione di base per il braccio."
+    }
+  },
+  "armorWoodLeg": {
+    "en": "Wood Armor Leg",
+    "it": "Gamba dell'Armatura in Legno",
+    "_description": {
+      "en": "A light wood armor piece providing basic protection for the leg.",
+      "it": "Un pezzo leggero in legno che offre una protezione di base per la gamba."
+    }
+  },
+  "armorWoodHelmet": {
+    "en": "Wood Armor Helmet",
+    "it": "Elmo dell'Armatura in Legno",
+    "_description": {
+      "en": "A light wood armor helmet providing basic protection for the head.",
+      "it": "Un elmo leggero in legno che offre una protezione di base per la testa."
+    }
+  },
   "armorRaiderArm": {
     "en": "Raider Arm",
     "it": "Braccio da Predone",

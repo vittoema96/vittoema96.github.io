@@ -1,0 +1,5 @@
+ID,TYPE,SLOT_TYPE,EFFECTS,WEIGHT,COST,SKILL,PERKS,RARITY,RARITY_TO_FIND,CLOTHING_TYPES,SOURCE
+modUnderarmorTreatedLining,mod,modSlotUnderarmorLining,"[""physicalResAdd:1"",""energyResAdd:2"",""radiationResAdd:1""]",0,9,repair,[],2,Common,"[""armorUnderarmor"",""armorMarineWetsuit""]",Wanderers p. 87
+modUnderarmorResistantLining,mod,modSlotUnderarmorLining,"[""physicalResAdd:2"",""energyResAdd:2"",""radiationResAdd:1""]",0,15,repair,"[""perkArmorer:1""]",3,Uncommon,"[""armorUnderarmor"",""armorMarineWetsuit""]",Wanderers p. 87
+modUnderarmorProtectiveLining,mod,modSlotUnderarmorLining,"[""physicalResAdd:2"",""energyResAdd:2"",""radiationResAdd:1"",""effectRemove:effectUnderarmorReroll"",""effectAdd:effectUnderarmorRerollTwice""]",0,24,repair,"[""perkArmorer:1""]",3,Uncommon,"[""armorUnderarmor"",""armorMarineWetsuit""]",Wanderers p. 87
+modUnderarmorShieldedLining,mod,modSlotUnderarmorLining,"[""physicalResAdd:3"",""energyResAdd:3"",""radiationResAdd:1"",""effectRemove:effectUnderarmorReroll"",""effectAdd:effectUnderarmorRerollTwice""]",0,36,repair,"[""perkArmorer:2""]",4,Uncommon,"[""armorUnderarmor"",""armorMarineWetsuit""]",Wanderers p. 87

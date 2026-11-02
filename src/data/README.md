@@ -37,6 +37,28 @@ data/sources/*.csv -> validate:data:sources -> build:data -> src/data/*.json -> 
 - Always edit CSV source files in `data/sources/`.
 - Run validation before build.
 
+### Apparel mod compatibility
+
+The modification popup reads each item's `AVAILABLE_MODS`. The Brotherhood bomber jacket
+(`armorBrotherhoodBomberJacket`) supports all five ballistic weave ranks, following
+Wanderers DLC, page 86. Its base statistics and the mods' crafting requirements are unchanged.
+
+Wanderers underarmor linings (page 87) are shared by Underarmor and Marine Wetsuits.
+Protective and Shielded replace the base Underarmor's shared STR/PER reroll allowance
+of one use per scene with two uses, shown as a rule reminder on the apparel card;
+the app does not track scene uses. Marine materials (pages 88-89) apply to all four
+Marine armor pieces, including the helmet. Source weights use the existing 2 lb = 1 kg
+scale; only torso material weight and cost double, not resistance bonuses.
+Legion materials (page 88) apply to Recruit, Legionary, Centurion, and Legatus Helmet
+pieces. They use the standard torso material rule: weight and cost double on torso
+pieces, while resistance bonuses remain unchanged. The Wanderers Legion section does
+not repeat this rule; this apparent source omission is tracked in TODO.md. Wood Armor pieces and
+Shrouded (page 91) use the same source weight scale; Shrouded's torso weight and cost
+are doubled. Its recipe uses Survival and Armorer 1; the manuals do not resolve whether
+the crafting check pairs Survival with END or the workbench's usual INT.
+For these mod CSVs, the legacy `RARITY` column carries crafting complexity, as used
+by the modification tooltip; `RARITY_TO_FIND` separately records Common/Uncommon.
+
 ## Commands
 
 ```zsh
@@ -65,7 +87,3 @@ npm run build
 - `DUPLICATE_ID` - multiple rows share the same `ID` (latest wins)
 
 Warnings are reported, errors fail the command.
-
-
-
-

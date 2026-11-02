@@ -110,6 +110,18 @@
       "json": "mods/robotArmorMods.json"
     },
     {
+      "csv": "mods/underarmorMods.csv",
+      "json": "mods/underarmorMods.json"
+    },
+    {
+      "csv": "mods/marineArmorMods.csv",
+      "json": "mods/marineArmorMods.json"
+    },
+    {
+      "csv": "mods/wanderersArmorMods.csv",
+      "json": "mods/wanderersArmorMods.json"
+    },
+    {
       "csv": "character-features/perks.csv",
       "json": "character-features/perks.json"
     },

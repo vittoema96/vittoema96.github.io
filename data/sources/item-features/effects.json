@@ -173,6 +173,22 @@
       "it": "Rilanciare un d20 per scena in una prova di abilità basata sull'attributo SPECIAL specificato"
     }
   },
+  "effectUnderarmorReroll": {
+    "en": "STR/PER Reroll (1/scene)",
+    "it": "Rilancio FOR/PER (1/scena)",
+    "_description": {
+      "en": "Once per scene, reroll 1d20 on one Strength- or Perception-based test. The use is shared between both attributes.",
+      "it": "Una volta per scena, rilancia 1d20 in una prova basata su Forza o Percezione. L'utilizzo e condiviso tra i due attributi."
+    }
+  },
+  "effectUnderarmorRerollTwice": {
+    "en": "STR/PER Reroll (2/scene)",
+    "it": "Rilancio FOR/PER (2/scena)",
+    "_description": {
+      "en": "Twice per scene, reroll 1d20 on a Strength- or Perception-based test. The two uses are shared between both attributes and replace the underarmor's usual one use; they do not grant two rerolled dice on a single use.",
+      "it": "Due volte per scena, rilancia 1d20 in una prova basata su Forza o Percezione. I due utilizzi sono condivisi tra gli attributi e sostituiscono il normale utilizzo della sottoarmatura; non permettono di rilanciare due dadi con un singolo utilizzo."
+    }
+  },
   "effectSpread": {
     "en": "Spread",
     "it": "Propagato",

@@ -1,0 +1,50 @@
+{
+  "modUnderarmorTreatedLining": {
+    "en": "Treated Underarmor Lining",
+    "it": "Rivestimento Trattato per Sottoarmatura",
+    "_description": {
+      "en": "+1 Physical Resistance, +2 Energy Resistance, +1 Radiation Resistance.",
+      "it": "+1 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia, +1 Resistenza ai Danni da Radiazioni."
+    },
+    "_descriptor": {
+      "en": "Treated {{name}}",
+      "it": "{{name}} con Rivestimento Trattato"
+    }
+  },
+  "modUnderarmorResistantLining": {
+    "en": "Resistant Underarmor Lining",
+    "it": "Rivestimento Resistente per Sottoarmatura",
+    "_description": {
+      "en": "+2 Physical Resistance, +2 Energy Resistance, +1 Radiation Resistance.",
+      "it": "+2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia, +1 Resistenza ai Danni da Radiazioni."
+    },
+    "_descriptor": {
+      "en": "Resistant {{name}}",
+      "it": "{{name}} con Rivestimento Resistente"
+    }
+  },
+  "modUnderarmorProtectiveLining": {
+    "en": "Protective Underarmor Lining",
+    "it": "Rivestimento Protettivo per Sottoarmatura",
+    "_description": {
+      "en": "+2 Physical Resistance, +2 Energy Resistance, +1 Radiation Resistance. Reroll 1d20 on a Strength- or Perception-based test up to twice per scene, sharing the two uses between both attributes instead of the underarmor's usual one use.",
+      "it": "+2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia, +1 Resistenza ai Danni da Radiazioni. Rilancia 1d20 in una prova basata su Forza o Percezione fino a due volte per scena: i due utilizzi sono condivisi tra gli attributi e sostituiscono il normale utilizzo della sottoarmatura."
+    },
+    "_descriptor": {
+      "en": "Protective {{name}}",
+      "it": "{{name}} con Rivestimento Protettivo"
+    }
+  },
+  "modUnderarmorShieldedLining": {
+    "en": "Shielded Underarmor Lining",
+    "it": "Rivestimento Schermato per Sottoarmatura",
+    "_description": {
+      "en": "+3 Physical Resistance, +3 Energy Resistance, +1 Radiation Resistance. Reroll 1d20 on a Strength- or Perception-based test up to twice per scene, sharing the two uses between both attributes instead of the underarmor's usual one use.",
+      "it": "+3 Resistenza ai Danni Fisici, +3 Resistenza ai Danni da Energia, +1 Resistenza ai Danni da Radiazioni. Rilancia 1d20 in una prova basata su Forza o Percezione fino a due volte per scena: i due utilizzi sono condivisi tra gli attributi e sostituiscono il normale utilizzo della sottoarmatura."
+    },
+    "_descriptor": {
+      "en": "Shielded {{name}}",
+      "it": "{{name}} con Rivestimento Schermato"
+    }
+  }
+}

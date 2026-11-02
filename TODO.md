@@ -66,6 +66,8 @@ Data was imported using AI tools, actual values must be manually checked.
 ## Mods
 Corebook mods were checked for smallGuns, energyWeapons and meleeWeapons
 
+- [x] **Wanderers Legion and Wood materials** - Added the source-backed Legion and Wood pieces/materials. Legion torso materials currently use the same weight/cost multiplier as other torso material mods, following the general Corebook rule. Wanderers p. 88 does not repeat that clause for Legion Armor; verify whether this is an editorial omission or an intentional exception. The Survival SPECIAL pairing remains unresolved.
+
 - [ ] **Royal Flush weapon mods** - Add source-backed CSV definitions and bilingual localization for `modSpikedPuncturing` (Golf Club, Weighted Rubber Chicken), `modBladedSharp` (Golf Club, Juggling Pin), `modHeavyClub` (Golf Club), `modExtraWeighty` (Weighted Rubber Chicken), and `modPartyFavor` (Juggling Pin). These IDs are already referenced by `AVAILABLE_MODS` but have no definitions, so the modification popup omits them. Verify statistics and effects against the manuals before implementing.
 
 ## 🔥 High Priority

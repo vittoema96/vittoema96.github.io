@@ -1,0 +1,50 @@
+{
+  "modMarineWelded": {
+    "en": "Welded Marine Armor",
+    "it": "Materiale Marine Saldato",
+    "_description": {
+      "en": "+1 Physical Resistance, +1 Energy Resistance, +1 Radiation Resistance.",
+      "it": "+1 Resistenza ai Danni Fisici, +1 Resistenza ai Danni da Energia, +1 Resistenza ai Danni da Radiazioni."
+    },
+    "_descriptor": {
+      "en": "Welded {{name}}",
+      "it": "{{name}} con Materiale Saldato"
+    }
+  },
+  "modMarineTempered": {
+    "en": "Tempered Marine Armor",
+    "it": "Materiale Marine Rinvenuto",
+    "_description": {
+      "en": "+2 Physical Resistance, +2 Energy Resistance, +2 Radiation Resistance.",
+      "it": "+2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia, +2 Resistenza ai Danni da Radiazioni."
+    },
+    "_descriptor": {
+      "en": "Tempered {{name}}",
+      "it": "{{name}} con Materiale Rinvenuto"
+    }
+  },
+  "modMarineHardened": {
+    "en": "Hardened Marine Armor",
+    "it": "Materiale Marine Indurito",
+    "_description": {
+      "en": "+3 Physical Resistance, +3 Energy Resistance, +3 Radiation Resistance.",
+      "it": "+3 Resistenza ai Danni Fisici, +3 Resistenza ai Danni da Energia, +3 Resistenza ai Danni da Radiazioni."
+    },
+    "_descriptor": {
+      "en": "Hardened {{name}}",
+      "it": "{{name}} con Materiale Indurito"
+    }
+  },
+  "modMarineButtressed": {
+    "en": "Buttressed Marine Armor",
+    "it": "Materiale Marine Rinforzato con Costoloni",
+    "_description": {
+      "en": "+4 Physical Resistance, +4 Energy Resistance, +4 Radiation Resistance.",
+      "it": "+4 Resistenza ai Danni Fisici, +4 Resistenza ai Danni da Energia, +4 Resistenza ai Danni da Radiazioni."
+    },
+    "_descriptor": {
+      "en": "Buttressed {{name}}",
+      "it": "{{name}} Rinforzato con Costoloni"
+    }
+  }
+}

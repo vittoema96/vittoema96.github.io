@@ -413,7 +413,8 @@ export function getModdedItemData(
     let materialMultiplier = 1;
     if (isApparel) {
         const isTorsoArmor =
-            itemData.LOCATIONS_COVERED.includes('torso') && itemData.LOCATIONS_COVERED.length === 1;
+            itemData.LOCATIONS_COVERED.includes('torso') &&
+            itemData.LOCATIONS_COVERED.length === 1;
         materialMultiplier = isTorsoArmor ? 2 : 1;
     }
     const getValue = (modData: ModItem | LegendaryEffect, value: number | '-') => {

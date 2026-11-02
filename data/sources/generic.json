@@ -911,6 +911,10 @@
         "en": "Vault Suit Lining",
         "it": "Fodera Tuta Vault"
     },
+    "modSlotUnderarmorLining": {
+        "en": "Underarmor Lining",
+        "it": "Rivestimento Sottoarmatura"
+    },
     "modSlotWeave": {
         "en": "Weave",
         "it": "Trama"

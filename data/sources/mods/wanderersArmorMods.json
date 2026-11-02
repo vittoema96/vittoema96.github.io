@@ -1,0 +1,62 @@
+{
+  "modLegionReinforced": {
+    "en": "Reinforced Legion Armor",
+    "it": "Armatura della Legione Rinforzata",
+    "_description": {
+      "en": "Basic structural reinforcement for Legion armor pieces.",
+      "it": "Rinforzo strutturale base per i pezzi d'armatura della Legione."
+    },
+    "_descriptor": {
+      "en": "Reinforced {{name}}",
+      "it": "{{name}} Rinforzato"
+    }
+  },
+  "modLegionShadowed": {
+    "en": "Shadowed Legion Armor",
+    "it": "Armatura della Legione Ombrata",
+    "_description": {
+      "en": "Darkened Legion armor coating designed to assist stealth in low-light environments.",
+      "it": "Rivestimento scuro per armatura della Legione progettato per favorire la furtività in ambienti con scarsa illuminazione."
+    },
+    "_descriptor": {
+      "en": "Shadowed {{name}}",
+      "it": "{{name}} Ombrato"
+    }
+  },
+  "modLegionTreated": {
+    "en": "Treated Legion Armor",
+    "it": "Armatura della Legione Trattata",
+    "_description": {
+      "en": "Chemically treated hide and metal offering enhanced ballistic and energy protection.",
+      "it": "Cuoio e metallo trattati chimicamente per offrire una protezione balistica ed energetica superiore."
+    },
+    "_descriptor": {
+      "en": "Treated {{name}}",
+      "it": "{{name}} Trattato"
+    }
+  },
+  "modLegionStudded": {
+    "en": "Studded Legion Armor",
+    "it": "Armatura della Legione Borchiata",
+    "_description": {
+      "en": "Heavy metal studs embedded into Legion armor for high defensive capability.",
+      "it": "Pesanti borchie metalliche incastonate nell'armatura della Legione per un'elevata capacità difensiva."
+    },
+    "_descriptor": {
+      "en": "Studded {{name}}",
+      "it": "{{name}} Borchiato"
+    }
+  },
+  "modWoodShrouded": {
+    "en": "Shrouded Wood Armor",
+    "it": "Armatura in Legno con Copertura",
+    "_description": {
+      "en": "Camouflaged and reshaped wood armor that reduces weight and improves stealth.",
+      "it": "Armatura in legno camuffata e sagomata che riduce il peso e migliora la furtività."
+    },
+    "_descriptor": {
+      "en": "Shrouded {{name}}",
+      "it": "{{name}} con Copertura"
+    }
+  }
+}

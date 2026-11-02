@@ -87,6 +87,197 @@ const active = raw => {
 };
 const granted = (raw, id) => raw.items.find(i => i.id === id && i.grantedBy);
 
+test('Wanderers underarmor linings preserve recipe data and apply to both suits', () => {
+    const recipes = [
+        ['modUnderarmorTreatedLining', 1, 2, 1, 9, 2, 'Common', []],
+        ['modUnderarmorResistantLining', 2, 2, 1, 15, 3, 'Uncommon', ['perkArmorer:1']],
+        ['modUnderarmorProtectiveLining', 2, 2, 1, 24, 3, 'Uncommon', ['perkArmorer:1']],
+        ['modUnderarmorShieldedLining', 3, 3, 1, 36, 4, 'Uncommon', ['perkArmorer:2']],
+    ];
+    for (const id of ['armorUnderarmor', 'armorMarineWetsuit']) {
+        const base = data.allItems[id];
+        assert.deepEqual(
+            base.AVAILABLE_MODS,
+            recipes.map(([modId]) => modId),
+        );
+        for (const [
+            modId,
+            physical,
+            energy,
+            radiation,
+            cost,
+            complexity,
+            rarity,
+            perks,
+        ] of recipes) {
+            const mod = data.allItems[modId];
+            assert.equal(mod.SLOT_TYPE, 'modSlotUnderarmorLining');
+            assert.equal(mod.SKILL, 'repair');
+            assert.equal(mod.RARITY, complexity);
+            assert.equal(mod.RARITY_TO_FIND, rarity);
+            assert.deepEqual(mod.PERKS, perks);
+            const modified = utils.getModdedItemData(item(id, { mods: [modId] }));
+            assert.equal(modified.PHYSICAL_RES, base.PHYSICAL_RES + physical);
+            assert.equal(modified.ENERGY_RES, base.ENERGY_RES + energy);
+            assert.equal(modified.RADIATION_RES, base.RADIATION_RES + radiation);
+            assert.equal(modified.COST, base.COST + cost);
+            assert.equal(modified.WEIGHT, base.WEIGHT);
+        }
+    }
+    assert.ok(
+        !data.allItems.armorVaultJumpsuit.AVAILABLE_MODS.some(id => id.startsWith('modUnderarmor')),
+    );
+});
+
+test('Underarmor protective linings replace one shared reroll use with two, without stacking', () => {
+    const baseEffect = 'effectUnderarmorReroll';
+    const upgradedEffect = 'effectUnderarmorRerollTwice';
+    for (const id of ['armorUnderarmor', 'armorMarineWetsuit']) {
+        for (const modId of ['modUnderarmorProtectiveLining', 'modUnderarmorShieldedLining']) {
+            const modified = utils.getModdedItemData(item(id, { mods: [modId] }));
+            assert.ok(!modified.EFFECTS.includes(baseEffect));
+            assert.deepEqual(
+                modified.EFFECTS.filter(effect => effect === upgradedEffect),
+                [upgradedEffect],
+            );
+        }
+    }
+    for (const mods of [[], ['modUnderarmorTreatedLining'], ['modUnderarmorResistantLining']]) {
+        const modified = utils.getModdedItemData(item('armorUnderarmor', { mods }));
+        assert.ok(modified.EFFECTS.includes(baseEffect));
+        assert.ok(!modified.EFFECTS.includes(upgradedEffect));
+    }
+    assert.deepEqual(data.allItems.armorUnderarmor.EFFECTS, [baseEffect]);
+});
+
+test('Marine materials apply to helmet and limbs and only double torso weight and cost', () => {
+    const recipes = [
+        ['modMarineWelded', 1, 0.5, 10, 2, 'Common', []],
+        ['modMarineTempered', 2, 1, 30, 3, 'Uncommon', ['perkArmorer:1']],
+        ['modMarineHardened', 3, 1, 50, 4, 'Uncommon', ['perkArmorer:1']],
+        ['modMarineButtressed', 4, 1.5, 75, 5, 'Uncommon', ['perkArmorer:2']],
+    ];
+    for (const id of [
+        'armorMarineChest',
+        'armorMarineArm',
+        'armorMarineLeg',
+        'armorMarineHelmet',
+    ]) {
+        const base = data.allItems[id];
+        const multiplier = id === 'armorMarineChest' ? 2 : 1;
+        assert.deepEqual(
+            base.AVAILABLE_MODS,
+            recipes.map(([modId]) => modId),
+        );
+        for (const [modId, resistance, weight, cost, complexity, rarity, perks] of recipes) {
+            const mod = data.allItems[modId];
+            assert.equal(mod.SLOT_TYPE, 'modSlotMaterial');
+            assert.equal(mod.SKILL, 'repair');
+            assert.equal(mod.RARITY, complexity);
+            assert.equal(mod.RARITY_TO_FIND, rarity);
+            assert.deepEqual(mod.PERKS, perks);
+            const modified = utils.getModdedItemData(item(id, { mods: [modId] }));
+            assert.equal(modified.PHYSICAL_RES, base.PHYSICAL_RES + resistance);
+            assert.equal(modified.ENERGY_RES, base.ENERGY_RES + resistance);
+            assert.equal(modified.RADIATION_RES, base.RADIATION_RES + resistance);
+            assert.equal(modified.COST, base.COST + cost * multiplier);
+            assert.equal(modified.WEIGHT, base.WEIGHT + weight * multiplier);
+        }
+    }
+});
+
+test('Legion materials apply to every Legion piece with the standard torso multiplier', () => {
+    const recipes = [
+        ['modLegionReinforced', 1, 0, 6, 3, 'Common', []],
+        ['modLegionShadowed', 2, 0.5, 48, 5, 'Uncommon', ['perkArmorer:1']],
+        ['modLegionTreated', 3, 0.5, 15, 4, 'Uncommon', ['perkArmorer:1']],
+        ['modLegionStudded', 4, 1, 30, 6, 'Uncommon', ['perkArmorer:1']],
+    ];
+    const ids = [
+        'armorLegionaryRecruitChest',
+        'armorLegionaryRecruitArm',
+        'armorLegionaryRecruitLeg',
+        'armorLegionaryRecruitHelmet',
+        'armorLegionaryChest',
+        'armorLegionaryArm',
+        'armorLegionaryLeg',
+        'armorLegionaryHelmet',
+        'armorLegionaryCenturionChest',
+        'armorLegionaryCenturionArm',
+        'armorLegionaryCenturionLeg',
+        'armorLegionaryCenturionHelmet',
+        'armorLegatusHelmet',
+    ];
+    for (const id of ids) {
+        const base = data.allItems[id];
+        const multiplier = base.LOCATIONS_COVERED.includes('torso') ? 2 : 1;
+        assert.deepEqual(base.AVAILABLE_MODS, recipes.map(([modId]) => modId));
+        for (const [modId, resistance, weight, cost, complexity, rarity, perks] of recipes) {
+            const mod = data.allItems[modId];
+            assert.equal(mod.SLOT_TYPE, 'modSlotMaterial');
+            assert.equal(mod.SKILL, 'repair');
+            assert.equal(mod.RARITY, complexity);
+            assert.equal(mod.RARITY_TO_FIND, rarity);
+            assert.deepEqual(mod.PERKS, perks);
+            const modified = utils.getModdedItemData(item(id, { mods: [modId] }));
+            assert.equal(modified.PHYSICAL_RES, base.PHYSICAL_RES + resistance);
+            assert.equal(modified.ENERGY_RES, base.ENERGY_RES + resistance);
+            assert.equal(modified.RADIATION_RES, base.RADIATION_RES);
+            assert.equal(modified.COST, base.COST + cost * multiplier);
+            assert.equal(modified.WEIGHT, base.WEIGHT + weight * multiplier);
+        }
+    }
+});
+
+test('Wood armor accepts Shrouded with torso weight and cost multiplier', () => {
+    const recipes = [
+        ['armorWoodChest', 2, 25, 2],
+        ['armorWoodArm', 1, 10, 1],
+        ['armorWoodLeg', 1, 10, 1],
+        ['armorWoodHelmet', 1, 10, 1],
+    ];
+    const mod = data.allItems.modWoodShrouded;
+    assert.equal(mod.SKILL, 'survival');
+    assert.deepEqual(mod.PERKS, ['perkArmorer:1']);
+    assert.equal(mod.RARITY, 3);
+    assert.equal(mod.RARITY_TO_FIND, 'Rare');
+    for (const [id, baseWeight, baseCost, multiplier] of recipes) {
+        const base = data.allItems[id];
+        assert.deepEqual(base.AVAILABLE_MODS, ['modWoodShrouded']);
+        const modified = utils.getModdedItemData(item(id, { mods: ['modWoodShrouded'] }));
+        assert.equal(modified.PHYSICAL_RES, base.PHYSICAL_RES);
+        assert.equal(modified.ENERGY_RES, base.ENERGY_RES);
+        assert.equal(modified.RADIATION_RES, base.RADIATION_RES);
+        assert.equal(modified.WEIGHT, baseWeight - 0.5 * multiplier);
+        assert.equal(modified.COST, baseCost + 10 * multiplier);
+    }
+    assert.ok(data.allItems.armorWoodChest.EFFECTS.includes('effectShadowed') === false);
+    assert.ok(
+        utils
+            .getModdedItemData(item('armorWoodChest', { mods: ['modWoodShrouded'] }))
+            .EFFECTS.includes('effectShadowed'),
+    );
+});
+
+test('Brotherhood bomber jacket accepts all ballistic weave ranks (Wanderers p. 86)', () => {
+    const id = 'armorBrotherhoodBomberJacket';
+    const jacket = data.allItems[id];
+    const mods = [
+        'modBallisticWeave',
+        'modBallisticWeave2',
+        'modBallisticWeave3',
+        'modBallisticWeave4',
+        'modBallisticWeave5',
+    ];
+    assert.deepEqual(jacket.AVAILABLE_MODS, mods);
+    for (const [index, modId] of mods.entries()) {
+        const modified = utils.getModdedItemData(item(id, { mods: [modId] }));
+        assert.equal(modified.PHYSICAL_RES, jacket.PHYSICAL_RES + index + 2);
+        assert.equal(modified.ENERGY_RES, jacket.ENERGY_RES + index + 2);
+        assert.equal(modified.RADIATION_RES, jacket.RADIATION_RES);
+    }
+});
+
 for (const suffix of ['CircularSaw', 'Flamethrower', 'Pliers', 'AutomaticPistol', 'LaserEmitter']) {
     test(`Mr. Handy ${suffix}: grant, hide, restore configuration without duplicating`, () => {
         const id = `weaponMrHandy${suffix}`,

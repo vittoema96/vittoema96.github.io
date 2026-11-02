@@ -1,0 +1,6 @@
+ID,TYPE,SLOT_TYPE,EFFECTS,WEIGHT,COST,SKILL,PERKS,RARITY,RARITY_TO_FIND,SOURCE
+modLegionReinforced,mod,modSlotMaterial,"[""physicalResAdd:1"",""energyResAdd:1""]",0,6,repair,[],3,Common,Wanderers p. 88
+modLegionShadowed,mod,modSlotMaterial,"[""physicalResAdd:2"",""energyResAdd:2"",""effectAdd:effectShadowed""]",0.5,48,repair,"[""perkArmorer:1""]",5,Uncommon,Wanderers p. 88
+modLegionTreated,mod,modSlotMaterial,"[""physicalResAdd:3"",""energyResAdd:3""]",0.5,15,repair,"[""perkArmorer:1""]",4,Uncommon,Wanderers p. 88
+modLegionStudded,mod,modSlotMaterial,"[""physicalResAdd:4"",""energyResAdd:4""]",1,30,repair,"[""perkArmorer:1""]",6,Uncommon,Wanderers p. 88
+modWoodShrouded,mod,modSlotMaterial,"[""effectAdd:effectShadowed""]",-0.5,10,survival,"[""perkArmorer:1""]",3,Rare,Wanderers p. 91

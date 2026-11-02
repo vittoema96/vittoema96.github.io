@@ -37,6 +37,9 @@
     "mods/armorImprovementMods.csv",
     "mods/ballisticWeaveMods.csv",
     "mods/vaultSuitMods.csv",
+    "mods/underarmorMods.csv",
+    "mods/marineArmorMods.csv",
+    "mods/wanderersArmorMods.csv",
     "mods/robotArmorMods.csv"
   ],
   "perks": [
@@ -52,4 +55,3 @@
     "item-features/legendaryEffects.csv"
   ]
 }
-
