@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useCallback, useContext, useMemo } from 'react';
-import { calculateCharacter } from '@/features/character/calculate.ts';
+import { calculateCharacter } from '@/features/character/calculations/characterCalculations.ts';
 import { useActiveCharacter, useSaveStore } from '@/hooks/useSaveStore.ts';
 
 function useCharacterProviderValue() {

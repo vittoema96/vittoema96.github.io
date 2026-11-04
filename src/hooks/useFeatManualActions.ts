@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
-import { calculateCharacter } from '@/features/character/calculate.ts';
+import { calculateCharacter } from '@/features/character/calculations/characterCalculations.ts';
 import { getManualActions } from '@/features/character/feats/rules.ts';
 import type { FeatManualAction } from '@/features/character/feats/types.ts';
 

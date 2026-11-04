@@ -1,4 +1,4 @@
-import { getModifiedItemData } from '@/features/character/items.ts';
+import { getModifiedItemData } from '../inventory/equipment.ts';
 import { isType } from '@/features/item/utils.ts';
 import { RawCharacter } from '@/types';
 import { traits as traitData } from '@/data';

@@ -10,7 +10,7 @@ import {
 import { CompanionSpecialType } from '@/features/character/special/special.companion.ts';
 import { COMPANION_TYPES } from '@/utils/companionTypes.ts';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
-import { updateCompanion } from '@/features/character/update.ts';
+import { updateCompanion } from '@/features/character/state/characterState.ts';
 
 interface StatGearProps {
     statType: CompanionSpecialType | SpecialType;

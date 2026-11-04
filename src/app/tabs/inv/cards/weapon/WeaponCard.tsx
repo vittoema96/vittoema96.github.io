@@ -2,8 +2,8 @@ import {
     getModifiedItemData,
     getSkillForWeaponCategory,
     getSpecialForWeaponCategory,
-    hasEnoughAmmo,
-} from '@/features/character/items.ts';
+} from '@/features/character/inventory/equipment.ts';
+import { hasEnoughAmmo } from '@/features/character/inventory/inventory.ts';
 import BaseCard from '../BaseCard.tsx'
 import WeaponContent from '@/app/tabs/inv/cards/weapon/WeaponContent.tsx'
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx'

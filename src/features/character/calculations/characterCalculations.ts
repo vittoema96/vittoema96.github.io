@@ -10,16 +10,16 @@ import { PerkId, calculatePerks } from '@/features/character/feats/perks.ts';
 import {
     calculateSpecialties,
     calculateSpecialtyPoints,
-} from '@/features/character/specialties.ts';
-import { calculateCurrentWeight, calculateMaxWeight } from '@/features/character/weight.ts';
-import { calculateDamageResistances } from '@/features/character/damageResistances.ts';
-import { calculateMaxHp } from '@/features/character/hp.ts';
-import { calculateMaxLuck } from '@/features/character/luck.ts';
-import { calculateMeleeDamage } from '@/features/character/meleeDamage.ts';
+} from './specialties.ts';
+import { calculateCurrentWeight, calculateMaxWeight } from './weight.ts';
+import { calculateDamageResistances } from './damageResistance.ts';
+import { calculateMaxHp } from './hp.ts';
+import { calculateMaxLuck } from './luck.ts';
+import { calculateMeleeDamage } from './meleeDamage.ts';
 import { getAvailableCompanions, getPoisonResistance } from '@/features/character/feats/rules';
 import { createDefaultCompanion } from '@/utils/companionTypes.ts';
 import { calculateSpecialPoints } from '@/features/character/special/special.ts';
-import { getInventory } from '@/features/character/items.ts';
+import { getInventory } from '../inventory/inventory.ts';
 
 export function calculateCharacter(raw: RawCharacter): Character {
     // TODO init exchange rates

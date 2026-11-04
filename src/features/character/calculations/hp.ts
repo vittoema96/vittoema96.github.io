@@ -6,8 +6,8 @@ import { TraitId } from '@/features/character/feats/traits.ts';
 import { getMaxHpBonus } from '@/features/character/feats/rules';
 import { getOriginById } from '@/features/character/origins/registry';
 import type { Origin } from '@/features/character/origins/types.ts';
-import { calculatePerks } from './feats/perks.ts';
-import { calculateTraits } from './feats/traits.ts';
+import { calculatePerks } from '../feats/perks.ts';
+import { calculateTraits } from '../feats/traits.ts';
 
 /**
  * Method used by the domain update transition behind CharacterContextValue.updateCharacter()

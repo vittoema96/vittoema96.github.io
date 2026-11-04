@@ -1,4 +1,4 @@
-import { getModifiedItemData } from '@/features/character/items.ts';
+import { getModifiedItemData } from '@/features/character/inventory/equipment.ts';
 import React, { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOverlay } from '@/hooks/useOverlay.ts'

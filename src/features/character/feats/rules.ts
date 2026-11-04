@@ -8,7 +8,7 @@ import type { Origin } from '@/features/character/origins/types.ts';
 import type { BaseItem } from '@/data/types.ts';
 import type { ApparelCategory } from '@/types/item.ts';
 import { getActiveFeats } from './registry.ts';
-import { mergeWeaponEffects } from './weaponEffects.ts';
+import { mergeWeaponEffects } from './weaponEffectMerge.ts';
 import type {
     FeatImplementation,
     FeatManualAction,

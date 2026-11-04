@@ -1,4 +1,4 @@
-import { getModifiedItemData } from '@/features/character/items.ts';
+import { getModifiedItemData } from '@/features/character/inventory/equipment.ts';
 import { useTranslation } from 'react-i18next'
 import Tag from '@/app/components/Tag.tsx'
 import { CharacterItem } from '@/types';

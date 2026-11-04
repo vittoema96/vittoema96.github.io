@@ -1,80 +1,119 @@
-ID,TYPE,CATEGORY,DURATION,HP_GAIN,RADIOACTIVE,ADDICTIVE,WEIGHT,COST,RARITY
-foodHermitCrabMeat,aid,food,durationInstant,8,1,,0.5,22,3
-foodGrilledHermitCrab,aid,food,durationInstant,10,1,,0.5,130,4
-foodMegaSlothMeat,aid,food,durationInstant,7,1,,0.5,80,3
-foodMegaSlothMushroom,aid,food,durationInstant,4,1,,0,40,2
-foodRoastedMirelurkMeat,aid,food,durationInstant,8,0,,0,40,2
-foodYaoGuaiRoast,aid,food,durationInstant,14,0,,0.5,110,4
-foodTarberry,aid,food,durationInstant,3,1,,0,5,3
-foodDeathclawSteak,aid,food,durationInstant,14,0,,0.5,130,4
-foodMirelurkQueenSteak,aid,food,durationInstant,14,0,,0.5,130,5
-foodRadscorpionSteak,aid,food,durationInstant,12,0,,0.5,65,3
-foodBloodbugSteak,aid,food,durationInstant,10,0,,0,18,2
-foodRibeyeSteak,aid,food,durationInstant,10,0,,0.5,40,2
-foodSalisburySteak,aid,food,durationInstant,5,1,,0,20,0
-foodIguanaBits,aid,food,durationInstant,4,1,,0,8,1
-foodSquirrelBits,aid,food,durationInstant,4,1,,0,4,1
-foodCrispySquirrelBits,aid,food,durationInstant,6,0,,0,6,2
-foodGumDrops,aid,food,durationInstant,3,1,,0,5,0
-foodCookedSoftshellMeat,aid,food,durationInstant,9,0,,0,40,3
-foodCram,aid,food,durationInstant,5,1,,0,25,1
-foodMongrelDogMeat,aid,food,durationInstant,4,1,,0,8,0
-foodBrahminMeat,aid,food,durationInstant,3,1,,0.5,28,1
-foodRadstagMeat,aid,food,durationInstant,8,1,,0.5,50,1
-foodDeathclawMeat,aid,food,durationInstant,9,1,,0.5,110,3
-foodMirelurkMeat,aid,food,durationInstant,6,1,,0,18,1
-foodSoftshellMirelurkMeat,aid,food,durationInstant,6,1,,0,22,2
-foodBloatflyMeat,aid,food,durationInstant,2,1,,0,8,0
-foodMoleRatMeat,aid,food,durationInstant,5,1,,0,5,0
-foodQueenMirelurkMeat,aid,food,durationInstant,10,1,,0,22,4
-foodRadroachMeat,aid,food,durationInstant,4,1,,0,3,0
-foodRadscorpionMeat,aid,food,durationInstant,9,1,,0.5,55,2
-foodMutantHoundMeat,aid,food,durationInstant,5,1,,0,8,2
-foodStingwingMeat,aid,food,durationInstant,8,1,,0,30,1
-foodBloodbugMeat,aid,food,durationInstant,7,1,,0,8,1
-foodYaoGuaiMeat,aid,food,durationInstant,9,1,,0.5,85,3
-foodPottedMeat,aid,food,durationInstant,6,1,,0.5,25,0
-foodCarrot,aid,food,durationInstant,3,1,,0,3,1
-foodGrilledRadstag,aid,food,durationInstant,11,0,,0.5,60,2
-foodCannedDogFood,aid,food,durationInstant,3,1,,0,6,0
-foodMelon,aid,food,durationInstant,3,1,,0.5,6,1
-foodMuttChops,aid,food,durationInstant,6,0,,0,12,1
-foodMutantHoundChops,aid,food,durationInstant,8,0,,0,12,3
-foodYaoGuaiRibs,aid,food,durationInstant,13,0,,0.5,90,4
-foodPerfectlyPreservedPie,aid,food,durationInstant,5,0,,0,20,3
-foodSweetRoll,aid,food,durationInstant,4,1,,0,9,1
-foodSiltBean,aid,food,durationInstant,3,1,,0,6,1
-foodStingwingFilet,aid,food,durationInstant,11,0,,0,35,2
-foodBrainFungus,aid,food,durationInstant,3,1,,0,6,1
-foodRazorgrain,aid,food,durationInstant,3,1,,0,5,1
-foodCorn,aid,food,durationInstant,3,1,,0,6,1
-foodInstaMash,aid,food,durationInstant,4,1,,0,20,0
-foodBlamCoMacAndCheese,aid,food,durationInstant,4,1,,0,10,1
-foodDandyBoyApples,aid,food,durationInstant,3,1,,0,7,0
-foodVegetableSoup,aid,food,durationInstant,7,0,,0.5,13,2
-foodBakedBloatfly,aid,food,durationInstant,6,0,,0,15,1
-foodMutfruit,aid,food,durationInstant,3,1,,0,8,0
-foodDeathclawOmelette,aid,food,durationInstant,11,0,,0,80,4
-foodMirelurkEggOmelette,aid,food,durationInstant,7,0,,0,30,3
-foodRadscorpionEggOmelette,aid,food,durationInstant,9,0,,0,65,4
-foodPaste,aid,food,durationInstant,7,0,,0,0,2
-foodPotatoCrisps,aid,food,durationInstant,3,1,,0,7,0
-foodMoleRatChunks,aid,food,durationInstant,7,0,,0,8,1
-foodPorkNBeans,aid,food,durationInstant,4,1,,0,10,0
-foodNoodleCup,aid,food,durationInstant,6,0,,0,20,2
-foodInstituteFoodPacket,aid,food,durationInstant,5,0,,0,10,2
-foodGrilledRadroach,aid,food,durationInstant,5,0,,0,7,1
-foodIguanaOnAStick,aid,food,durationInstant,6,0,,0,33,2
-foodSquirrelOnAStick,aid,food,durationInstant,7,0,,0,15,2
-foodRadstagStew,aid,food,durationInstant,12,0,,0.5,60,3
-foodSquirrelStew,aid,food,durationInstant,10,0,,0.5,24,2
-foodSugarBombs,aid,food,durationInstant,4,1,,0,11,0
-foodTato,aid,food,durationInstant,3,1,,0,7,1
-foodFancyLadsSnacks,aid,food,durationInstant,3,1,,0,18,0
-foodMirelurkCake,aid,food,durationInstant,12,0,,0,35,3
-foodYumYumDeviledEggs,aid,food,durationInstant,4,1,,0,20,0
-foodDeathclawEgg,aid,food,durationInstant,7,1,,0,69,3
-foodMirelurkEgg,aid,food,durationInstant,3,1,,0.5,0,2
-foodRadscorpionEgg,aid,food,durationInstant,6,1,,0,48,3
-foodGourd,aid,food,durationInstant,3,1,,0.5,6,1
-foodIguanaSoup,aid,food,durationInstant,10,0,,0.5,21,3
+ID,TYPE,CATEGORY,DURATION,HP_GAIN,RADIOACTIVE,ADDICTIVE,WEIGHT,COST,RARITY,SOURCE
+foodHermitCrabMeat,aid,food,durationInstant,8,1,,0.5,22,3,Wanderers DLC
+foodGrilledHermitCrab,aid,food,durationInstant,10,1,,0.5,130,4,Wanderers DLC
+foodMegaSlothMeat,aid,food,durationInstant,7,1,,0.5,80,3,Wanderers DLC
+foodMegaSlothMushroom,aid,food,durationInstant,4,1,,0,40,2,Wanderers DLC
+foodRoastedMirelurkMeat,aid,food,durationInstant,8,0,,0,40,2,Corebook
+foodYaoGuaiRoast,aid,food,durationInstant,14,0,,0.5,110,4,Corebook
+foodTarberry,aid,food,durationInstant,3,1,,0,5,3,Corebook
+foodDeathclawSteak,aid,food,durationInstant,14,0,,0.5,130,4,Corebook
+foodMirelurkQueenSteak,aid,food,durationInstant,14,0,,0.5,130,5,Corebook
+foodRadscorpionSteak,aid,food,durationInstant,12,0,,0.5,65,3,Corebook
+foodBloodbugSteak,aid,food,durationInstant,10,0,,0,18,2,Corebook
+foodRibeyeSteak,aid,food,durationInstant,10,0,,0.5,40,2,Corebook
+foodSalisburySteak,aid,food,durationInstant,5,1,,0,20,0,Corebook
+foodIguanaBits,aid,food,durationInstant,4,1,,0,8,1,Corebook
+foodSquirrelBits,aid,food,durationInstant,4,1,,0,4,1,Corebook
+foodCrispySquirrelBits,aid,food,durationInstant,6,0,,0,6,2,Corebook
+foodGumDrops,aid,food,durationInstant,3,1,,0,5,0,Corebook
+foodCookedSoftshellMeat,aid,food,durationInstant,9,0,,0,40,3,Corebook
+foodCram,aid,food,durationInstant,5,1,,0,25,1,Corebook
+foodMongrelDogMeat,aid,food,durationInstant,4,1,,0,8,0,Corebook
+foodBrahminMeat,aid,food,durationInstant,3,1,,0.5,28,1,Corebook
+foodRadstagMeat,aid,food,durationInstant,8,1,,0.5,50,1,Corebook
+foodDeathclawMeat,aid,food,durationInstant,9,1,,0.5,110,3,Corebook
+foodMirelurkMeat,aid,food,durationInstant,6,1,,0,18,1,Corebook
+foodSoftshellMirelurkMeat,aid,food,durationInstant,6,1,,0,22,2,Corebook
+foodBloatflyMeat,aid,food,durationInstant,2,1,,0,8,0,Corebook
+foodMoleRatMeat,aid,food,durationInstant,5,1,,0,5,0,Corebook
+foodQueenMirelurkMeat,aid,food,durationInstant,10,1,,0,22,4,Corebook
+foodRadroachMeat,aid,food,durationInstant,4,1,,0,3,0,Corebook
+foodRadscorpionMeat,aid,food,durationInstant,9,1,,0.5,55,2,Corebook
+foodMutantHoundMeat,aid,food,durationInstant,5,1,,0,8,2,Corebook
+foodStingwingMeat,aid,food,durationInstant,8,1,,0,30,1,Corebook
+foodBloodbugMeat,aid,food,durationInstant,7,1,,0,8,1,Corebook
+foodYaoGuaiMeat,aid,food,durationInstant,9,1,,0.5,85,3,Corebook
+foodPottedMeat,aid,food,durationInstant,6,1,,0.5,25,0,Corebook
+foodCarrot,aid,food,durationInstant,3,1,,0,3,1,Corebook
+foodGrilledRadstag,aid,food,durationInstant,11,0,,0.5,60,2,Corebook
+foodCannedDogFood,aid,food,durationInstant,3,1,,0,6,0,Corebook
+foodMelon,aid,food,durationInstant,3,1,,0.5,6,1,Corebook
+foodMuttChops,aid,food,durationInstant,6,0,,0,12,1,Corebook
+foodMutantHoundChops,aid,food,durationInstant,8,0,,0,12,3,Corebook
+foodYaoGuaiRibs,aid,food,durationInstant,13,0,,0.5,90,4,Corebook
+foodPerfectlyPreservedPie,aid,food,durationInstant,5,0,,0,20,3,Corebook
+foodSweetRoll,aid,food,durationInstant,4,1,,0,9,1,Corebook
+foodSiltBean,aid,food,durationInstant,3,1,,0,6,1,Corebook
+foodStingwingFilet,aid,food,durationInstant,11,0,,0,35,2,Corebook
+foodBrainFungus,aid,food,durationInstant,3,1,,0,6,1,Corebook
+foodRazorgrain,aid,food,durationInstant,3,1,,0,5,1,Corebook
+foodCorn,aid,food,durationInstant,3,1,,0,6,1,Corebook
+foodInstaMash,aid,food,durationInstant,4,1,,0,20,0,Corebook
+foodBlamCoMacAndCheese,aid,food,durationInstant,4,1,,0,10,1,Corebook
+foodDandyBoyApples,aid,food,durationInstant,3,1,,0,7,0,Corebook
+foodVegetableSoup,aid,food,durationInstant,7,0,,0.5,13,2,Corebook
+foodBakedBloatfly,aid,food,durationInstant,6,0,,0,15,1,Corebook
+foodMutfruit,aid,food,durationInstant,3,1,,0,8,0,Corebook
+foodDeathclawOmelette,aid,food,durationInstant,11,0,,0,80,4,Corebook
+foodMirelurkEggOmelette,aid,food,durationInstant,7,0,,0,30,3,Corebook
+foodRadscorpionEggOmelette,aid,food,durationInstant,9,0,,0,65,4,Corebook
+foodPaste,aid,food,durationInstant,7,0,,0,0,2,Corebook
+foodPotatoCrisps,aid,food,durationInstant,3,1,,0,7,0,Corebook
+foodMoleRatChunks,aid,food,durationInstant,7,0,,0,8,1,Corebook
+foodPorkNBeans,aid,food,durationInstant,4,1,,0,10,0,Corebook
+foodNoodleCup,aid,food,durationInstant,6,0,,0,20,2,Corebook
+foodInstituteFoodPacket,aid,food,durationInstant,5,0,,0,10,2,Corebook
+foodGrilledRadroach,aid,food,durationInstant,5,0,,0,7,1,Corebook
+foodIguanaOnAStick,aid,food,durationInstant,6,0,,0,33,2,Corebook
+foodSquirrelOnAStick,aid,food,durationInstant,7,0,,0,15,2,Corebook
+foodRadstagStew,aid,food,durationInstant,12,0,,0.5,60,3,Corebook
+foodSquirrelStew,aid,food,durationInstant,10,0,,0.5,24,2,Corebook
+foodSugarBombs,aid,food,durationInstant,4,1,,0,11,0,Corebook
+foodTato,aid,food,durationInstant,3,1,,0,7,1,Corebook
+foodFancyLadsSnacks,aid,food,durationInstant,3,1,,0,18,0,Corebook
+foodMirelurkCake,aid,food,durationInstant,12,0,,0,35,3,Corebook
+foodYumYumDeviledEggs,aid,food,durationInstant,4,1,,0,20,0,Corebook
+foodDeathclawEgg,aid,food,durationInstant,7,1,,0,69,3,Corebook
+foodMirelurkEgg,aid,food,durationInstant,3,1,,0.5,0,2,Corebook
+foodRadscorpionEgg,aid,food,durationInstant,6,1,,0,48,3,Corebook
+foodGourd,aid,food,durationInstant,3,1,,0.5,6,1,Corebook
+foodIguanaSoup,aid,food,durationInstant,10,0,,0.5,21,3,Corebook
+foodAnglerMeat,aid,food,durationInstant,6,1,,0.5,60,2,Wanderers DLC
+foodCaveCricketMeat,aid,food,durationInstant,4,1,,0,18,1,Wanderers DLC
+foodCazadorEgg,aid,food,durationInstant,6,1,,0,35,2,Wanderers DLC
+foodCazadorOmelet,aid,food,durationInstant,8,0,,0,50,3,Wanderers DLC
+foodCrispyCaveCricket,aid,food,durationInstant,6,0,,0,25,2,Wanderers DLC
+foodGeckoKebab,aid,food,durationInstant,7,0,,0,20,1,Wanderers DLC
+foodGeckoMeat,aid,food,durationInstant,5,1,,0,12,1,Wanderers DLC
+foodGiantAntMeat,aid,food,durationInstant,4,1,,0,3,0,Wanderers DLC
+foodGiantMantisForeleg,aid,food,durationInstant,6,1,,0,30,2,Wanderers DLC
+foodGrilledGiantMantis,aid,food,durationInstant,8,0,,0,50,2,Wanderers DLC
+foodGulperInnards,aid,food,durationInstant,3,1,,0.5,5,2,Wanderers DLC
+foodGulperSlurry,aid,food,durationInstant,10,0,,0.5,45,2,Wanderers DLC
+foodMegaSlothSteak,aid,food,durationInstant,10,0,,0.5,110,4,Wanderers DLC
+foodMegaSlothMushroomSoup,aid,food,durationInstant,6,1,,0.5,60,3,Wanderers DLC
+foodHoney,aid,food,durationInstant,5,0,,0,20,3,Wanderers DLC
+foodHoneyCake,aid,food,durationInstant,12,0,,0.5,80,4,Wanderers DLC
+foodHoneycomb,aid,food,durationInstant,6,0,,0,30,3,Wanderers DLC
+foodLambChops,aid,food,durationInstant,10,1,,0.5,100,4,Wanderers DLC
+foodLureWeed,aid,food,durationInstant,2,1,,0,5,1,Wanderers DLC
+foodMongrelRibs,aid,food,durationInstant,7,1,,0,30,2,Wanderers DLC
+foodMuttonMeatPie,aid,food,durationInstant,15,1,,0.5,120,4,Wanderers DLC
+foodPoachedAngler,aid,food,durationInstant,10,0,,0.5,100,4,Wanderers DLC
+foodRadratMeat,aid,food,durationInstant,4,1,,0,4,0,Wanderers DLC
+foodRoastedRadrat,aid,food,durationInstant,7,0,,0,10,1,Wanderers DLC
+foodScorchbeastMeat,aid,food,durationInstant,9,1,,0.5,100,4,Wanderers DLC
+foodScorchbeastSteak,aid,food,durationInstant,14,0,,0.5,120,4,Wanderers DLC
+foodScorchbeastStew,aid,food,durationInstant,12,0,,0.5,130,4,Wanderers DLC
+foodSheepsquatchMeat,aid,food,durationInstant,8,1,,0.5,120,4,Wanderers DLC
+foodSnallygasterInnards,aid,food,durationInstant,3,1,,0.5,30,3,Wanderers DLC
+foodSnallygasterStew,aid,food,durationInstant,9,0,,0.5,80,4,Wanderers DLC
+foodPreservedBlamCoMacAndCheese,aid,food,durationInstant,4,0,,0,10,2,Corebook
+foodFreshCarrot,aid,food,durationInstant,3,0,,0,3,2,Corebook
+foodFreshCorn,aid,food,durationInstant,3,0,,0,6,2,Corebook
+foodPreservedFancyLadsSnacks,aid,food,durationInstant,3,0,,0,18,1,Corebook
+foodPreservedInstaMash,aid,food,durationInstant,4,0,,0,20,1,Corebook
+foodFreshMelon,aid,food,durationInstant,3,0,,0.5,6,2,Corebook
+foodFreshMutfruit,aid,food,durationInstant,3,0,,0,8,1,Corebook
+foodPreservedSalisburySteak,aid,food,durationInstant,5,0,,0,20,1,Corebook
+foodPreservedSugarBombs,aid,food,durationInstant,4,0,,0,11,1,Corebook

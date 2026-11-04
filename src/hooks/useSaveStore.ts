@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { RawCharacter } from '@/types';
-import { applyUpdate, loadCharacter, type CharacterUpdate } from '@/features/character/update.ts';
+import { applyUpdate, loadCharacter, type CharacterUpdate } from '@/features/character/state/characterState.ts';
 
 export const MAX_SLOTS = 10;
 const STORAGE_KEY = 'PB3K_character_saves';

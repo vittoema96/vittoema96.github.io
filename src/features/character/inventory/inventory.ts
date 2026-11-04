@@ -1,38 +1,13 @@
-import type { Character, CharacterItem, CustomItem, Item, RawCharacter } from '@/types';
+import type { Character, CharacterItem, CustomItem, RawCharacter } from '@/types';
 import type { WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { allItems, apparel } from '@/data';
-import { applyEffect, getModdedItemData, isSameConfiguration, isType } from '@/features/item/utils.ts';
-import { calculatePerks } from './feats/perks.ts';
-import { calculateTraits } from './feats/traits.ts';
-import {
-    getAllowedApparelCategories,
-    getGrantedItems,
-    getWeaponItemEffects,
-} from './feats/rules.ts';
-import type { PerkId } from './feats/perks.ts';
-import type { FeatSelection } from './feats/types.ts';
-import { getOriginById } from './origins/registry.ts';
-import { getSpecialFromSkill, type SkillType } from './skills/skills.ts';
-import type { SpecialType } from './special/special.ts';
-import type { WeaponCategory } from '@/types/item.ts';
-
-type Currencies = Pick<RawCharacter, 'caps' | 'ncrDollars' | 'legionDenarius' | 'prewarMoney'>;
-export type CurrencyDelta = Partial<Currencies>;
-
-export function getCurrencyUpdate(
-    character: Currencies,
-    delta: CurrencyDelta | undefined,
-    direction: 1 | -1,
-): CurrencyDelta {
-    return delta
-        ? {
-              caps: character.caps + direction * (delta.caps ?? 0),
-              ncrDollars: character.ncrDollars + direction * (delta.ncrDollars ?? 0),
-              legionDenarius: character.legionDenarius + direction * (delta.legionDenarius ?? 0),
-              prewarMoney: character.prewarMoney + direction * (delta.prewarMoney ?? 0),
-          }
-        : {};
-}
+import { isSameConfiguration, isType } from '@/features/item/utils.ts';
+import { getGrantedItems } from '../feats/rules.ts';
+import { calculatePerks, type PerkId } from '../feats/perks.ts';
+import { calculateTraits } from '../feats/traits.ts';
+import type { FeatSelection } from '../feats/types.ts';
+import { getOriginById } from '../origins/registry.ts';
+import { getModifiedItemData, canEquipApparel } from './equipment.ts';
 
 export function applyAddItem<T extends CharacterItem | CustomItem>(items: T[], itemToAdd: T): T[] {
     let found = false;
@@ -64,75 +39,13 @@ export function applyRemoveItem<T extends CharacterItem | CustomItem>(
     });
 }
 
-/**
- * Maps a weapon category to its corresponding skill.
- * Most categories map 1:1 to a skill of the same name,
- * but Bows use the Athletics skill (AGI + Athletics per DLC rules).
- */
-export function getSkillForWeaponCategory(category: WeaponCategory): SkillType {
-    return category === 'bows' ? 'athletics' : category;
-}
-
-/**
- * Maps a weapon category to its corresponding SPECIAL attribute.
- * Most categories use the default SPECIAL for their skill,
- * but Bows use Agility (instead of Strength, which is athletics' default).
- */
-export function getSpecialForWeaponCategory(category: WeaponCategory): SpecialType {
-    return category === 'bows'
-        ? 'agility'
-        : getSpecialFromSkill(getSkillForWeaponCategory(category));
-}
-
-export function getModifiedItemData(item: CharacterItem | null | undefined, perks: PerkId[] = []) {
-    const data = getModdedItemData(item);
-    if (!isType(data, 'weapon')) {
-        return data;
-    }
-    return getWeaponItemEffects(data, perks).reduce(
-        (modified, effect) => applyEffect(modified, effect),
-        data,
-    );
-}
-
-/**
- * Returns whether the selected origin and feats allow a character to equip an
- * apparel item. Robot compatibility is handled here so UI actions and save
- * reconciliation use the same rule.
- */
-export function canEquipApparel(
-    itemData: Item | null | undefined,
-    selection: FeatSelection,
-): boolean {
-    if (!isType(itemData, 'apparel')) {
-        return true;
-    }
-
-    if (itemData.CATEGORY === 'robotPart') {
-        return selection.origin?.isRobot === true;
-    }
-
-    if (selection.origin?.isRobot) {
-        return false;
-    }
-
-    const allowedCategories = getAllowedApparelCategories(
-        selection.perks,
-        selection.traits,
-        selection.origin,
-    );
-    return allowedCategories === undefined || allowedCategories.has(itemData.CATEGORY);
-}
-
 function getUnarmedStrike(selection: FeatSelection): CharacterItem | undefined {
-    // Everyone except robots has an unarmed attack. Iron Fist replaces it.
     return selection.origin?.isRobot
         ? undefined
         : { id: 'weaponUnarmedStrike', quantity: 1, mods: [], equipped: false };
 }
 
 function getGrants(items: CharacterItem[], selection: FeatSelection) {
-    // The humanoid's implicit attack can be replaced without persisting a virtual item.
     const unarmed = getUnarmedStrike(selection);
     const availableItems = unarmed ? [...items, unarmed] : items;
     return getGrantedItems({ ...selection, items: availableItems });
@@ -151,7 +64,6 @@ function getActiveInventory(items: CharacterItem[], selection: FeatSelection) {
                     )),
         )
         .flatMap(item => {
-            // Intrinsic parts stay saved when hidden for a different origin.
             if (apparel[item.id]?.CATEGORY === 'robotPart') {
                 if (
                     !selection.origin?.isRobot ||
@@ -180,9 +92,6 @@ export function getInventory(items: CharacterItem[], selection: FeatSelection) {
     };
 }
 
-/**
- * Add special weapon items (unarmed strike, gun bash)
- */
 function addSpecialWeaponItems(
     items: CharacterItem[],
     perks: PerkId[],
@@ -210,9 +119,6 @@ function addSpecialWeaponItems(
         }
     };
 
-    /** Condition used with addSpecialItem to add/update gun bash items.
-     * @param twoHandedCondition if true, checks for two-handed weapons, if false, checks for one-handed weapons
-     */
     const gunBashCondition = (twoHandedCondition: boolean, itemData: WeaponItem) => {
         const hasGunBash = ['bigGuns', 'smallGuns', 'energyWeapons'].includes(itemData.CATEGORY);
         const isTwoHanded = itemData.QUALITIES.includes('qualityTwoHanded');
@@ -222,7 +128,6 @@ function addSpecialWeaponItems(
         resultItems.push(unarmed);
     }
 
-    // Cycle over character items and add/update specialItems
     for (const item of items) {
         const data = getModifiedItemData(item, perks);
         if (!isType(data, 'weapon')) {
@@ -230,7 +135,6 @@ function addSpecialWeaponItems(
         }
         addSpecialItem(item, 'weaponWeaponStockOneHanded', gunBashCondition(false, data));
         addSpecialItem(item, 'weaponWeaponStock', gunBashCondition(true, data));
-        /** Condition used with addSpecialItem to add/update items based on a mod */
         addSpecialItem(item, 'weaponBayonet', item.mods.includes('modBayonet'));
         addSpecialItem(
             item,
@@ -242,15 +146,11 @@ function addSpecialWeaponItems(
     return resultItems;
 }
 
-/**
- * Get ammo count for a weapon
- */
 export const getWeaponAmmoCount = (
     weapon: WeaponItem,
     character: Character,
     usingItem: CharacterItem,
 ) => {
-    // No ammo type = Infinite ammo (melee weapons can "fire" forever)
     if (weapon.AMMO_TYPE === 'na') {
         return Infinity;
     }
@@ -266,11 +166,7 @@ function isWeaponAmmo(item: CharacterItem, weapon: WeaponItem, usingItem: Charac
         : item.id === weapon.AMMO_TYPE;
 }
 
-/**
- * Get ammo per shot for a weapon (10 for gatling, 1 for others)
- */
 export const getWeaponAmmoPerShot = (weapon: WeaponItem) => {
-    // TODO are we using all 3 values?
     if (['na', undefined, '-'].includes(weapon.AMMO_TYPE)) {
         return 0;
     }
@@ -286,14 +182,8 @@ export const getWeaponAmmoPerShot = (weapon: WeaponItem) => {
     return 1;
 };
 
-/**
- * Check if weapon has enough ammo to attack
- */
-export const hasEnoughAmmo = (
-    weapon: WeaponItem,
-    character: Character,
-    usingItem: CharacterItem,
-) => getWeaponAmmoCount(weapon, character, usingItem) >= getWeaponAmmoPerShot(weapon);
+export const hasEnoughAmmo = (weapon: WeaponItem, character: Character, usingItem: CharacterItem) =>
+    getWeaponAmmoCount(weapon, character, usingItem) >= getWeaponAmmoPerShot(weapon);
 
 export function consumeAmmo(
     raw: RawCharacter,
@@ -335,7 +225,10 @@ export function consumeAmmo(
  * Intrinsic robot parts are equipped in the save while active; when hidden for
  * another origin, their saved state is preserved.
  */
-export function reconcileItems(_prev: RawCharacter, next: RawCharacter): RawCharacter {
+export function reconcileItems(next: RawCharacter): RawCharacter;
+/** @deprecated Pass only the character to reconcile. The first argument is retained for compatibility. */
+export function reconcileItems(previous: RawCharacter, next: RawCharacter): RawCharacter;
+export function reconcileItems(previous: RawCharacter, next = previous): RawCharacter {
     const origin = getOriginById(next.origin);
     const perks = calculatePerks(next);
     const traits = calculateTraits(next, origin);

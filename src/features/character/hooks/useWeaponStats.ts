@@ -1,11 +1,13 @@
 import {
-    getModifiedItemData,
-    getSkillForWeaponCategory,
-    getSpecialForWeaponCategory,
     getWeaponAmmoCount,
     getWeaponAmmoPerShot,
     hasEnoughAmmo,
-} from '@/features/character/items.ts';
+} from '@/features/character/inventory/inventory.ts';
+import {
+    getModifiedItemData,
+    getSkillForWeaponCategory,
+    getSpecialForWeaponCategory,
+} from '@/features/character/inventory/equipment.ts';
 import { CharacterItem } from '@/types';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { useMemo } from 'react';

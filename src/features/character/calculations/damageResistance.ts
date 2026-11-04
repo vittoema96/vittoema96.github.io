@@ -1,4 +1,4 @@
-import { getModifiedItemData } from '@/features/character/items.ts';
+import { getModifiedItemData } from '../inventory/equipment.ts';
 import { CharacterItem, DamageResistanceMap, GenericBodyPart } from '@/types';
 import { isType } from '@/features/item/utils.ts';
 import { mapItemLocations } from '@/utils/bodyLocations.ts';

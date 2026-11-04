@@ -10,7 +10,7 @@ import { FitText } from '@/app/components/FitText.tsx';
 import { COMPANION_SKILLS, CompanionSkillType } from '@/features/character/skills/skills.ts';
 import { allItems, companionPerks } from '@/data';
 import { isType } from '@/features/item/utils.ts';
-import { updateCompanion } from '@/features/character/update.ts';
+import { updateCompanion } from '@/features/character/state/characterState.ts';
 import { sortByLocalizedLabel } from '@/utils/sorting.ts';
 
 

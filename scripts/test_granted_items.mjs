@@ -39,13 +39,19 @@ before(async () => {
     });
     const load = path => server.ssrLoadModule(`/src/${path}`);
     schema = await load('schemas/characterSchemas.ts');
-    inventory = await load('features/character/items.ts');
+    inventory = {
+        ...(await load('features/character/inventory/inventory.ts')),
+        ...(await load('features/character/inventory/equipment.ts')),
+        ...(await load('features/character/inventory/currency.ts')),
+    };
     utils = await load('features/item/utils.ts');
     feats = await load('features/character/feats/rules.ts');
     store = await load('hooks/useSaveStore.ts');
     origins = await load('features/character/origins/registry.ts');
-    ({ calculateCharacter: calculate } = await load('features/character/calculate.ts'));
-    transitions = await load('features/character/update.ts');
+    ({ calculateCharacter: calculate } = await load(
+        'features/character/calculations/characterCalculations.ts',
+    ));
+    transitions = await load('features/character/state/characterState.ts');
     data = await load('data/index.ts');
     registry = await load('features/character/feats/registry.ts');
     ({ calculatePerks } = await load('features/character/feats/perks.ts'));
@@ -1410,7 +1416,9 @@ test('Mr. Handy excludes perk and trait carry modifiers but retains equipment bo
         calculate(transitions.applyUpdate(modified, { special: { strength: 9 } })).maxWeight,
         85,
     );
-    const weight = await server.ssrLoadModule('/src/features/character/weight.ts');
+    const weight = await server.ssrLoadModule(
+        '/src/features/character/calculations/weight.ts',
+    );
     assert.equal(
         weight.calculateMaxWeight(modified, origins.getOriginById('mrHandy'), perks, [
             'traitSmallFrame',

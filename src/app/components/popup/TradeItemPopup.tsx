@@ -1,4 +1,4 @@
-import { getModifiedItemData } from '@/features/character/items.ts';
+import { getModifiedItemData } from '@/features/character/inventory/equipment.ts';
 import { useTranslation } from 'react-i18next'
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import { CharacterItem, CustomItem } from '@/types';

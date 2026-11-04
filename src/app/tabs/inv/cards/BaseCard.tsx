@@ -1,4 +1,4 @@
-import { getModifiedItemData } from '@/features/character/items.ts';
+import { getModifiedItemData } from '@/features/character/inventory/equipment.ts';
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CharacterItem, CustomItem } from '@/types';

@@ -9,7 +9,7 @@ import {
     isType,
     isUnacquirable,
 } from '@/features/item/utils.ts';
-import { canEquipApparel } from '@/features/character/items.ts';
+import { canEquipApparel } from '@/features/character/inventory/equipment.ts';
 import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 
 /**

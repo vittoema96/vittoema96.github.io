@@ -1,9 +1,9 @@
 import type { CompanionId, RawCharacter } from '@/types';
 import type { CompanionData } from '@/utils/companionTypes.ts';
 import { RawCharacterSchema } from '@/schemas/characterSchemas.ts';
-import { adjustCurrentHp } from './hp.ts';
-import { reconcileItems } from './items.ts';
-import { calculateCharacter } from './calculate.ts';
+import { adjustCurrentHp } from '../calculations/hp.ts';
+import { reconcileItems } from '../inventory/inventory.ts';
+import { calculateCharacter } from '../calculations/characterCalculations.ts';
 
 export type CharacterUpdate = Partial<Omit<RawCharacter, 'special' | 'skills'>> & {
     special?: Partial<RawCharacter['special']>;
@@ -52,7 +52,7 @@ export function loadCharacter(input: unknown): RawCharacter {
             }),
         });
     }
-    return reconcileItems(character, character);
+    return reconcileItems(character);
 }
 
 export function applyUpdate(prev: RawCharacter, updates: CharacterUpdate): RawCharacter {
@@ -66,5 +66,5 @@ export function applyUpdate(prev: RawCharacter, updates: CharacterUpdate): RawCh
 
     // Let's do it always, as various things can edit current and max hp (perkLifeGiver for example)
     const adjusted = adjustCurrentHp(prev, next, 'currentHp' in updates);
-    return reconcileItems(prev, adjusted);
+    return reconcileItems(adjusted);
 }

@@ -17,8 +17,8 @@ import { D6Dice, getFaceClass } from '@/app/components/popup/dice/components/dic
 
 import { isCloseCombat } from '@/features/item/utils.ts';
 import { useWeaponStats } from '@/features/character/hooks/useWeaponStats.ts';
-import { consumeAmmo, getWeaponAmmoCount } from '@/features/character/items.ts';
-import { calculateCharacter } from '@/features/character/calculate.ts';
+import { consumeAmmo, getWeaponAmmoCount } from '@/features/character/inventory/inventory.ts';
+import { calculateCharacter } from '@/features/character/calculations/characterCalculations.ts';
 import type { FeatRollAction } from '@/features/character/feats/types';
 import { getRollActions, getWeaponEffects } from '@/features/character/feats/rules';
 import { sortByLocalizedLabel } from '@/utils/sorting.ts';

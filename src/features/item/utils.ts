@@ -86,9 +86,6 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
         case 'tagRemove':
             modifiedData.TAGS = modifiedData.TAGS.filter(tag => tag !== value);
             break;
-        case 'ammoConsumption':
-            modifiedData.AMMO_CONSUMPTION = Number(value); // TODO could use ammoHungry
-            break;
         case 'allowMuzzleMod':
             modifiedData.ALLOW_MUZZLE_MOD = value === 'true';
             break;

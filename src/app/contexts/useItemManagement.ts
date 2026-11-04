@@ -4,9 +4,8 @@ import { useCallback } from 'react';
 import {
     applyAddItem,
     applyRemoveItem,
-    getCurrencyUpdate,
-    type CurrencyDelta,
-} from '@/features/character/items.ts';
+} from '@/features/character/inventory/inventory.ts';
+import { getCurrencyUpdate, type CurrencyDelta } from '@/features/character/inventory/currency.ts';
 
 export const useItemManagement = () => {
     const { updateCharacter } = useCharacter();
@@ -66,8 +65,8 @@ export const useItemManagement = () => {
         customName = customName.trim();
         let newItem;
         if (customName === '' && 'id' in characterItem) {
-            const { customName: _, ...rest } = characterItem;
-            newItem = rest;
+            newItem = { ...characterItem };
+            delete newItem.customName;
         } else {
             newItem = { ...characterItem, customName };
         }

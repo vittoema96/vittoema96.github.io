@@ -1,11 +1,11 @@
-import { getModifiedItemData } from '@/features/character/items.ts';
+import { getModifiedItemData } from '@/features/character/inventory/equipment.ts';
 import BaseCard from '../BaseCard.tsx'
 import ApparelContent from '@/app/tabs/inv/cards/apparel/ApparelContent.tsx'
 import { CharacterItem } from '@/types';
 import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { isType } from '@/features/item/utils.ts';
-import { canEquipApparel } from '@/features/character/items.ts';
+import { canEquipApparel } from '@/features/character/inventory/equipment.ts';
 
 /**
  * Apparel card component with armor stats and equip functionality
