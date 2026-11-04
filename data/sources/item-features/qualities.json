@@ -45,6 +45,14 @@
       "it": "Un’arma da Corpo a Corpo è facile da utilizzare a distanza Ravvicinata e la difficoltà non aumenta quando viene usata entro la Portata del nemico."
     }
   },
+  "qualityNoisy": {
+    "en": "Noisy",
+    "it": "Rumorosa",
+    "_description": {
+      "en": "When used to make a sneak attack, a Noisy weapon increases the complication range by 1 due to the sound it makes.",
+      "it": "Quando viene usata per effettuare un attacco furtivo, un’arma Rumorosa aumenta il livello di complicazione di 1 a causa del rumore che produce."
+    }
+  },
   "qualityConcealed": {
     "en": "Concealed",
     "it": "Occultata",
@@ -139,6 +147,14 @@
     "_description": {
       "en": "The explosive device is placed in a specific location and set to detonate, often either with the Delay quality or the Remote quality. Placing the explosive requires a PER + Explosives test with a difficulty of 1; this increases to 2 if you’ve been attacked since your last turn. Failure means the bomb hasn’t been set properly and will not detonate (or, if a complication is rolled, may have been set improperly, and may detonate unexpectedly). Success means the bomb has been set up properly.",
       "it": "Il dispositivo esplosivo viene piazzato in un luogo specifico e impostato per detonare, spesso con la qualità Ritardo o la qualità Remoto. Piazzare l’esplosivo richiede una prova di PER + Esplosivi con una difficoltà di 1; questa aumenta a 2 se sei stato attaccato dal tuo ultimo turno. Il fallimento significa che la bomba non è stata impostata correttamente e non detonerà (o, se viene ottenuta una complicazione, potrebbe essere stata impostata male e detonare inaspettatamente). Il successo significa che la bomba è stata installata correttamente."
+    }
+  },
+  "qualityPulse": {
+    "en": "Pulse",
+    "it": "Impulso",
+    "_description": {
+      "en": "A Pulse weapon only inflicts damage to robots, synths, Power Armor (not the wearer), and other mechanical or technological targets. Computers in the blast are also damaged. Against any other target, a Pulse weapon inflicts 0 damage.",
+      "it": "Un’arma a Impulso infligge danni solo a robot, synth, Armature Atomiche (non a chi le indossa) e altri bersagli meccanici o tecnologici. Anche i computer nell’area dell’esplosione subiscono danni. Contro qualsiasi altro bersaglio, un’arma a Impulso infligge 0 danni."
     }
   },
   "qualityRecoil": {

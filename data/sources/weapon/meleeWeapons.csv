@@ -37,13 +37,13 @@ weaponBallisticFist,weapon,unarmed,6,"[""effectStun"",""effectVicious""]","[""ph
 weaponBumperSword,weapon,meleeWeapons,6,"[""effectPiercing:1""]","[""physical""]",0,rangeR,"[""qualityRecoil:7"",""qualityTwoHanded""]",6.0,125,2,na,[],"[""bladed""]",Wanderers DLC
 weaponCattleProd,weapon,meleeWeapons,7,"[""effectStun""]","[""energy""]",0,rangeR,[],1.5,90,4,na,[],[],Wanderers DLC
 weaponChainsaw,weapon,meleeWeapons,6,"[""effectVicious""]","[""physical""]",0,rangeR,"[""qualityTwoHanded""]",6.0,140,3,na,"[""modDualBar"",""modBowBar"",""modLongBowBar"",""modFlaming""]","[""bladed""]",Wanderers DLC
-weaponDeathTambo,weapon,unarmed,4,"[""effectPiercing:1""]","[""physical""]",0,rangeR,[],0.5,40,2,na,[],"[""bladed""]",Wanderers DLC
+weaponDeathTambo,weapon,unarmed,4,"[""effectPiercing:1""]","[""physical""]",0,rangeR,"[""qualityNoisy""]",0.5,40,2,na,[],"[""bladed""]",Wanderers DLC
 weaponDisplacerGlove,weapon,unarmed,6,"[""effectPiercing:1"",""effectStun""]","[""physical""]",0,rangeR,[],3.0,175,4,na,[],[],Wanderers DLC
-weaponGuitarSword,weapon,meleeWeapons,4,"[""effectPiercing:1""]","[""physical""]",0,rangeR,"[""qualityParry""]",1.5,45,3,na,[],"[""bladed""]",Wanderers DLC
+weaponGuitarSword,weapon,meleeWeapons,4,"[""effectPiercing:1""]","[""physical""]",0,rangeR,"[""qualityParry"", ""qualityNoisy""]",1.5,45,3,na,[],"[""bladed""]",Wanderers DLC
 weaponMrHandyBuzzBlade,weapon,meleeWeapons,4,"[""effectVicious""]","[""physical""]",0,rangeR,"[""qualityTwoHanded""]",5.0,50,2,na,[],"[""bladed""]",Wanderers DLC
 weaponMultiPurposeAxe,weapon,meleeWeapons,5,[],"[""physical""]",0,rangeR,"[""qualityTwoHanded""]",2.0,40,2,na,[],"[""bladed""]",Wanderers DLC
 weaponProtonAxe,weapon,meleeWeapons,5,"[""effectPiercing:1""]","[""energy""]",0,rangeR,"[""qualitySurge""]",4.0,175,5,na,[],"[""bladed""]",Wanderers DLC
-weaponWarDrum,weapon,meleeWeapons,5,"[""effectStun""]","[""physical""]",0,rangeR,"[""qualityTwoHanded""]",10.0,115,3,na,[],[],Wanderers DLC
+weaponWarDrum,weapon,meleeWeapons,5,"[""effectStun""]","[""physical""]",0,rangeR,"[""qualityTwoHanded"", ""qualityNoisy""]",10.0,115,3,na,[],[],Wanderers DLC
 weaponThermicLance,weapon,meleeWeapons,6,"[""effectPiercing:1"",""effectStun""]","[""energy""]",0,rangeR,"[""qualityRecoil:7"",""qualityTwoHanded"",""qualityParry""]",10,150,4,na,[],[],Wanderers DLC
 weaponGolfClub,weapon,meleeWeapons,4,[],"[""physical""]",-,rangeR,"[""qualityTwoHanded""]",1.0,50,1,na,"[""modSpikedPuncturing"",""modBladedSharp"",""modHeavyClub""]",[],RoyalFlush DLC
 weaponWeightedRubberChicken,weapon,meleeWeapons,2,[],"[""physical""]",-,rangeR,[],0.5,10,3,na,"[""modSpikedPuncturing"",""modExtraWeighty""]",[],RoyalFlush DLC

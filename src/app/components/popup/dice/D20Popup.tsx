@@ -194,6 +194,9 @@ function D20Popup({
         if (itemData.QUALITIES.includes('qualityUnreliable')) {
             baseComplication -= 1;
         }
+        if (isSneakAttacking && itemData.QUALITIES.includes('qualityNoisy')) {
+            baseComplication -= 1;
+        }
     }
     // TODO not sure if when more feats affecting threshold are applied, the merged result is correct
     //  maybe we could merge thresholdDelta e additionalThresholds if it makes sense rule-wise
