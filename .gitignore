@@ -12,6 +12,11 @@ pnpm-debug.log*
 __pycache__/
 *.py[cod]
 
+# Markdown files
+*.md
+!README.md
+!TODO.md
+
 # Build outputs
 dist/
 build/

@@ -9,6 +9,7 @@ function ActionsList() {
 
     return (
         <div className="stack">
+            <div className="description-box text-pre-line">{t('actionsIntro')}</div>
             {ACTION_CATEGORIES.map(category => (
                 <section
                     key={category}

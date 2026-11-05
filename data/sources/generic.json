@@ -23,6 +23,10 @@
         "en": "Major Actions",
         "it": "Azioni maggiori"
     },
+    "actionsIntro": {
+        "en": "During combat, each character takes a turn and can attempt one minor action and one major action.\n\nA minor action represents something quick or supportive of a major action, such as aiming or drawing a weapon.\n\nA major action represents something that involves more concentration or effort, such as attacking an opponent, defending yourself, hacking a computer, or picking a lock.\n\nYou can spend 1 Action Point to take one additional minor action, or 2 Action Points to take one additional major action. Any skill test attempted as part of that second major action has its difficulty increased by 1. You cannot take more than two minor actions or two major actions on your turn, and you cannot take more than one movement action per turn.",
+        "it": "Durante il combattimento, ogni personaggio effettua un turno e può tentare un'azione minore e un'azione maggiore. \n\nUn'azione minore rappresenta qualcosa di rapido o di supporto a un'azione maggiore, come mirare o estrarre un'arma.\n\nUn'azione maggiore rappresenta qualcosa che richiede più concentrazione o impegno, come attaccare un avversario, difendersi, hackerare un computer o scassinare una serratura.\n\nPuoi spendere 1 Punto Azione per effettuare un'azione minore aggiuntiva, oppure 2 Punti Azione per effettuare un'azione maggiore aggiuntiva. La difficoltà di ogni test di abilità effettuato come parte di quella seconda azione maggiore aumenta di 1. Non puoi effettuare più di due azioni minori o due azioni maggiori durante il tuo turno, né più di un'azione di movimento per turno."
+    },
     "actionAim": {
         "en": "Aim",
         "it": "Mirare"
