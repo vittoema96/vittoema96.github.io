@@ -410,11 +410,11 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
 
                     return <div key={slot}>
                         {/* Header: slot label + info button */}
-                        <div className="row l-spaceBetween" style={{padding: "0 var(--space-s)"}}>
-                            <label style={{fontSize: "0.8rem", textAlign: "start", padding: "var(--space-xs) 0" }}>
+                        <div className="row l-spaceBetween u-padding-x-s">
+                            <label className="u-font-xs u-text-start">
                                 {slotLabel}
                             </label>
-                            <div className="row" style={{ width: "auto" }}>
+                            <div className="row u-width-auto">
                                 {data.selectedMod && (
                                     <button
                                         type="button"
@@ -499,8 +499,8 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                 <>
                     <hr />
 
-                    <div className="row" style={{ alignItems: 'stretch' }}>
-                        <div className="mod-total-section" style={{ flex: 1 }}>
+                    <div className="row stretch-row">
+                        <div className="mod-total-section u-flex-grow">
                             <span className="mod-total-label">{t('totalCost') || 'Total Cost'}:</span>
                             <span className="mod-total-value">
                                 <span className="themed-svg icon-s" data-icon="caps"></span>
@@ -509,7 +509,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                         </div>
 
                         {requiredSkills.length > 0 && (
-                            <div style={{ flex: 1 }} className="stack no-gap">
+                            <div className="stack no-gap u-flex-grow">
                                 {requiredSkills.map(skillId => (
                                     <Skill key={skillId} skillId={skillId} isEditing={false} />
                                 ))}

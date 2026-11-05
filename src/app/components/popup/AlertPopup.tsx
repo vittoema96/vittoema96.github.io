@@ -7,7 +7,12 @@ interface AlertPopupProps {
     showConfirm: boolean;
 }
 
-function AlertPopup({ onClose, content, onConfirm, showConfirm = false }: Readonly<AlertPopupProps>) {
+function AlertPopup({
+    onClose,
+    content,
+    onConfirm,
+    showConfirm = false,
+}: Readonly<AlertPopupProps>) {
     return (
         <BasePopup
             title={showConfirm ? 'confirm' : 'warning'}
@@ -15,10 +20,9 @@ function AlertPopup({ onClose, content, onConfirm, showConfirm = false }: Readon
             onClose={onClose}
         >
             <hr />
-            <p style={{ whiteSpace: 'pre-line' }}>{content}</p>
+            <p className="text-pre-line">{content}</p>
         </BasePopup>
-    )
+    );
 }
 
-export default AlertPopup
-
+export default AlertPopup;

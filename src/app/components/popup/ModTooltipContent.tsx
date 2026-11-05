@@ -1,19 +1,19 @@
-import { useTranslation } from 'react-i18next'
-import { useCharacter } from '@/app/contexts/CharacterContext'
+import { useTranslation } from 'react-i18next';
+import { useCharacter } from '@/app/contexts/CharacterContext';
 import type { PerkId } from '@/features/character/feats/perks.ts';
 import { perkRank } from '@/features/character/feats/utils.ts';
 
 interface ModTooltipProps {
     /** Mod locale ID (e.g. "modCompensator") */
-    modId: string
+    modId: string;
     /** Raw effect strings from the mod data (e.g. ["qualityAdd:qualityMelee"]) */
-    effects: string[]
+    effects: string[];
     /** Complexity / rarity level (determines crafting materials) */
-    complexity: number | '-'
+    complexity: number | '-';
     /** Skill ID used for the crafting roll (e.g. "repair", "science") */
-    skill: string
+    skill: string;
     /** Perk requirements as "perkId:rank" */
-    perks: string[]
+    perks: string[];
 }
 
 /**
@@ -21,20 +21,24 @@ interface ModTooltipProps {
  * Shows: name, effects list, crafting requirements (complexity, skill, perks).
  * Perk names are highlighted in red when the character doesn't meet the requirement.
  */
-export default function ModTooltipContent({ modId, effects, complexity, skill, perks }: Readonly<ModTooltipProps>) {
-    const { t } = useTranslation()
-    const { character } = useCharacter()
+export default function ModTooltipContent({
+    modId,
+    effects,
+    complexity,
+    skill,
+    perks,
+}: Readonly<ModTooltipProps>) {
+    const { t } = useTranslation();
+    const { character } = useCharacter();
 
     return (
-        <div className="stack no-gap" style={{ gap: 'var(--space-xs)', minWidth: '10rem' }}>
+        <div className="stack no-gap mod-tooltip">
             {/* ── Mod Name ── */}
-            <strong style={{ fontSize: '0.9rem', borderBottom: 'var(--border-primary-thin)', paddingBottom: 'var(--space-xs)' }}>
-                {t(modId)}
-            </strong>
+            <strong className="mod-tooltip__name">{t(modId)}</strong>
 
             {/* ── Effects ── */}
             {effects.length > 0 && (
-                <ul style={{ margin: 'var(--space-xs) 0', paddingLeft: 'var(--space-l)', fontSize: '0.8rem' }}>
+                <ul className="mod-tooltip__effects">
                     {effects.map(effect => (
                         <li key={effect}>{formatEffect(effect, t)}</li>
                     ))}
@@ -43,19 +47,10 @@ export default function ModTooltipContent({ modId, effects, complexity, skill, p
 
             {/* ── Crafting Requirements ── */}
             {(complexity !== '-' || skill || perks.length > 0) && (
-                <div
-                    className="stack no-gap"
-                    style={{
-                        gap: 'var(--space-xs)',
-                        fontSize: '0.75rem',
-                        borderTop: 'var(--border-primary-thin)',
-                        paddingTop: 'var(--space-xs)',
-                        opacity: 0.85,
-                    }}
-                >
+                <div className="stack no-gap mod-tooltip__requirements">
                     {/* Complexity */}
                     {complexity !== '-' && (
-                        <div className="row" style={{ gap: 'var(--space-s)' }}>
+                        <div className="row mod-tooltip__requirement">
                             <span>{t('complexity')}:</span>
                             <span>{complexity}</span>
                         </div>
@@ -63,7 +58,7 @@ export default function ModTooltipContent({ modId, effects, complexity, skill, p
 
                     {/* Skill */}
                     {skill && (
-                        <div className="row" style={{ gap: 'var(--space-s)' }}>
+                        <div className="row mod-tooltip__requirement">
                             <span>{t('skill')}:</span>
                             <span>{t(skill)}</span>
                         </div>
@@ -71,10 +66,14 @@ export default function ModTooltipContent({ modId, effects, complexity, skill, p
 
                     {/* Perks */}
                     {perks.length > 0 && (
-                        <div className="row" style={{ gap: 'var(--space-s)', flexWrap: 'wrap' }}>
+                        <div className="row mod-tooltip__requirement mod-tooltip__perks">
                             <span>{t('perks')}:</span>
-                            {perks.map((perkEntry) => {
-                                const { name, rank, met } = parsePerkRequirement(perkEntry, character.perks, t)
+                            {perks.map(perkEntry => {
+                                const { name, rank, met } = parsePerkRequirement(
+                                    perkEntry,
+                                    character.perks,
+                                    t,
+                                );
                                 return (
                                     <span
                                         key={perkEntry}
@@ -82,14 +81,14 @@ export default function ModTooltipContent({ modId, effects, complexity, skill, p
                                     >
                                         {name} {rank}
                                     </span>
-                                )
+                                );
                             })}
                         </div>
                     )}
                 </div>
             )}
         </div>
-    )
+    );
 }
 
 // ── Helpers ──────────────────────────────────────────────────
@@ -100,35 +99,37 @@ function parsePerkRequirement(
     characterPerks: PerkId[],
     t: (key: string) => string,
 ) {
-    const [rawId, rawRank] = perkEntry.split(':')
-    const perkId = rawId as PerkId
-    const rank = Number(rawRank) || 1
-    const name = t(perkId)
+    const [rawId, rawRank] = perkEntry.split(':');
+    const perkId = rawId as PerkId;
+    const rank = Number(rawRank) || 1;
+    const name = t(perkId);
     // Character has rank N if the perk appears N times in the array
-    const characterRank = perkRank(characterPerks, perkId)
-    const met = characterRank >= rank
-    return { name, rank, met }
+    const characterRank = perkRank(characterPerks, perkId);
+    const met = characterRank >= rank;
+    return { name, rank, met };
 }
 
 /** Format a single effect string for display */
 function formatEffect(effectStr: string, t: (key: string) => string): string {
-    const [effectType, ...valueParts] = effectStr.split(':')
-    const value = valueParts.join(':')
-    if (!effectType) { return effectStr }
+    const [effectType, ...valueParts] = effectStr.split(':');
+    const value = valueParts.join(':');
+    if (!effectType) {
+        return effectStr;
+    }
 
     const signed = (v: string) =>
-        Number.parseInt(v).toLocaleString(undefined, { signDisplay: 'exceptZero' })
+        Number.parseInt(v).toLocaleString(undefined, { signDisplay: 'exceptZero' });
 
     if (effectType.startsWith('effect') || effectType.startsWith('quality')) {
         if (effectType.endsWith('Add')) {
-            return `${t('adds')} ${valueParts.map(val => t(val)).join(' ')}`
+            return `${t('adds')} ${valueParts.map(val => t(val)).join(' ')}`;
         } else if (effectType.endsWith('Remove')) {
-            return `${t('removes')} ${valueParts.map(val => t(val)).join(' ')}`
+            return `${t('removes')} ${valueParts.map(val => t(val)).join(' ')}`;
         }
     } else if (effectType.endsWith('Add')) {
-        return `${signed(value)} ${t(effectType.replace('Add', ''))}`
+        return `${signed(value)} ${t(effectType.replace('Add', ''))}`;
     } else if (effectType.endsWith('Set')) {
-        return `${t(effectType.replace('Set', ''))}: ${t(value)}`
+        return `${t(effectType.replace('Set', ''))}: ${t(value)}`;
     }
-    return effectStr
+    return effectStr;
 }

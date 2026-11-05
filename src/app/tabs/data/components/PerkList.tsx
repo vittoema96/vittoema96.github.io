@@ -11,20 +11,22 @@ import { hasPerkImplementation } from '@/features/character/feats/registry';
 import { useFeatManualActions } from '@/hooks/useFeatManualActions.ts';
 
 function PerkList() {
-    const { t } = useTranslation()
-    const { character, updateCharacter } = useCharacter()
+    const { t } = useTranslation();
+    const { character, updateCharacter } = useCharacter();
     const getActionButton = useFeatManualActions();
     const numberOfPerks = getPerkSlotCount(
-        character.level, character.perks, character.traits, character.origin,
+        character.level,
+        character.perks,
+        character.traits,
+        character.origin,
     );
 
     // Initialize perks from rawCharacter or create empty slots
     const [selectedPerks, setSelectedPerks] = useState<(PerkId | undefined)[]>([]);
 
     useEffect(() => {
-        setSelectedPerks(character.perks)
-    }, [character.perks])
-
+        setSelectedPerks(character.perks);
+    }, [character.perks]);
 
     const handlePerkSelect = (slotIndex: number, perkId: PerkId) => {
         const newPerks = [...selectedPerks];
@@ -33,7 +35,7 @@ function PerkList() {
 
         // Update character with new perks
         updateCharacter({
-            perks: newPerks.filter(t => t !== undefined)
+            perks: newPerks.filter(t => t !== undefined),
         });
     };
 
@@ -44,7 +46,7 @@ function PerkList() {
 
         // Update character with new perks
         updateCharacter({
-            perks: newPerks.filter(t => t !== undefined)
+            perks: newPerks.filter(t => t !== undefined),
         });
     };
 
@@ -54,14 +56,11 @@ function PerkList() {
     const perkSlots = Array.from({ length: numberOfPerks }, (_, index) => selectedPerks[index]);
 
     return (
-        <div style={{ marginTop: '1rem' }}>
-            <label className="h4" style={{ marginBottom: '0.5rem', display: 'block' }}>
-                {t('perks')}:
-            </label>
+        <div className="u-mt-xl">
+            <label className="h4 u-mb-l u-block">{t('perks')}:</label>
 
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div className="stack no-gap">
                 {perkSlots.map((selectedPerk, index) => {
-
                     // If perk selected, show item with change button
                     if (selectedPerk) {
                         return (
@@ -82,7 +81,7 @@ function PerkList() {
                         <TraitPerkSelector
                             key={index}
                             type="perk"
-                            onSelect={(perkId) => handlePerkSelect(index, perkId as PerkId)}
+                            onSelect={perkId => handlePerkSelect(index, perkId as PerkId)}
                         />
                     );
                 })}
@@ -91,7 +90,7 @@ function PerkList() {
                 {changingSlotIndex !== null && (
                     <PerkSelectionPopup
                         prev={perkSlots[changingSlotIndex]}
-                        onSelect={(perkId) => {
+                        onSelect={perkId => {
                             handlePerkSelect(changingSlotIndex, perkId);
                             setChangingSlotIndex(null);
                         }}
@@ -103,4 +102,4 @@ function PerkList() {
     );
 }
 
-export default PerkList
+export default PerkList;

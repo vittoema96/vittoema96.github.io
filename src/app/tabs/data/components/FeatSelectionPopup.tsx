@@ -185,7 +185,7 @@ export function PerkSelectionPopup({
 
 
     const popupContent = (
-        <div className="trait-perk-popup-backdrop" style={{ display: 'flex' }}>
+        <div className="trait-perk-popup-backdrop">
             <div className="trait-perk-popup" onClick={(e) => e.stopPropagation()}>
                 {/* Header */}
                 <div className="trait-perk-popup__header">
@@ -376,7 +376,7 @@ export function TraitSelectionPopup({
     }, [character, prev, t]);
 
     const popupContent = (
-        <div className="trait-perk-popup-backdrop" style={{ display: 'flex' }}>
+        <div className="trait-perk-popup-backdrop">
             <div className="trait-perk-popup" onClick={(e) => e.stopPropagation()}>
                 {/* Header */}
                 <div className="trait-perk-popup__header">

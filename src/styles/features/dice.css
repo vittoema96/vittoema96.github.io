@@ -1,4 +1,111 @@
 /* Dice (D6/D20) */
+.dice-summary {
+    text-align: center;
+    margin: var(--space-m) 0;
+}
+.dice-description {
+    text-align: center;
+    margin: var(--space-m) 0;
+}
+.dice-popup__divider {
+    margin: 0.25rem 0;
+}
+.dice-popup__tags {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+.dice-popup__hit-location {
+    gap: var(--space-s);
+    align-items: center;
+    margin-bottom: var(--space-xs);
+}
+.dice-popup__select {
+    padding: 0.125rem 0.25rem;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: var(--border-primary-thin);
+    font-size: 0.85rem;
+    border-radius: 0.25rem;
+}
+.dice-popup__select--fill {
+    flex: 1;
+    min-width: 80px;
+}
+.dice-popup__select--compact {
+    font-size: 0.85rem;
+}
+.dice-popup__hit-location-value {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    min-width: 0;
+    font-size: 0.95rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+.dice-popup__reroll {
+    padding: 0.125rem 0.375rem;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: var(--border-primary-thin);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dice-popup__dice-section {
+    margin-bottom: var(--space-xs);
+}
+.dice-popup__dice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 2.5rem);
+    gap: var(--space-xs);
+    justify-content: center;
+    min-height: 2.5rem;
+}
+.dice-popup__inline-row {
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: var(--space-xs);
+}
+.dice-popup__summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-s);
+    margin-bottom: var(--space-xs);
+}
+.dice-popup__summary-item {
+    text-align: center;
+}
+.dice-popup__summary-label {
+    font-size: 0.85rem;
+}
+.dice-popup__summary-value {
+    margin: 0;
+}
+.dice-popup__costs {
+    display: grid;
+    gap: var(--space-s);
+    font-size: 0.9rem;
+    margin-bottom: var(--space-xs);
+}
+.dice-popup__costs--close {
+    grid-template-columns: 1fr;
+}
+.dice-popup__costs--ranged {
+    grid-template-columns: 1fr 1fr;
+}
+.dice-popup__cost-row {
+    justify-content: space-between;
+}
+.dice-popup__inline-value {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    white-space: nowrap;
+}
 .dice {
     color: var(--primary-color);
     background-color: var(--button-background);
@@ -24,16 +131,22 @@
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 .d20-dice::before {
-    content: "";
+    content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: var(--primary-color);
     z-index: -1;
 }
 .d20-dice::after {
-    content: "";
+    content: '';
     position: absolute;
-    top: 2px; left: 2px; right: 2px; bottom: 2px;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
     background-color: var(--button-background);
     clip-path: inherit;
     z-index: -1;
@@ -48,7 +161,6 @@
 .d20-dice.roll-crit::after {
     background-color: var(--success-color);
 }
-
 
 .d20-dice.roll-complication.active::after {
     background-color: color-mix(in srgb, var(--failure-color) 60%, transparent);
@@ -104,5 +216,6 @@
 .d6-dice.active.d6-face-effect::before {
     background-color: var(--button-background);
 }
-.d6-face-blank { background-image: none; }
-
+.d6-face-blank {
+    background-image: none;
+}

@@ -80,6 +80,14 @@
     cursor: pointer;
     font-family: inherit;
     font-size: 0.85rem;
+}
+.card-stat-compact__meta {
+    font-size: 0.65em;
+    opacity: 0.8;
+}
+.card-stat-compact__secondary {
+    font-size: 0.7em;
+    opacity: 0.7;
     transition: background-color 0.2s ease;
 }
 
@@ -250,7 +258,11 @@
     margin-top: 0;
 
     padding: var(--space-m) var(--space-s);
-    background: linear-gradient(to bottom, var(--button-background) 0%, var(--secondary-color) 100%);
+    background: linear-gradient(
+        to bottom,
+        var(--button-background) 0%,
+        var(--secondary-color) 100%
+    );
     border-top: var(--border-primary-thick);
     display: flex;
     justify-content: center;
@@ -275,7 +287,7 @@
     padding: 0 0.4rem;
 }
 
-/* SubTab buttons (used only in Inventory tab) */
+/* Shared subtab buttons used by Inventory and Data tabs */
 .subTab-button {
     /* Override button behaviour */
     color: var(--primary-color-very-translucent);
@@ -300,7 +312,6 @@
     border-top: var(--border-primary-thick);
     border-bottom: var(--border-primary-thick);
 }
-
 
 /**********************
  *  CARD DEFINITIONS  *
@@ -387,7 +398,6 @@
     height: 1.2rem;
 }
 
-
 .card-action-btn--primary {
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -454,6 +464,91 @@
 
 .card-content--compact {
     padding: 0 0.4rem;
+}
+
+.trait-perk-item {
+    margin-bottom: var(--space-m);
+}
+.trait-perk-item__clickable {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+    min-width: 0;
+    cursor: pointer;
+}
+.trait-perk-item__clickable--actions {
+    cursor: default;
+}
+.trait-perk-item__info {
+    flex: 1;
+    min-width: 0;
+}
+.trait-perk-item__name {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+}
+.trait-perk-item__name-label {
+    font-weight: bold;
+}
+.trait-perk-item__name-label--disabled {
+    text-decoration: line-through;
+}
+.trait-perk-item__expand {
+    margin-left: var(--space-xs);
+    flex-shrink: 0;
+}
+.trait-perk-item__actions {
+    display: flex;
+    gap: var(--space-s);
+    align-items: center;
+    flex-shrink: 0;
+}
+.trait-perk-item__button {
+    padding: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    background: transparent;
+    border: var(--border-primary-thin);
+}
+.perk-action-button {
+    background-color: var(--primary-color);
+    border: none;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+.trait-perk-item__button--delete {
+    color: var(--failure-color);
+}
+.trait-perk-item__button--change {
+    color: var(--primary-color);
+}
+.trait-perk-item__description {
+    padding: var(--space-l);
+    border-top: var(--border-primary-thin);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    position: relative;
+}
+.trait-perk-item__description p {
+    margin: 0;
+}
+.trait-perk-item__benefit {
+    margin-bottom: var(--space-m);
+}
+.trait-perk-item__benefit-label {
+    color: var(--success-color);
+}
+.trait-perk-item__penalty-label {
+    color: var(--failure-color);
 }
 
 .card-controls {
@@ -676,8 +771,7 @@
     opacity: 0.9;
     flex-shrink: 0;
     vertical-align: -0.125em;
-    filter:
-        drop-shadow(0 0 5px var(--animation-glow-color))
+    filter: drop-shadow(0 0 5px var(--animation-glow-color))
         drop-shadow(0 0 10px var(--animation-glow-color));
 }
 
@@ -806,4 +900,3 @@
     min-height: 2.5rem;
     margin: 5px;
 }
-

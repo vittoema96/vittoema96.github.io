@@ -23,7 +23,7 @@ const TABS: Record<TabType, React.ComponentType<any>> = {
 
 // Condition = true means SHOW the locked tab
 const LOCKED_TABS: Partial<Record<TabType, (c: Character) => boolean>> = {
-    companion: (c: Character) => Object.keys(c.companions).length !== 0
+    companion: (c: Character) => c.companion !== undefined
 }
 
 const getKeys = <T extends object>(obj: T) => Object.keys(obj) as Array<keyof T>;

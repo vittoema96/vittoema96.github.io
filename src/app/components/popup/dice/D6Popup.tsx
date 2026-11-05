@@ -487,10 +487,7 @@ function D6Popup({
                         itemData.QUALITIES.length > 0 ||
                         legendaryMods.length > 0 ||
                         hasSneakAttack) && (
-                        <div
-                            className="row l-centered"
-                            style={{ flexWrap: 'wrap', gap: '0.25rem' }}
-                        >
+                        <div className="row l-centered dice-popup__tags">
                             {weaponEffects.map(e => {
                                 const values = [];
                                 let other = {};
@@ -560,27 +557,17 @@ function D6Popup({
                     )}
                 </div>
 
-                <hr style={{ margin: '0.25rem 0' }} />
+                <hr className="dice-popup__divider" />
 
-                <span style={{ fontSize: '0.9rem', flexShrink: 0 }}>{t('hitLocation')}:</span>
+                <span className="u-font-s u-flex-shrink-0">{t('hitLocation')}:</span>
                 {/* Hit Location - compact single row */}
                 <div
-                    className="row"
-                    style={{ gap: '0.5rem', alignItems: 'center', marginBottom: '0.25rem' }}
+                    className="row dice-popup__hit-location"
                 >
                     <select
                         value={targetCreatureType}
                         onChange={e => setTargetCreatureType(e.target.value as CreatureType)}
-                        style={{
-                            padding: '0.125rem 0.25rem',
-                            backgroundColor: 'var(--secondary-color)',
-                            color: 'var(--primary-color)',
-                            border: 'var(--border-primary-thin)',
-                            fontSize: '0.85rem',
-                            borderRadius: '0.25rem',
-                            flex: 1,
-                            minWidth: '80px',
-                        }}
+                        className="dice-popup__select dice-popup__select--fill"
                     >
                         {sortByLocalizedLabel(
                             ['humanoid', 'mrHandy'] as const,
@@ -592,33 +579,14 @@ function D6Popup({
                         ))}
                     </select>
                     <span
-                        style={{
-                            flex: 1,
-                            textAlign: 'center',
-                            fontWeight: 'bold',
-                            minWidth: 0,
-                            fontSize: '0.95rem',
-                            wordBreak: 'break-word',
-                            overflowWrap: 'break-word',
-                        }}
+                        className="dice-popup__hit-location-value"
                     >
                         {t(hitLocation)}
                     </span>
                     {canRerollHitLocation && (
                         <button
                             onClick={() => setHitLocationRoll(rollD20())}
-                            style={{
-                                padding: '0.125rem 0.375rem',
-                                backgroundColor: 'var(--secondary-color)',
-                                color: 'var(--primary-color)',
-                                border: 'var(--border-primary-thin)',
-                                borderRadius: '0.25rem',
-                                cursor: 'pointer',
-                                fontSize: '0.9rem',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}
+                            className="dice-popup__reroll"
                             title={t('rerollHitLocation')}
                         >
                             <i className="fas fa-dice"></i>
@@ -626,20 +594,14 @@ function D6Popup({
                     )}
                 </div>
 
-                <hr style={{ margin: '0.25rem 0' }} />
+                <hr className="dice-popup__divider" />
 
                 {/* Dice Section - fixed height container with grid layout */}
-                <div style={{ marginBottom: '0.25rem' }}>
+                <div className="dice-popup__dice-section">
                     {/* Damage Dice */}
                     <div
-                        style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, 2.5rem)',
-                            gap: '0.25rem',
-                            justifyContent: 'center',
-                            minHeight: '2.5rem',
-                            marginBottom: extraDiceCount > 0 ? '0.5rem' : '0',
-                        }}
+                        className="dice-popup__dice-grid"
+                        style={{ marginBottom: extraDiceCount > 0 ? '0.5rem' : '0' }}
                     >
                         {diceValues.map((value, index) => (
                             <D6Dice
@@ -655,14 +617,7 @@ function D6Popup({
                     {/* Extra Hits */}
                     {extraDiceCount > 0 && (
                         <>
-                            <div
-                                className="row"
-                                style={{
-                                    justifyContent: 'space-between',
-                                    fontSize: '0.85rem',
-                                    marginBottom: '0.25rem',
-                                }}
-                            >
+                            <div className="row dice-popup__inline-row">
                                 <span>{t('extraHits')}</span>
                                 {canChooseExtraHitsType ? (
                                     <select
@@ -671,14 +626,7 @@ function D6Popup({
                                             setExtraHitTypeChoice(e.target.value as 'ap' | 'ammo')
                                         }
                                         disabled={hasRolled}
-                                        style={{
-                                            padding: '0.125rem 0.25rem',
-                                            backgroundColor: 'var(--secondary-color)',
-                                            color: 'var(--primary-color)',
-                                            border: 'var(--border-primary-thin)',
-                                            fontSize: '0.85rem',
-                                            borderRadius: '0.25rem',
-                                        }}
+                                        className="dice-popup__select dice-popup__select--compact"
                                     >
                                         {sortByLocalizedLabel(
                                             ['ap', 'ammo'] as const,
@@ -693,15 +641,7 @@ function D6Popup({
                                     <span>[{t(extraHitsType ?? '')}]</span>
                                 )}
                             </div>
-                            <div
-                                style={{
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fit, 2.5rem)',
-                                    gap: '0.25rem',
-                                    justifyContent: 'center',
-                                    minHeight: '2.5rem',
-                                }}
-                            >
+                            <div className="dice-popup__dice-grid">
                                 {extraDiceValues.map((value, index) => (
                                     <D6Dice
                                         key={index}
@@ -716,57 +656,41 @@ function D6Popup({
                     )}
                 </div>
 
-                <hr style={{ margin: '0.25rem 0' }} />
+                <hr className="dice-popup__divider" />
 
                 {/* Stats - compact grid */}
-                <div
-                    style={{
-                        display: 'grid',
-                        gridTemplateColumns: '1fr 1fr',
-                        gap: '0.5rem',
-                        marginBottom: '0.25rem',
-                    }}
-                >
-                    <div style={{ textAlign: 'center' }}>
-                        <div style={{ fontSize: '0.85rem' }}>{t('totalDamage')}</div>
-                        <div className="h2" style={{ margin: 0 }}>
+                <div className="dice-popup__summary">
+                    <div className="dice-popup__summary-item">
+                        <div className="dice-popup__summary-label">{t('totalDamage')}</div>
+                        <div className="h2 dice-popup__summary-value">
                             {getTotalDamage()}
                         </div>
                     </div>
-                    <div style={{ textAlign: 'center' }}>
-                        <div style={{ fontSize: '0.85rem' }}>{t('totalEffects')}</div>
-                        <div className="h2" style={{ margin: 0 }}>
+                    <div className="dice-popup__summary-item">
+                        <div className="dice-popup__summary-label">{t('totalEffects')}</div>
+                        <div className="h2 dice-popup__summary-value">
                             {getTotalEffects()}
                         </div>
                     </div>
                 </div>
 
-                <hr style={{ margin: '0.25rem 0' }} />
+                <hr className="dice-popup__divider" />
 
                 {!roller && (
                     <>
                         {/* Costs - compact */}
                         <div
-                            style={{
-                                display: 'grid',
-                                gridTemplateColumns: isCloseCombat(itemData.CATEGORY)
-                                    ? '1fr'
-                                    : '1fr 1fr',
-                                gap: '0.5rem',
-                                fontSize: '0.9rem',
-                                marginBottom: '0.25rem',
-                            }}
+                            className={`dice-popup__costs ${
+                                isCloseCombat(itemData.CATEGORY)
+                                    ? 'dice-popup__costs--close'
+                                    : 'dice-popup__costs--ranged'
+                            }`}
                         >
                             {!isCloseCombat(itemData.CATEGORY) && (
-                                <div className="row" style={{ justifyContent: 'space-between' }}>
+                                <div className="row dice-popup__cost-row">
                                     <span>{t('ammo')}:</span>
                                     <span
-                                        style={{
-                                            display: 'inline-flex',
-                                            alignItems: 'center',
-                                            gap: '0.25rem',
-                                            whiteSpace: 'nowrap',
-                                        }}
+                                        className="dice-popup__inline-value"
                                     >
                                         {!hasRolled ? (
                                             <span>
@@ -781,13 +705,7 @@ function D6Popup({
                                                             parseInt(e.target.value),
                                                         )
                                                     }
-                                                    style={{
-                                                        padding: '0.125rem 0.25rem',
-                                                        backgroundColor: 'var(--secondary-color)',
-                                                        color: 'var(--primary-color)',
-                                                        border: 'var(--border-primary-thin)',
-                                                        fontSize: '0.85rem',
-                                                    }}
+                                                    className="dice-popup__select dice-popup__select--compact"
                                                 >
                                                     {Array.from(
                                                         {
@@ -826,7 +744,7 @@ function D6Popup({
                                 </div>
                             )}
 
-                            <div className="row" style={{ justifyContent: 'space-between' }}>
+                            <div className="row dice-popup__cost-row">
                                 <span>{t('luck')}:</span>
                                 <span>
                                     {getLuckCost()} / {character.currentLuck}

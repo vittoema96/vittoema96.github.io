@@ -88,7 +88,7 @@ function CompanionTab() {
     return (
         <section className="tabContent">
             {/* Companion Type Selector */}
-            <div className="row l-spaceBetween" style={{ marginBottom: '0.3rem' }}>
+            <div className="row l-spaceBetween u-mb-xs">
                 <select
                     value={companion.type}
                     onChange={e =>
@@ -96,7 +96,7 @@ function CompanionTab() {
                             activeCompanionId: e.target.value as CompanionId,
                         })
                     }
-                    style={{ flex: 1 }}
+                    className="u-flex-grow"
                 >
                     {sortByLocalizedLabel(
                         Object.keys(character.companions),
@@ -110,7 +110,7 @@ function CompanionTab() {
             </div>
 
             {/* Companion Name (editable) and HP */}
-            <div className="row l-spaceBetween" style={{ marginBottom: '0.5rem' }}>
+            <div className="row l-spaceBetween u-mb-s">
                 <input
                     type="text"
                     value={companion.name}
@@ -118,9 +118,9 @@ function CompanionTab() {
                         updateCharacter(updateCompanion(companion.type, { name: e.target.value }))
                     }
                     placeholder={t(companion.type)}
-                    style={{ flex: 1, marginRight: '0.5rem' }}
+                    className="u-flex-grow u-mr-m"
                 />
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                <div className="inline-control">
                     <span>{t('hp')}:</span>
                     <input
                         type="number"
@@ -144,7 +144,8 @@ function CompanionTab() {
                                 setHpInput(companion.currentHp);
                             }
                         }}
-                        style={{ width: '3rem', textAlign: 'center' }}
+                        className="u-text-center"
+                        style={{ width: '3rem' }}
                     />
                     <span>/{maxHp}</span>
                 </div>
@@ -153,8 +154,7 @@ function CompanionTab() {
             {/* Available SPECIAL Points (only when editing) */}
             {isEditing && (
                 <div
-                    className="inventory-list__controls row l-distributed"
-                    style={remainingSpecialPoints < 0 ? { color: 'var(--failure-color)' } : {}}
+                    className={`inventory-list__controls row l-distributed${remainingSpecialPoints < 0 ? ' text-failure' : ''}`}
                 >
                     <span className="h4">{t('availableSpecial')}</span>
                     <span className="h4">{remainingSpecialPoints}</span>
@@ -162,7 +162,7 @@ function CompanionTab() {
             )}
 
             {/* BODY/MIND Stats */}
-            <div id="c-special" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
+            <div id="c-special">
                 <StatGear
                     statType="body"
                     isEditing={isEditing}
@@ -175,9 +175,8 @@ function CompanionTab() {
 
             {/* Edit Stats Button - Right after SPECIAL/BODY-MIND */}
             <button
-                className="button"
                 onClick={() => setIsEditing(!isEditing)}
-                style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}
+                className="button u-mt-s u-mb-s"
             >
                 {isEditing ? t('stopEditing') : t('editStats')}
             </button>
@@ -201,7 +200,7 @@ function CompanionTab() {
                                     }}
                                 >
                                     <span>{t(skillType)}</span>
-                                    <span style={{ fontSize: '1rem' }}>{companion.skills[skillType]}</span>
+                                    <span>{companion.skills[skillType]}</span>
                                 </button>
                             )
                         })
@@ -215,18 +214,17 @@ function CompanionTab() {
                         ].map( ({label, value}) => (
                             <div
                                 key={label}
-                                className="buttonlike row l-distributed l-lastSmall skill"
-                                style={{ backgroundColor: 'var(--secondary-color)'}}
+                                className="buttonlike row l-distributed l-lastSmall skill u-bg-secondary"
                             >
                                 <span>{t(label)}</span>
-                                <span style={{ fontSize: '1rem' }}>{value}</span>
+                                <span>{value}</span>
                             </div>
                         ))
                     }
                 ].map( ({ columnLabel, children}) => (
-                    <div className={"stack l-distributed"} key={columnLabel} style={{ height: '100%' }}>
+                    <div className={"stack l-distributed u-height-full"} key={columnLabel}>
                         <FitText wrap center={false}
-                                 minSize={10} maxSize={15} style={{maxWidth: '80%'}}>
+                                 minSize={10} maxSize={15} className="u-max-width-80">
                             {t(columnLabel)}
                         </FitText>
                         {children}
@@ -235,7 +233,7 @@ function CompanionTab() {
 
             {/* Damage Reduction by Type */}
             <div>
-                <h4 style={{ marginBottom: '0.3rem' }}>
+                <h4 className="u-mb-xs">
                     {t('damageReductionFull')}
                 </h4>
                 <div className="row l-spaceEvenly">
@@ -266,7 +264,7 @@ function CompanionTab() {
 
             {/* Attack Items - Clickable */}
             <div>
-                <h4 style={{ marginBottom: '0.3rem'}}>{t('attacks')}</h4>
+                <h4 className="u-mb-xs">{t('attacks')}</h4>
                 <section>
                     {companion.items.map((attack) => {
                         const weaponData = allItems[attack.id];
@@ -276,15 +274,14 @@ function CompanionTab() {
                         return (
                             <button
                                 key={attack.id}
-                                className="row l-distributed skill"
-                                style={{ cursor: 'pointer' }}
+                                className="row l-distributed skill u-cursor-pointer"
                                 onClick={() => handleAttackClick(attack)}
                             >
                                 <span>{displayName}</span>
                                 {weaponData && isType(weaponData, 'weapon') && (
                                     <>
                                         <span>{weaponData.DAMAGE_RATING}CD</span>
-                                        <span style={{ fontSize: '0.8rem', opacity: 0.8 }}>
+                                        <span className="u-font-xs u-opacity-80">
                                             {weaponData.EFFECTS.join(', ') || '-'}
                                         </span>
                                     </>
@@ -297,10 +294,10 @@ function CompanionTab() {
 
             {/* Perks - Selectable */}
             <div>
-                <h4 style={{ marginBottom: '0.3rem'}}>
+                <h4 className="u-mb-xs">
                     {t('perks')} ({companion.perks.filter(Boolean).length}/{perkSlots})
                 </h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <div className="stack u-gap-s">
                     {Array.from({ length: perkSlots }, (_, index) => {
                         const selectedPerk = companion.perks[index];
                         const availablePerks = getAvailablePerksForSlot(index);
@@ -308,18 +305,13 @@ function CompanionTab() {
                         return (
                             <div
                                 key={index}
-                                style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}
+                                className="stack u-gap-xs"
                             >
                                 {/* Perk Selector */}
                                 <select
                                     value={selectedPerk || 'none'}
                                     onChange={e => handlePerkChange(index, e.target.value)}
-                                    style={{
-                                        width: '100%',
-                                        padding: '0.5rem',
-                                        fontSize: '0.9rem',
-                                        fontWeight: selectedPerk ? 'bold' : 'normal',
-                                    }}
+                                    className={`u-width-full u-padding-s u-font-s${selectedPerk ? ' text-bold' : ''}`}
                                 >
                                     <option value="none">
                                         {selectedPerk ? t('noPerk') : '+ ' + t('selectPerk')}
@@ -333,16 +325,7 @@ function CompanionTab() {
 
                                 {/* Perk Description */}
                                 {selectedPerk && (
-                                    <div
-                                        style={{
-                                            padding: '0.5rem',
-                                            backgroundColor: 'var(--button-background)',
-                                            border: 'var(--border-primary-thin)',
-                                            borderRadius: '3px',
-                                            fontSize: '0.75rem',
-                                            lineHeight: '1.4',
-                                        }}
-                                    >
+                                    <div className="description-box">
                                         {t(selectedPerk + 'Description')}
                                     </div>
                                 )}

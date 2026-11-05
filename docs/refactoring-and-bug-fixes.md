@@ -62,6 +62,7 @@ There is also an intermediate staged rename from `feats/index.ts` to `feats/feat
 3. **Make grants real saved objects.** Feat weapons stopped being temporary objects recreated by inventory UI code.
 4. **Audit the interactions.** Reviews and browser reproduction exposed problems in companion editing, self-ammunition, and deferred popup payments. These were corrected.
 5. **Simplify the touched areas.** Repeated currency and companion updates were consolidated, and rank helpers were detached from heavier selection modules.
+6. **Declare manual feat actions.** Mother Wasteland, Rite of Passage, and Mysterious Stranger moved from ID-specific UI maps into registered feat modules and one shared UI adapter.
 
 Not every new implementation file represents a new gameplay feature. Several contain rules that already existed elsewhere.
 
@@ -93,7 +94,10 @@ The refactor does not remove the complexity of the game rules. It gives that com
 | [`useSaveStore.ts`](../src/hooks/useSaveStore.ts)                  | Own save slots, active-slot changes, persistence, import/reset, and execution of updates against the latest save.                                                |
 | [`character/update.ts`](../src/features/character/update.ts)       | Define loading versus editing, merge supported patches, apply HP transition rules, reconcile persistent items, and construct companion updaters.                 |
 | [`character/calculate.ts`](../src/features/character/calculate.ts) | Turn a raw save into the character view used by the UI. It does not save its result.                                                                             |
-| [`character/items.ts`](../src/features/character/items.ts)         | Reconcile grants, select active physical items, project virtual attacks, prepare character-aware item data, and provide pure inventory/ammo/currency operations. |
+| [`character/inventory.ts`](../src/features/character/inventory.ts) | Reconcile grants, select active physical items, project virtual attacks, and provide pure inventory/ammo operations. |
+| [`character/itemEffects.ts`](../src/features/character/itemEffects.ts) | Prepare character-aware item data and centralize equipment/weapon-category rules. |
+| [`character/currency.ts`](../src/features/character/currency.ts) | Provide pure currency delta operations used by inventory adapters. |
+| [`character/items.ts`](../src/features/character/items.ts)         | Compatibility barrel for the focused character item modules. |
 | [`useItemManagement.ts`](../src/app/contexts/useItemManagement.ts) | Adapt item operations to React's character update API.                                                                                                           |
 | [`feats/`](../src/features/character/feats)                        | Declare and combine origin/perk/trait behavior.                                                                                                                  |
 | [`origins/`](../src/features/character/origins)                    | Describe individual origins and discover them through a registry.                                                                                                |
@@ -211,7 +215,7 @@ src/features/character/feats/
 
 The old `implementations/` nesting was removed. The old large `feats/index.ts`, and the temporary `feats.ts` replacement, are not the final public API. Consumers import the specific module they need.
 
-### A capability is just an optional function
+### A capability is an optional declaration or function
 
 `FeatImplementation` declares supported questions such as:
 
@@ -220,9 +224,12 @@ getMaxHpBonus?: (...)
 getGrantedItems?: (...)
 getDamageRatingBonus?: (...)
 getRollComplicationModifiers?: (...)
+manualAction?: FeatManualAction
 ```
 
 A feat implements only the questions relevant to its behavior. Life Giver does not need empty ammunition or companion methods.
+
+Most capabilities calculate a value through a function. `manualAction` is instead a small data description: what the action is called and which existing popup flow it needs. It does not import React, open dialogs, or write to a save.
 
 The important distinction is between **declaring a function in the type** and **actually calling it in a calculation path**. Adding a capability without wiring a consumer does nothing. Obsolete generic lifecycle hooks from the earlier interface were not retained as an imaginary event system.
 
@@ -235,11 +242,42 @@ The registry uses Vite's eager `import.meta.glob`:
 
 Matching files must default-export an implementation with an ID. Missing IDs and duplicate implementation IDs fail explicitly.
 
-Files beginning with `_` do not match. `_perkMysteriousStranger.ts` remains a special-case helper used directly by UI code, not a normal registered perk module.
+Files beginning with `_` do not match. Mysterious Stranger is now a normal `perkMysteriousStranger.ts` module, rather than an underscore-prefixed helper outside the registry.
 
 `calculatePerks(raw)` checks requirements; `calculateTraits(raw, origin)` combines valid selected traits with the origin's fixed traits. A selected ID saved in raw data is not proof that its effect is currently valid.
 
 The registry itself is not another requirement validator. Callers must pass the appropriate effective selection.
+
+### Manual actions: declarations in feats, execution in the UI
+
+The three existing play buttons were real implementations, but their definitions lived in `PERK_ACTIONS` and `TRAIT_ACTIONS` inside the list components. Registry discovery could not see them, so their names incorrectly appeared crossed out.
+
+The flow is now:
+
+```text
+feat.manualAction
+  -> getManualActions(calculatedCharacter)
+  -> useFeatManualActions()
+  -> existing confirmation / combat-die / D20 popup
+```
+
+| Feat | Declaration | Preserved behavior |
+| ---- | ----------- | ------------------ |
+| Mother Wasteland | `confirm` | Show the benefit; spend one Luck only on confirmation. |
+| Rite of Passage | `combatDice` | Roll one combat die; a confirmed effect restores one Luck, up to the current maximum. |
+| Mysterious Stranger | `skillRoll` | Open its Small Guns check; D20 spends one Luck on the first roll, not when opening the popup. |
+
+`FeatManualAction` is a discriminated union: the `type` determines the required fields. A combat-die action cannot accidentally omit its die count while carrying unrelated skill-roll fields. There is one optional action per feat because the current list component exposes one play button.
+
+[`useFeatManualActions.ts`](../src/hooks/useFeatManualActions.ts) is the React adapter. Both lists ask it for an action button; neither contains checks for these three IDs. It collects actions from effective feats, so invalid perk prerequisites or traits from another origin do not enable a button.
+
+For Mother Wasteland's deferred payment and Rite of Passage's refund, the adapter checks the latest save, active slot, and effective feat before writing. Functional updates preserve intervening changes. Insufficient Luck or an unavailable action produces an explicit localized alert; cancelling never pays or refunds.
+
+The stranger's combat profile is plain typed data, not a character parsed at module initialization. Eager discovery would otherwise create the cycle `registry -> perk -> save schema -> SPECIAL/skills -> rules -> registry`. The profile preserves the previous stats without importing runtime schema/calculation modules into the perk.
+
+This is not a scene tracker or a generic action engine. The player still decides when a scene-based rule applies, and the GM still adjudicates narrative information and when the stranger arrives. Existing D20/D6 roller behavior is retained; the outstanding stranger-specific damage isolation TODO is not solved by moving its activation button.
+
+Manual list actions and `getRollActions` are deliberately separate: the latter describes optional actions during a weapon damage roll, not buttons next to a feat.
 
 ### Order and ranks
 
@@ -470,7 +508,9 @@ They do not become additional saved equipment, weight, or armor bonuses. Project
 
 Gun-bash handedness uses the modified weapon qualities. Changing a weapon's handedness through a mod must change the projected attack too.
 
-Robot parts remain persistent equipment: reconciliation adds each missing required part individually. Active projection hides parts that do not belong to the current origin and treats valid parts as equipped. Origin changes can unequip incompatible specialized armor without deleting saved equipment.
+Robot parts remain persistent equipment: reconciliation adds each missing required part individually and normalizes active parts to `equipped: true` in the raw save, including on load/import. Changing origin hides parts that are no longer intrinsic without changing their saved equipped state, mods, or custom name. Hidden parts contribute no weight, equipment bonuses, or resistances. Origin changes still unequip incompatible ordinary apparel without deleting it.
+
+Keeping the raw and displayed equipped state consistent matters when editing a part: item identity includes `equipped`, so a calculated `true` over a saved `false` would make remove-and-add edits fail to find the original stack and create a second part instead. Module edits and renaming after an origin roundtrip are covered by browser regression tests. Existing duplicated configurations are preserved rather than deleted automatically.
 
 ## 8. Preparing weapons and applying bonuses
 
@@ -488,7 +528,7 @@ The two similarly named functions have deliberately different scopes:
 | Function                           | Module                        | Knows about character feats?                              |
 | ---------------------------------- | ----------------------------- | --------------------------------------------------------- |
 | `getModdedItemData(item)`          | `features/item/utils.ts`      | No. Applies the item's own mods.                          |
-| `getModifiedItemData(item, perks)` | `features/character/items.ts` | Yes. Builds on modded data and applies feat item effects. |
+| `getModifiedItemData(item, perks)` | `features/character/itemEffects.ts` | Yes. Builds on modded data and applies feat item effects. |
 
 The generic item utility no longer imports the feat registry to apply character rules.
 
@@ -521,7 +561,7 @@ There is also a small mod-display addition: a `rerollHitLocation:true` effect se
 
 ## 9. Editing inventory without losing other changes
 
-Pure `applyAddItem` and `applyRemoveItem` moved out of the React hook into `character/items.ts`.
+Pure `applyAddItem` and `applyRemoveItem` moved out of the React hook into `character/inventory.ts`.
 
 - Add stacks only matching configurations.
 - Remove spends one requested quantity across matching stacks.
@@ -544,7 +584,7 @@ This is a focused stale-state fix, not a new transaction framework or a complete
 
 ### One ammunition implementation
 
-The count/availability helpers and `consumeAmmo` live in `character/items.ts`, rather than being split between a React hook and several popup mutations.
+The count/availability helpers and `consumeAmmo` live in `character/inventory.ts`, rather than being split between a React hook and several popup mutations.
 
 `consumeAmmo` works from raw data, selects eligible active ammunition, checks the total first, and consumes one total across stacks. It retains hidden grants and unrelated objects.
 
@@ -695,7 +735,7 @@ Useful specialized-armor and other unfinished-rule TODOs were retained/restored 
 
 [`scripts/test_granted_items.mjs`](../scripts/test_granted_items.mjs) uses Node's test runner and Vite SSR to import the actual TypeScript modules.
 
-Despite its original name, its scope now includes grants, replacement cycles, save import/rehydration, HP transitions, nested updates, companion defaults, currencies, virtual attacks, prepared weapon checks, discovery/ranks, and ammo.
+Despite its original name, its scope now includes grants, replacement cycles, save import/rehydration, HP transitions, nested updates, companion defaults, currencies, virtual attacks, prepared weapon checks, discovery/ranks, ammo, and manual-action declarations. The stranger profile is also compared with the previous schema-derived stats.
 
 Some checks render React statically. Those checks help verify rendered output, but do not exercise animation events, effects, or a real native dialog.
 
@@ -703,15 +743,17 @@ Some checks render React statically. Those checks help verify rendered output, b
 
 [`scripts/test_ui_regressions.mjs`](../scripts/test_ui_regressions.mjs) mounts real providers/components in an isolated Vite fixture and runs Chrome/Chromium.
 
-Its ten scenarios exercise companion/character switching, selected self-ammo, burst reservations, rejected close payment, deferred resource changes, state changes during close animation, sequential item/currency operations, side selection, robot plating, and first companion edits.
+Its scenarios exercise companion/character switching, selected self-ammo, burst reservations, rejected close payment, deferred resource changes, state changes during close animation, sequential item/currency operations, side selection, robot plating, and first companion edits.
+
+Manual-action scenarios additionally use the actual perk/trait lists and selection popups. They check implementation indicators, effective ownership, confirmation/cancellation, intervening Luck changes, all six combat-die faces, current Luck caps, rejected stale payment/refund callbacks, and the stranger's three dice/stats/deferred first-roll payment.
 
 The temporary browser profile and test storage are separate from real saves. The fixture is not a full deployed-PWA/offline test.
 
 If no browser is found, browser coverage is **explicitly skipped**. A successful command with a skip is not equivalent to a successful browser run. `CHROME_PATH` can point to an installed browser.
 
-### Last recorded implementation checks
+### Recorded checks before the manual-action extraction
 
-These are implementation validation results, most recently repeated for the **2026-10-15 compatibility migration**, not proof that every possible historical player save has been exercised:
+These are historical implementation validation results for the **2026-10-15 compatibility migration**, before adding the manual-action regressions, not proof that every possible historical player save has been exercised:
 
 | Check                                    | Recorded result                | Interpretation                                                                                             |
 | ---------------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------- |
@@ -722,6 +764,8 @@ These are implementation validation results, most recently repeated for the **20
 | `git diff --check` and staged equivalent | Passed                         | No whitespace errors in the checked diffs.                                                                 |
 
 The recorded toolchain used Node 24.8.0 and Vite 7.3.6. A successful Vite build is **not** a successful TypeScript type-check: they are separate commands here.
+
+After the manual-action extraction, the complete suite passed **68 tests with no failures or skips**: 50 domain/store/hook checks, 17 browser cases, and their parent test. Lint still reports zero errors and 13 existing warnings; TypeScript diagnostics exactly match the 13-error baseline captured before this change. Data/localization validation and the production PWA build also passed in the working tree.
 
 The ten added migration regressions include truly untagged old-format fixtures, all five Mr. Handy weapons, Iron Fist rank changes, inactive grants, preservation of other character data and HP, manual copies created after migration, imports, every occupied persisted slot, and legacy storage keys. The earlier tagged-receiver test was renamed because it did not, on its own, cover pre-provenance saves.
 
@@ -765,6 +809,25 @@ export default perkStrongBack;
 
 Do not add a matching `if (perkId === ...)` to Context, inventory filters, and every popup. Use the existing capability when it expresses the rule correctly.
 
+### Add a manual action
+
+Declare `manualAction` in the registered perk/trait module. For example, `traitMotherWasteland.ts` contains:
+
+```ts
+manualAction: {
+    type: 'confirm',
+    label: 'traitMotherWasteland',
+    message: 'traitMotherWastelandBenefit',
+    luckCost: 1,
+}
+```
+
+`label`, `message`, and `description` are translation keys, not translated text. Existing `confirm`, `combatDice`, and `skillRoll` actions need no list-component changes. `requiredLuck` on a skill-roll action is an opening prerequisite, not an extra payment; the existing roller owns its roll-time cost.
+
+If a new rule genuinely needs a different interaction, extend the union and its UI adapter together, with browser coverage. Do not introduce optional callbacks and configuration fields for hypothetical future actions.
+
+No new saved activation state or save migration is needed for these declarations.
+
 ### Add a grant
 
 Return the initial item from `getGrantedItems`; use `replaces` only when a valid target must exist.
@@ -797,6 +860,22 @@ Recheck resources at confirmation time. A button that was enabled earlier is not
 
 Use a pre-close guard only when closure can legitimately be rejected. Keep cleanup in `onClose`. Exercise a real browser if native dialog state, Escape, animation, or delayed callbacks are involved.
 
+### Change map UI and settings
+
+`UISettingsManager` remains the persistence boundary for `PB3K_settings`. Its subscription notifies React consumers after same-window writes and on relevant browser `storage` events, including settings removal. `useMapRegion` reads the persisted region with `useSyncExternalStore`; both the map and Settings selector use that snapshot instead of maintaining separate region state.
+
+Theme application keeps the document's `theme-color` metadata synchronized with the selected theme's `--primary-color`. The HTML retains the original Pip-Boy green startup fallback. The manifest is still generated by vite-plugin-pwa from `vite.config.ts`, but deliberately omits `theme_color`. Explicitly setting `theme_color: undefined` overrides the plugin's default; JSON serialization then omits the field. The `satisfies` check validates the manifest fields, while the targeted type assertion accommodates the plugin's optional-property typing under `exactOptionalPropertyTypes`.
+
+The PWA now requests `display: fullscreen` to try hiding Android's navigation and status bars rather than recoloring them. Android may temporarily reveal the bars, and behavior depends on the device and browser. Omitting `theme_color` alone did not remove the green navigation bar on the reported Android installation, even after a successful WebAPK update; fullscreen is a workaround that still needs verification on that device. Existing Android installations need a WebAPK update to pick up manifest changes; a service-worker update alone does not update those installed metadata.
+
+vite-plugin-pwa 1.0.3 emits an installation warning when `theme_color` is omitted. This warning does not reflect [Chromium 156's installability checks](https://github.com/chromium/chromium/blob/156.0.8078.73/components/webapps/browser/installable/installable_evaluator.cc), which do not require a theme color.
+
+Settings preference fields wrap onto additional rows when space is limited, and their native selects can shrink within each field.
+
+The region-specific map view is keyed by region so switching maps resets pan/zoom, active marker state, and unfinished unlock input. The map panel does not scroll: its viewport fills the remaining space above the unlock form, clips the pannable square map, and keeps the controls visible. A `ResizeObserver` reconstrains pan/zoom after viewport changes. Other tabs retain normal panel scrolling.
+
+Location edits use latest-state updates, including deferred marker deletion. Non-Mojave unlocking remains intentionally unavailable until its datasets are ready.
+
 ### Before committing or integrating upstream
 
 Review both tracked diffs and untracked source/test files. The staged subset alone does not currently represent the whole implementation.
@@ -821,7 +900,7 @@ The resulting architecture is more explicit, but it is not a claim of architectu
 
 **Thin Context does not imply zero rerenders.** Its calculated value is memoized, but the store/context subscription architecture was not comprehensively optimized.
 
-**The files are not maximally split.** `items.ts` is a cohesive home for character-related inventory behavior, but it is not tiny. D6 still contains substantial roll/UI logic. Splitting either solely to reduce file length would not automatically simplify the project.
+The character item responsibilities are intentionally split into `inventory.ts`, `itemEffects.ts`, and `currency.ts`. `items.ts` remains as a compatibility barrel for older imports. D6 still contains substantial roll/UI logic; moving that UI behavior into the feature layer would not automatically simplify the project.
 
 **The companion default fallback is a deliberate trade-off.** Its updater may call the full pure calculation when the saved entry is missing. That reuses the canonical availability/default logic rather than duplicating it; normal edits of an existing saved companion do not need the fallback.
 
@@ -839,9 +918,9 @@ The practical standard for another refactor should be: does it remove a demonstr
 | Wrong character calculation                        | [`calculate.ts`](../src/features/character/calculate.ts), then the relevant HP/skill/weight/etc. calculator                                                                       |
 | Feat not discovered or repeated                    | [`registry.ts`](../src/features/character/feats/registry.ts), filename pattern, stable ID/default export                                                                          |
 | Wrong rule combination                             | [`rules.ts`](../src/features/character/feats/rules.ts), then the individual implementation                                                                                        |
-| Grant missing, duplicated, or losing configuration | [`items.ts`](../src/features/character/items.ts), schema provenance and stacking                                                                                                  |
+| Grant missing, duplicated, or losing configuration | [`inventory.ts`](../src/features/character/inventory.ts), schema provenance and stacking                                                                                                  |
 | Wrong item mod result                              | [`features/item/utils.ts`](../src/features/item/utils.ts)                                                                                                                         |
-| Wrong character-aware weapon result                | [`character/items.ts`](../src/features/character/items.ts), [`useWeaponStats.ts`](../src/features/character/hooks/useWeaponStats.ts)                                              |
+| Wrong character-aware weapon result                | [`character/itemEffects.ts`](../src/features/character/itemEffects.ts), [`useWeaponStats.ts`](../src/features/character/hooks/useWeaponStats.ts)                                              |
 | Item/currency edit overwrites another action       | [`useItemManagement.ts`](../src/app/contexts/useItemManagement.ts)                                                                                                                |
 | Deferred side/plating edit loses changes           | [`useInventoryActions.ts`](../src/app/tabs/inv/hooks/useInventoryActions.ts), [`ModifyItemPopup.tsx`](../src/app/components/popup/ModifyItemPopup.tsx)                            |
 | Ammo/action/burst payment wrong                    | [`D6Popup.tsx`](../src/app/components/popup/dice/D6Popup.tsx), shared ammo helpers                                                                                                |

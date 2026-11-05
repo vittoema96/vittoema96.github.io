@@ -5,7 +5,9 @@ dialog {
     border: var(--border-primary-thin);
     min-width: calc(max(75%, 300px));
     max-width: calc(min(95%, 400px));
-    max-height: calc(100svh - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+    max-height: calc(
+        100svh - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)
+    );
     padding: 0.75rem;
     gap: 0.5rem;
     flex-direction: column;
@@ -18,7 +20,9 @@ dialog[open] {
     animation: crt-turn-on 0.7s forwards;
     pointer-events: auto;
 }
-.dialog-closing { animation: crt-turn-off 0.3s forwards !important; }
+.dialog-closing {
+    animation: crt-turn-off 0.3s forwards !important;
+}
 dialog::backdrop {
     background-color: var(--shadow-color);
     backdrop-filter: blur(3px);
@@ -32,9 +36,40 @@ dialog::backdrop {
     align-self: start;
 }
 
+.mod-tooltip {
+    gap: var(--space-xs);
+    min-width: 10rem;
+}
+.mod-tooltip__name {
+    font-size: 0.9rem;
+    border-bottom: var(--border-primary-thin);
+    padding-bottom: var(--space-xs);
+}
+.mod-tooltip__effects {
+    margin: var(--space-xs) 0;
+    padding-left: var(--space-l);
+    font-size: 0.8rem;
+}
+.mod-tooltip__requirements {
+    gap: var(--space-xs);
+    font-size: 0.75rem;
+    border-top: var(--border-primary-thin);
+    padding-top: var(--space-xs);
+    opacity: 0.85;
+}
+.mod-tooltip__requirement {
+    gap: var(--space-s);
+}
+.mod-tooltip__perks {
+    gap: var(--space-s);
+    flex-wrap: wrap;
+}
+
 /* Hover interactions for close button on hover-capable devices */
 @media (hover: hover) {
-    .popup__button-x:hover { color: var(--primary-color); }
+    .popup__button-x:hover {
+        color: var(--primary-color);
+    }
 }
 
 /* Popup buttons */

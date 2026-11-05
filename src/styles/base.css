@@ -256,7 +256,7 @@ button:disabled { opacity: 0.5; }
 nav {
     display: flex;
     padding: var(--space-xs) var(--space-m) 0;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
     flex-wrap: nowrap;

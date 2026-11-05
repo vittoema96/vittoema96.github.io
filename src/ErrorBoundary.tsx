@@ -13,44 +13,19 @@ export function ErrorFallback({ error, resetErrorBoundary }: Readonly<FallbackPr
     const zodIssues = isZodError ? (error as { issues: unknown }).issues : null;
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                minHeight: '100dvh',
-                padding: '2rem',
-                backgroundColor: 'var(--primary-color, #111)',
-                color: 'var(--secondary-color, #00ff66)',
-                fontFamily: 'monospace',
-                textAlign: 'center',
-                boxSizing: 'border-box',
-            }}
-        >
-            <h1 style={{ color: 'var(--failure-color, #ff3333)', marginBottom: '1rem' }}>
+        <div className="error-screen">
+            <h1 className="error-screen__title">
                 ⚠️ Pip-Boy System Error
             </h1>
 
-            <p style={{ marginBottom: '1.5rem', maxWidth: '600px', lineHeight: 1.5 }}>
+            <p className="error-screen__message">
                 The Pip-Boy encountered an initialization error. Try restarting the system.
                 Your saved character data remains untouched.
             </p>
 
             <button
                 onClick={resetErrorBoundary}
-                style={{
-                    padding: '0.75rem 1.5rem',
-                    backgroundColor: 'var(--secondary-color, #00ff66)',
-                    color: 'var(--primary-color, #111)',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontFamily: 'inherit',
-                    fontSize: '1rem',
-                    fontWeight: 'bold',
-                    marginBottom: '2rem',
-                }}
+                className="error-screen__restart"
             >
                 🔄 Restart Pip-Boy
             </button>
@@ -58,35 +33,19 @@ export function ErrorFallback({ error, resetErrorBoundary }: Readonly<FallbackPr
             {Boolean(error) && (
                 <details
                     open
-                    style={{
-                        width: '100%',
-                        maxWidth: '800px',
-                        textAlign: 'left',
-                        backgroundColor: 'rgba(255, 0, 0, 0.08)',
-                        padding: '1rem',
-                        borderRadius: '4px',
-                        border: '1px solid var(--failure-color, #ff3333)',
-                        boxSizing: 'border-box',
-                    }}
+                    className="error-screen__details"
                 >
-                    <summary style={{ cursor: 'pointer', marginBottom: '1rem', fontWeight: 'bold' }}>
+                    <summary className="error-screen__summary">
                         🐛 Error Details ({errorMessage})
                     </summary>
 
                     {Array.isArray(zodIssues) && (
-                        <div style={{ marginBottom: '1rem' }}>
-                            <strong style={{ color: 'var(--failure-color, #ff3333)' }}>
+                        <div className="error-screen__issues">
+                            <strong className="error-screen__failure">
                                 Zod Schema Validation Errors:
                             </strong>
                             <pre
-                                style={{
-                                    fontSize: '0.8rem',
-                                    backgroundColor: 'rgba(0,0,0,0.5)',
-                                    padding: '0.5rem',
-                                    borderRadius: '4px',
-                                    whiteSpace: 'pre-wrap',
-                                    marginTop: '0.5rem',
-                                }}
+                                className="error-screen__code"
                             >
                                 {JSON.stringify(zodIssues, null, 2)}
                             </pre>
@@ -97,15 +56,7 @@ export function ErrorFallback({ error, resetErrorBoundary }: Readonly<FallbackPr
                         <div>
                             <strong>Stack Trace:</strong>
                             <pre
-                                style={{
-                                    fontSize: '0.75rem',
-                                    overflow: 'auto',
-                                    whiteSpace: 'pre-wrap',
-                                    wordBreak: 'break-word',
-                                    maxWidth: '100%',
-                                    maxHeight: '300px',
-                                    margin: '0.5rem 0 0 0',
-                                }}
+                                className="error-screen__stack"
                             >
                                 {errorStack}
                             </pre>

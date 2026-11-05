@@ -167,7 +167,7 @@ function SettingsTab() {
                 <legend>{t('crtDisplayEffects')}</legend>
                 <div className="row l-spaceAround">
                     {DISPLAY_EFFECTS.map(val => (
-                        <div className="row" key={val} style={{ width: 'unset' }}>
+                        <div className="row u-width-auto" key={val}>
                             <input
                                 type="radio"
                                 id={`crtDisplayEffects_${val}`}
@@ -190,14 +190,12 @@ function SettingsTab() {
                 {slots.map((slot, index) => (
                     <div
                         key={index}
-                        className="row"
+                        className="row u-padding-m u-rounded-s"
                         style={{
-                            padding: 'var(--space-m)',
                             border:
                                 activeSlot === index
                                     ? 'var(--border-primary-thick)'
                                     : 'var(--border-secondary-thin)',
-                            borderRadius: '4px',
                             backgroundColor:
                                 activeSlot === index ? 'var(--secondary-color)' : 'transparent',
                         }}
@@ -227,12 +225,7 @@ function SettingsTab() {
                                 {/* Export icon button */}
                                 <button
                                     onClick={() => handleExportSlot(index)}
-                                    className="icon-m"
-                                    style={{
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        display: 'flex',
-                                    }}
+                                    className="icon-m icon-button"
                                     title={t('export')}
                                 >
                                     <i className="fas fa-download"></i>
@@ -241,13 +234,7 @@ function SettingsTab() {
                                 {/* Delete icon button */}
                                 <button
                                     onClick={() => handleDeleteSlot(index)}
-                                    className="closeButton icon-m"
-                                    style={{
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        display: 'flex',
-                                        flex: 0,
-                                    }}
+                                    className="closeButton icon-m icon-button icon-button--close"
                                     title={t('delete')}
                                 >
                                     <i className="fas fa-trash"></i>
@@ -258,16 +245,7 @@ function SettingsTab() {
                         {/* Import icon button */}
                         <label
                             htmlFor={`import-slot-${index}`}
-                            className="icon-m"
-                            style={{
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                display: 'inline-flex',
-                                cursor: 'pointer',
-                                border: 'var(--border-primary-thin)',
-                                borderRadius: '4px',
-                                backgroundColor: 'var(--button-background)',
-                            }}
+                            className="icon-m icon-button icon-button--inline"
                             title={t('import')}
                         >
                             <i className="fas fa-upload"></i>

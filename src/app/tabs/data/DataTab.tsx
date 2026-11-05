@@ -9,12 +9,14 @@ import type { OriginId } from '@/features/character/origins/types';
 import DialogPortal from '@/app/components/popup/common/DialogPortal.tsx';
 import { useDialog } from '@/hooks/useDialog.ts';
 import { sortByLocalizedLabel } from '@/utils/sorting.ts';
+import ActionsList from '@/app/tabs/data/components/ActionsList.tsx';
 
 
 
 export default function DataTab() {
     const { t } = useTranslation();
     const { character, updateCharacter } = useCharacter();
+    const [activeSubTab, setActiveSubTab] = useState<'character' | 'actions'>('character');
     const [ levelInput, setLevelInput ] = useInputNumberState(character.level);
 
     const [ background, setBackground ] = useState(character.background ?? '');
@@ -60,6 +62,25 @@ export default function DataTab() {
 
     return (
         <section className="tabContent">
+            <nav aria-label={t('dataSections')}>
+                <button
+                    className={`subTab-button ${activeSubTab === 'character' ? 'active' : ''}`}
+                    onClick={() => setActiveSubTab('character')}
+                >
+                    {t('characterData').toUpperCase()}
+                </button>
+                <button
+                    className={`subTab-button ${activeSubTab === 'actions' ? 'active' : ''}`}
+                    onClick={() => setActiveSubTab('actions')}
+                >
+                    {t('actions').toUpperCase()}
+                </button>
+            </nav>
+
+            {activeSubTab === 'actions' ? (
+                <ActionsList />
+            ) : (
+                <>
             {/* Character Name */}
             <div className="row l-distributed l-firstSmall">
                 <label className="h2" htmlFor="pg_name">
@@ -177,6 +198,8 @@ export default function DataTab() {
             <TraitList />
             <br />
             <PerkList />
+                </>
+            )}
         </section>
     );
 }

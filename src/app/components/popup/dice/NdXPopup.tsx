@@ -5,7 +5,6 @@ import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import useInputNumberState from '@/hooks/useInputNumberState.ts';
 import { DiceProps } from '@/app/components/popup/dice/components/dice.tsx';
 
-
 interface NdXPopupProps extends GenericPopupProps {
     diceMaxValue: number;
     diceClass: React.ComponentType<DiceProps>;
@@ -24,11 +23,14 @@ interface NdXPopupProps extends GenericPopupProps {
  * Used for various game mechanics that require rolling combat dice
  */
 function NdXPopup({
-    diceMaxValue, diceClass: DiceClass,
+    diceMaxValue,
+    diceClass: DiceClass,
     diceCount,
-    title, description,
+    title,
+    description,
     renderSection,
-    onClose, onConfirm
+    onClose,
+    onConfirm,
 }: Readonly<NdXPopupProps>) {
     const { t } = useTranslation();
 
@@ -39,7 +41,7 @@ function NdXPopup({
     // Handle roll
     const handleRoll = () => {
         const rolls = Array.from({ length: Number(diceNumber) }, () => {
-            return Math.floor(Math.random() * diceMaxValue) + 1
+            return Math.floor(Math.random() * diceMaxValue) + 1;
         });
         setDiceValues(rolls);
         setHasRolled(true);
@@ -57,39 +59,36 @@ function NdXPopup({
             title={title}
             confirmLabel={'confirm'}
             onConfirm={hasRolled ? handleConfirm : undefined}
-            footerChildren={!hasRolled &&
-                <button
-                    className="confirmButton"
-                    onClick={handleRoll}
-                >
-                    {t('roll')}
-                </button>
+            footerChildren={
+                !hasRolled && (
+                    <button className="confirmButton" onClick={handleRoll}>
+                        {t('roll')}
+                    </button>
+                )
             }
             onClose={onClose}
         >
-            <div className="stack no-gap"
-                 style={{width: "100%"}}>
-
+            <div className="stack no-gap" style={{ width: '100%' }}>
                 {description && (
                     <>
                         <hr />
-                        <p style={{ textAlign: 'center', margin: '0.5rem 0' }}>
-                            {description}
-                        </p>
+                        <p className="dice-description">{description}</p>
                     </>
                 )}
 
                 {diceCount === undefined && (
                     <>
                         <hr />
-                        <div className={"row l-distributed l-lastSmall"}>
-                            <p>{t("diceToRoll")}:</p>
-                            <input type={"number"}
-                                   min={1}
-                                   max={54} // on small devices it's the max with no overflow
-                                   defaultValue={diceNumber}
-                                   disabled={hasRolled}
-                                   onChange={e => setDiceNumber(e.target.value)}/>
+                        <div className={'row l-distributed l-lastSmall'}>
+                            <p>{t('diceToRoll')}:</p>
+                            <input
+                                type={'number'}
+                                min={1}
+                                max={54} // on small devices it's the max with no overflow
+                                defaultValue={diceNumber}
+                                disabled={hasRolled}
+                                onChange={e => setDiceNumber(e.target.value)}
+                            />
                         </div>
                     </>
                 )}
@@ -97,20 +96,23 @@ function NdXPopup({
                 <hr />
 
                 {/* Dice display */}
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, 2.5rem)',
-                    gap: '0.7rem',
-                    justifyContent: 'center',
-                    minHeight: '2.5rem',
-                    margin: '0.5rem 0'
-                }}>
+                <div
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, 2.5rem)',
+                        gap: '0.7rem',
+                        justifyContent: 'center',
+                        minHeight: '2.5rem',
+                        margin: '0.5rem 0',
+                    }}
+                >
                     {Array.from({ length: Number(diceNumber) }, (_, i) => (
                         <DiceClass
                             value={diceValues[i] ?? '?'}
                             key={i}
                             isActive={false}
-                            isRerolled={true}/>
+                            isRerolled={true}
+                        />
                     ))}
                 </div>
 
@@ -122,4 +124,3 @@ function NdXPopup({
 }
 
 export default NdXPopup;
-

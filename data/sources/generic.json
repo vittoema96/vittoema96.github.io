@@ -3,6 +3,146 @@
         "en": "Activate",
         "it": "Attiva"
     },
+    "actions": {
+        "en": "Actions",
+        "it": "Azioni"
+    },
+    "characterData": {
+        "en": "Character",
+        "it": "Personaggio"
+    },
+    "dataSections": {
+        "en": "Data sections",
+        "it": "Sezioni dati"
+    },
+    "minorActions": {
+        "en": "Minor Actions",
+        "it": "Azioni minori"
+    },
+    "majorActions": {
+        "en": "Major Actions",
+        "it": "Azioni maggiori"
+    },
+    "actionAim": {
+        "en": "Aim",
+        "it": "Mirare"
+    },
+    "actionAimDescription": {
+        "en": "Re-roll 1d20 on the first attack roll you make this turn.",
+        "it": "Rilancia 1d20 del primo tiro d'attacco che effettui durante questo turno."
+    },
+    "actionDrawItem": {
+        "en": "Draw Item",
+        "it": "Estrarre oggetto"
+    },
+    "actionDrawItemDescription": {
+        "en": "Draw one item carried on your person or pick up an object within reach. You may also put an item away.",
+        "it": "Estrai un oggetto che porti con te o raccogli un oggetto a portata di mano. Puoi anche riporre un oggetto."
+    },
+    "actionInteract": {
+        "en": "Interact",
+        "it": "Interagire"
+    },
+    "actionInteractDescription": {
+        "en": "Interact with your equipment or environment in a simple way, such as opening a door or pushing a button.",
+        "it": "Interagisci in modo semplice con l'equipaggiamento o l'ambiente, per esempio aprendo una porta o premendo un pulsante."
+    },
+    "actionMove": {
+        "en": "Move",
+        "it": "Muoversi"
+    },
+    "actionMoveDescription": {
+        "en": "Move up to one zone, to any position within Medium range, or stand up from prone. You cannot take Sprint in the same turn.",
+        "it": "Muoviti fino a una zona, in una posizione entro Gittata media, oppure rialzati da prono. Non puoi usare l'azione Scattare nello stesso turno."
+    },
+    "actionTakeChem": {
+        "en": "Take Chem",
+        "it": "Assumere chem"
+    },
+    "actionTakeChemDescription": {
+        "en": "Administer a chem you are holding to yourself or a willing character within reach. Draw it first if necessary.",
+        "it": "Somministra una chem che stai tenendo a te stesso o a un personaggio consenziente a portata di mano. Se necessario, estraila prima."
+    },
+    "actionAssist": {
+        "en": "Assist",
+        "it": "Assistere"
+    },
+    "actionAssistDescription": {
+        "en": "Assist another character with their next test, providing assistance when they attempt it on their turn. If you have not acted yet this round, you may give up your turn later to assist an ally with a skill test.",
+        "it": "Assisti un altro personaggio nel suo prossimo test, fornendo assistenza quando lo effettua durante il suo turno. Se non hai ancora agito in questo round, puoi rinunciare più avanti al tuo turno per assistere un alleato in un test di abilità."
+    },
+    "actionAttack": {
+        "en": "Attack",
+        "it": "Attaccare"
+    },
+    "actionAttackDescription": {
+        "en": "Make a melee or ranged attack, following the rules for making an attack.",
+        "it": "Effettua un attacco in mischia o a distanza, seguendo le regole per effettuare un attacco."
+    },
+    "actionCommandNpc": {
+        "en": "Command an NPC",
+        "it": "Comandare un PNG"
+    },
+    "actionCommandNpcDescription": {
+        "en": "Choose one major action for an allied NPC under your command. If it requires a test, you automatically assist using CHA + Speech for a person, CHA + Survival for an animal, or INT + Science for a robot.",
+        "it": "Scegli un'azione maggiore per un PNG alleato sotto il tuo comando. Se richiede un test, lo assisti automaticamente usando CAR + Oratoria per una persona, CAR + Sopravvivenza per un animale o INT + Scienza per un robot."
+    },
+    "actionFirstAid": {
+        "en": "First Aid",
+        "it": "Primo soccorso"
+    },
+    "actionFirstAidDescription": {
+        "en": "Make an INT + Medicine test with a difficulty equal to the patient's number of injuries (+1 difficulty when treating yourself). On a success, heal HP equal to your Medicine rating, treat one injury, or stabilize a dying patient. When administering a stimpak as part of First Aid, the patient regains 4 HP in addition to any other effects, and AP spent to heal additional HP restore 2 HP per AP instead of 1. For robots and other machines, use INT + Repair instead, with difficulty 2 plus their injuries.",
+        "it": "Effettua un test di INT + Medicina con difficoltà pari al numero di ferite del paziente (+1 difficoltà se tratti te stesso). Se riesci, cura HP pari al tuo grado di Medicina, tratta una ferita o stabilizza un paziente morente. Quando somministri uno stimpak come parte del Primo soccorso, il paziente recupera 4 HP in aggiunta agli altri effetti e i PA spesi per curare HP aggiuntivi curano 2 HP ciascuno invece di 1. Per robot e altre macchine usa invece INT + Riparazione, con difficoltà 2 più le loro ferite."
+    },
+    "actionDefend": {
+        "en": "Defend",
+        "it": "Difendersi"
+    },
+    "actionDefendDescription": {
+        "en": "Make an AGI + Athletics test against your Defense. On a success, increase your Defense by 1; you may spend 2 AP for another +1.",
+        "it": "Effettua un test di AGI + Atletica contro la tua Difesa. Se riesci, aumenta la Difesa di 1; puoi spendere 2 PA per un ulteriore +1."
+    },
+    "actionPass": {
+        "en": "Pass",
+        "it": "Passare"
+    },
+    "actionPassDescription": {
+        "en": "Choose not to do anything.",
+        "it": "Scegli di non fare nulla."
+    },
+    "actionRally": {
+        "en": "Rally",
+        "it": "Riorganizzarsi"
+    },
+    "actionRallyDescription": {
+        "en": "Make an END + Survival test at difficulty 0 and save any Action Points you generate. The gamemaster may allow a different attribute + skill, such as CHA + Speech to inspire your allies.",
+        "it": "Effettua un test di END + Sopravvivenza a difficoltà 0 e conserva gli eventuali Punti Azione generati. Il gamemaster può consentire un diverso attributo + abilità, come CAR + Oratoria per ispirare gli alleati."
+    },
+    "actionReady": {
+        "en": "Ready",
+        "it": "Prepararsi"
+    },
+    "actionReadyDescription": {
+        "en": "Describe a situation and choose a major action to perform when it occurs before the start of your next turn. You perform it immediately, interrupting other characters as necessary. If multiple characters ready for the same situation, resolve their actions in initiative order.",
+        "it": "Descrivi una situazione e scegli un'azione maggiore da eseguire quando si verifica prima dell'inizio del tuo prossimo turno. Eseguila immediatamente, interrompendo se necessario le azioni degli altri personaggi. Se più personaggi si preparano per la stessa situazione, risolvete le loro azioni in ordine di iniziativa."
+    },
+    "actionSprint": {
+        "en": "Sprint",
+        "it": "Scattare"
+    },
+    "actionSprintDescription": {
+        "en": "Move up to two zones, to anywhere within Long range. You cannot take Move in the same turn.",
+        "it": "Muoviti fino a due zone, in qualsiasi punto entro Gittata lunga. Non puoi usare l'azione Muoversi nello stesso turno."
+    },
+    "actionTest": {
+        "en": "Test",
+        "it": "Test"
+    },
+    "actionTestDescription": {
+        "en": "Perform a skill test for an action not covered by another action, with the gamemaster's permission.",
+        "it": "Effettua un test di abilità per un'azione non coperta da un'altra azione, con il permesso del gamemaster."
+    },
     "activeCharacter": {
         "en": "Active Character",
         "it": "Personaggio Attivo"

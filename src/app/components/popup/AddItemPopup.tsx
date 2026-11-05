@@ -20,25 +20,25 @@ export interface AddItemPopupProps extends GenericPopupProps {
     itemType: ItemType;
 }
 
-type RarityOperator = '=' | '>=' | '<='
+type RarityOperator = '=' | '>=' | '<=';
 
-const BUY_MAX_QUANTITY = 99
+const BUY_MAX_QUANTITY = 99;
 
-function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
-    const { t } = useTranslation()
+function AddItemPopup({ onClose, itemType }: Readonly<AddItemPopupProps>) {
+    const { t } = useTranslation();
 
-    const [isFormValid, setIsFormValid] = useState(false)
-    const [onConfirmCallback, setOnConfirmCallback] = useState<() => void>(() => {})
-    const [onBuyCallback, setOnBuyCallback] = useState<(() => void) | null>(null)
+    const [isFormValid, setIsFormValid] = useState(false);
+    const [onConfirmCallback, setOnConfirmCallback] = useState<() => void>(() => {});
+    const [onBuyCallback, setOnBuyCallback] = useState<(() => void) | null>(null);
 
     // Custom item mode
-    const [isCustomMode, setIsCustomMode] = useState(false)
+    const [isCustomMode, setIsCustomMode] = useState(false);
 
     useEffect(() => {
         if (isCustomMode) {
-            setOnBuyCallback(null)
+            setOnBuyCallback(null);
         }
-    }, [isCustomMode])
+    }, [isCustomMode]);
 
     const footerChildren = (
         <>
@@ -48,8 +48,8 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                     className="confirmButton"
                     disabled={!onBuyCallback}
                     onClick={() => {
-                        onClose()
-                        onBuyCallback?.()
+                        onClose();
+                        onBuyCallback?.();
                     }}
                 >
                     {t('buy')}
@@ -66,14 +66,14 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                 </button>
             )}
         </>
-    )
+    );
 
     return (
         <BasePopup
             title={isCustomMode ? 'customItem' : 'chooseItem'}
             onConfirm={() => {
-                onConfirmCallback()
-                onClose()
+                onConfirmCallback();
+                onClose();
             }}
             onClose={onClose}
             confirmDisabled={!isFormValid}
@@ -85,94 +85,111 @@ function AddItemPopup({ onClose, itemType}: Readonly<AddItemPopupProps>) {
                 <AddCustomItemContent
                     itemType={itemType}
                     setIsFormValid={setIsFormValid}
-                    setOnConfirmCallback={setOnConfirmCallback}/>
+                    setOnConfirmCallback={setOnConfirmCallback}
+                />
             ) : (
                 <AddItemFromListContent
                     itemType={itemType}
                     setIsFormValid={setIsFormValid}
                     setOnConfirmCallback={setOnConfirmCallback}
-                    setOnBuyCallback={setOnBuyCallback}/>
+                    setOnBuyCallback={setOnBuyCallback}
+                />
             )}
-
         </BasePopup>
-    )
+    );
 }
 
-export default AddItemPopup
+export default AddItemPopup;
 
-function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback, setOnBuyCallback }: Readonly<{
-    itemType: ItemType,
-    setIsFormValid: (valid: boolean) => void,
-    setOnConfirmCallback: (callback: () => void) => void
-    setOnBuyCallback: (callback: (() => void) | null) => void,
+function AddItemFromListContent({
+    itemType,
+    setIsFormValid,
+    setOnConfirmCallback,
+    setOnBuyCallback,
+}: Readonly<{
+    itemType: ItemType;
+    setIsFormValid: (valid: boolean) => void;
+    setOnConfirmCallback: (callback: () => void) => void;
+    setOnBuyCallback: (callback: (() => void) | null) => void;
 }>) {
+    const { t } = useTranslation();
+    const { addItem } = useItemManagement();
+    const { showTradeItemPopup } = usePopup();
 
-    const { t } = useTranslation()
-    const { addItem } = useItemManagement()
-    const { showTradeItemPopup } = usePopup()
-
-    const [selectedItem, setSelectedItem] = useState<BaseItem>()
-    const [quantity, setQuantity] = useInputNumberState(1)
-    const [categoryFilter, setCategoryFilter] = useState<ItemCategory>()
-    const [rarityFilter, setRarityFilter] = useState<number>()
-    const [rarityOperator, setRarityOperator] = useState<RarityOperator>('=')
+    const [selectedItem, setSelectedItem] = useState<BaseItem>();
+    const [quantity, setQuantity] = useInputNumberState(1);
+    const [categoryFilter, setCategoryFilter] = useState<ItemCategory>();
+    const [rarityFilter, setRarityFilter] = useState<number>();
+    const [rarityOperator, setRarityOperator] = useState<RarityOperator>('=');
 
     const availableItems = useMemo(() => {
-        const allItems = Object.values(compiledData[itemType])
-            .filter(item => {
-                // Remove unacquirable
-                if(isUnacquirable(item.ID)) { return false }
-                // If rarity or category filters, filter out what doesn't adhere
-                if(categoryFilter && item.CATEGORY !== categoryFilter) { return false }
-                if(rarityFilter !== undefined) {
-                    const itemRarity = Number(item.RARITY)
-                    if (Number.isNaN(itemRarity)) { return false }
-                    if(rarityOperator === '=' && itemRarity !== rarityFilter) { return false }
-                    if(rarityOperator === '>=' && itemRarity < rarityFilter) { return false }
-                    if(rarityOperator === '<=' && itemRarity > rarityFilter) { return false }
+        const allItems = Object.values(compiledData[itemType]).filter(item => {
+            // Remove unacquirable
+            if (isUnacquirable(item.ID)) {
+                return false;
+            }
+            // If rarity or category filters, filter out what doesn't adhere
+            if (categoryFilter && item.CATEGORY !== categoryFilter) {
+                return false;
+            }
+            if (rarityFilter !== undefined) {
+                const itemRarity = Number(item.RARITY);
+                if (Number.isNaN(itemRarity)) {
+                    return false;
                 }
+                if (rarityOperator === '=' && itemRarity !== rarityFilter) {
+                    return false;
+                }
+                if (rarityOperator === '>=' && itemRarity < rarityFilter) {
+                    return false;
+                }
+                if (rarityOperator === '<=' && itemRarity > rarityFilter) {
+                    return false;
+                }
+            }
 
-                // Filter out mrHandyOnly and companionWeapons
-                const isWeapon = isType(item, 'weapon')
-                return !(isWeapon && (
-                    item.QUALITIES.includes('qualityMrHandyOnly')
-                    || item.ID.startsWith('weaponCompanion') // TODO better check for this
-                ))
-            })
+            // Filter out mrHandyOnly and companionWeapons
+            const isWeapon = isType(item, 'weapon');
+            return !(
+                isWeapon &&
+                (item.QUALITIES.includes('qualityMrHandyOnly') ||
+                    item.ID.startsWith('weaponCompanion')) // TODO better check for this
+            );
+        });
 
-        return sortByLocalizedLabel(
-            allItems,
-            t,
-            item => item.ID,
-        )
-    }, [itemType, categoryFilter, rarityFilter, rarityOperator, t])
+        return sortByLocalizedLabel(allItems, t, item => item.ID);
+    }, [itemType, categoryFilter, rarityFilter, rarityOperator, t]);
 
     useEffect(() => {
-        setSelectedItem(availableItems[0])
+        setSelectedItem(availableItems[0]);
     }, [availableItems]);
 
     useEffect(() => {
-        setCategoryFilter(undefined)
-        setRarityFilter(undefined)
-        setRarityOperator('=')
-    }, [itemType])
+        setCategoryFilter(undefined);
+        setRarityFilter(undefined);
+        setRarityOperator('=');
+    }, [itemType]);
 
     const toggleRarityOperator = useCallback(() => {
         setRarityOperator(current => {
-            if (current === '=') { return '>=' }
-            if (current === '>=') { return '<=' }
-            return '='
-        })
-    }, [])
+            if (current === '=') {
+                return '>=';
+            }
+            if (current === '>=') {
+                return '<=';
+            }
+            return '=';
+        });
+    }, []);
 
     useEffect(() => {
-        setIsFormValid(Boolean(selectedItem && quantity))
+        setIsFormValid(Boolean(selectedItem && quantity));
     }, [quantity, selectedItem, setIsFormValid]);
 
     useEffect(() => {
         if (!selectedItem || quantity === '') {
-            setOnBuyCallback(null)
-            return
+            setOnBuyCallback(null);
+            return;
         }
 
         setOnBuyCallback(() => () => {
@@ -186,12 +203,12 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                 tradeMode: 'buy',
                 initialQuantity: quantity,
                 maxQuantity: BUY_MAX_QUANTITY,
-            })
-        })
+            });
+        });
     }, [quantity, selectedItem, setOnBuyCallback, showTradeItemPopup]);
 
     const handleConfirm = useCallback(() => {
-        if(selectedItem && quantity){
+        if (selectedItem && quantity) {
             addItem({
                 id: selectedItem.ID,
                 quantity: quantity,
@@ -199,31 +216,30 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                 mods: [],
             });
         }
-    }, [selectedItem, quantity, addItem])
+    }, [selectedItem, quantity, addItem]);
 
     // Registra la callback quando cambia
     useEffect(() => {
-        setOnConfirmCallback(() => handleConfirm)
-    }, [handleConfirm, setOnConfirmCallback])
+        setOnConfirmCallback(() => handleConfirm);
+    }, [handleConfirm, setOnConfirmCallback]);
 
     const getCategories = () => {
-
         const categories = ITEM_TYPE_MAP[itemType].filter((c: any) => c !== 'companionWeapon');
 
-        return sortByLocalizedLabel(
-            categories,
-            t,
-            category => category || 'all',
-        ).map(categoryFilter => {
-            return <option key={categoryFilter} value={categoryFilter}>
-                {t(categoryFilter || 'all')}
-            </option>
-        })
-    }
+        return sortByLocalizedLabel(categories, t, category => category || 'all').map(
+            categoryFilter => {
+                return (
+                    <option key={categoryFilter} value={categoryFilter}>
+                        {t(categoryFilter || 'all')}
+                    </option>
+                );
+            },
+        );
+    };
 
     const previewCharacterItem = useMemo<CharacterItem | undefined>(() => {
         if (!selectedItem || quantity === '') {
-            return undefined
+            return undefined;
         }
 
         return {
@@ -231,39 +247,40 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
             quantity,
             equipped: false,
             mods: [],
-        }
-    }, [quantity, selectedItem])
+        };
+    }, [quantity, selectedItem]);
 
     const previewContentRenderer = useMemo(() => {
         if (!selectedItem) {
-            return null
+            return null;
         }
 
         if (isType(selectedItem, 'weapon')) {
-            return WeaponContent
+            return WeaponContent;
         }
         if (isType(selectedItem, 'apparel')) {
-            return ApparelContent
+            return ApparelContent;
         }
         if (isType(selectedItem, 'aid')) {
-            return AidContent
+            return AidContent;
         }
-        return OtherContent
-    }, [selectedItem])
+        return OtherContent;
+    }, [selectedItem]);
 
-    return (<>
+    return (
+        <>
             {/* Category Filter */}
-            <div className="row" style={{ marginBottom: '1rem', alignItems: 'center' }}>
-                <label style={{ marginRight: '0.5rem' }}>{t('type')}:</label>
+            <div className="row form-section">
+                <label className="form-label">{t('type')}:</label>
                 <select
                     value={categoryFilter ?? 'all'}
-                    onChange={(e) => {
-                        const value = e.target.value
-                        const filter = value === 'all' ? undefined : value as ItemCategory
-                        setCategoryFilter(filter)
+                    onChange={e => {
+                        const value = e.target.value;
+                        const filter = value === 'all' ? undefined : (value as ItemCategory);
+                        setCategoryFilter(filter);
                     }}
                     aria-label="Type filter"
-                    style={{ flex: 1, minWidth: 0 }}
+                    className="u-flex-grow"
                 >
                     <option value={'all'}>{t('all')}</option>
                     {getCategories()}
@@ -271,25 +288,25 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
             </div>
 
             {/* Rarity Filter */}
-            <div className="row" style={{ marginBottom: '1rem', alignItems: 'center' }}>
-                <label style={{ marginRight: '0.5rem' }}>{t('rarity')}</label>
+            <div className="row form-section">
+                <label className="form-label">{t('rarity')}</label>
                 <button
                     type="button"
                     onClick={toggleRarityOperator}
                     aria-label="Rarity comparison operator"
-                    style={{ marginRight: '0.5rem', minWidth: '2.5rem' }}
+                    className="form-control--compact"
                 >
                     {rarityOperator}
                 </button>
                 <select
                     value={rarityFilter ?? 'all'}
-                    onChange={(e) => {
-                        const value = e.target.value
-                        const filter = value === 'all' ? undefined : Number.parseInt(value)
-                        setRarityFilter(filter)
+                    onChange={e => {
+                        const value = e.target.value;
+                        const filter = value === 'all' ? undefined : Number.parseInt(value);
+                        setRarityFilter(filter);
                     }}
                     aria-label="Rarity filter"
-                    style={{ flex: 1, minWidth: 0 }}
+                    className="u-flex-grow"
                 >
                     <option value={'all'}>{t('all')}</option>
                     <option value={0}>{t('rarity0')}</option>
@@ -302,21 +319,21 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                 </select>
             </div>
 
-            <div className="row" style={{ alignItems: 'center' }}>
+            <div className="row">
                 <select
-                    onChange={(e) => {
-                        const item = availableItems.find(i => i.ID === e.target.value)
-                        setSelectedItem(item)
+                    onChange={e => {
+                        const item = availableItems.find(i => i.ID === e.target.value);
+                        setSelectedItem(item);
                     }}
                     aria-label="Object picker"
-                    style={{ flex: 1, minWidth: 0 }}
+                    className="u-flex-grow"
                 >
                     {availableItems.map(item => {
                         return (
                             <option key={item.ID} value={item.ID}>
                                 {t(item.ID)}
                             </option>
-                        )
+                        );
                     })}
                 </select>
 
@@ -324,16 +341,16 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                     type="number"
                     min={1}
                     value={quantity}
-                    onChange={(e) => {
-                        setQuantity(e.target.value)
+                    onChange={e => {
+                        setQuantity(e.target.value);
                     }}
                     aria-label="Object quantity"
-                    style={{ width: '5rem' }}
+                    className="form-control--quantity"
                 />
             </div>
 
             {previewCharacterItem && previewContentRenderer && (
-                <div style={{ marginTop: '0.75rem', marginBottom: '0.5rem' }}>
+                <div className="preview-card__container">
                     <ItemBaseCard
                         characterItem={previewCharacterItem}
                         action={undefined}
@@ -342,29 +359,33 @@ function AddItemFromListContent({ itemType, setIsFormValid, setOnConfirmCallback
                     />
                 </div>
             )}
-        </>)
+        </>
+    );
 }
 
-function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }: Readonly<{
-    itemType: ItemType,
-    setIsFormValid: (valid: boolean) => void,
-    setOnConfirmCallback: (callback: () => void) => void
+function AddCustomItemContent({
+    itemType,
+    setIsFormValid,
+    setOnConfirmCallback,
+}: Readonly<{
+    itemType: ItemType;
+    setIsFormValid: (valid: boolean) => void;
+    setOnConfirmCallback: (callback: () => void) => void;
 }>) {
-    const { t } = useTranslation()
-    const { addItem } = useItemManagement()
+    const { t } = useTranslation();
+    const { addItem } = useItemManagement();
 
     // Custom item mode
-    const [customName, setCustomName] = useState('')
-    const [customQuantity, setCustomQuantity] = useInputNumberState(1)
-    const [customWeight, setCustomWeight] = useState('0')
-    const [customValue, setCustomValue] = useInputNumberState(0)
-    const [customRarity, setCustomRarity] = useInputNumberState(0)
-    const [customDescription, setCustomDescription] = useState('')
+    const [customName, setCustomName] = useState('');
+    const [customQuantity, setCustomQuantity] = useInputNumberState(1);
+    const [customWeight, setCustomWeight] = useState('0');
+    const [customValue, setCustomValue] = useInputNumberState(0);
+    const [customRarity, setCustomRarity] = useInputNumberState(0);
+    const [customDescription, setCustomDescription] = useState('');
 
     useEffect(() => {
-        setIsFormValid(customName.trim().length > 0)
+        setIsFormValid(customName.trim().length > 0);
     }, [customName, setIsFormValid]);
-
 
     const handleConfirm = useCallback(() => {
         // Create custom item (separate from database items)
@@ -378,57 +399,66 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
             TYPE: itemType,
             CATEGORY: 'custom',
 
-            description: customDescription.trim() || undefined
-        })
-    }, [addItem, customDescription, customName, customQuantity, customRarity, customValue, customWeight, itemType])
+            description: customDescription.trim() || undefined,
+        });
+    }, [
+        addItem,
+        customDescription,
+        customName,
+        customQuantity,
+        customRarity,
+        customValue,
+        customWeight,
+        itemType,
+    ]);
 
     // Registra la callback quando cambia
     useEffect(() => {
-        setOnConfirmCallback(() => handleConfirm)
-    }, [handleConfirm, setOnConfirmCallback])
+        setOnConfirmCallback(() => handleConfirm);
+    }, [handleConfirm, setOnConfirmCallback]);
 
     return (
         <>
             {/* Weight, Value, Rarity - Single Row */}
-            <div className="row" style={{ marginTop: '0.5rem', justifyContent: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+            <div className="row form-controls-summary">
+                <div className="form-control-group">
                     <i className="fas fa-weight-hanging" title={t('weight')}></i>
                     <input
                         type="number"
                         min={0}
                         step={0.5}
                         value={customWeight}
-                        onChange={(e) => {
-                            const value = Number.parseFloat(e.target.value)
+                        onChange={e => {
+                            const value = Number.parseFloat(e.target.value);
                             if (!Number.isNaN(value)) {
-                                setCustomWeight(`${Math.round(value * 2) / 2}`)
+                                setCustomWeight(`${Math.round(value * 2) / 2}`);
                             }
                         }}
-                        onBlur={(e) => {
+                        onBlur={e => {
                             if (Number.isNaN(Number.parseFloat(e.target.value))) {
-                                setCustomWeight('0')
+                                setCustomWeight('0');
                             }
                         }}
-                        style={{ width: '2.5rem', fontSize: '0.8rem' }}
+                        className="form-control--compact"
                     />
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                <div className="form-control-group">
                     <i className="fas fa-coins" title={t('value')}></i>
                     <input
                         type="number"
                         min={0}
                         step={1}
                         value={customValue}
-                        onChange={(e) => setCustomValue(e.target.value)}
-                        onBlur={(e) => {
+                        onChange={e => setCustomValue(e.target.value)}
+                        onBlur={e => {
                             if (Number.isNaN(Number.parseInt(e.target.value))) {
-                                setCustomValue(0)
+                                setCustomValue(0);
                             }
                         }}
-                        style={{ width: '2.5rem', fontSize: '0.8rem' }}
+                        className="form-control--compact"
                     />
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                <div className="form-control-group">
                     <i className="fas fa-star" title={t('rarity')}></i>
                     <input
                         type="number"
@@ -436,13 +466,13 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
                         step="1"
                         max="6"
                         value={customRarity}
-                        onChange={(e) => setCustomRarity(e.target.value)}
-                        onBlur={(e) => {
+                        onChange={e => setCustomRarity(e.target.value)}
+                        onBlur={e => {
                             if (Number.isNaN(Number.parseInt(e.target.value))) {
-                                setCustomRarity(0)
+                                setCustomRarity(0);
                             }
                         }}
-                        style={{ width: '2.5rem', fontSize: '0.8rem' }}
+                        className="form-control--compact"
                     />
                 </div>
             </div>
@@ -452,46 +482,41 @@ function AddCustomItemContent({ itemType, setIsFormValid, setOnConfirmCallback }
                 <input
                     type="text"
                     value={customName}
-                    onChange={(e) => setCustomName(e.target.value)}
+                    onChange={e => setCustomName(e.target.value)}
                     placeholder={t('name')}
-                    style={{ flex: 1, minWidth: 0 }}
+                    className="u-flex-grow"
                     maxLength={50}
                 />
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                <div className="form-control-group">
                     <span title={t('quantity')}>x</span>
                     <input
                         type="number"
                         min="1"
                         step="1"
                         value={customQuantity}
-                        onChange={(e) => setCustomQuantity(e.target.value)}
-                        onBlur={(e) => {
+                        onChange={e => setCustomQuantity(e.target.value)}
+                        onBlur={e => {
                             if (Number.isNaN(Number.parseInt(e.target.value))) {
-                                setCustomQuantity(0)
+                                setCustomQuantity(0);
                             }
                         }}
-                        style={{ width: '2.5rem', fontSize: '0.8rem' }}
+                        className="form-control--compact"
                     />
                 </div>
             </div>
             {/* Description */}
-            <div style={{ marginBottom: '1rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.25rem' }}>
+            <div className="form-section form-section--description">
+                <label className="form-label form-label--block">
                     {t('description')}:
                 </label>
                 <textarea
                     value={customDescription}
-                    onChange={(e) => setCustomDescription(e.target.value)}
+                    onChange={e => setCustomDescription(e.target.value)}
                     placeholder={t('descriptionOptional')}
-                    style={{
-                        width: '100%',
-                        minHeight: '4rem',
-                        resize: 'vertical',
-                        padding: '0.5rem'
-                    }}
+                    className="form-textarea"
                     maxLength={500}
                 />
             </div>
         </>
-    )
+    );
 }

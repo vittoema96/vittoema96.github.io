@@ -8,20 +8,24 @@ interface ChoicePopupProps<T> {
     onConfirm: (t: T) => void;
 }
 
-function ChoicePopup<T extends string>({ onClose, content, onConfirm, confirm }: Readonly<ChoicePopupProps<T>>) {
-
+function ChoicePopup<T extends string>({
+    onClose,
+    content,
+    onConfirm,
+    confirm,
+}: Readonly<ChoicePopupProps<T>>) {
     const { t } = useTranslation();
 
     return (
         <BasePopup
-            title={"choose"}
-            footerChildren={confirm.map((label) => (
+            title={'choose'}
+            footerChildren={confirm.map(label => (
                 <button
                     key={label}
                     className="confirmButton"
                     onClick={() => {
-                        onConfirm(label)
-                        onClose()
+                        onConfirm(label);
+                        onClose();
                     }}
                 >
                     {t(label)}
@@ -30,10 +34,9 @@ function ChoicePopup<T extends string>({ onClose, content, onConfirm, confirm }:
             onClose={onClose}
         >
             <hr />
-            <p style={{ whiteSpace: 'pre-line' }}>{content}</p>
+            <p className="text-pre-line">{content}</p>
         </BasePopup>
-    )
+    );
 }
 
-export default ChoicePopup
-
+export default ChoicePopup;

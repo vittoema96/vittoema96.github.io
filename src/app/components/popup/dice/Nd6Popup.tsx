@@ -5,7 +5,6 @@ import NdXPopup from '@/app/components/popup/dice/NdXPopup.tsx';
 
 export type ResultDisplay = 'damage' | 'effects' | 'both';
 
-
 export interface Nd6PopupProps extends GenericPopupProps {
     diceCount?: number | undefined;
     title: string;
@@ -19,58 +18,67 @@ export interface Nd6PopupProps extends GenericPopupProps {
  * Used for various game mechanics that require rolling combat dice
  */
 
-function Nd6Popup({ onClose, diceCount, title, description, resultDisplay='both', onResult=(_) => {} }: Readonly<Nd6PopupProps>) {
-
+function Nd6Popup({
+    onClose,
+    diceCount,
+    title,
+    description,
+    resultDisplay = 'both',
+    onResult = _ => {},
+}: Readonly<Nd6PopupProps>) {
     const { t } = useTranslation();
 
     const getTotalDamage = (diceValues: number[]) => {
-        return diceValues.filter(v => v <= 4).length // 5 & 6 are blanks
-            + diceValues.filter(v => v === 2).length; // 2 is 2 damage, the rest is 1
-    }
+        return (
+            diceValues.filter(v => v <= 4).length + // 5 & 6 are blanks
+            diceValues.filter(v => v === 2).length
+        ); // 2 is 2 damage, the rest is 1
+    };
 
     const getTotalEffects = (diceValues: number[]) => {
-        return diceValues.filter(v => v === 3 || v === 4).length
-    }
+        return diceValues.filter(v => v === 3 || v === 4).length;
+    };
 
     const onConfirm = (diceValues: number[]) => {
         if (onResult) {
             onResult({
                 totalDamage: getTotalDamage(diceValues),
                 totalEffects: getTotalEffects(diceValues),
-                rolls: diceValues
-            })
+                rolls: diceValues,
+            });
         }
-    }
+    };
 
     const renderSection = (diceValues: number[], hasRolled: boolean) => {
-
-        return hasRolled && (
-            <div style={{ textAlign: 'center', margin: '0.5rem 0' }}>
-                {(resultDisplay === 'damage' || resultDisplay === 'both') && (
-                    <div>{t('totalDamage')}: {getTotalDamage(diceValues)}</div>
-                )}
-                {(resultDisplay === 'effects' || resultDisplay === 'both') && (
-                    <div>{t('totalEffects')}: {getTotalEffects(diceValues)}</div>
-                )}
-            </div>
-        )
-    }
+        return (
+            hasRolled && (
+                <div className="dice-summary">
+                    {(resultDisplay === 'damage' || resultDisplay === 'both') && (
+                        <div>
+                            {t('totalDamage')}: {getTotalDamage(diceValues)}
+                        </div>
+                    )}
+                    {(resultDisplay === 'effects' || resultDisplay === 'both') && (
+                        <div>
+                            {t('totalEffects')}: {getTotalEffects(diceValues)}
+                        </div>
+                    )}
+                </div>
+            )
+        );
+    };
     return (
         <NdXPopup
             diceMaxValue={6}
             diceClass={D6Dice}
             diceCount={diceCount}
-
             title={title}
             description={description}
-
             renderSection={renderSection}
-
             onConfirm={onConfirm}
             onClose={onClose}
-            />
-    )
+        />
+    );
 }
 
 export default Nd6Popup;
-
