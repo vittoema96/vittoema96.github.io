@@ -8,6 +8,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Python generated files
+__pycache__/
+*.py[cod]
+
 # Build outputs
 dist/
 build/
