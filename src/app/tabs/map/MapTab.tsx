@@ -29,7 +29,7 @@ function RegionMap({ region }: Readonly<{ region: MapRegion }>) {
             : region === 'commonwealth'
               ? commonwealthMarkers
               : capitalWastelandMarkers;
-    const unlockableMarkers = region === 'mojave' ? mojaveMarkers : [];
+    const unlockableMarkers = regionMarkers;
     const mapImage =
         region === 'mojave'
             ? '/img/png/map.png'

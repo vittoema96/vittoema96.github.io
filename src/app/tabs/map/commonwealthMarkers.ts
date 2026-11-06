@@ -206,7 +206,7 @@ export const commonwealthMarkers = [
     { id: 'USAF Satellite Station Olivia', code: 'ussa', x: 38.4, y: 6.1, category: 'settlement' },
     { id: 'USS Constitution', code: 'usco', x: 64.3, y: 36.7, category: 'city' },
     { id: 'Walden Pond', code: 'wapo', x: 27.7, y: 24.8, category: 'camp' },
-    { id: 'Vault 111', code: 'vt111', x: 20.1, y: 6.7, category: 'vault' },
+    { id: 'Vault 111', code: 'v111', x: 20.1, y: 6.7, category: 'vault' },
     { id: 'Vault 81', code: 'vt81', x: 39.7, y: 50.6, category: 'vault' },
     { id: 'Vault 88', code: 'vt88', x: 59.6, y: 72.6, category: 'vault' },
     { id: 'Vault 95', code: 'vt95', x: 35.4, y: 75.7, category: 'vault' },

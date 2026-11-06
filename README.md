@@ -516,7 +516,7 @@ Special thanks to [crindor7](https://github.com/crindor7) for providing the Comm
 | Trinity Plaza | `trpl` | Trinity Tower | `trto` |
 | Tucker Memorial Bridge | `tume` | University Point | `unpo` |
 | USAF Satellite Station Olivia | `ussa` | USS Constitution | `usco` |
-| Walden Pond | `wapo` | Vault 111 | `vt111` |
+| Walden Pond | `wapo` | Vault 111 | `v111` |
 | Vault 81 | `vt81` | Vault 88 | `vt88` |
 | Vault 95 | `vt95` | Vault-Tec Regional HQ | `vate` |
 | Vertibird Wreckage | `vewr` | Warwick Homestead | `waho` |
