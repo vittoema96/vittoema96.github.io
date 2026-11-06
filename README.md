@@ -410,6 +410,8 @@ Enter a location's code in the MAP tab to unlock its marker. This reference cont
 <details>
 <summary>Click to reveal Commonwealth Map Codes</summary>
 
+Special thanks to [crindor7](https://github.com/crindor7) for providing the Commonwealth marker coordinates.
+
 | Location | Code | Location | Code |
 | --- | --- | --- | --- |
 | Abandoned Shack | `absh` | Abernathy Farm | `abfa` |
