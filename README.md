@@ -351,7 +351,7 @@ Some effects already have **manual activation buttons** that handle part of thei
     - View and manage companions attached to the active character.
     - A dedicated companion tab appears when the character has companions.
 - **Interactive map:**
-    - Zoomable and pannable **New Vegas map only**.
+    - Zoomable and pannable **New Vegas and Commonwealth maps** (+ Capital Wasteland but markers are absent at the moment).
     - Unlock markers using the [codes below](#-map-unlock-codes).
 - **Settings:**
     - English and Italian.
@@ -407,6 +407,126 @@ Enter a location's code in the MAP tab to unlock its marker. This reference cont
 
 </details>
 
+<details>
+<summary>Click to reveal Commonwealth Map Codes</summary>
+
+| Location | Code | Location | Code |
+| --- | --- | --- | --- |
+| Abandoned Shack | `absh` | Abernathy Farm | `abfa` |
+| Andrew Station | `anst` | ArcJet Systems | `arsy` |
+| Atlantic Offices | `atof` | Atom Cats Garage | `atca` |
+| Back Street Apparel | `bast` | BADTFL Regional Office | `bare` |
+| Breakheart Banks | `brba` | Beantown Brewery | `bebr` |
+| Bedford Station | `best` | Boston Airport | `boai` |
+| Boston Bugle Building | `bobu` | Boston Mayoral Shelter | `boma` |
+| Boston Police Rationing Site | `bopo` | Boston Public Library | `bopu` |
+| Boylston Club | `bocl` | Bunker Hill | `buhi` |
+| Cabot House | `caho` | Cambridge Campus Diner | `caca` |
+| Cambridge Carter | `cacc` | Cambridge Police Station | `capo` |
+| Cambridge Polymer Labs | `capc` | Campus Law Offices | `cala` |
+| Capsized Factory | `cafa` | The Castle | `thca` |
+| Glowing Sea Cave 1 | `glse` | Glowing Sea Cave 2 | `glsg` |
+| Charles View Amphitheater | `chvi` | Chestnut Hillock Reservoir | `chhi` |
+| C.I.T. Ruins | `citr` | Coastal Cottage | `coco` |
+| Coast Guard Pier | `cogu` | College Square | `cosq` |
+| Collegiate Administration Building | `coad` | Combat Zone | `cozo` |
+| Concord | `conc` | Corvega Assembly Plant | `coas` |
+| Crater House | `crho` | Crater of Atom | `crof` |
+| Croup Manor | `crma` | County Crossing | `cocr` |
+| Custom House Tower | `cuho` | Cutler Bend | `cube` |
+| Covenant | `cove` | Dunwich Borers | `dubo` |
+| Dark Hollow Pond | `daho` | Dartmouth Professional Building | `dapr` |
+| D.B. Technical High School | `dbte` | Decayed Reactor Site | `dere` |
+| Decrepit Factory | `defa` | Diamond City | `dici` |
+| Diamond City Market | `dicd` | Drumlin Diner | `drdi` |
+| East Boston Police Station | `eabo` | East Boston Preparatory School | `eabe` |
+| Easy City Downs | `eaci` | Edge of the Glowing Sea | `edof` |
+| Egret Tours Marina | `egto` | Fairline Hill Estates | `fahi` |
+| Fallen Skybridge | `fask` | Faneuil Hall | `faha` |
+| Federal Ration Stockpile | `fera` | Fens Street Sewer | `fest` |
+| Finch Farm | `fifa` | Forest Grove Marsh | `fogr` |
+| Forgotten Church | `foch` | Fort Hagen | `foha` |
+| Fort Hagen Filling Station | `fohf` | Fort Hagen Satellite Array | `foho` |
+| Fort Strong | `fost` | Four Leaf Fishpacking Plant | `fole` |
+| Fraternal Post 115 | `frpo` | Garden Terrace | `gate` |
+| General Atomics Factory | `geat` | General Atomics Galleria | `geag` |
+| Gibson Point Pier | `gipo` | Greentop Nursery | `grnu` |
+| Goodneighbor | `good` | Gorski Cabin | `goca` |
+| Graygarden | `gray` | Greater Mass Blood Clinic | `grma` |
+| Greenetech Genetics | `grge` | Gwinnett Brewery | `gwbr` |
+| The Gwinnett Restaurant | `thgw` | HalluciGen, Inc | `hain` |
+| Harbormaster Hotel | `haho` | Hardware Town | `hato` |
+| Haymarket Mall | `hama` | Hopesmarch Pentecostal Church | `hope` |
+| Hub City Auto Wreckers | `huci` | Hubris Comics | `huco` |
+| Hyde Park | `hypa` | Irish Pride Industries Shipyard | `irpr` |
+| Jalbert Brothers Disposal | `jabr` | Jamaica Plain | `japl` |
+| Kendall Hospital | `keho` | Kingsport Lighthouse | `kili` |
+| Lake Cochituate | `laco` | Lake Quannapowitt | `laqu` |
+| Layton Towers | `lato` | Lexington | `lexi` |
+| Lexington Apartments | `leap` | Libertalia | `libe` |
+| Listening Post Bravo | `lipo` | Lonely Chapel | `loch` |
+| Lynn Pier Parking | `lypi` | Lynn Woods | `lywo` |
+| Mahkra Fishpacking | `mafi` | Malden Center | `mace` |
+| Malden Middle School | `mami` | Mass Fusion Containment Shed | `mafu` |
+| Mass Gravel and Sand | `magr` | Mass Fusion Building | `mafm` |
+| Massachusetts State House | `mast` | Mass Bay Medical Center | `maba` |
+| Mass Fusion Disposal Site | `mafa` | Mass Pike Interchange | `mapi` |
+| Mass Pike Tunnel East | `mapm` | Mass Pike Tunnel West | `mapa` |
+| Medford Memorial Hospital | `meme` | Medical Center Metro | `mece` |
+| Med-Tek Research | `mete` | Milton General Hospital | `mige` |
+| Monsignor Plaza | `mopl` | Murkwater Construction Site | `muco` |
+| Museum of Freedom | `muof` | Museum of Witchcraft | `muom` |
+| Mystic Pines | `mypi` | Nahant Chapel | `nach` |
+| Nahant Oceanological Society | `naoc` | Nahant Wharf | `nawh` |
+| Natick Police Department | `napo` | Natick Banks | `naba` |
+| National Guard Training Yard | `nagu` | Neponset Park | `nepa` |
+| Nordhagen Beach | `nobe` | Oberland Station | `obst` |
+| Outpost Zimonja | `ouzi` | Old Corner Bookstore | `olco` |
+| Old Granary Burying Ground | `olgr` | Old Gullet Sinkhole | `olgu` |
+| Old North Church | `olno` | Park Street Station | `past` |
+| Parkview Apartments | `paap` | Parsons Creamery | `pacr` |
+| Parsons State Insane Asylum | `pasp` | Peabody House | `peho` |
+| Pickman Gallery | `piga` | Police Precinct 8 | `popr` |
+| Poseidon Energy | `poen` | Poseidon Energy Turbine #18-F | `poep` |
+| Poseidon Reservoir | `pore` | Postal Square | `posq` |
+| Quincy Police Station | `qupo` | Quincy Ruins | `quru` |
+| Radio Tower 3SM-U81 | `rato` | Ranger Cabin | `raca` |
+| Robotics Disposal Ground | `rodi` | Recon Bunker Theta | `rebu` |
+| Red Rocket Truck Stop | `rero` | Reeb Marina | `rema` |
+| Relay Tower 0BB-915 | `reto` | Relay Tower 0DB-521 | `retr` |
+| Relay Tower 0MC-810 | `rete` | Relay Tower 0SC-527 | `retl` |
+| Relay Tower 1DL-109 | `reta` | Revere Beach Station | `rebe` |
+| Revere Satellite Array | `resa` | Roadside Pines Motel | `ropi` |
+| RobCo Sales and Service Center | `rosa` | Robotics Pioneer Park | `ropr` |
+| Rocky Narrows Park | `rona` | Rook Family House | `rofa` |
+| Rotten Landfill | `rola` | Salem | `sale` |
+| Sanctuary | `sanc` | Sandy Coves Convalescent Home | `saco` |
+| Saugus Ironworks | `sair` | South Boston Military Checkpoint | `sobo` |
+| Scrap Palace | `scpa` | Sentinel Site | `sesi` |
+| The Shamrock Taphouse | `thsh` | Shaw High School | `shhi` |
+| Skylines Flight 1665 | `skfl` | Skylanes Flight 1981 | `skfs` |
+| The Slog | `thsl` | Somerville Place | `sopl` |
+| South Boston High School | `sobs` | South Boston Police Department | `sobu` |
+| Spectacle Island | `spis` | Starlight Drive-In | `stdr` |
+| Suffolk County Charter School | `suco` | Sunshine Tidings Co-op | `suti` |
+| Super Duper Mart | `sudu` | Taffington Boathouse | `tabo` |
+| Tenpines Bluff | `tebl` | Thicket Excavations | `thex` |
+| Trinity Plaza | `trpl` | Trinity Tower | `trto` |
+| Tucker Memorial Bridge | `tume` | University Point | `unpo` |
+| USAF Satellite Station Olivia | `ussa` | USS Constitution | `usco` |
+| Walden Pond | `wapo` | Vault 111 | `vt111` |
+| Vault 81 | `vt81` | Vault 88 | `vt88` |
+| Vault 95 | `vt95` | Vault-Tec Regional HQ | `vate` |
+| Vertibird Wreckage | `vewr` | Warwick Homestead | `waho` |
+| Wattz Consumer Electronics | `waco` | West Everett Estates | `weev` |
+| Westing Estate | `wees` | Weston Water Treatment Plant | `wewa` |
+| West Roxbury Station | `wero` | Wicked Shipping Fleet Lockup | `wish` |
+| Wildwood Cemetery | `wice` | Wilson Atomatoys Corporate HQ | `wiat` |
+| Wilson Atomatoys Factory | `wiaw` | Wreck of the FMS Northern Star | `wrof` |
+| Wreck of the USS Riptide | `wrow` | WRVR Broadcast Station | `wrbr` |
+
+</details>
+
 ---
 
 ## 📸 Screenshots
@@ -430,7 +550,7 @@ Enter a location's code in the MAP tab to unlock its marker. This reference cont
 - **STAT:** edit attributes and skills; select a skill to open the D20 roller.
 - **INV:** use the `+` next to a category to add items; use a weapon's crosshair button to open the D6 damage roller.
 - **DATA:** manage character details, perks, and traits, including supported manual actions.
-- **MAP:** explore New Vegas and unlock locations with codes.
+- **MAP:** explore New Vegas and Commonwealth and unlock locations with codes.
 - **Settings (gear icon):** change language, theme, CRT effects, and character slots.
 - **Companion (person icon):** appears only when the active character has companions.
 
