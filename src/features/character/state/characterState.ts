@@ -29,6 +29,21 @@ export function updateCompanion(
 
 export function loadCharacter(input: unknown): RawCharacter {
     let character = RawCharacterSchema.parse(input);
+    const migratedModIds = character.items.map(item => {
+        if (!item.mods.includes('modFlashHider')) {
+            return item;
+        }
+        const alreadyHasMuzzleBreak = item.mods.includes('modMuzzleBreak');
+        return {
+            ...item,
+            mods: item.mods
+                .filter(modId => modId !== 'modFlashHider' || !alreadyHasMuzzleBreak)
+                .map(modId => (modId === 'modFlashHider' ? 'modMuzzleBreak' : modId)),
+        };
+    });
+    if (migratedModIds.some((item, index) => item !== character.items[index])) {
+        character = RawCharacterSchema.parse({ ...character, items: migratedModIds });
+    }
     // TODO Temporary migration added 2026-10-15: remove when old saves/exports no longer need support.
     if (character.saveVersion === 0) {
         const legacyGrants = new Map([

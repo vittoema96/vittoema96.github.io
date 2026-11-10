@@ -130,11 +130,11 @@ function StatTab() {
 
             {!isEditing && (
                 <>
-                    {/* Damage Reduction Display */}
-                    <DamageReductionDisplay />
-
                     {/* Active Effects from Equipped Armor */}
                     <ActiveEffectsDisplay />
+
+                    {/* Damage Reduction Display */}
+                    <DamageReductionDisplay />
                 </>
             )}
 

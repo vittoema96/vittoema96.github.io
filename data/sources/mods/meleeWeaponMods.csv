@@ -55,3 +55,8 @@ modDualBar,mod,modSlotMelee,"[""damageAdd:2""]",0.5,30,repair,"[""perkBlacksmith
 modBowBar,mod,modSlotMelee,"[""effectAdd:effectPiercing:1""]",1,45,repair,"[""perkBlacksmith:3""]",,2,
 modLongBowBar,mod,modSlotMelee,"[""effectAdd:effectPersistent""]",1.5,60,repair,"[""perkBlacksmith:3""]",,2,
 modFlaming,mod,modSlotMelee,"[""damageAdd:1"",""damageTypeSet:energy"",""tagAdd:fire""]",1,90,repair,"[""perkBlacksmith:3"",""perkGunNut:1""]",,2,
+modSpikedPuncturing,mod,modSlotMelee,"[""damageAdd:1"",""effectAdd:effectVicious""]",0.5,7,repair,"[""perkBlacksmith:3""]",,-,Royal Flush DLC
+modBladedSharp,mod,modSlotMelee,"[""damageAdd:1"",""effectAdd:effectPersistent""]",0.5,6,repair,"[""perkBlacksmith:2""]",,-,Royal Flush DLC
+modHeavyClub,mod,modSlotMelee,"[""damageAdd:1""]",0.5,4,repair,"[""perkBlacksmith:1""]",,-,Royal Flush DLC
+modExtraWeighty,mod,modSlotMelee,"[""damageAdd:1""]",1.5,4,repair,"[""perkBlacksmith:2""]",,-,Royal Flush DLC
+modPartyFavor,mod,modSlotMelee,"[""categorySet:explosives"",""damageAdd:3"",""qualityAdd:qualityBlast"",""qualityAdd:qualityThrown""]",0.5,4,repair,"[""perkDemolitionist:1"",""perkBlacksmith:1""]",,-,Royal Flush DLC

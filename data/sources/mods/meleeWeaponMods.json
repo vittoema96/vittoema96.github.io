@@ -670,5 +670,65 @@
       "en": "Flaming {{name}}",
       "it": "{{name}} Fiammeggiante"
     }
+  },
+  "modSpikedPuncturing": {
+    "en": "Spiked Puncturing",
+    "it": "Punte Perforanti",
+    "_description": {
+      "en": "+1 damage DC, gains Vicious, +1 weight.",
+      "it": "+1 danno DC, ottiene Violento, +1 peso."
+    },
+    "_descriptor": {
+      "en": "Spiked {{name}}",
+      "it": "{{name}} con Punte"
+    }
+  },
+  "modBladedSharp": {
+    "en": "Bladed Sharp",
+    "it": "Lama Affilata",
+    "_description": {
+      "en": "+1 damage DC, gains Persistent, +1 weight.",
+      "it": "+1 danno DC, ottiene Persistente, +1 peso."
+    },
+    "_descriptor": {
+      "en": "Bladed {{name}}",
+      "it": "{{name}} con Lama"
+    }
+  },
+  "modHeavyClub": {
+    "en": "Heavy Club",
+    "it": "Clava Pesante",
+    "_description": {
+      "en": "+1 damage DC, +1 weight.",
+      "it": "+1 danno DC, +1 peso."
+    },
+    "_descriptor": {
+      "en": "Heavy {{name}}",
+      "it": "{{name}} Pesante"
+    }
+  },
+  "modExtraWeighty": {
+    "en": "Extra Weighty",
+    "it": "Extra Pesante",
+    "_description": {
+      "en": "+1 damage DC, +3 weight.",
+      "it": "+1 danno DC, +3 peso."
+    },
+    "_descriptor": {
+      "en": "Weighty {{name}}",
+      "it": "{{name}} Extra Pesante"
+    }
+  },
+  "modPartyFavor": {
+    "en": "Party Favor",
+    "it": "Fuoco d'Artificio",
+    "_description": {
+      "en": "Weapon type becomes Explosive, +3 damage DC, gains Blast and Thrown, +1 weight.",
+      "it": "Il tipo di arma diventa Esplosivi, +3 danno DC, ottiene Esplosione e Lanciabile, +1 peso."
+    },
+    "_descriptor": {
+      "en": "Party Favor {{name}}",
+      "it": "{{name}} Fuoco d'Artificio"
+    }
   }
 }

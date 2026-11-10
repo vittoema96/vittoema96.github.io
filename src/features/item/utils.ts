@@ -12,7 +12,7 @@ import { Range, WeaponItem } from '@/data/item/weapon.schemas.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
 import { allItems, legendaryEffects } from '@/data';
 import type { TFunction } from 'i18next';
-import { ItemCategory, ItemType } from '@/types/item.ts';
+import { ItemCategory, ItemType, WEAPON_CATEGORIES } from '@/types/item.ts';
 import { BaseItem } from '@/data/types.ts';
 
 /**
@@ -52,6 +52,13 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
         case 'ammoSet':
             modifiedData.AMMO_TYPE = value;
             break;
+        case 'categorySet': {
+            const category = WEAPON_CATEGORIES.find(candidate => candidate === value);
+            if (category) {
+                modifiedData.CATEGORY = category;
+            }
+            break;
+        }
 
         case 'rangeAdd': {
             const rangeOrder: Range[] = ['rangeR', 'rangeC', 'rangeM', 'rangeL', 'rangeE'];
@@ -366,14 +373,18 @@ const applyMods = (
     itemData: WeaponItem | ApparelItem,
     modsData: (ModItem | LegendaryEffect)[],
 ): typeof itemData => {
-    for (const handleRemove of [false, true]) {
-        modsData.forEach(mod => {
-            mod.EFFECTS.forEach(effect => {
-                if (handleRemove === ['effectRemove', 'qualityRemove'].includes(effect)) {
-                    itemData = applyEffect(itemData, effect);
-                }
-            });
-        });
+    const effects = modsData.flatMap(mod => mod.EFFECTS);
+    for (const effect of effects) {
+        const effectType = effect.split(':', 1)[0];
+        if (effectType === 'effectRemove' || effectType === 'qualityRemove') {
+            itemData = applyEffect(itemData, effect);
+        }
+    }
+    for (const effect of effects) {
+        const effectType = effect.split(':', 1)[0];
+        if (effectType !== 'effectRemove' && effectType !== 'qualityRemove') {
+            itemData = applyEffect(itemData, effect);
+        }
     }
     return itemData;
 };
@@ -410,8 +421,7 @@ export function getModdedItemData(
     let materialMultiplier = 1;
     if (isApparel) {
         const isTorsoArmor =
-            itemData.LOCATIONS_COVERED.includes('torso') &&
-            itemData.LOCATIONS_COVERED.length === 1;
+            itemData.LOCATIONS_COVERED.includes('torso') && itemData.LOCATIONS_COVERED.length === 1;
         materialMultiplier = isTorsoArmor ? 2 : 1;
     }
     const getValue = (modData: ModItem | LegendaryEffect, value: number | '-') => {

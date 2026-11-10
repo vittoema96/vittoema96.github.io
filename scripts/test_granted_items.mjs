@@ -217,7 +217,10 @@ test('Legion materials apply to every Legion piece with the standard torso multi
     for (const id of ids) {
         const base = data.allItems[id];
         const multiplier = base.LOCATIONS_COVERED.includes('torso') ? 2 : 1;
-        assert.deepEqual(base.AVAILABLE_MODS, recipes.map(([modId]) => modId));
+        assert.deepEqual(
+            base.AVAILABLE_MODS,
+            recipes.map(([modId]) => modId),
+        );
         for (const [modId, resistance, weight, cost, complexity, rarity, perks] of recipes) {
             const mod = data.allItems[modId];
             assert.equal(mod.SLOT_TYPE, 'modSlotMaterial');
@@ -432,9 +435,15 @@ test('Changing origin hides intrinsic robot parts without changing their saved c
     let raw = robot;
     for (const origin of ['survivor', 'protectron', 'mrHandy', 'survivor', 'mrHandy']) {
         raw = transitions.applyUpdate(raw, { origin });
-        assert.deepEqual(raw.items.find(i => i.id === savedBody.id), savedBody);
+        assert.deepEqual(
+            raw.items.find(i => i.id === savedBody.id),
+            savedBody,
+        );
         assert.equal(raw.items.filter(i => i.id === savedBody.id).length, 1);
-        assert.equal(active(raw).some(i => i.id === savedBody.id), origin === 'mrHandy');
+        assert.equal(
+            active(raw).some(i => i.id === savedBody.id),
+            origin === 'mrHandy',
+        );
         if (origin === 'survivor') {
             const withoutParts = calculate({ ...raw, items: [] });
             const hiddenParts = calculate(raw);
@@ -454,16 +463,25 @@ test('Loading normalizes active robot parts but preserves inactive parts and exi
     const input = character({ items: [body], currentHp: 1 });
     const snapshot = structuredClone(input);
     const loaded = transitions.loadCharacter(input);
-    assert.deepEqual(loaded.items.find(i => i.id === body.id), { ...body, equipped: true });
+    assert.deepEqual(
+        loaded.items.find(i => i.id === body.id),
+        { ...body, equipped: true },
+    );
     assert.equal(loaded.items.filter(i => i.id === body.id).length, 1);
     assert.equal(loaded.currentHp, 1);
     assert.deepEqual(transitions.loadCharacter(loaded), loaded);
     assert.deepEqual(input, snapshot);
 
     const hidden = transitions.loadCharacter({ ...input, origin: 'survivor' });
-    assert.deepEqual(hidden.items.find(i => i.id === body.id), body);
+    assert.deepEqual(
+        hidden.items.find(i => i.id === body.id),
+        body,
+    );
     const restored = transitions.applyUpdate(hidden, { origin: 'mrHandy' });
-    assert.deepEqual(restored.items.find(i => i.id === body.id), { ...body, equipped: true });
+    assert.deepEqual(
+        restored.items.find(i => i.id === body.id),
+        { ...body, equipped: true },
+    );
 
     const otherBody = { ...body, customName: 'Other saved configuration' };
     const duplicates = transitions.loadCharacter({ ...input, items: [body, otherBody] });
@@ -653,6 +671,31 @@ test('Legacy grants are adopted even when their feat or origin is inactive', () 
     });
     assert.ok(active(robot).some(i => i.id === 'weaponIronFist'));
     assert.ok(!active(robot).some(i => i.id === 'weaponMrHandyPliers'));
+});
+
+test('Flash Hider save data migrates to Muzzle Break without changing item state', () => {
+    const saved = character({
+        items: [
+            item('weaponPipeGun', {
+                quantity: 2,
+                equipped: true,
+                customName: 'Old rifle',
+                grantedBy: 'perkGunNut',
+                mods: ['modFlashHider', 'modLongBarrel'],
+            }),
+            item('weaponHandmadePistol', { mods: ['modFlashHider', 'modMuzzleBreak'] }),
+        ],
+    });
+    const migrated = transitions.loadCharacter(saved);
+    assert.deepEqual(migrated.items[0], {
+        ...saved.items[0],
+        mods: ['modMuzzleBreak', 'modLongBarrel'],
+    });
+    assert.equal(migrated.items[1].mods.filter(mod => mod === 'modMuzzleBreak').length, 1);
+    assert.equal(migrated.items[1].mods.includes('modFlashHider'), false);
+    assert.equal(migrated.items[0].mods.includes('modFlashHider'), false);
+    assert.deepEqual(transitions.loadCharacter(migrated), migrated);
+    assert.deepEqual(saved.items[0].mods, ['modFlashHider', 'modLongBarrel']);
 });
 
 test('Legacy grant migration leaves non-inventory character data and uninitialized HP unchanged', async () => {
@@ -1213,36 +1256,54 @@ test('Manual actions come from effective registered feats, not raw selections', 
     assert.deepEqual(
         feats.getManualActions(calculate(raw)),
         new Map([
-            ['perkMysteriousStranger', {
-                type: 'skillRoll',
-                label: 'summonStranger',
-                skillId: 'smallGuns',
-                usingItem: item('weaponFortyFourPistol', {
-                    equipped: true, mods: ['modMarksmanGrip', 'modPowerful'],
-                }),
-                roller: 'mysteriousStranger',
-                requiredLuck: 1,
-            }],
-            ['traitMotherWasteland', {
-                type: 'confirm',
-                label: 'traitMotherWasteland',
-                message: 'traitMotherWastelandBenefit',
-                luckCost: 1,
-            }],
-            ['traitRiteOfPassage', {
-                type: 'combatDice',
-                label: 'traitRiteOfPassage',
-                diceCount: 1,
-                description: 'traitRiteOfPassageBenefit',
-                luckOnEffect: 1,
-            }],
+            [
+                'perkMysteriousStranger',
+                {
+                    type: 'skillRoll',
+                    label: 'summonStranger',
+                    skillId: 'smallGuns',
+                    usingItem: item('weaponFortyFourPistol', {
+                        equipped: true,
+                        mods: ['modMarksmanGrip', 'modPowerful'],
+                    }),
+                    roller: 'mysteriousStranger',
+                    requiredLuck: 1,
+                },
+            ],
+            [
+                'traitMotherWasteland',
+                {
+                    type: 'confirm',
+                    label: 'traitMotherWasteland',
+                    message: 'traitMotherWastelandBenefit',
+                    luckCost: 1,
+                },
+            ],
+            [
+                'traitRiteOfPassage',
+                {
+                    type: 'combatDice',
+                    label: 'traitRiteOfPassage',
+                    diceCount: 1,
+                    description: 'traitRiteOfPassageBenefit',
+                    luckOnEffect: 1,
+                },
+            ],
         ]),
     );
     assert.deepEqual(raw, snapshot);
     assert.equal(feats.getManualActions(calculate(character({ origin: 'tribal' }))).size, 0);
-    assert.equal(feats.getManualActions(calculate({
-        ...raw, origin: 'survivor', special: { ...raw.special, luck: 6 },
-    })).size, 0, 'Invalid perk prerequisites and traits from another origin must not grant actions');
+    assert.equal(
+        feats.getManualActions(
+            calculate({
+                ...raw,
+                origin: 'survivor',
+                special: { ...raw.special, luck: 6 },
+            }),
+        ).size,
+        0,
+        'Invalid perk prerequisites and traits from another origin must not grant actions',
+    );
 });
 
 test('Registered stranger profile preserves the previous schema-derived combat stats', async () => {
@@ -1250,7 +1311,8 @@ test('Registered stranger profile preserves the previous schema-derived combat s
         '/src/features/character/feats/perks/perkMysteriousStranger.ts',
     );
     const weapon = item('weaponFortyFourPistol', {
-        equipped: true, mods: ['modMarksmanGrip', 'modPowerful'],
+        equipped: true,
+        mods: ['modMarksmanGrip', 'modPowerful'],
     });
     const previous = schema.RawCharacterSchema.parse({
         name: 'Mysterious Stranger',
@@ -1261,9 +1323,15 @@ test('Registered stranger profile preserves the previous schema-derived combat s
         maxHp: 9999,
     });
     assert.deepEqual(MYSTERIOUS_44_MAGNUM, weapon);
-    assert.deepEqual(MYSTERIOUS_STRANGER, Object.fromEntries(
-        ['special', 'skills', 'specialties', 'traits', 'items'].map(key => [key, previous[key]]),
-    ));
+    assert.deepEqual(
+        MYSTERIOUS_STRANGER,
+        Object.fromEntries(
+            ['special', 'skills', 'specialties', 'traits', 'items'].map(key => [
+                key,
+                previous[key],
+            ]),
+        ),
+    );
 });
 
 const ammoFixture = () =>
@@ -1416,13 +1484,48 @@ test('Mr. Handy excludes perk and trait carry modifiers but retains equipment bo
         calculate(transitions.applyUpdate(modified, { special: { strength: 9 } })).maxWeight,
         85,
     );
-    const weight = await server.ssrLoadModule(
-        '/src/features/character/calculations/weight.ts',
-    );
+    const weight = await server.ssrLoadModule('/src/features/character/calculations/weight.ts');
     assert.equal(
         weight.calculateMaxWeight(modified, origins.getOriginById('mrHandy'), perks, [
             'traitSmallFrame',
         ]),
         85,
     );
+});
+
+test('All available mods resolve and Royal Flush additions apply their manual effects', () => {
+    const equipment = [...Object.values(data.weapon), ...Object.values(data.apparel)];
+    for (const itemData of equipment) {
+        for (const modId of itemData.AVAILABLE_MODS ?? []) {
+            assert.ok(data.mod[modId], `${itemData.ID} references missing mod ${modId}`);
+        }
+    }
+
+    const golfClub = utils.getModdedItemData(
+        item('weaponGolfClub', { mods: ['modSpikedPuncturing'] }),
+    );
+    assert.ok(golfClub);
+    assert.equal(golfClub.DAMAGE_RATING, 5);
+    assert.ok(golfClub.EFFECTS.includes('effectVicious'));
+    assert.equal(data.mod.modSpikedPuncturing.WEIGHT, 0.5);
+    assert.equal(data.mod.modBladedSharp.WEIGHT, 0.5);
+    assert.equal(data.mod.modHeavyClub.WEIGHT, 0.5);
+    assert.equal(data.mod.modExtraWeighty.WEIGHT, 1.5);
+    assert.equal(data.mod.modPartyFavor.WEIGHT, 0.5);
+    assert.equal(data.mod.modMuzzleBreak.WEIGHT, 0.5);
+
+    const pin = utils.getModdedItemData(item('weaponJugglingPin', { mods: ['modPartyFavor'] }));
+    assert.ok(pin);
+    assert.equal(pin.CATEGORY, 'explosives');
+    assert.equal(pin.DAMAGE_RATING, 6);
+    assert.ok(pin.QUALITIES.includes('qualityBlast'));
+    assert.ok(pin.QUALITIES.includes('qualityThrown'));
+});
+
+test('Mod removals are applied before additions', () => {
+    const weapon = utils.getModdedItemData(
+        item('weaponBroadsider', { mods: ['modLightBarrelBroadsider'] }),
+    );
+    assert.ok(weapon);
+    assert.ok(!weapon.QUALITIES.includes('qualityBlast'));
 });

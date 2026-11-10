@@ -107,18 +107,6 @@
       "it": "{{name}} Alettata"
     }
   },
-  "modFlashHider": {
-    "en": "Muzzle Break",
-    "it": "Rompifiamma",
-    "_description": {
-      "en": "Loses Inaccurate, +1 Fire Rate",
-      "it": "Perde Impreciso, +1 Cadenza di Fuoco"
-    },
-    "_descriptor": {
-      "en": "Muzzled {{name}}",
-      "it": "{{name}} con Rompifiamma"
-    }
-  },
   "modFullCapacitor": {
     "en": "Full Capacitor",
     "it": "Condensatore Completo",
@@ -585,6 +573,18 @@
     "_descriptor": {
       "en": ".357 {{name}}",
       "it": "{{name}} .357"
+    }
+  },
+  "modMuzzleBreak": {
+    "en": "Muzzle Break",
+    "it": "Freno di Bocca",
+    "_description": {
+      "en": "Removes Inaccurate, +1 Fire Rate, +1 weight.",
+      "it": "Rimuove Imprecisa, +1 Cadenza di Fuoco, +1 peso."
+    },
+    "_descriptor": {
+      "en": "Muzzle Break {{name}}",
+      "it": "{{name}} con Freno di Bocca"
     }
   }
 }

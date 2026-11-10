@@ -97,7 +97,15 @@
     },
     "actionFirstAidDescription": {
         "en": "Make an INT + Medicine test with a difficulty equal to the patient's number of injuries (+1 difficulty when treating yourself). On a success, heal HP equal to your Medicine rating, treat one injury, or stabilize a dying patient. When administering a stimpak as part of First Aid, the patient regains 4 HP in addition to any other effects, and AP spent to heal additional HP restore 2 HP per AP instead of 1. For robots and other machines, use INT + Repair instead, with difficulty 2 plus their injuries.",
-        "it": "Effettua un test di INT + Medicina con difficoltà pari al numero di ferite del paziente (+1 difficoltà se tratti te stesso). Se riesci, cura HP pari al tuo grado di Medicina, tratta una ferita o stabilizza un paziente morente. Quando somministri uno stimpak come parte del Primo soccorso, il paziente recupera 4 HP in aggiunta agli altri effetti e i PA spesi per curare HP aggiuntivi curano 2 HP ciascuno invece di 1. Per robot e altre macchine usa invece INT + Riparazione, con difficoltà 2 più le loro ferite."
+        "it": "Effettua un test di INT + Medicina con difficoltà pari al numero di ferite del paziente (+1 difficoltà se tratti te stesso). Se riesci, cura PS pari al tuo grado di Medicina, tratta una ferita o stabilizza un paziente morente. Quando somministri uno stimpak come parte del Primo soccorso, il paziente recupera 4 PS in aggiunta agli altri effetti e i PA spesi per curare PS aggiuntivi curano 2 PS ciascuno invece di 1."
+    },
+    "actionFirstAidRobot": {
+        "en": "First Aid (Robot)",
+        "it": "Primo Soccorso (Robot)"
+    },
+    "actionFirstAidRobotDescription": {
+        "en": "Make an INT + Repair test with a difficulty equal to 2 plus the patient's number of injuries (+1 difficulty when repairing yourself). On a success, restore HP equal to your Repair rating, treat one injury, or stabilize a dying robot. When using a robot repair kit as part of First Aid (Robot), the patient regains 4 HP or treats one injury in addition to any other repairs, and AP spent to repair additional HP restore 2 HP per AP instead of 1.",
+        "it": "Effettua un test di INT + Riparazione con difficoltà pari a 2 più il numero di ferite del paziente (+1 difficoltà se ripari te stesso). Se riesci, ripristina PS pari al tuo grado di Riparazione, tratta una ferita o stabilizza un robot morente. Quando usi un kit di riparazione per robot come parte del Primo Soccorso (Robot), il paziente recupera 4 PS o cura una ferita in aggiunta alle altre riparazioni, e i PA spesi per ripristinare PS aggiuntivi ripristinano 2 PS ciascuno invece di 1."
     },
     "actionDefend": {
         "en": "Defend",

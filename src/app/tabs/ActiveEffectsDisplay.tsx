@@ -3,9 +3,25 @@ import Tag from '@/app/components/Tag.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { useMemo } from 'react';
 import { CharacterItem } from '@/types';
-import { allItems } from '@/data';
+import { getModifiedItemData } from '@/features/character/inventory/equipment.ts';
 
-import { isType } from '@/features/item/utils.ts';
+const GLOBAL_EFFECTS = new Set([
+    'effectShadowed',
+    'effectBalanced',
+    'effectMuffled',
+    'effectStealthReroll',
+    'effectStunResistance',
+    'effectChemDuration',
+    'effectSpecialReroll',
+]);
+
+function getGlobalEffects(item: CharacterItem): string[] {
+    return (
+        getModifiedItemData(item)?.EFFECTS.filter(effect =>
+            GLOBAL_EFFECTS.has(effect.split(':')[0] ?? ''),
+        ) ?? []
+    );
+}
 
 /**
  * Component to display active effects from equipped armor
@@ -13,95 +29,47 @@ import { isType } from '@/features/item/utils.ts';
  * (not local effects that only affect individual armor pieces)
  */
 export default function ActiveEffectsDisplay() {
-    const { t } = useTranslation()
-    const { character } = useCharacter()
+    const { t } = useTranslation();
+    const { character } = useCharacter();
 
-    // Whitelist of global countedEffects to show in Active Effects
-    // TODO find a better way to distinguish countedEffects that are directly applied and countedEffects that need to be shown to player
-    const GLOBAL_EFFECTS = new Set([
-        'effectShadowed',       // Graduated bonuses based on number of pieces
-        'effectBalanced',       // Reduces total Agility penalty
-        'effectMuffled',        // Reduces total armor noise
-        'effectStealthReroll',  // Allows Sneak reroll
-        'effectStunResistance', // Stun resistance
-        'effectChemDuration',   // Doubles chem duration
-        'effectSpecialReroll'   // Allows SPECIAL stat reroll
-    ])
+    const countedEffects = useMemo(() => {
+        const effects = new Map<string, number>();
 
-    const equippedItems = character.items.filter(item => item.equipped)
+        character.items
+            .filter(item => item.equipped)
+            .flatMap(getGlobalEffects)
+            .forEach(effect => {
+                effects.set(effect, (effects.get(effect) ?? 0) + 1);
+            });
 
-    const getItemEffects = (item: CharacterItem) => {
-        return item.mods.flatMap(mod => {
-            const modData = allItems[mod]
-            if(!isType(modData, "mod")) {return []}
-            return modData.EFFECTS.flatMap(effect => {
-                const [effectType, ...valueParts] = effect.split(':');
-                const value = valueParts.join(':')
-                if(!['effectAdd', 'qualityAdd'].includes(effectType ?? '')) {return []}
-                return [value];
-            }).filter(
-                // TODO i do not like how this is handled...
-                //  we should find a different way to find "global" countedEffects
-                effect => GLOBAL_EFFECTS.has(effect)
-            )
-        })
-    }
+        return effects;
+    }, [character.items]);
 
-    const countedEffects: Map<string, number> = useMemo(() =>
-        equippedItems
-            .flatMap(item => getItemEffects(item))
-            .reduce((countedEffects, effect) => {
-                if (countedEffects.has(effect)) {
-                    countedEffects.set(effect, countedEffects.get(effect) + 1);
-                } else {
-                    countedEffects.set(effect, 1);
-                }
-                return countedEffects;
-            }, new Map())
-    , [equippedItems])
-
-    // Don't render if no countedEffects
     if (countedEffects.size === 0) {
-        return null
+        return null;
     }
 
     return (
         <div className="equipped-armor-effects section-label">
             <div className="equipped-armor-effects__list">
-                {Array.from(countedEffects)}
-                {countedEffects.entries().map(([effectId, count]) => {
-                    // Build the display text
-                    let displayText = t(effectId)
+                {Array.from(countedEffects.entries()).map(([effect, count]) => {
+                    const [effectId = effect, ...valueParts] = effect.split(':');
+                    const effectValue = valueParts.map(value => t(value)).join(': ');
+                    const displayText = [
+                        t(effectId),
+                        effectValue && `(${effectValue})`,
+                        count > 1 && `×${count}`,
+                    ]
+                        .filter(Boolean)
+                        .join(' ');
 
-                    // For countedEffects with values, add the translated value
-                    // TODO WAS EFFECT VALUE ACTUALLY USED HERE??? (effectId:effectValue)
-                    //      currently it seems just effectAdd:effectPiercing:1/2 is the only one used
-                    //      (and is not in the GLOBAL EFFECTS list)
-                    const effectValue = undefined;
-                    if (effectValue) {
-                        // Try to translate the value (e.g., "strength" → "Forza")
-                        const translatedValue = t(effectValue)
-                        displayText += ` ${translatedValue}`
-                    }
-
-                    // Add count (×N) only when count > 1
-                    if (count > 1) {
-                        displayText += ` (×${count})`
-                    }
-
-                    // Use the same Tag component as in ApparelContent
-                    // All countedEffects here are global mod countedEffects, so use isMod styling
                     return (
-                        <Tag
-                            key={effectId}
-                            tooltipId={`${effectId}Description`}
-                            isMod={true}
-                        >
+                        <Tag key={effect} tooltipId={`${effectId}Description`} isMod>
                             {displayText}
                         </Tag>
-                    )
+                    );
                 })}
             </div>
         </div>
-    )
+    );
 }

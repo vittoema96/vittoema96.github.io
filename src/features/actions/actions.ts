@@ -19,6 +19,7 @@ export const ACTIONS: readonly ActionDefinition[] = [
     { id: 'actionAttack', category: 'major' },
     { id: 'actionCommandNpc', category: 'major' },
     { id: 'actionFirstAid', category: 'major', rollSkill: 'medicine' },
+    { id: 'actionFirstAidRobot', category: 'major', rollSkill: 'repair' },
     { id: 'actionDefend', category: 'major', rollSkill: 'athletics' },
     { id: 'actionPass', category: 'major' },
     { id: 'actionRally', category: 'major', rollSkill: 'survival' },

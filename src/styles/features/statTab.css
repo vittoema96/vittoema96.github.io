@@ -234,14 +234,13 @@
 .equipped-armor-effects {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+    padding: 1rem;
     margin: 0.75rem 0;
-    background: linear-gradient(135deg, color-mix(in srgb, black 40%, transparent) 0%, color-mix(in srgb, black 20%, transparent) 100%);
-    border-left: 3px solid var(--secondary-color);
-    border-right: 1px solid var(--secondary-color);
-    border-top: 1px solid var(--secondary-color);
-    border-bottom: 1px solid var(--secondary-color);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary-color) 12%, transparent) 0%, color-mix(in srgb, black 35%, transparent) 100%);
+    border: 1px solid color-mix(in srgb, var(--primary-color) 70%, transparent);
+    border-left: 4px solid var(--primary-color);
+    box-shadow: inset 0 0 1rem color-mix(in srgb, var(--primary-color) 8%, transparent);
     position: relative;
     user-select: none;
 }
@@ -253,6 +252,21 @@
 .equipped-armor-effects__list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 0.6rem;
     font-size: 0.8rem;
+}
+
+.equipped-armor-effects__list .tag {
+    border: 1px solid var(--primary-color);
+    border-radius: 999px;
+    box-shadow: 0 0 0.4rem color-mix(in srgb, var(--primary-color) 35%, transparent);
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.65rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.equipped-armor-effects__list .tag:hover {
+    box-shadow: 0 0 0.7rem color-mix(in srgb, var(--primary-color) 60%, transparent);
+    transform: translateY(-1px);
 }

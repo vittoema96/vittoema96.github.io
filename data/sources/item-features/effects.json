@@ -161,8 +161,8 @@
     "en": "Shadowed",
     "it": "Ombrata",
     "_description": {
-      "en": "Shadowed Armor: 1+ pieces = ignore first complication on Sneak in darkness; 3+ pieces (Torso=2) = reroll 1d20 on Sneak in darkness 1/scene; 5+ pieces (Torso=2) = reroll 1d20 on every Sneak check in darkness. Does not work with Power Armor.",
-      "it": "Armatura Ombrata: 1+ pezzi = ignori la prima complicazione su Furtività al buio; 3+ pezzi (Torso=2) = ritiro 1d20 su Furtività al buio 1/scena; 5+ pezzi (Torso=2) = ritiro 1d20 su ogni prova di Furtività al buio. Non funziona con Armatura Atomica."
+      "en": "Shadowed Armor:\n1+ pieces = ignore first complication on Sneak in darkness\n3+ pieces (Torso=2) = reroll 1d20 on Sneak in darkness 1/scene\n5+ pieces (Torso=2) = reroll 1d20 on every Sneak check in darkness. Does not work with Power Armor.",
+      "it": "Armatura Ombrata:\n1+ pezzi = ignori la prima complicazione su Furtività al buio\n3+ pezzi (Torso=2) = ritiro 1d20 su Furtività al buio 1/scena\n5+ pezzi (Torso=2) = ritiro 1d20 su ogni prova di Furtività al buio. Non funziona con Armatura Atomica."
     }
   },
   "effectSpecialReroll": {

@@ -29,6 +29,7 @@ function AppHeaderData() {
                     icon="weight"
                     value={character.currentWeight}
                     valueTot={character.maxWeight}
+                    valueDanger={character.currentWeight > character.maxWeight}
                 />
             </div>
 
@@ -43,12 +44,14 @@ function HeaderInfoRow({
     valueTot,
     useBorder,
     valueTotDanger,
+    valueDanger,
 }: Readonly<{
     icon: string;
     value: number | string;
     valueTot?: number | string;
     useBorder?: boolean;
     valueTotDanger?: boolean;
+    valueDanger?: boolean;
 }>) {
     return (
         <div
@@ -63,7 +66,7 @@ function HeaderInfoRow({
                 data-icon={icon}
             ></div>
             <div style={{ flex: 1 }}>
-                {value}
+                <span className={valueDanger ? 'text-warning' : ''}>{value}</span>
                 {valueTot && <span className={valueTotDanger ? 'text-warning' : ''}> / {valueTot}</span>}
             </div>
         </div>
