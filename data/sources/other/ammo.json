@@ -1,4 +1,12 @@
 {
+  "ammo22": {
+    "en": ".22 Ammo",
+    "it": "Munizioni .22",
+    "_description": {
+      "en": "Small-caliber ammunition for .22 firearms.",
+      "it": "Munizioni di piccolo calibro per armi .22."
+    }
+  },
   "ammo10mm": {
     "en": "10mm Round",
     "it": "10mm",

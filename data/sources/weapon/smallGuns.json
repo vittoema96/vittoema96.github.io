@@ -1,4 +1,132 @@
 {
+  "weapon45AutoPistol": {
+    "en": ".45 Auto Pistol",
+    "it": "Pistola Automatica .45",
+    "_description": {
+      "en": "A compact .45 automatic pistol.",
+      "it": "Una pistola automatica compatta calibro .45."
+    }
+  },
+  "weapon45AutoSmg": {
+    "en": ".45 Auto SMG",
+    "it": "Mitra Automatico .45",
+    "_description": {
+      "en": "A .45 submachine gun with a high rate of fire.",
+      "it": "Un mitra calibro .45 con un'elevata cadenza di fuoco."
+    }
+  },
+  "weapon10mmSmg": {
+    "en": "10mm SMG",
+    "it": "Mitra 10 mm",
+    "_description": {
+      "en": "A compact 10mm submachine gun.",
+      "it": "Un mitra compatto calibro 10 mm."
+    }
+  },
+  "weapon9mmSmg": {
+    "en": "9mm SMG",
+    "it": "Mitra 9 mm",
+    "_description": {
+      "en": "A compact 9mm submachine gun.",
+      "it": "Un mitra compatto calibro 9 mm."
+    }
+  },
+  "weaponBrushGun": {
+    "en": "Brush Gun",
+    "it": "Fucile da Boscaglia",
+    "_description": {
+      "en": "A powerful, accurate rifle designed for hunting in rough terrain.",
+      "it": "Un fucile potente e preciso, progettato per la caccia su terreni impervi."
+    }
+  },
+  "weaponCaravanShotgun": {
+    "en": "Caravan Shotgun",
+    "it": "Fucile a Pompa da Carovana",
+    "_description": {
+      "en": "A dependable shotgun commonly carried by caravan guards.",
+      "it": "Un fucile a pompa affidabile, comunemente portato dalle guardie delle carovane."
+    }
+  },
+  "weaponLeverActionShotgun": {
+    "en": "Lever-Action Shotgun",
+    "it": "Fucile a Pompa a Leva",
+    "_description": {
+      "en": "A lever-action shotgun with a rapid follow-up shot.",
+      "it": "Un fucile a pompa a leva con una rapida capacità di tiro successivo."
+    }
+  },
+  "weaponMarksmanCarbine": {
+    "en": "Marksman Carbine",
+    "it": "Carabina da Tiratore Scelto",
+    "_description": {
+      "en": "An accurate two-handed carbine for skilled marksmen.",
+      "it": "Una carabina precisa a due mani per tiratori esperti."
+    }
+  },
+  "weaponPumpActionGrenadeLauncher": {
+    "en": "Pump-Action Grenade Launcher",
+    "it": "Lanciagranate a Pompa",
+    "_description": {
+      "en": "A two-handed pump-action grenade launcher.",
+      "it": "Un lanciagranate a pompa a due mani."
+    }
+  },
+  "weaponRangerSequoia": {
+    "en": "Ranger Sequoia",
+    "it": "Sequoia dei Ranger",
+    "_description": {
+      "en": "A powerful, accurate .44 revolver carried by veteran rangers.",
+      "it": "Un potente e preciso revolver calibro .44, portato dai ranger veterani."
+    }
+  },
+  "weaponRiotShotgun": {
+    "en": "Riot Shotgun",
+    "it": "Fucile a Pompa Antisommossa",
+    "_description": {
+      "en": "A heavy shotgun designed for close-quarters engagements.",
+      "it": "Un pesante fucile a pompa progettato per gli scontri ravvicinati."
+    }
+  },
+  "weaponServiceRifle": {
+    "en": "Service Rifle",
+    "it": "Fucile d'Ordinanza",
+    "_description": {
+      "en": "A reliable two-handed military service rifle.",
+      "it": "Un affidabile fucile militare d'ordinanza a due mani."
+    }
+  },
+  "weaponSilenced22Pistol": {
+    "en": "Silenced .22 Pistol",
+    "it": "Pistola .22 Silenziata",
+    "_description": {
+      "en": "A concealed .22 pistol fitted with a suppressor.",
+      "it": "Una pistola calibro .22 occultabile, dotata di silenziatore."
+    }
+  },
+  "weaponSingleShotgun": {
+    "en": "Single Shotgun",
+    "it": "Fucile a Colpo Singolo",
+    "_description": {
+      "en": "A simple single-shot shotgun.",
+      "it": "Un semplice fucile a pompa a colpo singolo."
+    }
+  },
+  "weaponTrailCarbine": {
+    "en": "Trail Carbine",
+    "it": "Carabina da Sentiero",
+    "_description": {
+      "en": "An accurate two-handed carbine suited to long-range trails and patrols.",
+      "it": "Una carabina precisa a due mani, adatta a pattugliamenti e percorsi lontani."
+    }
+  },
+  "weaponVarmintRifle": {
+    "en": "Varmint Rifle",
+    "it": "Fucile da Varmint",
+    "_description": {
+      "en": "A two-handed rifle intended for small-game hunting.",
+      "it": "Un fucile a due mani pensato per la caccia alla piccola selvaggina."
+    }
+  },
   "weapon127mmPistol": {
     "en": "12.7mm Pistol",
     "it": "Pistola 12,7 mm",

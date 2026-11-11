@@ -29,6 +29,7 @@ Data was imported using AI tools, so values remain subject to manual guidebook v
 - [x] Corebook
 - [x] Wanderer DLC
 - [x] Settlers DLC 
+- [ ] Verify the placeholder descriptions, mod availability/effects, rarity, `RARITY_TO_FIND`, and ammo type for these New Vegas DLC items against the physical manual: `.45 Auto Pistol`, `.45 Auto SMG`, `10mm SMG`, `9mm SMG`, `Brush Gun`, `Caravan Shotgun`, `Lever-Action Shotgun`, `Marksman Carbine`, `Pump-Action Grenade Launcher`, `Ranger Sequoia`, `Riot Shotgun`, `Service Rifle`, `Silenced .22 Pistol`, `Single Shotgun`, `Trail Carbine`, `Varmint Rifle`, and `.22 Ammo`.
 - [ ] TODO decide what to do about Smoke Claw
 - [ ] TODO decide what to do with MrHandy's Automatic 10mm
 ### Big Guns

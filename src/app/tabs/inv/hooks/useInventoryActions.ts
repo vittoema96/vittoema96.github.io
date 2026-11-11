@@ -4,11 +4,7 @@ import { hasApparelConflict } from '@/utils/bodyLocations.ts';
 import { CharacterItem, CustomItem, Side } from '@/types';
 import { useTranslation } from 'react-i18next';
 import { allItems } from '@/data';
-import {
-    getUniqueKey,
-    isType,
-    isUnacquirable,
-} from '@/features/item/utils.ts';
+import { getUniqueKey, isType, isUnacquirable } from '@/features/item/utils.ts';
 import { canEquipApparel } from '@/features/character/inventory/equipment.ts';
 import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 
@@ -19,8 +15,8 @@ import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 export const useInventoryActions = () => {
     const { t } = useTranslation();
     const { character, updateCharacter } = useCharacter();
-    const { removeItem, editItem } = useItemManagement()
-    const { showConfirm, showAlert, showChoice, showTradeItemPopup } = usePopup();
+    const { editItem } = useItemManagement();
+    const { showAlert, showChoice, showTradeItemPopup, showDeleteItemPopup } = usePopup();
 
     const sellItem = (characterItem: CharacterItem | CustomItem) => {
         // Validate if item can be sold
@@ -38,22 +34,12 @@ export const useInventoryActions = () => {
             return;
         }
 
-        showConfirm(
-            t('confirmDeleteItem', {
-                quantity: characterItem.quantity,
-                itemName: t(characterItem.customName ?? { id: '', ...characterItem }.id),
-            }),
-            () => {
-                removeItem(characterItem);
-                showAlert(t('itemDeleted'));
-            },
-        );
+        showDeleteItemPopup({ characterItem });
     };
 
     const equipItem = (characterItem: CharacterItem) => {
         const itemData = allItems[characterItem.id];
-        const isRobotPart =
-            isType(itemData, 'apparel') && itemData.CATEGORY === 'robotPart';
+        const isRobotPart = isType(itemData, 'apparel') && itemData.CATEGORY === 'robotPart';
         const isCurrentlyEquipped = characterItem.equipped === true;
 
         // Robot body parts are intrinsic equipment and cannot be unequipped.
@@ -66,7 +52,7 @@ export const useInventoryActions = () => {
 
         if (isCurrentlyEquipped) {
             // Unequip the item
-            editItem(characterItem, {...characterItem, equipped: false, side: undefined});
+            editItem(characterItem, { ...characterItem, equipped: false, side: undefined });
             return;
         }
 
@@ -113,7 +99,7 @@ export const useInventoryActions = () => {
                             return [otherItem];
                         }
 
-                        if (hasApparelConflict({...characterItem, side}, otherItem)) {
+                        if (hasApparelConflict({ ...characterItem, side }, otherItem)) {
                             return [{ ...otherItem, equipped: false, side: undefined }];
                         }
                         return [otherItem];

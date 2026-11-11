@@ -659,8 +659,8 @@
         "en": "Come Rain or Shine",
         "it": "Con la Pioggia o con il Sole",
         "_description": {
-            "en": "You can travel the Wasteland with greater ease, generating additional Action Points and ignoring some travel complications. These Action Points can only be spent on travel-related rolls. You may also select one additional trait from the Courier's available traits.",
-            "it": "Puoi viaggiare più facilmente nelle Terre Desolate, generando Punti Azione aggiuntivi e ignorando alcune complicazioni di viaggio. Questi Punti Azione possono essere spesi solo per prove legate al viaggio. Puoi inoltre scegliere un tratto aggiuntivo tra quelli disponibili per il Corriere."
+            "en": "Couriers are more comfortable in the Wasteland than most, adept at moving from place to place quickly and as safely as luck will allow. When Traversing the Wasteland, you generate 3 bonus Action Points that can only be spent on travel (i.e. to buy additional dice on skill checks made to plan, navigate, or travel a route—or for Navigation Action Point Spends). In addition, you ignore the first complication you roll when Traversing the Wasteland. Finally, you gain one Trait. You may instead choose a Trait from the New California Republic Origin.",
+            "it": "I Corrieri sono più a loro agio nelle Terre Desolate della maggior parte delle persone, e sanno spostarsi da un luogo all’altro rapidamente e in sicurezza quanto la fortuna consente. Quando attraversi le Terre Desolate, generi 3 Punti Azione bonus che possono essere spesi solo per il viaggio (ad esempio per acquistare dadi aggiuntivi nelle prove di abilità per pianificare, navigare o percorrere una rotta, oppure per spendere Punti Azione di Navigazione). Inoltre, ignori la prima complicazione che ottieni attraversando le Terre Desolate. Infine, ottieni un Tratto. In alternativa, puoi scegliere un Tratto dall’Origine della Repubblica della Nuova California."
         }
     },
     "traitPartOfTheFamily": {

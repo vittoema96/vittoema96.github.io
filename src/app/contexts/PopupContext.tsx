@@ -8,6 +8,7 @@ import Nd20Popup, { Nd20PopupProps } from '@/app/components/popup/dice/Nd20Popup
 import AddItemPopup, { AddItemPopupProps } from '@/app/components/popup/AddItemPopup.tsx';
 import TradeItemPopup, { TradeItemPopupProps } from '@/app/components/popup/TradeItemPopup.tsx';
 import ModifyItemPopup, { ModifyItemPopupProps } from '@/app/components/popup/ModifyItemPopup.tsx';
+import DeleteItemPopup, { DeleteItemPopupProps } from '@/app/components/popup/DeleteItemPopup.tsx';
 import Toast, { type ToastVariant } from '@/app/components/Toast.tsx';
 import ChoicePopup from '@/app/components/popup/ChoicePopup.tsx';
 
@@ -20,19 +21,23 @@ interface ActivePopup {
 }
 
 // Utility to avoid writing Omit<T, 'onClose'> every time
-type OmitOnClose<T> = Omit<T, 'onClose'>
+type OmitOnClose<T> = Omit<T, 'onClose'>;
 
 export interface PopupContextValue {
     open: <T extends object>(
-        Component: React.ComponentType<T & {onClose: () => void}>,
-        props: T
+        Component: React.ComponentType<T & { onClose: () => void }>,
+        props: T,
     ) => void;
     close: (identifier?: string | React.ComponentType<any>) => void;
 
     showAlert: (content: string) => void;
     showToast: (content: string, variant?: ToastVariant) => void;
     showConfirm: (content: string, onConfirm: () => void) => void;
-    showChoice: <S extends string>(content: string, choices: S[], onConfirm: (s: S) => void) => void;
+    showChoice: <S extends string>(
+        content: string,
+        choices: S[],
+        onConfirm: (s: S) => void,
+    ) => void;
     showD20Popup: (props: OmitOnClose<D20PopupProps>) => void;
     showD6Popup: (props: OmitOnClose<D6PopupProps>) => void;
     showNd20Popup: (props: OmitOnClose<Nd20PopupProps>) => void;
@@ -40,6 +45,7 @@ export interface PopupContextValue {
     showAddItemPopup: (props: OmitOnClose<AddItemPopupProps>) => void;
     showTradeItemPopup: (props: OmitOnClose<TradeItemPopupProps>) => void;
     showModifyItemPopup: (props: OmitOnClose<ModifyItemPopupProps>) => void;
+    showDeleteItemPopup: (props: OmitOnClose<DeleteItemPopupProps>) => void;
 }
 
 const PopupContext = createContext<PopupContextValue | undefined>(undefined);
@@ -54,17 +60,22 @@ export const usePopup = () => {
 
 export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
     const [stack, setStack] = useState<ActivePopup[]>([]);
-    const [toastState, setToastState] = useState<{ message: string; variant: ToastVariant } | null>(null);
+    const [toastState, setToastState] = useState<{ message: string; variant: ToastVariant } | null>(
+        null,
+    );
 
-    const showToast: PopupContextValue["showToast"] = useCallback((content, variant: ToastVariant = 'danger') => {
-        setToastState({ message: content, variant });
-    }, []);
+    const showToast: PopupContextValue['showToast'] = useCallback(
+        (content, variant: ToastVariant = 'danger') => {
+            setToastState({ message: content, variant });
+        },
+        [],
+    );
 
     const close = useCallback((identifier?: string | React.ComponentType<any>) => {
         setStack(prev => {
             if (identifier) {
-                if(typeof identifier === 'string') {
-                    return prev.filter(p => p.id !== identifier)
+                if (typeof identifier === 'string') {
+                    return prev.filter(p => p.id !== identifier);
                 }
                 const index = prev.findLastIndex(p => p.Component === identifier);
                 if (index === -1) {
@@ -76,15 +87,15 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
         });
     }, []);
 
-    const open: PopupContextValue["open"] = useCallback((Component, props) => {
+    const open: PopupContextValue['open'] = useCallback((Component, props) => {
         const id = crypto.randomUUID();
         setStack(prev => [...prev, { id, Component, props }]);
     }, []);
 
     // --- Specific implementations of 'open'
 
-    const showAlert: PopupContextValue["showAlert"] = useCallback(
-        (content) =>
+    const showAlert: PopupContextValue['showAlert'] = useCallback(
+        content =>
             open(AlertPopup, {
                 content,
                 showConfirm: false,
@@ -93,8 +104,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
         [open],
     );
 
-
-    const showConfirm: PopupContextValue["showConfirm"] = useCallback(
+    const showConfirm: PopupContextValue['showConfirm'] = useCallback(
         (content, onConfirm) =>
             open(AlertPopup, {
                 content,
@@ -104,7 +114,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
         [open],
     );
 
-    const showChoice: PopupContextValue["showChoice"] = useCallback(
+    const showChoice: PopupContextValue['showChoice'] = useCallback(
         (content, choices, onConfirm) =>
             open(ChoicePopup, {
                 content,
@@ -114,45 +124,43 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
         [open],
     );
 
-    const showD20Popup: PopupContextValue["showD20Popup"] = useCallback(
-        (props) =>
-            open(D20Popup, props),
+    const showD20Popup: PopupContextValue['showD20Popup'] = useCallback(
+        props => open(D20Popup, props),
         [open],
     );
 
-    const showD6Popup: PopupContextValue["showD6Popup"] = useCallback(
-        (props) =>
-            open(D6Popup, props),
+    const showD6Popup: PopupContextValue['showD6Popup'] = useCallback(
+        props => open(D6Popup, props),
         [open],
     );
 
-    const showNd20Popup: PopupContextValue["showNd20Popup"] = useCallback(
-        (props) =>
-            open(Nd20Popup, props),
+    const showNd20Popup: PopupContextValue['showNd20Popup'] = useCallback(
+        props => open(Nd20Popup, props),
         [open],
     );
 
-    const showNd6Popup: PopupContextValue["showNd6Popup"] = useCallback(
-        (props) =>
-            open(Nd6Popup, props),
+    const showNd6Popup: PopupContextValue['showNd6Popup'] = useCallback(
+        props => open(Nd6Popup, props),
         [open],
     );
 
-    const showAddItemPopup: PopupContextValue["showAddItemPopup"] = useCallback(
-        (props) =>
-            open(AddItemPopup, props),
+    const showAddItemPopup: PopupContextValue['showAddItemPopup'] = useCallback(
+        props => open(AddItemPopup, props),
         [open],
     );
 
-    const showTradeItemPopup: PopupContextValue["showTradeItemPopup"] = useCallback(
-        (props) =>
-            open(TradeItemPopup, props),
+    const showTradeItemPopup: PopupContextValue['showTradeItemPopup'] = useCallback(
+        props => open(TradeItemPopup, props),
         [open],
     );
 
-    const showModifyItemPopup: PopupContextValue["showModifyItemPopup"] = useCallback(
-        (props) =>
-            open(ModifyItemPopup, props),
+    const showModifyItemPopup: PopupContextValue['showModifyItemPopup'] = useCallback(
+        props => open(ModifyItemPopup, props),
+        [open],
+    );
+
+    const showDeleteItemPopup: PopupContextValue['showDeleteItemPopup'] = useCallback(
+        props => open(DeleteItemPopup, props),
         [open],
     );
 
@@ -171,6 +179,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             showAddItemPopup,
             showTradeItemPopup,
             showModifyItemPopup,
+            showDeleteItemPopup,
         }),
         [
             open,
@@ -186,6 +195,7 @@ export function PopupProvider({ children }: Readonly<React.PropsWithChildren>) {
             showAddItemPopup,
             showTradeItemPopup,
             showModifyItemPopup,
+            showDeleteItemPopup,
         ],
     );
 
