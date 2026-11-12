@@ -53,14 +53,13 @@ export function canEquipApparel(
         return selection.origin?.isRobot === true;
     }
 
-    if (selection.origin?.isRobot) {
-        return false;
-    }
-
     const allowedCategories = getAllowedApparelCategories(
         selection.perks,
         selection.traits,
         selection.origin,
     );
+    if (selection.origin?.needsSpecializedArmor && allowedCategories === undefined) {
+        return false;
+    }
     return allowedCategories === undefined || allowedCategories.has(itemData.CATEGORY);
 }

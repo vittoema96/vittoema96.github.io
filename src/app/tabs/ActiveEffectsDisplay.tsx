@@ -16,11 +16,19 @@ const GLOBAL_EFFECTS = new Set([
 ]);
 
 function getGlobalEffects(item: CharacterItem): string[] {
-    return (
-        getModifiedItemData(item)?.EFFECTS.filter(effect =>
-            GLOBAL_EFFECTS.has(effect.split(':')[0] ?? ''),
-        ) ?? []
-    );
+    const itemData = getModifiedItemData(item);
+    const effects =
+        itemData?.EFFECTS.filter(effect => GLOBAL_EFFECTS.has(effect.split(':')[0] ?? '')) ?? [];
+
+    return effects.flatMap(effect => {
+        const effectId = effect.split(':')[0];
+        const isShadowedTorso =
+            effectId === 'effectShadowed' &&
+            itemData?.TYPE === 'apparel' &&
+            itemData.LOCATIONS_COVERED.includes('torso');
+
+        return isShadowedTorso ? [effect, effect] : [effect];
+    });
 }
 
 /**

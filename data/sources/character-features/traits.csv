@@ -64,6 +64,11 @@ traitForcedEvolution_special,"[]","[""superMutant""]",true,Corebook
 traitForcedEvolution_skillLimit,"[]","[""superMutant""]",true,Corebook
 traitForcedEvolution_immunity,"[]","[""superMutant""]",true,Corebook
 traitForcedEvolution_physiology,"[]","[""superMutant""]",true,Corebook
+traitStealthBoyAddict_physiology,"[]","[""nightkin""]",true,Wanderers DLC
+traitStealthBoyAddict_special,"[]","[""nightkin""]",true,Wanderers DLC
+traitStealthBoyAddict_skillLimit,"[]","[""nightkin""]",true,Wanderers DLC
+traitStealthBoyAddict_immunity,"[]","[""nightkin""]",true,Wanderers DLC
+traitStealthBoyAddict_addiction,"[]","[""nightkin""]",true,Wanderers DLC
 traitHiddenHunted_tagSkill,"[]","[""enclaveRemnant""]",true,Royal Flush
 traitHiddenHunted_hiddenIdentity,"[]","[""enclaveRemnant""]",true,Royal Flush
 traitHiddenHunted_supplyCaches,"[]","[""enclaveRemnant""]",true,Royal Flush
@@ -75,3 +80,8 @@ traitWindingWayOfTheGreatSnake_poisonResistance,"[]","[""viperInitiate""]",true,
 traitWindingWayOfTheGreatSnake_poisonCrafting,"[]","[""viperInitiate""]",true,Royal Flush
 traitComeRainOrShine,"[]","[""courier""]",true,New Vegas Setting Guide
 traitPartOfTheFamily,"[]","[""threeFamilies""]",true,New Vegas Setting Guide
+traitMoreThanHuman_tagSkill,"[]","[""synth""]",true,Settlers DLC
+traitMoreThanHuman_immunities,"[]","[""synth""]",true,Settlers DLC
+traitMoreThanHuman_physiology,"[]","[""synth""]",true,Settlers DLC
+traitMoreThanHuman_socialConsequences,"[]","[""synth""]",true,Settlers DLC
+traitMoreThanHuman_recallCode,"[]","[""synth""]",true,Settlers DLC

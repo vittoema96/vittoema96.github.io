@@ -78,6 +78,77 @@ const character = (extra = {}) =>
         },
         ...extra,
     });
+
+test('Gen 3 Synths can use standard armor and retain an unarmed attack', () => {
+    const origin = origins.getOriginById('synth');
+    const selection = { origin, perks: [], traits: [] };
+
+    assert.equal(origin.isRobot, false);
+    assert.equal(
+        inventory.canEquipApparel(data.apparel.armorLeatherChest, selection),
+        true,
+    );
+    assert.equal(
+        inventory.canEquipApparel(data.apparel.robotPartBody, selection),
+        false,
+    );
+
+    const projected = inventory.getInventory(
+        [item('armorLeatherChest', { equipped: true })],
+        selection,
+    );
+    assert.equal(projected.displayItems.some(item => item.id === 'weaponUnarmedStrike'), true);
+});
+
+test('Gen 3 Synths receive More Than Human fixed traits', () => {
+    const raw = character({ origin: 'synth' });
+    const origin = origins.getOriginById('synth');
+    const traits = calculateTraits(raw, origin);
+
+    assert.deepEqual(
+        traits.filter(trait => trait.startsWith('traitMoreThanHuman_')),
+        [
+            'traitMoreThanHuman_immunities',
+            'traitMoreThanHuman_physiology',
+            'traitMoreThanHuman_recallCode',
+            'traitMoreThanHuman_socialConsequences',
+            'traitMoreThanHuman_tagSkill',
+        ],
+    );
+    assert.equal(feats.hasRadiationImmunity([], traits, origin), true);
+    assert.equal(feats.hasPoisonImmunity([], traits, origin), true);
+});
+
+test('Nightkin can equip only super mutant armor', () => {
+    const origin = origins.getOriginById('nightkin');
+    const traits = calculateTraits(character({ origin: 'nightkin' }), origin);
+    const selection = { origin, perks: [], traits };
+
+    assert.deepEqual(
+        traits.filter(trait => trait.startsWith('traitStealthBoyAddict_')),
+        [
+            'traitStealthBoyAddict_addiction',
+            'traitStealthBoyAddict_immunity',
+            'traitStealthBoyAddict_physiology',
+            'traitStealthBoyAddict_skillLimit',
+            'traitStealthBoyAddict_special',
+        ],
+    );
+    assert.equal(feats.getMinSpecialValueModifier('strength', [], traits, origin), 2);
+    assert.equal(feats.getMaxSpecialValueModifier('strength', [], traits, origin), 2);
+    assert.equal(feats.getMaxSpecialValueModifier('intelligence', [], traits, origin), -2);
+    assert.equal(feats.getSkillMaxValue([], traits, origin), 4);
+    assert.equal(feats.hasRadiationImmunity([], traits, origin), true);
+    assert.equal(feats.hasPoisonImmunity([], traits, origin), true);
+    assert.equal(
+        inventory.canEquipApparel(data.apparel.armorRaiderChest, selection),
+        true,
+    );
+    assert.equal(
+        inventory.canEquipApparel(data.apparel.armorLeatherChest, selection),
+        false,
+    );
+});
 const legacyCharacter = extra => {
     const { saveVersion: _saveVersion, ...raw } = character(extra);
     return raw;

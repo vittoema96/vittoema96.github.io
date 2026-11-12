@@ -143,6 +143,46 @@
             "it": "Sei alto più di due metri, massiccio e muscoloso, non sembri invecchiare e sei sterile. Puoi indossare solo armature realizzate per un supermutante."
         }
     },
+    "traitStealthBoyAddict_physiology": {
+        "en": "Stealth Boy Addict: Physiology",
+        "it": "Dipendente dagli Stealth Boy: Fisiologia",
+        "_description": {
+            "en": "You stand over seven feet tall; your body is bulky and muscular, and your skin is blue. You do not seem to age, but you are sterile. You can only wear armor that has been made to fit a super mutant.",
+            "it": "Sei alto più di due metri; il tuo corpo è massiccio e muscoloso e la tua pelle è blu. Non sembri invecchiare, ma sei sterile. Puoi indossare solo armature realizzate per adattarsi a un supermutante."
+        }
+    },
+    "traitStealthBoyAddict_special": {
+        "en": "Stealth Boy Addict: SPECIAL",
+        "it": "Dipendente dagli Stealth Boy: SPECIAL",
+        "_benefit": {
+            "en": "Your initial Strength and Endurance attributes are increased by +2 each, and your maximum Strength and Endurance are increased to 12, but your maximum Intelligence and Charisma are both reduced to 8.",
+            "it": "I tuoi attributi iniziali di Forza e Costituzione aumentano di +2 ciascuno e il massimo di Forza e Costituzione aumenta a 12, ma i massimi di Intelligenza e Carisma sono entrambi ridotti a 8."
+        }
+    },
+    "traitStealthBoyAddict_skillLimit": {
+        "en": "Stealth Boy Addict: Skill Limit",
+        "it": "Dipendente dagli Stealth Boy: Limite Abilità",
+        "_benefit": {
+            "en": "You may not have more than 4 ranks in any skill.",
+            "it": "Non puoi avere più di 4 gradi in nessuna abilità."
+        }
+    },
+    "traitStealthBoyAddict_immunity": {
+        "en": "Stealth Boy Addict: Immunity",
+        "it": "Dipendente dagli Stealth Boy: Immunità",
+        "_benefit": {
+            "en": "You are completely immune to Radiation and Poison damage.",
+            "it": "Sei completamente immune ai danni da Radiazioni e Veleno."
+        }
+    },
+    "traitStealthBoyAddict_addiction": {
+        "en": "Stealth Boy Addict: Addiction",
+        "it": "Dipendente dagli Stealth Boy: Dipendenza",
+        "_description": {
+            "en": "You can become easily addicted to Stealth Boys, and their prolonged use has taken a huge toll on your psychology and mental health. Whenever you use a Stealth Boy, you roll 1 CD for each dose you have taken this session. If you roll any Effects, you gain the following symptoms: a failed addiction roll renders you addicted to Stealth Boys. You increase the difficulty of Perception and Intelligence tests by +2, and Charisma tests by +1 until cured.",
+            "it": "Puoi diventare facilmente dipendente dagli Stealth Boy e il loro uso prolungato ha avuto un enorme impatto sulla tua psicologia e salute mentale. Ogni volta che usi uno Stealth Boy, tira 1 CD per ogni dose che hai assunto durante questa sessione. Se ottieni degli Effetti, subisci i seguenti sintomi: un tiro per la dipendenza fallito ti rende dipendente dagli Stealth Boy. La difficoltà delle prove di Percezione e Intelligenza aumenta di +2 e quella delle prove di Carisma di +1 finché non vieni curato."
+        }
+    },
     "traitNecroticPostHuman_ageless": {
         "en": "Necrotic Post-Human: Ageless",
         "it": "Post-Umano Necrotico: Senza Età",
@@ -669,6 +709,46 @@
         "_description": {
             "en": "You receive free housing, resources, increased reputation, and support from one of the Three Families while your reputation remains high. Choose the Chairmen, Omertas, or White Glove Society; each family provides its own benefits and obligations.",
             "it": "Ricevi alloggio e risorse gratuiti, una reputazione iniziale più alta e il supporto di una delle Tre Famiglie finché la tua reputazione rimane alta. Scegli i Chairmen, gli Omerta o la White Glove Society: ogni famiglia offre benefici e obblighi diversi."
+        }
+    },
+    "traitMoreThanHuman_tagSkill": {
+        "en": "More Than Human: Additional Tag Skill",
+        "it": "Più che Umano: Abilità Tag aggiuntiva",
+        "_description": {
+            "en": "You gain one additional tag skill.",
+            "it": "Ottieni un'abilità Tag aggiuntiva."
+        }
+    },
+    "traitMoreThanHuman_immunities": {
+        "en": "More Than Human: Immunities",
+        "it": "Più che Umano: Immunità",
+        "_description": {
+            "en": "You are immune to Poison and Radiation damage and to disease.",
+            "it": "Sei immune ai danni da Veleno e Radiazioni e alle malattie."
+        }
+    },
+    "traitMoreThanHuman_physiology": {
+        "en": "More Than Human: Physiology",
+        "it": "Più che Umano: Fisiologia",
+        "_description": {
+            "en": "You cannot suffer from starvation or dehydration and do not need sleep, but you do not gain a benefit from consuming food or beverage items. When you rest, instead of sleeping, you may engage in minor activities such as crafting, reading, or light scouting. You do not age, nor do you gain or lose weight. Your body can survive synthetic implants and cybernetic modifications without complications.",
+            "it": "Non puoi soffrire la fame o la disidratazione e non hai bisogno di dormire, ma non ottieni benefici consumando cibo o bevande. Quando riposi, invece di dormire, puoi dedicarti ad attività minori come fabbricare oggetti, leggere o fare una ricognizione leggera. Non invecchi e non aumenti né perdi peso. Il tuo corpo può sopravvivere a impianti sintetici e modifiche cibernetiche senza complicazioni."
+        }
+    },
+    "traitMoreThanHuman_socialConsequences": {
+        "en": "More Than Human: Social Consequences",
+        "it": "Più che Umano: Conseguenze Sociali",
+        "_description": {
+            "en": "When interacting with NPCs who know you are a synth—unless they are sympathetic towards synths—the difficulty of CHA tests made by you or your allies increases by 2. When a complication is rolled, they either become hostile, or your Faction Reputation or Settlement Reputation decreases by 1 per complication generated due to their fear of the Institute.",
+            "it": "Quando interagisci con PNG che sanno che sei un synth—a meno che non siano simpatizzanti dei synth—la difficoltà delle prove di CAR effettuate da te o dai tuoi alleati aumenta di 2. Quando ottieni una complicazione, diventano ostili oppure la tua Reputazione presso una Fazione o un Insediamento diminuisce di 1 per ogni complicazione generata dalla loro paura dell'Istituto."
+        }
+    },
+    "traitMoreThanHuman_recallCode": {
+        "en": "More Than Human: Recall Code",
+        "it": "Più che Umano: Codice di Richiamo",
+        "_description": {
+            "en": "The Institute has given you a unique recall code—an unalterable verbal command that resets your personality and memories. When you hear the code spoken, you become incapacitated until you are retrieved and restored by the Institute.",
+            "it": "L'Istituto ti ha assegnato un codice di richiamo unico—un comando verbale inalterabile che resetta la tua personalità e i tuoi ricordi. Quando senti pronunciare il codice, diventi incapacitato finché l'Istituto non ti recupera e ripristina."
         }
     }
 }

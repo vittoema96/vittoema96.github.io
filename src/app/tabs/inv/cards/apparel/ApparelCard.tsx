@@ -1,6 +1,6 @@
 import { getModifiedItemData } from '@/features/character/inventory/equipment.ts';
-import BaseCard from '../BaseCard.tsx'
-import ApparelContent from '@/app/tabs/inv/cards/apparel/ApparelContent.tsx'
+import BaseCard from '../BaseCard.tsx';
+import ApparelContent from '@/app/tabs/inv/cards/apparel/ApparelContent.tsx';
 import { CharacterItem } from '@/types';
 import { useInventoryActions } from '@/app/tabs/inv/hooks/useInventoryActions.ts';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
@@ -12,25 +12,25 @@ import { canEquipApparel } from '@/features/character/inventory/equipment.ts';
  * Uses BaseCard with ApparelContent renderer
  */
 interface ApparelCardProps {
-    characterItem: CharacterItem,
+    characterItem: CharacterItem;
 }
 function ApparelCard({ characterItem }: Readonly<ApparelCardProps>) {
-    const { character } = useCharacter()
-    const itemData = getModifiedItemData(characterItem, character.perks)
-    const {equipItem} = useInventoryActions()
+    const { character } = useCharacter();
+    const itemData = getModifiedItemData(characterItem, character.perks);
+    const { equipItem } = useInventoryActions();
 
     if (!isType(itemData, 'apparel')) {
-        console.error(`Apparel data not found for ID: ${characterItem.id}`)
-        return null
+        console.error(`Apparel data not found for ID: ${characterItem.id}`);
+        return null;
     }
-    const isRobotPart = itemData.CATEGORY === 'robotPart'
+    const isRobotPart = itemData.CATEGORY === 'robotPart';
 
     return (
         <BaseCard
             action={{
-                icon: "armor",
+                icon: 'armor',
                 onClick: () => equipItem(characterItem),
-                isChecked: (item) => {
+                isChecked: item => {
                     return {
                         equipped: false,
                         ...item,
@@ -49,7 +49,7 @@ function ApparelCard({ characterItem }: Readonly<ApparelCardProps>) {
             contentRenderer={ApparelContent}
             className="apparel-card"
         />
-    )
+    );
 }
 
-export default ApparelCard
+export default ApparelCard;

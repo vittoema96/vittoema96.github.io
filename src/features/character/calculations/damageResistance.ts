@@ -32,8 +32,7 @@ export function calculateDamageResistances(
         }
 
         const itemData = getModifiedItemData(item, perks);
-        // Skip robot parts if origin is not Mr. Handy
-        // TODO might not need the below check
+        // Robot parts only apply to origins that explicitly support them.
         if (!itemData || (itemData?.CATEGORY === 'robotPart' && !origin.isRobot)) {
             return;
         }
