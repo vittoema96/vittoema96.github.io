@@ -1,5 +1,10 @@
 import type { CharacterItem, Item } from '@/types';
-import { applyEffect, getModdedItemData, isType } from '@/features/item/utils.ts';
+import {
+    applyEffect,
+    getModdedItemData,
+    isType,
+    normalizeWeaponQualities,
+} from '@/features/item/utils.ts';
 import type { PerkId } from '../feats/perks.ts';
 import type { FeatSelection } from '../feats/types.ts';
 import { getAllowedApparelCategories, getWeaponItemEffects } from '../feats/rules.ts';
@@ -30,10 +35,11 @@ export function getModifiedItemData(item: CharacterItem | null | undefined, perk
     if (!isType(data, 'weapon')) {
         return data;
     }
-    return getWeaponItemEffects(data, perks).reduce(
+    const modified = getWeaponItemEffects(data, perks).reduce(
         (modified, effect) => applyEffect(modified, effect),
         data,
     );
+    return normalizeWeaponQualities(modified);
 }
 
 /**

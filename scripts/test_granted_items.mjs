@@ -79,6 +79,56 @@ const character = (extra = {}) =>
         ...extra,
     });
 
+test('item effects apply sets, then adds, then removals', () => {
+    const base = structuredClone(data.allItems.weaponAlienBlaster);
+    const weapon = {
+        ...base,
+        EFFECTS: [...base.EFFECTS],
+        QUALITIES: [...base.QUALITIES],
+    };
+
+    utils.applyEffect(weapon, 'damageAdd:2');
+    utils.applyEffect(weapon, 'damageSet:3');
+    assert.equal(weapon.DAMAGE_RATING, 3);
+
+    const modified = utils.getModdedItemData(
+        item('weaponAlienBlaster', {
+            mods: ['modMagFusionAlienBlaster', 'modPowerful'],
+        }),
+    );
+    assert.equal(modified.DAMAGE_RATING, 5);
+
+    const qualities = structuredClone(data.allItems.weaponAlienBlaster);
+    qualities.QUALITIES = [...qualities.QUALITIES, 'qualityInaccurate'];
+    qualities.EFFECTS = [...qualities.EFFECTS];
+    utils.applyEffect(qualities, 'qualityAdd:qualityAccurate');
+    utils.applyEffect(qualities, 'qualityRemove:qualityAccurate');
+    assert.ok(!qualities.QUALITIES.includes('qualityAccurate'));
+});
+
+test('contradictory weapon qualities cancel after all effects are applied', () => {
+    const weapon = structuredClone(data.allItems.weaponAlienBlaster);
+    weapon.EFFECTS = [...weapon.EFFECTS];
+    weapon.QUALITIES = ['qualityReliable'];
+
+    utils.applyEffect(weapon, 'qualityAdd:qualityUnreliable');
+    assert.deepEqual(weapon.QUALITIES, ['qualityReliable', 'qualityUnreliable']);
+    utils.normalizeWeaponQualities(weapon);
+    assert.deepEqual(weapon.QUALITIES, []);
+
+    utils.applyEffect(weapon, 'qualityAdd:qualityAccurate');
+    utils.applyEffect(weapon, 'qualityAdd:qualityInaccurate');
+    utils.applyEffect(weapon, 'qualityAdd:qualityAccurate');
+    utils.normalizeWeaponQualities(weapon);
+    assert.deepEqual(weapon.QUALITIES, ['qualityAccurate']);
+
+    const modified = utils.getModdedItemData(
+        item('weaponHandmadePistol', { mods: ['modQuickMagazine'] }),
+    );
+    assert.ok(!modified.QUALITIES.includes('qualityReliable'));
+    assert.ok(!modified.QUALITIES.includes('qualityUnreliable'));
+});
+
 test('Gen 3 Synths can use standard armor and retain an unarmed attack', () => {
     const origin = origins.getOriginById('synth');
     const selection = { origin, perks: [], traits: [] };
@@ -1593,7 +1643,7 @@ test('All available mods resolve and Royal Flush additions apply their manual ef
     assert.ok(pin.QUALITIES.includes('qualityThrown'));
 });
 
-test('Mod removals are applied before additions', () => {
+test('Mod removals take precedence over additions', () => {
     const weapon = utils.getModdedItemData(
         item('weaponBroadsider', { mods: ['modLightBarrelBroadsider'] }),
     );

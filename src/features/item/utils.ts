@@ -34,6 +34,26 @@ const addValues: {
     return baseValue + (Number(addition) || 0);
 };
 
+const mutuallyExclusiveQualities: Record<string, string> = {
+    qualityAccurate: 'qualityInaccurate',
+    qualityInaccurate: 'qualityAccurate',
+    qualityReliable: 'qualityUnreliable',
+    qualityUnreliable: 'qualityReliable',
+};
+
+const rangeOrder: readonly Range[] = ['rangeR', 'rangeC', 'rangeM', 'rangeL', 'rangeE'];
+
+function getEffectPhase(effect: string): number {
+    const effectType = effect.split(':')[0] ?? '';
+    if (effectType.endsWith('Set')) {
+        return 0;
+    }
+    if (effectType.endsWith('Remove')) {
+        return 2;
+    }
+    return 1;
+}
+
 // TODO should not be string, string, but defined fields
 function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: string) {
     switch (effectType) {
@@ -59,9 +79,7 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
             }
             break;
         }
-
         case 'rangeAdd': {
-            const rangeOrder: Range[] = ['rangeR', 'rangeC', 'rangeM', 'rangeL', 'rangeE'];
             const currentIndex = rangeOrder.indexOf(modifiedData.RANGE);
             const newIndex = Math.max(
                 0,
@@ -74,7 +92,10 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
         }
 
         case 'qualityAdd':
-            if (!modifiedData.QUALITIES.includes(value)) {
+            if (
+                mutuallyExclusiveQualities[value] ||
+                !modifiedData.QUALITIES.includes(value)
+            ) {
                 modifiedData.QUALITIES = [...modifiedData.QUALITIES, value];
             }
             break;
@@ -146,6 +167,52 @@ function applyApparelEffect(modifiedData: ApparelItem, effectType: string, value
     return modifiedData;
 }
 
+/**
+ * Collapse weapon qualities after all additions and removals have been applied.
+ * Contradictory qualities cancel pairwise, while duplicate non-contradictory
+ * qualities collapse to one entry.
+ */
+export function normalizeWeaponQualities(weapon: WeaponItem): WeaponItem {
+    const normalized: string[] = [];
+    const normalizedSet = new Set<string>();
+    const processedGroups = new Set<string>();
+    const qualityCounts = new Map<string, number>();
+
+    for (const quality of weapon.QUALITIES) {
+        qualityCounts.set(quality, (qualityCounts.get(quality) ?? 0) + 1);
+    }
+
+    for (const quality of weapon.QUALITIES) {
+        const counterpart = mutuallyExclusiveQualities[quality];
+        if (!counterpart) {
+            if (!normalizedSet.has(quality)) {
+                normalized.push(quality);
+                normalizedSet.add(quality);
+            }
+            continue;
+        }
+
+        const groupKey =
+            quality < counterpart ? `${quality}|${counterpart}` : `${counterpart}|${quality}`;
+        if (processedGroups.has(groupKey)) {
+            continue;
+        }
+        processedGroups.add(groupKey);
+
+        const qualityCount = qualityCounts.get(quality) ?? 0;
+        const counterpartCount = qualityCounts.get(counterpart) ?? 0;
+        const remaining = qualityCount - counterpartCount;
+        const winner = remaining > 0 ? quality : remaining < 0 ? counterpart : undefined;
+        if (winner && !normalizedSet.has(winner)) {
+            normalized.push(winner);
+            normalizedSet.add(winner);
+        }
+    }
+
+    weapon.QUALITIES = normalized;
+    return weapon;
+}
+
 type ItemMap = {
     [K in ItemType]: K extends 'weapon'
         ? WeaponItem
@@ -193,8 +260,6 @@ export function applyEffect(
     } else if (isType(modifiedData, 'apparel')) {
         modifiedData = applyApparelEffect(modifiedData, effectType, value);
     }
-    // TODO adding and removing effects should be handled in a proper order, not how it comes
-    //      there could be conflicts with mods adding and others removing effects
     switch (effectType) {
         // Quality/Effect additions
         case 'effectAdd': {
@@ -374,17 +439,12 @@ const applyMods = (
     modsData: (ModItem | LegendaryEffect)[],
 ): typeof itemData => {
     const effects = modsData.flatMap(mod => mod.EFFECTS);
-    for (const effect of effects) {
-        const effectType = effect.split(':', 1)[0];
-        if (effectType === 'effectRemove' || effectType === 'qualityRemove') {
-            itemData = applyEffect(itemData, effect);
-        }
-    }
-    for (const effect of effects) {
-        const effectType = effect.split(':', 1)[0];
-        if (effectType !== 'effectRemove' && effectType !== 'qualityRemove') {
-            itemData = applyEffect(itemData, effect);
-        }
+    const orderedEffects = effects.toSorted(
+        (left, right) => getEffectPhase(left) - getEffectPhase(right),
+    );
+
+    for (const effect of orderedEffects) {
+        itemData = applyEffect(itemData, effect);
     }
     return itemData;
 };
@@ -445,7 +505,7 @@ export function getModdedItemData(
                   Number(itemData.WEIGHT) || 0,
               );
 
-    return applyMods(
+    const modifiedData = applyMods(
         {
             ...baseItemData,
             COST,
@@ -453,6 +513,10 @@ export function getModdedItemData(
         },
         modsData,
     );
+
+    return isType(modifiedData, 'weapon')
+        ? normalizeWeaponQualities(modifiedData)
+        : modifiedData;
 }
 
 export function getUniqueKey(item: CharacterItem | CustomItem) {
