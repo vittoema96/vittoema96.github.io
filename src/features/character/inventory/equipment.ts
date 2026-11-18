@@ -30,12 +30,16 @@ export function getSpecialForWeaponCategory(category: WeaponCategory): SpecialTy
         : getSpecialFromSkill(getSkillForWeaponCategory(category));
 }
 
-export function getModifiedItemData(item: CharacterItem | null | undefined, perks: PerkId[] = []) {
+export function getModifiedItemData(
+    item: CharacterItem | null | undefined,
+    perks: PerkId[] = [],
+    inventoryItems: CharacterItem[] = [],
+) {
     const data = getModdedItemData(item);
     if (!isType(data, 'weapon')) {
         return data;
     }
-    const modified = getWeaponItemEffects(data, perks).reduce(
+    const modified = getWeaponItemEffects(data, perks, inventoryItems).reduce(
         (modified, effect) => applyEffect(modified, effect),
         data,
     );

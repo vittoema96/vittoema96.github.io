@@ -5,11 +5,15 @@ import type { PerkImplementation } from '@/features/character/feats/types.ts';
 const perkGunslinger: PerkImplementation = {
     id: 'perkGunslinger',
     getDamageRatingBonus: (character, _, itemData) =>
-        !isCloseCombat(itemData.CATEGORY) && !itemData.QUALITIES.includes('qualityTwoHanded')
+        !isCloseCombat(itemData.CATEGORY) &&
+        !itemData.QUALITIES.includes('qualityTwoHanded') &&
+        Number(itemData.FIRE_RATE) <= 2
             ? perkRank(character.perks, 'perkGunslinger')
             : 0,
     getWeaponItemEffects: itemData =>
-        !isCloseCombat(itemData.CATEGORY) && !itemData.QUALITIES.includes('qualityTwoHanded')
+        !isCloseCombat(itemData.CATEGORY) &&
+        !itemData.QUALITIES.includes('qualityTwoHanded') &&
+        Number(itemData.FIRE_RATE) <= 2
             ? ['rerollHitLocation:true']
             : [],
 };

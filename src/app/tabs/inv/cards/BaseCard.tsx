@@ -7,6 +7,8 @@ import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { getCanonicalDisplayName, isType } from '@/features/item/utils.ts';
 import { allItems } from '@/data';
+import { useWeightUnit } from '@/hooks/useWeightUnit.ts';
+import { formatWeight } from '@/utils/weight.ts';
 
 /**
  * Base card component - provides common card structure and functionality
@@ -46,6 +48,7 @@ function BaseCard({
     const [showDescription, setShowDescription] = useState(false);
     const { showModifyItemPopup } = usePopup()
     const { character } = useCharacter()
+    const weightUnit = useWeightUnit();
 
     const item = {
         side: undefined,
@@ -102,7 +105,7 @@ function BaseCard({
                     </div>
                     <div className="card-stat-icon" title={t('weight')}>
                         <i className="fas fa-weight-hanging"></i>
-                        <span>{itemData.WEIGHT}</span>
+                        <span>{formatWeight(Number(itemData.WEIGHT), weightUnit)}</span>
                     </div>
                     <div className="card-stat-icon" title={t('rarity')}>
                         <i className="fas fa-star"></i>

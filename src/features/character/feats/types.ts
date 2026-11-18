@@ -141,7 +141,11 @@ export interface FeatImplementation {
     ) => number;
     getMeleeDamageBonus?: (perks: PerkId[], traits: TraitId[]) => number;
 
-    getWeaponItemEffects?: (itemData: WeaponItem, perks: PerkId[]) => string[];
+    getWeaponItemEffects?: (
+        itemData: WeaponItem,
+        perks: PerkId[],
+        inventoryItems?: CharacterItem[],
+    ) => string[];
     getDamageRatingBonus?: (
         character: Character,
         item: CharacterItem,

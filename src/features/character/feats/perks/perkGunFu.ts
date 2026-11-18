@@ -4,6 +4,8 @@ import { perkRank } from '@/features/character/feats/utils.ts';
 
 const perkGunFu: PerkImplementation = {
     id: 'perkGunFu',
+    // TODO: Add the multi-target follow-up attack flow, including Close range,
+    //       rank-based target counts, shared damage, ammo/AP costs, and target selection.
     getRollActions: () => [{
         id: 'perkGunFu',
         isApplicable: (_, item) => !isCloseCombat(item.CATEGORY),

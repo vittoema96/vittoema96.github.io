@@ -1406,5 +1406,61 @@
       "en": "Taking damage from the claws or bite of a mammal, lizard, or insect no longer poses a risk of catching a disease.",
       "it": "Subire danni dagli artigli o dai morsi di mammiferi, lucertole o insetti non ti espone più al rischio di contrarre malattie."
     }
+  },
+  "perkFerociousLoyalty": {
+    "en": "Ferocious Loyalty",
+    "it": "Lealtà Feroce",
+    "_description": {
+      "en": "When you suffer an Injury, you may choose one allied character that can see and hear you and increase their Physical and Energy resistance by 1 until the end of the scene. Each additional rank increases the resistance gained by 1.",
+      "it": "Quando subisci una Ferita, puoi scegliere un alleato che possa vederti e sentirti e aumentare di 1 la sua Resistenza Fisica ed Energetica fino alla fine della scena. Ogni grado aggiuntivo aumenta di 1 la resistenza ottenuta."
+    }
+  },
+  "perkHobbler": {
+    "en": "Hobbler",
+    "it": "Azzoppatore",
+    "_description": {
+      "en": "When you choose a Hit Location before making an attack, you do not suffer the difficulty increase if you target a character's Legs.",
+      "it": "Quando scegli un Punto d'Impatto prima di effettuare un attacco, non subisci l'aumento di difficoltà se bersagli le Gambe di un personaggio."
+    }
+  },
+  "perkInShiningArmor": {
+    "en": "In Shining Armor",
+    "it": "In Armatura Splendente",
+    "_description": {
+      "en": "At Rank 1, when you are wearing metal armor, increase your Energy Resistance by 2. At Rank 2, when you are wearing reflective eyewear, increase your Energy Resistance by 1. Each additional rank increases the level requirement by 6.",
+      "it": "Al grado 1, quando indossi un'armatura metallica, aumenta di 2 la tua Resistenza Energetica. Al grado 2, quando indossi occhiali riflettenti, aumenta di 1 la tua Resistenza Energetica. Ogni grado aggiuntivo aumenta di 6 il requisito di livello."
+    }
+  },
+  "perkMissFortune": {
+    "en": "Miss Fortune",
+    "it": "Miss Fortuna",
+    "_description": {
+      "en": "Once per combat, after being attacked by or making an attack against an enemy, you may spend a Luck Point to have Miss Fortune make an attack against that enemy. Roll 1d20 and apply the result; you may spend AP up to your rank to roll that many additional d20s and apply each result.",
+      "it": "Una volta per combattimento, dopo essere stato attaccato da un nemico o averlo attaccato, puoi spendere un Punto Fortuna per far sì che Miss Fortuna attacchi quel nemico. Tira 1d20 e applica il risultato; puoi spendere PA fino al tuo grado per tirare altrettanti d20 aggiuntivi e applicare ogni risultato."
+    }
+  },
+  "perkOldWorldGourmet": {
+    "en": "Old World Gourmet",
+    "it": "Gourmet del Vecchio Mondo",
+    "_description": {
+      "en": "Increase the HP gained when you eat packaged, tinned, or otherwise preserved pre-war food by 2. In addition, reduce the Irradiated rating of the same food by 1, to a minimum of 0.",
+      "it": "Aumenta di 2 i PS guadagnati quando mangi cibo prebellico confezionato, in scatola o comunque conservato. Inoltre, riduci di 1 il valore Irradiato dello stesso cibo, fino a un minimo di 0."
+    }
+  },
+  "perkSuperSlam": {
+    "en": "Super Slam",
+    "it": "Super Schianto",
+    "_description": {
+      "en": "When dealing damage to an enemy with a melee or unarmed attack, if you roll 3 or more Effects, that enemy is knocked prone. At Rank 2, you only need to roll 2 or more Effects. Each additional rank increases the level requirement by 6.",
+      "it": "Quando infliggi danno a un nemico con un attacco in mischia o senz'armi, se ottieni 3 o più Effetti, quel nemico viene atterrato. Al grado 2, sono sufficienti 2 o più Effetti. Ogni grado aggiuntivo aumenta di 6 il requisito di livello."
+    }
+  },
+  "perkJunkRounds": {
+    "en": "Junk Rounds",
+    "it": "Munizioni di Recupero",
+    "_description": {
+      "en": "At a workbench, you can craft up to rarity 1 ammunition by expending 5 Junk items and 10 minutes of work. At Rank 2, you can craft up to rarity 2 ammunition. Attacks made with ammunition crafted this way increase their complication range by 1. Each additional rank increases the level requirement by 4.",
+      "it": "Al banco da lavoro, puoi fabbricare munizioni fino a rarità 1 spendendo 5 oggetti Rottame e 10 minuti di lavoro. Al grado 2, puoi fabbricare munizioni fino a rarità 2. Gli attacchi effettuati con munizioni fabbricate in questo modo aumentano di 1 il loro intervallo di complicazione. Ogni grado aggiuntivo aumenta di 4 il requisito di livello."
+    }
   }
 }

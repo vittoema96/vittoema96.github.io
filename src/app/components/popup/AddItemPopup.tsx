@@ -15,6 +15,8 @@ import { compiledData } from '@/data';
 import { isType, isUnacquirable } from '@/features/item/utils.ts';
 import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 import { sortByLocalizedLabel } from '@/utils/sorting.ts';
+import { useWeightUnit } from '@/hooks/useWeightUnit.ts';
+import { parseDisplayedWeight } from '@/utils/weight.ts';
 
 export interface AddItemPopupProps extends GenericPopupProps {
     itemType: ItemType;
@@ -374,6 +376,7 @@ function AddCustomItemContent({
 }>) {
     const { t } = useTranslation();
     const { addItem } = useItemManagement();
+    const weightUnit = useWeightUnit();
 
     // Custom item mode
     const [customName, setCustomName] = useState('');
@@ -394,7 +397,10 @@ function AddCustomItemContent({
             quantity: Math.max(1, customQuantity || 1),
 
             COST: Math.max(0, customValue || 0),
-            WEIGHT: Math.max(0, Number.parseFloat(customWeight) || 0),
+            WEIGHT: Math.max(
+                0,
+                parseDisplayedWeight(Number.parseFloat(customWeight) || 0, weightUnit),
+            ),
             RARITY: Math.max(0, customRarity || 0),
             TYPE: itemType,
             CATEGORY: 'custom',
@@ -410,6 +416,7 @@ function AddCustomItemContent({
         customValue,
         customWeight,
         itemType,
+        weightUnit,
     ]);
 
     // Registra la callback quando cambia
@@ -426,12 +433,13 @@ function AddCustomItemContent({
                     <input
                         type="number"
                         min={0}
-                        step={0.5}
+                        step={weightUnit === 'lb' ? 1 : 0.5}
                         value={customWeight}
                         onChange={e => {
                             const value = Number.parseFloat(e.target.value);
                             if (!Number.isNaN(value)) {
-                                setCustomWeight(`${Math.round(value * 2) / 2}`);
+                                const step = weightUnit === 'lb' ? 1 : 0.5;
+                                setCustomWeight(`${Math.round(value / step) * step}`);
                             }
                         }}
                         onBlur={e => {

@@ -9,6 +9,8 @@ import {
     type Language,
     LANGUAGES,
     REGIONS,
+    WEIGHT_UNITS,
+    type WeightUnit,
 } from '@/services/UISettingsManager.ts';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 import { useCharacter } from '@/app/contexts/CharacterContext';
@@ -34,6 +36,9 @@ function SettingsTab() {
 
     const [currentTheme, setCurrentTheme] = useState(UISettingsManager.getCurrentTheme);
     const [currentLanguage, setCurrentLanguage] = useState(UISettingsManager.getCurrentLanguage);
+    const [currentWeightUnit, setCurrentWeightUnit] = useState(
+        UISettingsManager.getCurrentWeightUnit,
+    );
     const currentRegion = useMapRegion();
     const [displayEffects, setDisplayEffects] = useDisplayEffectsState();
 
@@ -60,6 +65,11 @@ function SettingsTab() {
         if (UISettingsManager.isRegion(newRegion)) {
             UISettingsManager.setRegion(newRegion);
         }
+    };
+
+    const handleWeightUnitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const newUnit = e.target.value as WeightUnit;
+        setCurrentWeightUnit(UISettingsManager.setWeightUnit(newUnit));
     };
 
     /** Delete a character from a slot using Zustand store action */
@@ -156,6 +166,20 @@ function SettingsTab() {
                     <select id="region-select" value={currentRegion} onChange={handleRegionChange}>
                         {sortByLocalizedLabel(Object.entries(REGIONS), t, ([, label]) => label).map(([region, label]) => (
                             <option key={region} value={region}>
+                                {label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="stack">
+                    <label htmlFor="weight-unit-select">{t('weightUnit')}:</label>
+                    <select
+                        id="weight-unit-select"
+                        value={currentWeightUnit}
+                        onChange={handleWeightUnitChange}
+                    >
+                        {Object.entries(WEIGHT_UNITS).map(([unit, label]) => (
+                            <option key={unit} value={unit}>
                                 {label}
                             </option>
                         ))}

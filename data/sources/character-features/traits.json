@@ -750,5 +750,101 @@
             "en": "The Institute has given you a unique recall code—an unalterable verbal command that resets your personality and memories. When you hear the code spoken, you become incapacitated until you are retrieved and restored by the Institute.",
             "it": "L'Istituto ti ha assegnato un codice di richiamo unico—un comando verbale inalterabile che resetta la tua personalità e i tuoi ricordi. Quando senti pronunciare il codice, diventi incapacitato finché l'Istituto non ti recupera e ripristina."
         }
+    },
+    "traitBuiltToDestroy": {
+        "en": "Built to Destroy",
+        "it": "Costruito per Distruggere",
+        "_benefit": {
+            "en": "The damage you need to inflict to deal a critical hit is reduced by 1.",
+            "it": "Il danno necessario per infliggere un colpo critico è ridotto di 1."
+        },
+        "_penalty": {
+            "en": "Your complication range when making an attack with any weapon is increased by 1.",
+            "it": "Il tuo intervallo di complicazione quando attacchi con qualsiasi arma aumenta di 1."
+        }
+    },
+    "traitClaustrophobia": {
+        "en": "Claustrophobia",
+        "it": "Claustrofobia",
+        "_benefit": {
+            "en": "While you are outside of a building, increase your S.P.E.C.I.A.L. attributes by 1.",
+            "it": "Quando sei all'esterno di un edificio, aumenta di 1 i tuoi attributi S.P.E.C.I.A.L."
+        },
+        "_penalty": {
+            "en": "While you are inside a building, decrease your S.P.E.C.I.A.L. attributes by 1.",
+            "it": "Quando sei all'interno di un edificio, diminuisci di 1 i tuoi attributi S.P.E.C.I.A.L."
+        }
+    },
+    "traitHoarder": {
+        "en": "Hoarder",
+        "it": "Accumulatore",
+        "_benefit": {
+            "en": "Increase your carrying capacity by 25 lbs.",
+            "it": "Aumenta la tua capacità di carico di 25 libbre."
+        },
+        "_penalty": {
+            "en": "While you are carrying less than 160 lbs., decrease your S.P.E.C.I.A.L. attributes by 1.",
+            "it": "Quando trasporti meno di 160 libbre, diminuisci di 1 i tuoi attributi S.P.E.C.I.A.L."
+        }
+    },
+    "traitHotBlooded": {
+        "en": "Hot Blooded",
+        "it": "Sangue Caldo",
+        "_benefit": {
+            "en": "While your HP is below half of its maximum value, rounding up, deal an additional 1 CD damage each time you deal damage.",
+            "it": "Quando i tuoi PS sono inferiori alla metà del loro valore massimo, arrotondando per eccesso, infliggi 1 CD di danno aggiuntivo ogni volta che infliggi danno."
+        },
+        "_penalty": {
+            "en": "While your HP is below half of its maximum value, rounding up, decrease your Perception and Agility attributes by 2.",
+            "it": "Quando i tuoi PS sono inferiori alla metà del loro valore massimo, arrotondando per eccesso, diminuisci di 2 i tuoi attributi Percezione e Agilità."
+        }
+    },
+    "traitJinxed": {
+        "en": "Jinxed",
+        "it": "Iettatore",
+        "_benefit": {
+            "en": "The complication range of characters making an attack against you, or within close range of you, is increased by 2.",
+            "it": "L'intervallo di complicazione dei personaggi che ti attaccano o si trovano a distanza ravvicinata da te aumenta di 2."
+        },
+        "_penalty": {
+            "en": "Your complication range is increased by 2.",
+            "it": "Il tuo intervallo di complicazione aumenta di 2."
+        }
+    },
+    "traitKamikaze": {
+        "en": "Kamikaze",
+        "it": "Kamikaze",
+        "_benefit": {
+            "en": "Your Initiative score is increased by 3.",
+            "it": "Il tuo punteggio di Iniziativa aumenta di 3."
+        },
+        "_penalty": {
+            "en": "Your Damage Resistance on each hit location is reduced by 1, to a minimum of 0, regardless of any armor worn or other effect.",
+            "it": "La tua Resistenza ai Danni in ogni punto d'impatto è ridotta di 1, fino a un minimo di 0, indipendentemente dall'armatura indossata o da altri effetti."
+        }
+    },
+    "traitLooseCannon": {
+        "en": "Loose Cannon",
+        "it": "Cannone Sfrenato",
+        "_benefit": {
+            "en": "Once per turn after making an attack with a Thrown weapon, you may spend 1 AP to make an additional attack action with another Thrown weapon.",
+            "it": "Una volta per turno, dopo aver effettuato un attacco con un'arma Lanciata, puoi spendere 1 PA per effettuare un'azione di attacco aggiuntiva con un'altra arma Lanciata."
+        },
+        "_penalty": {
+            "en": "When you make an attack with a Thrown weapon, degrade its range by one step.",
+            "it": "Quando effettui un attacco con un'arma Lanciata, riduci la sua gittata di un grado."
+        }
+    },
+    "traitWildWasteland": {
+        "en": "Wild Wasteland",
+        "it": "Terre Desolate Selvagge",
+        "_benefit": {
+            "en": "When you suffer a complication or generate a random encounter, you may spend a Luck point to add an unusual aspect to the event or complication.",
+            "it": "Quando subisci una complicazione o generi un incontro casuale, puoi spendere un punto Fortuna per aggiungere un elemento insolito all'evento o alla complicazione."
+        },
+        "_penalty": {
+            "en": "Whenever you would roll a CD to determine if a random encounter would be generated, roll 2 CD extra.",
+            "it": "Ogni volta che dovresti tirare CD per determinare se si genera un incontro casuale, tira 2 CD aggiuntivi."
+        }
     }
 }

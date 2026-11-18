@@ -8,7 +8,6 @@ export type TraitId = keyof typeof traitsJson;
 // Trait data from CSV
 export interface TraitData {
     ID: TraitId;
-    EFFECTS: string[];
     ORIGINS: OriginId[];
     FIXED: boolean;
 }

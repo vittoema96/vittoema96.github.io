@@ -1,11 +1,14 @@
 import { useCharacter } from '@/app/contexts/CharacterContext';
 import { useState } from 'react';
 import AppHeaderPopup from '@/app/AppHeaderPopup.tsx';
+import { useWeightUnit } from '@/hooks/useWeightUnit.ts';
+import { formatWeight } from '@/utils/weight.ts';
 
 function AppHeaderData() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const { character } = useCharacter();
+    const weightUnit = useWeightUnit();
 
     // Effective max HP is reduced by rads
     const effectiveMaxHp = character.maxHp - character.rads;
@@ -27,8 +30,8 @@ function AppHeaderData() {
                     useBorder />
                 <HeaderInfoRow
                     icon="weight"
-                    value={character.currentWeight}
-                    valueTot={character.maxWeight}
+                    value={formatWeight(character.currentWeight, weightUnit)}
+                    valueTot={formatWeight(character.maxWeight, weightUnit)}
                     valueDanger={character.currentWeight > character.maxWeight}
                 />
             </div>

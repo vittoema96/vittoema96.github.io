@@ -127,3 +127,4 @@ dev-dist/sw.js
 AGENTS.md
 **/AGENTS.md
 .github/copilot-instructions.md
+data/test_characters/

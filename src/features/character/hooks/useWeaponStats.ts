@@ -22,7 +22,7 @@ export function useWeaponStats(characterItem: CharacterItem, isSneakAttack?: boo
     const { character } = useCharacter();
 
     return useMemo(() => {
-        const itemData = getModifiedItemData(characterItem, character.perks);
+        const itemData = getModifiedItemData(characterItem, character.perks, character.items);
 
         if (!isType(itemData, 'weapon')) {
             return null;

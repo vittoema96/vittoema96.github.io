@@ -33,6 +33,16 @@ export const REGIONS = {
 export type MapRegion = keyof typeof REGIONS;
 export const DEFAULT_REGION: MapRegion = 'mojave';
 
+// ─── Weight Unit ─────────────────────────────────────────────────────────────
+
+export const WEIGHT_UNITS = {
+    kg: 'kg',
+    lb: 'lb',
+} as const;
+
+export type WeightUnit = keyof typeof WEIGHT_UNITS;
+export const DEFAULT_WEIGHT_UNIT: WeightUnit = 'kg';
+
 // ─── Display Effect ───────────────────────────────────────────────────────────
 
 export const DISPLAY_EFFECTS = ['on', 'noFlicker', 'off'] as const;
@@ -45,6 +55,7 @@ type UISettings = {
     THEME?: Theme;
     LANGUAGE?: Language;
     REGION?: MapRegion;
+    WEIGHT_UNIT?: WeightUnit;
 };
 
 const SETTINGS_KEY = 'PB3K_settings';
@@ -193,6 +204,22 @@ export class UISettingsManager {
     static setRegion(region: MapRegion): MapRegion {
         saveSettings({ ...loadSettings(), REGION: region });
         return region;
+    }
+
+    // ── Weight Unit ───────────────────────────────────────────────────────────
+
+    static isWeightUnit(value: string | null | undefined): value is WeightUnit {
+        return !!value && value in WEIGHT_UNITS;
+    }
+
+    static getCurrentWeightUnit(): WeightUnit {
+        const saved = loadSettings().WEIGHT_UNIT;
+        return UISettingsManager.isWeightUnit(saved) ? saved : DEFAULT_WEIGHT_UNIT;
+    }
+
+    static setWeightUnit(unit: WeightUnit): WeightUnit {
+        saveSettings({ ...loadSettings(), WEIGHT_UNIT: unit });
+        return unit;
     }
 
     // ── Display Effect ─────────────────────────────────────────────────────────

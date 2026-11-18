@@ -120,7 +120,11 @@ function formatEffect(effectStr: string, t: (key: string) => string): string {
     const signed = (v: string) =>
         Number.parseInt(v).toLocaleString(undefined, { signDisplay: 'exceptZero' });
 
-    if (effectType.startsWith('effect') || effectType.startsWith('quality')) {
+    if (
+        effectType.startsWith('effect') ||
+        effectType.startsWith('quality') ||
+        effectType.startsWith('tag')
+    ) {
         if (effectType.endsWith('Add')) {
             return `${t('adds')} ${valueParts.map(val => t(val)).join(' ')}`;
         } else if (effectType.endsWith('Remove')) {

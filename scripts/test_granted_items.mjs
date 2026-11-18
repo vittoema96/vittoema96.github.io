@@ -1267,6 +1267,19 @@ test('Virtual attacks use modified handedness, remain nonpersistent and add no p
     assert.deepEqual(updated.items, raw.items);
 });
 
+test('Basher only makes one-handed gun bash vicious when a pistol is in inventory', () => {
+    const gunBash = item('weaponWeaponStockOneHanded');
+    const withoutPistol = inventory.getModifiedItemData(gunBash, ['perkBasher'], [
+        item('weaponCombatKnife'),
+    ]);
+    const withPistol = inventory.getModifiedItemData(gunBash, ['perkBasher'], [
+        item('weaponHandmadePistol'),
+    ]);
+
+    assert.equal(withoutPistol.EFFECTS.includes('effectVicious'), false);
+    assert.equal(withPistol.EFFECTS.includes('effectVicious'), true);
+});
+
 test('Bayonets and shredders are projected from active weapons only', () => {
     const raw = character({
         origin: 'survivor',
@@ -1292,7 +1305,7 @@ test('Bayonets and shredders are projected from active weapons only', () => {
     );
 });
 
-test('Damage bonuses use prepared qualities while preserving instance and sneak checks', () => {
+test('Damage bonuses use prepared qualities and sneak checks', () => {
     const knife = item('weaponCombatKnife');
     const gladiator = calculate(
         character({ origin: 'survivor', perks: ['perkGladiator', 'perkGladiator'] }),
@@ -1329,7 +1342,7 @@ test('Damage bonuses use prepared qualities while preserving instance and sneak 
     const prepared = inventory.getModifiedItemData(suppressed, sandman.perks);
     assert.equal(feats.getDamageRatingBonus(sandman, suppressed, prepared, true), 2);
     assert.equal(feats.getDamageRatingBonus(sandman, suppressed, prepared, false), 0);
-    assert.equal(feats.getDamageRatingBonus(sandman, item(suppressed.id), prepared, true), 0);
+    assert.equal(feats.getDamageRatingBonus(sandman, item(suppressed.id), prepared, true), 2);
 
     const grunt = calculate(character({ origin: 'survivor', traits: ['traitGrunt'] }));
     assert.equal(feats.getDamageRatingBonus(grunt, knife, knifeData), 1);

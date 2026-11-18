@@ -262,9 +262,13 @@ export function getItemWeightMultiplier(
     );
 }
 
-export function getWeaponItemEffects(itemData: WeaponItem, perks: PerkId[]): string[] {
+export function getWeaponItemEffects(
+    itemData: WeaponItem,
+    perks: PerkId[],
+    inventoryItems: CharacterItem[] = [],
+): string[] {
     return collectActiveFeatValues({ perks, traits: [] }, feat =>
-        feat.getWeaponItemEffects?.(itemData, perks),
+        feat.getWeaponItemEffects?.(itemData, perks, inventoryItems),
     );
 }
 

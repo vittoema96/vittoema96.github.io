@@ -13,6 +13,8 @@ import { isType, isUnacquirable } from '@/features/item/utils.ts';
 import { allItems, legendaryEffects, mod } from '@/data';
 import { useItemManagement } from '@/app/contexts/useItemManagement.ts';
 import { getOriginById } from '@/features/character/origins/registry.ts';
+import { useWeightUnit } from '@/hooks/useWeightUnit.ts';
+import { convertWeight, formatWeight } from '@/utils/weight.ts';
 
 /**
  * Popup for modifying weapons and armor with mods
@@ -43,6 +45,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
     const { t } = useTranslation()
     const { character, updateCharacter } = useCharacter()
     const { editItem } = useItemManagement()
+    const weightUnit = useWeightUnit();
     const itemData = getModifiedItemData(characterItem, character.perks)
 
     const { showTooltip } = useTooltip()
@@ -295,11 +298,15 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                                 <div className="mod-stat">
                                     <span className="mod-stat-label">{t('weight')}</span>
                                     <span className="mod-stat-value">
-                                    {itemData.WEIGHT}kg
+                                    {formatWeight(Number(itemData.WEIGHT), weightUnit)}
                                         {previewData.WEIGHT !== itemData.WEIGHT && (
                                             <span className="mod-stat-change">
                                             {previewData.WEIGHT > itemData.WEIGHT ? '+' : ''}
-                                                {((Number(previewData.WEIGHT) || 0) - (Number(itemData.WEIGHT) || 0)).toFixed(1)}
+                                                {convertWeight(
+                                                    (Number(previewData.WEIGHT) || 0) -
+                                                        (Number(itemData.WEIGHT) || 0),
+                                                    weightUnit,
+                                                ).toFixed(1)}
                                         </span>
                                         )}
                                 </span>
@@ -362,11 +369,15 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                             <div className="mod-stat">
                                 <span className="mod-stat-label">{t('weight')}</span>
                                 <span className="mod-stat-value">
-                                    {itemData.WEIGHT}kg
+                                    {formatWeight(Number(itemData.WEIGHT), weightUnit)}
                                     {previewData.WEIGHT !== itemData.WEIGHT && (
                                         <span className="mod-stat-change">
                                             {previewData.WEIGHT > itemData.WEIGHT ? '+' : ''}
-                                            {((Number(previewData.WEIGHT) || 0) - (Number(itemData.WEIGHT) || 0)).toFixed(1)}
+                                            {convertWeight(
+                                                (Number(previewData.WEIGHT) || 0) -
+                                                    (Number(itemData.WEIGHT) || 0),
+                                                weightUnit,
+                                            ).toFixed(1)}
                                         </span>
                                     )}
                                 </span>

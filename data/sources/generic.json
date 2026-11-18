@@ -1710,5 +1710,9 @@
     "weight": {
         "en": "Weight",
         "it": "Peso"
+    },
+    "weightUnit": {
+        "en": "Weight unit",
+        "it": "Unità di peso"
     }
 }

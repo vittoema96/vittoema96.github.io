@@ -2,6 +2,8 @@ import type { PerkImplementation } from '@/features/character/feats/types.ts';
 
 export const perkMeltdown: PerkImplementation = {
     id: 'perkMeltdown',
+    // TODO: Resolve the kill-triggered energy explosion, Combat Dice roll, and
+    //       Close-range creature damage once target context and area effects exist.
     getRollActions: () => [{
         id: 'perkMeltdown',
         isApplicable: (_, item) => item.CATEGORY === 'energyWeapons',
