@@ -1,6 +1,6 @@
 import { getModifiedItemData } from '../inventory/equipment.ts';
 import { isType } from '@/features/item/utils.ts';
-import { RawCharacter } from '@/types';
+import { RawCharacter, Encumbrance } from '@/types';
 import { traits as traitData } from '@/data';
 import type { Origin } from '@/features/character/origins/types';
 
@@ -11,6 +11,30 @@ import {
     getItemWeightMultiplier,
     getMaxWeightOverride,
 } from '@/features/character/feats/rules';
+
+export function calculateEncumbrance(currentWeight: number, maxWeight: number): Encumbrance | null {
+    if (currentWeight <= maxWeight) {
+        return null;
+    }
+
+    if (maxWeight > 0 && currentWeight >= maxWeight * 2) {
+        return {
+            difficultyPenalty: 0,
+            initiativePenalty: 0,
+            cannotMove: true,
+            strengthAgilityTestsFail: true,
+        };
+    }
+
+    const excessWeight = currentWeight - maxWeight;
+    const penalty = 1 + Math.floor(excessWeight / 25);
+    return {
+        difficultyPenalty: penalty,
+        initiativePenalty: penalty,
+        cannotMove: false,
+        strengthAgilityTestsFail: false,
+    };
+}
 
 export function calculateMaxWeight(
     raw: RawCharacter,

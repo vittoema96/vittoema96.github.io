@@ -11,7 +11,11 @@ import {
     calculateSpecialties,
     calculateSpecialtyPoints,
 } from './specialties.ts';
-import { calculateCurrentWeight, calculateMaxWeight } from './weight.ts';
+import {
+    calculateCurrentWeight,
+    calculateEncumbrance,
+    calculateMaxWeight,
+} from './weight.ts';
 import { calculateDamageResistances } from './damageResistance.ts';
 import { calculateMaxHp } from './hp.ts';
 import { calculateMaxLuck } from './luck.ts';
@@ -55,8 +59,6 @@ export function calculateCharacter(raw: RawCharacter): Character {
 
     const currentLuck = Math.min(raw.currentLuck ?? maxLuck, maxLuck);
     const defense = special.agility < 9 ? 1 : 2;
-    const initiative = special.agility + special.perception;
-
     const meleeDamage = calculateMeleeDamage(special, traits, perks, origin);
 
     const availableCompanions = getAvailableCompanions(perks, traits, origin);
@@ -79,6 +81,10 @@ export function calculateCharacter(raw: RawCharacter): Character {
     const activeCharacter = { ...raw, items };
     const maxWeight = calculateMaxWeight(activeCharacter, origin, perks, traits);
     const currentWeight = calculateCurrentWeight(activeCharacter, origin, perks, traits);
+    const encumbrance = calculateEncumbrance(currentWeight, maxWeight);
+    const initiative = encumbrance?.cannotMove
+        ? 0
+        : special.agility + special.perception - (encumbrance?.initiativePenalty ?? 0);
     const locationsDR = calculateDamageResistances(special, items, origin, perks, traits);
 
     return {
@@ -109,6 +115,7 @@ export function calculateCharacter(raw: RawCharacter): Character {
         poisonResistance: getPoisonResistance(level, perks, traits, origin),
         maxWeight,
         currentWeight,
+        encumbrance,
 
         special,
         specialPoints,

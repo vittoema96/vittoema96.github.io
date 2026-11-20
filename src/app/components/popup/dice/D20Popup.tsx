@@ -164,6 +164,11 @@ function D20Popup({
     );
     // 'luck' is itself a SpecialType, so the union stays SpecialType | CompanionSpecialType
     const activeSpecialId: SpecialType | CompanionSpecialType = isUsingLuck ? 'luck' : selectedSpecial;
+    const encumbranceTest =
+        !roller &&
+        (activeSpecialId === 'strength' || activeSpecialId === 'agility')
+            ? character.encumbrance
+            : null;
 
     // Narrow to the correct record type via type guards — no 'as' required
     let specialValue: number;
@@ -260,6 +265,7 @@ function D20Popup({
     // Success calculation
     const getSuccesses = () => {
         if (!hasRolled) { return '?'; }
+        if (encumbranceTest?.strengthAgilityTestsFail) { return 0; }
         let successes = 0;
         diceValues.forEach(value => {
             const nVal = Number(value);
@@ -429,6 +435,15 @@ function D20Popup({
                 <span className="h5">
                     {skillValue} (Skill) + {specialValue} ({t(activeSpecialId)})
                 </span>
+                {encumbranceTest && (
+                    <span className="h5 text-warning">
+                        {encumbranceTest.strengthAgilityTestsFail
+                            ? t('encumbranceTestFailure')
+                            : t('encumbranceTestPenalty', {
+                                  difficulty: encumbranceTest.difficultyPenalty,
+                              })}
+                    </span>
+                )}
                 <span className="h5">
                     Critical Hit: Roll {criticalValue > 1 ? `≤` : `=`} {criticalValue}
                 </span>

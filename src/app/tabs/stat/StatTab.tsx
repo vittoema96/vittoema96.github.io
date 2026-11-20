@@ -118,7 +118,17 @@ function StatTab() {
                 </div>
                 <div className="derived-stat">
                     <span>{t('initiative')}</span>
-                    <span>{character.initiative}</span>
+                    <span
+                        className={
+                            character.encumbrance?.cannotMove
+                                ? 'text-failure'
+                                : character.encumbrance
+                                  ? 'text-warning'
+                                  : ''
+                        }
+                    >
+                        {character.initiative}
+                    </span>
                 </div>
                 <div className="derived-stat">
                     <span>{t('melee-damage')}</span>

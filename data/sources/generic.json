@@ -703,6 +703,30 @@
         "en": "Initiative",
         "it": "Iniziativa"
     },
+    "encumbrance": {
+        "en": "Overencumbered",
+        "it": "Sovraccarico"
+    },
+    "encumbranceThreshold": {
+        "en": "Overencumbered (>{{weight}}{{unit}})",
+        "it": "Sovraccarico (>{{weight}}{{unit}})"
+    },
+    "encumbranceDescription": {
+        "en": "All Strength or Agility-based tests have their difficulty increased by 1, Sprint actions cannot be performed, and Initiative is reduced by 1. If the character carries 25 kg or more above their carry weight, the difficulty of these tests increases by an additional 1 and Initiative is reduced by an additional 1. For every additional 25 kg above the character's carry weight, these penalties increase by 1.",
+        "it": "Tutte le prove basate su Forza o Agilità aumentano la difficoltà di 1, non è possibile effettuare azioni di Scatto e l'Iniziativa è ridotta di 1. Se si trasportano 25 kg o più rispetto al peso trasportabile, la difficoltà di queste prove aumenta di un ulteriore 1 e l'Iniziativa è ridotta di un altro 1. Per ogni ulteriore 25 kg rispetto al peso trasportabile, le penalità aumentano di 1."
+    },
+    "encumbranceDoubleDescription": {
+        "en": "The character cannot move, all Strength and Agility-based tests automatically fail, and Initiative is reduced to 0.",
+        "it": "Il personaggio non può muoversi, tutte le prove basate su Forza e Agilità falliscono automaticamente e l’Iniziativa è ridotta a 0."
+    },
+    "encumbranceTestPenalty": {
+        "en": "Encumbrance: Difficulty +{{difficulty}}",
+        "it": "Sovraccarico: Difficoltà +{{difficulty}}"
+    },
+    "encumbranceTestFailure": {
+        "en": "Encumbrance: AUTO-FAIL",
+        "it": "Sovraccarico: AUTO-FALLIMENTO"
+    },
     "intelligence": {
         "en": "Intelligence",
         "it": "Intelligenza"

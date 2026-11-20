@@ -122,6 +122,13 @@ export interface RawCharacter {
     companions: Partial<Record<CompanionId, CompanionData>>; // Optional companion data
 }
 
+export interface Encumbrance {
+    difficultyPenalty: number;
+    initiativePenalty: number;
+    cannotMove: boolean;
+    strengthAgilityTestsFail: boolean;
+}
+
 export interface Character
     extends Omit<RawCharacter, 'origin' | 'activeCompanionId' | 'saveVersion'> {
     origin: Origin;
@@ -140,6 +147,7 @@ export interface Character
 
     maxWeight: number;
     currentWeight: number;
+    encumbrance: Encumbrance | null;
 
     defense: number;
     initiative: number;

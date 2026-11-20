@@ -4,6 +4,8 @@ import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import { useMemo } from 'react';
 import { CharacterItem } from '@/types';
 import { getModifiedItemData } from '@/features/character/inventory/equipment.ts';
+import { formatWeight } from '@/utils/weight.ts';
+import { useWeightUnit } from '@/hooks/useWeightUnit.ts';
 
 const GLOBAL_EFFECTS = new Set([
     'effectShadowed',
@@ -39,6 +41,11 @@ function getGlobalEffects(item: CharacterItem): string[] {
 export default function ActiveEffectsDisplay() {
     const { t } = useTranslation();
     const { character } = useCharacter();
+    const weightUnit = useWeightUnit();
+    const encumbrance = character.encumbrance;
+    const excessWeight = character.currentWeight - character.maxWeight;
+    const encumbranceThreshold =
+        excessWeight >= 25 ? formatWeight(Math.floor(excessWeight / 25) * 25, weightUnit) : null;
 
     const countedEffects = useMemo(() => {
         const effects = new Map<string, number>();
@@ -53,13 +60,36 @@ export default function ActiveEffectsDisplay() {
         return effects;
     }, [character.items]);
 
-    if (countedEffects.size === 0) {
+    if (countedEffects.size === 0 && !encumbrance) {
         return null;
     }
 
     return (
         <div className="equipped-armor-effects section-label">
             <div className="equipped-armor-effects__list">
+                {encumbrance && (
+                    <Tag
+                        tooltipId={
+                            encumbrance.cannotMove
+                                ? 'encumbranceDoubleDescription'
+                                : 'encumbranceDescription'
+                        }
+                        color={
+                            encumbrance.cannotMove
+                                ? 'var(--failure-color)'
+                                : 'var(--warning-color)'
+                        }
+                    >
+                        {encumbrance.cannotMove
+                            ? t('encumbrance')
+                            : encumbranceThreshold
+                              ? t('encumbranceThreshold', {
+                                    weight: encumbranceThreshold,
+                                    unit: weightUnit,
+                                })
+                              : t('encumbrance')}
+                    </Tag>
+                )}
                 {Array.from(countedEffects.entries()).map(([effect, count]) => {
                     const [effectId = effect, ...valueParts] = effect.split(':');
                     const effectValue = valueParts.map(value => t(value)).join(': ');
