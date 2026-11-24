@@ -50,7 +50,9 @@ export function calculateCharacter(raw: RawCharacter): Character {
     const specialPoints = calculateSpecialPoints(special, origin, perks, traits);
     const specialtyPoints = calculateSpecialtyPoints(specialties, origin, perks, traits);
 
-    const maxHp = calculateMaxHp(special, level, perks, traits, origin);
+    const baseMaxHp = calculateMaxHp(special, level, perks, traits, origin);
+    const maxHpBonus = raw.maxHpBonus ?? 0;
+    const maxHp = Math.max(0, baseMaxHp + maxHpBonus); // TODO 0 as min is correct? or should it be 1? (or even negative values allowed?)
     const rads = Math.min(raw.rads, maxHp);
     const effectiveMaxHp = maxHp - rads;
     const currentHp = Math.min(raw.currentHp ?? effectiveMaxHp, effectiveMaxHp);
@@ -111,6 +113,7 @@ export function calculateCharacter(raw: RawCharacter): Character {
         // Calculated values
         origin,
         maxHp,
+        maxHpBonus,
         maxLuck,
         poisonResistance: getPoisonResistance(level, perks, traits, origin),
         maxWeight,

@@ -49,13 +49,8 @@ export function calculateMaxWeight(
         .map(trait => trait.ID);
     const overrideTraits = origin.allowsPerkAndTraitWeightModifiers ? traits : fixedTraits;
     const baseWeight =
-        getMaxWeightOverride(
-            raw.special,
-            weightPerks,
-            overrideTraits,
-            origin,
-        ) ??
-        origin.getMaxWeightBase(raw.special.strength);
+        getMaxWeightOverride(raw.special, weightPerks, overrideTraits, origin) ??
+        origin.getMaxWeightBase(raw.special.strength); // TODO raw.special? or character.special?
     let maxWeight = applyMaxWeightModifiers(
         baseWeight,
         raw.special,
@@ -67,6 +62,18 @@ export function calculateMaxWeight(
     // Add carry weight bonuses from equipped items with mods
     raw.items.forEach(item => {
         if (!item.equipped) {
+            switch (
+                item.id // TODO not the best way to handle this (too much hardcoding)
+            ) {
+                case 'miscBackpackSmall':
+                    maxWeight += 2.5 * raw.special.strength;
+                    break; // TODO raw.special? or character.special?
+                case 'miscBackpackLarge':
+                    maxWeight += 5 * raw.special.strength;
+                    break; // TODO raw.special? or character.special?
+                default:
+                    break;
+            }
             return;
         }
         const itemData = getModifiedItemData(item, perks);

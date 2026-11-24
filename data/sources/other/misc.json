@@ -7,7 +7,7 @@
       "it": "Disponibili in più taglie, gli zaini sono degli oggetti di inestimabile valore per portarsi appresso più cose. Un vero e proprio zaino permette di farlo più facilmente e in maniera più efficiente."
     },
     "_effect": {
-      "en": "The wearer increases maximum carry weight by 5 x STR",
+      "en": "The wearer increases maximum carry weight by 10 x STR",
       "it": "Chi lo indossa aumenta il massimo peso Trasportabile di 5 x FOR"
     }
   },
@@ -19,7 +19,7 @@
       "it": "Disponibili in più taglie, gli zaini sono degli oggetti di inestimabile valore per portarsi appresso più cose. Un vero e proprio zaino permette di farlo più facilmente e in maniera più efficiente."
     },
     "_effect": {
-      "en": "The wearer increases maximum carry weight by 2.5 x STR",
+      "en": "The wearer increases maximum carry weight by 5 x STR",
       "it": "Chi lo indossa aumenta il massimo peso Trasportabile di 2,5 x FOR"
     }
   },

@@ -289,6 +289,7 @@ export const RawCharacterSchema = z.preprocess(
         currentHp: z.number().optional(),
         currentLuck: z.number().optional(),
         rads: z.number().default(0),
+        maxHpBonus: z.number().int().default(0),
 
         items: ItemsSchema.default([]),
         customItems: z.array(CustomItemSchema).default([]),

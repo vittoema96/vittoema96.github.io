@@ -113,6 +113,7 @@ export interface RawCharacter {
     currentLuck?: number | undefined;
     currentHp?: number | undefined;
     rads: number;
+    maxHpBonus: number;
 
     items: CharacterItem[];
     customItems: CustomItem[];

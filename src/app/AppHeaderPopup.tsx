@@ -5,65 +5,163 @@ import { DEFAULT_EXCHANGE_RATES } from '@/types';
 import BasePopup from '@/app/components/popup/common/BasePopup.tsx';
 import { usePopup } from '@/app/contexts/PopupContext.tsx';
 
+type FormFields = {
+    currentHp: string;
+    rads: string;
+    maxHpBonus: string;
+    currentLuck: string;
+    caps: string;
+    ncrDollars: string;
+    legionDenarius: string;
+    prewarMoney: string;
+    rateNcr: string;
+    rateLegion: string;
+    ratePrewar: string;
+};
+
+const SIGNED_INT_REGEX = /^[+-]?\d+$/;
+const POSITIVE_RATE_REGEX = /^\d+(\.\d+)?$/;
+
+function resolveNumber(raw: string, baseVal: number, minVal = 0, maxVal = Infinity): number {
+    let value: number;
+    if (['', '+', '-', '.'].includes(raw)) {
+        value = baseVal;
+    } else if (/^\d/.test(raw)) {
+        value = Number(raw);
+    } else {
+        // Starts with '+' or '-' -> relative delta from baseVal
+        value = baseVal + Number(raw);
+    }
+    return Math.max(minVal, Math.min(value, maxVal));
+}
+
+interface DeltaInputProps {
+    value: string;
+    baseValue: number;
+    min?: number;
+    max?: number;
+    className?: string;
+    smaller?: boolean;
+    title?: string;
+    onChangeValue: (val: string) => void;
+}
+
+function DeltaNumberInput({
+    value,
+    baseValue,
+    min = 0,
+    max = Infinity,
+    className = 'header-info-popup__stat-input',
+    smaller = false,
+    title,
+    onChangeValue,
+}: Readonly<DeltaInputProps>) {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const normalized = e.target.value.replace(/^ /, '+');
+        // Allow leading '+' or '-' followed by digits only
+        const filtered = normalized.replace(/(?!^[+-])\D/g, '');
+        onChangeValue(filtered);
+    };
+
+    const handleFocus = () => {
+        const resolved = resolveNumber(value, baseValue, min, max);
+        const delta = resolved - baseValue;
+        onChangeValue(delta !== 0 ? `${delta > 0 ? '+' : ''}${delta}` : `${baseValue}`);
+    };
+
+    const handleBlur = () => {
+        const resolved = resolveNumber(value, baseValue, min, max);
+        onChangeValue(`${resolved}`);
+    };
+
+    return (
+        <input
+            {...(smaller ? { style: { maxWidth: '2.5rem', minWidth: '2rem' } } : {})}
+            type="text"
+            inputMode="numeric"
+            className={className}
+            value={value}
+            title={title}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+        />
+    );
+}
+
 /**
- * StatAdjustmentPopup - Allows editing HP, Luck, and currencies with exchange rates
+ * StatAdjustmentPopup - Allows editing HP, Max HP Bonus, Rads, Luck, and currencies
  */
 function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
     const { t } = useTranslation();
     const { character, updateCharacter } = useCharacter();
     const { showToast } = usePopup();
 
-    const [currentHpInput, setCurrentHpInput] = useState(`${character.currentHp}`);
-    const [radsInput, setRadsInput] = useState(`${character.rads}`);
-    const [currentLuckInput, setCurrentLuckInput] = useState(`${character.currentLuck}`);
+    const baseMaxHpBonus = character.maxHpBonus ?? 0;
 
-    const [capsInput, setCapsInput] = useState(`${character.caps}`);
-    const [ncrDollarsInput, setNcrDollarsInput] = useState(`${character.ncrDollars}`);
-    const [legionDenariusInput, setLegionDenariusInput] = useState(`${character.legionDenarius}`);
-    const [prewarMoneyInput, setPrewarMoneyInput] = useState(`${character.prewarMoney}`);
+    const [form, setForm] = useState<FormFields>(() => ({
+        currentHp: `${character.currentHp}`,
+        rads: `${character.rads}`,
+        maxHpBonus: `${baseMaxHpBonus}`,
+        currentLuck: `${character.currentLuck}`,
+        caps: `${character.caps}`,
+        ncrDollars: `${character.ncrDollars}`,
+        legionDenarius: `${character.legionDenarius}`,
+        prewarMoney: `${character.prewarMoney}`,
+        rateNcr: `${character.exchangeRates.ncrDollars}`,
+        rateLegion: `${character.exchangeRates.legionDenarius}`,
+        ratePrewar: `${character.exchangeRates.prewarMoney}`,
+    }));
 
-    // Exchange rates state (user-configurable)
-    const [rateNcrInput, setRateNcrInput] = useState(`${character.exchangeRates.ncrDollars}`);
-    const [rateLegionInput, setRateLegionInput] = useState(`${character.exchangeRates.legionDenarius}`);
-    const [ratePrewarInput, setRatePrewarInput] = useState(`${character.exchangeRates.prewarMoney}`);
+    const setField = (key: keyof FormFields) => (val: string) =>
+        setForm(prev => ({ ...prev, [key]: val }));
 
-    const resolve = (val: string, currentVal: number, maxVal: number = Infinity) => {
-        let value;
-        if(['', '+', '-', '.'].includes(val)){
-            value = 0
-        } else if (new RegExp(/^\d/).exec(val)) {
-            value = Number(val)
-        } else {
-            value = currentVal + Number(val)
-        }
-        return Math.max(0, Math.min(value, maxVal))
-    }
+    // Minimum allowed bonus prevents total un-irradiated Max HP from dropping below 1
+    const minMaxHpBonus = -(character.maxHp - 1);
 
-    const resolvedValues = useMemo(
-        () => {
-            const rads = resolve(radsInput, character.rads, character.maxHp)
-            const maxHp = character.maxHp-rads
-            return {
-                hp: resolve(currentHpInput, character.currentHp, maxHp),
-                maxHp,
-                rads,
-                luck: resolve(currentLuckInput, character.currentLuck, character.maxLuck),
+    const resolvedValues = useMemo(() => {
+        const maxHpBonus = resolveNumber(form.maxHpBonus, baseMaxHpBonus, minMaxHpBonus);
+        const grossMaxHp = character.maxHp + maxHpBonus;
+        const rads = resolveNumber(form.rads, character.rads, 0, Math.max(0, grossMaxHp - 1));
+        const maxHp = Math.max(1, grossMaxHp - rads);
 
-                caps: resolve(capsInput, character.caps),
-                ncrDollars: resolve(ncrDollarsInput, character.ncrDollars),
-                legionDenarius: resolve(legionDenariusInput, character.legionDenarius),
-                prewarMoney: resolve(prewarMoneyInput, character.prewarMoney),
+        return {
+            hp: resolveNumber(form.currentHp, character.currentHp, 0, maxHp),
+            maxHp,
+            maxHpBonus,
+            rads,
+            luck: resolveNumber(form.currentLuck, character.currentLuck, 0, character.maxLuck),
 
-                rateNcr: resolve(rateNcrInput, character.exchangeRates.ncrDollars),
-                rateLegion: resolve(rateLegionInput, character.exchangeRates.legionDenarius),
-                ratePrewar: resolve(ratePrewarInput, character.exchangeRates.prewarMoney),
-            }
-        },
-        [currentHpInput, character.currentHp, character.rads, character.maxHp, character.currentLuck, character.maxLuck, character.caps, character.ncrDollars, character.legionDenarius, character.prewarMoney, character.exchangeRates.ncrDollars, character.exchangeRates.legionDenarius, character.exchangeRates.prewarMoney, radsInput, currentLuckInput, capsInput, ncrDollarsInput, legionDenariusInput, prewarMoneyInput, rateNcrInput, rateLegionInput, ratePrewarInput]
-    );
+            caps: resolveNumber(form.caps, character.caps),
+            ncrDollars: resolveNumber(form.ncrDollars, character.ncrDollars),
+            legionDenarius: resolveNumber(form.legionDenarius, character.legionDenarius),
+            prewarMoney: resolveNumber(form.prewarMoney, character.prewarMoney),
 
+            rateNcr: resolveNumber(form.rateNcr, character.exchangeRates.ncrDollars, 0.1),
+            rateLegion: resolveNumber(form.rateLegion, character.exchangeRates.legionDenarius, 0.1),
+            ratePrewar: resolveNumber(form.ratePrewar, character.exchangeRates.prewarMoney, 0.1),
+        };
+    }, [form, character, baseMaxHpBonus, minMaxHpBonus]);
 
-    // Calculate total wealth in caps equivalent
+    const isFormValid = useMemo(() => {
+        const intFieldsValid = [
+            form.currentHp,
+            form.rads,
+            form.maxHpBonus,
+            form.currentLuck,
+            form.caps,
+            form.ncrDollars,
+            form.legionDenarius,
+            form.prewarMoney,
+        ].every(v => SIGNED_INT_REGEX.test(v));
+
+        const rateFieldsValid = [form.rateNcr, form.rateLegion, form.ratePrewar].every(
+            v => POSITIVE_RATE_REGEX.test(v) && Number(v) >= 0.1,
+        );
+
+        return intFieldsValid && rateFieldsValid;
+    }, [form]);
+
     const totalCapsEquivalent = useMemo(() => {
         const ncrRate = resolvedValues.rateNcr || DEFAULT_EXCHANGE_RATES.ncrDollars;
         const legRate = resolvedValues.rateLegion || DEFAULT_EXCHANGE_RATES.legionDenarius;
@@ -75,40 +173,27 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
             Math.floor(resolvedValues.legionDenarius / legRate) +
             Math.floor(resolvedValues.prewarMoney / preRate)
         );
-    }, [resolvedValues.caps, resolvedValues.legionDenarius, resolvedValues.ncrDollars, resolvedValues.prewarMoney, resolvedValues.rateLegion, resolvedValues.rateNcr, resolvedValues.ratePrewar]);
-
+    }, [resolvedValues]);
 
     const onConfirm = () => {
-        if (!isFormValid) {
-            return;
-        }
+        if (!isFormValid) { return; }
 
-        const nextCurrentHp = resolvedValues.hp!;
-        const nextRads = resolvedValues.rads!;
-        const nextCurrentLuck = resolvedValues.luck!;
-        const nextCaps = resolvedValues.caps!;
-        const nextNcrDollars = resolvedValues.ncrDollars!;
-        const nextLegionDenarius = resolvedValues.legionDenarius!;
-        const nextPrewarMoney = resolvedValues.prewarMoney!;
-        const nextRateNcr = resolvedValues.rateNcr!;
-        const nextRateLegion = resolvedValues.rateLegion!;
-        const nextRatePrewar = resolvedValues.ratePrewar!;
-
-        const hpRemoved = character.currentHp - nextCurrentHp;
+        const hpRemoved = character.currentHp - resolvedValues.hp;
 
         updateCharacter({
-            currentHp: nextCurrentHp,
-            rads: nextRads,
-            caps: nextCaps,
-            ncrDollars: nextNcrDollars,
-            legionDenarius: nextLegionDenarius,
-            prewarMoney: nextPrewarMoney,
+            currentHp: resolvedValues.hp,
+            rads: resolvedValues.rads,
+            maxHpBonus: resolvedValues.maxHpBonus,
+            currentLuck: resolvedValues.luck,
+            caps: resolvedValues.caps,
+            ncrDollars: resolvedValues.ncrDollars,
+            legionDenarius: resolvedValues.legionDenarius,
+            prewarMoney: resolvedValues.prewarMoney,
             exchangeRates: {
-                ncrDollars: nextRateNcr,
-                legionDenarius: nextRateLegion,
-                prewarMoney: nextRatePrewar,
+                ncrDollars: resolvedValues.rateNcr,
+                legionDenarius: resolvedValues.rateLegion,
+                prewarMoney: resolvedValues.ratePrewar,
             },
-            currentLuck: nextCurrentLuck,
         });
 
         if (hpRemoved >= 5) {
@@ -118,156 +203,79 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
         onClose();
     };
 
-    const isCompleteSignedInteger = (value: string) => /^[+-]?[\d.]+$/.test(value);
+    const handleRateChange = (key: 'rateNcr' | 'rateLegion' | 'ratePrewar', raw: string) => {
+        let filtered = raw.replace(/[^\d.]/g, '');
+        const parts = filtered.split('.');
+        if (parts.length >= 2) {
+            filtered = `${parts[0]}.${parts.slice(1).join('').slice(0, 1)}`;
+        }
+        setField(key)(filtered);
+    };
 
-    const isFormValid = useMemo(
-        () => {
-            return [
-                currentHpInput,
-                radsInput,
-                currentLuckInput,
-                capsInput,
-                ncrDollarsInput,
-                legionDenariusInput,
-                prewarMoneyInput,
-                rateNcrInput,
-                rateLegionInput,
-                ratePrewarInput,
-            ].every(isCompleteSignedInteger);
-        },
-        [currentHpInput, radsInput, currentLuckInput, capsInput, ncrDollarsInput, legionDenariusInput, prewarMoneyInput, rateNcrInput, rateLegionInput, ratePrewarInput]
-    )
+    const handleRateBlur = (key: 'rateNcr' | 'rateLegion' | 'ratePrewar', baseRate: number) => {
+        const resolved = resolveNumber(form[key], baseRate, 0.1);
+        setField(key)(`${resolved}`);
+    };
 
-
-    // Currency data for table rendering
     const currencies = [
         {
             id: 'caps',
-            icon: 'caps',
+            field: 'caps' as const,
             currentValue: character.caps,
-            value: capsInput,
-            setter: setCapsInput,
+            rateField: null,
             currentRate: 1,
-            rate: null,
-            rateSetter: null },
+        },
         {
             id: 'ncrDollars',
-            icon: 'ncrDollars',
+            field: 'ncrDollars' as const,
             currentValue: character.ncrDollars,
-            value: ncrDollarsInput,
-            setter: setNcrDollarsInput,
+            rateField: 'rateNcr' as const,
             currentRate: character.exchangeRates.ncrDollars,
-            rate: rateNcrInput,
-            rateSetter: setRateNcrInput,
         },
         {
             id: 'legionDenarius',
-            icon: 'legionDenarius',
+            field: 'legionDenarius' as const,
             currentValue: character.legionDenarius,
-            value: legionDenariusInput,
-            setter: setLegionDenariusInput,
+            rateField: 'rateLegion' as const,
             currentRate: character.exchangeRates.legionDenarius,
-            rate: rateLegionInput,
-            rateSetter: setRateLegionInput,
         },
         {
             id: 'prewarMoney',
-            icon: 'prewarMoney',
+            field: 'prewarMoney' as const,
             currentValue: character.prewarMoney,
-            value: prewarMoneyInput,
-            setter: setPrewarMoneyInput,
+            rateField: 'ratePrewar' as const,
             currentRate: character.exchangeRates.prewarMoney,
-            rate: ratePrewarInput,
-            rateSetter: setRatePrewarInput,
         },
     ];
 
-    const onChange =
-        (e: React.ChangeEvent<HTMLInputElement>, setter: (val: string) => void) => {
-            const raw = e.target.value;
-            const normalized = raw.replace(/^ /, '+');
-            const filtered = normalized.replace(/(?!^[+-])\D/g, '');
-            setter(filtered);
-        };
-
-    const onRateChange =
-        (e: React.ChangeEvent<HTMLInputElement>, setter: (val: string) => void) => {
-            const raw = e.target.value;
-            // Filter unwanted characters
-            let filtered = raw.replace(/[^\d.]/g, '');
-
-            // Ensure only the FIRST dot is kept, strip any subsequent dots
-            const parts = filtered.split('.');
-            if (parts.length >= 2) {
-                filtered = parts[0] + '.' + parts.slice(1).join('').slice(0, 1);
-            }
-            setter(filtered);
-        };
-
-    const onBlur =
-        (
-            e: React.FocusEvent<HTMLInputElement>,
-            setter: (val: string) => void,
-            currentVal: number,
-            options?: {maxVal?: number, minVal?: number}
-        ) => {
-            const minVal = options?.minVal ?? 0;
-            const maxVal = options?.maxVal ?? Infinity;
-            const raw = e.target.value;
-            const val = ['', '+', '-'].includes(raw) ? `${currentVal}` : raw
-
-            // Timeout so a click on "disabled" confirm doesn't go through
-            setTimeout(() => {
-                setter(`${Math.max(minVal, resolve(val, currentVal, maxVal))}`);
-            }, 50);
-        };
-
-    const onFocus =
-        (e: React.FocusEvent<HTMLInputElement>, setter: (val: string) => void, currentVal: number) => {
-            const newVal = Number(e.target.value);
-            const delta = newVal - currentVal;
-            if(delta){
-                setter(`${delta > 0 ? '+' : ''}${delta}`);
-            } else {
-                setter(`${currentVal}`);
-            }
-        };
-
-
     return (
         <BasePopup
-            title="edit"
+            title={t('edit')}
             onConfirm={onConfirm}
             onClose={onClose}
             confirmDisabled={!isFormValid}
         >
             <hr />
 
-            {/* HP, Rads & Luck Section */}
+            {/* HP, Max HP Bonus, Rads & Luck Section */}
             <table>
                 <tbody>
                     {/* HP Row */}
                     <tr>
                         <th scope="row">
-                            <div className={"row"}>
-                                <div
-                                    className="themed-svg icon-m"
-                                    data-icon="hp"
-                                />
+                            <div className="row">
+                                <div className="themed-svg icon-m" data-icon="hp" />
                                 HP
                             </div>
                         </th>
                         <td>
-                            <input
-                                type="text"
-                                inputMode="decimal"
-                                className="header-info-popup__stat-input"
-                                value={currentHpInput}
-                                onChange={e => onChange(e, setCurrentHpInput)}
-                                onBlur={e => onBlur(e, setCurrentHpInput, character.currentHp, {maxVal: resolvedValues.maxHp})}
-                                onFocus={e => onFocus(e, setCurrentHpInput, character.currentHp)}
-                                min="0"
+                            <DeltaNumberInput
+                                value={form.currentHp}
+                                baseValue={character.currentHp}
+                                min={0}
                                 max={resolvedValues.maxHp}
+                                smaller={true}
+                                onChangeValue={setField('currentHp')}
                             />
                             <span className="header-info-popup__stat-max">
                                 &nbsp;/ {resolvedValues.maxHp}
@@ -275,45 +283,53 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                         </td>
                         <td>
                             <i
+                                className="fas fa-heart-circle-plus header-info-popup__stat-input text-success"
+                                title={t('maxHpBonus')}
+                            />
+                            <DeltaNumberInput
+                                className="header-info-popup__stat-input border-success"
+                                value={form.maxHpBonus}
+                                baseValue={baseMaxHpBonus}
+                                min={minMaxHpBonus}
+                                smaller={true}
+                                title={t('maxHpBonus')}
+                                onChangeValue={setField('maxHpBonus')}
+                            />
+                        </td>
+                        <td>
+                            <i
                                 className="fas fa-radiation header-info-popup__stat-input text-warning"
                                 title={t('radiation')}
                             />
-                            <input
-                                type="text"
-                                inputMode="decimal"
+                            <DeltaNumberInput
                                 className="header-info-popup__stat-input border-warning"
-                                value={radsInput}
-                                onChange={e => onChange(e, setRadsInput)}
-                                onBlur={e => onBlur(e, setRadsInput, character.rads, {maxVal: character.maxHp})}
-                                onFocus={e => onFocus(e, setRadsInput, character.rads)}
-                                min="0"
-                                max={character.maxHp}
+                                value={form.rads}
+                                baseValue={character.rads}
+                                min={0}
+                                max={Math.max(0, character.maxHp + resolvedValues.maxHpBonus - 1)}
+                                smaller={true}
                                 title={t('radiation')}
+                                onChangeValue={setField('rads')}
                             />
                         </td>
                     </tr>
+
                     {/* Luck Row */}
                     <tr>
                         <th scope="row">
-                            <div className={"row"}>
-                                <div
-                                    className="themed-svg icon-m"
-                                    data-icon="luck"
-                                />
+                            <div className="row">
+                                <div className="themed-svg icon-m" data-icon="luck" />
                                 {t('luck')}
                             </div>
                         </th>
                         <td>
-                            <input
-                                type="text"
-                                inputMode="decimal"
-                                className="header-info-popup__stat-input"
-                                value={currentLuckInput}
-                                onChange={e => onChange(e, setCurrentLuckInput)}
-                                onBlur={e => onBlur(e, setCurrentLuckInput, character.currentLuck, {maxVal: character.maxLuck})}
-                                onFocus={e => onFocus(e, setCurrentLuckInput, character.currentLuck)}
-                                min="0"
+                            <DeltaNumberInput
+                                value={form.currentLuck}
+                                baseValue={character.currentLuck}
+                                min={0}
                                 max={character.maxLuck}
+                                smaller={true}
+                                onChangeValue={setField('currentLuck')}
                             />
                             <span className="header-info-popup__stat-max">
                                 &nbsp;/ {character.maxLuck}
@@ -338,80 +354,78 @@ function AppHeaderPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                         </tr>
                     </thead>
                     <tbody>
-                    {currencies.map(currency => (
-                        <tr key={currency.id}>
-                            <td>
-                                <div className="row">
-                                    <div
-                                        className="themed-svg icon-l"
-                                        data-icon={currency.icon}
+                        {currencies.map(currency => (
+                            <tr key={currency.id}>
+                                <td>
+                                    <div className="row">
+                                        <div
+                                            className="themed-svg icon-l"
+                                            data-icon={currency.id}
+                                        />
+                                        <span className="header-info-popup__currency-label">
+                                            {t(currency.id)}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <DeltaNumberInput
+                                        value={form[currency.field]}
+                                        baseValue={currency.currentValue}
+                                        min={0}
+                                        onChangeValue={setField(currency.field)}
                                     />
-                                    <span className="header-info-popup__currency-label">
-                                        {t(currency.id)}
-                                    </span>
-                                </div>
-                            </td>
-                            <td>
-                                <input
-                                    type="text"
-                                    inputMode="decimal"
-                                    className="header-info-popup__stat-input"
-                                    value={currency.value}
-                                    onChange={e => onChange(e, currency.setter)}
-                                    onBlur={e => onBlur(e, currency.setter, currency.currentValue)}
-                                    onFocus={e => onFocus(e, currency.setter, currency.currentValue)}
-
-                                    min="0"
-                                />
-                            </td>
-                            <td>
-                                <div className="header-info-popup__rate-cell">
-                                    {currency.rateSetter ? (
-                                        <>
-                                            <input
-                                                type="text"
-                                                inputMode="decimal"
-                                                className="header-info-popup__rate-input"
-                                                value={currency.rate}
-                                                style={{
-                                                    fontSize: '0.75rem',
-                                                    width: '2rem',
-                                                }}
-                                                onChange={e => onRateChange(e, currency.rateSetter)}
-                                                onBlur={e => onBlur(e, currency.rateSetter, currency.currentRate, {minVal: 0.1})}
-                                                min="0.1"
-                                                step="0.1"
-                                            />
-                                            <span className="header-info-popup__rate-fixed">
+                                </td>
+                                <td>
+                                    <div className="header-info-popup__rate-cell">
+                                        {currency.rateField ? (
+                                            <>
+                                                <input
+                                                    type="text"
+                                                    inputMode="decimal"
+                                                    className="header-info-popup__rate-input"
+                                                    value={form[currency.rateField]}
+                                                    style={{
+                                                        fontSize: '0.75rem',
+                                                        width: '2rem',
+                                                    }}
+                                                    onChange={e =>
+                                                        handleRateChange(
+                                                            currency.rateField,
+                                                            e.target.value,
+                                                        )
+                                                    }
+                                                    onBlur={() =>
+                                                        handleRateBlur(
+                                                            currency.rateField,
+                                                            currency.currentRate,
+                                                        )
+                                                    }
+                                                />
+                                                <span className="header-info-popup__rate-fixed">
                                                     &nbsp;: 1
                                                 </span>
-                                        </>
-                                    ) : (
-                                        <span className="header-info-popup__rate-fixed">
+                                            </>
+                                        ) : (
+                                            <span className="header-info-popup__rate-fixed">
                                                 1 : 1
                                             </span>
-                                    )}
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
+                                        )}
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
 
                 {/* Total Caps Equivalent */}
                 <div className="header-info-popup__total">
                     <span className="header-info-popup__total-label">{t('total')}:</span>
-                    <span className="header-info-popup__total-value">
-                        {totalCapsEquivalent}
-                    </span>
-                    <div
-                        className="themed-svg icon-s"
-                        data-icon="caps"
-                    />
+                    <span className="header-info-popup__total-value">{totalCapsEquivalent}</span>
+                    <div className="themed-svg icon-s" data-icon="caps" />
                 </div>
             </section>
         </BasePopup>
     );
 }
 
-export default AppHeaderPopup
+export default AppHeaderPopup;
