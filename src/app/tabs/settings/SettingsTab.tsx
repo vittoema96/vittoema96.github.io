@@ -17,6 +17,8 @@ import { useCharacter } from '@/app/contexts/CharacterContext';
 import { changeLanguage } from '@/locales/i18n.ts';
 import { sortByLocalizedLabel } from '@/utils/sorting.ts';
 import { useMapRegion } from '@/hooks/useMapRegion';
+import PartyPanel from '@/app/party/PartyPanel.tsx';
+import { announceLeaveFromSlot } from '@/features/party/groupLeaves.ts';
 import './SettingsTab.css';
 
 const useDisplayEffectsState = () => {
@@ -31,7 +33,11 @@ const useDisplayEffectsState = () => {
     return [displayEffects, setDisplayEffects] as const;
 };
 
+const SUBTABS = ['characters', 'system', 'party'] as const;
+type SettingsSubTab = (typeof SUBTABS)[number];
+
 function SettingsTab() {
+    const [activeSubTab, setActiveSubTab] = useState<SettingsSubTab>('characters');
     const { t } = useTranslation();
 
     const [currentTheme, setCurrentTheme] = useState(UISettingsManager.getCurrentTheme);
@@ -78,6 +84,10 @@ function SettingsTab() {
         const characterName = slot?.name || `Slot ${slotIndex + 1}`;
 
         showConfirm(`${t('confirmDeleteCharacter')}\n${t('name')}: ${characterName}`, () => {
+            // A deleted character must not stay listed as a group member.
+            if (slot) {
+                void announceLeaveFromSlot(slot);
+            }
             deleteSlot(slotIndex);
         });
     };
@@ -108,7 +118,12 @@ function SettingsTab() {
         file.text()
             .then(text => {
                 const rawData = JSON.parse(text);
-                importSlot(slotIndex, rawData);
+                // Group identity belongs to the original character: an imported copy starts outside any group.
+                const standalone = { ...rawData };
+                delete standalone.partyCode;
+                delete standalone.memberId;
+                delete standalone.groupPA;
+                importSlot(slotIndex, standalone);
                 showAlert(t('characterImportSuccess'));
             })
             .catch(err => {
@@ -134,167 +149,213 @@ function SettingsTab() {
 
     return (
         <section className="tabContent">
-            <span className="h3">{t('settings')}</span>
-
-            <div className="row settings-preferences">
-                <div className="stack">
-                    <label htmlFor="language-select">{t('language')}:</label>
-                    <select
-                        id="language-select"
-                        value={currentLanguage}
-                        onChange={handleLanguageChange}
+            <nav className="settings-subtabs">
+                {SUBTABS.map(subtab => (
+                    <button
+                        key={subtab}
+                        className={`subTab-button ${activeSubTab === subtab ? 'active' : ''}`}
+                        onClick={() => setActiveSubTab(subtab)}
                     >
-                        {sortByLocalizedLabel(Object.entries(LANGUAGES), t, ([, label]) => label).map(([lang, label]) => (
-                            <option key={lang} value={lang}>
-                                {label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="stack">
-                    <label htmlFor="theme-select">{t('theme')}:</label>
-                    <select id="theme-select" value={currentTheme} onChange={handleThemeChange}>
-                        {sortByLocalizedLabel(Object.entries(THEMES), t, ([, label]) => label).map(([lang, label]) => (
-                            <option key={lang} value={lang}>
-                                {label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="stack">
-                    <label htmlFor="region-select">{t('region')}:</label>
-                    <select id="region-select" value={currentRegion} onChange={handleRegionChange}>
-                        {sortByLocalizedLabel(Object.entries(REGIONS), t, ([, label]) => label).map(([region, label]) => (
-                            <option key={region} value={region}>
-                                {label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="stack">
-                    <label htmlFor="weight-unit-select">{t('weightUnit')}:</label>
-                    <select
-                        id="weight-unit-select"
-                        value={currentWeightUnit}
-                        onChange={handleWeightUnitChange}
-                    >
-                        {Object.entries(WEIGHT_UNITS).map(([unit, label]) => (
-                            <option key={unit} value={unit}>
-                                {label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            </div>
-
-            <fieldset>
-                <legend>{t('crtDisplayEffects')}</legend>
-                <div className="row l-spaceAround">
-                    {DISPLAY_EFFECTS.map(val => (
-                        <div className="row u-width-auto" key={val}>
-                            <input
-                                type="radio"
-                                id={`crtDisplayEffects_${val}`}
-                                name="crtDisplayEffects"
-                                value={val}
-                                checked={displayEffects === val}
-                                onChange={() => setDisplayEffects(val)}
-                            />
-                            <label htmlFor={`crtDisplayEffects_${val}`}>{t(val)}</label>
-                        </div>
-                    ))}
-                </div>
-            </fieldset>
-
-            <hr />
-
-            {/* Character Slots Management */}
-            <span className="h4">{t('characters')}</span>
-            <div className="stack">
-                {slots.map((slot, index) => (
-                    <div
-                        key={index}
-                        className="row u-padding-m u-rounded-s"
-                        style={{
-                            border:
-                                activeSlot === index
-                                    ? 'var(--border-primary-thick)'
-                                    : 'var(--border-secondary-thin)',
-                            backgroundColor:
-                                activeSlot === index ? 'var(--secondary-color)' : 'transparent',
-                        }}
-                    >
-                        {/* Radio button for active selection (always enabled) */}
-                        <input
-                            type="radio"
-                            name="activeCharacter"
-                            checked={activeSlot === index}
-                            onChange={() => setActiveSlot(index)}
-                        />
-
-                        <div className="stack no-gap" style={{ flex: 1, minWidth: '130px' }}>
-                            <span className="h4">
-                                {!slot ? `--- ${t('emptySlot')} ---` : (slot.name ?? 'Unnamed')}
-                            </span>
-                            {slot && (
-                                <>
-                                    <span className="h5">{slot.origin ? t(slot.origin) : ''}</span>
-                                    <span className="h5">{`Lv. ${slot.level}`}</span>
-                                </>
-                            )}
-                        </div>
-
-                        {slot && (
-                            <>
-                                {/* Export icon button */}
-                                <button
-                                    onClick={() => handleExportSlot(index)}
-                                    className="icon-m icon-button"
-                                    title={t('export')}
-                                >
-                                    <i className="fas fa-download"></i>
-                                </button>
-
-                                {/* Delete icon button */}
-                                <button
-                                    onClick={() => handleDeleteSlot(index)}
-                                    className="closeButton icon-m icon-button icon-button--close"
-                                    title={t('delete')}
-                                >
-                                    <i className="fas fa-trash"></i>
-                                </button>
-                            </>
-                        )}
-
-                        {/* Import icon button */}
-                        <label
-                            htmlFor={`import-slot-${index}`}
-                            className="icon-m icon-button icon-button--inline"
-                            title={t('import')}
-                        >
-                            <i className="fas fa-upload"></i>
-                        </label>
-                        <input
-                            id={`import-slot-${index}`}
-                            type="file"
-                            accept=".json,application/json"
-                            className="hidden"
-                            onChange={e => {
-                                const file = e.target.files?.[0];
-                                if (file) {
-                                    handleImportToSlot(index, file);
-                                }
-                                e.target.value = '';
-                            }}
-                        />
-                    </div>
+                        {t(subtab).toUpperCase()}
+                    </button>
                 ))}
-            </div>
+            </nav>
 
-            <hr />
+            {activeSubTab === 'characters' && (
+                <>
+                    {/* Character Slots Management */}
+                    <div className="stack">
+                        {slots.map((slot, index) => (
+                            <div
+                                key={index}
+                                className="row u-padding-m u-rounded-s"
+                                style={{
+                                    border:
+                                        activeSlot === index
+                                            ? 'var(--border-primary-thick)'
+                                            : 'var(--border-secondary-thin)',
+                                    backgroundColor:
+                                        activeSlot === index
+                                            ? 'var(--secondary-color)'
+                                            : 'transparent',
+                                }}
+                            >
+                                {/* Radio button for active selection (always enabled) */}
+                                <input
+                                    type="radio"
+                                    name="activeCharacter"
+                                    checked={activeSlot === index}
+                                    onChange={() => setActiveSlot(index)}
+                                />
 
-            {/* Reset Memory */}
-            <button onClick={handleResetMemory}>{t('resetMemory')}</button>
+                                <div
+                                    className="stack no-gap"
+                                    style={{ flex: 1, minWidth: '130px' }}
+                                >
+                                    <span className="h4">
+                                        {!slot
+                                            ? `--- ${t('emptySlot')} ---`
+                                            : (slot.name ?? 'Unnamed')}
+                                    </span>
+                                    {slot && (
+                                        <>
+                                            <span className="h5">
+                                                {slot.origin ? t(slot.origin) : ''}
+                                            </span>
+                                            <span className="h5">{`Lv. ${slot.level}`}</span>
+                                        </>
+                                    )}
+                                </div>
+
+                                {slot && (
+                                    <>
+                                        {/* Export icon button */}
+                                        <button
+                                            onClick={() => handleExportSlot(index)}
+                                            className="icon-m icon-button"
+                                            title={t('export')}
+                                        >
+                                            <i className="fas fa-download"></i>
+                                        </button>
+
+                                        {/* Delete icon button */}
+                                        <button
+                                            onClick={() => handleDeleteSlot(index)}
+                                            className="closeButton icon-m icon-button icon-button--close"
+                                            title={t('delete')}
+                                        >
+                                            <i className="fas fa-trash"></i>
+                                        </button>
+                                    </>
+                                )}
+
+                                {/* Import icon button */}
+                                <label
+                                    htmlFor={`import-slot-${index}`}
+                                    className="icon-m icon-button icon-button--inline"
+                                    title={t('import')}
+                                >
+                                    <i className="fas fa-upload"></i>
+                                </label>
+                                <input
+                                    id={`import-slot-${index}`}
+                                    type="file"
+                                    accept=".json,application/json"
+                                    className="hidden"
+                                    onChange={e => {
+                                        const file = e.target.files?.[0];
+                                        if (file) {
+                                            handleImportToSlot(index, file);
+                                        }
+                                        e.target.value = '';
+                                    }}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </>
+            )}
+
+            {activeSubTab === 'system' && (
+                <>
+                    <div className="row settings-preferences">
+                        <div className="stack">
+                            <label htmlFor="language-select">{t('language')}:</label>
+                            <select
+                                id="language-select"
+                                value={currentLanguage}
+                                onChange={handleLanguageChange}
+                            >
+                                {sortByLocalizedLabel(
+                                    Object.entries(LANGUAGES),
+                                    t,
+                                    ([, label]) => label,
+                                ).map(([lang, label]) => (
+                                    <option key={lang} value={lang}>
+                                        {label}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="stack">
+                            <label htmlFor="theme-select">{t('theme')}:</label>
+                            <select
+                                id="theme-select"
+                                value={currentTheme}
+                                onChange={handleThemeChange}
+                            >
+                                {sortByLocalizedLabel(
+                                    Object.entries(THEMES),
+                                    t,
+                                    ([, label]) => label,
+                                ).map(([lang, label]) => (
+                                    <option key={lang} value={lang}>
+                                        {label}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="stack">
+                            <label htmlFor="region-select">{t('region')}:</label>
+                            <select
+                                id="region-select"
+                                value={currentRegion}
+                                onChange={handleRegionChange}
+                            >
+                                {sortByLocalizedLabel(
+                                    Object.entries(REGIONS),
+                                    t,
+                                    ([, label]) => label,
+                                ).map(([region, label]) => (
+                                    <option key={region} value={region}>
+                                        {label}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="stack">
+                            <label htmlFor="weight-unit-select">{t('weightUnit')}:</label>
+                            <select
+                                id="weight-unit-select"
+                                value={currentWeightUnit}
+                                onChange={handleWeightUnitChange}
+                            >
+                                {Object.entries(WEIGHT_UNITS).map(([unit, label]) => (
+                                    <option key={unit} value={unit}>
+                                        {label}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+
+                    <fieldset>
+                        <legend>{t('crtDisplayEffects')}</legend>
+                        <div className="row l-spaceAround">
+                            {DISPLAY_EFFECTS.map(val => (
+                                <div className="row u-width-auto" key={val}>
+                                    <input
+                                        type="radio"
+                                        id={`crtDisplayEffects_${val}`}
+                                        name="crtDisplayEffects"
+                                        value={val}
+                                        checked={displayEffects === val}
+                                        onChange={() => setDisplayEffects(val)}
+                                    />
+                                    <label htmlFor={`crtDisplayEffects_${val}`}>{t(val)}</label>
+                                </div>
+                            ))}
+                        </div>
+                    </fieldset>
+
+                    <hr />
+
+                    {/* Reset Memory */}
+                    <button onClick={handleResetMemory}>{t('resetMemory')}</button>
+                </>
+            )}
+
+            {activeSubTab === 'party' && <PartyPanel />}
         </section>
     );
 }

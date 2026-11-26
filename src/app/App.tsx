@@ -9,6 +9,8 @@ import TabButton, { TabType } from '@/app/tabs/TabButton';
 import { useCharacter } from '@/app/contexts/CharacterContext';
 import { FitText } from '@/app/components/FitText.tsx';
 import AppHeaderData from '@/app/AppHeaderData.tsx';
+import PartyHeaderSection from '@/app/party/PartyHeaderSection.tsx';
+import { PartyProvider } from '@/app/party/PartyProvider.tsx';
 import useIsDesktop from '@/hooks/useIsDesktop';
 import { Character } from '@/types';
 
@@ -18,17 +20,17 @@ const TABS: Record<TabType, React.ComponentType<any>> = {
     inv: InvTab,
     data: DataTab,
     map: MapTab,
-    settings: SettingsTab
-} as const
+    settings: SettingsTab,
+} as const;
 
 // Condition = true means SHOW the locked tab
 const LOCKED_TABS: Partial<Record<TabType, (c: Character) => boolean>> = {
-    companion: (c: Character) => c.companion !== undefined
-}
+    companion: (c: Character) => c.companion !== undefined,
+};
 
 const getKeys = <T extends object>(obj: T) => Object.keys(obj) as Array<keyof T>;
 
-function App() {
+function AppContent() {
     const { character } = useCharacter();
     const [activeTab, setActiveTab] = useState<TabType>('stat');
     const isDesktop = useIsDesktop(); // Split screen if width < 900px
@@ -36,26 +38,25 @@ function App() {
     const visibleTabs = useMemo(() => {
         const allTabs = getKeys(TABS);
         return allTabs.filter(tabType => {
-            return !LOCKED_TABS[tabType] || LOCKED_TABS[tabType](character)
+            return !LOCKED_TABS[tabType] || LOCKED_TABS[tabType](character);
         });
     }, [character]);
 
     // Desktop: right panel shows all tabs except 'stat' (stat is always on the left)
-    const rightPanelTabs = useMemo(
-        () => visibleTabs.filter(t => t !== 'stat'),
-        [visibleTabs]
-    );
+    const rightPanelTabs = useMemo(() => visibleTabs.filter(t => t !== 'stat'), [visibleTabs]);
 
     // Desktop: if the user had 'stat' selected, default to the first right-panel tab
-    const desktopRightActiveTab: TabType =
-        activeTab === 'stat' ? 'inv' : activeTab;
+    const desktopRightActiveTab: TabType = activeTab === 'stat' ? 'inv' : activeTab;
 
     const ActiveTabComponent = TABS[activeTab];
     const DesktopRightComponent = TABS[desktopRightActiveTab];
 
     const appHeader = (
-        <header className="l-lastSmall">
-            <FitText maxSize={35}>Pip-Boy 3000</FitText>
+        <header className="app-header">
+            <PartyHeaderSection />
+            <div className="app-header__title">
+                <FitText maxSize={35}>Pip-Boy 3000</FitText>
+            </div>
             <AppHeaderData />
         </header>
     );
@@ -121,4 +122,10 @@ function App() {
     );
 }
 
-export default App
+export default function App() {
+    return (
+        <PartyProvider>
+            <AppContent />
+        </PartyProvider>
+    );
+}

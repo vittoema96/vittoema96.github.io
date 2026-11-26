@@ -607,6 +607,8 @@ const cases = [
         UISettingsManager.setDisplayEffect('off');
         await reset({ mapCodes: ['g00d', commonwealthMarkers[0].code] }, 'map-settings');
         const surface = () => document.querySelector('.map-surface');
+        document.querySelectorAll('.settings-subtabs .subTab-button')[1]?.click(); // System sub-tab holds the region selector
+        await pause();
         const selector = document.querySelector('#region-select');
         check(surface().style.backgroundImage.includes('/img/png/map.png'),
             'Initial region did not load from persisted settings');
@@ -791,7 +793,9 @@ const cases = [
             assertFits('Region changed from another window');
             const settings = doc.querySelector('nav .tab-button.mini');
             settings.click();
-            await waitFor(() => doc.querySelector('#region-select'), 'Settings tab did not open');
+            await waitFor(() => doc.querySelector('.settings-subtabs .subTab-button'), 'Settings tab did not open');
+            doc.querySelectorAll('.settings-subtabs .subTab-button')[1].click(); // System sub-tab holds the region selector
+            await waitFor(() => doc.querySelector('#region-select'), 'Settings system sub-tab did not open');
             const panel = doc.querySelector('.l-desktop-right-panel main');
             check(!panel.classList.contains('map-panel') &&
                 win.getComputedStyle(panel).overflowY === 'auto' &&
@@ -806,6 +810,11 @@ const cases = [
                     'Settings layout did not switch at ' + width);
                 await settle();
                 for (const language of ['en', 'it']) {
+                    // Crossing the layout breakpoint remounts the tab, which resets it to the Characters sub-tab.
+                    if (!doc.querySelector('#language-select')) {
+                        doc.querySelectorAll('.settings-subtabs .subTab-button')[1]?.click();
+                        await pause();
+                    }
                     const languageSelect = doc.querySelector('#language-select');
                     languageSelect.value = language;
                     languageSelect.dispatchEvent(new win.Event('change', { bubbles: true }));

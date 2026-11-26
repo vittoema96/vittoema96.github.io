@@ -1,7 +1,12 @@
+import { useMemo } from 'react';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { RawCharacter } from '@/types';
-import { applyUpdate, loadCharacter, type CharacterUpdate } from '@/features/character/state/characterState.ts';
+import {
+    applyUpdate,
+    loadCharacter,
+    type CharacterUpdate,
+} from '@/features/character/state/characterState.ts';
 
 export const MAX_SLOTS = 10;
 const STORAGE_KEY = 'PB3K_character_saves';
@@ -35,11 +40,15 @@ export function migrateLegacyStorage(): void {
         const key = `${LEGACY_PREFIX}${i}`;
         const savedChar = localStorage.getItem(key);
         localStorage.removeItem(key);
-        if (!savedChar) { return null; }
+        if (!savedChar) {
+            return null;
+        }
         try {
             hasFoundAnyLegacyData = true;
             return loadCharacter(JSON.parse(savedChar));
-        } catch { return null; }
+        } catch {
+            return null;
+        }
     });
 
     if (!hasFoundAnyLegacyData && !legacyActive) {
@@ -74,7 +83,9 @@ interface SaveStoreState {
     deleteSlot: (index: number) => void;
     importSlot: (index: number, rawData: unknown) => void;
 
-    updateActiveCharacter: (updates: CharacterUpdate | ((prev: RawCharacter) => CharacterUpdate)) => void;
+    updateActiveCharacter: (
+        updates: CharacterUpdate | ((prev: RawCharacter) => CharacterUpdate),
+    ) => void;
 
     // Actions
     resetActiveCharacter: () => void;
@@ -82,22 +93,28 @@ interface SaveStoreState {
 
 export const useSaveStore = create<SaveStoreState>()(
     persist(
-        (set) => ({
+        set => ({
             activeSlot: 0,
-            setActiveSlot: (index) => {
-                if (index < 0 || index >= MAX_SLOTS) { return; }
-                set((state) => {
+            setActiveSlot: index => {
+                if (index < 0 || index >= MAX_SLOTS) {
+                    return;
+                }
+                set(state => {
                     const nextSlots = [...state.slots];
                     nextSlots[index] ??= getDefaultCharacter();
                     return { activeSlot: index, slots: nextSlots };
                 });
             },
 
-            slots: Array.from({ length: MAX_SLOTS }, (_, i) => (i === 0 ? getDefaultCharacter() : null)),
+            slots: Array.from({ length: MAX_SLOTS }, (_, i) =>
+                i === 0 ? getDefaultCharacter() : null,
+            ),
 
-            deleteSlot: (index) => {
-                if (index < 0 || index >= MAX_SLOTS) { return; }
-                set((state) => {
+            deleteSlot: index => {
+                if (index < 0 || index >= MAX_SLOTS) {
+                    return;
+                }
+                set(state => {
                     const nextSlots = [...state.slots];
                     nextSlots[index] = null;
                     if (index === state.activeSlot) {
@@ -108,20 +125,25 @@ export const useSaveStore = create<SaveStoreState>()(
             },
 
             importSlot: (index, rawData) => {
-                if (index < 0 || index >= MAX_SLOTS) { return; }
+                if (index < 0 || index >= MAX_SLOTS) {
+                    return;
+                }
                 const validated = loadCharacter(rawData);
-                set((state) => {
+                set(state => {
                     const nextSlots = [...state.slots];
                     nextSlots[index] = validated;
                     return { slots: nextSlots };
                 });
             },
 
-            updateActiveCharacter: (updates) => {
-                set((state) => {
+            updateActiveCharacter: updates => {
+                set(state => {
                     const current = state.slots[state.activeSlot] ?? getDefaultCharacter();
                     // Garantisce che anche gli aggiornamenti passino per la validazione/migrazione Zod
-                    const validated = applyUpdate(current, typeof updates === 'function' ? updates(current) : updates);
+                    const validated = applyUpdate(
+                        current,
+                        typeof updates === 'function' ? updates(current) : updates,
+                    );
                     const nextSlots = [...state.slots];
                     nextSlots[state.activeSlot] = validated;
                     return { slots: nextSlots };
@@ -129,7 +151,7 @@ export const useSaveStore = create<SaveStoreState>()(
             },
 
             resetActiveCharacter: () => {
-                set((state) => {
+                set(state => {
                     const nextSlots = [...state.slots];
                     nextSlots[state.activeSlot] = getDefaultCharacter();
                     return { slots: nextSlots };
@@ -145,8 +167,10 @@ export const useSaveStore = create<SaveStoreState>()(
                     return currentState;
                 }
 
-                const validatedSlots = typedPersisted.slots.map((slot) => {
-                    if (!slot) { return null; }
+                const validatedSlots = typedPersisted.slots.map(slot => {
+                    if (!slot) {
+                        return null;
+                    }
                     try {
                         // Converte automaticamente vecchi formati (es. companion singolo) nel nuovo formato
                         return loadCharacter(slot);
@@ -162,9 +186,13 @@ export const useSaveStore = create<SaveStoreState>()(
                     slots: validatedSlots,
                 };
             },
-        }
-    )
+        },
+    ),
 );
 
-export const useActiveCharacter = (): RawCharacter =>
-    useSaveStore((state) => state.slots[state.activeSlot] ?? getDefaultCharacter());
+// Select the slot itself (stable reference) and memoise the fallback. Creating a new default on every
+// read makes the selector unstable for empty slots, which loops React forever.
+export const useActiveCharacter = (): RawCharacter => {
+    const slot = useSaveStore(state => state.slots[state.activeSlot]);
+    return useMemo(() => slot ?? getDefaultCharacter(), [slot]);
+};

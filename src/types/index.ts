@@ -94,6 +94,10 @@ export type CompanionId = (typeof COMPANION_IDS)[number];
 export interface RawCharacter {
     saveVersion: number;
     name?: string | undefined;
+    partyCode?: string | null | undefined;
+    localGroupAP?: number | undefined;
+    memberId?: string | undefined;
+    groupPA?: { code: string; myPA: number; pending: boolean } | null | undefined;
     level: number;
     origin?: OriginId;
     background?: string | undefined;

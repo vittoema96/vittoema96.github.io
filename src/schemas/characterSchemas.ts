@@ -190,11 +190,9 @@ const CompanionDataSchema = z.preprocess(
 );
 
 export const CompanionsMapSchema = z.record(
-    z
-        .string()
-        .refine(key => (COMPANION_IDS as readonly string[]).includes(key), {
-            message: 'Invalid companion ID',
-        }),
+    z.string().refine(key => (COMPANION_IDS as readonly string[]).includes(key), {
+        message: 'Invalid companion ID',
+    }),
     CompanionDataSchema,
 ) as z.ZodType<Partial<Record<(typeof COMPANION_IDS)[number], CompanionData>>>;
 
@@ -298,5 +296,28 @@ export const RawCharacterSchema = z.preprocess(
 
         activeCompanionId: z.enum(COMPANION_IDS).optional(),
         companions: CompanionsMapSchema.default({}),
+
+        // Party (group) this character is connected to. null/missing = not in a group.
+        partyCode: z.string().max(32).nullable().optional(),
+        // Group AP kept on this character while not connected to a party (0..99).
+        localGroupAP: z.number().int().min(0).max(99).default(0),
+
+        // Stable id of this character inside a group (members are listed by this id).
+        memberId: z
+            .string()
+            .regex(/^[a-z0-9]{1,32}$/)
+            .optional(),
+
+        // This character's group state (its own PA contribution, not yet confirmed by relays).
+        groupPA: z
+            .object({
+                code: z.string().max(32),
+                myPA: z.number().int().min(-999).max(999),
+                pending: z.boolean(),
+            })
+            .nullable()
+            .optional()
+            // Saves from earlier spike versions have another shape: drop it instead of failing the load.
+            .catch(null),
     }),
 );
