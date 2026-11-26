@@ -648,32 +648,40 @@ body[data-crt='off']::before {
     flex: 1;
 }
 
-/* ── App header: [PA] [title] [HP / caps / weight] ── */
+/* ── App header: [PA | title] [HP / caps / weight]; the PA separator runs down to the rule below ── */
 .app-header {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: var(--space-m);
     padding: 0 var(--space-s);
     text-align: center;
+}
+.app-header + hr {
+    margin-top: 0;
 }
 .app-header__title {
     flex: 1;
     min-width: 0;
     overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 .app-header > :last-child {
     flex: none;
+    align-self: center;
 }
 .app-header__party {
     flex: none;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     min-width: 3.5rem;
-    padding: var(--space-xs) var(--space-s);
+    padding: var(--space-xs) var(--space-m) var(--space-xs) 0;
     background: none;
-    border: var(--border-primary-thick);
-    border-radius: 5px;
+    border: none;
+    border-right: var(--border-primary-thick);
+    border-radius: 0;
     color: inherit;
     font: inherit;
     cursor: pointer;

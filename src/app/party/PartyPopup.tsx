@@ -40,6 +40,8 @@ function PartyPopup({ onClose }: Readonly<{ onClose: () => void }>) {
                         </button>
                     </div>
                 </div>
+
+                <p className="text-warning">{t('partyManualNotice')}</p>
             </div>
         </BasePopup>
     );

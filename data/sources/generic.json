@@ -1850,5 +1850,9 @@
   "partyLastSeen": {
     "en": "Offline · last seen {{date}}",
     "it": "Offline · ultimo accesso {{date}}"
+  },
+  "partyManualNotice": {
+    "en": "PA are managed manually: the app never adds or removes them on its own.",
+    "it": "I PA si gestiscono manualmente: l'app non li aggiunge né li rimuove da sola."
   }
 }
