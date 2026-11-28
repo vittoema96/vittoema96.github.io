@@ -1,142 +1,190 @@
 {
-  "weaponAlienAtomizer": {
-    "en": "Alien Atomizer",
-    "it": "Atomizzatore Alieno",
-    "_description": {
-      "en": "A form of alien energy pistol, found in use by the extra-terrestrial beings sometimes called “Zetans”. Encounters with these creatures are extremely rare, and their weapons are extremely potent. Nobody understands their technology well enough to modify these guns, however.",
-      "it": "Una forma di pistola a energia aliena, utilizzata dagli esseri extraterrestri a volte chiamati \"Zetani\". Gli incontri con queste creature sono estremamente rari e le loro armi sono estremamente potenti. Nessuno capisce la loro tecnologia abbastanza bene da modificare queste pistole."
-    }
-  },
-  "weaponAlienDisintegrator": {
-    "en": "Alien Disintegrator",
-    "it": "Disintegratore Alieno",
-    "_description": {
-      "en": "A form of alien energy rifle, appearing like a space-age blunderbuss, found in use by the extra-terrestrial beings sometimes called “Zetans”. Like the smaller atomizers, the technology of these weapons is too unknown for anyone to successfully modify one of these weapons.",
-      "it": "Una forma di fucile a energia aliena, simile a un trombone spaziale, in uso agli esseri extraterrestri a volte chiamati \"Zetani\". Come per gli atomizzatori più piccoli, la tecnologia di queste armi è troppo sconosciuta perché qualcuno possa modificarne con successo una."
-    }
-  },
-  "weaponArcWelder": {
-    "en": "Arc Welder",
-    "it": "Saldatrice ad arco",
-    "_description": {
-      "en": "This odd weapon can discharge a constant, high-voltage stream of electricity. While painful and damaging to living creatures, it is especially effective against robots and enemies in Power Armor, as electricity discharges into delicate components.",
-      "it": "Quest'arma bizzarra può scaricare un flusso costante di elettricità ad alta tensione. Sebbene sia dolorosa e dannosa per le creature viventi, è particolarmente efficace contro i robot e i nemici in Armatura Atomica, poiché l'elettricità si scarica nei componenti delicati."
-    }
-  },
-  "weaponAcidSoaker": {
-    "en": "Acid Soaker",
-    "it": "Spruzza Acido",
-    "_description": {
-      "en": "The acid soaker is a small gun, similar to the 10mm pistol, that has been modified to receive the corrosive compound of an acid concentrate instead of the traditional ballistic chamber. The modifications match the design components of a common squirt gun designed to shoot jets of water.",
-      "it": "Lo spruzza acido è una pistola di piccole dimensioni, simile alla pistola 10mm, modificata per utilizzare il composto corrosivo di un concentrato di acido al posto della tradizionale camera balistica. Le modifiche riprendono i componenti di una comune pistola ad acqua progettata per sparare getti d’acqua."
-    }
-  },
-  "weaponAlienBlaster": {
-    "en": "Alien Blaster",
-    "it": "Blaster Alieno",
-    "_description": {
-      "en": "The alien blaster is sometimes referred to as an alien blaster pistol based on its physical appearance mimicking the small firearms designed on Earth. Meant to be held in one hand where the index or middle finger could fit around the trigger, this weapon is capable of using the unique alien energy like a laser gun uses fusion cells. Special: Alien blasters inflict both Energy and Radiation damage. Roll damage as normal, and then reduce the total by whichever of the target’s damage resistances is lower out of Energy or Radiation. A creature that is killed by an alien blaster is instead vaporized and reduced to ash.",
-      "it": "Il blaster alieno viene talvolta chiamato pistola blaster aliena per il suo aspetto fisico, che imita le piccole armi da fuoco progettate sulla Terra. Progettata per essere impugnata con una mano, con l’indice o il medio intorno al grilletto, quest’arma è in grado di utilizzare l’esclusiva energia aliena, proprio come una pistola laser usa le celle di fusione. Speciale: i blaster alieni infliggono danni sia Energetici sia da Radiazione. Tira i danni normalmente, poi riduci il totale usando la resistenza del bersaglio più bassa tra Energia e Radiazione. Una creatura uccisa da un blaster alieno viene invece vaporizzata e ridotta in cenere."
-    }
-  },
-  "weaponAssaultronHead": {
-    "en": "Assaultron Head",
-    "it": "Testa di Assaultron",
-    "_description": {
-      "en": "The head of an Assaultron contains a high-yield laser emitter, shielded behind sturdy Armor plating. Assaultrons use this laser to blast the enemy as they close into melee. The laser itself uses a capacitor that can build up an extremely powerful charge, but which requires considerable energy for each fully charged blast. Due to the solid design, destroyed Assaultrons sometimes have an intact head that can be used as an impromptu hand-held laser. Special: Firing an Assaultron Head consumes two shots of ammunition each time it fires. Each capacitor mod for the Assaultron head increases both damage and number of shots consumed. You may reduce the number of shots consumed, reducing the damage by -1 DC for each shot consumed fewer than normal (for a minimum of 4 damage and 1 shot consumed).",
-      "it": "La testa di un Assaultron contiene un emettitore laser ad alto rendimento, schermato dietro una robusta corazza. Gli Assaultron usano questo laser per colpire il nemico mentre si avvicinano per il corpo a corpo. Il laser stesso utilizza un condensatore che può accumulare una carica estremamente potente, ma che richiede una notevole energia per ogni scarica completa. Grazie alla sua struttura solida, a volte le teste degli Assaultron distrutti rimangono intatte e possono essere usate come laser portatili improvvisati. Speciale: ogni sparo di una Testa di Assaultron consuma due colpi di munizioni. Ogni mod condensatore per la testa di Assaultron aumenta sia il danno sia il numero di colpi consumati. Puoi ridurre il numero di colpi consumati, riducendo il danno di -1 DC per ogni colpo consumato in meno del normale (fino a un minimo di 4 danni e 1 colpo consumato)."
-    }
-  },
-  "weaponGammaPistol": {
-    "en": "Gamma Gun",
-    "it": "Pistola Gamma",
-    "_description": {
-      "en": "A crude-looking weapon, the gamma gun emits directed blasts of high-intensity ionizing radiation which can be devastating to any creature not immune nor massively resistant to radiation, while leaving other targets largely unharmed.",
-      "it": "La pistola gamma, col suo aspetto apparentemente rozzo, emette dei raggi direzionali di radiazioni ionizzanti ad alta intensità, che possono essere devastanti per qualsiasi creatura non sia immune o incredibilmente resistente alle radiazioni ma, al contempo, non fanno quasi alcun danno sugli altri bersagli."
-    }
-  },
-  "weaponCryojet": {
-    "en": "Cryojet",
-    "it": "Criojet",
-    "_description": {
-      "en": "This firefighting tool installed on firefighter Protectrons fires cryogenic spray that rapidly cools any fires the Protectron is trying to put out, or in another emergency be used as a self-defense mechanism. Prolonged exposure to its jets can result in freezing of organic materials—even living creatures! Special: Cryojets are integrated into the arms of robots and therefore can’t be used as a handheld weapon.",
-      "it": "Questo strumento antincendio, installato sui Protectron pompieri, emette uno spruzzo criogenico che raffredda rapidamente gli incendi che il Protectron sta cercando di spegnere, oppure può essere usato come meccanismo di autodifesa in caso di emergenza. L’esposizione prolungata ai suoi getti può congelare i materiali organici, persino le creature viventi! Speciale: i Criojet sono integrati nelle braccia dei robot e non possono quindi essere usati come armi portatili."
-    }
-  },
-  "weaponInstituteLaser": {
-    "en": "Institute Laser",
-    "it": "Laser dell'Istituto",
-    "_description": {
-      "en": "Developed by The Institute after the Great War, Institute lasers differ in design and function from the pre-War lasers used by other factions such as the Brotherhood of Steel. Eschewing raw power for a rapid succession of beams, these lasers can lay down a searing volley of suppressive fire.",
-      "it": "Sviluppati dall’Istituto dopo la Grande Guerra, i laser dell’istituto sono diversi sia nell’aspetto che nella funzione rispetto a quelli dell’anteguerra che vengono utilizzati da altre fazioni, come la Confraternita d’Acciaio. Rinunciando alla potenza di fuoco in favore di una rapida successione di raggi, possono riversare una pioggia incandescente di fuoco di sbarramento. La configurazione di base si riferisce a una pistola laser dell’Istituto, che può montare una per tipo delle seguenti modifiche. Ogni mod Calcio trasforma l’arma in un fucile laser dell’Istituto."
+    "weaponAlienAtomizer": {
+        "en": "Alien Atomizer",
+        "it": "Atomizzatore Alieno",
+        "_description": {
+            "en": "A form of alien energy pistol, found in use by the extra-terrestrial beings sometimes called “Zetans”. Encounters with these creatures are extremely rare, and their weapons are extremely potent. Nobody understands their technology well enough to modify these guns, however.",
+            "it": "Una forma di pistola a energia aliena, usata dagli esseri extraterrestri a volte chiamati «Zetan». Gli incontri con queste creature sono estremamente rari e le loro armi sono estremamente potenti. Nessuno capisce però la loro tecnologia abbastanza bene da modificare queste pistole."
+        }
     },
-    "_stock_name": {
-      "en": "Institute Laser Rifle",
-      "it": "Fucile Laser dell'Istituto"
-    }
-  },
-  "weaponLaserMusket": {
-    "en": "Laser Musket",
-    "it": "Moschetto Laser",
-    "_description": {
-      "en": "The laser musket is a homemade form of laser rifle, blending advanced technology with strangely primitive mechanisms, popular with militia groups such as the Minutemen. The laser musket must be manually primed, charging the makeshift capacitor through turning a hand-crank on the weapon's rear. While seemingly crude, they can make for potent sniper's weapons, especially with a modified capacitor able to hold a larger charge.",
-      "it": "Il moschetto laser è un tipo di fucile laser artigianale che unisce una tecnologia avanzata con dei meccanismi insolitamente primitivi ed è molto diffuso tra le milizie come i Minutemen. Deve essere caricato manualmente, girando una manovella sul retro dell’arma. Sebbene sembri rozzo, può essere un’ottima arma da cecchino, soprattutto con un condensatore modificato in grado di sostenere una carica maggiore."
-    }
-  },
-  "weaponLaserPistol": {
-    "en": "Laser Gun",
-    "it": "Pistola Laser",
-    "_description": {
-      "en": "Laser guns are high-tech weapons which emit a concentrated beam of coherent, directional light, intense enough to inflict serious damage. They were a relatively new development in the years before the Great War, and thus are not an especially common sight in the wasteland, outside of those groups who've secured old military weapons caches. Most surviving models of laser gun—such as the dependable AER9, widely used by the U. S. Army—use an internal capacitor charged by a microfusion power cell.",
-      "it": "Le pistole laser sono armi tecnologiche in grado di emettere un raggio di luce direzionale coeso e abbastanza intenso da causare gravi danni. Negli anni prima della Grande Guerra erano un’evoluzione relativamente nuova, per cui è difficile trovarle nella Zona Contaminata, al di fuori dei gruppi che sono riusciti ad accaparrarsi i vecchi depositi delle armi dell’esercito. La maggior parte dei modelli sopravvissuti di pistole laser, come l’affidabile AER9, ampiamente usata dall’esercito americano, si serve di un condensatore interno caricato da una batteria a microfusione. La configurazione di base si riferisce a una pistola laser che può montare una per tipo delle seguenti modifiche. Ogni mod Calcio la trasforma in un fucile laser."
+    "weaponAlienDisintegrator": {
+        "en": "Alien Disintegrator",
+        "it": "Disintegratore Alieno",
+        "_description": {
+            "en": "A form of alien energy rifle, appearing like a space-age blunderbuss, found in use by the extra-terrestrial beings sometimes called “Zetans”. Like the smaller atomizers, the technology of these weapons is too unknown for anyone to successfully modify one of these weapons.",
+            "it": "Una forma di fucile a energia aliena, dall'aspetto di un trombone di stile futuristico, usato dagli esseri extraterrestri a volte chiamati «Zetan». Come gli atomizzatori più piccoli, la tecnologia di queste armi è troppo sconosciuta perché qualcuno possa modificarne una con successo."
+        }
     },
-    "_stock_name": {
-      "en": "Laser Rifle",
-      "it": "Fucile Laser"
-    }
-  },
-  "weaponMicrowaveEmitter": {
-    "en": "Microwave Emitter",
-    "it": "Emettitore di microonde",
-    "_description": {
-      "en": "This advanced energy weapon generates intense blasts of microwave radiation. While it won’t irradiate you—microwaves are non-ionizing radiation—it can cause intense burns as whatever is hit by the blast is heated up from the inside, boiling the water in your cells. And metal is little protection: the microwave blast can’t effectively be dispersed by metallic objects, which heat up, produce electrical sparks, and damage delicate circuitry. While extremely rare, these weapons provide a serious advantage when used against heavily armored targets.",
-      "it": "Questa avanzata arma a energia genera intensi lampi di radiazioni a microonde. Anche se non ti irradierà (le microonde sono radiazioni non ionizzanti), può causare ustioni intense perché ciò che viene colpito dal raggio si riscalda dall'interno, facendo bollire l'acqua nelle cellule. E il metallo offre poca protezione: il raggio a microonde non può essere disperso efficacemente dagli oggetti metallici, che si scaldano, producono scintille elettriche e danneggiano la circuiteria delicata. Pur essendo estremamente rare, queste armi offrono un vantaggio notevole contro bersagli pesantemente corazzati."
-    }
-  },
-  "weaponMesmetron": {
-    "en": "Mesmetron",
-    "it": "Mesmetron",
-    "_description": {
-      "en": "A weapon similar to the gamma gun with the ability to create blasts of high intense energy. This approach creates variable waves that, when received by the brain of a sentient creature, overwhelms the senses and distorts perception making individuals confused and more susceptible.",
-      "it": "Un’arma simile alla pistola gamma, capace di creare esplosioni di energia ad alta intensità. Questo metodo genera onde variabili che, quando vengono ricevute dal cervello di una creatura senziente, sovraccaricano i sensi e distorcono la percezione, rendendo gli individui confusi e più vulnerabili."
-    }
-  },
-  "weaponMrHandyLaserEmitter": {
-    "en": "Laser Emitter Arm",
-    "it": "Arto Emettitore Laser",
-    "_description": {
-      "en": "Laser emitter integrated into a Mr. Handy's body. Identical to a standard laser pistol but permanently mounted on the robot. Only Mr. Handy can use this weapon.",
-      "it": "Emettitore laser integrato nel corpo di un Mr. Handy. Identico a una pistola laser standard ma montato permanentemente sul robot. Solo Mr. Handy può utilizzare quest'arma."
-    }
-  },
-  "weaponPlasmaPistol": {
-    "en": "Plasma Gun",
-    "it": "Pistola al Plasma",
-    "_description": {
-      "en": "Plasma guns, or plasma casters, are high-tech weapons firing superheated ionized gas, or plasma. These weapons are rare and potent, delivering damage through the high-speed impact of the plasma bolt and then thermal transfer as the heat from the plasma bolt is transferred into the target at the moment of impact.",
-      "it": "Le armi al plasma, dette anche plasmacaster, sono delle armi altamente tecnologiche che sparano gas ionizzato ad altissime temperature, o plasma. Queste armi, che funzionano con cartucce al plasma, sono rare e molto potenti, in grado come sono di arrecare danno attraverso l’impatto ad alta velocità del raggio al plasma e, successivamente, con il trasferimento termico del calore che viene riversato sul bersaglio al momento dell’impatto."
+    "weaponArcWelder": {
+        "en": "Arc Welder",
+        "it": "Saldatrice ad arco",
+        "_description": {
+            "en": "This odd weapon can discharge a constant, high-voltage stream of electricity. While painful and damaging to living creatures, it is especially effective against robots and enemies in Power Armor, as electricity discharges into delicate components.",
+            "it": "Questa strana arma può scaricare un flusso costante di elettricità ad alta tensione. Pur essendo dolorosa e dannosa per le creature viventi, è particolarmente efficace contro i robot e i nemici in Armatura Atomica, perché l'elettricità si scarica sui componenti delicati."
+        }
     },
-    "_stock_name": {
-      "en": "Plasma Rifle",
-      "it": "Fucile al Plasma"
+    "weaponAcidSoaker": {
+        "en": "Acid Soaker",
+        "it": "Spruzza Acido",
+        "_description": {
+            "en": "The acid soaker is a small gun, similar to the 10mm pistol, that has been modified to receive the corrosive compound of an acid concentrate instead of the traditional ballistic chamber. The modifications match the design components of a common squirt gun designed to shoot jets of water.",
+            "it": "Lo spruzza acido è una piccola pistola, simile a una pistola da 10mm, modificata per ricevere il composto corrosivo di un acido concentrato al posto della tradizionale camera balistica. Le modifiche ricalcano i componenti progettuali di una comune pistola ad acqua, progettata per sparare getti d'acqua."
+        }
+    },
+    "weaponAlienBlaster": {
+        "en": "Alien Blaster",
+        "it": "Blaster Alieno",
+        "_description": {
+            "en": "The alien blaster is sometimes referred to as an alien blaster pistol based on its physical appearance mimicking the small firearms designed on Earth. Meant to be held in one hand where the index or middle finger could fit around the trigger, this weapon is capable of using the unique alien energy like a laser gun uses fusion cells. Special: Alien blasters inflict both Energy and Radiation damage. Roll damage as normal, and then reduce the total by whichever of the target’s damage resistances is lower out of Energy or Radiation. A creature that is killed by an alien blaster is instead vaporized and reduced to ash. The default profile is for an alien pistol. Any Stock mods change the weapon to an Alien Rifle.",
+            "it": "Il blaster alieno è talvolta chiamato pistola blaster aliena per il suo aspetto fisico, che imita le piccole armi da fuoco progettate sulla Terra. Pensata per essere impugnata con una mano, dove l'indice o il medio possono infilarsi nel grilletto, quest'arma è in grado di usare l'energia aliena unica come una pistola laser usa le celle di fusione. Speciale: i blaster alieni infliggono danni sia da Energia che da Radiazioni. Si esegue il tiro per il danno come sempre, quindi si sottrae al risultato il valore di Resistenza ai Danni più basso del bersaglio tra Energia o Radiazioni. Una creatura uccisa da un blaster alieno viene invece vaporizzata e ridotta in cenere. Il profilo predefinito è quello di una pistola aliena. Ogni mod Calcio trasforma l'arma in un fucile alieno."
+        }
+    },
+    "weaponAssaultronHead": {
+        "en": "Assaultron Head",
+        "it": "Testa di Assaultron",
+        "_description": {
+            "en": "The head of an Assaultron contains a high-yield laser emitter, shielded behind sturdy Armor plating. Assaultrons use this laser to blast the enemy as they close into melee. The laser itself uses a capacitor that can build up an extremely powerful charge, but which requires considerable energy for each fully charged blast. Due to the solid design, destroyed Assaultrons sometimes have an intact head that can be used as an impromptu hand-held laser. Special: Firing an Assaultron Head consumes two shots of ammunition each time it fires. Each capacitor mod for the Assaultron head increases both damage and number of shots consumed. You may reduce the number of shots consumed, reducing the damage by -1 CD for each shot consumed fewer than normal (for a minimum of 4 CD damage and 1 shot consumed).",
+            "it": "La testa di un Assaultron contiene un emettitore laser ad alto rendimento, protetto da solide piastre di armatura. Gli Assaultron usano questo laser per colpire il nemico mentre si avvicinano per il combattimento in mischia. Il laser stesso usa un condensatore che può accumulare una carica estremamente potente, ma che richiede molta energia per ogni scarica a piena carica. Grazie al design robusto, gli Assaultron distrutti a volte hanno una testa intatta che può essere usata come laser improvvisato portatile. Speciale: sparare con una Testa di Assaultron consuma due colpi di munizioni ogni volta che spari. Ogni mod condensatore per la testa dell'Assaultron aumenta sia il danno sia il numero di colpi consumati. Puoi ridurre il numero di colpi consumati, riducendo il danno di -1 DC per ogni colpo consumato in meno del normale (con un minimo di 4 DC di danno e 1 colpo consumato)."
+        }
+    },
+    "weaponGammaPistol": {
+        "en": "Gamma Gun",
+        "it": "Pistola Gamma",
+        "_description": {
+            "en": "A crude-looking weapon, the gamma gun emits directed blasts of high-intensity ionizing radiation which can be devastating to any creature not immune nor massively resistant to radiation, while leaving other targets largely unharmed.",
+            "it": "La pistola gamma, col suo aspetto apparentemente rozzo, emette dei raggi direzionali di radiazioni ionizzanti ad alta intensità, che possono essere devastanti per qualsiasi creatura non sia immune o incredibilmente resistente alle radiazioni ma, al contempo, non fanno quasi alcun danno sugli altri bersagli."
+        }
+    },
+    "weaponCryojet": {
+        "en": "Cryojet",
+        "it": "Criojet",
+        "_description": {
+            "en": "This firefighting tool installed on firefighter Protectrons fires cryogenic spray that rapidly cools any fires the Protectron is trying to put out, or in another emergency be used as a self-defense mechanism. Prolonged exposure to its jets can result in freezing of organic materials—even living creatures! Special: Cryojets are integrated into the arms of robots and therefore can’t be used as a handheld weapon.",
+            "it": "Questo strumento antincendio installato sui Protectron pompieri spara uno spray criogenico che raffredda rapidamente gli incendi che il Protectron sta cercando di spegnere, oppure, in caso di emergenza, può servire come meccanismo di autodifesa. Un'esposizione prolungata ai suoi getti può congelare i materiali organici, comprese le creature viventi! Speciale: i criojet sono integrati nei bracci dei robot e quindi non possono essere usati come arma portatile."
+        }
+    },
+    "weaponInstituteLaser": {
+        "en": "Institute Laser",
+        "it": "Laser dell'Istituto",
+        "_description": {
+            "en": "Developed by The Institute after the Great War, Institute lasers differ in design and function from the pre-War lasers used by other factions such as the Brotherhood of Steel. Eschewing raw power for a rapid succession of beams, these lasers can lay down a searing volley of suppressive fire. The default profile is for an Institute laser pistol. Any Stock mods change the weapon to an Institute laser rifle.",
+            "it": "Sviluppati dall’Istituto dopo la Grande Guerra, i laser dell’Istituto sono diversi sia nell’aspetto che nella funzione rispetto a quelli dell’anteguerra che vengono utilizzati da altre fazioni, come la Confraternita d’Acciaio. Rinunciando alla potenza di fuoco in favore di una rapida successione di raggi, possono riversare una pioggia incandescente di fuoco di sbarramento. Ogni mod Calcio trasforma l’arma in un fucile laser dell’Istituto."
+        },
+        "_stock_name": {
+            "en": "Institute Laser Rifle",
+            "it": "Fucile Laser dell'Istituto"
+        }
+    },
+    "weaponLaserMusket": {
+        "en": "Laser Musket",
+        "it": "Moschetto Laser",
+        "_description": {
+            "en": "The laser musket is a homemade form of laser rifle, blending advanced technology with strangely primitive mechanisms, popular with militia groups such as the Minutemen. The laser musket must be manually primed, charging the makeshift capacitor through turning a hand-crank on the weapon's rear. While seemingly crude, they can make for potent sniper's weapons, especially with a modified capacitor able to hold a larger charge. Special: Firing a laser musket consumes two shots of ammunition each time it is fired. Each capacitor mod for the laser musket increases both damage and number of shots consumed. You may reduce the number of shots consumed, reducing the damage by -1 CD for each shot consumed fewer than normal (to a minimum of 4 CD damage and 1 shot consumed).",
+            "it": "Il moschetto laser è un tipo di fucile laser artigianale che unisce una tecnologia avanzata con dei meccanismi insolitamente primitivi ed è molto diffuso tra le milizie come i Minutemen. Deve essere caricato manualmente, girando una manovella sul retro dell’arma. Sebbene sembri rozzo, può essere un’ottima arma da cecchino, soprattutto con un condensatore modificato in grado di sostenere una carica maggiore. Speciale: Sparare con un moschetto laser fa usare ogni volta due colpi di munizioni. Ogni mod Condensatore aumenta sia il danno, che il numero di colpi consumati, che possono essere ridotti abbassando il danno di -1 DC per ogni colpo risparmiato (fino a un minimo di 4 DC di danno e 1 colpo usato)."
+        }
+    },
+    "weaponLaserPistol": {
+        "en": "Laser Gun",
+        "it": "Pistola Laser",
+        "_description": {
+            "en": "Laser guns are high-tech weapons which emit a concentrated beam of coherent, directional light, intense enough to inflict serious damage. They were a relatively new development in the years before the Great War, and thus are not an especially common sight in the wasteland, outside of those groups who've secured old military weapons caches. Most surviving models of laser gun—such as the dependable AER9, widely used by the U. S. Army—use an internal capacitor charged by a microfusion power cell. The default profile is for a laser pistol. Any Stock mods change the weapon to a laser rifle.",
+            "it": "Le pistole laser sono armi tecnologiche in grado di emettere un raggio di luce direzionale coeso e abbastanza intenso da causare gravi danni. Negli anni prima della Grande Guerra erano un’evoluzione relativamente nuova, per cui è difficile trovarle nella Zona Contaminata, al di fuori dei gruppi che sono riusciti ad accaparrarsi i vecchi depositi delle armi dell’esercito. La maggior parte dei modelli sopravvissuti di pistole laser, come l’affidabile AER9, ampiamente usata dall’esercito americano, si serve di un condensatore interno caricato da una batteria a microfusione. Ogni mod Calcio la trasforma in un fucile laser."
+        },
+        "_stock_name": {
+            "en": "Laser Rifle",
+            "it": "Fucile Laser"
+        }
+    },
+    "weaponMicrowaveEmitter": {
+        "en": "Microwave Emitter",
+        "it": "Emettitore di microonde",
+        "_description": {
+            "en": "This advanced energy weapon generates intense blasts of microwave radiation. While it won’t irradiate you—microwaves are non-ionizing radiation—it can cause intense burns as whatever is hit by the blast is heated up from the inside, boiling the water in your cells. And metal is little protection: the microwave blast can’t effectively be dispersed by metallic objects, which heat up, produce electrical sparks, and damage delicate circuitry. While extremely rare, these weapons provide a serious advantage when used against heavily armored targets.",
+            "it": "Quest'arma a energia avanzata genera intense esplosioni di radiazioni a microonde. Pur non irradiandoti (le microonde sono radiazioni non ionizzanti), può causare ustioni intense, perché ciò che viene colpito dall'esplosione viene riscaldato dall'interno, facendo bollire l'acqua delle cellule. E il metallo offre poca protezione: l'esplosione a microonde non può essere dispersa efficacemente dagli oggetti metallici, che si riscaldano, producono scintille elettriche e danneggiano i circuiti delicati. Pur estremamente rare, queste armi offrono un vantaggio notevole quando vengono usate contro bersagli pesantemente corazzati."
+        }
+    },
+    "weaponMesmetron": {
+        "en": "Mesmetron",
+        "it": "Mesmetron",
+        "_description": {
+            "en": "A weapon similar to the gamma gun with the ability to create blasts of high intense energy. This approach creates variable waves that, when received by the brain of a sentient creature, overwhelms the senses and distorts perception making individuals confused and more susceptible.",
+            "it": "Un'arma simile alla pistola gamma, capace di generare esplosioni di energia ad alta intensità. Questo approccio crea onde variabili che, quando vengono ricevute dal cervello di una creatura senziente, sovraccaricano i sensi e distorcono la percezione, rendendo gli individui confusi e più vulnerabili."
+        }
+    },
+    "weaponMrHandyLaserEmitter": {
+        "en": "Laser Emitter Arm",
+        "it": "Arto Emettitore Laser",
+        "_description": {
+            "en": "Laser emitter integrated into a Mr. Handy's body. Identical to a standard laser pistol but permanently mounted on the robot. Only Mr. Handy can use this weapon.",
+            "it": "Emettitore laser integrato nel corpo di un Mr. Handy. Identico a una pistola laser standard, ma montato in modo permanente sul robot. Solo un Mr. Handy può usare quest'arma."
+        }
+    },
+    "weaponPlasmaPistol": {
+        "en": "Plasma Gun",
+        "it": "Pistola al Plasma",
+        "_description": {
+            "en": "Plasma guns, or plasma casters, are high-tech weapons firing superheated ionized gas, or plasma. Powered by a plasma cartridge, these weapons are rare and potent, delivering damage through the high-speed impact of the plasma bolt and then thermal transfer as the heat from the plasma bolt is transferred into the target at the moment of impact. Special: Plasma guns inflict both Physical and Energy damage. Roll damage as normal, and then reduce the total by whichever of the target’s damage resistances is lower out of Physical or Energy. Any Persistent damage effects (applied by weapon mods) inflict Energy damage. The default profile is for a plasma pistol. Any Stock mods change the weapon to a plasma rifle.",
+            "it": "Le armi al plasma, dette anche plasmacaster, sono delle armi altamente tecnologiche che sparano gas ionizzato ad altissime temperature, o plasma. Queste armi, che funzionano con cartucce al plasma, sono rare e molto potenti, in grado come sono di arrecare danno attraverso l’impatto ad alta velocità del raggio al plasma e, successivamente, con il trasferimento termico del calore che viene riversato sul bersaglio al momento dell’impatto. Speciale: Le armi al plasma infliggono danni sia Fisici che da Energia. Si esegue il tiro per il danno come sempre, quindi si sottrae al risultato il valore di Resistenza ai Danni più basso del bersaglio tra Fisica o Energia. Qualsiasi effetto Persistente dei danni (applicato attraverso le mod dell’arma) infligge danni da Energia. Ogni mod Calcio la trasforma in un fucile al plasma."
+        },
+        "_stock_name": {
+            "en": "Plasma Rifle",
+            "it": "Fucile al Plasma"
+        }
+    },
+    "weaponTeslaRifle": {
+        "en": "Tesla Rifle",
+        "it": "Fucile Tesla",
+        "_description": {
+            "en": "An odd blend of advanced technology and jury-rigged components, a Tesla Rifle can shoot deadly arcs of electricity that jump from enemy to enemy, injuring anyone caught nearby.",
+            "it": "Uno strano mix di tecnologia avanzata e componenti di fortuna: un fucile Tesla può sparare archi di elettricità mortali che saltano da un nemico all'altro, ferendo chiunque si trovi nelle vicinanze."
+        }
+    },
+    "weaponLaer": {
+        "en": "LAER",
+        "it": "LAER",
+        "_description": {
+            "en": "The Laser Assisted Electrical Rifle can turn all but the toughest enemies into piles of gently glowing ash faster than you can say its name.",
+            "it": "Il Fucile Elettrico Assistito Laser può trasformare quasi tutti i nemici, tranne i più resistenti, in mucchi di cenere che brilla dolcemente, più in fretta di quanto si riesca a dire il suo nome."
+        }
+    },
+    "weaponLaserRcw": {
+        "en": "Laser RCW",
+        "it": "RCW Laser",
+        "_description": {
+            "en": "Old world style meets new world tech, a match made in heaven!",
+            "it": "Lo stile del vecchio mondo incontra la tecnologia del nuovo: un matrimonio perfetto!"
+        }
+    },
+    "weaponMultiplasRifle": {
+        "en": "Multiplas Rifle",
+        "it": "Fucile Multiplasma",
+        "_description": {
+            "en": "Ever wondered ‘what if my plasma gun worked like a shotgun?’ Well, grab a Multiplas Rifle and wonder no more!",
+            "it": "Ti sei mai chiesto «e se il mio fucile al plasma funzionasse come un fucile a pompa?». Bene, prendi un Fucile Multiplasma e smetti di chiedertelo!"
+        }
+    },
+    "weaponRechargerPistol": {
+        "en": "Recharger Pistol",
+        "it": "Pistola Ricaricatrice",
+        "_description": {
+            "en": "Waste not want not with the Recharger Pistol, the latest in microfusion technology!",
+            "it": "Niente sprechi con la Pistola Ricaricatrice, l'ultima novità della tecnologia a microfusione!"
+        }
+    },
+    "weaponRechargerRifle": {
+        "en": "Recharger Rifle",
+        "it": "Fucile Ricaricatore",
+        "_description": {
+            "en": "Pistols not your style, but still want the latest tech? Pick up a Recharger Rifle and never worry about ammunition again!",
+            "it": "Le pistole non fanno per te, ma vuoi la tecnologia più recente? Prendi un Fucile Ricaricatore e non preoccuparti mai più delle munizioni!"
+        }
+    },
+    "weaponAer14Prototype": {
+        "en": "AER14 Prototype",
+        "it": "Prototipo AER14",
+        "_description": {
+            "en": "The step beyond the commonplace AER9 and AER12 laser rifles, the AER14 failed to see mass production before the war, and prototypes are in decidedly small supply. Sporting an unfinished design, personal notes, and exposed innards demonstrate the still-working nature of this weapon. Requiring a more substantial amount of energy per shot, the AER14 is decidedly deadlier than earlier iterations. Oddly, the AER14 fires a green laser, rather than the standard red. The AER14 Prototype is found in a blocked stairwell between the Pest Control and Common Area floors of Vault 22.",
+            "it": "Evoluzione dei comuni fucili laser AER9 e AER12, l'AER14 non arrivò alla produzione in serie prima della guerra e i prototipi sono decisamente rari. Il design incompiuto, gli appunti personali e i componenti interni esposti mostrano che l'arma era ancora in fase di sviluppo. Richiede molta più energia per colpo, ma è decisamente più letale dei modelli precedenti. Stranamente, l'AER14 spara un laser verde invece del solito rosso. Il Prototipo AER14 si trova in una tromba delle scale bloccata tra i piani Controllo Infestanti e Aree Comuni del Vault 22."
+        }
     }
-  },
-  "weaponTeslaRifle": {
-    "en": "Tesla Rifle",
-    "it": "Fucile Tesla",
-    "_description": {
-      "en": "An odd blend of advanced technology and jury-rigged components, a Tesla Rifle can shoot deadly arcs of electricity that jump from enemy to enemy, injuring anyone caught nearby.",
-      "it": "Una strana miscela di tecnologia avanzata e componenti improvvisati, un fucile Tesla può sparare archi elettrici mortali che saltano da un nemico all'altro, ferendo chiunque si trovi nelle vicinanze."
-    }
-  }
 }

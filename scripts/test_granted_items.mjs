@@ -27,6 +27,7 @@ let server,
     data,
     registry,
     calculatePerks,
+    perksModule,
     calculateTraits;
 before(async () => {
     server = await createServer({
@@ -54,7 +55,8 @@ before(async () => {
     transitions = await load('features/character/state/characterState.ts');
     data = await load('data/index.ts');
     registry = await load('features/character/feats/registry.ts');
-    ({ calculatePerks } = await load('features/character/feats/perks.ts'));
+    perksModule = await load('features/character/feats/perks.ts');
+    ({ calculatePerks } = perksModule);
     ({ calculateTraits } = await load('features/character/feats/traits.ts'));
 });
 after(async () => {
@@ -134,20 +136,17 @@ test('Gen 3 Synths can use standard armor and retain an unarmed attack', () => {
     const selection = { origin, perks: [], traits: [] };
 
     assert.equal(origin.isRobot, false);
-    assert.equal(
-        inventory.canEquipApparel(data.apparel.armorLeatherChest, selection),
-        true,
-    );
-    assert.equal(
-        inventory.canEquipApparel(data.apparel.robotPartBody, selection),
-        false,
-    );
+    assert.equal(inventory.canEquipApparel(data.apparel.armorLeatherChest, selection), true);
+    assert.equal(inventory.canEquipApparel(data.apparel.robotPartBody, selection), false);
 
     const projected = inventory.getInventory(
         [item('armorLeatherChest', { equipped: true })],
         selection,
     );
-    assert.equal(projected.displayItems.some(item => item.id === 'weaponUnarmedStrike'), true);
+    assert.equal(
+        projected.displayItems.some(item => item.id === 'weaponUnarmedStrike'),
+        true,
+    );
 });
 
 test('Gen 3 Synths receive More Than Human fixed traits', () => {
@@ -190,14 +189,8 @@ test('Nightkin can equip only super mutant armor', () => {
     assert.equal(feats.getSkillMaxValue([], traits, origin), 4);
     assert.equal(feats.hasRadiationImmunity([], traits, origin), true);
     assert.equal(feats.hasPoisonImmunity([], traits, origin), true);
-    assert.equal(
-        inventory.canEquipApparel(data.apparel.armorRaiderChest, selection),
-        true,
-    );
-    assert.equal(
-        inventory.canEquipApparel(data.apparel.armorLeatherChest, selection),
-        false,
-    );
+    assert.equal(inventory.canEquipApparel(data.apparel.armorRaiderChest, selection), true);
+    assert.equal(inventory.canEquipApparel(data.apparel.armorLeatherChest, selection), false);
 });
 const legacyCharacter = extra => {
     const { saveVersion: _saveVersion, ...raw } = character(extra);
@@ -214,14 +207,14 @@ const active = raw => {
 };
 const granted = (raw, id) => raw.items.find(i => i.id === id && i.grantedBy);
 
-test('Wanderers underarmor linings preserve recipe data and apply to both suits', () => {
+test('Wanderers underarmor linings preserve recipe data and apply only to the Underarmor Suit', () => {
     const recipes = [
         ['modUnderarmorTreatedLining', 1, 2, 1, 9, 2, 'Common', []],
         ['modUnderarmorResistantLining', 2, 2, 1, 15, 3, 'Uncommon', ['perkArmorer:1']],
         ['modUnderarmorProtectiveLining', 2, 2, 1, 24, 3, 'Uncommon', ['perkArmorer:1']],
         ['modUnderarmorShieldedLining', 3, 3, 1, 36, 4, 'Uncommon', ['perkArmorer:2']],
     ];
-    for (const id of ['armorUnderarmor', 'armorMarineWetsuit']) {
+    for (const id of ['armorUnderarmor']) {
         const base = data.allItems[id];
         assert.deepEqual(
             base.AVAILABLE_MODS,
@@ -238,7 +231,7 @@ test('Wanderers underarmor linings preserve recipe data and apply to both suits'
             perks,
         ] of recipes) {
             const mod = data.allItems[modId];
-            assert.equal(mod.SLOT_TYPE, 'modSlotUnderarmorLining');
+            assert.equal(mod.CATEGORY, 'modSlotUnderarmorLining');
             assert.equal(mod.SKILL, 'repair');
             assert.equal(mod.RARITY, complexity);
             assert.equal(mod.RARITY_TO_FIND, rarity);
@@ -254,12 +247,14 @@ test('Wanderers underarmor linings preserve recipe data and apply to both suits'
     assert.ok(
         !data.allItems.armorVaultJumpsuit.AVAILABLE_MODS.some(id => id.startsWith('modUnderarmor')),
     );
+    // The Wanderers manual gives linings to the Underarmor Suit only, not to the Marine Wetsuit.
+    assert.deepEqual(data.allItems.armorMarineWetsuit.AVAILABLE_MODS, []);
 });
 
 test('Underarmor protective linings replace one shared reroll use with two, without stacking', () => {
     const baseEffect = 'effectUnderarmorReroll';
     const upgradedEffect = 'effectUnderarmorRerollTwice';
-    for (const id of ['armorUnderarmor', 'armorMarineWetsuit']) {
+    for (const id of ['armorUnderarmor']) {
         for (const modId of ['modUnderarmorProtectiveLining', 'modUnderarmorShieldedLining']) {
             const modified = utils.getModdedItemData(item(id, { mods: [modId] }));
             assert.ok(!modified.EFFECTS.includes(baseEffect));
@@ -298,7 +293,7 @@ test('Marine materials apply to helmet and limbs and only double torso weight an
         );
         for (const [modId, resistance, weight, cost, complexity, rarity, perks] of recipes) {
             const mod = data.allItems[modId];
-            assert.equal(mod.SLOT_TYPE, 'modSlotMaterial');
+            assert.equal(mod.CATEGORY, 'modSlotMaterial');
             assert.equal(mod.SKILL, 'repair');
             assert.equal(mod.RARITY, complexity);
             assert.equal(mod.RARITY_TO_FIND, rarity);
@@ -344,7 +339,7 @@ test('Legion materials apply to every Legion piece with the standard torso multi
         );
         for (const [modId, resistance, weight, cost, complexity, rarity, perks] of recipes) {
             const mod = data.allItems[modId];
-            assert.equal(mod.SLOT_TYPE, 'modSlotMaterial');
+            assert.equal(mod.CATEGORY, 'modSlotMaterial');
             assert.equal(mod.SKILL, 'repair');
             assert.equal(mod.RARITY, complexity);
             assert.equal(mod.RARITY_TO_FIND, rarity);
@@ -981,10 +976,13 @@ test('Unmet perk requirements hide a retained grant and remove its calculated ef
     const raw = reconcile(
         character({ origin: 'survivor', perks: ['perkIronFist', 'perkIronFist'] }),
     );
+    const weak = reconcile({ ...raw, special: { ...raw.special, strength: 5 } });
+    assert.ok(granted(weak, 'weaponIronFist'));
+    assert.deepEqual(calculate(weak).perks, []);
+    assert.ok(!calculate(weak).items.some(i => i.id === 'weaponIronFist'));
+    // Too low a level only drops the ranks above it: rank 1 (level 1) stays, rank 2 (level 6) goes.
     const lowLevel = reconcile({ ...raw, level: 1 });
-    assert.ok(granted(lowLevel, 'weaponIronFist'));
-    assert.deepEqual(calculate(lowLevel).perks, []);
-    assert.ok(!calculate(lowLevel).items.some(i => i.id === 'weaponIronFist'));
+    assert.deepEqual(calculate(lowLevel).perks, ['perkIronFist']);
     const rankOne = reconcile({ ...lowLevel, perks: ['perkIronFist'] });
     const calculated = calculate(rankOne);
     assert.ok(
@@ -1267,17 +1265,13 @@ test('Virtual attacks use modified handedness, remain nonpersistent and add no p
     assert.deepEqual(updated.items, raw.items);
 });
 
-test('Basher only makes one-handed gun bash vicious when a pistol is in inventory', () => {
-    const gunBash = item('weaponWeaponStockOneHanded');
-    const withoutPistol = inventory.getModifiedItemData(gunBash, ['perkBasher'], [
-        item('weaponCombatKnife'),
-    ]);
-    const withPistol = inventory.getModifiedItemData(gunBash, ['perkBasher'], [
-        item('weaponHandmadePistol'),
-    ]);
-
-    assert.equal(withoutPistol.EFFECTS.includes('effectVicious'), false);
-    assert.equal(withPistol.EFFECTS.includes('effectVicious'), true);
+test('Basher makes every gun bash vicious', () => {
+    for (const id of ['weaponWeaponStockOneHanded', 'weaponWeaponStock']) {
+        const bash = inventory.getModifiedItemData(item(id), ['perkBasher'], []);
+        assert.ok(bash.EFFECTS.includes('effectVicious'), id);
+    }
+    const knife = inventory.getModifiedItemData(item('weaponCombatKnife'), ['perkBasher'], []);
+    assert.ok(!knife.EFFECTS.includes('effectVicious'));
 });
 
 test('Bayonets and shredders are projected from active weapons only', () => {
@@ -1285,7 +1279,8 @@ test('Bayonets and shredders are projected from active weapons only', () => {
         origin: 'survivor',
         items: [
             item('weaponCombatRifle', { quantity: 2, mods: ['modBayonet'] }),
-            item('weaponCombatRifle', { mods: ['modMissileLauncherBayonet'] }),
+            item('weaponMissileLauncher', { mods: ['modBayonetMissileLauncher'] }),
+            item('weaponGatlingGun', { mods: ['modLargeBayonet'] }),
             item('weaponCombatRifle', { quantity: 3, mods: ['modShredder'] }),
             item('weaponCombatRifle', {
                 quantity: 9,
@@ -1298,6 +1293,7 @@ test('Bayonets and shredders are projected from active weapons only', () => {
     assert.equal(view.items.find(i => i.id === 'weaponBayonet').quantity, 2);
     assert.equal(view.items.find(i => i.id === 'weaponMissileLauncherBayonet').quantity, 1);
     assert.equal(view.items.find(i => i.id === 'weaponShredder').quantity, 3);
+    assert.equal(view.items.find(i => i.id === 'weaponLargeBayonet').quantity, 1);
     assert.ok(
         !raw.items.some(i =>
             ['weaponBayonet', 'weaponMissileLauncherBayonet', 'weaponShredder'].includes(i.id),
@@ -1662,4 +1658,114 @@ test('Mod removals take precedence over additions', () => {
     );
     assert.ok(weapon);
     assert.ok(!weapon.QUALITIES.includes('qualityBlast'));
+});
+
+test('Gatling laser counts fusion cells and states fusion core use', () => {
+    const weapon = data.weapon.weaponGatlingLaser;
+    assert.equal(weapon.AMMO_TYPE, 'ammoFusionCell');
+    assert.ok(weapon.QUALITIES.includes('qualitySpecialFusionCoreSlot'));
+    const calculated = calculate(
+        character({
+            origin: 'survivor',
+            items: [item('weaponGatlingLaser'), item('ammoFusionCell', { quantity: 30 })],
+        }),
+    );
+    const usingItem = calculated.items.find(i => i.id === 'weaponGatlingLaser');
+    assert.equal(inventory.getWeaponAmmoCount(weapon, calculated, usingItem), 30);
+});
+
+test('Jinxed and Built to Destroy widen the complication range', () => {
+    const calculated = calculate(character({ origin: 'survivor' }));
+    const weapon = data.weapon.weaponTenMillimeterPistol;
+    const delta = traits =>
+        feats.getRollComplicationModifiers(calculated, { traits, itemData: weapon }).thresholdDelta;
+    assert.equal(delta(['traitJinxed']), -2);
+    assert.equal(delta(['traitBuiltToDestroy']), -1);
+});
+
+test('Winding Way poison resistance increases at level 5 and every 5 levels', () => {
+    const trait = ['traitWindingWayOfTheGreatSnake_poisonResistance'];
+    const pr = level => feats.getPoisonResistance(level, [], trait);
+    assert.deepEqual([1, 4, 5, 9, 10].map(pr), [1, 1, 2, 2, 3]);
+});
+
+test('Perks without a base level still apply the per-rank level increase, dropping only higher ranks', () => {
+    const armorer = level =>
+        calculatePerks(
+            character({ origin: 'survivor', level, perks: ['perkArmorer', 'perkArmorer'] }),
+        );
+    assert.deepEqual(armorer(4), ['perkArmorer', 'perkArmorer']);
+    assert.deepEqual(armorer(3), ['perkArmorer']);
+    assert.deepEqual(
+        calculatePerks(character({ origin: 'survivor', level: 1, perks: ['perkArmorer'] })),
+        ['perkArmorer'],
+    );
+});
+
+test('Perk flag requirements exclude robots, ghouls, radiation-immune characters and second companions', () => {
+    const active = (origin, perks, level = 20) =>
+        calculatePerks(character({ origin, level, perks }));
+    assert.deepEqual(active('survivor', ['perkBarbarian']), ['perkBarbarian']);
+    assert.deepEqual(active('mrHandy', ['perkBarbarian']), []);
+    const ghoulish = origin =>
+        calculatePerks(
+            character({
+                origin,
+                level: 20,
+                special: { ...character().special, endurance: 9 },
+                perks: ['perkGhoulish'],
+            }),
+        );
+    assert.deepEqual(ghoulish('ghoul'), []);
+    assert.deepEqual(ghoulish('survivor'), ['perkGhoulish']);
+    assert.deepEqual(active('ghoul', ['perkRadicool']), []);
+    assert.deepEqual(active('survivor', ['perkRadicool']), ['perkRadicool']);
+    assert.deepEqual(active('survivor', ['perkRobotWrangler']), ['perkRobotWrangler']);
+    // No companion is checked when the perk is taken, not on perks already owned.
+    assert.deepEqual(active('survivor', ['perkDogmeat', 'perkRobotWrangler']), [
+        'perkDogmeat',
+        'perkRobotWrangler',
+    ]);
+    const { getUnmetPerkFlags } = perksModule;
+    const origin = origins.getOriginById('survivor');
+    assert.deepEqual(getUnmetPerkFlags('perkRobotWrangler', origin, true), ['noCompanion']);
+    assert.deepEqual(getUnmetPerkFlags('perkRobotWrangler', origin, false), []);
+    // Radiation immunity comes from the origin's fixed traits (Super Mutant: Forced Evolution).
+    assert.deepEqual(getUnmetPerkFlags('perkRadicool', origins.getOriginById('superMutant')), [
+        'notRadiationImmune',
+    ]);
+});
+
+test('Evasive adds DR by Agility and is lost while encumbered', () => {
+    const dr = (perks, items = []) =>
+        calculate(
+            character({
+                origin: 'survivor',
+                level: 10,
+                special: { ...character().special, agility: 9 },
+                perks,
+                items,
+            }),
+        ).locationsDR.torso;
+    const base = dr([]);
+    const evasive = dr(['perkEvasive']);
+    assert.equal(evasive.physical, base.physical + 2);
+    assert.equal(evasive.energy, base.energy + 2);
+    const heavy = [item('weaponMinigun', { quantity: 20 })];
+    assert.deepEqual(dr(['perkEvasive'], heavy), dr([], heavy));
+});
+
+test('Violent raises an existing Recoil by 1 and Plasma Infused deals Physical and Energy damage', () => {
+    const modded = (id, mods) => utils.getModdedItemData(item(id, { mods }));
+    const withRecoil = modded('weaponAntiMaterielRifle', ['legendaryViolent']);
+    assert.deepEqual(
+        withRecoil.QUALITIES.filter(q => q.startsWith('qualityRecoil')),
+        ['qualityRecoil:9'],
+    );
+    const withoutRecoil = modded('weaponHuntingRifle', ['legendaryViolent']);
+    assert.ok(withoutRecoil.QUALITIES.includes('qualityRecoil:7'));
+    assert.deepEqual(modded('weaponHuntingRifle', ['legendaryPlasmaInfused']).DAMAGE_TYPES, [
+        'physical',
+        'energy',
+    ]);
 });

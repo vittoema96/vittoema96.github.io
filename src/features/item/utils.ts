@@ -67,7 +67,8 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
             modifiedData.FIRE_RATE = addValues(modifiedData.FIRE_RATE, value);
             break;
         case 'damageTypeSet':
-            modifiedData.DAMAGE_TYPES = [value] as DamageType[];
+            // Comma-separated for weapons that deal several types, e.g. "physical,energy".
+            modifiedData.DAMAGE_TYPES = value.split(',') as DamageType[];
             break;
         case 'ammoSet':
             modifiedData.AMMO_TYPE = value;
@@ -91,14 +92,25 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
             break;
         }
 
-        case 'qualityAdd':
-            if (
+        case 'qualityAdd': {
+            // Adding Recoil to a weapon that already has it raises the rating by 1 instead
+            // (Violent legendary, the only manual source that adds Recoil).
+            const existingRecoil = value.startsWith('qualityRecoil:')
+                ? modifiedData.QUALITIES.findIndex(q => q.startsWith('qualityRecoil:'))
+                : -1;
+            if (existingRecoil !== -1) {
+                const rating = Number(modifiedData.QUALITIES[existingRecoil]!.split(':')[1]) || 0;
+                const qualities = [...modifiedData.QUALITIES];
+                qualities[existingRecoil] = `qualityRecoil:${rating + 1}`;
+                modifiedData.QUALITIES = qualities;
+            } else if (
                 mutuallyExclusiveQualities[value] ||
                 !modifiedData.QUALITIES.includes(value)
             ) {
                 modifiedData.QUALITIES = [...modifiedData.QUALITIES, value];
             }
             break;
+        }
         case 'qualityRemove':
             if (modifiedData.QUALITIES) {
                 modifiedData.QUALITIES = modifiedData.QUALITIES.filter(
@@ -114,20 +126,39 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
         case 'tagRemove':
             modifiedData.TAGS = modifiedData.TAGS.filter(tag => tag !== value);
             break;
-        case 'allowMuzzleMod':
+        case 'allowMuzzleMod': // TODO This column doesn't exist
             modifiedData.ALLOW_MUZZLE_MOD = value === 'true';
             break;
         case 'rerollHitLocation':
             modifiedData.REROLL_HIT_LOCATION = value === 'true';
             if (
                 modifiedData.REROLL_HIT_LOCATION &&
-                !modifiedData.QUALITIES.includes('qualityRerollHitLocation')
+                !modifiedData.QUALITIES.includes('qualitySpecialRerollHitLocation')
             ) {
-                modifiedData.QUALITIES = [...modifiedData.QUALITIES, 'qualityRerollHitLocation'];
+                modifiedData.QUALITIES = [
+                    ...modifiedData.QUALITIES,
+                    'qualitySpecialRerollHitLocation',
+                ];
             }
             break;
     }
     return modifiedData;
+}
+
+const APPAREL_STAT_OPERATIONS = new Set([
+    'physicalResAdd',
+    'energyResAdd',
+    'radiationResAdd',
+    'meleeResAdd',
+    'explosiveResAdd',
+    'fallDamageResAdd',
+    'carryWeightAdd',
+    'unarmedDamageAdd',
+]);
+
+/** True for apparel EFFECTS entries that change stats rather than naming a described effect. */
+export function isApparelStatOperation(effect: string) {
+    return APPAREL_STAT_OPERATIONS.has(effect.split(':')[0] ?? '');
 }
 
 // TODO should not be string, string, but defined fields
@@ -237,7 +268,7 @@ export function isType<T extends ItemType>(
 /**
  * Parse and apply a single effect from mod EFFECTS array
  * @param {Object} modifiedData - Item data being modified
- * @param {string} effect - Effect string (e.g., "damageAdd:1", "qualityAdd:qualityMelee")
+ * @param {string} effect - Effect string (e.g., "damageAdd:1", "qualityAdd:qualitySpecialAdds:weaponBayonet")
  */
 export function applyEffect(modifiedData: WeaponItem, effect: string): WeaponItem;
 export function applyEffect(modifiedData: ApparelItem, effect: string): ApparelItem;
@@ -317,7 +348,7 @@ function buildModdedDisplayName(
     // Stock mod rename
     const hasStockMod = mods.some(m => {
         const modData = allItems[m];
-        return modData && 'SLOT_TYPE' in modData && modData.SLOT_TYPE === 'modSlotStock';
+        return isType(modData, 'mod') && modData.CATEGORY === 'modSlotStock';
     });
     if (hasStockMod && id) {
         const stockNameKey = `${id}StockName`;
@@ -462,11 +493,18 @@ export function getModdedItemData(
         return null;
     }
 
-    const baseItemData = {
+    let baseItemData = {
         ...itemData,
         EFFECTS: [...itemData.EFFECTS],
         ...(isType(itemData, 'weapon') ? { QUALITIES: [...itemData.QUALITIES] } : {}),
     };
+    if (isType(baseItemData, 'apparel')) {
+        // Base apparel may carry stat operations (e.g. carryWeightAdd:2.5) next to effect ids.
+        baseItemData = baseItemData.EFFECTS.filter(isApparelStatOperation).reduce(
+            (data, effect) => applyEffect(data, effect),
+            baseItemData,
+        );
+    }
 
     if (characterItem.mods.length === 0) {
         return baseItemData;
@@ -485,7 +523,7 @@ export function getModdedItemData(
         materialMultiplier = isTorsoArmor ? 2 : 1;
     }
     const getValue = (modData: ModItem | LegendaryEffect, value: number | '-') => {
-        const isMaterialMod = { SLOT_TYPE: null, ...modData }.SLOT_TYPE === 'modSlotMaterial';
+        const isMaterialMod = 'CATEGORY' in modData && modData.CATEGORY === 'modSlotMaterial';
         const multiplier = isMaterialMod ? materialMultiplier : 1;
         return (Number(value) || 0) * multiplier;
     };
@@ -514,9 +552,7 @@ export function getModdedItemData(
         modsData,
     );
 
-    return isType(modifiedData, 'weapon')
-        ? normalizeWeaponQualities(modifiedData)
-        : modifiedData;
+    return isType(modifiedData, 'weapon') ? normalizeWeaponQualities(modifiedData) : modifiedData;
 }
 
 export function getUniqueKey(item: CharacterItem | CustomItem) {

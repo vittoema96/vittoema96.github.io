@@ -1,394 +1,482 @@
 {
-  "weaponAluminumBaseballBat": {
-    "en": "Aluminum Baseball Bat",
-    "it": "Mazza da Baseball in Alluminio",
-    "_description": {
-      "en": "Baseball bats were once used in the sport of baseball, considered America's number-one pastime during the pre-War era. Two hundred years later, they have been re-purposed as crude but effective melee weapons. While most are made a single piece of wood—normally ash, but other hardwoods are often used—a few can be found made of aluminum instead, making for a lighter, harder bat.",
-      "it": "Una volta le mazze da baseball erano usate nell’omonimo sport, considerato il passatempo numero uno dell’America nell’epoca antecedente alla Guerra. Duecento anni dopo, sono state riconvertite in delle rozze, ma efficaci armi da mischia. La maggior parte è formata da un singolo ciocco di legno (solitamente frassino, ma spesso vengono usati altri legni duri), ma se ne possono trovare alcune in alluminio, più leggere e dure."
+    "weaponAluminumBaseballBat": {
+        "en": "Aluminum Baseball Bat",
+        "it": "Mazza da Baseball in Alluminio",
+        "_description": {
+            "en": "Baseball bats were once used in the sport of baseball, considered America's number-one pastime during the pre-War era. Two hundred years later, they have been re-purposed as crude but effective melee weapons. While most are made a single piece of wood—normally ash, but other hardwoods are often used—a few can be found made of aluminum instead, making for a lighter, harder bat.",
+            "it": "Le mazze da baseball erano un tempo usate nello sport del baseball, considerato il passatempo numero uno in America nell'anteguerra. Duecento anni dopo, sono state riadattate come armi da mischia grezze ma efficaci. Mentre la maggior parte è fatta di un unico pezzo di legno, di solito frassino, ma spesso si usano altri legni duri, se ne trovano alcune in alluminio, più leggere e più dure."
+        }
+    },
+    "weaponAssaultronBlade": {
+        "en": "Assaultron Blade",
+        "it": "Lama da Assaultron",
+        "_description": {
+            "en": "The vibroblade from an Assaultron dominator, dismounted and repurposed into a usable melee weapon.",
+            "it": "La lama vibrante di un dominatore Assaultron, smontata e riadattata come arma da mischia utilizzabile."
+        }
+    },
+    "weaponAutoAxe": {
+        "en": "Auto-Axe",
+        "it": "Auto-Ascia",
+        "_description": {
+            "en": "Sharing some basic qualities with the Ripper but more impressive and harmful, the auto axe is a steel saw fitted with car engine parts to increase its attack damage. The original blade has been replaced or modified to resemble four axe blades arranged around the central axle.",
+            "it": "Con alcune qualità di base in comune con il Ripper, ma più impressionante e più dannosa, l'auto-ascia è una sega d'acciaio dotata di parti di motore d'auto per aumentare il danno di attacco. La lama originale è stata sostituita o modificata per assomigliare a quattro lame d'ascia disposte attorno all'asse centrale."
+        }
+    },
+    "weaponBallisticFist": {
+        "en": "Ballistic Fist",
+        "it": "Pugno Balistico",
+        "_description": {
+            "en": "The ballistic fist consists of a wrist-mounted shotgun with a pressure plate worn over the knuckles. The impact of the plate triggers the firing mechanism when a punch connects with the target, firing the shotgun directly into the target. This weapon requires ammunition, expending one shotgun shell with each attack. Due to the Slow Load quality, it must be reloaded as a minor action before it can be used again: without a shotgun shell, a ballistic fist simply makes a normal unarmed attack.",
+            "it": "Il pugno balistico consiste in un fucile montato sul polso con una piastra di pressione indossata sulle nocche. L'impatto della piastra attiva il meccanismo di sparo quando un pugno colpisce il bersaglio, sparando il fucile direttamente nel bersaglio. Quest'arma richiede munizioni, e ogni attacco consuma una cartuccia da fucile. Per la qualità Ricarica Lenta, deve essere ricaricata con un'azione minore prima di poter essere usata di nuovo: senza una cartuccia da fucile, il pugno balistico compie semplicemente un normale attacco a mani nude."
+        }
+    },
+    "weaponBaseballBat": {
+        "en": "Baseball Bat",
+        "it": "Mazza da Baseball",
+        "_description": {
+            "en": "Baseball bats were once used in the sport of baseball, considered America's number-one pastime during the pre-War era. Two hundred years later, they have been re-purposed as crude but effective melee weapons. While most are made a single piece of wood—normally ash, but other hardwoods are often used—a few can be found made of aluminum instead, making for a lighter, harder bat. You may only apply mods to an aluminum baseball bat if you have the Blacksmith 1 perk.",
+            "it": "Le mazze da baseball erano un tempo usate nello sport del baseball, considerato il passatempo numero uno in America nell'anteguerra. Duecento anni dopo, sono state riadattate come armi da mischia grezze ma efficaci. Mentre la maggior parte è fatta di un unico pezzo di legno, di solito frassino, ma spesso si usano altri legni duri, se ne trovano alcune in alluminio, più leggere e più dure. Puoi applicare mod a una mazza in alluminio solo se hai il talento Fabbro 1."
+        }
+    },
+    "weaponBaton": {
+        "en": "Baton",
+        "it": "Manganello",
+        "_description": {
+            "en": "A collapsible baton of the sort used by police departments and private security forces before the Great War. Vault-Tec security within each vault had a stock of these, so they remain in common use as a lightweight back-up melee weapon.",
+            "it": "Un manganello pieghevole del tipo usato dalla polizia e dalla sicurezza privata prima della Grande Guerra. Il personale di sicurezza Vault-Tec di ogni Vault ne aveva una scorta, e per questo restano di uso comune come arma da mischia di riserva leggera."
+        }
+    },
+    "weaponBayonet": {
+        "en": "Bayonet",
+        "it": "Baionetta",
+        "_description": {
+            "en": "A blade fixed to the muzzle of a firearm, used as a melee weapon in close combat.",
+            "it": "Una lama fissata alla volata di un'arma da fuoco, usata come arma da mischia nel combattimento ravvicinato."
+        }
+    },
+    "weaponLargeBayonet": {
+        "en": "Large Bayonet",
+        "it": "Baionetta Grande",
+        "_description": {
+            "en": "A heavy blade fixed to the muzzle of a big gun, used as a melee weapon in close combat.",
+            "it": "Una lama pesante fissata alla volata di un'arma pesante, usata come arma da mischia nel combattimento ravvicinato."
+        }
+    },
+    "weaponBoard": {
+        "en": "Board",
+        "it": "Asse",
+        "_description": {
+            "en": "Little more than a long plank of wood with a handle wrapped in duct tape. Boards are heavy melee weapons, normally favored by super mutants who have the strength to wield them effectively.",
+            "it": "Non è altro che una lunga asse di legno con un manico avvolto nel nastro adesivo. Le assi sono armi da mischia pesanti, di solito preferite dai super mutanti che hanno la forza di usarle efficacemente."
+        }
+    },
+    "weaponBoxingGlove": {
+        "en": "Boxing Glove",
+        "it": "Guantone da Boxe",
+        "_description": {
+            "en": "A large, leather mitt, used to protect the hands and wrists while punching. While originally used during sporting matches, a skilled fighter can use these to deliver solid blows to enemies in less organized fights, particularly if they've modified the glove in some way.",
+            "it": "Un grande guanto di pelle, usato per proteggere mani e polsi durante i pugni. Originariamente usati nelle competizioni sportive, un combattente esperto può usarli per sferrare colpi solidi ai nemici in combattimenti meno organizzati, soprattutto se ha modificato il guanto in qualche modo."
+        }
+    },
+    "weaponBumperSword": {
+        "en": "Bumper Sword",
+        "it": "Spada Paraurti",
+        "_description": {
+            "en": "The bumper sword consists of a chrome car bumper that has been pounded out and sharpened into a thick, heavy blade. The license plate is still attached, and an exhaust pipe strapped to the unsharpened end serves as a makeshift handle.",
+            "it": "La spada paraurti è composta da un paraurti cromato di un'auto, battuto e affilato fino a diventare una lama spessa e pesante. La targa è ancora attaccata, e un tubo di scappamento legato all'estremità non affilata serve da impugnatura di fortuna."
+        }
+    },
+    "weaponCattleProd": {
+        "en": "Cattle Prod",
+        "it": "Pungolo per Bestiame",
+        "_description": {
+            "en": "Normally used for herding stubborn cattle, it has been repurposed as a weapon against humans. In addition to the taser-like prongs at the tip normally found on cattle prods, it has been outfitted with a thick, electrified metal coil around the striking end, hooked up to a pair of batteries taped down near the handle.",
+            "it": "Normalmente usato per condurre bestiame ostinato, è stato riadattato come arma contro gli esseri umani. Oltre alle punte simili a un taser sulla punta, tipiche dei pungoli per bovini, è stato dotato di una spirale metallica spessa ed elettrificata attorno all'estremità colpente, collegata a un paio di batterie fissate con nastro adesivo vicino all'impugnatura."
+        }
+    },
+    "weaponChainsaw": {
+        "en": "Chainsaw",
+        "it": "Motosega",
+        "_description": {
+            "en": "A motorized tool—traditionally used for cutting wood—with a toothed metal chain propelled around the edge of the ‘blade’. They serve as deadly weapons in the right hands, and the effects can be either spectacular or horrific, depending on your disposition. Special: A Chainsaw does not benefit from the wielder’s normal melee damage bonus.",
+            "it": "Uno strumento motorizzato, tradizionalmente usato per tagliare il legno, con una catena metallica dentata che gira lungo il bordo della «lama». Nelle mani giuste è un'arma letale, e gli effetti possono essere spettacolari o orribili, a seconda di chi la usa. Speciale: una motosega non beneficia del normale bonus di danno in mischia di chi la impugna."
+        }
+    },
+    "weaponCombatKnife": {
+        "en": "Combat Knife",
+        "it": "Coltello da Combattimento",
+        "_description": {
+            "en": "For both fighting and for utility uses, soldiers—and those who seek to emulate soldiers—frequently carry knives. The Combat Knife found across the wastelands is normally of the same type as was issued to U.S. Army soldiers during the Great War, a single-edged blade with a clipped point. The weapon is lightweight and sturdy, and intended for heavy use.",
+            "it": "Sia per combattere sia per usi pratici, i soldati, e chi vuole imitarli, portano spesso dei coltelli. Il coltello da combattimento diffuso nella Zona Contaminata è normalmente dello stesso tipo distribuito ai soldati dell'esercito americano durante la Grande Guerra, un coltello a lama singola con punta sagomata. Si tratta di un'arma molto leggera e resistente, fatta per essere usata spesso."
+        }
+    },
+    "weaponDeathTambo": {
+        "en": "Death Tambo",
+        "it": "Tamburello della Morte",
+        "_description": {
+            "en": "Somewhere between a set of knuckledusters and a tambourine, this weapon is an odd assortment of bells and blades designed to be punched into the enemy. Note: When used to make a sneak attack, it increases the complication range by 1.",
+            "it": "A metà strada tra un tirapugni e un tamburello, quest'arma è un insieme bizzarro di campanelli e lame, progettato per essere piantato nel nemico con un pugno. Nota: quando usata per un attacco furtivo, aumenta di 1 l'intervallo di complicazione."
+        }
+    },
+    "weaponDeathclawGauntlet": {
+        "en": "Deathclaw Gauntlet",
+        "it": "Guanto da Deathclaw",
+        "_description": {
+            "en": "Made from the severed fingers and talons of a deathclaw and mounted on a cuff which fits over the wrist, these allow the wearer to strike with some of the lethal force of the claws' previous owner.",
+            "it": "Ricavati dalle dita e dagli artigli tagliati di un deathclaw e montati su un polsino che si indossa sul polso, permettono a chi lo indossa di colpire con parte della forza letale degli artigli del precedente proprietario."
+        }
+    },
+    "weaponDisplacerGlove": {
+        "en": "Displacer Glove",
+        "it": "Guanto Dislocatore",
+        "_description": {
+            "en": "An advanced piece of tech to accomplish a simple task. The speaker on the knuckles creates a sonic blast to add some extra impact to your punches.",
+            "it": "Un'avanzata tecnologia per svolgere un compito semplice. L'altoparlante sulle nocche crea un'esplosione sonica che aggiunge un po' di impatto extra ai tuoi pugni."
+        }
+    },
+    "weaponGuitarSword": {
+        "en": "Guitar Sword",
+        "it": "Spada Chitarra",
+        "_description": {
+            "en": "A sword shaped like a guitar, or a guitar that doubles as a sword. Either way, it probably needs to be tuned after a kill. Special: When used to make a sneak attack, a Guitar Sword increases the complication range by 1, due to the sound it makes.",
+            "it": "Una spada a forma di chitarra, o una chitarra che fa anche da spada. In ogni caso, probabilmente va accordata dopo ogni uccisione. Speciale: quando usata per un attacco furtivo, una Spada Chitarra aumenta l'intervallo di complicazione di 1, a causa del suono che produce."
+        }
+    },
+    "weaponIronFist": {
+        "en": "Iron Fist",
+        "it": "Pugno di Ferro",
+        "_description": {
+            "en": "At rank 1, your unarmed attacks inflict +1 damage. At rank 2, your unarmed attacks also gain the Vicious damage effect.",
+            "it": "Al grado 1, i tuoi attacchi a mani nude infliggono +1 danno. Al grado 2, i tuoi attacchi a mani nude ottengono anche l'effetto di danno Violento."
+        }
+    },
+    "weaponKnuckles": {
+        "en": "Knuckles",
+        "it": "Tirapugni",
+        "_description": {
+            "en": "Developed in antiquity, this weapon is nevertheless quite prevalent in the post-Great War wastelands. Brass Knuckles, or Knuckledusters, take the form of four linked metal rings in a shallow convex formation with a bumper attached to the concave face. The rings are slipped over a combatant's fingers with the bumper pressed into the palm of the hand. When a punch is thrown, the Brass Knuckles take most of the impact impulse, transferring much of the punch's kinetic energy to the target by way of the harder, smaller impacting surface of the metal knuckles. This drastically increases the likelihood of serious tissue disruption and bone damage.",
+            "it": "Ideato nell'antichità, quest'arma è tuttavia molto diffusa nella Zona Contaminata dopo la Grande Guerra. I tirapugni, o noccoliere, hanno la forma di quattro anelli metallici collegati, in una disposizione convessa poco profonda, con un paracolpi attaccato alla faccia concava. Gli anelli vengono infilati sulle dita del combattente, con il paracolpi premuto contro il palmo. Quando si tira un pugno, i tirapugni assorbono la maggior parte dell'impulso dell'impatto, trasferendo gran parte dell'energia cinetica del pugno al bersaglio attraverso la superficie d'impatto più dura e più piccola delle nocche metalliche. Questo aumenta drasticamente la probabilità di gravi lesioni ai tessuti e danni alle ossa."
+        }
+    },
+    "weaponLeadPipe": {
+        "en": "Lead Pipe",
+        "it": "Tubo di Piombo",
+        "_description": {
+            "en": "A length of heavy, metal (normally lead) pipe, with a duct-tape wrapped grip at one end and a few nuts and bolts attached at the other. Crude, simple, and hurts like hell.",
+            "it": "Un pezzo di tubo metallico pesante (di solito di piombo), con un'impugnatura avvolta nel nastro adesivo a un'estremità e qualche dado e bullone attaccato all'altra. Grezzo, semplice e fa malissimo."
+        }
+    },
+    "weaponMachete": {
+        "en": "Machete",
+        "it": "Machete",
+        "_description": {
+            "en": "A long, sharp knife designed to hack through dense or tough vegetation, the same properties that make it a useful tool also make it an effective weapon. While some machetes found in the wasteland were purpose-made blades, others are makeshift tools, typically made from a sharpened metal blade such as that salvaged from a lawnmower, bolted, tied, taped, or otherwise affixed to a simple handle.",
+            "it": "Un coltello lungo e affilato, progettato per farsi strada nella vegetazione fitta o resistente. Le stesse caratteristiche che lo rendono un utile attrezzo lo rendono anche un'arma efficace. Alcuni machete trovati nella Zona Contaminata sono lame costruite apposta, altri sono attrezzi improvvisati, di solito ricavati da una lama di metallo affilata, come quella recuperata da un tosaerba, fissata con bulloni, legata, nastrata o comunque attaccata a un manico semplice."
+        }
+    },
+    "weaponMissileLauncherBayonet": {
+        "en": "Missile Launcher Bayonet",
+        "it": "Baionetta da Lanciamissili",
+        "_description": {
+            "en": "A bayonet attached to a missile launcher, used as a melee weapon in close combat.",
+            "it": "Una baionetta attaccata a un lanciamissili, usata come arma da mischia nel combattimento ravvicinato."
+        }
+    },
+    "weaponMrHandyBuzzBlade": {
+        "en": "Mr Handy Buzz Blade",
+        "it": "Braccio Sega di Mister Handy",
+        "_description": {
+            "en": "The buzzsaw arm of a Mister Handy, given new life attached to a small motor and a long haft, such as from a broom or a weed whacker.",
+            "it": "Il braccio con sega rotante di un Mister Handy, riportato in vita attaccato a un piccolo motore e a un lungo manico, come quello di una scopa o di un tagliaerba."
+        }
+    },
+    "weaponMrHandyCircularSaw": {
+        "en": "Buzz-Saw Arm",
+        "it": "Arto Sega Circolare",
+        "_description": {
+            "en": "Circular saw integrated into a Mr. Handy's body. High-speed rotating blade that can cut through hard materials. Only Mr. Handy can use this weapon.",
+            "it": "Sega circolare integrata nel corpo di un Mister Handy. Una lama rotante ad alta velocità in grado di tagliare materiali duri. Solo un Mister Handy può usare quest'arma."
+        }
+    },
+    "weaponMrHandyPliers": {
+        "en": "Pincer Arm",
+        "it": "Arto Tenaglia",
+        "_description": {
+            "en": "A pincer integrated into a Mr. Handy's body, used for gripping and striking. Only Mr. Handy can use this weapon.",
+            "it": "Tenaglia integrata nel corpo di un Mister Handy, usata per afferrare e colpire. Solo un Mister Handy può usare quest'arma."
+        }
+    },
+    "weaponMultiPurposeAxe": {
+        "en": "Multi-Purpose Axe",
+        "it": "Ascia Multiuso",
+        "_description": {
+            "en": "A pre-War tool, the Multi-Purpose Axe is equally suited to chopping lumber or splitting heads, just make sure you’re on the right end of the swing.",
+            "it": "Uno strumento dell'anteguerra, l'ascia multiuso è adatta sia a tagliare il legname sia a spaccare teste; basta assicurarsi di essere dalla parte giusta del colpo."
+        }
+    },
+    "weaponPipeWrench": {
+        "en": "Pipe Wrench",
+        "it": "Chiave Idraulica",
+        "_description": {
+            "en": "A heavy, metal, adjustable wrench, long enough to be used as a makeshift melee weapon. The adjustable jaws are often used to hold attachments, allowing the wrench to be modded extremely easily. Reduce the difficulty of any test to install a mod onto a pipe wrench by 1.",
+            "it": "Una pesante chiave inglese metallica regolabile, abbastanza lunga da essere usata come arma da mischia di fortuna. Le ganasce regolabili vengono spesso usate per trattenere accessori, il che rende la chiave molto facile da modificare. Riduci di 1 la difficoltà di qualsiasi prova per installare una mod su una chiave idraulica."
+        }
+    },
+    "weaponPoolCue": {
+        "en": "Pool Cue",
+        "it": "Stecca da Biliardo",
+        "_description": {
+            "en": "A long, slender piece of wood used in games like pool. Useful as a melee weapon if there’s nothing to hand with more heft.",
+            "it": "Un lungo bastone di legno sottile usato nei giochi come il biliardo. Utile come arma da mischia se non c'è nulla di più pesante a portata di mano."
+        }
+    },
+    "weaponPowerFist": {
+        "en": "Power Fist",
+        "it": "Pugno Potenziato",
+        "_description": {
+            "en": "A Power Fist is a reinforced gauntlet or vambrace which mounts a heavy-duty pneumatic ram over the knuckles. Designed for use by demolition crews, it has also seen military use for breaching fortifications and clearing enemy barricades… and enemies.",
+            "it": "I Pugni Potenziati non sono altro che guanti o avambracci pesanti rinforzati con un robusto ariete pneumatico sulle nocche. Pensati per essere utilizzati dalle squadre di demolizione, sono stati anche impiegati per scopi militari come fare breccia nelle fortificazioni e fare piazza pulita delle barricate nemiche... assieme ai nemici."
+        }
+    },
+    "weaponProtonAxe": {
+        "en": "Proton Axe",
+        "it": "Ascia Protonica",
+        "_description": {
+            "en": "The Proton Axe resembles a futuristic war-axe with a glowing blue blade of electrical energy at its head. On the other side it has two capacitors which also share the same blue electric current. The intense electrical discharge it produces is especially damaging to robots and other mechanical foes.",
+            "it": "L'ascia protonica assomiglia a un'ascia da guerra futuristica, con una lama luminosa di energia elettrica blu sulla testa. Dall'altro lato ha due condensatori che condividono la stessa corrente elettrica blu. La scarica elettrica intensa che produce è particolarmente dannosa per i robot e gli altri nemici meccanici."
+        }
+    },
+    "weaponRipper": {
+        "en": "Ripper",
+        "it": "Ripper",
+        "_description": {
+            "en": "The Ripper is a small, handheld, militarized chainsaw that saw extensive use in the armed conflicts before the Great War, with a commercial-grade, scaled-down version made available for the general market. It can cut through flesh and metal with ease.",
+            "it": "Il Ripper è una piccola motosega militare portatile, usata molto nei conflitti armati prima della Grande Guerra, con una versione commerciale in scala ridotta disponibile sul mercato generale. Può tagliare carne e metallo con facilità."
+        }
+    },
+    "weaponRollingPin": {
+        "en": "Rolling Pin",
+        "it": "Mattarello",
+        "_description": {
+            "en": "A sturdy cylinder of wood found in kitchens everywhere. Heavy enough to deter an assortment of attackers if you haven't got something more dangerous.",
+            "it": "Un robusto cilindro di legno che si trova in tutte le cucine. Abbastanza pesante da scoraggiare una varietà di aggressori, se non hai qualcosa di più pericoloso."
+        }
+    },
+    "weaponShishkebab": {
+        "en": "Shishkebab",
+        "it": "Shishkebab",
+        "_description": {
+            "en": "A makeshift “flaming sword”, the Shishkebab is found in various forms across the wastelands, with some versions being built around actual swords, while others are constructed from a variety of components. They all have a few common elements, however: some form of fuel tank or canister (either affixed to the weapon itself, or worn by the wielder and connected by a hose), a pilot light, and a triggering mechanism normally salvaged from a motorcycle. When used, the fuel is released along the blade and ignited by the pilot light, wreathing the blade in flames.",
+            "it": "Una «spada infuocata» improvvisata, lo Shishkebab si trova in varie forme nella Zona Contaminata: alcune versioni sono costruite attorno a spade vere, altre sono assemblate da diversi componenti. Hanno tutte alcuni elementi in comune: un serbatoio o una bombola di carburante (fissata all'arma stessa o indossata da chi la usa e collegata con un tubo), una fiamma pilota e un meccanismo di attivazione solitamente recuperato da una motocicletta. Quando vengono usati, il combustibile viene fatto scorrere lungo la lama e incendiato dalla fiamma pilota, che la ricopre di fiamme."
+        }
+    },
+    "weaponShredder": {
+        "en": "Shredder",
+        "it": "Trituratore",
+        "_description": {
+            "en": "A shredding barrel attachment on a minigun, used as a melee weapon in close combat. It deals CD of physical damage equal to the minigun's Fire Rate.",
+            "it": "Un accessorio triturante montato sulla canna di un minigun, usato come arma da mischia nel combattimento ravvicinato. Infligge un numero di DC di danni Fisici pari alla Cadenza di Fuoco del minigun."
+        }
+    },
+    "weaponSledgehammer": {
+        "en": "Sledgehammer",
+        "it": "Martello Demolitore",
+        "_description": {
+            "en": "Sledgehammers are primitive weapons, used as tools before the Great War, for breaking ground or demolishing things. Although not usually considered as a powerful weapon, a strong person—or a super mutant—can wield one of these like a club, taking full advantage of the hammer's weight.",
+            "it": "I martelli demolitori sono armi primitive che, prima della guerra, venivano usate come utensili per fare lavori edilizi o distruggere cose. Sebbene di solito non venga considerato un’arma potente, una persona forte (o un supermutante) lo può brandire come una clava e sfruttarne appieno il peso."
+        }
+    },
+    "weaponStone": {
+        "en": "Handy Rock",
+        "it": "Pietra",
+        "_description": {
+            "en": "A strike with a rock, a brick, etc.",
+            "it": "Un colpo con una pietra, un mattone, ecc."
+        }
+    },
+    "weaponSuperSledge": {
+        "en": "Super Sledge",
+        "it": "Super Martello",
+        "_description": {
+            "en": "Super Sledgehammers are powered variants of the regular sledgehammer. Older, pre-War designs were outfitted with kinetic storage devices to increase the impact force, while post-War ones mount a small rocket motor within the hammer's head to accelerate the swing and deliver a heavier blow.",
+            "it": "I Super Martelli sono versioni potenziate di un normale martello. I modelli più vecchi, dell'anteguerra, erano dotati di accumulatori cinetici per aumentare la forza d'impatto, mentre quelli del dopoguerra montano un piccolo motore a razzo nella testa del martello per accelerare l'oscillazione e infliggere un colpo più pesante."
+        }
+    },
+    "weaponSwitchblade": {
+        "en": "Switchblade",
+        "it": "Coltello a Serramanico",
+        "_description": {
+            "en": "The switchblade is a commonly found melee weapon. Its small size means that it is easily smuggled into restricted areas and is easy to handle. It doesn't do as much damage as larger knives or blades, however.",
+            "it": "Il coltello a serramanico è un'arma da mischia molto comune. Le sue piccole dimensioni lo rendono facile da introdurre in aree riservate e facile da maneggiare. Tuttavia non infligge un danno pari a quello dei coltelli o delle lame più grandi."
+        }
+    },
+    "weaponSword": {
+        "en": "Sword",
+        "it": "Spada",
+        "_description": {
+            "en": "Swords have been in use for almost as long as wars have been fought and remained widespread as symbols of status and prestige amongst soldiers—particularly officers—across the world right up until the Great War. Many of the swords found in the wasteland belonged to Chinese officers during the Great War, often taken from battlefields as a trophy by American troops. Others are museum pieces or replicas from private collections, with many resembling the cavalry sabers used during the American Revolution.",
+            "it": "Le spade sono in uso da quasi quanto le guerre stesse e sono rimaste diffuse come simbolo di status e prestigio tra i soldati, soprattutto gli ufficiali, in tutto il mondo fino alla Grande Guerra. Molte delle spade trovate nella Zona Contaminata appartenevano a ufficiali cinesi durante la Grande Guerra, spesso prese dai campi di battaglia come trofei dalle truppe americane. Altre sono pezzi da museo o repliche di collezioni private, e molte somigliano alle sciabole da cavalleria usate durante la Rivoluzione americana."
+        }
+    },
+    "weaponTireIron": {
+        "en": "Tire Iron",
+        "it": "Leva per Ruote",
+        "_description": {
+            "en": "A simple L-shaped tool found commonly in cars and garages; tire irons make for handy weapons when not being used to change the tires on a car.",
+            "it": "Un semplice attrezzo a forma di L, comune nelle auto e nei garage; le leve per ruote sono armi pratiche quando non servono a cambiare le gomme di un'auto."
+        }
+    },
+    "weaponUnarmedStrike": {
+        "en": "Unarmed Strike",
+        "it": "Colpo Senza Armi",
+        "_description": {
+            "en": "A strike with bare hands.",
+            "it": "Un colpo a mani nude."
+        }
+    },
+    "weaponWalkingStick": {
+        "en": "Walking Cane",
+        "it": "Bastone da Passeggio",
+        "_description": {
+            "en": "A simple stick used to support those who can't walk so well, a walking cane is sturdy enough to be an impromptu weapon if you've not got any other options.",
+            "it": "Un semplice bastone usato per sostenere chi non cammina bene: un bastone da passeggio è abbastanza robusto da diventare un'arma di fortuna se non hai altre opzioni."
+        }
+    },
+    "weaponWarDrum": {
+        "en": "War Drum",
+        "it": "Tamburo da Guerra",
+        "_description": {
+            "en": "Consisting of a metal drum, which is mounted on a metal pole with spiked tin cans attached to the rim. The War Drum adds some percussion to all the concussions you'll cause. Special: When used to make a sneak attack, a War Drum increases the complication range by 1, due to the sound it makes.",
+            "it": "Consiste in un tamburo di metallo montato su un palo di metallo, con lattine di latta appuntite fissate sul bordo. Il Tamburo da Guerra aggiunge un po' di percussione a tutti i colpi che infliggerai. Speciale: quando usato per un attacco furtivo, un Tamburo da Guerra aumenta l'intervallo di complicazione di 1, a causa del rumore che produce."
+        }
+    },
+    "weaponWeaponStock": {
+        "en": "Gun Bash",
+        "it": "Calcio dell'Arma",
+        "_description": {
+            "en": "A strike with the stock of a two-handed weapon.",
+            "it": "Un colpo con il calcio di un'arma a due mani."
+        }
+    },
+    "weaponWeaponStockOneHanded": {
+        "en": "Gun Bash (1H)",
+        "it": "Calcio dell'Arma (1 mano)",
+        "_description": {
+            "en": "A strike with the stock of a one-handed weapon.",
+            "it": "Un colpo con il calcio di un'arma a una mano."
+        }
+    },
+    "weaponThermicLance": {
+        "en": "Thermic Lance",
+        "it": "Lancia Termica",
+        "_description": {
+            "en": "Pull the trigger and watch your worries melt away! Just be careful where you point this thing.",
+            "it": "Premi il grilletto e guarda i tuoi problemi sciogliersi! Attento solo a dove punti questa cosa."
+        }
+    },
+    "weaponGolfClub": {
+        "en": "Golf Club",
+        "it": "Mazza da Golf",
+        "_description": {
+            "en": "A two-handed sports club repurposed as a heavy melee weapon.",
+            "it": "Una mazza sportiva a due mani, riadattata come pesante arma da mischia."
+        }
+    },
+    "weaponWeightedRubberChicken": {
+        "en": "Weighted Rubber Chicken",
+        "it": "Pollo di Gomma Zavorrato",
+        "_description": {
+            "en": "A novelty rubber chicken reinforced with internal weighting for use as an improvised melee weapon.",
+            "it": "Un pollo di gomma per scherzo, rinforzato con un peso interno per essere usato come arma da mischia di fortuna."
+        }
+    },
+    "weaponTheSplayer": {
+        "en": "The Splayer",
+        "it": "Lo Sventratore",
+        "_description": {
+            "en": "The Splayer is a Ripper with the Extended modification; GutSplayer has further modified the chain to include several chunks of awkwardly shaped metal that help it leave excessively painful wounds—giving the weapon the Debilitating quality.",
+            "it": "Lo Sventratore è un Ripper con la mod Estesa; GutSplayer ha ulteriormente modificato la catena per includere diversi pezzi di metallo dalla forma insolita che lo aiutano a causare ferite eccessivamente dolorose, conferendo all'arma la qualità Debilitante."
+        }
+    },
+    "weaponHatchet": {
+        "en": "Hatchet",
+        "it": "Accetta",
+        "_description": {
+            "en": "Splitting wood or splitting limbs. The hatchet might be messy, but it gets the job done.",
+            "it": "Spacca la legna, spacca gli arti. L'accetta farà un lavoro sporco, ma lo fa."
+        }
+    },
+    "weaponKatana": {
+        "en": "Katana",
+        "it": "Katana",
+        "_description": {
+            "en": "An elegant weapon from a more civilized time.",
+            "it": "Un'arma elegante di un'epoca più civile."
+        }
+    },
+    "weaponMacheteGladius": {
+        "en": "Machete Gladius",
+        "it": "Machete Gladio",
+        "_description": {
+            "en": "Carrying one of these means you're one of Caesar’s best, or you killed ‘em. Either way, it lets people know you're not to be messed with.",
+            "it": "Portarne uno significa che sei uno dei migliori di Caesar, oppure che li hai uccisi. In ogni caso fa capire a tutti che con te non si scherza."
+        }
+    },
+    "weaponRebarClub": {
+        "en": "Rebar Club",
+        "it": "Mazza di Tondino",
+        "_description": {
+            "en": "Simplicity itself! All you need is the strength to swing it.",
+            "it": "Semplicità assoluta! Serve solo la forza per brandirla."
+        }
+    },
+    "weaponStraightRazor": {
+        "en": "Straight Razor",
+        "it": "Rasoio a Lama Dritta",
+        "_description": {
+            "en": "Easily hidden and perfect for giving a close shave! A little bit of old-world elegance in your pocket.",
+            "it": "Facile da nascondere e perfetto per una rasatura di precisione! Un po' di eleganza del vecchio mondo in tasca."
+        }
+    },
+    "weaponFigaro": {
+        "en": "Figaro",
+        "it": "Figaro",
+        "_description": {
+            "en": "Both weapon and barbering tool, Figaro is kept on Sergio's person. He is unlikely to just hand this exquisite implement over, and with the tasteful decoration on the blade, you can see why. Figaro strikes quicker and harder than the normal straight razor, which, combined with its small size makes it the perfect weapon for sneaking past casino security. Special: Attacks with Figaro deal a critical hit when dealing four or more damage in one hit, rather than five.",
+            "it": "Sia arma sia attrezzo da barbiere, Figaro è tenuto sempre con Sergio. È improbabile che lo consegni, e con la decorazione raffinata sulla lama si capisce perché. Colpisce più in fretta e più forte del normale rasoio, e con le sue piccole dimensioni è l'arma perfetta per superare la sicurezza del casinò. Speciale: gli attacchi con Figaro ottengono un colpo critico quando infliggono quattro o più danni con un solo colpo, invece che cinque."
+        }
+    },
+    "weaponBladedGauntlet": {
+        "en": "Bladed Gauntlet",
+        "it": "Guanto con Lama",
+        "_description": {
+            "en": "Ever wanted to punch and stab someone at the same time? Well, now you can!",
+            "it": "Hai mai voluto colpire con un pugno e pugnalare qualcuno nello stesso tempo? Ora puoi!"
+        }
+    },
+    "weaponZapGlove": {
+        "en": "Zap Glove",
+        "it": "Guanto Elettrico",
+        "_description": {
+            "en": "Power armored goon or Mr Handy giving you trouble? Grab yourself a Zap Glove! ZAP! And the problem is gone!",
+            "it": "Un bruto in Armatura Atomica o un Mister Handy ti stanno dando problemi? Prendi un Guanto Elettrico! ZAP! E il problema è sparito!"
+        }
+    },
+    "weaponGreasedLightning": {
+        "en": "Greased Lightning",
+        "it": "Greased Lightning",
+        "_description": {
+            "en": "A custom power fist currently in the possession of Knight Torres, Greased Lightning is composed of lighter alloys than the standardized variant, painted black and marked with a radiation symbol (purely for show; the weapon possesses no radioactive qualities). Greased Lightning is built as much for speed as it is for strength, with its revamped piston system allowing for far faster combat use, much to the discontent of anyone on the receiving end. Greased Lightning can be found in the Brotherhood Armory. Special (Lightning Quick): After making a melee attack with this weapon, you may spend 1 AP to take an additional major action to attack with this weapon.",
+            "it": "Un pugno potenziato personalizzato, attualmente in possesso del cavaliere Torres. Greased Lightning è realizzato in leghe più leggere rispetto al modello standard, verniciato di nero e marchiato con il simbolo delle radiazioni (solo per bellezza: l'arma non ha alcuna proprietà radioattiva). È costruito tanto per la velocità quanto per la forza, e il suo sistema di pistoni rinnovato permette di usarlo in combattimento molto più rapidamente, con grande disappunto di chi lo subisce. Greased Lightning si trova nell'armeria della Confraternita. Speciale (Rapido come un Fulmine): dopo aver effettuato un attacco in mischia con quest'arma, puoi spendere 1 PA per effettuare un'azione principale aggiuntiva e attaccare con quest'arma."
+        }
+    },
+    "weaponGoldenGloves": {
+        "en": "Golden Gloves",
+        "it": "Guantoni d'Oro",
+        "_description": {
+            "en": "Perhaps a relic from a sporting competition before the bombs dropped, the Golden Gloves are bedecked in a striking color scheme that will make you the rising star of any fight. They can be found in the bar area on the ground floor of the Lucky 38, with a copy of Boxing Times perched behind them for some light reading. Like their less sparkly counterparts, the Golden Gloves don't hit particularly hard but… look, they're in mint condition!? That has to mean something nowadays, right? Special: When dealing damage with the Golden Gloves, you may only deal a maximum of 1 damage (after accounting for damage reduction) regardless of the amount of CD rolled. However, for every Effect rolled, the target suffers 1 point of Fatigue. If the target then has Fatigue equal to their current HP, they are rendered unconscious until the end of the scene. Fatigue suffered this way is healed at the end of the scene.",
+            "it": "Forse un cimelio di qualche competizione sportiva di prima delle bombe, i Guantoni d'Oro sfoggiano colori sgargianti che faranno di te la stella nascente di ogni incontro. Si trovano nella zona bar al piano terra del Lucky 38, con una copia di Boxing Times appoggiata dietro come lettura leggera. Come i loro equivalenti meno scintillanti, non colpiscono particolarmente forte ma… guarda, sono in perfette condizioni!? Oggi vorrà pur dire qualcosa, no? Speciale: quando infliggi danni con i Guantoni d'Oro, puoi infliggere al massimo 1 danno (dopo aver applicato la Resistenza ai Danni), indipendentemente da quanti DC hai tirato. Tuttavia, per ogni Effetto ottenuto, il bersaglio subisce 1 punto di Stanchezza. Se a quel punto il bersaglio ha una Stanchezza pari ai suoi HP attuali, è privo di sensi fino alla fine della scena. La Stanchezza subita in questo modo si recupera alla fine della scena."
+        }
     }
-  },
-  "weaponAssaultronBlade": {
-    "en": "Assaultron Blade",
-    "it": "Lama Di Assaultron",
-    "_description": {
-      "en": "The vibroblade from an Assaultron dominator, dismounted and repurposed into a usable melee weapon.",
-      "it": "La vibrolama di un Assaultron Dominator, smontata e riadattata in un'arma da mischia utilizzabile."
-    }
-  },
-  "weaponAutoAxe": {
-    "en": "Auto-Axe",
-    "it": "Auto-Ascia",
-    "_description": {
-      "en": "Sharing some basic qualities with the Ripper but more impressive and harmful, the auto axe is a steel saw fitted with car engine parts to increase its attack damage. The original blade has been replaced or modified to resemble four axe blades arranged around the central axle.",
-      "it": "Condividendo alcune qualità di base con il Ripper ma più imponente e dannosa, l'auto-ascia è una sega d'acciaio dotata di parti di motore d'auto per aumentare il danno d'attacco. La lama originale è stata sostituita o modificata per somigliare a quattro lame d'ascia disposte attorno all'asse centrale."
-    }
-  },
-  "weaponBallisticFist": {
-    "en": "Ballistic Fist",
-    "it": "Pugno Balistico",
-    "_description": {
-      "en": "The ballistic fist consists of a wrist-mounted shotgun with a pressure plate worn over the knuckles. The impact of the plate triggers the firing mechanism when a punch connects with the target, firing the shotgun directly into the target. This weapon requires ammunition, expending one shotgun shell with each attack.",
-      "it": "Il pugno balistico consiste in un fucile a pompa montato sul polso con una piastra a pressione sopra le nocche. L'impatto della piastra attiva il meccanismo di sparo quando un pugno colpisce il bersaglio, sparando il fucile direttamente contro di esso. Quest'arma richiede munizioni, consumando una cartuccia di fucile a pompa con ogni attacco."
-    }
-  },
-  "weaponBaseballBat": {
-    "en": "Baseball Bat",
-    "it": "Mazza da Baseball",
-    "_description": {
-      "en": "Baseball bats were once used in the sport of baseball, considered America's number-one pastime during the pre-War era. Two hundred years later, they have been re-purposed as crude but effective melee weapons. While most are made a single piece of wood—normally ash, but other hardwoods are often used—a few can be found made of aluminum instead, making for a lighter, harder bat.",
-      "it": "Una volta le mazze da baseball erano usate nell’omonimo sport, considerato il passatempo numero uno dell’America nell’epoca antecedente alla Guerra. Duecento anni dopo, sono state riconvertite in delle rozze, ma efficaci armi da mischia. La maggior parte è formata da un singolo ciocco di legno (solitamente frassino, ma spesso vengono usati altri legni duri), ma se ne possono trovare alcune in alluminio, più leggere e dure."
-    }
-  },
-  "weaponBaton": {
-    "en": "Baton",
-    "it": "Manganello",
-    "_description": {
-      "en": "A collapsible baton of the sort used by police departments and private security forces before the Great War. Vault-Tec security within each vault had a stock of these, so they remain in common use as a lightweight back-up melee weapon.",
-      "it": "Un bastone telescopico come quelli usati dalla polizia e dalle forze di sicurezza private prima della Grande Guerra. La sicurezza della Vault-tec ne aveva una riserva in ogni caveau, per cui sono tutt’oggi molto diffusi come un’arma da mischia leggera da intimidazione."
-    }
-  },
-  "weaponBayonet": {
-    "en": "Bayonet",
-    "it": "Baionetta",
-    "_description": {
-      "en": "A blade fixed to the muzzle of a firearm, used as a melee weapon in close combat.",
-      "it": "Una lama fissata alla volata di un'arma da fuoco, usata come arma da mischia nel combattimento ravvicinato."
-    }
-  },
-  "weaponBoard": {
-    "en": "Board",
-    "it": "Asse",
-    "_description": {
-      "en": "Little more than a long plank of wood with a handle wrapped in duct tape. Boards are heavy melee weapons, normally favored by super mutants who have the strength to wield them effectively.",
-      "it": "Poco più che delle lunghe tavole di legno con un manico avvolto nel nastro adesivo, le assi sono delle armi pesanti da mischia solitamente predilette dai supermutanti, che possiedono la forza per utilizzarle in maniera efficace."
-    }
-  },
-  "weaponBoxingGlove": {
-    "en": "Boxing Glove",
-    "it": "Guantone da Boxe",
-    "_description": {
-      "en": "A large, leather mitt, used to protect the hands and wrists while punching. While originally used during sporting matches, a skilled fighter can use these to deliver solid blows to enemies in less organized fights, particularly if they've modified the glove in some way.",
-      "it": "Un grosso guanto di pelle usato per proteggere mani e polsi quando si tirano pugni. Originariamente usato per gli incontri sportivi, un lottatore esperto li può usare per piazzare dei forti colpi in combattimenti concitati, soprattutto se li ha in qualche modo modificati."
-    }
-  },
-  "weaponBumperSword": {
-    "en": "Bumper Sword",
-    "it": "Spada Paraurti",
-    "_description": {
-      "en": "The bumper sword consists of a chrome car bumper that has been pounded out and sharpened into a thick, heavy blade. The license plate is still attached, and an exhaust pipe strapped to the unsharpened end serves as a makeshift handle.",
-      "it": "La spada paraurti consiste nel paraurti cromato di un'auto che è stato battuto e affilato in una lama spessa e pesante. La targa è ancora attaccata e un tubo di scappamento legato all'estremità non affilata funge da impugnatura di fortuna."
-    }
-  },
-  "weaponCattleProd": {
-    "en": "Cattle Prod",
-    "it": "Pungolo Per Bestiame",
-    "_description": {
-      "en": "Normally used for herding stubborn cattle, it has been repurposed as a weapon against humans. Outfitted with a thick, electrified metal coil around the striking end, hooked up to batteries taped near the handle.",
-      "it": "Normalmente usato per radunare il bestiame testardo, è stato riadattato come arma contro gli umani. È dotato di una spessa bobina di metallo elettrificata intorno all'estremità d'impatto, collegata a batterie fissate vicino all'impugnatura."
-    }
-  },
-  "weaponChainsaw": {
-    "en": "Chainsaw",
-    "it": "Motosega",
-    "_description": {
-      "en": "A motorized tool—traditionally used for cutting wood—with a toothed metal chain propelled around the edge of the blade. They serve as deadly weapons in the right hands. Note: A Chainsaw does not benefit from the wielder’s normal melee damage bonus.",
-      "it": "Uno strumento motorizzato — tradizionalmente usato per tagliare la legna — con una catena di metallo dentata che ruota intorno al bordo della lama. Nota: La motosega non beneficia del normale bonus ai danni da mischia di chi la impugna."
-    }
-  },
-  "weaponCombatKnife": {
-    "en": "Combat Knife",
-    "it": "Coltello da Combattimento",
-    "_description": {
-      "en": "Soldiers (and those who want to emulate them) often carry a knife that serves both for combat and everyday use. Most Combat Knives found in the wasteland are the same type issued to U.S. Army soldiers during the Great War, with a single-edged clip-point blade. It's a very light and durable weapon, made to be used often.",
-      "it": "Spesso i soldati (e chi vuole imitarli) si portano dietro un coltello che serve sia per combattere, che per uso quotidiano. Di solito i Coltelli da Combattimento che si trovano nella Zona Contaminata sono dello stesso tipo di quelli in dotazione ai soldati dell’esercito americano durante la Grande Guerra, con una lama tronca a filo singolo. Si tratta di un’arma molto leggera e resistente, fatta per essere usata spesso."
-    }
-  },
-  "weaponDeathTambo": {
-    "en": "Death Tambo",
-    "it": "Tamburello Della Morte",
-    "_description": {
-      "en": "Somewhere between a set of knuckledusters and a tambourine, this weapon is an odd assortment of bells and blades designed to be punched into the enemy. Note: When used to make a sneak attack, it increases the complication range by 1.",
-      "it": "Una via di mezzo tra un set di tirapugni e un tamburello, quest'arma è un bizzarro assortimento di campanelli e lame progettato per colpire il nemico. Nota: Quando viene usato per un attacco furtivo, aumenta l'intervallo di complicazione di 1 a causa del tintinnio."
-    }
-  },
-  "weaponDeathclawGauntlet": {
-    "en": "Deathclaw Gauntlet",
-    "it": "Guanto da Deathclaw",
-    "_description": {
-      "en": "Made from the severed fingers and talons of a deathclaw and mounted on a cuff which fits over the wrist, these allow the wearer to strike with some of the lethal force of the claws' previous owner.",
-      "it": "Fatto con le dita mozzate e gli artigli di un deathclaw montati su un polsino stretto al polso, il Guanto consente a chi lo indossa di colpire con un po’ della forza del precedente proprietario degli artigli."
-    }
-  },
-  "weaponDisplacerGlove": {
-    "en": "Displacer Glove",
-    "it": "Guanto Dislocatore",
-    "_description": {
-      "en": "An advanced piece of tech to accomplish a simple task. The speaker on the knuckles creates a sonic blast to add some extra impact to your punches.",
-      "it": "Un pezzo di tecnologia avanzata per compiere un compito semplice. L'altoparlante sulle nocche crea un'esplosione sonica per aggiungere un impatto extra ai tuoi pugni."
-    }
-  },
-  "weaponGuitarSword": {
-    "en": "Guitar Sword",
-    "it": "Spada Chitarra",
-    "_description": {
-      "en": "A sword shaped like a guitar, or a guitar that doubles as a sword. Note: When used to make a sneak attack, it increases the complication range by 1 due to the sound it makes.",
-      "it": "Una spada a forma di chitarra, o una chitarra che funge anche da spada. Nota: Quando viene usata per un attacco furtivo, aumenta l'intervallo di complicazione di 1 a causa del suono che emette."
-    }
-  },
-  "weaponIronFist": {
-    "en": "Iron Fist",
-    "it": "Pugno di Ferro",
-    "_description": {
-      "en": "A powerful strike with bare hands.",
-      "it": "Un potente colpo dato a mani nude."
-    }
-  },
-  "weaponKnuckles": {
-    "en": "Knuckles",
-    "it": "Tirapugni",
-    "_description": {
-      "en": "Developed in antiquity, this weapon is nevertheless quite prevalent in the post-Great War wastelands. Brass Knuckles, or Knuckledusters, take the form of four linked metal rings in a shallow convex formation with a bumper attached to the concave face. The rings are slipped over a combatant's fingers with the bumper pressed into the palm of the hand. When a punch is thrown, the Brass Knuckles take most of the impact impulse, transferring much of the punch's kinetic energy to the target by way of the harder, smaller impacting surface of the metal knuckles. This drastically increases the likelihood of serious tissue disruption and bone damage.",
-      "it": "Creata nell’antichità, quest’arma è comunque molto diffusa nella Zona Contaminata che si è creata dopo la Grande Guerra. Il tirapugni d’ottone, o noccoliere, ha la forma di quattro anelli di metallo saldati in un arco convesso, con un paracolpi attaccato alla parte concava. Il combattente si infila gli anelli sulle dita, con il paracolpi premuto nel palmo della mano."
-    }
-  },
-  "weaponLeadPipe": {
-    "en": "Lead Pipe",
-    "it": "Tubo di Piombo",
-    "_description": {
-      "en": "A length of heavy, metal (normally lead) pipe, with a duct-tape wrapped grip at one end and a few nuts and bolts attached at the other. Crude, simple, and hurts like hell.",
-      "it": "Si tratta di un lungo e pesante tubo in metallo (normalmente piombo) con un’impugnatura di nastro adesivo a un’estremità e alcuni dadi e bulloni attaccati all’altra. Violento, semplice e fa un male cane."
-    }
-  },
-  "weaponMachete": {
-    "en": "Machete",
-    "it": "Machete",
-    "_description": {
-      "en": "A long, sharp knife designed for cutting through dense vegetation, which makes it both a very useful item and an effective weapon. Some of those found in the wasteland are true machetes, while others are makeshift weapons, typically consisting of a sharpened metal blade (taken from a lawnmower, for example) that is nailed, tied, glued, or otherwise attached to a simple handle.",
-      "it": "Si tratta di un lungo coltello affilato pensato per farsi strada attraverso una fitta vegetazione, fatto che lo rende sia un oggetto molto utile che un’arma efficace. Alcuni di quelli che si possono trovare nella Zona Contaminata sono veri e propri machete, mentre altri sono delle armi artigianali, composti generalmente da una lama affilata di metallo (presa per esempio da un tagliaerba) che viene inchiodata, legata, incollata o in qualche altro modo fissata a un semplice manico."
-    }
-  },
-  "weaponMissileLauncherBayonet": {
-    "en": "Missile Launcher Bayonet",
-    "it": "Baionetta da Lanciamissili",
-    "_description": {
-      "en": "A bayonet attached to a missile launcher, used as a melee weapon in close combat.",
-      "it": "Una baionetta attaccata a un lanciamissili, usata come arma da mischia nel combattimento ravvicinato."
-    }
-  },
-  "weaponMrHandyBuzzBlade": {
-    "en": "Mr Handy Buzz Blade",
-    "it": "Braccio Sega Di Mister Handy",
-    "_description": {
-      "en": "The buzzsaw arm of a Mister Handy, given new life attached to a small motor and a long haft, such as from a broom or a weed whacker.",
-      "it": "Il braccio a sega circolare di un Mister Handy, a cui è stata data nuova vita attaccandolo a un piccolo motore e a un lungo manico, come quello di una scopa o di un decespugliatore."
-    }
-  },
-  "weaponMrHandyCircularSaw": {
-    "en": "Circular Saw Arm",
-    "it": "Arto Sega Circolare",
-    "_description": {
-      "en": "Circular saw integrated into a Mr. Handy's body. High-speed rotating blade that can cut through hard materials. Only Mr. Handy can use this weapon.",
-      "it": "Sega circolare integrata nel corpo di un Mr. Handy. Lama rotante ad alta velocità che può tagliare attraverso materiali duri. Solo Mr. Handy può utilizzare quest'arma."
-    }
-  },
-  "weaponMrHandyPliers": {
-    "en": "Arm with Pliers",
-    "it": "Arto con Tenaglia",
-    "_description": {
-      "en": "Pliers integrated into a Mr. Handy's body. Mechanical pincer used for gripping and striking. Only Mr. Handy can use this weapon.",
-      "it": "Tenaglia integrata nel corpo di un Mr. Handy. Pinza meccanica utilizzata per afferrare e colpire. Solo Mr. Handy può utilizzare quest'arma."
-    }
-  },
-  "weaponMultiPurposeAxe": {
-    "en": "Multi-Purpose Axe",
-    "it": "Ascia Multi-Uso",
-    "_description": {
-      "en": "A pre-War tool, the Multi-Purpose Axe is equally suited to chopping lumber or splitting heads, just make sure you’re on the right end of the swing.",
-      "it": "Uno strumento pre-bellico, l'ascia multi-uso è ugualmente adatta a tagliare legname o a spaccare teste, assicurati solo di essere all'estremità giusta dell'oscillazione."
-    }
-  },
-  "weaponPipeWrench": {
-    "en": "Pipe Wrench",
-    "it": "Chiave Idraulica",
-    "_description": {
-      "en": "A heavy, metal, adjustable wrench, long enough to be used as a makeshift melee weapon. The adjustable jaws are often used to hold attachments, allowing the wrench to be modded extremely easily.",
-      "it": "Si tratta di una pesante chiave idraulica regolabile in metallo, abbastanza lunga da poter essere utilizzata come arma da mischia artigianale. Spesso le ganasce regolabili sono sfruttate per tenere degli accessori, fatto che la rende molto semplice da modificare."
-    }
-  },
-  "weaponPoolCue": {
-    "en": "Pool Cue",
-    "it": "Stecca da Biliardo",
-    "_description": {
-      "en": "A long, slender piece of wood used in games like pool. Useful as a melee weapon if there's nothing to hand with more heft.",
-      "it": "Si tratta di un pezzo di legno lungo e sottile, usato in giochi come il biliardo. Se non c’è nulla di più pesante, può essere utile come arma da mischia."
-    }
-  },
-  "weaponPowerFist": {
-    "en": "Power Fist",
-    "it": "Pugno Potenziato",
-    "_description": {
-      "en": "A Power Fist is a reinforced gauntlet or vambrace which mounts a heavy-duty pneumatic ram over the knuckles. Designed for use by demolition crews, it has also seen military use for breaching fortifications and clearing enemy barricades… and enemies.",
-      "it": "I Pugni Potenziati non sono altro che guanti o avambracci pesanti rinforzati con un robusto ariete pneumatico sulle nocche. Pensati per essere utilizzati dalle squadre di demolizione, sono stati anche impiegati per scopi militari come fare breccia nelle fortificazioni e fare piazza pulita delle barricate nemiche... assieme ai nemici."
-    }
-  },
-  "weaponProtonAxe": {
-    "en": "Proton Axe",
-    "it": "Ascia Protonica",
-    "_description": {
-      "en": "The Proton Axe resembles a futuristic war-axe with a glowing blue blade of electrical energy at its head. The intense electrical discharge it produces is especially damaging to robots and other mechanical foes.",
-      "it": "L'ascia protonica somiglia a un'ascia da guerra futuristica con una lama blu brillante di energia elettrica sulla testa. La scarica elettrica intensa che produce è particolarmente dannosa per i robot e altri nemici meccanici."
-    }
-  },
-  "weaponRipper": {
-    "en": "Ripper",
-    "it": "Ripper",
-    "_description": {
-      "en": "The Ripper is a small, handheld, militarized chainsaw that saw extensive use in the armed conflicts before the Great War, with a commercial-grade, scaled-down version made available for the general market. It can cut through flesh and metal with ease.",
-      "it": "Il ripper è una piccola sega elettrica militare portatile ampiamente impiegata nei conflitti armati antecedenti alla Grande Guerra, che è in grado di tagliare con facilità la carne come il metallo. Del ripper è stata fatta anche una versione in scala ridotta, disponibile sul mercato generale."
-    }
-  },
-  "weaponRollingPin": {
-    "en": "Rolling Pin",
-    "it": "Mattarello",
-    "_description": {
-      "en": "A sturdy cylinder of wood found in kitchens everywhere. Heavy enough to deter an assortment of attackers if you haven't got something more dangerous.",
-      "it": "Un solido cilindro di legno che si puo trovare in qualsiasi cucina. Abbastanza pesante da far desistere un assortimento di aggressori se non si ha nulla di piu pericoloso a portata di mano."
-    }
-  },
-  "weaponShishkebab": {
-    "en": "Shishkebab",
-    "it": "Shishkebab",
-    "_description": {
-      "en": "A makeshift 'flaming sword', the Shishkebab is found in various forms across the wastelands, with some built from an actual sword, while others are assembled from various components. All have some elements in common: some sort of tank or canister, a pilot light, and an ignition mechanism usually stolen from a motorcycle. When used, the fuel is released along the blade and ignited by the pilot light, wreathing the blade in flames.",
-      "it": "Lo Shishkebab è una “Spada Fiammeggiante” artigianale di cui si possono trovare diverse versioni nella Zona Contaminata: alcune costruite partendo da una spada vera e propria, mentre altre formate da diversi componenti. Tutte, però, hanno alcuni elementi in comune: una qualche sorta di serbatoio o bombola (che possono essere collegati all’arma con un tubo e trasportati da chi la utilizza, o direttamente attaccati a essa), una fiamma pilota e un meccanismo d’innesco solitamente rubato da una motocicletta. Quando vengono usati, il combustibile viene fatto scorrere lungo la lama e incendiato dalla fiamma pilota, che la ricopre di fiamme."
-    }
-  },
-  "weaponShredder": {
-    "en": "Shredder",
-    "it": "Tritatutto",
-    "_description": {
-      "en": "A shredding barrel attachment on a minigun, used as a melee weapon in close combat.",
-      "it": "Un attacco con il tamburo triturante di un minigun, usato come arma da mischia nel combattimento ravvicinato."
-    }
-  },
-  "weaponSledgehammer": {
-    "en": "Sledgehammer",
-    "it": "Martello Demolitore",
-    "_description": {
-      "en": "Sledgehammers are primitive weapons, used as tools before the Great War, for breaking ground or demolishing things. Although not usually considered as a powerful weapon, a strong person—or a super mutant—can wield one of these like a club, taking full advantage of the hammer's weight.",
-      "it": "I martelli demolitori sono armi primitive che, prima della guerra, venivano usate come utensili per fare lavori edilizi o distruggere cose. Sebbene di solito non venga considerato un’arma potente, una persona forte (o un supermutante) lo può brandire come una clava e sfruttarne appieno il peso."
-    }
-  },
-  "weaponStone": {
-    "en": "Handy Rock",
-    "it": "Pietra",
-    "_description": {
-      "en": "A strike with a rock, a brick, etc.",
-      "it": "Un colpo dato con una roccia, un mattone, etc."
-    }
-  },
-  "weaponSuperSledge": {
-    "en": "Super Sledge",
-    "it": "Super Martello",
-    "_description": {
-      "en": "Super Sledgehammers are powered variants of the regular sledgehammer. Older, pre-War designs were outfitted with kinetic storage devices to increase the impact force, while post-War ones mount a small rocket motor within the hammer's head to accelerate the swing and deliver a heavier blow.",
-      "it": "I Super Martelli non sono che versioni potenziate di un normale martello. I vecchi modelli d’anteguerra erano dotati di dispositivi di stoccaggio di energia cinetica per aumentare la forza d’impatto, mentre quelli successivi montano un piccolo motore a razzo all’interno della testa del martello per accelerare il movimento e colpire più forte."
-    }
-  },
-  "weaponSwitchblade": {
-    "en": "Switchblade",
-    "it": "Coltello a Serramanico",
-    "_description": {
-      "en": "The switchblade is a commonly found melee weapon. Its small size means that it is easily smuggled into restricted areas and is easy to handle. It doesn't do as damage as larger knives or blades, however.",
-      "it": "Il coltello a serramanico è un’arma da mischia molto comune. Le sue piccole dimensioni lo rendono maneggevole e adatto a essere introdotto di nascosto in zone riservate, anche se non fa tanti danni quanto altri coltelli o spade più grandi."
-    }
-  },
-  "weaponSword": {
-    "en": "Sword",
-    "it": "Spada",
-    "_description": {
-      "en": "Swords have been in use for almost as long as wars have been fought and remained widespread as symbols of status and prestige amongst soldiers—particularly officers—across the world right up until the Great War. Many of the swords found in the wasteland belonged to Chinese officers during the Great War, often taken from battlefields as a trophy by American troops. Others are museum pieces or replicas from private collections, with many resembling the cavalry sabers used during the American Revolution.",
-      "it": "Le spade sono antiche tanto quanto le guerre e fino alla Grande Guerra sono sempre state diffuse fra i soldati (soprattutto gli ufficiali) in tutto il mondo come simbolo di status e prestigio. Molte delle spade che si possono trovare nella Zona Contaminata sono quelle appartenute agli ufficiali cinesi durante la Grande Guerra, spesso prese dai campi di battaglia come trofei dalle truppe americane, mentre altre sono pezzi da museo o imitazioni provenienti da collezioni private, spesso simili alle sciabole utilizzate dalla cavalleria durante la Rivoluzione Americana."
-    }
-  },
-  "weaponTireIron": {
-    "en": "Tire Iron",
-    "it": "Leva per Ruote",
-    "_description": {
-      "en": "A simple L-shaped tool found commonly in cars and garages; tire irons make for handy weapons when not being used to change the tires on a car.",
-      "it": "Si tratta di un semplice arnese a forma di L che si trova solitamente nelle auto e nei garage e che può diventare un’utile arma, se non la si usa per cambiare le gomme dell’auto."
-    }
-  },
-  "weaponUnarmedStrike": {
-    "en": "Unarmed Strike",
-    "it": "Colpo Senza Armi",
-    "_description": {
-      "en": "A strike with bare hands.",
-      "it": "Un colpo dato a mani nude."
-    }
-  },
-  "weaponWalkingStick": {
-    "en": "Walking Stick",
-    "it": "Bastone da Passeggio",
-    "_description": {
-      "en": "A simple stick used to support those who can't walk so well, a walking cane is sturdy enough to be an impromptu weapon if you've not got any other options.",
-      "it": "Un semplice bastone di quelli usati come ausilio da chi non cammina bene, il bastone da passeggio è abbastanza robusto da poter essere usato come arma improvvisata se non ci sono altre opzioni."
-    }
-  },
-  "weaponWarDrum": {
-    "en": "War Drum",
-    "it": "Tamburo Da Guerra",
-    "_description": {
-      "en": "Consisting of a metal drum mounted on a metal pole with spiked tin cans attached to the rim. Note: When used to make a sneak attack, it increases the complication range by 1 due to the sound it makes.",
-      "it": "Consiste in un tamburo di metallo montato su un palo di metallo con lattine appuntite attaccate al bordo. Nota: Quando viene usato per un attacco furtivo, aumenta l'intervallo di complicazione di 1 a causa del suono che emette."
-    }
-  },
-  "weaponWeaponStock": {
-    "en": "Gun Bash",
-    "it": "Calcio dell'Arma",
-    "_description": {
-      "en": "A strike with the stock of a two-handed weapon.",
-      "it": "Un colpo dato col il calcio di un'arma a due mani."
-    }
-  },
-  "weaponWeaponStockOneHanded": {
-    "en": "Gun Bash (1H)",
-    "it": "Calcio dell'Arma (1 mano)",
-    "_description": {
-      "en": "A strike with the stock of a one-handed weapon.",
-      "it": "Un colpo dato col il calcio di un'arma ad una mano."
-    }
-  },
-  "weaponThermicLance": {
-    "en": "Thermic Lance",
-    "it": "Lancia Termica",
-    "_description": {
-      "en": "A weapon capable of melting enemies at the press of a trigger. It deals heavy energy damage with a continuous, piercing thermal rod.",
-      "it": "Un'arma in grado di sciogliere i nemici alla pressione di un grilletto. Infligge gravi danni da energia grazie a un'asta termica a penetrazione continua."
-    }
-  },
-  "weaponGolfClub": {
-    "en": "Golf Club",
-    "it": "Mazza da golf",
-    "_description": {
-      "en": "A two-handed sports club repurposed as a heavy melee weapon.",
-      "it": "Una mazza da sport a due mani riutilizzata come pesante arma da mischia."
-    }
-  },
-  "weaponWeightedRubberChicken": {
-    "en": "Weighted Rubber Chicken",
-    "it": "Pollo di gomma zavorrato",
-    "_description": {
-      "en": "A novelty rubber chicken reinforced with internal weighting for use as an improvised melee weapon.",
-      "it": "Un pollo di gomma modificato e rinforzato con una zavorra interna per essere usato come arma da mischia improvvisata."
-    }
-  },
-  "weaponTheSplayer": {
-    "en": "The Splayer",
-    "it": "Lo Sventratore",
-    "_description": {
-      "en": "The Splayer is a Ripper with the Extended modification; GutSplayer has further modified the chain to include several chunks of awkwardly shaped metal that help it leave excessively painful wounds—giving the weapon the Debilitating quality.",
-      "it": "Lo Sventratore è un Ripper con la modifica Esteso; GutSplayer ha ulteriormente modificato la catena per includere diversi pezzi di metallo dalla forma insolita che lo aiutano a causare ferite eccessivamente dolorose, conferendo all'arma la qualità Debilitante."
-    }
-  }
 }

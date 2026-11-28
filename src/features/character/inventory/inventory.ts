@@ -136,10 +136,11 @@ function addSpecialWeaponItems(
         addSpecialItem(item, 'weaponWeaponStockOneHanded', gunBashCondition(false, data));
         addSpecialItem(item, 'weaponWeaponStock', gunBashCondition(true, data));
         addSpecialItem(item, 'weaponBayonet', item.mods.includes('modBayonet'));
+        addSpecialItem(item, 'weaponLargeBayonet', item.mods.includes('modLargeBayonet'));
         addSpecialItem(
             item,
             'weaponMissileLauncherBayonet',
-            item.mods.includes('modMissileLauncherBayonet'),
+            item.mods.includes('modBayonetMissileLauncher'),
         );
         addSpecialItem(item, 'weaponShredder', item.mods.includes('modShredder'));
     }

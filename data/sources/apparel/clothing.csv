@@ -1,43 +1,49 @@
-ID,TYPE,CATEGORY,PHYSICAL_RES,ENERGY_RES,RADIATION_RES,LOCATIONS_COVERED,WEIGHT,COST,RARITY,AVAILABLE_MODS,EFFECTS
-armorBrotherhoodSteelUniform,apparel,clothing,1,1,1,"[""arms"", ""legs"", ""torso""]",1,20,2,[],[]
-armorCasualClothing,apparel,clothing,0,0,0,"[""arms"", ""legs"", ""torso""]",1,20,1,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:strength"", ""effectSpecialReroll:agility""]"
-armorHarness,apparel,clothing,0,0,0,"[""arms"", ""legs"", ""torso""]",0.5,5,0,[],[]
-armorMilitaryFatigues,apparel,clothing,0,1,0,"[""arms"", ""legs"", ""torso""]",1.5,12,1,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:strength"", ""effectSpecialReroll:agility""]"
-armorRoadLeathers,apparel,clothing,1,1,0,"[""arms"", ""legs"", ""torso""]",0.5,5,1,[],[]
-armorToughClothing,apparel,clothing,1,1,0,"[""arms"", ""legs"", ""torso""]",1.5,20,1,[],[]
-armorVaultJumpsuit,apparel,clothing,0,1,2,"[""arms"", ""legs"", ""torso""]",0.5,20,2,"[""modInsulatedLining"", ""modTreatedLining"", ""modResistantLining"", ""modProtectiveLining"", ""modShieldedLining""]",[]
-armorBrotherhoodSteelFatigues,apparel,outfit,2,2,2,"[""arms"", ""legs"", ""torso""]",2,20,3,[],[]
-armorBrotherhoodScribe,apparel,outfit,1,2,2,"[""arms"", ""legs"", ""torso""]",2,20,2,[],[]
-armorCage,apparel,outfit,3,4,0,"[""head"", ""arms"", ""legs"", ""torso""]",16.5,110,3,[],[]
-armorDrifter,apparel,outfit,1,2,0,"[""arms"", ""legs"", ""torso""]",5,35,1,[],[]
-armorEngineer,apparel,outfit,1,1,0,"[""arms"", ""legs"", ""torso""]",1,15,1,[],[]
-armorFormalClothing,apparel,outfit,0,0,0,"[""arms"", ""legs"", ""torso""]",1,30,2,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:charisma""]"
-armorHazmatSuit,apparel,outfit,0,0,Infinity,"[""head"", ""arms"", ""legs"", ""torso""]",2.5,85,3,[],[]
-armorHeavyCoat,apparel,outfit,1,1,1,"[""arms"", ""legs"", ""torso""]",1,20,1,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:endurance""]"
-armorHides,apparel,outfit,1,0,0,"[""arms"", ""legs"", ""torso""]",2,13,0,[],[]
-armorLabCoat,apparel,outfit,0,0,0,"[""arms"", ""legs"", ""torso""]",1,10,1,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:intelligence""]"
-armorSpike,apparel,outfit,2,2,0,"[""head"", ""arms"", ""legs"", ""torso""]",8.5,65,2,[],[]
-armorUtilityCoveralls,apparel,outfit,2,0,0,"[""arms"", ""legs"", ""torso""]",1,12,1,[],"[""effectCarryWeight:5""]"
-armorArmyHelmet,apparel,headgear,2,0,0,"[""head""]",1.5,20,1,[],[]
-armorBrotherhoodSteelHood,apparel,headgear,0,1,0,"[""head""]",0.5,12,2,[],[]
-armorBrotherhoodScribeHat,apparel,headgear,0,2,0,"[""head""]",0.5,8,2,[],[]
-armorCasualHat,apparel,headgear,0,0,0,"[""head""]",0.5,15,1,[],"[""effectIgnoreLightPenalty""]"
-armorFormalHat,apparel,headgear,0,0,0,"[""head""]",0.5,15,2,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:charisma""]"
-armorGasMask,apparel,headgear,1,0,3,"[""head""]",1.5,10,2,[],"[""effectGasMask""]"
-armorHardHat,apparel,headgear,2,0,0,"[""head""]",0.5,15,1,[],[]
-armorHoodOrCowl,apparel,headgear,1,0,1,"[""head""]",1,5,1,[],[]
-armorSackHood,apparel,headgear,0,0,2,"[""head""]",0.5,5,0,[],[]
-armorWeldersVisor,apparel,headgear,2,2,0,"[""head""]",2,20,2,[],[]
-armorBeerHat,apparel,headgear,0,0,0,"[""head""]",0.5,15,2,[],[]
-armorMarineTacticalHelmet,apparel,headgear,2,2,2,"[""head""]",1,25,3,[],[]
-armorSpacesuitHelmet,apparel,headgear,1,4,2,"[""head""]",2.5,85,3,[],[]
-armorMarineWetsuit,apparel,clothing,1,1,1,"[""arms"", ""legs"", ""torso""]",1,25,3,"[""modUnderarmorTreatedLining"", ""modUnderarmorResistantLining"", ""modUnderarmorProtectiveLining"", ""modUnderarmorShieldedLining""]",[]
-armorUnderarmor,apparel,clothing,0,0,0,"[""arms"", ""legs"", ""torso""]",0.5,30,2,"[""modUnderarmorTreatedLining"", ""modUnderarmorResistantLining"", ""modUnderarmorProtectiveLining"", ""modUnderarmorShieldedLining""]","[""effectUnderarmorReroll""]"
-armorBrotherhoodArmoredBattlecoat,apparel,outfit,4,1,1,"[""arms"", ""legs"", ""torso""]",10,400,4,[],[]
-armorBrotherhoodBomberJacket,apparel,outfit,2,5,1,"[""arms"", ""legs"", ""torso""]",2,40,3,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]",[]
-armorCleanroom,apparel,outfit,0,0,6,"[""head"", ""arms"", ""legs"", ""torso""]",2.5,65,2,[],[]
-armorHuntersPelt,apparel,outfit,2,2,0,"[""torso"", ""arms"", ""legs""]",7.5,50,2,[],[]
-armorHuntersHood,apparel,headgear,1,1,0,"[""head""]",1,15,2,[],[]
-armorSpacesuitCostume,apparel,outfit,1,4,2,"[""arms"", ""legs"", ""torso""]",4,100,4,[],[]
-armorCaesarsOutfit,apparel,outfit,2,2,0,"[""torso"", ""arms"", ""legs""]",1.5,350,5,[],[]
-armorNukaGirlRocketsuit,apparel,outfit,1,4,4,"[""head"", ""arms"", ""legs"", ""torso""]",4,165,4,[],[]
+ID,TYPE,CATEGORY,PHYSICAL_RES,ENERGY_RES,RADIATION_RES,LOCATIONS_COVERED,WEIGHT,COST,RARITY,AVAILABLE_MODS,EFFECTS,SOURCE
+armorBrotherhoodSteelUniform,apparel,clothing,1,1,1,"[""arms"", ""legs"", ""torso""]",1,20,2,[],[],Corebook
+armorCasualClothing,apparel,clothing,0,0,0,"[""arms"", ""legs"", ""torso""]",1,20,1,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:strength"", ""effectSpecialReroll:agility""]",Corebook
+armorHarness,apparel,clothing,0,0,0,"[""arms"", ""legs"", ""torso""]",0.5,5,0,[],[],Corebook
+armorMilitaryFatigues,apparel,clothing,0,1,0,"[""arms"", ""legs"", ""torso""]",1.5,12,1,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:strength"", ""effectSpecialReroll:agility""]",Corebook
+armorRoadLeathers,apparel,clothing,1,1,0,"[""arms"", ""legs"", ""torso""]",0.5,5,1,[],[],Corebook
+armorToughClothing,apparel,clothing,1,1,0,"[""arms"", ""legs"", ""torso""]",1.5,20,1,[],[],Corebook
+armorVaultJumpsuit,apparel,clothing,0,1,2,"[""arms"", ""legs"", ""torso""]",0.5,20,2,"[""modInsulatedLining"", ""modTreatedLining"", ""modResistantLining"", ""modProtectiveLining"", ""modShieldedLining""]",[],Corebook
+armorBrotherhoodSteelFatigues,apparel,outfit,2,2,2,"[""arms"", ""legs"", ""torso""]",2,20,3,[],[],Corebook
+armorBrotherhoodScribe,apparel,outfit,1,2,2,"[""arms"", ""legs"", ""torso""]",2,20,2,[],[],Corebook
+armorCage,apparel,outfit,3,4,0,"[""head"", ""arms"", ""legs"", ""torso""]",16.5,110,3,[],[],Corebook
+armorDrifter,apparel,outfit,1,2,0,"[""arms"", ""legs"", ""torso""]",5,35,1,[],[],Corebook
+armorEngineer,apparel,outfit,1,1,0,"[""arms"", ""legs"", ""torso""]",1,15,1,[],[],Corebook
+armorFormalClothing,apparel,outfit,0,0,0,"[""arms"", ""legs"", ""torso""]",1,30,2,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:charisma""]",Corebook
+armorHazmatSuit,apparel,outfit,0,0,Infinity,"[""head"", ""arms"", ""legs"", ""torso""]",2.5,85,3,[],[],Corebook
+armorHeavyCoat,apparel,outfit,1,1,1,"[""arms"", ""legs"", ""torso""]",1,20,1,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:endurance""]",Corebook
+armorHides,apparel,outfit,1,0,0,"[""arms"", ""legs"", ""torso""]",2,13,0,[],[],Corebook
+armorLabCoat,apparel,outfit,0,0,0,"[""arms"", ""legs"", ""torso""]",1,10,1,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:intelligence""]",Corebook
+armorSpike,apparel,outfit,2,2,0,"[""head"", ""arms"", ""legs"", ""torso""]",8.5,65,2,[],[],Corebook
+armorUtilityCoveralls,apparel,outfit,2,0,0,"[""arms"", ""legs"", ""torso""]",1,12,1,[],"[""carryWeightAdd:2.5""]",Corebook
+armorArmyHelmet,apparel,headgear,2,0,0,"[""head""]",1.5,20,1,[],[],Corebook
+armorBrotherhoodSteelHood,apparel,headgear,0,1,0,"[""head""]",0,12,2,[],[],Corebook
+armorBrotherhoodScribeHat,apparel,headgear,0,2,0,"[""head""]",0,8,2,[],[],Corebook
+armorCasualHat,apparel,headgear,0,0,0,"[""head""]",0,15,1,[],"[""effectIgnoreLightPenalty""]",Corebook
+armorFormalHat,apparel,headgear,0,0,0,"[""head""]",0,15,2,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]","[""effectSpecialReroll:charisma""]",Corebook
+armorGasMask,apparel,headgear,1,0,3,"[""head""]",1.5,10,2,[],"[""effectGasMask""]",Corebook
+armorHardHat,apparel,headgear,2,0,0,"[""head""]",0,15,1,[],[],Corebook
+armorHoodOrCowl,apparel,headgear,1,0,1,"[""head""]",1,5,1,[],[],Corebook
+armorSackHood,apparel,headgear,0,0,2,"[""head""]",0.5,5,0,[],[],Corebook
+armorWeldersVisor,apparel,headgear,2,2,0,"[""head""]",2,20,2,[],[],Corebook
+armorBeerHat,apparel,headgear,0,0,0,"[""head""]",0.5,15,2,[],[],Wanderers DLC
+armorMarineTacticalHelmet,apparel,headgear,2,2,2,"[""head""]",1,25,3,[],[],Wanderers DLC
+armorSpacesuitHelmet,apparel,headgear,1,4,2,"[""head""]",2.5,85,3,[],[],Wanderers DLC
+armorMarineWetsuit,apparel,clothing,1,1,1,"[""arms"", ""legs"", ""torso""]",1,25,3,[],[],Wanderers DLC
+armorUnderarmor,apparel,clothing,0,0,0,"[""arms"", ""legs"", ""torso""]",0.5,30,2,"[""modUnderarmorTreatedLining"", ""modUnderarmorResistantLining"", ""modUnderarmorProtectiveLining"", ""modUnderarmorShieldedLining""]","[""effectUnderarmorReroll""]",Wanderers DLC
+armorBrotherhoodArmoredBattlecoat,apparel,outfit,4,1,1,"[""arms"", ""legs"", ""torso""]",10,400,4,[],[],Wanderers DLC
+armorBrotherhoodBomberJacket,apparel,outfit,2,5,1,"[""arms"", ""legs"", ""torso""]",2,40,3,"[""modBallisticWeave"", ""modBallisticWeave2"", ""modBallisticWeave3"", ""modBallisticWeave4"", ""modBallisticWeave5""]",[],Wanderers DLC
+armorCleanroom,apparel,outfit,0,0,6,"[""head"", ""arms"", ""legs"", ""torso""]",2.5,65,2,[],[],Wanderers DLC
+armorHuntersPelt,apparel,outfit,2,2,0,"[""torso"", ""arms"", ""legs""]",7.5,50,2,[],[],Wanderers DLC
+armorHuntersHood,apparel,headgear,1,1,0,"[""head""]",1,15,2,[],[],Wanderers DLC
+armorSpacesuitCostume,apparel,outfit,1,4,2,"[""arms"", ""legs"", ""torso""]",4,100,4,[],[],Wanderers DLC
+armorCaesarsOutfit,apparel,outfit,2,2,0,"[""torso"", ""arms"", ""legs""]",1.5,350,5,[],[],Wanderers DLC
+armorNukaGirlRocketsuit,apparel,outfit,1,4,4,"[""head"", ""arms"", ""legs"", ""torso""]",4,165,4,[],[],Wanderers DLC
+armorBoomerJumpsuit,apparel,clothing,2,1,2,"[""arms"", ""legs"", ""torso""]",1,20,2,[],"[""qualitySpecialBoomerJumpsuit""]",New Vegas DLC
+armorGreatKhanArmor,apparel,outfit,2,1,0,"[""arms"", ""legs"", ""torso""]",1,10,2,[],"[""qualitySpecialGreatKhanArmor""]",New Vegas DLC
+armorKingsOutfit,apparel,outfit,1,1,0,"[""arms"", ""legs"", ""torso""]",2.5,30,3,[],"[""effectSpecialReroll:charisma""]",New Vegas DLC
+armorPowderGangerOutfit,apparel,outfit,0,0,0,"[""arms"", ""legs"", ""torso""]",1,10,1,[],"[""qualitySpecialPowderGangerOutfit""]",New Vegas DLC
+armorRangerOutfit,apparel,outfit,0,0,0,"[""arms"", ""legs"", ""torso""]",1,50,3,[],"[""effectSpecialReroll:charisma""]",New Vegas DLC
+armorSpacesuit,apparel,outfit,0,1,Infinity,"[""head"", ""arms"", ""legs"", ""torso""]",2.5,100,4,[],[],New Vegas DLC

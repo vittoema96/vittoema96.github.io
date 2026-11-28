@@ -63,11 +63,11 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                     effects: modData.EFFECTS,
                     cost: Number(modData.COST) || 0,
                     rarity: modData.RARITY,
-                    skill: modData.SKILL,
+                    skill: modData.SKILL ?? '',
                     perks: modData.PERKS ?? [],
                 }
 
-                if (modData.SLOT_TYPE === 'modSlotRobotModule') {
+                if (modData.CATEGORY === 'modSlotRobotModule') {
                     for (let index = 0; index < 3; index++) {
                         const slot = result[`modSlotRobotModule#${index}`] ??= {
                             availableMods: [],
@@ -78,7 +78,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                         slot.availableMods.push(data)
                     }
                 } else {
-                    const slot = result[modData.SLOT_TYPE] ??= {
+                    const slot = result[modData.CATEGORY] ??= {
                         availableMods: [],
                         appliedMod: undefined,
                         selectedMod: undefined,
@@ -95,7 +95,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
 
         const appliedRobotModules = characterItem.mods.filter((modId) => {
             const modData = allItems[modId]
-            return isType(modData, 'mod') && modData.SLOT_TYPE === 'modSlotRobotModule'
+            return isType(modData, 'mod') && modData.CATEGORY === 'modSlotRobotModule'
         })
         appliedRobotModules.slice(0, 3).forEach((modId, index) => {
             const slot = result[`modSlotRobotModule#${index}`]
@@ -195,7 +195,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                         const modData = mod[modId]
                         return !(
                             isType(modData, "mod") &&
-                                modData.SLOT_TYPE === 'modSlotRobotPlating'
+                                modData.CATEGORY === 'modSlotRobotPlating'
                         )
                     })
 
@@ -478,7 +478,7 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
                                         effects: { EFFECTS: [], ...newMod }.EFFECTS,
                                         cost: Number({ COST: 0, ...newMod }.COST) || 0,
                                         rarity: isMod ? (newMod as ModItem).RARITY : '-',
-                                        skill: isMod ? (newMod as ModItem).SKILL : '',
+                                        skill: isMod ? ((newMod as ModItem).SKILL ?? '') : '',
                                         perks: isMod ? (newMod as ModItem).PERKS : [],
                                     };
                                 }

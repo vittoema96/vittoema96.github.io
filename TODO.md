@@ -24,6 +24,8 @@ Things to fix:
   - `modElectrified` / `modElectrifiedBlade`
 
 # Data Validation
+
+Official errata (Errata Log V6, 2026) are applied and take precedence over the manuals: see `docs/errata-applied.md` before reverting a value that differs from a guidebook.
 Data was imported using AI tools, so values remain subject to manual guidebook verification.
 ### Small Guns
 - [x] Corebook
@@ -43,7 +45,7 @@ Data was imported using AI tools, so values remain subject to manual guidebook v
 - [x] Settlers DLC
 - [ ] TODO decide what to do with MrHandy's Laser Emitter
 - [ ] TODO decide what to do with Assaultron Head (present in 2 manuals, currently -1DC, +1FR)
-- [ ] TODO decide what to do with Tesla Rifle (present in 2 manuals)
+- [x] Tesla Rifle (present in 2 manuals): uses Wanderers stats, documented in README
 ### Melee Weapons
 - [x] Corebook
 - [x] Wanderer DLC
@@ -101,7 +103,7 @@ The source catalog has been audited in stages. A checked category means names, v
 - [ ] **Weapon mods** - Finish implementing mods (some effects currently do nothing) 
 - [ ] **Consumable items** - Proper aid item consumption mechanics
 - [ ] **Traits** - Keep adding traits (some traits missing and some need implementation)
-- [ ] **Poison rules integration** - Decide how poison immunity and level-scaled poison resistance should be represented in damage calculations and exposed in the character UI. `hasPoisonImmunity` and `poisonResistance` currently have no complete consumer path.
+- [ ] **Poison rules integration** - Decide how poison immunity and level-scaled poison resistance should be represented in damage calculations and exposed in the character UI. `hasPoisonImmunity` and `poisonResistance` currently have no complete consumer path. Apparel and legendaries that give Poison DR (e.g. Poisoner's armor, +4 Poison DR, currently written as the non-existent `drPoisonAdd:4`) need a poison DR operation and must add to the character's poison resistance.
 - [ ] **Incomplete origin trait mechanics** - Implement the remaining rules for Hidden & Hunted (supply caches, identity exposure, faction hostility, and bounty hunters), Trying to Make a Difference (Speech rerolls, intimidation difficulty, and non-lethal/Luck rules), The Winding Way of the Great Snake (poison crafting), Come Rain or Shine (travel AP and complications), and Part of the Family (family selection and family-specific benefits)
 - [ ] **Perks** - Keep adding perks (some perks missing (dlc) and some need implementation)
 - [ ] **Effects and Qualities** - Check that all Effects and Qualities are implemented (some may not be)
@@ -125,7 +127,24 @@ The source catalog has been audited in stages. A checked category means names, v
 ## 🔮 Low Priority / Future
 
 ### Syringer ammo
-Syringer does not have all ammo implemented
+Syringer does not have all ammo implemented. The Corebook lists 9 Syringer rounds with full stats and official IT names: add them to `data/sources/other/ammo.*`.
+
+### Special qualities (`qualitySpecial*`)
+New Vegas specials are shown as text-only qualities: Figaro, Maria, Golden Gloves, Greased Lightning, Riot Gear helmet, Boomer Jumpsuit, Great Khan Armor, Powder Ganger Outfit. Their rules are readable in the tag tooltip, but the effects are not applied automatically yet: implement them.
+
+### Mods pass: text vs EFFECTS mismatches (found 2026-11-28)
+Still open (manual references in brackets):
+- `modTurbo`: `effectTurbo` (+2 CD per AP instead of +1) has a tooltip but is not applied to damage yet.
+- `legendaryPoisonerArmor`: see Poison rules integration.
+- Raider armor materials Welded/Annealed/Tempered/Hardened vs manual Welded/Tempered/Hardened/Buttressed [Corebook 8231-8234].
+
+Intended, do not change: Laser Musket and Assaultron capacitors (`fireRateAdd`), Burst on the Wanderers automatic receivers (errata), Two-Handed on the Full Stock (errata).
+
+### Shredder damage
+The Shredder deals damage equal to the minigun's Fire Rate, which mods can change. `weaponShredder` has a fixed 5 CD (the base minigun Fire Rate): derive it from the host weapon's modified Fire Rate in code.
+
+### Rare perks (Wanderers DLC)
+The Wanderers DLC "Rare book" / "Rare perk" perks (Ammo Factory, Blood Sacrifice!, Detonation Contagion, What Rads? and the others from the rare perks chapter) are not in the data yet. They need a requirement type for "rare book / rare perk" before they can be added.
 
 ### Polish & Enhancement
 - [ ] **Image optimization** - Serve images as WebP instead of JPG

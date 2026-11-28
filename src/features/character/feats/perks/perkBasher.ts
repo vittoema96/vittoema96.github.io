@@ -1,18 +1,12 @@
 import type { PerkImplementation } from '@/features/character/feats/types.ts';
-import { allItems } from '@/data';
-import { isType } from '@/features/item/utils.ts';
+
+// "When you make a melee attack by bashing with your gun, your attack gains the Vicious damage effect."
+const GUN_BASH_IDS = ['weaponWeaponStockOneHanded', 'weaponWeaponStock'];
 
 const perkBasher: PerkImplementation = {
     id: 'perkBasher',
-    getWeaponItemEffects: (itemData, _, inventoryItems = []) => {
-        const hasPistol = inventoryItems.some(item => {
-            const data = allItems[item.id];
-            return isType(data, 'weapon') && data.TAGS.includes('pistol');
-        });
-        return itemData.ID === 'weaponWeaponStockOneHanded' && hasPistol
-            ? ['effectAdd:effectVicious']
-            : [];
-    },
+    getWeaponItemEffects: itemData =>
+        GUN_BASH_IDS.includes(itemData.ID) ? ['effectAdd:effectVicious'] : [],
 };
 
 export default perkBasher;

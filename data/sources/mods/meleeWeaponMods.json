@@ -1,734 +1,734 @@
 {
-  "modBarbedBaseballBat": {
-    "en": "Barbed",
-    "it": "Mazza Spinata",
-    "_description": {
-      "en": "Gains Piercing 1",
-      "it": "Ottiene Penetrante 1"
+    "modBarbedBaseballBat": {
+        "en": "Barbed",
+        "it": "Mazza Spinata",
+        "_description": {
+            "en": "Gains Piercing 1",
+            "it": "Ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Barbed {{name}}",
+            "it": "{{name}} Spinato"
+        }
     },
-    "_descriptor": {
-      "en": "Barbed {{name}}",
-      "it": "{{name}} Spinato"
-    }
-  },
-  "modBarbedCane": {
-    "en": "Barbed",
-    "it": "Bastone Spinato",
-    "_description": {
-      "en": "+1 damage DC, gains Piercing 1",
-      "it": "+1 danno DC, ottiene Penetrante 1"
+    "modBarbedCane": {
+        "en": "Barbed",
+        "it": "Bastone Spinato",
+        "_description": {
+            "en": "Gains Piercing 1",
+            "it": "Ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Barbed {{name}}",
+            "it": "{{name}} Spinato"
+        }
     },
-    "_descriptor": {
-      "en": "Barbed {{name}}",
-      "it": "{{name}} Spinato"
-    }
-  },
-  "modBarbedPoolCue": {
-    "en": "Barbed",
-    "it": "Stecca Spinata",
-    "_description": {
-      "en": "+1 damage DC, gains Piercing 1",
-      "it": "+1 danno DC, ottiene Penetrante 1"
+    "modBarbedPoolCue": {
+        "en": "Barbed",
+        "it": "Stecca Spinata",
+        "_description": {
+            "en": "+1 damage CD, gains Piercing 1",
+            "it": "+1 DC di danno, ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Barbed {{name}}",
+            "it": "{{name}} Spinato"
+        }
     },
-    "_descriptor": {
-      "en": "Barbed {{name}}",
-      "it": "{{name}} Spinato"
-    }
-  },
-  "modBladeBaseballBat": {
-    "en": "Bladed",
-    "it": "Mazza con Lama",
-    "_description": {
-      "en": "+2 damage DC, gains Persistent",
-      "it": "+2 danno DC, ottiene Persistente"
+    "modBladeBaseballBat": {
+        "en": "Bladed",
+        "it": "Mazza con Lama",
+        "_description": {
+            "en": "+2 damage CD, gains Persistent",
+            "it": "+2 DC di danno, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Blade {{name}}",
+            "it": "{{name}} Tagliente"
+        }
     },
-    "_descriptor": {
-      "en": "Blade {{name}}",
-      "it": "{{name}} Tagliente"
-    }
-  },
-  "modBladeKnuckles": {
-    "en": "Bladed",
-    "it": "Tirapugni con Lama",
-    "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+    "modBladeKnuckles": {
+        "en": "Bladed",
+        "it": "Tirapugni con Lama",
+        "_description": {
+            "en": "+1 damage CD, gains Persistent",
+            "it": "+1 DC di danno, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Blade {{name}}",
+            "it": "{{name}} Tagliente"
+        }
     },
-    "_descriptor": {
-      "en": "Blade {{name}}",
-      "it": "{{name}} Tagliente"
-    }
-  },
-  "modChainBaseballBat": {
-    "en": "Chain-Wrapped",
-    "it": "Mazza con Catena",
-    "_description": {
-      "en": "+2 damage DC",
-      "it": "+2 danno DC"
+    "modChainBaseballBat": {
+        "en": "Chain-Wrapped",
+        "it": "Mazza con Catena",
+        "_description": {
+            "en": "+2 CD",
+            "it": "+2 DC"
+        },
+        "_descriptor": {
+            "en": "Chain {{name}}",
+            "it": "{{name}} Con Catena"
+        }
     },
-    "_descriptor": {
-      "en": "Chain {{name}}",
-      "it": "{{name}} Con Catena"
-    }
-  },
-  "modCurvedRipper": {
-    "en": "Curved Blade",
-    "it": "Ripper Curva",
-    "_description": {
-      "en": "+1 damage DC",
-      "it": "+1 danno DC"
+    "modCurvedRipper": {
+        "en": "Curved Blade",
+        "it": "Ripper Curva",
+        "_description": {
+            "en": "+1 CD, On successful attack, spend 2 AP to disarm opponent, knocking one held weapon away",
+            "it": "+1 DC, con un attacco riuscito, spendi 2 PA per disarmare l'avversario, facendogli volare via un'arma impugnata"
+        },
+        "_descriptor": {
+            "en": "Curved {{name}}",
+            "it": "{{name}} Ricurva"
+        }
     },
-    "_descriptor": {
-      "en": "Curved {{name}}",
-      "it": "{{name}} Ricurva"
-    }
-  },
-  "modElectrifiedBaton": {
-    "en": "Electrified",
-    "it": "Manganello Elettrico",
-    "_description": {
-      "en": "+2 damage DC, damage type becomes Energy",
-      "it": "+2 danno DC, il tipo di danno diventa Energia"
+    "modElectrifiedBaton": {
+        "en": "Electrified",
+        "it": "Manganello Elettrico",
+        "_description": {
+            "en": "+2 CD, Change Damage Type to Energy",
+            "it": "+2 DC, cambia il tipo di danno in Energia"
+        },
+        "_descriptor": {
+            "en": "Electrified {{name}}",
+            "it": "{{name}} Fulminante"
+        }
     },
-    "_descriptor": {
-      "en": "Electrified {{name}}",
-      "it": "{{name}} Fulminante"
-    }
-  },
-  "modElectrifiedSerratedSword": {
-    "en": "Electrified Serrated Blade",
-    "it": "Spada Seghettata Elettrificata",
-    "_description": {
-      "en": "+1 damage DC, damage type becomes Energy, gains Persistent (Physical)",
-      "it": "+1 danno DC, il tipo di danno diventa Energia, ottiene Persistente (Fisico)"
+    "modElectrifiedSerratedSword": {
+        "en": "Electrified Serrated Blade",
+        "it": "Spada Seghettata Elettrificata",
+        "_description": {
+            "en": "+1 CD, Damage type becomes Energy, gain Persistent (Physical)",
+            "it": "+1 DC, il tipo di danno diventa Energia, ottiene Persistente (Fisico)"
+        },
+        "_descriptor": {
+            "en": "Electrified Serrated {{name}}",
+            "it": "{{name}} Elettrificata Seghettata"
+        }
     },
-    "_descriptor": {
-      "en": "Electrified Serrated {{name}}",
-      "it": "{{name}} Elettrificata Seghettata"
-    }
-  },
-  "modElectrifiedSword": {
-    "en": "Electrified Blade",
-    "it": "Spada Elettrificata",
-    "_description": {
-      "en": "+1 damage DC, damage type becomes Energy",
-      "it": "+1 danno DC, il tipo di danno diventa Energia"
+    "modElectrifiedSword": {
+        "en": "Electrified Blade",
+        "it": "Spada Elettrificata",
+        "_description": {
+            "en": "+1 CD, Damage type becomes Energy",
+            "it": "+1 DC, il tipo di danno diventa Energia"
+        },
+        "_descriptor": {
+            "en": "Electrified {{name}}",
+            "it": "{{name}} Elettrificata"
+        }
     },
-    "_descriptor": {
-      "en": "Electrified {{name}}",
-      "it": "{{name}} Elettrificata"
-    }
-  },
-  "modExtendedRipper": {
-    "en": "Extended Blade",
-    "it": "Ripper Estesa",
-    "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+    "modExtendedRipper": {
+        "en": "Extended Blade",
+        "it": "Ripper Estesa",
+        "_description": {
+            "en": "+1 CD, Gain Persistent",
+            "it": "+1 DC, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Extended {{name}}",
+            "it": "{{name}} Estesa"
+        }
     },
-    "_descriptor": {
-      "en": "Extended {{name}}",
-      "it": "{{name}} Estesa"
-    }
-  },
-  "modExtraClawDeathclaw": {
-    "en": "Extra Claw",
-    "it": "Artiglio Extra Grande",
-    "_description": {
-      "en": "+1 damage DC",
-      "it": "+1 danno DC"
+    "modExtraClawDeathclaw": {
+        "en": "Extra Claw",
+        "it": "Artiglio Extra Grande",
+        "_description": {
+            "en": "+1 CD. On successful attack, spend 2 AP to disarm opponent, knocking one held weapon away",
+            "it": "+1 DC. Con un attacco riuscito, spendi 2 PA per disarmare l'avversario, facendogli volare via un'arma impugnata"
+        },
+        "_descriptor": {
+            "en": "Large {{name}}",
+            "it": "{{name}} Grande"
+        }
     },
-    "_descriptor": {
-      "en": "Large {{name}}",
-      "it": "{{name}} Grande"
-    }
-  },
-  "modExtraFlamesShishkebab": {
-    "en": "Extra Flame Jets",
-    "it": "Getti di Fiamme Ulteriori",
-    "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+    "modExtraFlamesShishkebab": {
+        "en": "Extra Flame Jets",
+        "it": "Getti di Fiamme Ulteriori",
+        "_description": {
+            "en": "+1 CD, Gain Persistent",
+            "it": "+1 DC, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Extra Flames {{name}}",
+            "it": "{{name}} Rovente"
+        }
     },
-    "_descriptor": {
-      "en": "Extra Flames {{name}}",
-      "it": "{{name}} Rovente"
-    }
-  },
-  "modHeatingPowerFist": {
-    "en": "Heating Coil",
-    "it": "Pugno Potenziato Riscaldante",
-    "_description": {
-      "en": "+2 damage DC, damage type becomes Energy",
-      "it": "+2 danno DC, il tipo di danno diventa Energia"
+    "modHeatingPowerFist": {
+        "en": "Heating Coil",
+        "it": "Pugno Potenziato Riscaldante",
+        "_description": {
+            "en": "+2 damage CD, damage type becomes Energy",
+            "it": "+2 DC di danno, il tipo di danno diventa Energia"
+        },
+        "_descriptor": {
+            "en": "Heating {{name}}",
+            "it": "{{name}} Bruciante"
+        }
     },
-    "_descriptor": {
-      "en": "Heating {{name}}",
-      "it": "{{name}} Bruciante"
-    }
-  },
-  "modHeatingSuperSledge": {
-    "en": "Heating Coil",
-    "it": "Super Martello Riscaldante",
-    "_description": {
-      "en": "+1 damage DC, damage type becomes Energy",
-      "it": "+1 danno DC, il tipo di danno diventa Energia"
+    "modHeatingSuperSledge": {
+        "en": "Heating Coil",
+        "it": "Super Martello Riscaldante",
+        "_description": {
+            "en": "+1 damage CD, damage type becomes Energy",
+            "it": "+1 DC di danno, il tipo di danno diventa Energia"
+        },
+        "_descriptor": {
+            "en": "Heating {{name}}",
+            "it": "{{name}} Bruciante"
+        }
     },
-    "_descriptor": {
-      "en": "Heating {{name}}",
-      "it": "{{name}} Bruciante"
-    }
-  },
-  "modHeavyLeadPipe": {
-    "en": "Heavy",
-    "it": "Tubo Pesante",
-    "_description": {
-      "en": "+2 damage DC",
-      "it": "+2 danno DC"
+    "modHeavyLeadPipe": {
+        "en": "Heavy",
+        "it": "Tubo Pesante",
+        "_description": {
+            "en": "+2 CD",
+            "it": "+2 DC"
+        },
+        "_descriptor": {
+            "en": "Heavy {{name}}",
+            "it": "{{name}} Pesante"
+        }
     },
-    "_descriptor": {
-      "en": "Heavy {{name}}",
-      "it": "{{name}} Pesante"
-    }
-  },
-  "modHeavySledgehammer": {
-    "en": "Heavy",
-    "it": "Martello Pesante",
-    "_description": {
-      "en": "+2 damage DC",
-      "it": "+2 danno DC"
+    "modHeavySledgehammer": {
+        "en": "Heavy",
+        "it": "Martello Pesante",
+        "_description": {
+            "en": "+2 CD",
+            "it": "+2 DC"
+        },
+        "_descriptor": {
+            "en": "Heavy {{name}}",
+            "it": "{{name}} Pesante"
+        }
     },
-    "_descriptor": {
-      "en": "Heavy {{name}}",
-      "it": "{{name}} Pesante"
-    }
-  },
-  "modHeavyWrench": {
-    "en": "Heavy",
-    "it": "Chiave Pesante",
-    "_description": {
-      "en": "+2 damage DC",
-      "it": "+2 danno DC"
+    "modHeavyWrench": {
+        "en": "Heavy",
+        "it": "Chiave Pesante",
+        "_description": {
+            "en": "+2 CD",
+            "it": "+2 DC"
+        },
+        "_descriptor": {
+            "en": "Balanced {{name}}",
+            "it": "{{name}} Bilanciata"
+        }
     },
-    "_descriptor": {
-      "en": "Balanced {{name}}",
-      "it": "{{name}} Bilanciata"
-    }
-  },
-  "modHookedWrench": {
-    "en": "Hooked",
-    "it": "Chiave Uncinata",
-    "_description": {
-      "en": "+1 damage DC",
-      "it": "+1 danno DC"
+    "modHookedWrench": {
+        "en": "Hooked",
+        "it": "Chiave Uncinata",
+        "_description": {
+            "en": "+1 CD, On successful attack, spend 2 AP to disarm opponent, knocking one held weapon away",
+            "it": "+1 DC di danno, se l'attacco ha successo, si possono spendere 2 PA per disarmare l'avversario, scagliando via l'arma che impugnava"
+        },
+        "_descriptor": {
+            "en": "Hooked {{name}}",
+            "it": "{{name}} Uncinato"
+        }
     },
-    "_descriptor": {
-      "en": "Hooked {{name}}",
-      "it": "{{name}} Uncinato"
-    }
-  },
-  "modLeadedBoxingGlove": {
-    "en": "Lead Lining",
-    "it": "Guantone Piombato",
-    "_description": {
-      "en": "+2 damage DC",
-      "it": "+2 danno DC"
+    "modLeadedBoxingGlove": {
+        "en": "Lead Lining",
+        "it": "Guantone Piombato",
+        "_description": {
+            "en": "+2 CD",
+            "it": "+2 DC"
+        },
+        "_descriptor": {
+            "en": "Leaded {{name}}",
+            "it": "{{name}} Piombato"
+        }
     },
-    "_descriptor": {
-      "en": "Leaded {{name}}",
-      "it": "{{name}} Piombato"
-    }
-  },
-  "modPuncturedBoard": {
-    "en": "Puncturing",
-    "it": "Asse Pungente",
-    "_description": {
-      "en": "+2 damage DC",
-      "it": "+2 danno DC"
+    "modPuncturedBoard": {
+        "en": "Puncturing",
+        "it": "Asse Pungente",
+        "_description": {
+            "en": "+2 damage CD",
+            "it": "+2 DC di danno"
+        },
+        "_descriptor": {
+            "en": "Punctured {{name}}",
+            "it": "{{name}} Pungente"
+        }
     },
-    "_descriptor": {
-      "en": "Punctured {{name}}",
-      "it": "{{name}} Pungente"
-    }
-  },
-  "modPuncturedKnuckles": {
-    "en": "Puncturing",
-    "it": "Tirapugni Pungente",
-    "_description": {
-      "en": "+1 damage DC, gains Piercing 1",
-      "it": "+1 danno DC, ottiene Penetrante 1"
+    "modPuncturedKnuckles": {
+        "en": "Puncturing",
+        "it": "Tirapugni Pungente",
+        "_description": {
+            "en": "+1 damage CD, gains Piercing 1",
+            "it": "+1 DC di danno, ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Punctured {{name}}",
+            "it": "{{name}} Puntuto"
+        }
     },
-    "_descriptor": {
-      "en": "Punctured {{name}}",
-      "it": "{{name}} Puntuto"
-    }
-  },
-  "modPuncturedBoxingGlove": {
-    "en": "Puncturing",
-    "it": "Guantone Pungente",
-    "_description": {
-      "en": "+1 damage DC, gains Piercing 1",
-      "it": "+1 danno DC, ottiene Penetrante 1"
+    "modPuncturedBoxingGlove": {
+        "en": "Puncturing",
+        "it": "Guantone Pungente",
+        "_description": {
+            "en": "+1 damage CD, gains Piercing 1",
+            "it": "+1 DC di danno, ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Punctured {{name}}",
+            "it": "{{name}} Puntuto"
+        }
     },
-    "_descriptor": {
-      "en": "Punctured {{name}}",
-      "it": "{{name}} Puntuto"
-    }
-  },
-  "modPuncturedPowerFist": {
-    "en": "Puncturing",
-    "it": "Pugno Potenziato Pungente",
-    "_description": {
-      "en": "+2 damage DC, gains Piercing 1",
-      "it": "+2 danno DC, ottiene Penetrante 1"
+    "modPuncturedPowerFist": {
+        "en": "Puncturing",
+        "it": "Pugno Potenziato Pungente",
+        "_description": {
+            "en": "+2 damage CD, gains Piercing 1",
+            "it": "+2 DC di danno, ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Punctured {{name}}",
+            "it": "{{name}} Puntuto"
+        }
     },
-    "_descriptor": {
-      "en": "Punctured {{name}}",
-      "it": "{{name}} Puntuto"
-    }
-  },
-  "modPuncturedSledgehammer": {
-    "en": "Puncturing",
-    "it": "Martello Pungente",
-    "_description": {
-      "en": "+1 damage DC, gains Piercing 1",
-      "it": "+1 danno DC, ottiene Penetrante 1"
+    "modPuncturedSledgehammer": {
+        "en": "Puncturing",
+        "it": "Martello Pungente",
+        "_description": {
+            "en": "+1 damage CD, gains Piercing 1",
+            "it": "+1 DC di danno, ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Punctured {{name}}",
+            "it": "{{name}} Pungente"
+        }
     },
-    "_descriptor": {
-      "en": "Punctured {{name}}",
-      "it": "{{name}} Pungente"
-    }
-  },
-  "modPuncturedWrench": {
-    "en": "Puncturing",
-    "it": "Chiave Pungente",
-    "_description": {
-      "en": "+2 damage DC, gains Piercing 1",
-      "it": "+2 danno DC, ottiene Penetrante 1"
+    "modPuncturedWrench": {
+        "en": "Puncturing",
+        "it": "Chiave Pungente",
+        "_description": {
+            "en": "+2 damage CD, gains Piercing 1",
+            "it": "+2 DC di danno, ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Punctured {{name}}",
+            "it": "{{name}} Pungente"
+        }
     },
-    "_descriptor": {
-      "en": "Punctured {{name}}",
-      "it": "{{name}} Pungente"
-    }
-  },
-  "modSerratedCombatKnife": {
-    "en": "Serrated Blade",
-    "it": "Coltello da Combattimento Seghettato",
-    "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+    "modSerratedCombatKnife": {
+        "en": "Serrated Blade",
+        "it": "Coltello da Combattimento Seghettato",
+        "_description": {
+            "en": "+1 damage CD, gains Persistent",
+            "it": "+1 DC di danno, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Serrated {{name}}",
+            "it": "{{name}} Seghettato"
+        }
     },
-    "_descriptor": {
-      "en": "Serrated {{name}}",
-      "it": "{{name}} Seghettato"
-    }
-  },
-  "modSerratedMachete": {
-    "en": "Serrated Blade",
-    "it": "Machete Seghettato",
-    "_description": {
-      "en": "+2 damage DC, gains Persistent",
-      "it": "+2 danno DC, ottiene Persistente"
+    "modSerratedMachete": {
+        "en": "Serrated Blade",
+        "it": "Machete Seghettato",
+        "_description": {
+            "en": "+2 damage CD, gains Persistent",
+            "it": "+2 DC di danno, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Serrated {{name}}",
+            "it": "{{name}} Seghettato"
+        }
     },
-    "_descriptor": {
-      "en": "Serrated {{name}}",
-      "it": "{{name}} Seghettato"
-    }
-  },
-  "modSerratedSwitchblade": {
-    "en": "Serrated Blade",
-    "it": "Coltello a Serramanico Seghettato",
-    "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+    "modSerratedSwitchblade": {
+        "en": "Serrated Blade",
+        "it": "Coltello a Serramanico Seghettato",
+        "_description": {
+            "en": "+1 damage CD, gains Persistent",
+            "it": "+1 DC di danno, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Serrated {{name}}",
+            "it": "{{name}} Seghettato"
+        }
     },
-    "_descriptor": {
-      "en": "Serrated {{name}}",
-      "it": "{{name}} Seghettato"
-    }
-  },
-  "modSerratedSword": {
-    "en": "Serrated Blade",
-    "it": "Spada Seghettata",
-    "_description": {
-      "en": "Gains Persistent",
-      "it": "Ottiene Persistente"
+    "modSerratedSword": {
+        "en": "Serrated Blade",
+        "it": "Spada Seghettata",
+        "_description": {
+            "en": "Gains Persistent",
+            "it": "Ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Serrated {{name}}",
+            "it": "{{name}} Seghettata"
+        }
     },
-    "_descriptor": {
-      "en": "Serrated {{name}}",
-      "it": "{{name}} Seghettata"
-    }
-  },
-  "modSharpBaseballBat": {
-    "en": "Sharp",
-    "it": "Mazza Affilata",
-    "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+    "modSharpBaseballBat": {
+        "en": "Sharp",
+        "it": "Mazza Affilata",
+        "_description": {
+            "en": "+1 damage CD, gains Persistent",
+            "it": "+1 DC di danno, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Sharp {{name}}",
+            "it": "{{name}} Affilato"
+        }
     },
-    "_descriptor": {
-      "en": "Sharp {{name}}",
-      "it": "{{name}} Affilato"
-    }
-  },
-  "modSharpBoard": {
-    "en": "Bladed",
-    "it": "Asse Tagliente",
-    "_description": {
-      "en": "+2 damage DC, gains Persistent",
-      "it": "+2 danno DC, ottiene Persistente"
+    "modSharpBoard": {
+        "en": "Bladed",
+        "it": "Asse Tagliente",
+        "_description": {
+            "en": "+2 damage CD, gains Persistent",
+            "it": "+2 DC di danno, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Sharp {{name}}",
+            "it": "{{name}} Tagliente"
+        }
     },
-    "_descriptor": {
-      "en": "Sharp {{name}}",
-      "it": "{{name}} Tagliente"
-    }
-  },
-  "modSharpKnuckles": {
-    "en": "Sharp",
-    "it": "Tirapugni Affilato",
-    "_description": {
-      "en": "Gains Persistent",
-      "it": "Ottiene Persistente"
+    "modSharpKnuckles": {
+        "en": "Sharp",
+        "it": "Tirapugni Affilato",
+        "_description": {
+            "en": "Gains Persistent",
+            "it": "Ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Sharp {{name}}",
+            "it": "{{name}} Affilato"
+        }
     },
-    "_descriptor": {
-      "en": "Sharp {{name}}",
-      "it": "{{name}} Affilato"
-    }
-  },
-  "modSharpPoolCue": {
-    "en": "Sharp",
-    "it": "Stecca Affilata",
-    "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+    "modSharpPoolCue": {
+        "en": "Sharp",
+        "it": "Stecca Affilata",
+        "_description": {
+            "en": "+1 damage CD, gains Persistent",
+            "it": "+1 DC di danno, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Sharp {{name}}",
+            "it": "{{name}} Affilato"
+        }
     },
-    "_descriptor": {
-      "en": "Sharp {{name}}",
-      "it": "{{name}} Affilato"
-    }
-  },
-  "modSharpRollingPin": {
-    "en": "Sharp",
-    "it": "Mattarello Affilato",
-    "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+    "modSharpRollingPin": {
+        "en": "Sharp",
+        "it": "Mattarello Affilato",
+        "_description": {
+            "en": "+1 damage CD, gains Persistent",
+            "it": "+1 DC di danno, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Sharp {{name}}",
+            "it": "{{name}} Affilato"
+        }
     },
-    "_descriptor": {
-      "en": "Sharp {{name}}",
-      "it": "{{name}} Affilato"
-    }
-  },
-  "modSharpTireIron": {
-    "en": "Bladed",
-    "it": "Leva Tagliente",
-    "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+    "modSharpTireIron": {
+        "en": "Bladed",
+        "it": "Leva Tagliente",
+        "_description": {
+            "en": "+1 damage CD, gains Persistent",
+            "it": "+1 DC di danno, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Sharp {{name}}",
+            "it": "{{name}} Tagliente"
+        }
     },
-    "_descriptor": {
-      "en": "Sharp {{name}}",
-      "it": "{{name}} Tagliente"
-    }
-  },
-  "modSpikedBaseballBat": {
-    "en": "Spiked",
-    "it": "Mazza Chiodata",
-    "_description": {
-      "en": "+1 damage DC, gains Piercing 1",
-      "it": "+1 danno DC, ottiene Penetrante 1"
+    "modSpikedBaseballBat": {
+        "en": "Spiked",
+        "it": "Mazza Chiodata",
+        "_description": {
+            "en": "+1 damage CD, gains Piercing 1",
+            "it": "+1 DC di danno, ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Spiked {{name}}",
+            "it": "{{name}} Chiodata"
+        }
     },
-    "_descriptor": {
-      "en": "Spiked {{name}}",
-      "it": "{{name}} Chiodata"
-    }
-  },
-  "modSpikedBoard": {
-    "en": "Spiked",
-    "it": "Asse Chiodata",
-    "_description": {
-      "en": "+1 damage DC, gains Piercing 1",
-      "it": "+1 danno DC, ottiene Penetrante 1"
+    "modSpikedBoard": {
+        "en": "Spiked",
+        "it": "Asse Chiodata",
+        "_description": {
+            "en": "+1 damage CD, gains Piercing 1",
+            "it": "+1 DC di danno, ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Spiked {{name}}",
+            "it": "{{name}} Chiodata"
+        }
     },
-    "_descriptor": {
-      "en": "Spiked {{name}}",
-      "it": "{{name}} Chiodata"
-    }
-  },
-  "modSpikedBoxingGlove": {
-    "en": "Spiked",
-    "it": "Guantone Chiodato",
-    "_description": {
-      "en": "Gains Piercing 1",
-      "it": "Ottiene Penetrante 1"
+    "modSpikedBoxingGlove": {
+        "en": "Spiked",
+        "it": "Guantone Chiodato",
+        "_description": {
+            "en": "Gains Piercing 1",
+            "it": "Ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Spiked {{name}}",
+            "it": "{{name}} Chiodato"
+        }
     },
-    "_descriptor": {
-      "en": "Spiked {{name}}",
-      "it": "{{name}} Chiodato"
-    }
-  },
-  "modSpikedCane": {
-    "en": "Spiked",
-    "it": "Bastone Chiodato",
-    "_description": {
-      "en": "+1 damage DC, gains Piercing 1",
-      "it": "+1 danno DC, ottiene Penetrante 1"
+    "modSpikedCane": {
+        "en": "Spiked",
+        "it": "Bastone Chiodato",
+        "_description": {
+            "en": "+1 damage CD, gains Piercing 1",
+            "it": "+1 DC di danno, ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Spiked {{name}}",
+            "it": "{{name}} Chiodato"
+        }
     },
-    "_descriptor": {
-      "en": "Spiked {{name}}",
-      "it": "{{name}} Chiodato"
-    }
-  },
-  "modSpikedKnuckles": {
-    "en": "Spiked",
-    "it": "Tirapugni Chiodato",
-    "_description": {
-      "en": "Gains Piercing 1",
-      "it": "Ottiene Penetrante 1"
+    "modSpikedKnuckles": {
+        "en": "Spiked",
+        "it": "Tirapugni Chiodato",
+        "_description": {
+            "en": "Gains Piercing 1",
+            "it": "Ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Spiked {{name}}",
+            "it": "{{name}} Chiodato"
+        }
     },
-    "_descriptor": {
-      "en": "Spiked {{name}}",
-      "it": "{{name}} Chiodato"
-    }
-  },
-  "modSpikedLeadPipe": {
-    "en": "Spiked",
-    "it": "Tubo Chiodato",
-    "_description": {
-      "en": "+1 damage DC, gains Piercing 1",
-      "it": "+1 danno DC, ottiene Penetrante 1"
+    "modSpikedLeadPipe": {
+        "en": "Spiked",
+        "it": "Tubo Chiodato",
+        "_description": {
+            "en": "+1 damage CD, gains Piercing 1",
+            "it": "+1 DC di danno, ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Spiked {{name}}",
+            "it": "{{name}} Chiodato"
+        }
     },
-    "_descriptor": {
-      "en": "Spiked {{name}}",
-      "it": "{{name}} Chiodato"
-    }
-  },
-  "modSpikedRollingPin": {
-    "en": "Spiked",
-    "it": "Mattarello Chiodato",
-    "_description": {
-      "en": "+1 damage DC, gains Piercing 1",
-      "it": "+1 danno DC, ottiene Penetrante 1"
+    "modSpikedRollingPin": {
+        "en": "Spiked",
+        "it": "Mattarello Chiodato",
+        "_description": {
+            "en": "+1 damage CD, gains Piercing 1",
+            "it": "+1 DC di danno, ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Spiked {{name}}",
+            "it": "{{name}} Chiodato"
+        }
     },
-    "_descriptor": {
-      "en": "Spiked {{name}}",
-      "it": "{{name}} Chiodato"
-    }
-  },
-  "modStealthCombatKnife": {
-    "en": "Stealth Blade",
-    "it": "Coltello da Combattimento Stealth",
-    "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+    "modStealthCombatKnife": {
+        "en": "Stealth Blade",
+        "it": "Coltello da Combattimento Stealth",
+        "_description": {
+            "en": "+1 CD, Gain Persistent, +2 CD on Sneak Attacks",
+            "it": "+1 DC, ottiene Persistente, +2 DC sugli attacchi furtivi"
+        },
+        "_descriptor": {
+            "en": "Stealth {{name}}",
+            "it": "{{name}} Stealth"
+        }
     },
-    "_descriptor": {
-      "en": "Stealth {{name}}",
-      "it": "{{name}} Stealth"
-    }
-  },
-  "modStunningBaton": {
-    "en": "Stun Pack",
-    "it": "Manganello Stordente",
-    "_description": {
-      "en": "+3 damage DC, damage type becomes Energy, gains Stun",
-      "it": "+3 danno DC, il tipo di danno diventa Energia, ottiene Stordente"
+    "modStunningBaton": {
+        "en": "Stun Pack",
+        "it": "Manganello Stordente",
+        "_description": {
+            "en": "+3 damage CD, damage type becomes Energy, gains Stun",
+            "it": "+3 DC di danno, il tipo di danno diventa Energia, ottiene Stordente"
+        },
+        "_descriptor": {
+            "en": "Stunning {{name}}",
+            "it": "{{name}} Stordente"
+        }
     },
-    "_descriptor": {
-      "en": "Stunning {{name}}",
-      "it": "{{name}} Stordente"
-    }
-  },
-  "modStunningSuperSledge": {
-    "en": "Stun Pack",
-    "it": "Super Martello Stordente",
-    "_description": {
-      "en": "+2 damage DC, damage type becomes Energy, gains Stun",
-      "it": "+2 danno DC, il tipo di danno diventa Energia, ottiene Stordente"
+    "modStunningSuperSledge": {
+        "en": "Stun Pack",
+        "it": "Super Martello Stordente",
+        "_description": {
+            "en": "+2 damage CD, damage type becomes Energy, gains Stun",
+            "it": "+2 DC di danno, il tipo di danno diventa Energia, ottiene Stordente"
+        },
+        "_descriptor": {
+            "en": "Stunning {{name}}",
+            "it": "{{name}} Stordente"
+        }
     },
-    "_descriptor": {
-      "en": "Stunning {{name}}",
-      "it": "{{name}} Stordente"
-    }
-  },
-  "modStunningSword": {
-    "en": "Stun Pack",
-    "it": "Spada Stordente",
-    "_description": {
-      "en": "+2 damage DC, damage type becomes Energy, gains Stun",
-      "it": "+2 danno DC, il tipo di danno diventa Energia, ottiene Stordente"
+    "modStunningSword": {
+        "en": "Stun Pack",
+        "it": "Spada Stordente",
+        "_description": {
+            "en": "+2 damage CD, damage type becomes Energy, gains Stun",
+            "it": "+2 DC di danno, il tipo di danno diventa Energia, ottiene Stordente"
+        },
+        "_descriptor": {
+            "en": "Stunning {{name}}",
+            "it": "{{name}} Stordente"
+        }
     },
-    "_descriptor": {
-      "en": "Stunning {{name}}",
-      "it": "{{name}} Stordente"
-    }
-  },
-  "modVeryHeavyWrench": {
-    "en": "Extra Heavy",
-    "it": "Chiave Molto Pesante",
-    "_description": {
-      "en": "+3 damage DC",
-      "it": "+3 danno DC"
+    "modVeryHeavyWrench": {
+        "en": "Extra Heavy",
+        "it": "Chiave Molto Pesante",
+        "_description": {
+            "en": "+3 CD",
+            "it": "+3 DC"
+        },
+        "_descriptor": {
+            "en": "Heavy {{name}}",
+            "it": "{{name}} Pesante"
+        }
     },
-    "_descriptor": {
-      "en": "Heavy {{name}}",
-      "it": "{{name}} Pesante"
-    }
-  },
-  "modElectrified": {
-    "en": "Electrified",
-    "it": "Elettrificato",
-    "_description": {
-      "en": "+1 damage DC, damage type becomes Energy",
-      "it": "+1 danno DC, il tipo di danno diventa Energia"
+    "modElectrified": {
+        "en": "Electrified",
+        "it": "Elettrificato",
+        "_description": {
+            "en": "+1 damage CD, damage type becomes Energy",
+            "it": "+1 DC di danno, il tipo di danno diventa Energia"
+        },
+        "_descriptor": {
+            "en": "Electrified {{name}}",
+            "it": "{{name}} Elettrificato"
+        }
     },
-    "_descriptor": {
-      "en": "Electrified {{name}}",
-      "it": "{{name}} Elettrificato"
-    }
-  },
-  "modBurning": {
-    "en": "Burning",
-    "it": "Ardente",
-    "_description": {
-      "en": "Damage type becomes Energy, gains Persistent",
-      "it": "Il tipo di danno diventa Energia, ottiene Persistente"
+    "modBurning": {
+        "en": "Burning",
+        "it": "Ardente",
+        "_description": {
+            "en": "Damage type becomes Energy, gains Persistent",
+            "it": "Il tipo di danno diventa Energia, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Burning {{name}}",
+            "it": "{{name}} Ardente"
+        }
     },
-    "_descriptor": {
-      "en": "Burning {{name}}",
-      "it": "{{name}} Ardente"
-    }
-  },
-  "modPoisoned": {
-    "en": "Poisoned",
-    "it": "Avvelenato",
-    "_description": {
-      "en": "Gains Persistent (Poison)",
-      "it": "Ottiene Persistente (Veleno)"
+    "modPoisoned": {
+        "en": "Poisoned",
+        "it": "Avvelenato",
+        "_description": {
+            "en": "Gains Persistent (Poison)",
+            "it": "Ottiene Persistente (Veleno)"
+        },
+        "_descriptor": {
+            "en": "Toxic {{name}}",
+            "it": "{{name}} Tossico"
+        }
     },
-    "_descriptor": {
-      "en": "Toxic {{name}}",
-      "it": "{{name}} Tossico"
-    }
-  },
-  "modTurbo": {
-    "en": "Turbo",
-    "it": "Turbo",
-    "_description": {
-      "en": "Each AP spent for extra damage adds +2 DC instead of +1 DC",
-      "it": "Ogni PA speso per danno extra aggiunge +2 DC invece di +1 DC"
+    "modTurbo": {
+        "en": "Turbo",
+        "it": "Turbo",
+        "_description": {
+            "en": "Each AP spent for extra damage adds +2 CD instead of +1 CD.",
+            "it": "Ogni PA speso per danno extra aggiunge +2 DC invece di +1 DC."
+        },
+        "_descriptor": {
+            "en": "Turbo {{name}}",
+            "it": "{{name}} Turbo"
+        }
     },
-    "_descriptor": {
-      "en": "Turbo {{name}}",
-      "it": "{{name}} Turbo"
-    }
-  },
-  "modDualBar": {
-    "en": "Dual Bar",
-    "it": "Doppia Barra",
-    "_description": {
-      "en": "+2 damage DC",
-      "it": "+2 danno DC"
+    "modDualBar": {
+        "en": "Dual Bar",
+        "it": "Doppia Barra",
+        "_description": {
+            "en": "+2 CD",
+            "it": "+2 DC"
+        },
+        "_descriptor": {
+            "en": "Dual {{name}}",
+            "it": "{{name}} Doppia"
+        }
     },
-    "_descriptor": {
-      "en": "Dual {{name}}",
-      "it": "{{name}} Doppia"
-    }
-  },
-  "modBowBar": {
-    "en": "Bow Bar",
-    "it": "Barra ad Arco",
-    "_description": {
-      "en": "Gains Piercing 1",
-      "it": "Ottiene Penetrante 1"
+    "modBowBar": {
+        "en": "Bow Bar",
+        "it": "Barra ad Arco",
+        "_description": {
+            "en": "Gain Piercing 1",
+            "it": "Ottiene Penetrante 1"
+        },
+        "_descriptor": {
+            "en": "Bow bar {{name}}",
+            "it": "{{name}} Ad Arco"
+        }
     },
-    "_descriptor": {
-      "en": "Bow bar {{name}}",
-      "it": "{{name}} Ad Arco"
-    }
-  },
-  "modLongBowBar": {
-    "en": "Long Bow Bar",
-    "it": "Barra ad Arco Lungo",
-    "_description": {
-      "en": "Gains Persistent",
-      "it": "Ottiene Persistente"
+    "modLongBowBar": {
+        "en": "Long Bow Bar",
+        "it": "Barra ad Arco Lungo",
+        "_description": {
+            "en": "Gain Persistent",
+            "it": "Ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Long bow bar {{name}}",
+            "it": "{{name}} Ad Arco Lungo"
+        }
     },
-    "_descriptor": {
-      "en": "Long bow bar {{name}}",
-      "it": "{{name}} Ad Arco Lungo"
-    }
-  },
-  "modFlaming": {
-    "en": "Flamer",
-    "it": "Lanciafiamme",
-    "_description": {
-      "en": "+1 damage DC, damage type changes to Energy. Can be installed in addition to other mods.",
-      "it": "+1 danno DC, il tipo di danno diventa Energia. Può essere installato in aggiunta ad altre mod."
+    "modFlaming": {
+        "en": "Flamer",
+        "it": "Lanciafiamme",
+        "_description": {
+            "en": "+1 damage CD, damage type changes to Energy. Can be installed in addition to other mods.",
+            "it": "+1 DC di danno, il tipo di danno diventa Energia. Può essere installato in aggiunta ad altre mod."
+        },
+        "_descriptor": {
+            "en": "Flaming {{name}}",
+            "it": "{{name}} Fiammeggiante"
+        }
     },
-    "_descriptor": {
-      "en": "Flaming {{name}}",
-      "it": "{{name}} Fiammeggiante"
-    }
-  },
-  "modSpikedPuncturing": {
-    "en": "Spiked Puncturing",
-    "it": "Punte Perforanti",
-    "_description": {
-      "en": "+1 damage DC, gains Vicious, +1 weight.",
-      "it": "+1 danno DC, ottiene Violento, +1 peso."
+    "modSpikedPuncturing": {
+        "en": "Spiked Puncturing",
+        "it": "Pungente",
+        "_description": {
+            "en": "+1 damage CD, gains Vicious, +1 weight.",
+            "it": "+1 DC di danno, ottiene Violento, +1 peso."
+        },
+        "_descriptor": {
+            "en": "Spiked {{name}}",
+            "it": "{{name}} con Punte"
+        }
     },
-    "_descriptor": {
-      "en": "Spiked {{name}}",
-      "it": "{{name}} con Punte"
-    }
-  },
-  "modBladedSharp": {
-    "en": "Bladed Sharp",
-    "it": "Lama Affilata",
-    "_description": {
-      "en": "+1 damage DC, gains Persistent, +1 weight.",
-      "it": "+1 danno DC, ottiene Persistente, +1 peso."
+    "modBladedSharp": {
+        "en": "Bladed Sharp",
+        "it": "Lama Affilata",
+        "_description": {
+            "en": "+1 damage CD, gains Persistent, +1 weight.",
+            "it": "+1 DC di danno, ottiene Persistente, +1 peso."
+        },
+        "_descriptor": {
+            "en": "Bladed {{name}}",
+            "it": "{{name}} con Lama"
+        }
     },
-    "_descriptor": {
-      "en": "Bladed {{name}}",
-      "it": "{{name}} con Lama"
-    }
-  },
-  "modHeavyClub": {
-    "en": "Heavy Club",
-    "it": "Clava Pesante",
-    "_description": {
-      "en": "+1 damage DC, +1 weight.",
-      "it": "+1 danno DC, +1 peso."
+    "modHeavyClub": {
+        "en": "Heavy Club",
+        "it": "Clava Pesante",
+        "_description": {
+            "en": "+1 damage CD, +1 weight.",
+            "it": "+1 DC di danno, +1 peso."
+        },
+        "_descriptor": {
+            "en": "Heavy {{name}}",
+            "it": "{{name}} Pesante"
+        }
     },
-    "_descriptor": {
-      "en": "Heavy {{name}}",
-      "it": "{{name}} Pesante"
-    }
-  },
-  "modExtraWeighty": {
-    "en": "Extra Weighty",
-    "it": "Extra Pesante",
-    "_description": {
-      "en": "+1 damage DC, +3 weight.",
-      "it": "+1 danno DC, +3 peso."
+    "modExtraWeighty": {
+        "en": "Extra Weighty",
+        "it": "Extra Pesante",
+        "_description": {
+            "en": "+1 damage CD, +3 weight.",
+            "it": "+1 DC di danno, +3 peso."
+        },
+        "_descriptor": {
+            "en": "Weighty {{name}}",
+            "it": "{{name}} Extra Pesante"
+        }
     },
-    "_descriptor": {
-      "en": "Weighty {{name}}",
-      "it": "{{name}} Extra Pesante"
+    "modPartyFavor": {
+        "en": "Party Favor",
+        "it": "Fuoco d'Artificio",
+        "_description": {
+            "en": "Change to Weapon Type Explosive, +3 CD damage, Gain Blast and Thrown [M].",
+            "it": "Cambia il tipo di arma in Esplosivi, +3 DC di danno, ottiene Esplosiva e Da Lancio (M)."
+        },
+        "_descriptor": {
+            "en": "Party Favor {{name}}",
+            "it": "{{name}} Fuoco d'Artificio"
+        }
     }
-  },
-  "modPartyFavor": {
-    "en": "Party Favor",
-    "it": "Fuoco d'Artificio",
-    "_description": {
-      "en": "Weapon type becomes Explosive, +3 damage DC, gains Blast and Thrown, +1 weight.",
-      "it": "Il tipo di arma diventa Esplosivi, +3 danno DC, ottiene Esplosione e Lanciabile, +1 peso."
-    },
-    "_descriptor": {
-      "en": "Party Favor {{name}}",
-      "it": "{{name}} Fuoco d'Artificio"
-    }
-  }
 }

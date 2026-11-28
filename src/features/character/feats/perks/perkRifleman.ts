@@ -9,7 +9,7 @@ const perkRifleman: PerkImplementation = {
         itemData.CATEGORY === 'bigGuns' ||
         isCloseCombat(itemData.CATEGORY) ||
         !itemData.QUALITIES.includes('qualityTwoHanded') ||
-        Number(itemData.FIRE_RATE) < 2
+        Number(itemData.FIRE_RATE) > 2
             ? 0
             : perkRank(character.perks, 'perkRifleman'),
     getWeaponItemEffects: (itemData, perks) => {
@@ -17,7 +17,7 @@ const perkRifleman: PerkImplementation = {
             itemData.CATEGORY === 'bigGuns' ||
             isCloseCombat(itemData.CATEGORY) ||
             !itemData.QUALITIES.includes('qualityTwoHanded') ||
-            Number(itemData.FIRE_RATE) < 2
+            Number(itemData.FIRE_RATE) > 2
         ) {
             return [];
         }

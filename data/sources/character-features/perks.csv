@@ -8,7 +8,7 @@ perkAnimalFriend,2,"{""charisma"": 6, ""level"": 1}",5,Corebook
 perkDaringNature,1,"{""luck"": 7}",,Corebook
 perkArmorer,4,"{""strength"": 5, ""intelligence"": 6}",4,Corebook
 perkMakeshift,1,{},,Corebook
-perkBarbarian,1,"{""strength"": 7, ""level"": 4}",,Corebook
+perkBarbarian,1,"{""strength"": 7, ""level"": 4, ""notRobot"": true}",,Corebook
 perkMovingTarget,1,"{""agility"": 6}",,Corebook
 perkBlitz,2,"{""agility"": 9, ""level"": 1}",3,Corebook
 perkCenterOfMass,1,"{""agility"": 7}",,Corebook
@@ -35,7 +35,8 @@ perkSolarPowered,1,"{""endurance"": 7}",,Corebook
 perkEntomologist,1,"{""intelligence"": 7}",,Corebook
 perkQuickDraw,1,"{""agility"": 6}",,Corebook
 perkRoboticsExpert,3,"{""intelligence"": 8, ""level"": 2}",4,Corebook
-perkEvasive,2,"{""agility"": 6, ""level"": 4}",6,Wanderers DLC
+perkDodger,2,"{""agility"": 6, ""level"": 4}",6,Corebook
+perkEvasive,1,"{""agility"": 7, ""level"": 7}",,Wanderers DLC
 perkDemolitionExpert,1,"{""perception"": 6, ""luck"": 6}",,Corebook
 perkBlacksmith,3,"{""strength"": 6, ""level"": 2}",4,Corebook
 perkGunNut,4,"{""intelligence"": 6, ""level"": 2}",4,Corebook
@@ -49,7 +50,7 @@ perkScoundrel,1,"{""charisma"": 7}",,Corebook
 perkHacker,1,"{""intelligence"": 8}",,Corebook
 perkNerdRage,3,"{""intelligence"": 8, ""level"": 2}",5,Corebook
 perkInfiltrator,1,"{""perception"": 8}",,Corebook
-perkImprovedHealing,1,"{""endurance"": 6}",,Corebook
+perkImprovedHealing,1,"{""endurance"": 6, ""notRobot"": true}",,Corebook
 perkMasterThief,1,"{""perception"": 8, ""agility"": 9}",,Corebook
 perkHealer,3,"{""intelligence"": 7, ""level"": 1}",5,Corebook
 perkSizeMatters,3,"{""endurance"": 7, ""agility"": 6}",4,Corebook
@@ -58,7 +59,7 @@ perkSmoothTalker,1,"{""charisma"": 6}",,Corebook
 perkMeltdown,1,"{""perception"": 10}",,Corebook
 perkSnakeFancier,1,"{""endurance"": 7}",,Corebook
 perkQuickHands,1,"{""agility"": 8}",,Corebook
-perkFastMetabolism,3,"{""endurance"": 6, ""level"": 1}",3,Corebook
+perkFastMetabolism,3,"{""endurance"": 6, ""level"": 1, ""notRobot"": true}",3,Corebook
 perkSteadyAim,1,"{""strength"": 8, ""agility"": 7}",,Corebook
 perkNinja,1,"{""agility"": 8}",,Corebook
 perkHeaveHo,1,"{""strength"": 8}",,Corebook
@@ -93,9 +94,9 @@ perkBlackWidowLadyKiller,1,"{""charisma"": 6}",,Corebook
 perkGrimReaper,1,"{""luck"": 8}",,Corebook
 perkJunktownVendor,1,"{""charisma"": 8}",,Corebook
 perkActionBoyGirl,1,{},,Corebook
-perkRobotWrangler,1,"{""intelligence"": 5}",,Settlers DLC
+perkRobotWrangler,1,"{""intelligence"": 5, ""noCompanion"": true}",,Settlers DLC
 perkAmmosmith,3,"{""intelligence"": 7, ""level"": 2}",4,Settlers DLC
-perkAllNightLong,1,"{""level"": 16}",,Settlers DLC
+perkAllNightLong,1,"{""level"": 16, ""notRobot"": true}",,Settlers DLC
 perkBodyguards,1,"{""charisma"": 8, ""level"": 5}",,Settlers DLC
 perkCommunityOrganizer,3,"{""charisma"": 5, ""endurance"": 5, ""level"": 1}",3,Settlers DLC
 perkContractor,3,"{""charisma"": 5, ""intelligence"": 5, ""level"": 2}",4,Settlers DLC
@@ -103,20 +104,20 @@ perkCovertOperator,1,"{""agility"": 8}",,Settlers DLC
 perkEnforcer,1,"{""agility"": 9, ""level"": 12}",,Settlers DLC
 perkGreenThumb,1,"{""perception"": 4, ""level"": 4}",,Settlers DLC
 perkGunRunner,1,"{""agility"": 6, ""level"": 4}",,Settlers DLC
-perkHappyCamper,2,"{""charisma"": 7, ""endurance"": 6, ""level"": 3}",,Settlers DLC
-perkHiredHelp,1,"{""charisma"": 7}",,Settlers DLC
+perkHappyCamper,2,"{""charisma"": 7, ""endurance"": 6, ""level"": 3}",4,Settlers DLC
+perkHiredHelp,1,"{""charisma"": 7, ""noCompanion"": true}",,Settlers DLC
 perkHomeDefense,2,"{""intelligence"": 6, ""level"": 5}",5,Settlers DLC
 perkHomebody,2,"{""endurance"": 6, ""level"": 5}",5,Settlers DLC
 perkLocalLeader,2,"{""charisma"": 6, ""level"": 2}",5,Settlers DLC
 perkLockAndLoad,3,"{""strength"": 7, ""level"": 2}",4,Settlers DLC
 perkMechanicalMenace,1,"{""charisma"": 6, ""intelligence"": 5}",,Settlers DLC
 perkClassFreak,1,"{""charisma"": 6, ""intelligence"": 5}",,Settlers DLC
-perkNocturnalFortitude,1,"{""endurance"": 6, ""level"": 12}",,Corebook
+perkNocturnalFortitude,1,"{""endurance"": 6, ""level"": 12, ""notRobot"": true}",,Settlers DLC
 perkPannapictagraphist,1,"{""luck"": 5}",,Settlers DLC
 perkPharmacist,3,"{""intelligence"": 8, ""level"": 2}",6,Settlers DLC
 perkPhotosynthetic,2,"{""endurance"": 7, ""level"": 5}",10,Settlers DLC
 perkQuackSurgeon,1,"{""charisma"": 7, ""level"": 12}",,Settlers DLC
-perkRejuvenated,1,"{""endurance"": 7, ""level"": 12}",,Settlers DLC
+perkRejuvenated,1,"{""endurance"": 7, ""level"": 12, ""notRobot"": true}",,Settlers DLC
 perkRetribution,3,"{""endurance"": 8, ""luck"": 8, ""level"": 2}",5,Settlers DLC
 perkSquadManeuvers,2,"{""charisma"": 7}",,Settlers DLC
 perkSuperDuper,3,"{""luck"": 6, ""level"": 3}",4,Settlers DLC
@@ -138,29 +139,29 @@ perkCrackShot,2,"{""perception"": 7, ""level"": 7}",7,Wanderers DLC
 perkFireInTheHole,1,"{""perception"": 8, ""level"": 8}",,Wanderers DLC
 perkGlowSight,3,"{""perception"": 8, ""level"": 3}",8,Wanderers DLC
 perkNightEyes,1,"{""perception"": 8, ""level"": 7}",,Wanderers DLC
-perkDromedary,1,"{""endurance"": 7, ""level"": 3}",,Wanderers DLC
-perkCannibal,3,"{""endurance"": 8, ""level"": 10}",9,Wanderers DLC
-perkColaNut,1,"{""endurance"": 6, ""level"": 14}",,Wanderers DLC
+perkDromedary,1,"{""endurance"": 7, ""level"": 3, ""notRobot"": true}",,Wanderers DLC
+perkCannibal,3,"{""endurance"": 8, ""level"": 10, ""notRobot"": true}",9,Wanderers DLC
+perkColaNut,1,"{""endurance"": 6, ""level"": 14, ""notRobot"": true}",,Wanderers DLC
 perkFireproof,3,"{""endurance"": 6, ""level"": 7}",7,Wanderers DLC
-perkGhoulish,3,"{""endurance"": 9, ""level"": 7}",8,Wanderers DLC
+perkGhoulish,3,"{""endurance"": 9, ""level"": 7, ""notGhoul"": true, ""notRobot"": true}",8,Wanderers DLC
 perkIronclad,3,"{""endurance"": 7, ""level"": 5}",5,Wanderers DLC
 perkNaturalResistance,1,"{""endurance"": 7, ""level"": 10}",,Wanderers DLC
-perkRadicool,1,"{""endurance"": 6, ""level"": 12}",,Wanderers DLC
+perkRadicool,1,"{""endurance"": 6, ""level"": 12, ""notRadiationImmune"": true}",,Wanderers DLC
 perkRevenant,1,"{""endurance"": 8, ""level"": 12}",,Wanderers DLC
-perkSlowMetabolizer,1,"{""endurance"": 7, ""level"": 5}",,Wanderers DLC
+perkSlowMetabolizer,1,"{""endurance"": 7, ""level"": 5, ""notRobot"": true}",,Wanderers DLC
 perkThirstQuencher,1,"{""endurance"": 7, ""level"": 6}",,Wanderers DLC
 perkVaccinated,1,"{""endurance"": 7, ""level"": 16}",,Wanderers DLC
 perkBloodsucker,1,"{""charisma"": 6, ""level"": 11}",,Wanderers DLC
 perkFieldSurgeon,1,"{""charisma"": 8, ""intelligence"": 8, ""level"": 15}",,Wanderers DLC
 perkHappyGoLucky,1,"{""charisma"": 9, ""level"": 17}",,Wanderers DLC
 perkHealingHands,1,"{""charisma"": 8, ""intelligence"": 7, ""level"": 18}",,Wanderers DLC
-perkOverlyGenerous,1,"{""charisma"": 7, ""level"": 12}",,Wanderers DLC
+perkOverlyGenerous,1,"{""charisma"": 7, ""level"": 12, ""notRadiationImmune"": true}",,Wanderers DLC
 perkResponder,3,"{""charisma"": 8, ""intelligence"": 7, ""level"": 9}",7,Wanderers DLC
 perkSpiritualHealer,3,"{""charisma"": 7, ""level"": 6}",9,Wanderers DLC
-perkSuppressor,3,"{""charisma"": 6, ""level"": 10}",7,Wanderers DLC
+perkSuppressor,3,"{""charisma"": 6, ""level"": 10}",10,Wanderers DLC
 perkTenderizer,3,"{""charisma"": 7, ""level"": 8}",10,Wanderers DLC
 perkLicensedPlumber,1,"{""intelligence"": 6, ""level"": 5}",,Wanderers DLC
-perkPowerPatcher,3,"{""intelligence"": 6, ""level"": 5}",10,Wanderers DLC
+perkPowerPatcher,3,"{""intelligence"": 6, ""level"": 5}",7,Wanderers DLC
 perkPowerUser,3,"{""intelligence"": 9, ""level"": 10}",10,Wanderers DLC
 perkStabilized,1,"{""intelligence"": 7, ""level"": 16}",,Wanderers DLC
 perkBornSurvivor,3,"{""agility"": 8, ""level"": 3}",8,Wanderers DLC

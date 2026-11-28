@@ -1,410 +1,442 @@
 {
-  "weapon45AutoPistol": {
-    "en": ".45 Auto Pistol",
-    "it": "Pistola Automatica .45",
-    "_description": {
-      "en": "A compact .45 automatic pistol.",
-      "it": "Una pistola automatica compatta calibro .45."
-    }
-  },
-  "weapon45AutoSmg": {
-    "en": ".45 Auto SMG",
-    "it": "Mitra Automatico .45",
-    "_description": {
-      "en": "A .45 submachine gun with a high rate of fire.",
-      "it": "Un mitra calibro .45 con un'elevata cadenza di fuoco."
-    }
-  },
-  "weapon10mmSmg": {
-    "en": "10mm SMG",
-    "it": "Mitra 10 mm",
-    "_description": {
-      "en": "A compact 10mm submachine gun.",
-      "it": "Un mitra compatto calibro 10 mm."
-    }
-  },
-  "weapon9mmSmg": {
-    "en": "9mm SMG",
-    "it": "Mitra 9 mm",
-    "_description": {
-      "en": "A compact 9mm submachine gun.",
-      "it": "Un mitra compatto calibro 9 mm."
-    }
-  },
-  "weaponBrushGun": {
-    "en": "Brush Gun",
-    "it": "Fucile da Boscaglia",
-    "_description": {
-      "en": "A powerful, accurate rifle designed for hunting in rough terrain.",
-      "it": "Un fucile potente e preciso, progettato per la caccia su terreni impervi."
-    }
-  },
-  "weaponCaravanShotgun": {
-    "en": "Caravan Shotgun",
-    "it": "Fucile a Pompa da Carovana",
-    "_description": {
-      "en": "A dependable shotgun commonly carried by caravan guards.",
-      "it": "Un fucile a pompa affidabile, comunemente portato dalle guardie delle carovane."
-    }
-  },
-  "weaponLeverActionShotgun": {
-    "en": "Lever-Action Shotgun",
-    "it": "Fucile a Pompa a Leva",
-    "_description": {
-      "en": "A lever-action shotgun with a rapid follow-up shot.",
-      "it": "Un fucile a pompa a leva con una rapida capacità di tiro successivo."
-    }
-  },
-  "weaponMarksmanCarbine": {
-    "en": "Marksman Carbine",
-    "it": "Carabina da Tiratore Scelto",
-    "_description": {
-      "en": "An accurate two-handed carbine for skilled marksmen.",
-      "it": "Una carabina precisa a due mani per tiratori esperti."
-    }
-  },
-  "weaponPumpActionGrenadeLauncher": {
-    "en": "Pump-Action Grenade Launcher",
-    "it": "Lanciagranate a Pompa",
-    "_description": {
-      "en": "A two-handed pump-action grenade launcher.",
-      "it": "Un lanciagranate a pompa a due mani."
-    }
-  },
-  "weaponRangerSequoia": {
-    "en": "Ranger Sequoia",
-    "it": "Sequoia dei Ranger",
-    "_description": {
-      "en": "A powerful, accurate .44 revolver carried by veteran rangers.",
-      "it": "Un potente e preciso revolver calibro .44, portato dai ranger veterani."
-    }
-  },
-  "weaponRiotShotgun": {
-    "en": "Riot Shotgun",
-    "it": "Fucile a Pompa Antisommossa",
-    "_description": {
-      "en": "A heavy shotgun designed for close-quarters engagements.",
-      "it": "Un pesante fucile a pompa progettato per gli scontri ravvicinati."
-    }
-  },
-  "weaponServiceRifle": {
-    "en": "Service Rifle",
-    "it": "Fucile d'Ordinanza",
-    "_description": {
-      "en": "A reliable two-handed military service rifle.",
-      "it": "Un affidabile fucile militare d'ordinanza a due mani."
-    }
-  },
-  "weaponSilenced22Pistol": {
-    "en": "Silenced .22 Pistol",
-    "it": "Pistola .22 Silenziata",
-    "_description": {
-      "en": "A concealed .22 pistol fitted with a suppressor.",
-      "it": "Una pistola calibro .22 occultabile, dotata di silenziatore."
-    }
-  },
-  "weaponSingleShotgun": {
-    "en": "Single Shotgun",
-    "it": "Fucile a Colpo Singolo",
-    "_description": {
-      "en": "A simple single-shot shotgun.",
-      "it": "Un semplice fucile a pompa a colpo singolo."
-    }
-  },
-  "weaponTrailCarbine": {
-    "en": "Trail Carbine",
-    "it": "Carabina da Sentiero",
-    "_description": {
-      "en": "An accurate two-handed carbine suited to long-range trails and patrols.",
-      "it": "Una carabina precisa a due mani, adatta a pattugliamenti e percorsi lontani."
-    }
-  },
-  "weaponVarmintRifle": {
-    "en": "Varmint Rifle",
-    "it": "Fucile da Varmint",
-    "_description": {
-      "en": "A two-handed rifle intended for small-game hunting.",
-      "it": "Un fucile a due mani pensato per la caccia alla piccola selvaggina."
-    }
-  },
-  "weapon127mmPistol": {
-    "en": "12.7mm Pistol",
-    "it": "Pistola 12,7 mm",
-    "_description": {
-      "en": "A heavy-duty single-shot weapon with exceptional stopping power. Most known examples are believed to have been imported from overseas before the war. Given the weapon’s punishing recoil, it can be tricky to use for those not prepared for its kick.",
-      "it": "Un'arma pesante a colpo singolo, dotata di un eccezionale potere d'arresto. Si ritiene che la maggior parte degli esemplari conosciuti sia stata importata dall'estero prima della guerra. Il rinculo particolarmente violento può renderla difficile da usare per chi non è preparato a gestirlo."
-    }
-  },
-  "weapon127mmSmg": {
-    "en": "12.7mm SMG",
-    "it": "Mitra 12,7 mm",
-    "_description": {
-      "en": "An uncommon mixture of compact weapon and large-caliber round, the 12.7mm submachine gun features an unconventional top-mounted magazine, lying parallel to the weapon’s barrel. While small and lightweight itself, the weapon’s recoil and rate of fire can make it tricky to handle.",
-      "it": "Un'insolita combinazione di arma compatta e munizioni di grosso calibro, il mitra da 12,7 mm presenta un caricatore non convenzionale montato sopra l'arma, parallelo alla canna. Sebbene sia piccolo e leggero, il rinculo e l'elevata cadenza di fuoco possono renderlo difficile da controllare."
-    }
-  },
-  "weapon25mmGrenadeApw": {
-    "en": "25mm Grenade APW",
-    "it": "Lanciagranate APW da 25 mm",
-    "_description": {
-      "en": "The 25mm grenade APW is a semi-automatic grenade launcher. Specifically, this weapon contains a stock magazine capacity of six grenades, a brisk rate of fire, decent accuracy and allows modifications. While the grenades are much smaller and less impactful than those found in many other grenade launchers, the weapon itself is not as cumbersome as larger grenade launchers.",
-      "it": "L'APW da 25 mm è un lanciagranate semiautomatico con un caricatore standard da sei granate, una buona cadenza di fuoco, una discreta precisione e la possibilità di installare modifiche. Le sue granate sono molto più piccole e meno devastanti di quelle usate da molti altri lanciagranate, ma l'arma è anche meno ingombrante dei modelli più grandi."
-    }
-  },
-  "weaponM79GrenadeLauncher": {
-    "en": "M79 Grenade Launcher",
-    "it": "Lanciagranate M79",
-    "_description": {
-      "en": "A grenade launcher is designed to launch large-caliber projectiles, generally with an explosive ordinance, although not always destructive in nature. The M79 is not designed to shoot the ordinance at a specific target but to launch it at a general location, giving the user options to focus on the ground.",
-      "it": "Un lanciagranate è progettato per lanciare proiettili di grosso calibro, generalmente con un ordigno esplosivo, anche se non sempre distruttivo. L’M79 non è progettato per sparare l’ordigno contro un bersaglio specifico, ma per lanciarlo in una zona generale, lasciando all’utilizzatore la possibilità di concentrarsi sul terreno."
-    }
-  },
-  "weapon357Revolver": {
-    "en": ".357 Magnum Revolver",
-    "it": "Revolver Magnum .357",
-    "_description": {
-      "en": "A single-action revolver chambered for .357 magnum (though ones using .38 special rounds also exist). Not as potent as the feared and respected .44 revolver, these guns remain scattered around parts of the Wasteland due to their common use by police forces as service weapons and due to their extremely simple, durable build that makes them easy to maintain and extremely reliable.",
-      "it": "Un revolver a singola azione camerato per il .357 Magnum, anche se esistono versioni che usano munizioni .38 Special. Meno potente del temuto e rispettato revolver .44, è ancora diffuso nella Zona Contaminata: prima della guerra era un'arma d'ordinanza comune per le forze di polizia e la sua struttura semplice e robusta lo rende facile da mantenere ed estremamente affidabile."
-    }
-  },
-  "weapon9mmPistol": {
-    "en": "9mm Pistol",
-    "it": "Pistola 9mm",
-    "_description": {
-      "en": "A common sight in the California and Mojave Wastelands and used as a standard sidearm by the New California Republic Army, this model of 9mm autoloader handgun was manufactured in vast quantities before the Great War. Its light weight, ease of handling, and common ammunition makes it a popular choice for personal defense, or as a backup weapon. However, the sturdy design doesn’t lend itself as well to modifications as other common weapons.",
-      "it": "Comune nelle Zone Contaminate della California e del Mojave, questo modello di pistola autocaricante da 9 mm fu prodotto in enormi quantità prima della Grande Guerra e usato come arma d'ordinanza dall'esercito della Repubblica della Nuova California. Leggera, maneggevole e alimentata da munizioni comuni, è una scelta popolare per la difesa personale o come arma di riserva. Tuttavia, la sua struttura robusta si presta meno alle modifiche rispetto ad altre armi comuni."
-    }
-  },
-  "weaponAntiMaterielRifle": {
-    "en": "Anti-Materiel Rifle",
-    "it": "Fucile antimateriale",
-    "_description": {
-      "en": "Utilizing an ergonomic, metallic skeleton design with a free-floating barrel, the anti-materiel rifle is a bolt-action, high-caliber precision weapon intended for use against materiel and hard targets. The weapon is designed for use at long ranges and should ideally not be fired while standing up due to the heavy recoil. Rare and highly sought-after, these guns are ideal for dealing with things like deathclaws, the larger radscorpions, and other sizeable threats… so long as you’ve got time to set up the first shot.",
-      "it": "Con una struttura ergonomica in metallo e una canna flottante, il fucile antimateriale è un'arma di precisione ad alto calibro con azione a otturatore, pensata per colpire materiali e bersagli corazzati. È progettato per le lunghe distanze e, a causa del forte rinculo, sarebbe meglio non spararlo in piedi. Raro e molto ricercato, è ideale contro deathclaw, radscorpion giganti e altre minacce imponenti... sempre che si abbia il tempo di preparare il primo colpo."
-    }
-  },
-  "weaponAssaultRifle": {
-    "en": "Assault Rifle",
-    "it": "Fucile d'Assalto",
-    "_description": {
-      "en": "This gas-operated rifle is a common sight across the wasteland, and well-liked because of the low recoil and reasonable accuracy, and the ease of modifications. Most versions found are only capable of semi-automatic fire, but the weapon is easily modified for automatic fire.",
-      "it": "Questo fucile a gas è molto comune nella Zona Contaminata, oltre a essere molto apprezzato per via del poco rinculo, della sua discreta precisione e della facilità di personalizzazione. In genere ci si imbatte in versioni semiautomatiche, ma è un’arma che può diventare automatica facilmente. Un fucile d’assalto può montare una per tipo delle seguenti modifiche:"
-    }
-  },
-  "weaponBattleRifle": {
-    "en": "Battle Rifle",
-    "it": "Fucile da battaglia",
-    "_description": {
-      "en": "Something of a relic of old 20th-century engineering, this sturdy, gas-operated semi-automatic rifle is nevertheless a solid choice of rifle for the discerning raider or mercenary. Its old-fashioned construction makes for a durable weapon with considerable stopping power, but it isn’t easily modified.",
-      "it": "Quasi una reliquia dell'ingegneria del XX secolo, questo robusto fucile semiautomatico a gas è comunque una scelta solida per il razziatore o il mercenario esigente. La costruzione antiquata lo rende resistente e dotato di un notevole potere d'arresto, ma non è facile da modificare."
-    }
-  },
-  "weaponBlackPowderBlunderbuss": {
-    "en": "Black Powder Blunderbuss",
-    "it": "Trombone a polvere nera",
-    "_description": {
-      "en": "An archaic percussion-cap firearm, of a kind possibly salvaged from museums or the collections of reenactors. They fire a heavy .50 musket ball propelled by gunpowder, and are only effective at very close ranges, but when they do hit, they can do a lot of damage.",
-      "it": "Un'arcaica arma da fuoco a percussione, di un tipo probabilmente recuperato dai musei o dalle collezioni di rievocatori. Sparano una pesante palla di moschetto calibro .50 propulsa da polvere da sparo e sono efficaci solo a distanze molto ravvicinate, ma quando colpiscono possono causare molti danni."
-    }
-  },
-  "weaponBlackPowderPistol": {
-    "en": "Black Powder Pistol",
-    "it": "Pistola a polvere nera",
-    "_description": {
-      "en": "An archaic percussion-cap firearm, of a kind possibly salvaged from museums or the collections of reenactors. Compared to the blunderbuss, the pistol is less inaccurate and has a slightly longer effective range, but it packs no less of a punch.",
-      "it": "Un'arcaica arma da fuoco a percussione, forse recuperata da un museo o dalla collezione di un rievocatore. Rispetto al trombone è meno imprecisa e ha una portata efficace leggermente maggiore, ma non è meno potente."
-    }
-  },
-  "weaponBlackPowderRifle": {
-    "en": "Black Powder Rifle",
-    "it": "Fucile a polvere nera",
-    "_description": {
-      "en": "An archaic percussion-cap muzzle-loading rifle, of a kind possibly salvaged from museums or the collections of reenactors. The rifle’s longer barrel gives it considerably longer range and slightly more stopping power than its smaller counterparts, but while it’s fine against one or two foes, the slow rate of fire and long reload process make it inconvenient when heavily outnumbered.",
-      "it": "Un arcaico fucile ad avancarica a percussione, forse recuperato da un museo o dalla collezione di un rievocatore. La canna più lunga gli conferisce una portata notevolmente maggiore e un potere d'arresto leggermente superiore rispetto alle controparti più piccole. È efficace contro uno o due nemici, ma la bassa cadenza di fuoco e la lunga ricarica lo rendono scomodo quando si è in netta inferiorità numerica."
-    }
-  },
-  "weaponCombatRifle": {
-    "en": "Combat Rifle",
-    "it": "Fucile da Combattimento",
-    "_description": {
-      "en": "A pre-War weapon found across the wastelands and used in large numbers by various aggressive factions. Combat Rifles are a rugged and adaptable design, able to be modified to fill a variety of different battlefield roles.",
-      "it": "Si tratta di un’arma dell’anteguerra che si può trovare nella Zona Contaminata e che è ampiamente utilizzata da alcune fazioni bellicose. Le carabine da combattimento sono robuste e versatili e possono essere modificate per servire a diversi scopi in battaglia. Un fucile da combattimento può montare una per tipo delle seguenti modifiche:"
-    }
-  },
-  "weaponCombatShotgun": {
-    "en": "Combat Shotgun",
-    "it": "Fucile a Pompa da Combattimento",
-    "_description": {
-      "en": "Combat shotguns are pump-action shotguns normally used by a military faction for an offensive purpose: they're perfect for close-quarters fighting in tunnels, inside buildings, or amongst the ruined streets of old cities.",
-      "it": "Quelli da combattimento sono fucili a pompa usati solitamente da una fazione militare per assolvere ad uno scopo offensivo: sono perfetti per i combattimenti ravvicinati nei tunnel, dentro agli edifici o fra le strade in rovina delle vecchie città. Un fucile da combattimento può montare una per tipo delle seguenti modifiche:"
-    }
-  },
-  "weaponDoubleBarrelShotgun": {
-    "en": "Double Barrel Shotgun",
-    "it": "Fucile a Doppia Canna",
-    "_description": {
-      "en": "Before the Great War, double-barrel shotguns were used primarily for hunting and home defense… and things haven't changed much. Break-action weapons, they can be found in both side-by-side and over-under configurations. Simple to build and maintain, they're not an uncommon sight in the Commonwealth and the wider wasteland.",
-      "it": "Prima della Grande Guerra i fucili a doppia canna venivano usati soprattutto per la caccia e la difesa domestica... e le cose non sono cambiate granché. A canna basculante, si possono trovare sia a canne giustapposte che sovrapposte. Semplici da costruire e manutenere, non è insolito vederli nel Commonwealth e nel resto della Zona Contaminata. Un fucile a doppia canna può montare una per tipo delle seguenti modifiche:"
-    }
-  },
-  "weaponFlareGun": {
-    "en": "Flare Gun",
-    "it": "Pistola Lanciarazzi",
-    "_description": {
-      "en": "A Flare gun is a break-action single-shot device not really designed to inflict damage. Rather, it shoots signal flares which are used by many factions to signal for assistance by firing them high into the air.",
-      "it": "Una pistola lanciarazzi è un’arma a colpo singolo a canna basculante non propriamente progettata per infliggere danni, quanto piuttosto per eiettare razzi di segnalazione, che molte fazioni usano per richiedere aiuto sparandoli in aria."
-    }
-  },
-  "weaponFortyFourPistol": {
-    "en": ".44 Pistol",
-    "it": "Pistola .44",
-    "_description": {
-      "en": "The .44 pistol is a double-action revolver, chambered to use the .44 Magnum cartridge. It's a powerful gun, though not as customizable as other handguns. Due to their simple, rugged design, they're prized by their owners, but not so uncommon as to be truly rare.",
-      "it": "La pistola .44 è un revolver a doppia azione, pensato per utilizzare proiettili .44 Magnum. Si tratta di un’arma potente, ma non personalizzabile quanto altre rivoltelle. Il loro design semplice e robusto le rende preziose agli occhi dei proprietari, ma non è così difficile vederne una da poterla definire davvero rara. Una pistola .44 può montare una per tipo delle seguenti modifiche:"
-    }
-  },
-  "weaponGaussPistol": {
-    "en": "Gauss Pistol",
-    "it": "Pistola Gauss",
-    "_description": {
-      "en": "A handheld alternative to a full-sized gauss rifle. Despite its small size, it maintains formidable stopping power over considerable distances, and in the hands of a skilled user, it can bring down even the most durable foes.",
-      "it": "Un'alternativa portatile al fucile Gauss a grandezza naturale. Nonostante le dimensioni ridotte, conserva un formidabile potere d'arresto su distanze considerevoli e, nelle mani di un tiratore esperto, può abbattere anche i nemici più resistenti."
-    }
-  },
-  "weaponGaussRifle": {
-    "en": "Gauss Rifle",
-    "it": "Fucile Gauss",
-    "_description": {
-      "en": "The gauss rifle uses magnetic induction to propel a projectile at incredible, devastating speeds. Each shot can be 'charged' for maximum damage by holding the trigger for a moment before releasing to fire.",
-      "it": "Il fucile gauss sfrutta l’induzione magnetica per sparare proiettili ad una velocità incredibile e devastante. Ogni sparo può essere caricato affinché faccia il maggior danno possibile tenendo premuto il grilletto per un istante prima di rilasciarlo. Un fucile gauss può montare una per tipo delle seguenti modifiche:"
-    }
-  },
-  "weaponGaussShotgun": {
-    "en": "Gauss Shotgun",
-    "it": "Fucile a pompa Gauss",
-    "_description": {
-      "en": "Technically more of a volley gun than a shotgun, as it fires multiple shots from multiple barrels at once, the gauss shotgun is a rare and devastating weapon which peppers a target with hypervelocity rounds.",
-      "it": "Tecnicamente è più una pistola a raffica che un fucile a pompa: spara contemporaneamente più colpi da più canne. Il fucile a pompa Gauss è un'arma rara e devastante, capace di tempestare il bersaglio con proiettili a velocità ipersonica."
-    }
-  },
-  "weaponHandmadeBoltAction": {
-    "en": "Pipe Bolt-Action",
-    "it": "Bolt-Action Artigianale",
-    "_description": {
-      "en": "A makeshift weapon, easily spotted in the hands of those who can't build, buy, or scavenge anything better. Pipe weapons are crude and somewhat unreliable, but effective enough; bolt-action pipe rifles are normally made to fire rifle rounds, sacrificing fire rate for power and simplicity.",
-      "it": "È un’arma artigianale che è facile scorgere nelle mani di coloro che non possono costruire, comprare o razziare nulla di meglio. Le armi artigianali sono rozze e alquanto inaffidabili, ma abbastanza efficaci; di solito i bolt-action sono fatti per sparare cartucce da fucile, rinunciando alla Cadenza di Fuoco in favore di potenza e semplicità. Un bolt-action artigianale può montare una per tipo delle seguenti modifiche. Non si può avere una mod sia all’Impugnatura che al Calcio. Ogni modifica al Calcio aggiunge la parola “Fucile” al nome dell’arma."
-    }
-  },
-  "weaponHandmadePistol": {
-    "en": "Pipe Gun",
-    "it": "Pistola Artigianale",
-    "_description": {
-      "en": "Primitive, homemade, normally wielded by those who can't build, buy, or scavenge anything better, pipe pistols are crude and somewhat unreliable, but effective enough. The most common resemble small semi-automatic pistols, made to take common .38 rounds… though there are known to be those bold (or desperate) enough to modify them for automatic or precision fire.",
-      "it": "Primitive, fatte in casa, normalmente impiegate da chi non può costruire, comprare o razziare nulla di meglio, le pistole artigianali sono rozze e alquanto inaffidabili, ma efficaci quanto basta. Quelle più comuni assomigliano a delle piccole semiautomatiche, fatte per ospitare delle comuni munizioni .38... ma si sa che ci sono stati degli ardimentosi (o disperati) che le hanno modificate per farle diventare automatiche o di precisione. Una pistola artigianale può montare una per tipo delle seguenti modifiche. Ogni mod al Calcio cambia la parola “Pistola” nel nome dell’arma in “Fucile”."
+    "weapon45AutoPistol": {
+        "en": ".45 Auto Pistol",
+        "it": "Pistola Automatica .45",
+        "_description": {
+            "en": "Easy to hide and packs a punch! The .45 Auto Pistol is a classic for a reason.",
+            "it": "Facile da nascondere e con un bel colpo! La pistola automatica .45 è un classico per una buona ragione."
+        }
     },
-    "_stock_name": {
-      "en": "Handmade Rifle",
-      "it": "Fucile Artigianale"
-    }
-  },
-  "weaponHandmadeRevolver": {
-    "en": "Pipe Revolver",
-    "it": "Revolver Artigianale",
-    "_description": {
-      "en": "Like other pipe weapons, these are makeshift or homemade pistols, in this case based on a revolver. They're a middle ground between the firepower of a bolt-action and the rate-of-fire of a pistol, and being a pipe weapon, they're similarly easy to modify.",
-      "it": "Proprio come le altre armi artigianali, anche queste sono delle pistole di fortuna o fatte in casa, in questo caso sulla base di un revolver. Si tratta di un punto d’incontro tra la potenza di fuoco del bolt-action e la rapidità di fuoco delle pistole, inoltre essendo anch’esso un’arma “Improvvisata” è parimenti facile da modificare. Un revolver artigianale può montare una per tipo delle seguenti modifiche. Ogni mod al Calcio aggiunge la parola “Fucile” nel nome dell’arma."
+    "weapon45AutoSmg": {
+        "en": ".45 Auto SMG",
+        "it": "Mitra Automatico .45",
+        "_description": {
+            "en": "Fill the air with lead with the .45 Auto SMG! With this many bullets flying, you can’t miss!",
+            "it": "Riempi l'aria di piombo con il mitra .45! Con tutti questi proiettili che volano, non puoi mancare!"
+        }
     },
-    "_stock_name": {
-      "en": "Handmade Rifle Revolver",
-      "it": "Fucile Revolver Artigianale"
+    "weapon10mmSmg": {
+        "en": "10mm SMG",
+        "it": "Mitra 10 mm",
+        "_description": {
+            "en": "Quantity over quality, why make every shot count when you can just pull the trigger!",
+            "it": "Quantità a scapito della qualità: perché far contare ogni colpo quando puoi semplicemente premere il grilletto!"
+        }
+    },
+    "weapon9mmSmg": {
+        "en": "9mm SMG",
+        "it": "Mitra 9 mm",
+        "_description": {
+            "en": "Bigger doesn't mean better. The 9mm SMG may look small, but it can send bullets flying quicker than even the most hardened raider can reload.",
+            "it": "Più grande non significa migliore. Il mitra 9 mm può sembrare piccolo, ma può far volare proiettili più in fretta di quanto anche il predone più esperto riesca a ricaricare."
+        }
+    },
+    "weaponBrushGun": {
+        "en": "Brush Gun",
+        "it": "Fucile da Boscaglia",
+        "_description": {
+            "en": "Never fear anything the Wasteland throws at you! With the Brush Gun, you're always the hunter!",
+            "it": "Non temere nulla di quello che la Zona Contaminata ti lancia contro! Con il Fucile da Boscaglia, sei sempre tu il cacciatore!"
+        }
+    },
+    "weaponCaravanShotgun": {
+        "en": "Caravan Shotgun",
+        "it": "Fucile a Pompa da Carovana",
+        "_description": {
+            "en": "The most-trustworthy companion any trader can ask for. Never hit the road without it!",
+            "it": "Il compagno più affidabile che un commerciante possa chiedere. Non metterti mai in viaggio senza!"
+        }
+    },
+    "weaponLeverActionShotgun": {
+        "en": "Lever-Action Shotgun",
+        "it": "Fucile a Pompa a Leva",
+        "_description": {
+            "en": "Load ‘er up and she’s ready to go. Trade pure firepower for fast shootin’. Just make sure you run out of targets before you need to reload.",
+            "it": "Caricala e sarà pronta a partire. Scambia la pura potenza di fuoco con una sparatoria rapida. Assicurati solo di esaurire i bersagli prima di dover ricaricare."
+        }
+    },
+    "weaponMarksmanCarbine": {
+        "en": "Marksman Carbine",
+        "it": "Carabina da Tiratore Scelto",
+        "_description": {
+            "en": "Make every shot count, or pull the trigger as fast as you can. This versatile weapon can handle any shootin’ style!",
+            "it": "Fa' in modo che ogni colpo conti, oppure premi il grilletto più in fretta che puoi. Questa arma versatile gestisce ogni stile di sparo!"
+        }
+    },
+    "weaponPumpActionGrenadeLauncher": {
+        "en": "Pump-Action Grenade Launcher",
+        "it": "Lanciagranate a Pompa",
+        "_description": {
+            "en": "Need to rain down some explosive ordnance on the run? Look no further than this handy weapon; perfect for those sticky situations when you need to send a very loud message!",
+            "it": "Hai bisogno di far piovere un po' di ordigni esplosivi mentre sei in fuga? Non cercare oltre: quest'arma pratica è perfetta per quelle situazioni delicate in cui devi mandare un messaggio molto rumoroso!"
+        }
+    },
+    "weaponRangerSequoia": {
+        "en": "Ranger Sequoia",
+        "it": "Sequoia dei Ranger",
+        "_description": {
+            "en": "Wear the reputation of the Rangers on your hip with this iconic big iron!",
+            "it": "Porta sul fianco la reputazione dei Ranger con questo iconico ferro grosso!"
+        }
+    },
+    "weaponRiotShotgun": {
+        "en": "Riot Shotgun",
+        "it": "Fucile a Pompa Antisommossa",
+        "_description": {
+            "en": "This powerful shotgun can stop a deathclaw in its tracks. Just make sure you can handle it or the recoil’ll knock you off your feet!",
+            "it": "Questo fucile potente può fermare un deathclaw sul posto. Assicurati solo di riuscire a gestirlo, altrimenti il rinculo ti farà cadere per terra!"
+        }
+    },
+    "weaponServiceRifle": {
+        "en": "Service Rifle",
+        "it": "Fucile d'Ordinanza",
+        "_description": {
+            "en": "Go back to basics with the Service Rifle. Simple to use, simple to mod, simply to die for!",
+            "it": "Torna alle origini con il Fucile d'Ordinanza. Semplice da usare, semplice da modificare, semplicemente da urlo!"
+        }
+    },
+    "weaponSilenced22Pistol": {
+        "en": "Silenced .22 Pistol",
+        "it": "Pistola .22 Silenziata",
+        "_description": {
+            "en": "Silent and deadly! Don’t let the size fool you; this little baby is the perfect ace up your sleeve.",
+            "it": "Silenziosa e letale! Non lasciarti ingannare dalle dimensioni: questo piccolo gioiello è l'asso perfetto nella manica."
+        }
+    },
+    "weaponSingleShotgun": {
+        "en": "Single Shotgun",
+        "it": "Fucile a Colpo Singolo",
+        "_description": {
+            "en": "Take on the Wasteland one shot at a time with a single shotgun!",
+            "it": "Affronta la Zona Contaminata un colpo alla volta con un Fucile a Colpo Singolo!"
+        }
+    },
+    "weaponTrailCarbine": {
+        "en": "Trail Carbine",
+        "it": "Carabina da Sentiero",
+        "_description": {
+            "en": "Pick ‘em off at a distance and get a lever on the action with this powerful rifle!",
+            "it": "Falli fuori a distanza e passa all'azione a colpi di leva con questo potente fucile!"
+        }
+    },
+    "weaponVarmintRifle": {
+        "en": "Varmint Rifle",
+        "it": "Fucile da Varmint",
+        "_description": {
+            "en": "Perfect for tackling a roach infestation or some pesky geckos, just don’t expect it to deal with raiders quite so easily.",
+            "it": "Perfetto per affrontare un'infestazione di scarafaggi o qualche gecko fastidioso, ma non aspettarti che se la cavi con i predoni con la stessa facilità."
+        }
+    },
+    "weapon127mmPistol": {
+        "en": "12.7mm Pistol",
+        "it": "Pistola 12,7 mm",
+        "_description": {
+            "en": "A heavy-duty single-shot weapon with exceptional stopping power. Most known examples are believed to have been imported from overseas before the war. Given the weapon’s punishing recoil, it can be tricky to use for those not prepared for its kick.",
+            "it": "Un'arma pesante a colpo singolo, con una potenza d'arresto eccezionale. Si ritiene che la maggior parte degli esemplari noti sia stata importata dall'estero prima della guerra. Dato il rinculo violento dell'arma, può essere difficile da usare per chi non è preparato al suo contraccolpo."
+        }
+    },
+    "weapon127mmSmg": {
+        "en": "12.7mm SMG",
+        "it": "Mitra 12,7 mm",
+        "_description": {
+            "en": "An uncommon mixture of compact weapon and large-caliber round, the 12.7mm submachine gun features an unconventional top-mounted magazine, lying parallel to the weapon’s barrel. While small and lightweight itself, the weapon’s recoil and rate of fire can make it tricky to handle.",
+            "it": "Una combinazione insolita di arma compatta e proiettile di grosso calibro: il mitra da 12,7mm ha un caricatore insolito montato sopra, parallelo alla canna. Pur essendo piccolo e leggero, il rinculo e la cadenza di fuoco dell'arma possono renderla difficile da gestire."
+        }
+    },
+    "weapon25mmGrenadeApw": {
+        "en": "25mm Grenade APW",
+        "it": "Lanciagranate APW da 25 mm",
+        "_description": {
+            "en": "The 25mm grenade APW is a semi-automatic grenade launcher. Specifically, this weapon contains a stock magazine capacity of six grenades, a brisk rate of fire, decent accuracy and allows modifications. While the grenades are much smaller and less impactful than those found in many other grenade launchers, the weapon itself is not as cumbersome as larger grenade launchers.",
+            "it": "Il lanciagranate APW da 25mm è un lanciagranate semiautomatico. In particolare, quest'arma ha un caricatore standard da sei granate, una cadenza di fuoco rapida, una precisione discreta e permette modifiche. Anche se le granate sono molto più piccole e meno potenti di quelle di molti altri lanciagranate, l'arma stessa non è ingombrante come i lanciagranate più grandi."
+        }
+    },
+    "weaponM79GrenadeLauncher": {
+        "en": "M79 Grenade Launcher",
+        "it": "Lanciagranate M79",
+        "_description": {
+            "en": "A grenade launcher is designed to launch large-caliber projectiles, generally with an explosive ordinance, although not always destructive in nature. The M79 is not designed to shoot the ordinance at a specific target but to launch it at a general location, giving the user options to focus on the ground.",
+            "it": "Un lanciagranate è progettato per lanciare proiettili di grosso calibro, generalmente con un ordigno esplosivo, anche se non sempre a carattere distruttivo. L'M79 non è progettato per sparare l'ordigno contro un bersaglio specifico, ma per lanciarlo in una zona generica, dando a chi lo usa la possibilità di concentrarsi sul terreno."
+        }
+    },
+    "weapon357Revolver": {
+        "en": ".357 Magnum Revolver",
+        "it": "Revolver Magnum .357",
+        "_description": {
+            "en": "A single-action revolver chambered for .357 magnum (though ones using .38 special rounds also exist). Not as potent as the feared and respected .44 revolver, these guns remain scattered around parts of the Wasteland due to their common use by police forces as service weapons and due to their extremely simple, durable build that makes them easy to maintain and extremely reliable.",
+            "it": "Un revolver a singola azione calibro .357 Magnum (anche se esistono modelli che usano proiettili .38 Special). Non è potente come il temuto e rispettato revolver .44, ma queste armi restano diffuse in alcune zone della Zona Contaminata, perché sono usate comunemente dalle forze di polizia come armi di servizio e per la loro costruzione estremamente semplice e robusta, che le rende facili da mantenere ed estremamente affidabili."
+        }
+    },
+    "weapon9mmPistol": {
+        "en": "9mm Pistol",
+        "it": "Pistola 9mm",
+        "_description": {
+            "en": "A common sight in the California and Mojave Wastelands and used as a standard sidearm by the New California Republic Army, this model of 9mm autoloader handgun was manufactured in vast quantities before the Great War. Its light weight, ease of handling, and common ammunition makes it a popular choice for personal defense, or as a backup weapon. However, the sturdy design doesn’t lend itself as well to modifications as other common weapons.",
+            "it": "Comune nelle Zone Contaminate della California e del Mojave, usata come pistola d'ordinanza dall'Esercito della Repubblica della Nuova California, questo modello di pistola semiautomatica da 9mm fu prodotto in enormi quantità prima della Grande Guerra. Il suo peso leggero, la facilità di impugnatura e le munizioni comuni la rendono una scelta popolare per l'autodifesa o come arma di riserva. Il design robusto, però, non si presta alle modifiche come altre armi comuni."
+        }
+    },
+    "weaponAntiMaterielRifle": {
+        "en": "Anti-Materiel Rifle",
+        "it": "Fucile antimateriale",
+        "_description": {
+            "en": "Utilizing an ergonomic, metallic skeleton design with a free-floating barrel, the anti-materiel rifle is a bolt-action, high-caliber precision weapon intended for use against materiel and hard targets. The weapon is designed for use at long ranges and should ideally not be fired while standing up due to the heavy recoil. Rare and highly sought-after, these guns are ideal for dealing with things like deathclaws, the larger radscorpions, and other sizeable threats… so long as you’ve got time to set up the first shot.",
+            "it": "Con uno scheletro metallico ergonomico e una canna a sospensione libera, il fucile anti-materiale è un'arma di precisione ad alto calibro, a otturatore, progettata per l'uso contro materiale e bersagli duri. L'arma è progettata per l'uso a lunghe distanze e dovrebbe idealmente non essere sparata in piedi, per via del forte rinculo. Rare e molto ricercate, queste armi sono ideali per affrontare cose come i deathclaw, i radscorpion più grandi e altre minacce considerevoli… purché tu abbia il tempo di preparare il primo colpo."
+        }
+    },
+    "weaponAssaultRifle": {
+        "en": "Assault Rifle",
+        "it": "Fucile d'Assalto",
+        "_description": {
+            "en": "This gas-operated rifle is a common sight across the wasteland, and well-liked because of the low recoil and reasonable accuracy, and the ease of modifications. Most versions found are only capable of semi-automatic fire, but the weapon is easily modified for automatic fire.",
+            "it": "Questo fucile a gas è molto comune nella Zona Contaminata, oltre a essere molto apprezzato per via del poco rinculo, della sua discreta precisione e della facilità di personalizzazione. In genere ci si imbatte in versioni semiautomatiche, ma è un’arma che può diventare automatica facilmente."
+        }
+    },
+    "weaponBattleRifle": {
+        "en": "Battle Rifle",
+        "it": "Fucile da battaglia",
+        "_description": {
+            "en": "Something of a relic of old 20th-century engineering, this sturdy, gas-operated semi-automatic rifle is nevertheless a solid choice of rifle for the discerning raider or mercenary. Its old-fashioned construction makes for a durable weapon with considerable stopping power, but it isn’t easily modified.",
+            "it": "Un po' un reperto dell'ingegneria del XX secolo, questo fucile semiautomatico a gas, robusto, è comunque una scelta valida per il predone o il mercenario esigente. La sua costruzione antiquata lo rende un'arma durevole, con una notevole potenza d'arresto, ma non è facile da modificare."
+        }
+    },
+    "weaponBlackPowderBlunderbuss": {
+        "en": "Black Powder Blunderbuss",
+        "it": "Trombone a polvere nera",
+        "_description": {
+            "en": "An archaic percussion-cap firearm, of a kind possibly salvaged from museums or the collections of reenactors. They fire a heavy .50 musket ball propelled by gunpowder, and are only effective at very close ranges, but when they do hit, they can do a lot of damage.",
+            "it": "Un'arma da fuoco arcaica a cappellotto, di un tipo forse recuperato dai musei o dalle collezioni dei rievocatori storici. Spara una pesante palla di moschetto calibro .50 spinta da polvere nera, ed è efficace solo a distanza molto ravvicinata, ma quando colpisce può fare molti danni."
+        }
+    },
+    "weaponBlackPowderPistol": {
+        "en": "Black Powder Pistol",
+        "it": "Pistola a polvere nera",
+        "_description": {
+            "en": "An archaic percussion-cap firearm, of a kind possibly salvaged from museums or the collections of reenactors. Compared to the blunderbuss, the pistol is less inaccurate and has a slightly longer effective range, but it packs no less of a punch.",
+            "it": "Un'arma da fuoco arcaica a cappellotto, di un tipo forse recuperato dai musei o dalle collezioni dei rievocatori storici. Rispetto al trombone, la pistola è meno imprecisa e ha una gittata efficace un po' maggiore, ma non è meno potente."
+        }
+    },
+    "weaponBlackPowderRifle": {
+        "en": "Black Powder Rifle",
+        "it": "Fucile a polvere nera",
+        "_description": {
+            "en": "An archaic percussion-cap muzzle-loading rifle, of a kind possibly salvaged from museums or the collections of reenactors. The rifle’s longer barrel gives it considerably longer range and slightly more stopping power than its smaller counterparts, but while it’s fine against one or two foes, the slow rate of fire and long reload process make it inconvenient when heavily outnumbered.",
+            "it": "Un fucile arcaico ad avancarica a cappellotto, di un tipo forse recuperato dai musei o dalle collezioni dei rievocatori storici. La canna più lunga gli conferisce una gittata considerevolmente maggiore e una potenza d'arresto leggermente superiore rispetto alle versioni più piccole, ma pur essendo valido contro uno o due nemici, la bassa cadenza di fuoco e il lungo processo di ricarica lo rendono scomodo quando si è in grande inferiorità numerica."
+        }
+    },
+    "weaponCombatRifle": {
+        "en": "Combat Rifle",
+        "it": "Fucile da Combattimento",
+        "_description": {
+            "en": "A pre-War weapon found across the wastelands and used in large numbers by various aggressive factions. Combat Rifles are a rugged and adaptable design, able to be modified to fill a variety of different battlefield roles.",
+            "it": "Si tratta di un’arma dell’anteguerra che si può trovare nella Zona Contaminata e che è ampiamente utilizzata da alcune fazioni bellicose. Le carabine da combattimento sono robuste e versatili e possono essere modificate per servire a diversi scopi in battaglia."
+        }
+    },
+    "weaponCombatShotgun": {
+        "en": "Combat Shotgun",
+        "it": "Fucile a Pompa da Combattimento",
+        "_description": {
+            "en": "Combat shotguns are shotguns intended for an offensive role, typically by a military force; ideal for close-range fighting in tunnels, within buildings, or through the ruined streets of old cities.",
+            "it": "Quelli da combattimento sono fucili a pompa usati solitamente da una fazione militare per assolvere a uno scopo offensivo: sono perfetti per i combattimenti ravvicinati nei tunnel, dentro agli edifici o fra le strade in rovina delle vecchie città."
+        }
+    },
+    "weaponDoubleBarrelShotgun": {
+        "en": "Double Barrel Shotgun",
+        "it": "Fucile a Doppia Canna",
+        "_description": {
+            "en": "Before the Great War, double-barrel shotguns were mainly used for hunting and home defense, and this has changed little. They are break-action and come in an either a side-by-side or over-and-under barrel configuration. Simple to make and maintain, these shotguns are seen frequently in the Commonwealth and the rest of the wasteland.",
+            "it": "Prima della Grande Guerra i fucili a doppia canna venivano usati soprattutto per la caccia e la difesa domestica... e le cose non sono cambiate granché. A canna basculante, si possono trovare sia a canne giustapposte che sovrapposte. Semplici da costruire e manutenere, non è insolito vederli nel Commonwealth e nel resto della Zona Contaminata."
+        }
+    },
+    "weaponFlareGun": {
+        "en": "Flare Gun",
+        "it": "Pistola Lanciarazzi",
+        "_description": {
+            "en": "A Flare gun is a break-action single-shot device not really designed to inflict damage. Rather, it shoots signal flares which are used by many factions to signal for assistance by firing them high into the air.",
+            "it": "Una pistola lanciarazzi è un’arma a colpo singolo a canna basculante non propriamente progettata per infliggere danni, quanto piuttosto per eiettare razzi di segnalazione, che molte fazioni usano per richiedere aiuto sparandoli in aria."
+        }
+    },
+    "weaponFortyFourPistol": {
+        "en": ".44 Pistol",
+        "it": "Pistola .44",
+        "_description": {
+            "en": "The .44 pistol is a double-action revolver, chambered to use the .44 Magnum cartridge. It's a powerful gun, though not as customizable as other handguns. Due to their simple, rugged design, they're prized by their owners, but not so uncommon as to be truly rare.",
+            "it": "La pistola .44 è un revolver a doppia azione, pensato per utilizzare proiettili .44 Magnum. Si tratta di un’arma potente, ma non personalizzabile quanto altre rivoltelle. Il loro design semplice e robusto le rende preziose agli occhi dei proprietari, ma non è così difficile vederne una da poterla definire davvero rara."
+        }
+    },
+    "weaponGaussPistol": {
+        "en": "Gauss Pistol",
+        "it": "Pistola Gauss",
+        "_description": {
+            "en": "A handheld alternative to a full-sized gauss rifle. Despite its small size, it maintains formidable stopping power over considerable distances, and in the hands of a skilled user, it can bring down even the most durable foes.",
+            "it": "Un'alternativa portatile al fucile gauss a grandezza naturale. Nonostante le dimensioni ridotte, mantiene una potenza d'arresto formidabile su distanze considerevoli e, in mano a un utente esperto, può abbattere anche i nemici più resistenti."
+        }
+    },
+    "weaponGaussRifle": {
+        "en": "Gauss Rifle",
+        "it": "Fucile Gauss",
+        "_description": {
+            "en": "The gauss rifle uses magnetic induction to propel a projectile at incredible, devastating speeds. Each shot can be “charged” for maximum damage by holding the trigger for a moment before releasing to fire.",
+            "it": "Il fucile gauss sfrutta l’induzione magnetica per sparare proiettili a una velocità incredibile e devastante. Ogni sparo può essere caricato affinché faccia il maggior danno possibile tenendo premuto il grilletto per un istante prima di rilasciarlo."
+        }
+    },
+    "weaponGaussShotgun": {
+        "en": "Gauss Shotgun",
+        "it": "Fucile a pompa Gauss",
+        "_description": {
+            "en": "Technically more of a volley gun than a shotgun, as it fires multiple shots from multiple barrels at once, the gauss shotgun is a rare and devastating weapon which peppers a target with hypervelocity rounds.",
+            "it": "Tecnicamente più un'arma a canne multiple che un fucile a pompa, perché spara più colpi da più canne contemporaneamente, il fucile a pompa Gauss è un'arma rara e devastante, che bersaglia il nemico con proiettili ipervelocità."
+        }
+    },
+    "weaponHandmadeBoltAction": {
+        "en": "Pipe Bolt-Action",
+        "it": "Bolt-Action Artigianale",
+        "_description": {
+            "en": "A makeshift weapon, normally seen in the hands of those who can’t make, buy, or scavenge anything better, pipe guns are crude and somewhat unreliable, but effective enough. Bolt-action pipe guns tend to be chambered for rifle caliber rounds, trading rate-of-fire for power and simplicity. You may not take both a Grip and a Stock Mod. Any Stock mods add the word “Rifle” to the end of the weapon’s name.",
+            "it": "È un’arma artigianale che è facile scorgere nelle mani di coloro che non possono costruire, comprare o razziare nulla di meglio. Le armi artigianali sono rozze e alquanto inaffidabili, ma abbastanza efficaci; di solito i bolt-action sono fatti per sparare cartucce da fucile, rinunciando alla Cadenza di Fuoco in favore di potenza e semplicità. Non si può avere una mod sia all’Impugnatura che al Calcio. Ogni modifica al Calcio aggiunge la parola “Fucile” al nome dell’arma."
+        }
+    },
+    "weaponHandmadePistol": {
+        "en": "Pipe Gun",
+        "it": "Pistola Artigianale",
+        "_description": {
+            "en": "A crude, homemade weapon, normally seen in the hands of those who can’t make, buy, or scavenge anything better, pipe guns are crude and somewhat unreliable, but effective enough. The most common form of pipe gun is a simple little semi-auto handgun, chambered for the common .38 round, but enterprising (or desperate) souls have been known to modify these guns for automatic fire or precision sniping. Any Stock mods replace “Gun” with “Rifle” in the weapon’s name.",
+            "it": "Primitive, fatte in casa, normalmente impiegate da chi non può costruire, comprare o razziare nulla di meglio, le pistole artigianali sono rozze e alquanto inaffidabili, ma efficaci quanto basta. Quelle più comuni assomigliano a delle piccole semiautomatiche, fatte per ospitare delle comuni munizioni .38... ma si sa che ci sono stati degli ardimentosi (o disperati) che le hanno modificate per farle diventare automatiche o di precisione. Ogni mod al Calcio cambia la parola “Pistola” nel nome dell’arma in “Fucile”."
+        },
+        "_stock_name": {
+            "en": "Pipe Rifle",
+            "it": "Fucile Artigianale"
+        }
+    },
+    "weaponHandmadeRevolver": {
+        "en": "Pipe Revolver",
+        "it": "Revolver Artigianale",
+        "_description": {
+            "en": "Like the other forms of pipe gun, the pipe revolver is a makeshift or homemade gun, in this case modelled after a revolver. It strikes a balance between the stopping power of the pipe bolt-action, and the fire rate of the pipe gun, and its improvised nature makes it similarly suited for modification. Any Stock mods add “Rifle” to the end of the weapon’s name.",
+            "it": "Proprio come le altre armi artigianali, anche queste sono delle pistole di fortuna o fatte in casa, in questo caso sulla base di un revolver. Si tratta di un punto d’incontro tra la potenza di fuoco del bolt-action e la rapidità di fuoco delle pistole, inoltre essendo anch’esso un’arma “improvvisata” è parimenti facile da modificare. Ogni mod al Calcio aggiunge la parola “Fucile” al nome dell’arma."
+        },
+        "_stock_name": {
+            "en": "Pipe Revolver Rifle",
+            "it": "Fucile Revolver Artigianale"
+        }
+    },
+    "weaponHuntingRifle": {
+        "en": "Hunting Rifle",
+        "it": "Fucile da Caccia",
+        "_description": {
+            "en": "A bolt-action rifle commonly found in the hands of super mutants and raiders. The simple design made them common amongst hunters and survivalists before the Great War, and they're endlessly customizable. It seems fanciful to suggest that the simple short-barreled slug-thrower carried by a super mutant could be turned into a precision sniper's rifle, yet that describes the hunting rifle perfectly.",
+            "it": "Fucile bolt-action di cui si servono solitamente i supermutanti e i predoni. Prima della Grande Guerra, la sua struttura semplice lo ha reso famoso fra i cacciatori e i survivalisti, oltre a renderlo personalizzabile all’infinito. Potrebbe sembrare eccessivo suggerire che un semplice lanciaproiettili a canne mozze utilizzato da un mutante possa essere trasformato in un fucile da cecchino, eppure ciò descrive alla perfezione la versatilità del fucile da caccia."
+        }
+    },
+    "weaponLeverActionRifle": {
+        "en": "Lever-Action Rifle",
+        "it": "Fucile a leva",
+        "_description": {
+            "en": "As the name suggests, a lever-action rifle uses a lever to cycle the weapon’s action; this is typically part of the trigger guard, allowing the shooter to cycle the action with minimal effort or movement. Though this slows the rate of fire, it’s a reliable design that stands up to use, time, and nuclear war.",
+            "it": "Come suggerisce il nome, un fucile a leva usa una leva per azionare il meccanismo dell'arma; di solito fa parte del ponticello del grilletto, e permette a chi spara di azionarlo con il minimo sforzo o movimento. Anche se questo rallenta la cadenza di fuoco, è un design affidabile, che resiste all'uso, al tempo e alla guerra nucleare."
+        }
+    },
+    "weaponLightMachineGun": {
+        "en": "Light Machine Gun",
+        "it": "Mitragliatrice leggera",
+        "_description": {
+            "en": "The light machine gun is built to provide heavy firepower in a package not much larger than a typical rifle. While certainly heavier and more cumbersome than an assault rifle, it maintains a high rate of fire and can be easily modified with parts used by a variety of similar weapons, allowing the user to customize their fire support.",
+            "it": "La mitragliatrice leggera è costruita per offrire una grande potenza di fuoco in un corpo non molto più grande di un fucile tipico. Certo è più pesante e ingombrante di un fucile d'assalto, ma mantiene un'alta cadenza di fuoco ed è facilmente modificabile con componenti usati da una varietà di armi simili, permettendo a chi la usa di personalizzare il proprio supporto di fuoco."
+        }
+    },
+    "weaponMachineGun": {
+        "en": "Submachine Gun",
+        "it": "Mitragliatrice",
+        "_description": {
+            "en": "These submachine guns were an old design, even before the War, and while they’re hideously inaccurate, their rate-of-fire means you don’t need to be accurate.",
+            "it": "Le mitragliatrici erano armi vecchie anche prima della Guerra e, sebbene siano mostruosamente imprecise, la loro Cadenza di Fuoco rende inutile la mira."
+        }
+    },
+    "weaponMrHandyAutomaticPistol": {
+        "en": "10mm Auto Pistol Arm",
+        "it": "Arto Pistola Automatica 10mm",
+        "_description": {
+            "en": "Automatic 10mm pistol integrated into a Mr. Handy's body. Only Mr. Handy can use this weapon.",
+            "it": "Pistola automatica da 10mm integrata nel corpo di un Mr. Handy. Equivalente a una pistola 10mm con mod castello automatico. Solo un Mr. Handy può usare quest'arma."
+        }
+    },
+    "weaponRailwayRifle": {
+        "en": "Railway Rifle",
+        "it": "Fucile Sparachiodi",
+        "_description": {
+            "en": "A makeshift weapon created by enterprising engineers in the wastelands, the railway rifle uses high-pressure steam to propel railway spikes at speeds sufficient to pierce and impale a wide range of targets.",
+            "it": "Arma artigianale creata da intraprendenti ingegneri della Zona Contaminata, il fucile sparachiodi sfrutta del vapore ad alta pressione per sparare spuntoni sparachiodi a una velocità tale da riuscire a trapassare e impalare la maggior parte dei bersagli."
+        }
+    },
+    "weaponPumpActionShotgun": {
+        "en": "Pump-Action Shotgun",
+        "it": "Fucile a Pompa",
+        "_description": {
+            "en": "A solid and widespread design of shotgun found across the Wastelands. While it has a far larger magazine capacity than double-barreled shotguns, the slow (but distinctive) pump-action design keeps the rate of fire low compared to semi-automatic combat shotguns.",
+            "it": "Un design di fucile solido e diffuso in tutta la Zona Contaminata. Pur avendo una capacità del caricatore molto più grande dei fucili a doppia canna, il meccanismo lento (ma caratteristico) a pompa mantiene bassa la cadenza di fuoco rispetto ai fucili da combattimento semiautomatici."
+        }
+    },
+    "weaponRadiumRifle": {
+        "en": "Radium Rifle",
+        "it": "Fucile al radio",
+        "_description": {
+            "en": "The Radium Rifle irradiates bullets as they are fired, causing ballistic damage, with an extra kick of radiation damage that is deadly to humans.",
+            "it": "Il fucile al radio irradia i proiettili mentre vengono sparati, causando danni balistici, con un'ulteriore spinta di danni da radiazioni che è letale per gli esseri umani."
+        }
+    },
+    "weaponSniperRifle": {
+        "en": "Sniper Rifle",
+        "it": "Fucile di precisione",
+        "_description": {
+            "en": "A scoped rifle once designed for use by military and police forces to eliminate targets efficiently from long distances. The design incorporates many features that other weapons would be modded to have, but such built-in design means that it’s difficult to alter purpose-made sniper rifles.",
+            "it": "Un fucile con mirino, un tempo progettato per essere usato dalle forze militari e di polizia per eliminare bersagli in modo efficiente da grandi distanze. Il design integra molte caratteristiche che altre armi dovrebbero ricevere con le modifiche, ma proprio questo design integrato rende difficile modificare i fucili di precisione costruiti appositamente."
+        }
+    },
+    "weaponSyringer": {
+        "en": "Syringer",
+        "it": "Syringer",
+        "_description": {
+            "en": "A makeshift weapon using air pressure to propel customized syringes at a target. This inflicts little damage by itself, but the syringes can inflict a wide range of debilitating effects.",
+            "it": "Si tratta di un’arma artigianale ad aria compressa che spara sul bersaglio delle siringhe personalizzate che di per sé fanno poco danno, ma possono infliggere un’ampia gamma di effetti debilitanti."
+        }
+    },
+    "weaponTenMillimeterPistol": {
+        "en": "10mm Pistol",
+        "it": "Pistola 10mm",
+        "_description": {
+            "en": "Small, dependable, reasonably powerful, and widely available, the 10mm pistol has been a staple of wasteland combat since the bombs first fell. Its versatility and potential for customization mean that a well-looked-after 10mm pistol will keep its owner safe for a long time.",
+            "it": "Piccola, affidabile, abbastanza potente e facilmente reperibile, la pistola 10mm è una costante nei combattimenti nella Zona Contaminata sin dal momento in cui caddero le prime bombe. La sua versatilità e il potenziale di personalizzazione implicano che una pistola 10mm ben tenuta terrà a sua volta il proprietario al sicuro per molto tempo."
+        }
+    },
+    "weaponAllAmerican": {
+        "en": "The All-American",
+        "it": "The All-American",
+        "_description": {
+            "en": "What's more American than a fully automatic carbine that spits out 5.56mm rounds faster than you can count them? Well, as far as the previous owner of this weapon was concerned, nothing. Special: When you take the Aim minor action with the All-American, increase your Physical DR by +2 until the start of your next turn.",
+            "it": "Cosa c'è di più americano di una carabina automatica che sputa proiettili da 5,56 mm più velocemente di quanto riesci a contarli? Almeno per il precedente proprietario di quest'arma, nulla. Speciale: quando effettui l'azione minore Mirare con la All-American, aumenti la tua RD Fisica di +2 fino all'inizio del tuo turno successivo."
+        }
+    },
+    "weaponLaLongueCarabine": {
+        "en": "La Longue Carabine",
+        "it": "La Longue Carabine",
+        "_description": {
+            "en": "The personal longarm of Corporal Sterling, long-standing serviceman of the First Recon division, this lever-action repeater has been extensively modified over the years to match its user's preferred method of engagement. Fitted to receive a front-loading stripper clip, the Carabine is much faster to reload when empty. When combined with a long-range scope, Sterling's foes often find themselves under an unrelentingly accurate rain of fire. La Longue Carabine is always found in Corporal Sterling's possession.",
+            "it": "L'arma lunga personale del caporale Sterling, veterano della First Recon, questo fucile a leva a ripetizione è stato ampiamente modificato negli anni per adattarsi al modo di combattere del suo proprietario. Predisposta per caricatori a lastrina inseriti dal davanti, la Carabine si ricarica molto più in fretta quando è vuota. Abbinata a un mirino a lungo raggio, investe i nemici di Sterling con una pioggia di colpi precisa e implacabile. La Longue Carabine si trova sempre in possesso del caporale Sterling."
+        }
+    },
+    "weaponThumpThump": {
+        "en": "Thump-Thump",
+        "it": "Thump-Thump",
+        "_description": {
+            "en": "An M-27 Grenade Launcher customised by an unknown hand, Thump-Thump sports the image of a red-eyed, assault rifle toting beaver as well as its name scrawled on the barrel. Fitted with a full-stock, longer barrel, and smoother reload system, Thump-Thump is a lighter-weight, more efficient way of raining death than its standard counterpart. Thump-Thump is found at the bottom of Nellis Array, carefully cradled in the now flesh-stripped arms of its previous owner.",
+            "it": "Un lanciagranate M-27 personalizzato da una mano sconosciuta, Thump-Thump sfoggia l'immagine di un castoro dagli occhi rossi armato di fucile d'assalto, oltre al proprio nome scarabocchiato sulla canna. Dotato di calcio completo, canna più lunga e un sistema di ricarica più fluido, Thump-Thump è un modo più leggero ed efficiente di seminare morte rispetto al modello standard. Si trova sul fondo del Nellis Array, stretto con cura tra le braccia ormai scarnificate del suo precedente proprietario."
+        }
+    },
+    "weaponMaria": {
+        "en": "Maria",
+        "it": "Maria",
+        "_description": {
+            "en": "Maria is a distinctive and stylish custom 9mm pistol used by Benny. The metalwork has been engraved with detailed patterns, with a pearl finish on the weapon's stock. A different religious figure has been painted on either side of this pearl, finishing to complete the style that oozes from this gun. Outside of aesthetics, Maria improves upon the average 9mm pistol in every single way. Special: After Maria is used to make an attack, if you spent any Luck points to re-roll dice, roll 1 CD; on an Effect, regain one spent Luck point.",
+            "it": "Maria è un'elegante pistola 9mm personalizzata, inconfondibile, usata da Benny. Le parti in metallo sono incise con motivi elaborati e l'impugnatura ha una finitura in madreperla, su ciascun lato della quale è dipinta una diversa figura religiosa, a completare lo stile che trasuda da quest'arma. Estetica a parte, Maria è migliore della normale pistola 9mm sotto ogni aspetto. Speciale: dopo aver usato Maria per effettuare un attacco, se hai speso punti Fortuna per ritirare dei dadi, tira 1 DC; se ottieni un Effetto, recuperi un punto Fortuna speso."
+        }
     }
-  },
-  "weaponHuntingRifle": {
-    "en": "Hunting Rifle",
-    "it": "Fucile da Caccia",
-    "_description": {
-      "en": "A bolt-action rifle commonly found in the hands of super mutants and raiders. The simple design made them common amongst hunters and survivalists before the Great War, and they're endlessly customizable. It seems fanciful to suggest that the simple short-barreled slug-thrower carried by a super mutant could be turned into a precision sniper's rifle, yet that describes the hunting rifle perfectly.",
-      "it": "Fucile bolt-action di cui si servono solitamente i supermutanti e i Predoni. Prima della Grande Guerra, la sua struttura semplice lo ha reso famoso fra i cacciatori e i survivalisti, oltre a renderlo personalizzabile all’infinito. Potrebbe sembrare eccessivo suggerire che un semplice lanciaproiettili a canne mozze utilizzato da un mutante possa essere trasformato in un fucile da cecchino, eppure ciò descrive alla perfezione la versatilità del fucile da caccia. Un fucile da caccia può montare una per tipo delle seguenti modifiche:"
-    }
-  },
-  "weaponLeverActionRifle": {
-    "en": "Lever-Action Rifle",
-    "it": "Fucile a leva",
-    "_description": {
-      "en": "As the name suggests, a lever-action rifle uses a lever to cycle the weapon’s action; this is typically part of the trigger guard, allowing the shooter to cycle the action with minimal effort or movement. Though this slows the rate of fire, it’s a reliable design that stands up to use, time, and nuclear war.",
-      "it": "Come suggerisce il nome, un fucile a leva usa una leva per azionare il meccanismo dell'arma; di solito fa parte del ponticello del grilletto e permette al tiratore di ricaricare con il minimo sforzo o movimento. Anche se questo riduce la cadenza di fuoco, è un design affidabile, capace di resistere all'uso, al tempo e alla guerra nucleare."
-    }
-  },
-  "weaponLightMachineGun": {
-    "en": "Light Machine Gun",
-    "it": "Mitragliatrice leggera",
-    "_description": {
-      "en": "The light machine gun is built to provide heavy firepower in a package not much larger than a typical rifle. While certainly heavier and more cumbersome than an assault rifle, it maintains a high rate of fire and can be easily modified with parts used by a variety of similar weapons, allowing the user to customize their fire support.",
-      "it": "La mitragliatrice leggera è progettata per offrire una grande potenza di fuoco in un involucro non molto più grande di un normale fucile. È più pesante e ingombrante di un fucile d'assalto, ma mantiene un'elevata cadenza di fuoco e può essere modificata facilmente con componenti usati da molte armi simili, permettendo di personalizzare il proprio supporto di fuoco."
-    }
-  },
-  "weaponMachineGun": {
-    "en": "Submachine Gun",
-    "it": "Mitragliatrice",
-    "_description": {
-      "en": "Submachine guns were an old design, even before the War, and while they're hideously inaccurate, their rate-of-fire means you don't need to be accurate.",
-      "it": "Le mitragliatrici erano armi vecchie anche prima della Guerra e, sebbene siano mostruosamente imprecise, la loro Cadenza di Fuoco rende inutile la mira. Una mitragliatrice può montare una per tipo delle seguenti modifiche:"
-    }
-  },
-  "weaponMrHandyAutomaticPistol": {
-    "en": "Automatic 10mm Pistol Arm",
-    "it": "Arto Pistola Automatica 10mm",
-    "_description": {
-      "en": "Automatic 10mm pistol integrated into a Mr. Handy's body. Only Mr. Handy can use this weapon.",
-      "it": "Pistola automatica 10mm integrata nel corpo di un Mr. Handy. Equivalente a una pistola 10mm con mod castello automatico. Solo Mr. Handy può utilizzare quest'arma."
-    }
-  },
-  "weaponRailwayRifle": {
-    "en": "Railway Rifle",
-    "it": "Fucile Sparachiodi",
-    "_description": {
-      "en": "A makeshift weapon created by enterprising wasteland engineers, the nail gun uses high-pressure steam to fire railroad spikes at a velocity sufficient to pierce and impale most targets.",
-      "it": "Arma artigianale creata da intraprendenti ingegneri della Zona Contaminata, il fucile sparachiodi sfrutta del vapore ad alta pressione per sparare spuntoni sparachiodi a una velocità tale da riuscire a trapassare e impalare la maggior parte dei bersagli. Un fucile sparachiodi può montare una per tipo delle seguenti modifiche:"
-    }
-  },
-  "weaponPumpActionShotgun": {
-    "en": "Pump-Action Shotgun",
-    "it": "Fucile A Pompa",
-    "_description": {
-      "en": "A solid and widespread design of shotgun found across the Wastelands. While it has a far larger magazine capacity than double-barreled shotguns, the slow (but distinctive) pump-action design keeps the rate of fire low compared to semi-automatic combat shotguns.",
-      "it": "Un modello di fucile a pompa solido e diffuso, presente in tutte le Zone Contaminate. Ha una capacità del caricatore molto superiore a quella dei fucili a doppia canna, ma il lento e caratteristico meccanismo a pompa mantiene bassa la cadenza di fuoco rispetto ai fucili da combattimento semiautomatici."
-    }
-  },
-  "weaponRadiumRifle": {
-    "en": "Radium Rifle",
-    "it": "Fucile al radio",
-    "_description": {
-      "en": "The Radium Rifle irradiates bullets as they are fired, causing ballistic damage, with an extra kick of radiation damage that is deadly to humans.",
-      "it": "Il fucile al radio irradia i proiettili mentre vengono sparati: oltre ai danni balistici, infligge una dose extra di radiazioni letale per gli esseri umani."
-    }
-  },
-  "weaponSniperRifle": {
-    "en": "Sniper Rifle",
-    "it": "Fucile di precisione",
-    "_description": {
-      "en": "A scoped rifle once designed for use by military and police forces to eliminate targets efficiently from long distances. The design incorporates many features that other weapons would be modded to have, but such built-in design means that it’s difficult to alter purpose-made sniper rifles.",
-      "it": "Un fucile con mirino telescopico, un tempo progettato per le forze militari e di polizia allo scopo di eliminare i bersagli con efficienza a grande distanza. Il design integra molte caratteristiche che altre armi otterrebbero solo tramite modifiche, ma proprio questa struttura incorporata rende difficile alterare i fucili di precisione costruiti per questo scopo."
-    }
-  },
-  "weaponSyringer": {
-    "en": "Syringer",
-    "it": "Syringer",
-    "_description": {
-      "en": "A makeshift compressed-air weapon which fires customized syringes at a target. The syringes themselves do little damage, but can inflict a wide range of debilitating effects.",
-      "it": "Si tratta di un’arma artigianale ad aria compressa che spara sul bersaglio delle siringhe personalizzate che di per sé fanno poco danno, ma possono infliggere un’ampia gamma di effetti debilitanti. Un Syringer può montare una per tipo delle seguenti modifiche:"
-    }
-  },
-  "weaponTenMillimeterPistol": {
-    "en": "10mm Pistol",
-    "it": "Pistola 10mm",
-    "_description": {
-      "en": "Small, dependable, reasonably powerful, and widely available, the 10mm pistol has been a staple of wasteland combat since the bombs first fell. Its versatility and potential for customization mean that a well-looked-after 10mm pistol will keep its owner safe for a long time.",
-      "it": "Piccola, affidabile, abbastanza potente e facilmente reperibile, la pistola 10mm è una costante nei combattimenti nella Zona Contaminata sin dal momento in cui caddero le prime bombe. La sua versatilità e il potenziale di personalizzazione implicano che una pistola 10mm ben tenuta terrà a sua volta il proprietario al sicuro per molto tempo. Una pistola 10mm può montare una per tipo delle seguenti modifiche:"
-    }
-  }
 }

@@ -3,568 +3,568 @@
     "en": "Acrobat’s",
     "it": "Acrobata",
     "_description": {
-      "en": "Halve damage caused by falling. If wearing two pieces, you no longer suffer falling damage.",
-      "it": "Dimezza i danni da caduta. Se indossi due pezzi, non subisci più danni da caduta."
+      "en": "Wearing Acrobat’s armor means you’ll always land on your feet! While wearing this armor, halve any damage caused by falling, after any reductions for damage resistance; if you’re wearing two pieces of Acrobat’s Armor, you no longer suffer damage from falling.",
+      "it": "Indossare l'armatura di Acrobata significa che atterrerai sempre in piedi! Mentre indossi questa armatura, dimezza qualsiasi danno causato da una caduta, dopo le eventuali riduzioni dalla Resistenza ai Danni; se indossi due pezzi dell'Armatura di Acrobata, non subisci più danni dalla caduta."
     }
   },
   "legendaryAssassinArmor": {
     "en": "Assassin’s",
     "it": "Assassino",
     "_description": {
-      "en": "Provides +2 Physical and Energy DR against attacks from human enemies.",
-      "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi di nemici umani."
+      "en": "Wearing Assassin’s armor keeps raiders and other human foes off your back! This armor provides +2 Physical damage resistance and Energy damage resistance against attacks from human enemies. For the purposes of this rule, human characters are any PCs from the Brotherhood of Steel, Survivor, or Vault Dweller origins, and any PC with the Human keyword, but without the Mutated keyword.",
+      "it": "Indossare quest'armatura tiene lontani predoni e altri nemici umani! Questa armatura fornisce +2 Resistenza ai Danni Fisici e da Energia contro gli attacchi dei nemici umani. Ai fini di questa regola, i personaggi umani sono tutti i PG delle origini Confraternita d'Acciaio, Sopravvissuto o Abitante del Vault, e qualsiasi PG con la parola chiave Umano, ma senza la parola chiave Mutato."
     }
   },
   "legendaryAssassinWeapon": {
     "en": "Assassin’s",
     "it": "Assassino",
     "_description": {
-      "en": "Attacks gain the Vicious damage effect against humans. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
-      "it": "Gli attacchi ottengono l'effetto danno Violento contro gli umani. Se l'arma è già Violenta, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+      "en": "An Assassin’s weapon is deadly against humans! Against human characters, attacks with this weapon gain the Vicious damage effect. If the weapon is already Vicious, then it instead inflicts +2 damage per Effect rolled, rather than +1. For the purposes of this rule, human characters are any PCs from the Brotherhood of Steel, Survivor, or Vault Dweller origins, and any PC with the Human keyword, but without the Mutated keyword.",
+      "it": "L'arma di un Assassino è letale contro gli umani! Contro i personaggi umani, gli attacchi con quest'arma ottengono l'effetto di danno Violento. Se l'arma è già Violenta, invece infligge +2 danni per ogni Effetto tirato, anziché +1. Ai fini di questa regola, i personaggi umani sono tutti i PG delle origini Confraternita d'Acciaio, Sopravvissuto o Abitante del Vault, e qualsiasi PG con la parola chiave Umano, ma senza la parola chiave Mutato."
     }
   },
   "legendaryAutoStim": {
     "en": "Auto Stim",
     "it": "Auto-Stim",
     "_description": {
-      "en": "Once per scene, if HP < 1/4, automatically use a Stimpak (requires carrying one). Does not take an action.",
-      "it": "Una volta per scena, se PS < 1/4, usa automaticamente uno Stimpak (se ne possiedi uno). Non richiede un'azione."
+      "en": "Wearing Auto Stim armor will keep you in the fight! Once per scene, while wearing this armor, if your current HP is reduced to less than 1/4 of your maximum HP, you immediately use a Stimpak (or Diluted Stimpak, or Super Stimpak) to heal yourself, as if you'd taken the Use Chem action. This does not take an action, and happens automatically outside of your turn. You must be carrying a Stimpak of some kind for this effect to happen.",
+      "it": "Indossare l'armatura Auto Stim ti terrà in combattimento! Una volta per scena, mentre indossi quest'armatura, se i tuoi HP attuali scendono sotto un quarto del tuo massimo di HP, usi immediatamente uno Stimpak (o uno Stimpak Diluito, o un Super Stimpak) per curarti, come se avessi compiuto l'azione Assumere Sostanze. Non richiede un'azione e avviene automaticamente al di fuori del tuo turno. Devi portare con te uno Stimpak di qualche tipo perché questo effetto si attivi."
     }
   },
   "legendaryBerserker": {
     "en": "Berserker’s",
     "it": "Berserker",
     "_description": {
-      "en": "If Torso Physical DR is below 6, the weapon inflicts +1 CD damage for every point of Physical DR below 6.",
-      "it": "Se la RD Fisica del torso è inferiore a 6, l'arma infligge +1 DC di danno per ogni punto di RD Fisica inferiore a 6."
+      "en": "A Berserker's weapon is deadliest in the hands of those who are heedless to danger! When this weapon is wielded by a character who has less than 6 Physical damage resistance on their torso, it inflicts +1 CD damage for every point of Physical damage resistance below 6.",
+      "it": "L'arma di un Berserker è la più letale nelle mani di chi non teme il pericolo! Quando quest'arma è impugnata da un personaggio con meno di 6 Resistenza ai Danni Fisici sul torso, infligge +1 DC di danno per ogni punto di Resistenza ai Danni Fisici sotto 6."
     }
   },
   "legendaryBlazing": {
     "en": "Blazing",
     "it": "Fiammeggiante",
     "_description": {
-      "en": "When using the Defend action and missed by a melee attack, the attacker suffers 4 CD Persistent Energy damage.",
-      "it": "Quando usi l'azione Difesa e vieni mancato da un attacco in mischia, l'attaccante subisce immediatamente 4 DC di danno da Energia Persistente."
+      "en": "A Blazing weapon wards off attackers with a fiery threat! When the wielder of this weapon uses the Defend action and is missed with a melee attack, the attacker immediately suffers 4 CD Persistent Energy damage.",
+      "it": "Un'arma Fiammeggiante tiene lontani gli aggressori con una minaccia infuocata! Quando chi impugna quest'arma usa l'azione Difendere e l'attaccante la manca con un attacco in mischia, l'attaccante subisce immediatamente 4 DC di danno Persistente da Energia."
     }
   },
   "legendaryBloodied": {
     "en": "Bloodied",
     "it": "Sanguinario",
     "_description": {
-      "en": "Inflicts +1 CD damage if current HP < Max HP, increasing to +2 CD (<3/4 HP), +3 CD (<1/2 HP), and +4 CD (<1/4 HP).",
-      "it": "Infligge +1 DC di danno se i PS attuali sono < PS Max, aumentando a +2 DC (<3/4 PS), +3 DC (<1/2 PS) e +4 DC (<1/4 PS)."
+      "en": "A Bloodied weapon gets deadlier the closer the wielder is to death! When this weapon is wielded by a character whose current HP are less than their maximum HP, it inflicts +1 CD damage. This increases to +2 CD if the wielder has less than 3/4s of their maximum HP, to +3 CD if they have less than 1/2 their maximum HP, and to +4 CD if they have less than 1/4 their maximum HP.",
+      "it": "Un'arma Sanguinaria diventa più letale quanto più il portatore è vicino alla morte! Quando quest'arma è impugnata da un personaggio i cui HP attuali sono inferiori al suo massimo, infligge +1 DC di danno. Questo aumenta a +2 DC se chi la impugna ha meno di 3/4 del suo massimo di HP, a +3 DC se ha meno della metà del suo massimo di HP, e a +4 DC se ha meno di un quarto del suo massimo di HP."
     }
   },
   "legendaryBolstering": {
     "en": "Bolstering",
     "it": "Rinvigorente",
     "_description": {
-      "en": "Gain +2 Physical and Energy DR when HP < 1/2. Increases to +3 DR when HP < 1/4.",
-      "it": "Ottieni +2 alla RD Fisica ed Energia quando i PS < 1/2. Aumenta a +3 RD quando i PS < 1/4."
+      "en": "Wearing Bolstering armor makes you more resistant the more they hit you! While wearing this armor, you gain +2 Physical and Energy damage resistance to all hit locations when your current HP is less than half your maximum HP. This increases to +3 Physical and Energy damage resistance when your current HP is less than 1/4 of your maximum HP.",
+      "it": "Indossare l'armatura Rinvigorente ti rende più resistente quanto più ti colpiscono! Mentre indossi quest'armatura, ottieni +2 Resistenza ai Danni Fisici e da Energia su tutti i punti d’impatto quando i tuoi HP attuali sono inferiori alla metà del tuo massimo di HP. Questo aumenta a +3 Resistenza ai Danni Fisici e da Energia quando i tuoi HP attuali sono inferiori a un quarto del tuo massimo di HP."
     }
   },
   "legendaryCavalierArmor": {
     "en": "Cavalier’s",
     "it": "Cavaliere",
     "_description": {
-      "en": "When taking Defend or Sprint actions, gain +2 Physical DR to all locations until next turn.",
-      "it": "Quando esegui l'azione Difesa o Scatto, ottieni +2 alla RD Fisica in tutte le locazioni fino al turno successivo."
+      "en": "Wearing Cavalier’s armor helps you shrug off harm when on the move! When you take the Defend or Sprint actions while wearing this armor, you gain +2 Physical damage resistance to all locations until the start of your next turn.",
+      "it": "Indossare quest'armatura ti aiuta a incassare i colpi mentre sei in movimento! Quando compi l'azione Difendere o Scatto mentre indossi quest'armatura, ottieni +2 Resistenza ai Danni Fisici su tutti i punti d’impatto fino all'inizio del tuo turno successivo."
     }
   },
   "legendaryCavalierWeapon": {
     "en": "Cavalier’s",
     "it": "Cavaliere",
     "_description": {
-      "en": "When taking the Defend or Sprint actions, gain +2 Physical DR until the start of your next turn.",
-      "it": "Quando esegui l'azione Difesa o Scatto, ottieni +2 alla RD Fisica fino all'inizio del tuo prossimo turno."
+      "en": "A Cavalier’s weapon helps the wielder shrug off harm when on the move! When the wielder of this weapon takes the Defend or Sprint actions, they gain +2 Physical damage resistance until the start of the wielder’s next turn.",
+      "it": "L'arma di un Cavaliere aiuta chi la impugna a scrollarsi di dosso i danni quando è in movimento! Quando chi impugna quest'arma compie l'azione Difendere o Scatto, ottiene +2 Resistenza ai Danni Fisici fino all'inizio del suo turno successivo."
     }
   },
   "legendaryChameleon": {
     "en": "Chameleon",
     "it": "Camaleonte",
     "_description": {
-      "en": "When hidden and not moving, enemies add +1 to the difficulty of tests to find you.",
-      "it": "Mentre sei nascosto e immobile, i nemici aumentano di +1 la difficoltà dei test per individuarti."
+      "en": "Wearing Chameleon armor keeps enemies from seeing where you’re hidden! When you are hidden and not moving while wearing this armor, enemies attempting tests to find you add +1 to their difficulty.",
+      "it": "Indossare l'armatura Camaleonte impedisce ai nemici di vedere dove ti nascondi! Quando sei nascosto e fermo mentre indossi quest'armatura, i nemici che tentano prove per trovarti aggiungono +1 alla difficoltà."
     }
   },
   "legendaryChampion": {
     "en": "Champion",
     "it": "Campione",
     "_description": {
-      "en": "Once per scene, you may set 1 die to a 1 on any STR or END test before rolling.",
-      "it": "Una volta per scena, puoi impostare un dado su 1 in qualsiasi test di FOR o COS prima di tirare."
+      "en": "Wearing Champion armor makes you strong and tough! Once per scene, when you are wearing this armor, you may take one die from your dice pool (before rolling) on any STR or END test you attempt, and set it so that it counts as rolling a 1.",
+      "it": "Indossare l'armatura Campione ti rende forte e resistente! Una volta per scena, mentre indossi quest'armatura, puoi togliere un dado dal tuo pool di dadi (prima di tirare) in una qualsiasi prova di FOR o COS che fai, e impostarlo in modo che conti come un 1 tirato."
     }
   },
   "legendaryCharged": {
     "en": "Charged",
     "it": "Caricato",
     "_description": {
-      "en": "When using the Defend action and missed by a melee attack, the attacker suffers 4 CD Stun Energy damage.",
-      "it": "Quando usi l'azione Difesa e vieni mancato da un attacco in mischia, l'attaccante subisce 4 DC di danno da Energia Stordente."
+      "en": "A Charged weapon wards off attackers with a surge of electricity! When the wielder of this weapon uses the Defend action and is missed with a melee attack, the attacker immediately suffers 4 CD Stun Energy damage.",
+      "it": "Un'arma Caricata tiene lontani gli aggressori con una scarica elettrica! Quando chi impugna quest'arma usa l'azione Difendere e l'attaccante la manca con un attacco in mischia, l'attaccante subisce immediatamente 4 DC di danno da Energia con l'effetto di danno Stordente."
     }
   },
   "legendaryCloaking": {
     "en": "Cloaking",
     "it": "Occultante",
     "_description": {
-      "en": "Once per scene, when hit by a melee attack, you become invisible (as a Stealth Boy).",
-      "it": "Una volta per scena, quando vieni colpito da un attacco in mischia, diventi invisibile (come con uno Stealth Boy)."
+      "en": "Wearing Cloaking armor lets you disappear from a fight! Once per scene, when you are hit by a melee attack while wearing this armor, you become invisible. This functions like a Stealth Boy.",
+      "it": "Indossare l'armatura Occultante ti permette di sparire da uno scontro! Una volta per scena, quando vieni colpito da un attacco in mischia mentre indossi quest'armatura, diventi invisibile. Funziona come uno Stealth Boy."
     }
   },
   "legendaryCrippling": {
     "en": "Crippling",
     "it": "Menomante",
     "_description": {
-      "en": "When attacking an arm or leg, causes an injury if it inflicts four or more damage in one hit after reductions.",
-      "it": "Quando attacchi un braccio o una gamba, causi una menomazione se infliggi 4 o più danni in un colpo solo (dopo le riduzioni)."
+      "en": "A Crippling weapon is a cruel thing, leaving foes crawling and defenseless! When this weapon is used to attack a target’s arm or leg, it causes an injury if it inflicts four or more damage in one hit (after reductions for damage resistance).",
+      "it": "Un'arma Menomante è una cosa crudele: lascia i nemici a terra e indifesi! Quando quest'arma viene usata per attaccare il braccio o la gamba di un bersaglio, causa una ferita se infligge quattro o più danni in un colpo (dopo le riduzioni dalla Resistenza ai Danni)."
     }
   },
   "legendaryCryogenic": {
     "en": "Cryogenic",
     "it": "Criogenico",
     "_description": {
-      "en": "Enemy melee attacks increase complication range by 1; on complication, attacker suffers X CD Freeze damage (X = their damage dice).",
-      "it": "Gli attacchi in mischia nemici aumentano l'intervallo di complicazione di 1; con una complicazione, l'attaccante subisce X DC di danno da Freddo (X = i loro dadi danno)."
+      "en": "Wearing Cryogenic armor gives your enemies the cold shoulder! When you are wearing this armor, enemy melee attacks increase their complication range by 1, and they suffer X CD Freeze Energy damage upon suffering a complication, where X is the number of damage dice the enemy’s attack would roll.",
+      "it": "Indossare l'armatura Criogenica fa sentire la gelida indifferenza ai tuoi nemici! Quando indossi quest'armatura, gli attacchi in mischia nemici aumentano il loro intervallo di complicazione di 1, e subiscono X DC di danno da Energia con l'effetto di danno Congelamento quando ottengono una complicazione, dove X è il numero di dadi di danno dell'attacco del nemico."
     }
   },
   "legendaryCunning": {
     "en": "Cunning",
     "it": "Astuto",
     "_description": {
-      "en": "Once per scene, you may set 1 die to a 1 on any AGI or PER test before rolling.",
-      "it": "Una volta per scena, puoi impostare un dado su 1 in qualsiasi test di AGIL o PER prima di tirare."
+      "en": "Wearing Cunning armor makes you quick and perceptive! Once per scene, when you are wearing this armor, you may take one die from your dice pool (before rolling) on any AGI or PER test you attempt, and set it so that it counts as rolling a 1.",
+      "it": "Indossare l'armatura Astuta ti rende rapido e attento! Una volta per scena, mentre indossi quest'armatura, puoi togliere un dado dal tuo pool di dadi (prima di tirare) in una qualsiasi prova di AGI o PER che fai, e impostarlo in modo che conti come un 1 tirato."
     }
   },
   "legendaryDeadeye": {
     "en": "Deadeye",
     "it": "Occhio di Falco",
     "_description": {
-      "en": "When taking the Aim action, additional minor and major actions cost 1 AP less for the rest of the turn (does not stack with Jet).",
-      "it": "Quando esegui l'azione Mirare, le azioni minori e maggiori aggiuntive costano 1 PA in meno per il resto del turno (non cumulabile con il Jet)."
+      "en": "A Deadeye weapon seems to make the world slow down as you aim down its sights! When you take the Aim action with this weapon, for the rest of your turn, additional minor and major actions cost 1 AP less than normal. This does not stack with other effects which cause extra actions to cost less, such as Jet.",
+      "it": "Un'arma Occhio di Falco sembra far rallentare il mondo quando punti la mira! Quando compi l'azione Mirare con quest'arma, per il resto del tuo turno le azioni minori e maggiori aggiuntive costano 1 PA in meno del normale. Non si cumula con altri effetti che riducono il costo di azioni extra, come Jet."
     }
   },
   "legendaryDefiant": {
     "en": "Defiant",
     "it": "Sfidante",
     "_description": {
-      "en": "Once per scene, when spending max ammo for Fire Rate, declare weapon Empty to inflict +2 CD damage; requires minor action to reload.",
-      "it": "Una volta per scena, spendendo il massimo delle munizioni per la Cadenza di Fuoco, puoi dichiarare l'arma Vuota per infliggere +2 DC di danno; richiede un'azione minore per ricaricare."
+      "en": "A Defiant weapon is deadly to the last shot! Once per scene, when you spend the maximum amount of ammo for the weapon’s Fire Rate, you may declare that the weapon is Empty after that attack. If you do so, the weapon inflicts +2 CD damage, but you must spend a minor action to reload the weapon before it can be fired again.",
+      "it": "Un'arma Sfidante è letale fino all'ultimo colpo! Una volta per scena, quando spendi la quantità massima di munizioni per la Cadenza di Fuoco dell'arma, puoi dichiarare che l'arma è Vuota dopo quell'attacco. In tal caso l'arma infligge +2 DC di danno, ma devi spendere un'azione minore per ricaricarla prima di poterla sparare di nuovo."
     }
   },
   "legendaryDuelistArmor": {
     "en": "Duelist’s",
     "it": "Duelista",
     "_description": {
-      "en": "Enemy melee attacks increase complication range by 1; on complication, attacker's weapon is knocked from their hand.",
-      "it": "Gli attacchi in mischia nemici aumentano l'intervallo di complicazione di 1; con una complicazione, l'arma dell'attaccante cade a terra."
+      "en": "Duelist’s armor can turn aside any weapon! When you are wearing this armor, enemy melee attacks increase their complication range by 1; on a complication, the attacker’s weapon is knocked from their hand and lands anywhere within Close range but outside of Reach.",
+      "it": "L'armatura di un Duellante può deviare qualsiasi arma! Quando indossi quest'armatura, gli attacchi in mischia nemici aumentano il loro intervallo di complicazione di 1; in caso di complicazione, l'arma dell'attaccante gli sfugge di mano e cade a distanza Ravvicinata ma fuori portata."
     }
   },
   "legendaryDuelistWeapon": {
     "en": "Duelist’s",
     "it": "Duelista",
     "_description": {
-      "en": "When using Defend and missed by a melee attack, roll 1 CD; on an Effect, the attacker is disarmed.",
-      "it": "Quando usi Difesa e vieni mancato da un attacco in mischia, tira 1 DC; con un Effetto, l'attaccante viene disarmato."
+      "en": "A Duelist’s weapon is great at turning aside enemy attacks! When the wielder of this weapon uses the Defend action and is missed with a melee attack, roll 1 CD. If an Effect is rolled, the attacker is disarmed, their weapon knocked from their hands and landing anywhere within Close range but outside of Reach.",
+      "it": "L'arma di un Duellante è ottima per deviare gli attacchi nemici! Quando chi impugna quest'arma usa l'azione Difendere e viene mancato da un attacco in mischia, tira 1 DC. Se ottieni un Effetto, l'attaccante viene disarmato: la sua arma gli sfugge di mano e cade a distanza Ravvicinata ma fuori portata."
     }
   },
   "legendaryEnraging": {
     "en": "Enraging",
     "it": "Infuriante",
     "_description": {
-      "en": "When inflicting damage, spend 1 Luck to enrage the enemy, forcing them to attack the nearest enemy for the rest of the scene.",
-      "it": "Quando infliggi danni, spendi 1 punto Fortuna per infuriare il nemico, costringendolo ad attaccare il bersaglio più vicino per il resto della scena."
+      "en": "An Enraging weapon confuses and infuriates foes so much that they cannot tell friend from foe! When this weapon inflicts damage on an enemy, you may spend 1 Luck point to enrage the enemy. An Enraged enemy must, for the rest of the scene, attack the nearest enemy they can see.",
+      "it": "Un'arma Infuriante confonde e fa infuriare i nemici al punto che non distinguono gli amici dai nemici! Quando quest'arma infligge danni a un nemico, puoi spendere 1 punto Fortuna per fargli perdere la testa. Un nemico Infuriato deve, per il resto della scena, attaccare il nemico più vicino che riesce a vedere."
     }
   },
   "legendaryExplosive": {
     "en": "Explosive",
     "it": "Esplosivo",
     "_description": {
-      "en": "Each Effect rolled hits a secondary target within Close range for half damage. Does not stack with Arc or Burst.",
-      "it": "Ogni Effetto ottenuto colpisce un bersaglio secondario entro gittata Corta per metà del danno. Non cumulabile con Arco o Raffica."
+      "en": "An Explosive weapon fills the air with explosive bullets! When this weapon is used to make an attack, each Effect rolled on the attack’s damage roll hits a secondary target chosen by the GM within Close range of the main target. These secondary targets suffer half the damage rolled for the attack. The first secondary targets hit must be those within Reach of the main target (if any), and this effect does not stack with the Arc or Burst damage effects.",
+      "it": "Un'arma Esplosiva riempie l'aria di proiettili esplosivi! Quando quest'arma viene usata per un attacco, ogni Effetto tirato sul tiro di danno dell'attacco colpisce un bersaglio secondario scelto dal GM a distanza Ravvicinata dal bersaglio principale. Questi bersagli secondari subiscono metà del danno tirato per l'attacco. I primi bersagli secondari colpiti devono essere quelli a portata del bersaglio principale (se presenti), e questo effetto non si cumula con gli effetti di danno Arco o Raffica."
     }
   },
   "legendaryExterminatorArmor": {
     "en": "Exterminator's",
     "it": "Sterminatore",
     "_description": {
-      "en": "Provides +2 Physical and Energy DR against insects and mirelurks.",
-      "it": "Fornisce +2 alla RD Fisica ed Energia contro insetti e mirelurk."
+      "en": "Wearing Exterminator’s armor keeps bugs at bay! This armor provides +2 Physical damage resistance and Energy damage resistance against attacks from insect, arachnid, or mirelurk enemies.",
+      "it": "Indossare quest'armatura tiene lontani gli insetti! Questa armatura fornisce +2 Resistenza ai Danni Fisici e da Energia contro gli attacchi dei nemici insetti, aracnidi o mirelurk."
     }
   },
   "legendaryExterminatorWeapon": {
     "en": "Exterminator's",
     "it": "Sterminatore",
     "_description": {
-      "en": "Attacks gain the Vicious damage effect against insects and mirelurks.",
-      "it": "Gli attacchi ottengono l'effetto danno Violento contro insetti e mirelurk."
+      "en": "An Exterminator's weapon is especially deadly against insects and other bugs! Against insects, arachnids, and mirelurks, attacks with this weapon gain the Vicious damage effect. If the weapon is already Vicious, then it instead inflicts +2 damage per Effect rolled, rather than +1.",
+      "it": "L'arma di uno Sterminatore è particolarmente letale contro gli insetti e altri parassiti! Contro insetti, aracnidi e mirelurk, gli attacchi con quest'arma ottengono l'effetto di danno Violento. Se l'arma è già Violenta, invece infligge +2 danni per ogni Effetto tirato, anziché +1."
     }
   },
   "legendaryFreezing": {
     "en": "Freezing",
     "it": "Congelante",
     "_description": {
-      "en": "When making an attack, you may spend a Luck point to add the Freeze damage effect.",
-      "it": "Quando effettui un attacco, puoi spendere 1 punto Fortuna per aggiungere l'effetto danno Congelamento."
+      "en": "A Freezing weapon saps the heat from its targets, freezing them to the spot! When making an attack with this weapon, you may spend a Luck point to add the Freeze damage effect.",
+      "it": "Un'arma Congelante sottrae il calore ai bersagli, congelandoli sul posto! Quando attacchi con quest'arma, puoi spendere un punto Fortuna per aggiungere l'effetto di danno Congelamento."
     }
   },
   "legendaryFrigid": {
     "en": "Frigid",
     "it": "Frigido",
     "_description": {
-      "en": "When using the Defend action and missed by a melee attack, the attacker immediately suffers 4 CD Freeze Energy damage.",
-      "it": "Quando usi l'azione Difesa e vieni mancato da un attacco in mischia, l'attaccante subisce immediatamente 4 DC di danno da Energia da Freddo."
+      "en": "A Frigid weapon wards off attackers with intense cold! When the wielder of this weapon uses the Defend action and is missed with a melee attack, the attacker immediately suffers 4 CD Freeze Energy damage.",
+      "it": "Un'arma Frigida tiene lontani gli aggressori con un freddo intenso! Quando chi impugna quest'arma usa l'azione Difendere e viene mancato da un attacco in mischia, l'attaccante subisce immediatamente 4 DC di danno da Energia con l'effetto di danno Congelamento."
     }
   },
   "legendaryFurious": {
     "en": "Furious",
     "it": "Furioso",
     "_description": {
-      "en": "Each consecutive hit against an enemy already struck by this weapon in this scene adds +1 CD to the damage (cumulative).",
-      "it": "Ogni colpo consecutivo contro un nemico già colpito da quest'arma nella stessa scena aggiunge +1 DC al danno (cumulativo)."
+      "en": "A Furious weapon gets deadlier against those it has already struck! When you attack with this weapon against an enemy who has already been hit by this weapon during this scene, add +1 CD to the weapon’s damage. This is cumulative.",
+      "it": "Un'arma Furiosa diventa più letale contro chi ha già colpito! Quando attacchi con quest'arma un nemico che è già stato colpito da quest'arma durante questa scena, aggiungi +1 DC al danno dell'arma. Questo effetto è cumulativo."
     }
   },
   "legendaryGhoulSlayerArmor": {
     "en": "Ghoul Slayer's",
     "it": "Ammazza-Ghoul",
     "_description": {
-      "en": "Provides +2 Physical and Energy DR against ghouls.",
-      "it": "Fornisce +2 alla RD Fisica ed Energia contro i ghoul."
+      "en": "Ghoul Slayer’s armor is proof against any ghoul attack! This armor provides +2 Physical damage resistance, Energy damage resistance, and Radiation damage resistance against attacks from Ghoul enemies.",
+      "it": "Quest'armatura è a prova di qualsiasi attacco di ghoul! Questa armatura fornisce +2 Resistenza ai Danni Fisici, da Energia e da Radiazioni contro gli attacchi dei nemici ghoul."
     }
   },
   "legendaryGhoulSlayerWeapon": {
     "en": "Ghoul Slayer's",
     "it": "Ammazza-Ghoul",
     "_description": {
-      "en": "Attacks gain the Vicious damage effect against ghouls.",
-      "it": "Gli attacchi ottengono l'effetto danno Violento contro i ghoul."
+      "en": "A Ghoul Slayer’s weapon quickly dispatches those necrotic mutants! Against ghouls, attacks with this weapon gain the Vicious damage effect. If the weapon is already Vicious, then it instead inflicts +2 damage per Effect rolled, rather than +1.",
+      "it": "Un'arma Ammazza-Ghoul elimina rapidamente quei mutanti necrotici! Contro i ghoul, gli attacchi con quest'arma ottengono l'effetto di danno Violento. Se l'arma è già Violenta, invece infligge +2 danni per ogni Effetto tirato, anziché +1."
     }
   },
   "legendaryHitman": {
     "en": "Hitman’s",
     "it": "Sicario",
     "_description": {
-      "en": "When taking the Aim action, the weapon inflicts +1 CD damage. Stacks with the Accurate quality.",
-      "it": "Quando esegui l'azione Mirare, l'arma infligge +1 DC di danno. Cumulabile con la qualità Precisa."
+      "en": "A Hitman’s weapon can strike the most vulnerable parts of a target! When you take the Aim action with this weapon, the weapon inflicts +1 CD damage. This stacks with any damage from the Accurate quality.",
+      "it": "L'arma di un Sicario può colpire le parti più vulnerabili di un bersaglio! Quando compi l'azione Mirare con quest'arma, l'arma infligge +1 DC di danno. Si cumula con qualsiasi danno dalla qualità Di Precisione."
     }
   },
   "legendaryHunterArmor": {
     "en": "Hunter's",
     "it": "Cacciatore",
     "_description": {
-      "en": "Provides +2 Physical and Energy DR against animals and creatures.",
-      "it": "Fornisce +2 alla RD Fisica ed Energia contro animali e creature."
+      "en": "Wearing Hunter’s armor keeps wildlife at bay! This armor provides +2 Physical damage resistance and Energy damage resistance against attacks from mammal or lizard enemies.",
+      "it": "Indossare quest'armatura tiene lontana la fauna selvatica! Questa armatura fornisce +2 Resistenza ai Danni Fisici e da Energia contro gli attacchi dei nemici mammiferi o lucertole."
     }
   },
   "legendaryHunterWeapon": {
     "en": "Hunter's",
     "it": "Cacciatore",
     "_description": {
-      "en": "Attacks gain the Vicious damage effect against animals and creatures.",
-      "it": "Gli attacchi ottengono l'effetto danno Violento contro animali e creature."
+      "en": "A Hunter’s weapon is ideal for quick kills against wildlife! Against mammals and lizards, attacks with this weapon gain the Vicious damage effect. If the weapon is already Vicious, then it instead inflicts +2 damage per Effect rolled, rather than +1.",
+      "it": "L'arma di un Cacciatore è ideale per uccisioni rapide contro la fauna selvatica! Contro mammiferi e rettili, gli attacchi con quest'arma ottengono l'effetto di danno Violento. Se l'arma è già Violenta, invece infligge +2 danni per ogni Effetto tirato, anziché +1."
     }
   },
   "legendaryIncendiaryArmor": {
     "en": "Incendiary",
     "it": "Incendiario",
     "_description": {
-      "en": "Melee attackers suffer 2 CD Persistent Energy damage when they hit you.",
-      "it": "Gli attaccanti in mischia subiscono 2 DC di danno Energia Persistente quando ti colpiscono."
+      "en": "Wearing Incendiary armor keeps away foes who can’t stand the heat! When you are wearing this armor, enemy melee attacks increase their complication range by 1, and they suffer X Persistent Energy damage upon suffering a complication, where X is the number of damage dice the enemy’s attack would roll.",
+      "it": "Indossare quest'armatura tiene lontani i nemici che non sopportano il calore! Mentre indossi quest'armatura, gli attacchi in mischia dei nemici aumentano di 1 il loro intervallo di complicazione, e subiscono X DC di danno Persistente da Energia quando ottengono una complicazione, dove X è il numero di dadi di danno che l'attacco del nemico tirerebbe."
     }
   },
   "legendaryIncendiaryWeapon": {
     "en": "Incendiary",
     "it": "Incendiario",
     "_description": {
-      "en": "Attacks gain the Persistent damage effect.",
-      "it": "Gli attacchi ottengono l'effetto danno Persistente."
+      "en": "An Incendiary weapon leaves enemies burning and bullet-ridden! This weapon gains the Persistent (Energy) damage effect.",
+      "it": "Un'arma Incendiaria lascia i nemici in fiamme e crivellati di colpi! L'arma ottiene l'effetto di danno Persistente (Energia)."
     }
   },
   "legendaryInstigating": {
     "en": "Instigating",
     "it": "Provocatore",
     "_description": {
-      "en": "If the target is at maximum HP, the weapon inflicts +3 CD damage.",
-      "it": "Se il bersaglio ha tutti i PS al massimo, l'arma infligge +3 DC di danno."
+      "en": "An Instigating weapon is the best way to start a fight! When this weapon is used to make an attack, if the target’s HP are at their maximum value, the weapon inflicts +3 CD damage.",
+      "it": "Un'arma Provocatrice è il modo migliore per iniziare una rissa! Quando quest'arma viene usata per un attacco, se i HP del bersaglio sono al massimo, l'arma infligge +3 DC di danno."
     }
   },
   "legendaryIrradiated": {
     "en": "Irradiated",
     "it": "Irradiato",
     "_description": {
-      "en": "The weapon gains the Radioactive damage effect.",
-      "it": "L'arma ottiene l'effetto danno Radioattivo."
+      "en": "An Irradiated weapon will make your enemies leave glow-in-the-dark corpses! The weapon gains the Radioactive damage effect.",
+      "it": "Un'arma Irradiata farà lasciare ai tuoi nemici cadaveri luminescenti! L'arma ottiene l'effetto di danno Radioattivo."
     }
   },
   "legendaryJunkie": {
     "en": "Junkie’s",
     "it": "Drogato",
     "_description": {
-      "en": "Inflicts +1 CD damage for each addiction you are currently suffering from.",
-      "it": "Infligge +1 DC di danno per ogni dipendenza da cui sei attualmente affetto."
+      "en": "A Junkie’s weapon gets more dangerous the stronger your withdrawal symptoms are! When this weapon is used to make an attack, it inflicts +1 CD damage for each addiction you’re suffering from.",
+      "it": "L'arma di un Drogato diventa più pericolosa quanto più forti sono i sintomi d'astinenza! Quando quest'arma viene usata per un attacco, infligge +1 DC di danno per ogni dipendenza da cui sei affetto."
     }
   },
   "legendaryKneecapper": {
     "en": "Kneecapper",
     "it": "Gambizzatore",
     "_description": {
-      "en": "Attacks against a leg cause a critical hit if they inflict 3 or more damage after reductions.",
-      "it": "Gli attacchi contro una gamba causano un colpo critico se infliggono 3 o più danni dopo le riduzioni."
+      "en": "A Kneecapper weapon does exactly as the name promises! When this weapon is used to make an attack against a target’s leg, it causes a critical hit if it inflicts 3 or more damage (after reductions for damage reduction).",
+      "it": "Un'arma Gambizzatrice fa esattamente ciò che promette il nome! Quando quest'arma viene usata per un attacco contro la gamba di un bersaglio, causa un colpo critico se infligge 3 o più danni (dopo le riduzioni dalla Resistenza ai Danni)."
     }
   },
   "legendaryLuckyArmor": {
     "en": "Lucky",
     "it": "Fortunato",
     "_description": {
-      "en": "Once per day, when spending Luck to reroll, you may set a d20 to a 1 or all CD to Effects instead.",
-      "it": "Una volta al giorno, spendendo Fortuna per ripetere un tiro, puoi impostare un d20 su 1 o tutti i DC come Effetti."
+      "en": "Wearing Lucky armor brings fortune your way! Once per day, when you are wearing this armor, when you spend a Luck point to re-roll dice, you may instead count a d20 you would have re-rolled as rolling a 1, or any CD you would have re-rolled as if they had rolled Effects.",
+      "it": "Indossare l'armatura Fortunata porta fortuna! Una volta al giorno, quando indossi quest'armatura e spendi un punto Fortuna per ritirare dei dadi, puoi invece contare un d20 che avresti ritirato come se fosse un 1 tirato, oppure un qualsiasi DC che avresti ritirato come se avesse ottenuto Effetti."
     }
   },
   "legendaryLuckyWeapon": {
     "en": "Lucky",
     "it": "Fortunato",
     "_description": {
-      "en": "After an attack where Luck was spent to reroll, roll 1 CD; on an Effect, regain one spent Luck point.",
-      "it": "Dopo un attacco in cui è stata spesa Fortuna per ripetere i dadi, tira 1 DC; con un Effetto, recuperi un punto Fortuna speso."
+      "en": "A Lucky weapon is just what you need to shift the odds in your favor! After this weapon is used to make an attack, if you spent any Luck points to re-roll dice (d20s, or CD s), roll 1 CD: if an Effect is rolled, you regain one spent Luck point.",
+      "it": "Un'arma Fortunata è proprio quello che ti serve per spostare le probabilità a tuo favore! Dopo che quest'arma è stata usata per un attacco, se hai speso punti Fortuna per ritirare dadi (d20 o DC), tira 1 DC: se ottieni un Effetto, recuperi un punto Fortuna speso."
     }
   },
   "legendaryMartyr": {
     "en": "Martyr’s",
     "it": "Martire",
     "_description": {
-      "en": "If HP < 1/4, reduce the AP cost to take additional actions in combat by 1.",
-      "it": "Se i PS < 1/4, riduce di 1 il costo in PA per eseguire azioni aggiuntive in combattimento."
+      "en": "Wearing Martyr’s armor gives you a little more oomph when things seem dire! When you are wearing this armor, and your current HP are below 1/4 of your maximum HP, then you reduce the AP cost to take additional actions in combat by 1. This does not stack with other effects that reduce the AP cost of extra actions, such as Jet.",
+      "it": "Indossare l'armatura del Martire ti dà un po' più di forza quando le cose sembrano disperate! Quando indossi quest'armatura e i tuoi HP attuali sono sotto un quarto del tuo massimo di HP, riduci di 1 il costo in PA per compiere azioni aggiuntive in combattimento. Non si cumula con altri effetti che riducono il costo in PA delle azioni extra, come Jet."
     }
   },
   "legendaryMutantSlayerArmor": {
     "en": "Mutant Slayer's",
     "it": "Ammazza-Mutanti",
     "_description": {
-      "en": "Provides +2 Physical and Energy DR against super mutants.",
-      "it": "Fornisce +2 alla RD Fisica ed Energia contro i supermutanti."
+      "en": "Mutant Slayer’s armor is super strong against super mutants! This armor provides +2 Physical damage resistance and Energy damage resistance against attacks from super mutant enemies.",
+      "it": "Quest'armatura è molto resistente contro i super mutanti! Questa armatura fornisce +2 Resistenza ai Danni Fisici e da Energia contro gli attacchi dei nemici super mutanti."
     }
   },
   "legendaryMutantSlayerWeapon": {
     "en": "Mutant Slayer's",
     "it": "Ammazza-Mutanti",
     "_description": {
-      "en": "Attacks gain the Vicious damage effect against super mutants.",
-      "it": "Gli attacchi ottengono l'effetto danno Violento contro i supermutanti."
+      "en": "A Mutant Slayer’s weapon quickly dispatches those gigantic mutants! Against super mutants, attacks with this weapon gain the Vicious damage effect. If the weapon is already Vicious, then it instead inflicts +2 damage per Effect rolled, rather than +1.",
+      "it": "Un'arma Ammazza-Mutanti elimina rapidamente quei mutanti giganteschi! Contro i super mutanti, gli attacchi con quest'arma ottengono l'effetto di danno Violento. Se l'arma è già Violenta, invece infligge +2 danni per ogni Effetto tirato, anziché +1."
     }
   },
   "legendaryNimble": {
     "en": "Nimble",
     "it": "Agile",
     "_description": {
-      "en": "When taking the Aim action, you may also take a Move minor action for free.",
-      "it": "Quando usi l'azione Mirare, puoi anche eseguire un'azione minore di Movimento gratuitamente."
+      "en": "A Nimble weapon lets you stay on the move while you shoot! When you take the Aim action with this weapon, you may also take a Move minor action for free.",
+      "it": "Un'arma Agile ti permette di restare in movimento mentre spari! Quando compi l'azione Mirare con quest'arma, puoi anche compiere gratuitamente un'azione minore di Movimento."
     }
   },
   "legendaryNocturnal": {
     "en": "Nocturnal",
     "it": "Notturno",
     "_description": {
-      "en": "Between sunset and sunrise, attacks gain Vicious. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
-      "it": "Tra il tramonto e l'alba, gli attacchi ottengono Letale. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
+      "en": "A Nocturnal weapon helps make your enemies dead in the dead of night! Between sunset and sunrise, attacks with this weapon gain the Vicious damage effect. If the weapon is already Vicious, then it instead inflicts +2 damage per Effect rolled, rather than +1.",
+      "it": "Un'arma Notturna aiuta a far morire i tuoi nemici nel cuore della notte! Tra il tramonto e l'alba, gli attacchi con quest'arma ottengono l'effetto di danno Violento. Se l'arma è già Violenta, invece infligge +2 danni per ogni Effetto tirato, anziché +1."
     }
   },
   "legendaryPenetrating": {
     "en": "Penetrating",
     "it": "Penetrante",
     "_description": {
-      "en": "Attacks gain Piercing 2. If already Piercing, increase the rating by +2.",
-      "it": "Gli attacchi ottengono Penetrante 2. Se già Penetrante, aumenta il valore di +2."
+      "en": "A Penetrating weapon can overcome any armor! Attacks with this weapon gain the Piercing 2 damage effect. If the weapon is already Piercing, then it increases the rating of the weapon’s Piercing damage effect by +2.",
+      "it": "Un'arma Penetrante può superare qualsiasi armatura! Gli attacchi con quest'arma ottengono l'effetto di danno Penetrante 2. Se l'arma è già Penetrante, aumenta il valore del suo effetto di danno Penetrante di +2."
     }
   },
   "legendaryPlasmaInfused": {
     "en": "Plasma Infused",
     "it": "Infuso di Plasma",
     "_description": {
-      "en": "+2 CD damage and deals both Energy and Physical damage (uses target's lower resistance).",
-      "it": "+2 DC di danno e infligge sia danni Fisici che da Energia (usa la resistenza più bassa del bersaglio)."
+      "en": "A Plasma Infused weapon adds a plasma punch to every shot! This weapon inflicts +2 CD damage, and deals both Energy and Physical damage, like a plasma weapon. Roll damage as normal, and then reduce the total by whichever of the target’s damage resistances is lower out of Physical or Energy.",
+      "it": "Un'arma Infusa di Plasma aggiunge un pugno al plasma a ogni colpo! Quest'arma infligge +2 DC di danno e causa sia danni da Energia che Fisici, come un'arma al plasma. Tira il danno normalmente, poi riduci il totale in base alla resistenza ai danni del bersaglio più bassa tra Fisica ed Energia."
     }
   },
   "legendaryPoisonerArmor": {
     "en": "Poisoner’s",
-    "it": "Avvelenato",
+    "it": "Avvelenatore",
     "_description": {
-      "en": "Provides +4 Poison damage resistance.",
-      "it": "Fornisce +4 alla resistenza ai danni da Veleno."
+      "en": "Poisoner’s armor protects against any toxin! This armor provides +4 Poison damage resistance.",
+      "it": "Quest'armatura protegge da qualsiasi tossina! Questa armatura fornisce +4 Resistenza ai Danni da Veleno."
     }
   },
   "legendaryPoisonerWeapon": {
     "en": "Poisoner’s",
-    "it": "Avvelenato",
+    "it": "Avvelenatore",
     "_description": {
-      "en": "Attacks gain the Persistent (Poison) damage effect.",
-      "it": "Gli attacchi ottengono l'effetto danno Persistente (Veleno)."
+      "en": "A Poisoner’s weapon has a toxic after-effect! Attacks with this weapon gain the Persistent (Poison) damage effect.",
+      "it": "L'arma di un Avvelenatore ha un effetto tossico successivo! Gli attacchi con quest'arma ottengono l'effetto di danno Persistente (Veleno)."
     }
   },
   "legendaryPowered": {
     "en": "Powered",
     "it": "Alimentato",
     "_description": {
-      "en": "Add 1 AP to the group pool at the start of each of your turns in combat.",
-      "it": "Aggiunge 1 PA alla riserva di gruppo all'inizio di ogni tuo turno in combattimento."
+      "en": "Wearing Powered armor keeps you in the action! While wearing this armor, add 1 AP to the group pool at the start of each of your turns in combat.",
+      "it": "Indossare l'armatura Alimentata ti tiene in azione! Mentre indossi quest'armatura, aggiungi 1 PA al pool di gruppo all'inizio di ciascun tuo turno in combattimento."
     }
   },
   "legendaryPowerfulMighty": {
     "en": "Powerful / Mighty",
     "it": "Potente / Possente",
     "_description": {
-      "en": "Attacks with this weapon inflict +2 CD damage.",
-      "it": "Gli attacchi con quest'arma infliggono +2 DC di danno."
+      "en": "A Powerful/Mighty weapon deals much more damage! This property is called Powerful when applied to ranged weapons, and Mighty when applied to melee weapons. Attacks with this weapon inflict +2 CD damage.",
+      "it": "Un'arma Potente/Possente infligge molto più danno! Questa proprietà si chiama Potente quando applicata alle armi a distanza, e Possente quando applicata alle armi da mischia. Gli attacchi con quest'arma infliggono +2 DC di danno."
     }
   },
   "legendaryPunishing": {
     "en": "Punishing",
     "it": "Punitivo",
     "_description": {
-      "en": "When hit by a melee attack, each Effect rolled on the damage roll inflicts 1 damage (same type) to the attacker.",
-      "it": "Quando vieni colpito in mischia, ogni Effetto ottenuto nel tiro dei danni infligge 1 danno (dello stesso tipo) all'attaccante."
+      "en": "Wearing Punishing armor makes enemies regret attacking you! While wearing this armor, if you are hit by a melee attack, each Effect rolled on the damage roll inflicts 1 damage (of the same type as they are inflicting) to them; total up the damage before reductions from damage resistance.",
+      "it": "Indossare l'armatura Punitiva fa pentire i nemici di averti attaccato! Mentre indossi quest'armatura, se vieni colpito da un attacco in mischia, ogni Effetto tirato sul tiro di danno infligge 1 danno (dello stesso tipo che stanno infliggendo) al nemico; somma il danno prima delle riduzioni dalla resistenza ai danni."
     }
   },
   "legendaryQuickdraw": {
     "en": "Quickdraw",
     "it": "Lesto",
     "_description": {
-      "en": "Drawing this weapon does not count as a minor action and does not cost AP.",
-      "it": "Estrarre quest'arma non conta come azione minore e non costa PA."
+      "en": "A Quickdraw weapon can be in your hands in an instant! When you draw this weapon using the Draw Item minor action, it does not count as one of your limit of minor actions for the turn, and does not cost any AP to perform.",
+      "it": "Quest'arma può essere nelle tue mani in un istante! Quando estrai quest'arma con l'azione minore Estrarre oggetto, questa non conta nel limite di azioni minori del turno e non costa PA."
     }
   },
   "legendaryRadPowered": {
     "en": "Rad Powered",
-    "it": "Rad-Potenziato",
+    "it": "Radioalimentato",
     "_description": {
-      "en": "Once per scene, if you have Rad damage, set 1d20 to 1 on a STR test. +1 use per 5 Rad damage.",
-      "it": "Una volta per scena, se hai danni da radiazioni, imposta 1d20 su 1 in un test di FOR. +1 uso ogni 5 danni da radiazioni."
+      "en": "Wearing Rad Powered armor turns irradiation into unstoppable force! Once per scene, when you are wearing this armor and have one or more Radiation damage, you may take 1d20 from your dice pool (before rolling) on any STR test you attempt, and set it so that it counts as rolling a 1. You may do this one additional time per scene for every 5 Radiation damage you have.",
+      "it": "Indossare l'armatura Radioalimentata trasforma l'irradiazione in una forza inarrestabile! Una volta per scena, quando indossi quest'armatura e hai uno o più danni da Radiazioni, puoi togliere 1d20 dal tuo pool di dadi (prima di tirare) in una qualsiasi prova di FOR che fai, e impostarlo in modo che conti come un 1 tirato. Puoi farlo un'altra volta per scena per ogni 5 danni da Radiazioni che hai."
     }
   },
   "legendaryRapid": {
     "en": "Rapid",
     "it": "Rapido",
     "_description": {
-      "en": "Gains +3 Fire Rate (can exceed 6).",
-      "it": "Aumenta la Cadenza di Fuoco di +3 (può superare 6)."
+      "en": "A Rapid weapon can be loaded and fired much more quickly! This weapon gains +3 Fire Rate. This can take the Fire Rate above 6.",
+      "it": "Un'arma Rapida può essere caricata e sparata molto più in fretta! Quest'arma ottiene +3 alla Cadenza di Fuoco. Questo può portare la Cadenza di Fuoco sopra 6."
     }
   },
   "legendaryRelentless": {
     "en": "Relentless",
-    "it": "Senza Sosta",
+    "it": "Implacabile",
     "_description": {
-      "en": "On a critical hit, spend 1 Luck point to immediately regain any AP spent on that attack.",
-      "it": "Con un colpo critico, spendi 1 punto Fortuna per recuperare immediatamente tutti i PA spesi per quell'attacco."
+      "en": "A Relentless weapon means you'll never need to slow down that rampage! When you inflict a critical hit on an enemy, you may spend 1 Luck point to immediately regain any AP spent on that attack (to buy bonus d20s, to increase damage, etc.)",
+      "it": "Un'arma Implacabile significa che non dovrai mai rallentare quella furia! Quando infliggi un colpo critico a un nemico, puoi spendere 1 punto Fortuna per recuperare immediatamente i PA spesi per quell'attacco (per acquistare d20 bonus, per aumentare il danno, ecc.)."
     }
   },
   "legendarySafecracker": {
     "en": "Safecracker’s",
     "it": "Scassinatore",
     "_description": {
-      "en": "Once per scene, you may set 1d20 to a 1 on any Lockpick test before rolling.",
-      "it": "Una volta per scena, puoi impostare 1d20 su 1 in qualsiasi test di Scassinare prima di tirare."
+      "en": "Wearing Safecracker’s armor means that doors are no defence against you! Once per scene, while wearing this armor, you may take 1d20 from your dice pool (before rolling) on any Lockpick test you attempt, and set it so that it counts as rolling a 1.",
+      "it": "Indossare l'armatura dello Scassinatore significa che le porte non sono una difesa contro di te! Una volta per scena, mentre indossi quest'armatura, puoi togliere 1d20 dal tuo pool di dadi (prima di tirare) in una qualsiasi prova di Scassinare che fai, e impostarlo in modo che conti come un 1 tirato."
     }
   },
   "legendarySentinelArmor": {
     "en": "Sentinel’s",
     "it": "Sentinella",
     "_description": {
-      "en": "Gain +3 Physical and Energy DR so long as you did not move in your previous turn.",
-      "it": "Ottieni +3 alla RD Fisica ed Energia se non ti sei mosso nel tuo turno precedente."
+      "en": "Wearing Sentinel’s armor makes you an immovable object! While wearing this armor, you gain +3 Physical damage resistance and Energy damage resistance so long as you did not move in your previous turn.",
+      "it": "Indossare quest'armatura ti rende un oggetto irremovibile! Mentre indossi quest'armatura, ottieni +3 Resistenza ai Danni Fisici e da Energia finché non ti sei mosso nel tuo turno precedente."
     }
   },
   "legendarySentinelWeapon": {
     "en": "Sentinel’s",
     "it": "Sentinella",
     "_description": {
-      "en": "Gain +2 Physical and Energy DR if you did not move in your previous turn. Increases to +3 if weapon has Parry.",
-      "it": "Ottieni +2 alla RD Fisica ed Energia se non ti sei mosso nel turno precedente. Aumenta a +3 se l'arma ha Parata."
+      "en": "A Sentinel’s weapon is great for fending off enemy attacks! When you are wielding this weapon, you gain +2 Physical damage resistance and Energy damage resistance so long as you did not move in your previous turn. This increases to +3 to Physical and Energy damage resistance if the weapon has the Parry quality.",
+      "it": "L'arma di una Sentinella è ottima per respingere gli attacchi nemici! Quando impugni quest'arma, ottieni +2 Resistenza ai Danni Fisici e da Energia finché non ti sei mosso nel turno precedente. Questo aumenta a +3 alla Resistenza ai Danni Fisici e da Energia se l'arma ha la qualità Parata."
     }
   },
   "legendarySharp": {
     "en": "Sharp",
-    "it": "Accuminato",
+    "it": "Acuminato",
     "_description": {
-      "en": "Once per scene, you may set 1d20 to a 1 on any INT or CHA test before rolling.",
-      "it": "Una volta per scena, puoi impostare 1d20 su 1 in qualsiasi test di INT o CAR prima di tirare."
+      "en": "Wearing Sharp armor is ideal for incisive insights and cutting remarks alike! Once per scene, when you are wearing this armor, you may take 1d20 from your dice pool (before rolling) on any INT or CHA test you attempt, and set it so that it counts as rolling a 1.",
+      "it": "Indossare l'armatura Acuminata è ideale sia per intuizioni acute sia per commenti taglienti! Una volta per scena, mentre indossi quest'armatura, puoi togliere 1d20 dal tuo pool di dadi (prima di tirare) in una qualsiasi prova di INT o CAR che fai, e impostarlo in modo che conti come un 1 tirato."
     }
   },
   "legendarySprinter": {
     "en": "Sprinter’s",
     "it": "Scattante",
     "_description": {
-      "en": "Reduce the AP cost to cross difficult terrain or obstacles by 1 (minimum 0).",
-      "it": "Riduce di 1 il costo in PA per attraversare terreni difficili o ostacoli (minimo 0)."
+      "en": "Wearing Sprinter’s armor keeps you mobile! When you would spend one or more AP to cross difficult terrain or obstacles, reduce the AP cost by 1, to a minimum of 0.",
+      "it": "Indossare l'armatura Scattante ti tiene mobile! Quando dovresti spendere uno o più PA per attraversare terreni difficili o ostacoli, riduci il costo in PA di 1, con un minimo di 0."
     }
   },
   "legendaryStaggering": {
     "en": "Staggering",
     "it": "Vacillante",
     "_description": {
-      "en": "This weapon gains the Stun damage effect.",
-      "it": "Quest'arma ottiene l'effetto danno Stordente."
+      "en": "A Staggering weapon will keep your enemies off-balance! This weapon gains the Stun damage effect.",
+      "it": "Un'arma Vacillante terrà i tuoi nemici in disequilibrio! Quest'arma ottiene l'effetto di danno Stordente."
     }
   },
   "legendaryStalker": {
     "en": "Stalker’s",
-    "it": "Appostato",
+    "it": "Furtivo",
     "_description": {
-      "en": "On a sneak attack with Aim and no other actions, replace 1d20 with a die that counts as a pre-rolled 1.",
-      "it": "In un attacco furtivo con Mirare e nessun'altra azione, sostituisci 1d20 con uno che conta come un 1 pre-tirato."
+      "en": "A Stalker’s weapon is a devastating way to start a fight! When you make a sneak attack with this weapon, and you take no other actions other than an Aim minor action on that turn, you may replace 1d20 in your dice pool (before rolling) with a d20 that counts as having already rolled a 1.",
+      "it": "Un'arma Furtiva è un modo devastante per iniziare uno scontro! Quando fai un attacco furtivo con quest'arma, e in quel turno non compi altre azioni se non l'azione minore Mirare, puoi sostituire 1d20 nel tuo pool di dadi (prima di tirare) con un d20 che conta come già tirato un 1."
     }
   },
   "legendarySteadfast": {
     "en": "Steadfast",
     "it": "Saldo",
     "_description": {
-      "en": "Taking the Aim action increases Physical DR by +2 until the start of your next turn.",
-      "it": "L'azione Mirare aumenta la RD Fisica di +2 fino all'inizio del tuo prossimo turno."
+      "en": "A Steadfast weapon has aims true no matter what distractions you face! When you take the Aim minor action with this weapon, you increase your Physical damage resistance by +2 until the start of your next turn.",
+      "it": "Un'arma Salda mira sempre bene, qualunque distrazione tu affronti! Quando compi l'azione minore Mirare con quest'arma, aumenti la tua Resistenza ai Danni Fisici di +2 fino all'inizio del tuo turno successivo."
     }
   },
   "legendaryTroubleshooterArmor": {
     "en": "Troubleshooter's",
     "it": "Risolutore",
     "_description": {
-      "en": "Provides +2 Physical and Energy DR against robots.",
-      "it": "Fornisce +2 alla RD Fisica ed Energia contro i robot."
+      "en": "Troubleshooter’s armor keeps you protected when roughhousing with robots! This armor provides +2 Physical damage resistance and Energy damage resistance against attacks from Robot enemies.",
+      "it": "Quest'armatura ti protegge quando fai a botte con i robot! Questa armatura fornisce +2 Resistenza ai Danni Fisici e da Energia contro gli attacchi dei nemici robot."
     }
   },
   "legendaryTroubleshooterWeapon": {
     "en": "Troubleshooter's",
     "it": "Risolutore",
     "_description": {
-      "en": "Attacks gain the Vicious damage effect against robots.",
-      "it": "Gli attacchi ottengono l'effetto danno Violento contro i robot."
+      "en": "A Troubleshooter’s weapon quickly solves all robot-related problems! Against robots, attacks with this weapon gain the Vicious damage effect. If the weapon is already Vicious, then it instead inflicts +2 damage per Effect rolled, rather than +1.",
+      "it": "L'arma di un Risolutore di problemi risolve rapidamente tutti i problemi legati ai robot! Contro i robot, gli attacchi con quest'arma ottengono l'effetto di danno Violento. Se l'arma è già Violenta, invece infligge +2 danni per ogni Effetto tirato, anziché +1."
     }
   },
   "legendaryTwoShot": {
     "en": "Two-Shot",
     "it": "Doppio Colpo",
     "_description": {
-      "en": "Gains Vicious, +2 CD damage, and Ammo-Hungry (2) quality.",
-      "it": "Ottiene Letale, +2 DC di danno e la qualità Affamata di Munizioni (2)."
+      "en": "A Two-Shot weapon fires twice the bullets for twice the carnage! The weapon gains the Vicious damage effect and inflicts +2 CD damage, but gains the Ammo-Hungry (2) quality.",
+      "it": "Un'arma Doppio Colpo spara il doppio dei proiettili per il doppio della carneficina! L'arma ottiene l'effetto di danno Violento e infligge +2 DC di danno, ma ottiene la qualità Consumo Elevato (2)."
     }
   },
   "legendaryUnyielding": {
     "en": "Unyielding",
     "it": "Tenace",
     "_description": {
-      "en": "While HP are below 1/4, you may re-roll 1d20 on any test you attempt.",
-      "it": "Mentre i PS sono inferiori a 1/4, puoi ripetere 1d20 in qualsiasi test effettuato."
+      "en": "Wearing Unyielding armor means never giving up! While wearing this armor, while your current HP are below 1/4 of your maximum HP, you may re-roll 1d20 on any test you attempt.",
+      "it": "Indossare l'armatura Tenace significa non arrendersi mai! Mentre indossi quest'armatura, quando i tuoi HP attuali sono sotto un quarto del tuo massimo di HP, puoi ritirare 1d20 in qualsiasi prova che fai."
     }
   },
   "legendaryViolent": {
     "en": "Violent",
-    "it": "Violento",
+    "it": "Brutale",
     "_description": {
-      "en": "+2 CD damage and causes injury on 4+ damage; gains Recoil (7) or adds +1 to existing Recoil.",
-      "it": "+2 DC di danno e causa menomazioni con 4+ danni; ottiene Rinculo (7) o aumenta il Rinculo esistente di +1."
+      "en": "A Violent weapon kicks like a brahmin, and does worse to your foes! This weapon inflicts +2 CD damage, and it causes an injury if it inflicts four or more damage in one hit (after reductions for damage resistance). However, it gains the Recoil (7) quality, or adds +1 to the rating of any existing Recoil quality.",
+      "it": "Un'arma Brutale calcia come un bramino e fa più male ai tuoi nemici! Quest'arma infligge +2 DC di danno, e causa una ferita se infligge quattro o più danni in un colpo (dopo le riduzioni dalla resistenza ai danni). Tuttavia, ottiene la qualità Rinculo (7), oppure aumenta di +1 il valore di qualsiasi qualità Rinculo già presente."
     }
   },
   "legendaryWounding": {
     "en": "Wounding",
-    "it": "Feritore",
+    "it": "Lacerante",
     "_description": {
-      "en": "This weapon gains the Persistent (Physical) damage effect.",
-      "it": "Quest'arma ottiene l'effetto danno Persistente (Fisico)."
+      "en": "A Wounding weapon causes nasty lasting wounds that bleed profusely! The weapon gains the Persistent (Physical) damage effect.",
+      "it": "Un'arma Lacerante causa ferite profonde e durature che sanguinano abbondantemente! L'arma ottiene l'effetto di danno Persistente (Fisico)."
     }
   }
 }

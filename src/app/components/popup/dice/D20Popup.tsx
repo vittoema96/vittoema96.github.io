@@ -199,7 +199,7 @@ function D20Popup({
         if (itemData.QUALITIES.includes('qualityUnreliable')) {
             baseComplication -= 1;
         }
-        if (isSneakAttacking && itemData.QUALITIES.includes('qualityNoisy')) {
+        if (isSneakAttacking && itemData.QUALITIES.includes('qualitySpecialNoisy')) {
             baseComplication -= 1;
         }
     }

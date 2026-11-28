@@ -5,10 +5,16 @@ import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
 import './FeatSelectionPopup.css';
 import { SPECIAL, SpecialType } from '@/features/character/special/special.ts';
 import { perks, traits } from '@/data';
-import type { PerkId } from '@/features/character/feats/perks.ts';
+import {
+    getUnmetPerkFlags,
+    PERK_FLAG_REQUIREMENTS,
+    type PerkFlagRequirement,
+    type PerkId,
+    type PerkRequirements,
+} from '@/features/character/feats/perks.ts';
 import type { TraitId } from '@/features/character/feats/traits.ts';
 import { hasTrait, perkRank } from '@/features/character/feats/utils.ts';
-import { getPerkBlacklist } from '@/features/character/feats/rules';
+import { getAvailableCompanions, getPerkBlacklist } from '@/features/character/feats/rules';
 import { hasPerkImplementation, hasTraitImplementation } from '@/features/character/feats/registry';
 import { sortByLocalizedLabel } from '@/utils/sorting.ts';
 
@@ -25,13 +31,15 @@ interface Requirements {
     luck: number;
     total: number;
     tier: string | undefined;
+    flags: PerkFlagRequirement[];
 }
 
 /**
  * Helper component to render requirement badges
  */
 function RequirementBadges({ reqs }: Readonly<{ reqs: Requirements }>) {
-    const badges: Array<{ key: keyof Requirements; label: string | undefined }> = [
+    const { t } = useTranslation();
+    const badges: Array<{ key: Exclude<keyof Requirements, 'flags'>; label: string | undefined }> = [
         { key: 'level', label: 'Lv' },
         { key: 'strength', label: 'S' },
         { key: 'perception', label: 'P' },
@@ -57,6 +65,11 @@ function RequirementBadges({ reqs }: Readonly<{ reqs: Requirements }>) {
                     </span>
                 );
             })}
+            {reqs.flags.map(flag => (
+                <span key={flag} className="req-badge">
+                    {t(`perkRequirement_${flag}`)}
+                </span>
+            ))}
         </div>
     );
 }
@@ -94,7 +107,8 @@ export function PerkSelectionPopup({
         const perkData = perks[id];
 
         const tier = perkRank(character.perks, perkData.ID) + 1 - (id === prev ? 1 : 0)
-        const reqs = perkData.REQUISITES;
+        const reqs = perkData.REQUISITES as PerkRequirements;
+        const flags = PERK_FLAG_REQUIREMENTS.filter(flag => reqs[flag]);
         const level = (reqs.level || 0) + (tier - 1) * (perkData.LEVEL_REQ_INCREASE ?? 0);
         const strength = reqs.strength || 0;
         const perception = reqs.perception || 0;
@@ -108,7 +122,7 @@ export function PerkSelectionPopup({
             `${tier}/${perkData.TIER}`
             : undefined
 
-        return { level, strength, perception, endurance, charisma, intelligence, agility, luck, total, tier: tierString };
+        return { level, strength, perception, endurance, charisma, intelligence, agility, luck, total, tier: tierString, flags };
     }, [character, prev]);
 
     // Check if character meets requirements for a perk
@@ -129,7 +143,11 @@ export function PerkSelectionPopup({
         const failsSpecialReq = SPECIAL.some(
             key => reqs[key] > 0 && character.special[key] < reqs[key]
         )
-        return !failsSpecialReq
+        // TODO Should we check for a companion rather than a perk that gives a companion?
+        const hasCompanion =
+            getAvailableCompanions(activePerks, character.traits, character.origin).length > 0;
+        const unmetFlags = getUnmetPerkFlags(id, character.origin, hasCompanion);
+        return !failsSpecialReq && unmetFlags.length === 0
     }, [character, getRequirements, prev]);
 
     const ids = useMemo(() => {

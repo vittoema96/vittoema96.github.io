@@ -3,8 +3,8 @@
     "en": "Compound Frame",
     "it": "Telaio Compound",
     "_description": {
-      "en": "+1 damage DC, -1 Fire Rate, removes Recoil (6)",
-      "it": "+1 danno DC, -1 Cadenza di Fuoco, rimuove Rinculo (6)"
+      "en": "+1 CD Damage, -1 Fire Rate, remove Recoil (6)",
+      "it": "+1 DC di danno, -1 Cadenza di Fuoco, rimuove Rinculo (6)"
     },
     "_descriptor": {
       "en": "Compound {{name}}",
@@ -15,7 +15,7 @@
     "en": "Iron Sights",
     "it": "Mirino Metallico",
     "_description": {
-      "en": "Increases Range by 1 grade",
+      "en": "Increase Range by 1 step",
       "it": "Aumenta la Gittata di 1 grado"
     },
     "_descriptor": {
@@ -27,7 +27,7 @@
     "en": "Glow Sights",
     "it": "Mirino Luminoso",
     "_description": {
-      "en": "Increases Range by 1 grade, gains Accurate",
+      "en": "Increase Range by 1 step, gain Accurate",
       "it": "Aumenta la Gittata di 1 grado, ottiene Di Precisione"
     },
     "_descriptor": {
@@ -39,7 +39,7 @@
     "en": "Iron Sights",
     "it": "Mirino Metallico",
     "_description": {
-      "en": "Increases Range by 1 grade",
+      "en": "Increase Range by 1 step",
       "it": "Aumenta la Gittata di 1 grado"
     },
     "_descriptor": {
@@ -51,7 +51,7 @@
     "en": "Glow Sights",
     "it": "Mirino Luminoso",
     "_description": {
-      "en": "Increases Range by 1 grade, gains Accurate",
+      "en": "Increase Range by 1 step, gain Accurate",
       "it": "Aumenta la Gittata di 1 grado, ottiene Di Precisione"
     },
     "_descriptor": {
@@ -63,8 +63,8 @@
     "en": "Heavy Frame",
     "it": "Telaio Pesante",
     "_description": {
-      "en": "+1 damage DC",
-      "it": "+1 danno DC"
+      "en": "+1 CD Damage",
+      "it": "+1 DC di danno"
     },
     "_descriptor": {
       "en": "Heavy {{name}}",
@@ -75,8 +75,8 @@
     "en": "Repeating Frame",
     "it": "Telaio a Ripetizione",
     "_description": {
-      "en": "+1 Fire Rate, removes Slow Load",
-      "it": "+1 Cadenza di Fuoco, rimuove Caricamento Lento"
+      "en": "+1 Fire Rate, remove Slow Load",
+      "it": "+1 Cadenza di Fuoco, rimuove Ricarica Lenta"
     },
     "_descriptor": {
       "en": "Repeating {{name}}",
@@ -87,8 +87,8 @@
     "en": "Multiple Launch Frame",
     "it": "Telaio a Lancio Multiplo",
     "_description": {
-      "en": "-1 damage DC, gains Ammo-Hungry (3) and Spread",
-      "it": "-1 danno DC, ottiene Consuma Munizioni (3) e Propagato"
+      "en": "-1 CD damage, Gain Ammo-Hungry (3) and Spread",
+      "it": "-1 DC di danno, ottiene Consumo Elevato (3) e Propagato"
     },
     "_descriptor": {
       "en": "Peppered {{name}}",

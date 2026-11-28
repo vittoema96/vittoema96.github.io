@@ -49,6 +49,11 @@ export interface SpecialModifier {
     apply: (currentValue: number, baseValue: number) => number;
 }
 
+export interface LocationDRContext {
+    /** True when the character carries more than their maximum carry weight. */
+    isEncumbered: boolean;
+}
+
 export interface RollComplicationContext {
     itemData?: WeaponItem;
     skillId?: SkillType;
@@ -177,6 +182,7 @@ export interface FeatImplementation {
         items: CharacterItem[],
         perks: PerkId[],
         traits: TraitId[],
+        context: LocationDRContext,
     ) => Partial<Record<'physical' | 'energy' | 'radiation', number>>;
 }
 

@@ -87,7 +87,14 @@ export function calculateCharacter(raw: RawCharacter): Character {
     const initiative = encumbrance?.cannotMove
         ? 0
         : special.agility + special.perception - (encumbrance?.initiativePenalty ?? 0);
-    const locationsDR = calculateDamageResistances(special, items, origin, perks, traits);
+    const locationsDR = calculateDamageResistances(
+        special,
+        items,
+        origin,
+        perks,
+        traits,
+        encumbrance !== null,
+    );
 
     return {
         // Passthrough (with defaults) values

@@ -1,10 +1,18 @@
 {
   "ammo22": {
-    "en": ".22 Ammo",
-    "it": "Munizioni .22",
+    "en": ".22LR",
+    "it": ".22LR",
     "_description": {
-      "en": "Small-caliber ammunition for .22 firearms.",
-      "it": "Munizioni di piccolo calibro per armi .22."
+      "en": "Perfect for those situations where discretion is key. Just don't expect them to do much against well-armored enemies.",
+      "it": "Perfette per le situazioni in cui serve discrezione. Solo, non aspettarti che facciano granché contro nemici ben corazzati."
+    }
+  },
+  "ammo4570": {
+    "en": ".45-70",
+    "it": ".45-70",
+    "_description": {
+      "en": "No matter the menace, a .45-70 round will see them in the ground. Whether loading into a big iron or brush gun, this is the ammo preferred by those looking for the most bang for their buck.",
+      "it": "Qualunque sia la minaccia, un proiettile .45-70 la manderà sottoterra. Che si tratti di caricare un grosso revolver o un fucile da boscaglia, è la munizione preferita da chi vuole il massimo da ogni tappo speso."
     }
   },
   "ammo10mm": {
@@ -12,30 +20,30 @@
     "it": "10mm",
     "_description": {
       "en": "One of the most common types of pistol round found in the wastelands, manufactured in vast quantities before the Great War to accompany the large numbers of 10mm pistols they were producing as sidearms for soldiers, and as personal defense weapons for civilians.",
-      "it": "Si tratta di uno dei tipi di munizioni per pistola piu facili da trovare nella Zona Contaminata, fabbricate su ampia scala prima della Grande Guerra per fare il pari con il gran numero di pistole 10mm date in dotazione ai soldati e usate dai civili per difesa personale."
+      "it": "Si tratta di uno dei tipi di munizioni per pistola più facili da trovare nella Zona Contaminata, fabbricate su ampia scala prima della Grande Guerra per fare il pari con il gran numero di pistole 10mm date in dotazione ai soldati e usate dai civili per difesa personale."
     }
   },
   "ammo127mm": {
     "en": "12.7mm",
-    "it": "12,7mm",
+    "it": "12.7mm",
     "_description": {
       "en": "The Hauer Premium Show Stopper 12.7mm civic defense round is a large pistol round. In essence, these rounds consist of a big flat bullet in a straight case, with a rebated rim. While they have an identical bullet diameter to the .50 caliber rifle round, the much smaller case means it holds less powder and can be safely used in man-portable auto-loading weapons.",
-      "it": "Il proiettile da difesa civile Hauer Premium Show Stopper da 12,7 mm è un proiettile per pistola di grosso calibro. In sostanza, questi colpi consistono in un grosso proiettile piatto in un bossolo dritto, con un fondello scanalato. Sebbene abbiano un diametro del proiettile identico a quello del proiettile per fucile calibro .50, il bossolo molto più piccolo consente di contenere meno polvere e può essere utilizzato in sicurezza in armi a caricamento automatico portatili."
+      "it": "Il proiettile per difesa civile Hauer Premium Show Stopper da 12,7mm è un grande proiettile per pistola. In sostanza, questi proiettili consistono in un grande proiettile piatto in un bossolo dritto, con un bordo ribassato. Pur avendo un diametro identico al proiettile per fucile calibro .50, il bossolo molto più piccolo significa che contiene meno polvere e può essere usato in sicurezza in armi portatili a caricamento automatico."
     }
   },
   "ammo25mmGrenade": {
     "en": "25mm Grenade",
-    "it": "Granata Da 25mm",
+    "it": "Granata da 25mm",
     "_description": {
       "en": "An unusual form of launched grenade, the 25mm grenade has a smaller yield than the more common 40mm, but its lighter weight allows it to be fired from smaller launchers, or to be fired at a higher rate.",
-      "it": "Un'insolita forma di granata lanciata, la granata da 25mm ha una resa inferiore rispetto alla più comune 40mm, ma il suo peso ridotto le consente di essere lanciata da lanciatori più piccoli o di essere sparata a una cadenza più elevata."
+      "it": "Un tipo insolito di granata lanciata: la granata da 25mm ha una carica esplosiva minore rispetto alla più comune da 40mm, ma il suo peso ridotto permette di spararla con lanciagranate più piccoli, o a una cadenza più alta."
     }
   },
   "ammo2mmec": {
     "en": "2mm EC",
     "it": "2mm EC",
     "_description": {
-      "en": "2mm Electromagnetic Cartridges are self-contained magazines that include both high-velocity ferromagnetic projectiles and the batteries needed to power a Gauss weapon. They are not found loose: they are found as magazines containing a set number of shots and enough charge to fire them.",
+      "en": "The 2mm Electromagnetic Cartridge is a self-contained magazine containing high-velocity ferromagnetic projectiles and the battery pack necessary to power the gauss weapon they are fired from. This ammunition is not found loose, but in magazines containing the number of shots generated (and sufficient battery charge to power the weapon for those shots).",
       "it": "Le Cartucce Elettromagnetiche da 2mm sono dei caricatori indipendenti che contengono sia i proiettili ferromagnetici ad alta velocità che le batterie necessarie ad alimentare l’arma gauss per spararli. Non si trovano sfuse, ma all’interno di caricatori che contengono il numero di spari generati (e una batteria abbastanza carica da permettere all’arma di spararli)."
     }
   },
@@ -52,7 +60,7 @@
     "it": ".357 Magnum",
     "_description": {
       "en": "The .357 Magnum round, a Magnum handgun cartridge manufactured by Big Chief, has a significant powder load making it a very powerful cartridge for a pistol round, and acceptable for use in carbine-length lever-action rifles.",
-      "it": "Il proiettile .357 Magnum, una cartuccia per pistola Magnum prodotta da Big Chief, ha una carica di polvere significativa che lo rende una cartuccia molto potente per una pistola e accettabile per l'uso in fucili a leva di lunghezza carabina."
+      "it": "Il proiettile .357 Magnum, una cartuccia da pistola Magnum prodotta da Big Chief, ha una carica di polvere significativa, che la rende un proiettile per pistola molto potente, e accettabile per l'uso in fucili a leva di lunghezza da carabina."
     }
   },
   "ammo38": {
@@ -65,10 +73,10 @@
   },
   "ammo40mmGrenade": {
     "en": "40mm Grenade Round",
-    "it": "Proiettile da Granata da 40mm",
+    "it": "Granata da 40mm",
     "_description": {
-      "en": "Smaller than a conventional hand grenade, but comparably lethal, a 40mm grenade is designed to be launched from most common grenade launchers, allowing them to be fired with reasonable accuracy over long distances.",
-      "it": "Più piccola di una granata a mano convenzionale, ma comparabilmente letale, una granata da 40mm è progettata per essere lanciata dai più comuni lanciagranate, consentendo di sparare con ragionevole precisione su lunghe distanze."
+      "en": "Smaller than a conventional hand grenade, but comparably lethal, a 40mm grenade is designed to be launched from most common grenade launchers, allowing them to be fired with reasonable accuracy over long distances. When found by a character with the Scavenger perk, roll only +1 CD per Rank, rather than the normal bonus amount.",
+      "it": "Più piccola di una granata a mano convenzionale, ma altrettanto letale, una granata da 40mm è progettata per essere lanciata dalla maggior parte dei lanciagranate comuni, permettendo di sparare con una precisione ragionevole su lunghe distanze. Se viene trovata da un personaggio con il talento Scroccone, questa tira solo un +1 DC per Grado, invece che il normale numero bonus."
     }
   },
   "ammo44Magnum": {
@@ -97,10 +105,10 @@
   },
   "ammo50Ball": {
     "en": ".50 Ball",
-    "it": ".50 Palla",
+    "it": "Palla .50",
     "_description": {
       "en": ".50 caliber ball ammunition is a half-inch lead ball used in muzzleloading weapons such as old-fashioned muskets. A separate charge of black gunpowder must also be loaded, as this old-timey ammunition doesn’t contain its own propellant. Special: In game terms, the need to provide gunpowder alongside .50 ball ammunition is ignored – assume that, whenever you find .50 ball ammunition, you find an appropriate amount of gunpowder too.",
-      "it": "Le munizioni calibro .50 palla sono una palla di piombo da mezzo pollice usata in armi ad avancarica come i vecchi moschetti. In termini di gioco, la necessità di fornire polvere da sparo insieme alle munizioni palla viene ignorata: si presume che, ogni volta che si trovano munizioni calibro .50 palla, si trovi anche un'appropriata quantità di polvere da sparo."
+      "it": "Le munizioni a palla calibro .50 sono una palla di piombo da mezzo pollice, usata nelle armi ad avancarica come i vecchi moschetti. Una carica separata di polvere nera va caricata a parte, perché questo proiettile antiquato non contiene una propria carica propellente. Speciale: ai fini del gioco, la necessità di fornire polvere da sparo insieme alle munizioni a palla .50 viene ignorata: supponi che, ogni volta che trovi munizioni a palla .50, trovi anche una quantità adeguata di polvere da sparo."
     }
   },
   "ammo556mm": {
@@ -124,23 +132,23 @@
     "it": "9mm",
     "_description": {
       "en": "Before the Great War, 9mm was the preferred type of ammunition for small weapons in the American Southwest, while the military and the Eastern and Western Seaboards tended to favor the more powerful 10mm ammunition. 9mm ammunition is lightweight and widely available, but has a reputation for being insufficiently deadly.",
-      "it": "Prima della Grande Guerra, il 9mm era il tipo preferito di munizioni per le armi di piccolo calibro nel sud-ovest americano, mentre i militari e le coste orientali e occidentali tendevano a preferire le più potenti munizioni da 10mm. Le munizioni da 9mm sono leggere e ampiamente disponibili, ma hanno la reputazione di essere insufficientemente letali."
+      "it": "Prima della Grande Guerra, il 9mm era il tipo di munizione preferito per le armi piccole nel Sudovest americano, mentre l'esercito e le coste orientali e occidentali tendevano a preferire le più potenti munizioni da 10mm. Le munizioni da 9mm sono leggere e molto diffuse, ma hanno la fama di non essere abbastanza letali."
     }
   },
   "ammoAlienPowerCell": {
     "en": "Alien Power Cells",
-    "it": "Celle Di Energia Aliena",
+    "it": "Celle di Energia Aliena",
     "_description": {
       "en": "Precision-engineered cylinders of glowing blue crystal that seem to hold some kind of energy. They’re used by a number of alien weapons.",
-      "it": "Cilindri di cristallo blu brillante progettati con precisione che sembrano contenere un qualche tipo di energia. Sono utilizzati da una serie di armi aliene."
+      "it": "Cilindri di cristallo blu luminoso, realizzati con ingegneria di precisione, che sembrano contenere una qualche forma di energia. Sono usati da diverse armi aliene."
     }
   },
   "ammoAlienPowerModule": {
     "en": "Alien Power Module",
-    "it": "Modulo Di Energia Aliena",
+    "it": "Modulo di Energia Aliena",
     "_description": {
       "en": "A container with an unknown compound that is identified as blue energy. Only alien weaponry is generally capable of harnessing and utilizing this energy similar to how fusion cells operate.",
-      "it": "Un contenitore con un composto sconosciuto identificato come energia blu. Solo le armi aliene sono generalmente in grado di sfruttare e utilizzare questa energia in modo simile al funzionamento delle celle a fusione."
+      "it": "Un contenitore con un composto sconosciuto, identificato come energia blu. Solo le armi aliene sono in genere in grado di sfruttare e utilizzare questa energia, in modo simile a come funzionano le celle di fusione."
     }
   },
   "ammoArrow": {
@@ -148,15 +156,15 @@
     "it": "Freccia",
     "_description": {
       "en": "A long, stiff, straight shaft generally made of wood or other lightweight materials with a sharp and weighted tip, opposite of stabilizers. Unlike most ammunition, arrows have a chance of being recovered once launched.",
-      "it": "Un'asta lunga, rigida e dritta, generalmente fatta di legno o altri materiali leggeri con una punta affilata e appesantita, opposta agli stabilizzatori. A differenza della maggior parte delle munizioni, le frecce hanno la possibilità di essere recuperate una volta lanciate."
+      "it": "Un fusto lungo, rigido e dritto, di solito di legno o di altri materiali leggeri, con una punta affilata e appesantita, opposta agli stabilizzatori. A differenza della maggior parte delle munizioni, le frecce hanno una possibilità di essere recuperate una volta lanciate."
     }
   },
   "ammoCrossbowBolt": {
     "en": "Crossbow Bolt",
-    "it": "Dardo Da Balestra",
+    "it": "Dardo da Balestra",
     "_description": {
-      "en": "A bolt is more like a dart in design, having the key arrow elements of having a sharp tip opposite of stabilizers. Unlike most ammunition, bolts have a chance of being recovered once launched. A bolt designed for use with crossbows. Like arrows, crossbow bolts can usually be recovered from slain enemies. When found by a character with the Scavenger perk, roll only +1 CD per Rank, rather than the normal bonus amount.",
-      "it": "Un dardo ha un design più simile a una freccetta, possedendo gli elementi chiave della freccia come la punta affilata opposta agli stabilizzatori. A differenza della maggior parte delle munizioni, i dardi hanno la possibilità di essere recuperati una volta lanciati. Un dardo progettato per l’uso con le balestre. Come le frecce, i dardi da balestra possono solitamente essere recuperati dai nemici uccisi. Se vengono trovati da un personaggio con il talento Scroccone, questi tira solo un +1 D C per Grado, invece che il normale numero bonus."
+      "en": "A bolt is more like a dart in design, having the key arrow elements of having a sharp tip opposite of stabilizers. Unlike most ammunition, bolts have a chance of being recovered once launched. A bolt designed for use with crossbows. Like arrows, crossbow bolts can usually be recovered from slain enemies.",
+      "it": "Un dardo è più simile a una freccetta per struttura, con gli elementi principali di una freccia: una punta appuntita opposta agli stabilizzatori. A differenza della maggior parte delle munizioni, i dardi hanno una possibilità di essere recuperati una volta lanciati. Un dardo progettato per l'uso con le balestre. Come le frecce, i dardi per balestra di solito possono essere recuperati dai nemici uccisi."
     }
   },
   "ammoFlamerFuel": {
@@ -187,8 +195,8 @@
     "en": "Fusion Core",
     "it": "Nucleo di Fusione",
     "_description": {
-      "en": "Pre-War fusion cores are high-grade, long-term nuclear batteries. A single core can power a small building for a long time or provide a lot of power for something very quickly. Most suits of Power Armor accept a fusion core power source, which lasts for several hours of activity. They can also be used as the ammunition supply for a Gatling laser. When discovered, a fusion core contains a number of charges equal to 10 plus the user’s Science skill (people with more scientific knowledge can utilize the power more efficiently; the Nuclear Physicist perk also adds extra charges, see p.68). How these charges are used or depleted depends on what they’re plugged into (see Power Armor, p.123). When used as the ammunition for a Gatling laser, each charge a fusion core contains translates to 50 shots for a Gatling laser. As a Gatling weapon, the Gatling laser consumes ammunition ten times as quickly as most weapon (see Gatling, p.90). The Scavenger perk cannot increase the number of fusion cores found.",
-      "it": "I nuclei di fusione risalenti all’anteguerra sono delle pile nucleari a lunga durata di prima qualità. Un singolo nucleo può fornire energia a un piccolo edificio per molto tempo o dare molta energia a qualcosa molto rapidamente. La maggior parte delle armature a energia funzionano con un nucleo di fusione, in grado di farle funzionare per ore. Possono anche essere usati come munizioni per un laser Gatling. Quando lo si trova, un nucleo di fusione ha un numero di cariche pari a 10 più l’abilità Scienza dell’utilizzatore (chi ha maggiori conoscenze scientifiche può usarlo in maniera più efficiente; anche il talento Fisico Nucleare, a pag. 66, aggiunge cariche). Il modo in cui vengono usate o esaurite dipende da ciò a cui vengono collegate (vedere Armatura Atomica a pag. 123). Se si utilizzano come munizioni per un laser Gatling, ogni carica equivale a 50 colpi. Poiché si tratta di un’arma gatling, il laser Gatling consuma munizioni dieci volte più velocemente della maggior parte delle armi (vedere Gatling a pag. 90). Il talento Scroccone non può aumentare il numero di nuclei di fusione trovati."
+      "en": "Pre-War fusion cores are high-grade, long-term nuclear batteries. A single core can power a small building for a long time or provide a lot of power for something very quickly. Most suits of Power Armor accept a fusion core power source, which lasts for several hours of activity. They can also be used as the ammunition supply for a Gatling laser. When discovered, a fusion core contains a number of charges equal to 10 plus the user’s Science skill (people with more scientific knowledge can utilize the power more efficiently; the Nuclear Physicist perk also adds extra charges). How these charges are used or depleted depends on what they’re plugged into. When used as the ammunition for a Gatling laser, each charge a fusion core contains translates to 50 shots for a Gatling laser. As a Gatling weapon, the Gatling laser consumes ammunition ten times as quickly as most weapon. The Scavenger perk cannot increase the number of fusion cores found.",
+      "it": "I nuclei di fusione risalenti all’anteguerra sono delle pile nucleari a lunga durata di prima qualità. Un singolo nucleo può fornire energia a un piccolo edificio per molto tempo o dare molta energia a qualcosa molto rapidamente. La maggior parte delle Armature Atomiche funzionano con un nucleo di fusione, in grado di farle funzionare per ore. Possono anche essere usati come munizioni per un laser Gatling. Quando lo si trova, un nucleo di fusione ha un numero di cariche pari a 10 più l’abilità Scienza dell’utilizzatore (chi ha maggiori conoscenze scientifiche può usarlo in maniera più efficiente; anche il talento Fisico Nucleare aggiunge cariche). Il modo in cui vengono usate o esaurite dipende da ciò a cui vengono collegate. Se si utilizzano come munizioni per un laser Gatling, ogni carica equivale a 50 colpi. Poiché si tratta di un’arma Gatling, il laser Gatling consuma munizioni dieci volte più velocemente della maggior parte delle armi. Il talento Scroccone non può aumentare il numero di nuclei di fusione trovati."
     }
   },
   "ammoGammaRound": {
@@ -209,10 +217,10 @@
   },
   "ammoMissile": {
     "en": "Missile",
-    "it": "Missili",
+    "it": "Missile",
     "_description": {
       "en": "Compact high-explosive rockets designed to be launched from a missile launcher. They are capable of steering to a target under control from a guidance system, if the launcher has one, which means that makeshift rockets won’t work in their place. When found by a character with the Scavenger perk, roll only +1 CD per Rank, rather than the normal bonus amount.",
-      "it": "Sono dei razzi altamente esplosivi pensati per essere utilizzati con un lanciamissili. Se chi li lancia è in possesso di un sistema di controllo, possono essere direzionati su un bersaglio, cosa che un razzo artigianale non è in grado di fare. Se vengono trovati da un personaggio con il talento Scroccone, questi tira solo un +1 D C per Grado, invece che il normale numero bonus."
+      "it": "Sono dei razzi altamente esplosivi pensati per essere utilizzati con un lanciamissili. Se chi li lancia è in possesso di un sistema di controllo, possono essere direzionati su un bersaglio, cosa che un razzo artigianale non è in grado di fare. Se vengono trovati da un personaggio con il talento Scroccone, questi tira solo un +1 DC per grado, invece che il normale numero bonus."
     }
   },
   "ammoPlasmaCartridge": {
@@ -225,15 +233,15 @@
   },
   "ammoPlasmaCore": {
     "en": "Plasma Core",
-    "it": "Nucleo Di Plasma",
+    "it": "Nucleo al Plasma",
     "_description": {
       "en": "Like the smaller plasma cartridges, these devices combine power supply and fuel: each one contains both a compact, specialized fusion core, and a reservoir of the chemical which is transformed into the plasma that the weapon fires. Plasma cores are exclusively used by the Gatling Plasma, and each one contains 500 shots for that weapon. Note that, as a Gatling Plasma is a Gatling weapon, it consumes ammunition at ten times the normal rate. The Scrounger perk cannot increase the number of Plasma Cores found.",
-      "it": "Come le cartucce al plasma più piccole, questi dispositivi combinano alimentazione e carburante: ognuno contiene sia un nucleo a fusione compatto e specializzato, sia un serbatoio del prodotto chimico che viene trasformato nel plasma sparato dall'arma. I nuclei di plasma sono utilizzati esclusivamente dal Plasma Gatling e ognuno contiene 500 colpi per quell'arma. Si noti che, essendo il Plasma Gatling un'arma Gatling, consuma munizioni a una velocità dieci volte superiore a quella normale. Il talento Scroccone non può aumentare il numero di Nuclei di Plasma trovati."
+      "it": "Come le cartucce al plasma più piccole, questi dispositivi combinano alimentazione e carburante: ognuno contiene sia un nucleo di fusione compatto e specializzato, sia un serbatoio della sostanza chimica che viene trasformata nel plasma che l'arma spara. I nuclei al plasma sono usati esclusivamente dal Gatling Plasma, e ognuno contiene 500 colpi per quell'arma. Nota che, poiché il Gatling Plasma è un'arma Gatling, consuma munizioni a una velocità dieci volte superiore alla norma. Il talento Scroccone non può aumentare il numero di nuclei al plasma trovati."
     }
   },
   "ammoRailwaySpike": {
     "en": "Railway Spike",
-    "it": "Spuntoni Sparachiodi",
+    "it": "Spuntone Sparachiodi",
     "_description": {
       "en": "Iron spikes designed for fastening railway tracks in place. Not as easy to find as you might think, given their mundane origins.",
       "it": "Sono dei chiodi di ferro originariamente pensati per tenere ferme le rotaie. Non sono così semplici da trovare come si potrebbe pensare, anche se si trattava di cose ordinarie."
@@ -252,7 +260,7 @@
     "it": "Proiettili Syringer",
     "_description": {
       "en": "Scrappers and scavengers are forever finding new and exciting ways to cause as much harm as possible, the Syringer is a perfect example of ingenuity turned to causing as much distress as possible.",
-      "it": "Rottamatori e predoni trovano continuamente nuovi ed entusiasmanti modi per causare più danni possibile; lo Syringer è un perfetto esempio di ingegno impiegato per provocare quanta più sofferenza possibile."
+      "it": "Rottamai e spazzini trovano sempre nuovi e interessanti modi per causare il massimo danno possibile: il Syringer è un esempio perfetto di ingegnosità messa al servizio del massimo disagio."
     }
   },
   "ammoCannonball": {
@@ -260,15 +268,15 @@
     "it": "Palla di Cannone",
     "_description": {
       "en": "A large rounded sphere, made of dense materials, generally durable enough to withstand the force of being launched and impact after. Unlike most ammunition, cannonballs have a high chance of being recovered once launched.",
-      "it": "Una grande sfera arrotondata, realizzata con materiali densi e generalmente abbastanza resistente da sopportare la forza del lancio e dell’impatto. A differenza della maggior parte delle munizioni, le palle di cannone hanno un’elevata probabilità di essere recuperate dopo essere state lanciate."
+      "it": "Una grande sfera arrotondata, fatta di materiali densi, generalmente abbastanza resistente da reggere la forza del lancio e dell'impatto successivo. A differenza della maggior parte delle munizioni, le palle di cannone hanno un'alta possibilità di essere recuperate una volta lanciate."
     }
   },
   "ammoCryoCell": {
     "en": "Cryo Cell",
-    "it": "Cryo Cell",
+    "it": "Cella Criogenica",
     "_description": {
       "en": "These cells are used to contain and compress nitrogen gas. Dangerous in their own right, they come with an exchange system that allows for instant liquefaction of the gas to generate liquid nitrogen if necessary.",
-      "it": "Queste celle servono a contenere e comprimere il gas azoto. Pericolose di per sé, sono dotate di un sistema di scambio che consente di liquefare istantaneamente il gas per generare azoto liquido, se necessario."
+      "it": "Queste celle servono a contenere e comprimere azoto gassoso. Pericolose di per sé, sono dotate di un sistema di scambio che permette di liquefare istantaneamente il gas per generare azoto liquido, se necessario."
     }
   },
   "ammoHarpoon": {
@@ -276,7 +284,7 @@
     "it": "Arpione",
     "_description": {
       "en": "A harpoon is more like a spear in design, maintaining the sharp and weighted tip but may not always have the stabilizers opposite of the sharpened front. Unlike most ammunition, harpoons have a chance of being recovered once launched.",
-      "it": "Un arpione ha un design più simile a una lancia: mantiene la punta affilata e appesantita, ma potrebbe non avere sempre gli stabilizzatori opposti alla parte appuntita. A differenza della maggior parte delle munizioni, gli arpioni hanno la possibilità di essere recuperati dopo essere stati lanciati."
+      "it": "Un arpione è più simile a una lancia per struttura, mantenendo la punta affilata e appesantita, ma non sempre ha gli stabilizzatori opposti alla parte anteriore appuntita. A differenza della maggior parte delle munizioni, gli arpioni hanno una possibilità di essere recuperati una volta lanciati."
     }
   },
   "ammoAcidConcentrate": {
@@ -284,7 +292,7 @@
     "it": "Acido Concentrato",
     "_description": {
       "en": "Acid concentrate is a concentrated solution resulting in a highly corrosive chemical compound that must be contained in a glass container to prevent corrosion of the weapon.",
-      "it": "L'acido concentrato è una soluzione concentrata che risulta in un composto chimico altamente corrosivo che deve essere contenuto in un contenitore di vetro per prevenire la corrosione dell'arma."
+      "it": "L'acido concentrato è una soluzione concentrata, che risulta in un composto chimico altamente corrosivo, che deve essere contenuto in un contenitore di vetro per evitare che corroda l'arma."
     }
   },
   "ammoAlienBlasterRound": {
@@ -292,7 +300,7 @@
     "it": "Proiettile per Blaster Alieno",
     "_description": {
       "en": "A container with an unknown compound that is identified as blue energy. Only alien weaponry is generally capable of harnessing and utilizing this energy similar to how fusion cells operate.",
-      "it": "Un contenitore con un composto sconosciuto identificato come energia blu. Solo le armi aliene sono generalmente in grado di sfruttare e utilizzare questa energia, in modo simile al funzionamento delle celle di fusione."
+      "it": "Un contenitore con un composto sconosciuto, identificato come energia blu. Solo le armi aliene sono in genere in grado di sfruttare e utilizzare questa energia, in modo simile a come funzionano le celle di fusione."
     }
   },
   "ammoGasGrenade": {
@@ -300,7 +308,7 @@
     "it": "Granata a Gas",
     "_description": {
       "en": "These bomblets contain a poisonous gas under high pressure, which bursts into a gray cloud upon impact, and dissipates quickly.",
-      "it": "Queste piccole bombe contengono un gas velenoso ad alta pressione, che all’impatto esplode formando una nube grigia e si disperde rapidamente."
+      "it": "Queste bombe contengono un gas velenoso sotto alta pressione, che al momento dell'impatto esplode in una nube grigia e si disperde rapidamente."
     }
   },
   "ammoArrowCryo": {
@@ -308,7 +316,7 @@
     "it": "Freccia/Dardo Criogenica",
     "_description": {
       "en": "With a special container of liquid nitrogen, the weapon spreads this cold element on impact. The weapon gains the Freeze damage effect.",
-      "it": "Con uno speciale contenitore di azoto liquido, l'arma diffonde questo elemento freddo all'impatto. L'arma ottiene l'effetto danno Congelamento."
+      "it": "Con un contenitore speciale di azoto liquido, l'arma diffonde questo elemento freddo all'impatto. L'arma ottiene l'effetto di danno Congelamento."
     }
   },
   "ammoArrowExplosive": {
@@ -316,7 +324,7 @@
     "it": "Freccia/Dardo Esplosiva",
     "_description": {
       "en": "Tipped with explosive materials, this arrow detonates on impact. The weapon loses the Suppressed weapon quality and gains the Blast weapon quality.",
-      "it": "Con la punta di materiali esplosivi, questa freccia detona all'impatto. L'arma perde la qualità Silenziata e ottiene la qualità Esplosione."
+      "it": "Con una punta di materiali esplosivi, questa freccia esplode all'impatto. L'arma perde la qualità Silenziata e ottiene la qualità Esplosiva."
     }
   },
   "ammoArrowFlaming": {
@@ -324,7 +332,7 @@
     "it": "Freccia/Dardo Incendiaria",
     "_description": {
       "en": "With flammable materials, this arrow ignites on impact. The weapon gains the Persistent (Energy) damage effect.",
-      "it": "Con materiali infiammabili, questa freccia si incendia all'impatto. L'arma ottiene l'effetto danno Persistente (Energia)."
+      "it": "Con materiali infiammabili, questa freccia prende fuoco all'impatto. L'arma ottiene l'effetto di danno Persistente (Energia)."
     }
   },
   "ammoArrowSerrated": {
@@ -332,7 +340,7 @@
     "it": "Freccia/Dardo Seghettata",
     "_description": {
       "en": "Carefully shaped tip increases the penetration force of the arrow and leaves serious wounds. The weapon gains the Persistent (Physical) and Piercing 1 damage effects.",
-      "it": "La punta sagomata con cura aumenta la forza di penetrazione della freccia e lascia ferite gravi. L'arma ottiene gli effetti danno Persistente (Fisico) e Penetrante 1."
+      "it": "La punta sagomata con cura aumenta la forza di penetrazione della freccia e causa ferite gravi. L'arma ottiene gli effetti di danno Persistente (Fisico) e Penetrante 1."
     }
   },
   "ammoArrowPlasma": {
@@ -340,7 +348,7 @@
     "it": "Freccia/Dardo al Plasma",
     "_description": {
       "en": "Rigged with a modified fusion cell, the energy is released on impact. The weapon inflicts +2 CD damage and inflicts both Physical and Energy damage; the damage is reduced by whichever of Physical or Energy damage resistance the target has less of.",
-      "it": "Dotata di una cella a fusione modificata, l'energia viene rilasciata all'impatto. L'arma infligge +2 CD di danno e infligge sia danni Fisici che Energetici; il danno è ridotto dalla minore tra le resistenze ai danni Fisici o Energetici del bersaglio."
+      "it": "Con una cella di fusione modificata, l'energia viene rilasciata all'impatto. L'arma infligge +2 DC di danno e infligge sia danni Fisici che da Energia; il danno viene ridotto dalla minore tra le resistenze ai danni Fisici o da Energia del bersaglio."
     }
   },
   "ammoArrowPoison": {
@@ -348,15 +356,15 @@
     "it": "Freccia/Dardo Avvelenata",
     "_description": {
       "en": "Dipped in poison, the tip of the arrow infects organic material. The weapon gains the Persistent (Poison) damage effect.",
-      "it": "Immersa nel veleno, la punta della freccia infetta il materiale organico. L'arma ottiene l'effetto danno Persistente (Veleno)."
+      "it": "Immersa nel veleno, la punta della freccia contamina il materiale organico. L'arma ottiene l'effetto di danno Persistente (Veleno)."
     }
   },
   "ammoSyringerCazadoresSting": {
     "en": "Cazadores Sting",
     "it": "Puntura di Cazador",
     "_description": {
-      "en": "The weapon adds +2 CD damage and gains the Persistent (poison) damage effect.",
-      "it": "L'arma aggiunge +2 CD di danno e ottiene l'effetto danno Persistente (veleno)."
+      "en": "The weapon adds +2 CD damage and gains the Persistent (Poison) damage effect.",
+      "it": "L'arma aggiunge +2 DC di danno e ottiene l'effetto di danno Persistente (Veleno)."
     }
   }
 }

@@ -2,7 +2,6 @@ import type { PerkImplementation } from '@/features/character/feats/types.ts';
 import { allItems } from '@/data';
 import { isType } from '@/features/item/utils.ts';
 
-
 const perkBarbarian: PerkImplementation = {
     id: 'perkBarbarian',
     getLocationDRBonus: (special, items) => {
@@ -13,15 +12,24 @@ const perkBarbarian: PerkImplementation = {
             const data = allItems[item.id];
             return isType(data, 'apparel') && data.CATEGORY === 'powerArmor'; // TODO fix it when powerArmor is implemented
         });
-        let bonus = 0
-        if(!isWearingPowerArmor) {
-            if (special.strength >= 7) {bonus += 1}
-            if (special.strength >= 9) {bonus += 1}
-            if (special.strength >= 11) {bonus += 1}
+        let bonus = 0;
+        if (!isWearingPowerArmor) {
+            if (special.strength >= 7) {
+                bonus += 1;
+            }
+            if (special.strength >= 9) {
+                bonus += 1;
+            }
+            if (special.strength >= 11) {
+                bonus += 1;
+            }
         }
-        if(bonus) { return {physical: bonus}}
-        return {}
-    }
-}
+        // Errata (Corebook, Q1 2025): energy DR increases at the same rate as physical DR.
+        if (bonus) {
+            return { physical: bonus, energy: bonus };
+        }
+        return {};
+    },
+};
 
-export default perkBarbarian
+export default perkBarbarian;

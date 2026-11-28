@@ -1,65 +1,35 @@
+/**
+ * Main entrypoint of the whole App/PWA
+ * - Loads fonts & styles
+ * - Applies saved settings
+ * - Creates DOM Root element
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import '@fontsource/share-tech-mono';
-// Fira Code: bundled specifically for the bootscreen ASCII art.
-// Confirmed to render Block Elements (█) and Box Drawing (╔═║╗) at uniform width on Android.
+// Fira Code: bundled specifically for the bootscreen ASCII art. Confirmed to render Block Elements (█) and Box Drawing (╔═║╗) at uniform width on Android.
 import '@fontsource/fira-code';
 
 import './styles/index.css';
+import './locales/i18n';
 
-import './locales/i18n.ts';
-
-import { UISettingsManager } from '@/services/UISettingsManager.ts';
-
-import { ErrorBoundary } from 'react-error-boundary';
-import { ErrorFallback } from './ErrorBoundary';
-import { CharacterProvider } from '@/app/contexts/CharacterContext';
-import { TooltipProvider } from '@/app/contexts/TooltipContext';
-import { PopupProvider } from '@/app/contexts/PopupContext.tsx';
-import BootScreen, { useBootScreen } from '@/BootScreen';
-import App from '@/app/App';
-import UpdatePrompt from '@/app/components/UpdatePrompt';
+import { UISettingsManager } from '@/services/UISettingsManager';
+import { Root } from './Root';
 
 // Apply appearance settings as early as possible to avoid flicker.
 UISettingsManager.applyAll();
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
+const rootElement = document.getElementById('root');
 
-/**
- * Root component — orchestrates startup sequence:
- * - Boot screen (production only, timed)
- * - GameDatabase async init
- * - Global context providers (Character, Tooltip, Popup)
- * - Error boundary
- */
-function Main() {
-    const showBootScreen = useBootScreen();
-
-    return (
-        <ErrorBoundary fallbackRender={ErrorFallback}> {/* Handles errors in the entire app */}
-
-            {(showBootScreen) && <BootScreen />}
-
-            <CharacterProvider> {/* Handles Character, used almost everywhere */}
-                <TooltipProvider> {/* Handles tooltips, also needed inside Popups */}
-                    <PopupProvider> {/* Handles Popups, used in the App */}
-                        <App />
-                    </PopupProvider>
-                </TooltipProvider>
-            </CharacterProvider>
-
-            <UpdatePrompt />
-
-        </ErrorBoundary>
-    );
+if (!rootElement) {
+    throw new Error('Missing React root element');
 }
 
-// ─── Render ───────────────────────────────────────────────────────────────────
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
-        <Main />
+        <Root />
     </React.StrictMode>,
 );

@@ -29,7 +29,12 @@ export const ApparelSchema: z.ZodType<ApparelItem> = BaseItemSchema.extend({
     ENERGY_RES: z.number().int().min(0).or(z.literal(Infinity)),
     RADIATION_RES: z.number().int().min(0).or(z.literal(Infinity)),
 
-    LOCATIONS_COVERED: z.array(z.string()).default([]), // TODO change this as it sucks
+    // TODO change this as it sucks (strings are not checked against the allowed locations)
+    LOCATIONS_COVERED: z
+        .array(
+            z.custom<ApparelItem['LOCATIONS_COVERED'][number]>(value => typeof value === 'string'),
+        )
+        .default([]),
 
     EFFECTS: z.array(z.string()).default([]),
     //QUALITIES: z.array(z.string()).default([]),

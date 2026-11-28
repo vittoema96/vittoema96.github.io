@@ -10,7 +10,7 @@ import Toast from './Toast'
  */
 const DEBUG_SHOW = false // Set to true to force-show the banner during development
 
-export default function UpdatePrompt() {
+export default function UpdateRequestToast() {
     const { t } = useTranslation()
 
     const {

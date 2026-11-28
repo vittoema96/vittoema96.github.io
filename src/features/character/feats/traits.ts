@@ -12,7 +12,7 @@ export interface TraitData {
     FIXED: boolean;
 }
 
-function getFixedTraits(originId: OriginId): TraitId[] {
+export function getFixedTraits(originId: OriginId): TraitId[] {
     if (originId) {
         return Object.values(traits)
             .filter(trait => {

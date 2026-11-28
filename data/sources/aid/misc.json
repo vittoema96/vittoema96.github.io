@@ -4,11 +4,11 @@
     "it": "Kit di Riparazione per Robot",
     "_description": {
       "en": "A device which can help to repair and reactivate damaged robots or Power Armor. Most robots have internal self-diagnostic and repair protocols, which are activated when the robot performs repairs or is repaired by someone else. A robot repair kit helps jump-start and accelerate these protocols.",
-      "it": "È un'apparecchiatura che può aiutare a riparare e riattivare robot danneggiati e Armature Atomiche. La maggior parte dei robot è dotata di protocolli di autodiagnostica e riparazione che si attivano quando questo si ripara o viene riparato da qualcun altro. Il kit serve ad avviare e accelerare questi protocolli."
+      "it": "Un dispositivo che può aiutare a riparare e riattivare robot danneggiati o Armature Atomiche. La maggior parte dei robot ha protocolli interni di autodiagnosi e riparazione, che si attivano quando il robot esegue una riparazione o viene riparato da qualcun altro. Un kit di riparazione per robot aiuta ad avviare e accelerare questi protocolli."
     },
     "_effect": {
       "en": "Can be applied using the Take Chem minor action to heal 4 HP or treat an Injury immediately, or as part of a First Aid action to heal 4 HP or treat an Injury in addition to other healing. Uses Repair skill instead of Medicine.",
-      "it": "Usabile con l'azione minore Assumere Sostanze per ripristinare 4 PS o curare 1 Ferita immediatamente, oppure come parte di un'azione di Primo Soccorso per guarire 4 PS o curare 1 Ferita in aggiunta ad altre cure. Usa l'abilità Riparare anziché Medicina."
+      "it": "Usabile con l'azione minore Assumere Sostanze per ripristinare 4 HP o curare 1 Ferita immediatamente, oppure come parte di un'azione di Primo Soccorso per guarire 4 HP o curare 1 Ferita in aggiunta ad altre cure. Usa l'abilità Riparare anziché Medicina."
     }
   },
   "aidStealthBoy": {
@@ -16,7 +16,7 @@
     "it": "Stealth Boy",
     "_description": {
       "en": "One of the most interesting technologies developed before the War, the Stealth Boy 3001 is a compact device which generates a modulating refraction field which transmits light from one side of the field to the other. The result is near-perfect active camouflage, ranging from a sort of distorted transparency when moving to almost total invisibility when stationary. The Stealth Boy was reverse engineered from captured Chinese Stealth Armor during the War, and while the technology was never perfected—even the most advanced Stealth Boy consumes its battery in around 30 seconds—it was still seen to be reliable enough for service. Long-term use of Stealth Boy technology has been observed to cause permanent neurological changes, resulting in paranoid delusions, hallucinations, and other mental changes.",
-      "it": "Una delle tecnologie più interessanti sviluppate prima della Guerra, lo Stealth Boy 3001 è un apparecchio compatto che genera un campo di rifrazione modulare che trasmette la luce da un lato all'altro, risultando in un camuffamento quasi perfetto, che genera da una sorta di trasparenza distorta quando si è in movimento all'invisibilità totale quando si sta fermi. Lo Stealth boy fu decodificato da un'Armatura Stealth cinese catturata durante la Guerra: nonostante la tecnologia non sia mai stata perfezionata (anche lo Stealth Boy più avanzato consuma la batteria in circa 30 secondi), fu ritenuta abbastanza affidabile da poter essere usata. Si è notato che un uso prolungato della tecnologia dello Stealth Boy causa cambiamenti neurologici permanenti che sfociano in deliri paranoici, allucinazioni e altre alterazioni dello stato mentale."
+      "it": "Una delle tecnologie più interessanti sviluppate prima della Guerra: lo Stealth Boy 3001 è un dispositivo compatto che genera un campo di rifrazione modulare, che trasmette la luce da un lato all'altro. Il risultato è un camuffamento attivo quasi perfetto, che va da una sorta di trasparenza distorta quando ci si muove fino a un'invisibilità quasi totale da fermi. Lo Stealth Boy fu decodificato da un'Armatura Stealth cinese catturata durante la Guerra: nonostante la tecnologia non sia mai stata perfezionata (anche lo Stealth Boy più avanzato consuma la batteria in circa 30 secondi), fu ritenuta abbastanza affidabile da poter essere usata. È stato osservato che l'uso prolungato della tecnologia Stealth Boy provoca cambiamenti neurologici permanenti, con deliri paranoici, allucinazioni e altri disturbi mentali."
     },
     "_effect": {
       "en": "Activated using the Interact minor action. Functions for 3 full turns, then is destroyed. Enemies add +2 to the difficulty of all tests to spot you. Increases your Defense by +2 even if detected.",
@@ -25,14 +25,14 @@
   },
   "aidStimpakDiffuser": {
     "en": "Stimpak Diffuser",
-    "it": "Diffusore Stimpak",
+    "it": "Diffusore di Stimpak",
     "_description": {
       "en": "This delivery mechanism allows the contents of a super Stimpak to be dispersed into an aerosol cloud, providing a burst of medicinal vapor over a small area.",
       "it": "Questo meccanismo di rilascio fa sì che il contenuto di un super Stimpak venga disperso in una nube di aerosol, inondando una zona ristretta con uno scoppio di vapori medicinali."
     },
     "_effect": {
       "en": "Deployed using the Interact minor action. Immediately heals 4 HP to everyone (except robots) within Close range. Consumes 1 super Stimpak per use.",
-      "it": "Rilasciato con l'azione minore Interagire. Ripristina immediatamente 4 PS a tutti (tranne i robot) a distanza Ravvicinata. Consuma 1 super Stimpak per utilizzo."
+      "it": "Rilasciato con l'azione minore Interagire. Ripristina immediatamente 4 HP a tutti (tranne i robot) a distanza Ravvicinata. Consuma 1 super Stimpak per utilizzo."
     }
   }
 }

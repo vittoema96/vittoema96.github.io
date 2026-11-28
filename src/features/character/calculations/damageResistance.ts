@@ -14,6 +14,7 @@ export function calculateDamageResistances(
     origin: Origin,
     perks: PerkId[],
     traits: TraitId[],
+    isEncumbered = false,
 ) {
     // Init bodyParts with values = 0
     const locationsDR = Object.fromEntries(
@@ -62,7 +63,7 @@ export function calculateDamageResistances(
         });
     });
 
-    const drBonus = getLocationDRBonus(special, items, perks, traits, origin);
+    const drBonus = getLocationDRBonus(special, items, perks, traits, origin, { isEncumbered });
     Object.values(locationsDR).forEach(dr => {
         dr.physical += drBonus.physical;
         dr.energy += drBonus.energy;

@@ -696,6 +696,17 @@ These are current app choices or workarounds, **not official errata**. Check the
 - **Musket and Assaultron Head - provisional workaround:** damage 4 and fire rate 1 instead of 5 and 0, to approximate their special rule. Mods can still reduce fire rate to 0; this needs a better solution.
 - **Tesla Rifle:** uses Wanderer's Guide stats and mods rather than Settler's Guide, providing more mods and damage rating 5 instead of 4.
 - **Cazador Sting ammunition:** rarity 3 and weight 0, which were unspecified in the manuals.
+- **Thermic Lance:** uses New Vegas stats (9 CD, Piercing 2, Vicious, Two-Handed, Parry) rather than the Wanderers' Guide stat block (6 CD, Piercing 1, Stun, Recoil 7).
+- **40mm grenade cost:** 20 caps, as in the Wanderers' Guide and New Vegas, instead of 2 in the Settlers' Guide.
+- **Pipe Bolt-Action:** Unreliable, as in the English Corebook (the Italian Corebook says Inaccurate).
+- **Gatling Laser:** uses fusion cells; its Fusion Core Slot quality notes that each fusion core charge counts as 50 fusion cells.
+- **Perk requirements "don't already have a companion":** checked only when the perk is taken, not on perks you already own.
+- **Doctor's Bag:** follows the English Corebook (up to 2 additional patients during long-term care). The Italian Corebook instead says the bag is used up when two or more complications are rolled together.
+- **Maria (New Vegas):** weight 2 lbs. The manual prints 6.75 lbs, the same as Thump-Thump, which looks like a copy error for a 9mm pistol.
+- **AER14 Prototype:** weight read as 5 lbs; the manual prints "5" with no unit.
+- **NCR Ranger Combat Armor:** the manual gives the same benefits to the armor and to the helmet (+1 Reputation with NCR groups, no hot-weather exposure, gas protection). In the app only the Ranger Helmet has the gas mask effect, which also carries the gas mask's +1 difficulty on Speech tests.
+- **Targeting:** the Targeting Computer mod adds a Targeting quality (aimed targets lose cover, and the aim bonus carries to the next attack in the scene) instead of Accurate and Recon. Annabelle has the same quality built in, since the New Vegas table lists "Targeting" among its qualities.
+- **New Vegas outfits:** the Boomer Jumpsuit is clothing (armor can be worn over it); Great Khan Armor, King's Outfit, Powder Ganger Outfit, Ranger Outfit and Spacesuit are outfits.
 
 ---
 

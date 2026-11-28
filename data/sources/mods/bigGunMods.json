@@ -3,8 +3,8 @@
     "en": "Accelerated Barrel",
     "it": "Canna Accelerata",
     "_description": {
-      "en": "+1 damage DC, +1 Fire Rate, reduces Range by 1 grade",
-      "it": "+1 danno DC, +1 Cadenza di Fuoco, riduce la Gittata di 1 grado"
+      "en": "+1 CD, +1 Fire Rate, Reduce Range by 1 step",
+      "it": "+1 DC, +1 Cadenza di Fuoco, riduce la Gittata di 1 grado"
     },
     "_descriptor": {
       "en": "Accelerated {{name}}",
@@ -15,8 +15,8 @@
     "en": "Bayonet",
     "it": "Baionetta",
     "_description": {
-      "en": "Melee Weapon, deals 4 DC Physical Piercing 1 damage",
-      "it": "Arma da Mischia, infligge 4 DC danni Fisici Penetranti 1"
+      "en": "Melee weapon, deals 4 CD Piercing 1 physical damage",
+      "it": "Arma da mischia, infligge 4 DC di danno Fisico Penetrante 1"
     },
     "_descriptor": {
       "en": "{{name}} with Bayonet",
@@ -39,7 +39,7 @@
     "en": "Beta Wave Tuner",
     "it": "Sintonizzatore di Onde Beta",
     "_description": {
-      "en": "Gains Persistent",
+      "en": "Gain Persistent",
       "it": "Ottiene Persistente"
     },
     "_descriptor": {
@@ -51,8 +51,8 @@
     "en": "Boosted Capacitor",
     "it": "Condensatore Potenziato",
     "_description": {
-      "en": "+1 damage DC",
-      "it": "+1 danno DC"
+      "en": "+1 damage CD",
+      "it": "+1 DC di danno"
     },
     "_descriptor": {
       "en": "Boosted {{name}}",
@@ -63,8 +63,8 @@
     "en": "Charging Barrels",
     "it": "Canne a Caricamento",
     "_description": {
-      "en": "+4 damage DC, -3 Fire Rate, increases Range by 1 grade",
-      "it": "+4 danno DC, -3 Cadenza di Fuoco, aumenta la Gittata di 1 grado"
+      "en": "+4 CD, -3 Fire Rate, Increase Range by 1 step",
+      "it": "+4 DC, -3 Cadenza di Fuoco, aumenta la Gittata di 1 grado"
     },
     "_descriptor": {
       "en": "Charging {{name}}",
@@ -75,8 +75,8 @@
     "en": "Ignition Module",
     "it": "Modulo di Combustione",
     "_description": {
-      "en": "Gains Persistent",
-      "it": "Ottiene Persistente"
+      "en": "Gain Persistent (Energy)",
+      "it": "Ottiene Persistente (Energia)"
     },
     "_descriptor": {
       "en": "Ignition {{name}}",
@@ -87,8 +87,8 @@
     "en": "Compression Nozzle",
     "it": "Ugello di Compressione",
     "_description": {
-      "en": "+1 damage DC",
-      "it": "+1 danno DC"
+      "en": "+1 CD",
+      "it": "+1 DC"
     },
     "_descriptor": {
       "en": "Compression {{name}}",
@@ -99,8 +99,8 @@
     "en": "Electrification Module",
     "it": "Modulo di Elettrificazione",
     "_description": {
-      "en": "Damage type becomes Energy, gains Vicious",
-      "it": "Il tipo di danno diventa Energia, ottiene Violento"
+      "en": "Gain Vicious, Change damage type to Energy",
+      "it": "Ottiene Violento, cambia il tipo di danno in Energia"
     },
     "_descriptor": {
       "en": "Electrification {{name}}",
@@ -135,8 +135,8 @@
     "en": "Gunner Sight",
     "it": "Mirino Gunner",
     "_description": {
-      "en": "Loses Inaccurate",
-      "it": "Perde Impreciso"
+      "en": "Remove Inaccurate",
+      "it": "Rimuove Imprecisa"
     },
     "_descriptor": {
       "en": "Gunner {{name}}",
@@ -171,8 +171,8 @@
     "en": "Long Barrel",
     "it": "Canna Lunga",
     "_description": {
-      "en": "Loses Inaccurate",
-      "it": "Perde Impreciso"
+      "en": "Remove Inaccurate",
+      "it": "Rimuove Imprecisa"
     },
     "_descriptor": {
       "en": "Long {{name}}",
@@ -195,8 +195,8 @@
     "en": "Napalm Fuel",
     "it": "Napalm",
     "_description": {
-      "en": "+1 damage DC",
-      "it": "+1 danno DC"
+      "en": "+1 damage CD",
+      "it": "+1 DC di danno"
     },
     "_descriptor": {
       "en": "Napalm Fuel {{name}}",
@@ -207,7 +207,7 @@
     "en": "Night Vision Scope",
     "it": "Mirino Visione Notturna",
     "_description": {
-      "en": "Gains Precision, gains Night Vision",
+      "en": "Gain Accurate, Gain Night Vision",
       "it": "Ottiene Di Precisione, ottiene Visione Notturna"
     },
     "_descriptor": {
@@ -219,8 +219,8 @@
     "en": "Photonic Agitator",
     "it": "Agitatore Fotonico",
     "_description": {
-      "en": "+1 damage DC, gains Vicious",
-      "it": "+1 danno DC, ottiene Violento"
+      "en": "+1 damage CD, gains Vicious",
+      "it": "+1 DC di danno, ottiene Violento"
     },
     "_descriptor": {
       "en": "Agitated {{name}}",
@@ -231,7 +231,7 @@
     "en": "Photon Exciter",
     "it": "Stimolatore Fotonico",
     "_description": {
-      "en": "Gains Vicious",
+      "en": "Gain Vicious",
       "it": "Ottiene Violento"
     },
     "_descriptor": {
@@ -267,8 +267,8 @@
     "en": "Reflex Sight",
     "it": "Mirino Reflex",
     "_description": {
-      "en": "Loses Inaccurate",
-      "it": "Perde Impreciso"
+      "en": "Remove Inaccurate",
+      "it": "Rimuove Imprecisa"
     },
     "_descriptor": {
       "en": "Tactical {{name}}",
@@ -279,7 +279,7 @@
     "en": "Scope",
     "it": "Mirino",
     "_description": {
-      "en": "Gains Precision",
+      "en": "Gain Accurate",
       "it": "Ottiene Di Precisione"
     },
     "_descriptor": {
@@ -291,8 +291,8 @@
     "en": "Shredder",
     "it": "Trituratore",
     "_description": {
-      "en": "Melee Weapon, deals damage DC equal to Fire Rate, Piercing 2",
-      "it": "Arma da Mischia, infligge un Numero di DC danni Fisici pari alla Cadenza di Fuoco, Penetrante 2"
+      "en": "Melee weapon, Deals CD of Physical damage equal to Fire Rate",
+      "it": "Arma da mischia, infligge un numero di DC di danno Fisico pari alla Cadenza di Fuoco"
     },
     "_descriptor": {
       "en": "Shredder {{name}}",
@@ -303,7 +303,7 @@
     "en": "Stabilizer",
     "it": "Stabilizzatore",
     "_description": {
-      "en": "Gains Piercing 1",
+      "en": "Gain Piercing 1",
       "it": "Ottiene Penetrante 1"
     },
     "_descriptor": {
@@ -315,8 +315,8 @@
     "en": "Targeting Computer",
     "it": "Computer di Puntamento",
     "_description": {
-      "en": "Gains Precision, gains Recon",
-      "it": "Ottiene Di Precisione, ottiene Da Ricognizione"
+      "en": "When you Aim at a target, the target does not benefit from being in cover, and the bonus for aiming applies to the next attack on any subsequent turn during the scene",
+      "it": "Quando si mira a un bersaglio, questo non ha alcun beneficio derivante da copertura, inoltre il bonus per la mira si applica al prossimo attacco in qualsiasi turno successivo della scena"
     },
     "_descriptor": {
       "en": "Targeting {{name}}",
@@ -339,8 +339,8 @@
     "en": "Tri-Barrel",
     "it": "Canna Tripla",
     "_description": {
-      "en": "+2 damage DC, -2 Fire Rate",
-      "it": "+2 danno DC, -2 Cadenza di Fuoco"
+      "en": "+2 CD, -2 Fire Rate",
+      "it": "+2 DC, -2 Cadenza di Fuoco"
     },
     "_descriptor": {
       "en": "Tri-Barrel {{name}}",
@@ -351,8 +351,8 @@
     "en": "Vaporization Nozzle",
     "it": "Ugello Vaporizzatore",
     "_description": {
-      "en": "+1 damage DC, gains Vicious",
-      "it": "+1 danno DC, ottiene Violento"
+      "en": "+1 CD, Vicious",
+      "it": "+1 DC, Violento"
     },
     "_descriptor": {
       "en": "Vaporization {{name}}",
@@ -363,8 +363,8 @@
     "en": "Gamma Wave Emitter",
     "it": "Emettitore di Onde Gamma",
     "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+      "en": "+1 CD, Gain Persistent",
+      "it": "+1 DC, ottiene Persistente"
     },
     "_descriptor": {
       "en": "Fiery {{name}}",
@@ -375,8 +375,8 @@
     "en": "Maximized Capacitor",
     "it": "Condensatore Massimizzato",
     "_description": {
-      "en": "+2 damage DC",
-      "it": "+2 danno DC"
+      "en": "+2 CD",
+      "it": "+2 DC"
     },
     "_descriptor": {
       "en": "Maximized {{name}}",
@@ -387,8 +387,8 @@
     "en": "Boosted Photon Agitator",
     "it": "Agitatore Fotonico Potenziato",
     "_description": {
-      "en": "+2 damage DC, gains Vicious",
-      "it": "+2 danno DC, ottiene Violento"
+      "en": "+2 CD, Gain Vicious",
+      "it": "+2 DC, ottiene Violento"
     },
     "_descriptor": {
       "en": "Boosted Agitated {{name}}",
@@ -399,8 +399,8 @@
     "en": "Boosted Gamma Wave Emitter",
     "it": "Emettitore di Onde Gamma Potenziato",
     "_description": {
-      "en": "+2 damage DC, gains Persistent",
-      "it": "+2 danno DC, ottiene Persistente"
+      "en": "+2 CD, Gain Persistent",
+      "it": "+2 DC, ottiene Persistente"
     },
     "_descriptor": {
       "en": "Boosted Fiery {{name}}",
@@ -411,8 +411,8 @@
     "en": "Overcharged Capacitor",
     "it": "Condensatore Sovraccaricato",
     "_description": {
-      "en": "+3 damage DC",
-      "it": "+3 danno DC"
+      "en": "+3 CD",
+      "it": "+3 DC"
     },
     "_descriptor": {
       "en": "Overcharged {{name}}",
@@ -423,8 +423,8 @@
     "en": "Heavy Barrel",
     "it": "Canna Pesante",
     "_description": {
-      "en": "+1 damage DC, gains Vicious",
-      "it": "+1 danno DC, ottiene Brutale"
+      "en": "+1 CD damage, gain Vicious",
+      "it": "+1 DC di danno, ottiene Violento"
     },
     "_descriptor": {
       "en": "Heavy {{name}}",
@@ -435,8 +435,8 @@
     "en": "Heavy Barrel",
     "it": "Canna Pesante",
     "_description": {
-      "en": "+1 damage DC, gains Vicious",
-      "it": "+1 danno DC, ottiene Brutale"
+      "en": "+1 CD damage, gain Vicious",
+      "it": "+1 DC di danno, ottiene Violento"
     },
     "_descriptor": {
       "en": "Heavy {{name}}",
@@ -459,8 +459,8 @@
     "en": "25mm Grenade Receiver",
     "it": "Ricevitore Granata 25mm",
     "_description": {
-      "en": "Changes damage to 4 DC, +2 Fire Rate, ammo changes to 25mm grenade",
-      "it": "Cambia il danno a 4 DC, +2 Cadenza di Fuoco, le munizioni cambiano a granata 25mm"
+      "en": "Change damage to 4 CD, +2 Fire Rate, Ammo changes to 25mm grenade",
+      "it": "Cambia il danno in 4 DC, +2 Cadenza di Fuoco, le munizioni diventano granate da 25mm"
     },
     "_descriptor": {
       "en": "{{name}} with 25mm Grenade Receiver",
@@ -507,7 +507,7 @@
     "en": "Extra-Large Magazine",
     "it": "Caricatore Extra-Large",
     "_description": {
-      "en": "+1 Fire Rate, gains Unreliable",
+      "en": "+1 Fire Rate, Gain Unreliable.",
       "it": "+1 Cadenza di Fuoco, ottiene Inaffidabile"
     },
     "_descriptor": {
@@ -519,7 +519,7 @@
     "en": "Front Sight Ring",
     "it": "Mirino Anteriore",
     "_description": {
-      "en": "Removes Inaccurate",
+      "en": "Remove Inaccurate",
       "it": "Rimuove Imprecisa"
     },
     "_descriptor": {
@@ -531,8 +531,8 @@
     "en": "Large Bayonet",
     "it": "Baionetta Grande",
     "_description": {
-      "en": "Melee weapon, deals 5 DC Piercing 1 physical damage",
-      "it": "Arma da Mischia, infligge 5 DC danni Fisici Penetranti 1"
+      "en": "Melee weapon, deals 5 CD Piercing 1 physical damage",
+      "it": "Arma da mischia, infligge 5 DC di danno Fisico Penetrante 1"
     },
     "_descriptor": {
       "en": "Bayoneted {{name}}",
@@ -543,7 +543,7 @@
     "en": "Ported Barrel",
     "it": "Canna Sfogata",
     "_description": {
-      "en": "Removes Inaccurate",
+      "en": "Remove Inaccurate",
       "it": "Rimuove Imprecisa"
     },
     "_descriptor": {
@@ -568,7 +568,7 @@
     "it": "Mirino Reflex",
     "_description": {
       "en": "May re-roll hit location die",
-      "it": "Può ripetere il tiro del dado localizzazione"
+      "it": "Può ritirare il dado del Punto di Impatto"
     },
     "_descriptor": {
       "en": "Sighted {{name}}",
@@ -579,8 +579,8 @@
     "en": "Beam Splitter",
     "it": "Separatore di Fascio",
     "_description": {
-      "en": "Gains Spread",
-      "it": "Ottiene Dispersione"
+      "en": "Gain Spread",
+      "it": "Ottiene Propagato"
     },
     "_descriptor": {
       "en": "Scattered {{name}}",
@@ -615,8 +615,8 @@
     "en": "Penta-Barrel",
     "it": "Penta Canna",
     "_description": {
-      "en": "-1 damage DC, reduces Range by 1 step, +2 Fire Rate",
-      "it": "-1 danno DC, riduce la Gittata di 1 grado, +2 Cadenza di Fuoco"
+      "en": "-1 CD. Reduce Range by 1 step, +2 Fire Rate",
+      "it": "-1 DC, riduce la Gittata di 1 grado, +2 Cadenza di Fuoco"
     },
     "_descriptor": {
       "en": "Penta Barrel {{name}}",
@@ -628,7 +628,7 @@
     "it": "Condensatore Bobina Tesla",
     "_description": {
       "en": "Changes damage type to Energy",
-      "it": "Cambia il tipo di danno a Energia"
+      "it": "Cambia il tipo di danno in Energia"
     },
     "_descriptor": {
       "en": "Tesla Capacitor {{name}}",
@@ -640,7 +640,7 @@
     "it": "Dinamo Bobina Tesla",
     "_description": {
       "en": "Changes damage type to Energy, +1 Fire Rate",
-      "it": "Cambia il tipo di danno a Energia, +1 Cadenza di Fuoco"
+      "it": "Cambia il tipo di danno in Energia, +1 Cadenza di Fuoco"
     },
     "_descriptor": {
       "en": "Tesla Dynamo {{name}}",
@@ -651,8 +651,8 @@
     "en": "Calibrated Capacitor",
     "it": "Condensatore Calibrato",
     "_description": {
-      "en": "Gains Vicious",
-      "it": "Ottiene Brutale"
+      "en": "Gain Vicious",
+      "it": "Ottiene Violento"
     },
     "_descriptor": {
       "en": "Calibrated {{name}}",
@@ -663,8 +663,8 @@
     "en": "Pulse Capacitor",
     "it": "Condensatore a Impulso",
     "_description": {
-      "en": "Gains Surge",
-      "it": "Ottiene Sovraccarica"
+      "en": "Gain Surge",
+      "it": "Ottiene Sovraccarico"
     },
     "_descriptor": {
       "en": "Pulse {{name}}",
@@ -698,79 +698,157 @@
   "modLongBarrelBroadsider": {
     "en": "Long Barrel",
     "it": "Canna Lunga",
-    "_description": { "en": "Increases Range by 1 Step", "it": "Aumenta la Gittata di 1 Grado" },
-    "_descriptor": { "en": "Long {{name}}", "it": "{{name}} Lungo" }
+    "_description": {
+      "en": "Increases Range by 1 Step",
+      "it": "Aumenta la Gittata di 1 grado"
+    },
+    "_descriptor": {
+      "en": "Long {{name}}",
+      "it": "{{name}} Lungo"
+    }
   },
   "modLightBarrelBroadsider": {
     "en": "Light Barrel",
     "it": "Canna Leggera",
-    "_description": { "en": "+2 damage DC, removes Blast", "it": "+2 danno DC, rimuove Esplosione" },
-    "_descriptor": { "en": "Fluted {{name}}", "it": "{{name}} Scanalato" }
+    "_description": {
+      "en": "+2 CD , Remove Blast",
+      "it": "+2 DC, rimuove Esplosiva"
+    },
+    "_descriptor": {
+      "en": "Fluted {{name}}",
+      "it": "{{name}} Scanalato"
+    }
   },
   "modMultiShotCanister": {
     "en": "Multi Shot Canister",
     "it": "Bombola Multicolpo",
-    "_description": { "en": "+1 Fire Rate, gains Inaccurate", "it": "+1 Cadenza di Fuoco, ottiene Impreciso" },
-    "_descriptor": { "en": "Repeating {{name}}", "it": "{{name}} a Ripetizione" }
+    "_description": {
+      "en": "+1 Fire Rate, Gain Inaccurate",
+      "it": "+1 Cadenza di Fuoco, ottiene Imprecisa"
+    },
+    "_descriptor": {
+      "en": "Repeating {{name}}",
+      "it": "{{name}} a Ripetizione"
+    }
   },
   "modM79LauncherBroadsider": {
     "en": "M79 Launcher",
     "it": "Lanciagranate M79",
-    "_description": { "en": "Increases Range by 1 Step, changes ammo to 40mm Grenades", "it": "Aumenta la Gittata di 1 Grado, cambia le munizioni in granate da 40mm" },
-    "_descriptor": { "en": "Converted {{name}}", "it": "{{name}} Convertito" }
+    "_description": {
+      "en": "Increase Range by 1 Step Changes ammo to 40mm Grenades",
+      "it": "Aumenta la Gittata di 1 grado, le munizioni diventano granate da 40mm"
+    },
+    "_descriptor": {
+      "en": "Converted {{name}}",
+      "it": "{{name}} Convertito"
+    }
   },
   "modCrystallizingBarrel": {
     "en": "Crystallizing Barrel",
     "it": "Canna Cristallizzante",
-    "_description": { "en": "+2 damage DC, increases Range by 1 step, -1 Fire Rate, removes Stun and Unreliable", "it": "+2 danno DC, aumenta la Gittata di 1 grado, -1 Cadenza di Fuoco, rimuove Stordente e Inaffidabile" },
-    "_descriptor": { "en": "Crystallized {{name}}", "it": "{{name}} Cristallizzato" }
+    "_description": {
+      "en": "+2 CD , Increase Range by 1 step, -1 Fire Rate, Remove Stun, Remove Unreliable",
+      "it": "+2 DC, aumenta la Gittata di 1 grado, -1 Cadenza di Fuoco, rimuove Stordente, rimuove Inaffidabile"
+    },
+    "_descriptor": {
+      "en": "Crystallized {{name}}",
+      "it": "{{name}} Cristallizzato"
+    }
   },
   "modFusionMagCryolator": {
     "en": "Fusion Mag",
     "it": "Caricatore a Fusione",
-    "_description": { "en": "Changes damage to 2 DC, -1 Fire Rate, changes ammo to Fusion Cell", "it": "Cambia il danno a 2 DC, -1 Cadenza di Fuoco, cambia le munizioni in Cella di Fusione" },
-    "_descriptor": { "en": "Converted {{name}}", "it": "{{name}} Convertito" }
+    "_description": {
+      "en": "Changes damage to 2 CD, -1 Fire Rate, changes ammo to Fusion Cell",
+      "it": "Cambia il danno in 2 DC, -1 Cadenza di Fuoco, cambia le munizioni in Cella di Fusione"
+    },
+    "_descriptor": {
+      "en": "Converted {{name}}",
+      "it": "{{name}} Convertito"
+    }
   },
   "modRecoilCompensatingStockCryolator": {
     "en": "Recoil Compensating Stock",
     "it": "Calcio Compensatore di Rinculo",
-    "_description": { "en": "+1 Fire Rate", "it": "+1 Cadenza di Fuoco" },
-    "_descriptor": { "en": "Recoil Compensating {{name}}", "it": "{{name}} con Rinculo Compensato" }
+    "_description": {
+      "en": "+1 Fire Rate",
+      "it": "+1 Cadenza di Fuoco"
+    },
+    "_descriptor": {
+      "en": "Recoil Compensating {{name}}",
+      "it": "{{name}} con Rinculo Compensato"
+    }
   },
   "modReflexTacticalCryolator": {
     "en": "Reflex Tactical",
     "it": "Mirino Tattico Reflex",
-    "_description": { "en": "May re-roll hit location die", "it": "Può ripetere il tiro del dado della locazione del colpo" },
-    "_descriptor": { "en": "Tactical {{name}}", "it": "{{name}} Tattico" }
+    "_description": {
+      "en": "May re-roll hit location die",
+      "it": "Può ritirare il dado del Punto di Impatto"
+    },
+    "_descriptor": {
+      "en": "Tactical {{name}}",
+      "it": "{{name}} Tattico"
+    }
   },
   "modBarbedHarpoon": {
     "en": "Barbed Harpoon",
     "it": "Arpione Uncinato",
-    "_description": { "en": "Gains Vicious, gains Persistent", "it": "Ottiene Violento, ottiene Persistente" },
-    "_descriptor": { "en": "Barbed {{name}}", "it": "{{name}} Uncinato" }
+    "_description": {
+      "en": "Gain Vicious, Gain Persistent",
+      "it": "Ottiene Violento, ottiene Persistente"
+    },
+    "_descriptor": {
+      "en": "Barbed {{name}}",
+      "it": "{{name}} Uncinato"
+    }
   },
   "modFlechetteDarts": {
     "en": "Flechette Darts",
     "it": "Dardi Flechette",
-    "_description": { "en": "Gains Spread, reduces Range by 1 Step", "it": "Ottiene Diffusione, riduce la Gittata di 1 Grado" },
-    "_descriptor": { "en": "Tiny {{name}}", "it": "{{name}} Minuscolo" }
+    "_description": {
+      "en": "Gain Spread, Reduce Range by 1 Step",
+      "it": "Ottiene Propagato, riduce la Gittata di 1 grado"
+    },
+    "_descriptor": {
+      "en": "Tiny {{name}}",
+      "it": "{{name}} Minuscolo"
+    }
   },
   "modRecoilCompensatingStockHarpoon": {
     "en": "Recoil Compensating Stock",
     "it": "Calcio Compensatore di Rinculo",
-    "_description": { "en": "+1 Fire Rate", "it": "+1 Cadenza di Fuoco" },
-    "_descriptor": { "en": "Recoil Compensating {{name}}", "it": "{{name}} con Rinculo Compensato" }
+    "_description": {
+      "en": "+1 Fire Rate",
+      "it": "+1 Cadenza di Fuoco"
+    },
+    "_descriptor": {
+      "en": "Recoil Compensating {{name}}",
+      "it": "{{name}} con Rinculo Compensato"
+    }
   },
   "modGunnerSightHarpoon": {
     "en": "Gunner Sight",
     "it": "Mirino da Artigliere",
-    "_description": { "en": "May re-roll hit location die", "it": "Può ripetere il tiro del dado della locazione del colpo" },
-    "_descriptor": { "en": "Tactical {{name}}", "it": "{{name}} Tattico" }
+    "_description": {
+      "en": "May re-roll hit location die",
+      "it": "Può ritirare il dado del Punto di Impatto"
+    },
+    "_descriptor": {
+      "en": "Tactical {{name}}",
+      "it": "{{name}} Tattico"
+    }
   },
   "modShortScopeHarpoon": {
     "en": "Short Scope",
     "it": "Mirino Corto",
-    "_description": { "en": "Gains Accurate", "it": "Ottiene Preciso" },
-    "_descriptor": { "en": "Scoped {{name}}", "it": "{{name}} con Mirino" }
+    "_description": {
+      "en": "Gain Accurate",
+      "it": "Ottiene Di Precisione"
+    },
+    "_descriptor": {
+      "en": "Scoped {{name}}",
+      "it": "{{name}} con Mirino"
+    }
   }
 }

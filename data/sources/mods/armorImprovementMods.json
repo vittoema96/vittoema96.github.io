@@ -16,7 +16,7 @@
     "it": "Bilanciata",
     "_description": {
       "en": "Melee and unarmed attacks gain Piercing 1",
-      "it": "Gli attacchi da Mischia e senza armi guadagnano Penetrante 1"
+      "it": "Gli attacchi in mischia e a mani nude ottengono Penetrante 1"
     },
     "_descriptor": {
       "en": "Balanced {{name}}",
@@ -39,8 +39,8 @@
     "en": "Brawling",
     "it": "Picchiatore",
     "_description": {
-      "en": "Unarmed attacks deal +1 DC damage",
-      "it": "Gli attacchi senza armi infliggono +1 DC danno"
+      "en": "Unarmed attacks deal +1 CD damage",
+      "it": "Gli attacchi a mani nude infliggono +1 DC di danno"
     },
     "_descriptor": {
       "en": "Brawling {{name}}",
@@ -60,14 +60,14 @@
     }
   },
   "modCushioned": {
-    "en": "Cushioned",
+    "en": "Padded",
     "it": "Imbottito",
     "_description": {
       "en": "+2 Explosive Resistance",
       "it": "+2 alla Resistenza ai Danni da Armi Esplosive"
     },
     "_descriptor": {
-      "en": "Cushioned {{name}}",
+      "en": "Padded {{name}}",
       "it": "{{name}} Imbottito"
     }
   },
@@ -124,7 +124,7 @@
     "it": "Attenuata",
     "_description": {
       "en": "Can reroll one d20 on Sneak checks",
-      "it": "Si può ripetere il tiro di un d20 sulle prove di Furtività"
+      "it": "Puoi ritirare un d20 nelle prove di Furtività."
     },
     "_descriptor": {
       "en": "Muffled {{name}}",
@@ -136,7 +136,7 @@
     "it": "Pneumatico",
     "_description": {
       "en": "Stun damage requires 2+ Effects to affect character",
-      "it": "Affinché i danni stordenti abbiano effetto sul personaggio, occorre ottenere 2+ Effetti"
+      "it": "Il danno Stordente richiede 2+ Effetti per influenzare un personaggio."
     },
     "_descriptor": {
       "en": "Pneumatic {{name}}",
@@ -156,14 +156,14 @@
     }
   },
   "modShockAbsorbing": {
-    "en": "Shock Absorbing",
+    "en": "Cushioned",
     "it": "Ammortizzata",
     "_description": {
       "en": "+2 Physical Resistance against fall damage",
       "it": "+2 alla Resistenza ai Danni Fisici contro danni da caduta"
     },
     "_descriptor": {
-      "en": "Shock Absorbing {{name}}",
+      "en": "Cushioned {{name}}",
       "it": "{{name}} Ammortizzata"
     }
   },
@@ -171,8 +171,8 @@
     "en": "Stabilized",
     "it": "Stabilizzata",
     "_description": {
-      "en": "When aiming and making a Ranged Attack, damage increases by +1 DC",
-      "it": "Quando il personaggio prende la mira ed effettua un Attacco a Distanza, il danno dell'attacco aumenta di +1 DC"
+      "en": "When aiming and making a Ranged Attack, damage increases by +1 CD",
+      "it": "Quando miri e fai un attacco a distanza, il danno aumenta di +1 DC."
     },
     "_descriptor": {
       "en": "Stabilized {{name}}",
@@ -184,7 +184,7 @@
     "it": "Aerodinamica",
     "_description": {
       "en": "Can spend up to 4 AP for bonus melee damage",
-      "it": "Si possono spendere fino a 4 PA per danni bonus da attacchi da mischia"
+      "it": "Puoi spendere fino a 4 PA per un danno bonus in mischia."
     },
     "_descriptor": {
       "en": "Streamlined {{name}}",

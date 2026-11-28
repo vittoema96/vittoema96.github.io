@@ -1,5 +1,5 @@
 import type { Origin, OriginId } from '@/features/character/origins/types';
-import { AidCategory, AmmoCategory, ItemCategory, ItemType } from '@/types/item.ts';
+import { AidCategory, AmmoCategory, ItemCategory, ItemType, ModCategory } from '@/types/item.ts';
 import { BaseItem } from '@/data/types.ts';
 import { ApparelItem } from '@/data/item/apparel.schemas.ts';
 import { WeaponItem } from '@/data/item/weapon.schemas.ts';
@@ -189,8 +189,8 @@ export interface AidItem extends BaseItem {
 export type PerkWithRank = `${PerkId}:${number}`;
 
 export interface ModItem extends ItemWithEffects {
-    SLOT_TYPE: string;
-    SKILL: SkillType;
+    CATEGORY: ModCategory;
+    SKILL: SkillType | null; // null for robot platings, which are not installed with a skill
     PERKS: PerkWithRank[]; // JSON array // TODO should be perk type
 }
 

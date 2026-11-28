@@ -1,554 +1,554 @@
 {
-  "modAutomaticBarrel": {
-    "en": "Automatic Barrel",
-    "it": "Canna Automatica",
-    "_description": {
-      "en": "-1 damage DC, loses Close Quarters, increases Range by 1 grade, +1 Fire Rate",
-      "it": "-1 danno DC, perde Corpo a Corpo, aumenta la Gittata di 1 grado, +1 Cadenza di Fuoco"
+    "modAutomaticBarrel": {
+        "en": "Automatic Barrel",
+        "it": "Canna Automatica",
+        "_description": {
+            "en": "-1 CD, Remove Close-Quarters, Increase Range by 1 step, +1 Fire Rate",
+            "it": "-1 DC, rimuove Corpo a Corpo, aumenta la Gittata di 1 grado, +1 Cadenza di Fuoco"
+        },
+        "_descriptor": {
+            "en": "Automatic {{name}}",
+            "it": "{{name}} Automatica"
+        }
     },
-    "_descriptor": {
-      "en": "Automatic {{name}}",
-      "it": "{{name}} Automatica"
-    }
-  },
-  "modCausticAcidSoaker": {
-    "en": "Caustic",
-    "it": "Caustico",
-    "_description": {
-      "en": "+1 damage DC",
-      "it": "+1 danno DC"
+    "modCausticAcidSoaker": {
+        "en": "Caustic",
+        "it": "Caustico",
+        "_description": {
+            "en": "+1 CD",
+            "it": "+1 DC"
+        },
+        "_descriptor": {
+            "en": "Caustic {{name}}",
+            "it": "{{name}} Caustico"
+        }
     },
-    "_descriptor": {
-      "en": "Caustic {{name}}",
-      "it": "{{name}} Caustico"
-    }
-  },
-  "modLargeAmpoule": {
-    "en": "Large Ampoule",
-    "it": "Ampolla Grande",
-    "_description": {
-      "en": "+1 Fire Rate",
-      "it": "+1 Cadenza di Fuoco"
+    "modLargeAmpoule": {
+        "en": "Large Ampoule",
+        "it": "Ampolla Grande",
+        "_description": {
+            "en": "+1 Fire Rate",
+            "it": "+1 Cadenza di Fuoco"
+        },
+        "_descriptor": {
+            "en": "High Capacity {{name}}",
+            "it": "{{name}} ad Alta Capacità"
+        }
     },
-    "_descriptor": {
-      "en": "High Capacity {{name}}",
-      "it": "{{name}} ad Alta Capacità"
-    }
-  },
-  "modLargeVial": {
-    "en": "Large Vial",
-    "it": "Fiala Grande",
-    "_description": {
-      "en": "+3 Fire Rate",
-      "it": "+3 Cadenza di Fuoco"
+    "modLargeVial": {
+        "en": "Large Vial",
+        "it": "Fiala Grande",
+        "_description": {
+            "en": "+3 Fire Rate",
+            "it": "+3 Cadenza di Fuoco"
+        },
+        "_descriptor": {
+            "en": "Maximum Capacity {{name}}",
+            "it": "{{name}} a Capacità Massima"
+        }
     },
-    "_descriptor": {
-      "en": "Maximum Capacity {{name}}",
-      "it": "{{name}} a Capacità Massima"
-    }
-  },
-  "modMagFusionAlienBlaster": {
-    "en": "Mag Fusion",
-    "it": "Conversione a Fusione",
-    "_description": {
-      "en": "Changes damage to 3 DC, -1 Fire Rate, changes ammo to Fusion Cell",
-      "it": "Cambia il danno a 3 DC, -1 Cadenza di Fuoco, cambia le munizioni in Cella di Fusione"
+    "modMagFusionAlienBlaster": {
+        "en": "Fusion Mag",
+        "it": "Conversione a Fusione",
+        "_description": {
+            "en": "Changes damage to 3 CD, -1 Fire Rate, changes ammo to Fusion Cell",
+            "it": "Cambia il danno in 3 DC, -1 Cadenza di Fuoco, cambia le munizioni in Cella di Fusione"
+        },
+        "_descriptor": {
+            "en": "Fusion Mag {{name}}",
+            "it": "{{name}} a Fusione"
+        }
     },
-    "_descriptor": {
-      "en": "Mag Fusion {{name}}",
-      "it": "{{name}} a Fusione"
-    }
-  },
-  "modAutomaticSignalRepeater": {
-    "en": "Signal Repeater",
-    "it": "Ripetitore di Segnale",
-    "_description": {
-      "en": "+2 Fire Rate, gains Burst, loses Blast",
-      "it": "+2 Cadenza di Fuoco, ottiene Raffica, perde Esplosione"
+    "modAutomaticSignalRepeater": {
+        "en": "Signal Repeater",
+        "it": "Ripetitore di Segnale",
+        "_description": {
+            "en": "+2 Fire Rate, Gain Burst, Remove Blast",
+            "it": "+2 Cadenza di Fuoco, ottiene Raffica, rimuove Esplosiva"
+        },
+        "_descriptor": {
+            "en": "Signal {{name}}",
+            "it": "{{name}} Automatico"
+        }
     },
-    "_descriptor": {
-      "en": "Signal {{name}}",
-      "it": "{{name}} Automatico"
-    }
-  },
-  "modBeamFocuser": {
-    "en": "Beam Focuser",
-    "it": "Concentratore di Raggio",
-    "_description": {
-      "en": "Increases Range by 1 grade",
-      "it": "Aumenta la Gittata di 1 grado"
+    "modBeamFocuser": {
+        "en": "Beam Focuser",
+        "it": "Concentratore di Raggio",
+        "_description": {
+            "en": "Increases Range by 1 grade",
+            "it": "Aumenta la Gittata di 1 grado"
+        },
+        "_descriptor": {
+            "en": "Focused {{name}}",
+            "it": "{{name}} Concentrato"
+        }
     },
-    "_descriptor": {
-      "en": "Focused {{name}}",
-      "it": "{{name}} Concentrato"
-    }
-  },
-  "modBeamSplitter": {
-    "en": "Beam Splitter",
-    "it": "Separatore di Raggio",
-    "_description": {
-      "en": "-1 damage DC, gains Spread, -1 Fire Rate, gains Inaccurate, reduces Range by 1 grade",
-      "it": "-1 danno DC, ottiene Disperso, -1 Cadenza di Fuoco, ottiene Impreciso, riduce la Gittata di 1 grado"
+    "modBeamSplitter": {
+        "en": "Beam Splitter",
+        "it": "Separatore di Raggio",
+        "_description": {
+            "en": "-1 CD, Gain Spread, -1 Fire Rate, Gain Inaccurate, Reduce Range by 1 step",
+            "it": "-1 DC, ottiene Propagato, -1 Cadenza di Fuoco, ottiene Imprecisa, riduce la Gittata di 1 grado"
+        },
+        "_descriptor": {
+            "en": "Fragmented {{name}}",
+            "it": "{{name}} Frammentato"
+        }
     },
-    "_descriptor": {
-      "en": "Fragmented {{name}}",
-      "it": "{{name}} Frammentato"
-    }
-  },
-  "modBetaWaveTuner": {
-    "en": "Beta Wave Tuner",
-    "it": "Sintonizzatore di Onde Beta",
-    "_description": {
-      "en": "Gains Persistent",
-      "it": "Ottiene Persistente"
+    "modBetaWaveTuner": {
+        "en": "Beta Wave Tuner",
+        "it": "Sintonizzatore di Onde Beta",
+        "_description": {
+            "en": "Gain Persistent",
+            "it": "Ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Incendiary {{name}}",
+            "it": "{{name}} Incendiario"
+        }
     },
-    "_descriptor": {
-      "en": "Incendiary {{name}}",
-      "it": "{{name}} Incendiario"
-    }
-  },
-  "modBoostedCapacitor": {
-    "en": "Boosted Capacitor",
-    "it": "Condensatore Potenziato",
-    "_description": {
-      "en": "+1 damage DC, -1 Fire Rate",
-      "it": "+1 danno DC, -1 Cadenza di Fuoco"
+    "modBoostedCapacitor": {
+        "en": "Boosted Capacitor",
+        "it": "Condensatore Potenziato",
+        "_description": {
+            "en": "+1 damage CD, -1 Fire Rate",
+            "it": "+1 DC di danno, -1 Cadenza di Fuoco"
+        },
+        "_descriptor": {
+            "en": "Boosted {{name}}",
+            "it": "{{name}} Potenziato"
+        }
     },
-    "_descriptor": {
-      "en": "Boosted {{name}}",
-      "it": "{{name}} Potenziato"
-    }
-  },
-  "modCompensatingLens": {
-    "en": "Compensating Lens",
-    "it": "Lenti di Compensazione Circolari",
-    "_description": {
-      "en": "+1 Fire Rate, loses Inaccurate",
-      "it": "+1 Cadenza di Fuoco, perde Impreciso"
+    "modCompensatingLens": {
+        "en": "Compensating Lens",
+        "it": "Lenti di Compensazione Circolari",
+        "_description": {
+            "en": "+1 Fire Rate, loses Inaccurate",
+            "it": "+1 Cadenza di Fuoco, rimuove Imprecisa"
+        },
+        "_descriptor": {
+            "en": "Aiming {{name}}",
+            "it": "{{name}} Di Puntamento"
+        }
     },
-    "_descriptor": {
-      "en": "Aiming {{name}}",
-      "it": "{{name}} Di Puntamento"
-    }
-  },
-  "modDeepDish": {
-    "en": "Deep Dish",
-    "it": "Disco Profondo",
-    "_description": {
-      "en": "+1 damage DC, increases Range by 1 grade",
-      "it": "+1 danno DC, aumenta la Gittata di 1 grado"
+    "modDeepDish": {
+        "en": "Deep Dish",
+        "it": "Disco Profondo",
+        "_description": {
+            "en": "+1 CD, Increase Range by 1 step",
+            "it": "+1 DC, aumenta la Gittata di 1 grado"
+        },
+        "_descriptor": {
+            "en": "Long {{name}}",
+            "it": "{{name}} Lungo"
+        }
     },
-    "_descriptor": {
-      "en": "Long {{name}}",
-      "it": "{{name}} Lungo"
-    }
-  },
-  "modElectricSignalAntenna": {
-    "en": "Electric Signal Carrier Antennae",
-    "it": "Antenna Segnale Elettrico",
-    "_description": {
-      "en": "Damage becomes 7 DC Energy, gains Radioactive",
-      "it": "I danni diventano 7 DC da Energia, ottiene Radioattivo"
+    "modElectricSignalAntenna": {
+        "en": "Electric Signal Carrier Antennae",
+        "it": "Antenna Segnale Elettrico",
+        "_description": {
+            "en": "Change damage to 7 CD, Change damage type to Energy, Gain Radioactive",
+            "it": "Cambia il danno in 7 DC, cambia il tipo di danno in Energia, ottiene Radioattivo"
+        },
+        "_descriptor": {
+            "en": "Signal Carrier {{name}}",
+            "it": "{{name}} Elettrificato"
+        }
     },
-    "_descriptor": {
-      "en": "Signal Carrier {{name}}",
-      "it": "{{name}} Elettrificato"
-    }
-  },
-  "modFiveChargeCapacitor": {
-    "en": "Five Charge Capacitor",
-    "it": "Condensatore a Cinque Cariche",
-    "_description": {
-      "en": "+3 damage DC, consumes 5 ammo per shot",
-      "it": "+3 danno DC, consuma 5 munizioni per colpo"
+    "modFiveChargeCapacitor": {
+        "en": "Five Charge Capacitor",
+        "it": "Condensatore a Cinque Cariche",
+        "_description": {
+            "en": "+3 damage CD, consumes 5 ammo per shot",
+            "it": "+3 DC di danno, consuma 5 munizioni per colpo"
+        },
+        "_descriptor": {
+            "en": "Five Charge {{name}}",
+            "it": "{{name}} Cinque Cariche"
+        }
     },
-    "_descriptor": {
-      "en": "Five Charge {{name}}",
-      "it": "{{name}} Cinque Cariche"
-    }
-  },
-  "modFlamerBarrel": {
-    "en": "Flamer Barrel",
-    "it": "Canna Lanciafiamme",
-    "_description": {
-      "en": "-2 damage DC, +2 Fire Rate, gains Burst, reduces Range by 1 grade, gains Inaccurate",
-      "it": "-2 danno DC, +2 Cadenza di Fuoco, ottiene Raffica, riduce la Gittata di 1 grado, ottiene Impreciso"
+    "modFlamerBarrel": {
+        "en": "Flamer Barrel",
+        "it": "Canna Lanciafiamme",
+        "_description": {
+            "en": "-2 CD, +2 Fire Rate, Gain Burst, Gain Spread, Reduce range by 1 step, Gain Inaccurate",
+            "it": "-2 DC, +2 Cadenza di Fuoco, ottiene Raffica, ottiene Propagato, riduce la Gittata di 1 grado, ottiene Imprecisa"
+        },
+        "_descriptor": {
+            "en": "Flamer {{name}}",
+            "it": "{{name}} Lanciafiamme"
+        }
     },
-    "_descriptor": {
-      "en": "Flamer {{name}}",
-      "it": "{{name}} Lanciafiamme"
-    }
-  },
-  "modFourChargeCapacitor": {
-    "en": "Four Charge Capacitor",
-    "it": "Condensatore a Quattro Cariche",
-    "_description": {
-      "en": "+2 damage DC, consumes 4 ammo per shot",
-      "it": "+2 danno DC, consuma 4 munizioni per colpo"
+    "modFourChargeCapacitor": {
+        "en": "Four Charge Capacitor",
+        "it": "Condensatore a Quattro Cariche",
+        "_description": {
+            "en": "+2 damage CD, consumes 4 ammo per shot",
+            "it": "+2 DC di danno, consuma 4 munizioni per colpo"
+        },
+        "_descriptor": {
+            "en": "Four Charge {{name}}",
+            "it": "{{name}} Quattro Cariche"
+        }
     },
-    "_descriptor": {
-      "en": "Four Charge {{name}}",
-      "it": "{{name}} Quattro Cariche"
-    }
-  },
-  "modFullStockEnergy": {
-    "en": "Full Stock",
-    "it": "Calcio Completo",
-    "_description": {
-      "en": "Gains Two-Handed, gains Piercing 1, loses Close Quarters",
-      "it": "Ottiene A Due Mani, ottiene Penetrante 1, perde Corpo a Corpo"
+    "modFullStockEnergy": {
+        "en": "Full Stock",
+        "it": "Calcio Completo",
+        "_description": {
+            "en": "Gains Two-Handed, gains Piercing 1, loses Close Quarters",
+            "it": "Ottiene Due Mani, ottiene Penetrante 1, rimuove Corpo a Corpo"
+        },
+        "_descriptor": {
+            "en": "{{name}}",
+            "it": "{{name}}"
+        }
     },
-    "_descriptor": {
-      "en": "{{name}}",
-      "it": "{{name}}"
-    }
-  },
-  "modImprovedBarrel": {
-    "en": "Improved Barrel",
-    "it": "Canna Migliorata",
-    "_description": {
-      "en": "+1 damage DC",
-      "it": "+1 danno DC"
+    "modImprovedBarrel": {
+        "en": "Improved Barrel",
+        "it": "Canna Migliorata",
+        "_description": {
+            "en": "+1 CD",
+            "it": "+1 DC"
+        },
+        "_descriptor": {
+            "en": "Improved {{name}}",
+            "it": "{{name}} Migliorata"
+        }
     },
-    "_descriptor": {
-      "en": "Improved {{name}}",
-      "it": "{{name}} Migliorata"
-    }
-  },
-  "modLongBarrelEnergy": {
-    "en": "Long Barrel",
-    "it": "Canna Lunga",
-    "_description": {
-      "en": "Loses Close Quarters, increases Range by 1 grade",
-      "it": "Perde Corpo a Corpo, aumenta la Gittata di 1 grado"
+    "modLongBarrelEnergy": {
+        "en": "Long Barrel",
+        "it": "Canna Lunga",
+        "_description": {
+            "en": "Loses Close Quarters, increases Range by 1 grade",
+            "it": "Rimuove Corpo a Corpo, aumenta la Gittata di 1 grado"
+        },
+        "_descriptor": {
+            "en": "Long {{name}}",
+            "it": "{{name}} Lunga"
+        }
     },
-    "_descriptor": {
-      "en": "Long {{name}}",
-      "it": "{{name}} Lunga"
-    }
-  },
-  "modLongReinforcedBarrel": {
-    "en": "Long Reinforced Barrel",
-    "it": "Canna Lunga Rinforzata",
-    "_description": {
-      "en": "Loses Close Quarters, increases Range by 1 grade, allows muzzle mod",
-      "it": "Perde Corpo a Corpo, aumenta la Gittata di 1 grado, permette mod alla bocca"
+    "modLongReinforcedBarrel": {
+        "en": "Long Reinforced Barrel",
+        "it": "Canna Lunga Rinforzata",
+        "_description": {
+            "en": "Loses Close Quarters, increases Range by 1 grade, allows muzzle mod",
+            "it": "Rimuove Corpo a Corpo, aumenta la Gittata di 1 grado, permette all'arma di avere una mod alla Bocca"
+        },
+        "_descriptor": {
+            "en": "{{name}}",
+            "it": "{{name}}"
+        }
     },
-    "_descriptor": {
-      "en": "{{name}}",
-      "it": "{{name}}"
-    }
-  },
-  "modMarksmanStockEnergy": {
-    "en": "Marksman Stock",
-    "it": "Calcio da Tiratore Scelto",
-    "_description": {
-      "en": "Gains Two-Handed, loses Inaccurate, gains Precision, loses Close Quarters",
-      "it": "Ottiene A Due Mani, perde Impreciso, ottiene Di Precisione, perde Corpo a Corpo"
+    "modMarksmanStockEnergy": {
+        "en": "Marksman Stock",
+        "it": "Calcio da Tiratore Scelto",
+        "_description": {
+            "en": "Gains Two-Handed, loses Inaccurate, gains Precision, loses Close Quarters",
+            "it": "Ottiene A Due Mani, rimuove Imprecisa, ottiene Di Precisione, rimuove Corpo a Corpo"
+        },
+        "_descriptor": {
+            "en": "Marksman {{name}}",
+            "it": "{{name}} Da Tiratore Scelto"
+        }
     },
-    "_descriptor": {
-      "en": "Marksman {{name}}",
-      "it": "{{name}} Da Tiratore Scelto"
-    }
-  },
-  "modPhotonicAgitator": {
-    "en": "Photonic Agitator",
-    "it": "Agitatore Fotonico",
-    "_description": {
-      "en": "+1 damage DC, gains Vicious",
-      "it": "+1 danno DC, ottiene Violento"
+    "modPhotonicAgitator": {
+        "en": "Photonic Agitator",
+        "it": "Agitatore Fotonico",
+        "_description": {
+            "en": "+1 damage CD, gains Vicious",
+            "it": "+1 DC di danno, ottiene Violento"
+        },
+        "_descriptor": {
+            "en": "Agitated {{name}}",
+            "it": "{{name}} Agitato"
+        }
     },
-    "_descriptor": {
-      "en": "Agitated {{name}}",
-      "it": "{{name}} Agitato"
-    }
-  },
-  "modPhotonicStimulator": {
-    "en": "Photonic Stimulator",
-    "it": "Stimolatore Fotonico",
-    "_description": {
-      "en": "Gains Vicious",
-      "it": "Ottiene Violento"
+    "modPhotonicStimulator": {
+        "en": "Photonic Stimulator",
+        "it": "Stimolatore Fotonico",
+        "_description": {
+            "en": "Gains Vicious",
+            "it": "Ottiene Violento"
+        },
+        "_descriptor": {
+            "en": "Stimulated {{name}}",
+            "it": "{{name}} Stimolato"
+        }
     },
-    "_descriptor": {
-      "en": "Stimulated {{name}}",
-      "it": "{{name}} Stimolato"
-    }
-  },
-  "modRecoilCompensatingStockEnergy": {
-    "en": "Recoil Compensating Stock",
-    "it": "Calcio per Compensazione del Rinculo",
-    "_description": {
-      "en": "Gains Two-Handed, loses Inaccurate, +1 Fire Rate, loses Close Quarters",
-      "it": "Ottiene A Due Mani, perde Impreciso, +1 Cadenza di Fuoco, perde Corpo a Corpo"
+    "modRecoilCompensatingStockEnergy": {
+        "en": "Recoil Compensating Stock",
+        "it": "Calcio per Compensazione del Rinculo",
+        "_description": {
+            "en": "Gains Two-Handed, loses Inaccurate, +1 Fire Rate, loses Close Quarters",
+            "it": "Ottiene A Due Mani, rimuove Imprecisa, +1 Cadenza di Fuoco, rimuove Corpo a Corpo"
+        },
+        "_descriptor": {
+            "en": "Recoil Compensating {{name}}",
+            "it": "{{name}} A Rinculo Compensato"
+        }
     },
-    "_descriptor": {
-      "en": "Recoil Compensating {{name}}",
-      "it": "{{name}} A Rinculo Compensato"
-    }
-  },
-  "modShortReinforcedBarrel": {
-    "en": "Short Reinforced Barrel",
-    "it": "Canna Corta Rinforzata",
-    "_description": {
-      "en": "Allows muzzle mod",
-      "it": "Permette mod alla bocca"
+    "modShortReinforcedBarrel": {
+        "en": "Short Reinforced Barrel",
+        "it": "Canna Corta Rinforzata",
+        "_description": {
+            "en": "Allows muzzle mod",
+            "it": "Permette all'arma di avere una mod alla Bocca"
+        },
+        "_descriptor": {
+            "en": "{{name}}",
+            "it": "{{name}}"
+        }
     },
-    "_descriptor": {
-      "en": "{{name}}",
-      "it": "{{name}}"
-    }
-  },
-  "modSixChargeCapacitor": {
-    "en": "Six Charge Capacitor",
-    "it": "Condensatore a Sei Cariche",
-    "_description": {
-      "en": "+4 damage DC, consumes 6 ammo per shot",
-      "it": "+4 danno DC, consuma 6 munizioni per colpo"
+    "modSixChargeCapacitor": {
+        "en": "Six Charge Capacitor",
+        "it": "Condensatore a Sei Cariche",
+        "_description": {
+            "en": "+4 damage CD, consumes 6 ammo per shot",
+            "it": "+4 DC di danno, consuma 6 munizioni per colpo"
+        },
+        "_descriptor": {
+            "en": "Six Charge {{name}}",
+            "it": "{{name}} Sei Cariche"
+        }
     },
-    "_descriptor": {
-      "en": "Six Charge {{name}}",
-      "it": "{{name}} Sei Cariche"
-    }
-  },
-  "modSniperBarrel": {
-    "en": "Sniper Barrel",
-    "it": "Canna da Cecchino",
-    "_description": {
-      "en": "+2 damage DC, loses Close Quarters, increases Range by 1 grade, -1 Fire Rate",
-      "it": "+2 danno DC, perde Corpo a Corpo, aumenta la Gittata di 1 grado, -1 Cadenza di Fuoco"
+    "modSniperBarrel": {
+        "en": "Sniper Barrel",
+        "it": "Canna da Cecchino",
+        "_description": {
+            "en": "+2 CD, Remove Close Quarters, increase Range by 1 step, -1 Fire Rate",
+            "it": "+2 DC, rimuove Corpo a Corpo, aumenta la Gittata di 1 grado, -1 Cadenza di Fuoco"
+        },
+        "_descriptor": {
+            "en": "Sniper {{name}}",
+            "it": "{{name}} da Cecchino"
+        }
     },
-    "_descriptor": {
-      "en": "Sniper {{name}}",
-      "it": "{{name}} da Cecchino"
-    }
-  },
-  "modSplitter": {
-    "en": "Splitter",
-    "it": "Separatore",
-    "_description": {
-      "en": "-1 damage DC, gains Spread, gains Inaccurate",
-      "it": "-1 danno DC, ottiene Disperso, ottiene Impreciso"
+    "modSplitter": {
+        "en": "Splitter",
+        "it": "Separatore",
+        "_description": {
+            "en": "-1 CD, Gain Spread, Gain Inaccurate",
+            "it": "-1 DC, ottiene Propagato, ottiene Imprecisa"
+        },
+        "_descriptor": {
+            "en": "Dispersed {{name}}",
+            "it": "{{name}} A Dispersione"
+        }
     },
-    "_descriptor": {
-      "en": "Dispersed {{name}}",
-      "it": "{{name}} A Dispersione"
-    }
-  },
-  "modStandardStock": {
-    "en": "Standard Stock",
-    "it": "Calcio Standard",
-    "_description": {
-      "en": "Gains Two-Handed, loses Inaccurate, loses Close Quarters",
-      "it": "Ottiene A Due Mani, perde Impreciso, perde Corpo a Corpo"
+    "modStandardStock": {
+        "en": "Standard Stock",
+        "it": "Calcio Standard",
+        "_description": {
+            "en": "Gain Two-Handed, Remove Inaccurate, Remove Close Quarters",
+            "it": "Ottiene A Due Mani, rimuove Imprecisa, rimuove Corpo a Corpo"
+        },
+        "_descriptor": {
+            "en": "{{name}}",
+            "it": "{{name}}"
+        }
     },
-    "_descriptor": {
-      "en": "{{name}}",
-      "it": "{{name}}"
-    }
-  },
-  "modThreeChargeCapacitor": {
-    "en": "Three Charge Capacitor",
-    "it": "Condensatore a Tre Cariche",
-    "_description": {
-      "en": "+1 damage DC, consumes 3 ammo per shot",
-      "it": "+1 danno DC, consuma 3 munizioni per colpo"
+    "modThreeChargeCapacitor": {
+        "en": "Three Charge Capacitor",
+        "it": "Condensatore a Tre Cariche",
+        "_description": {
+            "en": "+1 damage CD, consumes 3 ammo per shot",
+            "it": "+1 DC di danno, consuma 3 munizioni per colpo"
+        },
+        "_descriptor": {
+            "en": "Three Charge {{name}}",
+            "it": "{{name}} Tre Cariche"
+        }
     },
-    "_descriptor": {
-      "en": "Three Charge {{name}}",
-      "it": "{{name}} Tre Cariche"
-    }
-  },
-  "modGammaWaveEmitter": {
-    "en": "Gamma Wave Emitter",
-    "it": "Emettitore di Onde Gamma",
-    "_description": {
-      "en": "+1 damage DC, gains Persistent",
-      "it": "+1 danno DC, ottiene Persistente"
+    "modGammaWaveEmitter": {
+        "en": "Gamma Wave Emitter",
+        "it": "Emettitore di Onde Gamma",
+        "_description": {
+            "en": "+1 CD, Gain Persistent",
+            "it": "+1 DC, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Fiery {{name}}",
+            "it": "{{name}} Incendiario"
+        }
     },
-    "_descriptor": {
-      "en": "Fiery {{name}}",
-      "it": "{{name}} Incendiario"
-    }
-  },
-  "modMaximizedCapacitor": {
-    "en": "Maximized Capacitor",
-    "it": "Condensatore Massimizzato",
-    "_description": {
-      "en": "+2 damage DC",
-      "it": "+2 danno DC"
+    "modMaximizedCapacitor": {
+        "en": "Maximized Capacitor",
+        "it": "Condensatore Massimizzato",
+        "_description": {
+            "en": "+2 CD",
+            "it": "+2 DC"
+        },
+        "_descriptor": {
+            "en": "Maximized {{name}}",
+            "it": "{{name}} Massimizzato"
+        }
     },
-    "_descriptor": {
-      "en": "Maximized {{name}}",
-      "it": "{{name}} Massimizzato"
-    }
-  },
-  "modBoostedPhotonAgitator": {
-    "en": "Boosted Photon Agitator",
-    "it": "Agitatore Fotonico Potenziato",
-    "_description": {
-      "en": "+2 damage DC, gains Vicious",
-      "it": "+2 danno DC, ottiene Violento"
+    "modBoostedPhotonAgitator": {
+        "en": "Boosted Photon Agitator",
+        "it": "Agitatore Fotonico Potenziato",
+        "_description": {
+            "en": "+2 CD, Gain Vicious",
+            "it": "+2 DC, ottiene Violento"
+        },
+        "_descriptor": {
+            "en": "Boosted Agitated {{name}}",
+            "it": "{{name}} Potenziato Agitato"
+        }
     },
-    "_descriptor": {
-      "en": "Boosted Agitated {{name}}",
-      "it": "{{name}} Potenziato Agitato"
-    }
-  },
-  "modBoostedGammaWaveEmitter": {
-    "en": "Boosted Gamma Wave Emitter",
-    "it": "Emettitore di Onde Gamma Potenziato",
-    "_description": {
-      "en": "+2 damage DC, gains Persistent",
-      "it": "+2 danno DC, ottiene Persistente"
+    "modBoostedGammaWaveEmitter": {
+        "en": "Boosted Gamma Wave Emitter",
+        "it": "Emettitore di Onde Gamma Potenziato",
+        "_description": {
+            "en": "+2 CD, Gain Persistent",
+            "it": "+2 DC, ottiene Persistente"
+        },
+        "_descriptor": {
+            "en": "Boosted Fiery {{name}}",
+            "it": "{{name}} Potenziato Incendiario"
+        }
     },
-    "_descriptor": {
-      "en": "Boosted Fiery {{name}}",
-      "it": "{{name}} Potenziato Incendiario"
-    }
-  },
-  "modOverchargedCapacitor": {
-    "en": "Overcharged Capacitor",
-    "it": "Condensatore Sovraccaricato",
-    "_description": {
-      "en": "+3 damage DC",
-      "it": "+3 danno DC"
+    "modOverchargedCapacitor": {
+        "en": "Overcharged Capacitor",
+        "it": "Condensatore Sovraccaricato",
+        "_description": {
+            "en": "+3 CD",
+            "it": "+3 DC"
+        },
+        "_descriptor": {
+            "en": "Overcharged {{name}}",
+            "it": "{{name}} Sovraccaricato"
+        }
     },
-    "_descriptor": {
-      "en": "Overcharged {{name}}",
-      "it": "{{name}} Sovraccaricato"
-    }
-  },
-  "modImprovedLongBarrel": {
-    "en": "Improved Long Barrel",
-    "it": "Canna Lunga Migliorata",
-    "_description": {
-      "en": "+1 damage DC, loses Close Quarters, increases Range by 1 grade",
-      "it": "+1 danno DC, perde Corpo a Corpo, aumenta la Gittata di 1 grado"
+    "modImprovedLongBarrel": {
+        "en": "Improved Long Barrel",
+        "it": "Canna Lunga Migliorata",
+        "_description": {
+            "en": "+1 CD, Remove Close Quarters, Increase Range by 1 step",
+            "it": "+1 DC, rimuove Corpo a Corpo, aumenta la Gittata di 1 grado"
+        },
+        "_descriptor": {
+            "en": "Improved Long {{name}}",
+            "it": "{{name}} Lungo Migliorato"
+        }
     },
-    "_descriptor": {
-      "en": "Improved Long {{name}}",
-      "it": "{{name}} Lungo Migliorato"
-    }
-  },
-  "modImprovedAutomaticBarrel": {
-    "en": "Improved Automatic Barrel",
-    "it": "Canna Automatica Migliorata",
-    "_description": {
-      "en": "Gains Burst, gains Inaccurate, loses Close Quarters, increases Range by 1 grade, +1 Fire Rate",
-      "it": "Ottiene Raffica, ottiene Impreciso, perde Corpo a Corpo, aumenta la Gittata di 1 grado, +1 Cadenza di Fuoco"
+    "modImprovedAutomaticBarrel": {
+        "en": "Improved Automatic Barrel",
+        "it": "Canna Automatica Migliorata",
+        "_description": {
+            "en": "Gain Burst, Gain Inaccurate, Remove Close Quarters, Increase Range by 1 step, +1 Fire Rate",
+            "it": "Ottiene Raffica, ottiene Imprecisa, rimuove Corpo a Corpo, aumenta la Gittata di 1 grado, +1 Cadenza di Fuoco"
+        },
+        "_descriptor": {
+            "en": "Improved Automatic {{name}}",
+            "it": "{{name}} Automatico Migliorato"
+        }
     },
-    "_descriptor": {
-      "en": "Improved Automatic {{name}}",
-      "it": "{{name}} Automatico Migliorato"
-    }
-  },
-  "modImprovedSniperBarrel": {
-    "en": "Improved Sniper Barrel",
-    "it": "Canna da Cecchino Migliorata",
-    "_description": {
-      "en": "+3 damage DC, loses Close Quarters, increases Range by 1 grade, -1 Fire Rate",
-      "it": "+3 danno DC, perde Corpo a Corpo, aumenta la Gittata di 1 grado, -1 Cadenza di Fuoco"
+    "modImprovedSniperBarrel": {
+        "en": "Improved Sniper Barrel",
+        "it": "Canna da Cecchino Migliorata",
+        "_description": {
+            "en": "+3 CD, Remove Close Quarters, increase Range by 1 step, -1 Fire Rate",
+            "it": "+3 DC, rimuove Corpo a Corpo, aumenta la Gittata di 1 grado, -1 Cadenza di Fuoco"
+        },
+        "_descriptor": {
+            "en": "Improved Charging {{name}}",
+            "it": "{{name}} a Carica Migliorata"
+        }
     },
-    "_descriptor": {
-      "en": "Improved Charging {{name}}",
-      "it": "{{name}} a Carica Migliorata"
-    }
-  },
-  "modImprovedSplitter": {
-    "en": "Improved Splitter",
-    "it": "Separatore Migliorato",
-    "_description": {
-      "en": "Gains Spread, gains Inaccurate",
-      "it": "Ottiene Propagato, ottiene Impreciso"
+    "modImprovedSplitter": {
+        "en": "Improved Splitter",
+        "it": "Separatore Migliorato",
+        "_description": {
+            "en": "Gain Spread, Gain Inaccurate",
+            "it": "Ottiene Propagato, ottiene Imprecisa"
+        },
+        "_descriptor": {
+            "en": "Improved Scattergun {{name}}",
+            "it": "{{name}} Spallottola Migliorato"
+        }
     },
-    "_descriptor": {
-      "en": "Improved Scattergun {{name}}",
-      "it": "{{name}} Spallottola Migliorato"
-    }
-  },
-  "modAmplifiedBeamSplitter": {
-    "en": "Amplified Beam Splitter",
-    "it": "Separatore di Raggio Amplificato",
-    "_description": {
-      "en": "Gains Spread, -1 Fire Rate, reduces Range by 1 grade",
-      "it": "Ottiene Propagato, -1 Cadenza di Fuoco, riduce la Gittata di 1 grado"
+    "modAmplifiedBeamSplitter": {
+        "en": "Amplified Beam Splitter",
+        "it": "Separatore di Raggio Amplificato",
+        "_description": {
+            "en": "Gain Spread, -1 Fire Rate, Reduce Range by 1 step",
+            "it": "Ottiene Propagato, -1 Cadenza di Fuoco, riduce la Gittata di 1 grado"
+        },
+        "_descriptor": {
+            "en": "Improved Scattered {{name}}",
+            "it": "{{name}} Disperso Migliorato"
+        }
     },
-    "_descriptor": {
-      "en": "Improved Scattered {{name}}",
-      "it": "{{name}} Disperso Migliorato"
-    }
-  },
-  "modFineTunedBeamFocuser": {
-    "en": "Fine-Tuned Beam Focuser",
-    "it": "Concentratore di Raggio Calibrato",
-    "_description": {
-      "en": "Increases Range by 1 grade, gains Accurate",
-      "it": "Aumenta la Gittata di 1 grado, ottiene Di Precisione"
+    "modFineTunedBeamFocuser": {
+        "en": "Fine-Tuned Beam Focuser",
+        "it": "Concentratore di Raggio Calibrato",
+        "_description": {
+            "en": "Increase Range by 1 step, Gain Accurate",
+            "it": "Aumenta la Gittata di 1 grado, ottiene Di Precisione"
+        },
+        "_descriptor": {
+            "en": "Improved Focused {{name}}",
+            "it": "{{name}} Focalizzato Migliorato"
+        }
     },
-    "_descriptor": {
-      "en": "Improved Focused {{name}}",
-      "it": "{{name}} Focalizzato Migliorato"
-    }
-  },
-  "modQuantumGyroCompensatingLens": {
-    "en": "Quantum Gyro-Compensating Lens",
-    "it": "Lenti Giroscopiche Quantistiche di Compensazione",
-    "_description": {
-      "en": "+2 Fire Rate, loses Inaccurate",
-      "it": "+2 Cadenza di Fuoco, perde Impreciso"
+    "modQuantumGyroCompensatingLens": {
+        "en": "Quantum Gyro-Compensating Lens",
+        "it": "Lenti Giroscopiche Quantistiche di Compensazione",
+        "_description": {
+            "en": "+2 Fire Rate, Remove Inaccurate",
+            "it": "+2 Cadenza di Fuoco, rimuove Imprecisa"
+        },
+        "_descriptor": {
+            "en": "Improved Targeting {{name}}",
+            "it": "{{name}} Mirante Migliorato"
+        }
     },
-    "_descriptor": {
-      "en": "Improved Targeting {{name}}",
-      "it": "{{name}} Mirante Migliorato"
-    }
-  },
-  "modCapacitorMk3": {
-    "en": "Capacitor Mk III",
-    "it": "Condensatore Mk III",
-    "_description": {
-      "en": "+1 damage DC, consumes 3 shots per attack",
-      "it": "+1 danno DC, consuma 3 colpi per attacco"
+    "modCapacitorMk3": {
+        "en": "Capacitor Mk III",
+        "it": "Condensatore Mk III",
+        "_description": {
+            "en": "+1 CD , consumes 3 shots per attack",
+            "it": "+1 DC, consuma 3 colpi per attacco"
+        },
+        "_descriptor": {
+            "en": "Mk III {{name}}",
+            "it": "{{name}} Mk III"
+        }
     },
-    "_descriptor": {
-      "en": "Mk III {{name}}",
-      "it": "{{name}} Mk III"
-    }
-  },
-  "modCapacitorMk4": {
-    "en": "Capacitor Mk IV",
-    "it": "Condensatore Mk IV",
-    "_description": {
-      "en": "+2 damage DC, consumes 4 shots per attack",
-      "it": "+2 danno DC, consuma 4 colpi per attacco"
+    "modCapacitorMk4": {
+        "en": "Capacitor Mk IV",
+        "it": "Condensatore Mk IV",
+        "_description": {
+            "en": "+2 CD , consumes 4 shots per attack",
+            "it": "+2 DC, consuma 4 colpi per attacco"
+        },
+        "_descriptor": {
+            "en": "Mk IV {{name}}",
+            "it": "{{name}} Mk IV"
+        }
     },
-    "_descriptor": {
-      "en": "Mk IV {{name}}",
-      "it": "{{name}} Mk IV"
-    }
-  },
-  "modCapacitorMk5": {
-    "en": "Capacitor Mk V",
-    "it": "Condensatore Mk V",
-    "_description": {
-      "en": "+3 damage DC, consumes 5 shots per attack",
-      "it": "+3 danno DC, consuma 5 colpi per attacco"
+    "modCapacitorMk5": {
+        "en": "Capacitor Mk V",
+        "it": "Condensatore Mk V",
+        "_description": {
+            "en": "+3 CD , consumes 5 shots per attack",
+            "it": "+3 DC, consuma 5 colpi per attacco"
+        },
+        "_descriptor": {
+            "en": "Mk V {{name}}",
+            "it": "{{name}} Mk V"
+        }
     },
-    "_descriptor": {
-      "en": "Mk V {{name}}",
-      "it": "{{name}} Mk V"
+    "modCapacitorMk6": {
+        "en": "Capacitor Mk VI",
+        "it": "Condensatore Mk VI",
+        "_description": {
+            "en": "+4 CD , consumes 6 shots per attack",
+            "it": "+4 DC, consuma 6 colpi per attacco"
+        },
+        "_descriptor": {
+            "en": "MK VI {{name}}",
+            "it": "{{name}} MK VI"
+        }
     }
-  },
-  "modCapacitorMk6": {
-    "en": "Capacitor Mk VI",
-    "it": "Condensatore Mk VI",
-    "_description": {
-      "en": "+4 damage DC, consumes 6 shots per attack",
-      "it": "+4 danno DC, consuma 6 colpi per attacco"
-    },
-    "_descriptor": {
-      "en": "MK VI {{name}}",
-      "it": "{{name}} MK VI"
-    }
-  }
 }

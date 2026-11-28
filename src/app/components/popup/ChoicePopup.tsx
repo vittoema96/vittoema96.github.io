@@ -28,7 +28,7 @@ function ChoicePopup<T extends string>({
                         onClose();
                     }}
                 >
-                    {t(label)}
+                    {t(String(label))}
                 </button>
             ))}
             onClose={onClose}

@@ -6,7 +6,7 @@ import { perkRank } from '@/features/character/feats/utils.ts';
 interface ModTooltipProps {
     /** Mod locale ID (e.g. "modCompensator") */
     modId: string;
-    /** Raw effect strings from the mod data (e.g. ["qualityAdd:qualityMelee"]) */
+    /** Raw effect strings from the mod data (e.g. ["qualityAdd:qualitySpecialAdds:weaponBayonet"]) */
     effects: string[];
     /** Complexity / rarity level (determines crafting materials) */
     complexity: number | '-';
@@ -125,6 +125,10 @@ function formatEffect(effectStr: string, t: (key: string) => string): string {
         effectType.startsWith('quality') ||
         effectType.startsWith('tag')
     ) {
+        if (effectType === 'qualityAdd' && valueParts[0] === 'qualitySpecialAdds') {
+            // The quality name already reads "Adds", e.g. "Adds Bayonet".
+            return valueParts.map(val => t(val)).join(' ');
+        }
         if (effectType.endsWith('Add')) {
             return `${t('adds')} ${valueParts.map(val => t(val)).join(' ')}`;
         } else if (effectType.endsWith('Remove')) {
@@ -133,7 +137,10 @@ function formatEffect(effectStr: string, t: (key: string) => string): string {
     } else if (effectType.endsWith('Add')) {
         return `${signed(value)} ${t(effectType.replace('Add', ''))}`;
     } else if (effectType.endsWith('Set')) {
-        return `${t(effectType.replace('Set', ''))}: ${t(value)}`;
+        return `${t(effectType.replace('Set', ''))}: ${value
+            .split(',')
+            .map(val => t(val))
+            .join(', ')}`;
     }
     return effectStr;
 }

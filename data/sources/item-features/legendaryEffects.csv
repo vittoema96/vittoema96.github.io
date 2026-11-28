@@ -1,72 +1,72 @@
-ID,FOR_TYPE,FOR_CATEGORY,EFFECTS
-legendaryAssassinWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryBerserker,weapon,"[""meleeWeapons"", ""unarmed""]",[]
-legendaryBlazing,weapon,"[""meleeWeapons""]",[]
-legendaryBloodied,weapon,"[""meleeWeapons"", ""unarmed""]",[]
-legendaryCavalierWeapon,weapon,"[""meleeWeapons"", ""unarmed""]",[]
-legendaryCharged,weapon,"[""meleeWeapons""]",[]
-legendaryCrippling,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryDeadeye,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
-legendaryDefiant,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
-legendaryDuelistWeapon,weapon,"[""meleeWeapons"", ""unarmed""]",[]
-legendaryEnraging,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryExplosive,weapon,"[""smallGuns""]",[]
-legendaryExterminatorWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryFreezing,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryFrigid,weapon,"[""meleeWeapons""]",[]
-legendaryFurious,weapon,"[""meleeWeapons"", ""unarmed""]",[]
-legendaryGhoulSlayerWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryHitman,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
-legendaryHunterWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryIncendiaryWeapon,weapon,"[""smallGuns""]","[""effectAdd:effectPersistent""]"
-legendaryInstigating,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryIrradiated,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectRadioactive""]"
-legendaryJunkie,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryKneecapper,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryLuckyWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryMutantSlayerWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryNimble,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
-legendaryNocturnal,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryPenetrating,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectPiercing:2""]"
-legendaryPlasmaInfused,weapon,"[""smallGuns""]","[""damageAdd:2""]"
-legendaryPoisonerWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectPersistent""]"
-legendaryPowerfulMighty,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""damageAdd:2""]"
-legendaryQuickdraw,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryRapid,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]","[""fireRateAdd:3""]"
-legendaryRelentless,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
-legendarySentinelWeapon,weapon,"[""meleeWeapons"", ""unarmed""]",[]
-legendaryStaggering,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectStun""]"
-legendaryStalker,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
-legendarySteadfast,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[]
-legendaryTroubleshooterWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[]
-legendaryTwoShot,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]","[""effectAdd:effectVicious"",""damageAdd:2"",""qualityAdd:qualityAmmoHungry:2""]"
-legendaryViolent,weapon,"[""smallGuns""]","[""damageAdd:2"",""qualityAdd:qualityRecoil:7""]"
-legendaryWounding,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectPersistent""]"
-legendaryAcrobat,apparel,"[""leg""]",[]
-legendaryAssassinArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendaryAutoStim,apparel,"[""torso""]",[]
-legendaryBolstering,apparel,"[""torso""]",[]
-legendaryCavalierArmor,apparel,"[""arm""]",[]
-legendaryChameleon,apparel,"[""torso""]",[]
-legendaryChampion,apparel,"[""arm""]",[]
-legendaryCloaking,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendaryCryogenic,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendaryCunning,apparel,"[""head"", ""leg""]",[]
-legendaryDuelistArmor,apparel,"[""arm""]",[]
-legendaryExterminatorArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendaryGhoulSlayerArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendaryHunterArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendaryIncendiaryArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendaryLuckyArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendaryMartyr,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendaryMutantSlayerArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendaryPoisonerArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]","[""drPoisonAdd:4""]"
-legendaryPowered,apparel,"[""head"", ""arm"", ""leg""]",[]
-legendaryPunishing,apparel,"[""torso"", ""leg""]",[]
-legendaryRadPowered,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendarySafecracker,apparel,"[""arm""]",[]
-legendarySentinelArmor,apparel,"[""arm""]",[]
-legendarySharp,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendarySprinter,apparel,"[""head"", ""leg""]",[]
-legendaryTroubleshooterArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[]
-legendaryUnyielding,apparel,"[""torso""]",[]
+ID,FOR_TYPE,FOR_CATEGORY,EFFECTS,SOURCE
+legendaryAssassinWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryBerserker,weapon,"[""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryBlazing,weapon,"[""meleeWeapons""]",[],Wanderers DLC
+legendaryBloodied,weapon,"[""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryCavalierWeapon,weapon,"[""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryCharged,weapon,"[""meleeWeapons""]",[],Wanderers DLC
+legendaryCrippling,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryDeadeye,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],Wanderers DLC
+legendaryDefiant,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],Wanderers DLC
+legendaryDuelistWeapon,weapon,"[""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryEnraging,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryExplosive,weapon,"[""smallGuns""]",[],Wanderers DLC
+legendaryExterminatorWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryFreezing,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryFrigid,weapon,"[""meleeWeapons""]",[],Wanderers DLC
+legendaryFurious,weapon,"[""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryGhoulSlayerWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryHitman,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],Wanderers DLC
+legendaryHunterWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryIncendiaryWeapon,weapon,"[""smallGuns""]","[""effectAdd:effectPersistent""]",Wanderers DLC
+legendaryInstigating,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryIrradiated,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectRadioactive""]",Wanderers DLC
+legendaryJunkie,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryKneecapper,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryLuckyWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryMutantSlayerWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryNimble,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],Wanderers DLC
+legendaryNocturnal,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryPenetrating,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectPiercing:2""]",Wanderers DLC
+legendaryPlasmaInfused,weapon,"[""smallGuns""]","[""damageAdd:2"",""damageTypeSet:physical,energy""]",Wanderers DLC
+legendaryPoisonerWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectPersistent""]",Wanderers DLC
+legendaryPowerfulMighty,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""damageAdd:2""]",Wanderers DLC
+legendaryQuickdraw,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryRapid,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]","[""fireRateAdd:3""]",Wanderers DLC
+legendaryRelentless,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],Wanderers DLC
+legendarySentinelWeapon,weapon,"[""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryStaggering,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectStun""]",Wanderers DLC
+legendaryStalker,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],Wanderers DLC
+legendarySteadfast,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]",[],Wanderers DLC
+legendaryTroubleshooterWeapon,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]",[],Wanderers DLC
+legendaryTwoShot,weapon,"[""smallGuns"", ""energyWeapons"", ""bigGuns""]","[""effectAdd:effectVicious"",""damageAdd:2"",""qualityAdd:qualityAmmoHungry:2""]",Wanderers DLC
+legendaryViolent,weapon,"[""smallGuns""]","[""damageAdd:2"",""qualityAdd:qualityRecoil:7""]",Wanderers DLC
+legendaryWounding,weapon,"[""smallGuns"", ""bigGuns"", ""energyWeapons"", ""meleeWeapons"", ""unarmed""]","[""effectAdd:effectPersistent""]",Wanderers DLC
+legendaryAcrobat,apparel,"[""leg""]",[],Wanderers DLC
+legendaryAssassinArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendaryAutoStim,apparel,"[""torso""]",[],Wanderers DLC
+legendaryBolstering,apparel,"[""torso""]",[],Wanderers DLC
+legendaryCavalierArmor,apparel,"[""arm""]",[],Wanderers DLC
+legendaryChameleon,apparel,"[""torso""]",[],Wanderers DLC
+legendaryChampion,apparel,"[""arm""]",[],Wanderers DLC
+legendaryCloaking,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendaryCryogenic,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendaryCunning,apparel,"[""head"", ""leg""]",[],Wanderers DLC
+legendaryDuelistArmor,apparel,"[""arm""]",[],Wanderers DLC
+legendaryExterminatorArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendaryGhoulSlayerArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendaryHunterArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendaryIncendiaryArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendaryLuckyArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendaryMartyr,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendaryMutantSlayerArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendaryPoisonerArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]","[""drPoisonAdd:4""]",Wanderers DLC
+legendaryPowered,apparel,"[""head"", ""arm"", ""leg""]",[],Wanderers DLC
+legendaryPunishing,apparel,"[""torso"", ""leg""]",[],Wanderers DLC
+legendaryRadPowered,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendarySafecracker,apparel,"[""arm""]",[],Wanderers DLC
+legendarySentinelArmor,apparel,"[""arm""]",[],Wanderers DLC
+legendarySharp,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendarySprinter,apparel,"[""head"", ""leg""]",[],Wanderers DLC
+legendaryTroubleshooterArmor,apparel,"[""torso"", ""arm"", ""leg"", ""head""]",[],Wanderers DLC
+legendaryUnyielding,apparel,"[""torso""]",[],Wanderers DLC

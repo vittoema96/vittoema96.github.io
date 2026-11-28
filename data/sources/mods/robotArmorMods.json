@@ -4,7 +4,7 @@
     "it": "Telaio ad Attivazione",
     "_description": {
       "en": "A specially made set of armor plates fitted with actuators and motive systems which aid the robot’s actions.",
-      "it": "Si tratta di un’armatura dotata di attuatori e sistemi motori che facilitano le azioni del robot."
+      "it": "Un set di piastre di armatura realizzato su misura, dotato di attuatori e sistemi motori che assistono le azioni del robot."
     },
     "_descriptor": {
       "en": "Actuated Frame {{name}}",
@@ -16,7 +16,7 @@
     "it": "Telaio ad Attivazione",
     "_description": {
       "en": "A specially made set of armor plates fitted with actuators and motive systems which aid the robot’s actions.",
-      "it": "Si tratta di un’armatura dotata di attuatori e sistemi motori che facilitano le azioni del robot."
+      "it": "Un set di piastre di armatura realizzato su misura, dotato di attuatori e sistemi motori che assistono le azioni del robot."
     },
     "_descriptor": {
       "en": "Actuated Frame {{name}}",
@@ -28,7 +28,7 @@
     "it": "Telaio ad Attivazione",
     "_description": {
       "en": "A specially made set of armor plates fitted with actuators and motive systems which aid the robot’s actions.",
-      "it": "Si tratta di un’armatura dotata di attuatori e sistemi motori che facilitano le azioni del robot."
+      "it": "Un set di piastre di armatura realizzato su misura, dotato di attuatori e sistemi motori che assistono le azioni del robot."
     },
     "_descriptor": {
       "en": "Actuated Frame {{name}}",
@@ -40,7 +40,7 @@
     "it": "Telaio ad Attivazione",
     "_description": {
       "en": "A specially made set of armor plates fitted with actuators and motive systems which aid the robot’s actions.",
-      "it": "Si tratta di un’armatura dotata di attuatori e sistemi motori che facilitano le azioni del robot."
+      "it": "Un set di piastre di armatura realizzato su misura, dotato di attuatori e sistemi motori che assistono le azioni del robot."
     },
     "_descriptor": {
       "en": "Actuated Frame {{name}}",
@@ -100,7 +100,7 @@
     "it": "Armatura di Fabbrica",
     "_description": {
       "en": "A standardized, factory-made set of armor plating designed to fit any Mister Handy model.",
-      "it": "Si tratta di un’armatura prodotta in serie progettata per adattarsi a qualsiasi modello di Mister Handy."
+      "it": "Un set di piastre di armatura standardizzato e di fabbrica, progettato per adattarsi a qualsiasi modello Mister Handy."
     },
     "_descriptor": {
       "en": "Factory Armor {{name}}",
@@ -112,7 +112,7 @@
     "it": "Armatura di Fabbrica",
     "_description": {
       "en": "A standardized, factory-made set of armor plating designed to fit any Mister Handy model.",
-      "it": "Si tratta di un’armatura prodotta in serie progettata per adattarsi a qualsiasi modello di Mister Handy."
+      "it": "Un set di piastre di armatura standardizzato e di fabbrica, progettato per adattarsi a qualsiasi modello Mister Handy."
     },
     "_descriptor": {
       "en": "Factory Armor {{name}}",
@@ -124,7 +124,7 @@
     "it": "Armatura di Fabbrica",
     "_description": {
       "en": "A standardized, factory-made set of armor plating designed to fit any Mister Handy model.",
-      "it": "Si tratta di un’armatura prodotta in serie progettata per adattarsi a qualsiasi modello di Mister Handy."
+      "it": "Un set di piastre di armatura standardizzato e di fabbrica, progettato per adattarsi a qualsiasi modello Mister Handy."
     },
     "_descriptor": {
       "en": "Factory Armor {{name}}",
@@ -136,7 +136,7 @@
     "it": "Armatura di Fabbrica",
     "_description": {
       "en": "A standardized, factory-made set of armor plating designed to fit any Mister Handy model.",
-      "it": "Si tratta di un’armatura prodotta in serie progettata per adattarsi a qualsiasi modello di Mister Handy."
+      "it": "Un set di piastre di armatura standardizzato e di fabbrica, progettato per adattarsi a qualsiasi modello Mister Handy."
     },
     "_descriptor": {
       "en": "Factory Armor {{name}}",
@@ -147,8 +147,8 @@
     "en": "Factory Storage Armor",
     "it": "Armatura di Stoccaggio di Fabbrica",
     "_description": {
-      "en": "Factory armor with additional storage compartments to increase carrying capacity.",
-      "it": "Armatura di fabbrica con vani di stoccaggio aggiuntivi per aumentare il peso trasportabile."
+      "en": "A factory-made set of standard armor which also provides additional storage compartments to increase a robot’s carrying capacity.",
+      "it": "Un set di armatura standard di fabbrica che fornisce anche vani di stoccaggio aggiuntivi per aumentare il peso trasportabile dal robot."
     },
     "_descriptor": {
       "en": "Factory Storage Armor {{name}}",
@@ -159,8 +159,8 @@
     "en": "Hydraulic Frame",
     "it": "Telaio Idraulico",
     "_description": {
-      "en": "A specially made set of armor plates which conceal powerful hydraulics that enhance the robot’s movements.",
-      "it": "Si tratta di un’apposita armatura che cela un potente sistema idraulico, che migliora i movimenti del robot."
+      "en": "A specially made set of armor plates which conceal powerful hydraulics which enhance the robot’s movements.",
+      "it": "Un set di piastre di armatura appositamente realizzato, che nasconde potenti sistemi idraulici che migliorano i movimenti."
     },
     "_descriptor": {
       "en": "Hydraulic Frame {{name}}",
@@ -171,8 +171,8 @@
     "en": "Hydraulic Frame",
     "it": "Telaio Idraulico",
     "_description": {
-      "en": "A specially made set of armor plates which conceal powerful hydraulics that enhance the robot’s movements.",
-      "it": "Si tratta di un’apposita armatura che cela un potente sistema idraulico, che migliora i movimenti del robot."
+      "en": "A specially made set of armor plates which conceal powerful hydraulics which enhance the robot’s movements.",
+      "it": "Un set di piastre di armatura appositamente realizzato, che nasconde potenti sistemi idraulici che migliorano i movimenti."
     },
     "_descriptor": {
       "en": "Hydraulic Frame {{name}}",
@@ -183,8 +183,8 @@
     "en": "Hydraulic Frame",
     "it": "Telaio Idraulico",
     "_description": {
-      "en": "A specially made set of armor plates which conceal powerful hydraulics that enhance the robot’s movements.",
-      "it": "Si tratta di un’apposita armatura che cela un potente sistema idraulico, che migliora i movimenti del robot."
+      "en": "A specially made set of armor plates which conceal powerful hydraulics which enhance the robot’s movements.",
+      "it": "Un set di piastre di armatura appositamente realizzato, che nasconde potenti sistemi idraulici che migliorano i movimenti."
     },
     "_descriptor": {
       "en": "Hydraulic Frame {{name}}",
@@ -195,8 +195,8 @@
     "en": "Hydraulic Frame",
     "it": "Telaio Idraulico",
     "_description": {
-      "en": "A specially made set of armor plates which conceal powerful hydraulics that enhance the robot’s movements.",
-      "it": "Si tratta di un’apposita armatura che cela un potente sistema idraulico, che migliora i movimenti del robot."
+      "en": "A specially made set of armor plates which conceal powerful hydraulics which enhance the robot’s movements.",
+      "it": "Un set di piastre di armatura appositamente realizzato, che nasconde potenti sistemi idraulici che migliorano i movimenti."
     },
     "_descriptor": {
       "en": "Hydraulic Frame {{name}}",
@@ -255,8 +255,8 @@
     "en": "Mister Gutsy Plating",
     "it": "Placcatura di Mister Gutsy",
     "_description": {
-      "en": "Mister Gutsy base plating with better thermal absorption capabilities, more resistant against Energy weapons.",
-      "it": "Placcatura base Mister Gutsy con migliori capacità di assorbimento termico, più resistente contro le armi a Energia."
+      "en": "Like the standard plating, but with better thermal absorption properties to reinforce it against energy weaponry, this is the standard plating for a Mister Gutsy. It is the default for all Mister Handy characters who select the Mister Gutsy starting package.",
+      "it": "La placcatura base Mister Gutsy è proprio come la placcatura standard, ma ha migliori capacità di assorbimento termico, che la rende più resistente contro le armi a Energia. Tutti i personaggi Mister Handy che scelgono il pacchetto iniziale Mister Gutsy iniziano con questa placcatura."
     },
     "_descriptor": {
       "en": "Mister Gutsy Plating {{name}}",
@@ -267,8 +267,8 @@
     "en": "Standard Plating",
     "it": "Placcatura Standard",
     "_description": {
-      "en": "Standard factory plating that all new Mister Handy models come with.",
-      "it": "Placcatura standard di fabbrica di cui sono dotati tutti i nuovi modelli di Mister Handy."
+      "en": "The default factory plating provided with all brandnew Mister Handy models. This has no cost, as it’s the default which a Mister Handy character begins with most of the time.",
+      "it": "La placcatura standard di fabbrica di cui sono dotati tutti i nuovi modelli di Mister Handy. Non ha costo, perché è la dotazione predefinita con cui un personaggio Mister Handy inizia nella maggior parte dei casi."
     },
     "_descriptor": {
       "en": "Standard Plating {{name}}",
@@ -280,7 +280,7 @@
     "it": "Placcatura Velenosa",
     "_description": {
       "en": "Makeshift armor coated in toxic materials which are hazardous to the health of any who seeks to inflict harm upon the robot or its companions.",
-      "it": "Si tratta di un’armatura artigianale rivestita di materiali tossici pericolosi per chiunque provi a far danno al robot o ai suoi compagni."
+      "it": "Armatura di fortuna ricoperta di materiali tossici, pericolosi per la salute di chiunque cerchi di fare del male al robot o ai suoi compagni."
     },
     "_descriptor": {
       "en": "Noxious Plate {{name}}",
@@ -292,7 +292,7 @@
     "it": "Placcatura Velenosa",
     "_description": {
       "en": "Makeshift armor coated in toxic materials which are hazardous to the health of any who seeks to inflict harm upon the robot or its companions.",
-      "it": "Si tratta di un’armatura artigianale rivestita di materiali tossici pericolosi per chiunque provi a far danno al robot o ai suoi compagni."
+      "it": "Armatura di fortuna ricoperta di materiali tossici, pericolosi per la salute di chiunque cerchi di fare del male al robot o ai suoi compagni."
     },
     "_descriptor": {
       "en": "Noxious Plate {{name}}",
@@ -304,7 +304,7 @@
     "it": "Placcatura Velenosa",
     "_description": {
       "en": "Makeshift armor coated in toxic materials which are hazardous to the health of any who seeks to inflict harm upon the robot or its companions.",
-      "it": "Si tratta di un’armatura artigianale rivestita di materiali tossici pericolosi per chiunque provi a far danno al robot o ai suoi compagni."
+      "it": "Armatura di fortuna ricoperta di materiali tossici, pericolosi per la salute di chiunque cerchi di fare del male al robot o ai suoi compagni."
     },
     "_descriptor": {
       "en": "Noxious Plate {{name}}",
@@ -316,7 +316,7 @@
     "it": "Placcatura Velenosa",
     "_description": {
       "en": "Makeshift armor coated in toxic materials which are hazardous to the health of any who seeks to inflict harm upon the robot or its companions.",
-      "it": "Si tratta di un’armatura artigianale rivestita di materiali tossici pericolosi per chiunque provi a far danno al robot o ai suoi compagni."
+      "it": "Armatura di fortuna ricoperta di materiali tossici, pericolosi per la salute di chiunque cerchi di fare del male al robot o ai suoi compagni."
     },
     "_descriptor": {
       "en": "Noxious Plate {{name}}",
@@ -328,7 +328,7 @@
     "it": "Placcatura Tossica",
     "_description": {
       "en": "Makeshift armor made with irradiated metal plating, dangerous to living creatures nearby.",
-      "it": "Si tratta di un’armatura fatta con un rivestimento metallico radioattivo, che è pericolosa per qualsiasi creatura vivente nelle vicinanze."
+      "it": "Armatura di fortuna realizzata con piastre di metallo irradiato, pericolose per le creature viventi vicine."
     },
     "_descriptor": {
       "en": "Toxic Plating {{name}}",
@@ -340,7 +340,7 @@
     "it": "Placcatura Tossica",
     "_description": {
       "en": "Makeshift armor made with irradiated metal plating, dangerous to living creatures nearby.",
-      "it": "Si tratta di un’armatura fatta con un rivestimento metallico radioattivo, che è pericolosa per qualsiasi creatura vivente nelle vicinanze."
+      "it": "Armatura di fortuna realizzata con piastre di metallo irradiato, pericolose per le creature viventi vicine."
     },
     "_descriptor": {
       "en": "Toxic Plating {{name}}",
@@ -352,7 +352,7 @@
     "it": "Placcatura Tossica",
     "_description": {
       "en": "Makeshift armor made with irradiated metal plating, dangerous to living creatures nearby.",
-      "it": "Si tratta di un’armatura fatta con un rivestimento metallico radioattivo, che è pericolosa per qualsiasi creatura vivente nelle vicinanze."
+      "it": "Armatura di fortuna realizzata con piastre di metallo irradiato, pericolose per le creature viventi vicine."
     },
     "_descriptor": {
       "en": "Toxic Plating {{name}}",
@@ -364,7 +364,7 @@
     "it": "Placcatura Tossica",
     "_description": {
       "en": "Makeshift armor made with irradiated metal plating, dangerous to living creatures nearby.",
-      "it": "Si tratta di un’armatura fatta con un rivestimento metallico radioattivo, che è pericolosa per qualsiasi creatura vivente nelle vicinanze."
+      "it": "Armatura di fortuna realizzata con piastre di metallo irradiato, pericolose per le creature viventi vicine."
     },
     "_descriptor": {
       "en": "Toxic Plating {{name}}",
@@ -376,7 +376,7 @@
     "it": "Telaio Voltaico",
     "_description": {
       "en": "A specially made set of armor plates fitted with additional conduits and capacitors to bolster the effectiveness of energy weaponry.",
-      "it": "Si tratta di un’armatura dotata di conduttori e condensatori aggiuntivi per potenziare l’efficacia delle armi a energia."
+      "it": "Un set di piastre di armatura realizzato su misura, dotato di conduttori e condensatori aggiuntivi per potenziare l'efficacia delle armi a energia."
     },
     "_descriptor": {
       "en": "Voltaic Frame {{name}}",
@@ -388,7 +388,7 @@
     "it": "Telaio Voltaico",
     "_description": {
       "en": "A specially made set of armor plates fitted with additional conduits and capacitors to bolster the effectiveness of energy weaponry.",
-      "it": "Si tratta di un’armatura dotata di conduttori e condensatori aggiuntivi per potenziare l’efficacia delle armi a energia."
+      "it": "Un set di piastre di armatura realizzato su misura, dotato di conduttori e condensatori aggiuntivi per potenziare l'efficacia delle armi a energia."
     },
     "_descriptor": {
       "en": "Voltaic Frame {{name}}",
@@ -400,7 +400,7 @@
     "it": "Telaio Voltaico",
     "_description": {
       "en": "A specially made set of armor plates fitted with additional conduits and capacitors to bolster the effectiveness of energy weaponry.",
-      "it": "Si tratta di un’armatura dotata di conduttori e condensatori aggiuntivi per potenziare l’efficacia delle armi a energia."
+      "it": "Un set di piastre di armatura realizzato su misura, dotato di conduttori e condensatori aggiuntivi per potenziare l'efficacia delle armi a energia."
     },
     "_descriptor": {
       "en": "Voltaic Frame {{name}}",
@@ -412,7 +412,7 @@
     "it": "Telaio Voltaico",
     "_description": {
       "en": "A specially made set of armor plates fitted with additional conduits and capacitors to bolster the effectiveness of energy weaponry.",
-      "it": "Si tratta di un’armatura dotata di conduttori e condensatori aggiuntivi per potenziare l’efficacia delle armi a energia."
+      "it": "Un set di piastre di armatura realizzato su misura, dotato di conduttori e condensatori aggiuntivi per potenziare l'efficacia delle armi a energia."
     },
     "_descriptor": {
       "en": "Voltaic Frame {{name}}",
@@ -424,7 +424,7 @@
     "it": "Bobine Radioattive",
     "_description": {
       "en": "A series of antennae placed on the surface of the robot projects deadly radiation over a short distance to harm and repel intruders. An internal switch allows the robot to disable the coils if allies stray too near, as the radiation is just as harmful to friends.",
-      "it": "Si tratta di una serie di antenne installate sulla superficie del robot che proiettano a corto raggio delle radiazioni letali, al fine di ferire e respingere eventuali malintenzionati. Un interruttore interno permette al robot di spegnere le bobine se gli alleati si avvicinano troppo, dato che le radiazioni sono altrettanto dannose anche per gli amici."
+      "it": "Si tratta di una serie di antenne installate sulla superficie del robot che proiettano a corto raggio delle radiazioni letali, al fine di ferire e respingere eventuali malintenzionati. Un interruttore interno permette al robot di spegnere le bobine se gli alleati si avvicinano troppo, dato che le radiazioni sono altrettanto dannose anche per gli amici (se, ovviamente, si tratta di semplici umani)."
     },
     "_descriptor": {
       "en": "Radioactive Coils {{name}}",
@@ -436,7 +436,7 @@
     "it": "Bobine Tesla",
     "_description": {
       "en": "A collection of antennae on the robot’s outer surface allow it to direct electrical discharges over a short distance to nearby aggressors. The partially directed nature of these discharges mean that allies are not at risk of more than a mild shock, while enemies may suffer severe electrical burns.",
-      "it": "È una serie di antenne sulla superficie del robot, che gli permette di scagliare delle scariche elettriche a breve distanza sui nemici. Il fatto che queste cariche siano parzialmente direzionate implica che gli alleati non rischiano niente più che un leggero shock, mentre i nemici potrebbero riportare delle gravi bruciature da elettricità."
+      "it": "Un insieme di antenne sulla superficie esterna del robot gli permette di dirigere scariche elettriche su una breve distanza verso gli aggressori vicini. La natura parzialmente diretta di queste scariche fa sì che gli alleati non rischino più di una lieve scossa, mentre i nemici possono subire gravi ustioni elettriche."
     },
     "_descriptor": {
       "en": "Tesla Coils {{name}}",
@@ -460,7 +460,7 @@
     "it": "Campo di Resistenza",
     "_description": {
       "en": "An unusual technology intended to provide soldiers with additional protection from enemy fire. The robot emits a magnetic field directed towards the enemy which disrupts the flight path of bullets and other projectiles, causing them to lose momentum and efficacy.",
-      "it": "È un’insolita tecnologia che serve a fornire ai soldati una protezione aggiuntiva dal fuoco nemico. Il robot emette in direzione del nemico un campo magnetico che disturba la traiettoria di missili e proiettili, facendo loro perdere velocità ed efficacia."
+      "it": "Una tecnologia insolita, pensata per offrire ai soldati una protezione aggiuntiva dal fuoco nemico. Il robot emette un campo magnetico diretto verso il nemico, che disturba la traiettoria dei proiettili, facendoli perdere slancio ed efficacia."
     },
     "_descriptor": {
       "en": "Resistance Field {{name}}",
@@ -472,7 +472,7 @@
     "it": "Campo di Rigenerazione",
     "_description": {
       "en": "An experimental technology designed to provide aid to injured people where extensive medical care is in short supply. The robot is fitted with a device which projects a restorative signal over a short distance which stimulates the human body’s natural healing processes.",
-      "it": "Si tratta di una tecnologia sperimentale pensata per aiutare persone ferite in luoghi in cui non ci sia una grande possibilità di cure: nel robot viene installato un apparecchio che proietta a breve distanza un segnale rigenerativo in grado di stimolare i naturali processi di guarigione del corpo umano."
+      "it": "Una tecnologia sperimentale, progettata per aiutare le persone ferite dove scarseggiano le cure mediche complete. Il robot è dotato di un dispositivo che proietta un segnale rigenerativo su una breve distanza, che stimola i processi naturali di guarigione del corpo umano."
     },
     "_descriptor": {
       "en": "Regeneration Field {{name}}",
@@ -484,7 +484,7 @@
     "it": "Campo Stealth",
     "_description": {
       "en": "Based on the same technology as the Stealth Boy, the robot produces a low-level refraction field which bends and displaces light, camouflaging itself and those nearby. The lower intensity camouflage allows the field to last far longer without burning out the components of the device or draining the robot’s power supply, but it cannot provide true invisibility.",
-      "it": "Basato sulla stessa tecnologia dello Stealth Boy, permette al robot di produrre un campo di rifrazione a bassi livelli che piega e distorce la luce, mimetizzando sé stesso e chi gli sta vicino. La minore intensità della mimetizzazione fa sì che il campo duri più a lungo senza bruciare le componenti dell’apparecchio o prosciugare la fonte di energia del robot, ma non riesce a garantire una completa invisibilità."
+      "it": "Basato sulla stessa tecnologia dello Stealth Boy, il robot produce un campo di rifrazione di bassa intensità, che piega e sposta la luce, mimetizzando sé stesso e chi gli sta vicino. Il camuffamento a intensità più bassa permette al campo di durare molto più a lungo senza bruciare i componenti del dispositivo o esaurire l'alimentazione del robot, ma non può garantire una vera invisibilità."
     },
     "_descriptor": {
       "en": "Stealth Field {{name}}",
@@ -508,7 +508,7 @@
     "it": "Modulo di Diagnostica",
     "_description": {
       "en": "Designed to allow Mister Handy robots to be repurposed as nurses and field medics during a crisis, the diagnosis module allows the robot to discern the nature of injuries and illnesses on a patient and devise the correct treatment quickly. Proper bedside manner, however, was not included in the module.",
-      "it": "Progettato per far sì che i robot Mister Handy potessero essere riprogrammati come infermieri e medici da campo in caso di crisi, il modulo di diagnostica permette al robot di determinare il tipo di ferite e malattie di un paziente, consentendogli di individuare alla svelta il trattamento giusto. Sfortunatamente, il modo in cui trattare i pazienti non era incluso."
+      "it": "Progettato per permettere di riutilizzare i robot Mister Handy come infermieri e medici da campo durante una crisi, il modulo diagnostico consente al robot di individuare la natura delle ferite e delle malattie di un paziente e di definire rapidamente il trattamento corretto. Il giusto tatto al capezzale, però, non era incluso nel modulo."
     },
     "_descriptor": {
       "en": "Diagnosis Mod {{name}}",
@@ -520,7 +520,7 @@
     "it": "Modulo di Rilevamento Pericoli",
     "_description": {
       "en": "Developed for cheap, disposable trap-clearance robots to accompany soldiers in enemy territory, this hazard detection and analysis system modifies the robot’s sensory awareness to identify and categorize potential environmental threats and hazards. Repurposed for the Miss Nanny to spot dangers to children in the household, the system’s developers never fully removed the urge to go towards hazards to investigate them more closely.",
-      "it": "Pensato per gli economici e sacrificabili robot con il compito di scovare trappole che accompagnavano i soldati in territorio nemico, questo sistema di analisi e rilevamento minacce modifica la percezione sensoriale del robot affinché identifichi e classifichi tutti i potenziali rischi e pericoli ambientali. Ricalibrato sul modello Miss Tata affinché fosse in grado di riconoscere i pericoli per i bambini in casa, gli sviluppatori del programma non riuscirono mai a togliere del tutto la necessità di avvicinarsi al pericolo per guardare più da vicino."
+      "it": "Sviluppato per robot economici e usa-e-getta, destinati a bonificare le trappole e ad accompagnare i soldati in territorio nemico, questo sistema di rilevamento e analisi dei pericoli modifica la consapevolezza sensoriale del robot per identificare e classificare le potenziali minacce e i pericoli ambientali. Riadattato per il modello Miss Tata affinché riconoscesse i pericoli per i bambini in casa, gli sviluppatori del programma non riuscirono mai a togliere del tutto la necessità di avvicinarsi al pericolo per guardarlo più da vicino."
     },
     "_descriptor": {
       "en": "Hazard Detection Mod {{name}}",
@@ -532,7 +532,7 @@
     "it": "Modulo di Hackeraggio",
     "_description": {
       "en": "In addition to a library of decryption software and known software flaws, the hacking module fits the robot with an external interface jack, allowing it to connect directly to a computer and interface with it directly. Ideal for robots whose manipulator claws are poorly suited to operating a keyboard.",
-      "it": "Oltre ad un’intera raccolta di software di decodifica e noti punti deboli di svariati software, il modulo di hackeraggio dota il robot con un jack d’interfaccia esterno che gli permette di connettersi direttamente con i computer per dialogarci. È perfetto per quei robot le cui pinze manipolatrici non sono molto adatte a digitare su una tastiera."
+      "it": "Oltre a una libreria di software di decrittazione e a un elenco di falle note nei software, il modulo di hackeraggio dota il robot di una presa di interfaccia esterna, che gli permette di collegarsi direttamente a un computer e interagire con esso. Ideale per i robot i cui artigli manipolatori sono poco adatti a usare una tastiera."
     },
     "_descriptor": {
       "en": "Hacking Module {{name}}",
@@ -544,7 +544,7 @@
     "it": "Modulo da Scassinatore",
     "_description": {
       "en": "In addition to a catalogue of locking mechanisms and their known weaknesses and configurations, this module refits a manipulator claw with a hidden set of locksmith’s tools in an articulated mount, allowing the robot to pick locks without needing to handle tools directly.",
-      "it": "In aggiunta a una lista di meccanismi di chiusura con le relative debolezze e configurazioni, questo modulo modifica una tenaglia manipolatrice dotandola di un set nascosto di attrezzi da scassinatore in un supporto snodato, che lo rende capace di aprire serrature senza dover maneggiare direttamente gli attrezzi."
+      "it": "Oltre a un catalogo di meccanismi di chiusura e dei loro punti deboli e configurazioni note, questo modulo riadatta un artiglio manipolatore con un set nascosto di attrezzi da scassinatore su un supporto articolato, permettendo al robot di scassinare le serrature senza dover maneggiare direttamente gli attrezzi."
     },
     "_descriptor": {
       "en": "Lockpick Module {{name}}",
@@ -556,7 +556,7 @@
     "it": "Sensori",
     "_description": {
       "en": "Additional sensor modules and sensory processing systems accompany the robot’s normal optical and auditory sensors, allowing it to perceive the world in more detail and in more ways than normal eyes and ears can.",
-      "it": "Sono dei moduli addizionali di sensori e di sistemi di elaborazione sensoriale che coadiuvano i normali sensori ottici e uditivi del robot, rendendolo in grado di percepire il mondo in maniera più dettagliata e in più maniere di quelle fornite solamente da vista e udito."
+      "it": "Moduli sensoriali aggiuntivi e sistemi di elaborazione sensoriale accompagnano i normali sensori ottici e uditivi del robot, permettendogli di percepire il mondo con più dettaglio e in più modi di quanto possano fare occhi e orecchie normali."
     },
     "_descriptor": {
       "en": "Sensor Array {{name}}",
@@ -568,7 +568,7 @@
     "it": "Sensori di Ricognizione",
     "_description": {
       "en": "Designed to aid with target acquisition and patrol efficiency in Mister Gutsy military robots, these recon sensors allow the robot to not only detect foes more easily and more quickly determine friend from foe, but also to track and predict the movements of enemies who are no longer visible, making it harder for enemies to escape.",
-      "it": "Progettati per aiutare a identificare gli obiettivi e rendere più efficienti le ricognizioni dei robot militari Mister Gutsy, questi sensori fanno sì che il robot non solo identifichi più facilmente i nemici e distingua più facilmente i nemici dagli amici, ma anche che riesca a rintracciare e predire i movimenti dei nemici non più in vista, rendendo più difficile la fuga."
+      "it": "Progettati per aiutare a identificare gli obiettivi e rendere più efficienti le ricognizioni dei robot militari Mister Gutsy, questi sensori fanno sì che il robot non solo identifichi più facilmente i nemici (e distingua più facilmente i nemici dagli amici, dopo una serie di incidenti dovuti a fuoco amico), ma anche che riesca a rintracciare e predire i movimenti dei nemici non più in vista, rendendo più difficile la fuga."
     },
     "_descriptor": {
       "en": "Recon Sensors {{name}}",

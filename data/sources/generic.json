@@ -25,7 +25,7 @@
   },
   "actionsIntro": {
     "en": "During combat, each character takes a turn and can attempt one minor action and one major action.\n\nA minor action represents something quick or supportive of a major action, such as aiming or drawing a weapon.\n\nA major action represents something that involves more concentration or effort, such as attacking an opponent, defending yourself, hacking a computer, or picking a lock.\n\nYou can spend 1 Action Point to take one additional minor action, or 2 Action Points to take one additional major action. Any skill test attempted as part of that second major action has its difficulty increased by 1. You cannot take more than two minor actions or two major actions on your turn, and you cannot take more than one movement action per turn.",
-    "it": "Durante il combattimento, ogni personaggio effettua un turno e può tentare un'azione minore e un'azione maggiore. \n\nUn'azione minore rappresenta qualcosa di rapido o di supporto a un'azione maggiore, come mirare o estrarre un'arma.\n\nUn'azione maggiore rappresenta qualcosa che richiede più concentrazione o impegno, come attaccare un avversario, difendersi, hackerare un computer o scassinare una serratura.\n\nPuoi spendere 1 Punto Azione per effettuare un'azione minore aggiuntiva, oppure 2 Punti Azione per effettuare un'azione maggiore aggiuntiva. La difficoltà di ogni test di abilità effettuato come parte di quella seconda azione maggiore aumenta di 1. Non puoi effettuare più di due azioni minori o due azioni maggiori durante il tuo turno, né più di un'azione di movimento per turno."
+    "it": "Durante il combattimento, ogni personaggio effettua un turno e può tentare un'azione minore e un'azione maggiore. \n\nUn'azione minore rappresenta qualcosa di rapido o di supporto a un'azione maggiore, come mirare o estrarre un'arma.\n\nUn'azione maggiore rappresenta qualcosa che richiede più concentrazione o impegno, come attaccare un avversario, difendersi, hackerare un computer o scassinare una serratura.\n\nPuoi spendere 1 Punto Azione per effettuare un'azione minore aggiuntiva, oppure 2 Punti Azione per effettuare un'azione maggiore aggiuntiva. La difficoltà di ogni prova di abilità effettuata come parte di quella seconda azione maggiore aumenta di 1. Non puoi effettuare più di due azioni minori o due azioni maggiori durante il tuo turno, né più di un'azione di movimento per turno."
   },
   "actionAim": {
     "en": "Aim",
@@ -53,7 +53,7 @@
   },
   "actionMove": {
     "en": "Move",
-    "it": "Muoversi"
+    "it": "Movimento"
   },
   "actionMoveDescription": {
     "en": "Move up to one zone, to any position within Medium range, or stand up from prone. You cannot take Sprint in the same turn.",
@@ -61,11 +61,11 @@
   },
   "actionTakeChem": {
     "en": "Take Chem",
-    "it": "Assumere chem"
+    "it": "Assumere Sostanze"
   },
   "actionTakeChemDescription": {
     "en": "Administer a chem you are holding to yourself or a willing character within reach. Draw it first if necessary.",
-    "it": "Somministra una chem che stai tenendo a te stesso o a un personaggio consenziente a portata di mano. Se necessario, estraila prima."
+    "it": "Somministra una sostanza che stai tenendo a te stesso o a un personaggio consenziente a portata di mano. Se necessario, estraila prima."
   },
   "actionAssist": {
     "en": "Assist",
@@ -73,7 +73,7 @@
   },
   "actionAssistDescription": {
     "en": "Assist another character with their next test, providing assistance when they attempt it on their turn. If you have not acted yet this round, you may give up your turn later to assist an ally with a skill test.",
-    "it": "Assisti un altro personaggio nel suo prossimo test, fornendo assistenza quando lo effettua durante il suo turno. Se non hai ancora agito in questo round, puoi rinunciare più avanti al tuo turno per assistere un alleato in un test di abilità."
+    "it": "Assisti un altro personaggio nella sua prossima prova, fornendo assistenza quando lo effettua durante il suo turno. Se non hai ancora agito in questo round, puoi rinunciare più avanti al tuo turno per assistere un alleato in una prova di abilità."
   },
   "actionAttack": {
     "en": "Attack",
@@ -85,11 +85,11 @@
   },
   "actionCommandNpc": {
     "en": "Command an NPC",
-    "it": "Comandare un PNG"
+    "it": "Dare Ordini a un PNG"
   },
   "actionCommandNpcDescription": {
     "en": "Choose one major action for an allied NPC under your command. If it requires a test, you automatically assist using CHA + Speech for a person, CHA + Survival for an animal, or INT + Science for a robot.",
-    "it": "Scegli un'azione maggiore per un PNG alleato sotto il tuo comando. Se richiede un test, lo assisti automaticamente usando CAR + Oratoria per una persona, CAR + Sopravvivenza per un animale o INT + Scienza per un robot."
+    "it": "Scegli un'azione maggiore per un PNG alleato sotto il tuo comando. Se richiede una prova, lo assisti automaticamente usando CAR + Oratoria per una persona, CAR + Sopravvivenza per un animale o INT + Scienza per un robot."
   },
   "actionFirstAid": {
     "en": "First Aid",
@@ -97,7 +97,7 @@
   },
   "actionFirstAidDescription": {
     "en": "Make an INT + Medicine test with a difficulty equal to the patient's number of injuries (+1 difficulty when treating yourself). On a success, heal HP equal to your Medicine rating, treat one injury, or stabilize a dying patient. When administering a stimpak as part of First Aid, the patient regains 4 HP in addition to any other effects, and AP spent to heal additional HP restore 2 HP per AP instead of 1. For robots and other machines, use INT + Repair instead, with difficulty 2 plus their injuries.",
-    "it": "Effettua un test di INT + Medicina con difficoltà pari al numero di ferite del paziente (+1 difficoltà se tratti te stesso). Se riesci, cura PS pari al tuo grado di Medicina, tratta una ferita o stabilizza un paziente morente. Quando somministri uno stimpak come parte del Primo soccorso, il paziente recupera 4 PS in aggiunta agli altri effetti e i PA spesi per curare PS aggiuntivi curano 2 PS ciascuno invece di 1."
+    "it": "Effettua una prova di INT + Medicina con difficoltà pari al numero di ferite del paziente (+1 difficoltà se tratti te stesso). Se riesci, cura HP pari al tuo grado di Medicina, tratta una ferita o stabilizza un paziente morente. Quando somministri uno stimpak come parte del Primo soccorso, il paziente recupera 4 HP in aggiunta agli altri effetti e i PA spesi per curare HP aggiuntivi curano 2 HP ciascuno invece di 1. Per robot e altre macchine usa invece INT + Riparare, con difficoltà pari a 2 più le loro ferite."
   },
   "actionFirstAidRobot": {
     "en": "First Aid (Robot)",
@@ -105,19 +105,19 @@
   },
   "actionFirstAidRobotDescription": {
     "en": "Make an INT + Repair test with a difficulty equal to 2 plus the patient's number of injuries (+1 difficulty when repairing yourself). On a success, restore HP equal to your Repair rating, treat one injury, or stabilize a dying robot. When using a robot repair kit as part of First Aid (Robot), the patient regains 4 HP or treats one injury in addition to any other repairs, and AP spent to repair additional HP restore 2 HP per AP instead of 1.",
-    "it": "Effettua un test di INT + Riparazione con difficoltà pari a 2 più il numero di ferite del paziente (+1 difficoltà se ripari te stesso). Se riesci, ripristina PS pari al tuo grado di Riparazione, tratta una ferita o stabilizza un robot morente. Quando usi un kit di riparazione per robot come parte del Primo Soccorso (Robot), il paziente recupera 4 PS o cura una ferita in aggiunta alle altre riparazioni, e i PA spesi per ripristinare PS aggiuntivi ripristinano 2 PS ciascuno invece di 1."
+    "it": "Effettua una prova di INT + Riparare con difficoltà pari a 2 più il numero di ferite del paziente (+1 difficoltà se ripari te stesso). Se riesci, ripristina HP pari al tuo grado di Riparare, tratta una ferita o stabilizza un robot morente. Quando usi un kit di riparazione per robot come parte del Primo Soccorso (Robot), il paziente recupera 4 HP o cura una ferita in aggiunta alle altre riparazioni, e i PA spesi per ripristinare HP aggiuntivi ripristinano 2 HP ciascuno invece di 1."
   },
   "actionDefend": {
     "en": "Defend",
-    "it": "Difendersi"
+    "it": "Difendere"
   },
   "actionDefendDescription": {
     "en": "Make an AGI + Athletics test against your Defense. On a success, increase your Defense by 1; you may spend 2 AP for another +1.",
-    "it": "Effettua un test di AGI + Atletica contro la tua Difesa. Se riesci, aumenta la Difesa di 1; puoi spendere 2 PA per un ulteriore +1."
+    "it": "Effettua una prova di AGI + Atletica contro la tua Difesa. Se riesci, aumenta la Difesa di 1; puoi spendere 2 PA per un ulteriore +1."
   },
   "actionPass": {
     "en": "Pass",
-    "it": "Passare"
+    "it": "Passare il Turno"
   },
   "actionPassDescription": {
     "en": "Choose not to do anything.",
@@ -125,15 +125,15 @@
   },
   "actionRally": {
     "en": "Rally",
-    "it": "Riorganizzarsi"
+    "it": "Prendere Fiato"
   },
   "actionRallyDescription": {
     "en": "Make an END + Survival test at difficulty 0 and save any Action Points you generate. The gamemaster may allow a different attribute + skill, such as CHA + Speech to inspire your allies.",
-    "it": "Effettua un test di END + Sopravvivenza a difficoltà 0 e conserva gli eventuali Punti Azione generati. Il gamemaster può consentire un diverso attributo + abilità, come CAR + Oratoria per ispirare gli alleati."
+    "it": "Effettua una prova di COS + Sopravvivenza a difficoltà 0 e conserva gli eventuali Punti Azione generati. Il gamemaster può consentire un diverso attributo + abilità, come CAR + Oratoria per ispirare gli alleati."
   },
   "actionReady": {
     "en": "Ready",
-    "it": "Prepararsi"
+    "it": "Preparare l'Azione"
   },
   "actionReadyDescription": {
     "en": "Describe a situation and choose a major action to perform when it occurs before the start of your next turn. You perform it immediately, interrupting other characters as necessary. If multiple characters ready for the same situation, resolve their actions in initiative order.",
@@ -145,15 +145,15 @@
   },
   "actionSprintDescription": {
     "en": "Move up to two zones, to anywhere within Long range. You cannot take Move in the same turn.",
-    "it": "Muoviti fino a due zone, in qualsiasi punto entro Gittata lunga. Non puoi usare l'azione Muoversi nello stesso turno."
+    "it": "Muoviti fino a due zone, in qualsiasi punto entro Gittata lunga. Non puoi usare l'azione Movimento nello stesso turno."
   },
   "actionTest": {
     "en": "Test",
-    "it": "Test"
+    "it": "Prova"
   },
   "actionTestDescription": {
     "en": "Perform a skill test for an action not covered by another action, with the gamemaster's permission.",
-    "it": "Effettua un test di abilità per un'azione non coperta da un'altra azione, con il permesso del gamemaster."
+    "it": "Effettua una prova di abilità per un'azione non coperta da un'altra azione, con il permesso del gamemaster."
   },
   "activeCharacter": {
     "en": "Active Character",
@@ -269,7 +269,7 @@
   },
   "availableSkillPoints": {
     "en": "Skill Points",
-    "it": "Punti Skill"
+    "it": "Punti Abilità"
   },
   "availableSpecial": {
     "en": "S.P.E.C.I.A.L. Points",
@@ -488,8 +488,8 @@
     "it": "RD"
   },
   "damageReductionFull": {
-    "en": "Damage Reduction",
-    "it": "Riduzione Danni"
+    "en": "Damage Resistance",
+    "it": "Resistenza ai Danni"
   },
   "damageType": {
     "en": "Damage Type",
@@ -665,7 +665,7 @@
   },
   "hitLocation": {
     "en": "Hit Location",
-    "it": "Posizione Colpo"
+    "it": "Punto d'Impatto"
   },
   "hitTorso": {
     "en": "Hit Torso?",
@@ -673,7 +673,7 @@
   },
   "hp": {
     "en": "HP",
-    "it": "PS"
+    "it": "HP"
   },
   "hpDamageWarningToast": {
     "en": "You suffered ≥5 points of damage. You may have suffered an injury.",
@@ -712,8 +712,8 @@
     "it": "Sovraccarico (>{{weight}}{{unit}})"
   },
   "encumbranceDescription": {
-    "en": "All Strength or Agility-based tests have their difficulty increased by 1, Sprint actions cannot be performed, and Initiative is reduced by 1. If the character carries 25 kg or more above their carry weight, the difficulty of these tests increases by an additional 1 and Initiative is reduced by an additional 1. For every additional 25 kg above the character's carry weight, these penalties increase by 1.",
-    "it": "Tutte le prove basate su Forza o Agilità aumentano la difficoltà di 1, non è possibile effettuare azioni di Scatto e l'Iniziativa è ridotta di 1. Se si trasportano 25 kg o più rispetto al peso trasportabile, la difficoltà di queste prove aumenta di un ulteriore 1 e l'Iniziativa è ridotta di un altro 1. Per ogni ulteriore 25 kg rispetto al peso trasportabile, le penalità aumentano di 1."
+    "en": "All Strength or Agility-based tests have their difficulty increased by 1, Sprint actions cannot be performed, and Initiative is reduced by 1. If the character carries [[wt:25]] or more above their carry weight, the difficulty of these tests increases by an additional 1 and Initiative is reduced by an additional 1. For every additional [[wt:25]] above the character's carry weight, these penalties increase by 1. If the character carries twice their carry weight, they cannot move, automatically fail any Strength or Agility-based tests, and their Initiative is 0.",
+    "it": "Tutte le prove basate su Forza o Agilità aumentano la difficoltà di 1, non è possibile effettuare azioni di Scatto e l'Iniziativa è ridotta di 1. Se si trasportano [[wt:25]] o più rispetto al peso trasportabile, la difficoltà di queste prove aumenta di un ulteriore 1 e l'Iniziativa è ridotta di un altro 1. Per ogni ulteriore [[wt:25]] rispetto al peso trasportabile, le penalità aumentano di 1. Se si trasporta il doppio del peso trasportabile, non ci si può muovere, si fallisce automaticamente ogni prova basata su Forza o Agilità e l'Iniziativa è 0."
   },
   "encumbranceDoubleDescription": {
     "en": "The character cannot move, all Strength and Agility-based tests automatically fail, and Initiative is reduced to 0.",
@@ -765,7 +765,7 @@
   },
   "leatherArmor": {
     "en": "Leather Armor",
-    "it": "Arm. di Pelle"
+    "it": "Arm. di Cuoio"
   },
   "left": {
     "en": "Left",
@@ -782,102 +782,6 @@
   "leg": {
     "en": "Leg",
     "it": "Gamba"
-  },
-  "legendaryExterminatorArmor": {
-    "en": "Exterminator’s",
-    "it": "Sterminatore"
-  },
-  "legendaryExterminatorArmorDescription": {
-    "en": "+2 Physical and Energy DR against attacks from insect, arachnid, or mirelurk enemies.",
-    "it": "+2 alla RD Fisica ed Energia contro gli attacchi di insetti, aracnidi o mirelurk."
-  },
-  "legendaryExterminatorWeapon": {
-    "en": "Exterminator’s",
-    "it": "Sterminatore"
-  },
-  "legendaryExterminatorWeaponDescription": {
-    "en": "Attacks gain Vicious against insects, arachnids, and mirelurks. If already Vicious, inflict +2 damage per Effect instead of +1.",
-    "it": "Gli attacchi ottengono Letale contro insetti, aracnidi e mirelurk. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
-  },
-  "legendaryGhoulSlayerArmor": {
-    "en": "Ghoul Slayer’s",
-    "it": "Sterminatore di Ghoul"
-  },
-  "legendaryGhoulSlayerArmorDescription": {
-    "en": "+2 Physical, Energy, and Radiation DR against attacks from ghoul enemies.",
-    "it": "+2 alla RD Fisica, Energia e Radiazioni contro gli attacchi dei ghoul."
-  },
-  "legendaryGhoulSlayerWeapon": {
-    "en": "Ghoul Slayer’s",
-    "it": "Sterminatore di Ghoul"
-  },
-  "legendaryGhoulSlayerWeaponDescription": {
-    "en": "Attacks gain Vicious against ghouls. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
-    "it": "Gli attacchi ottengono Letale contro i ghoul. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
-  },
-  "legendaryHunterArmor": {
-    "en": "Hunter’s",
-    "it": "Cacciatore"
-  },
-  "legendaryHunterArmorDescription": {
-    "en": "Provides +2 Physical and Energy DR against attacks from mammal or lizard enemies.",
-    "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi di mammiferi o lucertole."
-  },
-  "legendaryHunterWeapon": {
-    "en": "Hunter’s",
-    "it": "Cacciatore"
-  },
-  "legendaryHunterWeaponDescription": {
-    "en": "Attacks gain Vicious against mammals and lizards. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
-    "it": "Gli attacchi ottengono Letale contro mammiferi e lucertole. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
-  },
-  "legendaryIncendiaryArmor": {
-    "en": "Incendiary",
-    "it": "Incendiario"
-  },
-  "legendaryIncendiaryArmorDescription": {
-    "en": "Enemy melee attacks increase complication range by 1; on complication, attacker suffers X CD Persistent Energy damage (X = damage dice).",
-    "it": "Gli attacchi in mischia nemici aumentano l'intervallo di complicazione di 1; con una complicazione, l'attaccante subisce X DC di danno Persistente (Energia)."
-  },
-  "legendaryIncendiaryWeapon": {
-    "en": "Incendiary",
-    "it": "Incendiario"
-  },
-  "legendaryIncendiaryWeaponDescription": {
-    "en": "This weapon gains the Persistent (Energy) damage effect.",
-    "it": "Quest'arma ottiene l'effetto danno Persistente (Energia)."
-  },
-  "legendaryMutantSlayerArmor": {
-    "en": "Mutant Slayer’s",
-    "it": "Sterminatore di Mutanti"
-  },
-  "legendaryMutantSlayerArmorDescription": {
-    "en": "Provides +2 Physical and Energy DR against attacks from super mutant enemies.",
-    "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi dei supermutanti."
-  },
-  "legendaryMutantSlayerWeapon": {
-    "en": "Mutant Slayer’s",
-    "it": "Sterminatore di Mutanti"
-  },
-  "legendaryMutantSlayerWeaponDescription": {
-    "en": "Attacks gain Vicious against super mutants. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
-    "it": "Gli attacchi ottengono Letale contro i supermutanti. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
-  },
-  "legendaryTroubleshooterArmor": {
-    "en": "Troubleshooter’s",
-    "it": "Risolutore"
-  },
-  "legendaryTroubleshooterArmorDescription": {
-    "en": "Provides +2 Physical and Energy DR against attacks from robot enemies.",
-    "it": "Fornisce +2 alla RD Fisica ed Energia contro gli attacchi dei robot."
-  },
-  "legendaryTroubleshooterWeapon": {
-    "en": "Troubleshooter’s",
-    "it": "Risolutore"
-  },
-  "legendaryTroubleshooterWeaponDescription": {
-    "en": "Attacks gain Vicious against robots. If already Vicious, inflict +2 damage per Effect rolled instead of +1.",
-    "it": "Gli attacchi ottengono Letale contro i robot. Se già Letale, infligge +2 danni per ogni Effetto ottenuto invece di +1."
   },
   "legionaryArmor": {
     "en": "Legionary Armor",
@@ -984,7 +888,7 @@
     "it": "Leva Pesante"
   },
   "modHeavyTireIronDescription": {
-    "en": "+1 damage DC",
+    "en": "+1 damage CD",
     "it": "+1 danno DC"
   },
   "modify": {
@@ -1100,7 +1004,7 @@
     "it": "Leva Chiodata"
   },
   "modSpikedTireIronDescription": {
-    "en": "+1 damage DC, gains Piercing 1",
+    "en": "+1 damage CD, gains Piercing 1",
     "it": "+1 danno DC, ottiene Penetrante 1"
   },
   "mrHandy": {
@@ -1173,7 +1077,7 @@
   },
   "noPerksAvailable": {
     "en": "No perks available",
-    "it": "Nessun perk disponibile"
+    "it": "Nessun talento disponibile"
   },
   "notEnoughAmmoAlert": {
     "en": "You don't have enough AMMO to do it!",
@@ -1227,57 +1131,9 @@
     "en": "Perception",
     "it": "Percezione"
   },
-  "perkAttackDog": {
-    "en": "Attack Dog",
-    "it": "Cane da Attacco"
-  },
-  "perkAttackDogDescription": {
-    "en": "Your companion dog is trained for combat. Attacks deal +1 damage.",
-    "it": "Il tuo cane compagno è addestrato per il combattimento. Gli attacchi infliggono +1 danno."
-  },
-  "perkLoyalCompanion": {
-    "en": "Loyal Companion",
-    "it": "Compagno Leale"
-  },
-  "perkLoyalCompanionDescription": {
-    "en": "Your companion will never abandon you. Immune to fear effects.",
-    "it": "Il tuo compagno non ti abbandonerà mai. Immune agli effetti di paura."
-  },
-  "perkPackMule": {
-    "en": "Pack Mule",
-    "it": "Mulo da Soma"
-  },
-  "perkPackMuleDescription": {
-    "en": "Your companion can carry extra weight. Increases carry capacity by 25kg.",
-    "it": "Il tuo compagno può trasportare peso extra. Aumenta la capacità di carico di 25kg."
-  },
-  "perkProtector": {
-    "en": "Protector",
-    "it": "Protettore"
-  },
-  "perkProtectorDescription": {
-    "en": "Your companion shields you from harm. Grants +1 DR to all damage types when nearby.",
-    "it": "Il tuo compagno ti protegge dal pericolo. Garantisce +1 RD a tutti i tipi di danno quando è vicino."
-  },
-  "perkRepairBot": {
-    "en": "Repair Bot",
-    "it": "Robot Riparatore"
-  },
-  "perkRepairBotDescription": {
-    "en": "Your companion can perform basic repairs. Can repair items in the field.",
-    "it": "Il tuo compagno può eseguire riparazioni di base. Può riparare oggetti sul campo."
-  },
   "perks": {
     "en": "Perks",
     "it": "Talenti"
-  },
-  "perkScout": {
-    "en": "Scout",
-    "it": "Esploratore"
-  },
-  "perkScoutDescription": {
-    "en": "Your companion has keen senses. Grants +2 to Perception checks when scouting.",
-    "it": "Il tuo compagno ha sensi acuti. Garantisce +2 alle prove di Percezione durante l'esplorazione."
   },
   "physical": {
     "en": "Physical",
@@ -1433,7 +1289,7 @@
   },
   "rerollHitLocation": {
     "en": "Reroll Hit Location",
-    "it": "Rilancia Posizione Colpo"
+    "it": "Ritira Punto d'Impatto"
   },
   "resetMemory": {
     "en": "RESET MEMORY",
@@ -1532,7 +1388,7 @@
     "it": "Mostra talenti non disponibili"
   },
   "skill": {
-    "en": "Ability",
+    "en": "Skill",
     "it": "Abilità"
   },
   "skills": {
@@ -1617,7 +1473,7 @@
   },
   "syntheticArmor": {
     "en": "Synthetic Armor",
-    "it": "Armatura da Sintentico"
+    "it": "Armatura Sintetica"
   },
   "target": {
     "en": "Target",
@@ -1820,7 +1676,7 @@
     "it": "Gruppo"
   },
   "partyNeedGroup": {
-    "en": "You are not in a party. Your PA are only saved on this character. Join a party in Settings → Party to share them.",
+    "en": "You are not in a party. Your AP are only saved on this character. Join a party in Settings → Party to share them.",
     "it": "Non sei in un gruppo. I tuoi PA restano solo su questo personaggio. Entra in un gruppo da Impostazioni → Gruppo per condividerli."
   },
   "partyButton": {
@@ -1852,7 +1708,35 @@
     "it": "Offline · ultimo accesso {{date}}"
   },
   "partyManualNotice": {
-    "en": "PA are managed manually: the app never adds or removes them on its own.",
+    "en": "AP are managed manually: the app never adds or removes them on its own.",
     "it": "I PA si gestiscono manualmente: l'app non li aggiunge né li rimuove da sola."
+  },
+  "perkRequirement_notRobot": {
+    "en": "Not a robot",
+    "it": "Non robot"
+  },
+  "perkRequirement_notGhoul": {
+    "en": "Not a ghoul",
+    "it": "Non ghoul"
+  },
+  "perkRequirement_notRadiationImmune": {
+    "en": "Not immune to radiation",
+    "it": "Non immune alle radiazioni"
+  },
+  "perkRequirement_noCompanion": {
+    "en": "No companion",
+    "it": "Nessun compagno"
+  },
+  "modSlotFrame": {
+    "en": "Frame",
+    "it": "Telaio"
+  },
+  "modSlotContainer": {
+    "en": "Container",
+    "it": "Contenitore"
+  },
+  "modSlotConcentrate": {
+    "en": "Concentrate",
+    "it": "Concentrato"
   }
 }

@@ -100,13 +100,13 @@ foodLureWeed,aid,food,durationInstant,2,1,,0,5,1,Wanderers DLC
 foodMongrelRibs,aid,food,durationInstant,7,1,,0,30,2,Wanderers DLC
 foodMuttonMeatPie,aid,food,durationInstant,15,1,,0.5,120,4,Wanderers DLC
 foodPoachedAngler,aid,food,durationInstant,10,0,,0.5,100,4,Wanderers DLC
-foodRadratMeat,aid,food,durationInstant,4,1,,0,4,0,Wanderers DLC
+foodRadratMeat,aid,food,durationInstant,4,2,,0,4,0,Wanderers DLC
 foodRoastedRadrat,aid,food,durationInstant,7,0,,0,10,1,Wanderers DLC
-foodScorchbeastMeat,aid,food,durationInstant,9,1,,0.5,100,4,Wanderers DLC
+foodScorchbeastMeat,aid,food,durationInstant,9,2,,0.5,100,4,Wanderers DLC
 foodScorchbeastSteak,aid,food,durationInstant,14,0,,0.5,120,4,Wanderers DLC
 foodScorchbeastStew,aid,food,durationInstant,12,0,,0.5,130,4,Wanderers DLC
 foodSheepsquatchMeat,aid,food,durationInstant,8,1,,0.5,120,4,Wanderers DLC
-foodSnallygasterInnards,aid,food,durationInstant,3,1,,0.5,30,3,Wanderers DLC
+foodSnallygasterInnards,aid,food,durationInstant,3,2,,0.5,30,3,Wanderers DLC
 foodSnallygasterStew,aid,food,durationInstant,9,0,,0.5,80,4,Wanderers DLC
 foodPreservedBlamCoMacAndCheese,aid,food,durationInstant,4,0,,0,10,2,Corebook
 foodFreshCarrot,aid,food,durationInstant,3,0,,0,3,2,Corebook

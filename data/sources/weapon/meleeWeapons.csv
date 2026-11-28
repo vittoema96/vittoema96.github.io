@@ -25,26 +25,37 @@ weaponPoolCue,weapon,meleeWeapons,3,[],"[""physical""]",-,rangeR,"[""qualityTwoH
 weaponSuperSledge,weapon,meleeWeapons,6,"[""effectBreaking""]","[""physical""]",-,rangeR,"[""qualityTwoHanded""]",10,180,3,na,"[""modHeatingSuperSledge"", ""modStunningSuperSledge""]",[],Corebook
 weaponKnuckles,weapon,unarmed,3,[],"[""physical""]",-,rangeR,"[""qualityConcealed""]",0,10,1,na,"[""modSharpKnuckles"", ""modSpikedKnuckles"", ""modPuncturedKnuckles"", ""modBladeKnuckles""]",[],Corebook
 weaponLeadPipe,weapon,meleeWeapons,3,[],"[""physical""]",-,rangeR,[],1.5,15,0,na,"[""modSpikedLeadPipe"", ""modHeavyLeadPipe""]",[],Corebook
-weaponBayonet,weapon,meleeWeapons,4,"[""effectPiercing:1""]","[""physical""]",-,rangeR,"[""qualityMelee""]",-,-,-,na,[],"[""bladed"",""unacquirable""]",
-weaponMissileLauncherBayonet,weapon,meleeWeapons,4,"[""effectPiercing:1""]","[""physical""]",-,rangeR,"[""qualityMelee""]",-,-,-,na,[],"[""bladed"",""unacquirable""]",
-weaponShredder,weapon,meleeWeapons,6,"[""effectPiercing:2""]","[""physical""]",-,rangeR,"[""qualityMelee""]",-,-,-,na,[],"[""bladed"",""unacquirable""]",
-weaponIronFist,weapon,unarmed,3,[],"[""physical""]",-,rangeR,[],-,-,-,na,[],"[""unacquirable""]",
-weaponMrHandyCircularSaw,weapon,meleeWeapons,3,"[""effectPiercing:1""]","[""physical""]",-,rangeR,"[""qualityMrHandyOnly""]",0,50,2,na,[],"[""bladed""]",
-weaponMrHandyPliers,weapon,unarmed,2,[],"[""physical""]",-,rangeR,"[""qualityMrHandyOnly""]",0,10,1,na,[],[],
+weaponBayonet,weapon,meleeWeapons,4,"[""effectPiercing:1""]","[""physical""]",-,rangeR,[],-,-,-,na,[],"[""bladed"",""unacquirable""]",Corebook
+weaponLargeBayonet,weapon,meleeWeapons,5,"[""effectPiercing:1""]","[""physical""]",-,rangeR,[],-,-,-,na,[],"[""bladed"",""unacquirable""]",Wanderers DLC
+weaponMissileLauncherBayonet,weapon,meleeWeapons,4,"[""effectPiercing:1""]","[""physical""]",-,rangeR,[],-,-,-,na,[],"[""bladed"",""unacquirable""]",Corebook
+weaponShredder,weapon,meleeWeapons,5,[],"[""physical""]",-,rangeR,[],-,-,-,na,[],"[""bladed"",""unacquirable""]",Corebook
+weaponIronFist,weapon,unarmed,3,[],"[""physical""]",-,rangeR,[],-,-,-,na,[],"[""unacquirable""]",Corebook
+weaponMrHandyCircularSaw,weapon,meleeWeapons,3,"[""effectPiercing:1""]","[""physical""]",-,rangeR,"[""qualityMrHandyOnly""]",0,-,-,na,[],"[""bladed""]",Corebook
+weaponMrHandyPliers,weapon,unarmed,2,[],"[""physical""]",-,rangeR,"[""qualityMrHandyOnly""]",0,-,-,na,[],[],Corebook
 weaponAssaultronBlade,weapon,meleeWeapons,4,"[""effectPiercing:1""]","[""physical""]",0,rangeR,[],1.5,50,3,na,"[""modElectrified""]","[""bladed""]",Wanderers DLC
 weaponAutoAxe,weapon,meleeWeapons,5,"[""effectVicious""]","[""physical""]",0,rangeR,"[""qualityTwoHanded""]",10.0,100,3,na,"[""modElectrified"",""modBurning"",""modPoisoned"",""modTurbo""]","[""bladed""]",Wanderers DLC
 weaponBallisticFist,weapon,unarmed,6,"[""effectStun"",""effectVicious""]","[""physical""]",0,rangeR,"[""qualitySlowLoad""]",3.0,150,4,ammoShotgunShell,[],[],Wanderers DLC
 weaponBumperSword,weapon,meleeWeapons,6,"[""effectPiercing:1""]","[""physical""]",0,rangeR,"[""qualityRecoil:7"",""qualityTwoHanded""]",6.0,125,2,na,[],"[""bladed""]",Wanderers DLC
 weaponCattleProd,weapon,meleeWeapons,7,"[""effectStun""]","[""energy""]",0,rangeR,[],1.5,90,4,na,[],[],Wanderers DLC
 weaponChainsaw,weapon,meleeWeapons,6,"[""effectVicious""]","[""physical""]",0,rangeR,"[""qualityTwoHanded""]",6.0,140,3,na,"[""modDualBar"",""modBowBar"",""modLongBowBar"",""modFlaming""]","[""bladed""]",Wanderers DLC
-weaponDeathTambo,weapon,unarmed,4,"[""effectPiercing:1""]","[""physical""]",0,rangeR,"[""qualityNoisy""]",0.5,40,2,na,[],"[""bladed""]",Wanderers DLC
+weaponDeathTambo,weapon,unarmed,4,"[""effectPiercing:1""]","[""physical""]",0,rangeR,"[""qualitySpecialNoisy""]",0.5,40,2,na,[],"[""bladed""]",Wanderers DLC
 weaponDisplacerGlove,weapon,unarmed,6,"[""effectPiercing:1"",""effectStun""]","[""physical""]",0,rangeR,[],3.0,175,4,na,[],[],Wanderers DLC
-weaponGuitarSword,weapon,meleeWeapons,4,"[""effectPiercing:1""]","[""physical""]",0,rangeR,"[""qualityParry"", ""qualityNoisy""]",1.5,45,3,na,[],"[""bladed""]",Wanderers DLC
+weaponGuitarSword,weapon,meleeWeapons,4,"[""effectPiercing:1""]","[""physical""]",0,rangeR,"[""qualityParry"", ""qualitySpecialNoisy""]",1.5,45,3,na,[],"[""bladed""]",Wanderers DLC
 weaponMrHandyBuzzBlade,weapon,meleeWeapons,4,"[""effectVicious""]","[""physical""]",0,rangeR,"[""qualityTwoHanded""]",5.0,50,2,na,[],"[""bladed""]",Wanderers DLC
 weaponMultiPurposeAxe,weapon,meleeWeapons,5,[],"[""physical""]",0,rangeR,"[""qualityTwoHanded""]",2.0,40,2,na,[],"[""bladed""]",Wanderers DLC
 weaponProtonAxe,weapon,meleeWeapons,5,"[""effectPiercing:1""]","[""energy""]",0,rangeR,"[""qualitySurge""]",4.0,175,5,na,[],"[""bladed""]",Wanderers DLC
-weaponWarDrum,weapon,meleeWeapons,5,"[""effectStun""]","[""physical""]",0,rangeR,"[""qualityTwoHanded"", ""qualityNoisy""]",10.0,115,3,na,[],[],Wanderers DLC
-weaponThermicLance,weapon,meleeWeapons,6,"[""effectPiercing:1"",""effectStun""]","[""energy""]",0,rangeR,"[""qualityRecoil:7"",""qualityTwoHanded"",""qualityParry""]",10,150,4,na,[],[],Wanderers DLC
+weaponWarDrum,weapon,meleeWeapons,5,"[""effectStun""]","[""physical""]",0,rangeR,"[""qualityTwoHanded"", ""qualitySpecialNoisy""]",10.0,115,3,na,[],[],Wanderers DLC
+weaponThermicLance,weapon,meleeWeapons,9,"[""effectPiercing:2"",""effectVicious""]","[""energy""]",0,rangeR,"[""qualityTwoHanded"",""qualityParry""]",12.5,500,5,na,[],[],New Vegas DLC
 weaponGolfClub,weapon,meleeWeapons,4,[],"[""physical""]",-,rangeR,"[""qualityTwoHanded""]",1.0,50,1,na,"[""modSpikedPuncturing"",""modBladedSharp"",""modHeavyClub""]",[],RoyalFlush DLC
 weaponWeightedRubberChicken,weapon,meleeWeapons,2,[],"[""physical""]",-,rangeR,[],0.5,10,3,na,"[""modSpikedPuncturing"",""modExtraWeighty""]",[],RoyalFlush DLC
 weaponTheSplayer,weapon,meleeWeapons,5,"[""effectVicious"",""effectPersistent""]","[""physical""]",-,rangeR,"[""qualityDebilitating""]",4.5,75,2,na,[],"[""bladed""]",RoyalFlush DLC
+weaponHatchet,weapon,meleeWeapons,4,[],"[""physical""]",-,rangeR,[],1.5,20,1,na,[],[],New Vegas DLC
+weaponKatana,weapon,meleeWeapons,5,"[""effectPiercing:2""]","[""physical""]",-,rangeR,"[""qualityParry""]",1.5,75,3,na,"[""modStunningSword"", ""modElectrifiedSword"", ""modSerratedSword"", ""modElectrifiedSerratedSword""]",[],New Vegas DLC
+weaponMacheteGladius,weapon,meleeWeapons,4,"[""effectPiercing:1""]","[""physical""]",-,rangeR,"[""qualityParry""]",2,40,3,na,"[""modSerratedMachete""]",[],New Vegas DLC
+weaponRebarClub,weapon,meleeWeapons,5,"[""effectStun"", ""effectBreaking""]","[""physical""]",-,rangeR,"[""qualityTwoHanded""]",7.5,20,1,na,[],[],New Vegas DLC
+weaponStraightRazor,weapon,meleeWeapons,3,"[""effectVicious""]","[""physical""]",-,rangeR,"[""qualityConcealed""]",0.5,40,2,na,[],[],New Vegas DLC
+weaponFigaro,weapon,meleeWeapons,2,"[""effectVicious"", ""effectPiercing:1""]","[""physical""]",-,rangeR,"[""qualityConcealed"",""qualitySpecialFigaro""]",0.5,-,-,na,[],[],New Vegas DLC
+weaponBladedGauntlet,weapon,unarmed,3,"[""effectPiercing:1""]","[""physical""]",-,rangeR,[],5,60,3,na,[],[],New Vegas DLC
+weaponZapGlove,weapon,unarmed,5,"[""effectStun""]","[""energy""]",-,rangeR,"[""qualitySurge""]",1.5,215,4,na,[],[],New Vegas DLC
+weaponGreasedLightning,weapon,unarmed,3,"[""effectStun""]","[""physical""]",-,rangeR,"[""qualitySpecialGreasedLightning""]",2,-,-,na,[],[],New Vegas DLC
+weaponGoldenGloves,weapon,unarmed,2,"[""effectStun""]","[""physical""]",-,rangeR,"[""qualitySpecialGoldenGloves""]",0.5,-,-,na,[],[],New Vegas DLC

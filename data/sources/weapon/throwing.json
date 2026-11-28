@@ -3,32 +3,32 @@
     "en": "Javelin",
     "it": "Giavellotto",
     "_description": {
-      "en": "A short throwing spear, not sturdy enough for melee but accurate enough to be thrown at medium range.",
-      "it": "Una corta asta da lancio, non abbastanza robusta per il combattimento ravvicinato, ma sufficientemente precisa da essere lanciata a distanza media."
+      "en": "A short spear, not typically sturdy enough for close-in fighting, a javelin can be thrown a considerable distance.",
+      "it": "Una lancia corta, di solito non abbastanza robusta per il combattimento ravvicinato: un giavellotto può essere lanciato a una distanza considerevole."
     }
   },
   "weaponThrowingKnives": {
     "en": "Throwing Knives",
     "it": "Coltelli da Lancio",
     "_description": {
-      "en": "Small, sharp blades designed to be thrown. Light, silent, and quick to use.",
-      "it": "Piccole lame affilate progettate per essere lanciate. Leggere, silenziose e veloci da usare."
+      "en": "A small, sharp knife, specially balanced for throwing. Normally made of a lightweight metal, with the grip hollowed out to reduce weight. They do little damage by themselves, but are light, quiet, and quick to handle.",
+      "it": "Un piccolo coltello affilato, bilanciato in modo speciale per essere lanciato. Di solito è fatto di un metallo leggero, con l'impugnatura svuotata per ridurre il peso. Di per sé infliggono pochi danni, ma sono leggeri, silenziosi e veloci da maneggiare."
     }
   },
   "weaponTomahawk": {
     "en": "Tomahawk",
     "it": "Tomahawk",
     "_description": {
-      "en": "A short-handled throwing axe. More imposing than a throwing knife and equally deadly.",
-      "it": "Un'accetta da lancio con manico corto. Piu imponente di un coltello da lancio e altrettanto letale."
+      "en": "A small, short-handled axe, akin to a small hatchet. Less subtle than a throwing knife, a hurled tomahawk can certainly make an impression in an enemy.",
+      "it": "Un'ascia piccola e corta, simile a un'accetta. Meno discreta di un coltello da lancio, un tomahawk lanciato può certamente lasciare il segno su un nemico."
     }
   },
   "weaponJugglingPin": {
     "en": "Juggling Pin",
-    "it": "Birillo da giocoliere",
+    "it": "Birillo da Giocoliere",
     "_description": {
       "en": "A pin designed for juggling and trick throwing that can be weaponized as a thrown weapon in combat.",
-      "it": "Un birillo progettato per il giocolierismo e i lanci d'abilità, utilizzabile come arma da lancio in combattimento."
+      "it": "Un birillo progettato per la giocoleria e per i lanci acrobatici, che può essere usato come arma da lancio in combattimento."
     }
   }
 }

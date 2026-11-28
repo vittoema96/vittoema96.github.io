@@ -1,40 +1,26 @@
-import i18next, { PostProcessorModule } from 'i18next';
-import {initReactI18next} from 'react-i18next'
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
 
-import enTranslations from '@/locales/en.json'
-import itTranslations from '@/locales/it.json'
-import { UISettingsManager, DEFAULT_LANGUAGE, type Language } from '@/services/UISettingsManager.ts'
+import enTranslations from '@/locales/en.json';
+import itTranslations from '@/locales/it.json';
+import {
+    UISettingsManager,
+    DEFAULT_LANGUAGE,
+    type Language,
+} from '@/services/UISettingsManager.ts';
+import { weightProcessor, variationProcessor } from '@/locales/processors';
 
+// Keep <html lang="…"> in sync on init, manual switch, and cross-tab updates.
+i18next.on('languageChanged', (lng) => {
+    document.documentElement.lang = lng;
+});
 
-/**
- * i18next post-processor that appends a "(variation)" suffix to translated strings.
- *
- * When a translation call includes `{ variation: "some text" }` in its options,
- * the output becomes `"Translated value (some text)"`.
- * Used for item/perk variants where the base name is shared but a qualifier is needed
- * (e.g. "Laser Rifle (Scoped)", "Stimpak (Super)").
- */
-const variationProcessor: PostProcessorModule = {
-    type: 'postProcessor',
-    name: 'variationAppend',
-    process: (value, _, options) => {
-        const variation = options["variation"]
-        return variation && typeof variation === "string"
-            ? `${value} (${variation})`
-            : value
-    },
-}
-
-const initialLanguage = UISettingsManager.getCurrentLanguage()
-
-// Set <html lang="…"> early so screen-readers / crawlers see the right locale
-document.documentElement.lang = initialLanguage
-
-i18next
+await i18next
     .use(variationProcessor)
+    .use(weightProcessor)
     .use(initReactI18next)
     .init({
-        lng: initialLanguage,
+        lng: UISettingsManager.getCurrentLanguage(),
         fallbackLng: DEFAULT_LANGUAGE,
         debug: false,
 
@@ -46,16 +32,36 @@ i18next
         interpolation: {
             escapeValue: false,
         },
-        postProcess: variationProcessor.name,
-    })
+        postProcess: [variationProcessor.name, weightProcessor.name],
+    });
 
+let lastLanguage = UISettingsManager.getCurrentLanguage();
+let lastWeightUnit = UISettingsManager.getCurrentWeightUnit();
 
-export const changeLanguage = async (newLanguage: Language | null = null) => {
-    const language = newLanguage || UISettingsManager.getCurrentLanguage()
+// Re-render translated text when the weight unit changes, so descriptions update in place.
+UISettingsManager.subscribe(() => {
+    const currentLanguage = UISettingsManager.getCurrentLanguage();
+    const currentWeightUnit = UISettingsManager.getCurrentWeightUnit();
 
-    document.documentElement.lang = language
-    await i18next.changeLanguage(language)
-    UISettingsManager.saveLanguage(language)
+    if (currentLanguage !== lastLanguage) {
+        lastLanguage = currentLanguage;
+        lastWeightUnit = currentWeightUnit;
+        void i18next.changeLanguage(currentLanguage);
+        return;
+    }
 
-    return language
-}
+    if (currentWeightUnit !== lastWeightUnit) {
+        lastWeightUnit = currentWeightUnit;
+        i18next.emit('languageChanged', i18next.language);
+    }
+});
+
+export const changeLanguage = async (newLanguage: Language | null = null): Promise<Language> => {
+    const language = newLanguage ?? UISettingsManager.getCurrentLanguage();
+
+    lastLanguage = language;
+    UISettingsManager.saveLanguage(language);
+    await i18next.changeLanguage(language);
+
+    return language;
+};

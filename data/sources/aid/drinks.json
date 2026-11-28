@@ -4,7 +4,7 @@
     "it": "Birra",
     "_description": {
       "en": "One of the oldest beverages created by humans, beer is a carbonated alcoholic drink made from fermented cereal grains, popular pre-War to relax after a hard day’s work or during a sunny afternoon. Ale, beer, lager, stout, and a variety of similar beverages all have distinct combinations of ingredients, and each have their own proponents, but the effects are largely the same. You receive 1 cap upon opening and drinking a bottle of beer.",
-      "it": "Una delle bevande più antiche create dall'uomo, la birra è una bevanda alcolica gassata ottenuta da cereali fermentati. Un drink comunemente consumato per rilassarsi dopo una dura giornata di lavoro o durante un pomeriggio assolato, la birra in ogni sua tipologia (ale, lager, stout) e tutta una serie di bevande simili hanno una precisa combinazione di ingredienti, ciascuna con i suoi estimatori, ma gli effetti sono su per giù i medesimi."
+      "it": "Una delle bevande più antiche create dagli esseri umani, la birra è una bevanda alcolica gassata ottenuta dalla fermentazione di cereali, molto diffusa nell'anteguerra per rilassarsi dopo una dura giornata di lavoro o in un pomeriggio di sole. Ale, lager, stout e una varietà di bevande simili hanno combinazioni di ingredienti distinte, e ciascuna ha i suoi sostenitori, ma gli effetti sono in gran parte gli stessi. Ricevi 1 tappo all'apertura e al consumo di una bottiglia di birra."
     },
     "_effect": {
       "en": "Alcoholic (Allows re-rolling 1d20 on STR or CHA tests until the end of the scene; +1 difficulty to INT tests). Provides 1 bottle cap when opened.",
@@ -16,7 +16,7 @@
     "it": "Sacca di Sangue",
     "_description": {
       "en": "A sealed, sterile plastic bag of preserved blood used pre-War for blood transfusions. Not the most conventional of beverages, but useful if you’re desperate. Some people come to like the taste.",
-      "it": "È una sacca di plastica sigillata e sterilizzata, contenente del sangue conservato che, prima della guerra, veniva usato per trasfusioni. Non è di certo la più comune fra le bevande, ma è utile se si è disperati. Alcuni arrivano persino ad apprezzarne il gusto."
+      "it": "Una sacca di plastica sterile e sigillata contenente sangue conservato, usata nell'anteguerra per le trasfusioni. Non è la bevanda più convenzionale, ma è utile se sei disperato. Alcune persone finiscono per apprezzarne il gusto."
     }
   },
   "drinkBourbon": {
@@ -24,7 +24,7 @@
     "it": "Bourbon",
     "_description": {
       "en": "A distinctly American type of whiskey, bourbon is a barrel-aged, distilled spirit made mainly of corn. Pre-War, those who favored it tended to get a reputation as being tough or rugged.",
-      "it": "Un tipo di whiskey prettamente americano, il bourbon è un distillato invecchiato in botte ottenuto principalmente dal mais. Prima della guerra, chi lo beveva aveva fama di essere un duro."
+      "it": "Un tipo di whiskey decisamente americano: il bourbon è un distillato invecchiato in botti, fatto principalmente di mais. Nell'anteguerra, chi lo apprezzava aveva la fama di essere un tipo duro e tutto d'un pezzo."
     },
     "_effect": {
       "en": "Alcoholic (Allows re-rolling 1d20 on STR or CHA tests until the end of the scene; +1 difficulty to INT tests), re-roll 1d20 on END tests.",
@@ -36,7 +36,7 @@
     "it": "Latte di Bramino",
     "_description": {
       "en": "Milk from a brahmin. This drink is a true lifesaver, as it has properties that cleanse radiation poisoning from the body… at least, if it hasn’t spoiled yet.",
-      "it": "Il latte di bramino è un vero salvavita, dato che le sue proprietà ripuliscono il corpo dall'avvelenamento da radiazioni… a meno che non sia scaduto."
+      "it": "Latte di bramino. È davvero una salvezza: elimina dal corpo gli effetti dell'avvelenamento da radiazioni… almeno finché non va a male."
     },
     "_effect": {
       "en": "Heals 2 Radiation damage.",
@@ -45,10 +45,10 @@
   },
   "drinkDirtyWastelander": {
     "en": "Dirty Wastelander",
-    "it": "Abitante della Zona Sporco",
+    "it": "Dirty Wastelander",
     "_description": {
-      "en": "An extremely potent alcoholic beverage, made from a blend of whiskey, Nuka-Cola, and Mutfruit, which has much the same effect as most alcoholic drinks… just moreso.",
-      "it": "Si tratta di un alcolico estremamente forte, un cocktail a base di whiskey, Nuka-Cola e Mutafrutta che ha su per giù lo stesso effetto di qualsiasi altro alcolico… solo maggiore."
+      "en": "An extremely potent alcoholic beverage, made from a blend of whiskey, Nuka-Cola, and Mutfruit, which has much the same effect as most alcoholic drinks... just moreso.",
+      "it": "Una bevanda alcolica estremamente potente, ottenuta da una miscela di whiskey, Nuka-Cola e Mutafrutta, che ha più o meno gli stessi effetti della maggior parte delle bevande alcoliche… solo più forti."
     },
     "_effect": {
       "en": "Alcoholic (Allows re-rolling 1d20 on STR or CHA tests until the end of the scene), reduces the difficulty of all STR tests by 1 and increases the difficulty of all INT tests by +2 in total.",
@@ -60,7 +60,7 @@
     "it": "Acqua Sporca",
     "_description": {
       "en": "Water, collected from rivers, lakes, swimming pools, and any other unfiltered water source. It’s not recommended to drink dirty water without filtering or boiling it, as it contains a fair amount of radiation… but water is scarce in some places and the choice of clean water isn’t always available.",
-      "it": "È qualsiasi tipo di acqua presa da fiumi, laghi, piscine e altre sorgenti d'acqua non filtrate. Non si raccomanda di berla senza averla prima filtrata o bollita, in quanto contiene un discreto livello di radiazioni… ma in alcuni luoghi l'acqua scarseggia e non sempre si ha a disposizione acqua pulita."
+      "it": "Acqua raccolta da fiumi, laghi, piscine e qualsiasi altra fonte d'acqua non filtrata. Non è consigliabile bere acqua sporca senza filtrarla o bollirla, perché contiene una quantità considerevole di radiazioni… ma in alcuni luoghi l'acqua è scarsa e non sempre è disponibile acqua pulita."
     }
   },
   "drinkGlowingBloodPack": {
@@ -68,7 +68,7 @@
     "it": "Sacca di Sangue Luminescente",
     "_description": {
       "en": "A blood bag filled with a luminescent green fluid. If you can stomach the acrid, metallic taste, they have potent restorative properties and help protect the body against radiation poisoning for a short while.",
-      "it": "Una sacca di sangue piena di un liquido verde luminescente. Se si riesce a sopportarne il gusto acre e metallico, ha delle potenti proprietà ristorative ed aiuta a proteggere il corpo dall'avvelenamento da radiazioni per un breve lasso di tempo."
+      "it": "Una sacca di sangue piena di un liquido verde luminescente. Se riesci a sopportarne il sapore acre e metallico, le sue potenti proprietà rigeneranti aiutano a proteggere il corpo dall'avvelenamento da radiazioni per un breve periodo."
     },
     "_effect": {
       "en": "+5 Radiation damage resistance until the end of the scene.",
@@ -80,11 +80,11 @@
     "it": "Sangue Radioattivo",
     "_description": {
       "en": "A blood bag filled with discolored—often green—blood-like fluid. About as useful a beverage as a normal blood pack, but highly irradiated.",
-      "it": "Una sacca di sangue piena di un liquido (spesso verde) che sembra del sangue scolorito. È utile su per giù quanto una sacca di sangue, ma molto radioattiva."
+      "it": "Una sacca di sangue piena di un liquido dall'aspetto ematico, scolorito, spesso verdastro. Utile quanto una normale sacca di sangue, ma fortemente radioattiva."
     },
     "_effect": {
       "en": "When consumed, roll 2 CD instead of 1 for Radiation damage.",
-      "it": "Quando lo si beve, tirare 2 CD invece di 1 per i danni da Radiazioni."
+      "it": "Quando lo si beve, tirare 2 DC invece di 1 per i danni da Radiazioni."
     }
   },
   "drinkMarkleeMagic": {
@@ -92,11 +92,11 @@
     "it": "Magia di Marklee",
     "_description": {
       "en": "Served by the shot or by the gallon, Marklee Magic was made to fuel engines, but times change. Poured into a fuel tank or down the gullet, either way, it burns like a Cazador sting.",
-      "it": "Versato a sorsi o a galloni, il Magia di Marklee era nato per alimentare i motori, ma i tempi cambiano. Versato in un serbatoio o giù per la gola, in entrambi i casi brucia come la puntura di un cazador."
+      "it": "Servita a bicchierini o a galloni, la Magia di Marklee fu creata per alimentare i motori, ma i tempi cambiano. Versata in un serbatoio di carburante o giù per la gola, in ogni caso brucia come il pungiglione di un cazador."
     },
     "_effect": {
-      "en": "Alcoholic. When consumed, make an END + Survival test (difficulty 3). Failure: take 5 CD persistent poison damage. Success: gain +2 Physical Damage Resistance to each hit location until the end of the scene.",
-      "it": "Alcolico. Alla consumazione, effettuare una prova di COS + Sopravvivenza (difficoltà 3). Fallimento: subisce 5 CD di danni da veleno persistenti. Successo: ottiene +2 alla Resistenza ai Danni Fisici a ciascuna localizzazione fino alla fine della scena."
+      "en": "Heals 2 CD HP. Alcoholic. When consumed, make an END + Survival test (difficulty 3). Failure: take 5 CD persistent poison damage. Success: gain +2 Physical Damage Resistance to each hit location until the end of the scene.",
+      "it": "Ripristina 2 DC HP. Alcolico. Alla consumazione, effettuare una prova di COS + Sopravvivenza (difficoltà 3). Fallimento: subisce 5 DC di danni da veleno persistenti. Successo: ottiene +2 alla Resistenza ai Danni Fisici a ciascuna localizzazione fino alla fine della scena."
     }
   },
   "drinkMelonJuice": {
@@ -104,11 +104,11 @@
     "it": "Succo di Cocomero",
     "_description": {
       "en": "Juice made from pressing the pulp of a melon. A refreshing and healthy drink, which promotes the body’s natural healing.",
-      "it": "È il succo ottenuto dalla spremitura della polpa di un cocomero. Si tratta di una bevanda rinfrescante e salutare, che favorisce la naturale guarigione del corpo."
+      "it": "Succo ottenuto spremendo la polpa di un cocomero. Una bevanda rinfrescante e salutare, che favorisce i processi naturali di guarigione del corpo."
     },
     "_effect": {
       "en": "Regain 1 HP at the start of each turn.",
-      "it": "Si recupera 1 PS all'inizio di ogni turno."
+      "it": "Si recupera 1 HP all'inizio di ogni turno."
     }
   },
   "drinkMoonshine": {
@@ -116,11 +116,11 @@
     "it": "Moonshine",
     "_description": {
       "en": "Largely a slang term for high-proof distilled spirits produced in illicit or makeshift manner. Due to their unorthodox and improvised origins, moonshine can be dangerous to consume, often contaminated with dangerous chemicals. The stuff that doesn’t kill you… will probably render you insensible and impervious to pain if it doesn’t knock you out entirely.",
-      "it": "È il termine dialettale usato per i liquori ad altissima gradazione alcolica prodotti in maniera artigianale o illegale. Per via della sua origine poco ortodossa e improvvisata, può essere pericoloso consumare il moonshine, in quanto spesso è contaminato da pericolosi agenti chimici. Ma, come si suol dire, ciò che non uccide… probabilmente rende insensibile e resistente al dolore, quando non mette del tutto fuori combattimento."
+      "it": "Termine per lo più gergale che indica distillati ad alta gradazione prodotti in modo clandestino o artigianale. Per la loro origine improvvisata e non convenzionale, il moonshine può essere pericoloso da bere, spesso contaminato da sostanze chimiche nocive. Ciò che non ti uccide… probabilmente ti renderà insensibile e impervio al dolore, se non ti stende del tutto."
     },
     "_effect": {
       "en": "Alcoholic (Allows re-rolling 1d20 on STR or CHA tests until the end of the scene; +1 difficulty to INT tests), +2 Max HP.",
-      "it": "Alcolico (Permette di ritirare 1d20 sulle prove di FOR o CAR fino alla fine della scena; la difficoltà delle prove di INT aumenta di +1), +2 ai PS massimi."
+      "it": "Alcolico (Permette di ritirare 1d20 sulle prove di FOR o CAR fino alla fine della scena; la difficoltà delle prove di INT aumenta di +1), +2 ai HP massimi."
     }
   },
   "drinkMutfruitJuice": {
@@ -128,11 +128,11 @@
     "it": "Succo di Mutafrutta",
     "_description": {
       "en": "Juice made from pressing the pulp of a mutfruit. A sharp and invigorating drink, which wakes up the mind and helps get the body moving.",
-      "it": "Si tratta del succo della polpa di una mutafrutta. Una bevanda aspra e rinvigorente, che risveglia la mente e mette in moto il corpo."
+      "it": "Succo ottenuto spremendo la polpa di una mutafrutta. Una bevanda aspra e rinvigorente, che risveglia la mente e aiuta il corpo a muoversi."
     },
     "_effect": {
-      "en": "Re-roll 1d20 on all tests.",
-      "it": "Ripetere il tiro di 1d20 su tutte le prove."
+      "en": "Re-roll 1d20 on all AGI tests.",
+      "it": "Ripetere il tiro di 1d20 su tutte le prove di AGI."
     }
   },
   "drinkNukaCherry": {
@@ -140,7 +140,7 @@
     "it": "Nuka Cherry",
     "_description": {
       "en": "Produced by the Nuka-Cola Corporation after it bought the patent for a rival beverage, Merle’s Very Cherry Soda, Nuka-Cherry is a blend of the typical beloved Nuka-Cola recipe with a distinctive cherry flavoring and a bright red color. The refreshing taste and high sugar and caffeine contents of the drink make it an ideal pick-me-up for those needing a burst of energy. You receive 1 cap upon opening and drinking a bottle of Nuka-Cherry.",
-      "it": "Prodotta dalla Corporazione Nuka-Cola dopo che questa ne ha comprato la licenza dalla Very Cherry Soda di Merle (una bibita rivale), è una miscela dell'amata Nuka-Cola con un tipico sapore di ciliegia e un colore rosso acceso. Il sapore rinfrescante e i livelli di caffeina della bevanda la rendono un toccasana per chi ha bisogno di una scarica di energia."
+      "it": "Prodotta dalla Nuka-Cola Corporation dopo aver acquistato il brevetto di una bevanda rivale, la Merle's Very Cherry Soda, la Nuka-Cherry unisce la classica ricetta amata della Nuka-Cola a un aroma distintivo di ciliegia e a un colore rosso acceso. Il gusto rinfrescante e l'alto contenuto di zucchero e caffeina la rendono un'ottima scelta per chi ha bisogno di un'energia immediata. Ricevi 1 tappo all'apertura e al consumo di una bottiglia di Nuka-Cherry."
     },
     "_effect": {
       "en": "Gain 2 AP immediately. Provides 1 bottle cap when opened.",
@@ -152,7 +152,7 @@
     "it": "Nuka-Cola",
     "_description": {
       "en": "First entering the market in 2044, Nuka-Cola rapidly became the number one soft drink in the United States and was the most popular beverage in the world soon after. A combination of seventeen fruit essences, precisely balanced to enhance the classic cola flavor. Each bottle contains 120% of the recommended daily amount of sugar, and excessive amounts of caffeine, but is also fortified with vitamins, minerals and “health tonics”. Due to its popularity, it can still be found in vast quantities in the wasteland, and it is still popular even if the bottles are now warm and the carbonated fizz went flat long ago. You receive 1 cap upon opening and drinking a bottle of Nuka-Cola.",
-      "it": "Introdotta nel mercato per la prima volta nel 2044, la Nuka-Cola divenne ben presto la bibita più consumata degli Stati Uniti e, poco dopo, del mondo intero. Ottenuta dalla combinazione delle essenze di diciassette frutti, tutte bilanciate in maniera precisa per migliorare il classico gusto di cola. Ogni bottiglia contiene il 120% della quantità giornaliera raccomandata di zucchero, oltre a incredibili quantità di caffeina, ma è anche arricchita di vitamine, minerali e “tonici per la salute”. Grazie alla sua popolarità, nella Zona Contaminata se ne trovano ancora grandi quantità ed è ancora molto amata, anche se ormai le bottiglie sono calde e le bollicine si sono esaurite da un sacco di tempo."
+      "it": "Entrata sul mercato nel 2044, la Nuka-Cola divenne rapidamente la bibita numero uno negli Stati Uniti e poco dopo la più popolare al mondo. Una combinazione di diciassette essenze di frutta, bilanciate con precisione per esaltare il classico sapore di cola. Ogni bottiglia contiene il 120% della quantità giornaliera consigliata di zucchero, e quantità eccessive di caffeina, ma è anche arricchita con vitamine, minerali e «tonici salutari». Per via della sua popolarità, se ne trovano ancora grandi quantità nella Zona Contaminata, e resta amata anche quando le bottiglie sono ormai calde e le bollicine sono svanite da tempo. Ricevi 1 tappo all'apertura e al consumo di una bottiglia di Nuka-Cola."
     },
     "_effect": {
       "en": "Gain 1 AP immediately. Provides 1 bottle cap when opened.",
@@ -164,7 +164,7 @@
     "it": "Nuka-Cola Quantum",
     "_description": {
       "en": "Introduced the same day the bombs fell, and thus difficult to find, Nuka-Cola Quantum was the newest flavor of Nuka-Cola to be released to the public, with twice the calories, twice the carbohydrates, twice, the caffeine, and twice the taste. The drink’s distinctive blue glow comes from the (safe for human consumption) isotope additive developed by beverageers working with the United States military. Most bottles found were from special pre-release batches sent to chosen retailers or found in trucks in the process of shipping the product. The drink’s effects are extremely potent. You receive 1 cap upon opening and drinking a bottle of Nuka-Cola Quantum.",
-      "it": "Lanciata lo stesso giorno in cui caddero le bombe e perciò molto difficile da trovare, la Nuka-Cola Quantum è stata l'ultimo gusto a essere presentato al pubblico, dotata del doppio delle calorie, dei carboidrati, della caffeina e del gusto. La luminescenza blu distintiva della bevanda viene dall'isotopo additivo (adatto al consumo umano) sviluppato dai bibitai che lavoravano con l'esercito degli Stati Uniti. La maggior parte delle bottiglie disponibili appartengono a delle partite speciali in anteprima spedite a negozianti selezionati, oppure possono essere trovate in tir nel bel mezzo della consegna. Gli effetti della bevanda sono incredibilmente potenti."
+      "it": "Introdotta il giorno stesso in cui caddero le bombe, e quindi difficile da trovare, la Nuka-Cola Quantum era il gusto più recente della Nuka-Cola a essere messo in vendita: il doppio delle calorie, il doppio dei carboidrati, il doppio della caffeina e il doppio del gusto. Il caratteristico bagliore blu della bevanda deriva dall'additivo isotopico (sicuro per il consumo umano) sviluppato da produttori di bevande che lavoravano con l'esercito degli Stati Uniti. La maggior parte delle bottiglie trovate proveniva da lotti speciali di pre-lancio inviati a rivenditori selezionati, o recuperate da camion in fase di spedizione del prodotto. Gli effetti della bevanda sono estremamente potenti. Ricevi 1 tappo all'apertura e al consumo di una bottiglia di Nuka-Cola Quantum."
     },
     "_effect": {
       "en": "Gain 5 AP immediately. Provides 1 bottle cap when opened.",
@@ -176,7 +176,7 @@
     "it": "Acqua Purificata",
     "_description": {
       "en": "Water which has been cleansed of any contaminants or radiation. Sometimes found in sealed cans or bottles in the wasteland, but often produced by taking water from other sources and boiling or filtering it. Locations with water pumps tend to tap into uncontaminated aquifers deep underground, giving them a consistent supply of clean water highly sought-after by survivors in the wasteland. In places where water is scarce, access to purified water is a precious commodity.",
-      "it": "Si tratta di acqua che è stata ripulita da qualsiasi agente contaminante o radiazione. Talvolta la si può trovare in lattine o bottiglie sigillate per la Zona Contaminata, ma spesso la si ottiene da altre fonti bollendola o filtrandola. I luoghi dotati di pompe d'acqua solitamente attingono a falde acquifere incontaminate in profondità, che garantiscono un rifornimento costante di acqua pulita molto ricercata dai sopravvissuti della Zona Contaminata. Là dove l'acqua scarseggia, l'accesso all'acqua purificata è un lusso prezioso."
+      "it": "Acqua purificata da ogni contaminante o radiazione. A volte si trova in lattine o bottiglie sigillate nella Zona Contaminata, ma più spesso viene prodotta prendendo acqua da altre fonti e bollendola o filtrandola. I luoghi con pompe d'acqua tendono ad attingere a falde acquifere profonde e non contaminate, garantendo un approvvigionamento costante di acqua pulita, molto ricercata dai sopravvissuti. Dove l'acqua è scarsa, l'accesso all'acqua purificata è un bene prezioso."
     }
   },
   "drinkRefreshingBeverage": {
@@ -184,7 +184,7 @@
     "it": "Bibita Dissetante",
     "_description": {
       "en": "A mysterious panacea made from medical supplies, this chemical concoction restores health and cleanses the body of radiation and chemical dependencies. The recipe has spread across the wasteland by word of mouth, but it requires numerous ingredients to produce, so it remains rare.",
-      "it": "Una panacea misteriosa ottenuta da diverse medicine, questa miscela chimica ripristina il corpo e lo ripulisce da radiazioni e dipendenze chimiche. La ricetta si è diffusa per la Zona Contaminata tramite passaparola, ma per produrla servono molti ingredienti, per cui rimane rara."
+      "it": "Una misteriosa panacea preparata con materiale medico: questo intruglio chimico ripristina la salute e purifica il corpo da radiazioni e dipendenze chimiche. La ricetta si è diffusa per tutta la Zona Contaminata a passaparola, ma richiede numerosi ingredienti, quindi resta rara."
     },
     "_effect": {
       "en": "Cures 10 Radiation damage and cures all addictions.",
@@ -196,7 +196,7 @@
     "it": "Rum",
     "_description": {
       "en": "A liquor made from fermenting then distilling sugarcane molasses. Rum has strong historic ties to naval and maritime traditions, though there are few boats left that ply the irradiated seas, so it turns up often in coastal regions, particularly near to old harbors and ports.",
-      "it": "È un liquore che si ottiene dalla melassa della canna da zucchero fatta fermentare e poi distillata. Ha dei forti legami storici con le tradizioni marittime e navali, anche se ormai sono rimaste poche navi a solcare i mari radioattivi, per cui spesso lo si trova nelle zone costiere, soprattutto vicino a vecchi moli e porti."
+      "it": "Un liquore ottenuto fermentando e poi distillando la melassa di canna da zucchero. Il rum ha forti legami storici con le tradizioni navali e marittime, anche se oggi restano poche imbarcazioni che navigano nei mari irradiati, quindi si trova spesso nelle regioni costiere, soprattutto vicino ai vecchi porti."
     },
     "_effect": {
       "en": "Alcoholic (Allows re-rolling 1d20 on STR or CHA tests until the end of the scene; +1 difficulty to INT tests), re-roll 1d20 on all AGI tests.",
@@ -208,11 +208,11 @@
     "it": "Sunset Sarsaparilla",
     "_description": {
       "en": "A root-beer flavored drink that got so popular the manufacturer soon diversified into automation and robotics, Sunset Sarsaparilla is one of the few soft drink companies Bradberton was unable to buy up or drive out of business. Instead, they released Nuka-Cola Wild, a root beer that never quite captured significant market share from the competitors. Bottles of Sunset Sarsaparilla are common in the West, and their caps serve the same purpose as Nuka-Cola caps in many economies.",
-      "it": "Una bevanda aromatizzata alla root beer che divenne così popolare che ben presto il produttore si diversificò nell'automazione e nella robotica, Sunset Sarsaparilla è una delle poche aziende di bevande analcoliche che Bradberton non riuscì ad acquistare o schiacciare. Le bottiglie di Sunset Sarsaparilla sono comuni in Occidente e i loro tappi hanno lo stesso scopo di quelli della Nuka-Cola."
+      "it": "Una bibita al gusto di root beer, diventata così popolare che il produttore si diversificò presto nell'automazione e nella robotica. La Sunset Sarsaparilla è una delle poche aziende di bibite che Bradberton non riuscì a comprare o a far fallire. Invece, lanciarono la Nuka-Cola Wild, una root beer che non riuscì mai a conquistare una quota di mercato significativa rispetto ai concorrenti. Le bottiglie di Sunset Sarsaparilla sono comuni nell'Ovest, e i loro tappi svolgono in molte economie la stessa funzione dei tappi della Nuka-Cola."
     },
     "_effect": {
-      "en": "Provides 1 bottle cap when opened.",
-      "it": "Fornisce 1 tappo di bottiglia quando viene aperta."
+      "en": "Gain 1 AP immediately. Provides 1 bottle cap when opened.",
+      "it": "Si ottiene immediatamente 1 PA. Fornisce 1 tappo di bottiglia quando viene aperta."
     }
   },
   "drinkTarberryJuice": {
@@ -220,7 +220,7 @@
     "it": "Succo di Bacca",
     "_description": {
       "en": "Juice made from pressing tarberries. Drinking Tarberry juice has a potent stimulant effect, making the drinker energetic and ready for action.",
-      "it": "È il succo ottenuto dalla spremitura delle bacche. Berlo ha un potente effetto stimolante, che fa sentire pieni di energie e pronti all'azione."
+      "it": "Succo ottenuto spremendo le bacche. Il succo di bacca ha un potente effetto stimolante, che rende chi lo beve pieno di energia e pronto all'azione."
     },
     "_effect": {
       "en": "Gain +6 AP immediately.",
@@ -232,7 +232,7 @@
     "it": "Succo di Tato",
     "_description": {
       "en": "Juice made from pressing Tatos. Despite the unpleasant taste, Tato juice is a fine way to prepare for vigorous action, as it allows the drinker to dig more deeply into reserves of stamina and push themselves further.",
-      "it": "Si tratta del succo che si ottiene spremendo i tatos. Nonostante il gusto disgustoso, è un ottimo modo per prepararsi a grossi sforzi, dato che consente a chi lo beve di attingere a piene mani alle proprie riserve di energie e di spingersi oltre i propri limiti."
+      "it": "Succo ottenuto spremendo i Tato. Nonostante il sapore sgradevole, il succo di Tato è un buon modo per prepararsi a un'azione energica, perché permette a chi lo beve di attingere più a fondo alle proprie riserve di energie e spingersi oltre."
     },
     "_effect": {
       "en": "+1 to maximum AP held in group pool until the end of the scene.",
@@ -244,7 +244,7 @@
     "it": "Vodka",
     "_description": {
       "en": "A clear distilled alcoholic beverage, made from fermented rye, wheat, potatoes, or sugar beet molasses, typically imported from the Soviet Union Pre-War.",
-      "it": "È una limpida bevanda alcolica distillata ottenuta dalla distillazione di segale, grano, patate o melassa di zucchero di barbabietola, che prima della guerra di solito veniva importata dall'Unione Sovietica."
+      "it": "Un distillato alcolico limpido, ottenuto dalla distillazione di segale, grano, patate o melassa di barbabietola da zucchero, importato tipicamente dall'Unione Sovietica nell'anteguerra."
     },
     "_effect": {
       "en": "Alcoholic (Allows re-rolling 1d20 on STR or CHA tests until the end of the scene; +1 difficulty to INT tests).",
@@ -256,11 +256,11 @@
     "it": "Whiskey",
     "_description": {
       "en": "A triple-distilled alcoholic beverage made using grain mash. Pre-War versions were created across the United States and beyond. Some wasteland distilleries exist producing post-War versions using corn and razorgrain.",
-      "it": "È una bevanda alcolica a tripla fermentazione ottenuta dalla triplice distillazione di cereali ammostati. Le versioni antecedenti alla guerra venivano prodotte negli Stati Uniti e non solo. Nella Zona Contaminata esistono ancora alcune distillerie che ne producono una versione post guerra usando mais e granolama."
+      "it": "Un distillato alcolico ottenuto da un impasto di cereali triplicemente distillato. Le versioni dell'anteguerra venivano prodotte in tutti gli Stati Uniti e oltre. Esistono alcune distillerie nella Zona Contaminata che producono versioni del dopoguerra usando mais e granolama."
     },
     "_effect": {
-      "en": "Alcoholic (Allows re-rolling 1d20 on STR or CHA tests until the end of the scene; +1 difficulty to INT tests), re-roll up to 2d20 in total.",
-      "it": "Alcolico (Permette di ritirare 1d20 sulle prove di FOR o CAR fino alla fine della scena; la difficoltà delle prove di INT aumenta di +1), permette di ritirare fino a 2d20 in totale."
+      "en": "Alcoholic (Allows re-rolling 1d20 on STR or CHA tests until the end of the scene; +1 difficulty to INT tests), re-roll up to 2d20 on STR tests (in total).",
+      "it": "Alcolico (Permette di ritirare 1d20 sulle prove di FOR o CAR fino alla fine della scena; la difficoltà delle prove di INT aumenta di +1), permette di ritirare fino a 2d20 (in totale) nelle prove di FOR."
     }
   },
   "drinkWine": {
@@ -268,7 +268,7 @@
     "it": "Vino",
     "_description": {
       "en": "An alcoholic beverage made from the fermentation of grape juice. There are numerous pre-War vintages to be found across the wasteland, often collected by the wealthy before the bombs fell, and a survivor who stumbles across an intact wine cellar can enjoy a drunken stupor for weeks or months.",
-      "it": "Si tratta di una bevanda alcolica ottenuta da succo d'uva fermentato. Nella Zona Contaminata si possono trovare numerose annate risalenti all'anteguerra, spesso collezionate dai ricchi prima della caduta delle bombe. Un sopravvissuto che si imbatta in una cantina intatta può ubriacarsi per settimane o addirittura mesi."
+      "it": "Una bevanda alcolica ottenuta dalla fermentazione del succo d'uva. Si trovano numerose annate dell'anteguerra in tutta la Zona Contaminata, spesso raccolte dai ricchi prima dello scoppio delle bombe, e un sopravvissuto che si imbatte in una cantina intatta può abbandonarsi a una sbornia di settimane o mesi."
     },
     "_effect": {
       "en": "Alcoholic (Allows re-rolling 1d20 on STR or CHA tests until the end of the scene; +1 difficulty to INT tests), gain 1 AP immediately.",

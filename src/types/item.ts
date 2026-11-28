@@ -39,6 +39,33 @@ export const APPAREL_CATEGORIES = [
 export const AID_CATEGORIES = ['food', 'drinks', 'meds', 'misc'] as const;
 export const AMMO_CATEGORIES = ['ammo'] as const;
 export const OTHER_CATEGORIES = ['misc', 'junk', 'custom'] as const;
+// A mod's category is the slot it occupies: one mod per category on an item.
+export const MOD_CATEGORIES = [
+    'modSlotBallisticWeave',
+    'modSlotBarrel',
+    'modSlotCapacitor',
+    'modSlotConcentrate',
+    'modSlotContainer',
+    'modSlotDish',
+    'modSlotFrame',
+    'modSlotFuel',
+    'modSlotGrip',
+    'modSlotImprovement',
+    'modSlotMagazine',
+    'modSlotMaterial',
+    'modSlotMelee',
+    'modSlotMuzzle',
+    'modSlotNozzle',
+    'modSlotPropellantTank',
+    'modSlotReceiver',
+    'modSlotRobotArmor',
+    'modSlotRobotModule',
+    'modSlotRobotPlating',
+    'modSlotSight',
+    'modSlotStock',
+    'modSlotUnderarmorLining',
+    'modSlotVaultSuit',
+] as const;
 
 // types
 export type WeaponCategory = (typeof WEAPON_CATEGORIES)[number];
@@ -46,6 +73,7 @@ export type ApparelCategory = (typeof APPAREL_CATEGORIES)[number];
 export type AidCategory = (typeof AID_CATEGORIES)[number];
 export type AmmoCategory = (typeof AMMO_CATEGORIES)[number];
 export type OtherCategory = (typeof OTHER_CATEGORIES)[number];
+export type ModCategory = (typeof MOD_CATEGORIES)[number];
 
 export const ITEM_CATEGORIES = [
     ...WEAPON_CATEGORIES,
@@ -53,13 +81,15 @@ export const ITEM_CATEGORIES = [
     ...AID_CATEGORIES,
     ...AMMO_CATEGORIES,
     ...OTHER_CATEGORIES,
+    ...MOD_CATEGORIES,
 ];
 export type ItemCategory =
     | WeaponCategory
     | ApparelCategory
     | AidCategory
     | AmmoCategory
-    | OtherCategory;
+    | OtherCategory
+    | ModCategory;
 
 
 // *---- MAP TYPE -> CATEGORIES ----*
@@ -68,6 +98,6 @@ export const ITEM_TYPE_MAP: Record<ItemType, readonly ItemCategory[]> = {
     apparel: APPAREL_CATEGORIES.filter(category => category !== 'powerArmor'), // TODO fix it once powerArmor gets implemented
     aid: AID_CATEGORIES,
     ammo: AMMO_CATEGORIES,
-    mod: ['mods'], // TODO HAVE to decide how to handle mod categories
+    mod: MOD_CATEGORIES,
     other: OTHER_CATEGORIES,
 };

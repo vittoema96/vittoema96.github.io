@@ -13,6 +13,7 @@ import type {
     FeatImplementation,
     FeatManualAction,
     FeatSelection,
+    LocationDRContext,
     RollContext,
     RollComplicationContext,
     RollComplicationModifier,
@@ -422,10 +423,11 @@ export function getLocationDRBonus(
     perks: PerkId[],
     traits: TraitId[],
     origin?: Origin,
+    context: LocationDRContext = { isEncumbered: false },
 ) {
     return getActiveFeats({ perks, traits, origin }).reduce(
         (acc, feat) => {
-            const bonus = feat.getLocationDRBonus?.(special, items, perks, traits);
+            const bonus = feat.getLocationDRBonus?.(special, items, perks, traits, context);
             return {
                 physical: acc.physical + (bonus?.physical ?? 0),
                 energy: acc.energy + (bonus?.energy ?? 0),

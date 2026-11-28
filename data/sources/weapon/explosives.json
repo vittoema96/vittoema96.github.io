@@ -3,16 +3,16 @@
     "en": "Nuke Mine",
     "it": "Mina Atomica",
     "_description": {
-      "en": "A nuclear landmine. Functions like any other mine, but its explosion resembles that of a MiniNuke.",
-      "it": "Una mina nucleare. Funziona come qualsiasi altra mina, ma la sua esplosione assomiglia a quella di una MiniNuke."
+      "en": "It is a nuclear variant of a landmine. The Nuke mine operates in all respects as other mines do although its explosion is more akin to that of a mini-nuke. Naturally, this means that they inflict damage from both the explosion and from the radiation the blast emits.",
+      "it": "La Mina Atomica è la variante nucleare di una mina terrestre. Funziona in tutto e per tutto come le altre mine, anche se la sua esplosione assomiglia più a quella di una MiniNuke. Naturalmente, questo significa che infligge danni sia dall'esplosione sia dalle radiazioni emesse dallo scoppio."
     }
   },
   "weaponBottlecapMine": {
     "en": "Bottlecap Mine",
     "it": "Mina a Tappi",
     "_description": {
-      "en": "A crudely assembled mine packed with bottlecaps and a rough explosive mixture.",
-      "it": "Una mina assemblata in modo rozzo e riempita di tappi di bottiglia con un grezzo miscuglio esplosivo."
+      "en": "The Bottlecap mine is crudely put together, yet a formidable explosive. Bottlecap mines are constructed from a simple container such as a lunchbox, filled with bottle caps and a crude explosive mixture, and fitted with a sensor and a detonator. The explosive force hurls the caps over a wide area at such speed that they are essentially shrapnel. Special: when constructing a Bottlecap mine, you may add extra bottlecaps; every 10 caps added increases the CD damage by +1. When the mine detonates, roll the damage rating a second time: the total rolled is the number of intact caps found in the zone where the mine detonated.",
+      "it": "La mina a tappi viene assemblata in modo grezzo, ma è un esplosivo formidabile. Si compone di un semplice contenitore, come un cestino per il pranzo, riempito di tappi di bottiglia e di una rozza miscela esplosiva, a cui vengono applicati un sensore e un detonatore. La forza dell'esplosione scaraventa i tappi a una buona distanza, a velocità tale da farli funzionare come vere e proprie schegge. Speciale: quando si costruisce una mina a tappi, si possono aggiungere tappi in più: ogni 10 tappi il danno aumenta di +1 DC. Quando la mina esplode, si tira due volte il grado di danno: la cifra ottenuta è il numero di tappi intatti che si trovano nell'area della detonazione."
     }
   },
   "weaponCryoMine": {
@@ -20,7 +20,7 @@
     "it": "Mina Criogenica",
     "_description": {
       "en": "Cryo mines function similarly to cryogenic grenades, spraying the vicinity in freezing chemicals when the mine is triggered.",
-      "it": "Le mine criogeniche funzionano in modo simile alle granate criogeniche, spruzzando i dintorni con sostanze chimiche congelanti quando la mina viene attivata."
+      "it": "Le mine criogeniche funzionano in modo simile alle granate criogeniche: quando la mina viene attivata, spruzzano sostanze chimiche gelide nelle vicinanze."
     }
   },
   "weaponCryogenicGrenade": {
@@ -28,59 +28,59 @@
     "it": "Granata Criogenica",
     "_description": {
       "en": "Cryogenic grenades release a spray of aerosolized chemicals of extremely low temperature—liquid nitrogen is a common ingredient—which rapidly saps the heat from the surrounding area, often leaving enemies and objects in the blast frozen.",
-      "it": "Le granate criogeniche rilasciano uno spruzzo di sostanze chimiche aerosolizzate a temperatura estremamente bassa (l'azoto liquido è un ingrediente comune) che sottrae rapidamente calore dall'area circostante, lasciando spesso congelati nemici e oggetti nell'esplosione."
+      "it": "Le granate criogeniche rilasciano uno spray di sostanze chimiche nebulizzate a temperatura estremamente bassa (l'azoto liquido è un ingrediente comune), che sottrae rapidamente il calore dall'area circostante, lasciando spesso i nemici e gli oggetti nell'esplosione congelati."
     }
   },
   "weaponDetonator": {
     "en": "Detonator",
     "it": "Detonatore",
     "_description": {
-      "en": "Appearing as something like a pistol grip with a trigger and a short antenna, a detonator allows placed explosives to be triggered remotely. It removes the Delay (X) Trait and allows detonation as a minor action within Long range.",
-      "it": "Con l'aspetto di un'impugnatura a pistola con grilletto e una corta antenna, un detonatore consente di attivare a distanza gli esplosivi piazzati. Rimuove la qualità Ritardo (X) e permette la detonazione come azione minore entro gittata Lunga."
+      "en": "Appearing as something like a pistol grip with a trigger and a short antenna, a detonator allows placed explosives to be triggered remotely. Special: When a Placed explosive is being placed, if you have a Detonator, you may choose to have the explosive triggered remotely. This removes the Delay (X) Trait and means that you may detonate that explosive device as a minor action at any point during the scene, so long as you are within Long range of the explosive.",
+      "it": "Con l'aspetto di un'impugnatura da pistola con un grilletto e una piccola antenna, un detonatore permette di far esplodere a distanza gli esplosivi piazzati. Speciale: quando piazzi un esplosivo, se hai un detonatore, puoi scegliere di farlo esplodere a distanza. Questo rimuove la qualità Ritardo (X) e permette di far detonare l'esplosivo come azione minore in qualsiasi momento della scena, purché ci si trovi a gittata Lunga dall'esplosivo."
     }
   },
   "weaponDynamite": {
     "en": "Dynamite",
     "it": "Dinamite",
     "_description": {
-      "en": "A simple explosive, dynamite is a pressed stick of absorbent clay or similar material soaked in nitroglycerine. Sticks of dynamite are a compact and relatively cheap and stable form of explosive that isn’t too difficult to make.",
-      "it": "Un semplice esplosivo, la dinamite è un bastoncino pressato di argilla assorbente o materiale simile imbevuto di nitroglicerina. I candelotti di dinamite sono una forma di esplosivo compatta, relativamente economica e stabile."
+      "en": "A simple explosive, dynamite is a pressed stick of absorbent clay or similar material soaked in nitroglycerine. Sticks of dynamite are a compact and relatively cheap and stable form of explosive that isn’t too difficult to make. Storing it for long periods, however, can be risky, as old dynamite will often ‘sweat’ nitroglycerine, so old stockpiles of dynamite should be handled with care. Dynamite is often found as single sticks, which can be thrown individually like grenades, or bundled together with a timer as a placed bomb. Special: Single sticks of dynamite are assumed to have a short fuse, which will detonate the same turn they're lit (and thrown), functioning like a normal grenade. A character may prepare longer fuses for dynamite, requiring a PER + Explosives test with a difficulty of 1: success means you prepare one stick of dynamite with a longer fuse, plus one additional stick per AP spent. Long-fuse dynamite has the Delay (X) quality, with a rating set at the time the longer fuses are prepared. Dynamite bundles have the Delay (X) quality, with the rating set when the bomb is placed.",
+      "it": "Un semplice esplosivo: la dinamite è un bastoncino compresso di argilla assorbente o di materiale simile, imbevuto di nitroglicerina. I bastoncini di dinamite sono una forma di esplosivo compatta, relativamente economica e stabile, non troppo difficile da fabbricare. Conservarla per lunghi periodi, però, può essere rischioso, perché la vecchia dinamite tende a far trasudare la nitroglicerina, quindi le vecchie scorte di dinamite vanno maneggiate con cura. La dinamite si trova spesso in bastoncini singoli, che possono essere lanciati uno alla volta come granate, oppure legati insieme con un timer come bomba piazzata. Speciale: i singoli bastoncini di dinamite si considerano con una miccia corta, che esplode nello stesso turno in cui vengono accesi (e lanciati), funzionando come una normale granata. Un personaggio può preparare micce più lunghe per la dinamite, con una prova di PER + Esplosivi di difficoltà 1: il successo significa preparare un bastoncino con una miccia più lunga, più un bastoncino aggiuntivo per ogni PA speso. La dinamite con miccia lunga ha la qualità Ritardo (X), con un valore impostato al momento della preparazione delle micce più lunghe. I fasci di dinamite hanno la qualità Ritardo (X), con il valore impostato al momento del piazzamento della bomba."
     }
   },
   "weaponDynamiteBundle": {
     "en": "Dynamite Bundle",
-    "it": "Pacchetto Di Dinamite",
+    "it": "Fascio di Dinamite",
     "_description": {
       "en": "A collection of dynamite sticks bundled together with a timer as a placed bomb. Dynamite bundles have the Delay (X) quality, with the rating set when the bomb is placed.",
-      "it": "Una collezione di candelotti di dinamite legati insieme con un timer come bomba piazzata. I pacchetti di dinamite hanno la qualità Ritardo (X), con il valore impostato quando la bomba viene piazzata."
+      "it": "Un fascio di bastoncini di dinamite legati insieme, con un timer, come bomba piazzata. I fasci di dinamite hanno la qualità Ritardo (X), con il valore impostato al momento del piazzamento della bomba."
     }
   },
   "weaponExplosiveBaseball": {
-    "en": "Explosive Baseball",
+    "en": "Baseball Grenade",
     "it": "Palla da Baseball Esplosiva",
     "_description": {
       "en": "A hollowed baseball packed with improvised explosives. Crude, old-fashioned, and effective.",
-      "it": "Una palla da baseball svuotata e riempita di esplosivi improvvisati. Rozza, antiquata ed efficace."
+      "it": "Una palla da baseball svuotata e riempita di esplosivi improvvisati. Grezza, all'antica, ma efficace."
     }
   },
   "weaponFlashBang": {
     "en": "Flash Bang",
     "it": "Flashbang",
     "_description": {
-      "en": "These non-lethal grenades are designed to disorient enemies rather than inflict direct harm: when they detonate, they produce a blinding flash and a deafening bang which leaves enemies reeling and vulnerable (Stunned).",
-      "it": "Queste granate non letali sono progettate per disorientare i nemici invece di infliggere danni diretti: quando esplodono, producono un lampo accecante e un botto assordante che lascia i nemici barcollanti e vulnerabili (Storditi)."
+      "en": "These non-lethal grenades are designed to disorient enemies rather than inflict direct harm: when they detonate, they produce a blinding flash and a deafening bang—hence the name—which leaves enemies reeling and vulnerable, but otherwise unharmed, though they’re unlikely to remain unharmed for long while they’re stunned by a flash bang. Special: If a flash bang hits, any character caught within the blast of a Flash Bang is stunned, as per the Stun damage effect. If the grenade misses, there is no effect.",
+      "it": "Queste granate non letali sono progettate per disorientare i nemici più che per infliggere danni diretti: quando esplodono, producono un lampo accecante e un botto assordante, da cui il nome, che lascia i nemici frastornati e vulnerabili, ma altrimenti illesi; anche se, finché sono storditi da una flashbang, è improbabile che rimangano illesi a lungo. Speciale: se una flashbang colpisce, chiunque sia preso nell'esplosione viene stordito, come per l'effetto di danno Stordente. Se la granata manca, non ha alcun effetto."
     }
   },
   "weaponFragGrenadeMirv": {
     "en": "Frag Grenade MIRV",
-    "it": "Granata A Frammentazione MIRV",
+    "it": "Granata a Frammentazione MIRV",
     "_description": {
       "en": "Fragmentation grenade MIRVs are explosive grenades that release a collection of smaller bomblets, scattering them over a wide area before they explode.",
-      "it": "Le granate a frammentazione MIRV sono granate esplosive che rilasciano una collezione di sottomunizioni più piccole, disperdendole su un'ampia area prima che esplodano."
+      "it": "Le granate MIRV a frammentazione sono granate esplosive che rilasciano un insieme di bombette più piccole, disperdendole su un'area ampia prima di esplodere."
     }
   },
   "weaponFragmentationGrenade": {
-    "en": "Fragmentation Grenade",
+    "en": "Frag Grenade",
     "it": "Granata a Frammentazione",
     "_description": {
       "en": "A standard fragmentation grenade, designed to shatter into deadly shards on detonation.",
@@ -88,83 +88,83 @@
     }
   },
   "weaponFragmentationMine": {
-    "en": "Fragmentation Mine",
+    "en": "Frag Mine",
     "it": "Mina a Frammentazione",
     "_description": {
       "en": "A pressure-plate mine similar in design and construction to a fragmentation grenade.",
-      "it": "Una mina a piastra di pressione simile per progetto e costruzione a una granata a frammentazione."
+      "it": "Una mina a piastra a pressione, simile per design e costruzione a una granata a frammentazione."
     }
   },
   "weaponMolotovCocktail": {
     "en": "Molotov Cocktail",
     "it": "Bottiglia Molotov",
     "_description": {
-      "en": "A glass bottle filled with flammable liquid and a cloth wick. Light and throw at an enemy to create a burst of fire.",
-      "it": "Una bottiglia di vetro riempita di liquido infiammabile con uno stoppino di stoffa. Si accende e si lancia verso un nemico per creare un'esplosione di fuoco."
+      "en": "Consisting of a glass bottle—normally from an alcoholic beverage—containing a flammable fuel mixture, a bit of motor oil to help it spread, and an alcohol-soaked rag stuffed in the top to act as a wick. When used, the wick is ignited and the bottle hurled at the target; the breaking bottle spreads the agitated mixture, which quickly ignites and begins to burn anything in the vicinity. Cheap and effective.",
+      "it": "Consiste in una bottiglia di vetro, di solito proveniente da una bevanda alcolica, contenente una miscela di carburante infiammabile, un po' di olio motore per favorirne la diffusione e uno straccio imbevuto di alcol infilato nel collo come stoppino. Quando viene usata, lo stoppino viene acceso e la bottiglia viene lanciata contro il bersaglio; la bottiglia che si rompe diffonde la miscela agitata, che si accende rapidamente e inizia a bruciare tutto ciò che si trova nelle vicinanze. Economica ed efficace."
     }
   },
   "weaponNukaGrenade": {
     "en": "Nuka Grenade",
     "it": "Granata Nuka",
     "_description": {
-      "en": "A makeshift nuclear grenade crafted from a Nuka-Cola bottle. Small but devastatingly radioactive.",
-      "it": "Una granata nucleare artigianale ricavata da una bottiglia di Nuka-Cola. Piccola ma devastantemente radioattiva."
+      "en": "A tiny, handheld tactical nuclear weapon, a Nukagrenade is extremely dangerous to use—dropping one is ill-advised—but devastatingly effective, comparable to the mini-nukes used by the Fat Man launcher.",
+      "it": "Piccola arma nucleare tattica portatile, la Granata Nuka è estremamente pericolosa da usare (non è consigliato farne cadere una), ma devastantemente efficace, simile a quella delle MiniNuke usate dal lanciatore Fat Man."
     }
   },
   "weaponPlasmaGrenade": {
     "en": "Plasma Grenade",
     "it": "Granata al Plasma",
     "_description": {
-      "en": "A grenade filled with chemicals that rapidly transform into superheated plasma on detonation.",
-      "it": "Una granata piena di sostanze chimiche che si trasformano rapidamente in plasma surriscaldato al momento della detonazione."
+      "en": "A canister containing chemicals which are rapidly transformed into superheated ionized gas—or plasma—upon detonation. The blast of a plasma grenade generates vast amounts of heat which more than makes up for the lack of shrapnel or concussive shockwaves. Special: Plasma grenades inflict both physical and energy damage. Roll damage as normal, and then reduce the total by whichever of the target's damage resistances is lower out of Physical or Energy.",
+      "it": "Un contenitore con sostanze chimiche che si trasformano rapidamente in un gas ionizzato surriscaldato, o plasma, all'esplosione. L'esplosione di una granata al plasma genera enormi quantità di calore, che compensano abbondantemente la mancanza di schegge o onde d'urto. Speciale: le granate al plasma infliggono sia danni Fisici che da Energia. Si tira il danno normalmente, per poi sottrarre al totale ottenuto il valore di resistenza minore che il bersaglio possiede fra RD Fisici e da Energia."
     }
   },
   "weaponPlasmaMine": {
     "en": "Plasma Mine",
     "it": "Mina al Plasma",
     "_description": {
-      "en": "A magnetically-sealed mine that releases an energized wave of plasma when triggered.",
-      "it": "Una mina sigillata magneticamente che rilascia un'onda energetica di plasma quando viene attivata."
+      "en": "These magnetically sealed mines unleash a blast of energized plasma upon being triggered, searing those who tripped the mine's sensors. Special: Plasma mines inflict both Physical and Energy damage. Roll damage as normal, and then reduce the total by whichever of the target's damage resistances is lower out of Physical or Energy.",
+      "it": "Queste mine sigillate magneticamente rilasciano un'esplosione di plasma energizzato quando vengono attivate, bruciando chi ha fatto scattare i sensori della mina. Speciale: le mine al plasma infliggono sia danni Fisici che da Energia. Si tira il danno come sempre, per poi sottrarre al totale ottenuto il valore di resistenza minore che il bersaglio possiede fra RD Fisici e da Energia."
     }
   },
   "weaponPlasticExplosives": {
     "en": "Plastic Explosives",
     "it": "Esplosivo Plastico",
     "_description": {
-      "en": "A very stable and malleable compound. Plastic explosives can be rigged to explode with either remote or timer detonators and can be detonated with other high explosives. Very useful for removing inconvenient nature.",
-      "it": "Un composto molto stabile e malleabile. L'esplosivo plastico può essere attrezzato per esplodere con detonatori remoti o a timer e può essere innescato con altri esplosivi ad alto potenziale."
+      "en": "Plastic explosives were used for decades prior to the Great War as a mining tool and is still useful for removing inconvenient nature. Like its more primitive cousin, dynamite, plastic explosives are both a tool and a weapon. Plastic explosives are a very stable and malleable compound. Plastic explosives can be rigged to explode with either remote or timer detonators and can be detonated with other high explosives.",
+      "it": "L'esplosivo plastico è stato usato per decenni prima della Grande Guerra come strumento minerario ed è ancora utile per eliminare gli ostacoli naturali. Come il suo cugino più primitivo, la dinamite, l'esplosivo plastico è sia uno strumento sia un'arma. È un composto molto stabile e malleabile. Può essere collegato a detonatori a distanza o a tempo e può essere fatto esplodere con altri esplosivi ad alto potenziale."
     }
   },
   "weaponPowderCharge": {
     "en": "Powder Charge",
-    "it": "Carica Di Polvere Da Sparo",
+    "it": "Carica di Polvere da Sparo",
     "_description": {
-      "en": "The powder charge is a crude improvised explosive consisting of a sealed tin can packed with dynamite, with a sensor module duct-taped to the side.",
-      "it": "La carica di polvere è un rozzo esplosivo improvvisato composto da una latta sigillata piena di dinamite, con un modulo sensore fissato sul lato con del nastro adesivo."
+      "en": "The powder charge is a crude improvised explosive consisting of a sealed tin can packed with dynamite, with a sensor module duct-taped to the side. Special: A Powder Charge may replace its Mine quality with the Delay (X) and Placed qualities, requiring only a few minutes of work and a PER + Explosives test with a difficulty of 1.",
+      "it": "La carica di polvere è un ordigno esplosivo grezzo e improvvisato, consistente in una scatola di latta sigillata piena di dinamite, con un modulo sensore attaccato al lato con nastro adesivo. Speciale: una Carica di Polvere può sostituire la qualità Mina con le qualità Ritardo (X) e Piazzata, richiedendo solo pochi minuti di lavoro e una prova di PER + Esplosivi con difficoltà 1."
     }
   },
   "weaponPulseGrenade": {
     "en": "Pulse Grenade",
     "it": "Granata a Impulsi",
     "_description": {
-      "en": "An electromagnetic pulse grenade that deals damage to robots, synths, and power armor.",
-      "it": "Una granata a impulso elettromagnetico che infligge danni a robot, sintetici e armature atomiche."
+      "en": "Pulse grenades emit a burst of electromagnetism which inflicts massive damage to machines—such as robots, synths, and Power Armor—within the vicinity, while leaving living creatures unharmed. Special: Pulse grenades only inflict damage to robots, synths, Power Armor (though not the wearer within) and other mechanical or technological targets. Any computers in the blast are also damaged by the grenade. Against any other target, Pulse grenades inflict 0 damage.",
+      "it": "Le granate a impulsi emettono una raffica di elettromagnetismo che infligge danni enormi alle macchine, come robot, synth e Armature Atomiche, nelle vicinanze, lasciando indenni le creature viventi. Speciale: le granate a impulsi infliggono danni solo a robot, synth, Armature Atomiche (non a chi le indossa) e altri bersagli meccanici o tecnologici, oltre a danneggiare qualsiasi computer nell'area dell'esplosione. Contro ogni altro tipo di bersaglio infliggono 0 danni."
     }
   },
   "weaponPulseMine": {
     "en": "Pulse Mine",
     "it": "Mina a Impulsi",
     "_description": {
-      "en": "A proximity-fused EMP mine that deals heavy damage to robots, synths, and power armor.",
-      "it": "Una mina EMP a prossimita che infligge danni pesanti a robot, sintetici e armature atomiche."
+      "en": "The mine consists of a powerful EMP device wired to a proximity fuse and then secured inside a heavy metal casing. While only mildly harmful to organic targets, these mines deal severe damage to robotic enemies, stunning or even permanently disabling them. Special: Pulse mines only inflict damage to robots, synths, Power Armor (though not the wearer within) and other mechanical or technological targets. Any computers in the blast are also damaged by the mine. Against any other target, pulse mines inflict 0 damage.",
+      "it": "La mina è composta da un potente dispositivo EMP collegato a una spoletta di prossimità e poi fissato all'interno di un robusto involucro metallico. Sebbene non sia molto dannosa per i bersagli organici, infligge danni gravi ai nemici robotici, stordendoli o persino disattivandoli in modo permanente. Speciale: le mine a impulsi infliggono danni solo a robot, synth, Armature Atomiche (non a chi le indossa) e altri bersagli meccanici o tecnologici, oltre a danneggiare qualsiasi computer nell'area dell'esplosione. Contro ogni altro tipo di bersaglio infliggono 0 danni."
     }
   },
   "weaponSmokeGrenade": {
     "en": "Smoke Grenade",
     "it": "Granata Fumogena",
     "_description": {
-      "en": "Smoke grenades produce a dense cloud of chemical smoke to screen for concealment. It adds +2 difficulty to all attacks and PER-based tests made by or against anyone within the cloud.",
-      "it": "Le granate fumogene producono una densa nuvola di fumo chimico per fornire occultamento. Aggiunge +2 alla difficoltà di tutti gli attacchi e delle prove basate su PER effettuate da o contro chiunque si trovi all'interno della nuvola."
+      "en": "Smoke grenades are used as both signaling devices and to provide concealment. A chemical reaction of different agents, when mixed and ignited, produce either colored smoke as a signaling device, or a dense cloud of chemical smoke to screen for concealment. Special: When a smoke grenade detonates, it generates a cloud of smoke which fills the affected zone. Characters cannot see while within the cloud, nor can they see into or through the cloud from outside.",
+      "it": "Le granate fumogene vengono usate sia come segnalatori sia per offrire copertura. Una reazione chimica tra agenti diversi, quando vengono mescolati e accesi, produce o fumo colorato come segnale oppure una densa nube di fumo chimico per schermare la visuale. Speciale: quando una granata fumogena esplode, genera una nube di fumo che riempie la zona colpita. I personaggi non possono vedere mentre si trovano nella nube, né vedere dentro o attraverso di essa dall'esterno."
     }
   }
 }

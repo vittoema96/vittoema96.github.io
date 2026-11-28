@@ -15,3 +15,9 @@ weaponAcidSoaker,weapon,energyWeapons,3,"[""effectBreaking"",""effectPersistent"
 weaponAlienBlaster,weapon,energyWeapons,5,"[""effectVicious""]","[""energy"",""radiation""]",2,rangeC,"[""qualityCloseQuarters"",""qualityInaccurate""]",1,90,5,ammoAlienBlasterRound,"[""modMagFusionAlienBlaster""]",[],Settlers DLC
 weaponCryojet,weapon,energyWeapons,3,"[""effectBurst"",""effectFreeze""]","[""energy""]",3,rangeC,"[""qualityInaccurate""]",4,261,4,ammoCryoCell,[],"[""unacquirable""]",Settlers DLC
 weaponMesmetron,weapon,energyWeapons,3,"[""effectStun""]","[""energy""]",1,rangeM,[],1,120,4,ammoGammaRound,"[""modBetaWaveTuner"",""modMarksmanGrip"",""modReflexSight""]",[],Settlers DLC
+weaponLaer,weapon,energyWeapons,5,"[""effectPiercing:1""]","[""energy""]",3,rangeM,"[""qualityAccurate"", ""qualityTwoHanded""]",2,475,3,ammoFusionCell,[],[],New Vegas DLC
+weaponLaserRcw,weapon,energyWeapons,3,"[""effectBurst""]","[""energy""]",6,rangeM,"[""qualityTwoHanded""]",2,170,3,ammoFusionCell,[],[],New Vegas DLC
+weaponMultiplasRifle,weapon,energyWeapons,4,"[""effectSpread""]","[""energy""]",2,rangeC,"[""qualityTwoHanded""]",3.5,175,3,ammoPlasmaCartridge,[],[],New Vegas DLC
+weaponRechargerPistol,weapon,energyWeapons,3,[],"[""energy""]",6,rangeC,"[""qualityAccurate"", ""qualityRecharger""]",5,215,4,na,[],[],New Vegas DLC
+weaponRechargerRifle,weapon,energyWeapons,4,[],"[""energy""]",4,rangeM,"[""qualityAccurate"", ""qualityTwoHanded"", ""qualityRecharger""]",7.5,230,4,na,[],[],New Vegas DLC
+weaponAer14Prototype,weapon,energyWeapons,6,"[""effectPiercing:2""]","[""energy""]",2,rangeL,"[""qualityAmmoHungry:2"",""qualityTwoHanded""]",2.5,-,-,ammoFusionCell,[],[],New Vegas DLC

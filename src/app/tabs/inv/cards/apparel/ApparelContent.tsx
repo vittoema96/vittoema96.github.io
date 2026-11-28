@@ -4,7 +4,7 @@ import Tag from '@/app/components/Tag.tsx'
 import { CharacterItem } from '@/types';
 import React from 'react';
 import { useCharacter } from '@/app/contexts/CharacterContext.tsx';
-import { isType } from '@/features/item/utils.ts';
+import { isApparelStatOperation, isType } from '@/features/item/utils.ts';
 
 /**
  * Apparel-specific content renderer
@@ -25,6 +25,8 @@ function ApparelContent({ characterItem, actionButtons }: Readonly<ApparelConten
     }
 
     const isRobotPart = itemData.CATEGORY === 'robotPart';
+    // Stat operations are already folded into the numbers and explained in the description.
+    const displayEffects = itemData.EFFECTS.filter(effect => !isApparelStatOperation(effect));
 
     return (
         <>
@@ -70,10 +72,10 @@ function ApparelContent({ characterItem, actionButtons }: Readonly<ApparelConten
             </div>
 
             {/* Tags container for effects - Compact */}
-            {itemData.EFFECTS.length > 0 && <>
+            {displayEffects.length > 0 && <>
                 <hr/>
                 <div className="tags-container">
-                    {itemData.EFFECTS.map((effect) => {
+                    {displayEffects.map((effect) => {
                         const [effectType, effectOpt] = effect.split(':');
                         let displayValue = t(effectOpt!)
                         if (displayValue) {

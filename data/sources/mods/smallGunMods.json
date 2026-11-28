@@ -3,8 +3,8 @@
     "en": "Advanced Receiver",
     "it": "Castello Avanzato",
     "_description": {
-      "en": "+3 damage DC, +1 Fire Rate",
-      "it": "+3 danno DC, +1 Cadenza di Fuoco"
+      "en": "+3 damage CD, +1 Fire Rate",
+      "it": "+3 DC di danno, +1 Cadenza di Fuoco"
     },
     "_descriptor": {
       "en": "Advanced {{name}}",
@@ -15,8 +15,8 @@
     "en": "Automatic Receiver",
     "it": "Castello Automatico",
     "_description": {
-      "en": "-1 damage DC, +2 Fire Rate, gains Burst, gains Inaccurate",
-      "it": "-1 danno DC, +2 Cadenza di Fuoco, ottiene Raffica, ottiene Impreciso"
+      "en": "-1 damage CD, +2 Fire Rate, gains Burst, gains Inaccurate",
+      "it": "-1 DC di danno, +2 Cadenza di Fuoco, ottiene Raffica, ottiene Imprecisa"
     },
     "_descriptor": {
       "en": "Auto {{name}}",
@@ -39,8 +39,8 @@
     "en": "Bayonet",
     "it": "Baionetta",
     "_description": {
-      "en": "Melee Weapon, deals 4 DC Physical Piercing 1 damage",
-      "it": "Arma da Mischia, infligge 4 DC danni Fisici Penetranti 1"
+      "en": "Melee weapon, deals 4 CD Piercing 1 physical damage",
+      "it": "Arma da mischia, infligge 4 DC di danno Fisico Penetrante 1"
     },
     "_descriptor": {
       "en": "Bayoneted {{name}}",
@@ -51,8 +51,8 @@
     "en": "Boosted Coil Capacitor",
     "it": "Condensatore con Bobina Potenziata",
     "_description": {
-      "en": "+1 damage DC, gains Vicious",
-      "it": "+1 danno DC, ottiene Violento"
+      "en": "+1 damage CD, gains Vicious",
+      "it": "+1 DC di danno, ottiene Violento"
     },
     "_descriptor": {
       "en": "Maximum Capacity {{name}}",
@@ -75,8 +75,8 @@
     "en": "Compensator",
     "it": "Compensatore",
     "_description": {
-      "en": "Loses Inaccurate",
-      "it": "Perde Impreciso"
+      "en": "Remove Inaccurate",
+      "it": "Rimuove Imprecisa"
     },
     "_descriptor": {
       "en": "Compensated {{name}}",
@@ -87,8 +87,8 @@
     "en": "Comfort Grip",
     "it": "Impugnatura Ergonomica",
     "_description": {
-      "en": "Loses Inaccurate",
-      "it": "Perde Impreciso"
+      "en": "Remove Inaccurate",
+      "it": "Rimuove Imprecisa"
     },
     "_descriptor": {
       "en": "Comfort {{name}}",
@@ -99,8 +99,8 @@
     "en": "Finned Barrel",
     "it": "Canna Alettata",
     "_description": {
-      "en": "+1 damage DC, increases Range by 1 grade",
-      "it": "+1 danno DC, aumenta la Gittata di 1 grado"
+      "en": "+1 CD damage, Increase Range by 1 step",
+      "it": "+1 DC di danno, aumenta la Gittata di 1 grado"
     },
     "_descriptor": {
       "en": "Finned {{name}}",
@@ -123,8 +123,8 @@
     "en": "Full Stock",
     "it": "Calcio Completo",
     "_description": {
-      "en": "Gains Two-Handed, loses Inaccurate",
-      "it": "Ottiene A Due Mani, perde Impreciso"
+      "en": "Gain Two-Handed, Remove Inaccurate",
+      "it": "Ottiene A Due Mani, rimuove Imprecisa"
     },
     "_descriptor": {
       "en": "{{name}}",
@@ -148,7 +148,7 @@
     "it": "Caricatore Grande",
     "_description": {
       "en": "+1 Fire Rate, Unreliable",
-      "it": "+1 Cadenza di Fuoco, Inaffidabile"
+      "it": "+1 Cadenza di Fuoco, ottiene Inaffidabile"
     },
     "_descriptor": {
       "en": "High Capacity {{name}}",
@@ -171,7 +171,7 @@
     "en": "Long",
     "it": "Canna Lunga",
     "_description": {
-      "en": "Increases Range by 1 grade",
+      "en": "Increase Range by 1 step",
       "it": "Aumenta la Gittata di 1 grado"
     },
     "_descriptor": {
@@ -184,7 +184,7 @@
     "it": "Canna Lunga",
     "_description": {
       "en": "Increases Range by 1 Step",
-      "it": "Aumenta la Gittata di 1 Grado"
+      "it": "Aumenta la Gittata di 1 grado"
     },
     "_descriptor": {
       "en": "Long {{name}}",
@@ -195,8 +195,8 @@
     "en": "Long Night Vision Scope",
     "it": "Mirino Lungo Visione Notturna",
     "_description": {
-      "en": "Gains Precision, gains Night Vision, increases Range by 1",
-      "it": "Ottiene Di Precisione, ottiene Visione Notturna, aumenta la Gittata di 1"
+      "en": "Gain Accurate, Gain Night Vision, Increase Range by 1 step",
+      "it": "Ottiene Di Precisione, ottiene Visione Notturna, aumenta la Gittata di 1 grado"
     },
     "_descriptor": {
       "en": "Night Vision {{name}}",
@@ -207,8 +207,8 @@
     "en": "Long Scope",
     "it": "Mirino Lungo",
     "_description": {
-      "en": "Increases Range by 1, gains Precision",
-      "it": "Aumenta la Gittata di 1, ottiene Di Precisione"
+      "en": "Gain Accurate, Increase Range by 1 step",
+      "it": "Ottiene Di Precisione, aumenta la Gittata di 1 grado"
     },
     "_descriptor": {
       "en": "Scoped {{name}}",
@@ -219,8 +219,8 @@
     "en": "Sharpshooter's Grip",
     "it": "Impugnatura da Tiratore Esperto",
     "_description": {
-      "en": "Loses Inaccurate, gains Piercing 1",
-      "it": "Perde Impreciso, ottiene Penetrante 1"
+      "en": "Remove Inaccurate, Add Piercing 1",
+      "it": "Rimuove Imprecisa, aggiunge Penetrante 1"
     },
     "_descriptor": {
       "en": "Sharpshooter's {{name}}",
@@ -231,8 +231,8 @@
     "en": "Marksman's Stock",
     "it": "Calcio da Tiratore Scelto",
     "_description": {
-      "en": "Gains Two-Handed, loses Inaccurate, gains Precision",
-      "it": "Ottiene A Due Mani, perde Impreciso, ottiene Di Precisione"
+      "en": "Gain Two-Handed, Remove Inaccurate, Gain Accurate",
+      "it": "Ottiene A Due Mani, rimuove Imprecisa, ottiene Di Precisione"
     },
     "_descriptor": {
       "en": "Marksman's {{name}}",
@@ -243,7 +243,7 @@
     "en": "Ported Barrel",
     "it": "Canna Forata",
     "_description": {
-      "en": "Increases Range by 1 grade, +1 Fire Rate",
+      "en": "Increase Range by 1 step, +1 Fire Rate",
       "it": "Aumenta la Gittata di 1 grado, +1 Cadenza di Fuoco"
     },
     "_descriptor": {
@@ -255,8 +255,8 @@
     "en": "Powerful Receiver",
     "it": "Castello Potente",
     "_description": {
-      "en": "+2 damage DC",
-      "it": "+2 danno DC"
+      "en": "+2 damage CD",
+      "it": "+2 DC di danno"
     },
     "_descriptor": {
       "en": "Powerful {{name}}",
@@ -279,8 +279,8 @@
     "en": ".308 Receiver",
     "it": "Castello .308",
     "_description": {
-      "en": "Damage becomes 7 DC, Ammo becomes .308",
-      "it": "I danni diventano 7 DC, le Munizioni diventano .308"
+      "en": "Change damage to 7 CD, Ammo changes to .308",
+      "it": "Cambia il danno in 7 DC, le munizioni diventano .308"
     },
     "_descriptor": {
       "en": ".308 {{name}}",
@@ -291,8 +291,8 @@
     "en": ".38 Receiver",
     "it": "Castello .38",
     "_description": {
-      "en": "Damage becomes 4 DC, Ammo becomes .38",
-      "it": "I danni diventano 4 DC, le Munizioni diventano .38"
+      "en": "Change Damage to 4 CD, Ammo changes to .38",
+      "it": "Cambia il danno in 4 DC, le munizioni diventano .38"
     },
     "_descriptor": {
       "en": ".38 {{name}}",
@@ -303,8 +303,8 @@
     "en": ".45 Receiver",
     "it": "Castello .45",
     "_description": {
-      "en": "Damage becomes 4 DC, +1 Fire Rate, Ammo becomes .45",
-      "it": "I danni diventano 4 DC, +1 Cadenza di Fuoco, le Munizioni diventano .45"
+      "en": "Change damage to 4 CD, +1 Fire Rate, Ammo changes to .45",
+      "it": "Cambia il danno in 4 DC, +1 Cadenza di Fuoco, le munizioni diventano .45"
     },
     "_descriptor": {
       "en": ".45 {{name}}",
@@ -315,8 +315,8 @@
     "en": ".50 Receiver",
     "it": "Castello .50",
     "_description": {
-      "en": "Damage becomes 8 DC, gains Vicious, Ammo becomes .50",
-      "it": "I danni diventano 8 DC, ottiene Violento, le Munizioni diventano .50"
+      "en": "Change damage to 8 CD, Gain Vicious, Ammo changes to .50",
+      "it": "Cambia il danno in 8 DC, ottiene Violento, le munizioni diventano .50"
     },
     "_descriptor": {
       "en": ".50 {{name}}",
@@ -327,8 +327,8 @@
     "en": "Recoil Compensating Stock",
     "it": "Calcio per Compensazione del Rinculo",
     "_description": {
-      "en": "Gains Two-Handed, loses Inaccurate, +1 Fire Rate",
-      "it": "Ottiene A Due Mani, perde Impreciso, +1 Cadenza di Fuoco"
+      "en": "Gain Two-Handed, Remove Inaccurate, +1 Fire Rate",
+      "it": "Ottiene A Due Mani, rimuove Imprecisa, +1 Cadenza di Fuoco"
     },
     "_descriptor": {
       "en": "Recoil Compensated {{name}}",
@@ -339,7 +339,7 @@
     "en": "Recon Scope",
     "it": "Mirino da Ricognizione",
     "_description": {
-      "en": "Gains Precision, gains Recon",
+      "en": "Gain Accurate, Gain Recon",
       "it": "Ottiene Di Precisione, ottiene Da Ricognizione"
     },
     "_descriptor": {
@@ -363,7 +363,7 @@
     "en": "Sawed-Off Barrel",
     "it": "Canna Mozza",
     "_description": {
-      "en": "Loses Two-Handed, gains Close Quarters",
+      "en": "Remove Two-Handed, Gain Close Quarters",
       "it": "Perde A Due Mani, ottiene Corpo a Corpo"
     },
     "_descriptor": {
@@ -375,8 +375,8 @@
     "en": "Shielded Barrel",
     "it": "Canna Schermata",
     "_description": {
-      "en": "+1 damage DC",
-      "it": "+1 danno DC"
+      "en": "+1 CD damage",
+      "it": "+1 DC di danno"
     },
     "_descriptor": {
       "en": "Shielded {{name}}",
@@ -387,7 +387,7 @@
     "en": "Snubnose",
     "it": "Canna Ridotta",
     "_description": {
-      "en": "Gains Inaccurate",
+      "en": "Gain Inaccurate",
       "it": "Ottiene Imprecisa"
     },
     "_descriptor": {
@@ -399,7 +399,7 @@
     "en": "Short Night Vision Scope",
     "it": "Mirino Corto Visione Notturna",
     "_description": {
-      "en": "Gains Precision, gains Night Vision",
+      "en": "Gain Accurate, Gain Night Vision",
       "it": "Ottiene Di Precisione, ottiene Visione Notturna"
     },
     "_descriptor": {
@@ -411,7 +411,7 @@
     "en": "Short Scope",
     "it": "Mirino Corto",
     "_description": {
-      "en": "Gains Precision",
+      "en": "Gain Accurate",
       "it": "Ottiene Di Precisione"
     },
     "_descriptor": {
@@ -423,7 +423,7 @@
     "en": "Bull Barrel",
     "it": "Canna Stabile",
     "_description": {
-      "en": "Gains Reliable",
+      "en": "Gain Reliable",
       "it": "Ottiene Affidabile"
     },
     "_descriptor": {
@@ -435,7 +435,7 @@
     "en": "Suppressor",
     "it": "Silenziatore",
     "_description": {
-      "en": "Gains Silenced",
+      "en": "Gain Suppressed",
       "it": "Ottiene Silenziata"
     },
     "_descriptor": {
@@ -459,8 +459,8 @@
     "en": "Hardened",
     "it": "Temprato",
     "_description": {
-      "en": "+1 damage DC",
-      "it": "+1 danno DC"
+      "en": "+1 CD damage",
+      "it": "+1 DC di danno"
     },
     "_descriptor": {
       "en": "Hardened {{name}}",
@@ -471,8 +471,8 @@
     "en": "Armor Piercing Receiver",
     "it": "Castello Penetrante",
     "_description": {
-      "en": "Gains Piercing 1",
-      "it": "Ottiene Penetrante 1"
+      "en": "Add Piercing 1",
+      "it": "Aggiunge Penetrante 1"
     },
     "_descriptor": {
       "en": "Armor Piercing {{name}}",
@@ -483,8 +483,8 @@
     "en": "Armor Piercing Automatic Receiver",
     "it": "Castello Automatico Penetrante",
     "_description": {
-      "en": "-1 damage DC, +2 Fire Rate, gains Piercing 1, gains Burst, gains Inaccurate",
-      "it": "-1 danno DC, +2 Cadenza di Fuoco, ottiene Penetrante 1, ottiene Raffica, ottiene Impreciso"
+      "en": "-1 CD, +2 Fire Rate, Add Piercing 1, Gain Inaccurate",
+      "it": "-1 DC, +2 Cadenza di Fuoco, aggiunge Penetrante 1, ottiene Imprecisa"
     },
     "_descriptor": {
       "en": "AP Auto {{name}}",
@@ -495,8 +495,8 @@
     "en": "Hardened Automatic Receiver",
     "it": "Castello Automatico Temprato",
     "_description": {
-      "en": "+2 Fire Rate, gains Burst, gains Inaccurate",
-      "it": "+2 Cadenza di Fuoco, ottiene Raffica, ottiene Impreciso"
+      "en": "+2 Fire Rate, Gain Inaccurate",
+      "it": "+2 Cadenza di Fuoco, ottiene Imprecisa"
     },
     "_descriptor": {
       "en": "Hardened Auto {{name}}",
@@ -507,8 +507,8 @@
     "en": "Rapid Automatic Receiver",
     "it": "Castello Automatico Rapido",
     "_description": {
-      "en": "-1 damage DC, +3 Fire Rate, gains Burst, gains Inaccurate",
-      "it": "-1 danno DC, +3 Cadenza di Fuoco, ottiene Raffica, ottiene Impreciso"
+      "en": "-1 CD, +3 Fire Rate, Gain Inaccurate",
+      "it": "-1 DC, +3 Cadenza di Fuoco, ottiene Imprecisa"
     },
     "_descriptor": {
       "en": "Rapid {{name}}",
@@ -519,8 +519,8 @@
     "en": "Calibrated Powerful Receiver",
     "it": "Castello Calibrato Potente",
     "_description": {
-      "en": "+2 damage DC, gains Vicious",
-      "it": "+2 danno DC, ottiene Violento"
+      "en": "+2 CD, Gain Vicious",
+      "it": "+2 DC, ottiene Violento"
     },
     "_descriptor": {
       "en": "Calibrated Powerful {{name}}",
@@ -531,8 +531,8 @@
     "en": "Powerful Automatic Receiver",
     "it": "Castello Automatico Potente",
     "_description": {
-      "en": "+1 damage DC, +2 Fire Rate, gains Burst, gains Inaccurate",
-      "it": "+1 danno DC, +2 Cadenza di Fuoco, ottiene Raffica, ottiene Impreciso"
+      "en": "+1 CD, +2 Fire Rate, Gain Inaccurate",
+      "it": "+1 DC, +2 Cadenza di Fuoco, ottiene Imprecisa"
     },
     "_descriptor": {
       "en": "Powerful Auto {{name}}",
@@ -543,8 +543,8 @@
     "en": "Hardened Piercing Auto Receiver",
     "it": "Castello Automatico Temprato Penetrante",
     "_description": {
-      "en": "+2 Fire Rate, gains Piercing 1, gains Burst, gains Inaccurate",
-      "it": "+2 Cadenza di Fuoco, ottiene Penetrante 1, ottiene Raffica, ottiene Impreciso"
+      "en": "+2 Fire Rate, Gain Piercing 1, Gain Inaccurate",
+      "it": "+2 Cadenza di Fuoco, ottiene Penetrante 1, ottiene Imprecisa"
     },
     "_descriptor": {
       "en": "Hardened AP Auto {{name}}",
@@ -555,8 +555,8 @@
     "en": "9mm Receiver",
     "it": "Castello 9mm",
     "_description": {
-      "en": "Damage becomes 3 DC, Ammo becomes 9mm, +1 Fire Rate",
-      "it": "I danni diventano 3 DC, le Munizioni diventano 9mm, +1 Cadenza di Fuoco"
+      "en": "Change damage to 3 CD, ammo to 9mm, +1 Fire Rate",
+      "it": "Cambia il danno in 3 DC, le munizioni diventano 9mm, +1 Cadenza di Fuoco"
     },
     "_descriptor": {
       "en": "9mm {{name}}",
@@ -567,8 +567,8 @@
     "en": ".357 Receiver",
     "it": "Castello .357",
     "_description": {
-      "en": "Damage becomes 5 DC, Ammo becomes .357, gains Vicious",
-      "it": "I danni diventano 5 DC, le Munizioni diventano .357, ottiene Violento"
+      "en": "Change damage to 5 CD, ammo to .357, add Vicious.",
+      "it": "Cambia il danno in 5 DC, le munizioni diventano .357, aggiunge Violento."
     },
     "_descriptor": {
       "en": ".357 {{name}}",
@@ -579,8 +579,8 @@
     "en": "Muzzle Break",
     "it": "Freno di Bocca",
     "_description": {
-      "en": "Removes Inaccurate, +1 Fire Rate, +1 weight.",
-      "it": "Rimuove Imprecisa, +1 Cadenza di Fuoco, +1 peso."
+      "en": "Remove Inaccurate, +1 Fire Rate",
+      "it": "Rimuove Imprecisa, +1 Cadenza di Fuoco"
     },
     "_descriptor": {
       "en": "Muzzle Break {{name}}",
