@@ -1,9 +1,6 @@
-
-
 // *---- ITEM TYPES ----*
 export const ITEM_TYPES = ['weapon', 'apparel', 'aid', 'ammo', 'other', 'mod'] as const;
 export type ItemType = (typeof ITEM_TYPES)[number];
-
 
 // *---- ITEM CATEGORIES ----*
 // arrays
@@ -34,9 +31,9 @@ export const APPAREL_CATEGORIES = [
     'marineArmor',
     'legionaryArmor',
 
-    'powerArmor' // TODO check, unsure how to handle it
+    'powerArmor', // TODO check, unsure how to handle it
 ] as const;
-export const AID_CATEGORIES = ['food', 'drinks', 'meds', 'misc'] as const;
+export const AID_CATEGORIES = ['food', 'drinks', 'chems', 'misc'] as const;
 export const AMMO_CATEGORIES = ['ammo'] as const;
 export const OTHER_CATEGORIES = ['misc', 'junk', 'custom'] as const;
 // A mod's category is the slot it occupies: one mod per category on an item.
@@ -58,6 +55,7 @@ export const MOD_CATEGORIES = [
     'modSlotNozzle',
     'modSlotPropellantTank',
     'modSlotReceiver',
+    'modSlotRobotArm',
     'modSlotRobotArmor',
     'modSlotRobotModule',
     'modSlotRobotPlating',
@@ -90,7 +88,6 @@ export type ItemCategory =
     | AmmoCategory
     | OtherCategory
     | ModCategory;
-
 
 // *---- MAP TYPE -> CATEGORIES ----*
 export const ITEM_TYPE_MAP: Record<ItemType, readonly ItemCategory[]> = {

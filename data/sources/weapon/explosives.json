@@ -1,5 +1,5 @@
 {
-  "weaponAtomicMine": {
+  "weaponNukeMine": {
     "en": "Nuke Mine",
     "it": "Mina Atomica",
     "_description": {
@@ -55,7 +55,7 @@
       "it": "Un fascio di bastoncini di dinamite legati insieme, con un timer, come bomba piazzata. I fasci di dinamite hanno la qualità Ritardo (X), con il valore impostato al momento del piazzamento della bomba."
     }
   },
-  "weaponExplosiveBaseball": {
+  "weaponBaseballGrenade": {
     "en": "Baseball Grenade",
     "it": "Palla da Baseball Esplosiva",
     "_description": {
@@ -79,7 +79,7 @@
       "it": "Le granate MIRV a frammentazione sono granate esplosive che rilasciano un insieme di bombette più piccole, disperdendole su un'area ampia prima di esplodere."
     }
   },
-  "weaponFragmentationGrenade": {
+  "weaponFragGrenade": {
     "en": "Frag Grenade",
     "it": "Granata a Frammentazione",
     "_description": {
@@ -87,7 +87,7 @@
       "it": "Una granata a frammentazione standard, progettata per frantumarsi in schegge mortali al momento della detonazione."
     }
   },
-  "weaponFragmentationMine": {
+  "weaponFragMine": {
     "en": "Frag Mine",
     "it": "Mina a Frammentazione",
     "_description": {

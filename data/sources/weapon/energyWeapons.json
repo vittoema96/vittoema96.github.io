@@ -47,7 +47,7 @@
             "it": "La testa di un Assaultron contiene un emettitore laser ad alto rendimento, protetto da solide piastre di armatura. Gli Assaultron usano questo laser per colpire il nemico mentre si avvicinano per il combattimento in mischia. Il laser stesso usa un condensatore che può accumulare una carica estremamente potente, ma che richiede molta energia per ogni scarica a piena carica. Grazie al design robusto, gli Assaultron distrutti a volte hanno una testa intatta che può essere usata come laser improvvisato portatile. Speciale: sparare con una Testa di Assaultron consuma due colpi di munizioni ogni volta che spari. Ogni mod condensatore per la testa dell'Assaultron aumenta sia il danno sia il numero di colpi consumati. Puoi ridurre il numero di colpi consumati, riducendo il danno di -1 DC per ogni colpo consumato in meno del normale (con un minimo di 4 DC di danno e 1 colpo consumato)."
         }
     },
-    "weaponGammaPistol": {
+    "weaponGammaGun": {
         "en": "Gamma Gun",
         "it": "Pistola Gamma",
         "_description": {
@@ -83,7 +83,7 @@
             "it": "Il moschetto laser è un tipo di fucile laser artigianale che unisce una tecnologia avanzata con dei meccanismi insolitamente primitivi ed è molto diffuso tra le milizie come i Minutemen. Deve essere caricato manualmente, girando una manovella sul retro dell’arma. Sebbene sembri rozzo, può essere un’ottima arma da cecchino, soprattutto con un condensatore modificato in grado di sostenere una carica maggiore. Speciale: Sparare con un moschetto laser fa usare ogni volta due colpi di munizioni. Ogni mod Condensatore aumenta sia il danno, che il numero di colpi consumati, che possono essere ridotti abbassando il danno di -1 DC per ogni colpo risparmiato (fino a un minimo di 4 DC di danno e 1 colpo usato)."
         }
     },
-    "weaponLaserPistol": {
+    "weaponLaserGun": {
         "en": "Laser Gun",
         "it": "Pistola Laser",
         "_description": {
@@ -111,15 +111,7 @@
             "it": "Un'arma simile alla pistola gamma, capace di generare esplosioni di energia ad alta intensità. Questo approccio crea onde variabili che, quando vengono ricevute dal cervello di una creatura senziente, sovraccaricano i sensi e distorcono la percezione, rendendo gli individui confusi e più vulnerabili."
         }
     },
-    "weaponMrHandyLaserEmitter": {
-        "en": "Laser Emitter Arm",
-        "it": "Arto Emettitore Laser",
-        "_description": {
-            "en": "Laser emitter integrated into a Mr. Handy's body. Identical to a standard laser pistol but permanently mounted on the robot. Only Mr. Handy can use this weapon.",
-            "it": "Emettitore laser integrato nel corpo di un Mr. Handy. Identico a una pistola laser standard, ma montato in modo permanente sul robot. Solo un Mr. Handy può usare quest'arma."
-        }
-    },
-    "weaponPlasmaPistol": {
+    "weaponPlasmaGun": {
         "en": "Plasma Gun",
         "it": "Pistola al Plasma",
         "_description": {

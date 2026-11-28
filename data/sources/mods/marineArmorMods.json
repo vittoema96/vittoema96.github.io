@@ -1,5 +1,5 @@
 {
-  "modMarineWelded": {
+  "modWeldedMarineArmor": {
     "en": "Welded Marine Armor",
     "it": "Materiale Marine Saldato",
     "_description": {
@@ -11,7 +11,7 @@
       "it": "{{name}} con Materiale Saldato"
     }
   },
-  "modMarineTempered": {
+  "modTemperedMarineArmor": {
     "en": "Tempered Marine Armor",
     "it": "Materiale Marine Rinvenuto",
     "_description": {
@@ -23,7 +23,7 @@
       "it": "{{name}} con Materiale Rinvenuto"
     }
   },
-  "modMarineHardened": {
+  "modHardenedMarineArmor": {
     "en": "Hardened Marine Armor",
     "it": "Materiale Marine Indurito",
     "_description": {
@@ -35,7 +35,7 @@
       "it": "{{name}} con Materiale Indurito"
     }
   },
-  "modMarineButtressed": {
+  "modButtressedMarineArmor": {
     "en": "Buttressed Marine Armor",
     "it": "Materiale Marine Rinforzato con Costoloni",
     "_description": {

@@ -1,0 +1,2 @@
+ID,TYPE,CATEGORY,EFFECTS,WEIGHT,COST,SKILL,PERKS,RARITY,TAGS,SOURCE
+modMrHandyArm,mod,modSlotRobotArm,"[""qualityAdd:qualityMrHandyOnly"",""qualityRemove:qualityTwoHanded"",""weightSet:0""]",0,0,repair,[],-,"[""unacquirable""]",Corebook

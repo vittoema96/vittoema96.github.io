@@ -11,7 +11,7 @@
             "it": "{{name}} Spinato"
         }
     },
-    "modBarbedCane": {
+    "modBarbedWalkingCane": {
         "en": "Barbed",
         "it": "Bastone Spinato",
         "_description": {
@@ -35,7 +35,7 @@
             "it": "{{name}} Spinato"
         }
     },
-    "modBladeBaseballBat": {
+    "modBladedBaseballBat": {
         "en": "Bladed",
         "it": "Mazza con Lama",
         "_description": {
@@ -47,7 +47,7 @@
             "it": "{{name}} Tagliente"
         }
     },
-    "modBladeKnuckles": {
+    "modBladedKnuckles": {
         "en": "Bladed",
         "it": "Tirapugni con Lama",
         "_description": {
@@ -59,7 +59,7 @@
             "it": "{{name}} Tagliente"
         }
     },
-    "modChainBaseballBat": {
+    "modChainWrappedBaseballBat": {
         "en": "Chain-Wrapped",
         "it": "Mazza con Catena",
         "_description": {
@@ -71,7 +71,7 @@
             "it": "{{name}} Con Catena"
         }
     },
-    "modCurvedRipper": {
+    "modCurvedBladeRipper": {
         "en": "Curved Blade",
         "it": "Ripper Curva",
         "_description": {
@@ -95,7 +95,7 @@
             "it": "{{name}} Fulminante"
         }
     },
-    "modElectrifiedSerratedSword": {
+    "modElectrifiedSerratedBladeSword": {
         "en": "Electrified Serrated Blade",
         "it": "Spada Seghettata Elettrificata",
         "_description": {
@@ -107,7 +107,7 @@
             "it": "{{name}} Elettrificata Seghettata"
         }
     },
-    "modElectrifiedSword": {
+    "modElectrifiedBladeSword": {
         "en": "Electrified Blade",
         "it": "Spada Elettrificata",
         "_description": {
@@ -119,7 +119,7 @@
             "it": "{{name}} Elettrificata"
         }
     },
-    "modExtendedRipper": {
+    "modExtendedBladeRipper": {
         "en": "Extended Blade",
         "it": "Ripper Estesa",
         "_description": {
@@ -131,7 +131,7 @@
             "it": "{{name}} Estesa"
         }
     },
-    "modExtraClawDeathclaw": {
+    "modExtraClawDeathclawGauntlet": {
         "en": "Extra Claw",
         "it": "Artiglio Extra Grande",
         "_description": {
@@ -143,7 +143,7 @@
             "it": "{{name}} Grande"
         }
     },
-    "modExtraFlamesShishkebab": {
+    "modExtraFlameJetsShishkebab": {
         "en": "Extra Flame Jets",
         "it": "Getti di Fiamme Ulteriori",
         "_description": {
@@ -155,7 +155,7 @@
             "it": "{{name}} Rovente"
         }
     },
-    "modHeatingPowerFist": {
+    "modHeatingCoilPowerFist": {
         "en": "Heating Coil",
         "it": "Pugno Potenziato Riscaldante",
         "_description": {
@@ -167,7 +167,7 @@
             "it": "{{name}} Bruciante"
         }
     },
-    "modHeatingSuperSledge": {
+    "modHeatingCoilSuperSledge": {
         "en": "Heating Coil",
         "it": "Super Martello Riscaldante",
         "_description": {
@@ -203,7 +203,7 @@
             "it": "{{name}} Pesante"
         }
     },
-    "modHeavyWrench": {
+    "modHeavyPipeWrench": {
         "en": "Heavy",
         "it": "Chiave Pesante",
         "_description": {
@@ -215,7 +215,7 @@
             "it": "{{name}} Bilanciata"
         }
     },
-    "modHookedWrench": {
+    "modHookedPipeWrench": {
         "en": "Hooked",
         "it": "Chiave Uncinata",
         "_description": {
@@ -227,7 +227,7 @@
             "it": "{{name}} Uncinato"
         }
     },
-    "modLeadedBoxingGlove": {
+    "modLeadLiningBoxingGlove": {
         "en": "Lead Lining",
         "it": "Guantone Piombato",
         "_description": {
@@ -239,7 +239,7 @@
             "it": "{{name}} Piombato"
         }
     },
-    "modPuncturedBoard": {
+    "modPuncturingBoard": {
         "en": "Puncturing",
         "it": "Asse Pungente",
         "_description": {
@@ -251,7 +251,7 @@
             "it": "{{name}} Pungente"
         }
     },
-    "modPuncturedKnuckles": {
+    "modPuncturingKnuckles": {
         "en": "Puncturing",
         "it": "Tirapugni Pungente",
         "_description": {
@@ -263,7 +263,7 @@
             "it": "{{name}} Puntuto"
         }
     },
-    "modPuncturedBoxingGlove": {
+    "modPuncturingBoxingGlove": {
         "en": "Puncturing",
         "it": "Guantone Pungente",
         "_description": {
@@ -275,7 +275,7 @@
             "it": "{{name}} Puntuto"
         }
     },
-    "modPuncturedPowerFist": {
+    "modPuncturingPowerFist": {
         "en": "Puncturing",
         "it": "Pugno Potenziato Pungente",
         "_description": {
@@ -287,7 +287,7 @@
             "it": "{{name}} Puntuto"
         }
     },
-    "modPuncturedSledgehammer": {
+    "modPuncturingSledgehammer": {
         "en": "Puncturing",
         "it": "Martello Pungente",
         "_description": {
@@ -299,7 +299,7 @@
             "it": "{{name}} Pungente"
         }
     },
-    "modPuncturedWrench": {
+    "modPuncturingPipeWrench": {
         "en": "Puncturing",
         "it": "Chiave Pungente",
         "_description": {
@@ -311,7 +311,7 @@
             "it": "{{name}} Pungente"
         }
     },
-    "modSerratedCombatKnife": {
+    "modSerratedBladeCombatKnife": {
         "en": "Serrated Blade",
         "it": "Coltello da Combattimento Seghettato",
         "_description": {
@@ -323,7 +323,7 @@
             "it": "{{name}} Seghettato"
         }
     },
-    "modSerratedMachete": {
+    "modSerratedBladeMachete": {
         "en": "Serrated Blade",
         "it": "Machete Seghettato",
         "_description": {
@@ -335,7 +335,7 @@
             "it": "{{name}} Seghettato"
         }
     },
-    "modSerratedSwitchblade": {
+    "modSerratedBladeSwitchblade": {
         "en": "Serrated Blade",
         "it": "Coltello a Serramanico Seghettato",
         "_description": {
@@ -347,7 +347,7 @@
             "it": "{{name}} Seghettato"
         }
     },
-    "modSerratedSword": {
+    "modSerratedBladeSword": {
         "en": "Serrated Blade",
         "it": "Spada Seghettata",
         "_description": {
@@ -371,7 +371,7 @@
             "it": "{{name}} Affilato"
         }
     },
-    "modSharpBoard": {
+    "modBladedBoard": {
         "en": "Bladed",
         "it": "Asse Tagliente",
         "_description": {
@@ -419,7 +419,7 @@
             "it": "{{name}} Affilato"
         }
     },
-    "modSharpTireIron": {
+    "modBladedTireIron": {
         "en": "Bladed",
         "it": "Leva Tagliente",
         "_description": {
@@ -467,7 +467,7 @@
             "it": "{{name}} Chiodato"
         }
     },
-    "modSpikedCane": {
+    "modSpikedWalkingCane": {
         "en": "Spiked",
         "it": "Bastone Chiodato",
         "_description": {
@@ -515,7 +515,7 @@
             "it": "{{name}} Chiodato"
         }
     },
-    "modStealthCombatKnife": {
+    "modStealthBladeCombatKnife": {
         "en": "Stealth Blade",
         "it": "Coltello da Combattimento Stealth",
         "_description": {
@@ -527,7 +527,7 @@
             "it": "{{name}} Stealth"
         }
     },
-    "modStunningBaton": {
+    "modStunPackBaton": {
         "en": "Stun Pack",
         "it": "Manganello Stordente",
         "_description": {
@@ -539,7 +539,7 @@
             "it": "{{name}} Stordente"
         }
     },
-    "modStunningSuperSledge": {
+    "modStunPackSuperSledge": {
         "en": "Stun Pack",
         "it": "Super Martello Stordente",
         "_description": {
@@ -551,7 +551,7 @@
             "it": "{{name}} Stordente"
         }
     },
-    "modStunningSword": {
+    "modStunPackSword": {
         "en": "Stun Pack",
         "it": "Spada Stordente",
         "_description": {
@@ -563,7 +563,7 @@
             "it": "{{name}} Stordente"
         }
     },
-    "modVeryHeavyWrench": {
+    "modExtraHeavyPipeWrench": {
         "en": "Extra Heavy",
         "it": "Chiave Molto Pesante",
         "_description": {
@@ -659,7 +659,7 @@
             "it": "{{name}} Ad Arco Lungo"
         }
     },
-    "modFlaming": {
+    "modFlamer": {
         "en": "Flamer",
         "it": "Lanciafiamme",
         "_description": {

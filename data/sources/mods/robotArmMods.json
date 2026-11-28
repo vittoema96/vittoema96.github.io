@@ -1,0 +1,14 @@
+{
+    "modMrHandyArm": {
+        "en": "Mr. Handy Arm",
+        "it": "Arto Mr. Handy",
+        "_description": {
+            "en": "The weapon is built into one of a Mister Handy's arms: only a Mister Handy can use it, it needs only one arm and it weighs nothing.",
+            "it": "L'arma è integrata in uno degli arti di un Mister Handy: solo un Mister Handy può usarla, richiede un solo arto e non ha peso."
+        },
+        "_descriptor": {
+            "en": "{{name}} Arm",
+            "it": "Arto {{name}}"
+        }
+    }
+}

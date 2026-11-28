@@ -11,7 +11,7 @@
       "it": "{{name}} Trama Balistica"
     }
   },
-  "modBallisticWeave2": {
+  "modBallisticWeaveMk2": {
     "en": "Ballistic Weave Mk2",
     "it": "Trama Balistica Mk2",
     "_description": {
@@ -23,7 +23,7 @@
       "it": "{{name}} Trama Balistica Mk2"
     }
   },
-  "modBallisticWeave3": {
+  "modBallisticWeaveMk3": {
     "en": "Ballistic Weave Mk3",
     "it": "Trama Balistica Mk3",
     "_description": {
@@ -35,7 +35,7 @@
       "it": "{{name}} Trama Balistica Mk3"
     }
   },
-  "modBallisticWeave4": {
+  "modBallisticWeaveMk4": {
     "en": "Ballistic Weave Mk4",
     "it": "Trama Balistica Mk4",
     "_description": {
@@ -47,7 +47,7 @@
       "it": "{{name}} Trama Balistica Mk4"
     }
   },
-  "modBallisticWeave5": {
+  "modBallisticWeaveMk5": {
     "en": "Ballistic Weave Mk5",
     "it": "Trama Balistica Mk5",
     "_description": {

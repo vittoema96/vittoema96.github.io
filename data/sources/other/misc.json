@@ -35,7 +35,7 @@
       "it": "Riduce la difficoltà delle prove di Scassinare di 1 (fino a un minimo di 1). Si rompe una forcina per ogni complicazione tirata."
     }
   },
-  "miscCommonJunk": {
+  "miscCommonJunkMaterials": {
     "en": "Common Junk Materials",
     "it": "Materiali Comuni",
     "_description": {
@@ -59,7 +59,7 @@
       "it": "Riduce la difficoltà delle prove di Riparare di 1 (fino a un minimo di 0). Si possono tentare delle prove di Riparare che solitamente richiederebbero un tavolo da lavoro aumentando la difficoltà di +1"
     }
   },
-  "miscDoctorBag": {
+  "miscDoctorsBag": {
     "en": "Doctor's Bag",
     "it": "Borsa da Medico",
     "_description": {
@@ -227,7 +227,7 @@
       "it": "Capta e trasmette trasmissioni radio"
     }
   },
-  "miscRareJunk": {
+  "miscRareJunkMaterials": {
     "en": "Rare Junk Materials",
     "it": "Materiali Rari",
     "_description": {
@@ -251,7 +251,7 @@
       "it": "Genera una forte luce a distanza Ravvicinata fino alla fine della scena corrente. Bisogna effettuare una prova di INT+ Sopravvivenza per accenderla con difficoltà 1, aumentata di +1 per ogni utilizzo precedente"
     }
   },
-  "miscUncommonJunk": {
+  "miscUncommonJunkMaterials": {
     "en": "Uncommon Junk Materials",
     "it": "Materiali Inusuali",
     "_description": {

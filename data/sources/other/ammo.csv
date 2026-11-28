@@ -5,29 +5,29 @@ ammoGammaRound,ammo,ammo,0,10,2,Corebook,4+2CD
 ammoMiniNuke,ammo,ammo,6,100,6,Corebook,1+1CD
 ammoFlamerFuel,ammo,ammo,0,1,2,Corebook,12+6CD
 ammoMissile,ammo,ammo,3.5,25,3,Corebook,2+1CD
-ammo5mm,ammo,ammo,0,1,3,Corebook,10x12+6CD
-ammo308,ammo,ammo,0,3,1,Corebook,6+3CD
+ammo5mmRounds,ammo,ammo,0,1,3,Corebook,10x12+6CD
+ammo308Rounds,ammo,ammo,0,3,1,Corebook,6+3CD
 ammoShotgunShell,ammo,ammo,0,3,1,Corebook,6+3CD
 ammo556mm,ammo,ammo,0,2,3,Corebook,8+4CD
-ammo45,ammo,ammo,0,3,2,Corebook,8+4CD
+ammo45Rounds,ammo,ammo,0,3,2,Corebook,8+4CD
 ammo50,ammo,ammo,0,4,3,Corebook,4+2CD
 ammo2mmec,ammo,ammo,0,10,5,Corebook,6+3CD
 ammoRailwaySpike,ammo,ammo,0,1,2,Corebook,6+3CD
 ammo44Magnum,ammo,ammo,0,3,2,Corebook,4+2CD
-ammo10mm,ammo,ammo,0,2,0,Corebook,8+4CD
-ammo38,ammo,ammo,0,1,0,Corebook,10+5CD
-ammo22,ammo,ammo,0,1,2,New Vegas DLC,7+3CD
+ammo10mmRound,ammo,ammo,0,2,0,Corebook,8+4CD
+ammo38Rounds,ammo,ammo,0,1,0,Corebook,10+5CD
+ammo22Lr,ammo,ammo,0,1,2,New Vegas DLC,7+3CD
 ammo4570,ammo,ammo,0,4,3,New Vegas DLC,6+4CD
 ammoFlare,ammo,ammo,0,1,1,Corebook,2+1CD
-ammoSyringer,ammo,ammo,0,?,2,Corebook,4+2CD
+ammoSyringerAmmo,ammo,ammo,0,?,2,Corebook,4+2CD
 ammoFusionCore,ammo,ammo,2,200,3,Corebook,1
 ammo357Magnum,ammo,ammo,0,2,1,Wanderers DLC,6+3CD
 ammo127mm,ammo,ammo,0,2,2,Wanderers DLC,6+3CD
 ammo9mm,ammo,ammo,0,1,0,Wanderers DLC,10+5CD
 ammo50Ball,ammo,ammo,0,1,3,Wanderers DLC,4+2CD
 ammo25mmGrenade,ammo,ammo,0,8,4,Wanderers DLC,2+1CD
-ammo40mmGrenade,ammo,ammo,0,20,4,Settlers DLC,2+1CD
-ammoAlienPowerCell,ammo,ammo,0,5,5,Wanderers DLC,4+2CD
+ammo40mmGrenadeRound,ammo,ammo,0,20,4,Settlers DLC,2+1CD
+ammoAlienPowerCells,ammo,ammo,0,5,5,Wanderers DLC,4+2CD
 ammoAlienPowerModule,ammo,ammo,0,10,6,Wanderers DLC,3+1CD
 ammoAlienBlasterRound,ammo,ammo,0,1,6,Settlers DLC,3+1CD
 ammoArrow,ammo,ammo,0,2,1,Wanderers DLC,6+4CD
@@ -38,10 +38,10 @@ ammoCannonball,ammo,ammo,2,8,5,Settlers DLC,1+2CD
 ammoCryoCell,ammo,ammo,0,10,5,Settlers DLC,4+3CD
 ammoGasGrenade,ammo,ammo,0,2,4,Settlers DLC,2+1CD
 ammoHarpoon,ammo,ammo,0,3,4,Settlers DLC,2+1CD
-ammoArrowCryo,ammo,arrowType,0,8,3,Wanderers DLC,
-ammoArrowExplosive,ammo,arrowType,0,6,2,Wanderers DLC,
-ammoArrowFlaming,ammo,arrowType,0,2,1,Wanderers DLC,
-ammoArrowSerrated,ammo,arrowType,0,4,1,Wanderers DLC,
-ammoArrowPlasma,ammo,arrowType,0,9,4,Wanderers DLC,
-ammoArrowPoison,ammo,arrowType,0,3,1,Wanderers DLC,
-ammoSyringerCazadoresSting,ammo,syringerAmmo,0,75,3,Wanderers DLC,
+ammoCryoArrowBolt,ammo,arrowType,0,8,3,Wanderers DLC,
+ammoExplosiveArrowBolt,ammo,arrowType,0,6,2,Wanderers DLC,
+ammoFlamingArrowBolt,ammo,arrowType,0,2,1,Wanderers DLC,
+ammoSerratedArrowBolt,ammo,arrowType,0,4,1,Wanderers DLC,
+ammoPlasmaArrowBolt,ammo,arrowType,0,9,4,Wanderers DLC,
+ammoPoisonArrowBolt,ammo,arrowType,0,3,1,Wanderers DLC,
+ammoCazadoresSting,ammo,syringerAmmo,0,75,3,Wanderers DLC,

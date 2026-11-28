@@ -47,7 +47,7 @@
             "it": "Una giacca di pelle imbottita con colletto foderato di pelliccia, indossata sopra l'uniforme della Confraternita e preferita da lancieri e altro personale di volo. Una Giacca Bomber può essere rinforzata con della Trama Balistica."
         }
     },
-    "armorBrotherhoodScribe": {
+    "armorBrotherhoodScribesArmor": {
         "en": "Brotherhood Scribe's Armor",
         "it": "Armatura da Scriba della Confraternita",
         "_description": {
@@ -55,7 +55,7 @@
             "it": "Talvolta gli Scriba della Confraternita d'Acciaio devono avventurarsi sul campo, sia per fare osservazioni in prima persona che per svolgere attività di ricerca da vicino. Anche se la protezione che offre quest'abito è limitata, basta comunque per proteggere dal pericolo abbastanza a lungo da permettere a chi lo indossa di ritirarsi e chiedere aiuto a qualcuno meglio equipaggiato."
         }
     },
-    "armorBrotherhoodScribeHat": {
+    "armorBrotherhoodScribesHat": {
         "en": "Brotherhood Scribe's Hat",
         "it": "Copricapo da Scriba della Confraternita",
         "_description": {
@@ -63,7 +63,7 @@
             "it": "Si tratta di un leggero cappello di pelle e di un paio di occhiali che vengono forniti assieme all'Armatura da Scriba della Confraternita per proteggere la testa da qualsiasi condizione pericolosa."
         }
     },
-    "armorBrotherhoodSteelFatigues": {
+    "armorBrotherhoodOfSteelFatigues": {
         "en": "Brotherhood of Steel Fatigues",
         "it": "Divisa della Confraternita d’Acciaio",
         "_description": {
@@ -71,7 +71,7 @@
             "it": "Sono dei semplici e robusti indumenti pensati per il personale della Confraternita d'Acciaio, che consistono di un maglione, pantaloni e guanti militari, stivali da combattimento e cinghie militari, tutti decorati con gli stemmi della Confraternita del rispettivo grado e ruolo. Anche il colore è caratteristico per alcune mansioni: i medici ne indossano una versione con un maglione bianco, mentre quella del personale di volo è blu. Sebbene non sia pensata per il combattimento, la divisa è robusta e abbastanza resistente da fornire una qualche protezione contro i pericoli."
         }
     },
-    "armorBrotherhoodSteelHood": {
+    "armorBrotherhoodOfSteelHood": {
         "en": "Brotherhood of Steel Hood",
         "it": "Cappuccio della Confraternita d’Acciaio",
         "_description": {
@@ -79,7 +79,7 @@
             "it": "Si tratta del copricapo abbinato all'uniforme della Confraternita d'Acciaio, un cappuccio attillato sviluppato prima della Grande Guerra per coloro che indossavano un'Armatura Atomica, progettato per connettersi al casco dell'armatura e fornire un'interfaccia più accurata con i suoi sistemi, oltre ad avere un auricolare e un microfono per la radio interna."
         }
     },
-    "armorBrotherhoodSteelUniform": {
+    "armorBrotherhoodOfSteelUniform": {
         "en": "Brotherhood of Steel Uniform",
         "it": "Uniforme della Confraternita d’Acciaio",
         "_description": {
@@ -87,7 +87,7 @@
             "it": "Originariamente concepita come tuta da indossare sotto le Armature Atomiche T-45. La superficie della tuta è ricoperta da tutta una serie di porte d'interfaccia e connessioni per collegare chi la indossa con il telaio dell'Armatura Atomica. La Confraternita d'Acciaio la usa come base per le uniformi, per fare in modo che quanto più personale possibile sia pronto a indossare un'armatura completa. Quando non c'è la possibilità di usare un'Armatura Atomica, in battaglia viene generalmente indossata sotto altri tipi di armature, mentre gli ufficiali anziani della Confraternita spesso la coprono con un giubbotto o una giacca corazzata."
         }
     },
-    "armorCage": {
+    "armorCageArmor": {
         "en": "Cage Armor",
         "it": "Armatura a Gabbia",
         "_description": {
@@ -111,7 +111,7 @@
             "it": "Si tratta di un cappello semplice e leggero, solitamente con un qualche tipo di tesa per proteggere gli occhi di chi lo indossa dal sole. Speciale: quando lo si indossa si ignora ogni aumento di difficoltà dovuto alla luce troppo intensa."
         }
     },
-    "armorCleanroom": {
+    "armorCleanroomSuit": {
         "en": "Cleanroom Suit",
         "it": "Tuta da Camera Sterile",
         "_description": {
@@ -119,7 +119,7 @@
             "it": "Una tuta da lavoro in tessuto plastificato, con guanti di gomma, cappuccio e maschera respiratoria. Indossata correttamente, con il cappuccio su e la maschera al suo posto, la tuta filtra l'aria che entra e che esce, proteggendo chi la indossa dall'ambiente esterno e l'ambiente esterno da chi la indossa. Speciale: l'ambiente protettivo creato dalla tuta ti permette di ritirare 1d20 in tutte le prove basate su COS mentre la indossi. Non offre alcuna protezione se il cappuccio è abbassato o se la maschera è stata rimossa."
         }
     },
-    "armorDrifter": {
+    "armorDrifterOutfit": {
         "en": "Drifter Outfit",
         "it": "Completo da Reietto",
         "_description": {
@@ -127,7 +127,7 @@
             "it": "Un impermeabile, dei robusti guanti e stivali tutti in pelle, un paio di jeans e una camicia compongono questo completo, che è resistente ma al contempo comodo da indossare anche a lungo, oltre a essere abbastanza caldo da proteggere coloro che vivono sulla strada, girovagando per la Zona Contaminata."
         }
     },
-    "armorEngineer": {
+    "armorEngineersArmor": {
         "en": "Engineer's Armor",
         "it": "Armatura da Ingegnere",
         "_description": {
@@ -287,7 +287,7 @@
             "it": "Modellato sulle tute spaziali usate dagli astronauti veri, questo set di costume lucido è sorprendentemente funzionale per quello che è sostanzialmente un costume di Halloween. Speciale: quando questo costume e il casco sono indossati insieme, puoi respirare sott'acqua o in qualsiasi altro luogo dove l'atmosfera non è respirabile."
         }
     },
-    "armorSpike": {
+    "armorSpikeArmor": {
         "en": "Spike Armor",
         "it": "Armatura Chiodata",
         "_description": {
@@ -303,7 +303,7 @@
             "it": "Si tratta di un abbigliamento robusto formato da indumenti abbastanza resistenti da sopportare la dura vita nella Zona Contaminata. Solitamente si compone di un giubbotto, camicia, canottiera, jeans e un paio di stivali, rinforzati (o rattoppati) col nastro adesivo, così da dare sia un po' di protezione dagli urti e dalle contusioni della vita, che un minimo di calore nelle fredde notti dell'inverno nucleare."
         }
     },
-    "armorUnderarmor": {
+    "armorUnderarmorSuit": {
         "en": "Underarmor Suit",
         "it": "Sottoarmatura",
         "_description": {

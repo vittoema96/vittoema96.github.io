@@ -4,10 +4,10 @@ const traitMrHandyLaserEmitter: TraitImplementation = {
     id: 'traitMrHandyLaserEmitter',
     getGrantedItems: () => [
         {
-            id: 'weaponMrHandyLaserEmitter',
+            id: 'weaponLaserGun',
             quantity: 1,
             equipped: false,
-            mods: [],
+            mods: ['modMrHandyArm'],
         },
     ],
 };

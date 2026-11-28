@@ -1,5 +1,5 @@
 {
-    "armorChineseStealth": {
+    "armorChineseStealthArmor": {
         "en": "Chinese Stealth Armor",
         "it": "Armatura Furtiva Cinese",
         "_description": {
@@ -15,7 +15,7 @@
             "it": "Pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruiti per proteggere chi li indossava sia dagli attacchi fisici che da quelli a energia, senza essere pesanti o scomodi da indossare. Quando non ci sono Armature Atomiche disponibili o non sono adatte alla missione, la Confraternita d'Acciaio equipaggia le sue truppe con armature da combattimento."
         }
     },
-    "armorCombatChest": {
+    "armorCombatChestPiece": {
         "en": "Combat Chest Piece",
         "it": "Pettorale da Combattimento",
         "_description": {
@@ -23,7 +23,7 @@
             "it": "Pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruiti per proteggere chi li indossava sia dagli attacchi fisici che da quelli a energia, senza essere pesanti o scomodi da indossare. Quando non ci sono Armature Atomiche disponibili o non sono adatte alla missione, la Confraternita d'Acciaio equipaggia le sue truppe con armature da combattimento."
         }
     },
-    "armorCombatHeavyArm": {
+    "armorHeavyCombatArm": {
         "en": "Heavy Combat Arm",
         "it": "Braccio da Combattimento Pesante",
         "_description": {
@@ -31,7 +31,7 @@
             "it": "Pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruiti per proteggere chi li indossava sia dagli attacchi fisici che da quelli a energia, senza essere pesanti o scomodi da indossare. Quando non ci sono Armature Atomiche disponibili o non sono adatte alla missione, la Confraternita d'Acciaio equipaggia le sue truppe con armature da combattimento."
         }
     },
-    "armorCombatHeavyChest": {
+    "armorHeavyCombatChestPiece": {
         "en": "Heavy Combat Chest Piece",
         "it": "Pettorale da Combattimento Pesante",
         "_description": {
@@ -39,7 +39,7 @@
             "it": "Pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruiti per proteggere chi li indossava sia dagli attacchi fisici che da quelli a energia, senza essere pesanti o scomodi da indossare. Quando non ci sono Armature Atomiche disponibili o non sono adatte alla missione, la Confraternita d'Acciaio equipaggia le sue truppe con armature da combattimento."
         }
     },
-    "armorCombatHeavyHelmet": {
+    "armorHeavyCombatHelmet": {
         "en": "Heavy Combat Helmet",
         "it": "Casco da Combattimento Pesante",
         "_description": {
@@ -47,7 +47,7 @@
             "it": "Pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruiti per proteggere chi li indossava sia dagli attacchi fisici che da quelli a energia, senza essere pesanti o scomodi da indossare. Quando non ci sono Armature Atomiche disponibili o non sono adatte alla missione, la Confraternita d'Acciaio equipaggia le sue truppe con armature da combattimento."
         }
     },
-    "armorCombatHeavyLeg": {
+    "armorHeavyCombatLeg": {
         "en": "Heavy Combat Leg",
         "it": "Gambale da Combattimento Pesante",
         "_description": {
@@ -71,7 +71,7 @@
             "it": "Pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruiti per proteggere chi li indossava sia dagli attacchi fisici che da quelli a energia, senza essere pesanti o scomodi da indossare. Quando non ci sono Armature Atomiche disponibili o non sono adatte alla missione, la Confraternita d'Acciaio equipaggia le sue truppe con armature da combattimento."
         }
     },
-    "armorCombatSturdyArm": {
+    "armorSturdyCombatArm": {
         "en": "Sturdy Combat Arm",
         "it": "Braccio da Combattimento Rinforzato",
         "_description": {
@@ -79,7 +79,7 @@
             "it": "Pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruiti per proteggere chi li indossava sia dagli attacchi fisici che da quelli a energia, senza essere pesanti o scomodi da indossare. Quando non ci sono Armature Atomiche disponibili o non sono adatte alla missione, la Confraternita d'Acciaio equipaggia le sue truppe con armature da combattimento."
         }
     },
-    "armorCombatSturdyChest": {
+    "armorSturdyCombatChestPiece": {
         "en": "Sturdy Combat Chest Piece",
         "it": "Pettorale da Combattimento Rinforzato",
         "_description": {
@@ -87,7 +87,7 @@
             "it": "Pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruiti per proteggere chi li indossava sia dagli attacchi fisici che da quelli a energia, senza essere pesanti o scomodi da indossare. Quando non ci sono Armature Atomiche disponibili o non sono adatte alla missione, la Confraternita d'Acciaio equipaggia le sue truppe con armature da combattimento."
         }
     },
-    "armorCombatSturdyHelmet": {
+    "armorSturdyCombatHelmet": {
         "en": "Sturdy Combat Helmet",
         "it": "Casco da Combattimento Rinforzato",
         "_description": {
@@ -95,7 +95,7 @@
             "it": "Pezzi di armatura fatti apposta, progettati prima della Guerra e dati in dotazione ai soldati dell'Esercito Americano. Furono costruiti per proteggere chi li indossava sia dagli attacchi fisici che da quelli a energia, senza essere pesanti o scomodi da indossare. Quando non ci sono Armature Atomiche disponibili o non sono adatte alla missione, la Confraternita d'Acciaio equipaggia le sue truppe con armature da combattimento."
         }
     },
-    "armorCombatSturdyLeg": {
+    "armorSturdyCombatLeg": {
         "en": "Sturdy Combat Leg",
         "it": "Gambale da Combattimento Rinforzato",
         "_description": {
@@ -119,7 +119,7 @@
             "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi d'arma da fuoco, oltre a isolare chi li indossa dal fuoco e da altre energie pericolose."
         }
     },
-    "armorLeatherChest": {
+    "armorLeatherChestPiece": {
         "en": "Leather Chest Piece",
         "it": "Pettorale di Cuoio",
         "_description": {
@@ -127,7 +127,7 @@
             "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi d'arma da fuoco, oltre a isolare chi li indossa dal fuoco e da altre energie pericolose."
         }
     },
-    "armorLeatherHeavyArm": {
+    "armorHeavyLeatherArm": {
         "en": "Heavy Leather Arm",
         "it": "Braccio di Cuoio Pesante",
         "_description": {
@@ -135,7 +135,7 @@
             "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi d'arma da fuoco, oltre a isolare chi li indossa dal fuoco e da altre energie pericolose."
         }
     },
-    "armorLeatherHeavyChest": {
+    "armorHeavyLeatherChestPiece": {
         "en": "Heavy Leather Chest Piece",
         "it": "Pettorale di Cuoio Pesante",
         "_description": {
@@ -143,7 +143,7 @@
             "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi d'arma da fuoco, oltre a isolare chi li indossa dal fuoco e da altre energie pericolose."
         }
     },
-    "armorLeatherHeavyLeg": {
+    "armorHeavyLeatherLeg": {
         "en": "Heavy Leather Leg",
         "it": "Gambale di Cuoio Pesante",
         "_description": {
@@ -159,7 +159,7 @@
             "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi d'arma da fuoco, oltre a isolare chi li indossa dal fuoco e da altre energie pericolose."
         }
     },
-    "armorLeatherSturdyArm": {
+    "armorSturdyLeatherArm": {
         "en": "Sturdy Leather Arm",
         "it": "Braccio di Cuoio Rinforzato",
         "_description": {
@@ -167,7 +167,7 @@
             "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi d'arma da fuoco, oltre a isolare chi li indossa dal fuoco e da altre energie pericolose."
         }
     },
-    "armorLeatherSturdyChest": {
+    "armorSturdyLeatherChestPiece": {
         "en": "Sturdy Leather Chest Piece",
         "it": "Pettorale di Cuoio Rinforzato",
         "_description": {
@@ -175,7 +175,7 @@
             "it": "Fatti con pelli di animale trattate e conciate, questi pezzi di cuoio indurito offrono una modesta protezione dagli impatti fisici e dai colpi d'arma da fuoco, oltre a isolare chi li indossa dal fuoco e da altre energie pericolose."
         }
     },
-    "armorLeatherSturdyLeg": {
+    "armorSturdyLeatherLeg": {
         "en": "Sturdy Leather Leg",
         "it": "Gambale di Cuoio Rinforzato",
         "_description": {
@@ -207,7 +207,7 @@
             "it": "Tutte le armature della Legione di Cesare seguono l'uniformità e i principi militari dell'antica Roma, a cui la Legione si ispira. La forma più semplice di armatura della Legione è un equipaggiamento sportivo con qualche aggiunta di rottami per protezione. Il grado di un legionario si riconosce facilmente dalle aggiunte alla sua armatura: trofei conquistati in battaglia, al punto che il centurione medio sfoggia almeno un pezzo di Armatura Atomica e un casco da supermutante. L'armatura da Centurione Legionario è considerata un'armatura pesante."
         }
     },
-    "armorLegionaryCenturionChest": {
+    "armorLegionaryCenturionChestPiece": {
         "en": "Legionary Centurion Chest Piece",
         "it": "Pettorale da Centurione Legionario",
         "_description": {
@@ -231,7 +231,7 @@
             "it": "Tutte le armature della Legione di Cesare seguono l'uniformità e i principi militari dell'antica Roma, a cui la Legione si ispira. La forma più semplice di armatura della Legione è un equipaggiamento sportivo con qualche aggiunta di rottami per protezione. Il grado di un legionario si riconosce facilmente dalle aggiunte alla sua armatura: trofei conquistati in battaglia, al punto che il centurione medio sfoggia almeno un pezzo di Armatura Atomica e un casco da supermutante. L'armatura da Centurione Legionario è considerata un'armatura pesante."
         }
     },
-    "armorLegionaryChest": {
+    "armorLegionaryChestPiece": {
         "en": "Legionary Chest Piece",
         "it": "Pettorale Legionario",
         "_description": {
@@ -263,7 +263,7 @@
             "it": "Tutte le armature della Legione di Cesare seguono l'uniformità e i principi militari dell'antica Roma, a cui la Legione si ispira. La forma più semplice di armatura della Legione è un equipaggiamento sportivo con qualche aggiunta di rottami per protezione. Il grado di un legionario si riconosce facilmente dalle aggiunte alla sua armatura: trofei conquistati in battaglia, al punto che il centurione medio sfoggia almeno un pezzo di Armatura Atomica e un casco da supermutante. Le armature da Recluta Legionario e da Legionario sono considerate armature leggere."
         }
     },
-    "armorLegionaryRecruitChest": {
+    "armorLegionaryRecruitChestPiece": {
         "en": "Legionary Recruit Chest Piece",
         "it": "Pettorale da Recluta Legionario",
         "_description": {
@@ -295,7 +295,7 @@
             "it": "Una forma specializzata di armatura da combattimento preferita dal Corpo dei Marine degli Stati Uniti prima della Grande Guerra, che offre una protezione considerevole al prezzo di un peso notevole. Di solito si indossa sopra una Muta Marine, per gli assalti acquatici e anfibi. È considerata un'armatura pesante."
         }
     },
-    "armorMarineChest": {
+    "armorMarineChestPiece": {
         "en": "Marine Chest Piece",
         "it": "Pettorale Marine",
         "_description": {
@@ -327,7 +327,7 @@
             "it": "Un rivestimento di piastre di metallo sagomate, tenute insieme e fissate al corpo con cinghie di cuoio o di tessuto, in grado di fornire una buona protezione dagli impatti fisici come gli attacchi in mischia e i colpi d'arma da fuoco, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
         }
     },
-    "armorMetalChest": {
+    "armorMetalChestPiece": {
         "en": "Metal Chest Piece",
         "it": "Pettorale in Metallo",
         "_description": {
@@ -335,7 +335,7 @@
             "it": "Un rivestimento di piastre di metallo sagomate, tenute insieme e fissate al corpo con cinghie di cuoio o di tessuto, in grado di fornire una buona protezione dagli impatti fisici come gli attacchi in mischia e i colpi d'arma da fuoco, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
         }
     },
-    "armorMetalHeavyArm": {
+    "armorHeavyMetalArm": {
         "en": "Heavy Metal Arm",
         "it": "Braccio in Metallo Pesante",
         "_description": {
@@ -343,7 +343,7 @@
             "it": "Un rivestimento di piastre di metallo sagomate, tenute insieme e fissate al corpo con cinghie di cuoio o di tessuto, in grado di fornire una buona protezione dagli impatti fisici come gli attacchi in mischia e i colpi d'arma da fuoco, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
         }
     },
-    "armorMetalHeavyChest": {
+    "armorHeavyMetalChestPiece": {
         "en": "Heavy Metal Chest Piece",
         "it": "Pettorale in Metallo Pesante",
         "_description": {
@@ -351,7 +351,7 @@
             "it": "Un rivestimento di piastre di metallo sagomate, tenute insieme e fissate al corpo con cinghie di cuoio o di tessuto, in grado di fornire una buona protezione dagli impatti fisici come gli attacchi in mischia e i colpi d'arma da fuoco, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
         }
     },
-    "armorMetalHeavyHelmet": {
+    "armorHeavyMetalHelmet": {
         "en": "Heavy Metal Helmet",
         "it": "Casco in Metallo Pesante",
         "_description": {
@@ -359,7 +359,7 @@
             "it": "Un rivestimento di piastre di metallo sagomate, tenute insieme e fissate al corpo con cinghie di cuoio o di tessuto, in grado di fornire una buona protezione dagli impatti fisici come gli attacchi in mischia e i colpi d'arma da fuoco, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
         }
     },
-    "armorMetalHeavyLeg": {
+    "armorHeavyMetalLeg": {
         "en": "Heavy Metal Leg",
         "it": "Gambale in Metallo Pesante",
         "_description": {
@@ -383,7 +383,7 @@
             "it": "Un rivestimento di piastre di metallo sagomate, tenute insieme e fissate al corpo con cinghie di cuoio o di tessuto, in grado di fornire una buona protezione dagli impatti fisici come gli attacchi in mischia e i colpi d'arma da fuoco, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
         }
     },
-    "armorMetalSturdyArm": {
+    "armorSturdyMetalArm": {
         "en": "Sturdy Metal Arm",
         "it": "Braccio in Metallo Rinforzato",
         "_description": {
@@ -391,7 +391,7 @@
             "it": "Un rivestimento di piastre di metallo sagomate, tenute insieme e fissate al corpo con cinghie di cuoio o di tessuto, in grado di fornire una buona protezione dagli impatti fisici come gli attacchi in mischia e i colpi d'arma da fuoco, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
         }
     },
-    "armorMetalSturdyChest": {
+    "armorSturdyMetalChestPiece": {
         "en": "Sturdy Metal Chest Piece",
         "it": "Pettorale in Metallo Rinforzato",
         "_description": {
@@ -399,7 +399,7 @@
             "it": "Un rivestimento di piastre di metallo sagomate, tenute insieme e fissate al corpo con cinghie di cuoio o di tessuto, in grado di fornire una buona protezione dagli impatti fisici come gli attacchi in mischia e i colpi d'arma da fuoco, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
         }
     },
-    "armorMetalSturdyHelmet": {
+    "armorSturdyMetalHelmet": {
         "en": "Sturdy Metal Helmet",
         "it": "Casco in Metallo Rinforzato",
         "_description": {
@@ -407,7 +407,7 @@
             "it": "Un rivestimento di piastre di metallo sagomate, tenute insieme e fissate al corpo con cinghie di cuoio o di tessuto, in grado di fornire una buona protezione dagli impatti fisici come gli attacchi in mischia e i colpi d'arma da fuoco, ma non molta dagli attacchi a energia, dato che il metallo conduce il calore."
         }
     },
-    "armorMetalSturdyLeg": {
+    "armorSturdyMetalLeg": {
         "en": "Sturdy Metal Leg",
         "it": "Gambale in Metallo Rinforzato",
         "_description": {
@@ -431,7 +431,7 @@
             "it": "Molto prima che cadessero le bombe, l'Armatura da Combattimento dei Ranger NCR, più nota come «Armatura Nera», era un semplice equipaggiamento antisommossa. Ora, però, ha assunto non solo un nuovo scopo ma anche una reputazione pericolosa. Indossata solo dai Ranger d'élite dell'NCR, è diventata un simbolo di speranza e di orrore, a seconda della fedeltà all'NCR di chi la guarda. Speciale: quando indossi l'Armatura da Combattimento dei Ranger NCR o il Casco dei Ranger NCR, la tua Reputazione presso i gruppi alleati dell'NCR aumenta di 1, non sei considerato Esposto al clima caldo e ottieni +3 alla Resistenza ai Danni da Veleno contro qualsiasi veleno in sospensione nell'aria o gassoso; inoltre non subisci alcun effetto legato a gas o polvere."
         }
     },
-    "armorWoodChest": {
+    "armorWoodArmorChestPiece": {
         "en": "Wood Armor Chest Piece",
         "it": "Pettorale in Legno",
         "_description": {
@@ -439,7 +439,7 @@
             "it": "L'armatura in legno è costruita con grandi pezzi di corteccia e corda, assemblati in un'armatura rudimentale. Alcune parti, soprattutto il torace, hanno lattine arrugginite fissate sopra come tasche di fortuna, e l'esterno è punteggiato da ciuffi di licheni secchi. Offre una scarsa resistenza ai danni fisici e una resistenza marginale ai danni da energia. È considerata un'armatura leggera."
         }
     },
-    "armorWoodArm": {
+    "armorWoodArmorArm": {
         "en": "Wood Armor Arm",
         "it": "Braccio in Legno",
         "_description": {
@@ -447,7 +447,7 @@
             "it": "L'armatura in legno è costruita con grandi pezzi di corteccia e corda, assemblati in un'armatura rudimentale. Alcune parti, soprattutto il torace, hanno lattine arrugginite fissate sopra come tasche di fortuna, e l'esterno è punteggiato da ciuffi di licheni secchi. Offre una scarsa resistenza ai danni fisici e una resistenza marginale ai danni da energia. È considerata un'armatura leggera."
         }
     },
-    "armorWoodLeg": {
+    "armorWoodArmorLeg": {
         "en": "Wood Armor Leg",
         "it": "Gambale in Legno",
         "_description": {
@@ -455,7 +455,7 @@
             "it": "L'armatura in legno è costruita con grandi pezzi di corteccia e corda, assemblati in un'armatura rudimentale. Alcune parti, soprattutto il torace, hanno lattine arrugginite fissate sopra come tasche di fortuna, e l'esterno è punteggiato da ciuffi di licheni secchi. Offre una scarsa resistenza ai danni fisici e una resistenza marginale ai danni da energia. È considerata un'armatura leggera."
         }
     },
-    "armorWoodHelmet": {
+    "armorWoodArmorHelmet": {
         "en": "Wood Armor Helmet",
         "it": "Casco in Legno",
         "_description": {
@@ -471,7 +471,7 @@
             "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
         }
     },
-    "armorRaiderChest": {
+    "armorRaiderChestPiece": {
         "en": "Raider Chest Piece",
         "it": "Pettorale da Predone",
         "_description": {
@@ -479,7 +479,7 @@
             "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
         }
     },
-    "armorRaiderHeavyArm": {
+    "armorHeavyRaiderArm": {
         "en": "Heavy Raider Arm",
         "it": "Braccio da Predone Pesante",
         "_description": {
@@ -487,7 +487,7 @@
             "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
         }
     },
-    "armorRaiderHeavyChest": {
+    "armorHeavyRaiderChestPiece": {
         "en": "Heavy Raider Chest Piece",
         "it": "Pettorale da Predone Pesante",
         "_description": {
@@ -495,7 +495,7 @@
             "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
         }
     },
-    "armorRaiderHeavyLeg": {
+    "armorHeavyRaiderLeg": {
         "en": "Heavy Raider Leg",
         "it": "Gambale da Predone Pesante",
         "_description": {
@@ -511,7 +511,7 @@
             "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
         }
     },
-    "armorRaiderSturdyArm": {
+    "armorSturdyRaiderArm": {
         "en": "Sturdy Raider Arm",
         "it": "Braccio da Predone Rinforzato",
         "_description": {
@@ -519,7 +519,7 @@
             "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
         }
     },
-    "armorRaiderSturdyChest": {
+    "armorSturdyRaiderChestPiece": {
         "en": "Sturdy Raider Chest Piece",
         "it": "Pettorale da Predone Rinforzato",
         "_description": {
@@ -527,7 +527,7 @@
             "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
         }
     },
-    "armorRaiderSturdyLeg": {
+    "armorSturdyRaiderLeg": {
         "en": "Sturdy Raider Leg",
         "it": "Gambale da Predone Rinforzato",
         "_description": {
@@ -535,7 +535,7 @@
             "it": "Sono le armature usate dai predoni e da altri tagliagole nelle desolazioni. Variano molto sia di foggia che di qualità, ma di solito sono fatte di rottami rozzamente modellati a martellate, rinforzati con tondini, cavi metallici e strisce di cuoio. Spesso macabri trofei, come crani o altre parti del corpo, contribuiscono ad accrescerne l'aspetto barbaro."
         }
     },
-    "armorRecon": {
+    "armorReconArmor": {
         "en": "Recon Armor",
         "it": "Armatura da Ricognizione",
         "_description": {
@@ -551,7 +551,7 @@
             "it": "L'Armatura Scout è un perfezionamento dell'armatura da combattimento militare, sviluppato dall'Enclave dopo la Grande Guerra e usato soprattutto dalle sue forze segrete. Di solito è dipinta con vari schemi mimetici ed è progettata per essere indossata sopra una Sottoarmatura. È considerata un'armatura rinforzata."
         }
     },
-    "armorScoutChest": {
+    "armorScoutChestPiece": {
         "en": "Scout Chest Piece",
         "it": "Pettorale Scout",
         "_description": {
@@ -575,7 +575,7 @@
             "it": "L'Armatura Scout è un perfezionamento dell'armatura da combattimento militare, sviluppato dall'Enclave dopo la Grande Guerra e usato soprattutto dalle sue forze segrete. Di solito è dipinta con vari schemi mimetici ed è progettata per essere indossata sopra una Sottoarmatura. È considerata un'armatura rinforzata."
         }
     },
-    "armorSyntheticArm": {
+    "armorSynthArm": {
         "en": "Synth Arm",
         "it": "Braccio Sintetico",
         "_description": {
@@ -583,7 +583,7 @@
             "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei luoghi in cui viaggiano i sintetici dell'Istituto. La rarità della sua produzione la rende molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
         }
     },
-    "armorSyntheticChest": {
+    "armorSynthChestPiece": {
         "en": "Synth Chest Piece",
         "it": "Pettorale Sintetico",
         "_description": {
@@ -591,7 +591,7 @@
             "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei luoghi in cui viaggiano i sintetici dell'Istituto. La rarità della sua produzione la rende molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
         }
     },
-    "armorSyntheticHeavyArm": {
+    "armorHeavySynthArm": {
         "en": "Heavy Synth Arm",
         "it": "Braccio Sintetico Pesante",
         "_description": {
@@ -599,7 +599,7 @@
             "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei luoghi in cui viaggiano i sintetici dell'Istituto. La rarità della sua produzione la rende molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
         }
     },
-    "armorSyntheticHeavyChest": {
+    "armorHeavySynthChestPiece": {
         "en": "Heavy Synth Chest Piece",
         "it": "Pettorale Sintetico Pesante",
         "_description": {
@@ -607,7 +607,7 @@
             "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei luoghi in cui viaggiano i sintetici dell'Istituto. La rarità della sua produzione la rende molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
         }
     },
-    "armorSyntheticHeavyHelmet": {
+    "armorHeavySynthHelmet": {
         "en": "Heavy Synth Helmet",
         "it": "Casco Sintetico Pesante",
         "_description": {
@@ -615,7 +615,7 @@
             "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei luoghi in cui viaggiano i sintetici dell'Istituto. La rarità della sua produzione la rende molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
         }
     },
-    "armorSyntheticHeavyLeg": {
+    "armorHeavySynthLeg": {
         "en": "Heavy Synth Leg",
         "it": "Gambale Sintetico Pesante",
         "_description": {
@@ -623,7 +623,7 @@
             "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei luoghi in cui viaggiano i sintetici dell'Istituto. La rarità della sua produzione la rende molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
         }
     },
-    "armorSyntheticHelmet": {
+    "armorSynthHelmet": {
         "en": "Synth Helmet",
         "it": "Casco Sintetico",
         "_description": {
@@ -631,7 +631,7 @@
             "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei luoghi in cui viaggiano i sintetici dell'Istituto. La rarità della sua produzione la rende molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
         }
     },
-    "armorSyntheticLeg": {
+    "armorSynthLeg": {
         "en": "Synth Leg",
         "it": "Gambale Sintetico",
         "_description": {
@@ -639,7 +639,7 @@
             "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei luoghi in cui viaggiano i sintetici dell'Istituto. La rarità della sua produzione la rende molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
         }
     },
-    "armorSyntheticSturdyArm": {
+    "armorSturdySynthArm": {
         "en": "Sturdy Synth Arm",
         "it": "Braccio Sintetico Rinforzato",
         "_description": {
@@ -647,7 +647,7 @@
             "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei luoghi in cui viaggiano i sintetici dell'Istituto. La rarità della sua produzione la rende molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
         }
     },
-    "armorSyntheticSturdyChest": {
+    "armorSturdySynthChestPiece": {
         "en": "Sturdy Synth Chest Piece",
         "it": "Pettorale Sintetico Rinforzato",
         "_description": {
@@ -655,7 +655,7 @@
             "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei luoghi in cui viaggiano i sintetici dell'Istituto. La rarità della sua produzione la rende molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
         }
     },
-    "armorSyntheticSturdyHelmet": {
+    "armorSturdySynthHelmet": {
         "en": "Sturdy Synth Helmet",
         "it": "Casco Sintetico Rinforzato",
         "_description": {
@@ -663,7 +663,7 @@
             "it": "Sviluppata dall'Istituto, l'armatura sintetica è inconfondibile e fornisce un'eccellente protezione, specialmente dalle armi a energia, ma si può trovare solo nel Commonwealth e nei luoghi in cui viaggiano i sintetici dell'Istituto. La rarità della sua produzione la rende molto difficile da ottenere per chiunque non sia in buoni rapporti con l'Istituto, e anche allora è un affare molto costoso."
         }
     },
-    "armorSyntheticSturdyLeg": {
+    "armorSturdySynthLeg": {
         "en": "Sturdy Synth Leg",
         "it": "Gambale Sintetico Rinforzato",
         "_description": {
@@ -695,7 +695,7 @@
             "it": "Prendi l'equipaggiamento e fai sapere a tutti che stai facendo la tua parte per portare la democrazia in questa terra spietata con l'Armatura NCR. Tutte le mod di materiale dell'Armatura NCR si installano con l'abilità Riparare."
         }
     },
-    "armorNcrChest": {
+    "armorNcrChestPiece": {
         "en": "NCR Chest Piece",
         "it": "Pettorale NCR",
         "_description": {
@@ -727,7 +727,7 @@
             "it": "Dimostra alla Zona Contaminata che meriti il rispetto di un ranger veterano e vesti per uccidere con questa armatura iconica! Speciale: mentre indossi il Casco Antisommossa, qualsiasi arma che usi ottiene la qualità Visione Notturna. Tutte le mod di materiale dell'Armatura Antisommossa si installano con l'abilità Riparare."
         }
     },
-    "armorRiotGearChest": {
+    "armorRiotGearChestPiece": {
         "en": "Riot Gear Chest Piece",
         "it": "Pettorale Antisommossa",
         "_description": {

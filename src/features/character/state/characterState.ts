@@ -4,6 +4,7 @@ import { RawCharacterSchema } from '@/schemas/characterSchemas.ts';
 import { adjustCurrentHp } from '../calculations/hp.ts';
 import { reconcileItems } from '../inventory/inventory.ts';
 import { calculateCharacter } from '../calculations/characterCalculations.ts';
+import { migrateRawSave } from './saveMigrations.ts';
 
 export type CharacterUpdate = Partial<Omit<RawCharacter, 'special' | 'skills'>> & {
     special?: Partial<RawCharacter['special']>;
@@ -27,47 +28,9 @@ export function updateCompanion(
     };
 }
 
+/** Validates and migrates a stored or imported save. Never heals. */
 export function loadCharacter(input: unknown): RawCharacter {
-    let character = RawCharacterSchema.parse(input);
-    const migratedModIds = character.items.map(item => {
-        if (!item.mods.includes('modFlashHider')) {
-            return item;
-        }
-        const alreadyHasMuzzleBreak = item.mods.includes('modMuzzleBreak');
-        return {
-            ...item,
-            mods: item.mods
-                .filter(modId => modId !== 'modFlashHider' || !alreadyHasMuzzleBreak)
-                .map(modId => (modId === 'modFlashHider' ? 'modMuzzleBreak' : modId)),
-        };
-    });
-    if (migratedModIds.some((item, index) => item !== character.items[index])) {
-        character = RawCharacterSchema.parse({ ...character, items: migratedModIds });
-    }
-    // TODO Temporary migration added 2026-10-15: remove when old saves/exports no longer need support.
-    if (character.saveVersion === 0) {
-        const legacyGrants = new Map([
-            ['weaponMrHandyCircularSaw', 'traitMrHandyCircularSaw'],
-            ['weaponMrHandyFlamethrower', 'traitMrHandyFlamethrower'],
-            ['weaponMrHandyPliers', 'traitMrHandyPliers'],
-            ['weaponMrHandyAutomaticPistol', 'traitMrHandyAutomaticPistol'],
-            ['weaponMrHandyLaserEmitter', 'traitMrHandyLaserEmitter'],
-            ['weaponIronFist', 'perkIronFist'],
-        ]);
-        character = RawCharacterSchema.parse({
-            ...character,
-            saveVersion: 1,
-            items: character.items.map(item => {
-                if (item.grantedBy !== undefined) {
-                    return item;
-                }
-                // Old manual copies are indistinguishable and follow the agreed adoption policy.
-                const grantedBy = legacyGrants.get(item.id);
-                return grantedBy ? { ...item, grantedBy } : item;
-            }),
-        });
-    }
-    return reconcileItems(character);
+    return reconcileItems(RawCharacterSchema.parse(migrateRawSave(input)));
 }
 
 export function applyUpdate(prev: RawCharacter, updates: CharacterUpdate): RawCharacter {

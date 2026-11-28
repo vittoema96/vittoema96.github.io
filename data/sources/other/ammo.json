@@ -1,5 +1,5 @@
 {
-  "ammo22": {
+  "ammo22Lr": {
     "en": ".22LR",
     "it": ".22LR",
     "_description": {
@@ -15,7 +15,7 @@
       "it": "Qualunque sia la minaccia, un proiettile .45-70 la manderà sottoterra. Che si tratti di caricare un grosso revolver o un fucile da boscaglia, è la munizione preferita da chi vuole il massimo da ogni tappo speso."
     }
   },
-  "ammo10mm": {
+  "ammo10mmRound": {
     "en": "10mm Round",
     "it": "10mm",
     "_description": {
@@ -47,7 +47,7 @@
       "it": "Le Cartucce Elettromagnetiche da 2mm sono dei caricatori indipendenti che contengono sia i proiettili ferromagnetici ad alta velocità che le batterie necessarie ad alimentare l’arma gauss per spararli. Non si trovano sfuse, ma all’interno di caricatori che contengono il numero di spari generati (e una batteria abbastanza carica da permettere all’arma di spararli)."
     }
   },
-  "ammo308": {
+  "ammo308Rounds": {
     "en": ".308 Rounds",
     "it": ".308",
     "_description": {
@@ -63,7 +63,7 @@
       "it": "Il proiettile .357 Magnum, una cartuccia da pistola Magnum prodotta da Big Chief, ha una carica di polvere significativa, che la rende un proiettile per pistola molto potente, e accettabile per l'uso in fucili a leva di lunghezza da carabina."
     }
   },
-  "ammo38": {
+  "ammo38Rounds": {
     "en": ".38 Rounds",
     "it": ".38",
     "_description": {
@@ -71,7 +71,7 @@
       "it": "Sono delle munizioni di piccolo calibro pensate per rivoltelle a doppia azione risalenti a prima della Grande Guerra. Sono talmente facili da trovare che vanno bene per la maggior parte delle armi da fuoco di fortuna, inoltre sono diverse le armi più potenti che possono essere modificate per sparare con cartucce .38, sacrificando la capacità offensiva per la reperibilità delle munizioni."
     }
   },
-  "ammo40mmGrenade": {
+  "ammo40mmGrenadeRound": {
     "en": "40mm Grenade Round",
     "it": "Granata da 40mm",
     "_description": {
@@ -87,7 +87,7 @@
       "it": "I potenti proiettili .44 magnum in origine erano stati concepiti per i revolver. Il loro eccellente potere di fuoco li rende quasi perfetti per qualsiasi abitante della Zona Contaminata che abbia bisogno di munizioni in grado di fermare mostri, umani e via di seguito. L’unico problema è la loro difficoltà di reperimento."
     }
   },
-  "ammo45": {
+  "ammo45Rounds": {
     "en": ".45 Rounds",
     "it": ".45",
     "_description": {
@@ -119,7 +119,7 @@
       "it": "Sono delle munizioni leggere che di solito si utilizzano nei fucili d’assalto. Sviluppate secoli or sono per i fucili in dotazione all’esercito americano, hanno continuato a essere prodotte e usate fino alla fine della Grande Guerra e, se si sa dove cercare, non sono difficili da trovare."
     }
   },
-  "ammo5mm": {
+  "ammo5mmRounds": {
     "en": "5mm Rounds",
     "it": "5mm",
     "_description": {
@@ -135,7 +135,7 @@
       "it": "Prima della Grande Guerra, il 9mm era il tipo di munizione preferito per le armi piccole nel Sudovest americano, mentre l'esercito e le coste orientali e occidentali tendevano a preferire le più potenti munizioni da 10mm. Le munizioni da 9mm sono leggere e molto diffuse, ma hanno la fama di non essere abbastanza letali."
     }
   },
-  "ammoAlienPowerCell": {
+  "ammoAlienPowerCells": {
     "en": "Alien Power Cells",
     "it": "Celle di Energia Aliena",
     "_description": {
@@ -255,7 +255,7 @@
       "it": "Quelle che di solito si trovano nella Zona Contaminata sono delle cartucce calibro .12 2 3/4” riempite di pallettoni #0. Relativamente facili da trovare, gli abitanti della Zona Contaminata pensano che, nell’evenienza di un incontro ravvicinato, sia utile avere a portata di mano un fucile a pompa."
     }
   },
-  "ammoSyringer": {
+  "ammoSyringerAmmo": {
     "en": "Syringer Ammo",
     "it": "Proiettili Syringer",
     "_description": {
@@ -311,7 +311,7 @@
       "it": "Queste bombe contengono un gas velenoso sotto alta pressione, che al momento dell'impatto esplode in una nube grigia e si disperde rapidamente."
     }
   },
-  "ammoArrowCryo": {
+  "ammoCryoArrowBolt": {
     "en": "Cryo Arrow/Bolt",
     "it": "Freccia/Dardo Criogenica",
     "_description": {
@@ -319,7 +319,7 @@
       "it": "Con un contenitore speciale di azoto liquido, l'arma diffonde questo elemento freddo all'impatto. L'arma ottiene l'effetto di danno Congelamento."
     }
   },
-  "ammoArrowExplosive": {
+  "ammoExplosiveArrowBolt": {
     "en": "Explosive Arrow/Bolt",
     "it": "Freccia/Dardo Esplosiva",
     "_description": {
@@ -327,7 +327,7 @@
       "it": "Con una punta di materiali esplosivi, questa freccia esplode all'impatto. L'arma perde la qualità Silenziata e ottiene la qualità Esplosiva."
     }
   },
-  "ammoArrowFlaming": {
+  "ammoFlamingArrowBolt": {
     "en": "Flaming Arrow/Bolt",
     "it": "Freccia/Dardo Incendiaria",
     "_description": {
@@ -335,7 +335,7 @@
       "it": "Con materiali infiammabili, questa freccia prende fuoco all'impatto. L'arma ottiene l'effetto di danno Persistente (Energia)."
     }
   },
-  "ammoArrowSerrated": {
+  "ammoSerratedArrowBolt": {
     "en": "Serrated Arrow/Bolt",
     "it": "Freccia/Dardo Seghettata",
     "_description": {
@@ -343,7 +343,7 @@
       "it": "La punta sagomata con cura aumenta la forza di penetrazione della freccia e causa ferite gravi. L'arma ottiene gli effetti di danno Persistente (Fisico) e Penetrante 1."
     }
   },
-  "ammoArrowPlasma": {
+  "ammoPlasmaArrowBolt": {
     "en": "Plasma Arrow/Bolt",
     "it": "Freccia/Dardo al Plasma",
     "_description": {
@@ -351,7 +351,7 @@
       "it": "Con una cella di fusione modificata, l'energia viene rilasciata all'impatto. L'arma infligge +2 DC di danno e infligge sia danni Fisici che da Energia; il danno viene ridotto dalla minore tra le resistenze ai danni Fisici o da Energia del bersaglio."
     }
   },
-  "ammoArrowPoison": {
+  "ammoPoisonArrowBolt": {
     "en": "Poison Arrow/Bolt",
     "it": "Freccia/Dardo Avvelenata",
     "_description": {
@@ -359,7 +359,7 @@
       "it": "Immersa nel veleno, la punta della freccia contamina il materiale organico. L'arma ottiene l'effetto di danno Persistente (Veleno)."
     }
   },
-  "ammoSyringerCazadoresSting": {
+  "ammoCazadoresSting": {
     "en": "Cazadores Sting",
     "it": "Puntura di Cazador",
     "_description": {

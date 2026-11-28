@@ -38,8 +38,6 @@ dev-dist/
 
 # IDE and Editor files
 .vscode/
-!.vscode/
-!.vscode/mcp.json
 .idea/
 backup.idea/
 *.swp
@@ -123,8 +121,5 @@ jspm_packages/
 # scripts/ - Keep for version management
 dev-dist/sw.js
 
-# AI agent local instructions
-AGENTS.md
-**/AGENTS.md
 .github/copilot-instructions.md
 data/test_characters/

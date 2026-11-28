@@ -143,14 +143,6 @@
             "it": "Una spada a forma di chitarra, o una chitarra che fa anche da spada. In ogni caso, probabilmente va accordata dopo ogni uccisione. Speciale: quando usata per un attacco furtivo, una Spada Chitarra aumenta l'intervallo di complicazione di 1, a causa del suono che produce."
         }
     },
-    "weaponIronFist": {
-        "en": "Iron Fist",
-        "it": "Pugno di Ferro",
-        "_description": {
-            "en": "At rank 1, your unarmed attacks inflict +1 damage. At rank 2, your unarmed attacks also gain the Vicious damage effect.",
-            "it": "Al grado 1, i tuoi attacchi a mani nude infliggono +1 danno. Al grado 2, i tuoi attacchi a mani nude ottengono anche l'effetto di danno Violento."
-        }
-    },
     "weaponKnuckles": {
         "en": "Knuckles",
         "it": "Tirapugni",
@@ -191,7 +183,7 @@
             "it": "Il braccio con sega rotante di un Mister Handy, riportato in vita attaccato a un piccolo motore e a un lungo manico, come quello di una scopa o di un tagliaerba."
         }
     },
-    "weaponMrHandyCircularSaw": {
+    "weaponBuzzSawArm": {
         "en": "Buzz-Saw Arm",
         "it": "Arto Sega Circolare",
         "_description": {
@@ -199,7 +191,7 @@
             "it": "Sega circolare integrata nel corpo di un Mister Handy. Una lama rotante ad alta velocità in grado di tagliare materiali duri. Solo un Mister Handy può usare quest'arma."
         }
     },
-    "weaponMrHandyPliers": {
+    "weaponPincerArm": {
         "en": "Pincer Arm",
         "it": "Arto Tenaglia",
         "_description": {
@@ -287,7 +279,7 @@
             "it": "I martelli demolitori sono armi primitive che, prima della guerra, venivano usate come utensili per fare lavori edilizi o distruggere cose. Sebbene di solito non venga considerato un’arma potente, una persona forte (o un supermutante) lo può brandire come una clava e sfruttarne appieno il peso."
         }
     },
-    "weaponStone": {
+    "weaponHandyRock": {
         "en": "Handy Rock",
         "it": "Pietra",
         "_description": {
@@ -335,7 +327,7 @@
             "it": "Un colpo a mani nude."
         }
     },
-    "weaponWalkingStick": {
+    "weaponWalkingCane": {
         "en": "Walking Cane",
         "it": "Bastone da Passeggio",
         "_description": {
@@ -351,7 +343,7 @@
             "it": "Consiste in un tamburo di metallo montato su un palo di metallo, con lattine di latta appuntite fissate sul bordo. Il Tamburo da Guerra aggiunge un po' di percussione a tutti i colpi che infliggerai. Speciale: quando usato per un attacco furtivo, un Tamburo da Guerra aumenta l'intervallo di complicazione di 1, a causa del rumore che produce."
         }
     },
-    "weaponWeaponStock": {
+    "weaponGunBash": {
         "en": "Gun Bash",
         "it": "Calcio dell'Arma",
         "_description": {
@@ -359,7 +351,7 @@
             "it": "Un colpo con il calcio di un'arma a due mani."
         }
     },
-    "weaponWeaponStockOneHanded": {
+    "weaponGunBashOneHanded": {
         "en": "Gun Bash (1H)",
         "it": "Calcio dell'Arma (1 mano)",
         "_description": {

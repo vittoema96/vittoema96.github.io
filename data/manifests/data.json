@@ -18,7 +18,7 @@
   "aid": [
     "aid/food.csv",
     "aid/drinks.csv",
-    "aid/meds.csv",
+    "aid/chems.csv",
     "aid/misc.csv"
   ],
   "ammo": [
@@ -40,7 +40,8 @@
     "mods/underarmorMods.csv",
     "mods/marineArmorMods.csv",
     "mods/wanderersArmorMods.csv",
-    "mods/robotArmorMods.csv"
+    "mods/robotArmorMods.csv",
+    "mods/robotArmMods.csv"
   ],
   "perks": [
     "character-features/perks.csv"

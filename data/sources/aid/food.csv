@@ -57,7 +57,7 @@ foodMutfruit,aid,food,durationInstant,3,1,,0,8,0,Corebook
 foodDeathclawOmelette,aid,food,durationInstant,11,0,,0,80,4,Corebook
 foodMirelurkEggOmelette,aid,food,durationInstant,7,0,,0,30,3,Corebook
 foodRadscorpionEggOmelette,aid,food,durationInstant,9,0,,0,65,4,Corebook
-foodPaste,aid,food,durationInstant,7,0,,0,0,2,Corebook
+foodFoodPaste,aid,food,durationInstant,7,0,,0,0,2,Corebook
 foodPotatoCrisps,aid,food,durationInstant,3,1,,0,7,0,Corebook
 foodMoleRatChunks,aid,food,durationInstant,7,0,,0,8,1,Corebook
 foodPorkNBeans,aid,food,durationInstant,4,1,,0,10,0,Corebook
@@ -70,7 +70,7 @@ foodRadstagStew,aid,food,durationInstant,12,0,,0.5,60,3,Corebook
 foodSquirrelStew,aid,food,durationInstant,10,0,,0.5,24,2,Corebook
 foodSugarBombs,aid,food,durationInstant,4,1,,0,11,0,Corebook
 foodTato,aid,food,durationInstant,3,1,,0,7,1,Corebook
-foodFancyLadsSnacks,aid,food,durationInstant,3,1,,0,18,0,Corebook
+foodFancyLadsSnackCakes,aid,food,durationInstant,3,1,,0,18,0,Corebook
 foodMirelurkCake,aid,food,durationInstant,12,0,,0,35,3,Corebook
 foodYumYumDeviledEggs,aid,food,durationInstant,4,1,,0,20,0,Corebook
 foodDeathclawEgg,aid,food,durationInstant,7,1,,0,69,3,Corebook
@@ -111,7 +111,7 @@ foodSnallygasterStew,aid,food,durationInstant,9,0,,0.5,80,4,Wanderers DLC
 foodPreservedBlamCoMacAndCheese,aid,food,durationInstant,4,0,,0,10,2,Corebook
 foodFreshCarrot,aid,food,durationInstant,3,0,,0,3,2,Corebook
 foodFreshCorn,aid,food,durationInstant,3,0,,0,6,2,Corebook
-foodPreservedFancyLadsSnacks,aid,food,durationInstant,3,0,,0,18,1,Corebook
+foodPreservedFancyLadsSnackCakes,aid,food,durationInstant,3,0,,0,18,1,Corebook
 foodPreservedInstaMash,aid,food,durationInstant,4,0,,0,20,1,Corebook
 foodFreshMelon,aid,food,durationInstant,3,0,,0.5,6,2,Corebook
 foodFreshMutfruit,aid,food,durationInstant,3,0,,0,8,1,Corebook

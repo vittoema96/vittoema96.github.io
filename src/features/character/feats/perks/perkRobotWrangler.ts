@@ -22,7 +22,7 @@ export const defaultEyebot: CompanionTypeDefinition = {
     },
     items: [
         {
-            id: 'weaponCompanionLaser',
+            id: 'weaponEyebotLaser',
             customName: 'LASER',
             skill: 'guns',
             quantity: 1,

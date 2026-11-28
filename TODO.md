@@ -13,14 +13,14 @@ Things to fix:
 - [ ] Reconcile the remaining same-name/different-item pairs below against each manual and document whether they are intentionally distinct:
   - `modFullStock` / `modFullStockEnergy`
   - `modFullStock` / `modFullStockM79`
-  - `modMarksmanGrip` / `modMarksmanGripEnergy`
+  - `modSharpshootersGrip` / `modMarksmanGripEnergy`
   - `modShortScope` / `modShortScopeEnergy`
   - `modShortNightVisionScope` / `modShortNightVisionScopeEnergy`
   - `modReconScope` / `modReconScopeEnergy`
   - `modLongScope` / `modLongScopeEnergy`
   - `modLongNightVisionScope` / `modLongNightVisionScopeEnergy`
   - `modReflexSight` / `modReflexSightEnergy`
-  - `modSpikedCane` / `modBarbedCane`
+  - `modSpikedWalkingCane` / `modBarbedWalkingCane`
   - `modElectrified` / `modElectrifiedBlade`
 
 # Data Validation

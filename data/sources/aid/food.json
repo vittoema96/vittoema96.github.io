@@ -52,7 +52,7 @@
         },
         "_effect": {
             "en": "Max HP +3 until end of following scene",
-            "it": "+3 al massimale dei HP fino al termine della scena successiva"
+            "it": "+3 al massimale degli HP fino al termine della scena successiva"
         }
     },
     "foodBrahminMeat": {
@@ -211,7 +211,7 @@
             "it": "Permette di ritirare 1d20 su tutte le prove di FOR fino alla fine della scena successiva"
         }
     },
-    "foodFancyLadsSnacks": {
+    "foodFancyLadsSnackCakes": {
         "en": "Fancy Lads Snack Cakes",
         "it": "Tortine Fancy Lads",
         "_description": {
@@ -627,7 +627,7 @@
             "it": "Una semplice tazza di zuppa di ramen. Abbastanza saziante e dissetante, ed è semplice da preparare se trovi gli ingredienti."
         }
     },
-    "foodPaste": {
+    "foodFoodPaste": {
         "en": "Food Paste",
         "it": "Pasta Alimentare",
         "_description": {
@@ -1055,7 +1055,7 @@
             "it": "Una coltura estremamente versatile, coltivata nelle Americhe da secoli. Il granturco è rimasto in gran parte immutato dopo la Guerra ed è ancora un alimento base dell'agricoltura nella Zona Contaminata. Oltre a essere un alimento, il granturco è l'ingrediente principale dell'amido vegetale, che può essere usato per fare adesivi per la fabbricazione."
         }
     },
-    "foodPreservedFancyLadsSnacks": {
+    "foodPreservedFancyLadsSnackCakes": {
         "en": "Preserved Fancy Lads Snack Cakes",
         "it": "Tortine Fancy Lads Conservate",
         "_description": {

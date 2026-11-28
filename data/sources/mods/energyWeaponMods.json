@@ -47,7 +47,7 @@
             "it": "{{name}} a Capacità Massima"
         }
     },
-    "modMagFusionAlienBlaster": {
+    "modFusionMagAlienBlaster": {
         "en": "Fusion Mag",
         "it": "Conversione a Fusione",
         "_description": {
@@ -59,7 +59,7 @@
             "it": "{{name}} a Fusione"
         }
     },
-    "modAutomaticSignalRepeater": {
+    "modSignalRepeater": {
         "en": "Signal Repeater",
         "it": "Ripetitore di Segnale",
         "_description": {
@@ -143,7 +143,7 @@
             "it": "{{name}} Lungo"
         }
     },
-    "modElectricSignalAntenna": {
+    "modElectricSignalCarrierAntennae": {
         "en": "Electric Signal Carrier Antennae",
         "it": "Antenna Segnale Elettrico",
         "_description": {
@@ -503,7 +503,7 @@
             "it": "{{name}} Mirante Migliorato"
         }
     },
-    "modCapacitorMk3": {
+    "modCapacitorMkIii": {
         "en": "Capacitor Mk III",
         "it": "Condensatore Mk III",
         "_description": {
@@ -515,7 +515,7 @@
             "it": "{{name}} Mk III"
         }
     },
-    "modCapacitorMk4": {
+    "modCapacitorMkIv": {
         "en": "Capacitor Mk IV",
         "it": "Condensatore Mk IV",
         "_description": {
@@ -527,7 +527,7 @@
             "it": "{{name}} Mk IV"
         }
     },
-    "modCapacitorMk5": {
+    "modCapacitorMkV": {
         "en": "Capacitor Mk V",
         "it": "Condensatore Mk V",
         "_description": {
@@ -539,7 +539,7 @@
             "it": "{{name}} Mk V"
         }
     },
-    "modCapacitorMk6": {
+    "modCapacitorMkVi": {
         "en": "Capacitor Mk VI",
         "it": "Condensatore Mk VI",
         "_description": {

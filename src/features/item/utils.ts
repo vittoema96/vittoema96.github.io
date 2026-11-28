@@ -66,6 +66,10 @@ function applyWeaponEffect(modifiedData: WeaponItem, effectType: string, value: 
         case 'fireRateAdd':
             modifiedData.FIRE_RATE = addValues(modifiedData.FIRE_RATE, value);
             break;
+        case 'weightSet':
+            // Mod weights are summed before effects run, so this overrides them too.
+            modifiedData.WEIGHT = Number(value);
+            break;
         case 'damageTypeSet':
             // Comma-separated for weapons that deal several types, e.g. "physical,energy".
             modifiedData.DAMAGE_TYPES = value.split(',') as DamageType[];
@@ -370,7 +374,7 @@ function buildModdedDisplayName(
     let modsWithoutDescriptor = 0;
 
     for (const modId of mods) {
-        if (modId === 'modRobotPlatingStandard') {
+        if (modId === 'modRobotStandardPlating') {
             continue;
         }
 

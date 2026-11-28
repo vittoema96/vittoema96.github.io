@@ -15,7 +15,7 @@
             "it": "Il corpo è la struttura centrale del robot, che contiene i sistemi principali e fornisce supporto strutturale. Può essere modificato con diverse placcature per aumentare la resistenza o la capacità di stoccaggio."
         }
     },
-    "robotPartSensors": {
+    "robotPartOptics": {
         "en": "Optics",
         "it": "Ottiche",
         "_description": {

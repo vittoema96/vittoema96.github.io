@@ -1,5 +1,5 @@
 {
-  "modLegionReinforced": {
+  "modReinforcedLegionArmor": {
     "en": "Reinforced Legion Armor",
     "it": "Armatura della Legione Rinforzata",
     "_description": {
@@ -11,7 +11,7 @@
       "it": "{{name}} Rinforzato"
     }
   },
-  "modLegionShadowed": {
+  "modShadowedLegionArmor": {
     "en": "Shadowed Legion Armor",
     "it": "Armatura della Legione Ombrata",
     "_description": {
@@ -23,7 +23,7 @@
       "it": "{{name}} Ombrato"
     }
   },
-  "modLegionTreated": {
+  "modTreatedLegionArmor": {
     "en": "Treated Legion Armor",
     "it": "Armatura della Legione Trattata",
     "_description": {
@@ -35,7 +35,7 @@
       "it": "{{name}} Trattato"
     }
   },
-  "modLegionStudded": {
+  "modStuddedLegionArmor": {
     "en": "Studded Legion Armor",
     "it": "Armatura della Legione Borchiata",
     "_description": {
@@ -47,7 +47,7 @@
       "it": "{{name}} Borchiato"
     }
   },
-  "modWoodShrouded": {
+  "modShroudedWoodArmor": {
     "en": "Shrouded Wood Armor",
     "it": "Armatura in Legno con Copertura",
     "_description": {

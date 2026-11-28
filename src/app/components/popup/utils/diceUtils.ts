@@ -45,7 +45,7 @@ export const getHitLocationFromRoll = (roll: number, creatureType: CreatureType)
         return 'rightLeg';
     }
     if(creatureType === "mrHandy") {
-        if (roll <= 2) { return 'robotPartSensors'; }
+        if (roll <= 2) { return 'robotPartOptics'; }
         if (roll <= 8) { return 'robotPartBody'; }
         if (roll <= 11) { return 'robotPartArm1'; }
         if (roll <= 14) { return 'robotPartArm2'; }

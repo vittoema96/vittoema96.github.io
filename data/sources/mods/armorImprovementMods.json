@@ -11,15 +11,15 @@
       "it": "{{name}} Rivestimento d'Amianto"
     }
   },
-  "modBalanced": {
-    "en": "Balanced",
+  "modWeighted": {
+    "en": "Weighted",
     "it": "Bilanciata",
     "_description": {
       "en": "Melee and unarmed attacks gain Piercing 1",
       "it": "Gli attacchi in mischia e a mani nude ottengono Penetrante 1"
     },
     "_descriptor": {
-      "en": "Balanced {{name}}",
+      "en": "Weighted {{name}}",
       "it": "{{name}} Bilanciata"
     }
   },
@@ -47,19 +47,19 @@
       "it": "{{name}} Picchiatore"
     }
   },
-  "modCrafted": {
-    "en": "Crafted",
+  "modBraced": {
+    "en": "Braced",
     "it": "Lavorata",
     "_description": {
       "en": "+2 Melee Resistance",
       "it": "+2 alla Resistenza ai Danni da Armi da Mischia"
     },
     "_descriptor": {
-      "en": "Crafted {{name}}",
+      "en": "Braced {{name}}",
       "it": "{{name}} Lavorata"
     }
   },
-  "modCushioned": {
+  "modPadded": {
     "en": "Padded",
     "it": "Imbottito",
     "_description": {
@@ -83,15 +83,15 @@
       "it": "{{name}} Molto Capiente"
     }
   },
-  "modDensity": {
-    "en": "Density",
+  "modDense": {
+    "en": "Dense",
     "it": "Alta Densità",
     "_description": {
       "en": "+4 Explosive Resistance",
       "it": "+4 alla Resistenza ai Danni da Armi Esplosive"
     },
     "_descriptor": {
-      "en": "Density {{name}}",
+      "en": "Dense {{name}}",
       "it": "{{name}} Alta Densità"
     }
   },
@@ -155,7 +155,7 @@
       "it": "{{name}} Capiente"
     }
   },
-  "modShockAbsorbing": {
+  "modCushioned": {
     "en": "Cushioned",
     "it": "Ammortizzata",
     "_description": {
@@ -179,15 +179,15 @@
       "it": "{{name}} Stabilizzata"
     }
   },
-  "modStreamlined": {
-    "en": "Streamlined",
+  "modAerodynamic": {
+    "en": "Aerodynamic",
     "it": "Aerodinamica",
     "_description": {
       "en": "Can spend up to 4 AP for bonus melee damage",
       "it": "Puoi spendere fino a 4 PA per un danno bonus in mischia."
     },
     "_descriptor": {
-      "en": "Streamlined {{name}}",
+      "en": "Aerodynamic {{name}}",
       "it": "{{name}} Aerodinamica"
     }
   },

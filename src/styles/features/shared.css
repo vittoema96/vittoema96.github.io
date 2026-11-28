@@ -55,7 +55,7 @@
 .themed-svg[data-icon='gear'] { --image-url: url('/img/svg/gear.svg'); }
 .themed-svg[data-icon='hp'] { --image-url: url('/img/svg/hp.svg'); }
 .themed-svg[data-icon='luck'] { --image-url: url('/img/svg/luck.svg'); }
-.themed-svg[data-icon='meds'] { --image-url: url('/img/svg/meds.svg'); }
+.themed-svg[data-icon='chems'] { --image-url: url('/img/svg/chems.svg'); }
 .themed-svg[data-icon='meleeWeapons'] { --image-url: url('/img/svg/meleeWeapons.svg'); }
 .themed-svg[data-icon='smallGuns'] { --image-url: url('/img/svg/smallGuns.svg'); }
 .themed-svg[data-icon='throwing'] { --image-url: url('/img/svg/throwing.svg'); }

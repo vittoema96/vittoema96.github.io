@@ -54,8 +54,8 @@
       "json": "aid/drinks.json"
     },
     {
-      "csv": "aid/meds.csv",
-      "json": "aid/meds.json"
+      "csv": "aid/chems.csv",
+      "json": "aid/chems.json"
     },
     {
       "csv": "aid/misc.csv",
@@ -108,6 +108,10 @@
     {
       "csv": "mods/robotArmorMods.csv",
       "json": "mods/robotArmorMods.json"
+    },
+    {
+      "csv": "mods/robotArmMods.csv",
+      "json": "mods/robotArmMods.json"
     },
     {
       "csv": "mods/underarmorMods.csv",

@@ -4,10 +4,10 @@ const traitMrHandyAutomaticPistol: TraitImplementation = {
     id: 'traitMrHandyAutomaticPistol',
     getGrantedItems: () => [
         {
-            id: 'weaponMrHandyAutomaticPistol',
+            id: 'weapon10mmPistol',
             quantity: 1,
             equipped: false,
-            mods: [],
+            mods: ['modAutomatic', 'modMrHandyArm'],
         },
     ],
 };

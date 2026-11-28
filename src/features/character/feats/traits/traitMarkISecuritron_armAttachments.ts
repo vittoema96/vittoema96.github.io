@@ -4,13 +4,13 @@ const traitMarkISecuritron_armAttachments: TraitImplementation = {
     id: 'traitMarkISecuritron_armAttachments',
     getGrantedItems: () => [
         {
-            id: 'weaponLaserPistol',
+            id: 'weaponLaserGun',
             quantity: 1,
             equipped: false,
             mods: ['modAutomaticBarrel'],
         },
         {
-            id: 'weaponMachineGun',
+            id: 'weaponSubmachineGun',
             quantity: 1,
             equipped: false,
             mods: [],

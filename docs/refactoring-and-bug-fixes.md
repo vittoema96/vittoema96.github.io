@@ -421,7 +421,7 @@ A granted item records why it exists:
 
 ```ts
 {
-    id: 'weaponMrHandyCircularSaw',
+    id: 'weaponBuzzSawArm',
     grantedBy: 'traitMrHandyCircularSaw',
     quantity: 1,
     mods: [],
@@ -437,9 +437,9 @@ The five Mr. Handy weapon grants are:
 
 | Granting trait                | Saved weapon                   |
 | ----------------------------- | ------------------------------ |
-| `traitMrHandyCircularSaw`     | `weaponMrHandyCircularSaw`     |
+| `traitMrHandyCircularSaw`     | `weaponBuzzSawArm`     |
 | `traitMrHandyFlamethrower`    | `weaponMrHandyFlamethrower`    |
-| `traitMrHandyPliers`          | `weaponMrHandyPliers`          |
+| `traitMrHandyPliers`          | `weaponPincerArm`          |
 | `traitMrHandyAutomaticPistol` | `weaponMrHandyAutomaticPistol` |
 | `traitMrHandyLaserEmitter`    | `weaponMrHandyLaserEmitter`    |
 
@@ -477,7 +477,7 @@ A configuration key is not a new globally unique instance ID. Identical configur
 Iron Fist declares:
 
 ```ts
-replaces: ['weaponUnarmedStrike', 'weaponMrHandyPliers'];
+replaces: ['weaponUnarmedStrike', 'weaponPincerArm'];
 ```
 
 This means **any valid target is enough**, not that both must exist.

@@ -86,9 +86,7 @@ export interface FeatSelection {
     items?: CharacterItem[];
 }
 
-export type GrantedItem = CharacterItem & {
-    replaces?: string[];
-};
+export type GrantedItem = CharacterItem;
 
 /** Common behavior implemented by origins, perks and traits. */
 export interface FeatImplementation {

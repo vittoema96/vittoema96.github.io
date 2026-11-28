@@ -5,7 +5,7 @@ Memoria concisa per problemi tecnici, proposte e decisioni trasversali emerse du
 ## Scopo e confini
 
 - `TODO.md` resta il backlog operativo e le note sui dati di gioco.
-- `AGENTS.md` resta la guida operativa per gli agenti e i riferimenti canonici ai file.
+- `CLAUDE.md` (root) resta la guida operativa per gli agenti e i riferimenti canonici ai file.
 - Questo documento conserva solo contesto utile a riprendere un argomento senza rileggere intere conversazioni.
 - Le decisioni concluse e ancora rilevanti vanno in `docs/decisions/` e qui vengono solo collegate.
 

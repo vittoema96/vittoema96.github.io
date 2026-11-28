@@ -154,8 +154,7 @@ function AddItemFromListContent({
             const isWeapon = isType(item, 'weapon');
             return !(
                 isWeapon &&
-                (item.QUALITIES.includes('qualityMrHandyOnly') ||
-                    item.ID.startsWith('weaponCompanion')) // TODO better check for this
+                (item.QUALITIES.includes('qualityMrHandyOnly') || item.TAGS.includes('companion'))
             );
         });
 
@@ -514,9 +513,7 @@ function AddCustomItemContent({
             </div>
             {/* Description */}
             <div className="form-section form-section--description">
-                <label className="form-label form-label--block">
-                    {t('description')}:
-                </label>
+                <label className="form-label form-label--block">{t('description')}:</label>
                 <textarea
                     value={customDescription}
                     onChange={e => setCustomDescription(e.target.value)}

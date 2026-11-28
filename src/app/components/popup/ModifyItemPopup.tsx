@@ -152,16 +152,24 @@ function ModifyItemPopup({ onClose, characterItem }: Readonly<ModifyItemPopupPro
     }
 
     // Get preview of modified item data
+    // Mods no slot offers (e.g. the built-in Mr Handy arm) can't be edited here: keep them.
+    const offeredMods = new Set(
+        Object.values(slotsData).flatMap((data) => data.availableMods.map((option) => option.id))
+    )
+    const lockedMods = characterItem.mods.filter((modId) => !offeredMods.has(modId))
+    const getSelectedMods = () => [
+        ...Object.values(slotsData).flatMap((data) => data.selectedMod ? [data.selectedMod.id] : []),
+        ...lockedMods,
+    ]
+
     const getPreviewData = () => {
-        const newMods = Object.values(slotsData)
-            .flatMap((data) => data.selectedMod ? [data.selectedMod.id] : [])
+        const newMods = getSelectedMods()
         const previewItem = {...characterItem, mods: newMods}
         return getModifiedItemData(previewItem, character.perks)
     }
 
     const handleConfirm = () => {
-        const newMods = Object.values(slotsData)
-            .flatMap((data) => data.selectedMod ? [data.selectedMod.id] : [])
+        const newMods = getSelectedMods()
         const totalCost = calculateCost()
 
         if (totalCost > 0 && character.caps < totalCost) {

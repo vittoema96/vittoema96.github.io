@@ -5,7 +5,7 @@ import { DamageType, GenericBodyPart } from '@/types';
 /**
  * Component to display damage reduction stats by body part
  * Shows physical, energy, and radiation resistance for each body part
- * For Mr Handy, shows robot-specific parts (robotPartSensors, body, arms, propulsors)
+ * For Mr Handy, shows robot-specific parts (robotPartOptics, body, arms, propulsors)
  */
 function DamageReductionDisplay() {
     const { t } = useTranslation()
@@ -21,7 +21,7 @@ function DamageReductionDisplay() {
             // TODO handle other type of robots when introduced
             // Mr Handy has 4 robot parts with unique locations
             return [
-                { key: 'robotPartSensors', className: 'leftArm' },      // Top-left position
+                { key: 'robotPartOptics', className: 'leftArm' },      // Top-left position
                 { key: 'robotPartBody', className: 'rightArm' },          // Top-right position
                 { key: 'robotPartArms', className: 'leftLeg' },           // Bottom-left position
                 { key: 'robotPartThrusters', className: 'rightLeg' } // Bottom-right position

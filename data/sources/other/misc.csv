@@ -1,6 +1,6 @@
 ID,TYPE,CATEGORY,WEIGHT,COST,RARITY,SOURCE
 miscLocksmithTools,other,misc,1,150,2,Corebook
-miscDoctorBag,other,misc,5,300,3,Corebook
+miscDoctorsBag,other,misc,5,300,3,Corebook
 miscPackBrahmin,other,misc,0,200,3,Corebook
 miscDeluxeToolbox,other,misc,10,150,3,Corebook
 miscGeigerCounter,other,misc,4,325,3,Corebook
@@ -18,6 +18,6 @@ miscFlare,other,misc,0,10,1,Corebook
 miscTorch,other,misc,0.5,10,1,Corebook
 miscBackpackLarge,other,misc,0,60,2,Corebook
 miscBackpackSmall,other,misc,0,30,1,Corebook
-miscCommonJunk,other,junk,0.5,1,0,Corebook
-miscUncommonJunk,other,junk,0.5,3,1,Corebook
-miscRareJunk,other,junk,0.5,5,2,Corebook
+miscCommonJunkMaterials,other,junk,0.5,1,0,Corebook
+miscUncommonJunkMaterials,other,junk,0.5,3,1,Corebook
+miscRareJunkMaterials,other,junk,0.5,5,2,Corebook

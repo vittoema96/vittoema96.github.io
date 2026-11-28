@@ -31,7 +31,7 @@ export type BodyPart = (typeof _BODY_PARTS)[number];
 export const BODY_PARTS: Set<BodyPart> = new Set(_BODY_PARTS);
 
 const _MR_HANDY_PARTS = [
-    'robotPartSensors',
+    'robotPartOptics',
     'robotPartBody',
     'robotPartArms',
     'robotPartThrusters',
@@ -92,7 +92,6 @@ export const COMPANION_IDS = ['eyebot', 'dog', 'mrHandy', 'humanoid'] as const;
 export type CompanionId = (typeof COMPANION_IDS)[number];
 
 export interface RawCharacter {
-    saveVersion: number;
     name?: string | undefined;
     partyCode?: string | null | undefined;
     localGroupAP?: number | undefined;
@@ -135,7 +134,7 @@ export interface Encumbrance {
 }
 
 export interface Character
-    extends Omit<RawCharacter, 'origin' | 'activeCompanionId' | 'saveVersion'> {
+    extends Omit<RawCharacter, 'origin' | 'activeCompanionId'> {
     origin: Origin;
 
     skillPoints: number;

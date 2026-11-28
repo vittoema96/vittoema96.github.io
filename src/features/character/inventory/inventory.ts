@@ -45,23 +45,13 @@ function getUnarmedStrike(selection: FeatSelection): CharacterItem | undefined {
         : { id: 'weaponUnarmedStrike', quantity: 1, mods: [], equipped: false };
 }
 
-function getGrants(items: CharacterItem[], selection: FeatSelection) {
-    const unarmed = getUnarmedStrike(selection);
-    const availableItems = unarmed ? [...items, unarmed] : items;
-    return getGrantedItems({ ...selection, items: availableItems });
-}
-
 function getActiveInventory(items: CharacterItem[], selection: FeatSelection) {
-    const grants = getGrants(items, selection);
-    const replacedIds = new Set(grants.flatMap(item => item.replaces ?? []));
+    const grants = getGrantedItems(selection);
     const activeItems = items
         .filter(
             item =>
-                !replacedIds.has(item.id) &&
-                (!item.grantedBy ||
-                    grants.some(
-                        grant => grant.id === item.id && grant.grantedBy === item.grantedBy,
-                    )),
+                !item.grantedBy ||
+                grants.some(grant => grant.id === item.id && grant.grantedBy === item.grantedBy),
         )
         .flatMap(item => {
             if (apparel[item.id]?.CATEGORY === 'robotPart') {
@@ -75,19 +65,18 @@ function getActiveInventory(items: CharacterItem[], selection: FeatSelection) {
             }
             return item;
         });
-    return { items: activeItems, replacedIds };
+    return activeItems;
 }
 
 /** Physical items drive stats; display items additionally include virtual attacks. */
 export function getInventory(items: CharacterItem[], selection: FeatSelection) {
-    const { items: activeItems, replacedIds } = getActiveInventory(items, selection);
-    const unarmed = getUnarmedStrike(selection);
+    const activeItems = getActiveInventory(items, selection);
     return {
         items: activeItems,
         displayItems: addSpecialWeaponItems(
             activeItems,
             selection.perks,
-            unarmed && !replacedIds.has(unarmed.id) ? unarmed : undefined,
+            getUnarmedStrike(selection),
         ),
     };
 }
@@ -133,8 +122,8 @@ function addSpecialWeaponItems(
         if (!isType(data, 'weapon')) {
             continue;
         }
-        addSpecialItem(item, 'weaponWeaponStockOneHanded', gunBashCondition(false, data));
-        addSpecialItem(item, 'weaponWeaponStock', gunBashCondition(true, data));
+        addSpecialItem(item, 'weaponGunBashOneHanded', gunBashCondition(false, data));
+        addSpecialItem(item, 'weaponGunBash', gunBashCondition(true, data));
         addSpecialItem(item, 'weaponBayonet', item.mods.includes('modBayonet'));
         addSpecialItem(item, 'weaponLargeBayonet', item.mods.includes('modLargeBayonet'));
         addSpecialItem(
@@ -199,7 +188,7 @@ export function consumeAmmo(
         return raw.items;
     }
     const origin = getOriginById(raw.origin);
-    const { items } = getActiveInventory(raw.items, {
+    const items = getActiveInventory(raw.items, {
         origin,
         perks: calculatePerks(raw),
         traits: calculateTraits(raw, origin),
@@ -248,18 +237,15 @@ export function reconcileItems(previous: RawCharacter, next = previous): RawChar
         return item;
     });
 
-    const grants = getGrants(items, selection);
-    for (const grant of grants) {
+    for (const grant of getGrantedItems(selection)) {
         if (!items.some(item => item.id === grant.id && item.grantedBy === grant.grantedBy)) {
-            const savedItem = { ...grant };
-            delete savedItem.replaces;
-            items.push(savedItem);
+            items.push({ ...grant });
         }
     }
 
     for (const id of intrinsicPartIds) {
         if (!items.some(item => item.id === id)) {
-            items.push({ id, quantity: 1, equipped: true, mods: ['modRobotPlatingStandard'] });
+            items.push({ id, quantity: 1, equipped: true, mods: ['modRobotStandardPlating'] });
         }
     }
     return { ...next, items };

@@ -1,5 +1,5 @@
 {
-  "modRobotActivationFrameArms": {
+  "modRobotActuatedFrameArms": {
     "en": "Actuated Frame",
     "it": "Telaio ad Attivazione",
     "_description": {
@@ -11,7 +11,7 @@
       "it": "{{name}} Telaio ad Attivazione"
     }
   },
-  "modRobotActivationFrameBody": {
+  "modRobotActuatedFrameBody": {
     "en": "Actuated Frame",
     "it": "Telaio ad Attivazione",
     "_description": {
@@ -23,7 +23,7 @@
       "it": "{{name}} Telaio ad Attivazione"
     }
   },
-  "modRobotActivationFrameOptics": {
+  "modRobotActuatedFrameOptics": {
     "en": "Actuated Frame",
     "it": "Telaio ad Attivazione",
     "_description": {
@@ -35,7 +35,7 @@
       "it": "{{name}} Telaio ad Attivazione"
     }
   },
-  "modRobotActivationFrameThrusters": {
+  "modRobotActuatedFrameThrusters": {
     "en": "Actuated Frame",
     "it": "Telaio ad Attivazione",
     "_description": {
@@ -47,7 +47,7 @@
       "it": "{{name}} Telaio ad Attivazione"
     }
   },
-  "modRobotBasePlatingArms": {
+  "modRobotPrimalPlateArms": {
     "en": "Primal Plate",
     "it": "Placcatura Base",
     "_description": {
@@ -59,7 +59,7 @@
       "it": "{{name}} Placcatura Base"
     }
   },
-  "modRobotBasePlatingBody": {
+  "modRobotPrimalPlateBody": {
     "en": "Primal Plate",
     "it": "Placcatura Base",
     "_description": {
@@ -71,7 +71,7 @@
       "it": "{{name}} Placcatura Base"
     }
   },
-  "modRobotBasePlatingOptics": {
+  "modRobotPrimalPlateOptics": {
     "en": "Primal Plate",
     "it": "Placcatura Base",
     "_description": {
@@ -83,7 +83,7 @@
       "it": "{{name}} Placcatura Base"
     }
   },
-  "modRobotBasePlatingThrusters": {
+  "modRobotPrimalPlateThrusters": {
     "en": "Primal Plate",
     "it": "Placcatura Base",
     "_description": {
@@ -143,7 +143,7 @@
       "it": "{{name}} Armatura di Fabbrica"
     }
   },
-  "modRobotFactoryStorageBody": {
+  "modRobotFactoryStorageArmorBody": {
     "en": "Factory Storage Armor",
     "it": "Armatura di Stoccaggio di Fabbrica",
     "_description": {
@@ -203,7 +203,7 @@
       "it": "{{name}} Telaio Idraulico"
     }
   },
-  "modRobotKnurledPlatingArms": {
+  "modRobotSerratedPlateArms": {
     "en": "Serrated Plate",
     "it": "Placcatura Zigrinata",
     "_description": {
@@ -215,7 +215,7 @@
       "it": "{{name}} Placcatura Zigrinata"
     }
   },
-  "modRobotKnurledPlatingBody": {
+  "modRobotSerratedPlateBody": {
     "en": "Serrated Plate",
     "it": "Placcatura Zigrinata",
     "_description": {
@@ -227,7 +227,7 @@
       "it": "{{name}} Placcatura Zigrinata"
     }
   },
-  "modRobotKnurledPlatingOptics": {
+  "modRobotSerratedPlateOptics": {
     "en": "Serrated Plate",
     "it": "Placcatura Zigrinata",
     "_description": {
@@ -239,7 +239,7 @@
       "it": "{{name}} Placcatura Zigrinata"
     }
   },
-  "modRobotKnurledPlatingThrusters": {
+  "modRobotSerratedPlateThrusters": {
     "en": "Serrated Plate",
     "it": "Placcatura Zigrinata",
     "_description": {
@@ -251,7 +251,7 @@
       "it": "{{name}} Placcatura Zigrinata"
     }
   },
-  "modRobotPlatingMisterGutsy": {
+  "modRobotMisterGutsyPlating": {
     "en": "Mister Gutsy Plating",
     "it": "Placcatura di Mister Gutsy",
     "_description": {
@@ -263,7 +263,7 @@
       "it": "{{name}} Placcatura di Mister Gutsy"
     }
   },
-  "modRobotPlatingStandard": {
+  "modRobotStandardPlating": {
     "en": "Standard Plating",
     "it": "Placcatura Standard",
     "_description": {
@@ -275,7 +275,7 @@
       "it": "{{name}} Placcatura Standard"
     }
   },
-  "modRobotPoisonousPlatingArms": {
+  "modRobotNoxiousPlateArms": {
     "en": "Noxious Plate",
     "it": "Placcatura Velenosa",
     "_description": {
@@ -287,7 +287,7 @@
       "it": "{{name}} Placcatura Velenosa"
     }
   },
-  "modRobotPoisonousPlatingBody": {
+  "modRobotNoxiousPlateBody": {
     "en": "Noxious Plate",
     "it": "Placcatura Velenosa",
     "_description": {
@@ -299,7 +299,7 @@
       "it": "{{name}} Placcatura Velenosa"
     }
   },
-  "modRobotPoisonousPlatingOptics": {
+  "modRobotNoxiousPlateOptics": {
     "en": "Noxious Plate",
     "it": "Placcatura Velenosa",
     "_description": {
@@ -311,7 +311,7 @@
       "it": "{{name}} Placcatura Velenosa"
     }
   },
-  "modRobotPoisonousPlatingThrusters": {
+  "modRobotNoxiousPlateThrusters": {
     "en": "Noxious Plate",
     "it": "Placcatura Velenosa",
     "_description": {
@@ -443,7 +443,7 @@
       "it": "{{name}} con Bobine Tesla"
     }
   },
-  "modRobotIntegratedBoiler": {
+  "modRobotIntegralBoiler": {
     "en": "Integral Boiler Mod",
     "it": "Bollitore Integrato",
     "_description": {
@@ -503,7 +503,7 @@
       "it": "{{name}} con Modulo di Analisi Comportamentale"
     }
   },
-  "modRobotDiagnosticModule": {
+  "modRobotDiagnosisModule": {
     "en": "Diagnosis Mod",
     "it": "Modulo di Diagnostica",
     "_description": {
@@ -539,7 +539,7 @@
       "it": "{{name}} con Modulo di Hackeraggio"
     }
   },
-  "modRobotLockpickingModule": {
+  "modRobotLockpickModule": {
     "en": "Lockpick Module",
     "it": "Modulo da Scassinatore",
     "_description": {
@@ -551,7 +551,7 @@
       "it": "{{name}} con Modulo da Scassinatore"
     }
   },
-  "modRobotSensors": {
+  "modRobotSensorArray": {
     "en": "Sensor Array",
     "it": "Sensori",
     "_description": {
@@ -563,7 +563,7 @@
       "it": "{{name}} con Sensori"
     }
   },
-  "modRobotReconnaissanceSensors": {
+  "modRobotReconSensors": {
     "en": "Recon Sensors",
     "it": "Sensori di Ricognizione",
     "_description": {

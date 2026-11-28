@@ -284,7 +284,7 @@
     "it": "Provocatore",
     "_description": {
       "en": "An Instigating weapon is the best way to start a fight! When this weapon is used to make an attack, if the target’s HP are at their maximum value, the weapon inflicts +3 CD damage.",
-      "it": "Un'arma Provocatrice è il modo migliore per iniziare una rissa! Quando quest'arma viene usata per un attacco, se i HP del bersaglio sono al massimo, l'arma infligge +3 DC di danno."
+      "it": "Un'arma Provocatrice è il modo migliore per iniziare una rissa! Quando quest'arma viene usata per un attacco, se gli HP del bersaglio sono al massimo, l'arma infligge +3 DC di danno."
     }
   },
   "legendaryIrradiated": {

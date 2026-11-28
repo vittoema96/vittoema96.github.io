@@ -384,6 +384,7 @@ export function TraitSelectionPopup({
                     && trait.ORIGINS.includes(character.origin.id)
                     && (
                         prev === trait.ID
+                        || trait.REPEATABLE
                         || !hasTrait(character.traits, trait.ID)
                     )
             }

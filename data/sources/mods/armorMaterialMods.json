@@ -11,7 +11,7 @@
             "it": "{{name}} Metallo In Lega"
         }
     },
-    "modAnnealed": {
+    "modTempered": {
         "en": "Tempered",
         "it": "Rinvenuta",
         "_description": {
@@ -23,7 +23,7 @@
             "it": "{{name}} Rinvenuta"
         }
     },
-    "modArmorHardened": {
+    "modButtressed": {
         "en": "Buttressed",
         "it": "Indurita",
         "_description": {
@@ -35,15 +35,15 @@
             "it": "{{name}} Indurita"
         }
     },
-    "modBandedLeather": {
-        "en": "Banded Leather",
+    "modGirdedLeather": {
+        "en": "Girded Leather",
         "it": "Cuoio Fasciato",
         "_description": {
             "en": "+2 Physical Resistance, +2 Energy Resistance",
             "it": "+2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia"
         },
         "_descriptor": {
-            "en": "Banded Leather {{name}}",
+            "en": "Girded Leather {{name}}",
             "it": "{{name}} Cuoio Fasciato"
         }
     },
@@ -59,15 +59,15 @@
             "it": "{{name}} Cuoio Bollito"
         }
     },
-    "modEnamelledMetal": {
-        "en": "Enamelled Metal",
+    "modEnameledMetal": {
+        "en": "Enameled Metal",
         "it": "Metallo Smaltato",
         "_description": {
             "en": "+2 Physical Resistance, +2 Energy Resistance",
             "it": "+2 Resistenza ai Danni Fisici, +2 Resistenza ai Danni da Energia"
         },
         "_descriptor": {
-            "en": "Enamelled Metal {{name}}",
+            "en": "Enameled Metal {{name}}",
             "it": "{{name}} Metallo Smaltato"
         }
     },
@@ -239,7 +239,7 @@
             "it": "{{name}} Cuoio Borchiato"
         }
     },
-    "modTempered": {
+    "modHardened": {
         "en": "Hardened",
         "it": "Temprata",
         "_description": {

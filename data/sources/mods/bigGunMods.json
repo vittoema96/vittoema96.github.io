@@ -23,7 +23,7 @@
       "it": "{{name}} Con Baionetta Triturante"
     }
   },
-  "modBeamFocuserGatling": {
+  "modBeamFocuserGatlingLaser": {
     "en": "Beam Focuser",
     "it": "Concentratore di Raggio",
     "_description": {
@@ -35,7 +35,7 @@
       "it": "{{name}} Concentrato"
     }
   },
-  "modBetaWaveTunerGatling": {
+  "modBetaWaveTunerGatlingLaser": {
     "en": "Beta Wave Tuner",
     "it": "Sintonizzatore di Onde Beta",
     "_description": {
@@ -47,7 +47,7 @@
       "it": "{{name}} Incendiario"
     }
   },
-  "modBoostedCapacitorGatling": {
+  "modBoostedCapacitorGatlingLaser": {
     "en": "Boosted Capacitor",
     "it": "Condensatore Potenziato",
     "_description": {
@@ -71,7 +71,7 @@
       "it": "{{name}} A Caricamento"
     }
   },
-  "modCombustionModule": {
+  "modIgnitionModule": {
     "en": "Ignition Module",
     "it": "Modulo di Combustione",
     "_description": {
@@ -167,7 +167,7 @@
       "it": "{{name}} Alta Capacità"
     }
   },
-  "modLongBarrelFlamethrower": {
+  "modLongBarrelFlamer": {
     "en": "Long Barrel",
     "it": "Canna Lunga",
     "_description": {
@@ -191,7 +191,7 @@
       "it": "{{name}} Lungo"
     }
   },
-  "modNapalm": {
+  "modNapalmFuel": {
     "en": "Napalm Fuel",
     "it": "Napalm",
     "_description": {
@@ -215,7 +215,7 @@
       "it": "{{name}} Visione Notturna"
     }
   },
-  "modPhotonicAgitatorGatling": {
+  "modPhotonicAgitatorGatlingLaser": {
     "en": "Photonic Agitator",
     "it": "Agitatore Fotonico",
     "_description": {
@@ -227,7 +227,7 @@
       "it": "{{name}} Agitato"
     }
   },
-  "modPhotonicStimulatorGatling": {
+  "modPhotonExciterGatlingLaser": {
     "en": "Photon Exciter",
     "it": "Stimolatore Fotonico",
     "_description": {
@@ -263,7 +263,7 @@
       "it": "{{name}} A Rinculo Compensato"
     }
   },
-  "modReflexSightGatling": {
+  "modReflexSightGatlingLaser": {
     "en": "Reflex Sight",
     "it": "Mirino Reflex",
     "_description": {
@@ -335,7 +335,7 @@
       "it": "{{name}} A Canna Tripla"
     }
   },
-  "modTripleBarrelMinigun": {
+  "modTriBarrelMinigun": {
     "en": "Tri-Barrel",
     "it": "Canna Tripla",
     "_description": {
@@ -347,7 +347,7 @@
       "it": "{{name}} Ad Alta Potenza"
     }
   },
-  "modVaporizerNozzle": {
+  "modVaporizationNozzle": {
     "en": "Vaporization Nozzle",
     "it": "Ugello Vaporizzatore",
     "_description": {
@@ -359,7 +359,7 @@
       "it": "{{name}} Vaporizzante"
     }
   },
-  "modGammaWaveEmitterGatling": {
+  "modGammaWaveEmitterGatlingLaser": {
     "en": "Gamma Wave Emitter",
     "it": "Emettitore di Onde Gamma",
     "_description": {
@@ -371,7 +371,7 @@
       "it": "{{name}} Incendiario"
     }
   },
-  "modMaximizedCapacitorGatling": {
+  "modMaximizedCapacitorGatlingLaser": {
     "en": "Maximized Capacitor",
     "it": "Condensatore Massimizzato",
     "_description": {
@@ -383,7 +383,7 @@
       "it": "{{name}} Massimizzato"
     }
   },
-  "modBoostedPhotonAgitatorGatling": {
+  "modBoostedPhotonAgitatorGatlingLaser": {
     "en": "Boosted Photon Agitator",
     "it": "Agitatore Fotonico Potenziato",
     "_description": {
@@ -395,7 +395,7 @@
       "it": "{{name}} Potenziato Agitato"
     }
   },
-  "modBoostedGammaWaveEmitterGatling": {
+  "modBoostedGammaWaveEmitterGatlingLaser": {
     "en": "Boosted Gamma Wave Emitter",
     "it": "Emettitore di Onde Gamma Potenziato",
     "_description": {
@@ -407,7 +407,7 @@
       "it": "{{name}} Potenziato Incendiario"
     }
   },
-  "modOverchargedCapacitorGatling": {
+  "modOverchargedCapacitorGatlingLaser": {
     "en": "Overcharged Capacitor",
     "it": "Condensatore Sovraccaricato",
     "_description": {
@@ -431,7 +431,7 @@
       "it": "{{name}} Pesante"
     }
   },
-  "modHeavyBarrelAutoGrenade": {
+  "modHeavyBarrelAutoGrenadeLauncher": {
     "en": "Heavy Barrel",
     "it": "Canna Pesante",
     "_description": {
@@ -443,7 +443,7 @@
       "it": "{{name}} Pesante"
     }
   },
-  "modLongBarrelAutoGrenade": {
+  "modLongBarrelAutoGrenadeLauncher": {
     "en": "Long Barrel",
     "it": "Canna Lunga",
     "_description": {
@@ -791,7 +791,7 @@
       "it": "{{name}} Tattico"
     }
   },
-  "modBarbedHarpoon": {
+  "modBarbedHarpoonGun": {
     "en": "Barbed Harpoon",
     "it": "Arpione Uncinato",
     "_description": {
@@ -815,7 +815,7 @@
       "it": "{{name}} Minuscolo"
     }
   },
-  "modRecoilCompensatingStockHarpoon": {
+  "modRecoilCompensatingStockHarpoonGun": {
     "en": "Recoil Compensating Stock",
     "it": "Calcio Compensatore di Rinculo",
     "_description": {
@@ -827,7 +827,7 @@
       "it": "{{name}} con Rinculo Compensato"
     }
   },
-  "modGunnerSightHarpoon": {
+  "modGunnerSightHarpoonGun": {
     "en": "Gunner Sight",
     "it": "Mirino da Artigliere",
     "_description": {
@@ -839,7 +839,7 @@
       "it": "{{name}} Tattico"
     }
   },
-  "modShortScopeHarpoon": {
+  "modShortScopeHarpoonGun": {
     "en": "Short Scope",
     "it": "Mirino Corto",
     "_description": {

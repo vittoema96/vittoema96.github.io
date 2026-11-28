@@ -1,5 +1,5 @@
 {
-  "modUnderarmorTreatedLining": {
+  "modTreatedUnderarmorLining": {
     "en": "Treated Underarmor Lining",
     "it": "Rivestimento Trattato per Sottoarmatura",
     "_description": {
@@ -11,7 +11,7 @@
       "it": "{{name}} con Rivestimento Trattato"
     }
   },
-  "modUnderarmorResistantLining": {
+  "modResistantUnderarmorLining": {
     "en": "Resistant Underarmor Lining",
     "it": "Rivestimento Resistente per Sottoarmatura",
     "_description": {
@@ -23,7 +23,7 @@
       "it": "{{name}} con Rivestimento Resistente"
     }
   },
-  "modUnderarmorProtectiveLining": {
+  "modProtectiveUnderarmorLining": {
     "en": "Protective Underarmor Lining",
     "it": "Rivestimento Protettivo per Sottoarmatura",
     "_description": {
@@ -35,7 +35,7 @@
       "it": "{{name}} con Rivestimento Protettivo"
     }
   },
-  "modUnderarmorShieldedLining": {
+  "modShieldedUnderarmorLining": {
     "en": "Shielded Underarmor Lining",
     "it": "Rivestimento Schermato per Sottoarmatura",
     "_description": {

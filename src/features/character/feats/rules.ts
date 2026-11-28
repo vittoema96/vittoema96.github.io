@@ -125,8 +125,7 @@ export function getAllowedApparelCategories(
     }
 
     return restrictions.reduce(
-        (allowed, categories) =>
-            new Set(categories.filter(category => allowed.has(category))),
+        (allowed, categories) => new Set(categories.filter(category => allowed.has(category))),
         new Set(restrictions[0]),
     );
 }
@@ -305,39 +304,22 @@ export function getAvailableCompanions(
 }
 
 export function getGrantedItems(selection: FeatSelection) {
-    const activeItems = new Set(
-        (selection.items ?? []).filter(item => !item.grantedBy).map(item => item.id),
-    );
-    const grantedItems = getActiveFeats(selection).flatMap(feat => {
+    return getActiveFeats(selection).flatMap(feat => {
         const id = feat.id;
         if (!id) {
             return [];
         }
-        return (feat.getGrantedItems?.(selection) ?? []).map(item => ({
-            ...item,
-            grantedBy: id,
-        }));
+        const grants = feat.getGrantedItems?.(selection) ?? [];
+        // A repeatable trait taken N times grants N copies, each with its own provenance
+        // ("trait", "trait#2", ...) so each keeps its own configuration when hidden.
+        const copies = Math.max(1, selection.traits.filter(trait => trait === id).length);
+        return Array.from({ length: copies }, (_, index) =>
+            grants.map(item => ({
+                ...item,
+                grantedBy: index === 0 ? id : `${id}#${index + 1}`,
+            })),
+        ).flat();
     });
-
-    const accepted: typeof grantedItems = [];
-    let pending = grantedItems;
-    // Only accepted grants make a replacement target available.
-    while (pending.length) {
-        const remaining: typeof grantedItems = [];
-        for (const item of pending) {
-            if (!item.replaces?.length || item.replaces.some(id => activeItems.has(id))) {
-                accepted.push(item);
-                activeItems.add(item.id);
-            } else {
-                remaining.push(item);
-            }
-        }
-        if (remaining.length === pending.length) {
-            break;
-        }
-        pending = remaining;
-    }
-    return accepted;
 }
 
 export function getWeaponEffects(character: Character, itemData: WeaponItem, isAiming: boolean) {

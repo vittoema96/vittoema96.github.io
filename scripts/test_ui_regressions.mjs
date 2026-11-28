@@ -232,7 +232,7 @@ const cases = [
         ]), 'Switching character reused the previous companion state');
     },
     async () => {
-        const selected = item('weaponAtomicMine', { customName: 'Selected mine' });
+        const selected = item('weaponNukeMine', { customName: 'Selected mine' });
         await reset({
             items: [item(selected.id, { customName: 'Other mine', quantity: 2 }), selected],
         }, 'd6', { usingItem: selected });
@@ -310,7 +310,7 @@ const cases = [
         check(raw().items.find(i => i.id === 'ammo556mm')?.quantity === 1, 'Stale close callback charged a cancelled burst');
     },
     async () => {
-        const manual = item('weaponTenMillimeterPistol', { customName: 'Original', quantity: 2 });
+        const manual = item('weapon10mmPistol', { customName: 'Original', quantity: 2 });
         const hidden = item(manual.id, { grantedBy: 'inactiveFeat', customName: 'Hidden', mods: ['legendaryFreezing'] });
         const custom = { customName: 'Souvenir', quantity: 2, COST: 3, WEIGHT: 1, RARITY: 0, CATEGORY: 'misc', TYPE: 'other' };
         await reset({
@@ -340,7 +340,7 @@ const cases = [
                 armor,
                 item('armorLeatherArm', { equipped: true, side: 'left' }),
                 item('armorLeatherArm', { equipped: true, side: 'right' }),
-                item('weaponMrHandyPliers', { grantedBy: 'inactiveFeat' }),
+                item('weaponPincerArm', { grantedBy: 'inactiveFeat' }),
             ],
         }, 'empty');
         inventoryActions.equipItem(armor);
@@ -360,11 +360,11 @@ const cases = [
         check(saved.some(i => i.grantedBy === 'inactiveFeat'), 'Equipping armor removed a hidden grant');
     },
     async () => {
-        const body = item('robotPartBody', { equipped: true, mods: ['modRobotPlatingStandard'] });
+        const body = item('robotPartBody', { equipped: true, mods: ['modRobotStandardPlating'] });
         await reset({ origin: 'mrHandy', items: [body], caps: 100 }, 'modify', { characterItem: body });
         const plating = [...document.querySelectorAll('select')].find(s =>
-            [...s.options].some(o => o.value === 'modRobotPlatingMisterGutsy'));
-        await select(plating, 'modRobotPlatingMisterGutsy');
+            [...s.options].some(o => o.value === 'modRobotMisterGutsyPlating'));
+        await select(plating, 'modRobotMisterGutsyPlating');
         const dialog = document.querySelector('dialog');
         dialog.querySelector('button.confirmButton').click();
         check(raw().items.some(i => i.id === 'robotPartThrusters'), 'Missing realistic robot thrusters fixture');
@@ -387,14 +387,14 @@ const cases = [
         const thrusters = saved.items.find(i => i.id === 'robotPartThrusters');
         check(thrusters?.customName === 'Latest thrusters' && thrusters.mods.includes('modRobotFactoryArmorThrusters'), 'Plating confirmation overwrote another part configuration');
         check(saved.items.filter(i => i.id.startsWith('robotPart')).every(i =>
-            i.mods.includes('modRobotPlatingMisterGutsy') && !i.mods.includes('modRobotPlatingStandard')),
+            i.mods.includes('modRobotMisterGutsyPlating') && !i.mods.includes('modRobotStandardPlating')),
             'Plating was not replaced on all current robot parts');
     },
     async () => {
         await reset({
             origin: 'mrHandy',
             items: [item('robotPartBody', {
-                mods: ['modRobotPlatingStandard'],
+                mods: ['modRobotStandardPlating'],
                 customName: 'Saved body',
             })],
             caps: 100,
@@ -423,8 +423,8 @@ const cases = [
         mount('modify', { characterItem: body });
         await pause();
         const module = [...document.querySelectorAll('select')].find(s =>
-            [...s.options].some(o => o.value === 'modRobotLockpickingModule'));
-        await select(module, 'modRobotLockpickingModule');
+            [...s.options].some(o => o.value === 'modRobotLockpickModule'));
+        await select(module, 'modRobotLockpickModule');
         context.updateCharacter(prev => ({
             items: [...prev.items, item('ammo556mm', { quantity: 3 })],
             caps: 87,
@@ -435,9 +435,9 @@ const cases = [
         let bodies = raw().items.filter(i => i.id === 'robotPartBody');
         check(bodies.length === 1 && bodies[0].quantity === 1,
             'Editing a module duplicated the body: ' + JSON.stringify(bodies));
-        check(bodies[0].equipped && bodies[0].mods.includes('modRobotLockpickingModule'),
+        check(bodies[0].equipped && bodies[0].mods.includes('modRobotLockpickModule'),
             'Module edit did not preserve the intrinsic equipped state and selected module');
-        check(raw().caps === 87 - mod.modRobotLockpickingModule.COST,
+        check(raw().caps === 87 - mod.modRobotLockpickModule.COST,
             'Module edit did not deduct its cost from the latest caps: ' + raw().caps);
         check(raw().items.find(i => i.id === 'ammo556mm')?.quantity === 3,
             'Module edit changed ammo stacks: ' + JSON.stringify(
@@ -454,7 +454,7 @@ const cases = [
         check(bodies.length === 1 && bodies[0].quantity === 1,
             'Renaming or restoring the body duplicated it');
         check(bodies[0].customName === 'Renamed body' &&
-            bodies[0].mods.includes('modRobotLockpickingModule'),
+            bodies[0].mods.includes('modRobotLockpickModule'),
             'Origin changes lost the saved name or module');
     },
     async () => {
@@ -599,7 +599,7 @@ const cases = [
         await finishClose(damage);
         await finishClose(dialog);
         check(raw().currentLuck === 7, 'Closing after the stranger roll charged again');
-        check(!raw().items.some(i => i.id === 'weaponFortyFourPistol'), 'Stranger weapon leaked into the player inventory');
+        check(!raw().items.some(i => i.id === 'weapon44Pistol'), 'Stranger weapon leaked into the player inventory');
     },
     async () => {
         UISettingsManager.setRegion('mojave');

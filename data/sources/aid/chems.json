@@ -1,5 +1,5 @@
 {
-    "medsAddictol": {
+    "chemAddictol": {
         "en": "Addictol",
         "it": "Addictol",
         "_description": {
@@ -11,7 +11,7 @@
             "it": "Rimuove tutte le dipendenze"
         }
     },
-    "medsAntibiotics": {
+    "chemAntibiotics": {
         "en": "Antibiotics",
         "it": "Antibiotici",
         "_description": {
@@ -23,7 +23,7 @@
             "it": "Curano tutte le malattie"
         }
     },
-    "medsBerryMentats": {
+    "chemBerryMentats": {
         "en": "Berry Mentats",
         "it": "Mentat ai Frutti di Bosco",
         "_description": {
@@ -35,7 +35,7 @@
             "it": "Riduce la difficoltà di tutte le prove di INT di 2 (minimo 0)"
         }
     },
-    "medsBuffjet": {
+    "chemBuffjet": {
         "en": "Buffjet",
         "it": "Buffjet",
         "_description": {
@@ -44,10 +44,10 @@
         },
         "_effect": {
             "en": "Reduce the difficulty of all STR and END tests by 1 (minimum 0). Gain 3 AP immediately (lost if not spent), extra actions cost 1 less AP, +4 Max HP",
-            "it": "Riduce la difficoltà di tutte le prove di FOR e COS di 1 (minimo 0). Concede immediatamente 3 PA (persi se non spesi), le azioni extra costano 1 PA in meno, +4 ai HP massimi"
+            "it": "Riduce la difficoltà di tutte le prove di FOR e COS di 1 (minimo 0). Concede immediatamente 3 PA (persi se non spesi), le azioni extra costano 1 PA in meno, +4 agli HP massimi"
         }
     },
-    "medsBuffout": {
+    "chemBuffout": {
         "en": "Buffout",
         "it": "Buffout",
         "_description": {
@@ -56,10 +56,10 @@
         },
         "_effect": {
             "en": "Re-roll 1d20 on all STR and END tests, +3 Max HP",
-            "it": "Permette di ritirare 1d20 su tutte le prove di FOR e COS, +3 ai HP massimi"
+            "it": "Permette di ritirare 1d20 su tutte le prove di FOR e COS, +3 agli HP massimi"
         }
     },
-    "medsBufftats": {
+    "chemBufftats": {
         "en": "Bufftats",
         "it": "Bufftat",
         "_description": {
@@ -68,10 +68,10 @@
         },
         "_effect": {
             "en": "Reduce the difficulty of all STR, PER, and END tests by 1 (minimum 0), +4 Max HP",
-            "it": "Riduce la difficoltà di tutte le prove di FOR, PER e COS di 1 (minimo 0), +4 ai HP massimi"
+            "it": "Riduce la difficoltà di tutte le prove di FOR, PER e COS di 1 (minimo 0), +4 agli HP massimi"
         }
     },
-    "medsCalmex": {
+    "chemCalmex": {
         "en": "Calmex",
         "it": "Calmex",
         "_description": {
@@ -83,7 +83,7 @@
             "it": "Permette di ritirare 1d20 su tutte le prove di PER e AGI, +2 DC ai danni su attacchi furtivi"
         }
     },
-    "medsDaddyO": {
+    "chemDaddyO": {
         "en": "Daddy-O",
         "it": "Daddy-O",
         "_description": {
@@ -95,7 +95,7 @@
             "it": "Riduce la difficoltà di tutte le prove di PER e INT di 1 (minimo 0), +1 alla difficoltà delle prove di CAR"
         }
     },
-    "medsDayTripper": {
+    "chemDayTripper": {
         "en": "Day Tripper",
         "it": "Day Tripper",
         "_description": {
@@ -107,7 +107,7 @@
             "it": "Riduce la difficoltà di tutte le prove di CAR e FRT di 1 (minimo 0), +1 alla difficoltà delle prove di FOR"
         }
     },
-    "medsDilutedRadAway": {
+    "chemRadAwayDiluted": {
         "en": "RadAway (Diluted)",
         "it": "RadAway (Diluito)",
         "_description": {
@@ -119,7 +119,7 @@
             "it": "Somministrato con l'azione minore Assumere Sostanze, cura 2 danni da Radiazioni."
         }
     },
-    "medsDilutedRadX": {
+    "chemRadXDiluted": {
         "en": "Rad-X (Diluted)",
         "it": "Rad-X (Diluito)",
         "_description": {
@@ -131,7 +131,7 @@
             "it": "+3 alla Resistenza ai Danni da Radiazioni"
         }
     },
-    "medsDilutedStimpak": {
+    "chemStimpakDiluted": {
         "en": "Stimpak (Diluted)",
         "it": "Stimpak (Diluito)",
         "_description": {
@@ -143,7 +143,7 @@
             "it": "Somministrato con l'azione minore Assumere Sostanze o con l'azione Primo Soccorso (Medicina), ripristina 2 HP o cura 1 Ferita."
         }
     },
-    "medsFury": {
+    "chemFury": {
         "en": "Fury",
         "it": "Fury",
         "_description": {
@@ -155,7 +155,7 @@
             "it": "+3 alla Resistenza ai Danni Fisici, +3 DC ai danni degli attacchi in mischia, +2 alla difficoltà di tutte le prove di PER"
         }
     },
-    "medsGrapeMentats": {
+    "chemGrapeMentats": {
         "en": "Grape Mentats",
         "it": "Mentat all'Uva",
         "_description": {
@@ -167,7 +167,7 @@
             "it": "Riduce la difficoltà di tutte le prove di CAR di 2 (minimo 0), permette di ritirare 1d20 sulle prove di Commercio"
         }
     },
-    "medsHealingSalve": {
+    "chemHealingSalve": {
         "en": "Healing Salve",
         "it": "Balsamo Curativo",
         "_description": {
@@ -179,7 +179,7 @@
             "it": "Somministrato con l'azione minore Assumere Sostanze (ripristina 2 HP) o come parte di un'azione di Primo Soccorso (+2 HP al totale delle cure)."
         }
     },
-    "medsHealingPowder": {
+    "chemHealingPowder": {
         "en": "Healing Powder",
         "it": "Polvere Curativa",
         "_description": {
@@ -191,7 +191,7 @@
             "it": "Ripristina 2 HP."
         }
     },
-    "medsJet": {
+    "chemJet": {
         "en": "Jet",
         "it": "Jet",
         "_description": {
@@ -203,7 +203,7 @@
             "it": "Le azioni extra costano 1 PA in meno"
         }
     },
-    "medsJetFuel": {
+    "chemJetFuel": {
         "en": "Jet Fuel",
         "it": "Jet Fuel",
         "_description": {
@@ -215,7 +215,7 @@
             "it": "Si ottiene 1 PA gratis all'inizio di ogni turno"
         }
     },
-    "medsMedX": {
+    "chemMedX": {
         "en": "Med-X",
         "it": "Med-X",
         "_description": {
@@ -227,7 +227,7 @@
             "it": "+3 alla Resistenza ai Danni Fisici"
         }
     },
-    "medsMentats": {
+    "chemMentats": {
         "en": "Mentats",
         "it": "Mentat",
         "_description": {
@@ -239,7 +239,7 @@
             "it": "Permette di ritirare 1d20 su tutte le prove di PER e INT"
         }
     },
-    "medsOrangeMentats": {
+    "chemOrangeMentats": {
         "en": "Orange Mentats",
         "it": "Mentat all'Arancia",
         "_description": {
@@ -251,7 +251,7 @@
             "it": "Riduce la difficoltà di tutte le prove di PER di 2 (minimo 0), l'azione minore Mirare fa ritirare un d20 aggiuntivo"
         }
     },
-    "medsOverdrive": {
+    "chemOverdrive": {
         "en": "Overdrive",
         "it": "Overdrive",
         "_description": {
@@ -263,7 +263,7 @@
             "it": "+3 DC ai danni su tutti gli attacchi, permette di ritirare fino a 3 DC sui tiri dei danni"
         }
     },
-    "medsPsycho": {
+    "chemPsycho": {
         "en": "Psycho",
         "it": "Psycho",
         "_description": {
@@ -275,7 +275,7 @@
             "it": "+2 DC ai danni su tutti gli attacchi, +3 alla Resistenza ai Danni Fisici"
         }
     },
-    "medsPsychoJet": {
+    "chemPsychoJet": {
         "en": "Psycho Jet",
         "it": "Psycho Jet",
         "_description": {
@@ -287,7 +287,7 @@
             "it": "+2 DC ai danni su tutti gli attacchi, +4 alla Resistenza ai Danni Fisici, concede immediatamente 4 PA (persi se non spesi)"
         }
     },
-    "medsPsychobuff": {
+    "chemPsychobuff": {
         "en": "Psychobuff",
         "it": "Psychobuff",
         "_description": {
@@ -296,10 +296,10 @@
         },
         "_effect": {
             "en": "+2 CD damage to all attacks, +4 Max HP, reduce the difficulty of all STR and END tests by 1 (minimum 0)",
-            "it": "+2 DC ai danni su tutti gli attacchi, +4 ai HP massimi, riduce la difficoltà di tutte le prove di FOR e COS di 1 (minimo 0)"
+            "it": "+2 DC ai danni su tutti gli attacchi, +4 agli HP massimi, riduce la difficoltà di tutte le prove di FOR e COS di 1 (minimo 0)"
         }
     },
-    "medsPsychotats": {
+    "chemPsychotats": {
         "en": "Psychotats",
         "it": "Psychotat",
         "_description": {
@@ -311,7 +311,7 @@
             "it": "+2 DC ai danni su tutti gli attacchi, +2 alla Resistenza ai Danni Fisici, riduce la difficoltà di tutte le prove di PER di 1 (minimo 0)"
         }
     },
-    "medsRadAway": {
+    "chemRadAway": {
         "en": "RadAway",
         "it": "RadAway",
         "_description": {
@@ -323,7 +323,7 @@
             "it": "Somministrato con l'azione minore Assumere Sostanze o con l'azione Primo Soccorso, cura 4 danni da Radiazioni."
         }
     },
-    "medsRadX": {
+    "chemRadX": {
         "en": "Rad-X",
         "it": "Rad-X",
         "_description": {
@@ -335,7 +335,7 @@
             "it": "+6 alla Resistenza ai Danni da Radiazioni"
         }
     },
-    "medsSkeetoSpit": {
+    "chemSkeetoSpit": {
         "en": "Skeeto Spit",
         "it": "Skeeto Spit",
         "_description": {
@@ -344,10 +344,10 @@
         },
         "_effect": {
             "en": "+2 Max HP",
-            "it": "+2 ai HP massimi"
+            "it": "+2 agli HP massimi"
         }
     },
-    "medsStimpak": {
+    "chemStimpak": {
         "en": "Stimpak",
         "it": "Stimpak",
         "_description": {
@@ -359,7 +359,7 @@
             "it": "Somministrato con l'azione minore Assumere Sostanze o con l'azione Primo Soccorso (Medicina), ripristina 4 HP o cura 1 Ferita a una creatura vivente. Stabilizza immediatamente le creature in punto di morte."
         }
     },
-    "medsSuperStimpak": {
+    "chemSuperStimpak": {
         "en": "Super Stimpak",
         "it": "Super Stimpak",
         "_description": {
@@ -371,7 +371,7 @@
             "it": "Somministrato con l'azione minore Assumere Sostanze o con l'azione Primo Soccorso (Medicina), ripristina 8 HP o cura fino a 2 Ferite a una creatura vivente."
         }
     },
-    "medsUltraJet": {
+    "chemUltraJet": {
         "en": "Ultra Jet",
         "it": "Ultra Jet",
         "_description": {
@@ -383,7 +383,7 @@
             "it": "Concede immediatamente 6 PA (persi se non spesi), le azioni extra costano 1 PA in meno"
         }
     },
-    "medsXCell": {
+    "chemXCell": {
         "en": "X-Cell",
         "it": "X-Cell",
         "_description": {

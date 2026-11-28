@@ -31,7 +31,7 @@
             "it": "La Catapulta Nucleare M42 è un’arma a spalla di supporto alla fanteria che lancia a breve distanza testate nucleari tattiche compatte (le MiniNuke, grandi all’incirca quanto un pallone da football) per infliggere danni pesanti all’interno della posizione bersagliata."
         }
     },
-    "weaponFlamethrower": {
+    "weaponFlamer": {
         "en": "Flamer",
         "it": "Lanciafiamme",
         "_description": {
@@ -95,7 +95,7 @@
             "it": "Il fucile arpione è una versione portatile del cannone arpione, che sacrifica potenza per la mobilità. Un telaio appositamente progettato permette di rendere l'arma trasportabile, ed è dotato di un meccanismo di sparo pratico."
         }
     },
-    "weaponIncinerator": {
+    "weaponHeavyIncinerator": {
         "en": "Heavy Incinerator",
         "it": "Inceneritore Pesante",
         "_description": {
@@ -125,14 +125,6 @@
         "_description": {
             "en": "A refined, highly adaptable multipurpose missile weapon introduced into the American arsenal, the modular launcher is smaller and more maneuverable than the earlier model. It consists of the two-part launch tube, firing mechanism, mounting brackets, open battle sights and a mount for a guidance system. It is a breech-loading weapon, reloaded by lifting the front section of the launch tube and sliding the 72mm fin-stabilized missile inside. The rear part of the tube is designed to safely disperse launch gasses, allowing it to be launched from confined spaces. Other forms and designs of Missile Launcher exist across the wastelands, but this form is common enough that most consider it the standard.",
             "it": "Il lanciamissili modulare, un’arma polivalente molto sofisticata ed estremamente adattabile che è entrata a far parte dell’arsenale americano, è più piccolo e maneggevole del modello precedente. È composto da un tubo di lancio in due parti, il meccanismo di lancio, le staffe di fissaggio, un mirino a tutto campo e un supporto per un sistema di guida. È un’arma a retrocarica che viene caricata alzando la sezione anteriore del tubo di lancio e facendo scivolare dentro il missile da 72mm ad alette stabilizzatrici. La parte posteriore del tubo è progettata per disperdere in maniera sicura i gas del lancio, facendo sì che si possa sparare anche da luoghi chiusi. Nella Zona Contaminata si possono trovare lanciamissili di altre forme e modelli, ma questo tipo è abbastanza comune da essere considerato lo standard."
-        }
-    },
-    "weaponMrHandyFlamethrower": {
-        "en": "Flamer Arm",
-        "it": "Arto Lanciafiamme",
-        "_description": {
-            "en": "Flamethrower integrated into a Mr. Handy's body. Sprays an ignited fuel mixture over an area, essentially creating a jet of flame that can burn or ignite targets at a distance. Only Mr. Handy can use this weapon.",
-            "it": "Lanciafiamme integrato nel corpo di un Mr. Handy. Spruzza una miscela di carburante accesa su un'area, creando di fatto un getto di fiamme che può bruciare o incendiare bersagli a distanza. Solo un Mr. Handy può usare quest'arma."
         }
     },
     "weaponPlasmaCaster": {

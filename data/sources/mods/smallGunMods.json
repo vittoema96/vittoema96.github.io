@@ -83,7 +83,7 @@
       "it": "{{name}} con Compensatore"
     }
   },
-  "modErgonomicGrip": {
+  "modComfortGrip": {
     "en": "Comfort Grip",
     "it": "Impugnatura Ergonomica",
     "_description": {
@@ -179,7 +179,7 @@
       "it": "{{name}} Lunga"
     }
   },
-  "modLongBarrelM79": {
+  "modLongBarrelM79GrenadeLauncher": {
     "en": "Long Barrel",
     "it": "Canna Lunga",
     "_description": {
@@ -215,7 +215,7 @@
       "it": "{{name}} Con Mirino"
     }
   },
-  "modMarksmanGrip": {
+  "modSharpshootersGrip": {
     "en": "Sharpshooter's Grip",
     "it": "Impugnatura da Tiratore Esperto",
     "_description": {
@@ -227,7 +227,7 @@
       "it": "{{name}} Da Tiratore Esperto"
     }
   },
-  "modMarksmanStock": {
+  "modMarksmansStock": {
     "en": "Marksman's Stock",
     "it": "Calcio da Tiratore Scelto",
     "_description": {
@@ -275,7 +275,7 @@
       "it": "{{name}} Rapido"
     }
   },
-  "modReceiver308": {
+  "mod308Receiver": {
     "en": ".308 Receiver",
     "it": "Castello .308",
     "_description": {
@@ -287,7 +287,7 @@
       "it": "{{name}} .308"
     }
   },
-  "modReceiver38": {
+  "mod38Receiver": {
     "en": ".38 Receiver",
     "it": "Castello .38",
     "_description": {
@@ -299,7 +299,7 @@
       "it": "{{name}} .38"
     }
   },
-  "modReceiver45": {
+  "mod45Receiver": {
     "en": ".45 Receiver",
     "it": "Castello .45",
     "_description": {
@@ -311,7 +311,7 @@
       "it": "{{name}} .45"
     }
   },
-  "modReceiver50": {
+  "mod50Receiver": {
     "en": ".50 Receiver",
     "it": "Castello .50",
     "_description": {
@@ -383,7 +383,7 @@
       "it": "{{name}} Schermata"
     }
   },
-  "modShortBarrel": {
+  "modSnubnoseBarrel": {
     "en": "Snubnose",
     "it": "Canna Ridotta",
     "_description": {
@@ -419,7 +419,7 @@
       "it": "{{name}} Con Mirino"
     }
   },
-  "modStableBarrel": {
+  "modBullBarrel": {
     "en": "Bull Barrel",
     "it": "Canna Stabile",
     "_description": {
@@ -455,7 +455,7 @@
       "it": "{{name}} Ventilata"
     }
   },
-  "modWeaponHardened": {
+  "modHardenedReceiver": {
     "en": "Hardened",
     "it": "Temprato",
     "_description": {
@@ -551,7 +551,7 @@
       "it": "{{name}} Temprato Auto PA"
     }
   },
-  "modReceiver9mm": {
+  "mod9mmReceiver": {
     "en": "9mm Receiver",
     "it": "Castello 9mm",
     "_description": {
@@ -563,7 +563,7 @@
       "it": "{{name}} 9mm"
     }
   },
-  "modReceiver357": {
+  "mod357Receiver": {
     "en": ".357 Receiver",
     "it": "Castello .357",
     "_description": {

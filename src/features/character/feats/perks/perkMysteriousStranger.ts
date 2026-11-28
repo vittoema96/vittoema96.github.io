@@ -3,10 +3,10 @@ import type { Character, CharacterItem } from '@/types';
 
 /** Mysterious Stranger's 44 Magnum */
 export const MYSTERIOUS_44_MAGNUM: CharacterItem = {
-    id: 'weaponFortyFourPistol', // Mysterious Stranger's signature weapon
+    id: 'weapon44Pistol', // Mysterious Stranger's signature weapon
     quantity: 1,
     equipped: true,
-    mods: ['modMarksmanGrip', 'modPowerful'],
+    mods: ['modSharpshootersGrip', 'modPowerful'],
 };
 /** Combat profile only: no save-schema dependency in an eagerly discovered feat. */
 export const MYSTERIOUS_STRANGER: Pick<

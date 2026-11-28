@@ -827,9 +827,9 @@
     "en": "Medicine",
     "it": "Medicina"
   },
-  "meds": {
-    "en": "Medicine",
-    "it": "Medicine"
+  "chems": {
+    "en": "Chems",
+    "it": "Sostanze"
   },
   "melee": {
     "en": "Melee",

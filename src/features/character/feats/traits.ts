@@ -10,6 +10,8 @@ export interface TraitData {
     ID: TraitId;
     ORIGINS: OriginId[];
     FIXED: boolean;
+    /** Can be taken more than once (e.g. two identical Mr Handy arms). */
+    REPEATABLE: boolean;
 }
 
 export function getFixedTraits(originId: OriginId): TraitId[] {
@@ -37,6 +39,12 @@ export function calculateTraits(raw: RawCharacter, origin: Origin) {
     // Filter user-selected traits to only include those valid for this origin
     const userTraits = filterTraits(raw.traits, origin.id);
 
-    // Combine and deduplicate
-    return [...new Set([...fixedTraits, ...userTraits])];
+    // Combine and deduplicate, keeping every copy of a repeatable trait
+    const result: TraitId[] = [];
+    for (const trait of [...fixedTraits, ...userTraits]) {
+        if (!result.includes(trait) || traits[trait]?.REPEATABLE) {
+            result.push(trait);
+        }
+    }
+    return result;
 }

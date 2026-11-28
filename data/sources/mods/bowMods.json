@@ -1,5 +1,5 @@
 {
-  "modBowCompoundFrame": {
+  "modCompoundFrameBow": {
     "en": "Compound Frame",
     "it": "Telaio Compound",
     "_description": {
@@ -11,7 +11,7 @@
       "it": "{{name}} Compound"
     }
   },
-  "modBowIronSights": {
+  "modIronSightsBow": {
     "en": "Iron Sights",
     "it": "Mirino Metallico",
     "_description": {
@@ -23,7 +23,7 @@
       "it": "{{name}}"
     }
   },
-  "modBowGlowSights": {
+  "modGlowSightsBow": {
     "en": "Glow Sights",
     "it": "Mirino Luminoso",
     "_description": {
@@ -35,7 +35,7 @@
       "it": "{{name}} Mirino Luminoso"
     }
   },
-  "modCrossbowIronSights": {
+  "modIronSightsCrossbow": {
     "en": "Iron Sights",
     "it": "Mirino Metallico",
     "_description": {
@@ -47,7 +47,7 @@
       "it": "{{name}}"
     }
   },
-  "modCrossbowGlowSights": {
+  "modGlowSightsCrossbow": {
     "en": "Glow Sights",
     "it": "Mirino Luminoso",
     "_description": {
@@ -59,7 +59,7 @@
       "it": "{{name}} Mirino Luminoso"
     }
   },
-  "modCrossbowHeavyFrame": {
+  "modHeavyFrameCrossbow": {
     "en": "Heavy Frame",
     "it": "Telaio Pesante",
     "_description": {
@@ -71,7 +71,7 @@
       "it": "{{name}} Pesante"
     }
   },
-  "modCrossbowRepeatingFrame": {
+  "modRepeatingFrameCrossbow": {
     "en": "Repeating Frame",
     "it": "Telaio a Ripetizione",
     "_description": {
@@ -83,7 +83,7 @@
       "it": "{{name}} a Ripetizione"
     }
   },
-  "modCrossbowMultipleLaunchFrame": {
+  "modMultipleLaunchFrameCrossbow": {
     "en": "Multiple Launch Frame",
     "it": "Telaio a Lancio Multiplo",
     "_description": {

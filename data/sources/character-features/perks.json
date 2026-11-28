@@ -28,7 +28,7 @@
         "it": "Scarica Di Adrenalina",
         "_description": {
             "en": "When your health is below its maximum value, you count your STR score as 10 for all purposes when attempting a STR-based skill test or melee attack.",
-            "it": "Quando i HP del personaggio sono sotto il valore massimo, considera il punteggio di FOR come 10 in tutte le prove basate su FOR o sugli attacchi in mischia."
+            "it": "Quando gli HP del personaggio sono sotto il valore massimo, considera il punteggio di FOR come 10 in tutte le prove basate su FOR o sugli attacchi in mischia."
         }
     },
     "perkAllNightLong": {
@@ -156,7 +156,7 @@
         "it": "Bevitore di Sangue",
         "_description": {
             "en": "Consuming a Blood Pack (including Glowing Blood Packs and Irradiated Blood) now heals twice as many HP and moves your Thirst state back up towards quenched by one step. When consuming Irradiated Blood, you now only roll 1 CD to determine Radiation damage.",
-            "it": "Consumare una Sacca di Sangue (incluse le Sacche di Sangue Luminescenti e il Sangue Irradiato) ora cura il doppio dei HP e riporta il tuo stato di Sete verso dissetato di un passo. Quando consumi Sangue Irradiato, ora tiri solo 1 DC per determinare i danni da Radiazioni."
+            "it": "Consumare una Sacca di Sangue (incluse le Sacche di Sangue Luminescenti e il Sangue Irradiato) ora cura il doppio degli HP e riporta il tuo stato di Sete verso dissetato di un passo. Quando consumi Sangue Irradiato, ora tiri solo 1 DC per determinare i danni da Radiazioni."
         }
     },
     "perkBloodyMess": {
@@ -276,7 +276,7 @@
         "it": "Amante della Cola",
         "_description": {
             "en": "When you drink a Nuka-Cola beverage, you regain twice as many HP as normal.",
-            "it": "Quando bevi una bevanda Nuka-Cola, recuperi il doppio dei HP normali."
+            "it": "Quando bevi una bevanda Nuka-Cola, recuperi il doppio degli HP normali."
         }
     },
     "perkCommando": {
@@ -428,7 +428,7 @@
         "it": "Metabolismo Veloce",
         "_description": {
             "en": "When you regain one or more HP from any source other than rest, increase the total HP regained by +1 per rank in this perk. Each time you take this perk, the level requirement increases by 3.",
-            "it": "Quando recuperi uno o più HP da una fonte diversa dal riposo, aumenta i HP recuperati totali di +1 per ogni grado di questo talento. Ogni volta che prendi questo talento, il requisito di livello aumenta di 3."
+            "it": "Quando recuperi uno o più HP da una fonte diversa dal riposo, aumenta gli HP recuperati totali di +1 per ogni grado di questo talento. Ogni volta che prendi questo talento, il requisito di livello aumenta di 3."
         }
     },
     "perkFieldSurgeon": {
@@ -580,7 +580,7 @@
         "it": "Guaritore",
         "_description": {
             "en": "When you heal a patient’s HP using the First Aid action, increase the amount of HP healed by +1 per rank in this perk. Each time you take this perk, the level requirement increases by 5.",
-            "it": "Quando curi i HP di un paziente con l'azione Primo Soccorso, aumenta i HP curati di +1 per ogni grado di questo talento. Ogni volta che prendi questo talento, il requisito di livello aumenta di 5."
+            "it": "Quando curi gli HP di un paziente con l'azione Primo Soccorso, aumenta gli HP curati di +1 per ogni grado di questo talento. Ogni volta che prendi questo talento, il requisito di livello aumenta di 5."
         }
     },
     "perkHealingHands": {
@@ -860,7 +860,7 @@
         "it": "Furia Nerd!",
         "_description": {
             "en": "When the character's health falls below ¼ of maximum health, add +1 to Physical DR, +1 to Energy DR, and +1 Combat Die to the damage of all attacks. At rank 2, the values increase to +2 DR and +2 Combat Dice damage. At rank 3, the values increase to +3 DR and +3 Combat Dice damage. Each time this perk is selected, the level requirements increase by 5.",
-            "it": "Quando i HP del personaggio scendono sotto ¼ del massimo, aggiungi +1 alla RD fisica, +1 alla RD da Energia e +1 Dado di Combattimento al danno di tutti gli attacchi. Al grado 2 i valori aumentano a +2 RD e +2 Dadi di Combattimento di danno. Al grado 3 i valori aumentano a +3 RD e +3 Dadi di Combattimento di danno. Ogni volta che si sceglie questo talento, i requisiti di livello aumentano di 5."
+            "it": "Quando gli HP del personaggio scendono sotto ¼ del massimo, aggiungi +1 alla RD fisica, +1 alla RD da Energia e +1 Dado di Combattimento al danno di tutti gli attacchi. Al grado 2 i valori aumentano a +2 RD e +2 Dadi di Combattimento di danno. Al grado 3 i valori aumentano a +3 RD e +3 Dadi di Combattimento di danno. Ogni volta che si sceglie questo talento, i requisiti di livello aumentano di 5."
         }
     },
     "perkNightEyes": {
@@ -996,7 +996,7 @@
         "it": "Riparatore di Tute",
         "_description": {
             "en": "When you repair the HP of a piece of Power Armor, repair an additional 2 HP. At rank 2, this increases to 3 HP. At rank 3, this increases to 4 HP. Each time you take this perk, the level requirement increases by +7.",
-            "it": "Quando ripari i HP di un'Armatura Atomica, ripari altri 2 HP. Al grado 2 questo aumenta a 3 HP. Al grado 3 aumenta a 4 HP. Ogni volta che prendi questo talento, il requisito di livello aumenta di +7."
+            "it": "Quando ripari gli HP di un'Armatura Atomica, ripari altri 2 HP. Al grado 2 questo aumenta a 3 HP. Al grado 3 aumenta a 4 HP. Ogni volta che prendi questo talento, il requisito di livello aumenta di +7."
         }
     },
     "perkPowerUser": {
@@ -1388,7 +1388,7 @@
         "it": "Armeggiatore",
         "_description": {
             "en": "You reduce the difficulty of repairing a robot through the first aid action to the number of injuries that it has sustained, increasing the difficulty of the test by +1 if you are attempting to repair yourself. Additionally, you can tinker and clean a robot for up to an hour, increasing the maximum HP of the robot by +2 for 24 hours or until the robot sustains an injury.",
-            "it": "Riduci la difficoltà di riparare un robot con l'azione di Primo Soccorso fino al numero di ferite che il robot ha subito, aumentando però di +1 la difficoltà della prova se stai riparando te stesso. Inoltre, puoi armeggiare e pulire un robot per un'ora, aumentando di +2 i HP massimi del robot per 24 ore o finché il robot non subisce una ferita."
+            "it": "Riduci la difficoltà di riparare un robot con l'azione di Primo Soccorso fino al numero di ferite che il robot ha subito, aumentando però di +1 la difficoltà della prova se stai riparando te stesso. Inoltre, puoi armeggiare e pulire un robot per un'ora, aumentando di +2 gli HP massimi del robot per 24 ore o finché il robot non subisce una ferita."
         }
     },
     "perkToughness": {
@@ -1452,7 +1452,7 @@
         "it": "Gourmet del Vecchio Mondo",
         "_description": {
             "en": "Increase the HP gained when you eat packaged, tinned, or otherwise preserved pre-war food by 2. In addition, reduce the Irradiated rating of the same food by 1 to a minimum of 0.",
-            "it": "Aumenta i HP recuperati quando mangi cibo confezionato, in scatola o comunque conservato di anteguerra di 2. Inoltre, riduci di 1 il valore di Irradiazione dello stesso cibo, fino a un minimo di 0."
+            "it": "Aumenta gli HP recuperati quando mangi cibo confezionato, in scatola o comunque conservato di anteguerra di 2. Inoltre, riduci di 1 il valore di Irradiazione dello stesso cibo, fino a un minimo di 0."
         }
     },
     "perkSuperSlam": {
